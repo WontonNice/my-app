@@ -2,6 +2,11 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 
 type AuthMode = "login" | "register";
+type UserRole = "student" | "teacher";
+
+type HomePageProps = {
+    onLoginSuccess: (userRole: UserRole) => void;
+};
 
 const API_BASE =
     import.meta.env.VITE_API_BASE_URL?.trim() || "http://localhost:8080";
@@ -21,7 +26,33 @@ function getErrorMessage(error: unknown) {
     return error instanceof Error ? error.message : String(error);
 }
 
-function HomePage() {
+function getRoleFromResult(result: Record<string, unknown> | null): UserRole {
+    const rootRole = typeof result?.role === "string" ? result.role : null;
+
+    const dataRole =
+        typeof result?.data === "object" &&
+            result.data &&
+            "role" in result.data &&
+            typeof result.data.role === "string"
+            ? result.data.role
+            : null;
+
+    const userRole =
+        typeof result?.user === "object" &&
+            result.user &&
+            "role" in result.user &&
+            typeof result.user.role === "string"
+            ? result.user.role
+            : null;
+
+    const normalizedRole = (dataRole ?? userRole ?? rootRole ?? "student")
+        .trim()
+        .toLowerCase();
+
+    return normalizedRole === "teacher" ? "teacher" : "student";
+}
+
+function HomePage({ onLoginSuccess }: HomePageProps) {
     const [mode, setMode] = useState<AuthMode>("login");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -60,11 +91,22 @@ function HomePage() {
                     (result?.raw && typeof result.raw === "string" && result.raw) ||
                     `HTTP ${response.status}`;
 
-                setMessage(`${requestUrl} -> ${serverError}`);
+                setMessage(`${serverError}`);
                 return;
             }
 
-            setMessage(isRegister ? "Registration successful!" : "Login successful!");
+            if (isRegister) {
+                setMode("login");
+                setUsername("");
+                setPassword("");
+                setFirstName("");
+                setLastName("");
+                setMessage("Registration successful! Please log in.");
+                return;
+            }
+
+            const roleFromResponse = getRoleFromResult(result);
+            onLoginSuccess(roleFromResponse);
         } catch (error) {
             setMessage(
                 `Could not reach backend at ${API_BASE}. ${getErrorMessage(error)}`

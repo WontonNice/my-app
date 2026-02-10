@@ -28,7 +28,7 @@ function normalizeName(x: unknown): string | null {
 
 router.post("/", async (req, res) => {
     try {
-        let {
+        const {
             username,
             password,
             firstName,
@@ -42,10 +42,12 @@ router.post("/", async (req, res) => {
             return;
         }
 
+        const normalizedUsername =
+            typeof username === "string" ? username.trim() : username;
         const FirstName = normalizeName(firstName ?? first_name);
         const LastName = normalizeName(lastName ?? last_name);
 
-        if (!isValidUsername(username)) {
+        if (!isValidUsername(normalizedUsername)) {
             res.status(400).json({ error: "Invalid username" });
             return;
         }
@@ -55,7 +57,7 @@ router.post("/", async (req, res) => {
         }
 
         const toInsert = {
-            username,
+            username: normalizedUsername,
             password,
             first_name: FirstName,
             last_name: LastName,
@@ -71,6 +73,10 @@ router.post("/", async (req, res) => {
             .single();
 
         if (error) {
+            if (error.message.toLowerCase().includes("duplicate")) {
+                res.status(409).json({ error: "This username is taken" });
+                return;
+            }
             res.status(400).json({ error: error.message });
             return;
         } res.status(201).json({ data });
