@@ -1,0 +1,20 @@
+{
+    "name": "nathantutors",
+    "private": true,
+    "version": "0.0.0",
+    "workspaces": [
+        "client",
+        "server"
+    ],
+    "scripts": {
+        "dev": "npx concurrently \"npm run dev --workspace client\" \"npm run dev --workspace server\"",
+        "dev:client": "npm run dev --workspace client",
+        "dev:server": "npm run dev --workspace server",
+        "build": "npm run build --workspace client",
+        "lint:client": "npm run lint --workspace client",
+        "preview": "npm run preview --workspace client"
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.2"
+    }
+}
