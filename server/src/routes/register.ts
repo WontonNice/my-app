@@ -5,7 +5,7 @@ const router = Router();
 
 const supabase = createClient(
     process.env.SUPABASE_URL!,
-    process.env.SUPABASE_ANON_KEY!
+    process.env.SUPABASE_SERVICE_ROLE!
 );
 
 // Validators
@@ -26,7 +26,7 @@ function normalizeName(x: unknown): string | null {
     return s;
 }
 
-router.post("/register", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         let {
             username,

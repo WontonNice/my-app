@@ -1,9 +1,49 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 
+const MAX_ERROR_DETAILS = 3;
+
 type AuthMode = "login" | "register";
 
-const API_BASE = "http://localhost:8080";
+function getApiBases() {
+    const configuredBase = import.meta.env.VITE_API_BASE_URL?.trim();
+    if (configuredBase) {
+        return [configuredBase];
+    }
+
+    const host = window.location.hostname;
+    const normalizedHost = host === "0.0.0.0" ? "localhost" : host;
+
+    return [
+        `${window.location.protocol}//${normalizedHost}:8080`,
+        "http://localhost:8080",
+        "http://127.0.0.1:8080",
+    ];
+}
+
+const API_BASES = [...new Set(getApiBases())];
+
+async function parseResponseBody(response: Response) {
+    const responseText = await response.text();
+
+    if (!responseText) {
+        return null;
+    }
+
+    try {
+        return JSON.parse(responseText) as Record<string, unknown>;
+    } catch {
+        return { raw: responseText } as Record<string, unknown>;
+    }
+}
+
+function getErrorMessage(error: unknown) {
+    if (error instanceof Error) {
+        return error.message;
+    }
+
+    return String(error);
+}
 
 function HomePage() {
     const [mode, setMode] = useState<AuthMode>("login");
@@ -26,27 +66,54 @@ function HomePage() {
             ? { username, password, firstName, lastName }
             : { username, password };
 
+        const attemptErrors: string[] = [];
+
         try {
-            const response = await fetch(`${API_BASE}${endpoint}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(payload),
-            });
+            for (const apiBase of API_BASES) {
+                const requestUrl = `${apiBase}${endpoint}`;
 
-            const result = await response.json();
+                try {
+                    const response = await fetch(requestUrl, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(payload),
+                    });
 
-            if (!response.ok) {
-                setMessage(result.error ?? "Something went wrong.");
-                return;
+                    const result = await parseResponseBody(response);
+
+                    if (!response.ok) {
+                        const serverError =
+                            (typeof result?.error === "string" && result.error) ||
+                            (typeof result?.message === "string" && result.message) ||
+                            `HTTP ${response.status}`;
+
+                        const diagnostic = `${requestUrl} -> ${serverError}`;
+                        attemptErrors.push(diagnostic);
+                        console.error("Auth request failed:", diagnostic, result);
+
+                        continue;
+                    }
+
+                    setMessage(
+                        isRegister ? "Registration successful!" : "Login successful!"
+                    );
+                    return;
+                } catch (error) {
+                    const diagnostic = `${requestUrl} -> ${getErrorMessage(error)}`;
+                    attemptErrors.push(diagnostic);
+                    console.error("Auth request threw:", diagnostic, error);
+                }
             }
 
+            const compactDiagnostics = attemptErrors.slice(0, MAX_ERROR_DETAILS).join(" | ");
+            const extraCount = Math.max(attemptErrors.length - MAX_ERROR_DETAILS, 0);
+            const extraSuffix = extraCount > 0 ? ` (+${extraCount} more)` : "";
+
             setMessage(
-                isRegister ? "Registration successful!" : "Login successful!"
+                `Could not reach backend on port 8080. ${compactDiagnostics}${extraSuffix}`
             );
-        } catch {
-            setMessage("Could not reach backend. Is your server running on port 8080?");
         } finally {
             setIsLoading(false);
         }

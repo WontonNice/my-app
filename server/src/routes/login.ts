@@ -8,7 +8,7 @@ const supabase = createClient(
     process.env.SUPABASE_ANON_KEY!
 );
 
-router.post("/login", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         let { username, password } = req.body ?? {};
 
