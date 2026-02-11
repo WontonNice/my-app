@@ -4,6 +4,7 @@ import type { AuthUser } from "../../../authStorage";
 type PrecalcHomePageProps = {
     authUser: AuthUser;
     onBack: () => void;
+    onOpenLearn: () => void;
     onLogout: () => void;
 };
 

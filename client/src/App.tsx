@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import HomePage from "./components/HomePage";
 import PrecalcHomePage from "./components/Courses/PreCalc/PrecalcHomePage";
+import PrecalcLearnPage from "./components/Courses/PreCalc/PrecalcLearnPage";
 import StudentDashboard from "./components/StudentDashboard";
 import TeacherDashboard from "./components/TeacherDashboard";
 
 import { getStoredAuthUser, setStoredAuthUser } from "./authStorage";
 import type { AuthUser } from "./authStorage";
 
-type StudentView = "dashboard" | "precalc";
+type StudentView = "dashboard" | "precalc" | "precalc-learn";
 
 function normalizeCourseName(course: string) {
   return course.trim().toLowerCase();
@@ -38,9 +39,14 @@ function App() {
         <PrecalcHomePage
           authUser={authUser}
           onBack={() => setStudentView("dashboard")}
+          onOpenLearn={() => setStudentView("precalc-learn")}
           onLogout={handleLogout}
         />
       );
+    }
+
+    if (studentView === "precalc-learn") {
+      return <PrecalcLearnPage onBack={() => setStudentView("precalc")} />;
     }
 
     return (

@@ -1,0 +1,59 @@
+{
+    "id": "precalc-ch5-module-4",
+    "title": "More Trigonometric Graphs",
+    "chapter": 5,
+    "estimatedMinutes": 28,
+    "objectives": [
+        "Graph secant and cosecant from cosine and sine.",
+        "Understand asymptotes for reciprocal trig graphs.",
+        "Analyze cotangent behavior."
+    ],
+    "pages": [
+        {
+            "id": "m4-p1",
+            "title": "Reciprocal trig graphs",
+            "blocks": [
+                {
+                    "type": "text",
+                    "text": "Secant and cosecant are reciprocals of cosine and sine, so their undefined points become vertical asymptotes."
+                },
+                {
+                    "type": "katex",
+                    "expression": "\\sec x = \\frac{1}{\\cos x},\\ \\csc x = \\frac{1}{\\sin x}",
+                    "displayMode": true
+                },
+                {
+                    "type": "question",
+                    "id": "m4q1",
+                    "prompt": "Where is csc(x) undefined: x=0 or x=\u03c0/2?",
+                    "acceptableAnswers": [
+                        "x=0",
+                        "0"
+                    ],
+                    "explanation": "csc(x)=1/sin(x), and sin(0)=0, so csc is undefined at x=0."
+                }
+            ]
+        },
+        {
+            "id": "m4-p2",
+            "title": "Cotangent period",
+            "blocks": [
+                {
+                    "type": "katex",
+                    "expression": "\\cot x = \\frac{\\cos x}{\\sin x}",
+                    "displayMode": true
+                },
+                {
+                    "type": "question",
+                    "id": "m4q2",
+                    "prompt": "What is the period of cot(x)?",
+                    "acceptableAnswers": [
+                        "\u03c0",
+                        "pi"
+                    ],
+                    "explanation": "cot(x+\u03c0)=cot(x), so its period is \u03c0."
+                }
+            ]
+        }
+    ]
+}

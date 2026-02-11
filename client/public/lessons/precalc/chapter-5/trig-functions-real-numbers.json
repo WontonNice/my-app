@@ -1,0 +1,57 @@
+{
+    "id": "precalc-ch5-module-2",
+    "title": "Trigonometric Functions of Real Numbers",
+    "chapter": 5,
+    "estimatedMinutes": 25,
+    "objectives": [
+        "Evaluate trig functions for any real angle.",
+        "Use symmetry and periodicity.",
+        "Interpret coterminal angles."
+    ],
+    "pages": [
+        {
+            "id": "m2-p1",
+            "title": "Periodicity and coterminal angles",
+            "blocks": [
+                {
+                    "type": "text",
+                    "text": "Angles that differ by 2\u03c0 land at the same point and share trig values."
+                },
+                {
+                    "type": "katex",
+                    "expression": "\\sin(\\theta+2\\pi k)=\\sin\\theta,\\ \\cos(\\theta+2\\pi k)=\\cos\\theta",
+                    "displayMode": true
+                },
+                {
+                    "type": "question",
+                    "id": "m2q1",
+                    "prompt": "What is sin(5\u03c0/2)?",
+                    "acceptableAnswers": [
+                        "1"
+                    ],
+                    "explanation": "5\u03c0/2 is coterminal with \u03c0/2, and sin(\u03c0/2)=1."
+                }
+            ]
+        },
+        {
+            "id": "m2-p2",
+            "title": "Signs by quadrant",
+            "blocks": [
+                {
+                    "type": "text",
+                    "text": "Use quadrant signs: in QII sine is positive while cosine is negative."
+                },
+                {
+                    "type": "question",
+                    "id": "m2q2",
+                    "prompt": "Is cos(2\u03c0/3) positive or negative?",
+                    "acceptableAnswers": [
+                        "negative",
+                        "neg"
+                    ],
+                    "explanation": "2\u03c0/3 is in Quadrant II, where cosine is negative."
+                }
+            ]
+        }
+    ]
+}

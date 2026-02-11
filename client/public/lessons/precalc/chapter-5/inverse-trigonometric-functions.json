@@ -1,0 +1,59 @@
+{
+    "id": "precalc-ch5-module-5",
+    "title": "Inverse Trigonometric Functions and Their Graphs",
+    "chapter": 5,
+    "estimatedMinutes": 30,
+    "objectives": [
+        "Evaluate inverse trig functions.",
+        "Use principal-value ranges.",
+        "Relate inverse graphs to restricted trig graphs."
+    ],
+    "pages": [
+        {
+            "id": "m5-p1",
+            "title": "Principal values",
+            "blocks": [
+                {
+                    "type": "text",
+                    "text": "Inverse trig functions return principal values from restricted intervals."
+                },
+                {
+                    "type": "katex",
+                    "expression": "\\arcsin(x)\\in\\left[-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right],\\ \\arccos(x)\\in[0,\\pi]",
+                    "displayMode": true
+                },
+                {
+                    "type": "question",
+                    "id": "m5q1",
+                    "prompt": "What is arcsin(1)?",
+                    "acceptableAnswers": [
+                        "\u03c0/2",
+                        "pi/2"
+                    ],
+                    "explanation": "The principal value in arcsin range is \u03c0/2."
+                }
+            ]
+        },
+        {
+            "id": "m5-p2",
+            "title": "Inverse composition",
+            "blocks": [
+                {
+                    "type": "katex",
+                    "expression": "\\sin(\\arcsin x)=x\\ \\text{for}\\ -1\\le x\\le 1",
+                    "displayMode": true
+                },
+                {
+                    "type": "question",
+                    "id": "m5q2",
+                    "prompt": "What is arccos(-1)?",
+                    "acceptableAnswers": [
+                        "\u03c0",
+                        "pi"
+                    ],
+                    "explanation": "In [0,\u03c0], cosine equals -1 at \u03c0."
+                }
+            ]
+        }
+    ]
+}

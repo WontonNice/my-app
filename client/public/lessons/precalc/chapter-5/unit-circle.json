@@ -1,0 +1,63 @@
+{
+    "id": "precalc-ch5-module-1",
+    "title": "The Unit Circle",
+    "chapter": 5,
+    "estimatedMinutes": 25,
+    "objectives": [
+        "Convert between degrees and radians.",
+        "Locate common angles on the unit circle.",
+        "Use coordinates to evaluate sine and cosine."
+    ],
+    "pages": [
+        {
+            "id": "m1-p1",
+            "title": "Radians and landmarks",
+            "blocks": [
+                {
+                    "type": "text",
+                    "text": "The unit circle has radius 1, so each point on it has coordinates (cos \u03b8, sin \u03b8)."
+                },
+                {
+                    "type": "katex",
+                    "expression": "\\theta = \\frac{\\pi}{6},\\ \\frac{\\pi}{4},\\ \\frac{\\pi}{3},\\ \\frac{\\pi}{2}",
+                    "displayMode": true
+                },
+                {
+                    "type": "question",
+                    "id": "m1q1",
+                    "prompt": "What is the radian measure of 180\u00b0?",
+                    "acceptableAnswers": [
+                        "\u03c0",
+                        "pi",
+                        "3.14159"
+                    ],
+                    "explanation": "180\u00b0 corresponds to a half-turn on the unit circle, which is \u03c0 radians."
+                }
+            ]
+        },
+        {
+            "id": "m1-p2",
+            "title": "Coordinates on the circle",
+            "blocks": [
+                {
+                    "type": "text",
+                    "text": "At \u03b8 = \u03c0/3, the coordinate is (1/2, \u221a3/2), so cos(\u03c0/3)=1/2 and sin(\u03c0/3)=\u221a3/2."
+                },
+                {
+                    "type": "katex",
+                    "expression": "(\\cos\\theta,\\sin\\theta)",
+                    "displayMode": true
+                },
+                {
+                    "type": "question",
+                    "id": "m1q2",
+                    "prompt": "What is cos(0)?",
+                    "acceptableAnswers": [
+                        "1"
+                    ],
+                    "explanation": "At \u03b8=0, the point is (1,0)."
+                }
+            ]
+        }
+    ]
+}

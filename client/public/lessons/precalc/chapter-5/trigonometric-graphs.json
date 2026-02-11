@@ -1,0 +1,52 @@
+{
+    "id": "precalc-ch5-module-3",
+    "title": "Trigonometric Graphs",
+    "chapter": 5,
+    "estimatedMinutes": 30,
+    "objectives": [
+        "Graph y = A sin(Bx + C) + D.",
+        "Identify amplitude and period.",
+        "Connect equation changes to graph behavior."
+    ],
+    "pages": [
+        {
+            "id": "m3-p1",
+            "title": "Core graph parameters",
+            "blocks": [
+                {
+                    "type": "text",
+                    "text": "For y = A sin(Bx) + D, amplitude is |A| and period is 2\u03c0/|B|."
+                },
+                {
+                    "type": "katex",
+                    "expression": "\\text{Period} = \\frac{2\\pi}{|B|}",
+                    "displayMode": true
+                },
+                {
+                    "type": "question",
+                    "id": "m3q1",
+                    "prompt": "What is the amplitude of y = -3sin(x)?",
+                    "acceptableAnswers": [
+                        "3"
+                    ],
+                    "explanation": "Amplitude is absolute value of the coefficient: |-3| = 3."
+                }
+            ]
+        },
+        {
+            "id": "m3-p2",
+            "title": "Explore with Desmos",
+            "blocks": [
+                {
+                    "type": "desmos",
+                    "title": "Try changing A, B, and D in y = A sin(Bx) + D.",
+                    "expressions": [
+                        "y=2\\sin(x)",
+                        "y=2\\sin(2x)",
+                        "y=2\\sin(2x)+1"
+                    ]
+                }
+            ]
+        }
+    ]
+}

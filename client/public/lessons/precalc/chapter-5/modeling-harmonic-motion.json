@@ -1,0 +1,61 @@
+{
+    "id": "precalc-ch5-module-6",
+    "title": "Modeling Harmonic Motion",
+    "chapter": 5,
+    "estimatedMinutes": 35,
+    "objectives": [
+        "Build sinusoidal models from context.",
+        "Interpret amplitude/period/phase in data.",
+        "Use trig models for physical motion."
+    ],
+    "pages": [
+        {
+            "id": "m6-p1",
+            "title": "General sinusoidal model",
+            "blocks": [
+                {
+                    "type": "text",
+                    "text": "A common harmonic model is y = A sin(B(x-C)) + D, where A controls amplitude and B controls period."
+                },
+                {
+                    "type": "katex",
+                    "expression": "\\text{Period}=\\frac{2\\pi}{|B|}",
+                    "displayMode": true
+                },
+                {
+                    "type": "question",
+                    "id": "m6q1",
+                    "prompt": "If B=4, what is the period?",
+                    "acceptableAnswers": [
+                        "\u03c0/2",
+                        "pi/2"
+                    ],
+                    "explanation": "2\u03c0/4 = \u03c0/2."
+                }
+            ]
+        },
+        {
+            "id": "m6-p2",
+            "title": "Motion visualization",
+            "blocks": [
+                {
+                    "type": "desmos",
+                    "title": "A harmonic motion example",
+                    "expressions": [
+                        "y=3\\sin(2x)+1"
+                    ]
+                },
+                {
+                    "type": "question",
+                    "id": "m6q2",
+                    "prompt": "In y = 3sin(2x)+1, what is the midline?",
+                    "acceptableAnswers": [
+                        "y=1",
+                        "1"
+                    ],
+                    "explanation": "The vertical shift D=1 sets the midline at y=1."
+                }
+            ]
+        }
+    ]
+}
