@@ -133,6 +133,27 @@
                     "explanation": "-\u03c0/2 is a quarter-turn clockwise from (1,0)."
                 }
             ]
+        },
+        {
+            "id": "m1-p3",
+            "title": "Review: Special Triangles 45/45/90",
+            "blocks": [
+                {
+                    "type": "specialTriangle45Animation"
+                },
+                {
+                    "type": "text",
+                    "text": "Prompt: Fill in all angle measures and side lengths on both triangles after the diagonal cut."
+                },
+                {
+                    "type": "text",
+                    "text": "Use the Pythagorean Theorem to find the hypotenuse: c^2 = 1^2 + 1^2 = 2, so c = \u221a2."
+                },
+                {
+                    "type": "text",
+                    "text": "Reminder: all angles in a triangle add up to 180\u00b0, so 45\u00b0 + 45\u00b0 + 90\u00b0 = 180\u00b0."
+                }
+            ]
         }
     ]
 }

@@ -4,6 +4,7 @@ import type { AuthUser } from "../../../authStorage";
 import type { PrecalcLessonSummary } from "./precalcLessons";
 import DesmosBlock from "./DesmosBlock";
 import KatexExpression from "./Katex";
+import UnitCircleSpecialTriangleReview from "./Modules/Chapter5/UnitCircleSpecialTriangleReview";
 
 type LessonBlock =
     | {
@@ -36,6 +37,9 @@ type LessonBlock =
         expressions: Array<{ latex: string; label?: string; showLabel?: boolean } | string>;
         viewport?: { left: number; right: number; bottom: number; top: number };
         requireStudentGraphBeforeAdvance?: boolean;
+    }
+    | {
+        type: "specialTriangle45Animation";
     };
 
 type LessonPage = {
@@ -293,6 +297,10 @@ function toLessonPayload(value: unknown): LessonPayload {
                                         blockCandidate.requireStudentGraphBeforeAdvance,
                                     ),
                                 } as LessonBlock;
+                            }
+
+                            if (blockCandidate.type === "specialTriangle45Animation") {
+                                return { type: "specialTriangle45Animation" } as LessonBlock;
                             }
 
                             return null;
@@ -577,6 +585,10 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                             )}
                                         </section>
                                     );
+                                }
+
+                                if (block.type === "specialTriangle45Animation") {
+                                    return <UnitCircleSpecialTriangleReview key={`special-triangle-${index}`} />;
                                 }
 
                                 const desmosBlockId = `${currentPage.id}-desmos-${index}`;
