@@ -9,7 +9,7 @@ type HomePageProps = {
 };
 
 const API_BASE =
-    import.meta.env.VITE_API_BASE_URL?.trim() || "http://localhost:8080";
+    import.meta.env.VITE_API_BASE_URL?.trim() || "";
 
 async function parseResponseBody(response: Response) {
     const responseText = await response.text();

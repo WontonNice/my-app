@@ -15,7 +15,7 @@ type Student = {
 };
 
 const API_BASE =
-    import.meta.env.VITE_API_BASE_URL?.trim() || "http://localhost:8080";
+    import.meta.env.VITE_API_BASE_URL?.trim() || "";
 
 const COURSES = ["precalc", "b", "c"] as const;
 
