@@ -11,6 +11,8 @@ declare global {
                 options?: { expressions?: boolean; keypad?: boolean; settingsMenu?: boolean },
             ) => {
                 setExpression: (expression: { id: string; latex: string }) => void;
+                getExpressions: () => Array<{ latex?: string }>;
+                observeEvent: (eventName: string, callback: () => void) => void;
                 destroy: () => void;
             };
         };
@@ -40,6 +42,7 @@ type LessonBlock =
         type: "desmos";
         title?: string;
         expressions: string[];
+        requireStudentGraphBeforeAdvance?: boolean;
     };
 
 type LessonPage = {
@@ -131,16 +134,17 @@ function toLessonPayload(value: unknown): LessonPayload {
                                     )
                                     : [];
 
-                                if (expressions.length > 0) {
-                                    return {
-                                        type: "desmos",
-                                        title:
-                                            typeof blockCandidate.title === "string"
-                                                ? blockCandidate.title
-                                                : undefined,
-                                        expressions,
-                                    } as LessonBlock;
-                                }
+                                return {
+                                    type: "desmos",
+                                    title:
+                                        typeof blockCandidate.title === "string"
+                                            ? blockCandidate.title
+                                            : undefined,
+                                    expressions,
+                                    requireStudentGraphBeforeAdvance: Boolean(
+                                        blockCandidate.requireStudentGraphBeforeAdvance,
+                                    ),
+                                } as LessonBlock;
                             }
 
                             return null;
@@ -175,14 +179,23 @@ function toLessonPayload(value: unknown): LessonPayload {
 
 type DesmosBlockProps = {
     expressions: string[];
+    requireStudentGraphBeforeAdvance?: boolean;
+    onGraphStatusChange?: (hasStudentGraph: boolean) => void;
 };
 
-function DesmosBlock({ expressions }: DesmosBlockProps) {
+function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphStatusChange }: DesmosBlockProps) {
     const calculatorRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         let destroyed = false;
-        let calculator: { setExpression: (expression: { id: string; latex: string }) => void; destroy: () => void } | null = null;
+        let calculator:
+            | {
+                setExpression: (expression: { id: string; latex: string }) => void;
+                getExpressions: () => Array<{ latex?: string }>;
+                observeEvent: (eventName: string, callback: () => void) => void;
+                destroy: () => void;
+            }
+            | null = null;
 
         const initializeCalculator = () => {
             if (destroyed || !calculatorRef.current || !window.Desmos?.GraphingCalculator) return;
@@ -195,6 +208,24 @@ function DesmosBlock({ expressions }: DesmosBlockProps) {
             expressions.forEach((expression, index) => {
                 calculator?.setExpression({ id: `exp-${index + 1}`, latex: expression });
             });
+
+            if (requireStudentGraphBeforeAdvance && onGraphStatusChange) {
+                const updateGraphStatus = () => {
+                    if (!calculator) return;
+                    const hasStudentGraph = calculator.getExpressions().some((expression) => {
+                        if (typeof expression.latex !== "string") return false;
+                        const normalizedLatex = expression.latex
+                            .replace(/\\/g, "")
+                            .replace(/[{}\s]/g, "")
+                            .toLowerCase();
+                        return normalizedLatex.includes("x^2+y^2=1");
+                    });
+                    onGraphStatusChange(hasStudentGraph);
+                };
+
+                calculator.observeEvent("change", updateGraphStatus);
+                updateGraphStatus();
+            }
         };
 
         const existingScript = document.querySelector<HTMLScriptElement>(`script[data-desmos-api-key="${DESMOS_API_KEY}"]`);
@@ -216,7 +247,7 @@ function DesmosBlock({ expressions }: DesmosBlockProps) {
             destroyed = true;
             calculator?.destroy();
         };
-    }, [expressions]);
+    }, [expressions, onGraphStatusChange, requireStudentGraphBeforeAdvance]);
 
     return <div ref={calculatorRef} style={{ width: "100%", height: 420, border: "1px solid #ddd", borderRadius: 8 }} />;
 }
@@ -227,6 +258,7 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
     const [pageIndex, setPageIndex] = useState(0);
     const [questionAnswers, setQuestionAnswers] = useState<Record<string, string>>({});
     const [questionResults, setQuestionResults] = useState<Record<string, { isCorrect: boolean; submitted: boolean }>>({});
+    const [desmosGraphStatus, setDesmosGraphStatus] = useState<Record<string, boolean>>({});
 
     useEffect(() => {
         let isMounted = true;
@@ -248,6 +280,7 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                     setPageIndex(0);
                     setQuestionAnswers({});
                     setQuestionResults({});
+                    setDesmosGraphStatus({});
                 }
             } catch (error) {
                 const message = error instanceof Error ? error.message : String(error);
@@ -272,8 +305,18 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
         (block): block is Extract<LessonBlock, { type: "question" }> =>
             block.type === "question" && block.requireCorrectBeforeAdvance === true,
     ) || [];
+    const requiredDesmosBlocks = currentPage?.blocks
+        .map((block, index) => ({ block, index }))
+        .filter(
+            (entry): entry is { block: Extract<LessonBlock, { type: "desmos" }>; index: number } =>
+                entry.block.type === "desmos" && entry.block.requireStudentGraphBeforeAdvance === true,
+        ) || [];
+    const hasCompletedRequiredGraphing =
+        requiredDesmosBlocks.length === 0 ||
+        requiredDesmosBlocks.every(({ index }) => Boolean(desmosGraphStatus[`${currentPage?.id || "page"}-desmos-${index}`]));
     const canAdvancePage =
-        requiredQuestions.length === 0 || requiredQuestions.every((question) => Boolean(questionResults[question.id]?.isCorrect));
+        (requiredQuestions.length === 0 || requiredQuestions.every((question) => Boolean(questionResults[question.id]?.isCorrect))) &&
+        hasCompletedRequiredGraphing;
 
     const handleQuestionSubmit = (event: FormEvent<HTMLFormElement>, block: Extract<LessonBlock, { type: "question" }>) => {
         event.preventDefault();
@@ -361,7 +404,19 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                 return (
                                     <section key={`desmos-${index}`}>
                                         {block.title && <h3>{block.title}</h3>}
-                                        <DesmosBlock expressions={block.expressions} />
+                                        <DesmosBlock
+                                            expressions={block.expressions}
+                                            requireStudentGraphBeforeAdvance={block.requireStudentGraphBeforeAdvance}
+                                            onGraphStatusChange={(hasStudentGraph) =>
+                                                setDesmosGraphStatus((previous) => ({
+                                                    ...previous,
+                                                    [`${currentPage.id}-desmos-${index}`]: hasStudentGraph,
+                                                }))
+                                            }
+                                        />
+                                        {block.requireStudentGraphBeforeAdvance && (
+                                            <p>Graph the unit circle equation in Desmos before moving to the next page.</p>
+                                        )}
                                     </section>
                                 );
                             })}
@@ -386,9 +441,7 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                     Next page
                                 </button>
                             </div>
-                            {!canAdvancePage && (
-                                <p aria-live="polite">Complete the required check before moving to the next page.</p>
-                            )}
+                            {!canAdvancePage && <p aria-live="polite">Complete all required checks before moving to the next page.</p>}
                         </>
                     )}
 

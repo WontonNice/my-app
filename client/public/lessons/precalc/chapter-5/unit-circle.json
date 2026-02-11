@@ -25,9 +25,8 @@
                 {
                     "type": "desmos",
                     "title": "Graph the unit circle",
-                    "expressions": [
-                        "x^2+y^2=1"
-                    ]
+                    "expressions": [],
+                    "requireStudentGraphBeforeAdvance": true
                 },
                 {
                     "type": "question",
