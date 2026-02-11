@@ -64,6 +64,11 @@ type LessonProgress = {
     desmosGraphStates: Record<string, Record<string, unknown>>;
 };
 
+type ActiveQuestionInput = {
+    questionId: string;
+    coordinate: "x" | "y";
+};
+
 function normalizePointAnswer(value: string) {
     return value
         .trim()
@@ -330,6 +335,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
     const [errorMessage, setErrorMessage] = useState("");
     const [pageIndex, setPageIndex] = useState(0);
     const [questionAnswers, setQuestionAnswers] = useState<Record<string, { x: string; y: string }>>({});
+    const [activeQuestionInput, setActiveQuestionInput] = useState<ActiveQuestionInput | null>(null);
     const [visibleHints, setVisibleHints] = useState<Record<string, boolean>>({});
     const [questionResults, setQuestionResults] = useState<Record<string, { isCorrect: boolean; submitted: boolean }>>({});
     const [desmosGraphStatus, setDesmosGraphStatus] = useState<Record<string, boolean>>({});
@@ -415,10 +421,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
         visibleHints,
     ]);
 
-    const displayTitle = useMemo(() => {
-        if (lessonPayload?.title) return lessonPayload.title;
-        return lesson.title;
-    }, [lesson.title, lessonPayload?.title]);
+    const displayTitle = lessonPayload?.title ?? lesson.title;
 
     const currentPage = lessonPayload?.pages?.[pageIndex];
     const requiredQuestions = currentPage?.blocks.filter(
@@ -437,6 +440,23 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
     const canAdvancePage =
         (requiredQuestions.length === 0 || requiredQuestions.every((question) => Boolean(questionResults[question.id]?.isCorrect))) &&
         hasCompletedRequiredGraphing;
+
+    const insertLatexIntoActiveInput = (snippet: string) => {
+        if (!activeQuestionInput) return;
+
+        setQuestionAnswers((previous) => {
+            const currentAnswer = previous[activeQuestionInput.questionId] || { x: "", y: "" };
+            const currentValue = currentAnswer[activeQuestionInput.coordinate];
+
+            return {
+                ...previous,
+                [activeQuestionInput.questionId]: {
+                    ...currentAnswer,
+                    [activeQuestionInput.coordinate]: `${currentValue}${snippet}`,
+                },
+            };
+        });
+    };
 
     const handleQuestionSubmit = (event: FormEvent<HTMLFormElement>, block: Extract<LessonBlock, { type: "question" }>) => {
         event.preventDefault();
@@ -518,6 +538,19 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                     return (
                                         <section key={block.id}>
                                             <p>{block.prompt}</p>
+                                            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 8 }}>
+                                                <span style={{ marginRight: 4 }}>KaTeX toolbox:</span>
+                                                {["\\pi", "\\sqrt{}", "\\frac{}{}", "^2"].map((snippet) => (
+                                                    <button
+                                                        key={`${block.id}-${snippet}`}
+                                                        type="button"
+                                                        onClick={() => insertLatexIntoActiveInput(snippet)}
+                                                    >
+                                                        {snippet}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                            <p style={{ marginTop: 0 }}>Hint: 2\pi = 360°. Write radians in terms of \pi.</p>
                                             <form onSubmit={(event) => handleQuestionSubmit(event, block)}>
                                                 <span>(</span>
                                                 <input
@@ -532,6 +565,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                             },
                                                         }))
                                                     }
+                                                    onFocus={() => setActiveQuestionInput({ questionId: block.id, coordinate: "x" })}
                                                     aria-label={`x-coordinate for question ${block.id}`}
                                                     style={{ width: 56 }}
                                                 />
@@ -548,6 +582,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                             },
                                                         }))
                                                     }
+                                                    onFocus={() => setActiveQuestionInput({ questionId: block.id, coordinate: "y" })}
                                                     aria-label={`y-coordinate for question ${block.id}`}
                                                     style={{ width: 56 }}
                                                 />

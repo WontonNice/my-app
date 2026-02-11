@@ -133,6 +133,56 @@
                     "explanation": "-\u03c0/2 is a quarter-turn clockwise from (1,0)."
                 }
             ]
+        },
+        {
+            "id": "m1-p3",
+            "title": "Special right triangles review",
+            "blocks": [
+                {
+                    "type": "text",
+                    "text": "Use each special right triangle image and solve for side lengths AB and AC when BC = 1. Enter exact values."
+                },
+                {
+                    "type": "image",
+                    "src": "/lessons/precalc/imgs/454590Triangle.png",
+                    "alt": "45-45-90 special right triangle",
+                    "caption": "45-45-90 triangle"
+                },
+                {
+                    "type": "question",
+                    "id": "m1q5",
+                    "prompt": "For the 45-45-90 triangle, enter (AB, AC) when BC = 1.",
+                    "explanation": "In a 45-45-90 triangle, both legs are equal and each is the hypotenuse divided by \\sqrt{2}."
+                },
+                {
+                    "type": "image",
+                    "src": "/lessons/precalc/imgs/306090Triangle.png",
+                    "alt": "30-60-90 special right triangle",
+                    "caption": "30-60-90 triangle"
+                },
+                {
+                    "type": "question",
+                    "id": "m1q6",
+                    "prompt": "For the 30-60-90 triangle, enter (AB, AC) when BC = 1.",
+                    "explanation": "In a 30-60-90 triangle, the sides are in the ratio 1 : \\sqrt{3} : 2."
+                },
+                {
+                    "type": "text",
+                    "text": "Convert each degree measure to radians in terms of \\pi. Hint: 2\\pi = 360\u00b0."
+                },
+                {
+                    "type": "question",
+                    "id": "m1q7",
+                    "prompt": "Enter (30\u00b0, 45\u00b0) in radians.",
+                    "explanation": "Use degrees \\times \\frac{\\pi}{180} and simplify."
+                },
+                {
+                    "type": "question",
+                    "id": "m1q8",
+                    "prompt": "Enter (60\u00b0, 90\u00b0) in radians.",
+                    "explanation": "Use degrees \\times \\frac{\\pi}{180} and simplify."
+                }
+            ]
         }
     ]
 }
