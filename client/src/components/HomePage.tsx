@@ -23,7 +23,20 @@ async function parseResponseBody(response: Response) {
 }
 
 function getErrorMessage(error: unknown) {
+    if (error instanceof DOMException && error.name === "AbortError") {
+        return "Request timed out. Please try again.";
+    }
+
     return error instanceof Error ? error.message : String(error);
+}
+
+function fetchWithTimeout(url: string, init: RequestInit, timeoutMs = 15000) {
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), timeoutMs);
+
+    return fetch(url, { ...init, signal: controller.signal }).finally(() => {
+        window.clearTimeout(timer);
+    });
 }
 
 function parseEnrolledCourses(value: unknown): string[] {
@@ -99,11 +112,15 @@ function HomePage({ onLoginSuccess }: HomePageProps) {
         const requestUrl = `${API_BASE}${endpoint}`;
 
         try {
-            const response = await fetch(requestUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
-            });
+            const response = await fetchWithTimeout(
+                requestUrl,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                },
+                15000
+            );
 
             const result = await parseResponseBody(response);
 

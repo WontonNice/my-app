@@ -7,6 +7,9 @@ type StudentDashboardProps = {
 };
 
 function StudentDashboard({ authUser, onLogout, onOpenCoursePage }: StudentDashboardProps) {
+    const enrolledCourses = Array.isArray(authUser.enrolledCourses)
+        ? authUser.enrolledCourses.filter((course): course is string => typeof course === "string" && course.trim().length > 0)
+        : [];
 
     return (
         <>
@@ -22,11 +25,11 @@ function StudentDashboard({ authUser, onLogout, onOpenCoursePage }: StudentDashb
                 <tbody>
                     <tr>
                         <td style={{ border: "1px solid #ddd", padding: 8 }}>
-                            {authUser.enrolledCourses.length === 0 ? (
+                            {enrolledCourses.length === 0 ? (
                                 <span>please enroll in a course</span>
                             ) : (
                                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                                    {authUser.enrolledCourses.map((course) => (
+                                    {enrolledCourses.map((course) => (
                                         <button
                                             type="button"
                                             key={course}
