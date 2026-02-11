@@ -27,17 +27,6 @@
                     "title": "Graph the unit circle",
                     "expressions": [],
                     "requireStudentGraphBeforeAdvance": true
-                },
-                {
-                    "type": "question",
-                    "id": "m1q1",
-                    "prompt": "Type the equation of the unit circle after graphing it.",
-                    "acceptableAnswers": [
-                        "x^2+y^2=1",
-                        "x^2 + y^2 = 1"
-                    ],
-                    "explanation": "Use the standard equation for a circle of radius 1 centered at the origin.",
-                    "requireCorrectBeforeAdvance": true
                 }
             ]
         },

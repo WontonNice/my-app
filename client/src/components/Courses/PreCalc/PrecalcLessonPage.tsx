@@ -1,25 +1,24 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import type { AuthUser } from "../../../authStorage";
 import type { PrecalcLessonSummary } from "./precalcLessons";
+import DesmosBlock from "./DesmosBlock";
 
-declare global {
-    interface Window {
-        Desmos?: {
-            GraphingCalculator: (
-                elt: HTMLElement,
-                options?: { expressions?: boolean; keypad?: boolean; settingsMenu?: boolean },
-            ) => {
-                setExpression: (expression: { id: string; latex: string }) => void;
-                getExpressions: () => Array<{ latex?: string }>;
-                observeEvent: (eventName: string, callback: () => void) => void;
-                destroy: () => void;
-            };
-        };
-    }
+function escapeForKatexText(value: string): string {
+    return value
+        .replace(/\\/g, "\\textbackslash{}")
+        .replace(/([{}#$%&_~^])/g, "\\$1")
+        .replace(/\n/g, "\\\\")
+        .replace(/"/g, "''");
 }
 
-const DESMOS_API_KEY = "eae68c10752846c5bf6c8e776563c465";
+function renderKatexText(value: string) {
+    return <code>{`\\(${`\\text{${escapeForKatexText(value)}}`}\\)`}</code>;
+}
+
+function renderKatexExpression(expression: string) {
+    return <pre>{`\\[${expression}\\]`}</pre>;
+}
 
 type LessonBlock =
     | {
@@ -100,6 +99,7 @@ function toLessonPayload(value: unknown): LessonPayload {
                                 return {
                                     type: "katex",
                                     expression: blockCandidate.expression,
+                                    displayMode: Boolean(blockCandidate.displayMode),
                                 } as LessonBlock;
                             }
 
@@ -175,86 +175,6 @@ function toLessonPayload(value: unknown): LessonPayload {
             : [],
         pages,
     };
-}
-
-type DesmosBlockProps = {
-    expressions: string[];
-    requireStudentGraphBeforeAdvance?: boolean;
-    onGraphStatusChange?: (hasStudentGraph: boolean) => void;
-};
-
-function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphStatusChange }: DesmosBlockProps) {
-    const calculatorRef = useRef<HTMLDivElement | null>(null);
-    const graphStatusCallbackRef = useRef(onGraphStatusChange);
-
-    useEffect(() => {
-        graphStatusCallbackRef.current = onGraphStatusChange;
-    }, [onGraphStatusChange]);
-
-    useEffect(() => {
-        let destroyed = false;
-        let calculator:
-            | {
-                setExpression: (expression: { id: string; latex: string }) => void;
-                getExpressions: () => Array<{ latex?: string }>;
-                observeEvent: (eventName: string, callback: () => void) => void;
-                destroy: () => void;
-            }
-            | null = null;
-
-        const initializeCalculator = () => {
-            if (destroyed || !calculatorRef.current || !window.Desmos?.GraphingCalculator) return;
-
-            calculator = window.Desmos.GraphingCalculator(calculatorRef.current, {
-                expressions: true,
-                keypad: false,
-            });
-
-            expressions.forEach((expression, index) => {
-                calculator?.setExpression({ id: `exp-${index + 1}`, latex: expression });
-            });
-
-            if (requireStudentGraphBeforeAdvance && graphStatusCallbackRef.current) {
-                const updateGraphStatus = () => {
-                    if (!calculator) return;
-                    const hasStudentGraph = calculator.getExpressions().some((expression) => {
-                        if (typeof expression.latex !== "string") return false;
-                        const normalizedLatex = expression.latex
-                            .replace(/\\/g, "")
-                            .replace(/[{}\s]/g, "")
-                            .toLowerCase();
-                        return normalizedLatex.includes("x^2+y^2=1");
-                    });
-                    graphStatusCallbackRef.current?.(hasStudentGraph);
-                };
-
-                calculator.observeEvent("change", updateGraphStatus);
-                updateGraphStatus();
-            }
-        };
-
-        const existingScript = document.querySelector<HTMLScriptElement>(`script[data-desmos-api-key="${DESMOS_API_KEY}"]`);
-
-        if (window.Desmos?.GraphingCalculator) {
-            initializeCalculator();
-        } else if (existingScript) {
-            existingScript.addEventListener("load", initializeCalculator, { once: true });
-        } else {
-            const script = document.createElement("script");
-            script.src = `https://www.desmos.com/api/v1.11/calculator.js?apiKey=${DESMOS_API_KEY}`;
-            script.async = true;
-            script.dataset.desmosApiKey = DESMOS_API_KEY;
-            script.addEventListener("load", initializeCalculator, { once: true });
-            document.body.appendChild(script);
-        }
-
-        return () => {
-            destroyed = true;
-            calculator?.destroy();
-        };
-    }, [expressions, requireStudentGraphBeforeAdvance]);
-
-    return <div ref={calculatorRef} style={{ width: "100%", height: 420, border: "1px solid #ddd", borderRadius: 8 }} />;
 }
 
 function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps) {
@@ -341,20 +261,20 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
 
     return (
         <>
-            <h1>{displayTitle}</h1>
+            <h1>{renderKatexText(displayTitle)}</h1>
 
-            {errorMessage && <p aria-live="polite">{errorMessage}</p>}
+            {errorMessage && <p aria-live="polite">{renderKatexText(errorMessage)}</p>}
 
-            {!errorMessage && !lessonPayload && <p>Loading lesson...</p>}
+            {!errorMessage && !lessonPayload && <p>{renderKatexText("Loading lesson...")}</p>}
 
             {lessonPayload && (
                 <>
                     {lessonPayload.objectives && lessonPayload.objectives.length > 0 && (
                         <>
-                            <h2>Objectives</h2>
+                            <h2>{renderKatexText("Objectives")}</h2>
                             <ul>
                                 {lessonPayload.objectives.map((objective) => (
-                                    <li key={objective}>{objective}</li>
+                                    <li key={objective}>{renderKatexText(objective)}</li>
                                 ))}
                             </ul>
                         </>
@@ -363,15 +283,15 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                     {lessonPayload.pages && lessonPayload.pages.length > 0 && currentPage && (
                         <>
                             <h2>
-                                Page {pageIndex + 1}: {currentPage.title}
+                                {renderKatexText(`Page ${pageIndex + 1}: ${currentPage.title}`)}
                             </h2>
                             {currentPage.blocks.map((block, index) => {
                                 if (block.type === "text") {
-                                    return <p key={`text-${index}`}>{block.text}</p>;
+                                    return <p key={`text-${index}`}>{renderKatexText(block.text)}</p>;
                                 }
 
                                 if (block.type === "katex") {
-                                    return <pre key={`katex-${index}`}>{block.expression}</pre>;
+                                    return <div key={`katex-${index}`}>{renderKatexExpression(block.expression)}</div>;
                                 }
 
                                 if (block.type === "question") {
@@ -380,8 +300,8 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
 
                                     return (
                                         <section key={block.id}>
-                                            <h3>Check your understanding</h3>
-                                            <p>{block.prompt}</p>
+                                            <h3>{renderKatexText("Check your understanding")}</h3>
+                                            <p>{renderKatexText(block.prompt)}</p>
                                             <form onSubmit={(event) => handleQuestionSubmit(event, block)}>
                                                 <input
                                                     type="text"
@@ -395,20 +315,20 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                                     aria-label={`Answer for question ${block.id}`}
                                                 />
                                                 <button type="submit" style={{ marginLeft: 8 }}>
-                                                    Check answer
+                                                    {renderKatexText("Check answer")}
                                                 </button>
                                             </form>
                                             {questionResult?.submitted && (
-                                                <p aria-live="polite">{questionResult.isCorrect ? "Correct." : "Try again."}</p>
+                                                <p aria-live="polite">{renderKatexText(questionResult.isCorrect ? "Correct." : "Try again.")}</p>
                                             )}
-                                            {block.explanation && <p>Hint: {block.explanation}</p>}
+                                            {block.explanation && <p>{renderKatexText(`Hint: ${block.explanation}`)}</p>}
                                         </section>
                                     );
                                 }
 
                                 return (
                                     <section key={`desmos-${index}`}>
-                                        {block.title && <h3>{block.title}</h3>}
+                                        {block.title && <h3>{renderKatexText(block.title)}</h3>}
                                         <DesmosBlock
                                             expressions={block.expressions}
                                             requireStudentGraphBeforeAdvance={block.requireStudentGraphBeforeAdvance}
@@ -424,7 +344,7 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                             }
                                         />
                                         {block.requireStudentGraphBeforeAdvance && (
-                                            <p>Graph the unit circle equation in Desmos before moving to the next page.</p>
+                                            <p>{renderKatexText("Graph the unit circle equation in Desmos before moving to the next page.")}</p>
                                         )}
                                     </section>
                                 );
@@ -436,7 +356,7 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                     onClick={() => setPageIndex((previous) => Math.max(previous - 1, 0))}
                                     disabled={pageIndex === 0}
                                 >
-                                    Previous page
+                                    {renderKatexText("Previous page")}
                                 </button>
                                 <button
                                     type="button"
@@ -447,20 +367,20 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                     }
                                     disabled={pageIndex === (lessonPayload.pages?.length || 1) - 1 || !canAdvancePage}
                                 >
-                                    Next page
+                                    {renderKatexText("Next page")}
                                 </button>
                             </div>
-                            {!canAdvancePage && <p aria-live="polite">Complete all required checks before moving to the next page.</p>}
+                            {!canAdvancePage && <p aria-live="polite">{renderKatexText("Complete all required checks before moving to the next page.")}</p>}
                         </>
                     )}
 
                     {(!lessonPayload.pages || lessonPayload.pages.length === 0) && lessonPayload.sections && lessonPayload.sections.length > 0 && (
                         <>
-                            <h2>Lesson Content</h2>
+                            <h2>{renderKatexText("Lesson Content")}</h2>
                             {lessonPayload.sections.map((section, index) => (
                                 <section key={`${section.heading || "section"}-${index}`}>
-                                    {section.heading && <h3>{section.heading}</h3>}
-                                    {section.content && <p>{section.content}</p>}
+                                    {section.heading && <h3>{renderKatexText(section.heading)}</h3>}
+                                    {section.content && <p>{renderKatexText(section.content)}</p>}
                                 </section>
                             ))}
                         </>
@@ -470,10 +390,10 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
 
             <div style={{ display: "flex", gap: 8 }}>
                 <button type="button" onClick={onBack}>
-                    Back to Precalculus home
+                    {renderKatexText("Back to Precalculus home")}
                 </button>
                 <button type="button" onClick={onLogout}>
-                    Logout
+                    {renderKatexText("Logout")}
                 </button>
             </div>
         </>
