@@ -130,3 +130,28 @@ export function renderUnitCircleTextWithInlineLatex(text: string): ReactNode {
 export function renderUnitCircleRadiansHint() {
     return renderUnitCircleTextWithInlineLatex("Hint: $2\\pi = 360^\\circ$. Write radians in terms of $\\pi$.");
 }
+
+export function getSpecialTriangleSideLabels(
+    filePath: string,
+    pageId: string | undefined,
+    prompt: string,
+): { xLabel: string; yLabel: string } | null {
+    if (!isUnitCircleSpecialTrianglesPage(filePath, pageId) || !prompt.toLowerCase().includes("triangle")) {
+        return null;
+    }
+
+    const tupleMatch = prompt.match(/\(([^)]+)\)/);
+    if (!tupleMatch) return null;
+
+    const labels = tupleMatch[1]
+        .split(",")
+        .map((label) => label.trim().toUpperCase())
+        .filter(Boolean);
+
+    if (labels.length < 2) return null;
+
+    return {
+        xLabel: labels[0],
+        yLabel: labels[1],
+    };
+}

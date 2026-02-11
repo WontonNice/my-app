@@ -10,6 +10,7 @@ import DesmosBlock, {
 import KatexExpression from "./Katex";
 import {
     appendUnitCircleLatexSnippet,
+    getSpecialTriangleSideLabels,
     getUnitCircleRadiansHint,
     isUnitCircleSpecialTrianglesPage,
     renderLessonHint,
@@ -436,6 +437,11 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                         lesson.filePath,
                                         currentPage.id,
                                     );
+                                    const specialTriangleSideLabels = getSpecialTriangleSideLabels(
+                                        lesson.filePath,
+                                        currentPage.id,
+                                        block.prompt,
+                                    );
 
                                     return (
                                         <section key={block.id}>
@@ -454,69 +460,137 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                 onSubmit={(event) => handleQuestionSubmit(event, block)}
                                                 style={{
                                                     display: "flex",
-                                                    alignItems: "center",
+                                                    alignItems: specialTriangleSideLabels ? "flex-start" : "center",
+                                                    flexDirection: specialTriangleSideLabels ? "column" : "row",
                                                     flexWrap: "wrap",
                                                     gap: 8,
                                                 }}
                                             >
-                                                <span>(</span>
-                                                <input
-                                                    type="text"
-                                                    value={answer.x}
-                                                    onChange={(event) =>
-                                                        setQuestionAnswers((previous) => ({
-                                                            ...previous,
-                                                            [block.id]: {
-                                                                x: event.target.value,
-                                                                y: previous[block.id]?.y || "",
-                                                            },
-                                                        }))
-                                                    }
-                                                    onFocus={() => setActiveQuestionInput({ questionId: block.id, coordinate: "x" })}
-                                                    aria-label={`x-coordinate for question ${block.id}`}
-                                                    style={
-                                                        isUnitCircleMathInput
-                                                            ? {
-                                                                width: 170,
-                                                                minHeight: 46,
-                                                                borderRadius: 14,
-                                                                border: "1px solid #c7d2fe",
-                                                                padding: "8px 12px",
-                                                                fontSize: 20,
+                                                {specialTriangleSideLabels ? (
+                                                    <>
+                                                        <label style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                                                            <span>{specialTriangleSideLabels.xLabel} =</span>
+                                                            <input
+                                                                type="text"
+                                                                value={answer.x}
+                                                                onChange={(event) =>
+                                                                    setQuestionAnswers((previous) => ({
+                                                                        ...previous,
+                                                                        [block.id]: {
+                                                                            x: event.target.value,
+                                                                            y: previous[block.id]?.y || "",
+                                                                        },
+                                                                    }))
+                                                                }
+                                                                onFocus={() =>
+                                                                    setActiveQuestionInput({ questionId: block.id, coordinate: "x" })
+                                                                }
+                                                                aria-label={`${specialTriangleSideLabels.xLabel} for question ${block.id}`}
+                                                                style={{
+                                                                    width: 170,
+                                                                    minHeight: 46,
+                                                                    borderRadius: 14,
+                                                                    border: "1px solid #c7d2fe",
+                                                                    padding: "8px 12px",
+                                                                    fontSize: 20,
+                                                                }}
+                                                            />
+                                                        </label>
+                                                        <label style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                                                            <span>{specialTriangleSideLabels.yLabel} =</span>
+                                                            <input
+                                                                type="text"
+                                                                value={answer.y}
+                                                                onChange={(event) =>
+                                                                    setQuestionAnswers((previous) => ({
+                                                                        ...previous,
+                                                                        [block.id]: {
+                                                                            x: previous[block.id]?.x || "",
+                                                                            y: event.target.value,
+                                                                        },
+                                                                    }))
+                                                                }
+                                                                onFocus={() =>
+                                                                    setActiveQuestionInput({ questionId: block.id, coordinate: "y" })
+                                                                }
+                                                                aria-label={`${specialTriangleSideLabels.yLabel} for question ${block.id}`}
+                                                                style={{
+                                                                    width: 170,
+                                                                    minHeight: 46,
+                                                                    borderRadius: 14,
+                                                                    border: "1px solid #c7d2fe",
+                                                                    padding: "8px 12px",
+                                                                    fontSize: 20,
+                                                                }}
+                                                            />
+                                                        </label>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <span>(</span>
+                                                        <input
+                                                            type="text"
+                                                            value={answer.x}
+                                                            onChange={(event) =>
+                                                                setQuestionAnswers((previous) => ({
+                                                                    ...previous,
+                                                                    [block.id]: {
+                                                                        x: event.target.value,
+                                                                        y: previous[block.id]?.y || "",
+                                                                    },
+                                                                }))
                                                             }
-                                                            : { width: 56 }
-                                                    }
-                                                />
-                                                <span>, </span>
-                                                <input
-                                                    type="text"
-                                                    value={answer.y}
-                                                    onChange={(event) =>
-                                                        setQuestionAnswers((previous) => ({
-                                                            ...previous,
-                                                            [block.id]: {
-                                                                x: previous[block.id]?.x || "",
-                                                                y: event.target.value,
-                                                            },
-                                                        }))
-                                                    }
-                                                    onFocus={() => setActiveQuestionInput({ questionId: block.id, coordinate: "y" })}
-                                                    aria-label={`y-coordinate for question ${block.id}`}
-                                                    style={
-                                                        isUnitCircleMathInput
-                                                            ? {
-                                                                width: 170,
-                                                                minHeight: 46,
-                                                                borderRadius: 14,
-                                                                border: "1px solid #c7d2fe",
-                                                                padding: "8px 12px",
-                                                                fontSize: 20,
+                                                            onFocus={() =>
+                                                                setActiveQuestionInput({ questionId: block.id, coordinate: "x" })
                                                             }
-                                                            : { width: 56 }
-                                                    }
-                                                />
-                                                <span>)</span>
-                                                <button type="submit" style={{ marginLeft: 8 }}>
+                                                            aria-label={`x-coordinate for question ${block.id}`}
+                                                            style={
+                                                                isUnitCircleMathInput
+                                                                    ? {
+                                                                        width: 170,
+                                                                        minHeight: 46,
+                                                                        borderRadius: 14,
+                                                                        border: "1px solid #c7d2fe",
+                                                                        padding: "8px 12px",
+                                                                        fontSize: 20,
+                                                                    }
+                                                                    : { width: 56 }
+                                                            }
+                                                        />
+                                                        <span>, </span>
+                                                        <input
+                                                            type="text"
+                                                            value={answer.y}
+                                                            onChange={(event) =>
+                                                                setQuestionAnswers((previous) => ({
+                                                                    ...previous,
+                                                                    [block.id]: {
+                                                                        x: previous[block.id]?.x || "",
+                                                                        y: event.target.value,
+                                                                    },
+                                                                }))
+                                                            }
+                                                            onFocus={() =>
+                                                                setActiveQuestionInput({ questionId: block.id, coordinate: "y" })
+                                                            }
+                                                            aria-label={`y-coordinate for question ${block.id}`}
+                                                            style={
+                                                                isUnitCircleMathInput
+                                                                    ? {
+                                                                        width: 170,
+                                                                        minHeight: 46,
+                                                                        borderRadius: 14,
+                                                                        border: "1px solid #c7d2fe",
+                                                                        padding: "8px 12px",
+                                                                        fontSize: 20,
+                                                                    }
+                                                                    : { width: 56 }
+                                                            }
+                                                        />
+                                                        <span>)</span>
+                                                    </>
+                                                )}
+                                                <button type="submit" style={{ marginLeft: specialTriangleSideLabels ? 0 : 8 }}>
                                                     Check answer
                                                 </button>
                                             </form>

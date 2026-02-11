@@ -139,21 +139,16 @@
             "title": "Special right triangles review",
             "blocks": [
                 {
-                    "type": "text",
-                    "text": "Use each special right triangle image and solve for side lengths AB and AC when BC = 1. Enter exact values."
-                },
-                {
                     "type": "image",
                     "src": "/lessons/precalc/imgs/454590Triangle.png",
                     "maxWidth": 360,
-                    "alt": "45-45-90 special right triangle",
-                    "caption": "45-45-90 triangle"
+                    "alt": "45-45-90 special right triangle"
                 },
                 {
                     "type": "question",
                     "id": "m1q5",
-                    "prompt": "For the 45-45-90 triangle, enter (CA, BC) when AB = 1.",
-                    "explanation": "In a 45-45-90 triangle, both legs are equal and each is the hypotenuse divided by $\\sqrt{2}$."
+                    "prompt": "For the isosceles right triangle, solve for AC and BC when AB = 1.",
+                    "explanation": "In an isosceles right triangle, both legs are equal. Use the Pythagorean Theorem."
                 },
                 {
                     "type": "image",
