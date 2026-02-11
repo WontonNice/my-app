@@ -173,9 +173,17 @@
                         "(\\frac{1}{2},\\frac{\\sqrt{3}}{2})",
                         "(\\frac{1}{2}, \\frac{\\sqrt{3}}{2})",
                         "(1/2,sqrt(3)/2)",
+                        "(0.5,0.866)",
+                        "(0.5,0.8660)",
+                        "(0.5,0.8660254)",
                         "(\\frac{\\sqrt{3}}{2},\\frac{1}{2})",
                         "(\\frac{\\sqrt{3}}{2}, \\frac{1}{2})",
-                        "(sqrt(3)/2,1/2)"
+                        "(sqrt(3)/2,1/2)",
+                        "(0.866,0.5)",
+                        "(0.8660,0.5)",
+                        "(0.8660254,0.5)",
+                        "(\\sqrt{3}/2,1/2)",
+                        "(1/2,\\sqrt{3}/2)"
                     ],
                     "requireCorrectBeforeAdvance": true
                 },
@@ -187,13 +195,27 @@
                     "type": "question",
                     "id": "m1q7",
                     "prompt": "Enter (30\u00b0, 45\u00b0) in radians.",
-                    "explanation": "Use degrees $\\times \\frac{\\pi}{180}$ and simplify."
+                    "explanation": "Use degrees $\\times \\frac{\\pi}{180}$ and simplify.",
+                    "acceptableAnswers": [
+                        "(\\frac{\\pi}{6},\\frac{\\pi}{4})",
+                        "(\\frac{\\pi}{6}, \\frac{\\pi}{4})",
+                        "(pi/6,pi/4)",
+                        "(\\pi/6,\\pi/4)",
+                        "(\u03c0/6,\u03c0/4)"
+                    ]
                 },
                 {
                     "type": "question",
                     "id": "m1q8",
                     "prompt": "Enter (60\u00b0, 90\u00b0) in radians.",
-                    "explanation": "Use degrees $\\times \\frac{\\pi}{180}$ and simplify."
+                    "explanation": "Use degrees $\\times \\frac{\\pi}{180}$ and simplify.",
+                    "acceptableAnswers": [
+                        "(\\frac{\\pi}{3},\\frac{\\pi}{2})",
+                        "(\\frac{\\pi}{3}, \\frac{\\pi}{2})",
+                        "(pi/3,pi/2)",
+                        "(\\pi/3,\\pi/2)",
+                        "(\u03c0/3,\u03c0/2)"
+                    ]
                 }
             ]
         }

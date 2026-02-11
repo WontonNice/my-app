@@ -80,6 +80,10 @@ function normalizePointAnswer(value: string) {
     return value
         .trim()
         .toLowerCase()
+        .replace(/π/g, "\\pi")
+        .replace(/\\left|\\right/g, "")
+        .replace(/\\dfrac|\\tfrac/g, "\\frac")
+        .replace(/\\sqrt(?!\{)([a-z0-9]+)/g, "\\sqrt{$1}")
         .replace(/^p\(/, "(")
         .replace(/\s+/g, "");
 }
