@@ -1,15 +1,28 @@
-import { Fragment, useEffect, useMemo, useState } from "react";
-import type { FormEvent, ReactNode } from "react";
+import { useEffect, useState } from "react";
+import type { FormEvent } from "react";
 import type { AuthUser } from "../../../authStorage";
 import type { PrecalcLessonSummary } from "./precalcLessons";
-import DesmosBlock from "./DesmosBlock";
+import DesmosBlock, {
+    getDesmosBlockId,
+    getRequiredDesmosBlockIndexes,
+    hasCompletedRequiredDesmosGraphing,
+} from "./DesmosBlock";
 import KatexExpression from "./Katex";
 import {
-    isUnitCircleLesson,
-    renderUnitCircleRadiansHint,
-    renderUnitCircleTextWithInlineLatex,
-    UNIT_CIRCLE_QUESTION_TOOLS,
+    appendUnitCircleLatexSnippet,
+    getUnitCircleRadiansHint,
+    isUnitCircleSpecialTrianglesPage,
+    renderLessonHint,
+    renderLessonText,
+    renderUnitCircleCoordinatePreview,
+    renderUnitCircleQuestionTools,
+    type ActiveQuestionInput,
 } from "./UnitCircle";
+import {
+    createLessonProgressStorageKey,
+    readLessonProgressFromStorage,
+    writeLessonProgressToStorage,
+} from "./SessionSave";
 
 type LessonBlock =
     | {
@@ -61,120 +74,12 @@ type LessonPayload = {
     pages?: LessonPage[];
 };
 
-type LessonProgress = {
-    pageIndex: number;
-    questionAnswers: Record<string, { x: string; y: string }>;
-    visibleHints: Record<string, boolean>;
-    questionResults: Record<string, { isCorrect: boolean; submitted: boolean }>;
-    desmosGraphStatus: Record<string, boolean>;
-    desmosGraphStates: Record<string, Record<string, unknown>>;
-};
-
-type ActiveQuestionInput = {
-    questionId: string;
-    coordinate: "x" | "y";
-};
-
 function normalizePointAnswer(value: string) {
     return value
         .trim()
         .toLowerCase()
         .replace(/^p\(/, "(")
         .replace(/\s+/g, "");
-}
-
-function renderTextWithInlineLatex(text: string): ReactNode {
-    const segments = text.split(/(\$[^$]+\$)/g).filter((segment) => segment.length > 0);
-
-    return segments.map((segment, index) => {
-        if (segment.startsWith("$") && segment.endsWith("$")) {
-            return (
-                <Fragment key={`math-${index}`}>
-                    <KatexExpression expression={segment.slice(1, -1)} displayMode={false} />
-                </Fragment>
-            );
-        }
-
-        return <Fragment key={`text-${index}`}>{segment}</Fragment>;
-    });
-}
-
-function toLessonProgress(value: unknown): LessonProgress | null {
-    if (!value || typeof value !== "object") return null;
-
-    const candidate = value as Partial<LessonProgress>;
-
-    const pageIndex =
-        typeof candidate.pageIndex === "number" && Number.isInteger(candidate.pageIndex) && candidate.pageIndex >= 0
-            ? candidate.pageIndex
-            : 0;
-
-    const questionAnswers =
-        candidate.questionAnswers && typeof candidate.questionAnswers === "object"
-            ? Object.entries(candidate.questionAnswers).reduce<Record<string, { x: string; y: string }>>(
-                (accumulator, [questionId, answer]) => {
-                    if (!answer || typeof answer !== "object") return accumulator;
-
-                    const answerCandidate = answer as { x?: unknown; y?: unknown };
-                    accumulator[questionId] = {
-                        x: typeof answerCandidate.x === "string" ? answerCandidate.x : "",
-                        y: typeof answerCandidate.y === "string" ? answerCandidate.y : "",
-                    };
-
-                    return accumulator;
-                },
-                {},
-            )
-            : {};
-
-    const visibleHints =
-        candidate.visibleHints && typeof candidate.visibleHints === "object"
-            ? Object.entries(candidate.visibleHints).reduce<Record<string, boolean>>((accumulator, [questionId, isVisible]) => {
-                accumulator[questionId] = isVisible === true;
-                return accumulator;
-            }, {})
-            : {};
-
-    const questionResults =
-        candidate.questionResults && typeof candidate.questionResults === "object"
-            ? Object.entries(candidate.questionResults).reduce<Record<string, { isCorrect: boolean; submitted: boolean }>>(
-                (accumulator, [questionId, questionResult]) => {
-                    if (!questionResult || typeof questionResult !== "object") return accumulator;
-
-                    const resultCandidate = questionResult as { isCorrect?: unknown; submitted?: unknown };
-                    accumulator[questionId] = {
-                        isCorrect: resultCandidate.isCorrect === true,
-                        submitted: resultCandidate.submitted === true,
-                    };
-
-                    return accumulator;
-                },
-                {},
-            )
-            : {};
-
-    const desmosGraphStatus =
-        candidate.desmosGraphStatus && typeof candidate.desmosGraphStatus === "object"
-            ? Object.entries(candidate.desmosGraphStatus).reduce<Record<string, boolean>>((accumulator, [blockId, isComplete]) => {
-                accumulator[blockId] = isComplete === true;
-                return accumulator;
-            }, {})
-            : {};
-
-    const desmosGraphStates =
-        candidate.desmosGraphStates && typeof candidate.desmosGraphStates === "object"
-            ? Object.entries(candidate.desmosGraphStates).reduce<Record<string, Record<string, unknown>>>(
-                (accumulator, [blockId, graphState]) => {
-                    if (graphState && typeof graphState === "object") {
-                        accumulator[blockId] = graphState as Record<string, unknown>;
-                    }
-                    return accumulator;
-                },
-                {},
-            )
-            : {};
-
-    return { pageIndex, questionAnswers, visibleHints, questionResults, desmosGraphStatus, desmosGraphStates };
 }
 
 type PrecalcLessonPageProps = {
@@ -363,10 +268,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
     const [desmosGraphStatus, setDesmosGraphStatus] = useState<Record<string, boolean>>({});
     const [desmosGraphStates, setDesmosGraphStates] = useState<Record<string, Record<string, unknown>>>({});
 
-    const lessonProgressStorageKey = useMemo(
-        () => `precalc-lesson-progress:${authUser.username}:${lesson.filePath}`,
-        [authUser.username, lesson.filePath],
-    );
+    const lessonProgressStorageKey = createLessonProgressStorageKey(authUser.username, lesson.filePath);
 
     useEffect(() => {
         let isMounted = true;
@@ -386,20 +288,12 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                 if (isMounted) {
                     setLessonPayload(parsed);
 
-                    const savedProgressRaw = window.localStorage.getItem(lessonProgressStorageKey);
-                    let savedProgress: LessonProgress | null = null;
-
-                    if (savedProgressRaw) {
-                        try {
-                            savedProgress = toLessonProgress(JSON.parse(savedProgressRaw));
-                        } catch {
-                            savedProgress = null;
-                        }
-                    }
-
-                    setPageIndex(
-                        savedProgress ? Math.min(savedProgress.pageIndex, Math.max((parsed.pages?.length || 1) - 1, 0)) : 0,
+                    const savedProgress = readLessonProgressFromStorage(
+                        lessonProgressStorageKey,
+                        Math.max((parsed.pages?.length || 1) - 1, 0),
                     );
+
+                    setPageIndex(savedProgress?.pageIndex || 0);
                     setQuestionAnswers(savedProgress?.questionAnswers || {});
                     setQuestionResults(savedProgress?.questionResults || {});
                     setVisibleHints(savedProgress?.visibleHints || {});
@@ -422,16 +316,14 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
     useEffect(() => {
         if (!lessonPayload) return;
 
-        const progressToStore: LessonProgress = {
+        writeLessonProgressToStorage(lessonProgressStorageKey, {
             pageIndex,
             questionAnswers,
             visibleHints,
             questionResults,
             desmosGraphStatus,
             desmosGraphStates,
-        };
-
-        window.localStorage.setItem(lessonProgressStorageKey, JSON.stringify(progressToStore));
+        });
     }, [
         desmosGraphStates,
         desmosGraphStatus,
@@ -446,39 +338,22 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
     const displayTitle = lessonPayload?.title ?? lesson.title;
 
     const currentPage = lessonPayload?.pages?.[pageIndex];
-    const isUnitCirclePage = isUnitCircleLesson(lesson.filePath);
     const requiredQuestions = currentPage?.blocks.filter(
         (block): block is Extract<LessonBlock, { type: "question" }> =>
             block.type === "question" && block.requireCorrectBeforeAdvance === true,
     ) || [];
-    const requiredDesmosBlocks = currentPage?.blocks
-        .map((block, index) => ({ block, index }))
-        .filter(
-            (entry): entry is { block: Extract<LessonBlock, { type: "desmos" }>; index: number } =>
-                entry.block.type === "desmos" && entry.block.requireStudentGraphBeforeAdvance === true,
-        ) || [];
-    const hasCompletedRequiredGraphing =
-        requiredDesmosBlocks.length === 0 ||
-        requiredDesmosBlocks.every(({ index }) => Boolean(desmosGraphStatus[`${currentPage?.id || "page"}-desmos-${index}`]));
+    const requiredDesmosBlockIndexes = getRequiredDesmosBlockIndexes(currentPage?.blocks);
+    const hasCompletedRequiredGraphing = currentPage
+        ? hasCompletedRequiredDesmosGraphing(requiredDesmosBlockIndexes, currentPage.id, desmosGraphStatus)
+        : true;
     const canAdvancePage =
         (requiredQuestions.length === 0 || requiredQuestions.every((question) => Boolean(questionResults[question.id]?.isCorrect))) &&
         hasCompletedRequiredGraphing;
 
     const insertLatexIntoActiveInput = (snippet: string) => {
-        if (!activeQuestionInput) return;
-
-        setQuestionAnswers((previous) => {
-            const currentAnswer = previous[activeQuestionInput.questionId] || { x: "", y: "" };
-            const currentValue = currentAnswer[activeQuestionInput.coordinate];
-
-            return {
-                ...previous,
-                [activeQuestionInput.questionId]: {
-                    ...currentAnswer,
-                    [activeQuestionInput.coordinate]: `${currentValue}${snippet}`,
-                },
-            };
-        });
+        setQuestionAnswers((previous) =>
+            appendUnitCircleLatexSnippet(lesson.filePath, previous, activeQuestionInput, snippet),
+        );
     };
 
     const handleQuestionSubmit = (event: FormEvent<HTMLFormElement>, block: Extract<LessonBlock, { type: "question" }>) => {
@@ -529,7 +404,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                             {currentPage.blocks.some((block) => block.type === "question") && <h3>Check your understanding</h3>}
                             {currentPage.blocks.map((block, index) => {
                                 if (block.type === "text") {
-                                    return <p key={`text-${index}`}>{isUnitCirclePage ? renderUnitCircleTextWithInlineLatex(block.text) : block.text}</p>;
+                                    return <p key={`text-${index}`}>{renderLessonText(lesson.filePath, block.text)}</p>;
                                 }
 
                                 if (block.type === "katex") {
@@ -557,25 +432,33 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                     const answer = questionAnswers[block.id] || { x: "", y: "" };
                                     const questionResult = questionResults[block.id];
                                     const isHintVisible = Boolean(visibleHints[block.id]);
+                                    const isUnitCircleMathInput = isUnitCircleSpecialTrianglesPage(
+                                        lesson.filePath,
+                                        currentPage.id,
+                                    );
 
                                     return (
                                         <section key={block.id}>
-                                            <p>{isUnitCirclePage ? renderUnitCircleTextWithInlineLatex(block.prompt) : block.prompt}</p>
-                                            {isUnitCirclePage && (
-                                                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 8 }}>
-                                                    {UNIT_CIRCLE_QUESTION_TOOLS.map((tool) => (
-                                                        <button
-                                                            key={`${block.id}-${tool.snippet}`}
-                                                            type="button"
-                                                            onClick={() => insertLatexIntoActiveInput(tool.snippet)}
-                                                        >
-                                                            {tool.label}
-                                                        </button>
-                                                    ))}
-                                                </div>
+                                            <p>{renderLessonText(lesson.filePath, block.prompt)}</p>
+                                            {renderUnitCircleQuestionTools(
+                                                lesson.filePath,
+                                                currentPage.id,
+                                                block.id,
+                                                insertLatexIntoActiveInput,
                                             )}
-                                            {isUnitCirclePage && <p style={{ marginTop: 0 }}>{renderUnitCircleRadiansHint()}</p>}
-                                            <form onSubmit={(event) => handleQuestionSubmit(event, block)}>
+                                            {getUnitCircleRadiansHint(lesson.filePath) && (
+                                                <p style={{ marginTop: 0 }}>{getUnitCircleRadiansHint(lesson.filePath)}</p>
+                                            )}
+                                            {renderUnitCircleCoordinatePreview(lesson.filePath, currentPage.id, answer)}
+                                            <form
+                                                onSubmit={(event) => handleQuestionSubmit(event, block)}
+                                                style={{
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    flexWrap: "wrap",
+                                                    gap: 8,
+                                                }}
+                                            >
                                                 <span>(</span>
                                                 <input
                                                     type="text"
@@ -591,7 +474,18 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                     }
                                                     onFocus={() => setActiveQuestionInput({ questionId: block.id, coordinate: "x" })}
                                                     aria-label={`x-coordinate for question ${block.id}`}
-                                                    style={{ width: 56 }}
+                                                    style={
+                                                        isUnitCircleMathInput
+                                                            ? {
+                                                                width: 170,
+                                                                minHeight: 46,
+                                                                borderRadius: 14,
+                                                                border: "1px solid #c7d2fe",
+                                                                padding: "8px 12px",
+                                                                fontSize: 20,
+                                                            }
+                                                            : { width: 56 }
+                                                    }
                                                 />
                                                 <span>, </span>
                                                 <input
@@ -608,7 +502,18 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                     }
                                                     onFocus={() => setActiveQuestionInput({ questionId: block.id, coordinate: "y" })}
                                                     aria-label={`y-coordinate for question ${block.id}`}
-                                                    style={{ width: 56 }}
+                                                    style={
+                                                        isUnitCircleMathInput
+                                                            ? {
+                                                                width: 170,
+                                                                minHeight: 46,
+                                                                borderRadius: 14,
+                                                                border: "1px solid #c7d2fe",
+                                                                padding: "8px 12px",
+                                                                fontSize: 20,
+                                                            }
+                                                            : { width: 56 }
+                                                    }
                                                 />
                                                 <span>)</span>
                                                 <button type="submit" style={{ marginLeft: 8 }}>
@@ -631,14 +536,14 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                     >
                                                         {isHintVisible ? "Hide hint" : "Show hint"}
                                                     </button>
-                                                    {isHintVisible && <p>{isUnitCirclePage ? renderUnitCircleTextWithInlineLatex(`Hint: ${block.explanation}`) : `Hint: ${block.explanation}`}</p>}
+                                                    {isHintVisible && <p>{renderLessonHint(lesson.filePath, `Hint: ${block.explanation}`)}</p>}
                                                 </>
                                             )}
                                         </section>
                                     );
                                 }
 
-                                const desmosBlockId = `${currentPage.id}-desmos-${index}`;
+                                const desmosBlockId = getDesmosBlockId(currentPage.id, index);
 
                                 return (
                                     <section key={`desmos-${index}`}>

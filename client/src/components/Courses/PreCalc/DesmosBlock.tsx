@@ -46,6 +46,32 @@ export type DesmosBlockProps = {
     onGraphStateChange?: (graphState: DesmosGraphState) => void;
 };
 
+export function getDesmosBlockId(pageId: string, blockIndex: number) {
+    return `${pageId}-desmos-${blockIndex}`;
+}
+
+export function getRequiredDesmosBlockIndexes(
+    blocks: Array<{ type: string; requireStudentGraphBeforeAdvance?: boolean }> | undefined,
+) {
+    if (!blocks) return [];
+
+    return blocks
+        .map((block, index) => ({ block, index }))
+        .filter(
+            (entry): entry is { block: { type: "desmos"; requireStudentGraphBeforeAdvance?: boolean }; index: number } =>
+                entry.block.type === "desmos" && entry.block.requireStudentGraphBeforeAdvance === true,
+        )
+        .map((entry) => entry.index);
+}
+
+export function hasCompletedRequiredDesmosGraphing(
+    requiredIndexes: number[],
+    pageId: string,
+    desmosGraphStatus: Record<string, boolean>,
+) {
+    return requiredIndexes.length === 0 || requiredIndexes.every((index) => Boolean(desmosGraphStatus[getDesmosBlockId(pageId, index)]));
+}
+
 function DesmosBlock({
     expressions,
     requireStudentGraphBeforeAdvance,

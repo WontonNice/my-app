@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import type { ReactNode } from "react";
 
 type KatexExpressionProps = {
     expression: string;
@@ -143,6 +144,22 @@ function KatexExpression({ expression, displayMode = true }: KatexExpressionProp
     }
 
     return <span ref={setRootRef} />;
+}
+
+export function renderTextWithInlineKatex(text: string): ReactNode {
+    const segments = text.split(/(\$[^$]+\$)/g).filter((segment) => segment.length > 0);
+
+    return segments.map((segment, index) => {
+        if (segment.startsWith("$") && segment.endsWith("$")) {
+            return (
+                <Fragment key={`math-${index}`}>
+                    <KatexExpression expression={segment.slice(1, -1)} displayMode={false} />
+                </Fragment>
+            );
+        }
+
+        return <Fragment key={`text-${index}`}>{segment}</Fragment>;
+    });
 }
 
 export default KatexExpression;
