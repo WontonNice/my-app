@@ -26,7 +26,13 @@
                     "type": "desmos",
                     "title": "Graph the unit circle",
                     "expressions": [],
-                    "requireStudentGraphBeforeAdvance": true
+                    "requireStudentGraphBeforeAdvance": true,
+                    "viewport": {
+                        "left": -3.14881,
+                        "right": 3.17211,
+                        "bottom": -1.30278,
+                        "top": 1.247069
+                    }
                 }
             ]
         },
@@ -51,6 +57,13 @@
                     "type": "katex",
                     "expression": "t=\\frac{\\pi}{2}\\Rightarrow P(0,1),\\quad t=\\pi\\Rightarrow P(-1,0),\\quad t=\\frac{3\\pi}{2}\\Rightarrow P(0,-1),\\quad t=2\\pi\\Rightarrow P(1,0)",
                     "displayMode": true
+                },
+                {
+                    "type": "image",
+                    "src": "/lessons/precalc/imgs/Screenshot 2026-02-11 101715.png",
+                    "alt": "Unit circle reference diagram",
+                    "caption": "",
+                    "maxWidth": 700
                 },
                 {
                     "type": "desmos",

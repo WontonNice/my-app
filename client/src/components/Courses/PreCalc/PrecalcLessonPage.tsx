@@ -16,6 +16,13 @@ type LessonBlock =
         displayMode?: boolean;
     }
     | {
+        type: "image";
+        src: string;
+        alt: string;
+        caption?: string;
+        maxWidth?: number;
+    }
+    | {
         type: "question";
         id: string;
         prompt: string;
@@ -27,6 +34,7 @@ type LessonBlock =
         type: "desmos";
         title?: string;
         expressions: Array<{ latex: string; label?: string; showLabel?: boolean } | string>;
+        viewport?: { left: number; right: number; bottom: number; top: number };
         requireStudentGraphBeforeAdvance?: boolean;
     };
 
@@ -97,6 +105,19 @@ function toLessonPayload(value: unknown): LessonPayload {
                                 } as LessonBlock;
                             }
 
+                            if (blockCandidate.type === "image" && typeof blockCandidate.src === "string") {
+                                return {
+                                    type: "image",
+                                    src: blockCandidate.src,
+                                    alt: typeof blockCandidate.alt === "string" ? blockCandidate.alt : undefined,
+                                    caption: typeof blockCandidate.caption === "string" ? blockCandidate.caption : undefined,
+                                    maxWidth:
+                                        typeof blockCandidate.maxWidth === "number" && Number.isFinite(blockCandidate.maxWidth)
+                                            ? blockCandidate.maxWidth
+                                            : undefined,
+                                } as LessonBlock;
+                            }
+
                             if (
                                 blockCandidate.type === "question" &&
                                 typeof blockCandidate.id === "string" &&
@@ -154,6 +175,25 @@ function toLessonPayload(value: unknown): LessonPayload {
                                         >
                                     : [];
 
+                                const viewportCandidate =
+                                    blockCandidate.viewport && typeof blockCandidate.viewport === "object"
+                                        ? (blockCandidate.viewport as Record<string, unknown>)
+                                        : null;
+
+                                const viewport =
+                                    viewportCandidate &&
+                                        typeof viewportCandidate.left === "number" &&
+                                        typeof viewportCandidate.right === "number" &&
+                                        typeof viewportCandidate.bottom === "number" &&
+                                        typeof viewportCandidate.top === "number"
+                                        ? {
+                                            left: viewportCandidate.left,
+                                            right: viewportCandidate.right,
+                                            bottom: viewportCandidate.bottom,
+                                            top: viewportCandidate.top,
+                                        }
+                                        : undefined;
+
                                 return {
                                     type: "desmos",
                                     title:
@@ -161,6 +201,7 @@ function toLessonPayload(value: unknown): LessonPayload {
                                             ? blockCandidate.title
                                             : undefined,
                                     expressions,
+                                    viewport,
                                     requireStudentGraphBeforeAdvance: Boolean(
                                         blockCandidate.requireStudentGraphBeforeAdvance,
                                     ),
@@ -324,6 +365,19 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                     );
                                 }
 
+                                if (block.type === "image") {
+                                    return (
+                                        <figure key={`image-${index}`} style={{ margin: "16px auto", textAlign: "center" }}>
+                                            <img
+                                                src={block.src}
+                                                alt={block.alt || "Lesson visual"}
+                                                style={{ display: "block", width: "100%", maxWidth: block.maxWidth ?? 640, height: "auto", margin: "0 auto" }}
+                                            />
+                                            {block.caption && <figcaption style={{ whiteSpace: "pre-line", marginTop: 8 }}>{block.caption}</figcaption>}
+                                        </figure>
+                                    );
+                                }
+
                                 if (block.type === "question") {
                                     const answer = questionAnswers[block.id] || { x: "", y: "" };
                                     const questionResult = questionResults[block.id];
@@ -398,6 +452,7 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                         {block.title && <h3>{block.title}</h3>}
                                         <DesmosBlock
                                             expressions={block.expressions}
+                                            viewport={block.viewport}
                                             requireStudentGraphBeforeAdvance={block.requireStudentGraphBeforeAdvance}
                                             onGraphStatusChange={(hasStudentGraph) =>
                                                 setDesmosGraphStatus((previous) => ({

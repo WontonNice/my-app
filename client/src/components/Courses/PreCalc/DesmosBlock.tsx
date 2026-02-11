@@ -10,6 +10,7 @@ declare global {
                 setExpression: (expression: { id: string; latex: string; label?: string; showLabel?: boolean }) => void;
                 getExpressions: () => Array<{ latex?: string }>;
                 observeEvent: (eventName: string, callback: () => void) => void;
+                setMathBounds: (bounds: { left: number; right: number; bottom: number; top: number }) => void;
                 destroy: () => void;
             };
         };
@@ -28,10 +29,11 @@ export type DesmosBlockProps = {
         }
     >;
     requireStudentGraphBeforeAdvance?: boolean;
+    viewport?: { left: number; right: number; bottom: number; top: number };
     onGraphStatusChange?: (hasStudentGraph: boolean) => void;
 };
 
-function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphStatusChange }: DesmosBlockProps) {
+function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, viewport, onGraphStatusChange }: DesmosBlockProps) {
     const calculatorRef = useRef<HTMLDivElement | null>(null);
     const graphStatusCallbackRef = useRef(onGraphStatusChange);
 
@@ -46,6 +48,7 @@ function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphSta
                 setExpression: (expression: { id: string; latex: string; label?: string; showLabel?: boolean }) => void;
                 getExpressions: () => Array<{ latex?: string }>;
                 observeEvent: (eventName: string, callback: () => void) => void;
+                setMathBounds: (bounds: { left: number; right: number; bottom: number; top: number }) => void;
                 destroy: () => void;
             }
             | null = null;
@@ -57,6 +60,10 @@ function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphSta
                 expressions: true,
                 keypad: false,
             });
+
+            if (viewport) {
+                calculator.setMathBounds(viewport);
+            }
 
             expressions.forEach((expression, index) => {
                 if (typeof expression === "string") {
@@ -110,7 +117,7 @@ function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphSta
             destroyed = true;
             calculator?.destroy();
         };
-    }, [expressions, requireStudentGraphBeforeAdvance]);
+    }, [expressions, requireStudentGraphBeforeAdvance, viewport]);
 
     return <div ref={calculatorRef} style={{ width: "100%", height: 420, border: "1px solid #ddd", borderRadius: 8 }} />;
 }
