@@ -185,6 +185,11 @@ type DesmosBlockProps = {
 
 function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphStatusChange }: DesmosBlockProps) {
     const calculatorRef = useRef<HTMLDivElement | null>(null);
+    const graphStatusCallbackRef = useRef(onGraphStatusChange);
+
+    useEffect(() => {
+        graphStatusCallbackRef.current = onGraphStatusChange;
+    }, [onGraphStatusChange]);
 
     useEffect(() => {
         let destroyed = false;
@@ -209,7 +214,7 @@ function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphSta
                 calculator?.setExpression({ id: `exp-${index + 1}`, latex: expression });
             });
 
-            if (requireStudentGraphBeforeAdvance && onGraphStatusChange) {
+            if (requireStudentGraphBeforeAdvance && graphStatusCallbackRef.current) {
                 const updateGraphStatus = () => {
                     if (!calculator) return;
                     const hasStudentGraph = calculator.getExpressions().some((expression) => {
@@ -220,7 +225,7 @@ function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphSta
                             .toLowerCase();
                         return normalizedLatex.includes("x^2+y^2=1");
                     });
-                    onGraphStatusChange(hasStudentGraph);
+                    graphStatusCallbackRef.current?.(hasStudentGraph);
                 };
 
                 calculator.observeEvent("change", updateGraphStatus);
@@ -247,7 +252,7 @@ function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphSta
             destroyed = true;
             calculator?.destroy();
         };
-    }, [expressions, onGraphStatusChange, requireStudentGraphBeforeAdvance]);
+    }, [expressions, requireStudentGraphBeforeAdvance]);
 
     return <div ref={calculatorRef} style={{ width: "100%", height: 420, border: "1px solid #ddd", borderRadius: 8 }} />;
 }
@@ -409,8 +414,12 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                             requireStudentGraphBeforeAdvance={block.requireStudentGraphBeforeAdvance}
                                             onGraphStatusChange={(hasStudentGraph) =>
                                                 setDesmosGraphStatus((previous) => ({
-                                                    ...previous,
-                                                    [`${currentPage.id}-desmos-${index}`]: hasStudentGraph,
+                                                    ...(previous[`${currentPage.id}-desmos-${index}`] === hasStudentGraph
+                                                        ? previous
+                                                        : {
+                                                            ...previous,
+                                                            [`${currentPage.id}-desmos-${index}`]: hasStudentGraph,
+                                                        }),
                                                 }))
                                             }
                                         />
