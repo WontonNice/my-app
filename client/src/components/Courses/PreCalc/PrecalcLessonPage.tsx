@@ -55,12 +55,99 @@ type LessonPayload = {
     pages?: LessonPage[];
 };
 
+type LessonProgress = {
+    pageIndex: number;
+    questionAnswers: Record<string, { x: string; y: string }>;
+    visibleHints: Record<string, boolean>;
+    questionResults: Record<string, { isCorrect: boolean; submitted: boolean }>;
+    desmosGraphStatus: Record<string, boolean>;
+    desmosGraphStates: Record<string, Record<string, unknown>>;
+};
+
 function normalizePointAnswer(value: string) {
     return value
         .trim()
         .toLowerCase()
         .replace(/^p\(/, "(")
         .replace(/\s+/g, "");
+}
+
+function toLessonProgress(value: unknown): LessonProgress | null {
+    if (!value || typeof value !== "object") return null;
+
+    const candidate = value as Partial<LessonProgress>;
+
+    const pageIndex =
+        typeof candidate.pageIndex === "number" && Number.isInteger(candidate.pageIndex) && candidate.pageIndex >= 0
+            ? candidate.pageIndex
+            : 0;
+
+    const questionAnswers =
+        candidate.questionAnswers && typeof candidate.questionAnswers === "object"
+            ? Object.entries(candidate.questionAnswers).reduce<Record<string, { x: string; y: string }>>(
+                (accumulator, [questionId, answer]) => {
+                    if (!answer || typeof answer !== "object") return accumulator;
+
+                    const answerCandidate = answer as { x?: unknown; y?: unknown };
+                    accumulator[questionId] = {
+                        x: typeof answerCandidate.x === "string" ? answerCandidate.x : "",
+                        y: typeof answerCandidate.y === "string" ? answerCandidate.y : "",
+                    };
+
+                    return accumulator;
+                },
+                {},
+            )
+            : {};
+
+    const visibleHints =
+        candidate.visibleHints && typeof candidate.visibleHints === "object"
+            ? Object.entries(candidate.visibleHints).reduce<Record<string, boolean>>((accumulator, [questionId, isVisible]) => {
+                accumulator[questionId] = isVisible === true;
+                return accumulator;
+            }, {})
+            : {};
+
+    const questionResults =
+        candidate.questionResults && typeof candidate.questionResults === "object"
+            ? Object.entries(candidate.questionResults).reduce<Record<string, { isCorrect: boolean; submitted: boolean }>>(
+                (accumulator, [questionId, questionResult]) => {
+                    if (!questionResult || typeof questionResult !== "object") return accumulator;
+
+                    const resultCandidate = questionResult as { isCorrect?: unknown; submitted?: unknown };
+                    accumulator[questionId] = {
+                        isCorrect: resultCandidate.isCorrect === true,
+                        submitted: resultCandidate.submitted === true,
+                    };
+
+                    return accumulator;
+                },
+                {},
+            )
+            : {};
+
+    const desmosGraphStatus =
+        candidate.desmosGraphStatus && typeof candidate.desmosGraphStatus === "object"
+            ? Object.entries(candidate.desmosGraphStatus).reduce<Record<string, boolean>>((accumulator, [blockId, isComplete]) => {
+                accumulator[blockId] = isComplete === true;
+                return accumulator;
+            }, {})
+            : {};
+
+    const desmosGraphStates =
+        candidate.desmosGraphStates && typeof candidate.desmosGraphStates === "object"
+            ? Object.entries(candidate.desmosGraphStates).reduce<Record<string, Record<string, unknown>>>(
+                (accumulator, [blockId, graphState]) => {
+                    if (graphState && typeof graphState === "object") {
+                        accumulator[blockId] = graphState as Record<string, unknown>;
+                    }
+                    return accumulator;
+                },
+                {},
+            )
+            : {};
+
+    return { pageIndex, questionAnswers, visibleHints, questionResults, desmosGraphStatus, desmosGraphStates };
 }
 
 type PrecalcLessonPageProps = {
@@ -238,7 +325,7 @@ function toLessonPayload(value: unknown): LessonPayload {
     };
 }
 
-function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps) {
+function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLessonPageProps) {
     const [lessonPayload, setLessonPayload] = useState<LessonPayload | null>(null);
     const [errorMessage, setErrorMessage] = useState("");
     const [pageIndex, setPageIndex] = useState(0);
@@ -246,6 +333,12 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
     const [visibleHints, setVisibleHints] = useState<Record<string, boolean>>({});
     const [questionResults, setQuestionResults] = useState<Record<string, { isCorrect: boolean; submitted: boolean }>>({});
     const [desmosGraphStatus, setDesmosGraphStatus] = useState<Record<string, boolean>>({});
+    const [desmosGraphStates, setDesmosGraphStates] = useState<Record<string, Record<string, unknown>>>({});
+
+    const lessonProgressStorageKey = useMemo(
+        () => `precalc-lesson-progress:${authUser.username}:${lesson.filePath}`,
+        [authUser.username, lesson.filePath],
+    );
 
     useEffect(() => {
         let isMounted = true;
@@ -264,11 +357,26 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                 const parsed = toLessonPayload(await response.json());
                 if (isMounted) {
                     setLessonPayload(parsed);
-                    setPageIndex(0);
-                    setQuestionAnswers({});
-                    setQuestionResults({});
-                    setVisibleHints({});
-                    setDesmosGraphStatus({});
+
+                    const savedProgressRaw = window.localStorage.getItem(lessonProgressStorageKey);
+                    let savedProgress: LessonProgress | null = null;
+
+                    if (savedProgressRaw) {
+                        try {
+                            savedProgress = toLessonProgress(JSON.parse(savedProgressRaw));
+                        } catch {
+                            savedProgress = null;
+                        }
+                    }
+
+                    setPageIndex(
+                        savedProgress ? Math.min(savedProgress.pageIndex, Math.max((parsed.pages?.length || 1) - 1, 0)) : 0,
+                    );
+                    setQuestionAnswers(savedProgress?.questionAnswers || {});
+                    setQuestionResults(savedProgress?.questionResults || {});
+                    setVisibleHints(savedProgress?.visibleHints || {});
+                    setDesmosGraphStatus(savedProgress?.desmosGraphStatus || {});
+                    setDesmosGraphStates(savedProgress?.desmosGraphStates || {});
                 }
             } catch (error) {
                 const message = error instanceof Error ? error.message : String(error);
@@ -281,7 +389,31 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
         return () => {
             isMounted = false;
         };
-    }, [lesson.filePath]);
+    }, [lesson.filePath, lessonProgressStorageKey]);
+
+    useEffect(() => {
+        if (!lessonPayload) return;
+
+        const progressToStore: LessonProgress = {
+            pageIndex,
+            questionAnswers,
+            visibleHints,
+            questionResults,
+            desmosGraphStatus,
+            desmosGraphStates,
+        };
+
+        window.localStorage.setItem(lessonProgressStorageKey, JSON.stringify(progressToStore));
+    }, [
+        desmosGraphStates,
+        desmosGraphStatus,
+        lessonPayload,
+        lessonProgressStorageKey,
+        pageIndex,
+        questionAnswers,
+        questionResults,
+        visibleHints,
+    ]);
 
     const displayTitle = useMemo(() => {
         if (lessonPayload?.title) return lessonPayload.title;
@@ -447,6 +579,8 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                     );
                                 }
 
+                                const desmosBlockId = `${currentPage.id}-desmos-${index}`;
+
                                 return (
                                     <section key={`desmos-${index}`}>
                                         {block.title && <h3>{block.title}</h3>}
@@ -456,12 +590,18 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                             requireStudentGraphBeforeAdvance={block.requireStudentGraphBeforeAdvance}
                                             onGraphStatusChange={(hasStudentGraph) =>
                                                 setDesmosGraphStatus((previous) => ({
-                                                    ...(previous[`${currentPage.id}-desmos-${index}`] === hasStudentGraph
+                                                    ...(previous[desmosBlockId] === hasStudentGraph
                                                         ? previous
                                                         : {
                                                             ...previous,
-                                                            [`${currentPage.id}-desmos-${index}`]: hasStudentGraph,
+                                                            [desmosBlockId]: hasStudentGraph,
                                                         }),
+                                                }))
+                                            }
+                                            onGraphStateChange={(graphState) =>
+                                                setDesmosGraphStates((previous) => ({
+                                                    ...previous,
+                                                    [desmosBlockId]: graphState,
                                                 }))
                                             }
                                         />

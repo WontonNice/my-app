@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import HomePage from "./components/HomePage";
 import PrecalcHomePage from "./components/Courses/PreCalc/PrecalcHomePage";
 import PrecalcLessonPage from "./components/Courses/PreCalc/PrecalcLessonPage";
 import type { PrecalcLessonSummary } from "./components/Courses/PreCalc/precalcLessons";
+import { PRECALC_LESSONS_BY_ID } from "./components/Courses/PreCalc/precalcLessons";
 import StudentDashboard from "./components/StudentDashboard";
 import TeacherDashboard from "./components/TeacherDashboard";
 
@@ -11,8 +12,32 @@ import type { AuthUser } from "./authStorage";
 
 type StudentView = "dashboard" | "precalc" | "precalc-lesson";
 
+type StoredStudentNavigation = {
+  studentView: StudentView;
+  selectedPrecalcLessonId: string | null;
+};
+
 function normalizeCourseName(course: string) {
   return course.trim().toLowerCase();
+}
+
+function toStoredStudentNavigation(value: unknown): StoredStudentNavigation | null {
+  if (!value || typeof value !== "object") return null;
+
+  const candidate = value as {
+    studentView?: unknown;
+    selectedPrecalcLessonId?: unknown;
+  };
+
+  const studentView: StudentView =
+    candidate.studentView === "precalc" || candidate.studentView === "precalc-lesson"
+      ? candidate.studentView
+      : "dashboard";
+
+  const selectedPrecalcLessonId =
+    typeof candidate.selectedPrecalcLessonId === "string" ? candidate.selectedPrecalcLessonId : null;
+
+  return { studentView, selectedPrecalcLessonId };
 }
 
 function App() {
@@ -20,11 +45,55 @@ function App() {
   const [studentView, setStudentView] = useState<StudentView>("dashboard");
   const [selectedPrecalcLesson, setSelectedPrecalcLesson] = useState<PrecalcLessonSummary | null>(null);
 
+  const studentNavigationStorageKey = useMemo(
+    () => (authUser ? `student-navigation:${authUser.username}` : null),
+    [authUser],
+  );
+
   useEffect(() => {
     setStoredAuthUser(authUser);
   }, [authUser]);
 
+  useEffect(() => {
+    if (!authUser || authUser.role !== "student" || !studentNavigationStorageKey) return;
+
+    const rawNavigation = window.localStorage.getItem(studentNavigationStorageKey);
+    if (!rawNavigation) return;
+
+    try {
+      const parsedNavigation = toStoredStudentNavigation(JSON.parse(rawNavigation));
+      if (!parsedNavigation) return;
+
+      const lesson = parsedNavigation.selectedPrecalcLessonId
+        ? PRECALC_LESSONS_BY_ID.get(parsedNavigation.selectedPrecalcLessonId) || null
+        : null;
+
+      const hydratedView = parsedNavigation.studentView === "precalc-lesson" && !lesson
+        ? "precalc"
+        : parsedNavigation.studentView;
+
+      setSelectedPrecalcLesson(lesson);
+      setStudentView(hydratedView);
+    } catch {
+      // Ignore corrupted navigation state.
+    }
+  }, [authUser, studentNavigationStorageKey]);
+
+  useEffect(() => {
+    if (!authUser || authUser.role !== "student" || !studentNavigationStorageKey) return;
+
+    const navigationToStore: StoredStudentNavigation = {
+      studentView,
+      selectedPrecalcLessonId: selectedPrecalcLesson?.id || null,
+    };
+
+    window.localStorage.setItem(studentNavigationStorageKey, JSON.stringify(navigationToStore));
+  }, [authUser, selectedPrecalcLesson?.id, studentNavigationStorageKey, studentView]);
+
   const handleLogout = () => {
+    if (studentNavigationStorageKey) {
+      window.localStorage.removeItem(studentNavigationStorageKey);
+    }
     setStudentView("dashboard");
     setSelectedPrecalcLesson(null);
     setAuthUser(null);
