@@ -167,7 +167,7 @@
                 {
                     "type": "question",
                     "id": "m1q6",
-                    "prompt": "For the 30-60-90 triangle, enter (BC, AC) when AB = 1.",
+                    "prompt": "For the 30-60-90 triangle, enter (AC, AB) when BC = 1.",
                     "explanation": "In a 30-60-90 triangle, the sides are in the ratio 1 : $\\sqrt{3}$ : 2.",
                     "acceptableAnswers": [
                         "(\\frac{1}{2},\\frac{\\sqrt{3}}{2})",

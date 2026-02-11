@@ -29,6 +29,33 @@ export type ActiveQuestionInput = {
     coordinate: "x" | "y";
 };
 
+export type UnitCircleInputCursor = {
+    start: number;
+    end: number;
+};
+
+function buildInputCursorKey(input: ActiveQuestionInput) {
+    return `${input.questionId}:${input.coordinate}`;
+}
+
+function normalizeLatexForDisplay(value: string) {
+    const trimmedValue = value.trim();
+    if (!trimmedValue) return "\\square";
+
+    const normalizedSqrt = trimmedValue.replace(/\\sqrt(?!\{)([A-Za-z0-9]+)/g, "\\\\sqrt{$1}");
+
+    if (normalizedSqrt.includes("\\frac")) return normalizedSqrt;
+    if (!normalizedSqrt.includes("/")) return normalizedSqrt;
+
+    const slashIndex = normalizedSqrt.indexOf("/");
+    const numerator = normalizedSqrt.slice(0, slashIndex).trim();
+    const denominator = normalizedSqrt.slice(slashIndex + 1).trim();
+
+    if (!numerator || !denominator) return normalizedSqrt;
+
+    return `\\frac{${numerator}}{${denominator}}`;
+}
+
 export function isUnitCircleLesson(filePath: string) {
     return filePath === UNIT_CIRCLE_LESSON_FILE_PATH;
 }
@@ -50,17 +77,34 @@ export function appendUnitCircleLatexSnippet(
     previous: Record<string, { x: string; y: string }>,
     activeQuestionInput: ActiveQuestionInput | null,
     snippet: string,
+    cursorByInput: Record<string, UnitCircleInputCursor> = {},
 ) {
     if (!isUnitCircleLesson(filePath) || !activeQuestionInput) return previous;
 
     const currentAnswer = previous[activeQuestionInput.questionId] || { x: "", y: "" };
     const currentValue = currentAnswer[activeQuestionInput.coordinate];
+    const cursorKey = buildInputCursorKey(activeQuestionInput);
+    const cursor = cursorByInput[cursorKey];
+
+    if (!cursor) {
+        return {
+            ...previous,
+            [activeQuestionInput.questionId]: {
+                ...currentAnswer,
+                [activeQuestionInput.coordinate]: `${currentValue}${snippet}`,
+            },
+        };
+    }
+
+    const start = Math.max(0, Math.min(cursor.start, currentValue.length));
+    const end = Math.max(start, Math.min(cursor.end, currentValue.length));
+    const updatedValue = `${currentValue.slice(0, start)}${snippet}${currentValue.slice(end)}`;
 
     return {
         ...previous,
         [activeQuestionInput.questionId]: {
             ...currentAnswer,
-            [activeQuestionInput.coordinate]: `${currentValue}${snippet}`,
+            [activeQuestionInput.coordinate]: updatedValue,
         },
     };
 }
@@ -100,8 +144,8 @@ export function renderUnitCircleCoordinatePreview(
 ): ReactNode {
     if (!isUnitCircleSpecialTrianglesPage(filePath, pageId)) return null;
 
-    const xValue = answer.x.trim() || "\\square";
-    const yValue = answer.y.trim() || "\\square";
+    const xValue = normalizeLatexForDisplay(answer.x);
+    const yValue = normalizeLatexForDisplay(answer.y);
 
     return (
         <div
@@ -127,7 +171,8 @@ export function renderUnitCircleCoordinatePreview(
     );
 }
 
-export function getUnitCircleRadiansHint(_filePath: string): ReactNode | null {
+export function getUnitCircleRadiansHint(filePath: string): ReactNode | null {
+    void filePath;
     return null;
 }
 

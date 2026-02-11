@@ -18,6 +18,7 @@ import {
     renderUnitCircleCoordinatePreview,
     renderUnitCircleQuestionTools,
     type ActiveQuestionInput,
+    type UnitCircleInputCursor,
 } from "./UnitCircle";
 import {
     createLessonProgressStorageKey,
@@ -268,6 +269,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
     const [questionResults, setQuestionResults] = useState<Record<string, { isCorrect: boolean; submitted: boolean }>>({});
     const [desmosGraphStatus, setDesmosGraphStatus] = useState<Record<string, boolean>>({});
     const [desmosGraphStates, setDesmosGraphStates] = useState<Record<string, Record<string, unknown>>>({});
+    const [inputCursorByQuestion, setInputCursorByQuestion] = useState<Record<string, UnitCircleInputCursor>>({});
 
     const lessonProgressStorageKey = createLessonProgressStorageKey(authUser.username, lesson.filePath);
 
@@ -352,9 +354,31 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
         hasCompletedRequiredGraphing;
 
     const insertLatexIntoActiveInput = (snippet: string) => {
+        if (!activeQuestionInput) return;
+
+        const cursorKey = `${activeQuestionInput.questionId}:${activeQuestionInput.coordinate}`;
+        const cursor = inputCursorByQuestion[cursorKey];
+
         setQuestionAnswers((previous) =>
-            appendUnitCircleLatexSnippet(lesson.filePath, previous, activeQuestionInput, snippet),
+            appendUnitCircleLatexSnippet(
+                lesson.filePath,
+                previous,
+                activeQuestionInput,
+                snippet,
+                inputCursorByQuestion,
+            ),
         );
+
+        if (!cursor) return;
+
+        const nextCaretPosition = cursor.start + snippet.length;
+        setInputCursorByQuestion((previous) => ({
+            ...previous,
+            [cursorKey]: {
+                start: nextCaretPosition,
+                end: nextCaretPosition,
+            },
+        }));
     };
 
     const handleQuestionSubmit = (event: FormEvent<HTMLFormElement>, block: Extract<LessonBlock, { type: "question" }>) => {
@@ -372,6 +396,20 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
             [block.id]: {
                 isCorrect,
                 submitted: true,
+            },
+        }));
+    };
+
+    const updateActiveInputCursor = (questionId: string, coordinate: "x" | "y", target: HTMLInputElement) => {
+        const selectionStart = target.selectionStart ?? target.value.length;
+        const selectionEnd = target.selectionEnd ?? selectionStart;
+
+        setActiveQuestionInput({ questionId, coordinate });
+        setInputCursorByQuestion((previous) => ({
+            ...previous,
+            [`${questionId}:${coordinate}`]: {
+                start: selectionStart,
+                end: selectionEnd,
             },
         }));
     };
@@ -487,8 +525,17 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                                         },
                                                                     }))
                                                                 }
-                                                                onFocus={() =>
-                                                                    setActiveQuestionInput({ questionId: block.id, coordinate: "x" })
+                                                                onFocus={(event) =>
+                                                                    updateActiveInputCursor(block.id, "x", event.currentTarget)
+                                                                }
+                                                                onClick={(event) =>
+                                                                    updateActiveInputCursor(block.id, "x", event.currentTarget)
+                                                                }
+                                                                onSelect={(event) =>
+                                                                    updateActiveInputCursor(block.id, "x", event.currentTarget)
+                                                                }
+                                                                onKeyUp={(event) =>
+                                                                    updateActiveInputCursor(block.id, "x", event.currentTarget)
                                                                 }
                                                                 aria-label={`${specialTriangleSideLabels.xLabel} for question ${block.id}`}
                                                                 style={{
@@ -515,8 +562,17 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                                         },
                                                                     }))
                                                                 }
-                                                                onFocus={() =>
-                                                                    setActiveQuestionInput({ questionId: block.id, coordinate: "y" })
+                                                                onFocus={(event) =>
+                                                                    updateActiveInputCursor(block.id, "y", event.currentTarget)
+                                                                }
+                                                                onClick={(event) =>
+                                                                    updateActiveInputCursor(block.id, "y", event.currentTarget)
+                                                                }
+                                                                onSelect={(event) =>
+                                                                    updateActiveInputCursor(block.id, "y", event.currentTarget)
+                                                                }
+                                                                onKeyUp={(event) =>
+                                                                    updateActiveInputCursor(block.id, "y", event.currentTarget)
                                                                 }
                                                                 aria-label={`${specialTriangleSideLabels.yLabel} for question ${block.id}`}
                                                                 style={{
@@ -545,8 +601,17 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                                     },
                                                                 }))
                                                             }
-                                                            onFocus={() =>
-                                                                setActiveQuestionInput({ questionId: block.id, coordinate: "x" })
+                                                            onFocus={(event) =>
+                                                                updateActiveInputCursor(block.id, "x", event.currentTarget)
+                                                            }
+                                                            onClick={(event) =>
+                                                                updateActiveInputCursor(block.id, "x", event.currentTarget)
+                                                            }
+                                                            onSelect={(event) =>
+                                                                updateActiveInputCursor(block.id, "x", event.currentTarget)
+                                                            }
+                                                            onKeyUp={(event) =>
+                                                                updateActiveInputCursor(block.id, "x", event.currentTarget)
                                                             }
                                                             aria-label={`x-coordinate for question ${block.id}`}
                                                             style={
@@ -575,8 +640,17 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                                     },
                                                                 }))
                                                             }
-                                                            onFocus={() =>
-                                                                setActiveQuestionInput({ questionId: block.id, coordinate: "y" })
+                                                            onFocus={(event) =>
+                                                                updateActiveInputCursor(block.id, "y", event.currentTarget)
+                                                            }
+                                                            onClick={(event) =>
+                                                                updateActiveInputCursor(block.id, "y", event.currentTarget)
+                                                            }
+                                                            onSelect={(event) =>
+                                                                updateActiveInputCursor(block.id, "y", event.currentTarget)
+                                                            }
+                                                            onKeyUp={(event) =>
+                                                                updateActiveInputCursor(block.id, "y", event.currentTarget)
                                                             }
                                                             aria-label={`y-coordinate for question ${block.id}`}
                                                             style={
