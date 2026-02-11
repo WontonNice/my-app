@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { FormEvent } from "react";
 import type { AuthUser } from "../../../authStorage";
 import type { PrecalcLessonSummary } from "./precalcLessons";
 
@@ -32,6 +33,8 @@ type LessonBlock =
         id: string;
         prompt: string;
         explanation?: string;
+        acceptableAnswers?: string[];
+        requireCorrectBeforeAdvance?: boolean;
     }
     | {
         type: "desmos";
@@ -102,6 +105,12 @@ function toLessonPayload(value: unknown): LessonPayload {
                                 typeof blockCandidate.id === "string" &&
                                 typeof blockCandidate.prompt === "string"
                             ) {
+                                const acceptableAnswers = Array.isArray(blockCandidate.acceptableAnswers)
+                                    ? blockCandidate.acceptableAnswers.filter(
+                                        (answer): answer is string => typeof answer === "string" && answer.length > 0,
+                                    )
+                                    : [];
+
                                 return {
                                     type: "question",
                                     id: blockCandidate.id,
@@ -110,6 +119,8 @@ function toLessonPayload(value: unknown): LessonPayload {
                                         typeof blockCandidate.explanation === "string"
                                             ? blockCandidate.explanation
                                             : undefined,
+                                    acceptableAnswers,
+                                    requireCorrectBeforeAdvance: Boolean(blockCandidate.requireCorrectBeforeAdvance),
                                 } as LessonBlock;
                             }
 
@@ -210,10 +221,12 @@ function DesmosBlock({ expressions }: DesmosBlockProps) {
     return <div ref={calculatorRef} style={{ width: "100%", height: 420, border: "1px solid #ddd", borderRadius: 8 }} />;
 }
 
-function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLessonPageProps) {
+function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps) {
     const [lessonPayload, setLessonPayload] = useState<LessonPayload | null>(null);
     const [errorMessage, setErrorMessage] = useState("");
     const [pageIndex, setPageIndex] = useState(0);
+    const [questionAnswers, setQuestionAnswers] = useState<Record<string, string>>({});
+    const [questionResults, setQuestionResults] = useState<Record<string, { isCorrect: boolean; submitted: boolean }>>({});
 
     useEffect(() => {
         let isMounted = true;
@@ -233,6 +246,8 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                 if (isMounted) {
                     setLessonPayload(parsed);
                     setPageIndex(0);
+                    setQuestionAnswers({});
+                    setQuestionResults({});
                 }
             } catch (error) {
                 const message = error instanceof Error ? error.message : String(error);
@@ -253,12 +268,32 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
     }, [lesson.title, lessonPayload?.title]);
 
     const currentPage = lessonPayload?.pages?.[pageIndex];
+    const requiredQuestions = currentPage?.blocks.filter(
+        (block): block is Extract<LessonBlock, { type: "question" }> =>
+            block.type === "question" && block.requireCorrectBeforeAdvance === true,
+    ) || [];
+    const canAdvancePage =
+        requiredQuestions.length === 0 || requiredQuestions.every((question) => Boolean(questionResults[question.id]?.isCorrect));
+
+    const handleQuestionSubmit = (event: FormEvent<HTMLFormElement>, block: Extract<LessonBlock, { type: "question" }>) => {
+        event.preventDefault();
+
+        const candidateAnswer = (questionAnswers[block.id] || "").trim().toLowerCase();
+        const acceptableAnswers = (block.acceptableAnswers || []).map((answer) => answer.trim().toLowerCase());
+        const isCorrect = acceptableAnswers.length === 0 ? candidateAnswer.length > 0 : acceptableAnswers.includes(candidateAnswer);
+
+        setQuestionResults((previous) => ({
+            ...previous,
+            [block.id]: {
+                isCorrect,
+                submitted: true,
+            },
+        }));
+    };
 
     return (
         <>
             <h1>{displayTitle}</h1>
-            <p>Welcome, {authUser.firstName || authUser.username}</p>
-            <p>{lessonPayload?.chapter || lesson.chapter}</p>
 
             {errorMessage && <p aria-live="polite">{errorMessage}</p>}
 
@@ -292,10 +327,32 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                 }
 
                                 if (block.type === "question") {
+                                    const answer = questionAnswers[block.id] || "";
+                                    const questionResult = questionResults[block.id];
+
                                     return (
                                         <section key={block.id}>
                                             <h3>Check your understanding</h3>
                                             <p>{block.prompt}</p>
+                                            <form onSubmit={(event) => handleQuestionSubmit(event, block)}>
+                                                <input
+                                                    type="text"
+                                                    value={answer}
+                                                    onChange={(event) =>
+                                                        setQuestionAnswers((previous) => ({
+                                                            ...previous,
+                                                            [block.id]: event.target.value,
+                                                        }))
+                                                    }
+                                                    aria-label={`Answer for question ${block.id}`}
+                                                />
+                                                <button type="submit" style={{ marginLeft: 8 }}>
+                                                    Check answer
+                                                </button>
+                                            </form>
+                                            {questionResult?.submitted && (
+                                                <p aria-live="polite">{questionResult.isCorrect ? "Correct." : "Try again."}</p>
+                                            )}
                                             {block.explanation && <p>Hint: {block.explanation}</p>}
                                         </section>
                                     );
@@ -324,11 +381,14 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                             Math.min(previous + 1, (lessonPayload.pages?.length || 1) - 1),
                                         )
                                     }
-                                    disabled={pageIndex === (lessonPayload.pages?.length || 1) - 1}
+                                    disabled={pageIndex === (lessonPayload.pages?.length || 1) - 1 || !canAdvancePage}
                                 >
                                     Next page
                                 </button>
                             </div>
+                            {!canAdvancePage && (
+                                <p aria-live="polite">Complete the required check before moving to the next page.</p>
+                            )}
                         </>
                     )}
 

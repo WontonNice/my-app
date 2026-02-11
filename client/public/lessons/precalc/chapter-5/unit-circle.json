@@ -11,60 +11,86 @@
     "pages": [
         {
             "id": "m1-p1",
-            "title": "Radians and landmarks",
+            "title": "Graph the unit circle",
             "blocks": [
                 {
                     "type": "text",
-                    "text": "The unit circle has radius 1, so each point on it has coordinates (cos \u03b8, sin \u03b8)."
+                    "text": "Definition: The unit circle is the circle of radius 1 centered at the origin in the xy-plane."
                 },
                 {
                     "type": "katex",
-                    "expression": "\\theta = \\frac{\\pi}{6},\\ \\frac{\\pi}{4},\\ \\frac{\\pi}{3},\\ \\frac{\\pi}{2}",
+                    "expression": "x^2 + y^2 = 1",
                     "displayMode": true
                 },
                 {
                     "type": "desmos",
-                    "title": "Unit Circle Explorer",
+                    "title": "Graph the unit circle",
                     "expressions": [
-                        "x^2+y^2=1",
-                        "A=(\\cos(\theta),\\sin(\theta))",
-                        "\theta=\frac{\\pi}{4}"
+                        "x^2+y^2=1"
                     ]
                 },
                 {
                     "type": "question",
                     "id": "m1q1",
-                    "prompt": "What is the radian measure of 180\u00b0?",
+                    "prompt": "Type the equation of the unit circle after graphing it.",
                     "acceptableAnswers": [
-                        "\u03c0",
-                        "pi",
-                        "3.14159"
+                        "x^2+y^2=1",
+                        "x^2 + y^2 = 1"
                     ],
-                    "explanation": "180\u00b0 corresponds to a half-turn on the unit circle, which is \u03c0 radians."
+                    "explanation": "Use the standard equation for a circle of radius 1 centered at the origin.",
+                    "requireCorrectBeforeAdvance": true
                 }
             ]
         },
         {
             "id": "m1-p2",
-            "title": "Coordinates on the circle",
+            "title": "45-45-90 triangle on the unit circle",
             "blocks": [
                 {
                     "type": "text",
-                    "text": "At \u03b8 = \u03c0/3, the coordinate is (1/2, \u221a3/2), so cos(\u03c0/3)=1/2 and sin(\u03c0/3)=\u221a3/2."
+                    "text": "A 45-45-90 triangle on the unit circle has legs along the x- and y-axes from the origin to (\u221a2/2, \u221a2/2). Fill in the side lengths and angles."
                 },
                 {
-                    "type": "katex",
-                    "expression": "(\\cos\\theta,\\sin\\theta)",
-                    "displayMode": true
+                    "type": "desmos",
+                    "title": "45-45-90 triangle",
+                    "expressions": [
+                        "A=(0,0)",
+                        "B=(\\sqrt{2}/2,0)",
+                        "C=(\\sqrt{2}/2,\\sqrt{2}/2)",
+                        "polygon(A,B,C)",
+                        "x^2+y^2=1"
+                    ]
                 },
                 {
                     "type": "question",
                     "id": "m1q2",
-                    "prompt": "What is cos(0)?",
+                    "prompt": "If the hypotenuse is 1, what is each leg length?",
                     "acceptableAnswers": [
-                        "1"
+                        "sqrt(2)/2",
+                        "\\sqrt{2}/2",
+                        "\u221a2/2"
                     ],
-                    "explanation": "At \u03b8=0, the point is (1,0)."
+                    "explanation": "In a 45-45-90 triangle, each leg is hypotenuse divided by \u221a2."
+                },
+                {
+                    "type": "question",
+                    "id": "m1q3",
+                    "prompt": "What are the two acute angles (in degrees)? Enter one angle value.",
+                    "acceptableAnswers": [
+                        "45",
+                        "45\u00b0"
+                    ],
+                    "explanation": "The acute angles are equal in a 45-45-90 triangle."
+                },
+                {
+                    "type": "question",
+                    "id": "m1q4",
+                    "prompt": "What is the right angle (in degrees)?",
+                    "acceptableAnswers": [
+                        "90",
+                        "90\u00b0"
+                    ],
+                    "explanation": "Every right triangle has one 90\u00b0 angle."
                 }
             ]
         }
