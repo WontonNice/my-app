@@ -588,6 +588,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                             expressions={block.expressions}
                                             viewport={block.viewport}
                                             requireStudentGraphBeforeAdvance={block.requireStudentGraphBeforeAdvance}
+                                            savedGraphState={desmosGraphStates[desmosBlockId]}
                                             onGraphStatusChange={(hasStudentGraph) =>
                                                 setDesmosGraphStatus((previous) => ({
                                                     ...(previous[desmosBlockId] === hasStudentGraph

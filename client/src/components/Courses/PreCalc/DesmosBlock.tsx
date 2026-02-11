@@ -57,6 +57,8 @@ function DesmosBlock({
     const calculatorRef = useRef<HTMLDivElement | null>(null);
     const graphStatusCallbackRef = useRef(onGraphStatusChange);
     const graphStateCallbackRef = useRef(onGraphStateChange);
+    const savedGraphStateRef = useRef(savedGraphState);
+    const lastEmittedGraphStateRef = useRef<string | null>(null);
 
     useEffect(() => {
         graphStatusCallbackRef.current = onGraphStatusChange;
@@ -65,6 +67,15 @@ function DesmosBlock({
     useEffect(() => {
         graphStateCallbackRef.current = onGraphStateChange;
     }, [onGraphStateChange]);
+
+    useEffect(() => {
+        savedGraphStateRef.current = savedGraphState;
+        try {
+            lastEmittedGraphStateRef.current = savedGraphState ? JSON.stringify(savedGraphState) : null;
+        } catch {
+            lastEmittedGraphStateRef.current = null;
+        }
+    }, [savedGraphState]);
 
     useEffect(() => {
         let destroyed = false;
@@ -88,8 +99,8 @@ function DesmosBlock({
                 keypad: false,
             });
 
-            if (savedGraphState) {
-                calculator.setState(savedGraphState);
+            if (savedGraphStateRef.current) {
+                calculator.setState(savedGraphStateRef.current);
             } else {
                 if (viewport) {
                     calculator.setMathBounds(viewport);
@@ -125,7 +136,20 @@ function DesmosBlock({
 
             const updateGraphState = () => {
                 if (!calculator) return;
-                graphStateCallbackRef.current?.(calculator.getState());
+
+                const nextGraphState = calculator.getState();
+                let serializedGraphState: string | null = null;
+
+                try {
+                    serializedGraphState = JSON.stringify(nextGraphState);
+                } catch {
+                    serializedGraphState = null;
+                }
+
+                if (serializedGraphState && serializedGraphState === lastEmittedGraphStateRef.current) return;
+
+                lastEmittedGraphStateRef.current = serializedGraphState;
+                graphStateCallbackRef.current?.(nextGraphState);
             };
 
             calculator.observeEvent("change", () => {
@@ -160,7 +184,7 @@ function DesmosBlock({
             destroyed = true;
             calculator?.destroy();
         };
-    }, [expressions, requireStudentGraphBeforeAdvance, savedGraphState, viewport]);
+    }, [expressions, requireStudentGraphBeforeAdvance, viewport]);
 
     return <div ref={calculatorRef} style={{ width: "100%", height: 420, border: "1px solid #ddd", borderRadius: 8 }} />;
 }

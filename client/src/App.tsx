@@ -44,6 +44,7 @@ function App() {
   const [authUser, setAuthUser] = useState<AuthUser | null>(getStoredAuthUser);
   const [studentView, setStudentView] = useState<StudentView>("dashboard");
   const [selectedPrecalcLesson, setSelectedPrecalcLesson] = useState<PrecalcLessonSummary | null>(null);
+  const [hasHydratedStudentNavigation, setHasHydratedStudentNavigation] = useState(false);
 
   const studentNavigationStorageKey = useMemo(
     () => (authUser ? `student-navigation:${authUser.username}` : null),
@@ -55,14 +56,23 @@ function App() {
   }, [authUser]);
 
   useEffect(() => {
-    if (!authUser || authUser.role !== "student" || !studentNavigationStorageKey) return;
+    if (!authUser || authUser.role !== "student" || !studentNavigationStorageKey) {
+      setHasHydratedStudentNavigation(false);
+      return;
+    }
 
     const rawNavigation = window.localStorage.getItem(studentNavigationStorageKey);
-    if (!rawNavigation) return;
+    if (!rawNavigation) {
+      setHasHydratedStudentNavigation(true);
+      return;
+    }
 
     try {
       const parsedNavigation = toStoredStudentNavigation(JSON.parse(rawNavigation));
-      if (!parsedNavigation) return;
+      if (!parsedNavigation) {
+        setHasHydratedStudentNavigation(true);
+        return;
+      }
 
       const lesson = parsedNavigation.selectedPrecalcLessonId
         ? PRECALC_LESSONS_BY_ID.get(parsedNavigation.selectedPrecalcLessonId) || null
@@ -76,11 +86,13 @@ function App() {
       setStudentView(hydratedView);
     } catch {
       // Ignore corrupted navigation state.
+    } finally {
+      setHasHydratedStudentNavigation(true);
     }
   }, [authUser, studentNavigationStorageKey]);
 
   useEffect(() => {
-    if (!authUser || authUser.role !== "student" || !studentNavigationStorageKey) return;
+    if (!authUser || authUser.role !== "student" || !studentNavigationStorageKey || !hasHydratedStudentNavigation) return;
 
     const navigationToStore: StoredStudentNavigation = {
       studentView,
@@ -88,7 +100,7 @@ function App() {
     };
 
     window.localStorage.setItem(studentNavigationStorageKey, JSON.stringify(navigationToStore));
-  }, [authUser, selectedPrecalcLesson?.id, studentNavigationStorageKey, studentView]);
+  }, [authUser, hasHydratedStudentNavigation, selectedPrecalcLesson?.id, studentNavigationStorageKey, studentView]);
 
   const handleLogout = () => {
     if (studentNavigationStorageKey) {
