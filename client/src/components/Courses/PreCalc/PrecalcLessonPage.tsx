@@ -455,7 +455,12 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                             {getUnitCircleRadiansHint(lesson.filePath) && (
                                                 <p style={{ marginTop: 0 }}>{getUnitCircleRadiansHint(lesson.filePath)}</p>
                                             )}
-                                            {renderUnitCircleCoordinatePreview(lesson.filePath, currentPage.id, answer)}
+                                            {renderUnitCircleCoordinatePreview(
+                                                lesson.filePath,
+                                                currentPage.id,
+                                                answer,
+                                                specialTriangleSideLabels,
+                                            )}
                                             <form
                                                 onSubmit={(event) => handleQuestionSubmit(event, block)}
                                                 style={{

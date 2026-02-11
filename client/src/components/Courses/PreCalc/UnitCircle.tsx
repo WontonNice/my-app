@@ -96,6 +96,7 @@ export function renderUnitCircleCoordinatePreview(
     filePath: string,
     pageId: string | undefined,
     answer: { x: string; y: string },
+    sideLabels: { xLabel: string; yLabel: string } | null,
 ): ReactNode {
     if (!isUnitCircleSpecialTrianglesPage(filePath, pageId)) return null;
 
@@ -114,21 +115,24 @@ export function renderUnitCircleCoordinatePreview(
             }}
         >
             <p style={{ marginTop: 0, marginBottom: 8, fontWeight: 600 }}>Preview</p>
-            <KatexExpression expression={`(${xValue}, ${yValue})`} displayMode />
+            {sideLabels ? (
+                <>
+                    <KatexExpression expression={`${sideLabels.xLabel}=${xValue}`} displayMode />
+                    <KatexExpression expression={`${sideLabels.yLabel}=${yValue}`} displayMode />
+                </>
+            ) : (
+                <KatexExpression expression={`(${xValue}, ${yValue})`} displayMode />
+            )}
         </div>
     );
 }
 
-export function getUnitCircleRadiansHint(filePath: string): ReactNode | null {
-    return isUnitCircleLesson(filePath) ? renderUnitCircleRadiansHint() : null;
+export function getUnitCircleRadiansHint(_filePath: string): ReactNode | null {
+    return null;
 }
 
 export function renderUnitCircleTextWithInlineLatex(text: string): ReactNode {
     return renderTextWithInlineKatex(text);
-}
-
-export function renderUnitCircleRadiansHint() {
-    return renderUnitCircleTextWithInlineLatex("Hint: $2\\pi = 360^\\circ$. Write radians in terms of $\\pi$.");
 }
 
 export function getSpecialTriangleSideLabels(
@@ -140,6 +144,13 @@ export function getSpecialTriangleSideLabels(
         return null;
     }
 
+    const explicitSideMatch = prompt.match(/\b([A-Z]{2})\b\s+and\s+\b([A-Z]{2})\b/i);
+    if (explicitSideMatch) {
+        return {
+            xLabel: explicitSideMatch[1].toUpperCase(),
+            yLabel: explicitSideMatch[2].toUpperCase(),
+        };
+    }
     const tupleMatch = prompt.match(/\(([^)]+)\)/);
     if (!tupleMatch) return null;
 

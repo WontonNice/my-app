@@ -148,7 +148,14 @@
                     "type": "question",
                     "id": "m1q5",
                     "prompt": "For the isosceles right triangle, solve for AC and BC when AB = 1.",
-                    "explanation": "In an isosceles right triangle, both legs are equal. Use the Pythagorean Theorem."
+                    "explanation": "In an isosceles right triangle, both legs are equal. Use the Pythagorean Theorem.",
+                    "acceptableAnswers": [
+                        "(\\frac{\\sqrt{2}}{2},\\frac{\\sqrt{2}}{2})",
+                        "(\\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{2}}{2})",
+                        "(sqrt(2)/2,sqrt(2)/2)",
+                        "(\\sqrt{2}/2,\\sqrt{2}/2)"
+                    ],
+                    "requireCorrectBeforeAdvance": true
                 },
                 {
                     "type": "image",
@@ -161,11 +168,20 @@
                     "type": "question",
                     "id": "m1q6",
                     "prompt": "For the 30-60-90 triangle, enter (BC, AC) when AB = 1.",
-                    "explanation": "In a 30-60-90 triangle, the sides are in the ratio 1 : $\\sqrt{3}$ : 2."
+                    "explanation": "In a 30-60-90 triangle, the sides are in the ratio 1 : $\\sqrt{3}$ : 2.",
+                    "acceptableAnswers": [
+                        "(\\frac{1}{2},\\frac{\\sqrt{3}}{2})",
+                        "(\\frac{1}{2}, \\frac{\\sqrt{3}}{2})",
+                        "(1/2,sqrt(3)/2)",
+                        "(\\frac{\\sqrt{3}}{2},\\frac{1}{2})",
+                        "(\\frac{\\sqrt{3}}{2}, \\frac{1}{2})",
+                        "(sqrt(3)/2,1/2)"
+                    ],
+                    "requireCorrectBeforeAdvance": true
                 },
                 {
                     "type": "text",
-                    "text": "Convert each degree measure to radians in terms of $\\pi$. Hint: $2\\pi = 360^\\circ$."
+                    "text": "Convert each degree measure to radians in terms of $\\pi$."
                 },
                 {
                     "type": "question",
