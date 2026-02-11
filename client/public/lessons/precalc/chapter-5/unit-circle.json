@@ -23,6 +23,15 @@
                     "displayMode": true
                 },
                 {
+                    "type": "desmos",
+                    "title": "Unit Circle Explorer",
+                    "expressions": [
+                        "x^2+y^2=1",
+                        "A=(\\cos(\theta),\\sin(\theta))",
+                        "\theta=\frac{\\pi}{4}"
+                    ]
+                },
+                {
                     "type": "question",
                     "id": "m1q1",
                     "prompt": "What is the radian measure of 180\u00b0?",

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { AuthUser } from "../../../authStorage";
-import { PRECALC_LESSONS } from "./precalcLessons";
+import { PRECALC_LESSONS_BY_ID } from "./precalcLessons";
 import type { PrecalcLessonSummary } from "./precalcLessons";
 
 type PrecalcHomePageProps = {
@@ -47,11 +47,17 @@ const CHAPTERS: Chapter[] = [
         name: "Chapter 5: Trigonometric Functions: Unit Circle Approach",
         modules: [
             { name: "The Unit Circle", lessonId: "chapter-5-unit-circle" },
-            { name: "Trigonometric Functions of Real Numbers" },
-            { name: "Trigonometric Graphs" },
-            { name: "More Trigonometric Graphs" },
-            { name: "Inverse Trigonometric Functions and Their Graphs" },
-            { name: "Modeling Harmonic Motion" },
+            {
+                name: "Trigonometric Functions of Real Numbers",
+                lessonId: "chapter-5-trig-functions-real-numbers",
+            },
+            { name: "Trigonometric Graphs", lessonId: "chapter-5-trigonometric-graphs" },
+            { name: "More Trigonometric Graphs", lessonId: "chapter-5-more-trigonometric-graphs" },
+            {
+                name: "Inverse Trigonometric Functions and Their Graphs",
+                lessonId: "chapter-5-inverse-trigonometric-functions",
+            },
+            { name: "Modeling Harmonic Motion", lessonId: "chapter-5-modeling-harmonic-motion" },
         ],
     },
     {
@@ -156,7 +162,7 @@ function PrecalcHomePage({ authUser, onLearn, onBack, onLogout }: PrecalcHomePag
                                                         type="button"
                                                         onClick={() => {
                                                             const lesson = module.lessonId
-                                                                ? PRECALC_LESSONS.find((item) => item.id === module.lessonId) || null
+                                                                ? PRECALC_LESSONS_BY_ID.get(module.lessonId) || null
                                                                 : null;
 
                                                             setSelectedModule({

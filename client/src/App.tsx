@@ -24,7 +24,6 @@ function App() {
     setStoredAuthUser(authUser);
   }, [authUser]);
 
-
   const handleLogout = () => {
     setStudentView("dashboard");
     setSelectedPrecalcLesson(null);
@@ -37,15 +36,17 @@ function App() {
     setAuthUser(user);
   };
 
+  const openPrecalcLesson = (lesson: PrecalcLessonSummary) => {
+    setSelectedPrecalcLesson(lesson);
+    setStudentView("precalc-lesson");
+  };
+
   if (authUser?.role === "student") {
     if (studentView === "precalc") {
       return (
         <PrecalcHomePage
           authUser={authUser}
-          onLearn={(lesson) => {
-            setSelectedPrecalcLesson(lesson);
-            setStudentView("precalc-lesson");
-          }}
+          onLearn={openPrecalcLesson}
           onBack={() => setStudentView("dashboard")}
           onLogout={handleLogout}
         />
@@ -57,10 +58,7 @@ function App() {
         return (
           <PrecalcHomePage
             authUser={authUser}
-            onLearn={(lesson) => {
-              setSelectedPrecalcLesson(lesson);
-              setStudentView("precalc-lesson");
-            }}
+            onLearn={openPrecalcLesson}
             onBack={() => setStudentView("dashboard")}
             onLogout={handleLogout}
           />
@@ -96,12 +94,7 @@ function App() {
   }
 
   if (authUser?.role === "teacher") {
-    return (
-      <TeacherDashboard
-        authUser={authUser}
-        onLogout={handleLogout}
-      />
-    );
+    return <TeacherDashboard authUser={authUser} onLogout={handleLogout} />;
   }
 
   return <HomePage onLoginSuccess={handleLoginSuccess} />;
