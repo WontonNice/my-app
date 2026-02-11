@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import HomePage from "./components/HomePage";
 import PrecalcHomePage from "./components/Courses/PreCalc/PrecalcHomePage";
-import PrecalcLearnPage from "./components/Courses/PreCalc/PrecalcLearnPage";
+import PrecalcLessonPage from "./components/Courses/PreCalc/PrecalcLessonPage";
+import type { PrecalcLessonSummary } from "./components/Courses/PreCalc/precalcLessons";
 import StudentDashboard from "./components/StudentDashboard";
 import TeacherDashboard from "./components/TeacherDashboard";
 
 import { getStoredAuthUser, setStoredAuthUser } from "./authStorage";
 import type { AuthUser } from "./authStorage";
 
-type StudentView = "dashboard" | "precalc" | "precalc-learn";
+type StudentView = "dashboard" | "precalc" | "precalc-lesson";
 
 function normalizeCourseName(course: string) {
   return course.trim().toLowerCase();
@@ -17,6 +18,7 @@ function normalizeCourseName(course: string) {
 function App() {
   const [authUser, setAuthUser] = useState<AuthUser | null>(getStoredAuthUser);
   const [studentView, setStudentView] = useState<StudentView>("dashboard");
+  const [selectedPrecalcLesson, setSelectedPrecalcLesson] = useState<PrecalcLessonSummary | null>(null);
 
   useEffect(() => {
     setStoredAuthUser(authUser);
@@ -25,11 +27,13 @@ function App() {
 
   const handleLogout = () => {
     setStudentView("dashboard");
+    setSelectedPrecalcLesson(null);
     setAuthUser(null);
   };
 
   const handleLoginSuccess = (user: AuthUser) => {
     setStudentView("dashboard");
+    setSelectedPrecalcLesson(null);
     setAuthUser(user);
   };
 
@@ -38,15 +42,39 @@ function App() {
       return (
         <PrecalcHomePage
           authUser={authUser}
+          onLearn={(lesson) => {
+            setSelectedPrecalcLesson(lesson);
+            setStudentView("precalc-lesson");
+          }}
           onBack={() => setStudentView("dashboard")}
-          onOpenLearn={() => setStudentView("precalc-learn")}
           onLogout={handleLogout}
         />
       );
     }
 
-    if (studentView === "precalc-learn") {
-      return <PrecalcLearnPage onBack={() => setStudentView("precalc")} />;
+    if (studentView === "precalc-lesson") {
+      if (!selectedPrecalcLesson) {
+        return (
+          <PrecalcHomePage
+            authUser={authUser}
+            onLearn={(lesson) => {
+              setSelectedPrecalcLesson(lesson);
+              setStudentView("precalc-lesson");
+            }}
+            onBack={() => setStudentView("dashboard")}
+            onLogout={handleLogout}
+          />
+        );
+      }
+
+      return (
+        <PrecalcLessonPage
+          authUser={authUser}
+          lesson={selectedPrecalcLesson}
+          onBack={() => setStudentView("precalc")}
+          onLogout={handleLogout}
+        />
+      );
     }
 
     return (

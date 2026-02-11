@@ -1,92 +1,105 @@
 import { useState } from "react";
 import type { AuthUser } from "../../../authStorage";
+import { PRECALC_LESSONS } from "./precalcLessons";
+import type { PrecalcLessonSummary } from "./precalcLessons";
 
 type PrecalcHomePageProps = {
     authUser: AuthUser;
+    onLearn: (lesson: PrecalcLessonSummary) => void;
     onBack: () => void;
-    onOpenLearn: () => void;
     onLogout: () => void;
+};
+
+type ChapterModule = {
+    name: string;
+    lessonId?: string;
 };
 
 type Chapter = {
     id: string;
     name: string;
-    modules: string[];
+    modules: ChapterModule[];
 };
 
 const CHAPTERS: Chapter[] = [
     {
         id: "chapter-1",
         name: "Chapter 1: Fundamentals",
-        modules: ["Coming Soon"],
+        modules: [{ name: "Functions and Their Graphs", lessonId: "chapter-1-functions" }],
     },
     {
         id: "chapter-2",
         name: "Chapter 2: Functions",
-        modules: ["Coming Soon"],
+        modules: [{ name: "Coming Soon" }],
     },
     {
         id: "chapter-3",
         name: "Chapter 3: Polynomials and Rational Functions",
-        modules: ["Coming Soon"],
+        modules: [{ name: "Trigonometric Functions", lessonId: "chapter-3-trig" }],
     },
     {
         id: "chapter-4",
         name: "Chapter 4: Exponential and Logarithmic Functions",
-        modules: ["Coming Soon"],
+        modules: [{ name: "Coming Soon" }],
     },
     {
         id: "chapter-5",
         name: "Chapter 5: Trigonometric Functions: Unit Circle Approach",
         modules: [
-            "The Unit Circle",
-            "Trigonometric Functions of Real Numbers",
-            "Trigonometric Graphs",
-            "More Trigonometric Graphs",
-            "Inverse Trigonometric Functions and Their Graphs",
-            "Modeling Harmonic Motion",
+            { name: "The Unit Circle", lessonId: "chapter-5-unit-circle" },
+            { name: "Trigonometric Functions of Real Numbers" },
+            { name: "Trigonometric Graphs" },
+            { name: "More Trigonometric Graphs" },
+            { name: "Inverse Trigonometric Functions and Their Graphs" },
+            { name: "Modeling Harmonic Motion" },
         ],
     },
     {
         id: "chapter-6",
         name: "Chapter 6: Trigonometric Functions: Right Triangle Approach",
-        modules: ["Coming Soon"],
+        modules: [{ name: "Coming Soon" }],
     },
     {
         id: "chapter-7",
         name: "Chapter 7: Analytic Trigonometry",
-        modules: ["Coming Soon"],
+        modules: [{ name: "Coming Soon" }],
     },
     {
         id: "chapter-8",
         name: "Chapter 8: Polar Coordinates, Parametric Equations, and Vectors",
-        modules: ["Coming Soon"],
+        modules: [{ name: "Coming Soon" }],
     },
     {
         id: "chapter-9",
         name: "Chapter 9: Systems of Equations and Inequalities",
-        modules: ["Coming Soon"],
+        modules: [{ name: "Coming Soon" }],
     },
     {
         id: "chapter-10",
         name: "Chapter 10: Conic Sections",
-        modules: ["Coming Soon"],
+        modules: [{ name: "Coming Soon" }],
     },
     {
         id: "chapter-11",
         name: "Chapter 11: Sequences and Series",
-        modules: ["Coming Soon"],
+        modules: [{ name: "Coming Soon" }],
     },
     {
         id: "chapter-12",
         name: "Chapter 12: Limits: A Preview of Calculus",
-        modules: ["Coming Soon"],
+        modules: [{ name: "Coming Soon" }],
     },
 ];
 
-function PrecalcHomePage({ authUser, onBack, onLogout }: PrecalcHomePageProps) {
+type SelectedModule = {
+    chapterId: string;
+    moduleName: string;
+    lesson: PrecalcLessonSummary | null;
+};
+
+function PrecalcHomePage({ authUser, onLearn, onBack, onLogout }: PrecalcHomePageProps) {
     const [openChapterIds, setOpenChapterIds] = useState<string[]>([]);
-    const [selectedModule, setSelectedModule] = useState("");
+    const [selectedModule, setSelectedModule] = useState<SelectedModule | null>(null);
 
     function toggleChapter(chapterId: string) {
         setOpenChapterIds((previousOpenChapterIds) =>
@@ -132,18 +145,33 @@ function PrecalcHomePage({ authUser, onBack, onLogout }: PrecalcHomePageProps) {
 
                                 {isOpen && (
                                     <ul style={{ margin: "8px 0 0 12px", paddingLeft: 12 }}>
-                                        {chapter.modules.map((moduleName) => (
-                                            <li key={`${chapter.id}-${moduleName}`} style={{ marginBottom: 6 }}>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        setSelectedModule(moduleName);
-                                                    }}
-                                                >
-                                                    {moduleName}
-                                                </button>
-                                            </li>
-                                        ))}
+                                        {chapter.modules.map((module) => {
+                                            const isSelected =
+                                                selectedModule?.chapterId === chapter.id &&
+                                                selectedModule.moduleName === module.name;
+
+                                            return (
+                                                <li key={`${chapter.id}-${module.name}`} style={{ marginBottom: 6 }}>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            const lesson = module.lessonId
+                                                                ? PRECALC_LESSONS.find((item) => item.id === module.lessonId) || null
+                                                                : null;
+
+                                                            setSelectedModule({
+                                                                chapterId: chapter.id,
+                                                                moduleName: module.name,
+                                                                lesson,
+                                                            });
+                                                        }}
+                                                        style={{ fontWeight: isSelected ? "bold" : "normal" }}
+                                                    >
+                                                        {module.name}
+                                                    </button>
+                                                </li>
+                                            );
+                                        })}
                                     </ul>
                                 )}
                             </div>
@@ -157,13 +185,26 @@ function PrecalcHomePage({ authUser, onBack, onLogout }: PrecalcHomePageProps) {
                     {selectedModule ? (
                         <>
                             <p>
-                                <strong>{selectedModule}</strong>
+                                <strong>{selectedModule.moduleName}</strong>
                             </p>
                             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                                <button type="button">Learn</button>
-                                <button type="button">Review</button>
-                                <button type="button">Study</button>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        if (selectedModule.lesson) onLearn(selectedModule.lesson);
+                                    }}
+                                    disabled={!selectedModule.lesson}
+                                >
+                                    Learn
+                                </button>
+                                <button type="button" disabled>
+                                    Review
+                                </button>
+                                <button type="button" disabled>
+                                    Study
+                                </button>
                             </div>
+                            {!selectedModule.lesson && <p style={{ marginBottom: 0 }}>Lesson content coming soon.</p>}
                         </>
                     ) : (
                         <p>Please select module to get started.</p>
