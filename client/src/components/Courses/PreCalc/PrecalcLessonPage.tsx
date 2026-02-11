@@ -3,10 +3,7 @@ import type { FormEvent } from "react";
 import type { AuthUser } from "../../../authStorage";
 import type { PrecalcLessonSummary } from "./precalcLessons";
 import DesmosBlock from "./DesmosBlock";
-
-function renderKatexExpression(expression: string, displayMode = true) {
-    return displayMode ? <pre>{`\\[${expression}\\]`}</pre> : <code>{`\\(${expression}\\)`}</code>;
-}
+import KatexExpression from "./Katex";
 
 type LessonBlock =
     | {
@@ -29,7 +26,7 @@ type LessonBlock =
     | {
         type: "desmos";
         title?: string;
-        expressions: string[];
+        expressions: Array<{ latex: string; label?: string; showLabel?: boolean } | string>;
         requireStudentGraphBeforeAdvance?: boolean;
     };
 
@@ -49,6 +46,14 @@ type LessonPayload = {
     }>;
     pages?: LessonPage[];
 };
+
+function normalizePointAnswer(value: string) {
+    return value
+        .trim()
+        .toLowerCase()
+        .replace(/^p\(/, "(")
+        .replace(/\s+/g, "");
+}
 
 type PrecalcLessonPageProps = {
     authUser: AuthUser;
@@ -118,9 +123,35 @@ function toLessonPayload(value: unknown): LessonPayload {
 
                             if (blockCandidate.type === "desmos") {
                                 const expressions = Array.isArray(blockCandidate.expressions)
-                                    ? blockCandidate.expressions.filter(
-                                        (expression): expression is string => typeof expression === "string",
-                                    )
+                                    ? blockCandidate.expressions
+                                        .map((expression) => {
+                                            if (typeof expression === "string") return expression;
+                                            if (!expression || typeof expression !== "object") return null;
+
+                                            const expressionCandidate = expression as {
+                                                latex?: unknown;
+                                                label?: unknown;
+                                                showLabel?: unknown;
+                                            };
+
+                                            if (typeof expressionCandidate.latex !== "string") return null;
+
+                                            const label = typeof expressionCandidate.label === "string"
+                                                ? { label: expressionCandidate.label }
+                                                : {};
+                                            const showLabel = expressionCandidate.showLabel === true
+                                                ? { showLabel: true }
+                                                : {};
+
+                                            return {
+                                                latex: expressionCandidate.latex,
+                                                ...label,
+                                                ...showLabel,
+                                            };
+                                        })
+                                        .filter((expression) => expression !== null) as Array<
+                                            string | { latex: string; label?: string; showLabel?: boolean }
+                                        >
                                     : [];
 
                                 return {
@@ -170,7 +201,8 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
     const [lessonPayload, setLessonPayload] = useState<LessonPayload | null>(null);
     const [errorMessage, setErrorMessage] = useState("");
     const [pageIndex, setPageIndex] = useState(0);
-    const [questionAnswers, setQuestionAnswers] = useState<Record<string, string>>({});
+    const [questionAnswers, setQuestionAnswers] = useState<Record<string, { x: string; y: string }>>({});
+    const [visibleHints, setVisibleHints] = useState<Record<string, boolean>>({});
     const [questionResults, setQuestionResults] = useState<Record<string, { isCorrect: boolean; submitted: boolean }>>({});
     const [desmosGraphStatus, setDesmosGraphStatus] = useState<Record<string, boolean>>({});
 
@@ -194,6 +226,7 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                     setPageIndex(0);
                     setQuestionAnswers({});
                     setQuestionResults({});
+                    setVisibleHints({});
                     setDesmosGraphStatus({});
                 }
             } catch (error) {
@@ -235,9 +268,12 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
     const handleQuestionSubmit = (event: FormEvent<HTMLFormElement>, block: Extract<LessonBlock, { type: "question" }>) => {
         event.preventDefault();
 
-        const candidateAnswer = (questionAnswers[block.id] || "").trim().toLowerCase();
-        const acceptableAnswers = (block.acceptableAnswers || []).map((answer) => answer.trim().toLowerCase());
-        const isCorrect = acceptableAnswers.length === 0 ? candidateAnswer.length > 0 : acceptableAnswers.includes(candidateAnswer);
+        const answerParts = questionAnswers[block.id] || { x: "", y: "" };
+        const candidateAnswer = normalizePointAnswer(`(${answerParts.x.trim()},${answerParts.y.trim()})`);
+        const acceptableAnswers = (block.acceptableAnswers || []).map((answer) => normalizePointAnswer(answer));
+        const isCorrect = acceptableAnswers.length === 0
+            ? answerParts.x.trim().length > 0 && answerParts.y.trim().length > 0
+            : acceptableAnswers.includes(candidateAnswer);
 
         setQuestionResults((previous) => ({
             ...previous,
@@ -274,6 +310,7 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                             <h2>
                                 {`Page ${pageIndex + 1}: ${currentPage.title}`}
                             </h2>
+                            {currentPage.blocks.some((block) => block.type === "question") && <h3>Check your understanding</h3>}
                             {currentPage.blocks.map((block, index) => {
                                 if (block.type === "text") {
                                     return <p key={`text-${index}`}>{block.text}</p>;
@@ -282,31 +319,53 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                 if (block.type === "katex") {
                                     return (
                                         <div key={`katex-${index}`}>
-                                            {renderKatexExpression(block.expression, block.displayMode ?? true)}
+                                            <KatexExpression expression={block.expression} displayMode={block.displayMode ?? true} />
                                         </div>
                                     );
                                 }
 
                                 if (block.type === "question") {
-                                    const answer = questionAnswers[block.id] || "";
+                                    const answer = questionAnswers[block.id] || { x: "", y: "" };
                                     const questionResult = questionResults[block.id];
+                                    const isHintVisible = Boolean(visibleHints[block.id]);
 
                                     return (
                                         <section key={block.id}>
-                                            <h3>Check your understanding</h3>
                                             <p>{block.prompt}</p>
                                             <form onSubmit={(event) => handleQuestionSubmit(event, block)}>
+                                                <span>(</span>
                                                 <input
                                                     type="text"
-                                                    value={answer}
+                                                    value={answer.x}
                                                     onChange={(event) =>
                                                         setQuestionAnswers((previous) => ({
                                                             ...previous,
-                                                            [block.id]: event.target.value,
+                                                            [block.id]: {
+                                                                x: event.target.value,
+                                                                y: previous[block.id]?.y || "",
+                                                            },
                                                         }))
                                                     }
-                                                    aria-label={`Answer for question ${block.id}`}
+                                                    aria-label={`x-coordinate for question ${block.id}`}
+                                                    style={{ width: 56 }}
                                                 />
+                                                <span>, </span>
+                                                <input
+                                                    type="text"
+                                                    value={answer.y}
+                                                    onChange={(event) =>
+                                                        setQuestionAnswers((previous) => ({
+                                                            ...previous,
+                                                            [block.id]: {
+                                                                x: previous[block.id]?.x || "",
+                                                                y: event.target.value,
+                                                            },
+                                                        }))
+                                                    }
+                                                    aria-label={`y-coordinate for question ${block.id}`}
+                                                    style={{ width: 56 }}
+                                                />
+                                                <span>)</span>
                                                 <button type="submit" style={{ marginLeft: 8 }}>
                                                     Check answer
                                                 </button>
@@ -314,7 +373,22 @@ function PrecalcLessonPage({ lesson, onBack, onLogout }: PrecalcLessonPageProps)
                                             {questionResult?.submitted && (
                                                 <p aria-live="polite">{questionResult.isCorrect ? "Correct." : "Try again."}</p>
                                             )}
-                                            {block.explanation && <p>{`Hint: ${block.explanation}`}</p>}
+                                            {block.explanation && (
+                                                <>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            setVisibleHints((previous) => ({
+                                                                ...previous,
+                                                                [block.id]: !previous[block.id],
+                                                            }))
+                                                        }
+                                                    >
+                                                        {isHintVisible ? "Hide hint" : "Show hint"}
+                                                    </button>
+                                                    {isHintVisible && <p>{`Hint: ${block.explanation}`}</p>}
+                                                </>
+                                            )}
                                         </section>
                                     );
                                 }

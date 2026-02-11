@@ -7,7 +7,7 @@ declare global {
                 elt: HTMLElement,
                 options?: { expressions?: boolean; keypad?: boolean; settingsMenu?: boolean },
             ) => {
-                setExpression: (expression: { id: string; latex: string }) => void;
+                setExpression: (expression: { id: string; latex: string; label?: string; showLabel?: boolean }) => void;
                 getExpressions: () => Array<{ latex?: string }>;
                 observeEvent: (eventName: string, callback: () => void) => void;
                 destroy: () => void;
@@ -19,7 +19,14 @@ declare global {
 const DESMOS_API_KEY = "eae68c10752846c5bf6c8e776563c465";
 
 export type DesmosBlockProps = {
-    expressions: string[];
+    expressions: Array<
+        | string
+        | {
+            latex: string;
+            label?: string;
+            showLabel?: boolean;
+        }
+    >;
     requireStudentGraphBeforeAdvance?: boolean;
     onGraphStatusChange?: (hasStudentGraph: boolean) => void;
 };
@@ -36,7 +43,7 @@ function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphSta
         let destroyed = false;
         let calculator:
             | {
-                setExpression: (expression: { id: string; latex: string }) => void;
+                setExpression: (expression: { id: string; latex: string; label?: string; showLabel?: boolean }) => void;
                 getExpressions: () => Array<{ latex?: string }>;
                 observeEvent: (eventName: string, callback: () => void) => void;
                 destroy: () => void;
@@ -52,7 +59,17 @@ function DesmosBlock({ expressions, requireStudentGraphBeforeAdvance, onGraphSta
             });
 
             expressions.forEach((expression, index) => {
-                calculator?.setExpression({ id: `exp-${index + 1}`, latex: expression });
+                if (typeof expression === "string") {
+                    calculator?.setExpression({ id: `exp-${index + 1}`, latex: expression });
+                    return;
+                }
+
+                calculator?.setExpression({
+                    id: `exp-${index + 1}`,
+                    latex: expression.latex,
+                    label: expression.label,
+                    showLabel: expression.showLabel,
+                });
             });
 
             if (requireStudentGraphBeforeAdvance && graphStatusCallbackRef.current) {

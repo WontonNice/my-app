@@ -32,53 +32,92 @@
         },
         {
             "id": "m1-p2",
-            "title": "45-45-90 triangle on the unit circle",
+            "title": "Arc length and terminal points on the unit circle",
             "blocks": [
                 {
                     "type": "text",
-                    "text": "A 45-45-90 triangle on the unit circle has legs along the x- and y-axes from the origin to (\u221a2/2, \u221a2/2). Fill in the side lengths and angles."
+                    "text": "The circumference of the unit circle is C = 2\u03c0(1) = 2\u03c0. Starting at (1, 0), the distance traveled along the circle matches an angle measure in radians."
+                },
+                {
+                    "type": "katex",
+                    "expression": "C = 2\\pi(1) = 2\\pi",
+                    "displayMode": true
+                },
+                {
+                    "type": "text",
+                    "text": "If a point moves counterclockwise from (1, 0): half a circle is a distance of \u03c0, a quarter circle is \u03c0/2, and three quarters is 3\u03c0/2. These distances determine terminal points on the unit circle."
+                },
+                {
+                    "type": "katex",
+                    "expression": "t=\\frac{\\pi}{2}\\Rightarrow P(0,1),\\quad t=\\pi\\Rightarrow P(-1,0),\\quad t=\\frac{3\\pi}{2}\\Rightarrow P(0,-1),\\quad t=2\\pi\\Rightarrow P(1,0)",
+                    "displayMode": true
                 },
                 {
                     "type": "desmos",
-                    "title": "45-45-90 triangle",
+                    "title": "Visualize terminal points for \u03c0/2, \u03c0, 3\u03c0/2, and 2\u03c0",
                     "expressions": [
-                        "A=(0,0)",
-                        "B=(\\sqrt{2}/2,0)",
-                        "C=(\\sqrt{2}/2,\\sqrt{2}/2)",
-                        "polygon(A,B,C)",
-                        "x^2+y^2=1"
+                        "x^2+y^2=1",
+                        {
+                            "latex": "A=(1,0)",
+                            "label": "P(1,0)",
+                            "showLabel": true
+                        },
+                        {
+                            "latex": "B=(0,1)",
+                            "label": "P(0,1)",
+                            "showLabel": true
+                        },
+                        {
+                            "latex": "C=(-1,0)",
+                            "label": "P(-1,0)",
+                            "showLabel": true
+                        },
+                        {
+                            "latex": "D=(0,-1)",
+                            "label": "P(0,-1)",
+                            "showLabel": true
+                        }
                     ]
+                },
+                {
+                    "type": "text",
+                    "text": "Example: Find the terminal point on the unit circle determined by each real number t."
                 },
                 {
                     "type": "question",
                     "id": "m1q2",
-                    "prompt": "If the hypotenuse is 1, what is each leg length?",
+                    "prompt": "(a) t = 3\u03c0. What is the terminal point?",
                     "acceptableAnswers": [
-                        "sqrt(2)/2",
-                        "\\sqrt{2}/2",
-                        "\u221a2/2"
+                        "(-1,0)",
+                        "(-1, 0)",
+                        "P(-1,0)",
+                        "p(-1,0)"
                     ],
-                    "explanation": "In a 45-45-90 triangle, each leg is hypotenuse divided by \u221a2."
+                    "explanation": "A full turn is 2\u03c0, so 3\u03c0 is equivalent to \u03c0."
                 },
                 {
                     "type": "question",
                     "id": "m1q3",
-                    "prompt": "What are the two acute angles (in degrees)? Enter one angle value.",
+                    "prompt": "(b) t = -\u03c0. What is the terminal point?",
                     "acceptableAnswers": [
-                        "45",
-                        "45\u00b0"
+                        "(-1,0)",
+                        "(-1, 0)",
+                        "P(-1,0)",
+                        "p(-1,0)"
                     ],
-                    "explanation": "The acute angles are equal in a 45-45-90 triangle."
+                    "explanation": "Negative angles move clockwise. -\u03c0 lands at the same point as \u03c0."
                 },
                 {
                     "type": "question",
                     "id": "m1q4",
-                    "prompt": "What is the right angle (in degrees)?",
+                    "prompt": "(c) t = -\u03c0/2. What is the terminal point?",
                     "acceptableAnswers": [
-                        "90",
-                        "90\u00b0"
+                        "(0,-1)",
+                        "(0, -1)",
+                        "P(0,-1)",
+                        "p(0,-1)"
                     ],
-                    "explanation": "Every right triangle has one 90\u00b0 angle."
+                    "explanation": "-\u03c0/2 is a quarter-turn clockwise from (1,0)."
                 }
             ]
         }
