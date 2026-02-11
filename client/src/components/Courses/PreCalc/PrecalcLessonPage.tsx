@@ -1,9 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
-import type { FormEvent } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
+import type { FormEvent, ReactNode } from "react";
 import type { AuthUser } from "../../../authStorage";
 import type { PrecalcLessonSummary } from "./precalcLessons";
 import DesmosBlock from "./DesmosBlock";
 import KatexExpression from "./Katex";
+import {
+    isUnitCircleLesson,
+    renderUnitCircleRadiansHint,
+    renderUnitCircleTextWithInlineLatex,
+    UNIT_CIRCLE_QUESTION_TOOLS,
+} from "./UnitCircle";
 
 type LessonBlock =
     | {
@@ -75,6 +81,22 @@ function normalizePointAnswer(value: string) {
         .toLowerCase()
         .replace(/^p\(/, "(")
         .replace(/\s+/g, "");
+}
+
+function renderTextWithInlineLatex(text: string): ReactNode {
+    const segments = text.split(/(\$[^$]+\$)/g).filter((segment) => segment.length > 0);
+
+    return segments.map((segment, index) => {
+        if (segment.startsWith("$") && segment.endsWith("$")) {
+            return (
+                <Fragment key={`math-${index}`}>
+                    <KatexExpression expression={segment.slice(1, -1)} displayMode={false} />
+                </Fragment>
+            );
+        }
+
+        return <Fragment key={`text-${index}`}>{segment}</Fragment>;
+    });
 }
 
 function toLessonProgress(value: unknown): LessonProgress | null {
@@ -424,6 +446,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
     const displayTitle = lessonPayload?.title ?? lesson.title;
 
     const currentPage = lessonPayload?.pages?.[pageIndex];
+    const isUnitCirclePage = isUnitCircleLesson(lesson.filePath);
     const requiredQuestions = currentPage?.blocks.filter(
         (block): block is Extract<LessonBlock, { type: "question" }> =>
             block.type === "question" && block.requireCorrectBeforeAdvance === true,
@@ -506,7 +529,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                             {currentPage.blocks.some((block) => block.type === "question") && <h3>Check your understanding</h3>}
                             {currentPage.blocks.map((block, index) => {
                                 if (block.type === "text") {
-                                    return <p key={`text-${index}`}>{block.text}</p>;
+                                    return <p key={`text-${index}`}>{isUnitCirclePage ? renderUnitCircleTextWithInlineLatex(block.text) : block.text}</p>;
                                 }
 
                                 if (block.type === "katex") {
@@ -537,20 +560,21 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
 
                                     return (
                                         <section key={block.id}>
-                                            <p>{block.prompt}</p>
-                                            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 8 }}>
-                                                <span style={{ marginRight: 4 }}>KaTeX toolbox:</span>
-                                                {["\\pi", "\\sqrt{}", "\\frac{}{}", "^2"].map((snippet) => (
-                                                    <button
-                                                        key={`${block.id}-${snippet}`}
-                                                        type="button"
-                                                        onClick={() => insertLatexIntoActiveInput(snippet)}
-                                                    >
-                                                        {snippet}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                            <p style={{ marginTop: 0 }}>Hint: 2\pi = 360°. Write radians in terms of \pi.</p>
+                                            <p>{isUnitCirclePage ? renderUnitCircleTextWithInlineLatex(block.prompt) : block.prompt}</p>
+                                            {isUnitCirclePage && (
+                                                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 8 }}>
+                                                    {UNIT_CIRCLE_QUESTION_TOOLS.map((tool) => (
+                                                        <button
+                                                            key={`${block.id}-${tool.snippet}`}
+                                                            type="button"
+                                                            onClick={() => insertLatexIntoActiveInput(tool.snippet)}
+                                                        >
+                                                            {tool.label}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
+                                            {isUnitCirclePage && <p style={{ marginTop: 0 }}>{renderUnitCircleRadiansHint()}</p>}
                                             <form onSubmit={(event) => handleQuestionSubmit(event, block)}>
                                                 <span>(</span>
                                                 <input
@@ -607,7 +631,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                     >
                                                         {isHintVisible ? "Hide hint" : "Show hint"}
                                                     </button>
-                                                    {isHintVisible && <p>{`Hint: ${block.explanation}`}</p>}
+                                                    {isHintVisible && <p>{isUnitCirclePage ? renderUnitCircleTextWithInlineLatex(`Hint: ${block.explanation}`) : `Hint: ${block.explanation}`}</p>}
                                                 </>
                                             )}
                                         </section>

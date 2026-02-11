@@ -89,7 +89,11 @@ function loadKatexFromCdn(): Promise<KatexModule> {
 }
 
 function KatexExpression({ expression, displayMode = true }: KatexExpressionProps) {
-    const rootRef = useRef<HTMLDivElement | null>(null);
+    const rootRef = useRef<HTMLDivElement | HTMLSpanElement | null>(null);
+
+    const setRootRef = (element: HTMLDivElement | HTMLSpanElement | null) => {
+        rootRef.current = element;
+    };
     const [loadError, setLoadError] = useState<string | null>(null);
 
     const fallbackElement = useMemo(() => {
@@ -134,7 +138,11 @@ function KatexExpression({ expression, displayMode = true }: KatexExpressionProp
         );
     }
 
-    return <div ref={rootRef} />;
+    if (displayMode) {
+        return <div ref={setRootRef} />;
+    }
+
+    return <span ref={setRootRef} />;
 }
 
 export default KatexExpression;
