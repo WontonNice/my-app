@@ -1,0 +1,24 @@
+{
+    "title": "Test Review",
+    "chapter": 5,
+    "practiceSets": [
+        {
+            "id": "eval-trig-functions",
+            "title": "Evaluating Trigonometric Functions",
+            "description": "Practice evaluating trig functions at standard radian angles.",
+            "type": "infinite-generated"
+        },
+        {
+            "id": "more-coming-soon-1",
+            "title": "Identities Practice (Coming Soon)",
+            "description": "Additional test review generators will be added soon.",
+            "type": "coming-soon"
+        },
+        {
+            "id": "more-coming-soon-2",
+            "title": "Graph Analysis (Coming Soon)",
+            "description": "Additional test review generators will be added soon.",
+            "type": "coming-soon"
+        }
+    ]
+}

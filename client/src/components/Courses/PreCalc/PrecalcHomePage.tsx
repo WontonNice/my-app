@@ -7,6 +7,7 @@ type PrecalcHomePageProps = {
     authUser: AuthUser;
     onLearn: (lesson: PrecalcLessonSummary) => void;
     onReview: (lesson: PrecalcLessonSummary) => void;
+    onOpenEvaluatingTrigFunctions: () => void;
     onBack: () => void;
     onLogout: () => void;
 };
@@ -59,6 +60,7 @@ const CHAPTERS: Chapter[] = [
                 lessonId: "chapter-5-inverse-trigonometric-functions",
             },
             { name: "Modeling Harmonic Motion", lessonId: "chapter-5-modeling-harmonic-motion" },
+            { name: "Test Review", lessonId: "chapter-5-test-review" },
         ],
     },
     {
@@ -104,9 +106,17 @@ type SelectedModule = {
     lesson: PrecalcLessonSummary | null;
 };
 
-function PrecalcHomePage({ authUser, onLearn, onReview, onBack, onLogout }: PrecalcHomePageProps) {
+function PrecalcHomePage({
+    authUser,
+    onLearn,
+    onReview,
+    onOpenEvaluatingTrigFunctions,
+    onBack,
+    onLogout,
+}: PrecalcHomePageProps) {
     const [openChapterIds, setOpenChapterIds] = useState<string[]>([]);
     const [selectedModule, setSelectedModule] = useState<SelectedModule | null>(null);
+    const isTestReviewModule = selectedModule?.moduleName === "Test Review";
 
     function toggleChapter(chapterId: string) {
         setOpenChapterIds((previousOpenChapterIds) =>
@@ -194,30 +204,38 @@ function PrecalcHomePage({ authUser, onLearn, onReview, onBack, onLogout }: Prec
                             <p>
                                 <strong>{selectedModule.moduleName}</strong>
                             </p>
-                            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        if (selectedModule.lesson) onLearn(selectedModule.lesson);
-                                    }}
-                                    disabled={!selectedModule.lesson}
-                                >
-                                    Learn
+                            {isTestReviewModule ? (
+                                <button type="button" onClick={onOpenEvaluatingTrigFunctions}>
+                                    Evaluating Trigonometric Functions
                                 </button>
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        if (selectedModule.lesson) onReview(selectedModule.lesson);
-                                    }}
-                                    disabled={!selectedModule.lesson}
-                                >
-                                    Review
-                                </button>
-                                <button type="button" disabled>
-                                    Study
-                                </button>
-                            </div>
-                            {!selectedModule.lesson && <p style={{ marginBottom: 0 }}>Lesson content coming soon.</p>}
+                            ) : (
+                                <>
+                                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                if (selectedModule.lesson) onLearn(selectedModule.lesson);
+                                            }}
+                                            disabled={!selectedModule.lesson}
+                                        >
+                                            Learn
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                if (selectedModule.lesson) onReview(selectedModule.lesson);
+                                            }}
+                                            disabled={!selectedModule.lesson}
+                                        >
+                                            Review
+                                        </button>
+                                        <button type="button" disabled>
+                                            Study
+                                        </button>
+                                    </div>
+                                    {!selectedModule.lesson && <p style={{ marginBottom: 0 }}>Lesson content coming soon.</p>}
+                                </>
+                            )}
                         </>
                     ) : (
                         <p>Please select module to get started.</p>

@@ -5,13 +5,14 @@ import PrecalcLessonPage from "./components/Courses/PreCalc/PrecalcLessonPage";
 import type { PrecalcLessonSummary } from "./components/Courses/PreCalc/precalcLessons";
 import { PRECALC_LESSONS_BY_ID } from "./components/Courses/PreCalc/precalcLessons";
 import PrecalcReviewPage from "./components/Courses/PreCalc/PrecalcReviewPage";
+import EvaluatingTrigFunctionsPage from "./components/Courses/PreCalc/EvaluatingTrigFunctionsPage";
 import StudentDashboard from "./components/StudentDashboard";
 import TeacherDashboard from "./components/TeacherDashboard";
 
 import { getStoredAuthUser, setStoredAuthUser } from "./authStorage";
 import type { AuthUser } from "./authStorage";
 
-type StudentView = "dashboard" | "precalc" | "precalc-lesson" | "precalc-review";
+type StudentView = "dashboard" | "precalc" | "precalc-lesson" | "precalc-review" | "precalc-evaluating-trig-functions";
 
 type StoredStudentNavigation = {
   studentView: StudentView;
@@ -33,7 +34,8 @@ function toStoredStudentNavigation(value: unknown): StoredStudentNavigation | nu
   const studentView: StudentView =
     candidate.studentView === "precalc" ||
       candidate.studentView === "precalc-lesson" ||
-      candidate.studentView === "precalc-review"
+      candidate.studentView === "precalc-review" ||
+      candidate.studentView === "precalc-evaluating-trig-functions"
       ? candidate.studentView
       : "dashboard";
 
@@ -131,6 +133,12 @@ function App() {
     setStudentView("precalc-review");
   };
 
+  const openEvaluatingTrigFunctions = () => {
+    setSelectedPrecalcLesson(null);
+    setStudentView("precalc-evaluating-trig-functions");
+  };
+
+
   if (authUser?.role === "student") {
     if (studentView === "precalc") {
       return (
@@ -140,6 +148,7 @@ function App() {
           onBack={() => setStudentView("dashboard")}
           onLogout={handleLogout}
           onReview={openPrecalcReview}
+          onOpenEvaluatingTrigFunctions={openEvaluatingTrigFunctions}
         />
       );
     }
@@ -153,6 +162,7 @@ function App() {
             onBack={() => setStudentView("dashboard")}
             onLogout={handleLogout}
             onReview={openPrecalcReview}
+            onOpenEvaluatingTrigFunctions={openEvaluatingTrigFunctions}
           />
         );
       }
@@ -176,6 +186,7 @@ function App() {
             onReview={openPrecalcReview}
             onBack={() => setStudentView("dashboard")}
             onLogout={handleLogout}
+            onOpenEvaluatingTrigFunctions={openEvaluatingTrigFunctions}
           />
         );
       }
@@ -184,6 +195,16 @@ function App() {
         <PrecalcReviewPage
           authUser={authUser}
           lesson={selectedPrecalcLesson}
+          onBack={() => setStudentView("precalc")}
+          onLogout={handleLogout}
+        />
+      );
+    }
+
+    if (studentView === "precalc-evaluating-trig-functions") {
+      return (
+        <EvaluatingTrigFunctionsPage
+          authUser={authUser}
           onBack={() => setStudentView("precalc")}
           onLogout={handleLogout}
         />
