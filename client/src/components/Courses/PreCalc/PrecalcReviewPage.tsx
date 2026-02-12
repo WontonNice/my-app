@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { AuthUser } from "../../../authStorage";
 import type { PrecalcLessonSummary } from "./precalcLessons";
+import KatexExpression from "./Katex";
 
 type PrecalcReviewPageProps = {
     authUser: AuthUser;
@@ -20,6 +21,14 @@ type SpecialTrigRow = {
 };
 
 const FUNCTION_NAMES: FunctionName[] = ["sin", "cos", "tan", "csc", "sec", "cot"];
+const KATEX_SNIPPET_OPTIONS = [
+    { label: "π", snippet: "\\pi" },
+    { label: "fraction", snippet: "\\frac{}{}" },
+    { label: "square root", snippet: "\\sqrt{}" },
+    { label: "power", snippet: "^{}" },
+    { label: "parentheses", snippet: "()" },
+    { label: "minus", snippet: "-" },
+];
 
 const SPECIAL_TRIG_ROWS: SpecialTrigRow[] = [
     { angle: "0", values: { sin: "0", cos: "1", tan: "0", csc: "undefined", sec: "1", cot: "undefined" } },
@@ -59,8 +68,10 @@ function normalizeQuadrantLabel(value: string) {
 }
 
 function PrecalcReviewPage({ authUser, lesson, onBack, onLogout }: PrecalcReviewPageProps) {
+    const isTrigFunctionsRealNumbersReview = lesson.id === "chapter-5-trig-functions-real-numbers";
     const [page, setPage] = useState(0);
     const [tableAnswers, setTableAnswers] = useState<Record<string, string>>({});
+    const [activeTableInputId, setActiveTableInputId] = useState<string | null>(null);
     const [tableChecked, setTableChecked] = useState(false);
 
     const [quadrantLabels, setQuadrantLabels] = useState<Record<Quadrant, string>>({ I: "", II: "", III: "", IV: "" });
@@ -120,6 +131,15 @@ function PrecalcReviewPage({ authUser, lesson, onBack, onLogout }: PrecalcReview
         });
     };
 
+    const insertSnippetIntoActiveInput = (snippet: string) => {
+        if (!activeTableInputId) return;
+
+        setTableAnswers((previous) => ({
+            ...previous,
+            [activeTableInputId]: `${previous[activeTableInputId] || ""}${snippet}`,
+        }));
+    };
+
     return (
         <>
             <h1>{lesson.title} Review</h1>
@@ -129,6 +149,26 @@ function PrecalcReviewPage({ authUser, lesson, onBack, onLogout }: PrecalcReview
                 <section>
                     <h2>Page 1: Special Trig Values</h2>
                     <p>Fill in each value from memory, then check your table.</p>
+                    {isTrigFunctionsRealNumbersReview && (
+                        <>
+                            <p style={{ marginTop: 0 }}>
+                                You can enter answers with LaTeX-style math (examples: {"\\frac{\\sqrt{3}}{2}"}, {"\\pi/6"}).
+                                Click any answer box first, then use a quick button to insert math symbols/templates.
+                            </p>
+                            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
+                                {KATEX_SNIPPET_OPTIONS.map((option) => (
+                                    <button
+                                        key={option.label}
+                                        type="button"
+                                        onClick={() => insertSnippetIntoActiveInput(option.snippet)}
+                                        disabled={!activeTableInputId}
+                                    >
+                                        {option.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </>
+                    )}
                     <div style={{ overflowX: "auto" }}>
                         <table style={{ borderCollapse: "collapse", minWidth: 860 }}>
                             <thead>
@@ -150,16 +190,25 @@ function PrecalcReviewPage({ authUser, lesson, onBack, onLogout }: PrecalcReview
 
                                             return (
                                                 <td key={inputId} style={{ border: "1px solid #bbb", padding: 8 }}>
-                                                    <input
-                                                        value={tableAnswers[inputId] || ""}
-                                                        onChange={(event) =>
-                                                            setTableAnswers((previous) => ({
-                                                                ...previous,
-                                                                [inputId]: event.target.value,
-                                                            }))
-                                                        }
-                                                        style={{ width: 92 }}
-                                                    />
+                                                    <div style={{ display: "grid", gap: 6 }}>
+                                                        <input
+                                                            value={tableAnswers[inputId] || ""}
+                                                            onFocus={() => setActiveTableInputId(inputId)}
+                                                            onClick={() => setActiveTableInputId(inputId)}
+                                                            onChange={(event) =>
+                                                                setTableAnswers((previous) => ({
+                                                                    ...previous,
+                                                                    [inputId]: event.target.value,
+                                                                }))
+                                                            }
+                                                            style={{ width: 92 }}
+                                                        />
+                                                        {isTrigFunctionsRealNumbersReview && tableAnswers[inputId] && (
+                                                            <div style={{ minHeight: 24 }}>
+                                                                <KatexExpression expression={tableAnswers[inputId]} displayMode={false} />
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 </td>
                                             );
                                         })}
@@ -172,7 +221,17 @@ function PrecalcReviewPage({ authUser, lesson, onBack, onLogout }: PrecalcReview
                         <button type="button" onClick={() => setTableChecked(true)}>
                             Check table
                         </button>
-                        <button type="button" disabled={!tableIsCorrect} onClick={() => setPage(1)}>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setTableAnswers({});
+                                setActiveTableInputId(null);
+                                setTableChecked(false);
+                            }}
+                        >
+                            Reset table
+                        </button>
+                        <button type="button" onClick={() => setPage(1)}>
                             Next page
                         </button>
                     </div>

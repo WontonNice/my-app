@@ -279,7 +279,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
     const [desmosGraphStates, setDesmosGraphStates] = useState<Record<string, Record<string, unknown>>>({});
     const [inputCursorByQuestion, setInputCursorByQuestion] = useState<Record<string, UnitCircleInputCursor>>({});
 
-    const lessonProgressStorageKey = createLessonProgressStorageKey(authUser.username, lesson.filePath);
+    const lessonProgressStorageKey = createLessonProgressStorageKey(authUser.username, lesson.paths.learn);
 
     useEffect(() => {
         let isMounted = true;
@@ -289,9 +289,9 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
             setLessonPayload(null);
 
             try {
-                const response = await fetch(`/lessons/${lesson.filePath}`);
+                const response = await fetch(`/lessons/${lesson.paths.learn}`);
                 if (!response.ok) {
-                    setErrorMessage(`Could not load lesson file ${lesson.filePath} (HTTP ${response.status})`);
+                    setErrorMessage(`Could not load lesson file ${lesson.paths.learn} (HTTP ${response.status})`);
                     return;
                 }
 
@@ -313,7 +313,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                 }
             } catch (error) {
                 const message = error instanceof Error ? error.message : String(error);
-                if (isMounted) setErrorMessage(`Could not load lesson file ${lesson.filePath}. ${message}`);
+                if (isMounted) setErrorMessage(`Could not load lesson file ${lesson.paths.learn}. ${message}`);
             }
         }
 
@@ -322,7 +322,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
         return () => {
             isMounted = false;
         };
-    }, [lesson.filePath, lessonProgressStorageKey]);
+    }, [lesson.paths.learn, lessonProgressStorageKey]);
 
     useEffect(() => {
         if (!lessonPayload) return;
@@ -369,7 +369,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
 
         setQuestionAnswers((previous) =>
             appendUnitCircleLatexSnippet(
-                lesson.filePath,
+                lesson.paths.learn,
                 previous,
                 activeQuestionInput,
                 snippet,
@@ -451,7 +451,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                             {currentPage.blocks.some((block) => block.type === "question") && <h3>Check your understanding</h3>}
                             {currentPage.blocks.map((block, index) => {
                                 if (block.type === "text") {
-                                    return <p key={`text-${index}`}>{renderLessonText(lesson.filePath, block.text)}</p>;
+                                    return <p key={`text-${index}`}>{renderLessonText(lesson.paths.learn, block.text)}</p>;
                                 }
 
                                 if (block.type === "katex") {
@@ -480,29 +480,29 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                     const questionResult = questionResults[block.id];
                                     const isHintVisible = Boolean(visibleHints[block.id]);
                                     const isUnitCircleMathInput = isUnitCircleSpecialTrianglesPage(
-                                        lesson.filePath,
+                                        lesson.paths.learn,
                                         currentPage.id,
                                     );
                                     const specialTriangleSideLabels = getSpecialTriangleSideLabels(
-                                        lesson.filePath,
+                                        lesson.paths.learn,
                                         currentPage.id,
                                         block.prompt,
                                     );
 
                                     return (
                                         <section key={block.id}>
-                                            <p>{renderLessonText(lesson.filePath, block.prompt)}</p>
+                                            <p>{renderLessonText(lesson.paths.learn, block.prompt)}</p>
                                             {renderUnitCircleQuestionTools(
-                                                lesson.filePath,
+                                                lesson.paths.learn,
                                                 currentPage.id,
                                                 block.id,
                                                 insertLatexIntoActiveInput,
                                             )}
-                                            {getUnitCircleRadiansHint(lesson.filePath) && (
-                                                <p style={{ marginTop: 0 }}>{getUnitCircleRadiansHint(lesson.filePath)}</p>
+                                            {getUnitCircleRadiansHint(lesson.paths.learn) && (
+                                                <p style={{ marginTop: 0 }}>{getUnitCircleRadiansHint(lesson.paths.learn)}</p>
                                             )}
                                             {renderUnitCircleCoordinatePreview(
-                                                lesson.filePath,
+                                                lesson.paths.learn,
                                                 currentPage.id,
                                                 answer,
                                                 specialTriangleSideLabels,
@@ -697,7 +697,7 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                                     >
                                                         {isHintVisible ? "Hide hint" : "Show hint"}
                                                     </button>
-                                                    {isHintVisible && <p>{renderLessonHint(lesson.filePath, `Hint: ${block.explanation}`)}</p>}
+                                                    {isHintVisible && <p>{renderLessonHint(lesson.paths.learn, `Hint: ${block.explanation}`)}</p>}
                                                 </>
                                             )}
                                         </section>

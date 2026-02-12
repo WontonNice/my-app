@@ -2,45 +2,57 @@ export type PrecalcLessonSummary = {
     id: string;
     chapter: string;
     title: string;
-    filePath: string;
+    paths: {
+        learn: string;
+        review: string;
+        study: string;
+    };
 };
+
+function createModulePaths(chapterPath: string, moduleFileName: string) {
+    return {
+        learn: `precalc/${chapterPath}/${moduleFileName}.json`,
+        review: `precalc/${chapterPath}/${moduleFileName}.review.json`,
+        study: `precalc/${chapterPath}/${moduleFileName}.study.json`,
+    };
+}
 
 export const PRECALC_LESSONS: PrecalcLessonSummary[] = [
     {
         id: "chapter-5-unit-circle",
         chapter: "Chapter 5",
         title: "The Unit Circle",
-        filePath: "precalc/chapter-5/unit-circle.json",
+        paths: createModulePaths("chapter-5", "unit-circle"),
     },
     {
         id: "chapter-5-trig-functions-real-numbers",
         chapter: "Chapter 5",
         title: "Trigonometric Functions of Real Numbers",
-        filePath: "precalc/chapter-5/trig-functions-real-numbers.json",
+        paths: createModulePaths("chapter-5", "trig-functions-real-numbers"),
     },
     {
         id: "chapter-5-trigonometric-graphs",
         chapter: "Chapter 5",
         title: "Trigonometric Graphs",
-        filePath: "precalc/chapter-5/trigonometric-graphs.json",
+        paths: createModulePaths("chapter-5", "trigonometric-graphs"),
     },
     {
         id: "chapter-5-more-trigonometric-graphs",
         chapter: "Chapter 5",
         title: "More Trigonometric Graphs",
-        filePath: "precalc/chapter-5/more-trigonometric-graphs.json",
+        paths: createModulePaths("chapter-5", "more-trigonometric-graphs"),
     },
     {
         id: "chapter-5-inverse-trigonometric-functions",
         chapter: "Chapter 5",
         title: "Inverse Trigonometric Functions and Their Graphs",
-        filePath: "precalc/chapter-5/inverse-trigonometric-functions.json",
+        paths: createModulePaths("chapter-5", "inverse-trigonometric-functions"),
     },
     {
         id: "chapter-5-modeling-harmonic-motion",
         chapter: "Chapter 5",
         title: "Modeling Harmonic Motion",
-        filePath: "precalc/chapter-5/modeling-harmonic-motion.json",
+        paths: createModulePaths("chapter-5", "modeling-harmonic-motion"),
     },
 ];
 
