@@ -218,6 +218,22 @@
                     ]
                 }
             ]
+        },
+        {
+            "id": "m1-p4",
+            "title": "Explore the unit circle in Desmos",
+            "blocks": [
+                {
+                    "type": "text",
+                    "text": "Use the interactive Desmos graph below to explore how angles map to points on the unit circle."
+                },
+                {
+                    "type": "desmos",
+                    "title": "Interactive unit circle graph",
+                    "calculatorUrl": "https://www.desmos.com/calculator/w3cdkw0lgp",
+                    "expressions": []
+                }
+            ]
         }
     ]
 }

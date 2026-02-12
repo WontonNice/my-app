@@ -56,6 +56,7 @@ type LessonBlock =
         title?: string;
         expressions: Array<{ latex: string; label?: string; showLabel?: boolean } | string>;
         viewport?: { left: number; right: number; bottom: number; top: number };
+        calculatorUrl?: string;
         requireStudentGraphBeforeAdvance?: boolean;
     };
 
@@ -227,6 +228,9 @@ function toLessonPayload(value: unknown): LessonPayload {
                                             : undefined,
                                     expressions,
                                     viewport,
+                                    calculatorUrl: typeof blockCandidate.calculatorUrl === "string"
+                                        ? blockCandidate.calculatorUrl
+                                        : undefined,
                                     requireStudentGraphBeforeAdvance: Boolean(
                                         blockCandidate.requireStudentGraphBeforeAdvance,
                                     ),
@@ -705,28 +709,37 @@ function PrecalcLessonPage({ authUser, lesson, onBack, onLogout }: PrecalcLesson
                                 return (
                                     <section key={`desmos-${index}`}>
                                         {block.title && <h3>{block.title}</h3>}
-                                        <DesmosBlock
-                                            expressions={block.expressions}
-                                            viewport={block.viewport}
-                                            requireStudentGraphBeforeAdvance={block.requireStudentGraphBeforeAdvance}
-                                            savedGraphState={desmosGraphStates[desmosBlockId]}
-                                            onGraphStatusChange={(hasStudentGraph) =>
-                                                setDesmosGraphStatus((previous) => ({
-                                                    ...(previous[desmosBlockId] === hasStudentGraph
-                                                        ? previous
-                                                        : {
-                                                            ...previous,
-                                                            [desmosBlockId]: hasStudentGraph,
-                                                        }),
-                                                }))
-                                            }
-                                            onGraphStateChange={(graphState) =>
-                                                setDesmosGraphStates((previous) => ({
-                                                    ...previous,
-                                                    [desmosBlockId]: graphState,
-                                                }))
-                                            }
-                                        />
+                                        {block.calculatorUrl ? (
+                                            <iframe
+                                                src={block.calculatorUrl}
+                                                title={block.title || "Desmos graph"}
+                                                style={{ width: "100%", height: 520, border: "1px solid #ddd", borderRadius: 8 }}
+                                                allowFullScreen
+                                            />
+                                        ) : (
+                                            <DesmosBlock
+                                                expressions={block.expressions}
+                                                viewport={block.viewport}
+                                                requireStudentGraphBeforeAdvance={block.requireStudentGraphBeforeAdvance}
+                                                savedGraphState={desmosGraphStates[desmosBlockId]}
+                                                onGraphStatusChange={(hasStudentGraph) =>
+                                                    setDesmosGraphStatus((previous) => ({
+                                                        ...(previous[desmosBlockId] === hasStudentGraph
+                                                            ? previous
+                                                            : {
+                                                                ...previous,
+                                                                [desmosBlockId]: hasStudentGraph,
+                                                            }),
+                                                    }))
+                                                }
+                                                onGraphStateChange={(graphState) =>
+                                                    setDesmosGraphStates((previous) => ({
+                                                        ...previous,
+                                                        [desmosBlockId]: graphState,
+                                                    }))
+                                                }
+                                            />
+                                        )}
                                         {block.requireStudentGraphBeforeAdvance && (
                                             <p>Graph the unit circle equation in Desmos before moving to the next page.</p>
                                         )}
