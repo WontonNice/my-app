@@ -12,6 +12,7 @@ type PrecalcReviewPageProps = {
 
 type Quadrant = "I" | "II" | "III" | "IV";
 type FunctionName = "sin" | "cos" | "tan" | "csc" | "sec" | "cot";
+type SignType = "positive" | "negative";
 
 type FunctionSignsByQuadrant = Record<Quadrant, { positive: FunctionName[]; negative: FunctionName[] }>;
 
@@ -67,6 +68,23 @@ function normalizeQuadrantLabel(value: string) {
     return value.trim().toUpperCase().replace(/^Q/, "");
 }
 
+function getDraggedFunctionName(dataTransfer: DataTransfer): FunctionName | null {
+    const rawPayload = dataTransfer.getData("application/json");
+    if (rawPayload) {
+        try {
+            const parsedPayload = JSON.parse(rawPayload) as { functionName?: string };
+            if (parsedPayload.functionName && FUNCTION_NAMES.includes(parsedPayload.functionName as FunctionName)) {
+                return parsedPayload.functionName as FunctionName;
+            }
+        } catch {
+            // Ignore malformed payload and fall back to plain text format.
+        }
+    }
+
+    const droppedFunctionName = dataTransfer.getData("text/function-name") as FunctionName;
+    return FUNCTION_NAMES.includes(droppedFunctionName) ? droppedFunctionName : null;
+}
+
 function PrecalcReviewPage({ authUser, lesson, onBack, onLogout }: PrecalcReviewPageProps) {
     const isTrigFunctionsRealNumbersReview = lesson.id === "chapter-5-trig-functions-real-numbers";
     const [page, setPage] = useState(0);
@@ -114,18 +132,48 @@ function PrecalcReviewPage({ authUser, lesson, onBack, onLogout }: PrecalcReview
         return { labelsCorrect, signsCorrect, isCorrect: labelsCorrect && signsCorrect };
     }, [quadrantLabels, signAssignments]);
 
-    const handleFunctionDrop = (quadrant: Quadrant, signType: "positive" | "negative", droppedFunctionName: FunctionName) => {
-        setSignAssignments((previous) => {
-            const previousQuadrant = previous[quadrant];
+    const removeFunctionAssignment = (quadrant: Quadrant, signType: SignType, functionName: FunctionName) => {
+        setSignAssignments((previous) => ({
+            ...previous,
+            [quadrant]: {
+                positive:
+                    signType === "positive"
+                        ? previous[quadrant].positive.filter((name) => name !== functionName)
+                        : previous[quadrant].positive,
+                negative:
+                    signType === "negative"
+                        ? previous[quadrant].negative.filter((name) => name !== functionName)
+                        : previous[quadrant].negative,
+            },
+        }));
+    };
 
-            const cleanedPositive = previousQuadrant.positive.filter((name) => name !== droppedFunctionName);
-            const cleanedNegative = previousQuadrant.negative.filter((name) => name !== droppedFunctionName);
+    const handleFunctionDrop = (quadrant: Quadrant, signType: SignType, droppedFunctionName: FunctionName) => {
+        setSignAssignments((previous) => {
+            const withoutFunctionEverywhere = (Object.keys(previous) as Quadrant[]).reduce<FunctionSignsByQuadrant>((accumulator, currentQuadrant) => {
+                accumulator[currentQuadrant] = {
+                    positive: previous[currentQuadrant].positive.filter((name) => name !== droppedFunctionName),
+                    negative: previous[currentQuadrant].negative.filter((name) => name !== droppedFunctionName),
+                };
+                return accumulator;
+            }, {
+                I: { positive: [], negative: [] },
+                II: { positive: [], negative: [] },
+                III: { positive: [], negative: [] },
+                IV: { positive: [], negative: [] },
+            });
 
             return {
-                ...previous,
+                ...withoutFunctionEverywhere,
                 [quadrant]: {
-                    positive: signType === "positive" ? [...cleanedPositive, droppedFunctionName] : cleanedPositive,
-                    negative: signType === "negative" ? [...cleanedNegative, droppedFunctionName] : cleanedNegative,
+                    positive:
+                        signType === "positive"
+                            ? [...withoutFunctionEverywhere[quadrant].positive, droppedFunctionName]
+                            : withoutFunctionEverywhere[quadrant].positive,
+                    negative:
+                        signType === "negative"
+                            ? [...withoutFunctionEverywhere[quadrant].negative, droppedFunctionName]
+                            : withoutFunctionEverywhere[quadrant].negative,
                 },
             };
         });
@@ -259,6 +307,47 @@ function PrecalcReviewPage({ authUser, lesson, onBack, onLogout }: PrecalcReview
                         ))}
                     </div>
 
+                    <div
+                        onDragOver={(event) => event.preventDefault()}
+                        onDrop={(event) => {
+                            event.preventDefault();
+                            const rawPayload = event.dataTransfer.getData("application/json");
+                            if (!rawPayload) return;
+
+                            try {
+                                const parsedPayload = JSON.parse(rawPayload) as {
+                                    sourceQuadrant?: Quadrant;
+                                    sourceSignType?: SignType;
+                                    functionName?: FunctionName;
+                                };
+
+                                if (
+                                    parsedPayload.sourceQuadrant &&
+                                    parsedPayload.sourceSignType &&
+                                    parsedPayload.functionName &&
+                                    FUNCTION_NAMES.includes(parsedPayload.functionName)
+                                ) {
+                                    removeFunctionAssignment(
+                                        parsedPayload.sourceQuadrant,
+                                        parsedPayload.sourceSignType,
+                                        parsedPayload.functionName,
+                                    );
+                                }
+                            } catch {
+                                // Ignore malformed payload.
+                            }
+                        }}
+                        style={{
+                            border: "1px dashed #777",
+                            borderRadius: 8,
+                            padding: 10,
+                            marginBottom: 12,
+                            background: "#fafafa",
+                        }}
+                    >
+                        Drag here to remove a function from a quadrant if you make a mistake.
+                    </div>
+
                     <div style={{ border: "1px solid #bbb", borderRadius: 8, padding: 16, marginBottom: 12 }}>
                         <div style={{ textAlign: "center", fontWeight: 600, marginBottom: 8 }}>Unit Circle Quadrants</div>
                         <div style={{ width: 240, height: 240, margin: "0 auto", position: "relative", border: "2px solid #555", borderRadius: "50%" }}>
@@ -305,8 +394,8 @@ function PrecalcReviewPage({ authUser, lesson, onBack, onLogout }: PrecalcReview
                                         onDragOver={(event) => event.preventDefault()}
                                         onDrop={(event) => {
                                             event.preventDefault();
-                                            const droppedFunctionName = event.dataTransfer.getData("text/function-name") as FunctionName;
-                                            if (FUNCTION_NAMES.includes(droppedFunctionName)) {
+                                            const droppedFunctionName = getDraggedFunctionName(event.dataTransfer);
+                                            if (droppedFunctionName) {
                                                 handleFunctionDrop(quadrant, signType, droppedFunctionName);
                                             }
                                         }}
@@ -322,9 +411,27 @@ function PrecalcReviewPage({ authUser, lesson, onBack, onLogout }: PrecalcReview
                                         <strong style={{ textTransform: "capitalize" }}>{signType}</strong>
                                         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 6 }}>
                                             {signAssignments[quadrant][signType].map((funcName) => (
-                                                <span key={`${quadrant}-${signType}-${funcName}`} style={{ border: "1px solid #777", borderRadius: 999, padding: "3px 8px", background: "#fff" }}>
+                                                <div
+                                                    key={`${quadrant}-${signType}-${funcName}`}
+                                                    draggable
+                                                    onDragStart={(event) => {
+                                                        event.dataTransfer.setData("application/json", JSON.stringify({
+                                                            sourceQuadrant: quadrant,
+                                                            sourceSignType: signType,
+                                                            functionName: funcName,
+                                                        }));
+                                                        event.dataTransfer.setData("text/function-name", funcName);
+                                                    }}
+                                                    style={{
+                                                        border: "1px solid #777",
+                                                        borderRadius: 999,
+                                                        padding: "3px 8px",
+                                                        background: "#fff",
+                                                        cursor: "grab",
+                                                    }}
+                                                >
                                                     {funcName}
-                                                </span>
+                                                </div>
                                             ))}
                                         </div>
                                     </div>
