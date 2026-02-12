@@ -68,12 +68,17 @@ function buildProblem(id: number): Problem {
     const angle = ANGLES[Math.floor(Math.random() * ANGLES.length)];
     const trigFunction = TRIG_FUNCTIONS[Math.floor(Math.random() * TRIG_FUNCTIONS.length)];
 
+    const cosineAtAngle = Math.cos(angle.radians);
+    const isTangentUndefined = trigFunction === "tan" && Math.abs(cosineAtAngle) < 0.000001;
+
     const rawAnswer =
-        trigFunction === "sin"
-            ? Math.sin(angle.radians)
-            : trigFunction === "cos"
-                ? Math.cos(angle.radians)
-                : Math.tan(angle.radians);
+        isTangentUndefined
+            ? Number.POSITIVE_INFINITY
+            : trigFunction === "sin"
+                ? Math.sin(angle.radians)
+                : trigFunction === "cos"
+                    ? Math.cos(angle.radians)
+                    : Math.tan(angle.radians);
 
     return {
         id,

@@ -8,6 +8,7 @@ type PrecalcHomePageProps = {
     onLearn: (lesson: PrecalcLessonSummary) => void;
     onReview: (lesson: PrecalcLessonSummary) => void;
     onOpenEvaluatingTrigFunctions: () => void;
+    onOpenInverseTrigFunctions: () => void;
     onBack: () => void;
     onLogout: () => void;
 };
@@ -113,6 +114,7 @@ function PrecalcHomePage({
     onOpenEvaluatingTrigFunctions,
     onBack,
     onLogout,
+    onOpenInverseTrigFunctions,
 }: PrecalcHomePageProps) {
     const [openChapterIds, setOpenChapterIds] = useState<string[]>([]);
     const [selectedModule, setSelectedModule] = useState<SelectedModule | null>(null);
@@ -205,9 +207,14 @@ function PrecalcHomePage({
                                 <strong>{selectedModule.moduleName}</strong>
                             </p>
                             {isTestReviewModule ? (
-                                <button type="button" onClick={onOpenEvaluatingTrigFunctions}>
-                                    Evaluating Trigonometric Functions
-                                </button>
+                                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                                    <button type="button" onClick={onOpenEvaluatingTrigFunctions}>
+                                        Evaluating Trigonometric Functions
+                                    </button>
+                                    <button type="button" onClick={onOpenInverseTrigFunctions}>
+                                        Inverse Trigonometric Functions
+                                    </button>
+                                </div>
                             ) : (
                                 <>
                                     <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>

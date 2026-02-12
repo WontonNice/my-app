@@ -6,13 +6,20 @@ import type { PrecalcLessonSummary } from "./components/Courses/PreCalc/precalcL
 import { PRECALC_LESSONS_BY_ID } from "./components/Courses/PreCalc/precalcLessons";
 import PrecalcReviewPage from "./components/Courses/PreCalc/PrecalcReviewPage";
 import EvaluatingTrigFunctionsPage from "./components/Courses/PreCalc/EvaluatingTrigFunctionsPage";
+import InverseTrigFunctionsPage from "./components/Courses/PreCalc/InverseTrigFunctionsPage";
 import StudentDashboard from "./components/StudentDashboard";
 import TeacherDashboard from "./components/TeacherDashboard";
 
 import { getStoredAuthUser, setStoredAuthUser } from "./authStorage";
 import type { AuthUser } from "./authStorage";
 
-type StudentView = "dashboard" | "precalc" | "precalc-lesson" | "precalc-review" | "precalc-evaluating-trig-functions";
+type StudentView =
+  | "dashboard"
+  | "precalc"
+  | "precalc-lesson"
+  | "precalc-review"
+  | "precalc-evaluating-trig-functions"
+  | "precalc-inverse-trig-functions";
 
 type StoredStudentNavigation = {
   studentView: StudentView;
@@ -35,7 +42,8 @@ function toStoredStudentNavigation(value: unknown): StoredStudentNavigation | nu
     candidate.studentView === "precalc" ||
       candidate.studentView === "precalc-lesson" ||
       candidate.studentView === "precalc-review" ||
-      candidate.studentView === "precalc-evaluating-trig-functions"
+      candidate.studentView === "precalc-evaluating-trig-functions" ||
+      candidate.studentView === "precalc-inverse-trig-functions"
       ? candidate.studentView
       : "dashboard";
 
@@ -138,6 +146,10 @@ function App() {
     setStudentView("precalc-evaluating-trig-functions");
   };
 
+  const openInverseTrigFunctions = () => {
+    setSelectedPrecalcLesson(null);
+    setStudentView("precalc-inverse-trig-functions");
+  };
 
   if (authUser?.role === "student") {
     if (studentView === "precalc") {
@@ -149,6 +161,7 @@ function App() {
           onLogout={handleLogout}
           onReview={openPrecalcReview}
           onOpenEvaluatingTrigFunctions={openEvaluatingTrigFunctions}
+          onOpenInverseTrigFunctions={openInverseTrigFunctions}
         />
       );
     }
@@ -163,6 +176,7 @@ function App() {
             onLogout={handleLogout}
             onReview={openPrecalcReview}
             onOpenEvaluatingTrigFunctions={openEvaluatingTrigFunctions}
+            onOpenInverseTrigFunctions={openInverseTrigFunctions}
           />
         );
       }
@@ -187,6 +201,7 @@ function App() {
             onBack={() => setStudentView("dashboard")}
             onLogout={handleLogout}
             onOpenEvaluatingTrigFunctions={openEvaluatingTrigFunctions}
+            onOpenInverseTrigFunctions={openInverseTrigFunctions}
           />
         );
       }
@@ -204,6 +219,16 @@ function App() {
     if (studentView === "precalc-evaluating-trig-functions") {
       return (
         <EvaluatingTrigFunctionsPage
+          authUser={authUser}
+          onBack={() => setStudentView("precalc")}
+          onLogout={handleLogout}
+        />
+      );
+    }
+
+    if (studentView === "precalc-inverse-trig-functions") {
+      return (
+        <InverseTrigFunctionsPage
           authUser={authUser}
           onBack={() => setStudentView("precalc")}
           onLogout={handleLogout}
