@@ -6,6 +6,7 @@ import type { PrecalcLessonSummary } from "./precalcLessons";
 type PrecalcHomePageProps = {
     authUser: AuthUser;
     onLearn: (lesson: PrecalcLessonSummary) => void;
+    onReview: (lesson: PrecalcLessonSummary) => void;
     onBack: () => void;
     onLogout: () => void;
 };
@@ -103,7 +104,7 @@ type SelectedModule = {
     lesson: PrecalcLessonSummary | null;
 };
 
-function PrecalcHomePage({ authUser, onLearn, onBack, onLogout }: PrecalcHomePageProps) {
+function PrecalcHomePage({ authUser, onLearn, onReview, onBack, onLogout }: PrecalcHomePageProps) {
     const [openChapterIds, setOpenChapterIds] = useState<string[]>([]);
     const [selectedModule, setSelectedModule] = useState<SelectedModule | null>(null);
 
@@ -203,7 +204,13 @@ function PrecalcHomePage({ authUser, onLearn, onBack, onLogout }: PrecalcHomePag
                                 >
                                     Learn
                                 </button>
-                                <button type="button" disabled>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        if (selectedModule.lesson) onReview(selectedModule.lesson);
+                                    }}
+                                    disabled={!selectedModule.lesson}
+                                >
                                     Review
                                 </button>
                                 <button type="button" disabled>

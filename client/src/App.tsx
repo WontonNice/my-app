@@ -4,13 +4,14 @@ import PrecalcHomePage from "./components/Courses/PreCalc/PrecalcHomePage";
 import PrecalcLessonPage from "./components/Courses/PreCalc/PrecalcLessonPage";
 import type { PrecalcLessonSummary } from "./components/Courses/PreCalc/precalcLessons";
 import { PRECALC_LESSONS_BY_ID } from "./components/Courses/PreCalc/precalcLessons";
+import PrecalcReviewPage from "./components/Courses/PreCalc/PrecalcReviewPage";
 import StudentDashboard from "./components/StudentDashboard";
 import TeacherDashboard from "./components/TeacherDashboard";
 
 import { getStoredAuthUser, setStoredAuthUser } from "./authStorage";
 import type { AuthUser } from "./authStorage";
 
-type StudentView = "dashboard" | "precalc" | "precalc-lesson";
+type StudentView = "dashboard" | "precalc" | "precalc-lesson" | "precalc-review";
 
 type StoredStudentNavigation = {
   studentView: StudentView;
@@ -30,7 +31,9 @@ function toStoredStudentNavigation(value: unknown): StoredStudentNavigation | nu
   };
 
   const studentView: StudentView =
-    candidate.studentView === "precalc" || candidate.studentView === "precalc-lesson"
+    candidate.studentView === "precalc" ||
+      candidate.studentView === "precalc-lesson" ||
+      candidate.studentView === "precalc-review"
       ? candidate.studentView
       : "dashboard";
 
@@ -78,9 +81,10 @@ function App() {
         ? PRECALC_LESSONS_BY_ID.get(parsedNavigation.selectedPrecalcLessonId) || null
         : null;
 
-      const hydratedView = parsedNavigation.studentView === "precalc-lesson" && !lesson
-        ? "precalc"
-        : parsedNavigation.studentView;
+      const hydratedView =
+        (parsedNavigation.studentView === "precalc-lesson" || parsedNavigation.studentView === "precalc-review") && !lesson
+          ? "precalc"
+          : parsedNavigation.studentView;
 
       setSelectedPrecalcLesson(lesson);
       setStudentView(hydratedView);
@@ -122,6 +126,11 @@ function App() {
     setStudentView("precalc-lesson");
   };
 
+  const openPrecalcReview = (lesson: PrecalcLessonSummary) => {
+    setSelectedPrecalcLesson(lesson);
+    setStudentView("precalc-review");
+  };
+
   if (authUser?.role === "student") {
     if (studentView === "precalc") {
       return (
@@ -130,6 +139,7 @@ function App() {
           onLearn={openPrecalcLesson}
           onBack={() => setStudentView("dashboard")}
           onLogout={handleLogout}
+          onReview={openPrecalcReview}
         />
       );
     }
@@ -142,12 +152,36 @@ function App() {
             onLearn={openPrecalcLesson}
             onBack={() => setStudentView("dashboard")}
             onLogout={handleLogout}
+            onReview={openPrecalcReview}
           />
         );
       }
 
       return (
         <PrecalcLessonPage
+          authUser={authUser}
+          lesson={selectedPrecalcLesson}
+          onBack={() => setStudentView("precalc")}
+          onLogout={handleLogout}
+        />
+      );
+    }
+
+    if (studentView === "precalc-review") {
+      if (!selectedPrecalcLesson) {
+        return (
+          <PrecalcHomePage
+            authUser={authUser}
+            onLearn={openPrecalcLesson}
+            onReview={openPrecalcReview}
+            onBack={() => setStudentView("dashboard")}
+            onLogout={handleLogout}
+          />
+        );
+      }
+
+      return (
+        <PrecalcReviewPage
           authUser={authUser}
           lesson={selectedPrecalcLesson}
           onBack={() => setStudentView("precalc")}
