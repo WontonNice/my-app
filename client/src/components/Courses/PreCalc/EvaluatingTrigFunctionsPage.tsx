@@ -9,12 +9,20 @@ type EvaluatingTrigFunctionsPageProps = {
 
 type TrigFunction = "sin" | "cos" | "tan";
 
-type Problem = {
+type EvaluatingProblem = {
     id: number;
     angleLabel: string;
     radians: number;
     trigFunction: TrigFunction;
     answer: string;
+};
+
+type EvenOddProblem = {
+    id: number;
+    trigFunction: TrigFunction;
+    inputExpression: string;
+    answerExpression: string;
+    parityRule: "odd" | "even";
 };
 
 const ANGLES = [
@@ -64,7 +72,7 @@ function simplifyValue(value: number) {
     return rounded.toString();
 }
 
-function buildProblem(id: number): Problem {
+function buildEvaluatingProblem(id: number): EvaluatingProblem {
     const angle = ANGLES[Math.floor(Math.random() * ANGLES.length)];
     const trigFunction = TRIG_FUNCTIONS[Math.floor(Math.random() * TRIG_FUNCTIONS.length)];
 
@@ -89,11 +97,32 @@ function buildProblem(id: number): Problem {
     };
 }
 
-function EvaluatingTrigFunctionsPage({ authUser, onBack, onLogout }: EvaluatingTrigFunctionsPageProps) {
-    const [problemId, setProblemId] = useState(1);
-    const [showAnswer, setShowAnswer] = useState(false);
+const VARIABLE_SYMBOLS = ["x", "θ", "t", "α"];
 
-    const problem = useMemo(() => buildProblem(problemId), [problemId]);
+function buildEvenOddProblem(id: number): EvenOddProblem {
+    const trigFunction = TRIG_FUNCTIONS[Math.floor(Math.random() * TRIG_FUNCTIONS.length)];
+    const variableSymbol = VARIABLE_SYMBOLS[Math.floor(Math.random() * VARIABLE_SYMBOLS.length)];
+    const coefficient = Math.floor(Math.random() * 9) + 1;
+    const innerExpression = `${coefficient === 1 ? "" : coefficient}${variableSymbol}`;
+    const parityRule = trigFunction === "cos" ? "even" : "odd";
+
+    return {
+        id,
+        trigFunction,
+        inputExpression: `${trigFunction}(-${innerExpression})`,
+        answerExpression: parityRule === "even" ? `${trigFunction}(${innerExpression})` : `-${trigFunction}(${innerExpression})`,
+        parityRule,
+    };
+}
+
+function EvaluatingTrigFunctionsPage({ authUser, onBack, onLogout }: EvaluatingTrigFunctionsPageProps) {
+    const [evaluatingProblemId, setEvaluatingProblemId] = useState(1);
+    const [showEvaluatingAnswer, setShowEvaluatingAnswer] = useState(false);
+    const [evenOddProblemId, setEvenOddProblemId] = useState(1);
+    const [showEvenOddAnswer, setShowEvenOddAnswer] = useState(false);
+
+    const evaluatingProblem = useMemo(() => buildEvaluatingProblem(evaluatingProblemId), [evaluatingProblemId]);
+    const evenOddProblem = useMemo(() => buildEvenOddProblem(evenOddProblemId), [evenOddProblemId]);
 
     return (
         <>
@@ -103,25 +132,54 @@ function EvaluatingTrigFunctionsPage({ authUser, onBack, onLogout }: EvaluatingT
             <section style={{ border: "1px solid #ddd", borderRadius: 8, padding: 12, marginBottom: 16, maxWidth: 600 }}>
                 <h2 style={{ marginTop: 0 }}>Practice Generator</h2>
                 <p style={{ marginBottom: 8 }}>
-                    Problem #{problem.id}: Find <strong>{problem.trigFunction}({problem.angleLabel})</strong>.
+                    Problem #{evaluatingProblem.id}: Find <strong>{evaluatingProblem.trigFunction}({evaluatingProblem.angleLabel})</strong>.
                 </p>
-                {showAnswer ? (
+                {showEvaluatingAnswer ? (
                     <p style={{ marginTop: 0 }}>
-                        Answer: <strong>{problem.answer}</strong>
+                        Answer: <strong>{evaluatingProblem.answer}</strong>
                     </p>
                 ) : (
                     <p style={{ marginTop: 0 }}>Click “Show Answer” when ready.</p>
                 )}
 
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                    <button type="button" onClick={() => setShowAnswer(true)}>
+                    <button type="button" onClick={() => setShowEvaluatingAnswer(true)}>
                         Show Answer
                     </button>
                     <button
                         type="button"
                         onClick={() => {
-                            setProblemId((currentProblemId) => currentProblemId + 1);
-                            setShowAnswer(false);
+                            setEvaluatingProblemId((currentProblemId) => currentProblemId + 1);
+                            setShowEvaluatingAnswer(false);
+                        }}
+                    >
+                        Generate
+                    </button>
+                </div>
+            </section>
+
+            <section style={{ border: "1px solid #ddd", borderRadius: 8, padding: 12, marginBottom: 16, maxWidth: 600 }}>
+                <h2 style={{ marginTop: 0 }}>Even-Odd Trig Property Generator</h2>
+                <p style={{ marginBottom: 8 }}>
+                    Problem #{evenOddProblem.id}: Simplify <strong>{evenOddProblem.inputExpression}</strong> using even/odd identities.
+                </p>
+                {showEvenOddAnswer ? (
+                    <p style={{ marginTop: 0 }}>
+                        Answer: <strong>{evenOddProblem.answerExpression}</strong> ({evenOddProblem.trigFunction} is an {evenOddProblem.parityRule} function)
+                    </p>
+                ) : (
+                    <p style={{ marginTop: 0 }}>Click “Show Answer” when ready.</p>
+                )}
+
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                    <button type="button" onClick={() => setShowEvenOddAnswer(true)}>
+                        Show Answer
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            setEvenOddProblemId((currentProblemId) => currentProblemId + 1);
+                            setShowEvenOddAnswer(false);
                         }}
                     >
                         Generate
