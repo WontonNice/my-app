@@ -4,7 +4,6 @@ import express from "express";
 import cors from "cors";
 import RegisterRouter from "./routes/register";
 import LoginRouter from "./routes/login";
-import studentsRouter from "./routes/students";
 
 const app = express();
 const port = Number(process.env.PORT) || 8080;
@@ -42,7 +41,6 @@ app.get("/health", (_request, response) => {
 
 app.use("/register", RegisterRouter);
 app.use("/login", LoginRouter);
-app.use("/students", studentsRouter);
 
 app.get(/.*/, (_request, response) => {
     response.sendFile(path.join(clientDistPath, "index.html"));

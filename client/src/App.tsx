@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import HomePage from "./components/HomePage";
-import StudentDashboard from "./components/StudentDashboard";
-import TeacherDashboard from "./components/TeacherDashboard";
 import { getStoredAuthUser, setStoredAuthUser } from "./authStorage";
 import type { AuthUser } from "./authStorage";
+
+function getDisplayName(user: AuthUser) {
+  return [user.firstName, user.lastName].filter(Boolean).join(" ") || user.username;
+}
 
 function App() {
   const [authUser, setAuthUser] = useState<AuthUser | null>(getStoredAuthUser);
@@ -16,12 +18,18 @@ function App() {
     setAuthUser(null);
   };
 
-  if (authUser?.role === "student") {
-    return <StudentDashboard authUser={authUser} onLogout={handleLogout} />;
-  }
-
-  if (authUser?.role === "teacher") {
-    return <TeacherDashboard authUser={authUser} onLogout={handleLogout} />;
+  if (authUser) {
+    return (
+      <main className="app-shell">
+        <section className="panel">
+          <p className="eyebrow">{authUser.role}</p>
+          <h1>Welcome, {getDisplayName(authUser)}</h1>
+          <button type="button" onClick={handleLogout}>
+            Logout
+          </button>
+        </section>
+      </main>
+    );
   }
 
   return <HomePage onLoginSuccess={setAuthUser} />;

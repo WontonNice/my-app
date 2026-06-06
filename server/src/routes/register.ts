@@ -61,9 +61,7 @@ router.post("/", async (req, res) => {
         const { data, error } = await supabase
             .from("users")
             .insert([toInsert])
-            .select(
-                "id, username, password, role, first_name, last_name, created_at, last_login_at, streak_count, best_streak, enrolled_courses"
-            )
+            .select("id, username, role, first_name, last_name")
             .single();
 
         if (error) {
@@ -73,8 +71,9 @@ router.post("/", async (req, res) => {
             }
             res.status(400).json({ error: error.message });
             return;
-        } res.status(201).json({ data });
+        }
 
+        res.status(201).json({ data });
     } catch (error) {
         if (error instanceof Error) {
             res.status(400).json({ error: error.message });
