@@ -1,14 +1,8 @@
 import { Router } from "express";
-import { createClient } from "@supabase/supabase-js";
+import supabase from "../util/supabase";
 
 const router = Router();
 
-const supabase = createClient(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE!
-);
-
-// Validators
 function isValidUsername(u: unknown): u is string {
     return typeof u === "string" && /^[a-zA-Z0-9_]{3,32}$/.test(u);
 }
@@ -21,7 +15,7 @@ function normalizeName(x: unknown): string | null {
     if (typeof x !== "string") return null;
     const s = x.trim();
     if (!s) return null;
-    // allow letters, spaces, hyphens, apostrophes; 1–64 chars
+    // Allow letters, spaces, hyphens, and apostrophes; 1-64 chars.
     if (!/^[A-Za-z][A-Za-z' -]{0,63}$/.test(s)) return null;
     return s;
 }
@@ -67,9 +61,7 @@ router.post("/", async (req, res) => {
         const { data, error } = await supabase
             .from("users")
             .insert([toInsert])
-            .select(
-                "id, username, password, role, first_name, last_name, created_at, last_login_at, streak_count, best_streak, enrolled_courses"
-            )
+            .select("id, username, role, first_name, last_name")
             .single();
 
         if (error) {
@@ -79,8 +71,9 @@ router.post("/", async (req, res) => {
             }
             res.status(400).json({ error: error.message });
             return;
-        } res.status(201).json({ data });
+        }
 
+        res.status(201).json({ data });
     } catch (error) {
         if (error instanceof Error) {
             res.status(400).json({ error: error.message });

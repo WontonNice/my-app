@@ -39,15 +39,6 @@ function fetchWithTimeout(url: string, init: RequestInit, timeoutMs = 15000) {
     });
 }
 
-function parseEnrolledCourses(value: unknown): string[] {
-    if (!Array.isArray(value)) return [];
-
-    return value
-        .filter((course): course is string => typeof course === "string")
-        .map((course) => course.trim())
-        .filter(Boolean);
-}
-
 function getUserFromResult(result: Record<string, unknown> | null): AuthUser {
     const data =
         typeof result?.data === "object" && result.data ? result.data : result;
@@ -74,17 +65,11 @@ function getUserFromResult(result: Record<string, unknown> | null): AuthUser {
             ? data.last_name
             : null;
 
-    const enrolledCourses =
-        data && "enrolled_courses" in data
-            ? parseEnrolledCourses(data.enrolled_courses)
-            : [];
-
     return {
         role: normalizedRole,
         username,
         firstName,
         lastName,
-        enrolledCourses,
     };
 }
 

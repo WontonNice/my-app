@@ -5,7 +5,6 @@ export type AuthUser = {
     username: string;
     firstName: string | null;
     lastName: string | null;
-    enrolledCourses: string[];
 };
 
 const AUTH_USER_STORAGE_KEY = "tutorsite_auth_user";
@@ -22,15 +21,10 @@ export function getStoredAuthUser(): AuthUser | null {
         const username = typeof parsed.username === "string" ? parsed.username : "";
         const firstName = typeof parsed.firstName === "string" ? parsed.firstName : null;
         const lastName = typeof parsed.lastName === "string" ? parsed.lastName : null;
-        const enrolledCourses = Array.isArray(parsed.enrolledCourses)
-            ? parsed.enrolledCourses.filter(
-                (course): course is string => typeof course === "string" && course.trim().length > 0
-            )
-            : [];
 
         if (!username) return null;
 
-        return { role, username, firstName, lastName, enrolledCourses };
+        return { role, username, firstName, lastName };
     } catch {
         return null;
     }
