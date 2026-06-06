@@ -3,10 +3,9 @@ import type { AuthUser } from "../authStorage";
 type StudentDashboardProps = {
     authUser: AuthUser;
     onLogout: () => void;
-    onOpenCoursePage: (course: string) => void;
 };
 
-function StudentDashboard({ authUser, onLogout, onOpenCoursePage }: StudentDashboardProps) {
+function StudentDashboard({ authUser, onLogout }: StudentDashboardProps) {
     const enrolledCourses = Array.isArray(authUser.enrolledCourses)
         ? authUser.enrolledCourses.filter((course): course is string => typeof course === "string" && course.trim().length > 0)
         : [];
@@ -30,15 +29,9 @@ function StudentDashboard({ authUser, onLogout, onOpenCoursePage }: StudentDashb
                             ) : (
                                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                                     {enrolledCourses.map((course) => (
-                                        <button
-                                            type="button"
-                                            key={course}
-                                            onClick={() => {
-                                                onOpenCoursePage(course);
-                                            }}
-                                        >
+                                        <span key={course}>
                                             {course}
-                                        </button>
+                                        </span>
                                     ))}
                                 </div>
                             )}

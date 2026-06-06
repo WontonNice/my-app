@@ -17,7 +17,7 @@ type Student = {
 const API_BASE =
     import.meta.env.VITE_API_BASE_URL?.trim() || "";
 
-const COURSES = ["precalc", "b", "c"] as const;
+const COURSES = ["b", "c"] as const;
 
 function TeacherDashboard({ authUser, onLogout }: TeacherDashboardProps) {
     const [students, setStudents] = useState<Student[]>([]);
