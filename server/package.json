@@ -1,12 +1,13 @@
 {
-  "name": "server",
+  "name": "nathantutors-server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.ts",
+  "main": "dist/server.js",
   "scripts": {
-    "dev": "npx nodemon ./src/server.ts",
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts",
     "start": "node dist/server.js",
-    "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && tsc"
+    "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && tsc",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "keywords": [],
   "author": "",

@@ -2,18 +2,25 @@
     "name": "nathantutors",
     "private": true,
     "version": "0.0.0",
+    "engines": {
+        "node": ">=22.12.0"
+    },
     "workspaces": [
         "client",
         "server"
     ],
     "scripts": {
-        "dev": "npx concurrently \"npm run dev --workspace client\" \"npm run dev --workspace server\"",
+        "dev": "concurrently \"npm run dev --workspace client\" \"npm run dev --workspace server\"",
         "dev:client": "npm run dev --workspace client",
         "dev:server": "npm run dev --workspace server",
         "build": "npm run build --workspace client && npm run build --workspace server",
         "build:client": "npm run build --workspace client",
         "build:server": "npm run build --workspace server",
+        "typecheck": "npm run typecheck --workspace client && npm run typecheck --workspace server",
+        "typecheck:client": "npm run typecheck --workspace client",
+        "typecheck:server": "npm run typecheck --workspace server",
         "start": "npm run start --workspace server",
+        "lint": "npm run lint --workspace client",
         "lint:client": "npm run lint --workspace client",
         "preview": "npm run preview --workspace client"
     },
