@@ -1,0 +1,87 @@
+[
+  {
+    "classId": "shsat",
+    "createdAt": "2026-06-16T00:00:00.000Z",
+    "description": "A full-length baseline checkpoint that stays locked until assigned.",
+    "durationMinutes": 180,
+    "id": "shsat-diagnostic-1",
+    "passages": [
+      {
+        "id": "passage-1",
+        "imageUrl": "",
+        "text": "Filler passage text for the first diagnostic exam.",
+        "title": "Diagnostic Passage"
+      }
+    ],
+    "questions": [
+      {
+        "answer": "A",
+        "choices": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "id": "question-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Filler question for diagnostic readiness.",
+        "type": "multiple_choice"
+      }
+    ],
+    "status": "open",
+    "title": "SHSAT Diagnostic 1",
+    "updatedAt": "2026-06-17T01:17:43.876Z"
+  },
+  {
+    "classId": "shsat",
+    "createdAt": "2026-06-16T00:00:00.000Z",
+    "description": "Reading comprehension passages with mixed main idea and inference questions.",
+    "durationMinutes": 45,
+    "id": "reading-checkpoint-a",
+    "passages": [
+      {
+        "id": "passage-1",
+        "imageUrl": "",
+        "text": "Filler passage text for the reading checkpoint.",
+        "title": "Reading Checkpoint Passage"
+      }
+    ],
+    "questions": [
+      {
+        "answer": "Student response",
+        "choices": [],
+        "id": "question-1",
+        "imageUrl": "",
+        "points": 2,
+        "prompt": "Explain the central idea of the passage.",
+        "type": "short_response"
+      }
+    ],
+    "status": "locked",
+    "title": "Reading Checkpoint A",
+    "updatedAt": "2026-06-16T00:00:00.000Z"
+  },
+  {
+    "classId": "shsat",
+    "createdAt": "2026-06-16T00:00:00.000Z",
+    "description": "A short math section with arithmetic, algebra, and word-problem practice.",
+    "durationMinutes": 60,
+    "id": "math-foundations-checkpoint",
+    "passages": [],
+    "questions": [
+      {
+        "answer": "42",
+        "choices": [],
+        "id": "question-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Filler grid-in question for math foundations.",
+        "type": "grid_in"
+      }
+    ],
+    "status": "locked",
+    "title": "Math Foundations Checkpoint",
+    "updatedAt": "2026-06-16T00:00:00.000Z"
+  }
+]

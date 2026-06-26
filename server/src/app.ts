@@ -1,6 +1,9 @@
 import path from "node:path";
 import express from "express";
 import cors from "cors";
+import { assessmentsRouter } from "./routes/assessments";
+import { authRouter } from "./routes/auth";
+import { classesRouter } from "./routes/classes";
 import { healthRouter } from "./routes/health";
 
 type CreateAppOptions = {
@@ -30,6 +33,9 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
     app.use(express.static(clientDistPath));
 
     app.use("/health", healthRouter);
+    app.use("/api/assessments", assessmentsRouter);
+    app.use("/api/auth", authRouter);
+    app.use("/api/classes", classesRouter);
 
     app.get(/.*/, (_request, response) => {
         response.sendFile(path.join(clientDistPath, "index.html"));

@@ -36,6 +36,29 @@ npm.cmd run start
 
 Copy `.env.example` to `.env` for local server configuration.
 
+## Auth
+
+The browser auth flow uses Supabase email/password auth.
+
+Required local variables:
+
+```txt
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+```
+
+Signup creates a student account by default using user metadata:
+
+```txt
+role=student
+```
+
+Teacher accounts should be assigned manually in Supabase by setting user metadata to:
+
+```txt
+role=teacher
+```
+
 ## Project Layout
 
 ```txt
