@@ -12,6 +12,7 @@ Indoor plants may also support emotional well-being. Caring for a plant gives pe
 const indoorPlantsQuestions: ExamQuestion[] = [
   {
     id: "indoor-plants-1",
+    topic: "Central Idea & Theme",
     type: "multiple_choice",
     prompt: "Which sentence best states the central idea of the passage?",
     correctChoiceId: "C",
@@ -25,6 +26,7 @@ const indoorPlantsQuestions: ExamQuestion[] = [
   },
   {
     id: "indoor-plants-2",
+    topic: "Transitions & Organization",
     type: "transition_drop",
     prompt:
       "Which transition word or phrase should be added to the beginning of sentence 5 to emphasize the relationship between sentences 4 and 5?",
@@ -44,6 +46,7 @@ const indoorPlantsQuestions: ExamQuestion[] = [
   },
   {
     id: "indoor-plants-3",
+    topic: "Supporting Evidence",
     type: "multiple_choice",
     prompt: "Which detail best supports the idea that plants can affect the physical environment indoors?",
     correctChoiceId: "B",
@@ -57,6 +60,7 @@ const indoorPlantsQuestions: ExamQuestion[] = [
   },
   {
     id: "indoor-plants-4",
+    topic: "Revising & Editing",
     type: "multiple_choice",
     prompt: "Which sentence would best follow the final sentence of the passage?",
     correctChoiceId: "D",
@@ -70,6 +74,7 @@ const indoorPlantsQuestions: ExamQuestion[] = [
   },
   {
     id: "indoor-plants-5",
+    topic: "Tone & Mood",
     type: "multiple_choice",
     prompt: "The author's tone toward indoor plants is best described as",
     correctChoiceId: "A",

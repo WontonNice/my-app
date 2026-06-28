@@ -75,6 +75,7 @@ export type ExamQuestion = {
   requiredPlacements?: number;
   requiredSelections?: number;
   stimulus?: string;
+  topic: string;
   transitionBlankAfter?: string;
   transitionBlankBefore?: string;
   transitionSentenceNumber?: string;
@@ -143,6 +144,7 @@ export type AssessmentContentSource = {
     id: string;
     points: number;
     prompt: string;
+    topic: string;
     type: ExamQuestionType;
   }[];
   title: string;

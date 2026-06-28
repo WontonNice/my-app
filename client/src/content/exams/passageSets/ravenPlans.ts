@@ -18,6 +18,7 @@ Scientists continue to debate what the findings mean. Some argue that the ravens
 const ravenPlansQuestions: ExamQuestion[] = [
   {
     id: "raven-plans-1",
+    topic: "Supporting Evidence",
     type: "multiple_choice",
     prompt:
       "Read this sentence from paragraph 1.\n\n**At Lund University in Sweden, researchers argue that ravens may be able to think ahead and even plan for the future.**\n\nWhich sentence from paragraph 4 provides support for this argument?",
@@ -44,6 +45,7 @@ const ravenPlansQuestions: ExamQuestion[] = [
   },
   {
     id: "raven-plans-2",
+    topic: "Text Structure & Purpose",
     type: "multiple_choice",
     prompt: "Which statement best explains why paragraph 2 is important to the passage?",
     correctChoiceId: "B",
@@ -57,6 +59,7 @@ const ravenPlansQuestions: ExamQuestion[] = [
   },
   {
     id: "raven-plans-3",
+    topic: "Vocabulary in Context",
     type: "multiple_choice",
     prompt: "As used in paragraph 3, the word unfamiliar most nearly means",
     correctChoiceId: "C",
@@ -70,6 +73,7 @@ const ravenPlansQuestions: ExamQuestion[] = [
   },
   {
     id: "raven-plans-4",
+    topic: "Supporting Evidence",
     type: "multiple_choice",
     prompt: "Which detail from the passage best supports the idea that the ravens could delay a reward?",
     correctChoiceId: "A",
@@ -83,6 +87,7 @@ const ravenPlansQuestions: ExamQuestion[] = [
   },
   {
     id: "raven-plans-5",
+    topic: "Central Idea & Theme",
     type: "multiple_choice",
     prompt: "Which sentence best states the main idea of the passage?",
     correctChoiceId: "C",
@@ -96,6 +101,7 @@ const ravenPlansQuestions: ExamQuestion[] = [
   },
   {
     id: "raven-plans-6",
+    topic: "Author's Point of View",
     type: "multiple_choice",
     prompt: "With which statement would the author of the passage most likely agree?",
     correctChoiceId: "B",

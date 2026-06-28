@@ -1,0 +1,88 @@
+import type { PracticeQuestion } from "../types";
+
+export const authorsPointOfViewQuestions: PracticeQuestion[] = [
+  {
+    id: "pov-easy-1",
+    difficulty: "easy",
+    stimulus: "Our city should add protected bike lanes. They make streets safer for riders and encourage people to choose a cleaner form of transportation.",
+    prompt: "What is the author's point of view?",
+    choices: [
+      { id: "A", text: "Bike lanes are too expensive to maintain." },
+      { id: "B", text: "Protected bike lanes would benefit the city." },
+      { id: "C", text: "Cars should be removed from every street." },
+      { id: "D", text: "Most people dislike riding bicycles." },
+    ],
+    correctChoiceId: "B",
+    explanation: "The author directly argues that protected bike lanes improve safety and transportation.",
+  },
+  {
+    id: "pov-easy-2",
+    difficulty: "easy",
+    stimulus: "The new playground may be smaller, but its shaded benches, accessible ramps, and imaginative climbing wall make it a welcome improvement.",
+    prompt: "How does the author view the new playground?",
+    choices: [
+      { id: "A", text: "Mostly positively" },
+      { id: "B", text: "Completely negatively" },
+      { id: "C", text: "With confusion" },
+      { id: "D", text: "With no clear opinion" },
+    ],
+    correctChoiceId: "A",
+    explanation: "The phrase 'welcome improvement' and the list of benefits reveal a positive view.",
+  },
+  {
+    id: "pov-medium-1",
+    difficulty: "medium",
+    stimulus: "Some call the empty lot an eyesore. To the children who build snow forts there and the gardeners planning spring beds, however, it is a rare open space waiting for a purpose.",
+    prompt: "Which statement best describes the author's perspective?",
+    choices: [
+      { id: "A", text: "The lot should immediately be covered with buildings." },
+      { id: "B", text: "The lot has possibilities that its critics fail to recognize." },
+      { id: "C", text: "Children should not be allowed to play in the lot." },
+      { id: "D", text: "Gardening is the only suitable use for open land." },
+    ],
+    correctChoiceId: "B",
+    explanation: "The contrast shows that the author sees potential where others see only a problem.",
+  },
+  {
+    id: "pov-medium-2",
+    difficulty: "medium",
+    stimulus: "The museum's audio guide provides dates and names, but it cannot replace standing before a painting and noticing the brushstrokes for yourself.",
+    prompt: "The author most likely believes that",
+    choices: [
+      { id: "A", text: "audio guides should be banned from museums." },
+      { id: "B", text: "facts are more important than observation." },
+      { id: "C", text: "direct observation offers something a guide cannot." },
+      { id: "D", text: "paintings are easier to understand at home." },
+    ],
+    correctChoiceId: "C",
+    explanation: "The author values firsthand attention to the artwork beyond factual information.",
+  },
+  {
+    id: "pov-hard-1",
+    difficulty: "hard",
+    stimulus: "The proposal is described as efficient because it shortens meetings. Efficiency, though, is a poor bargain if residents lose the chance to question decisions that affect their neighborhoods.",
+    prompt: "What concern shapes the author's argument?",
+    choices: [
+      { id: "A", text: "Short meetings are difficult to schedule." },
+      { id: "B", text: "Efficiency may be valued at the expense of public participation." },
+      { id: "C", text: "Residents ask too many unrelated questions." },
+      { id: "D", text: "Neighborhood decisions should be made privately." },
+    ],
+    correctChoiceId: "B",
+    explanation: "The author questions a gain in speed when it reduces residents' ability to participate.",
+  },
+  {
+    id: "pov-elite-1",
+    difficulty: "elite",
+    stimulus: "To dismiss the mural as decoration is to ignore the hands that painted it and the stories those hands preserved. Its colors are not an escape from history; they are an argument about who belongs in it.",
+    prompt: "Which claim would the author most likely support?",
+    choices: [
+      { id: "A", text: "Public art can preserve and challenge historical narratives." },
+      { id: "B", text: "Murals should use only historically accurate colors." },
+      { id: "C", text: "Decoration has no place in serious artwork." },
+      { id: "D", text: "Artists should avoid political subjects." },
+    ],
+    correctChoiceId: "A",
+    explanation: "The author treats the mural as both preservation and an argument about inclusion in history.",
+  },
+];

@@ -20,6 +20,7 @@ type CreateAssessmentBody = {
     questionAnswer?: unknown;
     questionChoices?: unknown;
     questionPrompt?: unknown;
+    questionTopic?: unknown;
     questionType?: unknown;
     title?: unknown;
 };
@@ -163,6 +164,7 @@ assessmentsRouter.post("/teacher", async (request, response) => {
         questionAnswer: getString(body.questionAnswer),
         questionChoices: parseChoices(body.questionChoices),
         questionPrompt: getString(body.questionPrompt),
+        questionTopic: getString(body.questionTopic),
         questionType: parseQuestionType(body.questionType),
         title,
     });

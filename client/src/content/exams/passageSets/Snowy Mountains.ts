@@ -1,71 +1,83 @@
 import { createPlainTextPassage } from "../formatters";
 import type { ExamPassageSet, ExamQuestion } from "../types";
 
-const cityCreekPassageText = `
-Under the pavement, narrow and bright,
-A thread of water remembers the rain;
-It slips past roots in the hidden night,
-And taps at stones with a silver refrain.
-Above it, buses shudder and brake,
-Crowds hurry over the covered stream;
-Yet all day long, where the crosswalks shake,
-The buried creek keeps carrying its dream.
+const SnowyMountainsPassageText = `
+Higher and still more high,
+Palaces made for cloud,
+Above the dingy city-roofs
+Blue-white like angels with broad wings,
+Pillars of the sky at rest
+The mountains from the great plateau
+Uprise.
 
-No tower notices, no window hears,
-The patient music below the street;
-But after storms, in the park, it appears
-Where grass grows suddenly dark and sweet.
+But the world heeds them not;
+They have been here now for too long a time.
+The world makes war on them,
+Tunnels their granite cliffs,
+Splits down their shining sides,
+Plasters their cliffs with soap-advertisements,
+Destroys the lonely fragments of their peace.
 
-Past cellar walls and iron rails,
-Past painted signs and concrete seams,
-The creek remembers older trails
-And polishes them in its dreams.
+Vaster and still more vast,
+Peak after peak, pile after pile,
+Wilderness still untamed,
+To which the future is as was the past,
+Barrier spread by Gods,
+Sunning their shining foreheads,
+Barrier broken down by those who do not need
+The joy of time-resisting storm-worn stone,
+The mountains swing along
+The south horizon of the sky;
+Welcoming with wide floors of blue-green ice
+The mists that dance and drive before the sun.
 `;
 
-const cityCreekQuestions: ExamQuestion[] = [
+const SnowyMountainsQuestions: ExamQuestion[] = [
   {
-    id: "city-creek-1",
+    id: "snowy-mountains-1",
+    topic: "Central Idea & Theme",
     type: "multiple_choice",
-    prompt: "The description in the first stanza (lines 1-4) helps establish a central idea of the poem by",
+    prompt: "The description in the first stanza (lines 1–7) helps establish a central idea of the poem by",
     correctChoiceId: "B",
     points: 1,
     choices: [
       {
         id: "A",
-        text: "showing that the city has completely erased the natural world beneath it.",
+        text: "comparing the length of time the mountains have existed with the length of time the city has existed.",
       },
       {
         id: "B",
-        text: "contrasting the busy life of the city with the quiet persistence of nature below it.",
+        text: "contrasting the grandeur of the mountains with the structures in the city below them.",
       },
       {
         id: "C",
-        text: "explaining why people in the city should avoid walking after storms.",
+        text: "implying that the mountains are a source of inspiration to the people in the city below.",
       },
       {
         id: "D",
-        text: "suggesting that modern buildings are stronger than older natural features.",
+        text: "suggesting that the mountains are larger than the people in the city realize.",
       },
     ],
   },
   {
-    id: "city-creek-2",
+    id: "snowy-mountains-2",
+    topic: "Author's Point of View",
     type: "multi_select",
-    prompt: "In which two ways does the poet develop the speaker's point of view in the second stanza (lines 5-8)?",
+    prompt: "Which detail from the poem reflects the speaker’s view that people often fail to appreciate what is familiar?",
     instructions: "Select the two correct answers.",
     correctChoiceIds: ["B", "E"],
     requiredSelections: 2,
     points: 1,
     choices: [
-      { id: "A", text: "by describing the creek as louder than the traffic above it" },
-      { id: "B", text: "by contrasting the activity of the city with the hidden movement of the creek" },
-      { id: "C", text: "by explaining that the crosswalks were built to protect the stream" },
-      { id: "D", text: "by showing that people are aware of the creek and try to preserve it" },
-      { id: "E", text: "by personifying the creek as something that continues to carry a dream" },
+      { id: "A", text: "“The mountains from the great plateau” (line 6)" },
+      { id: "B", text: "“They have been here now for too long a time.” (line 9)" },
+      { id: "C", text: "“Splits down their shining sides,” (line 12)" },
+      { id: "D", text: "“To which the future is as was the past,” (line 18)" },
     ],
   },
   {
-    id: "city-creek-3",
+    id: "snowy-mountains-3",
+    topic: "Central Idea & Theme",
     type: "category_sort",
     prompt:
       "Which quotations from the poem support the theme that nature persists beneath the city, and which quotations support the theme that city life hides natural wonder?",
@@ -106,7 +118,8 @@ const cityCreekQuestions: ExamQuestion[] = [
     },
   },
   {
-    id: "city-creek-4",
+    id: "snowy-mountains-4",
+    topic: "Vocabulary in Context",
     type: "multiple_choice",
     prompt: "As used in line 10, the word patient most nearly suggests that the creek is",
     correctChoiceId: "D",
@@ -119,7 +132,8 @@ const cityCreekQuestions: ExamQuestion[] = [
     ],
   },
   {
-    id: "city-creek-5",
+    id: "snowy-mountains-5",
+    topic: "Figurative Language & Imagery",
     type: "multiple_choice",
     prompt: "The phrase silver refrain most likely emphasizes the creek's",
     correctChoiceId: "A",
@@ -132,7 +146,8 @@ const cityCreekQuestions: ExamQuestion[] = [
     ],
   },
   {
-    id: "city-creek-6",
+    id: "snowy-mountains-6",
+    topic: "Text Structure & Purpose",
     type: "multiple_choice",
     prompt: "What is the most likely purpose of the second stanza?",
     correctChoiceId: "B",
@@ -145,7 +160,8 @@ const cityCreekQuestions: ExamQuestion[] = [
     ],
   },
   {
-    id: "city-creek-7",
+    id: "snowy-mountains-7",
+    topic: "Tone & Mood",
     type: "multiple_choice",
     prompt: "Which statement best describes the speaker's attitude toward the creek?",
     correctChoiceId: "C",
@@ -157,24 +173,11 @@ const cityCreekQuestions: ExamQuestion[] = [
       { id: "D", text: "The speaker believes the creek should be removed." },
     ],
   },
-  {
-    id: "city-creek-8",
-    type: "multiple_choice",
-    prompt: "Which sentence best states a theme of the poem?",
-    correctChoiceId: "A",
-    points: 1,
-    choices: [
-      { id: "A", text: "Nature can continue to exist even when people overlook it." },
-      { id: "B", text: "Cities are always stronger than natural places." },
-      { id: "C", text: "Storms are necessary for people to appreciate parks." },
-      { id: "D", text: "People should avoid building roads near streams." },
-    ],
-  },
 ];
 
-export const cityCreekPassageSet: ExamPassageSet = {
+export const SnowyMountainsPassageSet: ExamPassageSet = {
   id: "ela-passage-set-1",
-  questionCount: cityCreekQuestions.length,
+  questionCount: SnowyMountainsQuestions.length,
   directions: {
     subject: "English Language Arts",
     title: "READING COMPREHENSION",
@@ -183,11 +186,11 @@ export const cityCreekPassageSet: ExamPassageSet = {
       "Read each text and answer the related questions. As needed, you may use the online notepad tool or write on scrap paper to take notes. You should reread relevant parts of each text, while being mindful of time, before selecting the best answer for each question. Base your answers only on the content within the text.",
   },
   passage: createPlainTextPassage({
-    id: "city-creek",
-    title: "City Creek",
-    author: "L. Rivera",
-    sourceNote: "\"City Creek\" by L. Rivera",
-    text: cityCreekPassageText,
+    id: "snowy-mountains",
+    title: "Snowy Mountains",
+    author: "John Gould Fletcher",
+    sourceNote: "\"Snowy Mountains\" by John Gould Fletcher—Public Domain",
+    text: SnowyMountainsPassageText,
   }),
-  questions: cityCreekQuestions,
+  questions: SnowyMountainsQuestions,
 };

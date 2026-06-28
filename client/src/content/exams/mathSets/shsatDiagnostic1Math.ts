@@ -27,6 +27,7 @@ export const shsatDiagnostic1MathSection: ExamMathSection = {
       ],
       correctChoiceId: "C",
       id: "shsat-diagnostic-1-math-linear-equation",
+      topic: "Algebra",
       prompt: "If 3x + 7 = 28, what is the value of x?",
       type: "multiple_choice",
     },
@@ -39,6 +40,7 @@ export const shsatDiagnostic1MathSection: ExamMathSection = {
       ],
       correctChoiceId: "B",
       id: "shsat-diagnostic-1-math-car-speed-conversion",
+      topic: "Rates & Unit Conversion",
       prompt:
         "A car is traveling 55 miles per hour, and 1 mile = 5,280 feet. Which of the following calculations would give the car's speed in **feet per second**?",
       type: "multiple_choice",
@@ -52,6 +54,7 @@ export const shsatDiagnostic1MathSection: ExamMathSection = {
       ],
       correctChoiceId: "C",
       id: "shsat-diagnostic-1-math-percent-discount",
+      topic: "Percent",
       prompt:
         "A jacket originally costs $60. During a sale, the price is reduced by 10%. What is the sale price of the jacket?",
       type: "multiple_choice",
@@ -59,6 +62,7 @@ export const shsatDiagnostic1MathSection: ExamMathSection = {
     {
       correctTextAnswers: ["-4"],
       id: "shsat-diagnostic-1-math-numeric-equation",
+      topic: "Algebra",
       instructions: "Enter your answer in the space.",
       prompt: "For what value of \\(w\\) is \\(4w = 2w - 8\\)?",
       type: "numeric_entry",
@@ -102,6 +106,7 @@ export const shsatDiagnostic1MathSection: ExamMathSection = {
         },
       ],
       id: "shsat-diagnostic-1-math-stamp-dropdowns",
+      topic: "Algebra",
       instructions: "Select the correct answer from each drop-down to complete the sentences.",
       prompt:
         "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives 8 of his stamps to Kevin. Liam now has 12 more stamps than Kevin.\n\nHow many stamps did Liam start with?",
@@ -110,6 +115,7 @@ export const shsatDiagnostic1MathSection: ExamMathSection = {
     {
       correctTextAnswers: ["18"],
       id: "shsat-diagnostic-1-math-parallelogram-pqrs",
+      topic: "Geometry",
       image: {
         alt: "Parallelogram PQRS with a 72 degree exterior angle at S and angle x marked near Q.",
         src: "/exam-images/math/image.png",
@@ -127,6 +133,7 @@ export const shsatDiagnostic1MathSection: ExamMathSection = {
       ],
       correctChoiceId: "B",
       id: "shsat-diagnostic-1-math-rectangle-width",
+      topic: "Geometry",
       prompt:
         "A rectangle has an area of 48 square inches and a length of 12 inches. What is the width of the rectangle?",
       type: "multiple_choice",
@@ -140,6 +147,7 @@ export const shsatDiagnostic1MathSection: ExamMathSection = {
       ],
       correctChoiceId: "B",
       id: "shsat-diagnostic-1-math-probability",
+      topic: "Probability & Statistics",
       prompt:
         "A bag contains 3 red marbles, 4 blue marbles, and 5 green marbles. If one marble is chosen at random, what is the probability that it is red?",
       type: "multiple_choice",
@@ -153,6 +161,7 @@ export const shsatDiagnostic1MathSection: ExamMathSection = {
       ],
       correctChoiceId: "C",
       id: "shsat-diagnostic-1-math-ratio-total",
+      topic: "Ratios & Proportions",
       prompt:
         "The ratio of boys to girls in a club is 5:3. If there are 30 boys in the club, how many students are in the club altogether?",
       type: "multiple_choice",
@@ -168,6 +177,7 @@ export const shsatDiagnostic1MathSection: ExamMathSection = {
       ],
       correctChoiceIds: ["A", "E"],
       id: "shsat-diagnostic-1-math-expression-sum-equivalents",
+      topic: "Algebra",
       prompt:
         "Three expressions are given:\n\n\\(-2(2.5n + 4)\\)\n\\(5 - n\\)\n\\(3(2n + 7)\\)\n\nWhich of these are equivalent to the sum of these three expressions?",
       requiredSelections: 2,

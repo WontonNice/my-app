@@ -1,4 +1,4 @@
-import { cityCreekPassageSet } from "./passageSets/cityCreek";
+import { SnowyMountainsPassageSet } from "./passageSets/Snowy Mountains";
 import { indoorPlantsPassageSet } from "./passageSets/indoorPlants";
 import { shsatDiagnostic1MathSection } from "./mathSets/shsatDiagnostic1Math";
 import { ravenPlansPassageSet } from "./passageSets/ravenPlans";
@@ -17,7 +17,7 @@ export const shsatDiagnostic1Content: ExamContent = {
   title: "SHSAT Diagnostic 1",
   mathSection: shsatDiagnostic1MathSection,
   passageSets: [
-    cityCreekPassageSet,
+    SnowyMountainsPassageSet,
     ravenPlansPassageSet,
     spiritOfTheHerdPassageSet,
     indoorPlantsPassageSet,

@@ -3,6 +3,7 @@ import type { ExamQuestion } from "./types";
 export const standaloneItems: ExamQuestion[] = [
   {
     id: "standalone-vague-pronoun-1",
+    topic: "Pronouns",
     type: "multiple_choice",
     prompt: "Which sentence of the paragraph should be revised to correct a vague pronoun?",
     stimulus:
@@ -18,6 +19,7 @@ export const standaloneItems: ExamQuestion[] = [
   },
   {
     id: "standalone-pancakes-1",
+    topic: "Conventions & Grammar",
     type: "multiple_choice",
     prompt: "Which pair of revisions is needed to correct the errors in the paragraph?",
     stimulus:
@@ -45,6 +47,7 @@ export const standaloneItems: ExamQuestion[] = [
   },
   {
     id: "standalone-blobfish-construction-1",
+    topic: "Sentence Construction",
     type: "category_sort",
     prompt: "Which sentence in the paragraph contains an error in construction?",
     stimulus:

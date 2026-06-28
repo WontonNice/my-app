@@ -1,13 +1,36 @@
-import { AuthPage } from "./pages/AuthPage";
-import { AdaptivePracticePage } from "./pages/AdaptivePracticePage";
-import { ExamLaunchPage } from "./pages/ExamLaunchPage";
-import { ExamSessionPage } from "./pages/ExamSessionPage";
-import { HomePage } from "./pages/HomePage";
-import { StudentDashboardPage } from "./pages/StudentDashboardPage";
-import { StudyHallPage } from "./pages/StudyHallPage";
-import { TeacherDashboardPage } from "./pages/TeacherDashboardPage";
+import { lazy, Suspense } from "react";
 
-function App() {
+const AdaptivePracticePage = lazy(() =>
+  import("./pages/AdaptivePracticePage").then((module) => ({ default: module.AdaptivePracticePage })),
+);
+const AdvancedPassagePage = lazy(() =>
+  import("./pages/AdvancedPassagePage").then((module) => ({ default: module.AdvancedPassagePage })),
+);
+const AuthPage = lazy(() => import("./pages/AuthPage").then((module) => ({ default: module.AuthPage })));
+const ExamLaunchPage = lazy(() =>
+  import("./pages/ExamLaunchPage").then((module) => ({ default: module.ExamLaunchPage })),
+);
+const ExamResultsPage = lazy(() =>
+  import("./pages/ExamResultsPage").then((module) => ({ default: module.ExamResultsPage })),
+);
+const ExamSessionPage = lazy(() =>
+  import("./pages/ExamSessionPage").then((module) => ({ default: module.ExamSessionPage })),
+);
+const HomePage = lazy(() => import("./pages/HomePage").then((module) => ({ default: module.HomePage })));
+const StudentDashboardPage = lazy(() =>
+  import("./pages/StudentDashboardPage").then((module) => ({ default: module.StudentDashboardPage })),
+);
+const StudyHallPage = lazy(() =>
+  import("./pages/StudyHallPage").then((module) => ({ default: module.StudyHallPage })),
+);
+const TeacherDashboardPage = lazy(() =>
+  import("./pages/TeacherDashboardPage").then((module) => ({ default: module.TeacherDashboardPage })),
+);
+const TopicPracticePage = lazy(() =>
+  import("./pages/TopicPracticePage").then((module) => ({ default: module.TopicPracticePage })),
+);
+
+function CurrentPage() {
   const path = window.location.pathname;
 
   if (path === "/dashboard") {
@@ -22,8 +45,20 @@ function App() {
     return <StudentDashboardPage />;
   }
 
+  if (path.startsWith("/advanced-practice/")) {
+    return <AdvancedPassagePage />;
+  }
+
+  if (path.startsWith("/practice/")) {
+    return <TopicPracticePage />;
+  }
+
   if (path.startsWith("/exam/") && path.endsWith("/session")) {
     return <ExamSessionPage />;
+  }
+
+  if (path.startsWith("/results/")) {
+    return <ExamResultsPage />;
   }
 
   if (path.startsWith("/exam/")) {
@@ -43,6 +78,14 @@ function App() {
   }
 
   return <HomePage />;
+}
+
+function App() {
+  return (
+    <Suspense fallback={<main className="loading-shell">Loading...</main>}>
+      <CurrentPage />
+    </Suspense>
+  );
 }
 
 export default App;

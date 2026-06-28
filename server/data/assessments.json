@@ -26,6 +26,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Filler question for diagnostic readiness.",
+        "topic": "Diagnostic Readiness",
         "type": "multiple_choice"
       }
     ],
@@ -55,6 +56,7 @@
         "imageUrl": "",
         "points": 2,
         "prompt": "Explain the central idea of the passage.",
+        "topic": "Central Idea & Theme",
         "type": "short_response"
       }
     ],
@@ -77,6 +79,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Filler grid-in question for math foundations.",
+        "topic": "Arithmetic",
         "type": "grid_in"
       }
     ],

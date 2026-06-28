@@ -20,6 +20,7 @@ type AssessmentDraft = {
   questionAnswer: string;
   questionChoices: string;
   questionPrompt: string;
+  questionTopic: string;
   questionType: QuestionType;
   title: string;
 };
@@ -34,6 +35,7 @@ const defaultDraft: AssessmentDraft = {
   questionAnswer: "",
   questionChoices: "",
   questionPrompt: "",
+  questionTopic: "Uncategorized",
   questionType: "multiple_choice",
   title: "",
 };
@@ -319,6 +321,19 @@ export function TeacherDashboardPage() {
                 onChange={(event) => setDraft({ ...draft, questionPrompt: event.target.value })}
               />
             </label>
+
+            <div className="teacher-field-grid teacher-field-grid-wide">
+              <label>
+                Question topic
+                <input
+                  placeholder="Example: Geometry or Central Idea & Theme"
+                  type="text"
+                  value={draft.questionTopic}
+                  onChange={(event) => setDraft({ ...draft, questionTopic: event.target.value })}
+                />
+              </label>
+              <div />
+            </div>
 
             <div className="teacher-field-grid teacher-field-grid-wide">
               <label>

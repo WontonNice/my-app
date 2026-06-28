@@ -18,6 +18,14 @@ import { resolveExamContent, type ExamQuestion } from "../content/exams";
 import { getStudentAssessment, type TeacherAssessment } from "../lib/api";
 import { getUserRole } from "../lib/auth";
 import { formatDuration, getAssessmentIdFromPath, getDisplayName } from "../lib/exam";
+import {
+  createExamResult,
+  getAllExamQuestions,
+  saveExamResult,
+  type CategoryPlacements,
+  type SelectedAnswer,
+  type SelectedAnswers,
+} from "../lib/examResults";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 type StartingSubject = "english" | "math";
@@ -35,9 +43,6 @@ type SessionScreen =
   | "mathDirections"
   | "mathQuestion"
   | "testOver";
-type CategoryPlacements = Record<string, string>;
-type SelectedAnswer = string | string[] | CategoryPlacements;
-type SelectedAnswers = Record<string, SelectedAnswer>;
 type ReviewItemId = "directions" | "passageEnd" | "endSection" | `question-${number}`;
 type ReviewFilter = "all" | "notAnswered" | "bookmarks";
 type ReviewItemKind = "directions" | "question" | "passageEnd" | "endSection";
@@ -333,6 +338,50 @@ function isQuestionAnswered(question: ExamQuestion, selectedAnswers: SelectedAns
   return true;
 }
 
+function getRandomItem<T>(items: T[]) {
+  return items[Math.floor(Math.random() * items.length)];
+}
+
+function createRandomQuestionAnswer(question: ExamQuestion): SelectedAnswer {
+  if (question.type === "multiple_choice" || question.type === "transition_drop") {
+    return getRandomItem(question.choices ?? [])?.id ?? "preview-answer";
+  }
+
+  if (question.type === "multi_select") {
+    const choiceIds = (question.choices ?? []).map((choice) => choice.id);
+    const selectionCount = Math.min(getRequiredSelectionCount(question), choiceIds.length);
+
+    return [...choiceIds].sort(() => Math.random() - 0.5).slice(0, selectionCount);
+  }
+
+  if (question.type === "category_sort") {
+    const categoryIds = (question.categories ?? []).map((category) => category.id);
+    const items = [...(question.items ?? [])].sort(() => Math.random() - 0.5);
+    const placementCount = Math.min(question.requiredPlacements ?? items.length, items.length);
+
+    return Object.fromEntries(
+      items
+        .slice(0, placementCount)
+        .map((item) => [item.id, getRandomItem(categoryIds) ?? "preview-category"]),
+    );
+  }
+
+  if (question.type === "inline_dropdown") {
+    return Object.fromEntries(
+      (question.dropdowns ?? []).map((dropdown) => [
+        dropdown.id,
+        getRandomItem(dropdown.options)?.id ?? "preview-option",
+      ]),
+    );
+  }
+
+  if (question.type === "numeric_entry" || question.type === "grid_in") {
+    return String(Math.floor(Math.random() * 100));
+  }
+
+  return "Teacher preview response";
+}
+
 function getStoredExamName(assessmentId: string, fallbackName: string) {
   const storedName = window.sessionStorage.getItem(`exam-student-name:${assessmentId}`);
   return storedName?.trim() || fallbackName;
@@ -399,6 +448,7 @@ function ExamToolbar({
   onReviewFilterChange,
   onReviewItemSelect,
   onSelectTool,
+  onSpeedFinish,
   onToggleFastForward,
   onToggleReview,
   onToggleBookmark,
@@ -430,6 +480,7 @@ function ExamToolbar({
   onReviewFilterChange?: (filter: ReviewFilter) => void;
   onReviewItemSelect?: (itemId: ReviewItemId) => void;
   onSelectTool?: (tool: ExamTool) => void;
+  onSpeedFinish?: () => void;
   onToggleFastForward?: () => void;
   onToggleReview?: () => void;
   onToggleBookmark?: () => void;
@@ -630,14 +681,19 @@ function ExamToolbar({
 
           <div className="exam-session-user-tools">
             {canUseFastForward ? (
-              <label className="exam-fast-forward-toggle">
-                <input
-                  checked={isFastForwardEnabled}
-                  onChange={() => onToggleFastForward?.()}
-                  type="checkbox"
-                />
-                Fast-forward
-              </label>
+              <div className="exam-teacher-preview-tools">
+                <label className="exam-fast-forward-toggle">
+                  <input
+                    checked={isFastForwardEnabled}
+                    onChange={() => onToggleFastForward?.()}
+                    type="checkbox"
+                  />
+                  Fast-forward
+                </label>
+                <button className="exam-speed-finish-button" onClick={onSpeedFinish} type="button">
+                  Speed finish
+                </button>
+              </div>
             ) : null}
             {showTimer ? (
               <button type="button" className="exam-session-timer-button" aria-label="Show timer">
@@ -704,6 +760,7 @@ export function ExamSessionPage() {
   const [selectedCategoryItemId, setSelectedCategoryItemId] = useState("");
   const [sessionScreen, setSessionScreen] = useState<SessionScreen>("directions");
   const [startingSubject, setStartingSubject] = useState<StartingSubject>("english");
+  const [studentId, setStudentId] = useState("");
   const [studentName, setStudentName] = useState("Student");
   const [textHighlights, setTextHighlights] = useState<TextHighlights>({});
 
@@ -724,6 +781,7 @@ export function ExamSessionPage() {
 
       const fallbackName = getDisplayName(data.session.user);
       const nextStartingSubject = getStoredStartingSubject(assessmentId);
+      setStudentId(data.session.user.id);
       setStudentName(getStoredExamName(assessmentId, fallbackName));
       setStartingSubject(nextStartingSubject);
       setSessionScreen(nextStartingSubject === "math" ? "mathIntro" : "directions");
@@ -897,6 +955,34 @@ export function ExamSessionPage() {
   function clearTransientExamUi() {
     setChoiceLimitWarnings([]);
     setHighlightToolbar(null);
+  }
+
+  function saveCompletedExam(answers: SelectedAnswers) {
+    if (!studentId) {
+      return;
+    }
+
+    saveExamResult(studentId, createExamResult(examContent, answers));
+  }
+
+  function handleSpeedFinish() {
+    if (!isTeacherPreviewSession) {
+      return;
+    }
+
+    const randomAnswers = Object.fromEntries(
+      getAllExamQuestions(examContent).map((question) => [question.id, createRandomQuestionAnswer(question)]),
+    );
+
+    setSelectedAnswers(randomAnswers);
+    setHasCompletedMath(true);
+    clearTransientExamUi();
+    setActiveTool("pointer");
+    setIsNotepadOpen(false);
+    setIsReviewOpen(false);
+    setIsUnansweredModalOpen(false);
+    saveCompletedExam(randomAnswers);
+    setSessionScreen("testOver");
   }
 
   function showChoiceLimitWarning(maxChoices: number) {
@@ -1568,6 +1654,7 @@ export function ExamSessionPage() {
       return;
     }
 
+    saveCompletedExam(selectedAnswers);
     setSessionScreen("testOver");
   }
 
@@ -1588,6 +1675,7 @@ export function ExamSessionPage() {
       return;
     }
 
+    saveCompletedExam(selectedAnswers);
     setSessionScreen("testOver");
   }
 
@@ -1660,6 +1748,7 @@ export function ExamSessionPage() {
   const fastForwardToolbarProps = {
     canUseFastForward: isTeacherPreviewSession,
     isFastForwardEnabled,
+    onSpeedFinish: handleSpeedFinish,
     onToggleFastForward: () => setIsFastForwardEnabled((currentValue) => !currentValue),
   };
 
@@ -2422,13 +2511,18 @@ export function ExamSessionPage() {
           </span>
           <p>Your answers have been submitted.</p>
           <p className="exam-end-section-copy">You can now return to your dashboard.</p>
-          <button
-            className="exam-end-section-submit"
-            onClick={() => window.location.assign(getTeacherPreviewDashboardHref())}
-            type="button"
-          >
-            Return to Dashboard
-          </button>
+          <div className="exam-test-over-actions">
+            <a className="exam-end-section-submit" href={`/results/${assessment.id}${window.location.search}`}>
+              View Results
+            </a>
+            <button
+              className="exam-end-section-submit is-secondary"
+              onClick={() => window.location.assign(getTeacherPreviewDashboardHref())}
+              type="button"
+            >
+              Return to Dashboard
+            </button>
+          </div>
         </section>
       </main>
     );

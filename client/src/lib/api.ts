@@ -50,6 +50,7 @@ export type TeacherAssessment = {
     imageUrl: string;
     points: number;
     prompt: string;
+    topic: string;
     type: QuestionType;
   }[];
   status: AssessmentStatus;
@@ -73,6 +74,7 @@ export type CreateAssessmentInput = {
   questionAnswer: string;
   questionChoices: string;
   questionPrompt: string;
+  questionTopic: string;
   questionType: QuestionType;
   title: string;
 };

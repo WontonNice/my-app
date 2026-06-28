@@ -50,6 +50,7 @@ function createFallbackQuestions(assessment: AssessmentContentSource): ExamQuest
         ],
         id: "question-1",
         prompt: "Question content has not been added for this assessment yet.",
+        topic: "Uncategorized",
         type: "multiple_choice",
       },
     ];
@@ -81,6 +82,7 @@ function createFallbackQuestions(assessment: AssessmentContentSource): ExamQuest
       prompt: question.prompt,
       requiredSelections:
         question.type === "multi_select" ? Math.max(2, correctChoiceIds.length || 2) : undefined,
+      topic: question.topic || "Uncategorized",
       type: question.type,
     };
   });

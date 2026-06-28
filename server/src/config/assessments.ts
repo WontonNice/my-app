@@ -26,6 +26,7 @@ export type AssessmentQuestion = {
     imageUrl: string;
     points: number;
     prompt: string;
+    topic: string;
     type: QuestionType;
 };
 
@@ -64,6 +65,7 @@ export type CreateAssessmentInput = {
     questionAnswer: string;
     questionChoices: string[];
     questionPrompt: string;
+    questionTopic: string;
     questionType: QuestionType;
     title: string;
 };
@@ -168,6 +170,7 @@ export function createAssessment(input: CreateAssessmentInput) {
                       imageUrl: input.imageUrl,
                       points: 1,
                       prompt: input.questionPrompt,
+                      topic: input.questionTopic || "Uncategorized",
                       type: input.questionType,
                   },
               ]

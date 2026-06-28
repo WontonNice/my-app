@@ -21,6 +21,7 @@ From the flash of the lightning the horse had taken the bit, had covered an inde
 const spiritOfTheHerdQuestions: ExamQuestion[] = [
   {
     id: "spirit-herd-1",
+    topic: "Supporting Evidence",
     type: "multiple_choice",
     prompt:
       "Which sentence from the excerpt **best** explains why Wade reserved Peroxide Jim for \"emergency work\" (paragraph 1)?",
@@ -47,6 +48,7 @@ const spiritOfTheHerdQuestions: ExamQuestion[] = [
   },
   {
     id: "spirit-herd-2",
+    topic: "Inference",
     type: "multiple_choice",
     prompt: "Which detail best shows that Peroxide Jim understands the work expected of him?",
     correctChoiceId: "B",
@@ -60,6 +62,7 @@ const spiritOfTheHerdQuestions: ExamQuestion[] = [
   },
   {
     id: "spirit-herd-3",
+    topic: "Vocabulary in Context",
     type: "multiple_choice",
     prompt: "As used in paragraph 3, the word crush most nearly means",
     correctChoiceId: "C",
@@ -73,6 +76,7 @@ const spiritOfTheHerdQuestions: ExamQuestion[] = [
   },
   {
     id: "spirit-herd-4",
+    topic: "Character & Relationships",
     type: "multiple_choice",
     prompt: "Which statement best describes the relationship between Wade and Peroxide Jim?",
     correctChoiceId: "A",
