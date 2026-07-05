@@ -6,6 +6,7 @@ import {
   getAssessmentIdFromPath,
   getDisplayName,
 } from "../lib/exam";
+import { resetExamTimer } from "../lib/examTimer";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 type StartingSubject = "english" | "math";
@@ -62,6 +63,7 @@ export function ExamLaunchPage() {
     const launchName = typedName.trim() || studentName;
     window.sessionStorage.setItem(`exam-student-name:${assessment.id}`, launchName);
     window.sessionStorage.setItem(`exam-start-subject:${assessment.id}`, startingSubject);
+    resetExamTimer(assessment.id);
     window.location.assign(`/exam/${assessment.id}/session${window.location.search}`);
   }
 

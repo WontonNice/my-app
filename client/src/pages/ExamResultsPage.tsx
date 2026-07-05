@@ -1,5 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
-import { getExamResult, type ExamResult, type ExamSubjectResult } from "../lib/examResults";
+import { getLearningProgress } from "../lib/api";
+import { getExamResult, replaceExamResults, type ExamResult, type ExamSubjectResult } from "../lib/examResults";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 function getAssessmentIdFromResultsPath() {
@@ -59,12 +60,20 @@ export function ExamResultsPage() {
       return;
     }
 
-    getSupabaseClient().auth.getSession().then(({ data }) => {
+    getSupabaseClient().auth.getSession().then(async ({ data }) => {
       if (!data.session) {
         window.location.assign("/login");
         return;
       }
 
+      try {
+        const cloudProgress = await getLearningProgress(data.session.access_token);
+        if (cloudProgress.examResults.length > 0) {
+          replaceExamResults(data.session.user.id, cloudProgress.examResults as unknown as ExamResult[]);
+        }
+      } catch {
+        // Use the device cache when cloud storage is temporarily unavailable.
+      }
       setResult(getExamResult(data.session.user.id, getAssessmentIdFromResultsPath()));
       setIsLoading(false);
     });

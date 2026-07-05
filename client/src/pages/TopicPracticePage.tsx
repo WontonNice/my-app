@@ -4,6 +4,7 @@ import {
   Bookmark,
   Check,
   ChevronDown,
+  CircleHelp,
   Clock3,
   Flame,
   GraduationCap,
@@ -26,6 +27,7 @@ import {
   type PracticeDifficulty,
   type PracticeQuestion,
 } from "../content/practice";
+import { getLearningProgress, saveCloudPracticeProgress } from "../lib/api";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 type PracticeMode = "levels" | "questions" | "complete";
@@ -156,6 +158,16 @@ function formatPracticeTime(totalSeconds: number) {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+}
+
+function getIncorrectChoiceExplanation(question: PracticeQuestion, choiceId: string, choiceText: string) {
+  const authoredExplanation = question.incorrectChoiceExplanations?.[choiceId];
+
+  if (authoredExplanation) {
+    return authoredExplanation;
+  }
+
+  return `This answer focuses on “${choiceText},” but that detail does not satisfy the question as directly as ${question.correctChoiceId}. ${question.explanation}`;
 }
 
 function PracticeExamToolbar({
@@ -396,6 +408,7 @@ function OnboardingModal({ onClose }: { onClose: () => void }) {
 }
 
 export function TopicPracticePage() {
+  const [accessToken, setAccessToken] = useState("");
   const topic = getPracticeTopicBySlug(getTopicSlugFromPath());
   const [activeTool, setActiveTool] = useState<PracticeTool>("pointer");
   const [activeDifficulty, setActiveDifficulty] = useState<PracticeDifficulty | null>(null);
@@ -425,13 +438,14 @@ export function TopicPracticePage() {
       return;
     }
 
-    getSupabaseClient().auth.getSession().then(({ data }) => {
+    getSupabaseClient().auth.getSession().then(async ({ data }) => {
       if (!data.session) {
         window.location.assign("/login");
         return;
       }
 
       const nextUserId = data.session.user.id;
+      setAccessToken(data.session.access_token);
       const metadata = data.session.user.user_metadata as {
         full_name?: string;
         name?: string;
@@ -443,7 +457,24 @@ export function TopicPracticePage() {
           ?? "Student",
       );
       setUserId(nextUserId);
-      setProgress(loadTopicProgress(nextUserId, topic.slug));
+      const localProgress = loadTopicProgress(nextUserId, topic.slug);
+      setProgress(localProgress);
+      try {
+        const cloudProgress = await getLearningProgress(data.session.access_token);
+        const storedTopicProgress = cloudProgress.practice[topic.slug] as Partial<TopicProgress> | undefined;
+        if (storedTopicProgress) {
+          const syncedProgress: TopicProgress = {
+            easy: { ...emptyLevelProgress, ...storedTopicProgress.easy },
+            medium: { ...emptyLevelProgress, ...storedTopicProgress.medium },
+            hard: { ...emptyLevelProgress, ...storedTopicProgress.hard },
+            elite: { ...emptyLevelProgress, ...storedTopicProgress.elite },
+          };
+          setProgress(syncedProgress);
+          window.localStorage.setItem(getProgressStorageKey(nextUserId, topic.slug), JSON.stringify(syncedProgress));
+        }
+      } catch {
+        // Continue with locally cached progress while offline.
+      }
       setOnboardingStep(
         window.localStorage.getItem(`nathan-tutors:practice-onboarding:v1:${nextUserId}`)
           ? "closed"
@@ -509,6 +540,13 @@ export function TopicPracticePage() {
     setProgress(nextProgress);
     if (userId && topic) {
       window.localStorage.setItem(getProgressStorageKey(userId, topic.slug), JSON.stringify(nextProgress));
+      if (accessToken) {
+        void saveCloudPracticeProgress(
+          accessToken,
+          topic.slug,
+          nextProgress as unknown as Record<string, unknown>,
+        ).catch(() => undefined);
+      }
     }
   }
 
@@ -619,6 +657,7 @@ export function TopicPracticePage() {
 
   if (mode === "questions" && currentQuestion && activeDifficulty) {
     const isBookmarked = bookmarkedQuestionIds.includes(currentQuestion.id);
+    const sessionAnswered = questionIndex + (answerState ? 1 : 0);
 
     return (
       <main className="exam-session-shell practice-exam-shell">
@@ -649,7 +688,14 @@ export function TopicPracticePage() {
           <section className="exam-question-passage practice-exam-stimulus" aria-label="Reading selection">
             <div className="exam-question-passage-scroll is-prose">
               <h2>{topic.title}</h2>
-              <p>{currentQuestion.stimulus}</p>
+              <div className="practice-exam-stimulus-copy">
+                {currentQuestion.stimulus
+                  ?.split(/\n\s*\n/)
+                  .filter((paragraph) => paragraph.trim())
+                  .map((paragraph, index) => (
+                    <p key={`${currentQuestion.id}-paragraph-${index}`}>{paragraph.trim()}</p>
+                  ))}
+              </div>
             </div>
           </section>
 
@@ -696,12 +742,31 @@ export function TopicPracticePage() {
               </div>
 
               {answerState ? (
-                <div className={`practice-feedback is-${answerState}`}>
-                  <span aria-hidden="true">{answerState === "correct" ? <Check size={20} /> : <X size={20} />}</span>
-                  <div>
-                    <strong>{answerState === "correct" ? "Correct" : "Not quite"}</strong>
-                    <p>{currentQuestion.explanation}</p>
+                <div className="practice-answer-explanation">
+                  <div className={`practice-feedback is-${answerState}`}>
+                    <span aria-hidden="true">{answerState === "correct" ? <Check size={20} /> : <X size={20} />}</span>
+                    <div>
+                      <strong>{answerState === "correct" ? "Correct" : "Not quite"}</strong>
+                      <p>{currentQuestion.explanation}</p>
+                    </div>
                   </div>
+
+                  <section className="practice-choice-rationales" aria-labelledby={`${currentQuestion.id}-rationales-title`}>
+                    <h2 id={`${currentQuestion.id}-rationales-title`}>
+                      <CircleHelp aria-hidden="true" size={20} />
+                      Why the other choices don&apos;t work
+                    </h2>
+                    <div className="practice-choice-rationale-list">
+                      {currentQuestion.choices
+                        .filter((choice) => choice.id !== currentQuestion.correctChoiceId)
+                        .map((choice) => (
+                          <div className="practice-choice-rationale" key={choice.id}>
+                            <span aria-hidden="true">{choice.id}</span>
+                            <p>{getIncorrectChoiceExplanation(currentQuestion, choice.id, choice.text)}</p>
+                          </div>
+                        ))}
+                    </div>
+                  </section>
                 </div>
               ) : null}
             </form>
@@ -732,6 +797,29 @@ export function TopicPracticePage() {
             </section>
           </div>
         ) : null}
+
+        <footer className="practice-question-stats-footer" aria-label="Current practice stats" aria-live="polite">
+          <div>
+            <Check aria-hidden="true" size={19} />
+            <span>Answered</span>
+            <strong>{sessionAnswered}</strong>
+          </div>
+          <div>
+            <Zap aria-hidden="true" fill="currentColor" size={19} />
+            <span>XP earned</span>
+            <strong>{xp}</strong>
+          </div>
+          <div className="is-hearts">
+            <Heart aria-hidden="true" fill="currentColor" size={19} />
+            <span>Hearts</span>
+            <strong>{hearts}</strong>
+          </div>
+          <div className={sessionStreak > 0 ? "has-streak" : ""}>
+            <Flame aria-hidden="true" fill={sessionStreak > 0 ? "currentColor" : "none"} size={20} />
+            <span>Streak</span>
+            <strong>{sessionStreak}</strong>
+          </div>
+        </footer>
       </main>
     );
   }

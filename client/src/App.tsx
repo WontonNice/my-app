@@ -3,6 +3,9 @@ import { lazy, Suspense } from "react";
 const AdaptivePracticePage = lazy(() =>
   import("./pages/AdaptivePracticePage").then((module) => ({ default: module.AdaptivePracticePage })),
 );
+const AdminDashboardPage = lazy(() =>
+  import("./pages/AdminDashboardPage").then((module) => ({ default: module.AdminDashboardPage })),
+);
 const AdvancedPassagePage = lazy(() =>
   import("./pages/AdvancedPassagePage").then((module) => ({ default: module.AdvancedPassagePage })),
 );
@@ -19,6 +22,9 @@ const ExamSessionPage = lazy(() =>
 const HomePage = lazy(() => import("./pages/HomePage").then((module) => ({ default: module.HomePage })));
 const StudentDashboardPage = lazy(() =>
   import("./pages/StudentDashboardPage").then((module) => ({ default: module.StudentDashboardPage })),
+);
+const StaffDashboardPage = lazy(() =>
+  import("./pages/StaffDashboardPage").then((module) => ({ default: module.StaffDashboardPage })),
 );
 const StudyHallPage = lazy(() =>
   import("./pages/StudyHallPage").then((module) => ({ default: module.StudyHallPage })),
@@ -67,6 +73,14 @@ function CurrentPage() {
 
   if (path === "/teacher") {
     return <TeacherDashboardPage />;
+  }
+
+  if (path === "/admin") {
+    return <AdminDashboardPage />;
+  }
+
+  if (path === "/staff") {
+    return <StaffDashboardPage />;
   }
 
   if (path === "/login") {

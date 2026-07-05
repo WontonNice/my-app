@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { registerStudent } from "../lib/api";
-import { getDashboardPath, getUserRole } from "../lib/auth";
+import { getDashboardPath, getStaffLoginEmail, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 type AuthPageProps = {
@@ -62,8 +62,9 @@ export function AuthPage({ mode }: AuthPageProps) {
         return;
       }
 
+      const loginEmail = email.includes("@") ? email.trim().toLowerCase() : getStaffLoginEmail(email);
       const { data, error } = await supabase.auth.signInWithPassword({
-        email,
+        email: loginEmail,
         password,
       });
 
@@ -91,7 +92,7 @@ export function AuthPage({ mode }: AuthPageProps) {
         <p>
           {isSignup
             ? "Student accounts are created by default. Teacher access is assigned manually."
-            : "Log in to continue to your student dashboard or teacher analytics page."}
+            : "Log in to continue to your student, teacher, or staff workspace."}
         </p>
 
         <form className="auth-form" onSubmit={handleSubmit}>
@@ -109,11 +110,11 @@ export function AuthPage({ mode }: AuthPageProps) {
           )}
 
           <label>
-            Email
+            {isSignup ? "Email" : "Email or username"}
             <input
-              autoComplete="email"
+              autoComplete={isSignup ? "email" : "username"}
               required
-              type="email"
+              type={isSignup ? "email" : "text"}
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />

@@ -10,6 +10,7 @@ export type PracticeQuestion = {
   correctChoiceId: string;
   difficulty: PracticeDifficulty;
   explanation: string;
+  incorrectChoiceExplanations?: Partial<Record<string, string>>;
   id: string;
   prompt: string;
   stimulus?: string;
@@ -22,4 +23,3 @@ export type PracticeTopic = {
   slug: string;
   title: string;
 };
-

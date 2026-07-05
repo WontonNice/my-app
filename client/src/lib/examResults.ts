@@ -213,3 +213,7 @@ export function saveExamResult(userId: string, result: ExamResult) {
 
   window.localStorage.setItem(getStorageKey(userId), JSON.stringify([result, ...otherResults]));
 }
+
+export function replaceExamResults(userId: string, results: ExamResult[]) {
+  window.localStorage.setItem(getStorageKey(userId), JSON.stringify(results));
+}

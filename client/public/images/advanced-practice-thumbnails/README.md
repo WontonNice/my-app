@@ -2,7 +2,7 @@
 
 Place passage cover images in this folder. Use JPG, PNG, or WebP files with a 16:9 aspect ratio; 1200 x 675 pixels is recommended.
 
-Then add the public path to the passage entry in `client/src/content/advancedPractice/passages.ts`:
+Then add the public path to the passage entry in its file under `client/src/content/advancedPractice/passageSets/`:
 
 ```ts
 thumbnail: "/images/advanced-practice-thumbnails/signals-in-the-fog.webp",

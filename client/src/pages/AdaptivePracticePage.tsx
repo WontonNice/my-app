@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { BookOpen, Search, Sparkles } from "lucide-react";
-import { advancedPracticePassages } from "../content/advancedPractice/passages";
+import { advancedPracticePassages } from "../content/advancedPractice";
 import { practiceTopics } from "../content/practice";
-import { getStudentAssessments, getStudentClasses, type StudentAssessment } from "../lib/api";
-import { getUserRole } from "../lib/auth";
-import { getExamResults, type ExamResult } from "../lib/examResults";
+import { getLearningProgress, getStudentAssessments, getStudentClasses, type StudentAssessment } from "../lib/api";
+import { getDashboardPath, getUserRole } from "../lib/auth";
+import { getExamResults, replaceExamResults, type ExamResult } from "../lib/examResults";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 const pageSearchParams = new URLSearchParams(window.location.search);
@@ -191,14 +191,24 @@ export function AdaptivePracticePage() {
       }
 
       const userRole = getUserRole(data.session.user);
-      setExamResults(getExamResults(data.session.user.id));
+      let savedResults = getExamResults(data.session.user.id);
+      try {
+        const cloudProgress = await getLearningProgress(data.session.access_token);
+        if (cloudProgress.examResults.length > 0) {
+          savedResults = cloudProgress.examResults as unknown as ExamResult[];
+          replaceExamResults(data.session.user.id, savedResults);
+        }
+      } catch {
+        // Local results remain available while offline.
+      }
+      setExamResults(savedResults);
 
-      if (userRole === "teacher" && !isStudentPreview) {
-        window.location.assign("/teacher");
+      if (userRole !== "student" && !(userRole === "teacher" && isStudentPreview)) {
+        window.location.assign(getDashboardPath(userRole));
         return;
       }
 
-      if (userRole !== "teacher") {
+      if (userRole === "student") {
         try {
           const studentClasses = await getStudentClasses(data.session.access_token);
           const isInShsat = studentClasses.some((studentClass) => studentClass.id === "shsat");
@@ -393,11 +403,10 @@ function AdvancedPracticeCatalogue() {
     return advancedPracticePassages.filter((passage) => {
       const matchesGenre = activeGenre === "All" || passage.genre === activeGenre;
       const searchableText = [
-        passage.title,
-        passage.author,
+        passage.passageSet.passage.title,
         passage.genre,
-        passage.difficulty,
-        ...passage.skills,
+        passage.excerpt,
+        ...passage.passageSet.questions.map((question) => question.topic),
       ].join(" ").toLowerCase();
 
       return matchesGenre && (!normalizedQuery || searchableText.includes(normalizedQuery));
@@ -452,15 +461,15 @@ function AdvancedPracticeCatalogue() {
                   <>
                     <BookOpen aria-hidden="true" size={34} strokeWidth={1.6} />
                     <span>{passage.genre}</span>
-                    <strong>{passage.title}</strong>
+                    <strong>{passage.passageSet.passage.title}</strong>
                   </>
                 )}
               </div>
               <div className="advanced-passage-card-body">
-                <h3>{passage.title}</h3>
+                <h3>{passage.passageSet.passage.title}</h3>
                 <p>{passage.excerpt}</p>
                 <a
-                  aria-label={`Start ${passage.title}`}
+                  aria-label={`Start ${passage.passageSet.passage.title}`}
                   className="advanced-passage-start"
                   href={getAdvancedPassageHref(passage.id)}
                 >

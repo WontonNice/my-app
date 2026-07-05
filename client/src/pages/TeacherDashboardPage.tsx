@@ -1,55 +1,14 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState } from "react";
+import { BookOpen, CheckCircle2, ClipboardList, LayoutDashboard, Target, Users } from "lucide-react";
+import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import {
-  createTeacherAssessment,
   getTeacherAssessments,
   updateTeacherAssessmentStatus,
   type AssessmentStatus,
-  type QuestionType,
   type TeacherAssessment,
 } from "../lib/api";
-import { getUserRole } from "../lib/auth";
+import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
-
-type AssessmentDraft = {
-  classId: string;
-  description: string;
-  durationMinutes: string;
-  imageUrl: string;
-  passageText: string;
-  passageTitle: string;
-  questionAnswer: string;
-  questionChoices: string;
-  questionPrompt: string;
-  questionTopic: string;
-  questionType: QuestionType;
-  title: string;
-};
-
-const defaultDraft: AssessmentDraft = {
-  classId: "shsat",
-  description: "",
-  durationMinutes: "45",
-  imageUrl: "",
-  passageText: "",
-  passageTitle: "",
-  questionAnswer: "",
-  questionChoices: "",
-  questionPrompt: "",
-  questionTopic: "Uncategorized",
-  questionType: "multiple_choice",
-  title: "",
-};
-
-const questionTypeOptions: { label: string; value: QuestionType }[] = [
-  { label: "Multiple choice", value: "multiple_choice" },
-  { label: "Multi select", value: "multi_select" },
-  { label: "Category sort", value: "category_sort" },
-  { label: "Inline dropdown", value: "inline_dropdown" },
-  { label: "Numeric entry", value: "numeric_entry" },
-  { label: "Short response", value: "short_response" },
-  { label: "Grid in", value: "grid_in" },
-  { label: "Essay", value: "essay" },
-];
 
 function formatQuestionType(questionType: string) {
   return questionType.replace("_", " ");
@@ -60,8 +19,8 @@ function createTeacherStats(assessments: TeacherAssessment[]) {
 
   return [
     {
-      label: "Active students",
-      value: "0",
+      label: "Class enrollment",
+      value: "128",
     },
     {
       label: "Assessment bank",
@@ -81,11 +40,10 @@ function createTeacherStats(assessments: TeacherAssessment[]) {
 export function TeacherDashboardPage() {
   const [accessToken, setAccessToken] = useState("");
   const [assessments, setAssessments] = useState<TeacherAssessment[]>([]);
-  const [draft, setDraft] = useState<AssessmentDraft>(defaultDraft);
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
-  const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [savingStatusId, setSavingStatusId] = useState("");
+  const [teacherName, setTeacherName] = useState("Teacher");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -100,8 +58,12 @@ export function TeacherDashboardPage() {
         return;
       }
 
-      if (getUserRole(data.session.user) !== "teacher") {
-        window.location.assign("/dashboard");
+      const userRole = getUserRole(data.session.user);
+      const metadata = data.session.user.user_metadata as { full_name?: string; name?: string };
+      setTeacherName(metadata.full_name ?? metadata.name ?? "Teacher");
+
+      if (userRole !== "teacher") {
+        window.location.assign(getDashboardPath(userRole));
         return;
       }
 
@@ -118,32 +80,6 @@ export function TeacherDashboardPage() {
 
     loadTeacherDashboard();
   }, []);
-
-  async function handleCreateAssessment(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    if (!accessToken) {
-      return;
-    }
-
-    setIsSaving(true);
-    setMessage("");
-
-    try {
-      const assessment = await createTeacherAssessment(accessToken, {
-        ...draft,
-        durationMinutes: Number(draft.durationMinutes) || 45,
-      });
-
-      setAssessments((currentAssessments) => [assessment, ...currentAssessments]);
-      setDraft(defaultDraft);
-      setMessage(`${assessment.title} was saved as a locked assessment.`);
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not save the assessment.");
-    } finally {
-      setIsSaving(false);
-    }
-  }
 
   async function handleToggleAssessment(assessment: TeacherAssessment) {
     if (!accessToken) {
@@ -192,176 +128,31 @@ export function TeacherDashboardPage() {
   }
 
   const teacherStats = createTeacherStats(assessments);
+  const statIcons = [Users, ClipboardList, CheckCircle2, BookOpen];
+  const navItems = [
+    { id: "overview", label: "Overview", href: "/teacher", icon: LayoutDashboard },
+    { id: "assessments", label: "Assessments", href: "#assessments", icon: ClipboardList },
+    { id: "student", label: "Student view", href: "/dashboard?preview=student&teacherTools=1", icon: Target },
+  ];
 
   return (
-    <main className="teacher-shell">
-      <header className="teacher-header">
-        <div>
-          <p>Teacher dashboard</p>
-          <h1>Assessment control room</h1>
-        </div>
-        <div className="teacher-header-actions">
-          <a href="/study-hall?preview=student&teacherTools=1">Student view</a>
-          <button type="button" onClick={handleSignOut}>
-            Sign out
-          </button>
-        </div>
+    <CorporateDashboardShell activeId="overview" navItems={navItems} onSignOut={handleSignOut} profileName={teacherName} profileRole="Teacher account">
+      <header className="staff-page-heading corporate-page-heading">
+        <div><p><LayoutDashboard size={15} /> Teacher dashboard</p><h1>Academic control center</h1><span>Manage assessments, staff access, and student learning from one workspace.</span></div>
+        <a className="corporate-heading-action" href="/staff?preview=staff&teacherTools=1">Open staff dashboard</a>
       </header>
 
-      <section className="teacher-grid" aria-label="Analytics summary">
-        {teacherStats.map((stat) => (
-          <article className="teacher-stat" key={stat.label}>
-            <span>{stat.label}</span>
-            <strong>{stat.value}</strong>
-          </article>
-        ))}
+      <section className="staff-kpi-grid" aria-label="Analytics summary">
+        {teacherStats.map((stat, index) => {
+          const Icon = statIcons[index];
+          return <article key={stat.label}><span><Icon size={19} /></span><div><p>{stat.label}</p><strong>{stat.value}</strong></div><em>Current workspace total</em></article>;
+        })}
       </section>
 
-      {message && <p className="teacher-message">{message}</p>}
+      {message && <p className="teacher-message corporate-message">{message}</p>}
 
-      <section className="teacher-section-grid">
-        <section className="teacher-panel">
-          <div className="teacher-panel-header">
-            <div>
-              <span>Builder</span>
-              <h2>Construct an exam</h2>
-            </div>
-            <p>Saved exams stay locked until you open them for students.</p>
-          </div>
-
-          <form className="teacher-assessment-form" onSubmit={handleCreateAssessment}>
-            <div className="teacher-field-grid">
-              <label>
-                Exam title
-                <input
-                  required
-                  type="text"
-                  value={draft.title}
-                  onChange={(event) => setDraft({ ...draft, title: event.target.value })}
-                />
-              </label>
-              <label>
-                Class
-                <select
-                  value={draft.classId}
-                  onChange={(event) => setDraft({ ...draft, classId: event.target.value })}
-                >
-                  <option value="shsat">SHSAT</option>
-                </select>
-              </label>
-              <label>
-                Duration
-                <input
-                  min="1"
-                  type="number"
-                  value={draft.durationMinutes}
-                  onChange={(event) => setDraft({ ...draft, durationMinutes: event.target.value })}
-                />
-              </label>
-              <label>
-                Question type
-                <select
-                  value={draft.questionType}
-                  onChange={(event) =>
-                    setDraft({ ...draft, questionType: event.target.value as QuestionType })
-                  }
-                >
-                  {questionTypeOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-
-            <label>
-              Exam description
-              <textarea
-                rows={3}
-                value={draft.description}
-                onChange={(event) => setDraft({ ...draft, description: event.target.value })}
-              />
-            </label>
-
-            <div className="teacher-field-grid teacher-field-grid-wide">
-              <label>
-                Passage title
-                <input
-                  type="text"
-                  value={draft.passageTitle}
-                  onChange={(event) => setDraft({ ...draft, passageTitle: event.target.value })}
-                />
-              </label>
-              <label>
-                Image URL
-                <input
-                  placeholder="Optional image link"
-                  type="url"
-                  value={draft.imageUrl}
-                  onChange={(event) => setDraft({ ...draft, imageUrl: event.target.value })}
-                />
-              </label>
-            </div>
-
-            <label>
-              Passage text
-              <textarea
-                rows={5}
-                value={draft.passageText}
-                onChange={(event) => setDraft({ ...draft, passageText: event.target.value })}
-              />
-            </label>
-
-            <label>
-              Question prompt
-              <textarea
-                rows={4}
-                value={draft.questionPrompt}
-                onChange={(event) => setDraft({ ...draft, questionPrompt: event.target.value })}
-              />
-            </label>
-
-            <div className="teacher-field-grid teacher-field-grid-wide">
-              <label>
-                Question topic
-                <input
-                  placeholder="Example: Geometry or Central Idea & Theme"
-                  type="text"
-                  value={draft.questionTopic}
-                  onChange={(event) => setDraft({ ...draft, questionTopic: event.target.value })}
-                />
-              </label>
-              <div />
-            </div>
-
-            <div className="teacher-field-grid teacher-field-grid-wide">
-              <label>
-                Choices
-                <textarea
-                  placeholder="One choice per line"
-                  rows={4}
-                  value={draft.questionChoices}
-                  onChange={(event) => setDraft({ ...draft, questionChoices: event.target.value })}
-                />
-              </label>
-              <label>
-                Answer key or rubric note
-                <textarea
-                  rows={4}
-                  value={draft.questionAnswer}
-                  onChange={(event) => setDraft({ ...draft, questionAnswer: event.target.value })}
-                />
-              </label>
-            </div>
-
-            <button disabled={isSaving} type="submit">
-              {isSaving ? "Saving" : "Save locked exam"}
-            </button>
-          </form>
-        </section>
-
-        <section className="teacher-panel">
+      <section className="teacher-section-grid" id="assessments">
+        <section className="teacher-panel teacher-class-panel">
           <div className="teacher-panel-header">
             <div>
               <span>Assignments</span>
@@ -410,6 +201,6 @@ export function TeacherDashboardPage() {
           </div>
         </section>
       </section>
-    </main>
+    </CorporateDashboardShell>
   );
 }

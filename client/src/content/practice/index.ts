@@ -1,11 +1,11 @@
-import { authorsPointOfViewQuestions } from "./questionBanks/authorsPointOfView";
-import { centralIdeaThemeQuestions } from "./questionBanks/centralIdeaTheme";
-import { evidenceSupportQuestions } from "./questionBanks/evidenceSupport";
-import { figurativeLanguageImageryQuestions } from "./questionBanks/figurativeLanguageImagery";
-import { inferenceQuestions } from "./questionBanks/inference";
-import { textStructureQuestions } from "./questionBanks/textStructure";
-import { toneMoodQuestions } from "./questionBanks/toneMood";
-import { wordPhraseMeaningQuestions } from "./questionBanks/wordPhraseMeaning";
+import { authorsPointOfViewQuestions } from "./questionBanks/authorsPointOfView/index";
+import { centralIdeaThemeQuestions } from "./questionBanks/centralIdeaTheme/index";
+import { evidenceSupportQuestions } from "./questionBanks/evidenceSupport/index";
+import { figurativeLanguageImageryQuestions } from "./questionBanks/figurativeLanguageImagery/index";
+import { inferenceQuestions } from "./questionBanks/inference/index";
+import { textStructureQuestions } from "./questionBanks/textStructure/index";
+import { toneMoodQuestions } from "./questionBanks/toneMood/index";
+import { wordPhraseMeaningQuestions } from "./questionBanks/wordPhraseMeaning/index";
 import type { PracticeTopic } from "./types";
 
 export const practiceTopics: PracticeTopic[] = [
@@ -72,4 +72,3 @@ export function getPracticeTopicBySlug(slug: string) {
 }
 
 export type { PracticeDifficulty, PracticeQuestion, PracticeTopic } from "./types";
-

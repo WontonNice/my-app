@@ -34,9 +34,17 @@ export function getEnrolledClassIds(appMetadata: Record<string, unknown> | undef
 }
 
 export function getUserRole(user: User) {
-    const role = user.user_metadata.role;
+    const role = user.app_metadata.role ?? user.user_metadata.role;
 
-    return role === "teacher" || role === "admin" ? "teacher" : "student";
+    if (role === "admin") {
+        return "admin";
+    }
+
+    if (role === "staff") {
+        return "staff";
+    }
+
+    return role === "teacher" ? "teacher" : "student";
 }
 
 export async function getAuthenticatedUser(

@@ -1,7 +1,9 @@
 import { useEffect, useState, type FormEvent } from "react";
 import type { Session } from "@supabase/supabase-js";
+import { BarChart3, BookOpen, CalendarDays, GraduationCap, LayoutDashboard, Target, Users, Zap } from "lucide-react";
+import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { getStudentClasses, joinStudentClass, type StudentClass } from "../lib/api";
-import { getUserRole } from "../lib/auth";
+import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 const isStudentPreview = new URLSearchParams(window.location.search).get("preview") === "student";
@@ -17,6 +19,7 @@ export function StudyHallPage() {
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
   const [isJoining, setIsJoining] = useState(false);
   const [message, setMessage] = useState("");
+  const [studentName, setStudentName] = useState("Student");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -34,8 +37,12 @@ export function StudyHallPage() {
         return;
       }
 
-      if (getUserRole(data.session.user) === "teacher" && !isStudentPreview) {
-        window.location.assign("/teacher");
+      const userRole = getUserRole(data.session.user);
+      const metadata = data.session.user.user_metadata as { full_name?: string; name?: string };
+      setStudentName(metadata.full_name ?? metadata.name ?? "Student");
+
+      if (userRole !== "student" && !(userRole === "teacher" && isStudentPreview)) {
+        window.location.assign(getDashboardPath(userRole));
         return;
       }
 
@@ -111,44 +118,36 @@ export function StudyHallPage() {
     );
   }
 
+  const navItems = [
+    { id: "dashboard", label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+    { id: "classes", label: "My classes", href: "/dashboard", icon: GraduationCap },
+    { id: "practice", label: "Practice", href: "/study-hall", icon: Target },
+    { id: "progress", label: "Progress", href: "/study-hall/shsat", icon: BarChart3 },
+  ];
+
   return (
-    <main className="study-shell">
-      <header className="study-header">
-        <a className="site-logo study-logo" href="/dashboard">
-          Nathan Tutors
-        </a>
-        <nav className="site-nav" aria-label="Study Hall navigation">
-          <a href="/dashboard">Classes</a>
-          <a href="/study-hall/shsat">SHSAT</a>
-          <a href="/study-hall/shsat">Portal</a>
-        </nav>
-        {isStudentPreview ? (
-          <a className="dashboard-signout study-signout" href="/teacher">
-            Teacher dashboard
-          </a>
-        ) : (
-          <button className="dashboard-signout study-signout" type="button" onClick={handleSignOut}>
-            Sign out
-          </button>
-        )}
+    <CorporateDashboardShell
+      activeId="classes"
+      navItems={navItems}
+      onSignOut={handleSignOut}
+      profileName={studentName}
+      profileRole={isStudentPreview ? "Teacher preview" : "Student account"}
+      returnHref={isStudentPreview ? "/teacher" : undefined}
+      returnLabel="Teacher dashboard"
+    >
+      <header className="staff-page-heading corporate-page-heading">
+        <div><p><BookOpen size={15} /> Student dashboard</p><h1>My learning hub</h1><span>Keep classes, assignments, and progress organized in one place.</span></div>
       </header>
-
-      {classes.length > 0 ? (
-        <ClassList classes={classes} message={message} />
-      ) : (
-        <JoinClassPanel
-          classCode={classCode}
-          isJoining={isJoining}
-          message={message}
-          onClassCodeChange={setClassCode}
-          onJoinClass={handleJoinClass}
-        />
+      <section className="staff-kpi-grid" aria-label="Student summary">
+        <article><span><GraduationCap size={19} /></span><div><p>Enrolled classes</p><strong>{classes.length}</strong></div><em>Active this term</em></article>
+        <article><span><CalendarDays size={19} /></span><div><p>Upcoming work</p><strong>3</strong></div><em>Next due tomorrow</em></article>
+        <article><span><Zap size={19} /></span><div><p>XP earned</p><strong>240</strong></div><em>Keep building momentum</em></article>
+        <article><span><Users size={19} /></span><div><p>Attendance</p><strong>96%</strong></div><em>Excellent standing</em></article>
+      </section>
+      {classes.length > 0 ? <ClassList classes={classes} message={message} /> : (
+        <JoinClassPanel classCode={classCode} isJoining={isJoining} message={message} onClassCodeChange={setClassCode} onJoinClass={handleJoinClass} />
       )}
-
-      <a className="study-close" href="/" aria-label="Return home">
-        X
-      </a>
-    </main>
+    </CorporateDashboardShell>
   );
 }
 
@@ -168,12 +167,10 @@ function JoinClassPanel({
   onJoinClass,
 }: JoinClassPanelProps) {
   return (
-    <section className="study-detail" aria-labelledby="study-title">
-      <StudyPreview />
-
-      <div className="study-copy">
-        <span className="study-pill">Study Hall</span>
-        <h1 id="study-title">Join a class</h1>
+    <section className="staff-panel student-class-panel" aria-labelledby="study-title">
+      <div className="student-class-panel-copy">
+        <span>Enrollment</span>
+        <h2 id="study-title">Join a class</h2>
         <p>
           Enter the classroom code from your tutor. Once you join, Study Hall becomes your
           class hub for assignments, assessments, and prep missions.
@@ -204,12 +201,9 @@ function JoinClassPanel({
 
 function ClassList({ classes, message }: { classes: StudentClass[]; message: string }) {
   return (
-    <section className="study-detail study-detail-list" aria-labelledby="class-list-title">
-      <StudyPreview />
-
-      <div className="study-copy study-class-list">
-        <span className="study-pill">Your rooms</span>
-        <h1 id="class-list-title">Choose a class</h1>
+    <section className="staff-panel student-class-panel" aria-labelledby="class-list-title">
+      <header className="staff-panel-header"><div><p>Current enrollment</p><h2 id="class-list-title">My classes</h2></div><span className="student-class-count">{classes.length} active</span></header>
+      <div className="student-class-panel-copy">
         <p>
           You are already enrolled. Pick a room to open its portal, start work, and see
           what is coming next.
@@ -228,26 +222,5 @@ function ClassList({ classes, message }: { classes: StudentClass[]; message: str
         {message && <p className="study-message">{message}</p>}
       </div>
     </section>
-  );
-}
-
-function StudyPreview() {
-  return (
-    <div className="study-preview" aria-hidden="true">
-      <div className="study-preview-screen">
-        <span className="study-preview-window study-preview-window-one" />
-        <span className="study-preview-window study-preview-window-two" />
-        <span className="study-preview-window study-preview-window-three" />
-        <div className="study-preview-desk">
-          <span />
-          <span />
-          <span />
-        </div>
-        <div className="study-preview-badge">
-          <span>Room</span>
-          <strong>SHSAT</strong>
-        </div>
-      </div>
-    </div>
   );
 }

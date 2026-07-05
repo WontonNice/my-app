@@ -10,14 +10,24 @@ import {
   MessageSquare,
   Monitor,
   MousePointer2,
+  Pause,
   Pencil,
+  Play,
   User,
   X,
 } from "lucide-react";
 import { resolveExamContent, type ExamQuestion } from "../content/exams";
-import { getStudentAssessment, type TeacherAssessment } from "../lib/api";
+import { getStudentAssessment, saveCloudExamResult, type TeacherAssessment } from "../lib/api";
 import { getUserRole } from "../lib/auth";
 import { formatDuration, getAssessmentIdFromPath, getDisplayName } from "../lib/exam";
+import {
+  getExamTimerDisplay,
+  loadExamTimer,
+  pauseExamTimer,
+  resumeExamTimer,
+  saveExamTimerState,
+  type ExamTimerState,
+} from "../lib/examTimer";
 import {
   createExamResult,
   getAllExamQuestions,
@@ -402,26 +412,65 @@ function getTeacherPreviewDashboardHref() {
   return "/study-hall";
 }
 
-function ExamUserMenu({ studentName }: { studentName: string }) {
+function ExamUserMenu({
+  isOpen = false,
+  onPauseTimer,
+  onToggle,
+  studentName,
+}: {
+  isOpen?: boolean;
+  onPauseTimer?: () => void;
+  onToggle?: () => void;
+  studentName: string;
+}) {
   return (
     <div className="exam-module-user">
       <span>{studentName}</span>
-      <button type="button" aria-label="User menu">
+      <button
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
+        onClick={onToggle}
+        type="button"
+        aria-label="User menu"
+      >
         <User aria-hidden="true" size={14} fill="currentColor" strokeWidth={2.2} />
         <ChevronDown aria-hidden="true" size={12} strokeWidth={2.4} />
       </button>
+      {isOpen && onPauseTimer ? (
+        <div className="exam-user-menu-dropdown" role="menu">
+          <button onClick={onPauseTimer} role="menuitem" type="button">
+            <Pause aria-hidden="true" size={15} strokeWidth={2.2} />
+            Pause timer
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
 
-function ExamModuleHeader({ studentName }: { studentName: string }) {
+function ExamModuleHeader({
+  isUserMenuOpen,
+  onPauseTimer,
+  onToggleUserMenu,
+  studentName,
+}: {
+  isUserMenuOpen?: boolean;
+  onPauseTimer?: () => void;
+  onToggleUserMenu?: () => void;
+  studentName: string;
+}) {
   return (
     <>
       <header className="exam-module-header">
         <a className="exam-module-brand" href="/study-hall">
           Nathan Tutors
         </a>
-        <ExamUserMenu studentName={studentName} />
+        <ExamUserMenu
+          isOpen={isUserMenuOpen}
+          onPauseTimer={onPauseTimer}
+          onToggle={onToggleUserMenu}
+          studentName={studentName}
+        />
       </header>
       <div className="exam-module-bluebar" />
       <div className="exam-module-shadow" />
@@ -444,6 +493,7 @@ function ExamToolbar({
   isReviewOpen = false,
   isNotepadOpen = false,
   onNext,
+  onPauseTimer,
   onPrevious,
   onReviewFilterChange,
   onReviewItemSelect,
@@ -452,6 +502,8 @@ function ExamToolbar({
   onToggleFastForward,
   onToggleReview,
   onToggleBookmark,
+  onToggleTimer,
+  onToggleUserMenu,
   reviewFilter = "all",
   reviewItems = [],
   reviewQuestionCount = 0,
@@ -459,6 +511,10 @@ function ExamToolbar({
   showStatusIcon = true,
   showTimer = true,
   showWorkTools = true,
+  isTimerOvertime = false,
+  isTimerVisible = false,
+  isUserMenuOpen = false,
+  timerText = "3:00:00",
   unansweredCount = 0,
   studentName,
 }: {
@@ -475,7 +531,11 @@ function ExamToolbar({
   isPreviousActive?: boolean;
   isReviewOpen?: boolean;
   isNotepadOpen?: boolean;
+  isTimerOvertime?: boolean;
+  isTimerVisible?: boolean;
+  isUserMenuOpen?: boolean;
   onNext?: () => void;
+  onPauseTimer?: () => void;
   onPrevious?: () => void;
   onReviewFilterChange?: (filter: ReviewFilter) => void;
   onReviewItemSelect?: (itemId: ReviewItemId) => void;
@@ -484,6 +544,8 @@ function ExamToolbar({
   onToggleFastForward?: () => void;
   onToggleReview?: () => void;
   onToggleBookmark?: () => void;
+  onToggleTimer?: () => void;
+  onToggleUserMenu?: () => void;
   reviewFilter?: ReviewFilter;
   reviewItems?: ReviewItem[];
   reviewQuestionCount?: number;
@@ -491,6 +553,7 @@ function ExamToolbar({
   showStatusIcon?: boolean;
   showTimer?: boolean;
   showWorkTools?: boolean;
+  timerText?: string;
   unansweredCount?: number;
   studentName: string;
 }) {
@@ -696,15 +759,49 @@ function ExamToolbar({
               </div>
             ) : null}
             {showTimer ? (
-              <button type="button" className="exam-session-timer-button" aria-label="Show timer">
-                <Clock3 aria-hidden="true" size={16} strokeWidth={2.2} />
-              </button>
+              <div
+                className={`exam-session-timer ${isTimerVisible ? "is-visible" : ""} ${
+                  isTimerOvertime ? "is-overtime" : ""
+                }`}
+              >
+                {isTimerVisible ? (
+                  <output aria-label={isTimerOvertime ? "Overtime elapsed" : "Time remaining"}>
+                    {timerText}
+                  </output>
+                ) : null}
+                <button
+                  aria-label={isTimerVisible ? "Hide timer" : "Show timer"}
+                  className="exam-session-timer-button"
+                  data-tooltip={isTimerVisible ? "Hide Timer" : "Show Timer"}
+                  onClick={onToggleTimer}
+                  type="button"
+                >
+                  <Clock3 aria-hidden="true" size={16} strokeWidth={2.2} />
+                </button>
+              </div>
             ) : null}
             <span className="exam-session-user-name">{studentName}</span>
-            <button type="button" className="exam-session-user-button" aria-label="User menu">
-              <User aria-hidden="true" size={14} fill="currentColor" strokeWidth={2.2} />
-              <ChevronDown aria-hidden="true" size={12} strokeWidth={2.4} />
-            </button>
+            <div className="exam-session-user-menu-wrap">
+              <button
+                aria-expanded={isUserMenuOpen}
+                aria-haspopup="menu"
+                className="exam-session-user-button"
+                onClick={onToggleUserMenu}
+                type="button"
+                aria-label="User menu"
+              >
+                <User aria-hidden="true" size={14} fill="currentColor" strokeWidth={2.2} />
+                <ChevronDown aria-hidden="true" size={12} strokeWidth={2.4} />
+              </button>
+              {isUserMenuOpen && onPauseTimer ? (
+                <div className="exam-user-menu-dropdown" role="menu">
+                  <button onClick={onPauseTimer} role="menuitem" type="button">
+                    <Pause aria-hidden="true" size={15} strokeWidth={2.2} />
+                    Pause timer
+                  </button>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       </header>
@@ -736,6 +833,7 @@ function ExamToolbar({
 }
 
 export function ExamSessionPage() {
+  const [accessToken, setAccessToken] = useState("");
   const [assessment, setAssessment] = useState<TeacherAssessment | null>(null);
   const [activeTool, setActiveTool] = useState<ExamTool>("pointer");
   const [activeMathQuestionIndex, setActiveMathQuestionIndex] = useState(0);
@@ -752,8 +850,10 @@ export function ExamSessionPage() {
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
   const [isNotepadOpen, setIsNotepadOpen] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
+  const [isTimerVisible, setIsTimerVisible] = useState(false);
   const [isUnansweredModalOpen, setIsUnansweredModalOpen] = useState(false);
   const [isTeacherPreviewSession, setIsTeacherPreviewSession] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [passageNotes, setPassageNotes] = useState<PassageNotes>({});
   const [reviewFilter, setReviewFilter] = useState<ReviewFilter>("all");
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
@@ -763,6 +863,8 @@ export function ExamSessionPage() {
   const [studentId, setStudentId] = useState("");
   const [studentName, setStudentName] = useState("Student");
   const [textHighlights, setTextHighlights] = useState<TextHighlights>({});
+  const [timerNow, setTimerNow] = useState(() => Date.now());
+  const [timerState, setTimerState] = useState<ExamTimerState | null>(null);
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -781,7 +883,10 @@ export function ExamSessionPage() {
 
       const fallbackName = getDisplayName(data.session.user);
       const nextStartingSubject = getStoredStartingSubject(assessmentId);
+      setTimerState(loadExamTimer(assessmentId));
+      setTimerNow(Date.now());
       setStudentId(data.session.user.id);
+      setAccessToken(data.session.access_token);
       setStudentName(getStoredExamName(assessmentId, fallbackName));
       setStartingSubject(nextStartingSubject);
       setSessionScreen(nextStartingSubject === "math" ? "mathIntro" : "directions");
@@ -803,6 +908,29 @@ export function ExamSessionPage() {
 
     loadExamSession();
   }, []);
+
+  useEffect(() => {
+    if (!timerState || timerState.pausedAt !== null) {
+      return;
+    }
+
+    const timerInterval = window.setInterval(() => setTimerNow(Date.now()), 1000);
+    return () => window.clearInterval(timerInterval);
+  }, [timerState]);
+
+  useEffect(() => {
+    if (!assessment || isCheckingSession || sessionScreen === "testOver") {
+      return;
+    }
+
+    function confirmBeforeLeaving(event: BeforeUnloadEvent) {
+      event.preventDefault();
+      event.returnValue = "";
+    }
+
+    window.addEventListener("beforeunload", confirmBeforeLeaving);
+    return () => window.removeEventListener("beforeunload", confirmBeforeLeaving);
+  }, [assessment, isCheckingSession, sessionScreen]);
 
   if (isCheckingSession) {
     return <main className="loading-shell">Loading exam session...</main>;
@@ -828,6 +956,7 @@ export function ExamSessionPage() {
     );
   }
 
+  const currentAssessmentId = assessment.id;
   const examContent = resolveExamContent(assessment);
   const mathSection = examContent.mathSection ?? {
     directions: {
@@ -890,6 +1019,10 @@ export function ExamSessionPage() {
   const activeQuestionTitleId = `question-title-${activeQuestion.id}`;
   const activeQuestionNumber = Math.min(activeQuestionIndex + 1, activePassageSet.questionCount);
   const assessmentLabel = examContent.title.toUpperCase();
+  const timerDisplay = timerState
+    ? getExamTimerDisplay(timerState, timerNow)
+    : { isOvertime: false, text: "3:00:00" };
+  const isExamPaused = Boolean(timerState && timerState.pausedAt !== null);
   const passageSetDisplayLabel = getPassageSetLabel(
     activePassageSetIndex,
     examContent.passageSets.length,
@@ -962,7 +1095,16 @@ export function ExamSessionPage() {
       return;
     }
 
-    saveExamResult(studentId, createExamResult(examContent, answers));
+    const result = createExamResult(examContent, answers);
+    saveExamResult(studentId, result);
+
+    if (accessToken && !isTeacherPreviewSession) {
+      void saveCloudExamResult(
+        accessToken,
+        result.assessmentId,
+        result as unknown as Record<string, unknown>,
+      ).catch(() => undefined);
+    }
   }
 
   function handleSpeedFinish() {
@@ -983,6 +1125,33 @@ export function ExamSessionPage() {
     setIsUnansweredModalOpen(false);
     saveCompletedExam(randomAnswers);
     setSessionScreen("testOver");
+  }
+
+  function handlePauseTimer() {
+    if (!timerState) {
+      return;
+    }
+
+    const nextTimerState = pauseExamTimer(timerState);
+    saveExamTimerState(currentAssessmentId, nextTimerState);
+    setTimerState(nextTimerState);
+    setTimerNow(nextTimerState.pausedAt ?? timerNow);
+    setIsUserMenuOpen(false);
+    setIsReviewOpen(false);
+    setIsNotepadOpen(false);
+    setActiveTool("pointer");
+    clearTransientExamUi();
+  }
+
+  function handleResumeTimer() {
+    if (!timerState) {
+      return;
+    }
+
+    const nextTimerState = resumeExamTimer(timerState);
+    saveExamTimerState(currentAssessmentId, nextTimerState);
+    setTimerState(nextTimerState);
+    setTimerNow(Date.now());
   }
 
   function showChoiceLimitWarning(maxChoices: number) {
@@ -1745,7 +1914,20 @@ export function ExamSessionPage() {
         : sessionScreen === "passage"
           ? (`question-${activeQuestionIndex}` as const)
           : undefined;
+  const timerToolbarProps = {
+    isTimerOvertime: timerDisplay.isOvertime,
+    isTimerVisible,
+    isUserMenuOpen,
+    onPauseTimer: handlePauseTimer,
+    onToggleTimer: () => {
+      setIsUserMenuOpen(false);
+      setIsTimerVisible((currentValue) => !currentValue);
+    },
+    onToggleUserMenu: () => setIsUserMenuOpen((currentValue) => !currentValue),
+    timerText: timerDisplay.text,
+  };
   const fastForwardToolbarProps = {
+    ...timerToolbarProps,
     canUseFastForward: isTeacherPreviewSession,
     isFastForwardEnabled,
     onSpeedFinish: handleSpeedFinish,
@@ -1774,10 +1956,27 @@ export function ExamSessionPage() {
     unansweredCount,
   };
 
+  const moduleHeaderProps = {
+    isUserMenuOpen,
+    onPauseTimer: handlePauseTimer,
+    onToggleUserMenu: () => setIsUserMenuOpen((currentValue) => !currentValue),
+  };
+
+  if (isExamPaused) {
+    return (
+      <main className="exam-paused-screen" aria-label="Exam paused">
+        <button onClick={handleResumeTimer} type="button">
+          <Play aria-hidden="true" fill="currentColor" size={16} strokeWidth={2} />
+          Resume exam
+        </button>
+      </main>
+    );
+  }
+
   if (sessionScreen === "mathIntro") {
     return (
       <main className="exam-module-shell">
-        <ExamModuleHeader studentName={studentName} />
+        <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />
 
         <section className="exam-passage-intro-card" aria-labelledby="math-intro-title">
           <div className="exam-passage-intro-panel">
@@ -1856,7 +2055,6 @@ export function ExamSessionPage() {
           onPrevious={handleMathPrevious}
           onSelectTool={handleSelectTool}
           showReviewTools={false}
-          showTimer={false}
           studentName={studentName}
         />
 
@@ -2086,7 +2284,7 @@ export function ExamSessionPage() {
   if (sessionScreen === "standaloneIntro" && standaloneSection) {
     return (
       <main className="exam-module-shell">
-        <ExamModuleHeader studentName={studentName} />
+        <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />
 
         <section className="exam-passage-intro-card" aria-labelledby="standalone-intro-title">
           <div className="exam-passage-intro-panel">
@@ -2138,7 +2336,6 @@ export function ExamSessionPage() {
           }}
           onSelectTool={handleSelectTool}
           showReviewTools={false}
-          showTimer={false}
           studentName={studentName}
         />
 
@@ -2176,7 +2373,6 @@ export function ExamSessionPage() {
           onPrevious={handleStandalonePrevious}
           onSelectTool={handleSelectTool}
           showReviewTools={false}
-          showTimer={false}
           studentName={studentName}
         />
 
@@ -2531,7 +2727,7 @@ export function ExamSessionPage() {
   if (sessionScreen === "passageIntro") {
     return (
       <main className="exam-module-shell">
-        <ExamModuleHeader studentName={studentName} />
+        <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />
 
         <section className="exam-passage-intro-card" aria-labelledby="passage-intro-title">
           <div className="exam-passage-intro-panel">
