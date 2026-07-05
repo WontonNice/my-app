@@ -14,6 +14,7 @@ export function AuthPage({ mode }: AuthPageProps) {
   const [message, setMessage] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loginMethod, setLoginMethod] = useState<"email" | "username">("username");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -109,16 +110,31 @@ export function AuthPage({ mode }: AuthPageProps) {
             </label>
           )}
 
+          {!isSignup ? (
+            <div className="auth-login-methods" aria-label="Login method">
+              <button aria-pressed={loginMethod === "username"} className={loginMethod === "username" ? "is-active" : ""} onClick={() => setLoginMethod("username")} type="button">Staff username</button>
+              <button aria-pressed={loginMethod === "email"} className={loginMethod === "email" ? "is-active" : ""} onClick={() => setLoginMethod("email")} type="button">Email</button>
+            </div>
+          ) : null}
+
           <label>
-            {isSignup ? "Email" : "Email or username"}
+            {isSignup ? "Email" : loginMethod === "username" ? "Staff username" : "Email address"}
             <input
               autoComplete={isSignup ? "email" : "username"}
+              autoCapitalize="none"
+              autoCorrect="off"
+              inputMode={isSignup || loginMethod === "email" ? "email" : "text"}
+              name={isSignup ? "email" : "login-identifier"}
+              placeholder={!isSignup && loginMethod === "username" ? "Example: pss5" : undefined}
               required
-              type={isSignup ? "email" : "text"}
+              spellCheck={false}
+              type={isSignup || loginMethod === "email" ? "email" : "text"}
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
           </label>
+
+          {!isSignup && loginMethod === "username" ? <small className="auth-username-hint">Staff and administrator accounts can sign in without an email address.</small> : null}
 
           <label>
             Password

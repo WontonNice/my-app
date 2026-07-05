@@ -62,12 +62,19 @@ function toStaffAccount(user: {
 }) {
     const fallbackUsername = user.email?.split("@")[0] ?? "staff";
     const dashboardData = user.user_metadata.dashboard_data;
+    const boazRoster = ["Chloe Tong", "Harrison Cheng", "Kaitlyn Lim", "Dylan Cui", "Anabelle Liang", "Joanna Zhao", "Jun Kang"].map(
+        (name, index) => ({ assignment: "Promise Summer School", cohort: "Boaz Lim", grade: String(6 + (index % 3)), id: `PSS-5${String(index + 1).padStart(2, "0")}`, name, status: "Active" }),
+    );
+    const normalizedDashboardData = dashboardData && typeof dashboardData === "object" && !Array.isArray(dashboardData)
+        ? dashboardData as Record<string, unknown>
+        : { attendance: [], roster: [] };
+    const roster = normalizedDashboardData.roster;
 
     return {
         createdAt: user.created_at,
-        dashboardData: dashboardData && typeof dashboardData === "object" && !Array.isArray(dashboardData)
-            ? dashboardData
-            : { attendance: [], roster: [] },
+        dashboardData: fallbackUsername === "pss5" && (!Array.isArray(roster) || roster.length === 0)
+            ? { ...normalizedDashboardData, roster: boazRoster }
+            : normalizedDashboardData,
         fullName: typeof user.user_metadata.full_name === "string" ? user.user_metadata.full_name : fallbackUsername,
         id: user.id,
         username: typeof user.user_metadata.username === "string" ? user.user_metadata.username : fallbackUsername,

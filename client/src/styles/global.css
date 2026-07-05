@@ -880,6 +880,47 @@ button {
   margin-top: 28px;
 }
 
+.auth-login-methods {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  border-radius: 9px;
+  background: rgb(255 255 255 / 7%);
+  padding: 5px;
+}
+
+.auth-login-methods button {
+  min-height: 39px;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: rgb(255 255 255 / 60%);
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.auth-login-methods button.is-active {
+  border-color: rgb(255 255 255 / 13%);
+  background: #ffffff;
+  color: #172f47;
+}
+
+.auth-username-hint {
+  margin-top: -7px;
+  color: rgb(255 255 255 / 58%);
+  font-family: system-ui, sans-serif;
+  font-size: 0.72rem;
+}
+
+.auth-form .auth-login-methods button {
+  width: 100%;
+  justify-self: stretch;
+  margin: 0;
+  padding: 0 8px;
+}
+
 .auth-form label {
   display: grid;
   gap: 7px;

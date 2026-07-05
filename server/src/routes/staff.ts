@@ -4,6 +4,16 @@ import { getAuthenticatedUser, getUserRole } from "../lib/auth";
 import { supabase } from "../lib/supabase";
 
 const allowedStatuses = new Set(["Absent", "Late", "Present", "Unmarked"]);
+const boazRoster = ["Chloe Tong", "Harrison Cheng", "Kaitlyn Lim", "Dylan Cui", "Anabelle Liang", "Joanna Zhao", "Jun Kang"].map(
+    (name, index) => ({
+        assignment: "Promise Summer School",
+        cohort: "Boaz Lim",
+        grade: String(6 + (index % 3)),
+        id: `PSS-5${String(index + 1).padStart(2, "0")}`,
+        name,
+        status: "Active",
+    }),
+);
 
 export const staffRouter = Router();
 
@@ -58,6 +68,9 @@ staffRouter.put("/attendance", async (request, response) => {
     const nextDashboardData = {
         ...dashboardData,
         attendanceRecords: { ...attendanceRecords, [date]: statuses },
+        roster: target.user_metadata.username === "pss5" && (!Array.isArray(dashboardData.roster) || dashboardData.roster.length === 0)
+            ? boazRoster
+            : dashboardData.roster,
     };
 
     const saved = await supabase.auth.admin.updateUserById(target.id, {

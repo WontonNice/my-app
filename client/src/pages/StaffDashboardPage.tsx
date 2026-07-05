@@ -59,6 +59,17 @@ const defaultDashboardData: StaffDashboardData = {
   roster: defaultRosterRows,
 };
 
+const boazRoster: StaffDashboardData["roster"] = [
+  "Chloe Tong", "Harrison Cheng", "Kaitlyn Lim", "Dylan Cui", "Anabelle Liang", "Joanna Zhao", "Jun Kang",
+].map((name, index) => ({
+  assignment: "Promise Summer School",
+  cohort: "Boaz Lim",
+  grade: String(6 + (index % 3)),
+  id: `PSS-5${String(index + 1).padStart(2, "0")}`,
+  name,
+  status: "Active",
+}));
+
 const isStaffPreview = new URLSearchParams(window.location.search).get("preview") === "staff";
 const previewAccountId = new URLSearchParams(window.location.search).get("accountId");
 
@@ -234,13 +245,16 @@ export function StaffDashboardPage() {
   useEffect(() => {
     if (!isSupabaseConfigured) return;
 
-    getSupabaseClient().auth.getSession().then(async ({ data }) => {
+    const supabase = getSupabaseClient();
+    supabase.auth.getSession().then(async ({ data }) => {
       if (!data.session) {
         window.location.assign("/login");
         return;
       }
 
-      const role = getUserRole(data.session.user);
+      const freshUserResult = await supabase.auth.getUser();
+      const currentUser = freshUserResult.data.user ?? data.session.user;
+      const role = getUserRole(currentUser);
       setAccessToken(data.session.access_token);
       if (role === "admin") setPreviewReturnPath("/admin");
       if (role !== "staff" && !((role === "teacher" || role === "admin") && isStaffPreview)) {
@@ -248,7 +262,7 @@ export function StaffDashboardPage() {
         return;
       }
 
-      const metadata = data.session.user.user_metadata as { full_name?: string; name?: string };
+      const metadata = currentUser.user_metadata as { full_name?: string; name?: string };
       if (role === "admin" && isStaffPreview && previewAccountId) {
         try {
           const accounts = await getStaffAccounts(data.session.access_token);
@@ -260,8 +274,13 @@ export function StaffDashboardPage() {
         }
       } else {
         setStaffName(metadata.full_name ?? metadata.name ?? "Operations Staff");
-        const storedDashboardData = data.session.user.user_metadata.dashboard_data as StaffDashboardData | undefined;
-        setDashboardData(storedDashboardData ?? { attendance: [], roster: [] });
+        const storedDashboardData = currentUser.user_metadata.dashboard_data as StaffDashboardData | undefined;
+        const username = currentUser.user_metadata.username;
+        setDashboardData(
+          username === "pss5" && !(storedDashboardData?.roster?.length)
+            ? { ...(storedDashboardData ?? { attendance: [] }), roster: boazRoster }
+            : storedDashboardData ?? { attendance: [], roster: [] },
+        );
       }
       setIsCheckingSession(false);
     });
@@ -293,7 +312,7 @@ export function StaffDashboardPage() {
         date: selectedAttendanceDate,
         statuses: attendanceStatuses,
       });
-      setDashboardData(savedData);
+      setDashboardData({ ...savedData, roster: savedData.roster?.length ? savedData.roster : dashboardData.roster });
       setAttendanceSaveMessage("Attendance saved permanently");
     } catch (error) {
       setAttendanceSaveMessage(error instanceof Error ? error.message : "Attendance could not be saved.");
