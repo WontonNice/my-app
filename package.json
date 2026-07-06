@@ -20,6 +20,7 @@
         "typecheck:client": "npm run typecheck --workspace client",
         "typecheck:server": "npm run typecheck --workspace server",
         "start": "npm run start --workspace server",
+        "seed:students": "npm run seed:students --workspace server",
         "lint": "npm run lint --workspace client",
         "lint:client": "npm run lint --workspace client",
         "preview": "npm run preview --workspace client"

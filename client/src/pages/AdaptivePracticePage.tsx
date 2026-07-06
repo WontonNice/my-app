@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { BookOpen, Search, Sparkles } from "lucide-react";
+import { BarChart3, BookOpen, ClipboardList, GraduationCap, LayoutDashboard, Search, Sparkles, Target } from "lucide-react";
+import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { advancedPracticePassages } from "../content/advancedPractice";
 import { practiceTopics } from "../content/practice";
 import { getLearningProgress, getStudentAssessments, getStudentClasses, type StudentAssessment } from "../lib/api";
@@ -10,6 +11,28 @@ import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 const pageSearchParams = new URLSearchParams(window.location.search);
 const isStudentPreview = pageSearchParams.get("preview") === "student";
 const hasTeacherPreviewTools = isStudentPreview && pageSearchParams.get("teacherTools") === "1";
+const previewQuery = hasTeacherPreviewTools ? "?preview=student&teacherTools=1" : "";
+
+type LabSection = "Adaptive Practice" | "Advanced Practice" | "Assessments" | "Test Results";
+
+function getInitialSection(): LabSection {
+  const section = pageSearchParams.get("section");
+  if (section === "advanced") return "Advanced Practice";
+  if (section === "assessments") return "Assessments";
+  if (section === "results") return "Test Results";
+  return "Adaptive Practice";
+}
+
+function getLabHref(section?: "advanced" | "assessments" | "results") {
+  const params = new URLSearchParams();
+  if (section) params.set("section", section);
+  if (hasTeacherPreviewTools) {
+    params.set("preview", "student");
+    params.set("teacherTools", "1");
+  }
+  const query = params.toString();
+  return `/study-hall${query ? `?${query}` : ""}`;
+}
 
 function getAssessmentStartHref(assessmentId: string) {
   if (!hasTeacherPreviewTools) {
@@ -27,6 +50,11 @@ function getAssessmentResultHref(assessmentId: string) {
 function getAdvancedPassageHref(passageId: string) {
   const query = hasTeacherPreviewTools ? "?preview=student&teacherTools=1" : "";
   return `/advanced-practice/${passageId}${query}`;
+}
+
+function getTopicHref(topicSlug: string) {
+  const query = hasTeacherPreviewTools ? "?preview=student&teacherTools=1" : "";
+  return `/practice/${topicSlug}${query}`;
 }
 
 const targetCards = [
@@ -110,9 +138,9 @@ function getEnglishTopicProgress(results: ExamResult[]) {
   const progress = new Map<string, { correct: number; total: number }>();
 
   results.forEach((result) => {
-    result.subjects
+    (Array.isArray(result.subjects) ? result.subjects : [])
       .filter((subject) => subject.subject === "English Language Arts")
-      .flatMap((subject) => subject.topics)
+      .flatMap((subject) => Array.isArray(subject.topics) ? subject.topics : [])
       .forEach((topic) => {
         const current = progress.get(topic.topic) ?? { correct: 0, total: 0 };
         progress.set(topic.topic, {
@@ -125,22 +153,7 @@ function getEnglishTopicProgress(results: ExamResult[]) {
   return progress;
 }
 
-const sidebarItems = [
-  "Test Results",
-  "Adaptive Practice",
-  "Assessments",
-  "Advanced Practice",
-  "Achievements",
-  "Ask Tutor AI",
-  "My Classes",
-  "Parent Hub",
-  "Membership",
-  "Settings",
-] as const;
-
-type SidebarItem = (typeof sidebarItems)[number];
-
-function getSectionHeading(section: SidebarItem) {
+function getSectionHeading(section: LabSection) {
   if (section === "Assessments") {
     return {
       description: "Exams stay locked until your teacher opens them from the teacher dashboard.",
@@ -171,13 +184,12 @@ function getSectionHeading(section: SidebarItem) {
 }
 
 export function AdaptivePracticePage() {
-  const [activeSection, setActiveSection] = useState<SidebarItem>(
-    pageSearchParams.get("section") === "advanced" ? "Advanced Practice" : "Adaptive Practice",
-  );
+  const [activeSection] = useState<LabSection>(getInitialSection);
   const [assessmentMessage, setAssessmentMessage] = useState("");
   const [assessments, setAssessments] = useState<StudentAssessment[]>([]);
   const [examResults, setExamResults] = useState<ExamResult[]>([]);
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
+  const [studentName, setStudentName] = useState("Student");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -191,6 +203,8 @@ export function AdaptivePracticePage() {
       }
 
       const userRole = getUserRole(data.session.user);
+      const metadata = data.session.user.user_metadata as { full_name?: string; name?: string };
+      setStudentName(metadata.full_name ?? metadata.name ?? data.session.user.email?.split("@")[0] ?? "Student");
       let savedResults = getExamResults(data.session.user.id);
       try {
         const cloudProgress = await getLearningProgress(data.session.access_token);
@@ -255,61 +269,30 @@ export function AdaptivePracticePage() {
   }
 
   const sectionHeading = getSectionHeading(activeSection);
+  const activeId = activeSection === "Test Results" ? "results" : activeSection === "Assessments" ? "assessments" : activeSection === "Advanced Practice" ? "advanced" : "practice";
+  const navItems = [
+    { id: "dashboard", label: "Dashboard", href: `/dashboard${previewQuery}`, icon: LayoutDashboard },
+    { id: "class", label: "SHSAT class", href: `/study-hall/shsat${previewQuery}`, icon: GraduationCap },
+    { id: "practice", label: "Practice topics", href: getLabHref(), icon: Target },
+    { id: "results", label: "Test results", href: getLabHref("results"), icon: BarChart3 },
+    { id: "assessments", label: "Assessments", href: getLabHref("assessments"), icon: ClipboardList },
+    { id: "advanced", label: "Advanced practice", href: getLabHref("advanced"), icon: Sparkles },
+  ];
 
   return (
-    <main className="shsat-shell">
-      <aside className="shsat-sidebar" aria-label="SHSAT navigation">
-        <a className="shsat-brand" href="/study-hall/shsat">
-          <span>NT</span>
-          <strong>SHSAT</strong>
-          <em>lab</em>
-        </a>
+    <CorporateDashboardShell activeId={activeId} navItems={navItems} onSignOut={handleSignOut} profileName={studentName} profileRole={isStudentPreview ? "Teacher preview" : "Student account"} returnHref={isStudentPreview ? "/teacher" : undefined} returnLabel="Teacher dashboard">
+      <header className="staff-page-heading corporate-page-heading shsat-lab-heading">
+        <div><p><BookOpen size={15} /> SHSAT Lab</p><h1>{sectionHeading.title}</h1><span>{sectionHeading.description}</span></div>
+        <a className="corporate-heading-action" href={getLabHref("advanced")}><Sparkles size={15} /> Browse advanced practice</a>
+      </header>
+      <section className="staff-kpi-grid" aria-label="SHSAT learning summary">
+        <article><span><Target size={19} /></span><div><p>Practice topics</p><strong>{practiceTopics.length}</strong></div><em>Four difficulty levels</em></article>
+        <article><span><BarChart3 size={19} /></span><div><p>Tests completed</p><strong>{examResults.length}</strong></div><em>Saved assessment history</em></article>
+        <article><span><ClipboardList size={19} /></span><div><p>Open assessments</p><strong>{assessments.filter((assessment) => assessment.status === "open").length}</strong></div><em>{assessments.length} assigned total</em></article>
+        <article><span><Sparkles size={19} /></span><div><p>Advanced passages</p><strong>{advancedPracticePassages.length}</strong></div><em>Close-reading catalog</em></article>
+      </section>
 
-        <nav className="shsat-side-nav" aria-label="SHSAT sections">
-          {sidebarItems.map((item) => (
-            <button
-              className={item === activeSection ? "is-active" : undefined}
-              key={item}
-              type="button"
-              onClick={() => setActiveSection(item)}
-            >
-              <span aria-hidden="true">{item.slice(0, 1)}</span>
-              {item}
-            </button>
-          ))}
-        </nav>
-
-        <div className="shsat-countdown">
-          <span>SHSAT Countdown</span>
-          <strong>142 days</strong>
-        </div>
-
-        <div className="shsat-profile">
-          <span aria-hidden="true">C</span>
-          <div>
-            <strong>Claire</strong>
-            <small>Grade 8</small>
-          </div>
-        </div>
-      </aside>
-
-      <section className="shsat-main" id="adaptive">
-        <header className="shsat-topbar">
-          <div>
-            <p>{activeSection}</p>
-            <h1>{sectionHeading.title}</h1>
-            <span>{sectionHeading.description}</span>
-          </div>
-          {isStudentPreview ? (
-            <a className="dashboard-signout shsat-signout" href="/teacher">
-              Teacher dashboard
-            </a>
-          ) : (
-            <button className="dashboard-signout shsat-signout" type="button" onClick={handleSignOut}>
-              Sign out
-            </button>
-          )}
-        </header>
+      <div className="shsat-lab-content" id="adaptive">
 
         {activeSection === "Assessments" ? (
           <AssessmentsSection assessments={assessments} message={assessmentMessage} results={examResults} />
@@ -385,8 +368,8 @@ export function AdaptivePracticePage() {
             <TopicsSection results={examResults} />
           </>
         )}
-      </section>
-    </main>
+      </div>
+    </CorporateDashboardShell>
   );
 }
 
@@ -558,7 +541,7 @@ function TopicsSection({ results }: { results: ExamResult[] }) {
             return (
               <a
                 className={`topic-card is-${topic.status.key} ${isFocus ? "is-selected" : ""}`}
-                href={`/practice/${topic.slug}`}
+                href={getTopicHref(topic.slug)}
                 key={topic.key}
               >
                 <div className="topic-card-header">
@@ -594,7 +577,7 @@ function TopicsSection({ results }: { results: ExamResult[] }) {
             <strong>{focusTopic.title}</strong>
             <p>{focusTopic.description}</p>
           </div>
-          <a href={`/practice/${focusTopic.slug}`}>Start focused practice</a>
+          <a href={getTopicHref(focusTopic.slug)}>Start focused practice</a>
         </div>
       </div>
     </section>

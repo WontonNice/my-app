@@ -14,7 +14,6 @@ export function AuthPage({ mode }: AuthPageProps) {
   const [message, setMessage] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [loginMethod, setLoginMethod] = useState<"email" | "username">("username");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -85,16 +84,12 @@ export function AuthPage({ mode }: AuthPageProps) {
   return (
     <main className="auth-shell">
       <a className="public-logo auth-logo" href="/">
-        Nathan Tutors
+        Promise Summer School
       </a>
       <section className="auth-panel" aria-labelledby="auth-title">
-        <p className="home-kicker">{isSignup ? "Create student account" : "Welcome back"}</p>
+        {isSignup ? <p className="home-kicker">Create student account</p> : null}
         <h1 id="auth-title">{isSignup ? "Sign up" : "Login"}</h1>
-        <p>
-          {isSignup
-            ? "Student accounts are created by default. Teacher access is assigned manually."
-            : "Log in to continue to your student, teacher, or staff workspace."}
-        </p>
+        {isSignup ? <p>Student accounts are created by default.</p> : null}
 
         <form className="auth-form" onSubmit={handleSubmit}>
           {isSignup && (
@@ -110,31 +105,21 @@ export function AuthPage({ mode }: AuthPageProps) {
             </label>
           )}
 
-          {!isSignup ? (
-            <div className="auth-login-methods" aria-label="Login method">
-              <button aria-pressed={loginMethod === "username"} className={loginMethod === "username" ? "is-active" : ""} onClick={() => setLoginMethod("username")} type="button">Staff username</button>
-              <button aria-pressed={loginMethod === "email"} className={loginMethod === "email" ? "is-active" : ""} onClick={() => setLoginMethod("email")} type="button">Email</button>
-            </div>
-          ) : null}
-
           <label>
-            {isSignup ? "Email" : loginMethod === "username" ? "Staff username" : "Email address"}
+            {isSignup ? "Email" : "Email or username"}
             <input
               autoComplete={isSignup ? "email" : "username"}
               autoCapitalize="none"
               autoCorrect="off"
-              inputMode={isSignup || loginMethod === "email" ? "email" : "text"}
+              inputMode={isSignup ? "email" : "text"}
               name={isSignup ? "email" : "login-identifier"}
-              placeholder={!isSignup && loginMethod === "username" ? "Example: pss5" : undefined}
               required
               spellCheck={false}
-              type={isSignup || loginMethod === "email" ? "email" : "text"}
+              type={isSignup ? "email" : "text"}
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
           </label>
-
-          {!isSignup && loginMethod === "username" ? <small className="auth-username-hint">Staff and administrator accounts can sign in without an email address.</small> : null}
 
           <label>
             Password

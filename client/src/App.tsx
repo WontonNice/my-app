@@ -19,7 +19,6 @@ const ExamResultsPage = lazy(() =>
 const ExamSessionPage = lazy(() =>
   import("./pages/ExamSessionPage").then((module) => ({ default: module.ExamSessionPage })),
 );
-const HomePage = lazy(() => import("./pages/HomePage").then((module) => ({ default: module.HomePage })));
 const StudentDashboardPage = lazy(() =>
   import("./pages/StudentDashboardPage").then((module) => ({ default: module.StudentDashboardPage })),
 );
@@ -91,7 +90,7 @@ function CurrentPage() {
     return <AuthPage mode="signup" />;
   }
 
-  return <HomePage />;
+  return <AuthPage mode="login" />;
 }
 
 function App() {

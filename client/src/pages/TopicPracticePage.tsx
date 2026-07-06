@@ -33,6 +33,10 @@ import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 type PracticeMode = "levels" | "questions" | "complete";
 type PracticeTool = "pointer" | "eliminator" | "notepad" | "pencil";
 
+const practiceSearchParams = new URLSearchParams(window.location.search);
+const hasTeacherPracticePreview = practiceSearchParams.get("preview") === "student" && practiceSearchParams.get("teacherTools") === "1";
+const practiceBackHref = hasTeacherPracticePreview ? "/study-hall?preview=student&teacherTools=1#topics" : "/study-hall#topics";
+
 type LevelProgress = {
   answered: number;
   bestStreak: number;
@@ -133,7 +137,7 @@ function PracticeHeader({
 }) {
   return (
     <header className="practice-header">
-      <a className="practice-header-topic" href="/study-hall#topics">
+      <a className="practice-header-topic" href={practiceBackHref}>
         <span aria-hidden="true"><GraduationCap size={20} /></span>
         <strong>{topicTitle}</strong>
       </a>
@@ -538,7 +542,7 @@ export function TopicPracticePage() {
 
   function saveProgress(nextProgress: TopicProgress) {
     setProgress(nextProgress);
-    if (userId && topic) {
+    if (userId && topic && !hasTeacherPracticePreview) {
       window.localStorage.setItem(getProgressStorageKey(userId, topic.slug), JSON.stringify(nextProgress));
       if (accessToken) {
         void saveCloudPracticeProgress(
@@ -649,7 +653,7 @@ export function TopicPracticePage() {
       <main className="practice-shell">
         <section className="practice-missing-topic">
           <h1>Topic not found</h1>
-          <a href="/study-hall#topics">Return to adaptive practice</a>
+          <a href={practiceBackHref}>Return to adaptive practice</a>
         </section>
       </main>
     );

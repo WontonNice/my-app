@@ -7,9 +7,10 @@ import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 const isStudentPreview = new URLSearchParams(window.location.search).get("preview") === "student";
+const previewQuery = isStudentPreview ? "?preview=student&teacherTools=1" : "";
 
 function getClassPath(studentClass: StudentClass) {
-  return `/study-hall/${studentClass.id}`;
+  return `/study-hall/${studentClass.id}${previewQuery}`;
 }
 
 export function StudyHallPage() {
@@ -43,6 +44,19 @@ export function StudyHallPage() {
 
       if (userRole !== "student" && !(userRole === "teacher" && isStudentPreview)) {
         window.location.assign(getDashboardPath(userRole));
+        return;
+      }
+
+      if (userRole === "teacher" && isStudentPreview) {
+        setAccessToken(data.session.access_token);
+        setClasses([{
+          description: "SHSAT prep room for lessons, practice missions, assessments, and progress checks.",
+          id: "shsat",
+          level: "Entrance exam prep",
+          name: "SHSAT",
+          schedule: "Study Hall",
+        }]);
+        setIsCheckingSession(false);
         return;
       }
 
@@ -119,10 +133,10 @@ export function StudyHallPage() {
   }
 
   const navItems = [
-    { id: "dashboard", label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-    { id: "classes", label: "My classes", href: "/dashboard", icon: GraduationCap },
-    { id: "practice", label: "Practice", href: "/study-hall", icon: Target },
-    { id: "progress", label: "Progress", href: "/study-hall/shsat", icon: BarChart3 },
+    { id: "dashboard", label: "Dashboard", href: `/dashboard${previewQuery}`, icon: LayoutDashboard },
+    { id: "classes", label: "My classes", href: `/dashboard${previewQuery}`, icon: GraduationCap },
+    { id: "practice", label: "Practice", href: `/study-hall${previewQuery}`, icon: Target },
+    { id: "progress", label: "Progress", href: `/study-hall/shsat${previewQuery}`, icon: BarChart3 },
   ];
 
   return (

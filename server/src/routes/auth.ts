@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 import { getAuthenticatedUser, getUserRole } from "../lib/auth";
 import { supabase } from "../lib/supabase";
 
@@ -17,6 +18,31 @@ type AssignStaffBody = {
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const staffUsernamePattern = /^[a-z0-9][a-z0-9._-]{2,31}$/;
 const staffEmailDomain = "staff.nathantutors.local";
+const staffPasswordMetadataKey = "staff_access_password_cipher";
+
+function getStaffPasswordKey() {
+    return createHash("sha256").update(process.env.SUPABASE_SERVICE_ROLE ?? "").digest();
+}
+
+function encryptStaffPassword(password: string) {
+    const iv = randomBytes(12);
+    const cipher = createCipheriv("aes-256-gcm", getStaffPasswordKey(), iv);
+    const encrypted = Buffer.concat([cipher.update(password, "utf8"), cipher.final()]);
+    return `v1:${iv.toString("hex")}:${cipher.getAuthTag().toString("hex")}:${encrypted.toString("hex")}`;
+}
+
+function decryptStaffPassword(value: unknown) {
+    if (typeof value !== "string") return null;
+    const [version, ivHex, tagHex, encryptedHex] = value.split(":");
+    if (version !== "v1" || !ivHex || !tagHex || !encryptedHex) return null;
+    try {
+        const decipher = createDecipheriv("aes-256-gcm", getStaffPasswordKey(), Buffer.from(ivHex, "hex"));
+        decipher.setAuthTag(Buffer.from(tagHex, "hex"));
+        return Buffer.concat([decipher.update(Buffer.from(encryptedHex, "hex")), decipher.final()]).toString("utf8");
+    } catch {
+        return null;
+    }
+}
 
 function normalizeRegisterBody(body: RegisterStudentBody) {
     const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
@@ -55,6 +81,7 @@ async function requireAdmin(authorizationHeader: string | undefined) {
 }
 
 function toStaffAccount(user: {
+    app_metadata: Record<string, unknown>;
     created_at: string;
     email?: string;
     id: string;
@@ -71,6 +98,7 @@ function toStaffAccount(user: {
     const roster = normalizedDashboardData.roster;
 
     return {
+        accessPassword: decryptStaffPassword(user.app_metadata[staffPasswordMetadataKey]),
         createdAt: user.created_at,
         dashboardData: fallbackUsername === "pss5" && (!Array.isArray(roster) || roster.length === 0)
             ? { ...normalizedDashboardData, roster: boazRoster }
@@ -121,6 +149,56 @@ authRouter.post("/register", async (request, response) => {
     }
 
     response.status(201).json({ message: "Student account created." });
+});
+
+authRouter.get("/switchable-accounts", async (request, response) => {
+    const administrator = await requireAdmin(request.headers.authorization);
+    if (administrator.error) {
+        response.status(administrator.error === "Administrator access is required." ? 403 : 401).json({ message: administrator.error });
+        return;
+    }
+
+    const listed = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
+    if (listed.error) {
+        response.status(400).json({ message: listed.error.message });
+        return;
+    }
+
+    const accounts = listed.data.users
+        .filter((user) => getUserRole(user) === "teacher")
+        .map((user) => ({
+            fullName: typeof user.user_metadata.full_name === "string" ? user.user_metadata.full_name : user.email?.split("@")[0] ?? "Teacher",
+            id: user.id,
+            role: "teacher" as const,
+        }))
+        .sort((first, second) => first.fullName.localeCompare(second.fullName));
+
+    response.json({ accounts });
+});
+
+authRouter.post("/switch-account", async (request, response) => {
+    const administrator = await requireAdmin(request.headers.authorization);
+    if (administrator.error) {
+        response.status(administrator.error === "Administrator access is required." ? 403 : 401).json({ message: administrator.error });
+        return;
+    }
+
+    const targetId = typeof request.body?.targetId === "string" ? request.body.targetId : "";
+    const targetResult = await supabase.auth.admin.getUserById(targetId);
+    const target = targetResult.data.user;
+    if (targetResult.error || !target || getUserRole(target) !== "teacher" || !target.email) {
+        response.status(404).json({ message: "Teacher account was not found." });
+        return;
+    }
+
+    const generated = await supabase.auth.admin.generateLink({ email: target.email, type: "magiclink" });
+    const tokenHash = generated.data.properties?.hashed_token;
+    if (generated.error || !tokenHash) {
+        response.status(400).json({ message: generated.error?.message ?? "Could not prepare the teacher session." });
+        return;
+    }
+
+    response.json({ tokenHash });
 });
 
 authRouter.get("/staff", async (request, response) => {
@@ -181,7 +259,11 @@ authRouter.post("/staff", async (request, response) => {
 
     const existingUser = usersData.users.find((user) => user.email?.toLowerCase() === email);
     const attributes = {
-        app_metadata: { role: "staff" },
+        app_metadata: {
+            ...(existingUser?.app_metadata ?? {}),
+            role: "staff",
+            [staffPasswordMetadataKey]: encryptStaffPassword(password),
+        },
         email_confirm: true,
         password,
         user_metadata: {
@@ -256,6 +338,11 @@ authRouter.patch("/staff/:userId", async (request, response) => {
     }
 
     const updated = await supabase.auth.admin.updateUserById(target.id, {
+        app_metadata: {
+            ...target.app_metadata,
+            role: "staff",
+            ...(password ? { [staffPasswordMetadataKey]: encryptStaffPassword(password) } : {}),
+        },
         email,
         email_confirm: true,
         ...(password ? { password } : {}),

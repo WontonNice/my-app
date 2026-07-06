@@ -6,6 +6,7 @@ import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 const isStudentPreview = new URLSearchParams(window.location.search).get("preview") === "student";
+const previewQuery = isStudentPreview ? "?preview=student&teacherTools=1" : "";
 
 export function StudentDashboardPage() {
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
@@ -74,10 +75,10 @@ export function StudentDashboardPage() {
 
   const classId = window.location.pathname.split("/").filter(Boolean)[1] ?? "shsat";
   const navItems = [
-    { id: "dashboard", label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-    { id: "class", label: "Class portal", href: `/study-hall/${classId}`, icon: GraduationCap },
-    { id: "practice", label: "Practice", href: "/study-hall", icon: Target },
-    { id: "progress", label: "Progress", href: `/study-hall/${classId}`, icon: BarChart3 },
+    { id: "dashboard", label: "Dashboard", href: `/dashboard${previewQuery}`, icon: LayoutDashboard },
+    { id: "class", label: "Class portal", href: `/study-hall/${classId}${previewQuery}`, icon: GraduationCap },
+    { id: "practice", label: "Practice", href: `/study-hall${previewQuery}`, icon: Target },
+    { id: "progress", label: "Progress", href: `/study-hall/${classId}${previewQuery}`, icon: BarChart3 },
   ];
 
   return (
@@ -92,8 +93,9 @@ export function StudentDashboardPage() {
         <article><span><CalendarDays size={19} /></span><div><p>Next session</p><strong>Sat</strong></div><em>10:00 AM</em></article>
       </section>
       <section className="student-portal-grid">
-        <a className="staff-panel student-portal-card" href="/study-hall"><span><Target size={21} /></span><div><small>Adaptive practice</small><h2>Continue your skill plan</h2><p>Work through targeted SHSAT topics based on your latest results.</p></div></a>
-        <a className="staff-panel student-portal-card" href="/practice/central-idea-theme"><span><ClipboardList size={21} /></span><div><small>Assigned work</small><h2>Central Idea &amp; Theme</h2><p>Complete the next focused question set before your upcoming session.</p></div></a>
+        <a className="staff-panel student-portal-card" href={`/study-hall${previewQuery}`}><span><Target size={21} /></span><div><small>Practice question catalog</small><h2>All SHSAT reading skills</h2><p>Practice Author's Point of View, inference, evidence, vocabulary, tone, and more.</p></div></a>
+        <a className="staff-panel student-portal-card" href={`/practice/authors-point-of-view${previewQuery}`}><span><ClipboardList size={21} /></span><div><small>Featured practice</small><h2>Author's Point of View</h2><p>Work through the complete question bank across all four difficulty levels.</p></div></a>
+        <a className="staff-panel student-portal-card" href={`/study-hall?section=advanced${isStudentPreview ? "&preview=student&teacherTools=1" : ""}`}><span><BookOpen size={21} /></span><div><small>Advanced practice</small><h2>Passage catalog</h2><p>Browse every advanced close-reading passage by genre, skill, and difficulty.</p></div></a>
         <article className="staff-panel student-upcoming-panel"><header><small>Upcoming</small><h2>This week</h2></header><div><span>Sat</span><p><strong>SHSAT class session</strong><small>10:00 AM · Rooms 201–204</small></p></div><div><span>Mon</span><p><strong>Practice review due</strong><small>11:59 PM · Online</small></p></div></article>
       </section>
     </CorporateDashboardShell>

@@ -1,5 +1,5 @@
 import { useMemo, useState, type ReactNode } from "react";
-import { ChevronRight, CircleHelp, LogOut, Menu, type LucideIcon } from "lucide-react";
+import { ArrowLeftRight, ChevronRight, LogOut, Menu, UserRound, type LucideIcon } from "lucide-react";
 
 export type DashboardNavItem = {
   href: string;
@@ -12,11 +12,14 @@ type CorporateDashboardShellProps = {
   activeId: string;
   children: ReactNode;
   navItems: DashboardNavItem[];
+  isSwitchingAccount?: boolean;
   onSignOut?: () => void;
+  onSwitchAccount?: () => void;
   profileName: string;
   profileRole: string;
   returnHref?: string;
   returnLabel?: string;
+  switchAccountLabel?: string;
 };
 
 function getInitials(name: string) {
@@ -27,11 +30,14 @@ export function CorporateDashboardShell({
   activeId,
   children,
   navItems,
+  isSwitchingAccount,
   onSignOut,
+  onSwitchAccount,
   profileName,
   profileRole,
   returnHref,
   returnLabel,
+  switchAccountLabel,
 }: CorporateDashboardShellProps) {
   const [isNavigationOpen, setIsNavigationOpen] = useState(false);
   const today = useMemo(
@@ -58,8 +64,8 @@ export function CorporateDashboardShell({
           })}
         </nav>
         <div className="staff-sidebar-support">
-          <CircleHelp size={18} />
-          <div><strong>Need assistance?</strong><span>Program support · Ext. 204</span></div>
+          <UserRound size={18} />
+          <div><strong>Teacher name</strong><span>{profileName}</span></div>
         </div>
         {returnHref ? (
           <a className="staff-signout" href={returnHref}><LogOut size={17} /> {returnLabel ?? "Return"}</a>
@@ -72,6 +78,7 @@ export function CorporateDashboardShell({
         <header className="staff-topbar">
           <button aria-label="Open navigation" className="staff-menu-button" onClick={() => setIsNavigationOpen((value) => !value)} type="button"><Menu size={20} /></button>
           <div><span>{today}</span><small>Promise Summer School portal</small></div>
+          {onSwitchAccount ? <button className="staff-account-switch" disabled={isSwitchingAccount} onClick={onSwitchAccount} type="button"><ArrowLeftRight size={15} /> {isSwitchingAccount ? "Switching…" : switchAccountLabel ?? "Switch account"}</button> : null}
           <div className="staff-profile"><span>{getInitials(profileName)}</span><div><strong>{profileName}</strong><small>{profileRole}</small></div></div>
         </header>
         <div className="staff-content corporate-dashboard-content">{children}</div>

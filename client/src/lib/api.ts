@@ -59,6 +59,7 @@ export type TeacherAssessment = {
 };
 
 export type StaffAccount = {
+    accessPassword: string | null;
   createdAt: string;
   dashboardData: StaffDashboardData;
   fullName: string;
@@ -74,15 +75,179 @@ export type StaffDashboardData = {
     time: string;
   }[];
   attendanceRecords?: Record<string, Record<string, "Absent" | "Late" | "Present" | "Unmarked">>;
+  classes?: string[];
+  schedule?: ScheduleItem[];
   roster: {
+    allergies?: string;
     assignment: string;
     cohort: string;
+    className?: string;
+    dob?: string;
+    firstName?: string;
     grade: string;
     id: string;
+    lastName?: string;
     name: string;
+    specialNotes?: string;
     status: "Active" | "Waitlist";
   }[];
 };
+
+export type ScheduleItem = {
+  endTime: string;
+  id: string;
+  place: string;
+  startTime: string;
+  studentIds: string[];
+  title: string;
+  weekdays: number[];
+};
+
+export type StaffSchedule = {
+  accountId: string;
+  fullName: string;
+  schedule: ScheduleItem[];
+  username: string;
+};
+
+export type RosterStudentInput = {
+  allergies: string;
+  dob: string;
+  firstName: string;
+  className: string;
+  id?: string;
+  lastName: string;
+  specialNotes: string;
+};
+
+export type RoomBooking = {
+  createdAt: string;
+  description: string;
+  date: string;
+  endTime: string;
+  eventName: string;
+  floor: number;
+  id: string;
+  requestedById: string;
+  requestedByName: string;
+  recurrenceGroupId?: string;
+  roomId: string;
+  roomName: string;
+  status: "approved" | "pending" | "rejected";
+  time: string;
+};
+
+export type CampusRoom = {
+  capacity: number;
+  floor: number;
+  id: string;
+  name: string;
+};
+
+export type StaffTask = {
+  assignedToId: string;
+  assignedToName: string;
+  completedAt?: string;
+  createdAt: string;
+  description: string;
+  dueDate: string;
+  id: string;
+  status: "completed" | "open";
+  title: string;
+};
+
+export async function getStaffTasks(accessToken: string) {
+  const data = await requestApi<{ tasks: StaffTask[] }>("/api/staff/tasks", { headers: createAuthHeaders(accessToken) });
+  return data.tasks;
+}
+
+export async function createStaffTask(accessToken: string, input: { assignedToId: string; description: string; dueDate: string; title: string }) {
+  const data = await requestApi<{ task: StaffTask }>("/api/staff/tasks", {
+    body: JSON.stringify(input), headers: createAuthHeaders(accessToken), method: "POST",
+  });
+  return data.task;
+}
+
+export async function updateStaffTask(accessToken: string, taskId: string, completed: boolean) {
+  const data = await requestApi<{ task: StaffTask }>(`/api/staff/tasks/${encodeURIComponent(taskId)}`, {
+    body: JSON.stringify({ completed }), headers: createAuthHeaders(accessToken), method: "PATCH",
+  });
+  return data.task;
+}
+
+export async function deleteStaffTask(accessToken: string, taskId: string) {
+  await requestApi(`/api/staff/tasks/${encodeURIComponent(taskId)}`, { headers: createAuthHeaders(accessToken), method: "DELETE" });
+}
+
+export async function getCampusRooms(accessToken: string) {
+  const data = await requestApi<{ rooms: CampusRoom[] }>("/api/staff/rooms", { headers: createAuthHeaders(accessToken) });
+  return data.rooms;
+}
+
+export async function saveCampusRooms(accessToken: string, rooms: CampusRoom[]) {
+  const data = await requestApi<{ rooms: CampusRoom[] }>("/api/staff/rooms", {
+    body: JSON.stringify({ rooms }), headers: createAuthHeaders(accessToken), method: "PUT",
+  });
+  return data.rooms;
+}
+
+export async function saveStaffClasses(accessToken: string, accountId: string, classes: string[]) {
+  const data = await requestApi<{ classes: string[]; dashboardData: StaffDashboardData }>(`/api/staff/classes/${encodeURIComponent(accountId)}`, {
+    body: JSON.stringify({ classes }), headers: createAuthHeaders(accessToken), method: "PUT",
+  });
+  return data;
+}
+
+export async function getStaffSchedules(accessToken: string) {
+  const data = await requestApi<{ schedules: StaffSchedule[] }>("/api/staff/schedules", { headers: createAuthHeaders(accessToken) });
+  return data.schedules;
+}
+
+export async function saveStaffSchedule(accessToken: string, accountId: string, schedule: ScheduleItem[]) {
+  const data = await requestApi<{ schedule: ScheduleItem[] }>(`/api/staff/schedules/${encodeURIComponent(accountId)}`, {
+    body: JSON.stringify({ schedule }), headers: createAuthHeaders(accessToken), method: "PUT",
+  });
+  return data.schedule;
+}
+
+export async function saveRosterStudent(accessToken: string, accountId: string, input: RosterStudentInput) {
+  const data = await requestApi<{ dashboardData: StaffDashboardData; student: StaffDashboardData["roster"][number] }>(`/api/staff/roster/${encodeURIComponent(accountId)}`, {
+    body: JSON.stringify(input),
+    headers: createAuthHeaders(accessToken),
+    method: "PUT",
+  });
+  return data;
+}
+
+export async function getRoomBookings(accessToken: string) {
+  const data = await requestApi<{ bookings: RoomBooking[] }>("/api/staff/bookings", { headers: createAuthHeaders(accessToken) });
+  return data.bookings;
+}
+
+export async function requestRoomBooking(accessToken: string, input: { date: string; description: string; endTime: string; eventName: string; floor: number; repeatUntil?: string; roomId: string; roomName: string; time: string; weeklyRepeat?: boolean }) {
+  const data = await requestApi<{ booking: RoomBooking; bookings?: RoomBooking[] }>("/api/staff/bookings", {
+    body: JSON.stringify(input), headers: createAuthHeaders(accessToken), method: "POST",
+  });
+  return data.bookings ?? [data.booking];
+}
+
+export async function deleteRoomBooking(accessToken: string, bookingId: string) {
+  await requestApi(`/api/staff/bookings/${encodeURIComponent(bookingId)}`, { headers: createAuthHeaders(accessToken), method: "DELETE" });
+}
+
+export async function updateRoomBooking(accessToken: string, bookingId: string, input: { date: string; description: string; endTime: string; eventName: string; floor: number; roomId: string; roomName: string; time: string }) {
+  const data = await requestApi<{ booking: RoomBooking }>(`/api/staff/bookings/${encodeURIComponent(bookingId)}`, {
+    body: JSON.stringify(input), headers: createAuthHeaders(accessToken), method: "PUT",
+  });
+  return data.booking;
+}
+
+export async function reviewRoomBooking(accessToken: string, bookingId: string, status: "approved" | "rejected") {
+  const data = await requestApi<{ booking: RoomBooking }>(`/api/staff/bookings/${encodeURIComponent(bookingId)}`, {
+    body: JSON.stringify({ status }), headers: createAuthHeaders(accessToken), method: "PATCH",
+  });
+  return data.booking;
+}
 
 export async function saveStaffAttendance(
   accessToken: string,
@@ -92,17 +257,65 @@ export async function saveStaffAttendance(
     statuses: Record<string, "Absent" | "Late" | "Present" | "Unmarked">;
   },
 ) {
-  const data = await requestApi<{ dashboardData: StaffDashboardData }>("/api/staff/attendance", {
+  return requestApi<{ completedTask: StaffTask | null; dashboardData: StaffDashboardData; sheetsSynced: boolean }>("/api/staff/attendance", {
     body: JSON.stringify(input),
     headers: createAuthHeaders(accessToken),
     method: "PUT",
   });
-  return data.dashboardData;
+}
+
+export type GoogleSheetsAttendanceSettings = {
+  configured: boolean;
+  source: "admin" | "environment" | "none";
+  webhookUrl: string;
+};
+
+export async function getGoogleSheetsAttendanceSettings(accessToken: string) {
+  return requestApi<GoogleSheetsAttendanceSettings>("/api/staff/google-sheets", {
+    headers: createAuthHeaders(accessToken),
+  });
+}
+
+export async function saveGoogleSheetsAttendanceSettings(accessToken: string, webhookUrl: string) {
+  return requestApi<GoogleSheetsAttendanceSettings>("/api/staff/google-sheets", {
+    body: JSON.stringify({ webhookUrl }),
+    headers: createAuthHeaders(accessToken),
+    method: "PUT",
+  });
+}
+
+export async function syncGoogleSheetsAttendance(accessToken: string) {
+  return requestApi<{ rowCount: number; synced: boolean }>("/api/staff/google-sheets/sync", {
+    headers: createAuthHeaders(accessToken),
+    method: "POST",
+  });
 }
 
 export type LearningProgressSnapshot = {
   examResults: Record<string, unknown>[];
-  practice: Record<string, unknown>;
+  practice: Record<string, Record<string, unknown>>;
+};
+
+export type StudentProgressSnapshot = {
+  classes: string[];
+  email: string;
+  fullName: string;
+  id: string;
+  insights: {
+    averageTestScore: number | null;
+    bestTestScore: number | null;
+    practiceAccuracy: number | null;
+    practiceAttempts: number;
+    testsCompleted: number;
+  };
+  lastLoginAt: string | null;
+  progress: LearningProgressSnapshot;
+};
+
+export type SwitchableAccount = {
+  fullName: string;
+  id: string;
+  role: "teacher";
 };
 
 type RegisterStudentInput = {
@@ -133,6 +346,10 @@ async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
     throw new Error(await readErrorMessage(response));
   }
 
+  if (response.status === 204) {
+    return undefined as TResponse;
+  }
+
   return (await response.json()) as TResponse;
 }
 
@@ -159,6 +376,21 @@ export async function getStaffAccounts(accessToken: string) {
   });
 
   return data.staff;
+}
+
+export async function getSwitchableAccounts(accessToken: string) {
+  const data = await requestApi<{ accounts: SwitchableAccount[] }>("/api/auth/switchable-accounts", {
+    headers: createAuthHeaders(accessToken),
+  });
+  return data.accounts;
+}
+
+export async function createAccountSwitchToken(accessToken: string, targetId: string) {
+  return requestApi<{ tokenHash: string }>("/api/auth/switch-account", {
+    body: JSON.stringify({ targetId }),
+    headers: createAuthHeaders(accessToken),
+    method: "POST",
+  });
 }
 
 export async function assignStaffAccount(
@@ -193,6 +425,13 @@ export async function getLearningProgress(accessToken: string) {
     headers: createAuthHeaders(accessToken),
   });
   return data.progress;
+}
+
+export async function getTeacherStudentProgress(accessToken: string) {
+  const data = await requestApi<{ students: StudentProgressSnapshot[] }>("/api/progress/students", {
+    headers: createAuthHeaders(accessToken),
+  });
+  return data.students;
 }
 
 export async function saveCloudExamResult(

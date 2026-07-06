@@ -5723,6 +5723,12 @@ button {
   font-size: 0.68rem;
 }
 
+.teacher-staff-list small code {
+  color: #425a71;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.64rem;
+}
+
 .teacher-staff-list em {
   border-radius: 999px;
   background: #e6f3ef;
@@ -7733,6 +7739,38 @@ button {
   font-size: 0.65rem;
 }
 
+.staff-topbar:has(.staff-account-switch) {
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 12px;
+}
+
+.staff-account-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  gap: 7px;
+  border: 1px solid #cfd9e2;
+  border-radius: 7px;
+  background: #f7f9fb;
+  color: #29445f;
+  cursor: pointer;
+  font-size: .69rem;
+  font-weight: 800;
+  padding: 0 12px;
+}
+
+.staff-account-switch:hover {
+  border-color: #83b7ae;
+  background: #edf7f4;
+  color: #21675e;
+}
+
+.staff-account-switch:disabled {
+  cursor: wait;
+  opacity: .65;
+}
+
 .staff-menu-button {
   display: none;
 }
@@ -7857,6 +7895,13 @@ button {
 .staff-kpi-grid em.is-warning {
   color: #a86719;
 }
+
+.staff-kpi-grid article.is-clickable { padding: 0; }
+.staff-kpi-grid article.is-clickable > button { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; width: 100%; min-height: inherit; border: 0; background: transparent; color: inherit; padding: 16px; text-align: left; }
+.staff-kpi-grid article.is-clickable > button > span { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 8px; background: #e8f4f1; color: #287a6f; }
+.staff-kpi-grid article.is-clickable > button > div { display: grid; gap: 2px; }
+.staff-kpi-grid article.is-clickable > button p { margin: 0; }
+.staff-kpi-grid article.is-clickable > button em { font-style: normal; }
 
 .staff-workspace-grid {
   display: grid;
@@ -8209,6 +8254,16 @@ button {
     padding: 0 16px;
   }
 
+  .staff-topbar:has(.staff-account-switch) {
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+  }
+
+  .staff-account-switch {
+    width: 38px;
+    padding: 0;
+    font-size: 0;
+  }
+
   .staff-menu-button {
     display: grid;
     width: 37px;
@@ -8335,6 +8390,488 @@ button {
   border-color: #bfe1da;
   background: #eaf6f3;
   color: #286f65;
+}
+
+.admin-action-feedback { position: fixed; top: 78px; right: 24px; z-index: 100; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 9px; max-width: min(390px, calc(100vw - 32px)); border: 1px solid #b9ddd5; border-radius: 9px; box-shadow: 0 12px 32px rgb(28 50 72 / 18%); background: #eff9f6; color: #226c62; padding: 11px 12px; }
+.admin-action-feedback.is-loading { border-color: #bfd4e5; background: #f1f7fb; color: #285775; }
+.admin-action-feedback.is-error { border-color: #eccaca; background: #fff3f3; color: #973f3f; }
+.admin-action-feedback > span { display: grid; place-items: center; }
+.admin-action-feedback strong { font-size: .7rem; line-height: 1.35; }
+.admin-action-feedback button { display: grid; place-items: center; border: 0; background: transparent; color: currentColor; padding: 3px; }
+
+.admin-attendance-panel,
+.admin-sheets-panel {
+  margin-bottom: 20px;
+}
+
+.admin-attendance-filters {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(180px, 0.5fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.admin-attendance-filters label,
+.admin-sheets-layout > label {
+  display: grid;
+  gap: 7px;
+  color: #627186;
+  font-size: 0.68rem;
+  font-weight: 750;
+}
+
+.admin-attendance-filters select,
+.admin-attendance-filters input,
+.admin-sheets-layout input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid #d7dfe7;
+  border-radius: 7px;
+  background: #fff;
+  color: #21354d;
+  font: inherit;
+  padding: 0 12px;
+}
+
+.admin-attendance-totals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.admin-attendance-totals article {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border: 1px solid #e1e6eb;
+  border-radius: 8px;
+  background: #f8fafb;
+  padding: 13px 14px;
+}
+
+.admin-attendance-totals strong { color: #20364e; font-size: 1.08rem; }
+.admin-attendance-totals span { color: #748195; font-size: 0.65rem; font-weight: 750; }
+
+.admin-attendance-list {
+  overflow: hidden;
+  border: 1px solid #e1e6eb;
+  border-radius: 8px;
+}
+
+.admin-attendance-list > article {
+  display: grid;
+  grid-template-columns: 34px 1fr auto;
+  align-items: center;
+  gap: 11px;
+  min-height: 60px;
+  border-bottom: 1px solid #edf0f3;
+  padding: 8px 13px;
+}
+
+.admin-attendance-list > article:last-child { border-bottom: 0; }
+.admin-attendance-list > article > span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e8f4f1;
+  color: #247467;
+  font-size: 0.67rem;
+  font-weight: 800;
+}
+.admin-attendance-list div { display: grid; gap: 2px; }
+.admin-attendance-list strong { color: #263a51; font-size: 0.75rem; }
+.admin-attendance-list small { color: #7b8797; font-size: 0.62rem; }
+.admin-attendance-list em { border-radius: 999px; font-size: 0.61rem; font-style: normal; font-weight: 800; padding: 5px 9px; }
+.admin-attendance-list em.is-present { background: #e3f3ed; color: #28775f; }
+.admin-attendance-list em.is-late { background: #fff0d8; color: #946318; }
+.admin-attendance-list em.is-absent { background: #fbe7e7; color: #a33f3f; }
+.admin-attendance-list em.is-unmarked { background: #edf0f4; color: #748093; }
+
+.admin-sheets-layout { display: grid; gap: 16px; }
+.admin-sheets-status { display: flex; align-items: center; gap: 12px; border: 1px solid #e1e6eb; border-radius: 8px; background: #f8fafb; padding: 14px; }
+.admin-sheets-status > span { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 9px; background: #e9edf2; color: #718095; }
+.admin-sheets-status > span.is-connected { background: #e2f3ed; color: #26775f; }
+.admin-sheets-status > div { display: grid; gap: 3px; }
+.admin-sheets-status strong { color: #253a51; font-size: 0.8rem; }
+.admin-sheets-status small { color: #748195; font-size: 0.65rem; }
+.admin-sheets-actions { display: flex; gap: 9px; }
+.admin-sheets-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 39px; border: 1px solid #173451; border-radius: 6px; background: #173451; color: white; font-size: 0.68rem; font-weight: 750; padding: 0 13px; }
+.admin-sheets-actions button.is-secondary { border-color: #d4dce5; background: white; color: #3b5068; }
+.admin-sheets-actions button:disabled { cursor: not-allowed; opacity: 0.55; }
+.admin-sheets-panel details { border-top: 1px solid #e7ebef; color: #69778a; font-size: 0.68rem; line-height: 1.6; padding-top: 13px; }
+.admin-sheets-panel summary { cursor: pointer; color: #2d455e; font-weight: 800; }
+.admin-sheets-panel ol { margin: 10px 0 5px; padding-left: 20px; }
+.admin-sheets-panel details p { margin: 5px 0 0; }
+.admin-sheets-panel .admin-copy-script { display: inline-flex; align-items: center; gap: 7px; margin: 8px 0; border: 1px solid #cad5df; border-radius: 6px; background: #fff; color: #314a64; font-size: 0.66rem; font-weight: 800; padding: 8px 11px; }
+.admin-sheets-panel pre { max-height: 260px; overflow: auto; margin: 4px 0 0; border-radius: 7px; background: #142b42; color: #dceaf4; font-size: 0.62rem; line-height: 1.55; padding: 13px; white-space: pre; }
+.is-spinning { animation: admin-spin 0.9s linear infinite; }
+@keyframes admin-spin { to { transform: rotate(360deg); } }
+
+.admin-roster-panel,
+.admin-bookings-panel { margin-bottom: 20px; }
+.admin-roster-account { display: grid; gap: 7px; margin-bottom: 16px; color: #627186; font-size: 0.68rem; font-weight: 750; }
+.admin-roster-account select { min-height: 42px; border: 1px solid #d7dfe7; border-radius: 7px; background: #fff; color: #21354d; padding: 0 12px; }
+.admin-roster-layout { display: grid; grid-template-columns: minmax(270px, 0.75fr) minmax(340px, 1.25fr); gap: 18px; align-items: start; }
+.admin-student-form { display: grid; gap: 12px; border: 1px solid #e0e6eb; border-radius: 9px; background: #f8fafb; padding: 16px; }
+.admin-student-form-title { display: flex; align-items: center; gap: 8px; color: #27435c; }
+.admin-student-form label { display: grid; gap: 6px; color: #657488; font-size: 0.66rem; font-weight: 750; }
+.admin-student-form input,
+.admin-student-form textarea,
+.admin-student-form select { width: 100%; border: 1px solid #d5dde5; border-radius: 6px; background: #fff; color: #25394f; font: inherit; padding: 10px; }
+.admin-student-form textarea { resize: vertical; }
+.admin-student-name-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.admin-roster-list { overflow: hidden; border: 1px solid #e0e6eb; border-radius: 9px; }
+.admin-roster-list > article { display: grid; grid-template-columns: 38px 1fr auto; align-items: start; gap: 11px; border-bottom: 1px solid #edf0f3; padding: 13px; }
+.admin-roster-list > article:last-child { border-bottom: 0; }
+.admin-roster-list > article > span { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #e6f3f0; color: #28786c; font-size: 0.68rem; font-weight: 800; }
+.admin-roster-list article > div { display: grid; gap: 3px; }
+.admin-roster-list strong { color: #283d54; font-size: 0.76rem; }
+.admin-roster-list small { color: #7a8797; font-size: 0.61rem; }
+.admin-roster-list p { margin: 3px 0 0; color: #617085; font-size: 0.65rem; }
+.admin-roster-list button { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #d3dce5; border-radius: 6px; background: #fff; color: #3d526a; font-size: 0.62rem; font-weight: 750; padding: 7px 9px; }
+.admin-booking-list { display: grid; gap: 10px; }
+.admin-booking-list > article { display: grid; grid-template-columns: minmax(120px, 0.35fr) 1fr auto; gap: 16px; align-items: center; border: 1px solid #e0e6eb; border-radius: 8px; background: #fbfcfd; padding: 14px; }
+.admin-booking-room,
+.admin-booking-list article > div { display: grid; gap: 3px; }
+.admin-booking-room > span { color: #258073; font-size: 0.59rem; font-weight: 850; text-transform: uppercase; }
+.admin-booking-list strong { color: #273c53; font-size: 0.76rem; }
+.admin-booking-list small { color: #7a8797; font-size: 0.62rem; }
+.admin-booking-list p { margin: 3px 0 0; color: #607086; font-size: 0.66rem; }
+.admin-booking-review { display: flex !important; grid-auto-flow: column; align-items: center; gap: 7px !important; }
+.admin-booking-review em { border-radius: 999px; font-size: 0.58rem; font-style: normal; font-weight: 850; padding: 5px 8px; text-transform: capitalize; }
+.admin-booking-review em.is-pending { background: #fff0d6; color: #986515; }
+.admin-booking-review em.is-approved { background: #e2f3ed; color: #28775f; }
+.admin-booking-review em.is-rejected { background: #fbe6e6; color: #a23d3d; }
+.admin-booking-review button { display: inline-flex; align-items: center; gap: 4px; border: 0; border-radius: 5px; background: #287c6f; color: #fff; font-size: 0.6rem; font-weight: 800; padding: 7px 9px; }
+.admin-booking-review button.is-reject { background: #fff; color: #9c4141; border: 1px solid #e4caca; }
+
+.staff-floor-workspace { position: relative; }
+.staff-live-time { border-radius: 7px; background: #173451; color: #fff; font-size: 0.78rem; font-weight: 800; padding: 9px 13px; }
+.staff-time-control { display: grid; grid-template-columns: 1fr auto auto; gap: 18px; align-items: end; margin: 6px 0 18px; border: 1px solid #e0e6eb; border-radius: 9px; background: #f7f9fb; padding: 13px; }
+.staff-time-control > div { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; color: #748194; font-size: 0.6rem; font-weight: 750; }
+.staff-time-control input[type="range"] { accent-color: #278578; }
+.staff-time-control label { display: grid; gap: 5px; color: #69788b; font-size: 0.61rem; font-weight: 750; }
+.staff-time-control input[type="time"],
+.staff-time-control input[type="date"] { min-height: 34px; border: 1px solid #d4dde6; border-radius: 6px; background: #fff; color: #263b52; padding: 0 8px; }
+.staff-floor-tabs { display: flex; gap: 7px; margin-bottom: 10px; }
+.staff-floor-tabs button { border: 1px solid #d8e0e7; border-radius: 6px; background: #fff; color: #67778a; font-size: 0.66rem; font-weight: 800; padding: 8px 13px; }
+.staff-floor-tabs button.is-active { border-color: #277e72; background: #e7f4f1; color: #226d63; }
+.staff-floor-plan { position: relative; display: grid; grid-template-columns: 1fr 0.44fr 1fr; grid-template-rows: 138px 138px; gap: 9px 42px; min-height: 296px; border: 2px solid #bfcad4; border-radius: 5px; background: #edf1f4; padding: 12px; }
+.staff-floor-corridor { position: absolute; inset: 12px calc(50% - 17px); display: grid; place-items: center; border: 1px dashed #aebac5; background: #dfe5ea; writing-mode: vertical-rl; }
+.staff-floor-corridor span { color: #748291; font-size: 0.56rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.staff-floor-room { z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 6px; border: 2px solid #69ad98; border-radius: 4px; background: #eef9f5; color: #243a50; padding: 14px; text-align: left; }
+.staff-floor-room.room-1 { grid-column: 1; grid-row: 1; }
+.staff-floor-room.room-2 { grid-column: 3; grid-row: 1; }
+.staff-floor-room.room-3 { grid-column: 1; grid-row: 2; }
+.staff-floor-room.room-4 { grid-column: 3; grid-row: 2; }
+.staff-floor-plan.is-expanded { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; gap: 9px; }
+.staff-floor-plan.is-expanded .staff-floor-room { grid-column: auto; grid-row: auto; min-height: 120px; }
+.staff-floor-room > span { color: #26765f; font-size: 0.56rem; font-weight: 850; text-transform: uppercase; }
+.staff-floor-room strong { font-size: 0.8rem; }
+.staff-floor-room small { display: flex; align-items: center; gap: 4px; color: #708092; font-size: 0.61rem; }
+.staff-floor-room em { color: #915656; font-size: 0.59rem; font-style: normal; }
+.staff-floor-room > button { margin-top: 3px; border: 1px solid #bddbd4; border-radius: 5px; background: #fff; color: #286f65; font-size: 0.58rem; font-weight: 800; padding: 6px 8px; }
+.staff-floor-room.is-booked { border-color: #ca7777; background: #fbeeee; }
+.staff-floor-room.is-booked > span { color: #a84040; }
+.staff-floor-room.is-pending { border-color: #d5aa5b; background: #fff6e5; }
+.staff-floor-room.is-pending > span { color: #97691d; }
+.staff-floor-room:disabled { cursor: not-allowed; opacity: 1; }
+.staff-room-detail { display: grid; grid-template-columns: minmax(220px, .8fr) 1.2fr; gap: 16px; margin-top: 14px; overflow: hidden; border: 1px solid #dce4ea; border-radius: 9px; background: #f8fafb; padding: 14px; }
+.staff-room-photo { min-height: 180px; overflow: hidden; border-radius: 7px; background: #e8edf1; }
+.staff-room-photo img { width: 100%; height: 100%; min-height: 180px; object-fit: cover; }
+.staff-room-photo > div { display: grid; place-items: center; align-content: center; gap: 5px; min-height: 180px; color: #708195; text-align: center; }
+.staff-room-photo strong { color: #42586f; font-size: 0.72rem; }
+.staff-room-photo small { max-width: 260px; font-size: 0.56rem; }
+.staff-room-photo code { color: #2d635e; overflow-wrap: anywhere; }
+.staff-room-detail-copy { display: grid; align-content: start; gap: 11px; }
+.staff-room-detail-copy header { display: flex; align-items: flex-start; justify-content: space-between; }
+.staff-room-detail-copy header span { color: #287a6f; font-size: 0.58rem; font-weight: 850; text-transform: uppercase; }
+.staff-room-detail-copy h3 { margin: 3px 0 0; color: #263b52; font-size: 1rem; }
+.staff-room-detail-copy header > button { border: 0; background: transparent; color: #6d7b8c; }
+.staff-room-detail-copy p { display: flex; align-items: center; gap: 6px; margin: 0; color: #40576e; font-size: 0.72rem; font-weight: 800; }
+.staff-room-detail-copy > small { color: #7c8998; font-size: 0.61rem; line-height: 1.55; }
+.staff-room-detail-copy > button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: fit-content; min-height: 38px; border: 0; border-radius: 6px; background: #173451; color: #fff; font-size: 0.64rem; font-weight: 800; padding: 0 13px; }
+.staff-room-detail-copy > button:disabled { cursor: not-allowed; opacity: .5; }
+.staff-room-booking-details { display: grid; gap: 6px; }
+.staff-room-booking-details > article { display: grid; gap: 3px; border-left: 3px solid #d2a24f; border-radius: 5px; background: #fff7e6; padding: 9px; }
+.staff-room-booking-details > article.is-approved { border-left-color: #ae5555; background: #fff0f0; }
+.staff-room-booking-details span { color: #8b631d; font-size: .54rem; font-weight: 850; text-transform: uppercase; }
+.staff-room-booking-details .is-approved span { color: #983e3e; }
+.staff-room-booking-details strong { color: #344a60; font-size: .68rem; }
+.staff-room-booking-details small, .staff-room-booking-details p { margin: 0; color: #748195; font-size: .57rem; }
+
+.staff-task-count { border-radius: 999px; background: #e8f4f1; color: #28766c; font-size: .61rem; font-weight: 850; padding: 6px 10px; }
+.staff-task-list { display: grid; gap: 8px; }
+.staff-task-list > article { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 8px; border: 1px solid #dfe5ea; border-radius: 8px; background: #fbfcfd; padding: 10px; }
+.staff-task-list > article.is-completed { opacity: .65; }
+.staff-task-check { display: grid; place-items: center; width: 30px; height: 30px; border: 2px solid #69a99f; border-radius: 50%; background: #fff; color: #28786e; }
+.staff-task-list .is-completed .staff-task-check { background: #e2f3ed; }
+.staff-task-summary { display: flex; align-items: center; justify-content: space-between; min-width: 0; border: 0; background: transparent; color: #2a3f56; text-align: left; }
+.staff-task-summary > span { display: grid; gap: 3px; }
+.staff-task-summary strong { font-size: .72rem; }
+.staff-task-summary small { color: #7c8999; font-size: .58rem; }
+.staff-task-list .is-completed .staff-task-summary strong { text-decoration: line-through; }
+.staff-task-detail { grid-column: 2; display: grid; gap: 9px; border-top: 1px solid #e5eaee; padding-top: 9px; }
+.staff-task-detail p { margin: 0; color: #647489; font-size: .65rem; }
+.staff-task-detail button { width: fit-content; border: 0; border-radius: 5px; background: #173451; color: #fff; font-size: .6rem; font-weight: 800; padding: 7px 10px; }
+.staff-booking-form { display: grid; gap: 11px; margin-top: 14px; border: 1px solid #dce4ea; border-radius: 9px; background: #f8fafb; padding: 15px; }
+.staff-booking-form header { display: flex; justify-content: space-between; align-items: center; }
+.staff-booking-form header > div { display: flex; align-items: center; gap: 9px; color: #287c70; }
+.staff-booking-form header span { display: grid; gap: 2px; }
+.staff-booking-form header strong { color: #273c53; font-size: 0.76rem; }
+.staff-booking-form header small { color: #738195; font-size: 0.61rem; }
+.staff-booking-form header > button { border: 0; background: transparent; color: #637286; font-size: 1.2rem; }
+.staff-booking-form label { display: grid; gap: 5px; color: #657488; font-size: 0.63rem; font-weight: 750; }
+.staff-booking-form input,
+.staff-booking-form textarea { border: 1px solid #d4dde5; border-radius: 6px; background: #fff; color: #263b52; font: inherit; padding: 9px; }
+.staff-booking-form > button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 39px; border: 0; border-radius: 6px; background: #173451; color: #fff; font-size: 0.67rem; font-weight: 800; }
+.staff-student-directory { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+.staff-student-directory > article { border: 1px solid #dfe5eb; border-radius: 8px; background: #fbfcfd; padding: 14px; }
+.staff-student-directory article > header { display: grid; grid-template-columns: 34px 1fr auto; gap: 9px; align-items: center; border-bottom: 1px solid #e8ecef; padding-bottom: 11px; }
+.staff-student-directory header > div { display: grid; gap: 2px; }
+.staff-student-directory header strong { color: #263b52; font-size: 0.75rem; }
+.staff-student-directory header small { color: #7b8796; font-size: 0.59rem; }
+.staff-student-directory header em { border-radius: 999px; background: #e3f3ed; color: #27745e; font-size: 0.56rem; font-style: normal; font-weight: 800; padding: 5px 8px; }
+.staff-student-directory dl { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0 0; }
+.staff-student-directory dl > div { display: grid; gap: 3px; }
+.staff-student-directory dl > div.is-wide { grid-column: 1 / -1; }
+.staff-student-directory dt { color: #8290a0; font-size: 0.56rem; font-weight: 800; text-transform: uppercase; }
+.staff-student-directory dd { margin: 0; color: #344960; font-size: 0.66rem; line-height: 1.45; }
+.staff-student-directory dd.is-alert { color: #a04949; font-weight: 800; }
+
+.staff-weekly-schedule { overflow: hidden; }
+.staff-schedule-controls { display: flex; align-items: end; gap: 10px; }
+.staff-view-toggle { display: flex; border: 1px solid #d7e0e7; border-radius: 7px; background: #f5f7f9; padding: 3px; }
+.staff-view-toggle button { min-height: 30px; border: 0; border-radius: 5px; background: transparent; color: #68788b; font-size: 0.61rem; font-weight: 800; padding: 0 11px; }
+.staff-view-toggle button.is-active { background: #173451; color: #fff; box-shadow: 0 2px 6px rgb(20 44 67 / 16%); }
+.staff-schedule-picker { display: grid; gap: 5px; color: #718093; font-size: 0.61rem; font-weight: 800; }
+.staff-schedule-picker select { min-width: 210px; min-height: 38px; border: 1px solid #d7e0e7; border-radius: 6px; background: #fff; color: #263b52; padding: 0 10px; }
+.staff-week-grid { display: grid; grid-template-columns: repeat(5, minmax(170px, 1fr)); gap: 9px; overflow-x: auto; padding-bottom: 5px; }
+.staff-week-grid > section { min-width: 0; border: 1px solid #dfe5ea; border-radius: 8px; background: #f6f8fa; }
+.staff-week-grid > section > header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e0e6eb; padding: 10px; }
+.staff-week-grid > section > header strong { color: #263b52; font-size: 0.7rem; }
+.staff-week-grid > section > header span { color: #8490a0; font-size: 0.54rem; text-transform: uppercase; }
+.staff-week-grid > section > div { display: grid; gap: 7px; padding: 8px; }
+.staff-week-event { border-left: 3px solid #277f73; border-radius: 5px; background: #fff; padding: 9px; box-shadow: 0 2px 7px rgb(31 52 72 / 5%); }
+.staff-week-event.is-tone-1 { border-left-color: #bd8b3d; }
+.staff-week-event.is-tone-2 { border-left-color: #566f91; }
+.staff-week-event.is-tone-3 { border-left-color: #8a659b; }
+.staff-week-event time { color: #27796e; font-size: 0.56rem; font-weight: 850; }
+.staff-week-event h3 { margin: 5px 0; color: #283d54; font-size: 0.68rem; line-height: 1.3; }
+.staff-week-event p { display: flex; gap: 4px; margin: 0; color: #6e7d90; font-size: 0.58rem; }
+.staff-week-event small { display: block; margin-top: 7px; color: #8792a0; font-size: 0.53rem; }
+.staff-day-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 12px; }
+.staff-day-tabs button { min-height: 36px; border: 1px solid #dbe2e8; border-radius: 6px; background: #fff; color: #657588; font-size: 0.62rem; font-weight: 800; }
+.staff-day-tabs button.is-active { border-color: #287f73; background: #e7f4f1; color: #236f65; }
+.staff-schedule-item small { display: block; margin-top: 5px; color: #8a95a3; font-size: 0.56rem; }
+.staff-empty-state, .staff-roster-hint { margin: 0; border: 1px dashed #d8e0e7; border-radius: 8px; color: #788598; font-size: 0.68rem; padding: 18px; text-align: center; }
+
+.staff-roster-name-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.staff-roster-name-cards > button { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 8px; min-width: 0; border: 1px solid #dfe5eb; border-radius: 8px; background: #fbfcfd; color: #253a51; padding: 10px; text-align: left; }
+.staff-roster-name-cards > button.is-active { border-color: #368e82; background: #eef8f5; }
+.staff-roster-name-cards button > span:nth-child(2) { display: grid; min-width: 0; gap: 2px; }
+.staff-roster-name-cards strong { overflow: hidden; font-size: 0.68rem; text-overflow: ellipsis; white-space: nowrap; }
+.staff-roster-name-cards small { color: #7b8797; font-size: 0.56rem; }
+.staff-roster-name-cards svg { color: #8a96a5; }
+.staff-student-detail { margin-top: 12px; border: 1px solid #dce4ea; border-radius: 9px; background: #f8fafb; padding: 15px; }
+.staff-student-detail > header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e4e9ed; padding-bottom: 12px; }
+.staff-student-detail > header > div { display: flex; align-items: center; gap: 9px; }
+.staff-student-detail header div > div { display: grid; gap: 2px; }
+.staff-student-detail header strong { color: #263b52; font-size: 0.76rem; }
+.staff-student-detail header small { color: #7b8797; font-size: 0.59rem; }
+.staff-student-detail header button { border: 0; background: transparent; color: #6f7d8e; }
+.staff-student-detail dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 13px 0 0; }
+.staff-student-detail dl > div { display: grid; gap: 3px; }
+.staff-student-detail dl > div.is-wide { grid-column: 1 / -1; }
+.staff-student-detail dt { color: #8290a0; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; }
+.staff-student-detail dd { margin: 0; color: #344960; font-size: 0.66rem; }
+.staff-student-detail dd.is-alert { color: #a04949; font-weight: 800; }
+.staff-roster-hint { margin-top: 12px; }
+
+.admin-schedule-panel { margin-bottom: 20px; }
+.admin-tasks-panel { margin-bottom: 20px; }
+.admin-attendance-task-tracker { margin-bottom: 14px; border: 1px solid #cfe1dd; border-radius: 8px; overflow: hidden; background: #f4faf8; }
+.admin-attendance-task-tracker > button { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; width: 100%; border: 0; background: transparent; color: #294559; padding: 12px 14px; text-align: left; }
+.admin-attendance-task-tracker > button > span { display: grid; width: 34px; height: 34px; border-radius: 7px; background: #dcefea; color: #267267; place-items: center; }
+.admin-attendance-task-tracker > button > div { display: grid; gap: 2px; }
+.admin-attendance-task-tracker > button strong { font-size: .72rem; }
+.admin-attendance-task-tracker > button small { color: #708092; font-size: .59rem; }
+.admin-attendance-task-tracker > button em { border-radius: 999px; background: #173451; color: #fff; font-size: .64rem; font-style: normal; font-weight: 850; padding: 7px 10px; }
+.admin-attendance-task-details { border-top: 1px solid #d5e6e2; background: #fff; color: #52677a; padding: 10px 58px; }
+.admin-attendance-task-details > strong { color: #344d62; font-size: .64rem; }
+.admin-attendance-task-details ul { display: flex; flex-wrap: wrap; gap: 6px; margin: 7px 0 0; padding: 0; list-style: none; }
+.admin-attendance-task-details li { border-radius: 999px; background: #fff0e3; color: #8d5b2c; font-size: .61rem; font-weight: 750; padding: 5px 8px; }
+.admin-attendance-task-details p { display: flex; align-items: center; gap: 6px; margin: 0; color: #267267; font-size: .65rem; font-weight: 750; }
+.admin-task-layout { display: grid; grid-template-columns: minmax(260px, .65fr) 1.35fr; gap: 16px; align-items: start; }
+.admin-task-form { display: grid; gap: 10px; border: 1px solid #dfe5ea; border-radius: 8px; background: #f8fafb; padding: 14px; }
+.admin-task-form label { display: grid; gap: 5px; color: #68778a; font-size: .62rem; font-weight: 800; }
+.admin-task-form input, .admin-task-form select, .admin-task-form textarea { width: 100%; border: 1px solid #d4dde5; border-radius: 6px; background: #fff; color: #263b52; font: inherit; padding: 9px; }
+.admin-task-form button { min-height: 38px; border: 0; border-radius: 6px; background: #173451; color: #fff; font-size: .64rem; font-weight: 800; }
+.admin-task-list { display: grid; gap: 7px; }
+.admin-task-list > article { display: grid; grid-template-columns: 30px 1fr 32px; align-items: center; gap: 9px; border: 1px solid #dfe5ea; border-radius: 7px; background: #fff; padding: 10px; }
+.admin-task-list > article.is-completed { opacity: .62; }
+.admin-task-check { display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid #6aa99f; border-radius: 50%; background: #fff; color: #28786d; }
+.admin-task-list .is-completed .admin-task-check { background: #e4f3ef; }
+.admin-task-list article > div { display: grid; gap: 2px; }
+.admin-task-list strong { color: #2a4057; font-size: .7rem; }
+.admin-task-list .is-completed strong { text-decoration: line-through; }
+.admin-task-list span { color: #7b8797; font-size: .57rem; }
+.admin-task-list p { margin: 3px 0 0; color: #607086; font-size: .62rem; }
+.admin-task-remove { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 5px; background: #fff0f0; color: #9d4747; }
+.admin-class-assignment { display: grid; grid-template-columns: auto 1fr minmax(260px, .8fr); gap: 14px; align-items: center; margin-bottom: 16px; border: 1px solid #dfe5ea; border-radius: 8px; background: #f8fafb; padding: 13px; }
+.admin-class-assignment > div:first-child { display: grid; gap: 2px; }
+.admin-class-assignment strong { color: #2a4057; font-size: 0.72rem; }
+.admin-class-assignment small { color: #7b8797; font-size: 0.58rem; }
+.admin-class-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.admin-class-tags button { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #bddbd5; border-radius: 999px; background: #e8f5f2; color: #277267; font-size: 0.59rem; font-weight: 800; padding: 6px 9px; }
+.admin-class-assignment form { display: grid; grid-template-columns: 1fr auto; gap: 7px; }
+.admin-class-assignment form input { min-width: 0; min-height: 38px; border: 1px solid #d5dde5; border-radius: 6px; background: #fff; padding: 0 9px; }
+.admin-class-assignment form button { display: inline-flex; align-items: center; gap: 5px; border: 0; border-radius: 6px; background: #173451; color: #fff; font-size: 0.61rem; font-weight: 800; padding: 0 11px; }
+.admin-schedule-layout { display: grid; grid-template-columns: minmax(280px, 0.72fr) minmax(360px, 1.28fr); gap: 18px; align-items: start; }
+.admin-schedule-form fieldset { min-width: 0; margin: 0; border: 1px solid #dfe5ea; border-radius: 7px; padding: 10px; }
+.admin-schedule-form legend { color: #657488; font-size: 0.63rem; font-weight: 800; padding: 0 4px; }
+.admin-weekday-options { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+.admin-weekday-options label { position: relative; display: block; }
+.admin-weekday-options input { position: absolute; opacity: 0; }
+.admin-weekday-options span { display: grid; place-items: center; min-height: 32px; border: 1px solid #d7dfe6; border-radius: 5px; background: #fff; color: #667588; font-size: 0.59rem; }
+.admin-weekday-options input:checked + span { border-color: #287e72; background: #e6f3f0; color: #246e64; }
+.admin-schedule-students { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; max-height: 150px; overflow: auto; }
+.admin-schedule-students label { display: flex; grid-auto-flow: column; align-items: center; justify-content: start; gap: 6px; font-weight: 600; }
+.admin-schedule-students input { width: auto; }
+.admin-schedule-list { display: grid; gap: 8px; }
+.admin-schedule-list > article { display: grid; grid-template-columns: 82px 1fr auto; gap: 12px; align-items: center; border: 1px solid #e0e6eb; border-radius: 8px; background: #fbfcfd; padding: 12px; }
+.admin-schedule-list time { color: #26796e; font-size: 0.65rem; font-weight: 850; }
+.admin-schedule-list article > div:first-of-type { display: grid; gap: 3px; }
+.admin-schedule-list strong { color: #283d54; font-size: 0.73rem; }
+.admin-schedule-list span, .admin-schedule-list small { color: #748195; font-size: 0.58rem; }
+.admin-schedule-list article > div:last-child { display: flex; gap: 5px; }
+.admin-schedule-list button { display: inline-flex; align-items: center; gap: 4px; border: 1px solid #d5dde5; border-radius: 5px; background: #fff; color: #3d526a; font-size: 0.58rem; font-weight: 750; padding: 7px; }
+.admin-schedule-list button.is-danger { color: #9b4545; }
+.admin-booking-form { display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); gap: 10px; align-items: end; margin-bottom: 16px; border: 1px solid #dfe5ea; border-radius: 8px; background: #f7f9fb; padding: 13px; }
+.admin-booking-form label { display: grid; gap: 5px; color: #657488; font-size: 0.62rem; font-weight: 800; }
+.admin-booking-form label.is-wide { grid-column: 1 / -2; }
+.admin-booking-form input, .admin-booking-form select { width: 100%; min-height: 38px; border: 1px solid #d4dde5; border-radius: 6px; background: #fff; color: #263b52; padding: 0 9px; }
+.admin-booking-form button { min-height: 38px; border: 0; border-radius: 6px; background: #173451; color: #fff; font-size: 0.64rem; font-weight: 800; }
+.admin-booking-form button.is-cancel { border: 1px solid #d4dce5; background: #fff; color: #52667b; }
+.admin-booking-repeat { display: flex !important; grid-auto-flow: column; align-items: center; justify-content: start; min-height: 38px; gap: 7px !important; }
+.admin-booking-repeat input { width: auto; min-height: 0; }
+.admin-room-directory { margin-bottom: 14px; border: 1px solid #dfe5ea; border-radius: 8px; background: #f8fafb; padding: 12px; }
+.admin-room-directory summary { cursor: pointer; color: #2b4259; font-size: 0.7rem; font-weight: 850; }
+.admin-room-directory > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 12px 0; }
+.admin-room-directory article { display: grid; grid-template-columns: 70px 1fr 72px 34px; gap: 8px; align-items: end; border: 1px solid #e0e6eb; border-radius: 7px; background: #fff; padding: 10px; }
+.admin-room-directory label { display: grid; gap: 4px; color: #718094; font-size: 0.56rem; font-weight: 750; }
+.admin-room-directory input { width: 100%; min-width: 0; min-height: 34px; border: 1px solid #d4dde5; border-radius: 5px; color: #263b52; padding: 0 7px; }
+.admin-room-directory button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; border: 0; border-radius: 6px; background: #173451; color: #fff; font-size: 0.62rem; font-weight: 800; padding: 0 12px; }
+.admin-room-directory article button.is-remove { width: 34px; padding: 0; background: #fff0f0; color: #9f4545; }
+.admin-room-directory footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.admin-room-directory footer small { color: #758396; font-size: 0.58rem; }
+.admin-room-directory footer code { color: #3d566e; }
+.admin-add-room-form { display: grid; grid-template-columns: 1fr 90px 90px auto; gap: 8px; align-items: end; margin: 12px 0; border: 1px dashed #cbd6df; border-radius: 7px; padding: 10px; }
+.admin-add-room-form label { display: grid; gap: 4px; }
+.staff-attendance-future-notice { display: flex; align-items: center; gap: 7px; margin: 0 0 12px; border: 1px solid #efd7a7; border-radius: 7px; background: #fff7e7; color: #866022; font-size: 0.64rem; font-weight: 750; padding: 10px 12px; }
+.staff-attendance-sort { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; }
+.staff-attendance-sort > span { margin-right: 2px; color: #758396; font-size: .59rem; font-weight: 800; text-transform: uppercase; }
+.staff-attendance-sort button { border: 1px solid #d7dfe6; border-radius: 6px; background: #fff; color: #667588; font-size: .59rem; font-weight: 800; padding: 7px 9px; }
+.staff-attendance-sort button.is-active { border-color: #287f73; background: #e7f4f1; color: #246f65; }
+.staff-attendance-options button:disabled { cursor: not-allowed; opacity: 0.55; }
+.staff-kpi-grid strong.is-activity { max-width: 180px; overflow: hidden; font-size: .82rem; text-overflow: ellipsis; white-space: nowrap; }
+
+.teacher-progress-layout { display: grid; grid-template-columns: minmax(300px, .72fr) minmax(0, 1.4fr); gap: 18px; align-items: start; margin-bottom: 18px; }
+.teacher-student-list { display: grid; gap: 8px; }
+.teacher-student-list > button { display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; gap: 11px; align-items: center; width: 100%; padding: 12px; border: 1px solid #e2e8e7; border-radius: 9px; background: #fff; color: #1c2c29; text-align: left; cursor: pointer; transition: border-color .15s ease, background .15s ease; }
+.teacher-student-list > button:hover, .teacher-student-list > button.is-selected { border-color: #287a6f; background: #f2faf8; }
+.teacher-student-list > button > span:nth-child(2) { display: grid; gap: 2px; min-width: 0; }
+.teacher-student-list small { color: #6d7d79; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.teacher-student-avatar { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: #dff1ed; color: #21675e; font-size: .78rem; font-weight: 800; }
+.teacher-score-badge { display: grid; justify-items: end; color: #1f6f64; font-size: 1.08rem; font-weight: 800; }
+.teacher-score-badge small { font-size: .66rem; font-weight: 600; }
+.teacher-insight-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; margin-bottom: 22px; }
+.teacher-insight-grid article { display: grid; gap: 5px; padding: 13px; border: 1px solid #e5ebe9; border-radius: 9px; background: #f9fbfa; }
+.teacher-insight-grid span { color: #667671; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.teacher-insight-grid strong { color: #173d37; font-size: 1.35rem; }
+.teacher-detail-heading { margin: 20px 0 9px; color: #203b36; font-size: .93rem; }
+.teacher-results-table { overflow: hidden; border: 1px solid #e2e8e6; border-radius: 9px; }
+.teacher-results-row { display: grid; grid-template-columns: 1.3fr 1fr .55fr .65fr; gap: 10px; align-items: center; padding: 11px 13px; border-top: 1px solid #edf1f0; font-size: .79rem; }
+.teacher-results-row:first-child { border-top: 0; }
+.teacher-results-head { background: #f4f7f6; color: #64736f; font-size: .67rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+.teacher-results-row strong:nth-child(3) { color: #287a6f; }
+.teacher-practice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+.teacher-practice-grid article { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 12px; border: 1px solid #e3e9e7; border-radius: 9px; }
+.teacher-practice-grid article strong { grid-column: 1 / -1; color: #213d38; }
+.teacher-practice-grid article span { color: #697873; font-size: .76rem; }
+.teacher-empty-state { padding: 18px; color: #72817d; text-align: center; }
+.teacher-class-averages { margin-bottom: 18px; }
+.teacher-results-row.teacher-class-average-row { grid-template-columns: minmax(0, 1.5fr) .65fr .65fr; }
+.teacher-class-average-row strong:last-child { color: #287a6f; }
+
+@media (max-width: 1050px) {
+  .teacher-progress-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .teacher-insight-grid { grid-template-columns: repeat(2, 1fr); }
+  .teacher-results-row { grid-template-columns: 1fr auto; }
+  .teacher-results-row > :nth-child(2), .teacher-results-row > :nth-child(4) { display: none; }
+  .teacher-practice-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 680px) {
+  .admin-attendance-filters { grid-template-columns: 1fr; }
+  .admin-attendance-totals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .admin-sheets-actions { flex-direction: column; }
+  .admin-sheets-actions button { width: 100%; }
+  .admin-roster-layout { grid-template-columns: 1fr; }
+  .admin-student-name-grid { grid-template-columns: 1fr; }
+  .admin-roster-list > article { grid-template-columns: 34px 1fr; }
+  .admin-roster-list > article > button { grid-column: 2; justify-self: start; }
+  .admin-booking-list > article { grid-template-columns: 1fr; gap: 10px; }
+  .admin-booking-review { grid-auto-flow: row; grid-template-columns: repeat(2, auto); justify-content: start; }
+  .admin-booking-review em { grid-column: 1 / -1; justify-self: start; }
+  .staff-time-control { grid-template-columns: 1fr; }
+  .staff-floor-plan { grid-template-columns: 1fr 24px 1fr; gap: 7px 24px; padding: 8px; }
+  .staff-floor-corridor { inset: 8px calc(50% - 11px); }
+  .staff-floor-room { padding: 9px; }
+  .staff-floor-room strong { font-size: 0.68rem; }
+  .staff-room-detail { grid-template-columns: 1fr; }
+  .staff-student-directory { grid-template-columns: 1fr; }
+  .staff-schedule-picker { width: 100%; }
+  .staff-schedule-picker select { width: 100%; min-width: 0; }
+  .admin-schedule-layout { grid-template-columns: 1fr; }
+  .admin-task-layout { grid-template-columns: 1fr; }
+  .admin-class-assignment { grid-template-columns: 1fr; }
+  .admin-schedule-list > article { grid-template-columns: 72px 1fr; }
+  .admin-schedule-list article > div:last-child { grid-column: 2; flex-wrap: wrap; }
+  .admin-booking-form { grid-template-columns: 1fr 1fr; }
+  .admin-booking-form label.is-wide { grid-column: 1 / -1; }
+  .admin-booking-form button { grid-column: 1 / -1; }
+  .staff-roster-name-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .staff-student-detail dl { grid-template-columns: 1fr 1fr; }
+  .admin-room-directory > div { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 430px) {
+  .staff-week-grid { grid-template-columns: repeat(5, minmax(82vw, 1fr)); scroll-snap-type: x mandatory; }
+  .staff-week-grid > section { scroll-snap-align: start; }
+  .admin-schedule-students, .admin-booking-form { grid-template-columns: 1fr; }
+  .admin-booking-form label.is-wide, .admin-booking-form button { grid-column: 1; }
+  .staff-schedule-controls { width: 100%; flex-direction: column; align-items: stretch; }
+  .staff-view-toggle { display: grid; grid-template-columns: 1fr 1fr; }
+  .staff-day-tabs { display: flex; overflow-x: auto; }
+  .staff-day-tabs button { min-width: 92px; }
+  .staff-roster-name-cards, .staff-student-detail dl { grid-template-columns: 1fr; }
+  .staff-attendance-sort { align-items: stretch; flex-direction: column; }
+  .staff-attendance-sort > span { margin-bottom: 2px; }
+  .staff-student-detail dl > div.is-wide { grid-column: 1; }
+  .admin-class-assignment form { grid-template-columns: 1fr; }
+  .admin-class-assignment form button { min-height: 38px; justify-content: center; }
+  .admin-room-directory article { grid-template-columns: 72px 1fr 72px 34px; }
+  .admin-add-room-form { grid-template-columns: 1fr 1fr; }
+  .admin-add-room-form label:first-child { grid-column: 1 / -1; }
+  .admin-add-room-form button { grid-column: 1 / -1; }
+  .admin-room-directory footer { align-items: stretch; flex-direction: column; }
 }
 
 .student-class-panel {
@@ -8545,6 +9082,92 @@ button {
 .student-upcoming-panel p small {
   color: #7b8797;
   font-size: 0.67rem;
+}
+
+/* Corporate SHSAT Lab */
+.shsat-lab-heading .corporate-heading-action { gap: 7px; }
+.shsat-lab-content { min-width: 0; margin-bottom: 24px; color: #526276; }
+.shsat-lab-content .target-panel,
+.shsat-lab-content .recommendation-card,
+.shsat-lab-content .topics-panel,
+.shsat-lab-content .assessments-panel,
+.shsat-lab-content .assessment-card {
+  border-color: #dce3e9;
+  background: #ffffff;
+  box-shadow: 0 5px 18px rgb(20 42 67 / 5%);
+  backdrop-filter: none;
+}
+.shsat-lab-content .target-panel,
+.shsat-lab-content .topics-panel { border-top-color: #287a6f; }
+.shsat-lab-content .assessments-panel { border-top-color: #173451; }
+.shsat-lab-content .panel-title-row h2,
+.shsat-lab-content .section-heading h2,
+.shsat-lab-content .topics-heading-row h2,
+.shsat-lab-content .target-card strong,
+.shsat-lab-content .recommendation-card h3,
+.shsat-lab-content .topic-card h3,
+.shsat-lab-content .topic-group-header strong,
+.shsat-lab-content .assessment-card h3,
+.shsat-lab-content .advanced-catalogue-heading h2,
+.shsat-lab-content .advanced-passage-card h3 { color: #20354c; }
+.shsat-lab-content .target-card,
+.shsat-lab-content .topic-card { border-color: #dce3e9; background: #f8fafb; color: #263b52; }
+.shsat-lab-content .target-card:hover,
+.shsat-lab-content .topic-card:hover,
+.shsat-lab-content .topic-card:focus-visible,
+.shsat-lab-content .topic-card.is-selected { border-color: #77afa7; box-shadow: 0 10px 24px rgb(30 70 66 / 10%); }
+.shsat-lab-content .target-card p,
+.shsat-lab-content .topic-card p,
+.shsat-lab-content .assessment-card p,
+.shsat-lab-content .results-empty-state p,
+.shsat-lab-content .advanced-catalogue-heading p,
+.shsat-lab-content .advanced-passage-card p { color: #69798b; }
+.shsat-lab-content .topic-card-header > span { background: #e5f2ef; color: #287a6f; }
+.shsat-lab-content .topic-status-badge { background: #edf1f4; color: #637386 !important; }
+.shsat-lab-content .topic-level-badge { background: #e7f3f0; color: #287a6f !important; }
+.shsat-lab-content .topic-card-footer { color: #287a6f; }
+.shsat-lab-content .topic-collapse-icon { border-color: #8a98a7; }
+.shsat-lab-content .recommendation-card:nth-child(3) { border-color: #b9d8d2; background: #f2f8f6; }
+.shsat-lab-content .recommendation-card button,
+.shsat-lab-content .recommendation-card:nth-child(3) button { border-color: #173451; border-radius: 6px; background: #173451; color: #fff; }
+.shsat-lab-content .assessment-meta span,
+.shsat-lab-content .assessment-card small { color: #748395; }
+.shsat-lab-content .assessment-card button:disabled { border-color: #dce3e9; background: #eef2f5; color: #7b8998; }
+.shsat-lab-content .assessment-start-link { border-color: #173451; border-radius: 6px; background: #173451; color: #fff; }
+.shsat-lab-content .assessment-result-link { border-color: #8ec6ba; background: #e7f5f1; color: #21675e; }
+.shsat-lab-content .advanced-catalogue-heading > div > span { color: #287a6f; }
+.shsat-lab-content .advanced-catalogue-heading > strong { border-color: #b9d8d2; background: #eaf5f2; color: #21675e; }
+.shsat-lab-content .advanced-catalogue-tools { border-color: #dce3e9; background: #fff; }
+.shsat-lab-content .advanced-catalogue-search { border-color: #d4dde5; background: #f7f9fa; color: #68798b; }
+.shsat-lab-content .advanced-catalogue-search input { color: #263b52; }
+.shsat-lab-content .advanced-catalogue-search input::placeholder { color: #8996a4; }
+.shsat-lab-content .advanced-catalogue-filters button { border-color: #d6dfe6; background: #f7f9fa; color: #607184; }
+.shsat-lab-content .advanced-catalogue-filters button:hover,
+.shsat-lab-content .advanced-catalogue-filters button.is-active { border-color: #77afa7; background: #e9f4f1; color: #21675e; }
+.shsat-lab-content .advanced-passage-card { border-color: #dce3e9; background: #fff; box-shadow: 0 6px 18px rgb(20 42 67 / 7%); }
+
+/* Removable staff room reservations */
+.staff-my-bookings { margin-top: 18px; border: 1px solid #dde5e9; border-radius: 9px; background: #fff; }
+.staff-my-bookings > header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 15px 17px; border-bottom: 1px solid #e6ecef; }
+.staff-my-bookings > header span { color: #287a6f; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.staff-my-bookings > header h3 { margin: 3px 0 0; color: #23394f; font-size: 1rem; }
+.staff-my-bookings > header small { color: #738295; font-weight: 700; }
+.staff-my-bookings > div { display: grid; }
+.staff-my-bookings article { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 12px; padding: 13px 17px; border-top: 1px solid #edf1f3; }
+.staff-my-bookings article:first-child { border-top: 0; }
+.staff-my-bookings article > div { display: grid; gap: 3px; }
+.staff-my-bookings article strong { color: #263b52; }
+.staff-my-bookings article span { color: #718092; font-size: .72rem; }
+.staff-my-bookings article em { border-radius: 999px; background: #eef2f5; color: #667689; font-size: .64rem; font-style: normal; font-weight: 800; padding: 5px 8px; text-transform: capitalize; }
+.staff-my-bookings article em.is-approved { background: #e7f5f1; color: #247064; }
+.staff-my-bookings article em.is-pending { background: #fff4da; color: #906a16; }
+.staff-my-bookings article button { display: inline-flex; align-items: center; gap: 6px; min-height: 34px; border: 1px solid #e5b8b8; border-radius: 6px; background: #fff5f5; color: #a33c3c; cursor: pointer; font-weight: 750; padding: 0 10px; }
+.staff-my-bookings article button:disabled { cursor: wait; opacity: .6; }
+.staff-my-bookings > p { margin: 0; padding: 18px; color: #748395; text-align: center; }
+
+@media (max-width: 700px) {
+  .staff-my-bookings article { grid-template-columns: 1fr auto; }
+  .staff-my-bookings article button { grid-column: 1 / -1; justify-content: center; }
 }
 
 @media (max-width: 700px) {
