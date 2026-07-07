@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { BarChart3, BookOpen, CalendarDays, CheckCircle2, ClipboardList, GraduationCap, LayoutDashboard, Target, Zap } from "lucide-react";
+import { BarChart3, BookOpen, CalendarDays, CheckCircle2, ClipboardList, Target, Zap } from "lucide-react";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { getStudentClasses } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
+import { getStudentClassNavigation } from "../lib/studentClassNavigation";
 
 const isStudentPreview = new URLSearchParams(window.location.search).get("preview") === "student";
 const previewQuery = isStudentPreview ? "?preview=student&teacherTools=1" : "";
@@ -73,13 +74,7 @@ export function StudentDashboardPage() {
     );
   }
 
-  const classId = window.location.pathname.split("/").filter(Boolean)[1] ?? "shsat";
-  const navItems = [
-    { id: "dashboard", label: "Dashboard", href: `/dashboard${previewQuery}`, icon: LayoutDashboard },
-    { id: "class", label: "Class portal", href: `/study-hall/${classId}${previewQuery}`, icon: GraduationCap },
-    { id: "practice", label: "Practice", href: `/study-hall${previewQuery}`, icon: Target },
-    { id: "progress", label: "Progress", href: `/study-hall/${classId}${previewQuery}`, icon: BarChart3 },
-  ];
+  const navItems = getStudentClassNavigation(previewQuery);
 
   return (
     <CorporateDashboardShell activeId="class" navItems={navItems} onSignOut={handleSignOut} profileName={studentName} profileRole={isStudentPreview ? "Teacher preview" : "Student account"} returnHref={isStudentPreview ? "/teacher" : undefined} returnLabel="Teacher dashboard">

@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { registerStudent } from "../lib/api";
-import { getDashboardPath, getStaffLoginEmail, getUserRole } from "../lib/auth";
+import { getDashboardPath, getStaffLoginEmail, getStudentLoginEmail, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 type AuthPageProps = {
@@ -42,14 +42,14 @@ export function AuthPage({ mode }: AuthPageProps) {
       const supabase = getSupabaseClient();
 
       if (isSignup) {
-        await registerStudent({
-          email,
+        const registration = await registerStudent({
+          username: email,
           password,
           fullName,
         });
 
         const { error } = await supabase.auth.signInWithPassword({
-          email,
+          email: registration.loginEmail,
           password,
         });
 
@@ -62,11 +62,15 @@ export function AuthPage({ mode }: AuthPageProps) {
         return;
       }
 
-      const loginEmail = email.includes("@") ? email.trim().toLowerCase() : getStaffLoginEmail(email);
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: loginEmail,
+      const identifier = email.trim().toLowerCase();
+      let login = await supabase.auth.signInWithPassword({
+        email: identifier.includes("@") ? identifier : getStudentLoginEmail(identifier),
         password,
       });
+      if (login.error && !identifier.includes("@")) {
+        login = await supabase.auth.signInWithPassword({ email: getStaffLoginEmail(identifier), password });
+      }
+      const { data, error } = login;
 
       if (error) {
         setMessage(error.message);
@@ -106,16 +110,17 @@ export function AuthPage({ mode }: AuthPageProps) {
           )}
 
           <label>
-            {isSignup ? "Email" : "Email or username"}
+            Email or username
             <input
-              autoComplete={isSignup ? "email" : "username"}
+              autoComplete="username"
               autoCapitalize="none"
               autoCorrect="off"
-              inputMode={isSignup ? "email" : "text"}
-              name={isSignup ? "email" : "login-identifier"}
+              inputMode="text"
+              name={isSignup ? "username" : "login-identifier"}
               required
               spellCheck={false}
-              type={isSignup ? "email" : "text"}
+              title={isSignup ? "Enter an email, or use 3–32 letters, numbers, dots, dashes, or underscores for a username." : undefined}
+              type="text"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />

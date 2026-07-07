@@ -6,6 +6,10 @@ export function getStaffLoginEmail(username: string) {
   return `${username.trim().toLowerCase()}@staff.nathantutors.local`;
 }
 
+export function getStudentLoginEmail(username: string) {
+  return `${username.trim().toLowerCase()}@students.nathantutors.local`;
+}
+
 export function getUserRole(user: User | null): UserRole {
   const role = user?.app_metadata.role ?? user?.user_metadata.role;
 

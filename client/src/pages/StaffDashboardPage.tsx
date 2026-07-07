@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   Building2,
+  Bus,
   CalendarDays,
   CheckCircle2,
   ChevronLeft,
@@ -23,17 +24,18 @@ import {
   X,
 } from "lucide-react";
 import { getDashboardPath, getUserRole } from "../lib/auth";
-import { deleteRoomBooking, getCampusRooms, getRoomBookings, getStaffAccounts, getStaffSchedules, getStaffTasks, requestRoomBooking, saveStaffAttendance, updateStaffTask, type CampusRoom, type RoomBooking, type StaffDashboardData, type StaffSchedule, type StaffTask } from "../lib/api";
+import { deleteRoomBooking, getCampusRooms, getRoomBookings, getStaffAccounts, getStaffSchedules, getStaffTasks, requestRoomBooking, saveStaffAttendance, saveStaffDismissal, updateStaffTask, type CampusRoom, type RoomBooking, type StaffDashboardData, type StaffSchedule, type StaffTask } from "../lib/api";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 import { getFloorName } from "../lib/rooms";
 
-type StaffTab = "attendance" | "schedule" | "25live" | "roster" | "tasks";
+type StaffTab = "attendance" | "schedule" | "25live" | "roster" | "dismissal" | "tasks";
 
 const staffTabs = [
   { id: "attendance", label: "Attendance", icon: UserCheck },
   { id: "schedule", label: "Schedule", icon: CalendarDays },
   { id: "25live", label: "25Live", icon: Building2 },
   { id: "roster", label: "Roster", icon: Users },
+  { id: "dismissal", label: "Dismissal", icon: Bus },
   { id: "tasks", label: "Tasks", icon: ListTodo },
 ] as const;
 
@@ -283,8 +285,39 @@ function StudentRosterPanel({ rows }: { rows: StaffDashboardData["roster"] }) {
   const [query, setQuery] = useState("");
   const [selectedStudentId, setSelectedStudentId] = useState("");
   const visibleRows = rows.filter((row) => row.name.toLowerCase().includes(query.toLowerCase()));
-  const selectedStudent = rows.find((row) => row.id === selectedStudentId);
-  return <section className="staff-panel"><header className="staff-panel-header"><div><p>Enrollment directory</p><h2>Student care roster</h2></div><label className="staff-roster-search"><Search size={16} /><input aria-label="Search student roster" placeholder="Search students" value={query} onChange={(event) => setQuery(event.target.value)} /></label></header><div className="staff-roster-name-cards">{visibleRows.map((row) => <button className={selectedStudentId === row.id ? "is-active" : ""} key={row.id} onClick={() => setSelectedStudentId(row.id)} type="button"><span className="staff-avatar">{getInitials(row.name)}</span><span><strong>{row.name}</strong><small>{getStudentClass(row)}</small></span><ChevronRight size={15} /></button>)}</div>{selectedStudent ? <article className="staff-student-detail"><header><div><span className="staff-avatar">{getInitials(selectedStudent.name)}</span><div><strong>{selectedStudent.name}</strong><small>{selectedStudent.id} · {getStudentClass(selectedStudent)}</small></div></div><button aria-label="Close student details" onClick={() => setSelectedStudentId("")} type="button"><X size={17} /></button></header><dl><div><dt>Date of birth</dt><dd>{selectedStudent.dob || "Not entered"}</dd></div><div><dt>Allergies</dt><dd className={selectedStudent.allergies ? "is-alert" : ""}>{selectedStudent.allergies || "None known"}</dd></div><div><dt>Class</dt><dd>{getStudentClass(selectedStudent)}</dd></div><div className="is-wide"><dt>Special notes</dt><dd>{selectedStudent.specialNotes || "No special notes"}</dd></div></dl></article> : <p className="staff-roster-hint">Select a student name card to view their full care details.</p>}</section>;
+  return (
+    <section className="staff-panel">
+      <header className="staff-panel-header"><div><p>Enrollment directory</p><h2>Student care roster</h2></div><label className="staff-roster-search"><Search size={16} /><input aria-label="Search student roster" placeholder="Search students" value={query} onChange={(event) => setQuery(event.target.value)} /></label></header>
+      <div className="staff-roster-name-cards">
+        {visibleRows.map((row) => {
+          const isOpen = selectedStudentId === row.id;
+          return <article className={isOpen ? "is-open" : ""} key={row.id}>
+            <button aria-expanded={isOpen} onClick={() => setSelectedStudentId(isOpen ? "" : row.id)} type="button"><span className="staff-avatar">{getInitials(row.name)}</span><span><strong>{row.name}</strong><small>{getStudentClass(row)}</small></span><ChevronRight size={15} /></button>
+            {isOpen ? <div className="staff-student-detail"><header><div><span className="staff-avatar">{getInitials(row.name)}</span><div><strong>{row.name}</strong><small>{row.id} · {getStudentClass(row)}</small></div></div><button aria-label="Close student details" onClick={() => setSelectedStudentId("")} type="button"><X size={17} /></button></header><dl><div><dt>Date of birth</dt><dd>{row.dob || "Not entered"}</dd></div><div><dt>Allergies</dt><dd className={row.allergies ? "is-alert" : ""}>{row.allergies || "None known"}</dd></div><div><dt>Class</dt><dd>{getStudentClass(row)}</dd></div><div className="is-wide"><dt>Special notes</dt><dd>{row.specialNotes || "No special notes"}</dd></div></dl></div> : null}
+          </article>;
+        })}
+      </div>
+      {!visibleRows.length ? <p className="staff-roster-hint">No students match that search.</p> : null}
+    </section>
+  );
+}
+
+function DismissalPanel({ date, isSaving, onChangeDate, onUpdate, rows }: { date: string; isSaving: string; onChangeDate: (date: string) => void; onUpdate: (student: StaffDashboardData["roster"][number], update: { date?: string; pickedUpEarly?: boolean; vanRide?: "none" | "2pm" | "5pm" }) => void; rows: StaffDashboardData["roster"] }) {
+  const earlyCount = rows.filter((student) => student.earlyPickupDates?.includes(date)).length;
+  const van2Count = rows.filter((student) => student.vanRide === "2pm").length;
+  const van5Count = rows.filter((student) => student.vanRide === "5pm").length;
+  const isFuture = date > new Date().toLocaleDateString("en-CA");
+  return <section className="staff-panel staff-dismissal-panel">
+    <header className="staff-panel-header"><div><p>Daily departure</p><h2>Pickup and van roster</h2></div><label className="staff-dismissal-date">Roster date<input type="date" value={date} onChange={(event) => onChangeDate(event.target.value)} /></label></header>
+    <div className="staff-dismissal-summary"><span><CheckCircle2 size={15} /><strong>{earlyCount}</strong> early pickup</span><span><Bus size={15} /><strong>{van2Count}</strong> van at 2 PM</span><span><Bus size={15} /><strong>{van5Count}</strong> van at 5 PM</span></div>
+    {isFuture ? <p className="staff-attendance-future-notice"><CircleAlert size={15} /> Future dates are view-only.</p> : null}
+    <div className="staff-dismissal-list">{rows.map((student) => {
+      const pickedUpEarly = Boolean(student.earlyPickupDates?.includes(date));
+      const vanRide = student.vanRide ?? "none";
+      const saving = isSaving === student.id;
+      return <article key={student.id}><span className="staff-avatar">{getInitials(student.name)}</span><div><strong>{student.name}</strong><small className={`is-${vanRide}`}>{vanRide === "2pm" ? "Van · 2 PM" : vanRide === "5pm" ? "Van · 5 PM" : "No van"}</small></div><label>Ride home<select disabled={saving} value={vanRide} onChange={(event) => onUpdate(student, { vanRide: event.target.value as "none" | "2pm" | "5pm" })}><option value="none">No van</option><option value="2pm">Van at 2 PM</option><option value="5pm">Van at 5 PM</option></select></label><button className={pickedUpEarly ? "is-early" : ""} disabled={saving || isFuture} onClick={() => onUpdate(student, { date, pickedUpEarly: !pickedUpEarly })} type="button"><CheckCircle2 size={15} /> {pickedUpEarly ? "Picked up early" : "Mark early pickup"}</button></article>;
+    })}</div>
+  </section>;
 }
 
 function StaffTasksPanel({ onToggle, tasks }: { onToggle: (task: StaffTask) => void; tasks: StaffTask[] }) {
@@ -303,6 +336,8 @@ export function StaffDashboardPage() {
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
   const [isNavigationOpen, setIsNavigationOpen] = useState(false);
   const [isSavingAttendance, setIsSavingAttendance] = useState(false);
+  const [savingDismissalId, setSavingDismissalId] = useState("");
+  const [dismissalDate, setDismissalDate] = useState(() => new Date().toLocaleDateString("en-CA"));
   const [previewReturnPath, setPreviewReturnPath] = useState("/teacher");
   const [staffName, setStaffName] = useState("Operations Staff");
   const [selectedAttendanceDate, setSelectedAttendanceDate] = useState(attendanceDates[0]);
@@ -424,6 +459,21 @@ export function StaffDashboardPage() {
     }
   }
 
+  async function handleDismissalUpdate(student: StaffDashboardData["roster"][number], update: { date?: string; pickedUpEarly?: boolean; vanRide?: "none" | "2pm" | "5pm" }) {
+    if (!accessToken) return;
+    setSavingDismissalId(student.id);
+    setAttendanceSaveMessage("");
+    try {
+      const result = await saveStaffDismissal(accessToken, { accountId: previewAccountId ?? undefined, studentId: student.id, ...update });
+      setDashboardData(result.dashboardData);
+      setAttendanceSaveMessage(`${student.name}'s dismissal information was saved.`);
+    } catch (error) {
+      setAttendanceSaveMessage(error instanceof Error ? error.message : "Could not update dismissal information.");
+    } finally {
+      setSavingDismissalId("");
+    }
+  }
+
   if (isCheckingSession) return <main className="loading-shell">Loading staff workspace...</main>;
 
   const activeLabel = staffTabs.find((tab) => tab.id === activeTab)?.label ?? "Attendance";
@@ -470,11 +520,12 @@ export function StaffDashboardPage() {
             <article className="is-clickable"><button onClick={() => setActiveTab("tasks")} type="button"><span><CircleAlert size={19} /></span><div><p>Open tasks</p><strong>{openTaskCount}</strong></div><em className={openTaskCount ? "is-warning" : ""}>{openTaskCount ? "Needs attention" : "All complete"}</em></button></article>
           </section>
 
-          {attendanceSaveMessage && activeTab === "attendance" ? <p className="staff-attendance-message" role="status">{attendanceSaveMessage}</p> : null}
+          {attendanceSaveMessage && (activeTab === "attendance" || activeTab === "dismissal") ? <p className="staff-attendance-message" role="status">{attendanceSaveMessage}</p> : null}
           {activeTab === "attendance" ? <AttendancePanel data={dashboardData} date={selectedAttendanceDate} isFutureLocked={isFutureAttendance} isSaving={isSavingAttendance} onChangeDate={setSelectedAttendanceDate} onChangeStatus={(studentId, status) => setAttendanceStatuses((current) => ({ ...current, [studentId]: status }))} onSave={handleSaveAttendance} statuses={attendanceStatuses} /> : null}
           {activeTab === "schedule" ? <SchedulePanel schedules={staffSchedules} selectedId={selectedScheduleId} onSelect={setSelectedScheduleId} /> : null}
           {activeTab === "25live" ? <InteractiveTwentyFiveLivePanel accessToken={accessToken} bookings={roomBookings} canBook={Boolean(accessToken)} currentUserId={staffAccountId} onBookingCreated={(createdBookings) => setRoomBookings((current) => [...current, ...createdBookings])} onBookingRemoved={(bookingId) => setRoomBookings((current) => current.filter((booking) => booking.id !== bookingId))} rooms={campusRooms} /> : null}
           {activeTab === "roster" ? <StudentRosterPanel rows={dashboardData.roster} /> : null}
+          {activeTab === "dismissal" ? <DismissalPanel date={dismissalDate} isSaving={savingDismissalId} onChangeDate={setDismissalDate} onUpdate={handleDismissalUpdate} rows={dashboardData.roster} /> : null}
           {activeTab === "tasks" ? <StaffTasksPanel onToggle={handleToggleTask} tasks={staffTasks} /> : null}
         </div>
       </section>

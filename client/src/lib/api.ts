@@ -32,6 +32,7 @@ export type StudentAssessment = {
   passageCount: number;
   questionCount: number;
   questionTypes: QuestionType[];
+  split: boolean;
   status: AssessmentStatus;
   title: string;
 };
@@ -58,6 +59,7 @@ export type TeacherAssessment = {
     topic: string;
     type: QuestionType;
   }[];
+  split: boolean;
   status: AssessmentStatus;
   title: string;
   updatedAt: string;
@@ -95,6 +97,8 @@ export type StaffDashboardData = {
     name: string;
     specialNotes?: string;
     status: "Active" | "Waitlist";
+    earlyPickupDates?: string[];
+    vanRide?: "none" | "2pm" | "5pm";
   }[];
 };
 
@@ -269,6 +273,23 @@ export async function saveStaffAttendance(
   });
 }
 
+export async function saveStaffDismissal(
+  accessToken: string,
+  input: {
+    accountId?: string;
+    date?: string;
+    pickedUpEarly?: boolean;
+    studentId: string;
+    vanRide?: "none" | "2pm" | "5pm";
+  },
+) {
+  return requestApi<{ dashboardData: StaffDashboardData }>("/api/staff/dismissal", {
+    body: JSON.stringify(input),
+    headers: createAuthHeaders(accessToken),
+    method: "PUT",
+  });
+}
+
 export type GoogleSheetsAttendanceSettings = {
   configured: boolean;
   source: "admin" | "environment" | "none";
@@ -303,6 +324,10 @@ export type LearningProgressSnapshot = {
 
 export type StudentProgressSnapshot = {
   classes: string[];
+  dismissal: {
+    earlyPickupDates: string[];
+    vanRide: "none" | "2pm" | "5pm";
+  };
   email: string;
   fullName: string;
   id: string;
@@ -324,9 +349,9 @@ export type SwitchableAccount = {
 };
 
 type RegisterStudentInput = {
-  email: string;
   fullName: string;
   password: string;
+  username: string;
 };
 
 type ApiErrorBody = {
@@ -350,7 +375,7 @@ async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
 
   try {
     response = await fetch(url, init);
-  } catch (error) {
+  } catch {
     // Render can briefly reset a connection while a free instance wakes or
     // restarts. Retrying read-only requests prevents a transient failure from
     // emptying an entire dashboard.
@@ -386,13 +411,38 @@ function createAuthHeaders(accessToken: string) {
 }
 
 export async function registerStudent(input: RegisterStudentInput) {
-  await requestApi("/api/auth/register", {
+  return requestApi<{ loginEmail: string; message: string }>("/api/auth/register", {
     body: JSON.stringify(input),
     headers: {
       "Content-Type": "application/json",
     },
     method: "POST",
   });
+}
+
+export type ExamSessionProgress = {
+  answers: Record<string, unknown>;
+  completedSections: ("english" | "math")[];
+  updatedAt: string;
+};
+
+export async function getExamSessionProgress(accessToken: string) {
+  const data = await requestApi<{ sessions: Record<string, ExamSessionProgress> }>("/api/progress/exam-sessions", {
+    headers: createAuthHeaders(accessToken),
+  });
+  return data.sessions;
+}
+
+export async function saveExamSessionProgress(
+  accessToken: string,
+  assessmentId: string,
+  input: Pick<ExamSessionProgress, "answers" | "completedSections">,
+) {
+  const data = await requestApi<{ session: ExamSessionProgress | null }>(
+    `/api/progress/exam-sessions/${encodeURIComponent(assessmentId)}`,
+    { body: JSON.stringify(input), headers: createAuthHeaders(accessToken), method: "PUT" },
+  );
+  return data.session;
 }
 
 export async function getStaffAccounts(accessToken: string) {
@@ -459,12 +509,28 @@ export async function getTeacherStudentProgress(accessToken: string) {
   return data.students;
 }
 
+export async function updateStudentDismissal(
+  accessToken: string,
+  studentId: string,
+  input: { date?: string; pickedUpEarly?: boolean; vanRide?: "none" | "2pm" | "5pm" },
+) {
+  const data = await requestApi<{ dismissal: StudentProgressSnapshot["dismissal"] }>(
+    `/api/progress/students/${encodeURIComponent(studentId)}/dismissal`,
+    {
+      body: JSON.stringify(input),
+      headers: createAuthHeaders(accessToken),
+      method: "PATCH",
+    },
+  );
+  return data.dismissal;
+}
+
 export async function saveCloudExamResult(
   accessToken: string,
   assessmentId: string,
   result: Record<string, unknown>,
 ) {
-  await requestApi(`/api/progress/exam-results/${encodeURIComponent(assessmentId)}`, {
+  return requestApi<{ progress: LearningProgressSnapshot; storage: "database" }>(`/api/progress/exam-results/${encodeURIComponent(assessmentId)}`, {
     body: JSON.stringify({ result }),
     headers: createAuthHeaders(accessToken),
     method: "PUT",
@@ -540,5 +606,17 @@ export async function updateTeacherAssessmentStatus(
     },
   );
 
+  return data.assessment;
+}
+
+export async function updateTeacherAssessmentSplit(
+  accessToken: string,
+  assessmentId: string,
+  split: boolean,
+) {
+  const data = await requestApi<{ assessment: TeacherAssessment }>(
+    `/api/assessments/teacher/${assessmentId}/split`,
+    { body: JSON.stringify({ split }), headers: createAuthHeaders(accessToken), method: "PATCH" },
+  );
   return data.assessment;
 }

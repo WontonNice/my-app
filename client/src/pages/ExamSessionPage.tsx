@@ -17,7 +17,7 @@ import {
   X,
 } from "lucide-react";
 import { resolveExamContent, type ExamQuestion } from "../content/exams";
-import { getStudentAssessment, saveCloudExamResult, type TeacherAssessment } from "../lib/api";
+import { getExamSessionProgress, getStudentAssessment, saveCloudExamResult, saveExamSessionProgress, type TeacherAssessment } from "../lib/api";
 import { getUserRole } from "../lib/auth";
 import { formatDuration, getAssessmentIdFromPath, getDisplayName } from "../lib/exam";
 import {
@@ -28,6 +28,7 @@ import {
   saveExamTimerState,
   type ExamTimerState,
 } from "../lib/examTimer";
+import { clearLocalExamSession, loadLocalExamSession, saveLocalExamSession } from "../lib/examSessionProgress";
 import {
   createExamResult,
   getAllExamQuestions,
@@ -410,6 +411,16 @@ function getTeacherPreviewDashboardHref() {
   }
 
   return "/study-hall";
+}
+
+function getAssessmentDashboardHref() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams({ section: "assessments" });
+  if (searchParams.get("preview") === "student" && searchParams.get("teacherTools") === "1") {
+    params.set("preview", "student");
+    params.set("teacherTools", "1");
+  }
+  return `/study-hall?${params.toString()}`;
 }
 
 function ExamUserMenu({
@@ -850,6 +861,8 @@ export function ExamSessionPage() {
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
   const [isNotepadOpen, setIsNotepadOpen] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
+  const [isSubmittingSection, setIsSubmittingSection] = useState(false);
+  const [isSplitEnglishComplete, setIsSplitEnglishComplete] = useState(false);
   const [isTimerVisible, setIsTimerVisible] = useState(false);
   const [isUnansweredModalOpen, setIsUnansweredModalOpen] = useState(false);
   const [isTeacherPreviewSession, setIsTeacherPreviewSession] = useState(false);
@@ -899,6 +912,21 @@ export function ExamSessionPage() {
       try {
         const nextAssessment = await getStudentAssessment(data.session.access_token, assessmentId);
         setAssessment(nextAssessment);
+        if (nextAssessment.split && nextStartingSubject === "math") {
+          const localProgress = loadLocalExamSession(data.session.user.id, assessmentId);
+          let progress = localProgress;
+          try {
+            const cloudSessions = await getExamSessionProgress(data.session.access_token);
+            progress = cloudSessions[assessmentId] ?? localProgress;
+          } catch {
+            // Continue with the locally saved English answers when cloud sync is unavailable.
+          }
+          if (!progress?.completedSections.includes("english")) {
+            window.location.assign(`/exam/${assessmentId}${window.location.search}`);
+            return;
+          }
+          setSelectedAnswers(progress.answers as SelectedAnswers);
+        }
       } catch (error) {
         setErrorMessage(error instanceof Error ? error.message : "Could not load this exam.");
       } finally {
@@ -1090,20 +1118,26 @@ export function ExamSessionPage() {
     setHighlightToolbar(null);
   }
 
-  function saveCompletedExam(answers: SelectedAnswers) {
+  async function saveCompletedExam(answers: SelectedAnswers) {
     if (!studentId) {
-      return;
+      throw new Error("Your student session is unavailable. Refresh and try again.");
     }
 
     const result = createExamResult(examContent, answers);
     saveExamResult(studentId, result);
-
     if (accessToken && !isTeacherPreviewSession) {
-      void saveCloudExamResult(
+      await saveCloudExamResult(
         accessToken,
         result.assessmentId,
         result as unknown as Record<string, unknown>,
-      ).catch(() => undefined);
+      );
+    }
+
+    if (assessment?.split) {
+      clearLocalExamSession(studentId, result.assessmentId);
+      if (accessToken && !isTeacherPreviewSession) {
+        await saveExamSessionProgress(accessToken, result.assessmentId, { answers: {}, completedSections: [] });
+      }
     }
   }
 
@@ -1123,8 +1157,7 @@ export function ExamSessionPage() {
     setIsNotepadOpen(false);
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
-    saveCompletedExam(randomAnswers);
-    setSessionScreen("testOver");
+    void saveCompletedExam(randomAnswers).then(() => setSessionScreen("testOver"));
   }
 
   function handlePauseTimer() {
@@ -1810,7 +1843,8 @@ export function ExamSessionPage() {
     setSessionScreen("standaloneDirections");
   }
 
-  function handleEndSectionSubmit() {
+  async function handleEndSectionSubmit() {
+    if (!assessment) return;
     clearTransientExamUi();
     setActiveTool("pointer");
     setIsNotepadOpen(false);
@@ -1818,16 +1852,53 @@ export function ExamSessionPage() {
     setIsUnansweredModalOpen(false);
     setSelectedCategoryItemId("");
 
+    if (startingSubject === "english" && assessment.split) {
+      setIsSubmittingSection(true);
+      setErrorMessage("");
+      saveLocalExamSession(studentId, assessment.id, selectedAnswers, ["english"]);
+      const englishResult = createExamResult(examContent, selectedAnswers, ["english"]);
+      saveExamResult(studentId, englishResult);
+      try {
+        if (accessToken && !isTeacherPreviewSession) {
+          await saveCloudExamResult(
+            accessToken,
+            assessment.id,
+            englishResult as unknown as Record<string, unknown>,
+          );
+          await saveExamSessionProgress(accessToken, assessment.id, {
+            answers: selectedAnswers as Record<string, unknown>,
+            completedSections: ["english"],
+          });
+        }
+        setIsSplitEnglishComplete(true);
+        setSessionScreen("testOver");
+      } catch (error) {
+        setErrorMessage(error instanceof Error ? error.message : "Your English score could not be saved. Please submit again.");
+      } finally {
+        setIsSubmittingSection(false);
+      }
+      return;
+    }
+
     if (startingSubject === "english" && !hasCompletedMath) {
       setSessionScreen("mathIntro");
       return;
     }
 
-    saveCompletedExam(selectedAnswers);
-    setSessionScreen("testOver");
+    setIsSubmittingSection(true);
+    setErrorMessage("");
+    try {
+      await saveCompletedExam(selectedAnswers);
+      setSessionScreen("testOver");
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "Your result could not be saved. Please submit again.");
+      setSessionScreen("endSection");
+    } finally {
+      setIsSubmittingSection(false);
+    }
   }
 
-  function finishMathSection() {
+  async function finishMathSection() {
     clearTransientExamUi();
     setActiveTool("pointer");
     setHasCompletedMath(true);
@@ -1837,15 +1908,24 @@ export function ExamSessionPage() {
     setReviewFilter("all");
     setSelectedCategoryItemId("");
 
-    if (startingSubject === "math") {
+    if (startingSubject === "math" && !assessment?.split) {
       setActivePassageSetIndex(0);
       setActiveQuestionIndex(0);
       setSessionScreen("passageIntro");
       return;
     }
 
-    saveCompletedExam(selectedAnswers);
-    setSessionScreen("testOver");
+    setIsSubmittingSection(true);
+    setErrorMessage("");
+    try {
+      await saveCompletedExam(selectedAnswers);
+      setSessionScreen("testOver");
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "Your result could not be saved. Please submit again.");
+      setSessionScreen("endSection");
+    } finally {
+      setIsSubmittingSection(false);
+    }
   }
 
   function handleStartMathSection() {
@@ -2677,9 +2757,10 @@ export function ExamSessionPage() {
           <p className="exam-end-section-copy">
             Use the <strong>Submit</strong> button below to submit your answers.
           </p>
-          <button className="exam-end-section-submit" onClick={handleEndSectionSubmit} type="button">
-            Submit <span aria-hidden="true">&gt;&gt;</span>
+          <button className="exam-end-section-submit" disabled={isSubmittingSection} onClick={handleEndSectionSubmit} type="button">
+            {isSubmittingSection ? "Saving" : "Submit"} <span aria-hidden="true">&gt;&gt;</span>
           </button>
+          {errorMessage && <p className="auth-message">{errorMessage}</p>}
         </section>
       </main>
     );
@@ -2701,19 +2782,17 @@ export function ExamSessionPage() {
         />
 
         <section className="exam-end-section-card exam-test-over-card" aria-labelledby="exam-test-over-title">
-          <h1 id="exam-test-over-title">Test Over</h1>
+          <h1 id="exam-test-over-title">{isSplitEnglishComplete ? "English Session Complete" : "Test Over"}</h1>
           <span className="exam-end-section-check" aria-hidden="true">
             <Check size={31} strokeWidth={3.2} />
           </span>
-          <p>Your answers have been submitted.</p>
-          <p className="exam-end-section-copy">You can now return to your dashboard.</p>
+          <p>{isSplitEnglishComplete ? "Your English answers have been saved." : "Your answers have been submitted."}</p>
+          <p className="exam-end-section-copy">{isSplitEnglishComplete ? "Return to your dashboard when you are ready to start Math." : "You can now return to your dashboard."}</p>
           <div className="exam-test-over-actions">
-            <a className="exam-end-section-submit" href={`/results/${assessment.id}${window.location.search}`}>
-              View Results
-            </a>
+            {!isSplitEnglishComplete && <a className="exam-end-section-submit" href={`/results/${assessment.id}${window.location.search}`}>View Results</a>}
             <button
               className="exam-end-section-submit is-secondary"
-              onClick={() => window.location.assign(getTeacherPreviewDashboardHref())}
+              onClick={() => window.location.assign(isSplitEnglishComplete ? getAssessmentDashboardHref() : getTeacherPreviewDashboardHref())}
               type="button"
             >
               Return to Dashboard

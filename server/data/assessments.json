@@ -32,7 +32,8 @@
     ],
     "status": "open",
     "title": "SHSAT Diagnostic 1",
-    "updatedAt": "2026-06-17T01:17:43.876Z"
+    "updatedAt": "2026-07-07T09:25:07.860Z",
+    "split": true
   },
   {
     "classId": "shsat",
@@ -62,7 +63,8 @@
     ],
     "status": "locked",
     "title": "Reading Checkpoint A",
-    "updatedAt": "2026-06-16T00:00:00.000Z"
+    "updatedAt": "2026-06-16T00:00:00.000Z",
+    "split": false
   },
   {
     "classId": "shsat",
@@ -85,6 +87,7 @@
     ],
     "status": "locked",
     "title": "Math Foundations Checkpoint",
-    "updatedAt": "2026-06-16T00:00:00.000Z"
+    "updatedAt": "2026-06-16T00:00:00.000Z",
+    "split": false
   }
 ]

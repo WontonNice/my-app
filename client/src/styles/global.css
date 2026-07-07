@@ -1007,193 +1007,6 @@ button {
   text-transform: uppercase;
 }
 
-.shsat-shell {
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at 78% 12%, rgb(119 82 255 / 18%), transparent 24%),
-    radial-gradient(circle at 18% 86%, rgb(44 204 163 / 14%), transparent 24%),
-    linear-gradient(135deg, #05080f 0%, #0c1427 52%, #05070d 100%);
-  color: #ffffff;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-}
-
-.shsat-sidebar {
-  position: sticky;
-  top: 0;
-  display: grid;
-  grid-template-rows: auto 1fr auto auto;
-  gap: 22px;
-  height: 100vh;
-  border-right: 1px solid rgb(255 255 255 / 10%);
-  background:
-    linear-gradient(180deg, rgb(255 255 255 / 9%), rgb(255 255 255 / 4%)),
-    rgb(2 7 16 / 88%);
-  padding: 22px 12px;
-  box-shadow: 18px 0 60px rgb(0 0 0 / 22%);
-  backdrop-filter: blur(18px);
-}
-
-.shsat-brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 8px 16px;
-}
-
-.shsat-brand span {
-  display: grid;
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgb(255 255 255 / 22%);
-  border-radius: 999px;
-  background: linear-gradient(135deg, #7c4dff, #2bd3a8);
-  color: #ffffff;
-  font-size: 0.78rem;
-  font-weight: 950;
-  place-items: center;
-}
-
-.shsat-brand strong {
-  color: #ffffff;
-  font-size: 1.55rem;
-  font-weight: 950;
-  letter-spacing: -0.04em;
-}
-
-.shsat-brand em {
-  color: #9a6bff;
-  font-family: "Segoe Script", "Brush Script MT", cursive;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 800;
-}
-
-.shsat-side-nav {
-  display: grid;
-  align-content: start;
-  gap: 8px;
-}
-
-.shsat-side-nav a,
-.shsat-side-nav button {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background: transparent;
-  color: rgb(255 255 255 / 68%);
-  cursor: pointer;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 800;
-  padding: 11px 12px;
-  text-align: left;
-  transition:
-    background 160ms ease,
-    border-color 160ms ease,
-    color 160ms ease;
-}
-
-.shsat-side-nav a:hover,
-.shsat-side-nav a.is-active,
-.shsat-side-nav button:hover,
-.shsat-side-nav button.is-active {
-  border-color: rgb(151 105 255 / 28%);
-  background: rgb(151 105 255 / 14%);
-  color: #ffffff;
-}
-
-.shsat-side-nav a span,
-.shsat-side-nav button span {
-  display: grid;
-  width: 24px;
-  height: 24px;
-  border-radius: 7px;
-  background: rgb(255 255 255 / 8%);
-  color: #b997ff;
-  font-size: 0.72rem;
-  font-weight: 950;
-  place-items: center;
-}
-
-.shsat-countdown,
-.shsat-profile {
-  border: 1px solid rgb(255 255 255 / 10%);
-  border-radius: 8px;
-  background: rgb(255 255 255 / 7%);
-  padding: 14px;
-}
-
-.shsat-countdown span,
-.shsat-profile small {
-  display: block;
-  color: rgb(255 255 255 / 62%);
-  font-size: 0.78rem;
-  font-weight: 800;
-}
-
-.shsat-countdown strong {
-  display: block;
-  margin-top: 8px;
-  color: #2bd3a8;
-  font-size: 1.55rem;
-  line-height: 1;
-}
-
-.shsat-profile {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.shsat-profile > span {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  background: rgb(151 105 255 / 22%);
-  color: #ffffff;
-  font-weight: 950;
-  place-items: center;
-}
-
-.shsat-profile strong {
-  display: block;
-  font-size: 0.92rem;
-}
-
-.shsat-main {
-  position: relative;
-  z-index: 1;
-  width: min(1280px, calc(100% - 48px));
-  margin: 0 auto;
-  padding: 28px 0 56px;
-}
-
-.shsat-main::before {
-  position: fixed;
-  inset: -14vh -10vw;
-  z-index: -1;
-  background:
-    repeating-linear-gradient(112deg, transparent 0 92px, rgb(255 255 255 / 4%) 96px 102px),
-    radial-gradient(circle at 60% 12%, rgb(151 105 255 / 14%), transparent 28%);
-  content: "";
-  pointer-events: none;
-}
-
-.shsat-topbar {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 28px;
-}
-
-.shsat-topbar p,
 .section-heading span,
 .panel-title-row p,
 .target-card small,
@@ -1204,38 +1017,6 @@ button {
 .topic-card small,
 .reset-note {
   color: rgb(255 255 255 / 64%);
-}
-
-.shsat-topbar p {
-  margin: 0 0 6px;
-  color: #9a6bff;
-  font-size: 0.8rem;
-  font-weight: 900;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.shsat-topbar h1 {
-  max-width: 780px;
-  margin: 0;
-  color: #ffffff;
-  font-size: clamp(2.4rem, 5vw, 4.8rem);
-  font-weight: 950;
-  letter-spacing: -0.06em;
-  line-height: 0.9;
-  text-transform: uppercase;
-}
-
-.shsat-topbar span {
-  display: block;
-  margin-top: 10px;
-  color: rgb(255 255 255 / 68%);
-  font-size: 0.96rem;
-}
-
-.shsat-signout {
-  position: static;
-  flex: 0 0 auto;
 }
 
 .target-panel,
@@ -6972,31 +6753,6 @@ button {
     transform: rotate(3deg);
   }
 
-  .shsat-shell {
-    grid-template-columns: 1fr;
-  }
-
-  .shsat-sidebar {
-    position: relative;
-    display: block;
-    height: auto;
-    padding: 16px;
-  }
-
-  .shsat-brand {
-    padding: 0;
-  }
-
-  .shsat-side-nav {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-top: 16px;
-  }
-
-  .shsat-countdown,
-  .shsat-profile {
-    margin-top: 12px;
-  }
-
   .target-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -7135,11 +6891,6 @@ button {
     max-width: 620px;
   }
 
-  .shsat-main {
-    width: min(100% - 32px, 1280px);
-  }
-
-  .shsat-topbar,
   .panel-title-row,
   .section-heading {
     align-items: flex-start;
@@ -7318,14 +7069,6 @@ button {
     font-size: 2.3rem;
   }
 
-  .shsat-sidebar {
-    padding: 14px;
-  }
-
-  .shsat-side-nav {
-    grid-template-columns: 1fr;
-  }
-
   .target-grid,
   .recommendation-grid,
   .topic-card-grid,
@@ -7338,10 +7081,6 @@ button {
   .topics-panel,
   .recommendation-card {
     padding: 16px;
-  }
-
-  .shsat-topbar h1 {
-    font-size: clamp(2.35rem, 13vw, 4rem);
   }
 
   .topic-legend {
@@ -8670,13 +8409,15 @@ button {
 .staff-empty-state, .staff-roster-hint { margin: 0; border: 1px dashed #d8e0e7; border-radius: 8px; color: #788598; font-size: 0.68rem; padding: 18px; text-align: center; }
 
 .staff-roster-name-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-.staff-roster-name-cards > button { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 8px; min-width: 0; border: 1px solid #dfe5eb; border-radius: 8px; background: #fbfcfd; color: #253a51; padding: 10px; text-align: left; }
-.staff-roster-name-cards > button.is-active { border-color: #368e82; background: #eef8f5; }
+.staff-roster-name-cards > article { overflow: hidden; min-width: 0; border: 1px solid #dfe5eb; border-radius: 8px; background: #fbfcfd; }
+.staff-roster-name-cards > article.is-open { grid-column: 1 / -1; border-color: #368e82; background: #eef8f5; }
+.staff-roster-name-cards > article > button { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 8px; width: 100%; min-width: 0; border: 0; background: transparent; color: #253a51; padding: 10px; text-align: left; }
+.staff-roster-name-cards > article.is-open > button svg { transform: rotate(90deg); }
 .staff-roster-name-cards button > span:nth-child(2) { display: grid; min-width: 0; gap: 2px; }
 .staff-roster-name-cards strong { overflow: hidden; font-size: 0.68rem; text-overflow: ellipsis; white-space: nowrap; }
 .staff-roster-name-cards small { color: #7b8797; font-size: 0.56rem; }
 .staff-roster-name-cards svg { color: #8a96a5; }
-.staff-student-detail { margin-top: 12px; border: 1px solid #dce4ea; border-radius: 9px; background: #f8fafb; padding: 15px; }
+.staff-student-detail { border-top: 1px solid #dce4ea; background: #f8fafb; padding: 15px; }
 .staff-student-detail > header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e4e9ed; padding-bottom: 12px; }
 .staff-student-detail > header > div { display: flex; align-items: center; gap: 9px; }
 .staff-student-detail header div > div { display: grid; gap: 2px; }
@@ -8690,6 +8431,21 @@ button {
 .staff-student-detail dd { margin: 0; color: #344960; font-size: 0.66rem; }
 .staff-student-detail dd.is-alert { color: #a04949; font-weight: 800; }
 .staff-roster-hint { margin-top: 12px; }
+.staff-dismissal-date { display: grid; gap: 4px; color: #728094; font-size: .58rem; font-weight: 800; text-transform: uppercase; }
+.staff-dismissal-date input, .staff-dismissal-list select { min-height: 36px; border: 1px solid #d5dde4; border-radius: 6px; background: #fff; color: #2d4258; padding: 0 9px; font: inherit; }
+.staff-dismissal-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.staff-dismissal-summary span { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #d8e5e2; border-radius: 999px; background: #f1f8f6; color: #347065; padding: 7px 10px; font-size: .64rem; }
+.staff-dismissal-list { display: grid; gap: 8px; }
+.staff-dismissal-list > article { display: grid; grid-template-columns: 34px minmax(140px, 1fr) minmax(140px, .5fr) auto; align-items: center; gap: 10px; border: 1px solid #dfe5eb; border-radius: 8px; background: #fbfcfd; padding: 10px; }
+.staff-dismissal-list > article > div { display: grid; justify-items: start; gap: 4px; min-width: 0; }
+.staff-dismissal-list > article > div strong { overflow: hidden; color: #263b52; font-size: .7rem; text-overflow: ellipsis; white-space: nowrap; }
+.staff-dismissal-list > article > div small { border-radius: 999px; background: #edf1f4; color: #718093; padding: 3px 7px; font-size: .54rem; font-weight: 800; }
+.staff-dismissal-list > article > div small.is-2pm { background: #e3f3ef; color: #216d62; }
+.staff-dismissal-list > article > div small.is-5pm { background: #ebedfa; color: #505b94; }
+.staff-dismissal-list label { display: grid; gap: 3px; color: #778598; font-size: .55rem; font-weight: 800; }
+.staff-dismissal-list button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 36px; border: 1px solid #d4dde4; border-radius: 6px; background: #fff; color: #54677a; padding: 0 11px; font-size: .6rem; font-weight: 800; }
+.staff-dismissal-list button.is-early { border-color: #dda45c; background: #fff3df; color: #8b5a1b; }
+.staff-dismissal-list button:disabled, .staff-dismissal-list select:disabled { opacity: .55; }
 
 .admin-schedule-panel { margin-bottom: 20px; }
 .admin-tasks-panel { margin-bottom: 20px; }
@@ -8779,15 +8535,21 @@ button {
 .staff-attendance-options button:disabled { cursor: not-allowed; opacity: 0.55; }
 .staff-kpi-grid strong.is-activity { max-width: 180px; overflow: hidden; font-size: .82rem; text-overflow: ellipsis; white-space: nowrap; }
 
-.teacher-progress-layout { display: grid; grid-template-columns: minmax(300px, .72fr) minmax(0, 1.4fr); gap: 18px; align-items: start; margin-bottom: 18px; }
+.teacher-roster-panel { margin-bottom: 18px; }
 .teacher-student-list { display: grid; gap: 8px; }
-.teacher-student-list > button { display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; gap: 11px; align-items: center; width: 100%; padding: 12px; border: 1px solid #e2e8e7; border-radius: 9px; background: #fff; color: #1c2c29; text-align: left; cursor: pointer; transition: border-color .15s ease, background .15s ease; }
-.teacher-student-list > button:hover, .teacher-student-list > button.is-selected { border-color: #287a6f; background: #f2faf8; }
-.teacher-student-list > button > span:nth-child(2) { display: grid; gap: 2px; min-width: 0; }
+.teacher-student-entry { overflow: hidden; border: 1px solid #e2e8e7; border-radius: 9px; background: #fff; transition: border-color .15s ease, box-shadow .15s ease; }
+.teacher-student-entry:hover, .teacher-student-entry.is-open { border-color: #287a6f; }
+.teacher-student-entry.is-open { box-shadow: 0 7px 20px rgb(35 86 78 / 9%); }
+.teacher-student-entry > button { display: grid; grid-template-columns: 42px minmax(0, 1fr) auto 18px; gap: 11px; align-items: center; width: 100%; padding: 12px; border: 0; background: #fff; color: #1c2c29; text-align: left; cursor: pointer; }
+.teacher-student-entry.is-open > button { background: #f2faf8; }
+.teacher-student-entry > button > span:nth-child(2) { display: grid; gap: 2px; min-width: 0; }
 .teacher-student-list small { color: #6d7d79; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .teacher-student-avatar { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: #dff1ed; color: #21675e; font-size: .78rem; font-weight: 800; }
 .teacher-score-badge { display: grid; justify-items: end; color: #1f6f64; font-size: 1.08rem; font-weight: 800; }
 .teacher-score-badge small { font-size: .66rem; font-weight: 600; }
+.teacher-roster-chevron { color: #6d7d79; transition: transform .18s ease; }
+.teacher-student-entry.is-open .teacher-roster-chevron { transform: rotate(180deg); }
+.teacher-student-entry .teacher-student-detail { border-top: 1px solid #dce8e5; background: #fff; padding: 20px; }
 .teacher-insight-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; margin-bottom: 22px; }
 .teacher-insight-grid article { display: grid; gap: 5px; padding: 13px; border: 1px solid #e5ebe9; border-radius: 9px; background: #f9fbfa; }
 .teacher-insight-grid span { color: #667671; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
@@ -8798,6 +8560,9 @@ button {
 .teacher-results-row:first-child { border-top: 0; }
 .teacher-results-head { background: #f4f7f6; color: #64736f; font-size: .67rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
 .teacher-results-row strong:nth-child(3) { color: #287a6f; }
+.teacher-results-row small { display: block; margin-top: 3px; color: #72817d; font-size: .66rem; font-weight: 650; }
+.teacher-assessment-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.corporate-dashboard-content .teacher-assessment-card .teacher-assessment-actions button.is-secondary { border: 1px solid #b7c7c3; background: #fff; color: #31534d; }
 .teacher-practice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
 .teacher-practice-grid article { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 12px; border: 1px solid #e3e9e7; border-radius: 9px; }
 .teacher-practice-grid article strong { grid-column: 1 / -1; color: #213d38; }
@@ -8806,16 +8571,35 @@ button {
 .teacher-class-averages { margin-bottom: 18px; }
 .teacher-results-row.teacher-class-average-row { grid-template-columns: minmax(0, 1.5fr) .65fr .65fr; }
 .teacher-class-average-row strong:last-child { color: #287a6f; }
-
-@media (max-width: 1050px) {
-  .teacher-progress-layout { grid-template-columns: 1fr; }
-}
+.teacher-dismissal-panel { margin-bottom: 18px; }
+.teacher-dismissal-date { display: grid; gap: 4px; color: #64736f; font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+.teacher-dismissal-date input, .teacher-dismissal-list select { min-height: 38px; border: 1px solid #d5dfdc; border-radius: 7px; background: #fff; color: #253d38; padding: 0 10px; font: inherit; }
+.teacher-dismissal-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 13px; }
+.teacher-dismissal-summary > span { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #d8e6e2; border-radius: 999px; background: #f3f9f7; color: #34685f; padding: 7px 10px; font-size: .72rem; font-weight: 750; }
+.teacher-dismissal-list { display: grid; gap: 8px; }
+.teacher-dismissal-list article { display: grid; grid-template-columns: 42px minmax(150px, 1fr) minmax(145px, .55fr) auto; gap: 12px; align-items: center; border: 1px solid #e2e8e7; border-radius: 9px; padding: 11px 12px; }
+.teacher-dismissal-name { display: grid; justify-items: start; gap: 5px; min-width: 0; }
+.teacher-dismissal-name strong { overflow: hidden; max-width: 100%; color: #213d38; text-overflow: ellipsis; white-space: nowrap; }
+.teacher-van-indicator { border-radius: 999px; background: #f0f3f2; color: #71807c; padding: 4px 8px; font-size: .65rem; font-weight: 800; }
+.teacher-van-indicator.is-2pm { background: #e6f4f0; color: #216b60; }
+.teacher-van-indicator.is-5pm { background: #eef0fb; color: #4f5990; }
+.teacher-dismissal-list label { display: grid; gap: 4px; color: #6a7975; font-size: .66rem; font-weight: 750; }
+.teacher-dismissal-list button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 38px; border: 1px solid #d6dfdd; border-radius: 7px; background: #fff; color: #526661; padding: 0 12px; font-size: .7rem; font-weight: 800; cursor: pointer; }
+.teacher-dismissal-list button.is-early { border-color: #dfaa65; background: #fff4e4; color: #8b5c20; }
+.teacher-dismissal-list button:disabled, .teacher-dismissal-list select:disabled { cursor: wait; opacity: .6; }
 
 @media (max-width: 640px) {
+  .teacher-student-entry > button { grid-template-columns: 38px minmax(0, 1fr) auto 16px; gap: 8px; padding: 10px; }
+  .teacher-student-entry .teacher-student-detail { padding: 14px 10px; }
   .teacher-insight-grid { grid-template-columns: repeat(2, 1fr); }
   .teacher-results-row { grid-template-columns: 1fr auto; }
   .teacher-results-row > :nth-child(2), .teacher-results-row > :nth-child(4) { display: none; }
   .teacher-practice-grid { grid-template-columns: 1fr; }
+  .teacher-dismissal-panel .teacher-panel-header { align-items: stretch; }
+  .teacher-dismissal-date input { width: 100%; }
+  .teacher-dismissal-list article { grid-template-columns: 38px minmax(0, 1fr); gap: 9px; }
+  .teacher-dismissal-list article > label, .teacher-dismissal-list article > button { grid-column: 1 / -1; }
+  .teacher-dismissal-list article > button { width: 100%; }
 }
 
 @media (max-width: 680px) {
@@ -8849,6 +8633,9 @@ button {
   .admin-booking-form button { grid-column: 1 / -1; }
   .staff-roster-name-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .staff-student-detail dl { grid-template-columns: 1fr 1fr; }
+  .staff-dismissal-list > article { grid-template-columns: 34px minmax(0, 1fr); }
+  .staff-dismissal-list > article > label, .staff-dismissal-list > article > button { grid-column: 1 / -1; }
+  .staff-dismissal-list > article > button { width: 100%; }
   .admin-room-directory > div { grid-template-columns: 1fr; }
 }
 
@@ -8862,6 +8649,8 @@ button {
   .staff-day-tabs { display: flex; overflow-x: auto; }
   .staff-day-tabs button { min-width: 92px; }
   .staff-roster-name-cards, .staff-student-detail dl { grid-template-columns: 1fr; }
+  .staff-dismissal-panel .staff-panel-header { align-items: stretch; }
+  .staff-dismissal-date input { width: 100%; }
   .staff-attendance-sort { align-items: stretch; flex-direction: column; }
   .staff-attendance-sort > span { margin-bottom: 2px; }
   .staff-student-detail dl > div.is-wide { grid-column: 1; }

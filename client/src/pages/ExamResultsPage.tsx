@@ -51,6 +51,10 @@ function SubjectTopicBreakdown({ subjectResult }: { subjectResult: ExamSubjectRe
   );
 }
 
+function formatQuestionType(value: string) {
+  return value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
 export function ExamResultsPage() {
   const [isLoading, setIsLoading] = useState(isSupabaseConfigured);
   const [result, setResult] = useState<ExamResult | null>(null);
@@ -101,7 +105,7 @@ export function ExamResultsPage() {
         <div>
           <p>Assessment results</p>
           <h1>{result.title}</h1>
-          <span>Completed {new Date(result.completedAt).toLocaleString()}</span>
+          <span>{result.completionStatus === "english_complete" ? "English submitted · Math pending" : "Completed"} {new Date(result.completedAt).toLocaleString()}</span>
         </div>
         <a href={getDashboardHref()}>Back to dashboard</a>
       </header>
@@ -117,6 +121,18 @@ export function ExamResultsPage() {
           <span>Use the topic breakdown to decide what to review next.</span>
         </div>
       </section>
+
+      {Array.isArray(result.questionTypes) && result.questionTypes.length > 0 ? (
+        <section className="results-topic-panel" aria-labelledby="question-type-breakdown-title">
+          <div className="results-topic-heading"><div><p>Raw score</p><h2 id="question-type-breakdown-title">By question type</h2></div></div>
+          <div className="results-topic-list">
+            {result.questionTypes.map((item) => {
+              const percentage = item.total ? Math.round((item.correct / item.total) * 100) : 0;
+              return <article className="results-topic-row" key={item.questionType}><div><h3>{formatQuestionType(item.questionType)}</h3><strong>{item.correct}/{item.total} correct</strong></div><div className="results-topic-track"><span style={{ width: `${percentage}%` }} /></div><span>{percentage}%</span></article>;
+            })}
+          </div>
+        </section>
+      ) : null}
 
       {result.passages.length > 0 ? (
         <section className="results-passage-panel" aria-labelledby="passage-breakdown-title">

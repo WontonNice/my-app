@@ -61,6 +61,7 @@ export function AdminDashboardPage() {
   const [editingAccountId, setEditingAccountId] = useState("");
   const [isLoading, setIsLoading] = useState(isSupabaseConfigured);
   const [isSaving, setIsSaving] = useState(false);
+  const [isSavingStudent, setIsSavingStudent] = useState(false);
   const [message, setMessage] = useState("");
   const [staffAccounts, setStaffAccounts] = useState<StaffAccount[]>([]);
   const [selectedStaffId, setSelectedStaffId] = useState("");
@@ -251,19 +252,27 @@ export function AdminDashboardPage() {
   async function handleSaveStudent(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!accessToken || !selectedAccount) return;
-    setIsSaving(true);
+    const proposedName = `${studentDraft.firstName} ${studentDraft.lastName}`.trim().replace(/\s+/g, " ");
+    const duplicate = !editingStudentId && selectedAccount.dashboardData.roster.some(
+      (student) => student.name.trim().replace(/\s+/g, " ").toLocaleLowerCase() === proposedName.toLocaleLowerCase(),
+    );
+    if (duplicate && !window.confirm(`${proposedName} is already on ${selectedAccount.fullName}'s roster. Do you still want to add another student with this name?`)) return;
+    setIsSavingStudent(true);
     setMessage("");
-    setActionFeedback({ text: editingBookingId ? "Updating room booking…" : "Booking room…", tone: "loading" });
+    setActionFeedback({ text: editingStudentId ? "Saving student changes…" : "Adding student to roster…", tone: "loading" });
     try {
       const result = await saveRosterStudent(accessToken, selectedAccount.id, { ...studentDraft, id: editingStudentId || undefined });
       setStaffAccounts((current) => current.map((account) => account.id === selectedAccount.id ? { ...account, dashboardData: result.dashboardData } : account));
       setEditingStudentId("");
       setStudentDraft({ allergies: "", className: "", dob: "", firstName: "", lastName: "", specialNotes: "" });
       setMessage(`${result.student.name} was saved to ${selectedAccount.fullName}'s roster.`);
+      setActionFeedback({ text: `${result.student.name} was saved.`, tone: "success" });
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not save the student.");
+      const errorMessage = error instanceof Error ? error.message : "Could not save the student.";
+      setMessage(errorMessage);
+      setActionFeedback({ text: errorMessage, tone: "error" });
     } finally {
-      setIsSaving(false);
+      setIsSavingStudent(false);
     }
   }
 
@@ -518,7 +527,7 @@ export function AdminDashboardPage() {
             <label>Date of birth <small>Optional</small><input type="date" value={studentDraft.dob} onChange={(event) => setStudentDraft({ ...studentDraft, dob: event.target.value })} /></label>
             <label>Allergies<input placeholder="None known" value={studentDraft.allergies} onChange={(event) => setStudentDraft({ ...studentDraft, allergies: event.target.value })} /></label>
             <label>Special notes<textarea rows={4} value={studentDraft.specialNotes} onChange={(event) => setStudentDraft({ ...studentDraft, specialNotes: event.target.value })} /></label>
-            <div className="admin-sheets-actions"><button disabled={isSaving || !assignedClasses.length} type="submit"><Check size={16} /> {editingStudentId ? "Save changes" : "Add to roster"}</button>{editingStudentId ? <button className="is-secondary" onClick={() => { setEditingStudentId(""); setStudentDraft({ allergies: "", className: "", dob: "", firstName: "", lastName: "", specialNotes: "" }); }} type="button">Cancel</button> : null}</div>
+            <div className="admin-sheets-actions"><button disabled={isSavingStudent || !assignedClasses.length} type="submit">{isSavingStudent ? <RefreshCw className="is-spinning" size={16} /> : <Check size={16} />} {isSavingStudent ? "Saving student…" : editingStudentId ? "Save changes" : "Add to roster"}</button>{editingStudentId ? <button className="is-secondary" onClick={() => { setEditingStudentId(""); setStudentDraft({ allergies: "", className: "", dob: "", firstName: "", lastName: "", specialNotes: "" }); }} type="button">Cancel</button> : null}</div>
           </form>
           <div className="admin-roster-list">{selectedAccount?.dashboardData.roster.length ? selectedAccount.dashboardData.roster.map((student) => <article key={student.id}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)} · DOB {student.dob || "Not entered"}</small><p>{student.specialNotes || "No special notes"}</p></div><button onClick={() => beginEditingStudent(student)} type="button"><Pencil size={14} /> Edit</button></article>) : <p>No students are assigned to this staff member.</p>}</div>
         </div>

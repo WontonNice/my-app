@@ -22,8 +22,17 @@ create table if not exists public.student_practice_progress (
 alter table public.student_exam_results enable row level security;
 alter table public.student_practice_progress enable row level security;
 
-create policy "Students can read their exam results" on public.student_exam_results for select using (auth.uid() = user_id);
-create policy "Students can read their practice progress" on public.student_practice_progress for select using (auth.uid() = user_id);
+do $$ begin
+  create policy "Students can read their exam results" on public.student_exam_results for select using (auth.uid() = user_id);
+exception when duplicate_object then null;
+end $$;
+
+do $$ begin
+  create policy "Students can read their practice progress" on public.student_practice_progress for select using (auth.uid() = user_id);
+exception when duplicate_object then null;
+end $$;
 
 create index if not exists student_exam_results_user_id_idx on public.student_exam_results(user_id);
 create index if not exists student_practice_progress_user_id_idx on public.student_practice_progress(user_id);
+
+notify pgrst, 'reload schema';

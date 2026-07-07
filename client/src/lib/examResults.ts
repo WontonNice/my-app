@@ -25,12 +25,21 @@ export type ExamPassageResult = {
   total: number;
 };
 
+export type ExamQuestionTypeResult = {
+  correct: number;
+  questionType: string;
+  total: number;
+};
+
 export type ExamResult = {
   assessmentId: string;
+  completedSections: ("english" | "math")[];
+  completionStatus: "complete" | "english_complete";
   completedAt: string;
   correct: number;
   passages: ExamPassageResult[];
   percentage: number;
+  questionTypes: ExamQuestionTypeResult[];
   subjects: ExamSubjectResult[];
   title: string;
   topics: ExamTopicResult[];
@@ -138,23 +147,41 @@ function scoreQuestions(questions: ExamQuestion[], answers: SelectedAnswers) {
   };
 }
 
-export function createExamResult(examContent: ExamContent, answers: SelectedAnswers): ExamResult {
-  const questions = getAllExamQuestions(examContent);
+function scoreQuestionTypes(questions: ExamQuestion[], answers: SelectedAnswers) {
+  const scores = new Map<string, ExamQuestionTypeResult>();
+  questions.forEach((question) => {
+    const current = scores.get(question.type) ?? { correct: 0, questionType: question.type, total: 0 };
+    current.total += 1;
+    current.correct += isExamQuestionCorrect(question, answers[question.id]) ? 1 : 0;
+    scores.set(question.type, current);
+  });
+  return Array.from(scores.values()).sort((left, right) => left.questionType.localeCompare(right.questionType));
+}
+
+export function createExamResult(
+  examContent: ExamContent,
+  answers: SelectedAnswers,
+  completedSections: ("english" | "math")[] = ["english", "math"],
+): ExamResult {
   const englishQuestions = [
     ...examContent.passageSets.flatMap((passageSet) => passageSet.questions),
     ...(examContent.standaloneSection?.questions ?? []),
   ];
   const mathQuestions = examContent.mathSection?.questions ?? [];
+  const questions = [
+    ...(completedSections.includes("english") ? englishQuestions : []),
+    ...(completedSections.includes("math") ? mathQuestions : []),
+  ];
   const englishScore = scoreQuestions(englishQuestions, answers);
   const mathScore = scoreQuestions(mathQuestions, answers);
   const overallScore = scoreQuestions(questions, answers);
   const subjects: ExamSubjectResult[] = [
-    ...(englishScore.total > 0
+    ...(completedSections.includes("english") && englishScore.total > 0
       ? [{ ...englishScore, subject: "English Language Arts" as const }]
       : []),
-    ...(mathScore.total > 0 ? [{ ...mathScore, subject: "Mathematics" as const }] : []),
+    ...(completedSections.includes("math") && mathScore.total > 0 ? [{ ...mathScore, subject: "Mathematics" as const }] : []),
   ];
-  const passages = examContent.passageSets.map((passageSet, index) => {
+  const passages = completedSections.includes("english") ? examContent.passageSets.map((passageSet, index) => {
     const passageScore = scoreQuestions(passageSet.questions, answers);
 
     return {
@@ -164,15 +191,18 @@ export function createExamResult(examContent: ExamContent, answers: SelectedAnsw
       title: passageSet.passage.title,
       total: passageScore.total,
     };
-  });
+  }) : [];
 
   return {
     assessmentId: examContent.assessmentId,
+    completedSections,
+    completionStatus: completedSections.includes("math") ? "complete" : "english_complete",
     completedAt: new Date().toISOString(),
     correct: overallScore.correct,
     passages,
     percentage:
       overallScore.total > 0 ? Math.round((overallScore.correct / overallScore.total) * 100) : 0,
+    questionTypes: scoreQuestionTypes(questions, answers),
     subjects,
     title: examContent.title,
     topics: overallScore.topics,
@@ -194,7 +224,10 @@ export function getExamResults(userId: string): ExamResult[] {
 
     return (storedResults as ExamResult[]).map((result) => ({
       ...result,
+      completedSections: Array.isArray(result.completedSections) ? result.completedSections : ["english", "math"],
+      completionStatus: result.completionStatus === "english_complete" ? "english_complete" : "complete",
       passages: Array.isArray(result.passages) ? result.passages : [],
+      questionTypes: Array.isArray(result.questionTypes) ? result.questionTypes : [],
       subjects: Array.isArray(result.subjects) ? result.subjects : [],
     }));
   } catch {

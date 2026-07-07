@@ -787,6 +787,83 @@ staffRouter.post("/google-sheets/sync", async (request, response) => {
     }
 });
 
+staffRouter.put("/dismissal", async (request, response) => {
+    const { error, user } = await getAuthenticatedUser(request.headers.authorization);
+    if (error || !user) {
+        response.status(401).json({ message: error });
+        return;
+    }
+    const role = getUserRole(user);
+    if (role !== "staff" && role !== "admin") {
+        response.status(403).json({ message: "Staff or administrator access is required." });
+        return;
+    }
+
+    let target = user;
+    const accountId = typeof request.body?.accountId === "string" ? request.body.accountId : "";
+    if (role === "admin" && accountId) {
+        const targetResult = await supabase.auth.admin.getUserById(accountId);
+        if (targetResult.error || !targetResult.data.user) {
+            response.status(404).json({ message: "Staff account was not found." });
+            return;
+        }
+        target = targetResult.data.user;
+    }
+    if (getUserRole(target) !== "staff") {
+        response.status(400).json({ message: "Dismissal can only be saved to a staff account." });
+        return;
+    }
+
+    const studentId = typeof request.body?.studentId === "string" ? request.body.studentId : "";
+    const date = request.body?.date;
+    const pickedUpEarly = request.body?.pickedUpEarly;
+    const vanRide = request.body?.vanRide;
+    if (!studentId || (vanRide !== undefined && vanRide !== "none" && vanRide !== "2pm" && vanRide !== "5pm")) {
+        response.status(400).json({ message: "A student and valid van time are required." });
+        return;
+    }
+    if (pickedUpEarly !== undefined && (typeof pickedUpEarly !== "boolean" || !isDate(date))) {
+        response.status(400).json({ message: "A valid date is required when updating early pickup." });
+        return;
+    }
+    if (role === "staff" && isDate(date) && date > currentEasternDate()) {
+        response.status(400).json({ message: "Staff cannot record an early pickup for a future date." });
+        return;
+    }
+
+    const dashboardData = readDashboardData(target);
+    const roster: Record<string, unknown>[] = Array.isArray(dashboardData.roster)
+        ? dashboardData.roster as Record<string, unknown>[]
+        : target.user_metadata.username === "pss5" ? boazRoster as Record<string, unknown>[] : [];
+    if (!roster.some((student) => student.id === studentId)) {
+        response.status(404).json({ message: "Student was not found on this roster." });
+        return;
+    }
+    const nextRoster = roster.map((student) => {
+        if (student.id !== studentId) return student;
+        const storedDates = Array.isArray(student.earlyPickupDates)
+            ? student.earlyPickupDates.filter((value): value is string => isDate(value))
+            : [];
+        const dates = new Set(storedDates);
+        if (pickedUpEarly === true) dates.add(date as string);
+        if (pickedUpEarly === false) dates.delete(date as string);
+        return {
+            ...student,
+            earlyPickupDates: [...dates].sort(),
+            vanRide: vanRide ?? (student.vanRide === "2pm" || student.vanRide === "5pm" ? student.vanRide : "none"),
+        };
+    });
+    const nextDashboardData = { ...dashboardData, roster: nextRoster };
+    const saved = await supabase.auth.admin.updateUserById(target.id, {
+        user_metadata: { ...target.user_metadata, dashboard_data: nextDashboardData },
+    });
+    if (saved.error) {
+        response.status(400).json({ message: saved.error.message });
+        return;
+    }
+    response.json({ dashboardData: nextDashboardData });
+});
+
 staffRouter.put("/attendance", async (request, response) => {
     const { error, user } = await getAuthenticatedUser(request.headers.authorization);
     if (error || !user) {

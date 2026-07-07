@@ -1,4 +1,7 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
+import { getStudentClasses } from "./lib/api";
+import { getUserRole } from "./lib/auth";
+import { getSupabaseClient, isSupabaseConfigured } from "./lib/supabase";
 
 const AdaptivePracticePage = lazy(() =>
   import("./pages/AdaptivePracticePage").then((module) => ({ default: module.AdaptivePracticePage })),
@@ -35,6 +38,41 @@ const TopicPracticePage = lazy(() =>
   import("./pages/TopicPracticePage").then((module) => ({ default: module.TopicPracticePage })),
 );
 
+function ClassAccessGate({ children }: { children: ReactNode }) {
+  const [isChecking, setIsChecking] = useState(isSupabaseConfigured);
+  const isTeacherPreview = new URLSearchParams(window.location.search).get("preview") === "student";
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) return;
+    getSupabaseClient().auth.getSession().then(async ({ data }) => {
+      if (!data.session) {
+        window.location.assign("/login");
+        return;
+      }
+      if (getUserRole(data.session.user) !== "student" || isTeacherPreview) {
+        setIsChecking(false);
+        return;
+      }
+      try {
+        const classes = await getStudentClasses(data.session.access_token);
+        if (!classes.some((studentClass) => studentClass.id === "shsat")) {
+          window.location.assign("/dashboard");
+          return;
+        }
+        setIsChecking(false);
+      } catch {
+        window.location.assign("/dashboard");
+      }
+    });
+  }, [isTeacherPreview]);
+
+  return isChecking ? <main className="loading-shell">Checking class access...</main> : children;
+}
+
+function withClassAccess(page: ReactNode) {
+  return <ClassAccessGate>{page}</ClassAccessGate>;
+}
+
 function CurrentPage() {
   const path = window.location.pathname;
 
@@ -43,31 +81,31 @@ function CurrentPage() {
   }
 
   if (path === "/study-hall") {
-    return <AdaptivePracticePage />;
+    return withClassAccess(<AdaptivePracticePage />);
   }
 
   if (path.startsWith("/study-hall/")) {
-    return <StudentDashboardPage />;
+    return withClassAccess(<StudentDashboardPage />);
   }
 
   if (path.startsWith("/advanced-practice/")) {
-    return <AdvancedPassagePage />;
+    return withClassAccess(<AdvancedPassagePage />);
   }
 
   if (path.startsWith("/practice/")) {
-    return <TopicPracticePage />;
+    return withClassAccess(<TopicPracticePage />);
   }
 
   if (path.startsWith("/exam/") && path.endsWith("/session")) {
-    return <ExamSessionPage />;
+    return withClassAccess(<ExamSessionPage />);
   }
 
   if (path.startsWith("/results/")) {
-    return <ExamResultsPage />;
+    return withClassAccess(<ExamResultsPage />);
   }
 
   if (path.startsWith("/exam/")) {
-    return <ExamLaunchPage />;
+    return withClassAccess(<ExamLaunchPage />);
   }
 
   if (path === "/teacher") {

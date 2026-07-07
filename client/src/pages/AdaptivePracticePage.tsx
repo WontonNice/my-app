@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
-import { BarChart3, BookOpen, ClipboardList, GraduationCap, LayoutDashboard, Search, Sparkles, Target } from "lucide-react";
+import { BarChart3, BookOpen, ClipboardList, Search, Sparkles, Target } from "lucide-react";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { advancedPracticePassages } from "../content/advancedPractice";
 import { practiceTopics } from "../content/practice";
-import { getLearningProgress, getStudentAssessments, getStudentClasses, type StudentAssessment } from "../lib/api";
+import { getExamSessionProgress, getLearningProgress, getStudentAssessments, getStudentClasses, type ExamSessionProgress, type StudentAssessment } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getExamResults, replaceExamResults, type ExamResult } from "../lib/examResults";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
+import { getStudentClassNavigation } from "../lib/studentClassNavigation";
 
 const pageSearchParams = new URLSearchParams(window.location.search);
 const isStudentPreview = pageSearchParams.get("preview") === "student";
@@ -188,6 +189,7 @@ export function AdaptivePracticePage() {
   const [assessmentMessage, setAssessmentMessage] = useState("");
   const [assessments, setAssessments] = useState<StudentAssessment[]>([]);
   const [examResults, setExamResults] = useState<ExamResult[]>([]);
+  const [examSessions, setExamSessions] = useState<Record<string, ExamSessionProgress>>({});
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
   const [studentName, setStudentName] = useState("Student");
 
@@ -209,13 +211,18 @@ export function AdaptivePracticePage() {
       try {
         const cloudProgress = await getLearningProgress(data.session.access_token);
         if (cloudProgress.examResults.length > 0) {
-          savedResults = cloudProgress.examResults as unknown as ExamResult[];
-          replaceExamResults(data.session.user.id, savedResults);
+          replaceExamResults(data.session.user.id, cloudProgress.examResults as unknown as ExamResult[]);
+          savedResults = getExamResults(data.session.user.id);
         }
       } catch {
         // Local results remain available while offline.
       }
       setExamResults(savedResults);
+      try {
+        setExamSessions(await getExamSessionProgress(data.session.access_token));
+      } catch {
+        // Assessment cards can still load when session progress is temporarily unavailable.
+      }
 
       if (userRole !== "student" && !(userRole === "teacher" && isStudentPreview)) {
         window.location.assign(getDashboardPath(userRole));
@@ -270,14 +277,7 @@ export function AdaptivePracticePage() {
 
   const sectionHeading = getSectionHeading(activeSection);
   const activeId = activeSection === "Test Results" ? "results" : activeSection === "Assessments" ? "assessments" : activeSection === "Advanced Practice" ? "advanced" : "practice";
-  const navItems = [
-    { id: "dashboard", label: "Dashboard", href: `/dashboard${previewQuery}`, icon: LayoutDashboard },
-    { id: "class", label: "SHSAT class", href: `/study-hall/shsat${previewQuery}`, icon: GraduationCap },
-    { id: "practice", label: "Practice topics", href: getLabHref(), icon: Target },
-    { id: "results", label: "Test results", href: getLabHref("results"), icon: BarChart3 },
-    { id: "assessments", label: "Assessments", href: getLabHref("assessments"), icon: ClipboardList },
-    { id: "advanced", label: "Advanced practice", href: getLabHref("advanced"), icon: Sparkles },
-  ];
+  const navItems = getStudentClassNavigation(previewQuery);
 
   return (
     <CorporateDashboardShell activeId={activeId} navItems={navItems} onSignOut={handleSignOut} profileName={studentName} profileRole={isStudentPreview ? "Teacher preview" : "Student account"} returnHref={isStudentPreview ? "/teacher" : undefined} returnLabel="Teacher dashboard">
@@ -287,7 +287,7 @@ export function AdaptivePracticePage() {
       </header>
       <section className="staff-kpi-grid" aria-label="SHSAT learning summary">
         <article><span><Target size={19} /></span><div><p>Practice topics</p><strong>{practiceTopics.length}</strong></div><em>Four difficulty levels</em></article>
-        <article><span><BarChart3 size={19} /></span><div><p>Tests completed</p><strong>{examResults.length}</strong></div><em>Saved assessment history</em></article>
+        <article><span><BarChart3 size={19} /></span><div><p>Tests completed</p><strong>{examResults.filter((result) => result.completionStatus !== "english_complete").length}</strong></div><em>Saved assessment history</em></article>
         <article><span><ClipboardList size={19} /></span><div><p>Open assessments</p><strong>{assessments.filter((assessment) => assessment.status === "open").length}</strong></div><em>{assessments.length} assigned total</em></article>
         <article><span><Sparkles size={19} /></span><div><p>Advanced passages</p><strong>{advancedPracticePassages.length}</strong></div><em>Close-reading catalog</em></article>
       </section>
@@ -295,7 +295,7 @@ export function AdaptivePracticePage() {
       <div className="shsat-lab-content" id="adaptive">
 
         {activeSection === "Assessments" ? (
-          <AssessmentsSection assessments={assessments} message={assessmentMessage} results={examResults} />
+          <AssessmentsSection assessments={assessments} examSessions={examSessions} message={assessmentMessage} results={examResults} />
         ) : activeSection === "Test Results" ? (
           <ResultsSection results={examResults} />
         ) : activeSection === "Advanced Practice" ? (
@@ -586,10 +586,12 @@ function TopicsSection({ results }: { results: ExamResult[] }) {
 
 function AssessmentsSection({
   assessments,
+  examSessions,
   message,
   results,
 }: {
   assessments: StudentAssessment[];
+  examSessions: Record<string, ExamSessionProgress>;
   message: string;
   results: ExamResult[];
 }) {
@@ -608,12 +610,14 @@ function AssessmentsSection({
       <div className="assessment-grid">
         {assessments.map((assessment) => {
           const result = results.find((candidate) => candidate.assessmentId === assessment.id);
+          const englishComplete = assessment.split && (examSessions[assessment.id]?.completedSections.includes("english") || result?.completionStatus === "english_complete");
+          const resultIsComplete = result && result.completionStatus !== "english_complete";
 
           return (
           <article className="assessment-card" key={assessment.id}>
             <div className="assessment-card-top">
               <span className={`status-pill status-pill-${assessment.status}`}>{assessment.status}</span>
-              <small>{assessment.durationMinutes} min</small>
+              <small>{assessment.split ? "2 sessions" : `${assessment.durationMinutes} min`}</small>
             </div>
             <h3>{assessment.title}</h3>
             <p>{assessment.description}</p>
@@ -625,7 +629,7 @@ function AssessmentsSection({
             <div className="assessment-card-actions">
               {assessment.status === "open" ? (
                 <a className="assessment-start-link" href={getAssessmentStartHref(assessment.id)}>
-                  {result ? "Retake exam" : "Start exam"}
+                  {englishComplete && !resultIsComplete ? "Start Math" : resultIsComplete ? "Retake exam" : assessment.split ? "Start English" : "Start exam"}
                 </a>
               ) : (
                 <button disabled type="button">
@@ -634,7 +638,7 @@ function AssessmentsSection({
               )}
               {result ? (
                 <a className="assessment-result-link" href={getAssessmentResultHref(assessment.id)}>
-                  Results: {result.correct}/{result.total}
+                  {result.completionStatus === "english_complete" ? "English score" : "Results"}: {result.correct}/{result.total}
                 </a>
               ) : null}
             </div>
@@ -663,7 +667,7 @@ function ResultsSection({ results }: { results: ExamResult[] }) {
             <article className="assessment-card result-summary-card" key={result.assessmentId}>
               <div className="assessment-card-top">
                 <span className="result-score-pill">{result.percentage}%</span>
-                <small>{new Date(result.completedAt).toLocaleDateString()}</small>
+                <small>{result.completionStatus === "english_complete" ? "English submitted · Math pending" : new Date(result.completedAt).toLocaleDateString()}</small>
               </div>
               <h3>{result.title}</h3>
               <p>

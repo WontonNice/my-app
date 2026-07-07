@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { BarChart3, BookOpen, CalendarDays, GraduationCap, LayoutDashboard, Target, Users, Zap } from "lucide-react";
+import { BookOpen, GraduationCap } from "lucide-react";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { getStudentClasses, joinStudentClass, type StudentClass } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
@@ -132,12 +132,7 @@ export function StudyHallPage() {
     );
   }
 
-  const navItems = [
-    { id: "dashboard", label: "Dashboard", href: `/dashboard${previewQuery}`, icon: LayoutDashboard },
-    { id: "classes", label: "My classes", href: `/dashboard${previewQuery}`, icon: GraduationCap },
-    { id: "practice", label: "Practice", href: `/study-hall${previewQuery}`, icon: Target },
-    { id: "progress", label: "Progress", href: `/study-hall/shsat${previewQuery}`, icon: BarChart3 },
-  ];
+  const navItems = [{ id: "classes", label: "My classes", href: `/dashboard${previewQuery}`, icon: GraduationCap }];
 
   return (
     <CorporateDashboardShell
@@ -150,14 +145,8 @@ export function StudyHallPage() {
       returnLabel="Teacher dashboard"
     >
       <header className="staff-page-heading corporate-page-heading">
-        <div><p><BookOpen size={15} /> Student dashboard</p><h1>My learning hub</h1><span>Keep classes, assignments, and progress organized in one place.</span></div>
+        <div><p><BookOpen size={15} /> Student workspace</p><h1>My classes</h1><span>Choose a class to open its assignments, practice, assessments, and progress.</span></div>
       </header>
-      <section className="staff-kpi-grid" aria-label="Student summary">
-        <article><span><GraduationCap size={19} /></span><div><p>Enrolled classes</p><strong>{classes.length}</strong></div><em>Active this term</em></article>
-        <article><span><CalendarDays size={19} /></span><div><p>Upcoming work</p><strong>3</strong></div><em>Next due tomorrow</em></article>
-        <article><span><Zap size={19} /></span><div><p>XP earned</p><strong>240</strong></div><em>Keep building momentum</em></article>
-        <article><span><Users size={19} /></span><div><p>Attendance</p><strong>96%</strong></div><em>Excellent standing</em></article>
-      </section>
       {classes.length > 0 ? <ClassList classes={classes} message={message} /> : (
         <JoinClassPanel classCode={classCode} isJoining={isJoining} message={message} onClassCodeChange={setClassCode} onJoinClass={handleJoinClass} />
       )}
@@ -196,7 +185,7 @@ function JoinClassPanel({
             <input
               autoComplete="off"
               id="class-code"
-              placeholder="Try SHSAT"
+              placeholder="Enter your class code"
               required
               type="text"
               value={classCode}

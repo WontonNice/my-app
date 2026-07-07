@@ -38,6 +38,7 @@ export type Assessment = {
     id: string;
     passages: AssessmentPassage[];
     questions: AssessmentQuestion[];
+    split: boolean;
     status: AssessmentStatus;
     title: string;
     updatedAt: string;
@@ -51,6 +52,7 @@ export type AssessmentSummary = {
     passageCount: number;
     questionCount: number;
     questionTypes: QuestionType[];
+    split: boolean;
     status: AssessmentStatus;
     title: string;
 };
@@ -88,7 +90,9 @@ function readAssessments(): Assessment[] {
         const contents = fs.readFileSync(assessmentsFilePath, "utf8");
         const assessments = JSON.parse(contents) as unknown;
 
-        return Array.isArray(assessments) ? (assessments as Assessment[]) : [];
+        return Array.isArray(assessments)
+            ? (assessments as Assessment[]).map((assessment) => ({ ...assessment, split: assessment.split === true }))
+            : [];
     } catch {
         return [];
     }
@@ -116,6 +120,7 @@ export function toAssessmentSummary(assessment: Assessment): AssessmentSummary {
         passageCount: assessment.passages.length,
         questionCount: assessment.questions.length,
         questionTypes: Array.from(new Set(assessment.questions.map((question) => question.type))),
+        split: assessment.split,
         status: assessment.status,
         title: assessment.title,
     };
@@ -175,6 +180,7 @@ export function createAssessment(input: CreateAssessmentInput) {
                   },
               ]
             : [],
+        split: false,
         status: "locked",
         title: input.title,
         updatedAt: timestamp,
@@ -204,5 +210,18 @@ export function updateAssessmentStatus(assessmentId: string, status: AssessmentS
 
     writeAssessments(assessments);
 
+    return updatedAssessment;
+}
+
+export function updateAssessmentSplit(assessmentId: string, split: boolean) {
+    let updatedAssessment: Assessment | null = null;
+    const timestamp = new Date().toISOString();
+    const assessments = readAssessments().map((assessment) => {
+        if (assessment.id !== assessmentId) return assessment;
+        updatedAssessment = { ...assessment, split, updatedAt: timestamp };
+        return updatedAssessment;
+    });
+
+    writeAssessments(assessments);
     return updatedAssessment;
 }

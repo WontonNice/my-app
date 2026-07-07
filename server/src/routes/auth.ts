@@ -4,9 +4,9 @@ import { getAuthenticatedUser, getUserRole } from "../lib/auth";
 import { supabase } from "../lib/supabase";
 
 type RegisterStudentBody = {
-    email?: unknown;
     fullName?: unknown;
     password?: unknown;
+    username?: unknown;
 };
 
 type AssignStaffBody = {
@@ -15,7 +15,9 @@ type AssignStaffBody = {
     username?: unknown;
 };
 
+const studentUsernamePattern = /^[a-z0-9][a-z0-9._-]{2,31}$/;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const studentEmailDomain = "students.nathantutors.local";
 const staffUsernamePattern = /^[a-z0-9][a-z0-9._-]{2,31}$/;
 const staffEmailDomain = "staff.nathantutors.local";
 const staffPasswordMetadataKey = "staff_access_password_cipher";
@@ -45,11 +47,11 @@ function decryptStaffPassword(value: unknown) {
 }
 
 function normalizeRegisterBody(body: RegisterStudentBody) {
-    const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
     const fullName = typeof body.fullName === "string" ? body.fullName.trim() : "";
     const password = typeof body.password === "string" ? body.password : "";
+    const username = typeof body.username === "string" ? body.username.trim().toLowerCase() : "";
 
-    return { email, fullName, password };
+    return { fullName, password, username };
 }
 
 export const authRouter = Router();
@@ -110,15 +112,16 @@ function toStaffAccount(user: {
 }
 
 authRouter.post("/register", async (request, response) => {
-    const { email, fullName, password } = normalizeRegisterBody(request.body);
+    const { fullName, password, username } = normalizeRegisterBody(request.body);
 
     if (!fullName) {
         response.status(400).json({ message: "Full name is required." });
         return;
     }
 
-    if (!emailPattern.test(email)) {
-        response.status(400).json({ message: "Enter a valid email address." });
+    const usesEmail = username.includes("@");
+    if ((usesEmail && !emailPattern.test(username)) || (!usesEmail && !studentUsernamePattern.test(username))) {
+        response.status(400).json({ message: "Enter a valid email or a 3–32 character username using letters, numbers, dots, dashes, or underscores." });
         return;
     }
 
@@ -127,6 +130,7 @@ authRouter.post("/register", async (request, response) => {
         return;
     }
 
+    const email = usesEmail ? username : `${username}@${studentEmailDomain}`;
     const { error } = await supabase.auth.admin.createUser({
         email,
         password,
@@ -134,6 +138,7 @@ authRouter.post("/register", async (request, response) => {
         user_metadata: {
             full_name: fullName,
             role: "student",
+            username: usesEmail ? username.split("@")[0] : username,
         },
     });
 
@@ -142,13 +147,13 @@ authRouter.post("/register", async (request, response) => {
 
         response.status(isDuplicateUser ? 409 : 400).json({
             message: isDuplicateUser
-                ? "An account with this email already exists. Try logging in instead."
+                ? `That ${usesEmail ? "email" : "username"} is already registered. Try logging in instead.`
                 : error.message,
         });
         return;
     }
 
-    response.status(201).json({ message: "Student account created." });
+    response.status(201).json({ loginEmail: email, message: "Student account created." });
 });
 
 authRouter.get("/switchable-accounts", async (request, response) => {

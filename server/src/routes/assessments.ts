@@ -4,6 +4,7 @@ import {
     listStudentAssessments,
     listTeacherAssessments,
     type AssessmentStatus,
+    updateAssessmentSplit,
     updateAssessmentStatus,
 } from "../config/assessments";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole } from "../lib/auth";
@@ -11,6 +12,8 @@ import { getAuthenticatedUser, getEnrolledClassIds, getUserRole } from "../lib/a
 type UpdateStatusBody = {
     status?: unknown;
 };
+
+type UpdateSplitBody = { split?: unknown };
 
 function parseStatus(value: unknown): AssessmentStatus | null {
     return value === "locked" || value === "open" ? value : null;
@@ -100,5 +103,29 @@ assessmentsRouter.patch("/teacher/:assessmentId/status", async (request, respons
         return;
     }
 
+    response.json({ assessment });
+});
+
+assessmentsRouter.patch("/teacher/:assessmentId/split", async (request, response) => {
+    const { error, user } = await getAuthenticatedUser(request.headers.authorization);
+    if (error || !user) {
+        response.status(401).json({ message: error });
+        return;
+    }
+    if (getUserRole(user) !== "teacher") {
+        response.status(403).json({ message: "Teacher access is required." });
+        return;
+    }
+
+    const { split } = request.body as UpdateSplitBody;
+    if (typeof split !== "boolean") {
+        response.status(400).json({ message: "Split must be true or false." });
+        return;
+    }
+    const assessment = updateAssessmentSplit(request.params.assessmentId, split);
+    if (!assessment) {
+        response.status(404).json({ message: "Assessment was not found." });
+        return;
+    }
     response.json({ assessment });
 });
