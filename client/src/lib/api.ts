@@ -1,4 +1,9 @@
-const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
+// Production serves the client and API from the same Render service. Only use
+// the configurable base URL during local Vite development so a checked-in or
+// machine-local localhost value can never leak into the production bundle.
+const apiBaseUrl = import.meta.env.DEV
+  ? (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "")
+  : "";
 
 export type StudentClass = {
   description: string;
