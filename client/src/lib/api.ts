@@ -340,7 +340,27 @@ async function readErrorMessage(response: Response) {
 }
 
 async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
-  const response = await fetch(`${apiBaseUrl}${path}`, init);
+  const url = `${apiBaseUrl}${path}`;
+  let response: Response;
+
+  try {
+    response = await fetch(url, init);
+  } catch (error) {
+    // Render can briefly reset a connection while a free instance wakes or
+    // restarts. Retrying read-only requests prevents a transient failure from
+    // emptying an entire dashboard.
+    if ((init.method ?? "GET").toUpperCase() !== "GET") {
+      throw new Error(`Could not reach the server for ${path}. Please try again.`);
+    }
+
+    await new Promise((resolve) => window.setTimeout(resolve, 500));
+
+    try {
+      response = await fetch(url, init);
+    } catch {
+      throw new Error(`Could not reach the server for ${path}. Please refresh and try again.`);
+    }
+  }
 
   if (!response.ok) {
     throw new Error(await readErrorMessage(response));

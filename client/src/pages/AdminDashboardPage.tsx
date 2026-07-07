@@ -105,24 +105,11 @@ export function AdminDashboardPage() {
       setAdminName(metadata.full_name ?? metadata.name ?? "Administrator");
       setAccessToken(data.session.access_token);
 
-      try {
-        const [accounts, sheets, roomBookings, schedules, rooms, loadedTasks, accountChoices] = await Promise.all([
-          getStaffAccounts(data.session.access_token),
-          getGoogleSheetsAttendanceSettings(data.session.access_token),
-          getRoomBookings(data.session.access_token),
-          getStaffSchedules(data.session.access_token),
-          getCampusRooms(data.session.access_token),
-          getStaffTasks(data.session.access_token),
-          getSwitchableAccounts(data.session.access_token),
-        ]);
+      const accountsResult = await Promise.allSettled([getStaffAccounts(data.session.access_token)]).then(([result]) => result);
+
+      if (accountsResult.status === "fulfilled") {
+        const accounts = accountsResult.value;
         setStaffAccounts(accounts);
-        setSheetsWebhookUrl(sheets.webhookUrl);
-        setSheetsConfigured(sheets.configured);
-        setBookings(roomBookings);
-        setStaffSchedules(schedules);
-        setAdminRooms(rooms);
-        setTasks(loadedTasks);
-        setSwitchableAccounts(accountChoices);
         if (accounts[0]) setTaskDraft((current) => ({ ...current, assignedToId: accounts[0].id }));
         const firstWithAttendance = accounts.find((account) => Object.keys(account.dashboardData.attendanceRecords ?? {}).length) ?? accounts[0];
         if (firstWithAttendance) {
@@ -130,10 +117,38 @@ export function AdminDashboardPage() {
           const dates = Object.keys(firstWithAttendance.dashboardData.attendanceRecords ?? {}).sort();
           if (dates.length) setSelectedAttendanceDate(dates[dates.length - 1]);
         }
-      } catch (error) {
-        setMessage(error instanceof Error ? error.message : "Could not load staff accounts.");
-      } finally {
-        setIsLoading(false);
+      } else {
+        const reason = accountsResult.reason;
+        setMessage(reason instanceof Error ? reason.message : "Could not load staff accounts.");
+      }
+      // Staff, rosters, and attendance are the primary admin records. Render
+      // them as soon as they arrive instead of waiting for every optional tool.
+      setIsLoading(false);
+
+      const results = await Promise.allSettled([
+          getGoogleSheetsAttendanceSettings(data.session.access_token),
+          getRoomBookings(data.session.access_token),
+          getStaffSchedules(data.session.access_token),
+          getCampusRooms(data.session.access_token),
+          getStaffTasks(data.session.access_token),
+          getSwitchableAccounts(data.session.access_token),
+        ] as const);
+      const [sheetsResult, bookingsResult, schedulesResult, roomsResult, tasksResult, choicesResult] = results;
+      if (sheetsResult.status === "fulfilled") {
+        setSheetsWebhookUrl(sheetsResult.value.webhookUrl);
+        setSheetsConfigured(sheetsResult.value.configured);
+      }
+      if (bookingsResult.status === "fulfilled") setBookings(bookingsResult.value);
+      if (schedulesResult.status === "fulfilled") setStaffSchedules(schedulesResult.value);
+      if (roomsResult.status === "fulfilled") setAdminRooms(roomsResult.value);
+      if (tasksResult.status === "fulfilled") setTasks(tasksResult.value);
+      if (choicesResult.status === "fulfilled") setSwitchableAccounts(choicesResult.value);
+
+      const failures = results.filter((result): result is PromiseRejectedResult => result.status === "rejected");
+      if (failures.length) {
+        const firstFailure = failures[0].reason;
+        const detail = firstFailure instanceof Error ? firstFailure.message : "A dashboard request failed.";
+        setMessage((current) => current || `Some dashboard tools could not load. ${detail}`);
       }
     });
   }, []);
