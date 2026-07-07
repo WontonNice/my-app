@@ -47,6 +47,15 @@ VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
 ```
 
+The server routes that manage staff, rosters, and attendance also require a
+Supabase service-role secret. Either service-role variable name is supported:
+
+```txt
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE=
+# or SUPABASE_SERVICE_ROLE_KEY=
+```
+
 Signup creates a student account by default using user metadata:
 
 ```txt
