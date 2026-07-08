@@ -170,11 +170,11 @@ export async function getStaffTasks(accessToken: string) {
   return data.tasks;
 }
 
-export async function createStaffTask(accessToken: string, input: { assignedToId: string; description: string; dueDate: string; title: string }) {
-  const data = await requestApi<{ task: StaffTask }>("/api/staff/tasks", {
+export async function createStaffTask(accessToken: string, input: { assignedToId: string; description: string; dueDate: string; repeatUntil?: string; repeatWeekly?: boolean; title: string }) {
+  const data = await requestApi<{ task: StaffTask; tasks?: StaffTask[] }>("/api/staff/tasks", {
     body: JSON.stringify(input), headers: createAuthHeaders(accessToken), method: "POST",
   });
-  return data.task;
+  return data.tasks ?? [data.task];
 }
 
 export async function updateStaffTask(accessToken: string, taskId: string, completed: boolean) {
@@ -224,6 +224,14 @@ export async function saveRosterStudent(accessToken: string, accountId: string, 
     body: JSON.stringify(input),
     headers: createAuthHeaders(accessToken),
     method: "PUT",
+  });
+  return data;
+}
+
+export async function deleteRosterStudent(accessToken: string, accountId: string, studentId: string) {
+  const data = await requestApi<{ dashboardData: StaffDashboardData }>(`/api/staff/roster/${encodeURIComponent(accountId)}/${encodeURIComponent(studentId)}`, {
+    headers: createAuthHeaders(accessToken),
+    method: "DELETE",
   });
   return data;
 }

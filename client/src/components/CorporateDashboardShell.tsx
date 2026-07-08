@@ -1,5 +1,5 @@
 import { useMemo, useState, type ReactNode } from "react";
-import { ArrowLeftRight, ChevronRight, LogOut, Menu, UserRound, type LucideIcon } from "lucide-react";
+import { ArrowLeftRight, ChevronRight, LogOut, Menu, UserRound, X, type LucideIcon } from "lucide-react";
 
 export type DashboardNavItem = {
   href: string;
@@ -48,6 +48,7 @@ export function CorporateDashboardShell({
   return (
     <main className="staff-shell corporate-dashboard-shell">
       <aside className={`staff-sidebar ${isNavigationOpen ? "is-open" : ""}`}>
+        <button aria-label="Close navigation" className="staff-sidebar-close" onClick={() => setIsNavigationOpen(false)} type="button"><X size={18} /></button>
         <a className="staff-brand" href={navItems[0]?.href ?? "/dashboard"}>
           <span>PSS</span>
           <div><strong>Promise Summer School</strong><small>Learning Operations</small></div>
@@ -57,7 +58,7 @@ export function CorporateDashboardShell({
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
-              <a className={activeId === item.id ? "is-active" : ""} href={item.href} key={item.id}>
+              <a className={activeId === item.id ? "is-active" : ""} href={item.href} key={item.id} onClick={() => setIsNavigationOpen(false)}>
                 <Icon size={18} /><span>{item.label}</span><ChevronRight size={15} />
               </a>
             );

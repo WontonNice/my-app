@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { CalendarDays, Check, CheckCircle2, ClipboardCheck, Cloud, Copy, Eye, FileSpreadsheet, LayoutDashboard, ListTodo, Pencil, Plus, RefreshCw, ShieldCheck, Trash2, UserCog, UserRoundPlus, Users, X } from "lucide-react";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
-import { assignStaffAccount, createStaffTask, deleteRoomBooking, deleteStaffTask, getCampusRooms, getGoogleSheetsAttendanceSettings, getRoomBookings, getStaffAccounts, getStaffSchedules, getStaffTasks, getSwitchableAccounts, requestRoomBooking, reviewRoomBooking, saveCampusRooms, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffClasses, saveStaffSchedule, syncGoogleSheetsAttendance, updateRoomBooking, updateStaffAccount, updateStaffTask, type CampusRoom, type RoomBooking, type ScheduleItem, type StaffAccount, type StaffSchedule, type StaffTask, type SwitchableAccount } from "../lib/api";
+import { assignStaffAccount, createStaffTask, deleteRoomBooking, deleteRosterStudent, deleteStaffTask, getCampusRooms, getGoogleSheetsAttendanceSettings, getRoomBookings, getStaffAccounts, getStaffSchedules, getStaffTasks, getSwitchableAccounts, requestRoomBooking, reviewRoomBooking, saveCampusRooms, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffClasses, saveStaffSchedule, syncGoogleSheetsAttendance, updateRoomBooking, updateStaffAccount, updateStaffTask, type CampusRoom, type RoomBooking, type ScheduleItem, type StaffAccount, type StaffSchedule, type StaffTask, type SwitchableAccount } from "../lib/api";
 import { switchFromAdminToTeacher } from "../lib/accountSwitching";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
@@ -47,6 +47,10 @@ const defaultAdminRooms: CampusRoom[] = [
 
 const weekdayLabels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
+function todayDateInput() {
+  return new Date().toLocaleDateString("en-CA");
+}
+
 function gradeClassName(grade: string) {
   const value = Number(grade);
   if (!Number.isInteger(value)) return "Unassigned class";
@@ -65,7 +69,7 @@ export function AdminDashboardPage() {
   const [message, setMessage] = useState("");
   const [staffAccounts, setStaffAccounts] = useState<StaffAccount[]>([]);
   const [selectedStaffId, setSelectedStaffId] = useState("");
-  const [selectedAttendanceDate, setSelectedAttendanceDate] = useState("2026-07-06");
+  const [selectedAttendanceDate, setSelectedAttendanceDate] = useState(todayDateInput);
   const [sheetsWebhookUrl, setSheetsWebhookUrl] = useState("");
   const [sheetsConfigured, setSheetsConfigured] = useState(false);
   const [isSyncingSheets, setIsSyncingSheets] = useState(false);
@@ -81,7 +85,12 @@ export function AdminDashboardPage() {
   const [scheduleDraft, setScheduleDraft] = useState({ endTime: "09:30", place: "", startTime: "08:30", studentIds: [] as string[], title: "", weekdays: [1, 2, 3, 4, 5] });
   const [bookingDraft, setBookingDraft] = useState({ date: new Date().toLocaleDateString("en-CA"), description: "", endTime: "10:00", eventName: "", floor: 1, repeatUntil: "", roomId: "101", roomName: "Room 101", time: "09:00", weeklyRepeat: false });
   const [tasks, setTasks] = useState<StaffTask[]>([]);
-  const [taskDraft, setTaskDraft] = useState({ assignedToId: "", description: "", dueDate: new Date().toLocaleDateString("en-CA"), title: "" });
+  const [taskDraft, setTaskDraft] = useState({ assignedToId: "", description: "", dueDate: todayDateInput(), repeatUntil: "", repeatWeekly: false, title: "" });
+  const [rosterSort, setRosterSort] = useState<"az" | "za">("az");
+  const [masterScheduleDay, setMasterScheduleDay] = useState(() => {
+    const day = new Date().getDay();
+    return day >= 1 && day <= 5 ? day : 1;
+  });
   const [switchableAccounts, setSwitchableAccounts] = useState<SwitchableAccount[]>([]);
   const [isSwitchingAccount, setIsSwitchingAccount] = useState(false);
   const [isAttendanceTrackerOpen, setIsAttendanceTrackerOpen] = useState(false);
@@ -115,8 +124,6 @@ export function AdminDashboardPage() {
         const firstWithAttendance = accounts.find((account) => Object.keys(account.dashboardData.attendanceRecords ?? {}).length) ?? accounts[0];
         if (firstWithAttendance) {
           setSelectedStaffId(firstWithAttendance.id);
-          const dates = Object.keys(firstWithAttendance.dashboardData.attendanceRecords ?? {}).sort();
-          if (dates.length) setSelectedAttendanceDate(dates[dates.length - 1]);
         }
       } else {
         const reason = accountsResult.reason;
@@ -372,10 +379,10 @@ export function AdminDashboardPage() {
     setIsSaving(true);
     setMessage("");
     try {
-      const task = await createStaffTask(accessToken, taskDraft);
-      setTasks((current) => [...current, task]);
-      setTaskDraft((current) => ({ ...current, description: "", title: "" }));
-      setMessage(`Task assigned to ${task.assignedToName}.`);
+      const createdTasks = await createStaffTask(accessToken, taskDraft);
+      setTasks((current) => [...current, ...createdTasks]);
+      setTaskDraft((current) => ({ ...current, description: "", repeatUntil: "", repeatWeekly: false, title: "" }));
+      setMessage(createdTasks.length > 1 ? `${createdTasks.length} weekly tasks assigned to ${createdTasks[0].assignedToName}.` : `Task assigned to ${createdTasks[0].assignedToName}.`);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Could not assign the task.");
     } finally {
@@ -402,6 +409,34 @@ export function AdminDashboardPage() {
       setMessage("Task removed.");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Could not remove the task.");
+    }
+  }
+
+  async function handleApproveTask(task: StaffTask) {
+    if (!accessToken) return;
+    try {
+      await deleteStaffTask(accessToken, task.id);
+      setTasks((current) => current.filter((item) => item.id !== task.id));
+      setMessage(`${task.title} approved and removed.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not approve the task.");
+    }
+  }
+
+  async function handleDeleteStudent(student: StaffAccount["dashboardData"]["roster"][number]) {
+    if (!accessToken || !selectedAccount) return;
+    if (!window.confirm(`Remove ${student.name} from ${selectedAccount.fullName}'s roster? This action cannot be undone.`)) return;
+    setMessage("");
+    try {
+      const result = await deleteRosterStudent(accessToken, selectedAccount.id, student.id);
+      setStaffAccounts((current) => current.map((account) => account.id === selectedAccount.id ? { ...account, dashboardData: result.dashboardData } : account));
+      if (editingStudentId === student.id) {
+        setEditingStudentId("");
+        setStudentDraft({ allergies: "", className: "", dob: "", firstName: "", lastName: "", specialNotes: "" });
+      }
+      setMessage(`${student.name} was removed from the roster.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not remove the student.");
     }
   }
 
@@ -486,13 +521,21 @@ export function AdminDashboardPage() {
     : Array.from(new Set(selectedAccount?.dashboardData.roster.map((student) => student.className ?? gradeClassName(student.grade)) ?? []));
   const selectedSchedule = staffSchedules.find((schedule) => schedule.accountId === selectedAccount?.id);
   const attendanceForDate = selectedAccount?.dashboardData.attendanceRecords?.[selectedAttendanceDate] ?? {};
-  const attendanceRows = selectedAccount?.dashboardData.roster.map((student) => ({ ...student, attendanceStatus: attendanceForDate[student.id] ?? "Unmarked" })) ?? [];
+  const sortedRosterRows = [...(selectedAccount?.dashboardData.roster ?? [])].sort((first, second) => rosterSort === "az" ? first.name.localeCompare(second.name) : second.name.localeCompare(first.name));
+  const attendanceRows = sortedRosterRows.map((student) => ({ ...student, attendanceStatus: attendanceForDate[student.id] ?? "Unmarked" }));
   const attendanceTotals = attendanceRows.reduce((totals, row) => ({ ...totals, [row.attendanceStatus]: totals[row.attendanceStatus] + 1 }), { Present: 0, Late: 0, Absent: 0, Unmarked: 0 });
-  const today = new Date().toLocaleDateString("en-CA");
+  const today = todayDateInput();
   const attendanceTasks = tasks.filter((task) => task.title === "Submit attendance" && task.dueDate === today);
   const submittedAttendanceTasks = attendanceTasks.filter((task) => task.status === "completed");
   const pendingAttendanceTasks = attendanceTasks.filter((task) => task.status !== "completed");
   const regularTasks = tasks.filter((task) => task.title !== "Submit attendance");
+  const currentTimeKey = `${String(new Date().getHours()).padStart(2, "0")}:${String(new Date().getMinutes()).padStart(2, "0")}`;
+  const masterScheduleRows = staffSchedules.flatMap((schedule) => {
+    const dayItems = schedule.schedule.filter((item) => item.weekdays.includes(masterScheduleDay));
+    return dayItems.length
+      ? dayItems.map((item) => ({ ...item, fullName: schedule.fullName, username: schedule.username }))
+      : [{ endTime: "", fullName: schedule.fullName, id: `${schedule.accountId}-empty`, place: "No scheduled location", startTime: "", studentIds: [], title: "No blocks scheduled", username: schedule.username, weekdays: [masterScheduleDay] }];
+  }).sort((first, second) => (first.startTime || "99:99").localeCompare(second.startTime || "99:99") || first.fullName.localeCompare(second.fullName));
 
   return (
     <CorporateDashboardShell activeId="overview" isSwitchingAccount={isSwitchingAccount} navItems={navItems} onSignOut={handleSignOut} onSwitchAccount={switchableAccounts.length ? handleSwitchAccount : undefined} profileName={adminName} profileRole="Administrator account" switchAccountLabel="Switch to teacher">
@@ -507,7 +550,7 @@ export function AdminDashboardPage() {
       <section className="teacher-panel admin-attendance-panel" id="attendance-overview">
         <div className="teacher-panel-header"><div><span>Program records</span><h2>Attendance overview</h2></div><p>Review every staff member&apos;s saved student attendance by school day.</p></div>
         <div className="admin-attendance-filters">
-          <label>Staff account<select value={selectedAccount?.id ?? ""} onChange={(event) => { const account = staffAccounts.find((item) => item.id === event.target.value); setSelectedStaffId(event.target.value); const dates = Object.keys(account?.dashboardData.attendanceRecords ?? {}).sort(); if (dates.length) setSelectedAttendanceDate(dates[dates.length - 1]); }}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
+          <label>Staff account<select value={selectedAccount?.id ?? ""} onChange={(event) => setSelectedStaffId(event.target.value)}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
           <label>School day<input type="date" min="2026-07-06" max="2026-08-21" value={selectedAttendanceDate} onChange={(event) => setSelectedAttendanceDate(event.target.value)} /></label>
         </div>
         <div className="admin-attendance-totals" aria-label="Attendance totals"><article><strong>{attendanceTotals.Present}</strong><span>Present</span></article><article><strong>{attendanceTotals.Late}</strong><span>Late</span></article><article><strong>{attendanceTotals.Absent}</strong><span>Absent</span></article><article><strong>{attendanceTotals.Unmarked}</strong><span>Unmarked</span></article></div>
@@ -517,7 +560,10 @@ export function AdminDashboardPage() {
       </section>
       <section className="teacher-panel admin-roster-panel" id="student-roster">
         <div className="teacher-panel-header"><div><span>Class enrollment</span><h2>Student rosters</h2></div><p>Assign one or more grade classes to each staff member, then place students in the right class.</p></div>
-        <label className="admin-roster-account">Staff member<select value={selectedAccount?.id ?? ""} onChange={(event) => { setSelectedStaffId(event.target.value); setEditingStudentId(""); setStudentDraft({ allergies: "", className: "", dob: "", firstName: "", lastName: "", specialNotes: "" }); }}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
+        <div className="admin-roster-toolbar">
+          <label className="admin-roster-account">Staff member<select value={selectedAccount?.id ?? ""} onChange={(event) => { setSelectedStaffId(event.target.value); setEditingStudentId(""); setStudentDraft({ allergies: "", className: "", dob: "", firstName: "", lastName: "", specialNotes: "" }); }}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
+          <div className="staff-attendance-sort admin-roster-sort"><span>Sort roster</span><button className={rosterSort === "az" ? "is-active" : ""} onClick={() => setRosterSort("az")} type="button">A–Z</button><button className={rosterSort === "za" ? "is-active" : ""} onClick={() => setRosterSort("za")} type="button">Z–A</button></div>
+        </div>
         <div className="admin-class-assignment"><div><strong>Assigned classes</strong><small>A staff member may manage multiple grades.</small></div><div className="admin-class-tags">{assignedClasses.map((className) => <button aria-label={`Remove ${className}`} key={className} onClick={() => handleSaveClasses(assignedClasses.filter((value) => value !== className))} type="button">{className} <X size={12} /></button>)}</div><form onSubmit={(event) => { event.preventDefault(); const value = classDraft.trim(); if (value && !assignedClasses.includes(value)) handleSaveClasses([...assignedClasses, value]); }}><input aria-label="New class" placeholder="e.g. 5th Grade" value={classDraft} onChange={(event) => setClassDraft(event.target.value)} /><button disabled={isSaving || !classDraft.trim()} type="submit"><Plus size={14} /> Assign class</button></form></div>
         <div className="admin-roster-layout">
           <form className="admin-student-form" onSubmit={handleSaveStudent}>
@@ -529,11 +575,18 @@ export function AdminDashboardPage() {
             <label>Special notes<textarea rows={4} value={studentDraft.specialNotes} onChange={(event) => setStudentDraft({ ...studentDraft, specialNotes: event.target.value })} /></label>
             <div className="admin-sheets-actions"><button disabled={isSavingStudent || !assignedClasses.length} type="submit">{isSavingStudent ? <RefreshCw className="is-spinning" size={16} /> : <Check size={16} />} {isSavingStudent ? "Saving student…" : editingStudentId ? "Save changes" : "Add to roster"}</button>{editingStudentId ? <button className="is-secondary" onClick={() => { setEditingStudentId(""); setStudentDraft({ allergies: "", className: "", dob: "", firstName: "", lastName: "", specialNotes: "" }); }} type="button">Cancel</button> : null}</div>
           </form>
-          <div className="admin-roster-list">{selectedAccount?.dashboardData.roster.length ? selectedAccount.dashboardData.roster.map((student) => <article key={student.id}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)} · DOB {student.dob || "Not entered"}</small><p>{student.specialNotes || "No special notes"}</p></div><button onClick={() => beginEditingStudent(student)} type="button"><Pencil size={14} /> Edit</button></article>) : <p>No students are assigned to this staff member.</p>}</div>
+          <div className="admin-roster-list">{sortedRosterRows.length ? sortedRosterRows.map((student) => <article key={student.id}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)} · DOB {student.dob || "Not entered"}</small><p>{student.specialNotes || "No special notes"}</p></div><div className="admin-roster-actions"><button onClick={() => beginEditingStudent(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-danger" onClick={() => handleDeleteStudent(student)} type="button"><Trash2 size={14} /> Remove</button></div></article>) : <p>No students are assigned to this staff member.</p>}</div>
         </div>
       </section>
       <section className="teacher-panel admin-schedule-panel" id="staff-schedules">
         <div className="teacher-panel-header"><div><span>Recurring program calendar</span><h2>Staff schedules</h2></div><p>Edit every staff member&apos;s student schedule. Staff can view all schedules, with their own shown first.</p></div>
+        <section className="admin-master-schedule" aria-labelledby="admin-master-schedule-title">
+          <header><div><span>Master schedule</span><h3 id="admin-master-schedule-title">Where everyone is</h3></div><label>Day<select value={masterScheduleDay} onChange={(event) => setMasterScheduleDay(Number(event.target.value))}>{weekdayLabels.map((label, index) => <option key={label} value={index + 1}>{label}</option>)}</select></label></header>
+          <div>{masterScheduleRows.length ? masterScheduleRows.map((item) => {
+            const isCurrent = item.startTime && item.endTime && item.weekdays.includes(new Date().getDay()) && masterScheduleDay === new Date().getDay() && item.startTime <= currentTimeKey && item.endTime > currentTimeKey;
+            return <article className={isCurrent ? "is-current" : ""} key={`${item.username}-${item.id}`}><time>{item.startTime ? `${item.startTime}–${item.endTime}` : "—"}</time><div><strong>{item.fullName}</strong><span>{item.title}</span></div><small>{item.place}</small>{isCurrent ? <em>Now</em> : null}</article>;
+          }) : <p>No staff schedules are saved yet.</p>}</div>
+        </section>
         <label className="admin-roster-account">Staff schedule<select value={selectedAccount?.id ?? ""} onChange={(event) => { setSelectedStaffId(event.target.value); setEditingScheduleItemId(""); }}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
         <div className="admin-schedule-layout">
           <form className="admin-student-form admin-schedule-form" onSubmit={handleSaveSchedule}>
@@ -550,7 +603,7 @@ export function AdminDashboardPage() {
       <section className="teacher-panel admin-tasks-panel" id="staff-tasks">
         <div className="teacher-panel-header"><div><span>Staff workflow</span><h2>Assigned tasks</h2></div><p>Assign work to a staff account and follow it through completion.</p></div>
         <div className="admin-attendance-task-tracker"><button aria-expanded={isAttendanceTrackerOpen} onClick={() => setIsAttendanceTrackerOpen((open) => !open)} type="button"><span><ClipboardCheck size={19} /></span><div><strong>Today&apos;s attendance</strong><small>Click to see who still needs to submit</small></div><em>{submittedAttendanceTasks.length}/{attendanceTasks.length} submitted</em></button>{isAttendanceTrackerOpen ? <div className="admin-attendance-task-details">{pendingAttendanceTasks.length ? <><strong>Still waiting on</strong><ul>{pendingAttendanceTasks.map((task) => <li key={task.id}>{task.assignedToName}</li>)}</ul></> : <p><CheckCircle2 size={16} /> Everyone has submitted attendance.</p>}</div> : null}</div>
-        <div className="admin-task-layout"><form className="admin-task-form" onSubmit={handleCreateTask}><label>Assign to<select required value={taskDraft.assignedToId} onChange={(event) => setTaskDraft({ ...taskDraft, assignedToId: event.target.value })}><option value="">Choose staff</option>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName}</option>)}</select></label><label>Task title<input placeholder="e.g. Prepare classroom" required value={taskDraft.title} onChange={(event) => setTaskDraft({ ...taskDraft, title: event.target.value })} /></label><label>Due date<input required type="date" value={taskDraft.dueDate} onChange={(event) => setTaskDraft({ ...taskDraft, dueDate: event.target.value })} /></label><label>Description<textarea required rows={3} value={taskDraft.description} onChange={(event) => setTaskDraft({ ...taskDraft, description: event.target.value })} /></label><button disabled={isSaving} type="submit"><Plus size={15} /> Assign task</button></form><div className="admin-task-list">{regularTasks.length ? [...regularTasks].sort((a, b) => a.status.localeCompare(b.status) || a.dueDate.localeCompare(b.dueDate)).map((task) => <article className={task.status === "completed" ? "is-completed" : ""} key={task.id}><button aria-label={`${task.status === "completed" ? "Reopen" : "Complete"} ${task.title}`} className="admin-task-check" onClick={() => handleToggleTask(task)} type="button">{task.status === "completed" ? <Check size={14} /> : null}</button><div><strong>{task.title}</strong><span>{task.assignedToName} · Due {task.dueDate}</span><p>{task.description}</p></div><button aria-label={`Remove ${task.title}`} className="admin-task-remove" onClick={() => handleDeleteTask(task.id)} type="button"><Trash2 size={14} /></button></article>) : <p>No other tasks assigned.</p>}</div></div>
+        <div className="admin-task-layout"><form className="admin-task-form" onSubmit={handleCreateTask}><label>Assign to<select required value={taskDraft.assignedToId} onChange={(event) => setTaskDraft({ ...taskDraft, assignedToId: event.target.value })}><option value="">Choose staff</option>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName}</option>)}</select></label><label>Task title<input placeholder="e.g. Prepare classroom" required value={taskDraft.title} onChange={(event) => setTaskDraft({ ...taskDraft, title: event.target.value })} /></label><label>Due date<input required type="date" value={taskDraft.dueDate} onChange={(event) => setTaskDraft({ ...taskDraft, dueDate: event.target.value, repeatUntil: event.target.value > taskDraft.repeatUntil ? event.target.value : taskDraft.repeatUntil })} /></label><label className="admin-task-repeat"><input checked={taskDraft.repeatWeekly} type="checkbox" onChange={(event) => setTaskDraft({ ...taskDraft, repeatUntil: event.target.checked ? (taskDraft.repeatUntil || taskDraft.dueDate) : "", repeatWeekly: event.target.checked })} /><span>Repeat weekly</span></label>{taskDraft.repeatWeekly ? <label>Repeat until<input min={taskDraft.dueDate} required type="date" value={taskDraft.repeatUntil || taskDraft.dueDate} onChange={(event) => setTaskDraft({ ...taskDraft, repeatUntil: event.target.value })} /></label> : null}<label>Description<textarea required rows={3} value={taskDraft.description} onChange={(event) => setTaskDraft({ ...taskDraft, description: event.target.value })} /></label><button disabled={isSaving} type="submit"><Plus size={15} /> {taskDraft.repeatWeekly ? "Assign weekly task" : "Assign task"}</button></form><div className="admin-task-list">{regularTasks.length ? [...regularTasks].sort((a, b) => a.status.localeCompare(b.status) || a.dueDate.localeCompare(b.dueDate)).map((task) => <article className={task.status === "completed" ? "is-completed" : ""} key={task.id}><button aria-label={`${task.status === "completed" ? "Reopen" : "Complete"} ${task.title}`} className="admin-task-check" onClick={() => handleToggleTask(task)} type="button">{task.status === "completed" ? <Check size={14} /> : null}</button><div><strong>{task.title}</strong><span>{task.assignedToName} · Due {task.dueDate} · {task.status === "completed" ? `Completed ${task.completedAt ? new Date(task.completedAt).toLocaleDateString() : ""}` : "Open"}</span><p>{task.description}</p></div><div className="admin-task-actions">{task.status === "completed" ? <button className="admin-task-approve" onClick={() => handleApproveTask(task)} type="button"><CheckCircle2 size={14} /> Approve</button> : null}<button aria-label={`Remove ${task.title}`} className="admin-task-remove" onClick={() => handleDeleteTask(task.id)} type="button"><Trash2 size={14} /></button></div></article>) : <p>No other tasks assigned.</p>}</div></div>
       </section>
       <section className="teacher-panel admin-bookings-panel" id="room-approvals">
         <div className="teacher-panel-header"><div><span>25Live management</span><h2>Room bookings</h2></div><p>Create confirmed reservations, review staff requests, and remove bookings.</p></div>

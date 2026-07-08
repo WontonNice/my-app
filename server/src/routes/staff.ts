@@ -195,10 +195,16 @@ staffRouter.post("/tasks", async (request, response) => {
     const title = typeof request.body?.title === "string" ? request.body.title.trim() : "";
     const description = typeof request.body?.description === "string" ? request.body.description.trim() : "";
     const dueDate = typeof request.body?.dueDate === "string" ? request.body.dueDate : "";
+    const repeatWeekly = request.body?.repeatWeekly === true;
+    const repeatUntil = typeof request.body?.repeatUntil === "string" ? request.body.repeatUntil : "";
     const targetResult = await supabase.auth.admin.getUserById(assignedToId);
     const target = targetResult.data.user;
     if (!title || !description || !isDate(dueDate) || targetResult.error || !target || getUserRole(target) !== "staff") {
         response.status(400).json({ message: "Choose a staff member and provide a title, description, and due date." });
+        return;
+    }
+    if (repeatWeekly && (!isDate(repeatUntil) || repeatUntil < dueDate)) {
+        response.status(400).json({ message: "Choose a valid repeat-until date for weekly tasks." });
         return;
     }
     const store = await getBookingStoreAdmin();
@@ -206,12 +212,21 @@ staffRouter.post("/tasks", async (request, response) => {
         response.status(400).json({ message: store.error });
         return;
     }
-    const task = {
+    const recurrenceGroupId = repeatWeekly ? randomUUID() : undefined;
+    const createdAt = new Date().toISOString();
+    const taskDates = repeatWeekly ? weeklyDates(dueDate, repeatUntil) : [dueDate];
+    const createdTasks = taskDates.map((date) => ({
         assignedToId,
         assignedToName: target.user_metadata.full_name ?? target.user_metadata.username ?? "Staff",
-        createdAt: new Date().toISOString(), description, dueDate, id: randomUUID(), status: "open", title,
-    };
-    const tasks = [...readTasks(store.user), task];
+        createdAt,
+        description,
+        dueDate: date,
+        id: randomUUID(),
+        recurrenceGroupId,
+        status: "open",
+        title,
+    }));
+    const tasks = [...readTasks(store.user), ...createdTasks];
     const saved = await supabase.auth.admin.updateUserById(store.user.id, {
         app_metadata: { ...store.user.app_metadata, [tasksMetadataKey]: tasks },
     });
@@ -219,7 +234,7 @@ staffRouter.post("/tasks", async (request, response) => {
         response.status(400).json({ message: saved.error.message });
         return;
     }
-    response.status(201).json({ task });
+    response.status(201).json({ task: createdTasks[0], tasks: createdTasks });
 });
 
 staffRouter.patch("/tasks/:taskId", async (request, response) => {
@@ -493,6 +508,52 @@ staffRouter.put("/roster/:accountId", async (request, response) => {
         return;
     }
     response.json({ dashboardData: nextDashboardData, student });
+});
+
+staffRouter.delete("/roster/:accountId/:studentId", async (request, response) => {
+    const admin = await requireAdmin(request.headers.authorization);
+    if (admin.error || !admin.user) {
+        response.status(admin.error === "Administrator access is required." ? 403 : 401).json({ message: admin.error });
+        return;
+    }
+
+    const targetResult = await supabase.auth.admin.getUserById(request.params.accountId);
+    const target = targetResult.data.user;
+    if (targetResult.error || !target || getUserRole(target) !== "staff") {
+        response.status(404).json({ message: "Staff account was not found." });
+        return;
+    }
+
+    const dashboardData = readDashboardData(target);
+    const storedRoster = Array.isArray(dashboardData.roster) ? dashboardData.roster as Record<string, unknown>[] : [];
+    const roster = target.user_metadata.username === "pss5" && storedRoster.length === 0 ? boazRoster : storedRoster;
+    const student = roster.find((item) => item.id === request.params.studentId);
+    if (!student) {
+        response.status(404).json({ message: "Student was not found on this roster." });
+        return;
+    }
+
+    const attendanceRecords = dashboardData.attendanceRecords && typeof dashboardData.attendanceRecords === "object" && !Array.isArray(dashboardData.attendanceRecords)
+        ? Object.fromEntries(Object.entries(dashboardData.attendanceRecords as Record<string, unknown>).map(([date, record]) => {
+            if (!record || typeof record !== "object" || Array.isArray(record)) return [date, record];
+            const nextRecord = { ...(record as Record<string, unknown>) };
+            delete nextRecord[request.params.studentId];
+            return [date, nextRecord];
+        }))
+        : dashboardData.attendanceRecords;
+    const nextDashboardData = {
+        ...dashboardData,
+        attendanceRecords,
+        roster: roster.filter((item) => item.id !== request.params.studentId),
+    };
+    const saved = await supabase.auth.admin.updateUserById(target.id, {
+        user_metadata: { ...target.user_metadata, dashboard_data: nextDashboardData },
+    });
+    if (saved.error) {
+        response.status(400).json({ message: saved.error.message });
+        return;
+    }
+    response.json({ dashboardData: nextDashboardData });
 });
 
 staffRouter.get("/bookings", async (request, response) => {

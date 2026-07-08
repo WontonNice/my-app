@@ -85,6 +85,11 @@ const attendanceDates = (() => {
   return dates;
 })();
 
+function getDefaultAttendanceDate() {
+  const today = new Date().toLocaleDateString("en-CA");
+  return attendanceDates.includes(today) ? today : attendanceDates[0];
+}
+
 function formatAttendanceDate(value: string) {
   return new Intl.DateTimeFormat("en-US", { weekday: "long", month: "short", day: "numeric", timeZone: "UTC" }).format(new Date(`${value}T00:00:00Z`));
 }
@@ -284,10 +289,13 @@ function InteractiveTwentyFiveLivePanel({ accessToken, bookings, canBook, curren
 function StudentRosterPanel({ rows }: { rows: StaffDashboardData["roster"] }) {
   const [query, setQuery] = useState("");
   const [selectedStudentId, setSelectedStudentId] = useState("");
-  const visibleRows = rows.filter((row) => row.name.toLowerCase().includes(query.toLowerCase()));
+  const [sortMode, setSortMode] = useState<"az" | "za">("az");
+  const visibleRows = rows
+    .filter((row) => row.name.toLowerCase().includes(query.toLowerCase()))
+    .sort((first, second) => sortMode === "az" ? first.name.localeCompare(second.name) : second.name.localeCompare(first.name));
   return (
     <section className="staff-panel">
-      <header className="staff-panel-header"><div><p>Enrollment directory</p><h2>Student care roster</h2></div><label className="staff-roster-search"><Search size={16} /><input aria-label="Search student roster" placeholder="Search students" value={query} onChange={(event) => setQuery(event.target.value)} /></label></header>
+      <header className="staff-panel-header"><div><p>Enrollment directory</p><h2>Student care roster</h2></div><div className="staff-roster-tools"><div className="staff-attendance-sort"><span>Sort</span><button className={sortMode === "az" ? "is-active" : ""} onClick={() => setSortMode("az")} type="button">A–Z</button><button className={sortMode === "za" ? "is-active" : ""} onClick={() => setSortMode("za")} type="button">Z–A</button></div><label className="staff-roster-search"><Search size={16} /><input aria-label="Search student roster" placeholder="Search students" value={query} onChange={(event) => setQuery(event.target.value)} /></label></div></header>
       <div className="staff-roster-name-cards">
         {visibleRows.map((row) => {
           const isOpen = selectedStudentId === row.id;
@@ -324,7 +332,7 @@ function StaffTasksPanel({ onToggle, tasks }: { onToggle: (task: StaffTask) => v
   const [selectedTaskId, setSelectedTaskId] = useState("");
   const openTasks = tasks.filter((task) => task.status === "open");
   const completedTasks = tasks.filter((task) => task.status === "completed");
-  return <section className="staff-panel staff-tasks-panel"><header className="staff-panel-header"><div><p>Assigned work</p><h2>Open tasks</h2></div><span className="staff-task-count">{openTasks.length} open</span></header><div className="staff-task-list">{[...openTasks, ...completedTasks].map((task) => <article className={`${task.status === "completed" ? "is-completed" : ""} ${selectedTaskId === task.id ? "is-open" : ""}`} key={task.id}><button aria-label={`${task.status === "completed" ? "Reopen" : "Complete"} ${task.title}`} className="staff-task-check" onClick={() => onToggle(task)} type="button">{task.status === "completed" ? <CheckCircle2 size={16} /> : null}</button><button className="staff-task-summary" onClick={() => setSelectedTaskId(selectedTaskId === task.id ? "" : task.id)} type="button"><span><strong>{task.title}</strong><small>Due {task.dueDate}</small></span><ChevronRight size={16} /></button>{selectedTaskId === task.id ? <div className="staff-task-detail"><p>{task.description}</p><button onClick={() => onToggle(task)} type="button">{task.status === "completed" ? "Mark as open" : "Check off as complete"}</button></div> : null}</article>)}</div></section>;
+  return <section className="staff-panel staff-tasks-panel"><header className="staff-panel-header"><div><p>Assigned work</p><h2>Today&apos;s tasks</h2><small>Weekly tasks appear here on their due day. Open overdue tasks stay visible.</small></div><span className="staff-task-count">{openTasks.length} open</span></header><div className="staff-task-list">{[...openTasks, ...completedTasks].length ? [...openTasks, ...completedTasks].map((task) => <article className={`${task.status === "completed" ? "is-completed" : ""} ${selectedTaskId === task.id ? "is-open" : ""}`} key={task.id}><button aria-label={`${task.status === "completed" ? "Reopen" : "Complete"} ${task.title}`} className="staff-task-check" onClick={() => onToggle(task)} type="button">{task.status === "completed" ? <CheckCircle2 size={16} /> : null}</button><button className="staff-task-summary" onClick={() => setSelectedTaskId(selectedTaskId === task.id ? "" : task.id)} type="button"><span><strong>{task.title}</strong><small>Due {task.dueDate}</small></span><ChevronRight size={16} /></button>{selectedTaskId === task.id ? <div className="staff-task-detail"><p>{task.description}</p><button onClick={() => onToggle(task)} type="button">{task.status === "completed" ? "Mark as open" : "Check off as complete"}</button></div> : null}</article>) : <p className="staff-empty-state">No tasks are due today.</p>}</div></section>;
 }
 
 export function StaffDashboardPage() {
@@ -340,7 +348,7 @@ export function StaffDashboardPage() {
   const [dismissalDate, setDismissalDate] = useState(() => new Date().toLocaleDateString("en-CA"));
   const [previewReturnPath, setPreviewReturnPath] = useState("/teacher");
   const [staffName, setStaffName] = useState("Operations Staff");
-  const [selectedAttendanceDate, setSelectedAttendanceDate] = useState(attendanceDates[0]);
+  const [selectedAttendanceDate, setSelectedAttendanceDate] = useState(getDefaultAttendanceDate);
   const [roomBookings, setRoomBookings] = useState<RoomBooking[]>([]);
   const [campusRooms, setCampusRooms] = useState<CampusRoom[]>([]);
   const [staffSchedules, setStaffSchedules] = useState<StaffSchedule[]>([]);
@@ -478,8 +486,9 @@ export function StaffDashboardPage() {
 
   const activeLabel = staffTabs.find((tab) => tab.id === activeTab)?.label ?? "Attendance";
   const presentCount = Object.values(attendanceStatuses).filter((status) => status === "Present" || status === "Late").length;
-  const openTaskCount = staffTasks.filter((task) => task.status === "open").length;
   const todayKey = new Date().toLocaleDateString("en-CA");
+  const visibleStaffTasks = staffTasks.filter((task) => task.dueDate <= todayKey && (task.status === "open" || task.dueDate === todayKey));
+  const openTaskCount = visibleStaffTasks.filter((task) => task.status === "open").length;
   const currentTimeKey = `${String(new Date().getHours()).padStart(2, "0")}:${String(new Date().getMinutes()).padStart(2, "0")}`;
   const roomsInUse = new Set(roomBookings.filter((booking) => booking.status === "approved" && booking.date === todayKey && booking.time <= currentTimeKey && booking.endTime > currentTimeKey).map((booking) => booking.roomId)).size;
   const staffSchedule = staffSchedules.find((schedule) => schedule.accountId === staffAccountId);
@@ -491,6 +500,7 @@ export function StaffDashboardPage() {
   return (
     <main className="staff-shell">
       <aside className={`staff-sidebar ${isNavigationOpen ? "is-open" : ""}`}>
+        <button aria-label="Close navigation" className="staff-sidebar-close" onClick={() => setIsNavigationOpen(false)} type="button"><X size={18} /></button>
         <a className="staff-brand" href="/staff"><span>PSS</span><div><strong>Promise Summer School</strong><small>Student Operations</small></div></a>
         <nav aria-label="Staff tools">
           <p>Workspace</p>
@@ -513,12 +523,12 @@ export function StaffDashboardPage() {
         <div className="staff-content">
           <header className="staff-page-heading"><div><p><LayoutDashboard size={15} /> Student operations dashboard</p><h1>{activeLabel}</h1><span>Manage today&apos;s students, spaces, and program schedule.</span></div><button type="button"><Clock3 size={16} /> Last synced 8:14 AM</button></header>
 
-          <section className="staff-kpi-grid" aria-label="Operations summary">
+          {activeTab === "attendance" ? <section className="staff-kpi-grid" aria-label="Operations summary">
             <article><span><UserCheck size={19} /></span><div><p>Students present</p><strong>{presentCount} <small>/ {dashboardData.roster.length}</small></strong></div><em>Live attendance</em></article>
             <article><span><CalendarDays size={19} /></span><div><p>Current activity</p><strong className="is-activity">{currentActivity?.title ?? "None"}</strong></div><em>{currentActivity ? `${displayTime(currentActivity.startTime)}–${displayTime(currentActivity.endTime)} · ${currentActivity.place}` : "No active schedule block"}</em></article>
             <article><span><Building2 size={19} /></span><div><p>Pending room requests</p><strong>{pendingRoomRequests}</strong></div><em>{pendingRoomRequests ? "Awaiting administrator review" : `${roomsInUse} rooms currently in use`}</em></article>
             <article className="is-clickable"><button onClick={() => setActiveTab("tasks")} type="button"><span><CircleAlert size={19} /></span><div><p>Open tasks</p><strong>{openTaskCount}</strong></div><em className={openTaskCount ? "is-warning" : ""}>{openTaskCount ? "Needs attention" : "All complete"}</em></button></article>
-          </section>
+          </section> : null}
 
           {attendanceSaveMessage && (activeTab === "attendance" || activeTab === "dismissal") ? <p className="staff-attendance-message" role="status">{attendanceSaveMessage}</p> : null}
           {activeTab === "attendance" ? <AttendancePanel data={dashboardData} date={selectedAttendanceDate} isFutureLocked={isFutureAttendance} isSaving={isSavingAttendance} onChangeDate={setSelectedAttendanceDate} onChangeStatus={(studentId, status) => setAttendanceStatuses((current) => ({ ...current, [studentId]: status }))} onSave={handleSaveAttendance} statuses={attendanceStatuses} /> : null}
@@ -526,7 +536,7 @@ export function StaffDashboardPage() {
           {activeTab === "25live" ? <InteractiveTwentyFiveLivePanel accessToken={accessToken} bookings={roomBookings} canBook={Boolean(accessToken)} currentUserId={staffAccountId} onBookingCreated={(createdBookings) => setRoomBookings((current) => [...current, ...createdBookings])} onBookingRemoved={(bookingId) => setRoomBookings((current) => current.filter((booking) => booking.id !== bookingId))} rooms={campusRooms} /> : null}
           {activeTab === "roster" ? <StudentRosterPanel rows={dashboardData.roster} /> : null}
           {activeTab === "dismissal" ? <DismissalPanel date={dismissalDate} isSaving={savingDismissalId} onChangeDate={setDismissalDate} onUpdate={handleDismissalUpdate} rows={dashboardData.roster} /> : null}
-          {activeTab === "tasks" ? <StaffTasksPanel onToggle={handleToggleTask} tasks={staffTasks} /> : null}
+          {activeTab === "tasks" ? <StaffTasksPanel onToggle={handleToggleTask} tasks={visibleStaffTasks} /> : null}
         </div>
       </section>
     </main>

@@ -7295,6 +7295,21 @@ button {
   padding: 25px 18px 20px;
 }
 
+.staff-sidebar-close {
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 8%);
+  color: #dce8f3;
+  cursor: pointer;
+}
+
 .staff-brand {
   display: flex;
   align-items: center;
@@ -7959,6 +7974,17 @@ button {
   font-size: 0.72rem;
 }
 
+.staff-roster-tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.staff-roster-tools .staff-attendance-sort {
+  margin-bottom: 0;
+}
+
 @media (max-width: 1050px) {
   .staff-kpi-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -7985,6 +8011,10 @@ button {
 
   .staff-sidebar.is-open {
     transform: translateX(0);
+  }
+
+  .staff-sidebar-close {
+    display: grid;
   }
 
   .staff-topbar {
@@ -8253,6 +8283,8 @@ button {
 .admin-bookings-panel { margin-bottom: 20px; }
 .admin-roster-account { display: grid; gap: 7px; margin-bottom: 16px; color: #627186; font-size: 0.68rem; font-weight: 750; }
 .admin-roster-account select { min-height: 42px; border: 1px solid #d7dfe7; border-radius: 7px; background: #fff; color: #21354d; padding: 0 12px; }
+.admin-roster-toolbar { display: grid; grid-template-columns: minmax(220px, 1fr) auto; gap: 12px; align-items: end; }
+.admin-roster-sort { margin-bottom: 16px; }
 .admin-roster-layout { display: grid; grid-template-columns: minmax(270px, 0.75fr) minmax(340px, 1.25fr); gap: 18px; align-items: start; }
 .admin-student-form { display: grid; gap: 12px; border: 1px solid #e0e6eb; border-radius: 9px; background: #f8fafb; padding: 16px; }
 .admin-student-form-title { display: flex; align-items: center; gap: 8px; color: #27435c; }
@@ -8270,7 +8302,9 @@ button {
 .admin-roster-list strong { color: #283d54; font-size: 0.76rem; }
 .admin-roster-list small { color: #7a8797; font-size: 0.61rem; }
 .admin-roster-list p { margin: 3px 0 0; color: #617085; font-size: 0.65rem; }
+.admin-roster-actions { display: flex !important; align-items: center; gap: 6px !important; }
 .admin-roster-list button { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #d3dce5; border-radius: 6px; background: #fff; color: #3d526a; font-size: 0.62rem; font-weight: 750; padding: 7px 9px; }
+.admin-roster-list button.is-danger { border-color: #e4caca; color: #9c4141; }
 .admin-booking-list { display: grid; gap: 10px; }
 .admin-booking-list > article { display: grid; grid-template-columns: minmax(120px, 0.35fr) 1fr auto; gap: 16px; align-items: center; border: 1px solid #e0e6eb; border-radius: 8px; background: #fbfcfd; padding: 14px; }
 .admin-booking-room,
@@ -8466,8 +8500,10 @@ button {
 .admin-task-form label { display: grid; gap: 5px; color: #68778a; font-size: .62rem; font-weight: 800; }
 .admin-task-form input, .admin-task-form select, .admin-task-form textarea { width: 100%; border: 1px solid #d4dde5; border-radius: 6px; background: #fff; color: #263b52; font: inherit; padding: 9px; }
 .admin-task-form button { min-height: 38px; border: 0; border-radius: 6px; background: #173451; color: #fff; font-size: .64rem; font-weight: 800; }
+.admin-task-repeat { display: flex !important; grid-auto-flow: column; align-items: center; justify-content: start; gap: 7px !important; min-height: 34px; }
+.admin-task-repeat input { width: auto; }
 .admin-task-list { display: grid; gap: 7px; }
-.admin-task-list > article { display: grid; grid-template-columns: 30px 1fr 32px; align-items: center; gap: 9px; border: 1px solid #dfe5ea; border-radius: 7px; background: #fff; padding: 10px; }
+.admin-task-list > article { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 9px; border: 1px solid #dfe5ea; border-radius: 7px; background: #fff; padding: 10px; }
 .admin-task-list > article.is-completed { opacity: .62; }
 .admin-task-check { display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid #6aa99f; border-radius: 50%; background: #fff; color: #28786d; }
 .admin-task-list .is-completed .admin-task-check { background: #e4f3ef; }
@@ -8476,6 +8512,8 @@ button {
 .admin-task-list .is-completed strong { text-decoration: line-through; }
 .admin-task-list span { color: #7b8797; font-size: .57rem; }
 .admin-task-list p { margin: 3px 0 0; color: #607086; font-size: .62rem; }
+.admin-task-actions { display: flex !important; align-items: center; gap: 6px !important; }
+.admin-task-approve { display: inline-flex; align-items: center; gap: 5px; min-height: 30px; border: 0; border-radius: 5px; background: #e2f3ed; color: #28775f; font-size: .58rem; font-weight: 850; padding: 0 8px; }
 .admin-task-remove { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 5px; background: #fff0f0; color: #9d4747; }
 .admin-class-assignment { display: grid; grid-template-columns: auto 1fr minmax(260px, .8fr); gap: 14px; align-items: center; margin-bottom: 16px; border: 1px solid #dfe5ea; border-radius: 8px; background: #f8fafb; padding: 13px; }
 .admin-class-assignment > div:first-child { display: grid; gap: 2px; }
@@ -8486,6 +8524,21 @@ button {
 .admin-class-assignment form { display: grid; grid-template-columns: 1fr auto; gap: 7px; }
 .admin-class-assignment form input { min-width: 0; min-height: 38px; border: 1px solid #d5dde5; border-radius: 6px; background: #fff; padding: 0 9px; }
 .admin-class-assignment form button { display: inline-flex; align-items: center; gap: 5px; border: 0; border-radius: 6px; background: #173451; color: #fff; font-size: 0.61rem; font-weight: 800; padding: 0 11px; }
+.admin-master-schedule { display: grid; gap: 10px; margin-bottom: 18px; border: 1px solid #dfe5ea; border-radius: 9px; background: #f8fafb; padding: 14px; }
+.admin-master-schedule > header { display: flex; align-items: end; justify-content: space-between; gap: 12px; }
+.admin-master-schedule > header div { display: grid; gap: 2px; }
+.admin-master-schedule > header span { color: #287a6f; font-size: .58rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.admin-master-schedule h3 { margin: 0; color: #273c53; font-size: .88rem; }
+.admin-master-schedule label { display: grid; gap: 5px; color: #657488; font-size: .61rem; font-weight: 800; }
+.admin-master-schedule select { min-height: 36px; border: 1px solid #d5dde5; border-radius: 6px; background: #fff; color: #263b52; padding: 0 9px; }
+.admin-master-schedule > div { display: grid; gap: 7px; max-height: 360px; overflow: auto; }
+.admin-master-schedule article { display: grid; grid-template-columns: 92px minmax(0, 1fr) minmax(140px, .55fr) auto; gap: 10px; align-items: center; border: 1px solid #e2e7ec; border-radius: 7px; background: #fff; padding: 10px; }
+.admin-master-schedule article.is-current { border-color: #65a99f; background: #eef8f5; }
+.admin-master-schedule time { color: #28786d; font-size: .62rem; font-weight: 850; }
+.admin-master-schedule strong { color: #2a4057; font-size: .72rem; }
+.admin-master-schedule span, .admin-master-schedule small { color: #748195; font-size: .6rem; }
+.admin-master-schedule article div { display: grid; gap: 2px; }
+.admin-master-schedule em { border-radius: 999px; background: #173451; color: #fff; font-size: .55rem; font-style: normal; font-weight: 850; padding: 5px 7px; text-transform: uppercase; }
 .admin-schedule-layout { display: grid; grid-template-columns: minmax(280px, 0.72fr) minmax(360px, 1.28fr); gap: 18px; align-items: start; }
 .admin-schedule-form fieldset { min-width: 0; margin: 0; border: 1px solid #dfe5ea; border-radius: 7px; padding: 10px; }
 .admin-schedule-form legend { color: #657488; font-size: 0.63rem; font-weight: 800; padding: 0 4px; }
@@ -8607,10 +8660,15 @@ button {
   .admin-attendance-totals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .admin-sheets-actions { flex-direction: column; }
   .admin-sheets-actions button { width: 100%; }
+  .admin-roster-toolbar { grid-template-columns: 1fr; }
+  .admin-roster-sort { align-items: stretch; margin-bottom: 12px; }
   .admin-roster-layout { grid-template-columns: 1fr; }
   .admin-student-name-grid { grid-template-columns: 1fr; }
   .admin-roster-list > article { grid-template-columns: 34px 1fr; }
-  .admin-roster-list > article > button { grid-column: 2; justify-self: start; }
+  .admin-roster-actions { grid-column: 2; flex-wrap: wrap; }
+  .admin-master-schedule > header { align-items: stretch; flex-direction: column; }
+  .admin-master-schedule article { grid-template-columns: 78px 1fr; }
+  .admin-master-schedule article small, .admin-master-schedule article em { grid-column: 2; justify-self: start; }
   .admin-booking-list > article { grid-template-columns: 1fr; gap: 10px; }
   .admin-booking-review { grid-auto-flow: row; grid-template-columns: repeat(2, auto); justify-content: start; }
   .admin-booking-review em { grid-column: 1 / -1; justify-self: start; }
@@ -8632,6 +8690,7 @@ button {
   .admin-booking-form label.is-wide { grid-column: 1 / -1; }
   .admin-booking-form button { grid-column: 1 / -1; }
   .staff-roster-name-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .staff-roster-tools { width: 100%; flex-direction: column; align-items: stretch; }
   .staff-student-detail dl { grid-template-columns: 1fr 1fr; }
   .staff-dismissal-list > article { grid-template-columns: 34px minmax(0, 1fr); }
   .staff-dismissal-list > article > label, .staff-dismissal-list > article > button { grid-column: 1 / -1; }
