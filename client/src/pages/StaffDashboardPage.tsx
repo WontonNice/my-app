@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Building2,
   Bus,
@@ -88,6 +88,12 @@ const attendanceDates = (() => {
 function getDefaultAttendanceDate() {
   const today = new Date().toLocaleDateString("en-CA");
   return attendanceDates.includes(today) ? today : attendanceDates[0];
+}
+
+function isSessionExpiredError(error: unknown) {
+  if (!(error instanceof Error)) return false;
+  const message = error.message.toLowerCase();
+  return message.includes("session expired") || message.includes("log in to continue") || message.includes("jwt");
 }
 
 function formatAttendanceDate(value: string) {
@@ -300,6 +306,7 @@ function StudentRosterPanel({ rows }: { rows: StaffDashboardData["roster"] }) {
         {visibleRows.map((row) => {
           const isOpen = selectedStudentId === row.id;
           return <article className={isOpen ? "is-open" : ""} key={row.id}>
+            {(row.allergies || row.specialNotes) ? <div className="staff-roster-alert-icons" aria-label="Student alerts">{row.allergies ? <span className="is-allergy" title={`Allergies: ${row.allergies}`}>A</span> : null}{row.specialNotes ? <span className="is-note" title={`Special notes: ${row.specialNotes}`}>!</span> : null}</div> : null}
             <button aria-expanded={isOpen} onClick={() => setSelectedStudentId(isOpen ? "" : row.id)} type="button"><span className="staff-avatar">{getInitials(row.name)}</span><span><strong>{row.name}</strong><small>{getStudentClass(row)}</small></span><ChevronRight size={15} /></button>
             {isOpen ? <div className="staff-student-detail"><header><div><span className="staff-avatar">{getInitials(row.name)}</span><div><strong>{row.name}</strong><small>{row.id} · {getStudentClass(row)}</small></div></div><button aria-label="Close student details" onClick={() => setSelectedStudentId("")} type="button"><X size={17} /></button></header><dl><div><dt>Date of birth</dt><dd>{row.dob || "Not entered"}</dd></div><div><dt>Allergies</dt><dd className={row.allergies ? "is-alert" : ""}>{row.allergies || "None known"}</dd></div><div><dt>Class</dt><dd>{getStudentClass(row)}</dd></div><div className="is-wide"><dt>Special notes</dt><dd>{row.specialNotes || "No special notes"}</dd></div></dl></div> : null}
           </article>;
@@ -355,6 +362,12 @@ export function StaffDashboardPage() {
   const [selectedScheduleId, setSelectedScheduleId] = useState("");
   const [staffTasks, setStaffTasks] = useState<StaffTask[]>([]);
   const [staffAccountId, setStaffAccountId] = useState("");
+  const [sessionExpiredMessage, setSessionExpiredMessage] = useState("");
+
+  const showSessionExpiredOverlay = useCallback((message = "Your session expired. Reload the staff dashboard before taking attendance or making changes.") => {
+    setSessionExpiredMessage(message);
+    setIsCheckingSession(false);
+  }, []);
 
   useEffect(() => {
     if (!isSupabaseConfigured) return;
@@ -362,11 +375,15 @@ export function StaffDashboardPage() {
     const supabase = getSupabaseClient();
     supabase.auth.getSession().then(async ({ data }) => {
       if (!data.session) {
-        window.location.assign("/login");
+        showSessionExpiredOverlay("Your staff session is no longer active. Reload the page to reconnect before continuing.");
         return;
       }
 
       const freshUserResult = await supabase.auth.getUser();
+      if (freshUserResult.error) {
+        showSessionExpiredOverlay();
+        return;
+      }
       const currentUser = freshUserResult.data.user ?? data.session.user;
       const role = getUserRole(currentUser);
       setAccessToken(data.session.access_token);
@@ -384,7 +401,11 @@ export function StaffDashboardPage() {
         setCampusRooms(loadedRooms);
         setStaffTasks(previewAccountId ? loadedTasks.filter((task) => task.assignedToId === previewAccountId) : loadedTasks);
         setSelectedScheduleId(previewAccountId ?? currentUser.id);
-      } catch {
+      } catch (error) {
+        if (isSessionExpiredError(error)) {
+          showSessionExpiredOverlay();
+          return;
+        }
         setRoomBookings([]);
       }
 
@@ -395,7 +416,11 @@ export function StaffDashboardPage() {
           const selectedAccount = accounts.find((account) => account.id === previewAccountId);
           setStaffName(selectedAccount?.fullName ?? "Staff account preview");
           setDashboardData(selectedAccount?.dashboardData ?? { attendance: [], roster: [] });
-        } catch {
+        } catch (error) {
+          if (isSessionExpiredError(error)) {
+            showSessionExpiredOverlay();
+            return;
+          }
           setStaffName("Staff account preview");
         }
       } else {
@@ -410,7 +435,7 @@ export function StaffDashboardPage() {
       }
       setIsCheckingSession(false);
     });
-  }, []);
+  }, [showSessionExpiredOverlay]);
 
   useEffect(() => {
     const stored = dashboardData.attendanceRecords?.[selectedAttendanceDate] ?? {};
@@ -451,6 +476,10 @@ export function StaffDashboardPage() {
       }
       setAttendanceSaveMessage("Attendance saved permanently");
     } catch (error) {
+      if (isSessionExpiredError(error)) {
+        showSessionExpiredOverlay();
+        return;
+      }
       setAttendanceSaveMessage(error instanceof Error ? error.message : "Attendance could not be saved.");
     } finally {
       setIsSavingAttendance(false);
@@ -463,6 +492,10 @@ export function StaffDashboardPage() {
       const updated = await updateStaffTask(accessToken, task.id, task.status !== "completed");
       setStaffTasks((current) => current.map((item) => item.id === updated.id ? updated : item));
     } catch (error) {
+      if (isSessionExpiredError(error)) {
+        showSessionExpiredOverlay();
+        return;
+      }
       setAttendanceSaveMessage(error instanceof Error ? error.message : "Could not update the task.");
     }
   }
@@ -476,6 +509,10 @@ export function StaffDashboardPage() {
       setDashboardData(result.dashboardData);
       setAttendanceSaveMessage(`${student.name}'s dismissal information was saved.`);
     } catch (error) {
+      if (isSessionExpiredError(error)) {
+        showSessionExpiredOverlay();
+        return;
+      }
       setAttendanceSaveMessage(error instanceof Error ? error.message : "Could not update dismissal information.");
     } finally {
       setSavingDismissalId("");
@@ -499,6 +536,7 @@ export function StaffDashboardPage() {
 
   return (
     <main className="staff-shell">
+      {sessionExpiredMessage ? <div className="staff-session-expired" role="alertdialog" aria-modal="true" aria-labelledby="staff-session-expired-title"><div><CircleAlert size={34} /><h2 id="staff-session-expired-title">Session expired</h2><p>{sessionExpiredMessage}</p><button onClick={() => window.location.reload()} type="button">Reload dashboard</button></div></div> : null}
       <aside className={`staff-sidebar ${isNavigationOpen ? "is-open" : ""}`}>
         <button aria-label="Close navigation" className="staff-sidebar-close" onClick={() => setIsNavigationOpen(false)} type="button"><X size={18} /></button>
         <a className="staff-brand" href="/staff"><span>PSS</span><div><strong>Promise Summer School</strong><small>Student Operations</small></div></a>

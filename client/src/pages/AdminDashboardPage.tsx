@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { CalendarDays, Check, CheckCircle2, ClipboardCheck, Cloud, Copy, Eye, FileSpreadsheet, LayoutDashboard, ListTodo, Pencil, Plus, RefreshCw, ShieldCheck, Trash2, UserCog, UserRoundPlus, Users, X } from "lucide-react";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
-import { assignStaffAccount, createStaffTask, deleteRoomBooking, deleteRosterStudent, deleteStaffTask, getCampusRooms, getGoogleSheetsAttendanceSettings, getRoomBookings, getStaffAccounts, getStaffSchedules, getStaffTasks, getSwitchableAccounts, requestRoomBooking, reviewRoomBooking, saveCampusRooms, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffClasses, saveStaffSchedule, syncGoogleSheetsAttendance, updateRoomBooking, updateStaffAccount, updateStaffTask, type CampusRoom, type RoomBooking, type ScheduleItem, type StaffAccount, type StaffSchedule, type StaffTask, type SwitchableAccount } from "../lib/api";
+import { assignStaffAccount, createStaffTask, deleteRoomBooking, deleteRosterStudent, deleteStaffAttendanceEntry, deleteStaffTask, getCampusRooms, getGoogleSheetsAttendanceSettings, getRoomBookings, getStaffAccounts, getStaffAttendanceEntries, getStaffSchedules, getStaffTasks, getSwitchableAccounts, requestRoomBooking, reviewRoomBooking, saveCampusRooms, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffAttendanceEntry, saveStaffClasses, saveStaffSchedule, syncGoogleSheetsAttendance, updateRoomBooking, updateStaffAccount, updateStaffTask, type CampusRoom, type RoomBooking, type ScheduleItem, type StaffAccount, type StaffAttendanceEntry, type StaffSchedule, type StaffTask, type SwitchableAccount } from "../lib/api";
 import { switchFromAdminToTeacher } from "../lib/accountSwitching";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
@@ -86,6 +86,8 @@ export function AdminDashboardPage() {
   const [bookingDraft, setBookingDraft] = useState({ date: new Date().toLocaleDateString("en-CA"), description: "", endTime: "10:00", eventName: "", floor: 1, repeatUntil: "", roomId: "101", roomName: "Room 101", time: "09:00", weeklyRepeat: false });
   const [tasks, setTasks] = useState<StaffTask[]>([]);
   const [taskDraft, setTaskDraft] = useState({ assignedToId: "", description: "", dueDate: todayDateInput(), repeatUntil: "", repeatWeekly: false, title: "" });
+  const [staffAttendanceEntries, setStaffAttendanceEntries] = useState<StaffAttendanceEntry[]>([]);
+  const [staffAttendanceDraft, setStaffAttendanceDraft] = useState({ date: todayDateInput(), hours: "0", id: "", note: "", staffAccountId: "", staffName: "" });
   const [rosterSort, setRosterSort] = useState<"az" | "za">("az");
   const [masterScheduleDay, setMasterScheduleDay] = useState(() => {
     const day = new Date().getDay();
@@ -120,7 +122,10 @@ export function AdminDashboardPage() {
       if (accountsResult.status === "fulfilled") {
         const accounts = accountsResult.value;
         setStaffAccounts(accounts);
-        if (accounts[0]) setTaskDraft((current) => ({ ...current, assignedToId: accounts[0].id }));
+        if (accounts[0]) {
+          setTaskDraft((current) => ({ ...current, assignedToId: accounts[0].id }));
+          setStaffAttendanceDraft((current) => ({ ...current, staffAccountId: accounts[0].id, staffName: accounts[0].fullName }));
+        }
         const firstWithAttendance = accounts.find((account) => Object.keys(account.dashboardData.attendanceRecords ?? {}).length) ?? accounts[0];
         if (firstWithAttendance) {
           setSelectedStaffId(firstWithAttendance.id);
@@ -140,8 +145,9 @@ export function AdminDashboardPage() {
           getCampusRooms(data.session.access_token),
           getStaffTasks(data.session.access_token),
           getSwitchableAccounts(data.session.access_token),
+          getStaffAttendanceEntries(data.session.access_token),
         ] as const);
-      const [sheetsResult, bookingsResult, schedulesResult, roomsResult, tasksResult, choicesResult] = results;
+      const [sheetsResult, bookingsResult, schedulesResult, roomsResult, tasksResult, choicesResult, staffAttendanceResult] = results;
       if (sheetsResult.status === "fulfilled") {
         setSheetsWebhookUrl(sheetsResult.value.webhookUrl);
         setSheetsConfigured(sheetsResult.value.configured);
@@ -151,6 +157,7 @@ export function AdminDashboardPage() {
       if (roomsResult.status === "fulfilled") setAdminRooms(roomsResult.value);
       if (tasksResult.status === "fulfilled") setTasks(tasksResult.value);
       if (choicesResult.status === "fulfilled") setSwitchableAccounts(choicesResult.value);
+      if (staffAttendanceResult.status === "fulfilled") setStaffAttendanceEntries(staffAttendanceResult.value);
 
       const failures = results.filter((result): result is PromiseRejectedResult => result.status === "rejected");
       if (failures.length) {
@@ -412,6 +419,62 @@ export function AdminDashboardPage() {
     }
   }
 
+  async function handleSaveStaffAttendance(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!accessToken) return;
+    const selectedStaff = staffAccounts.find((account) => account.id === staffAttendanceDraft.staffAccountId);
+    setIsSaving(true);
+    setMessage("");
+    try {
+      const result = await saveStaffAttendanceEntry(accessToken, {
+        date: staffAttendanceDraft.date,
+        hours: Number(staffAttendanceDraft.hours),
+        id: staffAttendanceDraft.id || undefined,
+        note: staffAttendanceDraft.note,
+        staffAccountId: staffAttendanceDraft.staffAccountId,
+        staffName: selectedStaff?.fullName ?? staffAttendanceDraft.staffName,
+      });
+      setStaffAttendanceEntries(result.entries);
+      setStaffAttendanceDraft({
+        date: staffAttendanceDraft.date,
+        hours: "0",
+        id: "",
+        note: "",
+        staffAccountId: selectedStaff?.id ?? staffAccounts[0]?.id ?? "",
+        staffName: selectedStaff?.fullName ?? staffAccounts[0]?.fullName ?? "",
+      });
+      setMessage(`${result.entry.staffName}'s staff attendance was saved.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not save staff attendance.");
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
+  function beginEditingStaffAttendance(entry: StaffAttendanceEntry) {
+    setStaffAttendanceDraft({
+      date: entry.date,
+      hours: String(entry.hours),
+      id: entry.id,
+      note: entry.note,
+      staffAccountId: entry.staffAccountId,
+      staffName: entry.staffName,
+    });
+    document.getElementById("staff-attendance")?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  async function handleDeleteStaffAttendance(entryId: string) {
+    if (!accessToken) return;
+    if (!window.confirm("Delete this staff attendance entry? This action cannot be undone.")) return;
+    try {
+      await deleteStaffAttendanceEntry(accessToken, entryId);
+      setStaffAttendanceEntries((current) => current.filter((entry) => entry.id !== entryId));
+      setMessage("Staff attendance entry removed.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not remove staff attendance.");
+    }
+  }
+
   async function handleApproveTask(task: StaffTask) {
     if (!accessToken) return;
     try {
@@ -508,6 +571,7 @@ export function AdminDashboardPage() {
   const navItems = [
     { id: "overview", label: "Overview", href: "/admin", icon: LayoutDashboard },
     { id: "attendance", label: "Attendance", href: "#attendance-overview", icon: CalendarDays },
+    { id: "staff-attendance", label: "Staff attendance", href: "#staff-attendance", icon: ClipboardCheck },
     { id: "roster", label: "Student rosters", href: "#student-roster", icon: Users },
     { id: "schedules", label: "Staff schedules", href: "#staff-schedules", icon: CalendarDays },
     { id: "bookings", label: "Room approvals", href: "#room-approvals", icon: ClipboardCheck },
@@ -524,11 +588,18 @@ export function AdminDashboardPage() {
   const sortedRosterRows = [...(selectedAccount?.dashboardData.roster ?? [])].sort((first, second) => rosterSort === "az" ? first.name.localeCompare(second.name) : second.name.localeCompare(first.name));
   const attendanceRows = sortedRosterRows.map((student) => ({ ...student, attendanceStatus: attendanceForDate[student.id] ?? "Unmarked" }));
   const attendanceTotals = attendanceRows.reduce((totals, row) => ({ ...totals, [row.attendanceStatus]: totals[row.attendanceStatus] + 1 }), { Present: 0, Late: 0, Absent: 0, Unmarked: 0 });
+  const accountedAttendanceTotal = attendanceTotals.Present + attendanceTotals.Late + attendanceTotals.Absent;
+  const earlyPickupRows = staffAccounts.flatMap((account) => account.dashboardData.roster
+    .filter((student) => student.earlyPickupDates?.includes(selectedAttendanceDate))
+    .map((student) => ({ ...student, staffName: account.fullName })));
   const today = todayDateInput();
   const attendanceTasks = tasks.filter((task) => task.title === "Submit attendance" && task.dueDate === today);
-  const submittedAttendanceTasks = attendanceTasks.filter((task) => task.status === "completed");
-  const pendingAttendanceTasks = attendanceTasks.filter((task) => task.status !== "completed");
+  const submittedAttendanceIds = new Set(attendanceTasks.filter((task) => task.status === "completed").map((task) => task.assignedToId));
+  const submittedAttendanceStaff = staffAccounts.filter((account) => submittedAttendanceIds.has(account.id));
+  const pendingAttendanceStaff = staffAccounts.filter((account) => !submittedAttendanceIds.has(account.id));
   const regularTasks = tasks.filter((task) => task.title !== "Submit attendance");
+  const staffAttendanceForDate = staffAttendanceEntries.filter((entry) => entry.date === staffAttendanceDraft.date);
+  const staffAttendanceHoursForDate = staffAttendanceForDate.reduce((total, entry) => total + entry.hours, 0);
   const currentTimeKey = `${String(new Date().getHours()).padStart(2, "0")}:${String(new Date().getMinutes()).padStart(2, "0")}`;
   const masterScheduleRows = staffSchedules.flatMap((schedule) => {
     const dayItems = schedule.schedule.filter((item) => item.weekdays.includes(masterScheduleDay));
@@ -553,9 +624,28 @@ export function AdminDashboardPage() {
           <label>Staff account<select value={selectedAccount?.id ?? ""} onChange={(event) => setSelectedStaffId(event.target.value)}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
           <label>School day<input type="date" min="2026-07-06" max="2026-08-21" value={selectedAttendanceDate} onChange={(event) => setSelectedAttendanceDate(event.target.value)} /></label>
         </div>
-        <div className="admin-attendance-totals" aria-label="Attendance totals"><article><strong>{attendanceTotals.Present}</strong><span>Present</span></article><article><strong>{attendanceTotals.Late}</strong><span>Late</span></article><article><strong>{attendanceTotals.Absent}</strong><span>Absent</span></article><article><strong>{attendanceTotals.Unmarked}</strong><span>Unmarked</span></article></div>
+        <div className="admin-attendance-totals" aria-label="Attendance totals"><article><strong>{accountedAttendanceTotal}</strong><span>Total marked</span></article><article><strong>{attendanceTotals.Present + attendanceTotals.Late}</strong><span>Present incl. late</span></article><article><strong>{attendanceTotals.Absent}</strong><span>Absent</span></article><article><strong>{attendanceTotals.Unmarked}</strong><span>Unmarked</span></article></div>
         <div className="admin-attendance-list">
           {attendanceRows.length ? attendanceRows.map((student) => <article key={student.id}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)}</small></div><em className={`is-${student.attendanceStatus.toLowerCase()}`}>{student.attendanceStatus}</em></article>) : <p>No students are assigned to this staff account.</p>}
+        </div>
+        <div className="admin-early-pickup-list">
+          <header><div><span>Dismissal watch</span><h3>Picked up early on {selectedAttendanceDate}</h3></div><strong>{earlyPickupRows.length}</strong></header>
+          {earlyPickupRows.length ? earlyPickupRows.map((student) => <article key={`${student.staffName}-${student.id}`}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)} · {student.staffName}</small></div></article>) : <p>No early pickups are marked for this date.</p>}
+        </div>
+      </section>
+      <section className="teacher-panel admin-staff-attendance-panel" id="staff-attendance">
+        <div className="teacher-panel-header"><div><span>Staff records</span><h2>Staff attendance</h2></div><p>Add staff attendance and hours for payroll or daily coverage review.</p></div>
+        <div className="admin-attendance-totals" aria-label="Staff attendance totals"><article><strong>{staffAttendanceForDate.length}</strong><span>Staff entries</span></article><article><strong>{staffAttendanceHoursForDate.toFixed(staffAttendanceHoursForDate % 1 ? 2 : 0)}</strong><span>Total hours</span></article><article><strong>{staffAttendanceDraft.date}</strong><span>Selected day</span></article></div>
+        <div className="admin-staff-attendance-layout">
+          <form className="admin-task-form" onSubmit={handleSaveStaffAttendance}>
+            <label>Staff member<select value={staffAttendanceDraft.staffAccountId} onChange={(event) => { const account = staffAccounts.find((item) => item.id === event.target.value); setStaffAttendanceDraft({ ...staffAttendanceDraft, staffAccountId: event.target.value, staffName: account?.fullName ?? "" }); }}><option value="">Custom staff name</option>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName}</option>)}</select></label>
+            {!staffAttendanceDraft.staffAccountId ? <label>Staff name<input required value={staffAttendanceDraft.staffName} onChange={(event) => setStaffAttendanceDraft({ ...staffAttendanceDraft, staffName: event.target.value })} /></label> : null}
+            <label>Date<input required type="date" value={staffAttendanceDraft.date} onChange={(event) => setStaffAttendanceDraft({ ...staffAttendanceDraft, date: event.target.value })} /></label>
+            <label>Hours<input max={24} min={0} required step="0.25" type="number" value={staffAttendanceDraft.hours} onChange={(event) => setStaffAttendanceDraft({ ...staffAttendanceDraft, hours: event.target.value })} /></label>
+            <label>Note <small>Optional</small><textarea rows={3} value={staffAttendanceDraft.note} onChange={(event) => setStaffAttendanceDraft({ ...staffAttendanceDraft, note: event.target.value })} /></label>
+            <div className="admin-sheets-actions"><button disabled={isSaving} type="submit"><Check size={15} /> {staffAttendanceDraft.id ? "Save hours" : "Add hours"}</button>{staffAttendanceDraft.id ? <button className="is-secondary" onClick={() => setStaffAttendanceDraft({ date: todayDateInput(), hours: "0", id: "", note: "", staffAccountId: staffAccounts[0]?.id ?? "", staffName: staffAccounts[0]?.fullName ?? "" })} type="button"><X size={15} /> Cancel</button> : null}</div>
+          </form>
+          <div className="admin-staff-attendance-list">{staffAttendanceEntries.length ? [...staffAttendanceEntries].sort((a, b) => b.date.localeCompare(a.date) || a.staffName.localeCompare(b.staffName)).map((entry) => <article key={entry.id}><div><strong>{entry.staffName}</strong><span>{entry.date} · {entry.hours} hours</span>{entry.note ? <p>{entry.note}</p> : null}</div><div className="admin-task-actions"><button onClick={() => beginEditingStaffAttendance(entry)} type="button"><Pencil size={13} /> Edit</button><button className="admin-task-remove" onClick={() => handleDeleteStaffAttendance(entry.id)} type="button"><Trash2 size={13} /></button></div></article>) : <p>No staff attendance has been entered yet.</p>}</div>
         </div>
       </section>
       <section className="teacher-panel admin-roster-panel" id="student-roster">
@@ -602,7 +692,7 @@ export function AdminDashboardPage() {
       </section>
       <section className="teacher-panel admin-tasks-panel" id="staff-tasks">
         <div className="teacher-panel-header"><div><span>Staff workflow</span><h2>Assigned tasks</h2></div><p>Assign work to a staff account and follow it through completion.</p></div>
-        <div className="admin-attendance-task-tracker"><button aria-expanded={isAttendanceTrackerOpen} onClick={() => setIsAttendanceTrackerOpen((open) => !open)} type="button"><span><ClipboardCheck size={19} /></span><div><strong>Today&apos;s attendance</strong><small>Click to see who still needs to submit</small></div><em>{submittedAttendanceTasks.length}/{attendanceTasks.length} submitted</em></button>{isAttendanceTrackerOpen ? <div className="admin-attendance-task-details">{pendingAttendanceTasks.length ? <><strong>Still waiting on</strong><ul>{pendingAttendanceTasks.map((task) => <li key={task.id}>{task.assignedToName}</li>)}</ul></> : <p><CheckCircle2 size={16} /> Everyone has submitted attendance.</p>}</div> : null}</div>
+        <div className="admin-attendance-task-tracker"><button aria-expanded={isAttendanceTrackerOpen} onClick={() => setIsAttendanceTrackerOpen((open) => !open)} type="button"><span><ClipboardCheck size={19} /></span><div><strong>Today&apos;s attendance</strong><small>Click to see who submitted and who is still missing</small></div><em>{submittedAttendanceStaff.length}/{staffAccounts.length} submitted</em></button>{isAttendanceTrackerOpen ? <div className="admin-attendance-task-details"><section><strong>Submitted</strong>{submittedAttendanceStaff.length ? <ul>{submittedAttendanceStaff.map((account) => <li key={account.id}><CheckCircle2 size={14} /> {account.fullName}</li>)}</ul> : <p>No staff have submitted attendance yet.</p>}</section><section><strong>Still missing</strong>{pendingAttendanceStaff.length ? <ul>{pendingAttendanceStaff.map((account) => <li key={account.id}><X size={14} /> {account.fullName}</li>)}</ul> : <p><CheckCircle2 size={16} /> Everyone has submitted attendance.</p>}</section></div> : null}</div>
         <div className="admin-task-layout"><form className="admin-task-form" onSubmit={handleCreateTask}><label>Assign to<select required value={taskDraft.assignedToId} onChange={(event) => setTaskDraft({ ...taskDraft, assignedToId: event.target.value })}><option value="">Choose staff</option>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName}</option>)}</select></label><label>Task title<input placeholder="e.g. Prepare classroom" required value={taskDraft.title} onChange={(event) => setTaskDraft({ ...taskDraft, title: event.target.value })} /></label><label>Due date<input required type="date" value={taskDraft.dueDate} onChange={(event) => setTaskDraft({ ...taskDraft, dueDate: event.target.value, repeatUntil: event.target.value > taskDraft.repeatUntil ? event.target.value : taskDraft.repeatUntil })} /></label><label className="admin-task-repeat"><input checked={taskDraft.repeatWeekly} type="checkbox" onChange={(event) => setTaskDraft({ ...taskDraft, repeatUntil: event.target.checked ? (taskDraft.repeatUntil || taskDraft.dueDate) : "", repeatWeekly: event.target.checked })} /><span>Repeat weekly</span></label>{taskDraft.repeatWeekly ? <label>Repeat until<input min={taskDraft.dueDate} required type="date" value={taskDraft.repeatUntil || taskDraft.dueDate} onChange={(event) => setTaskDraft({ ...taskDraft, repeatUntil: event.target.value })} /></label> : null}<label>Description<textarea required rows={3} value={taskDraft.description} onChange={(event) => setTaskDraft({ ...taskDraft, description: event.target.value })} /></label><button disabled={isSaving} type="submit"><Plus size={15} /> {taskDraft.repeatWeekly ? "Assign weekly task" : "Assign task"}</button></form><div className="admin-task-list">{regularTasks.length ? [...regularTasks].sort((a, b) => a.status.localeCompare(b.status) || a.dueDate.localeCompare(b.dueDate)).map((task) => <article className={task.status === "completed" ? "is-completed" : ""} key={task.id}><button aria-label={`${task.status === "completed" ? "Reopen" : "Complete"} ${task.title}`} className="admin-task-check" onClick={() => handleToggleTask(task)} type="button">{task.status === "completed" ? <Check size={14} /> : null}</button><div><strong>{task.title}</strong><span>{task.assignedToName} · Due {task.dueDate} · {task.status === "completed" ? `Completed ${task.completedAt ? new Date(task.completedAt).toLocaleDateString() : ""}` : "Open"}</span><p>{task.description}</p></div><div className="admin-task-actions">{task.status === "completed" ? <button className="admin-task-approve" onClick={() => handleApproveTask(task)} type="button"><CheckCircle2 size={14} /> Approve</button> : null}<button aria-label={`Remove ${task.title}`} className="admin-task-remove" onClick={() => handleDeleteTask(task.id)} type="button"><Trash2 size={14} /></button></div></article>) : <p>No other tasks assigned.</p>}</div></div>
       </section>
       <section className="teacher-panel admin-bookings-panel" id="room-approvals">

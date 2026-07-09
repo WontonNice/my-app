@@ -21,6 +21,17 @@ const studentEmailDomain = "students.nathantutors.local";
 const staffUsernamePattern = /^[a-z0-9][a-z0-9._-]{2,31}$/;
 const staffEmailDomain = "staff.nathantutors.local";
 const staffPasswordMetadataKey = "staff_access_password_cipher";
+const allowedAttendanceStatuses = new Set(["Absent", "Late", "Present", "Unmarked"]);
+const boazRoster: Record<string, unknown>[] = ["Chloe Tong", "Harrison Cheng", "Kaitlyn Lim", "Dylan Cui", "Anabelle Liang", "Joanna Zhao", "Jun Kang"].map(
+    (name, index) => ({
+        assignment: "Promise Summer School",
+        cohort: "Boaz Lim",
+        grade: String(6 + (index % 3)),
+        id: `PSS-5${String(index + 1).padStart(2, "0")}`,
+        name,
+        status: "Active",
+    }),
+);
 
 function getStaffPasswordKey() {
     return createHash("sha256").update(process.env.SUPABASE_SERVICE_ROLE ?? "").digest();
@@ -68,6 +79,96 @@ function getStaffEmail(username: string) {
     return `${username}@${staffEmailDomain}`;
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+    return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function isDate(value: unknown): value is string {
+    return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
+}
+
+function readString(value: unknown, fallback = "") {
+    return typeof value === "string" ? value : fallback;
+}
+
+function normalizeAttendance(value: unknown) {
+    if (!Array.isArray(value)) return [];
+
+    return value.filter(isRecord).map((item) => ({
+        group: readString(item.group),
+        name: readString(item.name, "Student"),
+        status: item.status === "Absent" || item.status === "Late" || item.status === "Present" ? item.status : "Present",
+        time: readString(item.time),
+    }));
+}
+
+function normalizeAttendanceRecords(value: unknown) {
+    if (!isRecord(value)) return {};
+
+    return Object.fromEntries(
+        Object.entries(value).filter(([date, record]) => isDate(date) && isRecord(record)).map(([date, record]) => [
+            date,
+            Object.fromEntries(
+                Object.entries(record as Record<string, unknown>).filter(
+                    ([studentId, status]) => typeof studentId === "string" && typeof status === "string" && allowedAttendanceStatuses.has(status),
+                ),
+            ),
+        ]),
+    );
+}
+
+function normalizeClasses(value: unknown) {
+    return Array.isArray(value)
+        ? Array.from(new Set(value.filter((item): item is string => typeof item === "string").map((item) => item.trim()).filter(Boolean)))
+        : [];
+}
+
+function normalizeRoster(value: unknown, username: string) {
+    const rawRoster = Array.isArray(value) ? value.filter(isRecord) : [];
+    const roster = username === "pss5" && rawRoster.length === 0 ? boazRoster : rawRoster;
+
+    return roster.map((student, index) => {
+        const firstName = readString(student.firstName);
+        const lastName = readString(student.lastName);
+        const fallbackName = [firstName, lastName].filter(Boolean).join(" ");
+        const className = readString(student.className);
+        const grade = readString(student.grade, className.match(/\d+/)?.[0] ?? "");
+        const earlyPickupDates = Array.isArray(student.earlyPickupDates)
+            ? student.earlyPickupDates.filter(isDate)
+            : [];
+        const vanRide = student.vanRide === "2pm" || student.vanRide === "5pm" ? student.vanRide : "none";
+
+        return {
+            allergies: readString(student.allergies),
+            assignment: readString(student.assignment, "Promise Summer School"),
+            className,
+            cohort: readString(student.cohort, className || "Promise Summer School"),
+            dob: isDate(student.dob) ? student.dob : "",
+            earlyPickupDates,
+            firstName,
+            grade,
+            id: readString(student.id, `student-${index + 1}`),
+            lastName,
+            name: readString(student.name, fallbackName || `Student ${index + 1}`),
+            specialNotes: readString(student.specialNotes),
+            status: student.status === "Waitlist" ? "Waitlist" : "Active",
+            vanRide,
+        };
+    });
+}
+
+function normalizeDashboardData(value: unknown, username: string) {
+    const rawDashboardData = isRecord(value) ? value : {};
+
+    return {
+        ...rawDashboardData,
+        attendance: normalizeAttendance(rawDashboardData.attendance),
+        attendanceRecords: normalizeAttendanceRecords(rawDashboardData.attendanceRecords),
+        classes: normalizeClasses(rawDashboardData.classes),
+        roster: normalizeRoster(rawDashboardData.roster, username),
+    };
+}
+
 async function requireAdmin(authorizationHeader: string | undefined) {
     const authenticatedUser = await getAuthenticatedUser(authorizationHeader);
 
@@ -90,24 +191,15 @@ function toStaffAccount(user: {
     user_metadata: Record<string, unknown>;
 }) {
     const fallbackUsername = user.email?.split("@")[0] ?? "staff";
-    const dashboardData = user.user_metadata.dashboard_data;
-    const boazRoster = ["Chloe Tong", "Harrison Cheng", "Kaitlyn Lim", "Dylan Cui", "Anabelle Liang", "Joanna Zhao", "Jun Kang"].map(
-        (name, index) => ({ assignment: "Promise Summer School", cohort: "Boaz Lim", grade: String(6 + (index % 3)), id: `PSS-5${String(index + 1).padStart(2, "0")}`, name, status: "Active" }),
-    );
-    const normalizedDashboardData = dashboardData && typeof dashboardData === "object" && !Array.isArray(dashboardData)
-        ? dashboardData as Record<string, unknown>
-        : { attendance: [], roster: [] };
-    const roster = normalizedDashboardData.roster;
+    const username = typeof user.user_metadata.username === "string" ? user.user_metadata.username : fallbackUsername;
 
     return {
         accessPassword: decryptStaffPassword(user.app_metadata[staffPasswordMetadataKey]),
         createdAt: user.created_at,
-        dashboardData: fallbackUsername === "pss5" && (!Array.isArray(roster) || roster.length === 0)
-            ? { ...normalizedDashboardData, roster: boazRoster }
-            : normalizedDashboardData,
+        dashboardData: normalizeDashboardData(user.user_metadata.dashboard_data, username),
         fullName: typeof user.user_metadata.full_name === "string" ? user.user_metadata.full_name : fallbackUsername,
         id: user.id,
-        username: typeof user.user_metadata.username === "string" ? user.user_metadata.username : fallbackUsername,
+        username,
     };
 }
 

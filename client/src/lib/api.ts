@@ -2,7 +2,7 @@
 // the configurable base URL during local Vite development so a checked-in or
 // machine-local localhost value can never leak into the production bundle.
 const apiBaseUrl = import.meta.env.DEV
-  ? (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "")
+  ? (import.meta.env.VITE_API_BASE_URL || "http://localhost:8080").replace(/\/$/, "")
   : "";
 
 export type StudentClass = {
@@ -165,6 +165,15 @@ export type StaffTask = {
   title: string;
 };
 
+export type StaffAttendanceEntry = {
+  date: string;
+  hours: number;
+  id: string;
+  note: string;
+  staffAccountId: string;
+  staffName: string;
+};
+
 export async function getStaffTasks(accessToken: string) {
   const data = await requestApi<{ tasks: StaffTask[] }>("/api/staff/tasks", { headers: createAuthHeaders(accessToken) });
   return data.tasks;
@@ -186,6 +195,27 @@ export async function updateStaffTask(accessToken: string, taskId: string, compl
 
 export async function deleteStaffTask(accessToken: string, taskId: string) {
   await requestApi(`/api/staff/tasks/${encodeURIComponent(taskId)}`, { headers: createAuthHeaders(accessToken), method: "DELETE" });
+}
+
+export async function getStaffAttendanceEntries(accessToken: string) {
+  const data = await requestApi<{ entries: StaffAttendanceEntry[] }>("/api/staff/staff-attendance", { headers: createAuthHeaders(accessToken) });
+  return data.entries;
+}
+
+export async function saveStaffAttendanceEntry(
+  accessToken: string,
+  input: { date: string; hours: number; id?: string; note: string; staffAccountId: string; staffName: string },
+) {
+  const data = await requestApi<{ entries: StaffAttendanceEntry[]; entry: StaffAttendanceEntry }>("/api/staff/staff-attendance", {
+    body: JSON.stringify(input),
+    headers: createAuthHeaders(accessToken),
+    method: "PUT",
+  });
+  return data;
+}
+
+export async function deleteStaffAttendanceEntry(accessToken: string, entryId: string) {
+  await requestApi(`/api/staff/staff-attendance/${encodeURIComponent(entryId)}`, { headers: createAuthHeaders(accessToken), method: "DELETE" });
 }
 
 export async function getCampusRooms(accessToken: string) {
@@ -368,6 +398,7 @@ type ApiErrorBody = {
 
 async function readErrorMessage(response: Response) {
   const fallback = "Something went wrong. Please try again.";
+  if (response.status === 431) return "Your admin session is stale. Sign out, then log in again to refresh your session.";
 
   try {
     const body = (await response.json()) as ApiErrorBody;
@@ -379,6 +410,7 @@ async function readErrorMessage(response: Response) {
 
 async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
   const url = `${apiBaseUrl}${path}`;
+  const method = (init.method ?? "GET").toUpperCase();
   let response: Response;
 
   try {
@@ -387,7 +419,7 @@ async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
     // Render can briefly reset a connection while a free instance wakes or
     // restarts. Retrying read-only requests prevents a transient failure from
     // emptying an entire dashboard.
-    if ((init.method ?? "GET").toUpperCase() !== "GET") {
+    if (method !== "GET") {
       throw new Error(`Could not reach the server for ${path}. Please try again.`);
     }
 
@@ -396,7 +428,15 @@ async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
     try {
       response = await fetch(url, init);
     } catch {
-      throw new Error(`Could not reach the server for ${path}. Please refresh and try again.`);
+      if (import.meta.env.DEV && apiBaseUrl) {
+        try {
+          response = await fetch(path, init);
+        } catch {
+          throw new Error(`Could not reach the server for ${path}. Please refresh and try again.`);
+        }
+      } else {
+        throw new Error(`Could not reach the server for ${path}. Please refresh and try again.`);
+      }
     }
   }
 

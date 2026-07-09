@@ -8169,6 +8169,7 @@ button {
 .admin-action-feedback button { display: grid; place-items: center; border: 0; background: transparent; color: currentColor; padding: 3px; }
 
 .admin-attendance-panel,
+.admin-staff-attendance-panel,
 .admin-sheets-panel {
   margin-bottom: 20px;
 }
@@ -8258,6 +8259,28 @@ button {
 .admin-attendance-list em.is-late { background: #fff0d8; color: #946318; }
 .admin-attendance-list em.is-absent { background: #fbe7e7; color: #a33f3f; }
 .admin-attendance-list em.is-unmarked { background: #edf0f4; color: #748093; }
+
+.admin-early-pickup-list { margin-top: 14px; overflow: hidden; border: 1px solid #e2e7ec; border-radius: 8px; background: #fff; }
+.admin-early-pickup-list > header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #edf0f3; background: #f8fafb; padding: 12px 14px; }
+.admin-early-pickup-list header div { display: grid; gap: 2px; }
+.admin-early-pickup-list header span { color: #b16f1d; font-size: .56rem; font-weight: 850; text-transform: uppercase; }
+.admin-early-pickup-list h3 { margin: 0; color: #273c53; font-size: .78rem; }
+.admin-early-pickup-list header strong { display: grid; place-items: center; min-width: 32px; height: 32px; border-radius: 50%; background: #fff3df; color: #8b5a1b; font-size: .78rem; }
+.admin-early-pickup-list article { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 10px; min-height: 56px; border-bottom: 1px solid #edf0f3; padding: 9px 13px; }
+.admin-early-pickup-list article:last-of-type { border-bottom: 0; }
+.admin-early-pickup-list article > span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #fff3df; color: #8b5a1b; font-size: .64rem; font-weight: 850; }
+.admin-early-pickup-list article div { display: grid; gap: 2px; }
+.admin-early-pickup-list article strong { color: #273c53; font-size: .72rem; }
+.admin-early-pickup-list article small, .admin-early-pickup-list p { color: #748195; font-size: .62rem; }
+.admin-early-pickup-list p { margin: 0; padding: 14px; }
+
+.admin-staff-attendance-layout { display: grid; grid-template-columns: minmax(260px, .65fr) 1.35fr; gap: 16px; align-items: start; }
+.admin-staff-attendance-list { display: grid; gap: 7px; }
+.admin-staff-attendance-list > article { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; border: 1px solid #dfe5ea; border-radius: 7px; background: #fff; padding: 11px; }
+.admin-staff-attendance-list article > div:first-child { display: grid; gap: 3px; }
+.admin-staff-attendance-list strong { color: #2a4057; font-size: .72rem; }
+.admin-staff-attendance-list span { color: #748195; font-size: .6rem; }
+.admin-staff-attendance-list p { margin: 2px 0 0; color: #607086; font-size: .63rem; }
 
 .admin-sheets-layout { display: grid; gap: 16px; }
 .admin-sheets-status { display: flex; align-items: center; gap: 12px; border: 1px solid #e1e6eb; border-radius: 8px; background: #f8fafb; padding: 14px; }
@@ -8442,10 +8465,21 @@ button {
 .staff-schedule-item small { display: block; margin-top: 5px; color: #8a95a3; font-size: 0.56rem; }
 .staff-empty-state, .staff-roster-hint { margin: 0; border: 1px dashed #d8e0e7; border-radius: 8px; color: #788598; font-size: 0.68rem; padding: 18px; text-align: center; }
 
+.staff-session-expired { position: fixed; inset: 0; z-index: 300; display: grid; place-items: center; background: rgb(14 30 47 / 68%); padding: 20px; }
+.staff-session-expired > div { display: grid; justify-items: center; gap: 12px; width: min(440px, 100%); border: 1px solid #e0c3c3; border-radius: 10px; box-shadow: 0 24px 60px rgb(0 0 0 / 26%); background: #fff; color: #2b4057; padding: 26px; text-align: center; }
+.staff-session-expired svg { color: #b54a4a; }
+.staff-session-expired h2 { margin: 0; color: #263b52; font-size: 1.2rem; }
+.staff-session-expired p { margin: 0; color: #617086; font-size: .76rem; line-height: 1.55; }
+.staff-session-expired button { min-height: 42px; border: 0; border-radius: 7px; background: #173451; color: #fff; font-size: .72rem; font-weight: 850; padding: 0 18px; }
+
 .staff-roster-name-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-.staff-roster-name-cards > article { overflow: hidden; min-width: 0; border: 1px solid #dfe5eb; border-radius: 8px; background: #fbfcfd; }
+.staff-roster-name-cards > article { position: relative; overflow: hidden; min-width: 0; border: 1px solid #dfe5eb; border-radius: 8px; background: #fbfcfd; }
 .staff-roster-name-cards > article.is-open { grid-column: 1 / -1; border-color: #368e82; background: #eef8f5; }
-.staff-roster-name-cards > article > button { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 8px; width: 100%; min-width: 0; border: 0; background: transparent; color: #253a51; padding: 10px; text-align: left; }
+.staff-roster-name-cards > article > button { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 8px; width: 100%; min-width: 0; border: 0; background: transparent; color: #253a51; padding: 10px 42px 10px 10px; text-align: left; }
+.staff-roster-alert-icons { position: absolute; top: 7px; right: 7px; z-index: 1; display: flex; gap: 4px; }
+.staff-roster-alert-icons span { display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; color: #fff; font-size: .58rem; font-weight: 900; line-height: 1; }
+.staff-roster-alert-icons .is-allergy { background: #c84848; }
+.staff-roster-alert-icons .is-note { background: #328766; }
 .staff-roster-name-cards > article.is-open > button svg { transform: rotate(90deg); }
 .staff-roster-name-cards button > span:nth-child(2) { display: grid; min-width: 0; gap: 2px; }
 .staff-roster-name-cards strong { overflow: hidden; font-size: 0.68rem; text-overflow: ellipsis; white-space: nowrap; }
@@ -8490,10 +8524,12 @@ button {
 .admin-attendance-task-tracker > button strong { font-size: .72rem; }
 .admin-attendance-task-tracker > button small { color: #708092; font-size: .59rem; }
 .admin-attendance-task-tracker > button em { border-radius: 999px; background: #173451; color: #fff; font-size: .64rem; font-style: normal; font-weight: 850; padding: 7px 10px; }
-.admin-attendance-task-details { border-top: 1px solid #d5e6e2; background: #fff; color: #52677a; padding: 10px 58px; }
-.admin-attendance-task-details > strong { color: #344d62; font-size: .64rem; }
+.admin-attendance-task-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; border-top: 1px solid #d5e6e2; background: #fff; color: #52677a; padding: 12px 58px; }
+.admin-attendance-task-details section { display: grid; align-content: start; gap: 6px; }
+.admin-attendance-task-details strong { color: #344d62; font-size: .64rem; }
 .admin-attendance-task-details ul { display: flex; flex-wrap: wrap; gap: 6px; margin: 7px 0 0; padding: 0; list-style: none; }
-.admin-attendance-task-details li { border-radius: 999px; background: #fff0e3; color: #8d5b2c; font-size: .61rem; font-weight: 750; padding: 5px 8px; }
+.admin-attendance-task-details li { display: inline-flex; align-items: center; gap: 5px; border-radius: 999px; background: #fff0e3; color: #8d5b2c; font-size: .61rem; font-weight: 750; padding: 5px 8px; }
+.admin-attendance-task-details section:first-child li { background: #e3f3ed; color: #28775f; }
 .admin-attendance-task-details p { display: flex; align-items: center; gap: 6px; margin: 0; color: #267267; font-size: .65rem; font-weight: 750; }
 .admin-task-layout { display: grid; grid-template-columns: minmax(260px, .65fr) 1.35fr; gap: 16px; align-items: start; }
 .admin-task-form { display: grid; gap: 10px; border: 1px solid #dfe5ea; border-radius: 8px; background: #f8fafb; padding: 14px; }
@@ -8683,6 +8719,8 @@ button {
   .staff-schedule-picker select { width: 100%; min-width: 0; }
   .admin-schedule-layout { grid-template-columns: 1fr; }
   .admin-task-layout { grid-template-columns: 1fr; }
+  .admin-staff-attendance-layout { grid-template-columns: 1fr; }
+  .admin-attendance-task-details { grid-template-columns: 1fr; padding: 12px 16px; }
   .admin-class-assignment { grid-template-columns: 1fr; }
   .admin-schedule-list > article { grid-template-columns: 72px 1fr; }
   .admin-schedule-list article > div:last-child { grid-column: 2; flex-wrap: wrap; }

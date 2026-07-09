@@ -22,6 +22,9 @@ const sheetsWebhookMetadataKey = "google_sheets_attendance_webhook_url";
 const bookingMetadataKey = "room_booking_requests";
 const roomsMetadataKey = "campus_rooms";
 const tasksMetadataKey = "staff_tasks";
+const staffAttendanceMetadataKey = "staff_attendance_records";
+const globalStoreEmail = "pss-store@staff.nathantutors.local";
+const globalStoreMetadataKeys = [bookingMetadataKey, roomsMetadataKey, tasksMetadataKey, staffAttendanceMetadataKey] as const;
 
 const basementCampusRooms = [
     { capacity: 20, floor: 0, id: "ll-1", name: "Room LL1" }, { capacity: 20, floor: 0, id: "ll-2", name: "Room LL2" }, { capacity: 48, floor: 0, id: "ll-multipurpose", name: "Lower Level Multipurpose" }, { capacity: 36, floor: 0, id: "ll-commons", name: "Lower Level Commons" },
@@ -104,8 +107,44 @@ async function getSheetsWebhookUrl() {
 async function getBookingStoreAdmin() {
     const listed = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
     if (listed.error) return { error: listed.error.message, user: null };
-    const user = listed.data.users.find((candidate) => getUserRole(candidate) === "admin") ?? null;
-    return { error: user ? null : "No administrator account is available.", user };
+    const admin = listed.data.users.find((candidate) => getUserRole(candidate) === "admin") ?? null;
+    const existingStore = listed.data.users.find((candidate) => candidate.email === globalStoreEmail || candidate.app_metadata.role === "store") ?? null;
+    const migratedMetadata = Object.fromEntries(
+        globalStoreMetadataKeys
+            .map((key) => [key, admin?.app_metadata[key]])
+            .filter(([, value]) => value !== undefined),
+    );
+    let store = existingStore;
+
+    if (!store) {
+        const created = await supabase.auth.admin.createUser({
+            app_metadata: { ...migratedMetadata, role: "store" },
+            email: globalStoreEmail,
+            email_confirm: true,
+            password: randomUUID(),
+            user_metadata: { full_name: "PSS Global Store", role: "store", username: "pss-store" },
+        });
+        if (created.error || !created.data.user) return { error: created.error?.message ?? "Could not prepare dashboard storage.", user: null };
+        store = created.data.user;
+    } else {
+        const shouldMigrate = Object.entries(migratedMetadata).some(([key, value]) => store?.app_metadata[key] === undefined && value !== undefined);
+        if (shouldMigrate) {
+            const updated = await supabase.auth.admin.updateUserById(store.id, {
+                app_metadata: { ...migratedMetadata, ...store.app_metadata, role: "store" },
+            });
+            if (updated.error || !updated.data.user) return { error: updated.error?.message ?? "Could not migrate dashboard storage.", user: null };
+            store = updated.data.user;
+        }
+    }
+
+    if (admin && globalStoreMetadataKeys.some((key) => admin.app_metadata[key] !== undefined)) {
+        const compactedMetadata = { ...admin.app_metadata };
+        for (const key of globalStoreMetadataKeys) compactedMetadata[key] = null;
+        const updatedAdmin = await supabase.auth.admin.updateUserById(admin.id, { app_metadata: compactedMetadata });
+        if (updatedAdmin.error) return { error: updatedAdmin.error.message, user: null };
+    }
+
+    return { error: null, user: store };
 }
 
 function readBookings(user: { app_metadata: Record<string, unknown> }) {
@@ -122,6 +161,20 @@ function readRooms(user: { app_metadata: Record<string, unknown> }) {
 function readTasks(user: { app_metadata: Record<string, unknown> }) {
     const tasks = user.app_metadata[tasksMetadataKey];
     return Array.isArray(tasks) ? tasks as Record<string, unknown>[] : [];
+}
+
+function readStaffAttendance(user: { app_metadata: Record<string, unknown> }) {
+    const entries = user.app_metadata[staffAttendanceMetadataKey];
+    if (!Array.isArray(entries)) return [];
+    return entries.filter((entry): entry is Record<string, unknown> => Boolean(entry) && typeof entry === "object" && !Array.isArray(entry))
+        .map((entry) => ({
+            date: typeof entry.date === "string" && isDate(entry.date) ? entry.date : currentEasternDate(),
+            hours: Number.isFinite(Number(entry.hours)) ? Math.max(0, Math.min(24, Number(entry.hours))) : 0,
+            id: typeof entry.id === "string" && entry.id ? entry.id : randomUUID(),
+            note: typeof entry.note === "string" ? entry.note : "",
+            staffAccountId: typeof entry.staffAccountId === "string" ? entry.staffAccountId : "",
+            staffName: typeof entry.staffName === "string" && entry.staffName.trim() ? entry.staffName.trim() : "Staff",
+        }));
 }
 
 staffRouter.get("/tasks", async (request, response) => {
@@ -290,6 +343,107 @@ staffRouter.delete("/tasks/:taskId", async (request, response) => {
         response.status(400).json({ message: saved.error.message });
         return;
     }
+    response.status(204).send();
+});
+
+staffRouter.get("/staff-attendance", async (request, response) => {
+    const admin = await requireAdmin(request.headers.authorization);
+    if (admin.error || !admin.user) {
+        response.status(admin.error === "Administrator access is required." ? 403 : 401).json({ message: admin.error });
+        return;
+    }
+    const store = await getBookingStoreAdmin();
+    if (store.error || !store.user) {
+        response.status(400).json({ message: store.error });
+        return;
+    }
+    response.json({ entries: readStaffAttendance(store.user) });
+});
+
+staffRouter.put("/staff-attendance", async (request, response) => {
+    const admin = await requireAdmin(request.headers.authorization);
+    if (admin.error || !admin.user) {
+        response.status(admin.error === "Administrator access is required." ? 403 : 401).json({ message: admin.error });
+        return;
+    }
+
+    const date = typeof request.body?.date === "string" ? request.body.date : "";
+    const hours = Number(request.body?.hours);
+    const id = typeof request.body?.id === "string" ? request.body.id : "";
+    const note = typeof request.body?.note === "string" ? request.body.note.trim() : "";
+    const staffAccountId = typeof request.body?.staffAccountId === "string" ? request.body.staffAccountId : "";
+    let staffName = typeof request.body?.staffName === "string" ? request.body.staffName.trim() : "";
+
+    if (!isDate(date) || !Number.isFinite(hours) || hours < 0 || hours > 24) {
+        response.status(400).json({ message: "Choose a valid date and enter hours from 0 to 24." });
+        return;
+    }
+
+    if (staffAccountId) {
+        const targetResult = await supabase.auth.admin.getUserById(staffAccountId);
+        const target = targetResult.data.user;
+        if (targetResult.error || !target || getUserRole(target) !== "staff") {
+            response.status(404).json({ message: "Staff account was not found." });
+            return;
+        }
+        staffName = target.user_metadata.full_name ?? target.user_metadata.username ?? staffName;
+    }
+
+    if (!staffName) {
+        response.status(400).json({ message: "Choose or enter a staff member." });
+        return;
+    }
+
+    const store = await getBookingStoreAdmin();
+    if (store.error || !store.user) {
+        response.status(400).json({ message: store.error });
+        return;
+    }
+
+    const entry = {
+        date,
+        hours: Math.round(hours * 100) / 100,
+        id: id || randomUUID(),
+        note,
+        staffAccountId,
+        staffName,
+    };
+    const entries = readStaffAttendance(store.user);
+    const nextEntries = entries.some((item) => item.id === entry.id)
+        ? entries.map((item) => item.id === entry.id ? entry : item)
+        : [entry, ...entries];
+    const saved = await supabase.auth.admin.updateUserById(store.user.id, {
+        app_metadata: { ...store.user.app_metadata, [staffAttendanceMetadataKey]: nextEntries },
+    });
+    if (saved.error) {
+        response.status(400).json({ message: saved.error.message });
+        return;
+    }
+
+    response.json({ entries: nextEntries, entry });
+});
+
+staffRouter.delete("/staff-attendance/:entryId", async (request, response) => {
+    const admin = await requireAdmin(request.headers.authorization);
+    if (admin.error || !admin.user) {
+        response.status(admin.error === "Administrator access is required." ? 403 : 401).json({ message: admin.error });
+        return;
+    }
+    const store = await getBookingStoreAdmin();
+    if (store.error || !store.user) {
+        response.status(400).json({ message: store.error });
+        return;
+    }
+
+    const entries = readStaffAttendance(store.user);
+    const saved = await supabase.auth.admin.updateUserById(store.user.id, {
+        app_metadata: { ...store.user.app_metadata, [staffAttendanceMetadataKey]: entries.filter((entry) => entry.id !== request.params.entryId) },
+    });
+    if (saved.error) {
+        response.status(400).json({ message: saved.error.message });
+        return;
+    }
+
     response.status(204).send();
 });
 
