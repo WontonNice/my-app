@@ -589,9 +589,15 @@ export function AdminDashboardPage() {
   const attendanceRows = sortedRosterRows.map((student) => ({ ...student, attendanceStatus: attendanceForDate[student.id] ?? "Unmarked" }));
   const attendanceTotals = attendanceRows.reduce((totals, row) => ({ ...totals, [row.attendanceStatus]: totals[row.attendanceStatus] + 1 }), { Present: 0, Late: 0, Absent: 0, Unmarked: 0 });
   const accountedAttendanceTotal = attendanceTotals.Present + attendanceTotals.Late + attendanceTotals.Absent;
+  const schoolAttendanceRows = staffAccounts.flatMap((account) => {
+    const records = account.dashboardData.attendanceRecords?.[selectedAttendanceDate] ?? {};
+    return account.dashboardData.roster.map((student) => ({ ...student, attendanceStatus: records[student.id] ?? "Unmarked" }));
+  });
+  const schoolAttendanceTotals = schoolAttendanceRows.reduce((totals, row) => ({ ...totals, [row.attendanceStatus]: totals[row.attendanceStatus] + 1 }), { Present: 0, Late: 0, Absent: 0, Unmarked: 0 });
+  const schoolAccountedAttendanceTotal = schoolAttendanceTotals.Present + schoolAttendanceTotals.Late + schoolAttendanceTotals.Absent;
   const earlyPickupRows = staffAccounts.flatMap((account) => account.dashboardData.roster
     .filter((student) => student.earlyPickupDates?.includes(selectedAttendanceDate))
-    .map((student) => ({ ...student, staffName: account.fullName })));
+    .map((student) => ({ ...student, pickupTime: student.earlyPickupTimes?.[selectedAttendanceDate] ?? "", staffName: account.fullName })));
   const today = todayDateInput();
   const attendanceTasks = tasks.filter((task) => task.title === "Submit attendance" && task.dueDate === today);
   const submittedAttendanceIds = new Set(attendanceTasks.filter((task) => task.status === "completed").map((task) => task.assignedToId));
@@ -620,17 +626,26 @@ export function AdminDashboardPage() {
       {message ? <p className="teacher-message corporate-message">{message}</p> : null}
       <section className="teacher-panel admin-attendance-panel" id="attendance-overview">
         <div className="teacher-panel-header"><div><span>Program records</span><h2>Attendance overview</h2></div><p>Review every staff member&apos;s saved student attendance by school day.</p></div>
-        <div className="admin-attendance-filters">
-          <label>Staff account<select value={selectedAccount?.id ?? ""} onChange={(event) => setSelectedStaffId(event.target.value)}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
-          <label>School day<input type="date" min="2026-07-06" max="2026-08-21" value={selectedAttendanceDate} onChange={(event) => setSelectedAttendanceDate(event.target.value)} /></label>
+        <div className="admin-school-attendance-widget" aria-label="School-wide attendance totals">
+          <header>
+            <div><span>School-wide total</span><h3>{schoolAccountedAttendanceTotal} students marked</h3></div>
+            <label>School day<input type="date" min="2026-07-06" max="2026-08-21" value={selectedAttendanceDate} onChange={(event) => setSelectedAttendanceDate(event.target.value)} /></label>
+          </header>
+          <div className="admin-attendance-totals admin-school-attendance-totals"><article><strong>{schoolAccountedAttendanceTotal}</strong><span>Marked</span></article><article><strong>{schoolAttendanceTotals.Present + schoolAttendanceTotals.Late}</strong><span>Present</span></article><article><strong>{schoolAttendanceTotals.Absent}</strong><span>Absent</span></article><article><strong>{schoolAttendanceTotals.Unmarked}</strong><span>Unmarked</span></article></div>
         </div>
-        <div className="admin-attendance-totals" aria-label="Attendance totals"><article><strong>{accountedAttendanceTotal}</strong><span>Total marked</span></article><article><strong>{attendanceTotals.Present + attendanceTotals.Late}</strong><span>Present incl. late</span></article><article><strong>{attendanceTotals.Absent}</strong><span>Absent</span></article><article><strong>{attendanceTotals.Unmarked}</strong><span>Unmarked</span></article></div>
-        <div className="admin-attendance-list">
-          {attendanceRows.length ? attendanceRows.map((student) => <article key={student.id}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)}</small></div><em className={`is-${student.attendanceStatus.toLowerCase()}`}>{student.attendanceStatus}</em></article>) : <p>No students are assigned to this staff account.</p>}
-        </div>
+        <details className="admin-attendance-dropdown">
+          <summary><span>Staff roster attendance</span><strong>{selectedAccount?.fullName ?? "Choose staff"}</strong></summary>
+          <div className="admin-attendance-filters">
+            <label>Staff account<select value={selectedAccount?.id ?? ""} onChange={(event) => setSelectedStaffId(event.target.value)}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
+          </div>
+          <div className="admin-attendance-totals" aria-label="Selected staff attendance totals"><article><strong>{accountedAttendanceTotal}</strong><span>Marked</span></article><article><strong>{attendanceTotals.Present + attendanceTotals.Late}</strong><span>Present</span></article><article><strong>{attendanceTotals.Absent}</strong><span>Absent</span></article><article><strong>{attendanceTotals.Unmarked}</strong><span>Unmarked</span></article></div>
+          <div className="admin-attendance-list">
+            {attendanceRows.length ? attendanceRows.map((student) => <article key={student.id}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)}</small></div><em className={`is-${student.attendanceStatus.toLowerCase()}`}>{student.attendanceStatus}</em></article>) : <p>No students are assigned to this staff account.</p>}
+          </div>
+        </details>
         <div className="admin-early-pickup-list">
           <header><div><span>Dismissal watch</span><h3>Picked up early on {selectedAttendanceDate}</h3></div><strong>{earlyPickupRows.length}</strong></header>
-          {earlyPickupRows.length ? earlyPickupRows.map((student) => <article key={`${student.staffName}-${student.id}`}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)} · {student.staffName}</small></div></article>) : <p>No early pickups are marked for this date.</p>}
+          {earlyPickupRows.length ? earlyPickupRows.map((student) => <article key={`${student.staffName}-${student.id}`}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)} - {student.staffName}{student.pickupTime ? ` - ${student.pickupTime}` : ""}</small></div></article>) : <p>No early pickups are marked for this date.</p>}
         </div>
       </section>
       <section className="teacher-panel admin-staff-attendance-panel" id="staff-attendance">

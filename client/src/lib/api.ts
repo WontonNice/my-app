@@ -98,6 +98,7 @@ export type StaffDashboardData = {
     specialNotes?: string;
     status: "Active" | "Waitlist";
     earlyPickupDates?: string[];
+    earlyPickupTimes?: Record<string, string>;
     vanRide?: "none" | "2pm" | "5pm";
   }[];
 };
@@ -317,6 +318,7 @@ export async function saveStaffDismissal(
     accountId?: string;
     date?: string;
     pickedUpEarly?: boolean;
+    pickupTime?: string;
     studentId: string;
     vanRide?: "none" | "2pm" | "5pm";
   },
@@ -364,6 +366,7 @@ export type StudentProgressSnapshot = {
   classes: string[];
   dismissal: {
     earlyPickupDates: string[];
+    earlyPickupTimes: Record<string, string>;
     vanRide: "none" | "2pm" | "5pm";
   };
   email: string;
@@ -378,6 +381,14 @@ export type StudentProgressSnapshot = {
   };
   lastLoginAt: string | null;
   progress: LearningProgressSnapshot;
+  username: string;
+};
+
+export type StudentAccountUpdate = {
+  email: string;
+  fullName: string;
+  id: string;
+  username: string;
 };
 
 export type SwitchableAccount = {
@@ -560,7 +571,7 @@ export async function getTeacherStudentProgress(accessToken: string) {
 export async function updateStudentDismissal(
   accessToken: string,
   studentId: string,
-  input: { date?: string; pickedUpEarly?: boolean; vanRide?: "none" | "2pm" | "5pm" },
+  input: { date?: string; pickedUpEarly?: boolean; pickupTime?: string; vanRide?: "none" | "2pm" | "5pm" },
 ) {
   const data = await requestApi<{ dismissal: StudentProgressSnapshot["dismissal"] }>(
     `/api/progress/students/${encodeURIComponent(studentId)}/dismissal`,
@@ -571,6 +582,26 @@ export async function updateStudentDismissal(
     },
   );
   return data.dismissal;
+}
+
+export async function updateStudentAccount(
+  accessToken: string,
+  studentId: string,
+  input: { fullName: string; password?: string; username: string },
+) {
+  const data = await requestApi<{ student: StudentAccountUpdate }>(`/api/auth/students/${encodeURIComponent(studentId)}`, {
+    body: JSON.stringify(input),
+    headers: createAuthHeaders(accessToken),
+    method: "PATCH",
+  });
+  return data.student;
+}
+
+export async function deleteStudentAccount(accessToken: string, studentId: string) {
+  await requestApi(`/api/auth/students/${encodeURIComponent(studentId)}`, {
+    headers: createAuthHeaders(accessToken),
+    method: "DELETE",
+  });
 }
 
 export async function saveCloudExamResult(

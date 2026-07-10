@@ -15,6 +15,14 @@ type ExamSessionProgress = {
 };
 type VanRide = "none" | "2pm" | "5pm";
 
+function isDate(value: unknown): value is string {
+    return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
+}
+
+function isTime(value: unknown): value is string {
+    return typeof value === "string" && /^([01]\d|2[0-3]):[0-5]\d$/.test(value);
+}
+
 function getDismissal(user: User) {
     const stored = user.user_metadata.dismissal;
     const candidate = stored && typeof stored === "object" && !Array.isArray(stored)
@@ -22,9 +30,12 @@ function getDismissal(user: User) {
         : {};
     const vanRide: VanRide = candidate.vanRide === "2pm" || candidate.vanRide === "5pm" ? candidate.vanRide : "none";
     const earlyPickupDates = Array.isArray(candidate.earlyPickupDates)
-        ? candidate.earlyPickupDates.filter((value): value is string => typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value))
+        ? candidate.earlyPickupDates.filter(isDate)
         : [];
-    return { earlyPickupDates: [...new Set(earlyPickupDates)].sort(), vanRide };
+    const earlyPickupTimes = candidate.earlyPickupTimes && typeof candidate.earlyPickupTimes === "object" && !Array.isArray(candidate.earlyPickupTimes)
+        ? Object.fromEntries(Object.entries(candidate.earlyPickupTimes as Record<string, unknown>).filter(([date, time]) => isDate(date) && isTime(time)))
+        : {};
+    return { earlyPickupDates: [...new Set(earlyPickupDates)].sort(), earlyPickupTimes, vanRide };
 }
 
 function getExamSessions(user: User) {
@@ -137,6 +148,7 @@ progressRouter.get("/students", async (request, response) => {
             insights: createInsights(progress),
             lastLoginAt: student.last_sign_in_at ?? null,
             progress,
+            username: typeof student.user_metadata.username === "string" ? student.user_metadata.username : student.email?.split("@")[0] ?? "student",
         };
     }));
 
@@ -213,16 +225,27 @@ progressRouter.patch("/students/:studentId/dismissal", async (request, response)
     }
     const date = request.body?.date;
     const pickedUpEarly = request.body?.pickedUpEarly;
-    if (pickedUpEarly !== undefined && (typeof pickedUpEarly !== "boolean" || typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date))) {
+    const pickupTime = request.body?.pickupTime;
+    if (pickedUpEarly !== undefined && (typeof pickedUpEarly !== "boolean" || !isDate(date))) {
         response.status(400).json({ message: "A valid date is required when updating early pickup." });
+        return;
+    }
+    if (pickedUpEarly === true && !isTime(pickupTime)) {
+        response.status(400).json({ message: "Enter a valid pickup time before marking early pickup." });
         return;
     }
 
     const dates = new Set(current.earlyPickupDates);
+    const earlyPickupTimes = { ...current.earlyPickupTimes };
     if (pickedUpEarly === true) dates.add(date as string);
-    if (pickedUpEarly === false) dates.delete(date as string);
+    if (pickedUpEarly === true) earlyPickupTimes[date as string] = pickupTime as string;
+    if (pickedUpEarly === false) {
+        dates.delete(date as string);
+        delete earlyPickupTimes[date as string];
+    }
     const dismissal = {
         earlyPickupDates: [...dates].sort(),
+        earlyPickupTimes,
         vanRide: (vanRide ?? current.vanRide) as VanRide,
     };
     const updated = await supabase.auth.admin.updateUserById(student.id, {

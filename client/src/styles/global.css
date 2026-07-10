@@ -5763,6 +5763,17 @@ button {
   padding: 0 9px;
 }
 
+.admin-account-actions > button.is-danger {
+  border-color: #e2b8b8;
+  background: #fff6f6;
+  color: #a94343;
+}
+
+.admin-account-actions > button:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
 .corporate-dashboard-content .teacher-assessment-form .admin-account-form-actions .is-secondary {
   display: inline-flex;
   align-items: center;
@@ -8192,6 +8203,7 @@ button {
 
 .admin-attendance-filters select,
 .admin-attendance-filters input,
+.admin-school-attendance-widget input,
 .admin-sheets-layout input {
   width: 100%;
   min-height: 42px;
@@ -8201,6 +8213,48 @@ button {
   color: #21354d;
   font: inherit;
   padding: 0 12px;
+}
+
+.admin-school-attendance-widget {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 14px;
+  border: 1px solid #cfe0dc;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f6fbf9 0%, #ffffff 48%, #f8fafc 100%);
+  padding: 16px;
+}
+
+.admin-school-attendance-widget > header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-school-attendance-widget > header > div {
+  display: grid;
+  gap: 3px;
+}
+
+.admin-school-attendance-widget h3 {
+  margin: 0;
+  color: #20364e;
+  font-size: 1.15rem;
+}
+
+.admin-school-attendance-widget span,
+.admin-school-attendance-widget label {
+  color: #637589;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.admin-school-attendance-widget label {
+  display: grid;
+  gap: 6px;
+  width: min(220px, 100%);
 }
 
 .admin-attendance-totals {
@@ -8222,6 +8276,75 @@ button {
 
 .admin-attendance-totals strong { color: #20364e; font-size: 1.08rem; }
 .admin-attendance-totals span { color: #748195; font-size: 0.65rem; font-weight: 750; }
+
+.admin-school-attendance-totals {
+  margin-bottom: 0;
+}
+
+.admin-school-attendance-totals article {
+  border-color: #d8e8e4;
+  background: #ffffff;
+}
+
+.admin-school-attendance-totals article:nth-child(2) strong {
+  color: #247467;
+}
+
+.admin-school-attendance-totals article:nth-child(3) strong {
+  color: #a33f3f;
+}
+
+.admin-attendance-dropdown {
+  margin-bottom: 14px;
+  border: 1px solid #dfe7ed;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.admin-attendance-dropdown summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  color: #283d55;
+  padding: 13px 15px;
+}
+
+.admin-attendance-dropdown summary::marker {
+  color: #6f7f91;
+}
+
+.admin-attendance-dropdown summary span {
+  color: #637589;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.admin-attendance-dropdown summary strong {
+  overflow: hidden;
+  color: #20364e;
+  font-size: 0.74rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-attendance-dropdown[open] summary {
+  border-bottom: 1px solid #e6edf2;
+  background: #f8fafb;
+}
+
+.admin-attendance-dropdown > .admin-attendance-filters,
+.admin-attendance-dropdown > .admin-attendance-totals,
+.admin-attendance-dropdown > .admin-attendance-list {
+  margin: 14px;
+}
+
+.admin-attendance-dropdown > .admin-attendance-totals {
+  margin-top: 0;
+}
 
 .admin-attendance-list {
   overflow: hidden;
@@ -8500,11 +8623,11 @@ button {
 .staff-student-detail dd.is-alert { color: #a04949; font-weight: 800; }
 .staff-roster-hint { margin-top: 12px; }
 .staff-dismissal-date { display: grid; gap: 4px; color: #728094; font-size: .58rem; font-weight: 800; text-transform: uppercase; }
-.staff-dismissal-date input, .staff-dismissal-list select { min-height: 36px; border: 1px solid #d5dde4; border-radius: 6px; background: #fff; color: #2d4258; padding: 0 9px; font: inherit; }
+.staff-dismissal-date input, .staff-dismissal-list input, .staff-dismissal-list select { min-height: 36px; border: 1px solid #d5dde4; border-radius: 6px; background: #fff; color: #2d4258; padding: 0 9px; font: inherit; }
 .staff-dismissal-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
 .staff-dismissal-summary span { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #d8e5e2; border-radius: 999px; background: #f1f8f6; color: #347065; padding: 7px 10px; font-size: .64rem; }
 .staff-dismissal-list { display: grid; gap: 8px; }
-.staff-dismissal-list > article { display: grid; grid-template-columns: 34px minmax(140px, 1fr) minmax(140px, .5fr) auto; align-items: center; gap: 10px; border: 1px solid #dfe5eb; border-radius: 8px; background: #fbfcfd; padding: 10px; }
+.staff-dismissal-list > article { display: grid; grid-template-columns: 34px minmax(140px, 1fr) minmax(130px, .48fr) minmax(120px, .38fr) auto; align-items: center; gap: 10px; border: 1px solid #dfe5eb; border-radius: 8px; background: #fbfcfd; padding: 10px; }
 .staff-dismissal-list > article > div { display: grid; justify-items: start; gap: 4px; min-width: 0; }
 .staff-dismissal-list > article > div strong { overflow: hidden; color: #263b52; font-size: .7rem; text-overflow: ellipsis; white-space: nowrap; }
 .staff-dismissal-list > article > div small { border-radius: 999px; background: #edf1f4; color: #718093; padding: 3px 7px; font-size: .54rem; font-weight: 800; }
@@ -8513,7 +8636,9 @@ button {
 .staff-dismissal-list label { display: grid; gap: 3px; color: #778598; font-size: .55rem; font-weight: 800; }
 .staff-dismissal-list button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 36px; border: 1px solid #d4dde4; border-radius: 6px; background: #fff; color: #54677a; padding: 0 11px; font-size: .6rem; font-weight: 800; }
 .staff-dismissal-list button.is-early { border-color: #dda45c; background: #fff3df; color: #8b5a1b; }
-.staff-dismissal-list button:disabled, .staff-dismissal-list select:disabled { opacity: .55; }
+.staff-dismissal-list button.is-clear { border-color: #d9e1e8; color: #68788a; }
+.staff-dismissal-actions { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+.staff-dismissal-list button:disabled, .staff-dismissal-list input:disabled, .staff-dismissal-list select:disabled { opacity: .55; }
 
 .admin-schedule-panel { margin-bottom: 20px; }
 .admin-tasks-panel { margin-bottom: 20px; }
@@ -8662,11 +8787,11 @@ button {
 .teacher-class-average-row strong:last-child { color: #287a6f; }
 .teacher-dismissal-panel { margin-bottom: 18px; }
 .teacher-dismissal-date { display: grid; gap: 4px; color: #64736f; font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
-.teacher-dismissal-date input, .teacher-dismissal-list select { min-height: 38px; border: 1px solid #d5dfdc; border-radius: 7px; background: #fff; color: #253d38; padding: 0 10px; font: inherit; }
+.teacher-dismissal-date input, .teacher-dismissal-list input, .teacher-dismissal-list select { min-height: 38px; border: 1px solid #d5dfdc; border-radius: 7px; background: #fff; color: #253d38; padding: 0 10px; font: inherit; }
 .teacher-dismissal-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 13px; }
 .teacher-dismissal-summary > span { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #d8e6e2; border-radius: 999px; background: #f3f9f7; color: #34685f; padding: 7px 10px; font-size: .72rem; font-weight: 750; }
 .teacher-dismissal-list { display: grid; gap: 8px; }
-.teacher-dismissal-list article { display: grid; grid-template-columns: 42px minmax(150px, 1fr) minmax(145px, .55fr) auto; gap: 12px; align-items: center; border: 1px solid #e2e8e7; border-radius: 9px; padding: 11px 12px; }
+.teacher-dismissal-list article { display: grid; grid-template-columns: 42px minmax(150px, 1fr) minmax(145px, .55fr) minmax(125px, .4fr) auto; gap: 12px; align-items: center; border: 1px solid #e2e8e7; border-radius: 9px; padding: 11px 12px; }
 .teacher-dismissal-name { display: grid; justify-items: start; gap: 5px; min-width: 0; }
 .teacher-dismissal-name strong { overflow: hidden; max-width: 100%; color: #213d38; text-overflow: ellipsis; white-space: nowrap; }
 .teacher-van-indicator { border-radius: 999px; background: #f0f3f2; color: #71807c; padding: 4px 8px; font-size: .65rem; font-weight: 800; }
@@ -8675,11 +8800,15 @@ button {
 .teacher-dismissal-list label { display: grid; gap: 4px; color: #6a7975; font-size: .66rem; font-weight: 750; }
 .teacher-dismissal-list button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 38px; border: 1px solid #d6dfdd; border-radius: 7px; background: #fff; color: #526661; padding: 0 12px; font-size: .7rem; font-weight: 800; cursor: pointer; }
 .teacher-dismissal-list button.is-early { border-color: #dfaa65; background: #fff4e4; color: #8b5c20; }
-.teacher-dismissal-list button:disabled, .teacher-dismissal-list select:disabled { cursor: wait; opacity: .6; }
+.teacher-dismissal-list button.is-clear { border-color: #d9e1e8; color: #68788a; }
+.teacher-dismissal-actions { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+.teacher-dismissal-list button:disabled, .teacher-dismissal-list input:disabled, .teacher-dismissal-list select:disabled { cursor: wait; opacity: .6; }
 
 @media (max-width: 640px) {
   .teacher-student-entry > button { grid-template-columns: 38px minmax(0, 1fr) auto 16px; gap: 8px; padding: 10px; }
   .teacher-student-entry .teacher-student-detail { padding: 14px 10px; }
+  .teacher-staff-list article { grid-template-columns: 38px minmax(0, 1fr); }
+  .teacher-staff-list article .admin-account-actions { grid-column: 1 / -1; }
   .teacher-insight-grid { grid-template-columns: repeat(2, 1fr); }
   .teacher-results-row { grid-template-columns: 1fr auto; }
   .teacher-results-row > :nth-child(2), .teacher-results-row > :nth-child(4) { display: none; }
@@ -8687,11 +8816,15 @@ button {
   .teacher-dismissal-panel .teacher-panel-header { align-items: stretch; }
   .teacher-dismissal-date input { width: 100%; }
   .teacher-dismissal-list article { grid-template-columns: 38px minmax(0, 1fr); gap: 9px; }
-  .teacher-dismissal-list article > label, .teacher-dismissal-list article > button { grid-column: 1 / -1; }
-  .teacher-dismissal-list article > button { width: 100%; }
+  .teacher-dismissal-list article > label, .teacher-dismissal-list article > button, .teacher-dismissal-actions { grid-column: 1 / -1; }
+  .teacher-dismissal-actions { align-items: stretch; flex-direction: column; }
+  .teacher-dismissal-list article > button, .teacher-dismissal-actions button { width: 100%; }
 }
 
 @media (max-width: 680px) {
+  .admin-school-attendance-widget > header { align-items: stretch; flex-direction: column; }
+  .admin-school-attendance-widget label { width: 100%; }
+  .admin-attendance-dropdown summary { grid-template-columns: 1fr; }
   .admin-attendance-filters { grid-template-columns: 1fr; }
   .admin-attendance-totals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .admin-sheets-actions { flex-direction: column; }
@@ -8731,8 +8864,9 @@ button {
   .staff-roster-tools { width: 100%; flex-direction: column; align-items: stretch; }
   .staff-student-detail dl { grid-template-columns: 1fr 1fr; }
   .staff-dismissal-list > article { grid-template-columns: 34px minmax(0, 1fr); }
-  .staff-dismissal-list > article > label, .staff-dismissal-list > article > button { grid-column: 1 / -1; }
-  .staff-dismissal-list > article > button { width: 100%; }
+  .staff-dismissal-list > article > label, .staff-dismissal-list > article > button, .staff-dismissal-actions { grid-column: 1 / -1; }
+  .staff-dismissal-actions { align-items: stretch; flex-direction: column; }
+  .staff-dismissal-list > article > button, .staff-dismissal-actions button { width: 100%; }
   .admin-room-directory > div { grid-template-columns: 1fr; }
 }
 
@@ -8746,6 +8880,8 @@ button {
   .staff-day-tabs { display: flex; overflow-x: auto; }
   .staff-day-tabs button { min-width: 92px; }
   .staff-roster-name-cards, .staff-student-detail dl { grid-template-columns: 1fr; }
+  .staff-roster-name-cards > article > button { padding-right: 64px; }
+  .staff-roster-alert-icons { right: 10px; z-index: 3; }
   .staff-dismissal-panel .staff-panel-header { align-items: stretch; }
   .staff-dismissal-date input { width: 100%; }
   .staff-attendance-sort { align-items: stretch; flex-direction: column; }

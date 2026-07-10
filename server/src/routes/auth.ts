@@ -15,6 +15,12 @@ type AssignStaffBody = {
     username?: unknown;
 };
 
+type UpdateStudentBody = {
+    fullName?: unknown;
+    password?: unknown;
+    username?: unknown;
+};
+
 const studentUsernamePattern = /^[a-z0-9][a-z0-9._-]{2,31}$/;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const studentEmailDomain = "students.nathantutors.local";
@@ -75,8 +81,20 @@ function normalizeStaffBody(body: AssignStaffBody) {
     return { fullName, password, username };
 }
 
+function normalizeStudentAccountBody(body: UpdateStudentBody) {
+    const fullName = typeof body.fullName === "string" ? body.fullName.trim() : "";
+    const password = typeof body.password === "string" ? body.password : "";
+    const username = typeof body.username === "string" ? body.username.trim().toLowerCase() : "";
+
+    return { fullName, password, username };
+}
+
 function getStaffEmail(username: string) {
     return `${username}@${staffEmailDomain}`;
+}
+
+function getStudentEmail(username: string) {
+    return username.includes("@") ? username : `${username}@${studentEmailDomain}`;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -85,6 +103,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function isDate(value: unknown): value is string {
     return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
+}
+
+function isTime(value: unknown): value is string {
+    return typeof value === "string" && /^([01]\d|2[0-3]):[0-5]\d$/.test(value);
 }
 
 function readString(value: unknown, fallback = "") {
@@ -136,6 +158,9 @@ function normalizeRoster(value: unknown, username: string) {
         const earlyPickupDates = Array.isArray(student.earlyPickupDates)
             ? student.earlyPickupDates.filter(isDate)
             : [];
+        const earlyPickupTimes = isRecord(student.earlyPickupTimes)
+            ? Object.fromEntries(Object.entries(student.earlyPickupTimes).filter(([date, time]) => isDate(date) && isTime(time)))
+            : {};
         const vanRide = student.vanRide === "2pm" || student.vanRide === "5pm" ? student.vanRide : "none";
 
         return {
@@ -145,6 +170,7 @@ function normalizeRoster(value: unknown, username: string) {
             cohort: readString(student.cohort, className || "Promise Summer School"),
             dob: isDate(student.dob) ? student.dob : "",
             earlyPickupDates,
+            earlyPickupTimes,
             firstName,
             grade,
             id: readString(student.id, `student-${index + 1}`),
@@ -183,6 +209,21 @@ async function requireAdmin(authorizationHeader: string | undefined) {
     return { error: null, user: authenticatedUser.user };
 }
 
+async function requireTeacherOrAdmin(authorizationHeader: string | undefined) {
+    const authenticatedUser = await getAuthenticatedUser(authorizationHeader);
+
+    if (authenticatedUser.error || !authenticatedUser.user) {
+        return { error: authenticatedUser.error ?? "Log in to continue.", status: 401, user: null };
+    }
+
+    const role = getUserRole(authenticatedUser.user);
+    if (role !== "teacher" && role !== "admin") {
+        return { error: "Teacher access is required.", status: 403, user: null };
+    }
+
+    return { error: null, status: 200, user: authenticatedUser.user };
+}
+
 function toStaffAccount(user: {
     app_metadata: Record<string, unknown>;
     created_at: string;
@@ -197,6 +238,22 @@ function toStaffAccount(user: {
         accessPassword: decryptStaffPassword(user.app_metadata[staffPasswordMetadataKey]),
         createdAt: user.created_at,
         dashboardData: normalizeDashboardData(user.user_metadata.dashboard_data, username),
+        fullName: typeof user.user_metadata.full_name === "string" ? user.user_metadata.full_name : fallbackUsername,
+        id: user.id,
+        username,
+    };
+}
+
+function toStudentAccount(user: {
+    email?: string;
+    id: string;
+    user_metadata: Record<string, unknown>;
+}) {
+    const fallbackUsername = user.email?.split("@")[0] ?? "student";
+    const username = typeof user.user_metadata.username === "string" ? user.user_metadata.username : fallbackUsername;
+
+    return {
+        email: user.email ?? "",
         fullName: typeof user.user_metadata.full_name === "string" ? user.user_metadata.full_name : fallbackUsername,
         id: user.id,
         username,
@@ -296,6 +353,107 @@ authRouter.post("/switch-account", async (request, response) => {
     }
 
     response.json({ tokenHash });
+});
+
+authRouter.patch("/students/:userId", async (request, response) => {
+    const teacher = await requireTeacherOrAdmin(request.headers.authorization);
+    if (teacher.error) {
+        response.status(teacher.status).json({ message: teacher.error });
+        return;
+    }
+
+    const { fullName, password, username } = normalizeStudentAccountBody(request.body);
+    const usesEmail = username.includes("@");
+    if ((usesEmail && !emailPattern.test(username)) || (!usesEmail && !studentUsernamePattern.test(username))) {
+        response.status(400).json({ message: "Enter a valid email or a 3-32 character username using letters, numbers, dots, dashes, or underscores." });
+        return;
+    }
+
+    if (!fullName) {
+        response.status(400).json({ message: "Full name is required." });
+        return;
+    }
+
+    if (password && password.length < 6) {
+        response.status(400).json({ message: "A new password must be at least 6 characters." });
+        return;
+    }
+
+    const targetResult = await supabase.auth.admin.getUserById(request.params.userId);
+    const target = targetResult.data.user;
+    if (targetResult.error || !target || getUserRole(target) !== "student") {
+        response.status(404).json({ message: "Student account was not found." });
+        return;
+    }
+
+    const email = getStudentEmail(username);
+    const listed = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
+    if (listed.error) {
+        response.status(400).json({ message: listed.error.message });
+        return;
+    }
+
+    const conflict = listed.data.users.find((user) => user.id !== target.id && user.email?.toLowerCase() === email);
+    if (conflict) {
+        response.status(409).json({ message: "That student username is already in use." });
+        return;
+    }
+
+    const updated = await supabase.auth.admin.updateUserById(target.id, {
+        app_metadata: {
+            ...target.app_metadata,
+            role: "student",
+        },
+        email,
+        email_confirm: true,
+        ...(password ? { password } : {}),
+        user_metadata: {
+            ...target.user_metadata,
+            full_name: fullName,
+            role: "student",
+            username: usesEmail ? username.split("@")[0] : username,
+        },
+    });
+
+    if (updated.error || !updated.data.user) {
+        response.status(400).json({ message: updated.error?.message ?? "Could not update the student account." });
+        return;
+    }
+
+    response.json({ student: toStudentAccount(updated.data.user) });
+});
+
+authRouter.delete("/students/:userId", async (request, response) => {
+    const teacher = await requireTeacherOrAdmin(request.headers.authorization);
+    if (teacher.error) {
+        response.status(teacher.status).json({ message: teacher.error });
+        return;
+    }
+
+    const targetResult = await supabase.auth.admin.getUserById(request.params.userId);
+    const target = targetResult.data.user;
+    if (targetResult.error || !target || getUserRole(target) !== "student") {
+        response.status(404).json({ message: "Student account was not found." });
+        return;
+    }
+
+    const [examDelete, practiceDelete] = await Promise.all([
+        supabase.from("student_exam_results").delete().eq("user_id", target.id),
+        supabase.from("student_practice_progress").delete().eq("user_id", target.id),
+    ]);
+
+    if (examDelete.error || practiceDelete.error) {
+        response.status(400).json({ message: examDelete.error?.message ?? practiceDelete.error?.message ?? "Could not remove student progress." });
+        return;
+    }
+
+    const deleted = await supabase.auth.admin.deleteUser(target.id);
+    if (deleted.error) {
+        response.status(400).json({ message: deleted.error.message });
+        return;
+    }
+
+    response.sendStatus(204);
 });
 
 authRouter.get("/staff", async (request, response) => {

@@ -1032,6 +1032,7 @@ staffRouter.put("/dismissal", async (request, response) => {
     const studentId = typeof request.body?.studentId === "string" ? request.body.studentId : "";
     const date = request.body?.date;
     const pickedUpEarly = request.body?.pickedUpEarly;
+    const pickupTime = request.body?.pickupTime;
     const vanRide = request.body?.vanRide;
     if (!studentId || (vanRide !== undefined && vanRide !== "none" && vanRide !== "2pm" && vanRide !== "5pm")) {
         response.status(400).json({ message: "A student and valid van time are required." });
@@ -1039,6 +1040,10 @@ staffRouter.put("/dismissal", async (request, response) => {
     }
     if (pickedUpEarly !== undefined && (typeof pickedUpEarly !== "boolean" || !isDate(date))) {
         response.status(400).json({ message: "A valid date is required when updating early pickup." });
+        return;
+    }
+    if (pickedUpEarly === true && !isTime(pickupTime)) {
+        response.status(400).json({ message: "Enter a valid pickup time before marking early pickup." });
         return;
     }
     if (role === "staff" && isDate(date) && date > currentEasternDate()) {
@@ -1060,11 +1065,19 @@ staffRouter.put("/dismissal", async (request, response) => {
             ? student.earlyPickupDates.filter((value): value is string => isDate(value))
             : [];
         const dates = new Set(storedDates);
+        const earlyPickupTimes = student.earlyPickupTimes && typeof student.earlyPickupTimes === "object" && !Array.isArray(student.earlyPickupTimes)
+            ? Object.fromEntries(Object.entries(student.earlyPickupTimes as Record<string, unknown>).filter(([storedDate, time]) => isDate(storedDate) && isTime(time)))
+            : {};
         if (pickedUpEarly === true) dates.add(date as string);
-        if (pickedUpEarly === false) dates.delete(date as string);
+        if (pickedUpEarly === true) earlyPickupTimes[date as string] = pickupTime as string;
+        if (pickedUpEarly === false) {
+            dates.delete(date as string);
+            delete earlyPickupTimes[date as string];
+        }
         return {
             ...student,
             earlyPickupDates: [...dates].sort(),
+            earlyPickupTimes,
             vanRide: vanRide ?? (student.vanRide === "2pm" || student.vanRide === "5pm" ? student.vanRide : "none"),
         };
     });
