@@ -1,31 +1,36 @@
 import { useEffect, useState } from "react";
 import { BarChart3, BookOpen, CalendarDays, CheckCircle2, ClipboardList, Target, Zap } from "lucide-react";
+import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
+import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { getStudentClasses } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
-import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
+import { isSupabaseConfigured } from "../lib/supabase";
+import { cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "../lib/sessionCache";
 import { getStudentClassNavigation } from "../lib/studentClassNavigation";
 
 const isStudentPreview = new URLSearchParams(window.location.search).get("preview") === "student";
 const previewQuery = isStudentPreview ? "?preview=student&teacherTools=1" : "";
 
 export function StudentDashboardPage() {
-  const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
-  const [studentName, setStudentName] = useState("Student");
+  const initialSession = peekActiveSession();
+  const initialMetadata = initialSession?.user.user_metadata as { full_name?: string; name?: string } | undefined;
+  const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured && !initialSession);
+  const [studentName, setStudentName] = useState(initialMetadata?.full_name ?? initialMetadata?.name ?? "Student");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
       return;
     }
 
-    getSupabaseClient().auth.getSession().then(async ({ data }) => {
-      if (!data.session) {
+    getActiveSession().then(async (session) => {
+      if (!session) {
         window.location.assign("/login");
         return;
       }
 
-      const userRole = getUserRole(data.session.user);
-      const metadata = data.session.user.user_metadata as { full_name?: string; name?: string };
+      const userRole = getUserRole(session.user);
+      const metadata = session.user.user_metadata as { full_name?: string; name?: string };
       setStudentName(metadata.full_name ?? metadata.name ?? "Student");
 
       if (userRole !== "student" && !(userRole === "teacher" && isStudentPreview)) {
@@ -37,7 +42,8 @@ export function StudentDashboardPage() {
 
       if (classId && userRole !== "teacher") {
         try {
-          const studentClasses = await getStudentClasses(data.session.access_token);
+          const studentClasses = getCachedStudentClasses(session.user.id) ?? await getStudentClasses(session.access_token);
+          cacheStudentClasses(session.user.id, studentClasses);
           const isInClass = studentClasses.some((studentClass) => studentClass.id === classId);
 
           if (!isInClass) {
@@ -56,7 +62,7 @@ export function StudentDashboardPage() {
 
   async function handleSignOut() {
     if (isSupabaseConfigured) {
-      await getSupabaseClient().auth.signOut();
+      await signOutCurrentAccount();
     }
 
     window.location.assign("/");
@@ -88,9 +94,9 @@ export function StudentDashboardPage() {
         <article><span><CalendarDays size={19} /></span><div><p>Next session</p><strong>Sat</strong></div><em>10:00 AM</em></article>
       </section>
       <section className="student-portal-grid">
-        <a className="staff-panel student-portal-card" href={`/study-hall${previewQuery}`}><span><Target size={21} /></span><div><small>Practice question catalog</small><h2>All SHSAT reading skills</h2><p>Practice Author's Point of View, inference, evidence, vocabulary, tone, and more.</p></div></a>
-        <a className="staff-panel student-portal-card" href={`/practice/authors-point-of-view${previewQuery}`}><span><ClipboardList size={21} /></span><div><small>Featured practice</small><h2>Author's Point of View</h2><p>Work through the complete question bank across all four difficulty levels.</p></div></a>
-        <a className="staff-panel student-portal-card" href={`/study-hall?section=advanced${isStudentPreview ? "&preview=student&teacherTools=1" : ""}`}><span><BookOpen size={21} /></span><div><small>Advanced practice</small><h2>Passage catalog</h2><p>Browse every advanced close-reading passage by genre, skill, and difficulty.</p></div></a>
+        <AppLink className="staff-panel student-portal-card" href={`/study-hall${previewQuery}`}><span><Target size={21} /></span><div><small>Practice question catalog</small><h2>All SHSAT reading skills</h2><p>Practice Author's Point of View, inference, evidence, vocabulary, tone, and more.</p></div></AppLink>
+        <AppLink className="staff-panel student-portal-card" href={`/practice/authors-point-of-view${previewQuery}`}><span><ClipboardList size={21} /></span><div><small>Featured practice</small><h2>Author's Point of View</h2><p>Work through the complete question bank across all four difficulty levels.</p></div></AppLink>
+        <AppLink className="staff-panel student-portal-card" href={`/study-hall?section=advanced${isStudentPreview ? "&preview=student&teacherTools=1" : ""}`}><span><BookOpen size={21} /></span><div><small>Advanced practice</small><h2>Passage catalog</h2><p>Browse every advanced close-reading passage by genre, skill, and difficulty.</p></div></AppLink>
         <article className="staff-panel student-upcoming-panel"><header><small>Upcoming</small><h2>This week</h2></header><div><span>Sat</span><p><strong>SHSAT class session</strong><small>10:00 AM · Rooms 201–204</small></p></div><div><span>Mon</span><p><strong>Practice review due</strong><small>11:59 PM · Online</small></p></div></article>
       </section>
     </CorporateDashboardShell>

@@ -391,12 +391,6 @@ export type StudentAccountUpdate = {
   username: string;
 };
 
-export type SwitchableAccount = {
-  fullName: string;
-  id: string;
-  role: "teacher";
-};
-
 type RegisterStudentInput = {
   fullName: string;
   password: string;
@@ -510,21 +504,6 @@ export async function getStaffAccounts(accessToken: string) {
   });
 
   return data.staff;
-}
-
-export async function getSwitchableAccounts(accessToken: string) {
-  const data = await requestApi<{ accounts: SwitchableAccount[] }>("/api/auth/switchable-accounts", {
-    headers: createAuthHeaders(accessToken),
-  });
-  return data.accounts;
-}
-
-export async function createAccountSwitchToken(accessToken: string, targetId: string) {
-  return requestApi<{ tokenHash: string }>("/api/auth/switch-account", {
-    body: JSON.stringify({ targetId }),
-    headers: createAuthHeaders(accessToken),
-    method: "POST",
-  });
 }
 
 export async function assignStaffAccount(

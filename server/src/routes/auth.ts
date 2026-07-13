@@ -305,56 +305,6 @@ authRouter.post("/register", async (request, response) => {
     response.status(201).json({ loginEmail: email, message: "Student account created." });
 });
 
-authRouter.get("/switchable-accounts", async (request, response) => {
-    const administrator = await requireAdmin(request.headers.authorization);
-    if (administrator.error) {
-        response.status(administrator.error === "Administrator access is required." ? 403 : 401).json({ message: administrator.error });
-        return;
-    }
-
-    const listed = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
-    if (listed.error) {
-        response.status(400).json({ message: listed.error.message });
-        return;
-    }
-
-    const accounts = listed.data.users
-        .filter((user) => getUserRole(user) === "teacher")
-        .map((user) => ({
-            fullName: typeof user.user_metadata.full_name === "string" ? user.user_metadata.full_name : user.email?.split("@")[0] ?? "Teacher",
-            id: user.id,
-            role: "teacher" as const,
-        }))
-        .sort((first, second) => first.fullName.localeCompare(second.fullName));
-
-    response.json({ accounts });
-});
-
-authRouter.post("/switch-account", async (request, response) => {
-    const administrator = await requireAdmin(request.headers.authorization);
-    if (administrator.error) {
-        response.status(administrator.error === "Administrator access is required." ? 403 : 401).json({ message: administrator.error });
-        return;
-    }
-
-    const targetId = typeof request.body?.targetId === "string" ? request.body.targetId : "";
-    const targetResult = await supabase.auth.admin.getUserById(targetId);
-    const target = targetResult.data.user;
-    if (targetResult.error || !target || getUserRole(target) !== "teacher" || !target.email) {
-        response.status(404).json({ message: "Teacher account was not found." });
-        return;
-    }
-
-    const generated = await supabase.auth.admin.generateLink({ email: target.email, type: "magiclink" });
-    const tokenHash = generated.data.properties?.hashed_token;
-    if (generated.error || !tokenHash) {
-        response.status(400).json({ message: generated.error?.message ?? "Could not prepare the teacher session." });
-        return;
-    }
-
-    response.json({ tokenHash });
-});
-
 authRouter.patch("/students/:userId", async (request, response) => {
     const teacher = await requireTeacherOrAdmin(request.headers.authorization);
     if (teacher.error) {

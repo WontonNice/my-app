@@ -1,10 +1,13 @@
 import { useEffect, useState, type FormEvent } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { BookOpen, GraduationCap } from "lucide-react";
+import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
+import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { getStudentClasses, joinStudentClass, type StudentClass } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
+import { cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "../lib/sessionCache";
 
 const isStudentPreview = new URLSearchParams(window.location.search).get("preview") === "student";
 const previewQuery = isStudentPreview ? "?preview=student&teacherTools=1" : "";
@@ -14,13 +17,15 @@ function getClassPath(studentClass: StudentClass) {
 }
 
 export function StudyHallPage() {
-  const [accessToken, setAccessToken] = useState("");
-  const [classes, setClasses] = useState<StudentClass[]>([]);
+  const initialSession = peekActiveSession();
+  const initialMetadata = initialSession?.user.user_metadata as { full_name?: string; name?: string } | undefined;
+  const [accessToken, setAccessToken] = useState(initialSession?.access_token ?? "");
+  const [classes, setClasses] = useState<StudentClass[]>(() => initialSession ? getCachedStudentClasses(initialSession.user.id) ?? [] : []);
   const [classCode, setClassCode] = useState("");
-  const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
+  const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured && !initialSession);
   const [isJoining, setIsJoining] = useState(false);
   const [message, setMessage] = useState("");
-  const [studentName, setStudentName] = useState("Student");
+  const [studentName, setStudentName] = useState(initialMetadata?.full_name ?? initialMetadata?.name ?? "Student");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -30,16 +35,15 @@ export function StudyHallPage() {
     let isMounted = true;
 
     async function loadStudyHall() {
-      const supabase = getSupabaseClient();
-      const { data } = await supabase.auth.getSession();
+      const session = await getActiveSession();
 
-      if (!data.session) {
+      if (!session) {
         window.location.assign("/login");
         return;
       }
 
-      const userRole = getUserRole(data.session.user);
-      const metadata = data.session.user.user_metadata as { full_name?: string; name?: string };
+      const userRole = getUserRole(session.user);
+      const metadata = session.user.user_metadata as { full_name?: string; name?: string };
       setStudentName(metadata.full_name ?? metadata.name ?? "Student");
 
       if (userRole !== "student" && !(userRole === "teacher" && isStudentPreview)) {
@@ -48,7 +52,7 @@ export function StudyHallPage() {
       }
 
       if (userRole === "teacher" && isStudentPreview) {
-        setAccessToken(data.session.access_token);
+        setAccessToken(session.access_token);
         setClasses([{
           description: "SHSAT prep room for lessons, practice missions, assessments, and progress checks.",
           id: "shsat",
@@ -60,12 +64,12 @@ export function StudyHallPage() {
         return;
       }
 
-      await loadStudentClasses(data.session);
+      await loadStudentClasses(session);
     }
 
     async function loadStudentClasses(session: Session) {
       try {
-        const nextClasses = await getStudentClasses(session.access_token);
+        const nextClasses = getCachedStudentClasses(session.user.id) ?? await getStudentClasses(session.access_token);
 
         if (!isMounted) {
           return;
@@ -73,6 +77,7 @@ export function StudyHallPage() {
 
         setAccessToken(session.access_token);
         setClasses(nextClasses);
+        cacheStudentClasses(session.user.id, nextClasses);
       } catch (error) {
         if (!isMounted) {
           return;
@@ -102,6 +107,8 @@ export function StudyHallPage() {
       const { classes: nextClasses, joinedClass } = await joinStudentClass(accessToken, classCode);
 
       setClasses(nextClasses);
+      const session = await getActiveSession();
+      if (session) cacheStudentClasses(session.user.id, nextClasses);
       setClassCode("");
       setMessage(`You joined ${joinedClass.name}.`);
       await getSupabaseClient().auth.refreshSession();
@@ -114,7 +121,7 @@ export function StudyHallPage() {
 
   async function handleSignOut() {
     if (isSupabaseConfigured) {
-      await getSupabaseClient().auth.signOut();
+      await signOutCurrentAccount();
     }
 
     window.location.assign("/");
@@ -214,11 +221,11 @@ function ClassList({ classes, message }: { classes: StudentClass[]; message: str
 
         <div className="study-class-cards">
           {classes.map((studentClass) => (
-            <a className="study-class-card" href={getClassPath(studentClass)} key={studentClass.id}>
+            <AppLink className="study-class-card" href={getClassPath(studentClass)} key={studentClass.id}>
               <span>{studentClass.schedule}</span>
               <strong>{studentClass.name}</strong>
               <small>{studentClass.level}</small>
-            </a>
+            </AppLink>
           ))}
         </div>
 

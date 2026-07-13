@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { Activity, BarChart3, BookOpen, Bus, CheckCircle2, ChevronDown, ClipboardList, Clock3, LayoutDashboard, Pencil, Target, Trash2, UserRoundPlus, Users, X } from "lucide-react";
+import { Activity, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, LayoutDashboard, Pencil, Target, Trash2, UserRoundPlus, Users, X } from "lucide-react";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
-import { hasSavedAdminSession, returnToSavedAdminSession } from "../lib/accountSwitching";
+import { signOutCurrentAccount } from "../lib/accountSwitching";
 import {
   getTeacherAssessments,
   getTeacherStudentProgress,
   deleteStudentAccount,
-  updateStudentDismissal,
   updateStudentAccount,
   updateTeacherAssessmentSplit,
   updateTeacherAssessmentStatus,
@@ -48,23 +47,6 @@ function questionTypeSummary(result: Record<string, unknown>) {
     if (typeof value.questionType !== "string" || typeof value.correct !== "number" || typeof value.total !== "number") return [];
     return [{ correct: value.correct, label: labelFromSlug(value.questionType), total: value.total }];
   });
-}
-
-function localDateValue() {
-  const now = new Date();
-  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
-}
-
-function displayPickupTime(value: string) {
-  const [hours, minutes] = value.split(":").map(Number);
-  if (!Number.isFinite(hours) || !Number.isFinite(minutes)) return value;
-  return new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit", timeZone: "UTC" }).format(new Date(Date.UTC(2026, 0, 1, hours, minutes)));
-}
-
-function vanRideLabel(value: StudentProgressSnapshot["dismissal"]["vanRide"]) {
-  if (value === "2pm") return "Van · 2 PM";
-  if (value === "5pm") return "Van · 5 PM";
-  return "No van";
 }
 
 function StudentDetail({ student }: { student: StudentProgressSnapshot }) {
@@ -110,15 +92,10 @@ export function TeacherDashboardPage() {
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
   const [message, setMessage] = useState("");
   const [savingStatusId, setSavingStatusId] = useState("");
-  const [savingDismissalId, setSavingDismissalId] = useState("");
-  const [pickupTimeDrafts, setPickupTimeDrafts] = useState<Record<string, string>>({});
   const [savingAccountId, setSavingAccountId] = useState("");
   const [editingStudentAccountId, setEditingStudentAccountId] = useState("");
   const [studentAccountDraft, setStudentAccountDraft] = useState({ fullName: "", password: "", username: "" });
-  const [dismissalDate, setDismissalDate] = useState(localDateValue);
   const [teacherName, setTeacherName] = useState("Teacher");
-  const [canReturnToAdmin] = useState(hasSavedAdminSession);
-  const [isSwitchingAccount, setIsSwitchingAccount] = useState(false);
 
   useEffect(() => {
     if (!isSupabaseConfigured) return;
@@ -146,9 +123,6 @@ export function TeacherDashboardPage() {
 
   const selectedStudent = students.find((student) => student.id === selectedStudentId);
   const shsatStudents = useMemo(() => students.filter((student) => student.classes.includes("shsat")), [students]);
-  useEffect(() => {
-    setPickupTimeDrafts(Object.fromEntries(shsatStudents.map((student) => [student.id, student.dismissal.earlyPickupTimes[dismissalDate] ?? ""])));
-  }, [dismissalDate, shsatStudents]);
   const classAverage = useMemo(() => {
     const values = students.map((student) => student.insights.averageTestScore).filter((value): value is number => value !== null);
     return values.length ? Math.round(values.reduce((sum, value) => sum + value, 0) / values.length) : null;
@@ -193,19 +167,6 @@ export function TeacherDashboardPage() {
       setMessage(`${updated.title} will ${updated.split ? "run in two sessions" : "run as one continuous session"}.`);
     } catch (error) { setMessage(error instanceof Error ? error.message : "Could not update the exam format."); }
     finally { setSavingStatusId(""); }
-  }
-
-  async function handleDismissalUpdate(
-    student: StudentProgressSnapshot,
-    input: { date?: string; pickedUpEarly?: boolean; pickupTime?: string; vanRide?: StudentProgressSnapshot["dismissal"]["vanRide"] },
-  ) {
-    if (!accessToken) return;
-    setSavingDismissalId(student.id); setMessage("");
-    try {
-      const dismissal = await updateStudentDismissal(accessToken, student.id, input);
-      setStudents((current) => current.map((item) => item.id === student.id ? { ...item, dismissal } : item));
-    } catch (error) { setMessage(error instanceof Error ? error.message : "Could not update dismissal information."); }
-    finally { setSavingDismissalId(""); }
   }
 
   function beginEditingStudentAccount(student: StudentProgressSnapshot) {
@@ -255,20 +216,8 @@ export function TeacherDashboardPage() {
   }
 
   async function handleSignOut() {
-    if (isSupabaseConfigured) await getSupabaseClient().auth.signOut();
+    if (isSupabaseConfigured) await signOutCurrentAccount();
     window.location.assign("/");
-  }
-
-  async function handleReturnToAdmin() {
-    setIsSwitchingAccount(true);
-    setMessage("");
-    try {
-      await returnToSavedAdminSession();
-      window.location.assign("/admin");
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not return to the administrator account.");
-      setIsSwitchingAccount(false);
-    }
   }
 
   if (isCheckingSession) return <main className="loading-shell">Loading teacher dashboard...</main>;
@@ -284,13 +233,12 @@ export function TeacherDashboardPage() {
     { id: "overview", label: "Overview", href: "/teacher", icon: LayoutDashboard },
     { id: "students", label: "Student progress", href: "#students", icon: Activity },
     { id: "accounts", label: "Student accounts", href: "#student-accounts", icon: UserRoundPlus },
-    { id: "dismissal", label: "Dismissal", href: "#dismissal", icon: Bus },
     { id: "assessments", label: "Assessments", href: "#assessments", icon: ClipboardList },
     { id: "student", label: "Student view", href: "/dashboard?preview=student&teacherTools=1", icon: Target },
   ];
 
   return (
-    <CorporateDashboardShell activeId="overview" isSwitchingAccount={isSwitchingAccount} navItems={navItems} onSignOut={handleSignOut} onSwitchAccount={canReturnToAdmin ? handleReturnToAdmin : undefined} profileName={teacherName} profileRole="Teacher account" switchAccountLabel="Return to admin">
+    <CorporateDashboardShell activeId="overview" enableAccountSwitcher navItems={navItems} onSignOut={handleSignOut} profileName={teacherName} profileRole="Teacher account">
       <header className="staff-page-heading corporate-page-heading">
         <div><p><LayoutDashboard size={15} /> Teacher dashboard</p><h1>Student performance</h1><span>SHSAT enrollment, recent activity, test scores, and practice progress in one view.</span></div>
         <a className="corporate-heading-action" href="/dashboard?preview=student&teacherTools=1">Preview student view</a>
@@ -337,37 +285,6 @@ export function TeacherDashboardPage() {
           <div className="teacher-staff-list" aria-label="SHSAT student accounts">
             {shsatStudents.length ? shsatStudents.map((student) => <article key={student.id}><span>{student.fullName.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase()}</span><div><strong>{student.fullName}</strong><small>Username: {student.username}</small><small>Email: {student.email}</small></div><div className="admin-account-actions"><button disabled={savingAccountId === student.id} onClick={() => beginEditingStudentAccount(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-danger" disabled={savingAccountId === student.id} onClick={() => handleDeleteStudentAccount(student)} type="button"><Trash2 size={14} /> Delete</button></div></article>) : <p>No SHSAT student accounts found.</p>}
           </div>
-        </div>
-      </section>
-
-      <section className="teacher-panel teacher-dismissal-panel" id="dismissal">
-        <div className="teacher-panel-header">
-          <div><span>Dismissal</span><h2>Pickup and van roster</h2></div>
-          <label className="teacher-dismissal-date"><span>Roster date</span><input type="date" value={dismissalDate} onChange={(event) => setDismissalDate(event.target.value)} /></label>
-        </div>
-        <div className="teacher-dismissal-summary" aria-label="Dismissal summary">
-          <span><Clock3 size={15} /> {shsatStudents.filter((student) => student.dismissal.earlyPickupDates.includes(dismissalDate)).length} early pickup</span>
-          <span><Bus size={15} /> {shsatStudents.filter((student) => student.dismissal.vanRide === "2pm").length} at 2 PM</span>
-          <span><Bus size={15} /> {shsatStudents.filter((student) => student.dismissal.vanRide === "5pm").length} at 5 PM</span>
-        </div>
-        <div className="teacher-dismissal-list">
-          {shsatStudents.map((student) => {
-            const pickedUpEarly = student.dismissal.earlyPickupDates.includes(dismissalDate);
-            const pickupTime = pickupTimeDrafts[student.id] ?? "";
-            const isSaving = savingDismissalId === student.id;
-            return (
-              <article key={student.id}>
-                <span className="teacher-student-avatar">{student.fullName.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span>
-                <div className="teacher-dismissal-name"><strong>{student.fullName}</strong><span className={`teacher-van-indicator is-${student.dismissal.vanRide}`}>{pickedUpEarly && student.dismissal.earlyPickupTimes[dismissalDate] ? `Picked up ${displayPickupTime(student.dismissal.earlyPickupTimes[dismissalDate])}` : vanRideLabel(student.dismissal.vanRide)}</span></div>
-                <label><span>Ride home</span><select aria-label={`${student.fullName} ride home`} disabled={isSaving} value={student.dismissal.vanRide} onChange={(event) => handleDismissalUpdate(student, { vanRide: event.target.value as StudentProgressSnapshot["dismissal"]["vanRide"] })}><option value="none">No van</option><option value="2pm">Van at 2 PM</option><option value="5pm">Van at 5 PM</option></select></label>
-                <label><span>Time picked up</span><input aria-label={`${student.fullName} pickup time`} disabled={isSaving || !dismissalDate} type="time" value={pickupTime} onChange={(event) => setPickupTimeDrafts((current) => ({ ...current, [student.id]: event.target.value }))} /></label>
-                <div className="teacher-dismissal-actions">
-                  <button className={pickedUpEarly ? "is-early" : ""} disabled={isSaving || !dismissalDate || !pickupTime} onClick={() => handleDismissalUpdate(student, { date: dismissalDate, pickedUpEarly: true, pickupTime })} type="button"><CheckCircle2 size={16} />{pickedUpEarly ? "Save pickup time" : "Mark early pickup"}</button>
-                  {pickedUpEarly ? <button className="is-clear" disabled={isSaving || !dismissalDate} onClick={() => handleDismissalUpdate(student, { date: dismissalDate, pickedUpEarly: false })} type="button">Clear</button> : null}
-                </div>
-              </article>
-            );
-          })}
         </div>
       </section>
 

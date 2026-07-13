@@ -23,7 +23,9 @@
         "seed:students": "npm run seed:students --workspace server",
         "lint": "npm run lint --workspace client",
         "lint:client": "npm run lint --workspace client",
-        "preview": "npm run preview --workspace client"
+        "preview": "npm run preview --workspace client",
+        "question-editor": "node tools/question-bank-editor.mjs",
+        "question-editor:validate": "node tools/question-bank-editor.mjs --validate"
     },
     "devDependencies": {
         "concurrently": "^9.1.2"

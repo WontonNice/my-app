@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { registerStudent } from "../lib/api";
 import { getDashboardPath, getStaffLoginEmail, getStudentLoginEmail, getUserRole } from "../lib/auth";
+import { rememberAccountSession } from "../lib/accountSwitching";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 type AuthPageProps = {
@@ -58,6 +59,8 @@ export function AuthPage({ mode }: AuthPageProps) {
           return;
         }
 
+        const { data } = await supabase.auth.getSession();
+        if (data.session) rememberAccountSession(data.session);
         window.location.assign("/dashboard");
         return;
       }
@@ -77,6 +80,7 @@ export function AuthPage({ mode }: AuthPageProps) {
         return;
       }
 
+      if (data.session) rememberAccountSession(data.session);
       window.location.assign(getDashboardPath(getUserRole(data.user)));
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");

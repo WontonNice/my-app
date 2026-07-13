@@ -1,8 +1,8 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { CalendarDays, Check, CheckCircle2, ClipboardCheck, Cloud, Copy, Eye, FileSpreadsheet, LayoutDashboard, ListTodo, Pencil, Plus, RefreshCw, ShieldCheck, Trash2, UserCog, UserRoundPlus, Users, X } from "lucide-react";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
-import { assignStaffAccount, createStaffTask, deleteRoomBooking, deleteRosterStudent, deleteStaffAttendanceEntry, deleteStaffTask, getCampusRooms, getGoogleSheetsAttendanceSettings, getRoomBookings, getStaffAccounts, getStaffAttendanceEntries, getStaffSchedules, getStaffTasks, getSwitchableAccounts, requestRoomBooking, reviewRoomBooking, saveCampusRooms, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffAttendanceEntry, saveStaffClasses, saveStaffSchedule, syncGoogleSheetsAttendance, updateRoomBooking, updateStaffAccount, updateStaffTask, type CampusRoom, type RoomBooking, type ScheduleItem, type StaffAccount, type StaffAttendanceEntry, type StaffSchedule, type StaffTask, type SwitchableAccount } from "../lib/api";
-import { switchFromAdminToTeacher } from "../lib/accountSwitching";
+import { assignStaffAccount, createStaffTask, deleteRoomBooking, deleteRosterStudent, deleteStaffAttendanceEntry, deleteStaffTask, getCampusRooms, getGoogleSheetsAttendanceSettings, getRoomBookings, getStaffAccounts, getStaffAttendanceEntries, getStaffSchedules, getStaffTasks, requestRoomBooking, reviewRoomBooking, saveCampusRooms, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffAttendanceEntry, saveStaffClasses, saveStaffSchedule, syncGoogleSheetsAttendance, updateRoomBooking, updateStaffAccount, updateStaffTask, type CampusRoom, type RoomBooking, type ScheduleItem, type StaffAccount, type StaffAttendanceEntry, type StaffSchedule, type StaffTask } from "../lib/api";
+import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 import { getFloorName } from "../lib/rooms";
@@ -93,8 +93,6 @@ export function AdminDashboardPage() {
     const day = new Date().getDay();
     return day >= 1 && day <= 5 ? day : 1;
   });
-  const [switchableAccounts, setSwitchableAccounts] = useState<SwitchableAccount[]>([]);
-  const [isSwitchingAccount, setIsSwitchingAccount] = useState(false);
   const [isAttendanceTrackerOpen, setIsAttendanceTrackerOpen] = useState(false);
   const [actionFeedback, setActionFeedback] = useState<{ text: string; tone: "error" | "loading" | "success" } | null>(null);
 
@@ -144,10 +142,9 @@ export function AdminDashboardPage() {
           getStaffSchedules(data.session.access_token),
           getCampusRooms(data.session.access_token),
           getStaffTasks(data.session.access_token),
-          getSwitchableAccounts(data.session.access_token),
           getStaffAttendanceEntries(data.session.access_token),
         ] as const);
-      const [sheetsResult, bookingsResult, schedulesResult, roomsResult, tasksResult, choicesResult, staffAttendanceResult] = results;
+      const [sheetsResult, bookingsResult, schedulesResult, roomsResult, tasksResult, staffAttendanceResult] = results;
       if (sheetsResult.status === "fulfilled") {
         setSheetsWebhookUrl(sheetsResult.value.webhookUrl);
         setSheetsConfigured(sheetsResult.value.configured);
@@ -156,7 +153,6 @@ export function AdminDashboardPage() {
       if (schedulesResult.status === "fulfilled") setStaffSchedules(schedulesResult.value);
       if (roomsResult.status === "fulfilled") setAdminRooms(roomsResult.value);
       if (tasksResult.status === "fulfilled") setTasks(tasksResult.value);
-      if (choicesResult.status === "fulfilled") setSwitchableAccounts(choicesResult.value);
       if (staffAttendanceResult.status === "fulfilled") setStaffAttendanceEntries(staffAttendanceResult.value);
 
       const failures = results.filter((result): result is PromiseRejectedResult => result.status === "rejected");
@@ -207,25 +203,8 @@ export function AdminDashboardPage() {
   }
 
   async function handleSignOut() {
-    if (isSupabaseConfigured) await getSupabaseClient().auth.signOut();
+    if (isSupabaseConfigured) await signOutCurrentAccount();
     window.location.assign("/");
-  }
-
-  async function handleSwitchAccount() {
-    const teacherAccount = switchableAccounts[0];
-    if (!accessToken || !teacherAccount) {
-      setMessage("No teacher account is available to switch to.");
-      return;
-    }
-    setIsSwitchingAccount(true);
-    setMessage("");
-    try {
-      await switchFromAdminToTeacher(accessToken, teacherAccount.id);
-      window.location.assign("/teacher");
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not switch accounts.");
-      setIsSwitchingAccount(false);
-    }
   }
 
   async function handleSaveSheets() {
@@ -615,7 +594,7 @@ export function AdminDashboardPage() {
   }).sort((first, second) => (first.startTime || "99:99").localeCompare(second.startTime || "99:99") || first.fullName.localeCompare(second.fullName));
 
   return (
-    <CorporateDashboardShell activeId="overview" isSwitchingAccount={isSwitchingAccount} navItems={navItems} onSignOut={handleSignOut} onSwitchAccount={switchableAccounts.length ? handleSwitchAccount : undefined} profileName={adminName} profileRole="Administrator account" switchAccountLabel="Switch to teacher">
+    <CorporateDashboardShell activeId="overview" enableAccountSwitcher navItems={navItems} onSignOut={handleSignOut} profileName={adminName} profileRole="Administrator account">
       <header className="staff-page-heading corporate-page-heading"><div><p><ShieldCheck size={15} /> Administration</p><h1>System administration</h1><span>Manage staff access separately from SHSAT instruction and student work.</span></div></header>
       {actionFeedback ? <div className={`admin-action-feedback is-${actionFeedback.tone}`} role="status"><span>{actionFeedback.tone === "loading" ? <RefreshCw className="is-spinning" size={17} /> : actionFeedback.tone === "success" ? <CheckCircle2 size={17} /> : <X size={17} />}</span><strong>{actionFeedback.text}</strong><button aria-label="Dismiss notification" onClick={() => setActionFeedback(null)} type="button"><X size={14} /></button></div> : null}
       <section className="staff-kpi-grid" aria-label="Administration summary">

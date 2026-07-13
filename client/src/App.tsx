@@ -1,11 +1,13 @@
 import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import { getStudentClasses } from "./lib/api";
+import { rememberAccountSession } from "./lib/accountSwitching";
 import { getUserRole } from "./lib/auth";
+import { cacheActiveSession, cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "./lib/sessionCache";
 import { getSupabaseClient, isSupabaseConfigured } from "./lib/supabase";
+import { AdaptivePracticePage } from "./pages/AdaptivePracticePage";
+import { StudentDashboardPage } from "./pages/StudentDashboardPage";
+import { StudyHallPage } from "./pages/StudyHallPage";
 
-const AdaptivePracticePage = lazy(() =>
-  import("./pages/AdaptivePracticePage").then((module) => ({ default: module.AdaptivePracticePage })),
-);
 const AdminDashboardPage = lazy(() =>
   import("./pages/AdminDashboardPage").then((module) => ({ default: module.AdminDashboardPage })),
 );
@@ -22,14 +24,8 @@ const ExamResultsPage = lazy(() =>
 const ExamSessionPage = lazy(() =>
   import("./pages/ExamSessionPage").then((module) => ({ default: module.ExamSessionPage })),
 );
-const StudentDashboardPage = lazy(() =>
-  import("./pages/StudentDashboardPage").then((module) => ({ default: module.StudentDashboardPage })),
-);
 const StaffDashboardPage = lazy(() =>
   import("./pages/StaffDashboardPage").then((module) => ({ default: module.StaffDashboardPage })),
-);
-const StudyHallPage = lazy(() =>
-  import("./pages/StudyHallPage").then((module) => ({ default: module.StudyHallPage })),
 );
 const TeacherDashboardPage = lazy(() =>
   import("./pages/TeacherDashboardPage").then((module) => ({ default: module.TeacherDashboardPage })),
@@ -39,22 +35,31 @@ const TopicPracticePage = lazy(() =>
 );
 
 function ClassAccessGate({ children }: { children: ReactNode }) {
-  const [isChecking, setIsChecking] = useState(isSupabaseConfigured);
+  const cachedSession = peekActiveSession();
+  const hasCachedAccess = Boolean(cachedSession && getCachedStudentClasses(cachedSession.user.id)?.some((studentClass) => studentClass.id === "shsat"));
+  const [isChecking, setIsChecking] = useState(isSupabaseConfigured && !hasCachedAccess);
   const isTeacherPreview = new URLSearchParams(window.location.search).get("preview") === "student";
 
   useEffect(() => {
     if (!isSupabaseConfigured) return;
-    getSupabaseClient().auth.getSession().then(async ({ data }) => {
-      if (!data.session) {
+    getActiveSession().then(async (session) => {
+      if (!session) {
         window.location.assign("/login");
         return;
       }
-      if (getUserRole(data.session.user) !== "student" || isTeacherPreview) {
+      if (getUserRole(session.user) !== "student" || isTeacherPreview) {
         setIsChecking(false);
         return;
       }
+      const cachedClasses = getCachedStudentClasses(session.user.id);
+      if (cachedClasses) {
+        if (!cachedClasses.some((studentClass) => studentClass.id === "shsat")) window.location.assign("/dashboard");
+        else setIsChecking(false);
+        return;
+      }
       try {
-        const classes = await getStudentClasses(data.session.access_token);
+        const classes = await getStudentClasses(session.access_token);
+        cacheStudentClasses(session.user.id, classes);
         if (!classes.some((studentClass) => studentClass.id === "shsat")) {
           window.location.assign("/dashboard");
           return;
@@ -81,11 +86,11 @@ function CurrentPage() {
   }
 
   if (path === "/study-hall") {
-    return withClassAccess(<AdaptivePracticePage />);
+    return <AdaptivePracticePage />;
   }
 
   if (path.startsWith("/study-hall/")) {
-    return withClassAccess(<StudentDashboardPage />);
+    return <StudentDashboardPage />;
   }
 
   if (path.startsWith("/advanced-practice/")) {
@@ -132,9 +137,30 @@ function CurrentPage() {
 }
 
 function App() {
+  const [location, setLocation] = useState(() => `${window.location.pathname}${window.location.search}${window.location.hash}`);
+
+  useEffect(() => {
+    function handleNavigation() {
+      setLocation(`${window.location.pathname}${window.location.search}${window.location.hash}`);
+    }
+    window.addEventListener("popstate", handleNavigation);
+    return () => window.removeEventListener("popstate", handleNavigation);
+  }, []);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) return;
+    const supabase = getSupabaseClient();
+    supabase.auth.getSession().then(({ data }) => cacheActiveSession(data.session));
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+      cacheActiveSession(session);
+      if (session) rememberAccountSession(session);
+    });
+    return () => data.subscription.unsubscribe();
+  }, []);
+
   return (
     <Suspense fallback={<main className="loading-shell">Loading...</main>}>
-      <CurrentPage />
+      <CurrentPage key={location} />
     </Suspense>
   );
 }

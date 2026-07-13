@@ -1,12 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { BarChart3, BookOpen, ClipboardList, Search, Sparkles, Target } from "lucide-react";
+import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
+import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { advancedPracticePassages } from "../content/advancedPractice";
 import { practiceTopics } from "../content/practice";
 import { getExamSessionProgress, getLearningProgress, getStudentAssessments, getStudentClasses, type ExamSessionProgress, type StudentAssessment } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getExamResults, replaceExamResults, type ExamResult } from "../lib/examResults";
-import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
+import { isSupabaseConfigured } from "../lib/supabase";
+import { cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "../lib/sessionCache";
 import { getStudentClassNavigation } from "../lib/studentClassNavigation";
 
 const pageSearchParams = new URLSearchParams(window.location.search);
@@ -17,7 +20,7 @@ const previewQuery = hasTeacherPreviewTools ? "?preview=student&teacherTools=1" 
 type LabSection = "Adaptive Practice" | "Advanced Practice" | "Assessments" | "Test Results";
 
 function getInitialSection(): LabSection {
-  const section = pageSearchParams.get("section");
+  const section = new URLSearchParams(window.location.search).get("section");
   if (section === "advanced") return "Advanced Practice";
   if (section === "assessments") return "Assessments";
   if (section === "results") return "Test Results";
@@ -185,41 +188,43 @@ function getSectionHeading(section: LabSection) {
 }
 
 export function AdaptivePracticePage() {
+  const initialSession = peekActiveSession();
+  const initialMetadata = initialSession?.user.user_metadata as { full_name?: string; name?: string } | undefined;
   const [activeSection] = useState<LabSection>(getInitialSection);
   const [assessmentMessage, setAssessmentMessage] = useState("");
   const [assessments, setAssessments] = useState<StudentAssessment[]>([]);
   const [examResults, setExamResults] = useState<ExamResult[]>([]);
   const [examSessions, setExamSessions] = useState<Record<string, ExamSessionProgress>>({});
-  const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
-  const [studentName, setStudentName] = useState("Student");
+  const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured && !initialSession);
+  const [studentName, setStudentName] = useState(initialMetadata?.full_name ?? initialMetadata?.name ?? initialSession?.user.email?.split("@")[0] ?? "Student");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
       return;
     }
 
-    getSupabaseClient().auth.getSession().then(async ({ data }) => {
-      if (!data.session) {
+    getActiveSession().then(async (session) => {
+      if (!session) {
         window.location.assign("/login");
         return;
       }
 
-      const userRole = getUserRole(data.session.user);
-      const metadata = data.session.user.user_metadata as { full_name?: string; name?: string };
-      setStudentName(metadata.full_name ?? metadata.name ?? data.session.user.email?.split("@")[0] ?? "Student");
-      let savedResults = getExamResults(data.session.user.id);
+      const userRole = getUserRole(session.user);
+      const metadata = session.user.user_metadata as { full_name?: string; name?: string };
+      setStudentName(metadata.full_name ?? metadata.name ?? session.user.email?.split("@")[0] ?? "Student");
+      let savedResults = getExamResults(session.user.id);
       try {
-        const cloudProgress = await getLearningProgress(data.session.access_token);
+        const cloudProgress = await getLearningProgress(session.access_token);
         if (cloudProgress.examResults.length > 0) {
-          replaceExamResults(data.session.user.id, cloudProgress.examResults as unknown as ExamResult[]);
-          savedResults = getExamResults(data.session.user.id);
+          replaceExamResults(session.user.id, cloudProgress.examResults as unknown as ExamResult[]);
+          savedResults = getExamResults(session.user.id);
         }
       } catch {
         // Local results remain available while offline.
       }
       setExamResults(savedResults);
       try {
-        setExamSessions(await getExamSessionProgress(data.session.access_token));
+        setExamSessions(await getExamSessionProgress(session.access_token));
       } catch {
         // Assessment cards can still load when session progress is temporarily unavailable.
       }
@@ -231,7 +236,8 @@ export function AdaptivePracticePage() {
 
       if (userRole === "student") {
         try {
-          const studentClasses = await getStudentClasses(data.session.access_token);
+          const studentClasses = getCachedStudentClasses(session.user.id) ?? await getStudentClasses(session.access_token);
+          cacheStudentClasses(session.user.id, studentClasses);
           const isInShsat = studentClasses.some((studentClass) => studentClass.id === "shsat");
 
           if (!isInShsat) {
@@ -245,7 +251,7 @@ export function AdaptivePracticePage() {
       }
 
       try {
-        const nextAssessments = await getStudentAssessments(data.session.access_token);
+        const nextAssessments = await getStudentAssessments(session.access_token);
         setAssessments(nextAssessments);
       } catch (error) {
         setAssessmentMessage(error instanceof Error ? error.message : "Could not load assessments.");
@@ -257,7 +263,7 @@ export function AdaptivePracticePage() {
 
   async function handleSignOut() {
     if (isSupabaseConfigured) {
-      await getSupabaseClient().auth.signOut();
+      await signOutCurrentAccount();
     }
 
     window.location.assign("/");
@@ -283,7 +289,7 @@ export function AdaptivePracticePage() {
     <CorporateDashboardShell activeId={activeId} navItems={navItems} onSignOut={handleSignOut} profileName={studentName} profileRole={isStudentPreview ? "Teacher preview" : "Student account"} returnHref={isStudentPreview ? "/teacher" : undefined} returnLabel="Teacher dashboard">
       <header className="staff-page-heading corporate-page-heading shsat-lab-heading">
         <div><p><BookOpen size={15} /> SHSAT Lab</p><h1>{sectionHeading.title}</h1><span>{sectionHeading.description}</span></div>
-        <a className="corporate-heading-action" href={getLabHref("advanced")}><Sparkles size={15} /> Browse advanced practice</a>
+        <AppLink className="corporate-heading-action" href={getLabHref("advanced")}><Sparkles size={15} /> Browse advanced practice</AppLink>
       </header>
       <section className="staff-kpi-grid" aria-label="SHSAT learning summary">
         <article><span><Target size={19} /></span><div><p>Practice topics</p><strong>{practiceTopics.length}</strong></div><em>Four difficulty levels</em></article>
@@ -539,7 +545,7 @@ function TopicsSection({ results }: { results: ExamResult[] }) {
             const isFocus = topic.key === focusTopic.key;
 
             return (
-              <a
+              <AppLink
                 className={`topic-card is-${topic.status.key} ${isFocus ? "is-selected" : ""}`}
                 href={getTopicHref(topic.slug)}
                 key={topic.key}
@@ -565,7 +571,7 @@ function TopicsSection({ results }: { results: ExamResult[] }) {
                     <span>{topic.percentage}%</span>
                   ) : null}
                 </div>
-              </a>
+              </AppLink>
             );
           })}
         </div>
@@ -577,7 +583,7 @@ function TopicsSection({ results }: { results: ExamResult[] }) {
             <strong>{focusTopic.title}</strong>
             <p>{focusTopic.description}</p>
           </div>
-          <a href={getTopicHref(focusTopic.slug)}>Start focused practice</a>
+          <AppLink href={getTopicHref(focusTopic.slug)}>Start focused practice</AppLink>
         </div>
       </div>
     </section>
@@ -628,18 +634,18 @@ function AssessmentsSection({
             </div>
             <div className="assessment-card-actions">
               {assessment.status === "open" ? (
-                <a className="assessment-start-link" href={getAssessmentStartHref(assessment.id)}>
+                <AppLink className="assessment-start-link" href={getAssessmentStartHref(assessment.id)}>
                   {englishComplete && !resultIsComplete ? "Start Math" : resultIsComplete ? "Retake exam" : assessment.split ? "Start English" : "Start exam"}
-                </a>
+                </AppLink>
               ) : (
                 <button disabled type="button">
                   Locked by teacher
                 </button>
               )}
               {result ? (
-                <a className="assessment-result-link" href={getAssessmentResultHref(assessment.id)}>
+                <AppLink className="assessment-result-link" href={getAssessmentResultHref(assessment.id)}>
                   {result.completionStatus === "english_complete" ? "English score" : "Results"}: {result.correct}/{result.total}
-                </a>
+                </AppLink>
               ) : null}
             </div>
           </article>
@@ -673,9 +679,9 @@ function ResultsSection({ results }: { results: ExamResult[] }) {
               <p>
                 {result.correct} of {result.total} questions correct across {result.topics.length} topics.
               </p>
-              <a className="assessment-result-link" href={getAssessmentResultHref(result.assessmentId)}>
+              <AppLink className="assessment-result-link" href={getAssessmentResultHref(result.assessmentId)}>
                 View breakdown
-              </a>
+              </AppLink>
             </article>
           ))}
         </div>
