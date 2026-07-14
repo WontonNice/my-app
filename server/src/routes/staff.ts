@@ -604,6 +604,55 @@ staffRouter.put("/classes/:accountId", async (request, response) => {
     response.json({ classes, dashboardData: nextDashboardData });
 });
 
+staffRouter.put("/swimming/:accountId/:studentId", async (request, response) => {
+    const admin = await requireAdmin(request.headers.authorization);
+    if (admin.error || !admin.user) {
+        response.status(admin.error === "Administrator access is required." ? 403 : 401).json({ message: admin.error });
+        return;
+    }
+
+    const targetResult = await supabase.auth.admin.getUserById(request.params.accountId);
+    const target = targetResult.data.user;
+    if (targetResult.error || !target || getUserRole(target) !== "staff") {
+        response.status(404).json({ message: "Staff account was not found." });
+        return;
+    }
+
+    const dashboardData = readDashboardData(target);
+    const storedRoster = Array.isArray(dashboardData.roster) ? dashboardData.roster as Record<string, unknown>[] : [];
+    const roster = target.user_metadata.username === "pss5" && storedRoster.length === 0 ? boazRoster : storedRoster;
+    if (!roster.some((student) => student.id === request.params.studentId)) {
+        response.status(404).json({ message: "Student was not found on this roster." });
+        return;
+    }
+    if (typeof request.body?.waiverComplete !== "boolean" || typeof request.body?.paidFee !== "boolean") {
+        response.status(400).json({ message: "Swimming waiver and fee values must be checked or unchecked." });
+        return;
+    }
+
+    const storedSwimmingRecords = dashboardData.swimmingRecords && typeof dashboardData.swimmingRecords === "object" && !Array.isArray(dashboardData.swimmingRecords)
+        ? dashboardData.swimmingRecords as Record<string, unknown>
+        : {};
+    const status = {
+        paidFee: request.body.paidFee as boolean,
+        waiverComplete: request.body.waiverComplete as boolean,
+    };
+    const nextDashboardData = {
+        ...dashboardData,
+        roster,
+        swimmingRecords: { ...storedSwimmingRecords, [request.params.studentId]: status },
+    };
+    const saved = await supabase.auth.admin.updateUserById(target.id, {
+        user_metadata: { ...target.user_metadata, dashboard_data: nextDashboardData },
+    });
+    if (saved.error) {
+        response.status(400).json({ message: saved.error.message });
+        return;
+    }
+
+    response.json({ dashboardData: nextDashboardData, status });
+});
+
 staffRouter.put("/roster/:accountId", async (request, response) => {
     const admin = await requireAdmin(request.headers.authorization);
     if (admin.error || !admin.user) {
@@ -695,10 +744,15 @@ staffRouter.delete("/roster/:accountId/:studentId", async (request, response) =>
             return [date, nextRecord];
         }))
         : dashboardData.attendanceRecords;
+    const swimmingRecords = dashboardData.swimmingRecords && typeof dashboardData.swimmingRecords === "object" && !Array.isArray(dashboardData.swimmingRecords)
+        ? { ...(dashboardData.swimmingRecords as Record<string, unknown>) }
+        : {};
+    delete swimmingRecords[request.params.studentId];
     const nextDashboardData = {
         ...dashboardData,
         attendanceRecords,
         roster: roster.filter((item) => item.id !== request.params.studentId),
+        swimmingRecords,
     };
     const saved = await supabase.auth.admin.updateUserById(target.id, {
         user_metadata: { ...target.user_metadata, dashboard_data: nextDashboardData },

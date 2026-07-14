@@ -5729,6 +5729,59 @@ button {
 .staff-attendance-mini-summary .is-late strong { color: #a36c17; }
 .staff-attendance-mini-summary .is-absent strong { color: #aa4141; }
 
+.staff-attendance-grade-summary {
+  overflow: hidden;
+  border: 1px solid #dfe5ea;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.staff-attendance-grade-summary > header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid #e7ebef;
+  background: #f8fafb;
+  padding: 14px 16px;
+}
+
+.staff-attendance-grade-summary header > div { display: grid; gap: 2px; }
+.staff-attendance-grade-summary header span { color: #28796f; font-size: 0.58rem; font-weight: 850; letter-spacing: 0.06em; text-transform: uppercase; }
+.staff-attendance-grade-summary h3 { margin: 0; color: #263b52; font-size: 0.9rem; }
+.staff-attendance-grade-summary header small { color: #758296; font-size: 0.62rem; }
+.staff-attendance-grade-table-wrap { overflow-x: auto; }
+.staff-attendance-grade-summary table { width: 100%; border-collapse: collapse; }
+.staff-attendance-grade-summary th,
+.staff-attendance-grade-summary td { border-bottom: 1px solid #edf0f3; color: #536277; font-size: 0.7rem; padding: 11px 16px; text-align: left; }
+.staff-attendance-grade-summary thead th { background: #ffffff; color: #758296; font-size: 0.58rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.staff-attendance-grade-summary tbody th { color: #2b4057; }
+.staff-attendance-grade-summary tbody td { font-weight: 750; }
+.staff-attendance-grade-summary tbody tr:last-child > * { border-bottom: 0; }
+.staff-attendance-grade-summary tbody tr.is-total > * { background: #edf7f4; color: #226f63; font-weight: 850; }
+
+.staff-swimming-panel { overflow: hidden; }
+.staff-swimming-total { border-radius: 999px; background: #e5f4f1; color: #27776b; font-size: 0.66rem; font-weight: 800; padding: 7px 11px; }
+.staff-swimming-progress { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; border-bottom: 1px solid #e6ebef; padding: 0 16px 16px; }
+.staff-swimming-progress span { display: flex; align-items: center; gap: 7px; border: 1px solid #d8e8e4; border-radius: 8px; background: #f3faf8; color: #587267; font-size: 0.67rem; padding: 11px 12px; }
+.staff-swimming-progress svg { color: #2b8677; }
+.staff-swimming-progress strong { color: #216e63; font-size: 0.9rem; }
+.staff-swimming-filters { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid #e6ebef; background: #f8fafb; padding: 11px 16px; }
+.staff-swimming-filters > span { margin-right: 2px; color: #718094; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; }
+.staff-swimming-filters button { display: inline-flex; align-items: center; gap: 6px; min-height: 34px; border: 1px solid #d7dfe6; border-radius: 999px; background: #fff; color: #657489; cursor: pointer; font-size: 0.64rem; font-weight: 750; padding: 0 11px; }
+.staff-swimming-filters button.is-active { border-color: #6db3a4; background: #e2f3ee; color: #257769; }
+.staff-swimming-filters button:not(.is-active) svg { opacity: 0.35; }
+.staff-swimming-filters em { margin-left: auto; color: #728095; font-size: 0.61rem; font-style: normal; font-weight: 750; }
+.staff-swimming-table-wrap { overflow-x: auto; }
+.staff-swimming-table { width: 100%; border-collapse: collapse; }
+.staff-swimming-table th,
+.staff-swimming-table td { border-bottom: 1px solid #e9edf1; color: #617085; font-size: 0.69rem; padding: 12px 16px; text-align: left; }
+.staff-swimming-table thead th { background: #f8fafb; color: #718094; font-size: 0.58rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.staff-swimming-table tbody th { display: flex; align-items: center; gap: 9px; min-width: 210px; color: #293f56; }
+.staff-swimming-table tbody tr:last-child > * { border-bottom: 0; }
+.staff-swimming-check { display: grid; width: 28px; height: 28px; border: 1px solid #d6dee5; border-radius: 7px; background: #f8fafb; color: transparent; place-items: center; }
+.staff-swimming-check.is-checked { border-color: #83c6b7; background: #e5f5f0; color: #277c6d; }
+
 .staff-attendance-message {
   margin: 0 0 12px;
   border: 1px solid #bfe0d7;
@@ -8660,7 +8713,8 @@ button {
 @keyframes admin-spin { to { transform: rotate(360deg); } }
 
 .admin-roster-panel,
-.admin-bookings-panel { margin-bottom: 20px; }
+.admin-bookings-panel,
+.admin-swimming-panel { margin-bottom: 20px; }
 .admin-roster-account { display: grid; gap: 7px; margin-bottom: 16px; color: #627186; font-size: 0.68rem; font-weight: 750; }
 .admin-roster-account select { min-height: 42px; border: 1px solid #d7dfe7; border-radius: 7px; background: #fff; color: #21354d; padding: 0 12px; }
 .admin-roster-toolbar { display: grid; grid-template-columns: minmax(220px, 1fr) auto; gap: 12px; align-items: end; }
@@ -8685,6 +8739,24 @@ button {
 .admin-roster-actions { display: flex !important; align-items: center; gap: 6px !important; }
 .admin-roster-list button { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #d3dce5; border-radius: 6px; background: #fff; color: #3d526a; font-size: 0.62rem; font-weight: 750; padding: 7px 9px; }
 .admin-roster-list button.is-danger { border-color: #e4caca; color: #9c4141; }
+.admin-swimming-table-wrap { overflow-x: auto; border: 1px solid #e0e6eb; border-radius: 9px; }
+.admin-swimming-table { width: 100%; border-collapse: collapse; }
+.admin-swimming-table th,
+.admin-swimming-table td { border-bottom: 1px solid #e9edf1; color: #637286; font-size: 0.68rem; padding: 12px 14px; text-align: left; }
+.admin-swimming-table thead th { background: #f8fafb; color: #718094; font-size: 0.58rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.admin-swimming-table tbody th { display: flex; align-items: center; gap: 9px; min-width: 210px; }
+.admin-swimming-table tbody th > span { display: grid; width: 34px; height: 34px; border-radius: 50%; background: #e6f3f0; color: #28786c; font-size: 0.64rem; font-weight: 800; place-items: center; }
+.admin-swimming-table tbody th strong { color: #283d54; font-size: 0.74rem; }
+.admin-swimming-table tbody tr:last-child > * { border-bottom: 0; }
+.admin-swimming-table-wrap > p { margin: 0; color: #748195; font-size: 0.68rem; padding: 16px; }
+.admin-swimming-checkbox { position: relative; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+.admin-swimming-checkbox input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.admin-swimming-checkbox > span { display: grid; width: 29px; height: 29px; border: 1px solid #d4dde5; border-radius: 7px; background: #f8fafb; color: transparent; place-items: center; }
+.admin-swimming-checkbox em { color: #788598; font-size: 0.62rem; font-style: normal; font-weight: 750; }
+.admin-swimming-checkbox.is-checked > span { border-color: #6db3a4; background: #dff2ed; color: #277a6b; }
+.admin-swimming-checkbox.is-checked em { color: #277a6b; }
+.admin-swimming-checkbox:focus-within > span { outline: 3px solid rgb(45 135 121 / 16%); outline-offset: 2px; }
+.admin-swimming-checkbox:has(input:disabled) { cursor: wait; opacity: 0.65; }
 .admin-booking-list { display: grid; gap: 10px; }
 .admin-booking-list > article { display: grid; grid-template-columns: minmax(120px, 0.35fr) 1fr auto; gap: 16px; align-items: center; border: 1px solid #e0e6eb; border-radius: 8px; background: #fbfcfd; padding: 14px; }
 .admin-booking-room,

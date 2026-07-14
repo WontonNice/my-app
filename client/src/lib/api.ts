@@ -84,6 +84,7 @@ export type StaffDashboardData = {
   attendanceRecords?: Record<string, Record<string, "Absent" | "Late" | "Present" | "Unmarked">>;
   classes?: string[];
   schedule?: ScheduleItem[];
+  swimmingRecords?: Record<string, SwimmingStatus>;
   roster: {
     allergies?: string;
     assignment: string;
@@ -101,6 +102,11 @@ export type StaffDashboardData = {
     earlyPickupTimes?: Record<string, string>;
     vanRide?: "none" | "2pm" | "5pm";
   }[];
+};
+
+export type SwimmingStatus = {
+  paidFee: boolean;
+  waiverComplete: boolean;
 };
 
 export type ScheduleItem = {
@@ -236,6 +242,17 @@ export async function saveStaffClasses(accessToken: string, accountId: string, c
     body: JSON.stringify({ classes }), headers: createAuthHeaders(accessToken), method: "PUT",
   });
   return data;
+}
+
+export async function saveSwimmingStatus(accessToken: string, accountId: string, studentId: string, status: SwimmingStatus) {
+  return requestApi<{ dashboardData: StaffDashboardData; status: SwimmingStatus }>(
+    `/api/staff/swimming/${encodeURIComponent(accountId)}/${encodeURIComponent(studentId)}`,
+    {
+      body: JSON.stringify(status),
+      headers: createAuthHeaders(accessToken),
+      method: "PUT",
+    },
+  );
 }
 
 export async function getStaffSchedules(accessToken: string) {

@@ -145,6 +145,23 @@ function normalizeClasses(value: unknown) {
         : [];
 }
 
+function normalizeSwimmingRecords(value: unknown) {
+    if (!isRecord(value)) return {};
+
+    return Object.fromEntries(
+        Object.entries(value).filter(([, status]) => isRecord(status)).map(([studentId, value]) => {
+            const status = value as Record<string, unknown>;
+            return [
+                studentId,
+                {
+                    paidFee: status.paidFee === true,
+                    waiverComplete: status.waiverComplete === true,
+                },
+            ];
+        }),
+    );
+}
+
 function normalizeRoster(value: unknown, username: string) {
     const rawRoster = Array.isArray(value) ? value.filter(isRecord) : [];
     const roster = username === "pss5" && rawRoster.length === 0 ? boazRoster : rawRoster;
@@ -192,6 +209,7 @@ function normalizeDashboardData(value: unknown, username: string) {
         attendanceRecords: normalizeAttendanceRecords(rawDashboardData.attendanceRecords),
         classes: normalizeClasses(rawDashboardData.classes),
         roster: normalizeRoster(rawDashboardData.roster, username),
+        swimmingRecords: normalizeSwimmingRecords(rawDashboardData.swimmingRecords),
     };
 }
 

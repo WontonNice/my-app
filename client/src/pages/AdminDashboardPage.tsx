@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { CalendarDays, Check, CheckCircle2, ClipboardCheck, Cloud, Copy, Eye, FileSpreadsheet, LayoutDashboard, ListTodo, Pencil, Plus, RefreshCw, ShieldCheck, Trash2, UserCog, UserRoundPlus, Users, X } from "lucide-react";
+import { CalendarDays, Check, CheckCircle2, ClipboardCheck, Cloud, Copy, Eye, FileSpreadsheet, LayoutDashboard, ListTodo, Pencil, Plus, RefreshCw, ShieldCheck, Trash2, UserCog, UserRoundPlus, Users, Waves, X } from "lucide-react";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
-import { assignStaffAccount, createStaffTask, deleteRoomBooking, deleteRosterStudent, deleteStaffAttendanceEntry, deleteStaffTask, getCampusRooms, getGoogleSheetsAttendanceSettings, getRoomBookings, getStaffAccounts, getStaffAttendanceEntries, getStaffSchedules, getStaffTasks, requestRoomBooking, reviewRoomBooking, saveCampusRooms, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffAttendanceEntry, saveStaffClasses, saveStaffSchedule, syncGoogleSheetsAttendance, updateRoomBooking, updateStaffAccount, updateStaffTask, type CampusRoom, type RoomBooking, type ScheduleItem, type StaffAccount, type StaffAttendanceEntry, type StaffSchedule, type StaffTask } from "../lib/api";
+import { assignStaffAccount, createStaffTask, deleteRoomBooking, deleteRosterStudent, deleteStaffAttendanceEntry, deleteStaffTask, getCampusRooms, getGoogleSheetsAttendanceSettings, getRoomBookings, getStaffAccounts, getStaffAttendanceEntries, getStaffSchedules, getStaffTasks, requestRoomBooking, reviewRoomBooking, saveCampusRooms, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffAttendanceEntry, saveStaffClasses, saveStaffSchedule, saveSwimmingStatus, syncGoogleSheetsAttendance, updateRoomBooking, updateStaffAccount, updateStaffTask, type CampusRoom, type RoomBooking, type ScheduleItem, type StaffAccount, type StaffAttendanceEntry, type StaffSchedule, type StaffTask } from "../lib/api";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
@@ -66,6 +66,7 @@ export function AdminDashboardPage() {
   const [isLoading, setIsLoading] = useState(isSupabaseConfigured);
   const [isSaving, setIsSaving] = useState(false);
   const [isSavingStudent, setIsSavingStudent] = useState(false);
+  const [savingSwimmingStudentId, setSavingSwimmingStudentId] = useState("");
   const [message, setMessage] = useState("");
   const [staffAccounts, setStaffAccounts] = useState<StaffAccount[]>([]);
   const [selectedStaffId, setSelectedStaffId] = useState("");
@@ -498,6 +499,23 @@ export function AdminDashboardPage() {
     }
   }
 
+  async function handleSwimmingToggle(studentId: string, field: "paidFee" | "waiverComplete") {
+    if (!accessToken || !selectedAccount || savingSwimmingStudentId) return;
+    const currentStatus = selectedAccount.dashboardData.swimmingRecords?.[studentId] ?? { paidFee: false, waiverComplete: false };
+    const nextStatus = { ...currentStatus, [field]: !currentStatus[field] };
+    setSavingSwimmingStudentId(studentId);
+    setMessage("");
+    try {
+      const result = await saveSwimmingStatus(accessToken, selectedAccount.id, studentId, nextStatus);
+      setStaffAccounts((current) => current.map((account) => account.id === selectedAccount.id ? { ...account, dashboardData: result.dashboardData } : account));
+      setMessage("Swimming record saved to the database.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not save the swimming record.");
+    } finally {
+      setSavingSwimmingStudentId("");
+    }
+  }
+
   async function handleDeleteBooking(bookingId: string) {
     if (!accessToken) return;
     if (!window.confirm("Delete this room booking? This action cannot be undone.")) return;
@@ -552,6 +570,7 @@ export function AdminDashboardPage() {
     { id: "attendance", label: "Attendance", href: "#attendance-overview", icon: CalendarDays },
     { id: "staff-attendance", label: "Staff attendance", href: "#staff-attendance", icon: ClipboardCheck },
     { id: "roster", label: "Student rosters", href: "#student-roster", icon: Users },
+    { id: "swimming", label: "Swimming", href: "#swimming-management", icon: Waves },
     { id: "schedules", label: "Staff schedules", href: "#staff-schedules", icon: CalendarDays },
     { id: "bookings", label: "Room approvals", href: "#room-approvals", icon: ClipboardCheck },
     { id: "tasks", label: "Staff tasks", href: "#staff-tasks", icon: ListTodo },
@@ -660,6 +679,21 @@ export function AdminDashboardPage() {
             <div className="admin-sheets-actions"><button disabled={isSavingStudent || !assignedClasses.length} type="submit">{isSavingStudent ? <RefreshCw className="is-spinning" size={16} /> : <Check size={16} />} {isSavingStudent ? "Saving student…" : editingStudentId ? "Save changes" : "Add to roster"}</button>{editingStudentId ? <button className="is-secondary" onClick={() => { setEditingStudentId(""); setStudentDraft({ allergies: "", className: "", dob: "", firstName: "", lastName: "", specialNotes: "" }); }} type="button">Cancel</button> : null}</div>
           </form>
           <div className="admin-roster-list">{sortedRosterRows.length ? sortedRosterRows.map((student) => <article key={student.id}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)} · DOB {student.dob || "Not entered"}</small><p>{student.specialNotes || "No special notes"}</p></div><div className="admin-roster-actions"><button onClick={() => beginEditingStudent(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-danger" onClick={() => handleDeleteStudent(student)} type="button"><Trash2 size={14} /> Remove</button></div></article>) : <p>No students are assigned to this staff member.</p>}</div>
+        </div>
+      </section>
+      <section className="teacher-panel admin-swimming-panel" id="swimming-management">
+        <div className="teacher-panel-header"><div><span>Swimming readiness</span><h2>Swimming roster</h2></div><p>Check off each student&apos;s completed waiver and paid program fee. Changes save immediately.</p></div>
+        <label className="admin-roster-account">Staff member<select value={selectedAccount?.id ?? ""} onChange={(event) => setSelectedStaffId(event.target.value)}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
+        <div className="admin-swimming-table-wrap">
+          <table className="admin-swimming-table">
+            <thead><tr><th scope="col">Student</th><th scope="col">Class</th><th scope="col">Waiver complete</th><th scope="col">Paid fee</th></tr></thead>
+            <tbody>{sortedRosterRows.map((student) => {
+              const status = selectedAccount?.dashboardData.swimmingRecords?.[student.id] ?? { paidFee: false, waiverComplete: false };
+              const isSavingStatus = savingSwimmingStudentId === student.id;
+              return <tr key={student.id}><th scope="row"><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><strong>{student.name}</strong></th><td>{student.className ?? gradeClassName(student.grade)}</td><td><label className={`admin-swimming-checkbox${status.waiverComplete ? " is-checked" : ""}`}><input checked={status.waiverComplete} disabled={Boolean(savingSwimmingStudentId)} onChange={() => handleSwimmingToggle(student.id, "waiverComplete")} type="checkbox" /><span>{status.waiverComplete ? <Check size={15} /> : null}</span><em>{isSavingStatus ? "Saving…" : status.waiverComplete ? "Complete" : "Incomplete"}</em></label></td><td><label className={`admin-swimming-checkbox${status.paidFee ? " is-checked" : ""}`}><input checked={status.paidFee} disabled={Boolean(savingSwimmingStudentId)} onChange={() => handleSwimmingToggle(student.id, "paidFee")} type="checkbox" /><span>{status.paidFee ? <Check size={15} /> : null}</span><em>{isSavingStatus ? "Saving…" : status.paidFee ? "Paid" : "Unpaid"}</em></label></td></tr>;
+            })}</tbody>
+          </table>
+          {!sortedRosterRows.length ? <p>No students are assigned to this staff member.</p> : null}
         </div>
       </section>
       <section className="teacher-panel admin-schedule-panel" id="staff-schedules">

@@ -21,6 +21,7 @@ import {
   Trash2,
   UserCheck,
   Users,
+  Waves,
   X,
 } from "lucide-react";
 import { getDashboardPath, getUserRole } from "../lib/auth";
@@ -28,13 +29,14 @@ import { deleteRoomBooking, getCampusRooms, getRoomBookings, getStaffAccounts, g
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 import { getFloorName } from "../lib/rooms";
 
-type StaffTab = "attendance" | "schedule" | "25live" | "roster" | "dismissal" | "tasks";
+type StaffTab = "attendance" | "schedule" | "25live" | "roster" | "swimming" | "dismissal" | "tasks";
 
 const staffTabs = [
   { id: "attendance", label: "Attendance", icon: UserCheck },
   { id: "schedule", label: "Schedule", icon: CalendarDays },
   { id: "25live", label: "25Live", icon: Building2 },
   { id: "roster", label: "Roster", icon: Users },
+  { id: "swimming", label: "Swimming", icon: Waves },
   { id: "dismissal", label: "Dismissal", icon: Bus },
   { id: "tasks", label: "Tasks", icon: ListTodo },
 ] as const;
@@ -117,6 +119,12 @@ function getStudentClass(student: StaffDashboardData["roster"][number]) {
   return `${grade}${suffix} Grade`;
 }
 
+function getStudentGradeLabel(student: StaffDashboardData["roster"][number]) {
+  const storedGrade = student.grade.trim();
+  const grade = storedGrade || student.className?.match(/\d+/)?.[0] || "";
+  return grade ? `Grade ${grade}` : "Unassigned";
+}
+
 function hasAllergyAlert(value: string | undefined) {
   const normalized = value?.trim().toLowerCase();
   return Boolean(normalized && !["none", "no", "n/a", "na", "none known", "no allergies"].includes(normalized));
@@ -148,6 +156,16 @@ function AttendancePanel({
   const late = values.filter((status) => status === "Late").length;
   const absent = values.filter((status) => status === "Absent").length;
   const marked = present + late + absent;
+  const totalPresent = present + late;
+  const attendanceByGrade = Array.from(data.roster.reduce((summaries, student) => {
+    const grade = getStudentGradeLabel(student);
+    const current = summaries.get(grade) ?? { grade, present: 0, total: 0 };
+    const status = statuses[student.id] ?? "Unmarked";
+    current.total += 1;
+    if (status === "Present" || status === "Late") current.present += 1;
+    summaries.set(grade, current);
+    return summaries;
+  }, new Map<string, { grade: string; present: number; total: number }>()).values()).sort((first, second) => first.grade.localeCompare(second.grade, undefined, { numeric: true }));
   const sortedRoster = [...data.roster].sort((first, second) => {
     const firstParts = first.name.trim().split(/\s+/);
     const secondParts = second.name.trim().split(/\s+/);
@@ -183,6 +201,18 @@ function AttendancePanel({
         <footer className="staff-attendance-savebar"><div><Cloud size={17} /><span><strong>Permanent record</strong><small>{isFutureLocked ? "Future dates are locked" : "Saved securely to Supabase"}</small></span></div><button disabled={isSaving || marked === 0 || isFutureLocked} onClick={onSave} type="button"><Save size={16} /> {isSaving ? "Saving…" : "Save attendance"}</button></footer>
       </article>
       <aside className="staff-attendance-mini-summary"><div><strong>{marked}/{data.roster.length}</strong><span>Marked</span></div><div className="is-present"><strong>{present}</strong><span>Present</span></div><div className="is-late"><strong>{late}</strong><span>Late</span></div><div className="is-absent"><strong>{absent}</strong><span>Absent</span></div></aside>
+      <section className="staff-attendance-grade-summary" aria-labelledby="attendance-grade-summary-title">
+        <header><div><span>Attendance summary</span><h3 id="attendance-grade-summary-title">Present by grade</h3></div><small>Late arrivals count as present.</small></header>
+        <div className="staff-attendance-grade-table-wrap">
+          <table>
+            <thead><tr><th scope="col">Grade</th><th scope="col">Present</th><th scope="col">Students</th></tr></thead>
+            <tbody>
+              <tr className="is-total"><th scope="row">All grades</th><td>{totalPresent}</td><td>{data.roster.length}</td></tr>
+              {attendanceByGrade.map((summary) => <tr key={summary.grade}><th scope="row">{summary.grade}</th><td>{summary.present}</td><td>{summary.total}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </section>
   );
 }
@@ -323,6 +353,37 @@ function StudentRosterPanel({ rows }: { rows: StaffDashboardData["roster"] }) {
   );
 }
 
+function SwimmingPanel({ data }: { data: StaffDashboardData }) {
+  const [showOnlyPaidFees, setShowOnlyPaidFees] = useState(false);
+  const [showOnlyWaiverComplete, setShowOnlyWaiverComplete] = useState(false);
+  const rows = [...data.roster].sort((first, second) => first.name.localeCompare(second.name));
+  const waiverCount = rows.filter((student) => data.swimmingRecords?.[student.id]?.waiverComplete).length;
+  const paidCount = rows.filter((student) => data.swimmingRecords?.[student.id]?.paidFee).length;
+  const visibleRows = rows.filter((student) => {
+    const status = data.swimmingRecords?.[student.id];
+    return (!showOnlyWaiverComplete || status?.waiverComplete) && (!showOnlyPaidFees || status?.paidFee);
+  });
+  const isFiltered = showOnlyPaidFees || showOnlyWaiverComplete;
+
+  return (
+    <section className="staff-panel staff-swimming-panel">
+      <header className="staff-panel-header"><div><p>Swimming</p><h2>Class swimming roster</h2><small>Waiver and fee records are managed by an administrator.</small></div><span className="staff-swimming-total">{rows.length} students</span></header>
+      <div className="staff-swimming-progress" aria-label="Swimming readiness summary"><span><CheckCircle2 size={16} /><strong>{waiverCount}</strong> waivers complete</span><span><CheckCircle2 size={16} /><strong>{paidCount}</strong> fees paid</span></div>
+      <div className="staff-swimming-filters" aria-label="Filter swimming roster"><span>Show only</span><button aria-pressed={showOnlyWaiverComplete} className={showOnlyWaiverComplete ? "is-active" : ""} onClick={() => setShowOnlyWaiverComplete((current) => !current)} type="button"><CheckCircle2 size={15} /> Complete waivers</button><button aria-pressed={showOnlyPaidFees} className={showOnlyPaidFees ? "is-active" : ""} onClick={() => setShowOnlyPaidFees((current) => !current)} type="button"><CheckCircle2 size={15} /> Paid fees</button><em>{visibleRows.length} shown</em></div>
+      <div className="staff-swimming-table-wrap">
+        <table className="staff-swimming-table">
+          <thead><tr><th scope="col">Student</th><th scope="col">Class</th><th scope="col">Waiver complete</th><th scope="col">Paid fee</th></tr></thead>
+          <tbody>{visibleRows.map((student) => {
+            const status = data.swimmingRecords?.[student.id];
+            return <tr key={student.id}><th scope="row"><span className="staff-avatar">{getInitials(student.name)}</span><strong>{student.name}</strong></th><td>{getStudentClass(student)}</td><td><span aria-label={status?.waiverComplete ? "Waiver complete" : "Waiver incomplete"} className={`staff-swimming-check${status?.waiverComplete ? " is-checked" : ""}`}>{status?.waiverComplete ? <CheckCircle2 size={18} /> : null}</span></td><td><span aria-label={status?.paidFee ? "Fee paid" : "Fee unpaid"} className={`staff-swimming-check${status?.paidFee ? " is-checked" : ""}`}>{status?.paidFee ? <CheckCircle2 size={18} /> : null}</span></td></tr>;
+          })}</tbody>
+        </table>
+        {!visibleRows.length ? <p className="staff-empty-state">{isFiltered ? "No students match the selected swimming filters." : "No students are assigned to this class roster."}</p> : null}
+      </div>
+    </section>
+  );
+}
+
 function DismissalPanel({ date, isSaving, onChangeDate, onUpdate, rows }: { date: string; isSaving: string; onChangeDate: (date: string) => void; onUpdate: (student: StaffDashboardData["roster"][number], update: { date?: string; pickedUpEarly?: boolean; pickupTime?: string; vanRide?: "none" | "2pm" | "5pm" }) => void; rows: StaffDashboardData["roster"] }) {
   const [pickupTimeDrafts, setPickupTimeDrafts] = useState<Record<string, string>>({});
   const earlyCount = rows.filter((student) => student.earlyPickupDates?.includes(date)).length;
@@ -331,6 +392,8 @@ function DismissalPanel({ date, isSaving, onChangeDate, onUpdate, rows }: { date
   const isFuture = date > new Date().toLocaleDateString("en-CA");
 
   useEffect(() => {
+    // Hydrate the editable pickup-time draft when the roster date changes.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPickupTimeDrafts(Object.fromEntries(rows.map((student) => [student.id, student.earlyPickupTimes?.[date] ?? ""])));
   }, [date, rows]);
 
@@ -604,6 +667,7 @@ export function StaffDashboardPage() {
           {activeTab === "schedule" ? <SchedulePanel schedules={staffSchedules} selectedId={selectedScheduleId} onSelect={setSelectedScheduleId} /> : null}
           {activeTab === "25live" ? <InteractiveTwentyFiveLivePanel accessToken={accessToken} bookings={roomBookings} canBook={Boolean(accessToken)} currentUserId={staffAccountId} onBookingCreated={(createdBookings) => setRoomBookings((current) => [...current, ...createdBookings])} onBookingRemoved={(bookingId) => setRoomBookings((current) => current.filter((booking) => booking.id !== bookingId))} rooms={campusRooms} /> : null}
           {activeTab === "roster" ? <StudentRosterPanel rows={dashboardData.roster} /> : null}
+          {activeTab === "swimming" ? <SwimmingPanel data={dashboardData} /> : null}
           {activeTab === "dismissal" ? <DismissalPanel date={dismissalDate} isSaving={savingDismissalId} onChangeDate={setDismissalDate} onUpdate={handleDismissalUpdate} rows={dashboardData.roster} /> : null}
           {activeTab === "tasks" ? <StaffTasksPanel onToggle={handleToggleTask} tasks={visibleStaffTasks} /> : null}
         </div>
