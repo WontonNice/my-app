@@ -21,8 +21,11 @@
         "typecheck:server": "npm run typecheck --workspace server",
         "start": "npm run start --workspace server",
         "seed:students": "npm run seed:students --workspace server",
+        "migrate:staff-dashboard": "node server/scripts/migrate-staff-dashboard-data.mjs",
+        "migrate:staff-dashboard:compact": "node server/scripts/migrate-staff-dashboard-data.mjs --compact",
         "lint": "npm run lint --workspace client",
         "lint:client": "npm run lint --workspace client",
+        "verify": "npm run typecheck && npm run lint && npm run build",
         "preview": "npm run preview --workspace client",
         "question-editor": "node tools/question-bank-editor.mjs",
         "question-editor:validate": "node tools/question-bank-editor.mjs --validate"

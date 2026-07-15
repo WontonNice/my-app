@@ -1,3 +1,5 @@
+import { getSupabaseClient, isSupabaseConfigured } from "./supabase";
+
 // Production serves the client and API from the same Render service. Only use
 // the configurable base URL during local Vite development so a checked-in or
 // machine-local localhost value can never leak into the production bundle.
@@ -82,6 +84,7 @@ export type StaffDashboardData = {
     time: string;
   }[];
   attendanceRecords?: Record<string, Record<string, "Absent" | "Late" | "Present" | "Unmarked">>;
+  attendanceUpdatedAt?: Record<string, string>;
   classes?: string[];
   schedule?: ScheduleItem[];
   swimmingRecords?: Record<string, SwimmingStatus>;
@@ -134,30 +137,6 @@ export type RosterStudentInput = {
   id?: string;
   lastName: string;
   specialNotes: string;
-};
-
-export type RoomBooking = {
-  createdAt: string;
-  description: string;
-  date: string;
-  endTime: string;
-  eventName: string;
-  floor: number;
-  id: string;
-  requestedById: string;
-  requestedByName: string;
-  recurrenceGroupId?: string;
-  roomId: string;
-  roomName: string;
-  status: "approved" | "pending" | "rejected";
-  time: string;
-};
-
-export type CampusRoom = {
-  capacity: number;
-  floor: number;
-  id: string;
-  name: string;
 };
 
 export type StaffTask = {
@@ -225,18 +204,6 @@ export async function deleteStaffAttendanceEntry(accessToken: string, entryId: s
   await requestApi(`/api/staff/staff-attendance/${encodeURIComponent(entryId)}`, { headers: createAuthHeaders(accessToken), method: "DELETE" });
 }
 
-export async function getCampusRooms(accessToken: string) {
-  const data = await requestApi<{ rooms: CampusRoom[] }>("/api/staff/rooms", { headers: createAuthHeaders(accessToken) });
-  return data.rooms;
-}
-
-export async function saveCampusRooms(accessToken: string, rooms: CampusRoom[]) {
-  const data = await requestApi<{ rooms: CampusRoom[] }>("/api/staff/rooms", {
-    body: JSON.stringify({ rooms }), headers: createAuthHeaders(accessToken), method: "PUT",
-  });
-  return data.rooms;
-}
-
 export async function saveStaffClasses(accessToken: string, accountId: string, classes: string[]) {
   const data = await requestApi<{ classes: string[]; dashboardData: StaffDashboardData }>(`/api/staff/classes/${encodeURIComponent(accountId)}`, {
     body: JSON.stringify({ classes }), headers: createAuthHeaders(accessToken), method: "PUT",
@@ -253,6 +220,14 @@ export async function saveSwimmingStatus(accessToken: string, accountId: string,
       method: "PUT",
     },
   );
+}
+
+export async function getStaffDashboard(accessToken: string, accountId?: string) {
+  const query = accountId ? `?accountId=${encodeURIComponent(accountId)}` : "";
+  const data = await requestApi<{ dashboardData: StaffDashboardData }>(`/api/staff/dashboard${query}`, {
+    headers: createAuthHeaders(accessToken),
+  });
+  return data.dashboardData;
 }
 
 export async function getStaffSchedules(accessToken: string) {
@@ -282,36 +257,6 @@ export async function deleteRosterStudent(accessToken: string, accountId: string
     method: "DELETE",
   });
   return data;
-}
-
-export async function getRoomBookings(accessToken: string) {
-  const data = await requestApi<{ bookings: RoomBooking[] }>("/api/staff/bookings", { headers: createAuthHeaders(accessToken) });
-  return data.bookings;
-}
-
-export async function requestRoomBooking(accessToken: string, input: { date: string; description: string; endTime: string; eventName: string; floor: number; repeatUntil?: string; roomId: string; roomName: string; time: string; weeklyRepeat?: boolean }) {
-  const data = await requestApi<{ booking: RoomBooking; bookings?: RoomBooking[] }>("/api/staff/bookings", {
-    body: JSON.stringify(input), headers: createAuthHeaders(accessToken), method: "POST",
-  });
-  return data.bookings ?? [data.booking];
-}
-
-export async function deleteRoomBooking(accessToken: string, bookingId: string) {
-  await requestApi(`/api/staff/bookings/${encodeURIComponent(bookingId)}`, { headers: createAuthHeaders(accessToken), method: "DELETE" });
-}
-
-export async function updateRoomBooking(accessToken: string, bookingId: string, input: { date: string; description: string; endTime: string; eventName: string; floor: number; roomId: string; roomName: string; time: string }) {
-  const data = await requestApi<{ booking: RoomBooking }>(`/api/staff/bookings/${encodeURIComponent(bookingId)}`, {
-    body: JSON.stringify(input), headers: createAuthHeaders(accessToken), method: "PUT",
-  });
-  return data.booking;
-}
-
-export async function reviewRoomBooking(accessToken: string, bookingId: string, status: "approved" | "rejected") {
-  const data = await requestApi<{ booking: RoomBooking }>(`/api/staff/bookings/${encodeURIComponent(bookingId)}`, {
-    body: JSON.stringify({ status }), headers: createAuthHeaders(accessToken), method: "PATCH",
-  });
-  return data.booking;
 }
 
 export async function saveStaffAttendance(
@@ -416,55 +361,151 @@ type RegisterStudentInput = {
 
 type ApiErrorBody = {
   message?: string;
+  requestId?: string;
 };
+
+const requestTimeoutMs = 15_000;
+const readRetryDelaysMs = [300, 900];
+const retryableReadStatuses = new Set([408, 425, 429, 500, 502, 503, 504]);
+let sessionRefreshPromise: Promise<string | null> | null = null;
 
 async function readErrorMessage(response: Response) {
   const fallback = "Something went wrong. Please try again.";
-  if (response.status === 431) return "Your admin session is stale. Sign out, then log in again to refresh your session.";
+  if (response.status === 431) return "Your sign-in token is too large. Sign out, then log in again to refresh it.";
 
   try {
     const body = (await response.json()) as ApiErrorBody;
-    return body.message ?? fallback;
+    const message = body.message ?? fallback;
+    return body.requestId ? `${message} Reference: ${body.requestId}` : message;
   } catch {
     return fallback;
   }
 }
 
-async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
-  const url = `${apiBaseUrl}${path}`;
-  const method = (init.method ?? "GET").toUpperCase();
-  let response: Response;
+function wait(delayMs: number) {
+  return new Promise((resolve) => globalThis.setTimeout(resolve, delayMs));
+}
+
+async function resolveRequestHeaders(headersInit: HeadersInit | undefined) {
+  const headers = new Headers(headersInit);
+  if (!headers.has("Authorization") || !isSupabaseConfigured) return headers;
+
+  // Page components may hold the token they received at mount time. Supabase
+  // refreshes sessions in the background, so always prefer its current local
+  // session before making an authenticated API request.
+  try {
+    const { data } = await getSupabaseClient().auth.getSession();
+    if (data.session?.access_token) {
+      headers.set("Authorization", `Bearer ${data.session.access_token}`);
+    }
+  } catch {
+    // The server still gets an opportunity to validate the caller-provided
+    // token when local session storage is temporarily unavailable.
+  }
+
+  return headers;
+}
+
+async function refreshAccessToken() {
+  if (!isSupabaseConfigured) return null;
+
+  if (!sessionRefreshPromise) {
+    sessionRefreshPromise = getSupabaseClient().auth.refreshSession()
+      .then(({ data, error }) => error ? null : data.session?.access_token ?? null)
+      .catch(() => null);
+  }
+
+  const activeRefresh = sessionRefreshPromise;
+  try {
+    return await activeRefresh;
+  } finally {
+    if (sessionRefreshPromise === activeRefresh) sessionRefreshPromise = null;
+  }
+}
+
+async function fetchWithTimeout(url: string, init: RequestInit, headers: Headers) {
+  const controller = new AbortController();
+  let timedOut = false;
+  const abortFromCaller = () => controller.abort(init.signal?.reason);
+
+  if (init.signal?.aborted) {
+    abortFromCaller();
+  } else {
+    init.signal?.addEventListener("abort", abortFromCaller, { once: true });
+  }
+
+  const timeout = globalThis.setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, requestTimeoutMs);
 
   try {
-    response = await fetch(url, init);
-  } catch {
-    // Render can briefly reset a connection while a free instance wakes or
-    // restarts. Retrying read-only requests prevents a transient failure from
-    // emptying an entire dashboard.
-    if (method !== "GET") {
-      throw new Error(`Could not reach the server for ${path}. Please try again.`);
+    return await fetch(url, { ...init, headers, signal: controller.signal });
+  } catch (error) {
+    if (timedOut) {
+      throw new Error("The server took too long to respond.");
+    }
+    throw error;
+  } finally {
+    globalThis.clearTimeout(timeout);
+    init.signal?.removeEventListener("abort", abortFromCaller);
+  }
+}
+
+async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
+  const method = (init.method ?? "GET").toUpperCase();
+  const isReadOnly = method === "GET" || method === "HEAD";
+  let url = `${apiBaseUrl}${path}`;
+  const headers = await resolveRequestHeaders(init.headers);
+  let authRetryUsed = false;
+  let readRetryIndex = 0;
+  let response: Response | null = null;
+
+  while (!response) {
+    try {
+      response = await fetchWithTimeout(url, init, headers);
+    } catch (error) {
+      if (init.signal?.aborted) throw error;
+
+      if (isReadOnly && readRetryIndex < readRetryDelaysMs.length) {
+        await wait(readRetryDelaysMs[readRetryIndex]);
+        readRetryIndex += 1;
+        continue;
+      }
+
+      // Local Vite has a same-origin proxy. It is a useful fallback if a
+      // developer-specific API base URL is temporarily unreachable.
+      if (isReadOnly && import.meta.env.DEV && apiBaseUrl && url !== path) {
+        url = path;
+        readRetryIndex = 0;
+        continue;
+      }
+
+      const detail = error instanceof Error ? error.message : "The server could not be reached.";
+      if (isReadOnly) {
+        throw new Error(`${detail} Please refresh and try again.`);
+      }
+      throw new Error(`${detail} The change was not confirmed; refresh before trying it again.`);
     }
 
-    await new Promise((resolve) => window.setTimeout(resolve, 500));
-
-    try {
-      response = await fetch(url, init);
-    } catch {
-      if (import.meta.env.DEV && apiBaseUrl) {
-        try {
-          response = await fetch(path, init);
-        } catch {
-          throw new Error(`Could not reach the server for ${path}. Please refresh and try again.`);
-        }
-      } else {
-        throw new Error(`Could not reach the server for ${path}. Please refresh and try again.`);
+    if ((response.status === 401 || response.status === 431) && headers.has("Authorization") && !authRetryUsed) {
+      authRetryUsed = true;
+      const refreshedToken = await refreshAccessToken();
+      if (refreshedToken) {
+        headers.set("Authorization", `Bearer ${refreshedToken}`);
+        response = null;
+        continue;
       }
     }
+
+    if (isReadOnly && retryableReadStatuses.has(response.status) && readRetryIndex < readRetryDelaysMs.length) {
+      response = null;
+      await wait(readRetryDelaysMs[readRetryIndex]);
+      readRetryIndex += 1;
+    }
   }
 
-  if (!response.ok) {
-    throw new Error(await readErrorMessage(response));
-  }
+  if (!response.ok) throw new Error(await readErrorMessage(response));
 
   if (response.status === 204) {
     return undefined as TResponse;

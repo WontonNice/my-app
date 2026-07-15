@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 import { getAuthenticatedUser, getUserRole } from "../lib/auth";
+import { getStaffDashboardData, getStaffDashboardDataMap, saveStaffDashboardData, type StaffDashboardRecord } from "../lib/staffDashboardStore";
 import { supabase } from "../lib/supabase";
 
 type RegisterStudentBody = {
@@ -248,14 +249,14 @@ function toStaffAccount(user: {
     email?: string;
     id: string;
     user_metadata: Record<string, unknown>;
-}) {
+}, dashboardData: StaffDashboardRecord) {
     const fallbackUsername = user.email?.split("@")[0] ?? "staff";
     const username = typeof user.user_metadata.username === "string" ? user.user_metadata.username : fallbackUsername;
 
     return {
         accessPassword: decryptStaffPassword(user.app_metadata[staffPasswordMetadataKey]),
         createdAt: user.created_at,
-        dashboardData: normalizeDashboardData(user.user_metadata.dashboard_data, username),
+        dashboardData: normalizeDashboardData(dashboardData, username),
         fullName: typeof user.user_metadata.full_name === "string" ? user.user_metadata.full_name : fallbackUsername,
         id: user.id,
         username,
@@ -439,9 +440,10 @@ authRouter.get("/staff", async (request, response) => {
         return;
     }
 
-    const staff = data.users
-        .filter((user) => (user.app_metadata.role ?? user.user_metadata.role) === "staff")
-        .map(toStaffAccount)
+    const staffUsers = data.users.filter((user) => (user.app_metadata.role ?? user.user_metadata.role) === "staff");
+    const dashboardData = await getStaffDashboardDataMap(staffUsers);
+    const staff = staffUsers
+        .map((user) => toStaffAccount(user, dashboardData.get(user.id) ?? {}))
         .sort((first, second) => first.fullName.localeCompare(second.fullName));
 
     response.json({ staff });
@@ -481,6 +483,21 @@ authRouter.post("/staff", async (request, response) => {
     }
 
     const existingUser = usersData.users.find((user) => user.email?.toLowerCase() === email);
+    const dashboardData = existingUser ? await getStaffDashboardData(existingUser) : { attendance: [], roster: [] };
+    if (existingUser) {
+        const migrated = await saveStaffDashboardData(existingUser.id, dashboardData);
+        if (migrated.error) {
+            response.status(400).json({ message: `Could not migrate the existing staff dashboard: ${migrated.error}` });
+            return;
+        }
+    }
+    const userMetadata: Record<string, unknown> = {
+        ...(existingUser?.user_metadata ?? {}),
+        full_name: fullName,
+        role: "staff",
+        username,
+    };
+    delete userMetadata.dashboard_data;
     const attributes = {
         app_metadata: {
             ...(existingUser?.app_metadata ?? {}),
@@ -489,13 +506,7 @@ authRouter.post("/staff", async (request, response) => {
         },
         email_confirm: true,
         password,
-        user_metadata: {
-            ...(existingUser?.user_metadata ?? {}),
-            dashboard_data: existingUser?.user_metadata.dashboard_data ?? { attendance: [], roster: [] },
-            full_name: fullName,
-            role: "staff",
-            username,
-        },
+        user_metadata: userMetadata,
     };
 
     const result = existingUser
@@ -507,7 +518,15 @@ authRouter.post("/staff", async (request, response) => {
         return;
     }
 
-    response.status(existingUser ? 200 : 201).json({ staffAccount: toStaffAccount(result.data.user) });
+    if (!existingUser) {
+        const initialized = await saveStaffDashboardData(result.data.user.id, dashboardData);
+        if (initialized.error) {
+            response.status(400).json({ message: `The staff account was created, but its dashboard could not be initialized: ${initialized.error}` });
+            return;
+        }
+    }
+
+    response.status(existingUser ? 200 : 201).json({ staffAccount: toStaffAccount(result.data.user, dashboardData) });
 });
 
 authRouter.patch("/staff/:userId", async (request, response) => {
@@ -547,6 +566,13 @@ authRouter.patch("/staff/:userId", async (request, response) => {
         return;
     }
 
+    const dashboardData = await getStaffDashboardData(target);
+    const migrated = await saveStaffDashboardData(target.id, dashboardData);
+    if (migrated.error) {
+        response.status(400).json({ message: `Could not migrate the staff dashboard: ${migrated.error}` });
+        return;
+    }
+
     const email = getStaffEmail(username);
     const { data: usersData, error: listError } = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
     if (listError) {
@@ -560,6 +586,13 @@ authRouter.patch("/staff/:userId", async (request, response) => {
         return;
     }
 
+    const userMetadata: Record<string, unknown> = {
+        ...target.user_metadata,
+        full_name: fullName,
+        role: "staff",
+        username,
+    };
+    delete userMetadata.dashboard_data;
     const updated = await supabase.auth.admin.updateUserById(target.id, {
         app_metadata: {
             ...target.app_metadata,
@@ -569,12 +602,7 @@ authRouter.patch("/staff/:userId", async (request, response) => {
         email,
         email_confirm: true,
         ...(password ? { password } : {}),
-        user_metadata: {
-            ...target.user_metadata,
-            full_name: fullName,
-            role: "staff",
-            username,
-        },
+        user_metadata: userMetadata,
     });
 
     if (updated.error || !updated.data.user) {
@@ -582,5 +610,5 @@ authRouter.patch("/staff/:userId", async (request, response) => {
         return;
     }
 
-    response.json({ staffAccount: toStaffAccount(updated.data.user) });
+    response.json({ staffAccount: toStaffAccount(updated.data.user, dashboardData) });
 });

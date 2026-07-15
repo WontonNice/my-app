@@ -1,11 +1,10 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { CalendarDays, Check, CheckCircle2, ClipboardCheck, Cloud, Copy, Eye, FileSpreadsheet, LayoutDashboard, ListTodo, Pencil, Plus, RefreshCw, ShieldCheck, Trash2, UserCog, UserRoundPlus, Users, Waves, X } from "lucide-react";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
-import { assignStaffAccount, createStaffTask, deleteRoomBooking, deleteRosterStudent, deleteStaffAttendanceEntry, deleteStaffTask, getCampusRooms, getGoogleSheetsAttendanceSettings, getRoomBookings, getStaffAccounts, getStaffAttendanceEntries, getStaffSchedules, getStaffTasks, requestRoomBooking, reviewRoomBooking, saveCampusRooms, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffAttendanceEntry, saveStaffClasses, saveStaffSchedule, saveSwimmingStatus, syncGoogleSheetsAttendance, updateRoomBooking, updateStaffAccount, updateStaffTask, type CampusRoom, type RoomBooking, type ScheduleItem, type StaffAccount, type StaffAttendanceEntry, type StaffSchedule, type StaffTask } from "../lib/api";
+import { assignStaffAccount, createStaffTask, deleteRosterStudent, deleteStaffAttendanceEntry, deleteStaffTask, getGoogleSheetsAttendanceSettings, getStaffAccounts, getStaffAttendanceEntries, getStaffSchedules, getStaffTasks, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffAttendance, saveStaffAttendanceEntry, saveStaffClasses, saveStaffSchedule, saveSwimmingStatus, syncGoogleSheetsAttendance, updateStaffAccount, updateStaffTask, type ScheduleItem, type StaffAccount, type StaffAttendanceEntry, type StaffSchedule, type StaffTask } from "../lib/api";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
-import { getFloorName } from "../lib/rooms";
 
 const googleSheetsScript = `const HEADERS = ["Date", "Staff", "Username", "Student ID", "Student", "Status"];
 
@@ -38,14 +37,8 @@ function doPost(e) {
     .setMimeType(ContentService.MimeType.JSON);
 }`;
 
-const defaultAdminRooms: CampusRoom[] = [
-  { capacity: 20, floor: 0, id: "ll-1", name: "Room LL1" }, { capacity: 20, floor: 0, id: "ll-2", name: "Room LL2" }, { capacity: 48, floor: 0, id: "ll-multipurpose", name: "Lower Level Multipurpose" }, { capacity: 36, floor: 0, id: "ll-commons", name: "Lower Level Commons" },
-  { capacity: 24, floor: 1, id: "101", name: "Room 101" }, { capacity: 24, floor: 1, id: "102", name: "Room 102" }, { capacity: 80, floor: 1, id: "commons", name: "Student Commons" }, { capacity: 16, floor: 1, id: "conf-a", name: "Conference A" },
-  { capacity: 28, floor: 2, id: "201", name: "Room 201" }, { capacity: 28, floor: 2, id: "202", name: "Room 202" }, { capacity: 28, floor: 2, id: "203", name: "Room 203" }, { capacity: 30, floor: 2, id: "lab", name: "Testing Lab" },
-  { capacity: 22, floor: 3, id: "301", name: "Room 301" }, { capacity: 22, floor: 3, id: "302", name: "Room 302" }, { capacity: 40, floor: 3, id: "studio", name: "Activity Studio" }, { capacity: 36, floor: 3, id: "library", name: "Library" },
-];
-
 const weekdayLabels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+type AttendanceStatus = "Absent" | "Late" | "Present" | "Unmarked";
 
 function todayDateInput() {
   return new Date().toLocaleDateString("en-CA");
@@ -56,6 +49,28 @@ function gradeClassName(grade: string) {
   if (!Number.isInteger(value)) return "Unassigned class";
   const suffix = value % 10 === 1 && value !== 11 ? "st" : value % 10 === 2 && value !== 12 ? "nd" : value % 10 === 3 && value !== 13 ? "rd" : "th";
   return `${value}${suffix} Grade`;
+}
+
+function attendanceGradeLabel(student: StaffAccount["dashboardData"]["roster"][number]) {
+  const storedGrade = student.grade.trim();
+  const grade = storedGrade || student.className?.match(/\d+/)?.[0] || "";
+  return grade ? `Grade ${grade}` : "Unassigned";
+}
+
+function formatAttendanceTimestamp(value: string | undefined) {
+  if (!value) return "Not submitted";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Timestamp unavailable";
+  const formatted = new Intl.DateTimeFormat("en-US", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "America/New_York",
+  }).format(date);
+  return `${formatted} ET`;
+}
+
+function attendanceOverrideKey(accountId: string, date: string, studentId: string) {
+  return `${accountId}:${date}:${studentId}`;
 }
 
 export function AdminDashboardPage() {
@@ -74,17 +89,12 @@ export function AdminDashboardPage() {
   const [sheetsWebhookUrl, setSheetsWebhookUrl] = useState("");
   const [sheetsConfigured, setSheetsConfigured] = useState(false);
   const [isSyncingSheets, setIsSyncingSheets] = useState(false);
-  const [bookings, setBookings] = useState<RoomBooking[]>([]);
-  const [adminRooms, setAdminRooms] = useState<CampusRoom[]>(defaultAdminRooms);
-  const [newRoomDraft, setNewRoomDraft] = useState({ capacity: 20, floor: 1, name: "" });
-  const [editingBookingId, setEditingBookingId] = useState("");
   const [editingStudentId, setEditingStudentId] = useState("");
   const [studentDraft, setStudentDraft] = useState({ allergies: "", className: "", dob: "", firstName: "", lastName: "", specialNotes: "" });
   const [classDraft, setClassDraft] = useState("");
   const [staffSchedules, setStaffSchedules] = useState<StaffSchedule[]>([]);
   const [editingScheduleItemId, setEditingScheduleItemId] = useState("");
   const [scheduleDraft, setScheduleDraft] = useState({ endTime: "09:30", place: "", startTime: "08:30", studentIds: [] as string[], title: "", weekdays: [1, 2, 3, 4, 5] });
-  const [bookingDraft, setBookingDraft] = useState({ date: new Date().toLocaleDateString("en-CA"), description: "", endTime: "10:00", eventName: "", floor: 1, repeatUntil: "", roomId: "101", roomName: "Room 101", time: "09:00", weeklyRepeat: false });
   const [tasks, setTasks] = useState<StaffTask[]>([]);
   const [taskDraft, setTaskDraft] = useState({ assignedToId: "", description: "", dueDate: todayDateInput(), repeatUntil: "", repeatWeekly: false, title: "" });
   const [staffAttendanceEntries, setStaffAttendanceEntries] = useState<StaffAttendanceEntry[]>([]);
@@ -94,7 +104,9 @@ export function AdminDashboardPage() {
     const day = new Date().getDay();
     return day >= 1 && day <= 5 ? day : 1;
   });
-  const [isAttendanceTrackerOpen, setIsAttendanceTrackerOpen] = useState(false);
+  const [attendanceWorkspaceView, setAttendanceWorkspaceView] = useState<"staff" | "students">("students");
+  const [attendanceOverrides, setAttendanceOverrides] = useState<Record<string, AttendanceStatus>>({});
+  const [isSavingAdminAttendance, setIsSavingAdminAttendance] = useState(false);
   const [actionFeedback, setActionFeedback] = useState<{ text: string; tone: "error" | "loading" | "success" } | null>(null);
 
   useEffect(() => {
@@ -139,20 +151,16 @@ export function AdminDashboardPage() {
 
       const results = await Promise.allSettled([
           getGoogleSheetsAttendanceSettings(data.session.access_token),
-          getRoomBookings(data.session.access_token),
           getStaffSchedules(data.session.access_token),
-          getCampusRooms(data.session.access_token),
           getStaffTasks(data.session.access_token),
           getStaffAttendanceEntries(data.session.access_token),
         ] as const);
-      const [sheetsResult, bookingsResult, schedulesResult, roomsResult, tasksResult, staffAttendanceResult] = results;
+      const [sheetsResult, schedulesResult, tasksResult, staffAttendanceResult] = results;
       if (sheetsResult.status === "fulfilled") {
         setSheetsWebhookUrl(sheetsResult.value.webhookUrl);
         setSheetsConfigured(sheetsResult.value.configured);
       }
-      if (bookingsResult.status === "fulfilled") setBookings(bookingsResult.value);
       if (schedulesResult.status === "fulfilled") setStaffSchedules(schedulesResult.value);
-      if (roomsResult.status === "fulfilled") setAdminRooms(roomsResult.value);
       if (tasksResult.status === "fulfilled") setTasks(tasksResult.value);
       if (staffAttendanceResult.status === "fulfilled") setStaffAttendanceEntries(staffAttendanceResult.value);
 
@@ -282,82 +290,6 @@ export function AdminDashboardPage() {
       specialNotes: student.specialNotes ?? "",
     });
     document.getElementById("student-roster")?.scrollIntoView({ behavior: "smooth" });
-  }
-
-  async function handleReviewBooking(bookingId: string, status: "approved" | "rejected") {
-    if (!accessToken) return;
-    setMessage("");
-    try {
-      const updated = await reviewRoomBooking(accessToken, bookingId, status);
-      setBookings((current) => current.map((booking) => booking.id === updated.id ? updated : booking));
-      setMessage(`Room request ${status}.`);
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not review the request.");
-    }
-  }
-
-  async function handleCreateBooking(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!accessToken) return;
-    setIsSaving(true);
-    setMessage("");
-    try {
-      if (editingBookingId) {
-        const updated = await updateRoomBooking(accessToken, editingBookingId, bookingDraft);
-        setBookings((current) => current.map((booking) => booking.id === updated.id ? updated : booking));
-        setEditingBookingId("");
-        setBookingDraft((current) => ({ ...current, description: "", eventName: "", repeatUntil: "", weeklyRepeat: false }));
-        setMessage("Room booking updated.");
-        setActionFeedback({ text: "Room booking updated.", tone: "success" });
-        return;
-      }
-      const createdBookings = await requestRoomBooking(accessToken, bookingDraft);
-      setBookings((current) => [...current, ...createdBookings]);
-      setBookingDraft((current) => ({ ...current, description: "", eventName: "" }));
-      const successMessage = createdBookings.length > 1 ? `${createdBookings.length} weekly room bookings confirmed in 25Live.` : "Room booking confirmed in 25Live.";
-      setMessage(successMessage);
-      setActionFeedback({ text: successMessage, tone: "success" });
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Could not create the room booking.";
-      setMessage(errorMessage);
-      setActionFeedback({ text: errorMessage, tone: "error" });
-    } finally {
-      setIsSaving(false);
-    }
-  }
-
-  function beginEditingBooking(booking: RoomBooking) {
-    setEditingBookingId(booking.id);
-    setBookingDraft({ date: booking.date, description: booking.description, endTime: booking.endTime, eventName: booking.eventName, floor: booking.floor, repeatUntil: "", roomId: booking.roomId, roomName: booking.roomName, time: booking.time, weeklyRepeat: false });
-    document.getElementById("room-approvals")?.scrollIntoView({ behavior: "smooth" });
-  }
-
-  async function handleSaveRooms() {
-    if (!accessToken) return;
-    setIsSaving(true);
-    setMessage("");
-    try {
-      const saved = await saveCampusRooms(accessToken, adminRooms);
-      setAdminRooms(saved);
-      setBookings((current) => current.map((booking) => {
-        const room = saved.find((item) => item.id === booking.roomId);
-        return room ? { ...booking, floor: room.floor, roomName: room.name } : booking;
-      }));
-      setMessage("Room names and seat counts saved.");
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not save room details.");
-    } finally {
-      setIsSaving(false);
-    }
-  }
-
-  function handleAddRoom(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const name = newRoomDraft.name.trim();
-    if (!name) return;
-    setAdminRooms((current) => [...current, { ...newRoomDraft, id: `room-${crypto.randomUUID().slice(0, 8)}`, name }].sort((a, b) => a.floor - b.floor || a.name.localeCompare(b.name)));
-    setNewRoomDraft((current) => ({ ...current, name: "" }));
-    setMessage("Room added locally. Choose Save room details to publish it.");
   }
 
   async function handleCreateTask(event: FormEvent<HTMLFormElement>) {
@@ -499,6 +431,48 @@ export function AdminDashboardPage() {
     }
   }
 
+  function handleAdminAttendanceStatus(studentId: string, status: AttendanceStatus) {
+    if (!selectedAccount) return;
+    setAttendanceOverrides((current) => ({
+      ...current,
+      [attendanceOverrideKey(selectedAccount.id, selectedAttendanceDate, studentId)]: status,
+    }));
+  }
+
+  async function handleSaveAdminAttendance() {
+    if (!accessToken || !selectedAccount || isSavingAdminAttendance) return;
+    const currentStatuses = selectedAccount.dashboardData.attendanceRecords?.[selectedAttendanceDate] ?? {};
+    const statuses = Object.fromEntries(selectedAccount.dashboardData.roster.map((student) => [
+      student.id,
+      attendanceOverrides[attendanceOverrideKey(selectedAccount.id, selectedAttendanceDate, student.id)] ?? currentStatuses[student.id] ?? "Unmarked",
+    ])) as Record<string, AttendanceStatus>;
+    setIsSavingAdminAttendance(true);
+    setActionFeedback({ text: `Saving ${selectedAccount.fullName}'s attendance...`, tone: "loading" });
+
+    try {
+      const result = await saveStaffAttendance(accessToken, {
+        accountId: selectedAccount.id,
+        date: selectedAttendanceDate,
+        statuses: { ...currentStatuses, ...statuses },
+      });
+      setStaffAccounts((current) => current.map((account) => account.id === selectedAccount.id
+        ? { ...account, dashboardData: result.dashboardData }
+        : account));
+      if (result.completedTask) {
+        setTasks((current) => current.some((task) => task.id === result.completedTask?.id)
+          ? current.map((task) => task.id === result.completedTask?.id ? result.completedTask as StaffTask : task)
+          : [...current, result.completedTask as StaffTask]);
+      }
+      const savedPrefix = `${selectedAccount.id}:${selectedAttendanceDate}:`;
+      setAttendanceOverrides((current) => Object.fromEntries(Object.entries(current).filter(([key]) => !key.startsWith(savedPrefix))));
+      setActionFeedback({ text: `${selectedAccount.fullName}'s attendance was saved.`, tone: "success" });
+    } catch (error) {
+      setActionFeedback({ text: error instanceof Error ? error.message : "Could not save attendance.", tone: "error" });
+    } finally {
+      setIsSavingAdminAttendance(false);
+    }
+  }
+
   async function handleSwimmingToggle(studentId: string, field: "paidFee" | "waiverComplete") {
     if (!accessToken || !selectedAccount || savingSwimmingStudentId) return;
     const currentStatus = selectedAccount.dashboardData.swimmingRecords?.[studentId] ?? { paidFee: false, waiverComplete: false };
@@ -513,19 +487,6 @@ export function AdminDashboardPage() {
       setMessage(error instanceof Error ? error.message : "Could not save the swimming record.");
     } finally {
       setSavingSwimmingStudentId("");
-    }
-  }
-
-  async function handleDeleteBooking(bookingId: string) {
-    if (!accessToken) return;
-    if (!window.confirm("Delete this room booking? This action cannot be undone.")) return;
-    setMessage("");
-    try {
-      await deleteRoomBooking(accessToken, bookingId);
-      setBookings((current) => current.filter((booking) => booking.id !== bookingId));
-      setMessage("Room booking removed.");
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not remove the booking.");
     }
   }
 
@@ -572,7 +533,6 @@ export function AdminDashboardPage() {
     { id: "roster", label: "Student rosters", href: "#student-roster", icon: Users },
     { id: "swimming", label: "Swimming", href: "#swimming-management", icon: Waves },
     { id: "schedules", label: "Staff schedules", href: "#staff-schedules", icon: CalendarDays },
-    { id: "bookings", label: "Room approvals", href: "#room-approvals", icon: ClipboardCheck },
     { id: "tasks", label: "Staff tasks", href: "#staff-tasks", icon: ListTodo },
     { id: "sheets", label: "Google Sheets", href: "#google-sheets", icon: FileSpreadsheet },
   ];
@@ -583,8 +543,13 @@ export function AdminDashboardPage() {
     : Array.from(new Set(selectedAccount?.dashboardData.roster.map((student) => student.className ?? gradeClassName(student.grade)) ?? []));
   const selectedSchedule = staffSchedules.find((schedule) => schedule.accountId === selectedAccount?.id);
   const attendanceForDate = selectedAccount?.dashboardData.attendanceRecords?.[selectedAttendanceDate] ?? {};
+  const attendanceOverridePrefix = `${selectedAccount?.id ?? ""}:${selectedAttendanceDate}:`;
+  const hasAttendanceDraftChanges = Object.keys(attendanceOverrides).some((key) => key.startsWith(attendanceOverridePrefix));
   const sortedRosterRows = [...(selectedAccount?.dashboardData.roster ?? [])].sort((first, second) => rosterSort === "az" ? first.name.localeCompare(second.name) : second.name.localeCompare(first.name));
-  const attendanceRows = sortedRosterRows.map((student) => ({ ...student, attendanceStatus: attendanceForDate[student.id] ?? "Unmarked" }));
+  const attendanceRows = sortedRosterRows.map((student) => ({
+    ...student,
+    attendanceStatus: attendanceOverrides[attendanceOverrideKey(selectedAccount?.id ?? "", selectedAttendanceDate, student.id)] ?? attendanceForDate[student.id] ?? "Unmarked",
+  }));
   const attendanceTotals = attendanceRows.reduce((totals, row) => ({ ...totals, [row.attendanceStatus]: totals[row.attendanceStatus] + 1 }), { Present: 0, Late: 0, Absent: 0, Unmarked: 0 });
   const accountedAttendanceTotal = attendanceTotals.Present + attendanceTotals.Late + attendanceTotals.Absent;
   const schoolAttendanceRows = staffAccounts.flatMap((account) => {
@@ -593,14 +558,36 @@ export function AdminDashboardPage() {
   });
   const schoolAttendanceTotals = schoolAttendanceRows.reduce((totals, row) => ({ ...totals, [row.attendanceStatus]: totals[row.attendanceStatus] + 1 }), { Present: 0, Late: 0, Absent: 0, Unmarked: 0 });
   const schoolAccountedAttendanceTotal = schoolAttendanceTotals.Present + schoolAttendanceTotals.Late + schoolAttendanceTotals.Absent;
+  const schoolAttendanceByGrade = Array.from(schoolAttendanceRows.reduce((summaries, student) => {
+    const grade = attendanceGradeLabel(student);
+    const current = summaries.get(grade) ?? { grade, present: 0, total: 0 };
+    current.total += 1;
+    if (student.attendanceStatus === "Present" || student.attendanceStatus === "Late") current.present += 1;
+    summaries.set(grade, current);
+    return summaries;
+  }, new Map<string, { grade: string; present: number; total: number }>()).values()).sort((first, second) => first.grade.localeCompare(second.grade, undefined, { numeric: true }));
+  const staffAttendanceSubmissionRows = staffAccounts.map((account) => {
+    const statuses = account.dashboardData.attendanceRecords?.[selectedAttendanceDate] ?? {};
+    const rosterCount = account.dashboardData.roster.length;
+    const markedCount = account.dashboardData.roster.filter((student) => {
+      const status = statuses[student.id] ?? "Unmarked";
+      return status === "Present" || status === "Late" || status === "Absent";
+    }).length;
+    const submittedAt = account.dashboardData.attendanceUpdatedAt?.[selectedAttendanceDate];
+    let submissionState: "incomplete" | "missing" | "no-roster" | "submitted" = "missing";
+    if (!rosterCount) submissionState = "no-roster";
+    else if (markedCount === rosterCount) submissionState = "submitted";
+    else if (submittedAt) submissionState = "incomplete";
+    return { ...account, markedCount, rosterCount, submissionState, submittedAt };
+  });
+  const submittedStaffCount = staffAttendanceSubmissionRows.filter((account) => account.submissionState === "submitted").length;
+  const incompleteStaffCount = staffAttendanceSubmissionRows.filter((account) => account.submissionState === "incomplete").length;
+  const missingStaffCount = staffAttendanceSubmissionRows.filter((account) => account.submissionState === "missing").length;
+  const expectedStaffCount = staffAttendanceSubmissionRows.filter((account) => account.submissionState !== "no-roster").length;
+  const selectedAttendanceTimestamp = selectedAccount?.dashboardData.attendanceUpdatedAt?.[selectedAttendanceDate];
   const earlyPickupRows = staffAccounts.flatMap((account) => account.dashboardData.roster
     .filter((student) => student.earlyPickupDates?.includes(selectedAttendanceDate))
     .map((student) => ({ ...student, pickupTime: student.earlyPickupTimes?.[selectedAttendanceDate] ?? "", staffName: account.fullName })));
-  const today = todayDateInput();
-  const attendanceTasks = tasks.filter((task) => task.title === "Submit attendance" && task.dueDate === today);
-  const submittedAttendanceIds = new Set(attendanceTasks.filter((task) => task.status === "completed").map((task) => task.assignedToId));
-  const submittedAttendanceStaff = staffAccounts.filter((account) => submittedAttendanceIds.has(account.id));
-  const pendingAttendanceStaff = staffAccounts.filter((account) => !submittedAttendanceIds.has(account.id));
   const regularTasks = tasks.filter((task) => task.title !== "Submit attendance");
   const staffAttendanceForDate = staffAttendanceEntries.filter((entry) => entry.date === staffAttendanceDraft.date);
   const staffAttendanceHoursForDate = staffAttendanceForDate.reduce((total, entry) => total + entry.hours, 0);
@@ -627,20 +614,50 @@ export function AdminDashboardPage() {
         <div className="admin-school-attendance-widget" aria-label="School-wide attendance totals">
           <header>
             <div><span>School-wide total</span><h3>{schoolAccountedAttendanceTotal} students marked</h3></div>
-            <label>School day<input type="date" min="2026-07-06" max="2026-08-21" value={selectedAttendanceDate} onChange={(event) => setSelectedAttendanceDate(event.target.value)} /></label>
+            <label>School day<input disabled={isSavingAdminAttendance} type="date" min="2026-07-06" max="2026-08-21" value={selectedAttendanceDate} onChange={(event) => setSelectedAttendanceDate(event.target.value)} /></label>
           </header>
           <div className="admin-attendance-totals admin-school-attendance-totals"><article><strong>{schoolAccountedAttendanceTotal}</strong><span>Marked</span></article><article><strong>{schoolAttendanceTotals.Present + schoolAttendanceTotals.Late}</strong><span>Present</span></article><article><strong>{schoolAttendanceTotals.Absent}</strong><span>Absent</span></article><article><strong>{schoolAttendanceTotals.Unmarked}</strong><span>Unmarked</span></article></div>
         </div>
-        <details className="admin-attendance-dropdown">
-          <summary><span>Staff roster attendance</span><strong>{selectedAccount?.fullName ?? "Choose staff"}</strong></summary>
-          <div className="admin-attendance-filters">
-            <label>Staff account<select value={selectedAccount?.id ?? ""} onChange={(event) => setSelectedStaffId(event.target.value)}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
+        <div className="admin-attendance-view-switch" role="tablist" aria-label="Attendance workspace view">
+          <button aria-selected={attendanceWorkspaceView === "students"} className={attendanceWorkspaceView === "students" ? "is-active" : ""} onClick={() => setAttendanceWorkspaceView("students")} role="tab" type="button"><Users size={15} /> Student view</button>
+          <button aria-selected={attendanceWorkspaceView === "staff"} className={attendanceWorkspaceView === "staff" ? "is-active" : ""} onClick={() => setAttendanceWorkspaceView("staff")} role="tab" type="button"><ClipboardCheck size={15} /> Staff view</button>
+        </div>
+        {attendanceWorkspaceView === "students" ? <>
+          <section className="admin-attendance-grade-summary" aria-labelledby="admin-attendance-grade-summary-title">
+            <header><div><span>Attendance summary</span><h3 id="admin-attendance-grade-summary-title">Present by grade</h3></div><small>Late arrivals count as present.</small></header>
+            <div className="admin-attendance-grade-table-wrap">
+              <table>
+                <thead><tr><th scope="col">Grade</th><th scope="col">Present</th><th scope="col">Students</th></tr></thead>
+                <tbody>
+                  <tr className="is-total"><th scope="row">All grades</th><td>{schoolAttendanceTotals.Present + schoolAttendanceTotals.Late}</td><td>{schoolAttendanceRows.length}</td></tr>
+                  {schoolAttendanceByGrade.map((summary) => <tr key={summary.grade}><th scope="row">{summary.grade}</th><td>{summary.present}</td><td>{summary.total}</td></tr>)}
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section className="admin-attendance-roster-summary" aria-labelledby="admin-attendance-roster-title">
+            <header>
+              <div><span>Student roster</span><h3 id="admin-attendance-roster-title">{selectedAccount?.fullName ?? "Choose staff"}</h3><small>{hasAttendanceDraftChanges ? "Unsaved attendance changes" : `Last saved: ${formatAttendanceTimestamp(selectedAttendanceTimestamp)}`}</small></div>
+              <div className="admin-attendance-roster-controls"><label>Staff account<select disabled={isSavingAdminAttendance} value={selectedAccount?.id ?? ""} onChange={(event) => setSelectedStaffId(event.target.value)}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label><button disabled={!hasAttendanceDraftChanges || isSavingAdminAttendance} onClick={handleSaveAdminAttendance} type="button"><Check size={14} /> {isSavingAdminAttendance ? "Saving..." : "Save changes"}</button></div>
+            </header>
+            <div className="admin-attendance-totals" aria-label="Selected staff attendance totals"><article><strong>{accountedAttendanceTotal}</strong><span>Marked</span></article><article><strong>{attendanceTotals.Present + attendanceTotals.Late}</strong><span>Present</span></article><article><strong>{attendanceTotals.Absent}</strong><span>Absent</span></article><article><strong>{attendanceTotals.Unmarked}</strong><span>Unmarked</span></article></div>
+            <div className="admin-attendance-list">
+              {attendanceRows.length ? attendanceRows.map((student) => { const isChanged = attendanceOverrideKey(selectedAccount?.id ?? "", selectedAttendanceDate, student.id) in attendanceOverrides; return <article key={student.id}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)}{isChanged ? " - Unsaved" : ""}</small></div><select aria-label={`${student.name} attendance status`} className={`admin-attendance-status-select is-${student.attendanceStatus.toLowerCase()}`} disabled={isSavingAdminAttendance} onChange={(event) => handleAdminAttendanceStatus(student.id, event.target.value as AttendanceStatus)} value={student.attendanceStatus}><option value="Present">Present</option><option value="Late">Late</option><option value="Absent">Absent</option><option value="Unmarked">Unmarked</option></select></article>; }) : <p>No students are assigned to this staff account.</p>}
+            </div>
+          </section>
+        </> : <section className="admin-attendance-staff-view" aria-labelledby="admin-attendance-staff-title">
+          <header><div><span>Staff completion</span><h3 id="admin-attendance-staff-title">Who submitted attendance</h3></div><small>{submittedStaffCount}/{expectedStaffCount} staff with rosters completed</small></header>
+          <div className="admin-attendance-staff-totals"><article className="is-submitted"><strong>{submittedStaffCount}</strong><span>Submitted</span></article><article className="is-incomplete"><strong>{incompleteStaffCount}</strong><span>Incomplete</span></article><article className="is-missing"><strong>{missingStaffCount}</strong><span>Not submitted</span></article></div>
+          <div className="admin-attendance-staff-table-wrap">
+            <table>
+              <thead><tr><th scope="col">Staff member</th><th scope="col">Roster progress</th><th scope="col">Status</th><th scope="col">Last saved</th><th scope="col"><span className="sr-only">Actions</span></th></tr></thead>
+              <tbody>{staffAttendanceSubmissionRows.map((account) => {
+                const statusLabel = account.submissionState === "submitted" ? "Submitted" : account.submissionState === "incomplete" ? "Incomplete" : account.submissionState === "no-roster" ? "No roster" : "Not submitted";
+                return <tr key={account.id}><th scope="row"><span>{account.fullName}</span><small>@{account.username}</small></th><td><strong>{account.markedCount}/{account.rosterCount}</strong><small>students marked</small></td><td><span className={`admin-attendance-submission-status is-${account.submissionState}`}>{statusLabel}</span></td><td><time dateTime={account.submittedAt}>{formatAttendanceTimestamp(account.submittedAt)}</time></td><td><button onClick={() => { setSelectedStaffId(account.id); setAttendanceWorkspaceView("students"); }} type="button">View roster</button></td></tr>;
+              })}</tbody>
+            </table>
           </div>
-          <div className="admin-attendance-totals" aria-label="Selected staff attendance totals"><article><strong>{accountedAttendanceTotal}</strong><span>Marked</span></article><article><strong>{attendanceTotals.Present + attendanceTotals.Late}</strong><span>Present</span></article><article><strong>{attendanceTotals.Absent}</strong><span>Absent</span></article><article><strong>{attendanceTotals.Unmarked}</strong><span>Unmarked</span></article></div>
-          <div className="admin-attendance-list">
-            {attendanceRows.length ? attendanceRows.map((student) => <article key={student.id}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)}</small></div><em className={`is-${student.attendanceStatus.toLowerCase()}`}>{student.attendanceStatus}</em></article>) : <p>No students are assigned to this staff account.</p>}
-          </div>
-        </details>
+        </section>}
         <div className="admin-early-pickup-list">
           <header><div><span>Dismissal watch</span><h3>Picked up early on {selectedAttendanceDate}</h3></div><strong>{earlyPickupRows.length}</strong></header>
           {earlyPickupRows.length ? earlyPickupRows.map((student) => <article key={`${student.staffName}-${student.id}`}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)} - {student.staffName}{student.pickupTime ? ` - ${student.pickupTime}` : ""}</small></div></article>) : <p>No early pickups are marked for this date.</p>}
@@ -720,14 +737,7 @@ export function AdminDashboardPage() {
       </section>
       <section className="teacher-panel admin-tasks-panel" id="staff-tasks">
         <div className="teacher-panel-header"><div><span>Staff workflow</span><h2>Assigned tasks</h2></div><p>Assign work to a staff account and follow it through completion.</p></div>
-        <div className="admin-attendance-task-tracker"><button aria-expanded={isAttendanceTrackerOpen} onClick={() => setIsAttendanceTrackerOpen((open) => !open)} type="button"><span><ClipboardCheck size={19} /></span><div><strong>Today&apos;s attendance</strong><small>Click to see who submitted and who is still missing</small></div><em>{submittedAttendanceStaff.length}/{staffAccounts.length} submitted</em></button>{isAttendanceTrackerOpen ? <div className="admin-attendance-task-details"><section><strong>Submitted</strong>{submittedAttendanceStaff.length ? <ul>{submittedAttendanceStaff.map((account) => <li key={account.id}><CheckCircle2 size={14} /> {account.fullName}</li>)}</ul> : <p>No staff have submitted attendance yet.</p>}</section><section><strong>Still missing</strong>{pendingAttendanceStaff.length ? <ul>{pendingAttendanceStaff.map((account) => <li key={account.id}><X size={14} /> {account.fullName}</li>)}</ul> : <p><CheckCircle2 size={16} /> Everyone has submitted attendance.</p>}</section></div> : null}</div>
         <div className="admin-task-layout"><form className="admin-task-form" onSubmit={handleCreateTask}><label>Assign to<select required value={taskDraft.assignedToId} onChange={(event) => setTaskDraft({ ...taskDraft, assignedToId: event.target.value })}><option value="">Choose staff</option>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName}</option>)}</select></label><label>Task title<input placeholder="e.g. Prepare classroom" required value={taskDraft.title} onChange={(event) => setTaskDraft({ ...taskDraft, title: event.target.value })} /></label><label>Due date<input required type="date" value={taskDraft.dueDate} onChange={(event) => setTaskDraft({ ...taskDraft, dueDate: event.target.value, repeatUntil: event.target.value > taskDraft.repeatUntil ? event.target.value : taskDraft.repeatUntil })} /></label><label className="admin-task-repeat"><input checked={taskDraft.repeatWeekly} type="checkbox" onChange={(event) => setTaskDraft({ ...taskDraft, repeatUntil: event.target.checked ? (taskDraft.repeatUntil || taskDraft.dueDate) : "", repeatWeekly: event.target.checked })} /><span>Repeat weekly</span></label>{taskDraft.repeatWeekly ? <label>Repeat until<input min={taskDraft.dueDate} required type="date" value={taskDraft.repeatUntil || taskDraft.dueDate} onChange={(event) => setTaskDraft({ ...taskDraft, repeatUntil: event.target.value })} /></label> : null}<label>Description<textarea required rows={3} value={taskDraft.description} onChange={(event) => setTaskDraft({ ...taskDraft, description: event.target.value })} /></label><button disabled={isSaving} type="submit"><Plus size={15} /> {taskDraft.repeatWeekly ? "Assign weekly task" : "Assign task"}</button></form><div className="admin-task-list">{regularTasks.length ? [...regularTasks].sort((a, b) => a.status.localeCompare(b.status) || a.dueDate.localeCompare(b.dueDate)).map((task) => <article className={task.status === "completed" ? "is-completed" : ""} key={task.id}><button aria-label={`${task.status === "completed" ? "Reopen" : "Complete"} ${task.title}`} className="admin-task-check" onClick={() => handleToggleTask(task)} type="button">{task.status === "completed" ? <Check size={14} /> : null}</button><div><strong>{task.title}</strong><span>{task.assignedToName} · Due {task.dueDate} · {task.status === "completed" ? `Completed ${task.completedAt ? new Date(task.completedAt).toLocaleDateString() : ""}` : "Open"}</span><p>{task.description}</p></div><div className="admin-task-actions">{task.status === "completed" ? <button className="admin-task-approve" onClick={() => handleApproveTask(task)} type="button"><CheckCircle2 size={14} /> Approve</button> : null}<button aria-label={`Remove ${task.title}`} className="admin-task-remove" onClick={() => handleDeleteTask(task.id)} type="button"><Trash2 size={14} /></button></div></article>) : <p>No other tasks assigned.</p>}</div></div>
-      </section>
-      <section className="teacher-panel admin-bookings-panel" id="room-approvals">
-        <div className="teacher-panel-header"><div><span>25Live management</span><h2>Room bookings</h2></div><p>Create confirmed reservations, review staff requests, and remove bookings.</p></div>
-        <details className="admin-room-directory"><summary>Manage rooms, floors, and seats</summary><form className="admin-add-room-form" onSubmit={handleAddRoom}><label>Room name<input placeholder="e.g. Art Room" required value={newRoomDraft.name} onChange={(event) => setNewRoomDraft({ ...newRoomDraft, name: event.target.value })} /></label><label>Floor <small>0 = LL, 1 = L</small><input min={0} type="number" value={newRoomDraft.floor} onChange={(event) => setNewRoomDraft({ ...newRoomDraft, floor: Number(event.target.value) })} /></label><label>Seats<input min={1} type="number" value={newRoomDraft.capacity} onChange={(event) => setNewRoomDraft({ ...newRoomDraft, capacity: Number(event.target.value) })} /></label><button type="submit"><Plus size={14} /> Add room</button></form><div>{adminRooms.map((room) => <article key={room.id}><label>Floor <small>{getFloorName(room.floor)}</small><input min={0} type="number" value={room.floor} onChange={(event) => setAdminRooms((current) => current.map((item) => item.id === room.id ? { ...item, floor: Number(event.target.value) } : item))} /></label><label>Room name<input value={room.name} onChange={(event) => setAdminRooms((current) => current.map((item) => item.id === room.id ? { ...item, name: event.target.value } : item))} /></label><label>Seats<input min={1} type="number" value={room.capacity} onChange={(event) => setAdminRooms((current) => current.map((item) => item.id === room.id ? { ...item, capacity: Number(event.target.value) } : item))} /></label><button aria-label={`Remove ${room.name}`} className="is-remove" onClick={() => { if (window.confirm(`Delete ${room.name}? This action cannot be undone.`)) setAdminRooms((current) => current.filter((item) => item.id !== room.id)); }} type="button"><Trash2 size={14} /></button></article>)}</div><footer><button disabled={isSaving || !adminRooms.length} onClick={handleSaveRooms} type="button"><Check size={15} /> Save room details</button><small>Room photos stay in <code>client/public/images/rooms</code>, never Supabase.</small></footer></details>
-        <form className="admin-booking-form" onSubmit={handleCreateBooking}><label>Event<input required value={bookingDraft.eventName} onChange={(event) => setBookingDraft({ ...bookingDraft, eventName: event.target.value })} /></label><label>Room<select value={bookingDraft.roomId} onChange={(event) => { const room = adminRooms.find((item) => item.id === event.target.value) ?? adminRooms[0]; setBookingDraft({ ...bookingDraft, floor: room.floor, roomId: room.id, roomName: room.name }); }}>{adminRooms.map((room) => <option key={room.id} value={room.id}>{getFloorName(room.floor)} · {room.name}</option>)}</select></label><label>Date<input required type="date" value={bookingDraft.date} onChange={(event) => setBookingDraft({ ...bookingDraft, date: event.target.value })} /></label><label>Starts<input required type="time" value={bookingDraft.time} onChange={(event) => setBookingDraft({ ...bookingDraft, time: event.target.value })} /></label><label>Ends<input required type="time" value={bookingDraft.endTime} onChange={(event) => setBookingDraft({ ...bookingDraft, endTime: event.target.value })} /></label>{!editingBookingId ? <label className="admin-booking-repeat"><input checked={bookingDraft.weeklyRepeat} type="checkbox" onChange={(event) => setBookingDraft({ ...bookingDraft, repeatUntil: event.target.checked ? (bookingDraft.repeatUntil || bookingDraft.date) : "", weeklyRepeat: event.target.checked })} /><span>Repeat weekly</span></label> : null}{bookingDraft.weeklyRepeat && !editingBookingId ? <label>Repeat until<input min={bookingDraft.date} required type="date" value={bookingDraft.repeatUntil} onChange={(event) => setBookingDraft({ ...bookingDraft, repeatUntil: event.target.value })} /></label> : null}<label className="is-wide">Description<input required value={bookingDraft.description} onChange={(event) => setBookingDraft({ ...bookingDraft, description: event.target.value })} /></label><button disabled={isSaving} type="submit">{isSaving ? <RefreshCw className="is-spinning" size={15} /> : editingBookingId ? <Pencil size={15} /> : <Plus size={15} />} {isSaving ? "Saving booking…" : editingBookingId ? "Save booking" : bookingDraft.weeklyRepeat ? "Confirm series" : "Confirm booking"}</button>{editingBookingId ? <button className="is-cancel" onClick={() => { setEditingBookingId(""); setBookingDraft((current) => ({ ...current, description: "", eventName: "", weeklyRepeat: false })); }} type="button">Cancel edit</button> : null}</form>
-        <div className="admin-booking-list">{bookings.length ? [...bookings].reverse().map((booking) => <article key={booking.id}><div className="admin-booking-room"><span>{getFloorName(booking.floor)}</span><strong>{booking.roomName}</strong><small>{booking.date || "Date not set"} · {booking.time}{booking.endTime ? `–${booking.endTime}` : ""}</small></div><div><strong>{booking.eventName}</strong><small>Requested by {booking.requestedByName}</small><p>{booking.description}</p></div><div className="admin-booking-review"><em className={`is-${booking.status}`}>{booking.status}</em><button onClick={() => beginEditingBooking(booking)} type="button"><Pencil size={13} /> Edit</button>{booking.status === "pending" ? <><button onClick={() => handleReviewBooking(booking.id, "approved")} type="button"><Check size={14} /> Approve</button><button className="is-reject" onClick={() => handleReviewBooking(booking.id, "rejected")} type="button"><X size={14} /> Decline</button></> : null}<button className="is-reject" onClick={() => handleDeleteBooking(booking.id)} type="button"><Trash2 size={13} /> Remove</button></div></article>) : <p>No room requests have been submitted.</p>}</div>
       </section>
       <section className="teacher-panel admin-sheets-panel" id="google-sheets">
         <div className="teacher-panel-header"><div><span>Cloud integration</span><h2>Google Sheets</h2></div><p>Send saved attendance to a spreadsheet automatically and sync existing records.</p></div>

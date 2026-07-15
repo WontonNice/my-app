@@ -33,7 +33,7 @@ function getRoleLabel(role: SavedAccount["role"]) {
   return "Student";
 }
 
-function AccountSwitcher() {
+export function AccountSwitcher() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [accounts, setAccounts] = useState<SavedAccount[]>([]);
   const [identifier, setIdentifier] = useState("");
