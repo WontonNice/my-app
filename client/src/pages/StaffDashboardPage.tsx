@@ -271,10 +271,9 @@ function SwimmingPanel({ data }: { data: StaffDashboardData }) {
   );
 }
 
-function DismissalPanel({ date, isSaving, onChangeDate, onUpdate, rows }: { date: string; isSaving: string; onChangeDate: (date: string) => void; onUpdate: (student: StaffDashboardData["roster"][number], update: { date?: string; pickedUpEarly?: boolean; pickupTime?: string; vanRide?: "none" | "2pm" | "5pm" }) => void; rows: StaffDashboardData["roster"] }) {
+function DismissalPanel({ date, isSaving, onChangeDate, onUpdate, rows }: { date: string; isSaving: string; onChangeDate: (date: string) => void; onUpdate: (student: StaffDashboardData["roster"][number], update: { date?: string; pickedUpEarly?: boolean; pickupTime?: string; vanRide?: "none" | "5pm" }) => void; rows: StaffDashboardData["roster"] }) {
   const [pickupTimeDrafts, setPickupTimeDrafts] = useState<Record<string, string>>({});
   const earlyCount = rows.filter((student) => student.earlyPickupDates?.includes(date)).length;
-  const van2Count = rows.filter((student) => student.vanRide === "2pm").length;
   const van5Count = rows.filter((student) => student.vanRide === "5pm").length;
   const isFuture = date > new Date().toLocaleDateString("en-CA");
 
@@ -287,7 +286,7 @@ function DismissalPanel({ date, isSaving, onChangeDate, onUpdate, rows }: { date
   return (
     <section className="staff-panel staff-dismissal-panel">
       <header className="staff-panel-header"><div><p>Daily departure</p><h2>Pickup and van roster</h2></div><label className="staff-dismissal-date">Roster date<input type="date" value={date} onChange={(event) => onChangeDate(event.target.value)} /></label></header>
-      <div className="staff-dismissal-summary"><span><CheckCircle2 size={15} /><strong>{earlyCount}</strong> early pickup</span><span><Bus size={15} /><strong>{van2Count}</strong> van at 2 PM</span><span><Bus size={15} /><strong>{van5Count}</strong> van at 5 PM</span></div>
+      <div className="staff-dismissal-summary"><span><CheckCircle2 size={15} /><strong>{earlyCount}</strong> early pickup</span><span><Bus size={15} /><strong>{van5Count}</strong> van at 5 PM</span></div>
       {isFuture ? <p className="staff-attendance-future-notice"><CircleAlert size={15} /> Future dates are view-only.</p> : null}
       <div className="staff-dismissal-list">
         {rows.map((student) => {
@@ -297,12 +296,12 @@ function DismissalPanel({ date, isSaving, onChangeDate, onUpdate, rows }: { date
           const saving = isSaving === student.id;
           const pickupLabel = pickedUpEarly && student.earlyPickupTimes?.[date]
             ? `Picked up ${displayTime(student.earlyPickupTimes[date])}`
-            : vanRide === "2pm" ? "Van - 2 PM" : vanRide === "5pm" ? "Van - 5 PM" : "No van";
+            : vanRide === "5pm" ? "Van - 5 PM" : "No van";
           return (
             <article key={student.id}>
               <span className="staff-avatar">{getInitials(student.name)}</span>
               <div><strong>{student.name}</strong><small className={`is-${vanRide}`}>{pickupLabel}</small></div>
-              <label>Ride home<select disabled={saving} value={vanRide} onChange={(event) => onUpdate(student, { vanRide: event.target.value as "none" | "2pm" | "5pm" })}><option value="none">No van</option><option value="2pm">Van at 2 PM</option><option value="5pm">Van at 5 PM</option></select></label>
+              <label>Ride home<select disabled={saving} value={vanRide} onChange={(event) => onUpdate(student, { vanRide: event.target.value as "none" | "5pm" })}><option value="none">No van</option><option value="5pm">Van at 5 PM</option></select></label>
               <label>Time picked up<input disabled={saving || isFuture} type="time" value={pickupTime} onChange={(event) => setPickupTimeDrafts((current) => ({ ...current, [student.id]: event.target.value }))} /></label>
               <div className="staff-dismissal-actions">
                 <button className={pickedUpEarly ? "is-early" : ""} disabled={saving || isFuture || !pickupTime} onClick={() => onUpdate(student, { date, pickedUpEarly: true, pickupTime })} type="button"><CheckCircle2 size={15} /> {pickedUpEarly ? "Save pickup time" : "Mark early pickup"}</button>
@@ -479,7 +478,7 @@ export function StaffDashboardPage() {
     }
   }
 
-  async function handleDismissalUpdate(student: StaffDashboardData["roster"][number], update: { date?: string; pickedUpEarly?: boolean; pickupTime?: string; vanRide?: "none" | "2pm" | "5pm" }) {
+  async function handleDismissalUpdate(student: StaffDashboardData["roster"][number], update: { date?: string; pickedUpEarly?: boolean; pickupTime?: string; vanRide?: "none" | "5pm" }) {
     if (!accessToken) return;
     setSavingDismissalId(student.id);
     setAttendanceSaveMessage("");

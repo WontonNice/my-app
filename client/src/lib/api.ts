@@ -88,6 +88,7 @@ export type StaffDashboardData = {
   classes?: string[];
   schedule?: ScheduleItem[];
   swimmingRecords?: Record<string, SwimmingStatus>;
+  swimmingRosters?: Record<string, string[]>;
   roster: {
     allergies?: string;
     assignment: string;
@@ -103,7 +104,7 @@ export type StaffDashboardData = {
     status: "Active" | "Waitlist";
     earlyPickupDates?: string[];
     earlyPickupTimes?: Record<string, string>;
-    vanRide?: "none" | "2pm" | "5pm";
+    vanRide?: "none" | "5pm";
   }[];
 };
 
@@ -222,6 +223,17 @@ export async function saveSwimmingStatus(accessToken: string, accountId: string,
   );
 }
 
+export async function saveSwimmingRoster(accessToken: string, accountId: string, date: string, studentIds: string[]) {
+  return requestApi<{ dashboardData: StaffDashboardData; studentIds: string[] }>(
+    `/api/staff/swimming-roster/${encodeURIComponent(accountId)}/${encodeURIComponent(date)}`,
+    {
+      body: JSON.stringify({ studentIds }),
+      headers: createAuthHeaders(accessToken),
+      method: "PUT",
+    },
+  );
+}
+
 export async function getStaffDashboard(accessToken: string, accountId?: string) {
   const query = accountId ? `?accountId=${encodeURIComponent(accountId)}` : "";
   const data = await requestApi<{ dashboardData: StaffDashboardData }>(`/api/staff/dashboard${query}`, {
@@ -282,7 +294,7 @@ export async function saveStaffDismissal(
     pickedUpEarly?: boolean;
     pickupTime?: string;
     studentId: string;
-    vanRide?: "none" | "2pm" | "5pm";
+    vanRide?: "none" | "5pm";
   },
 ) {
   return requestApi<{ dashboardData: StaffDashboardData }>("/api/staff/dismissal", {
@@ -329,7 +341,7 @@ export type StudentProgressSnapshot = {
   dismissal: {
     earlyPickupDates: string[];
     earlyPickupTimes: Record<string, string>;
-    vanRide: "none" | "2pm" | "5pm";
+    vanRide: "none" | "5pm";
   };
   email: string;
   fullName: string;
@@ -608,7 +620,7 @@ export async function getTeacherStudentProgress(accessToken: string) {
 export async function updateStudentDismissal(
   accessToken: string,
   studentId: string,
-  input: { date?: string; pickedUpEarly?: boolean; pickupTime?: string; vanRide?: "none" | "2pm" | "5pm" },
+  input: { date?: string; pickedUpEarly?: boolean; pickupTime?: string; vanRide?: "none" | "5pm" },
 ) {
   const data = await requestApi<{ dismissal: StudentProgressSnapshot["dismissal"] }>(
     `/api/progress/students/${encodeURIComponent(studentId)}/dismissal`,

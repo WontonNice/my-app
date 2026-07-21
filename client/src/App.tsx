@@ -117,7 +117,7 @@ function CurrentPage() {
     return <TeacherDashboardPage />;
   }
 
-  if (path === "/admin") {
+  if (path === "/admin" || path.startsWith("/admin/")) {
     return <AdminDashboardPage />;
   }
 

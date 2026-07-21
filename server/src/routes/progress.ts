@@ -13,7 +13,7 @@ type ExamSessionProgress = {
     completedSections: ("english" | "math")[];
     updatedAt: string;
 };
-type VanRide = "none" | "2pm" | "5pm";
+type VanRide = "none" | "5pm";
 
 function isDate(value: unknown): value is string {
     return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
@@ -28,7 +28,7 @@ function getDismissal(user: User) {
     const candidate = stored && typeof stored === "object" && !Array.isArray(stored)
         ? stored as Record<string, unknown>
         : {};
-    const vanRide: VanRide = candidate.vanRide === "2pm" || candidate.vanRide === "5pm" ? candidate.vanRide : "none";
+    const vanRide: VanRide = candidate.vanRide === "5pm" ? candidate.vanRide : "none";
     const earlyPickupDates = Array.isArray(candidate.earlyPickupDates)
         ? candidate.earlyPickupDates.filter(isDate)
         : [];
@@ -219,8 +219,8 @@ progressRouter.patch("/students/:studentId/dismissal", async (request, response)
 
     const current = getDismissal(student);
     const vanRide = request.body?.vanRide;
-    if (vanRide !== undefined && vanRide !== "none" && vanRide !== "2pm" && vanRide !== "5pm") {
-        response.status(400).json({ message: "Van ride must be none, 2pm, or 5pm." });
+    if (vanRide !== undefined && vanRide !== "none" && vanRide !== "5pm") {
+        response.status(400).json({ message: "Van ride must be none or 5pm." });
         return;
     }
     const date = request.body?.date;

@@ -449,9 +449,12 @@ staffRouter.get("/dashboard", async (request, response) => {
 
     const storedDashboardData = await getStaffDashboardData(target);
     const storedRoster = Array.isArray(storedDashboardData.roster) ? storedDashboardData.roster : [];
+    const roster = target.user_metadata.username === "pss5" && storedRoster.length === 0 ? boazRoster : storedRoster;
     const dashboardData = {
         ...storedDashboardData,
-        roster: target.user_metadata.username === "pss5" && storedRoster.length === 0 ? boazRoster : storedRoster,
+        roster: roster.map((student) => student && typeof student === "object" && !Array.isArray(student)
+            ? { ...student, vanRide: student.vanRide === "5pm" ? "5pm" : "none" }
+            : student),
     };
     response.json({ dashboardData });
 });
@@ -598,6 +601,56 @@ staffRouter.put("/swimming/:accountId/:studentId", async (request, response) => 
     response.json({ dashboardData: nextDashboardData, status });
 });
 
+staffRouter.put("/swimming-roster/:accountId/:date", async (request, response) => {
+    const admin = await requireAdmin(request.headers.authorization);
+    if (admin.error || !admin.user) {
+        response.status(admin.error === "Administrator access is required." ? 403 : 401).json({ message: admin.error });
+        return;
+    }
+
+    const date = request.params.date;
+    const parsedDate = new Date(`${date}T12:00:00Z`);
+    const day = parsedDate.getUTCDay();
+    if (!isDate(date) || Number.isNaN(parsedDate.getTime()) || date < "2026-07-20" || date > "2026-08-14" || day === 0 || day === 6) {
+        response.status(400).json({ message: "Choose a Monday-Friday swimming date from July 20 through August 14, 2026." });
+        return;
+    }
+
+    const targetResult = await supabase.auth.admin.getUserById(request.params.accountId);
+    const target = targetResult.data.user;
+    if (targetResult.error || !target || getUserRole(target) !== "staff") {
+        response.status(404).json({ message: "Staff account was not found." });
+        return;
+    }
+
+    const dashboardData = await getStaffDashboardData(target);
+    const storedRoster = Array.isArray(dashboardData.roster) ? dashboardData.roster as Record<string, unknown>[] : [];
+    const roster = target.user_metadata.username === "pss5" && storedRoster.length === 0 ? boazRoster : storedRoster;
+    const rosterIds = new Set(roster.map((student) => student.id).filter((id): id is string => typeof id === "string"));
+    const requestedStudentIds = Array.isArray(request.body?.studentIds) ? request.body.studentIds : null;
+    if (!requestedStudentIds || requestedStudentIds.some((studentId: unknown) => typeof studentId !== "string" || !rosterIds.has(studentId))) {
+        response.status(400).json({ message: "The swimming roster contains a student who is not on this staff roster." });
+        return;
+    }
+
+    const studentIds = Array.from(new Set(requestedStudentIds as string[]));
+    const storedSwimmingRosters = dashboardData.swimmingRosters && typeof dashboardData.swimmingRosters === "object" && !Array.isArray(dashboardData.swimmingRosters)
+        ? dashboardData.swimmingRosters as Record<string, unknown>
+        : {};
+    const nextDashboardData = {
+        ...dashboardData,
+        roster,
+        swimmingRosters: { ...storedSwimmingRosters, [date]: studentIds },
+    };
+    const saved = await saveStaffDashboardData(target.id, nextDashboardData);
+    if (saved.error) {
+        response.status(400).json({ message: saved.error });
+        return;
+    }
+
+    response.json({ dashboardData: nextDashboardData, studentIds });
+});
+
 staffRouter.put("/roster/:accountId", async (request, response) => {
     const admin = await requireAdmin(request.headers.authorization);
     if (admin.error || !admin.user) {
@@ -688,11 +741,18 @@ staffRouter.delete("/roster/:accountId/:studentId", async (request, response) =>
         ? { ...(dashboardData.swimmingRecords as Record<string, unknown>) }
         : {};
     delete swimmingRecords[request.params.studentId];
+    const swimmingRosters = dashboardData.swimmingRosters && typeof dashboardData.swimmingRosters === "object" && !Array.isArray(dashboardData.swimmingRosters)
+        ? Object.fromEntries(Object.entries(dashboardData.swimmingRosters as Record<string, unknown>).map(([date, studentIds]) => [
+            date,
+            Array.isArray(studentIds) ? studentIds.filter((studentId) => studentId !== request.params.studentId) : [],
+        ]))
+        : {};
     const nextDashboardData = {
         ...dashboardData,
         attendanceRecords,
         roster: roster.filter((item) => item.id !== request.params.studentId),
         swimmingRecords,
+        swimmingRosters,
     };
     const saved = await saveStaffDashboardData(target.id, nextDashboardData);
     if (saved.error) {
@@ -834,7 +894,7 @@ staffRouter.put("/dismissal", async (request, response) => {
     const pickedUpEarly = request.body?.pickedUpEarly;
     const pickupTime = request.body?.pickupTime;
     const vanRide = request.body?.vanRide;
-    if (!studentId || (vanRide !== undefined && vanRide !== "none" && vanRide !== "2pm" && vanRide !== "5pm")) {
+    if (!studentId || (vanRide !== undefined && vanRide !== "none" && vanRide !== "5pm")) {
         response.status(400).json({ message: "A student and valid van time are required." });
         return;
     }
@@ -878,7 +938,7 @@ staffRouter.put("/dismissal", async (request, response) => {
             ...student,
             earlyPickupDates: [...dates].sort(),
             earlyPickupTimes,
-            vanRide: vanRide ?? (student.vanRide === "2pm" || student.vanRide === "5pm" ? student.vanRide : "none"),
+            vanRide: vanRide ?? (student.vanRide === "5pm" ? student.vanRide : "none"),
         };
     });
     const nextDashboardData = { ...dashboardData, roster: nextRoster };

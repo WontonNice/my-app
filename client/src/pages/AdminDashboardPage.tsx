@@ -1,7 +1,8 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { CalendarDays, Check, CheckCircle2, ClipboardCheck, Cloud, Copy, Eye, FileSpreadsheet, LayoutDashboard, ListTodo, Pencil, Plus, RefreshCw, ShieldCheck, Trash2, UserCog, UserRoundPlus, Users, Waves, X } from "lucide-react";
+import { Bus, CalendarDays, Check, CheckCircle2, ClipboardCheck, Cloud, Copy, Eye, FileSpreadsheet, LayoutDashboard, ListTodo, Pencil, Plus, RefreshCw, Search, ShieldCheck, Trash2, UserCog, UserRoundPlus, Users, Waves, X } from "lucide-react";
+import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
-import { assignStaffAccount, createStaffTask, deleteRosterStudent, deleteStaffAttendanceEntry, deleteStaffTask, getGoogleSheetsAttendanceSettings, getStaffAccounts, getStaffAttendanceEntries, getStaffSchedules, getStaffTasks, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffAttendance, saveStaffAttendanceEntry, saveStaffClasses, saveStaffSchedule, saveSwimmingStatus, syncGoogleSheetsAttendance, updateStaffAccount, updateStaffTask, type ScheduleItem, type StaffAccount, type StaffAttendanceEntry, type StaffSchedule, type StaffTask } from "../lib/api";
+import { assignStaffAccount, createStaffTask, deleteRosterStudent, deleteStaffAttendanceEntry, deleteStaffTask, getGoogleSheetsAttendanceSettings, getStaffAccounts, getStaffAttendanceEntries, getStaffSchedules, getStaffTasks, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffAttendance, saveStaffAttendanceEntry, saveStaffClasses, saveStaffDismissal, saveStaffSchedule, saveSwimmingRoster, saveSwimmingStatus, syncGoogleSheetsAttendance, updateStaffAccount, updateStaffTask, type ScheduleItem, type StaffAccount, type StaffAttendanceEntry, type StaffSchedule, type StaffTask } from "../lib/api";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
@@ -39,6 +40,47 @@ function doPost(e) {
 
 const weekdayLabels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 type AttendanceStatus = "Absent" | "Late" | "Present" | "Unmarked";
+type AdminWorkspace = "accounts" | "attendance" | "dismissals" | "overview" | "roster" | "schedules" | "sheets" | "staff-attendance" | "swimming" | "tasks";
+
+const adminWorkspaceIds = new Set<AdminWorkspace>(["accounts", "attendance", "dismissals", "overview", "roster", "schedules", "sheets", "staff-attendance", "swimming", "tasks"]);
+const adminWorkspaceCopy: Record<AdminWorkspace, { eyebrow: string; title: string; description: string }> = {
+  accounts: { eyebrow: "Staff access", title: "Staff accounts", description: "Create, update, and preview staff login accounts." },
+  attendance: { eyebrow: "Program records", title: "Student attendance", description: "Review and update daily attendance across the summer program." },
+  dismissals: { eyebrow: "Daily departure", title: "Student dismissals", description: "Manage early pickups and the 5 PM van roster across every class." },
+  overview: { eyebrow: "Administration", title: "System administration", description: "Choose a workspace to manage Promise Summer School operations." },
+  roster: { eyebrow: "Class enrollment", title: "Student rosters", description: "Manage staff classes and the students assigned to them." },
+  schedules: { eyebrow: "Program calendar", title: "Staff schedules", description: "Coordinate recurring activities, locations, and student groups." },
+  sheets: { eyebrow: "Cloud integration", title: "Google Sheets", description: "Configure attendance exports and synchronize saved records." },
+  "staff-attendance": { eyebrow: "Staff records", title: "Staff attendance", description: "Record staff hours for payroll and coverage review." },
+  swimming: { eyebrow: "Swimming program", title: "Daily swimming rosters", description: "Plan every weekday roster through August 14 and review student readiness." },
+  tasks: { eyebrow: "Staff workflow", title: "Staff tasks", description: "Assign work and follow each task through completion." },
+};
+
+const swimmingProgramDates = (() => {
+  const dates: string[] = [];
+  const cursor = new Date("2026-07-20T12:00:00Z");
+  const end = new Date("2026-08-14T12:00:00Z");
+  while (cursor <= end) {
+    const day = cursor.getUTCDay();
+    if (day >= 1 && day <= 5) dates.push(cursor.toISOString().slice(0, 10));
+    cursor.setUTCDate(cursor.getUTCDate() + 1);
+  }
+  return dates;
+})();
+
+function initialSwimmingDate() {
+  const today = todayDateInput();
+  return swimmingProgramDates.find((date) => date >= today) ?? swimmingProgramDates.at(-1) ?? "2026-08-14";
+}
+
+function formatSwimmingDate(date: string, includeWeekday = true) {
+  return new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "short",
+    timeZone: "UTC",
+    ...(includeWeekday ? { weekday: "short" as const } : {}),
+  }).format(new Date(`${date}T12:00:00Z`));
+}
 
 function todayDateInput() {
   return new Date().toLocaleDateString("en-CA");
@@ -73,6 +115,10 @@ function attendanceOverrideKey(accountId: string, date: string, studentId: strin
   return `${accountId}:${date}:${studentId}`;
 }
 
+function dismissalPickupKey(accountId: string, date: string, studentId: string) {
+  return `${accountId}:${date}:${studentId}`;
+}
+
 export function AdminDashboardPage() {
   const [accessToken, setAccessToken] = useState("");
   const [adminName, setAdminName] = useState("Administrator");
@@ -82,6 +128,14 @@ export function AdminDashboardPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [isSavingStudent, setIsSavingStudent] = useState(false);
   const [savingSwimmingStudentId, setSavingSwimmingStudentId] = useState("");
+  const [savingSwimmingRosterStudentId, setSavingSwimmingRosterStudentId] = useState("");
+  const [selectedSwimmingDate, setSelectedSwimmingDate] = useState(initialSwimmingDate);
+  const [isSwimmingStudentPickerOpen, setIsSwimmingStudentPickerOpen] = useState(false);
+  const [swimmingStudentSearch, setSwimmingStudentSearch] = useState("");
+  const [swimmingGradeFilter, setSwimmingGradeFilter] = useState("all");
+  const [selectedDismissalDate, setSelectedDismissalDate] = useState(todayDateInput);
+  const [savingDismissalStudentId, setSavingDismissalStudentId] = useState("");
+  const [dismissalPickupDrafts, setDismissalPickupDrafts] = useState<Record<string, string>>({});
   const [message, setMessage] = useState("");
   const [staffAccounts, setStaffAccounts] = useState<StaffAccount[]>([]);
   const [selectedStaffId, setSelectedStaffId] = useState("");
@@ -473,20 +527,63 @@ export function AdminDashboardPage() {
     }
   }
 
-  async function handleSwimmingToggle(studentId: string, field: "paidFee" | "waiverComplete") {
-    if (!accessToken || !selectedAccount || savingSwimmingStudentId) return;
-    const currentStatus = selectedAccount.dashboardData.swimmingRecords?.[studentId] ?? { paidFee: false, waiverComplete: false };
+  async function handleSwimmingToggle(accountId: string, studentId: string, field: "paidFee" | "waiverComplete") {
+    if (!accessToken || savingSwimmingStudentId) return;
+    const account = staffAccounts.find((item) => item.id === accountId);
+    if (!account) return;
+    const currentStatus = account.dashboardData.swimmingRecords?.[studentId] ?? { paidFee: false, waiverComplete: false };
     const nextStatus = { ...currentStatus, [field]: !currentStatus[field] };
-    setSavingSwimmingStudentId(studentId);
+    setSavingSwimmingStudentId(`${accountId}:${studentId}`);
     setMessage("");
     try {
-      const result = await saveSwimmingStatus(accessToken, selectedAccount.id, studentId, nextStatus);
-      setStaffAccounts((current) => current.map((account) => account.id === selectedAccount.id ? { ...account, dashboardData: result.dashboardData } : account));
+      const result = await saveSwimmingStatus(accessToken, accountId, studentId, nextStatus);
+      setStaffAccounts((current) => current.map((item) => item.id === accountId ? { ...item, dashboardData: result.dashboardData } : item));
       setMessage("Swimming record saved to the database.");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Could not save the swimming record.");
     } finally {
       setSavingSwimmingStudentId("");
+    }
+  }
+
+  async function handleSwimmingRosterToggle(accountId: string, studentId: string) {
+    if (!accessToken || savingSwimmingRosterStudentId) return;
+    const account = staffAccounts.find((item) => item.id === accountId);
+    if (!account) return;
+    const currentStudentIds = account.dashboardData.swimmingRosters?.[selectedSwimmingDate] ?? [];
+    const nextStudentIds = currentStudentIds.includes(studentId)
+      ? currentStudentIds.filter((id) => id !== studentId)
+      : [...currentStudentIds, studentId];
+    setSavingSwimmingRosterStudentId(`${accountId}:${studentId}`);
+    setMessage("");
+    try {
+      const result = await saveSwimmingRoster(accessToken, accountId, selectedSwimmingDate, nextStudentIds);
+      setStaffAccounts((current) => current.map((item) => item.id === accountId ? { ...item, dashboardData: result.dashboardData } : item));
+      setMessage(`Swimming roster saved for ${formatSwimmingDate(selectedSwimmingDate)}.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not save the daily swimming roster.");
+    } finally {
+      setSavingSwimmingRosterStudentId("");
+    }
+  }
+
+  async function handleAdminDismissalUpdate(
+    accountId: string,
+    student: StaffAccount["dashboardData"]["roster"][number],
+    update: { date?: string; pickedUpEarly?: boolean; pickupTime?: string; vanRide?: "none" | "5pm" },
+  ) {
+    if (!accessToken || savingDismissalStudentId) return;
+    const savingKey = `${accountId}:${student.id}`;
+    setSavingDismissalStudentId(savingKey);
+    setMessage("");
+    try {
+      const result = await saveStaffDismissal(accessToken, { accountId, studentId: student.id, ...update });
+      setStaffAccounts((current) => current.map((account) => account.id === accountId ? { ...account, dashboardData: result.dashboardData } : account));
+      setMessage(`${student.name}'s dismissal information was saved.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not update dismissal information.");
+    } finally {
+      setSavingDismissalStudentId("");
     }
   }
 
@@ -526,15 +623,21 @@ export function AdminDashboardPage() {
 
   if (isLoading) return <main className="loading-shell">Loading administration...</main>;
 
+  const requestedWorkspace = window.location.pathname.split("/").filter(Boolean)[1] ?? "overview";
+  const activeWorkspace = adminWorkspaceIds.has(requestedWorkspace as AdminWorkspace) ? requestedWorkspace as AdminWorkspace : "overview";
+  const workspaceCopy = adminWorkspaceCopy[activeWorkspace];
+
   const navItems = [
     { id: "overview", label: "Overview", href: "/admin", icon: LayoutDashboard },
-    { id: "attendance", label: "Attendance", href: "#attendance-overview", icon: CalendarDays },
-    { id: "staff-attendance", label: "Staff attendance", href: "#staff-attendance", icon: ClipboardCheck },
-    { id: "roster", label: "Student rosters", href: "#student-roster", icon: Users },
-    { id: "swimming", label: "Swimming", href: "#swimming-management", icon: Waves },
-    { id: "schedules", label: "Staff schedules", href: "#staff-schedules", icon: CalendarDays },
-    { id: "tasks", label: "Staff tasks", href: "#staff-tasks", icon: ListTodo },
-    { id: "sheets", label: "Google Sheets", href: "#google-sheets", icon: FileSpreadsheet },
+    { id: "attendance", label: "Attendance", href: "/admin/attendance", icon: CalendarDays },
+    { id: "staff-attendance", label: "Staff attendance", href: "/admin/staff-attendance", icon: ClipboardCheck },
+    { id: "roster", label: "Student rosters", href: "/admin/roster", icon: Users },
+    { id: "dismissals", label: "Dismissals", href: "/admin/dismissals", icon: Bus },
+    { id: "swimming", label: "Swimming", href: "/admin/swimming", icon: Waves },
+    { id: "schedules", label: "Staff schedules", href: "/admin/schedules", icon: CalendarDays },
+    { id: "tasks", label: "Staff tasks", href: "/admin/tasks", icon: ListTodo },
+    { id: "sheets", label: "Google Sheets", href: "/admin/sheets", icon: FileSpreadsheet },
+    { id: "accounts", label: "Staff accounts", href: "/admin/accounts", icon: UserCog },
   ];
 
   const selectedAccount = staffAccounts.find((account) => account.id === selectedStaffId) ?? staffAccounts[0];
@@ -546,6 +649,31 @@ export function AdminDashboardPage() {
   const attendanceOverridePrefix = `${selectedAccount?.id ?? ""}:${selectedAttendanceDate}:`;
   const hasAttendanceDraftChanges = Object.keys(attendanceOverrides).some((key) => key.startsWith(attendanceOverridePrefix));
   const sortedRosterRows = [...(selectedAccount?.dashboardData.roster ?? [])].sort((first, second) => rosterSort === "az" ? first.name.localeCompare(second.name) : second.name.localeCompare(first.name));
+  const swimmingRosterRows = staffAccounts.flatMap((account) => account.dashboardData.roster.map((student) => ({
+    ...student,
+    accountId: account.id,
+    gradeLabel: attendanceGradeLabel(student),
+    staffName: account.fullName,
+    swimmingStatus: account.dashboardData.swimmingRecords?.[student.id] ?? { paidFee: false, waiverComplete: false },
+    swimsOnSelectedDate: account.dashboardData.swimmingRosters?.[selectedSwimmingDate]?.includes(student.id) ?? false,
+  }))).sort((first, second) => first.name.localeCompare(second.name) || first.staffName.localeCompare(second.staffName));
+  const selectedSwimmingRows = swimmingRosterRows.filter((student) => student.swimsOnSelectedDate);
+  const selectedSwimmingCount = selectedSwimmingRows.length;
+  const selectedSwimmingWaiverCount = selectedSwimmingRows.filter((student) => student.swimmingStatus.waiverComplete).length;
+  const selectedSwimmingPaidCount = selectedSwimmingRows.filter((student) => student.swimmingStatus.paidFee).length;
+  const swimmingGradeOptions = Array.from(new Set(swimmingRosterRows.map((student) => student.gradeLabel))).sort((first, second) => first.localeCompare(second, undefined, { numeric: true }));
+  const swimmingSearchTerm = swimmingStudentSearch.trim().toLocaleLowerCase();
+  const availableSwimmingRows = swimmingRosterRows.filter((student) => !student.swimsOnSelectedDate
+    && (swimmingGradeFilter === "all" || student.gradeLabel === swimmingGradeFilter)
+    && (!swimmingSearchTerm || `${student.name} ${student.className ?? ""} ${student.staffName}`.toLocaleLowerCase().includes(swimmingSearchTerm)));
+  const dismissalRows = staffAccounts.flatMap((account) => account.dashboardData.roster.map((student) => ({
+    ...student,
+    accountId: account.id,
+    staffName: account.fullName,
+    vanRide: student.vanRide === "5pm" ? "5pm" as const : "none" as const,
+  }))).sort((first, second) => first.name.localeCompare(second.name) || first.staffName.localeCompare(second.staffName));
+  const dismissalEarlyCount = dismissalRows.filter((student) => student.earlyPickupDates?.includes(selectedDismissalDate)).length;
+  const dismissalVanCount = dismissalRows.filter((student) => student.vanRide === "5pm").length;
   const attendanceRows = sortedRosterRows.map((student) => ({
     ...student,
     attendanceStatus: attendanceOverrides[attendanceOverrideKey(selectedAccount?.id ?? "", selectedAttendanceDate, student.id)] ?? attendanceForDate[student.id] ?? "Unmarked",
@@ -600,16 +728,19 @@ export function AdminDashboardPage() {
   }).sort((first, second) => (first.startTime || "99:99").localeCompare(second.startTime || "99:99") || first.fullName.localeCompare(second.fullName));
 
   return (
-    <CorporateDashboardShell activeId="overview" enableAccountSwitcher navItems={navItems} onSignOut={handleSignOut} profileName={adminName} profileRole="Administrator account">
-      <header className="staff-page-heading corporate-page-heading"><div><p><ShieldCheck size={15} /> Administration</p><h1>System administration</h1><span>Manage staff access separately from SHSAT instruction and student work.</span></div></header>
+    <CorporateDashboardShell activeId={activeWorkspace} enableAccountSwitcher navItems={navItems} onSignOut={handleSignOut} profileName={adminName} profileRole="Administrator account">
+      <header className="staff-page-heading corporate-page-heading"><div><p><ShieldCheck size={15} /> {workspaceCopy.eyebrow}</p><h1>{workspaceCopy.title}</h1><span>{workspaceCopy.description}</span></div></header>
       {actionFeedback ? <div className={`admin-action-feedback is-${actionFeedback.tone}`} role="status"><span>{actionFeedback.tone === "loading" ? <RefreshCw className="is-spinning" size={17} /> : actionFeedback.tone === "success" ? <CheckCircle2 size={17} /> : <X size={17} />}</span><strong>{actionFeedback.text}</strong><button aria-label="Dismiss notification" onClick={() => setActionFeedback(null)} type="button"><X size={14} /></button></div> : null}
-      <section className="staff-kpi-grid" aria-label="Administration summary">
+      <section className="staff-kpi-grid" aria-label="Administration summary" hidden={activeWorkspace !== "overview"}>
         <article><span><Users size={19} /></span><div><p>Staff accounts</p><strong>{staffAccounts.length}</strong></div><em>Active in Supabase</em></article>
         <article><span><UserCog size={19} /></span><div><p>Account system</p><strong>Live</strong></div><em>Permanent cloud access</em></article>
         <article><span><ShieldCheck size={19} /></span><div><p>Role security</p><strong>On</strong></div><em>Admin-only controls</em></article>
       </section>
+      <section className="admin-workspace-grid" aria-label="Administration workspaces" hidden={activeWorkspace !== "overview"}>
+        {navItems.slice(1).map((item) => { const Icon = item.icon; return <AppLink href={item.href} key={item.id}><span><Icon size={20} /></span><div><strong>{item.label}</strong><small>{adminWorkspaceCopy[item.id as AdminWorkspace].description}</small></div></AppLink>; })}
+      </section>
       {message ? <p className="teacher-message corporate-message">{message}</p> : null}
-      <section className="teacher-panel admin-attendance-panel" id="attendance-overview">
+      <section className="teacher-panel admin-attendance-panel" hidden={activeWorkspace !== "attendance"} id="attendance-overview">
         <div className="teacher-panel-header"><div><span>Program records</span><h2>Attendance overview</h2></div><p>Review every staff member&apos;s saved student attendance by school day.</p></div>
         <div className="admin-school-attendance-widget" aria-label="School-wide attendance totals">
           <header>
@@ -663,7 +794,7 @@ export function AdminDashboardPage() {
           {earlyPickupRows.length ? earlyPickupRows.map((student) => <article key={`${student.staffName}-${student.id}`}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)} - {student.staffName}{student.pickupTime ? ` - ${student.pickupTime}` : ""}</small></div></article>) : <p>No early pickups are marked for this date.</p>}
         </div>
       </section>
-      <section className="teacher-panel admin-staff-attendance-panel" id="staff-attendance">
+      <section className="teacher-panel admin-staff-attendance-panel" hidden={activeWorkspace !== "staff-attendance"} id="staff-attendance">
         <div className="teacher-panel-header"><div><span>Staff records</span><h2>Staff attendance</h2></div><p>Add staff attendance and hours for payroll or daily coverage review.</p></div>
         <div className="admin-attendance-totals" aria-label="Staff attendance totals"><article><strong>{staffAttendanceForDate.length}</strong><span>Staff entries</span></article><article><strong>{staffAttendanceHoursForDate.toFixed(staffAttendanceHoursForDate % 1 ? 2 : 0)}</strong><span>Total hours</span></article><article><strong>{staffAttendanceDraft.date}</strong><span>Selected day</span></article></div>
         <div className="admin-staff-attendance-layout">
@@ -678,7 +809,7 @@ export function AdminDashboardPage() {
           <div className="admin-staff-attendance-list">{staffAttendanceEntries.length ? [...staffAttendanceEntries].sort((a, b) => b.date.localeCompare(a.date) || a.staffName.localeCompare(b.staffName)).map((entry) => <article key={entry.id}><div><strong>{entry.staffName}</strong><span>{entry.date} · {entry.hours} hours</span>{entry.note ? <p>{entry.note}</p> : null}</div><div className="admin-task-actions"><button onClick={() => beginEditingStaffAttendance(entry)} type="button"><Pencil size={13} /> Edit</button><button className="admin-task-remove" onClick={() => handleDeleteStaffAttendance(entry.id)} type="button"><Trash2 size={13} /></button></div></article>) : <p>No staff attendance has been entered yet.</p>}</div>
         </div>
       </section>
-      <section className="teacher-panel admin-roster-panel" id="student-roster">
+      <section className="teacher-panel admin-roster-panel" hidden={activeWorkspace !== "roster"} id="student-roster">
         <div className="teacher-panel-header"><div><span>Class enrollment</span><h2>Student rosters</h2></div><p>Assign one or more grade classes to each staff member, then place students in the right class.</p></div>
         <div className="admin-roster-toolbar">
           <label className="admin-roster-account">Staff member<select value={selectedAccount?.id ?? ""} onChange={(event) => { setSelectedStaffId(event.target.value); setEditingStudentId(""); setStudentDraft({ allergies: "", className: "", dob: "", firstName: "", lastName: "", specialNotes: "" }); }}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
@@ -698,22 +829,57 @@ export function AdminDashboardPage() {
           <div className="admin-roster-list">{sortedRosterRows.length ? sortedRosterRows.map((student) => <article key={student.id}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.className ?? gradeClassName(student.grade)} · DOB {student.dob || "Not entered"}</small><p>{student.specialNotes || "No special notes"}</p></div><div className="admin-roster-actions"><button onClick={() => beginEditingStudent(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-danger" onClick={() => handleDeleteStudent(student)} type="button"><Trash2 size={14} /> Remove</button></div></article>) : <p>No students are assigned to this staff member.</p>}</div>
         </div>
       </section>
-      <section className="teacher-panel admin-swimming-panel" id="swimming-management">
-        <div className="teacher-panel-header"><div><span>Swimming readiness</span><h2>Swimming roster</h2></div><p>Check off each student&apos;s completed waiver and paid program fee. Changes save immediately.</p></div>
-        <label className="admin-roster-account">Staff member<select value={selectedAccount?.id ?? ""} onChange={(event) => setSelectedStaffId(event.target.value)}>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName} (@{account.username})</option>)}</select></label>
-        <div className="admin-swimming-table-wrap">
-          <table className="admin-swimming-table">
-            <thead><tr><th scope="col">Student</th><th scope="col">Class</th><th scope="col">Waiver complete</th><th scope="col">Paid fee</th></tr></thead>
-            <tbody>{sortedRosterRows.map((student) => {
-              const status = selectedAccount?.dashboardData.swimmingRecords?.[student.id] ?? { paidFee: false, waiverComplete: false };
-              const isSavingStatus = savingSwimmingStudentId === student.id;
-              return <tr key={student.id}><th scope="row"><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><strong>{student.name}</strong></th><td>{student.className ?? gradeClassName(student.grade)}</td><td><label className={`admin-swimming-checkbox${status.waiverComplete ? " is-checked" : ""}`}><input checked={status.waiverComplete} disabled={Boolean(savingSwimmingStudentId)} onChange={() => handleSwimmingToggle(student.id, "waiverComplete")} type="checkbox" /><span>{status.waiverComplete ? <Check size={15} /> : null}</span><em>{isSavingStatus ? "Saving…" : status.waiverComplete ? "Complete" : "Incomplete"}</em></label></td><td><label className={`admin-swimming-checkbox${status.paidFee ? " is-checked" : ""}`}><input checked={status.paidFee} disabled={Boolean(savingSwimmingStudentId)} onChange={() => handleSwimmingToggle(student.id, "paidFee")} type="checkbox" /><span>{status.paidFee ? <Check size={15} /> : null}</span><em>{isSavingStatus ? "Saving…" : status.paidFee ? "Paid" : "Unpaid"}</em></label></td></tr>;
-            })}</tbody>
-          </table>
-          {!sortedRosterRows.length ? <p>No students are assigned to this staff member.</p> : null}
+      <section className="teacher-panel admin-dismissal-panel" hidden={activeWorkspace !== "dismissals"} id="student-dismissals">
+        <div className="teacher-panel-header"><div><span>Daily departure</span><h2>Pickup and van roster</h2></div><label className="staff-dismissal-date">Roster date<input type="date" value={selectedDismissalDate} onChange={(event) => setSelectedDismissalDate(event.target.value)} /></label></div>
+        <div className="staff-dismissal-summary"><span><CheckCircle2 size={15} /><strong>{dismissalEarlyCount}</strong> early pickup</span><span><Bus size={15} /><strong>{dismissalVanCount}</strong> van at 5 PM</span></div>
+        <div className="staff-dismissal-list admin-dismissal-list">
+          {dismissalRows.map((student) => {
+            const savingKey = `${student.accountId}:${student.id}`;
+            const pickupDraftKey = dismissalPickupKey(student.accountId, selectedDismissalDate, student.id);
+            const pickedUpEarly = Boolean(student.earlyPickupDates?.includes(selectedDismissalDate));
+            const pickupTime = dismissalPickupDrafts[pickupDraftKey] ?? student.earlyPickupTimes?.[selectedDismissalDate] ?? "";
+            const isSavingDismissal = savingDismissalStudentId === savingKey;
+            const pickupLabel = pickedUpEarly && student.earlyPickupTimes?.[selectedDismissalDate]
+              ? `Picked up ${student.earlyPickupTimes[selectedDismissalDate]}`
+              : student.vanRide === "5pm" ? "Van - 5 PM" : "No van";
+            return <article key={savingKey}><span className="staff-avatar">{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small className={`is-${student.vanRide}`}>{pickupLabel}</small><em>{student.className ?? gradeClassName(student.grade)} · {student.staffName}</em></div><label>Ride home<select disabled={Boolean(savingDismissalStudentId)} value={student.vanRide} onChange={(event) => handleAdminDismissalUpdate(student.accountId, student, { vanRide: event.target.value as "none" | "5pm" })}><option value="none">No van</option><option value="5pm">Van at 5 PM</option></select></label><label>Time picked up<input disabled={Boolean(savingDismissalStudentId)} type="time" value={pickupTime} onChange={(event) => setDismissalPickupDrafts((current) => ({ ...current, [pickupDraftKey]: event.target.value }))} /></label><div className="staff-dismissal-actions"><button className={pickedUpEarly ? "is-early" : ""} disabled={Boolean(savingDismissalStudentId) || !pickupTime} onClick={() => handleAdminDismissalUpdate(student.accountId, student, { date: selectedDismissalDate, pickedUpEarly: true, pickupTime })} type="button"><CheckCircle2 size={15} /> {isSavingDismissal ? "Saving…" : pickedUpEarly ? "Save pickup time" : "Mark early pickup"}</button>{pickedUpEarly ? <button className="is-clear" disabled={Boolean(savingDismissalStudentId)} onClick={() => handleAdminDismissalUpdate(student.accountId, student, { date: selectedDismissalDate, pickedUpEarly: false })} type="button">Clear</button> : null}</div></article>;
+          })}
+          {!dismissalRows.length ? <p className="staff-empty-state">Add students to a class roster before managing dismissals.</p> : null}
         </div>
       </section>
-      <section className="teacher-panel admin-schedule-panel" id="staff-schedules">
+      <section className="teacher-panel admin-swimming-panel" hidden={activeWorkspace !== "swimming"} id="swimming-management">
+        <div className="teacher-panel-header"><div><span>Monday-Friday through August 14</span><h2>{formatSwimmingDate(selectedSwimmingDate, false)} swimming roster</h2></div><div className="admin-swimming-heading-actions"><p>Showing students going swimming on this day.</p><button onClick={() => setIsSwimmingStudentPickerOpen((current) => !current)} type="button">{isSwimmingStudentPickerOpen ? <X size={15} /> : <Plus size={15} />} {isSwimmingStudentPickerOpen ? "Close" : "Add student"}</button></div></div>
+        <div className="admin-swimming-calendar" aria-label="Choose a swimming date">
+          <div className="admin-swimming-weekdays" aria-hidden="true">{weekdayLabels.map((label) => <span key={label}>{label.slice(0, 3)}</span>)}</div>
+          <div className="admin-swimming-dates">{swimmingProgramDates.map((date) => {
+            const rosterCount = staffAccounts.reduce((count, account) => count + (account.dashboardData.swimmingRosters?.[date]?.length ?? 0), 0);
+            return <button aria-pressed={selectedSwimmingDate === date} className={selectedSwimmingDate === date ? "is-active" : ""} key={date} onClick={() => setSelectedSwimmingDate(date)} type="button"><span>{formatSwimmingDate(date)}</span><strong>{rosterCount}</strong><small>{rosterCount === 1 ? "swimmer" : "swimmers"}</small></button>;
+          })}</div>
+        </div>
+        <div className="admin-swimming-summary" aria-label={`Swimming readiness for ${selectedSwimmingDate}`}>
+          <article><strong>{selectedSwimmingCount}</strong><span>Selected swimmers</span></article>
+          <article><strong>{selectedSwimmingWaiverCount}/{selectedSwimmingCount}</strong><span>Waivers complete</span></article>
+          <article><strong>{selectedSwimmingPaidCount}/{selectedSwimmingCount}</strong><span>Fees paid</span></article>
+        </div>
+        {isSwimmingStudentPickerOpen ? <section className="admin-swimming-picker" aria-label="Add a student to the swimming roster">
+          <header><div><span>Add student</span><h3>Choose from existing students</h3></div><small>{availableSwimmingRows.length} available</small></header>
+          <div className="admin-swimming-picker-filters"><label><Search size={15} /><input aria-label="Search students" placeholder="Search by student, class, or staff" type="search" value={swimmingStudentSearch} onChange={(event) => setSwimmingStudentSearch(event.target.value)} /></label><label>Grade<select aria-label="Filter students by grade" value={swimmingGradeFilter} onChange={(event) => setSwimmingGradeFilter(event.target.value)}><option value="all">All grades</option>{swimmingGradeOptions.map((grade) => <option key={grade} value={grade}>{grade}</option>)}</select></label></div>
+          <div className="admin-swimming-picker-list">{availableSwimmingRows.map((student) => { const savingKey = `${student.accountId}:${student.id}`; return <article key={savingKey}><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>{student.gradeLabel} · {student.className ?? gradeClassName(student.grade)} · {student.staffName}</small></div><button disabled={Boolean(savingSwimmingRosterStudentId)} onClick={() => handleSwimmingRosterToggle(student.accountId, student.id)} type="button"><Plus size={14} /> {savingSwimmingRosterStudentId === savingKey ? "Adding…" : "Add"}</button></article>; })}{!availableSwimmingRows.length ? <p>{swimmingRosterRows.length === selectedSwimmingCount ? "Every matching student is already on this roster." : "No students match this search and grade."}</p> : null}</div>
+        </section> : null}
+        <div className="admin-swimming-table-wrap">
+          <table className="admin-swimming-table">
+            <thead><tr><th scope="col">Student</th><th scope="col">Class / staff</th><th scope="col">Waiver</th><th scope="col">Paid fee</th><th scope="col"><span className="sr-only">Actions</span></th></tr></thead>
+            <tbody>{selectedSwimmingRows.map((student) => {
+              const savingKey = `${student.accountId}:${student.id}`;
+              const isSavingStatus = savingSwimmingStudentId === savingKey;
+              const isSavingRoster = savingSwimmingRosterStudentId === savingKey;
+              return <tr className="is-selected" key={savingKey}><th scope="row"><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><strong>{student.name}</strong></th><td><strong>{student.className ?? gradeClassName(student.grade)}</strong><small>{student.staffName}</small></td><td><label className={`admin-swimming-checkbox${student.swimmingStatus.waiverComplete ? " is-checked" : ""}`}><input checked={student.swimmingStatus.waiverComplete} disabled={Boolean(savingSwimmingStudentId)} onChange={() => handleSwimmingToggle(student.accountId, student.id, "waiverComplete")} type="checkbox" /><span>{student.swimmingStatus.waiverComplete ? <Check size={15} /> : null}</span><em>{isSavingStatus ? "Saving…" : student.swimmingStatus.waiverComplete ? "Complete" : "Needed"}</em></label></td><td><label className={`admin-swimming-checkbox${student.swimmingStatus.paidFee ? " is-checked" : ""}`}><input checked={student.swimmingStatus.paidFee} disabled={Boolean(savingSwimmingStudentId)} onChange={() => handleSwimmingToggle(student.accountId, student.id, "paidFee")} type="checkbox" /><span>{student.swimmingStatus.paidFee ? <Check size={15} /> : null}</span><em>{isSavingStatus ? "Saving…" : student.swimmingStatus.paidFee ? "Paid" : "Unpaid"}</em></label></td><td><button className="admin-swimming-remove" disabled={Boolean(savingSwimmingRosterStudentId)} onClick={() => handleSwimmingRosterToggle(student.accountId, student.id)} type="button"><X size={14} /> {isSavingRoster ? "Removing…" : "Remove"}</button></td></tr>;
+            })}</tbody>
+          </table>
+          {!selectedSwimmingRows.length ? <p>No students are going swimming on this day yet. Choose Add student to build the roster.</p> : null}
+        </div>
+      </section>
+      <section className="teacher-panel admin-schedule-panel" hidden={activeWorkspace !== "schedules"} id="staff-schedules">
         <div className="teacher-panel-header"><div><span>Recurring program calendar</span><h2>Staff schedules</h2></div><p>Edit every staff member&apos;s student schedule. Staff can view all schedules, with their own shown first.</p></div>
         <section className="admin-master-schedule" aria-labelledby="admin-master-schedule-title">
           <header><div><span>Master schedule</span><h3 id="admin-master-schedule-title">Where everyone is</h3></div><label>Day<select value={masterScheduleDay} onChange={(event) => setMasterScheduleDay(Number(event.target.value))}>{weekdayLabels.map((label, index) => <option key={label} value={index + 1}>{label}</option>)}</select></label></header>
@@ -735,11 +901,11 @@ export function AdminDashboardPage() {
           <div className="admin-schedule-list">{selectedSchedule?.schedule.length ? [...selectedSchedule.schedule].sort((a, b) => a.startTime.localeCompare(b.startTime)).map((item) => <article key={item.id}><time>{item.startTime}–{item.endTime}</time><div><strong>{item.title}</strong><span>{item.weekdays.map((day) => weekdayLabels[day - 1].slice(0, 3)).join(" · ")}</span><small>{item.place}</small></div><div><button onClick={() => { setEditingScheduleItemId(item.id); setScheduleDraft({ endTime: item.endTime, place: item.place, startTime: item.startTime, studentIds: [], title: item.title, weekdays: item.weekdays }); }} type="button"><Pencil size={13} /> Edit</button><button className="is-danger" onClick={() => handleDeleteScheduleItem(item.id)} type="button"><Trash2 size={13} /> Remove</button></div></article>) : <p>No recurring blocks yet.</p>}</div>
         </div>
       </section>
-      <section className="teacher-panel admin-tasks-panel" id="staff-tasks">
+      <section className="teacher-panel admin-tasks-panel" hidden={activeWorkspace !== "tasks"} id="staff-tasks">
         <div className="teacher-panel-header"><div><span>Staff workflow</span><h2>Assigned tasks</h2></div><p>Assign work to a staff account and follow it through completion.</p></div>
         <div className="admin-task-layout"><form className="admin-task-form" onSubmit={handleCreateTask}><label>Assign to<select required value={taskDraft.assignedToId} onChange={(event) => setTaskDraft({ ...taskDraft, assignedToId: event.target.value })}><option value="">Choose staff</option>{staffAccounts.map((account) => <option key={account.id} value={account.id}>{account.fullName}</option>)}</select></label><label>Task title<input placeholder="e.g. Prepare classroom" required value={taskDraft.title} onChange={(event) => setTaskDraft({ ...taskDraft, title: event.target.value })} /></label><label>Due date<input required type="date" value={taskDraft.dueDate} onChange={(event) => setTaskDraft({ ...taskDraft, dueDate: event.target.value, repeatUntil: event.target.value > taskDraft.repeatUntil ? event.target.value : taskDraft.repeatUntil })} /></label><label className="admin-task-repeat"><input checked={taskDraft.repeatWeekly} type="checkbox" onChange={(event) => setTaskDraft({ ...taskDraft, repeatUntil: event.target.checked ? (taskDraft.repeatUntil || taskDraft.dueDate) : "", repeatWeekly: event.target.checked })} /><span>Repeat weekly</span></label>{taskDraft.repeatWeekly ? <label>Repeat until<input min={taskDraft.dueDate} required type="date" value={taskDraft.repeatUntil || taskDraft.dueDate} onChange={(event) => setTaskDraft({ ...taskDraft, repeatUntil: event.target.value })} /></label> : null}<label>Description<textarea required rows={3} value={taskDraft.description} onChange={(event) => setTaskDraft({ ...taskDraft, description: event.target.value })} /></label><button disabled={isSaving} type="submit"><Plus size={15} /> {taskDraft.repeatWeekly ? "Assign weekly task" : "Assign task"}</button></form><div className="admin-task-list">{regularTasks.length ? [...regularTasks].sort((a, b) => a.status.localeCompare(b.status) || a.dueDate.localeCompare(b.dueDate)).map((task) => <article className={task.status === "completed" ? "is-completed" : ""} key={task.id}><button aria-label={`${task.status === "completed" ? "Reopen" : "Complete"} ${task.title}`} className="admin-task-check" onClick={() => handleToggleTask(task)} type="button">{task.status === "completed" ? <Check size={14} /> : null}</button><div><strong>{task.title}</strong><span>{task.assignedToName} · Due {task.dueDate} · {task.status === "completed" ? `Completed ${task.completedAt ? new Date(task.completedAt).toLocaleDateString() : ""}` : "Open"}</span><p>{task.description}</p></div><div className="admin-task-actions">{task.status === "completed" ? <button className="admin-task-approve" onClick={() => handleApproveTask(task)} type="button"><CheckCircle2 size={14} /> Approve</button> : null}<button aria-label={`Remove ${task.title}`} className="admin-task-remove" onClick={() => handleDeleteTask(task.id)} type="button"><Trash2 size={14} /></button></div></article>) : <p>No other tasks assigned.</p>}</div></div>
       </section>
-      <section className="teacher-panel admin-sheets-panel" id="google-sheets">
+      <section className="teacher-panel admin-sheets-panel" hidden={activeWorkspace !== "sheets"} id="google-sheets">
         <div className="teacher-panel-header"><div><span>Cloud integration</span><h2>Google Sheets</h2></div><p>Send saved attendance to a spreadsheet automatically and sync existing records.</p></div>
         <div className="admin-sheets-layout">
           <div className="admin-sheets-status"><span className={sheetsConfigured ? "is-connected" : ""}>{sheetsConfigured ? <CheckCircle2 size={22} /> : <Cloud size={22} />}</span><div><strong>{sheetsConfigured ? "Connected" : "Not connected"}</strong><small>{sheetsConfigured ? "New attendance syncs whenever staff save it." : "Deploy a Google Apps Script web app, then paste its URL."}</small></div></div>
@@ -748,7 +914,7 @@ export function AdminDashboardPage() {
           <details><summary>Google Sheets setup</summary><ol><li>Open your spreadsheet and choose Extensions → Apps Script.</li><li>Copy the ready-made script below and paste it into the editor.</li><li>Choose Deploy → New deployment → Web app, then set access to anyone.</li><li>Paste the deployment URL above, save it, then choose Sync all attendance.</li></ol><button className="admin-copy-script" onClick={handleCopySheetsScript} type="button"><Copy size={15} /> Copy Apps Script</button><pre><code>{googleSheetsScript}</code></pre></details>
         </div>
       </section>
-      <section className="teacher-panel teacher-staff-panel" id="staff-management">
+      <section className="teacher-panel teacher-staff-panel" hidden={activeWorkspace !== "accounts"} id="staff-management">
         <div className="teacher-panel-header"><div><span>Staff management</span><h2>{editingAccountId ? "Edit staff account" : "Assign staff"}</h2></div><p>Manage each login account name and the teacher name shown throughout the staff dashboard.</p></div>
         <div className="teacher-staff-layout">
           <form className="teacher-assessment-form teacher-staff-form" onSubmit={handleAssignStaff}>

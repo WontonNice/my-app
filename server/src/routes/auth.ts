@@ -179,7 +179,7 @@ function normalizeRoster(value: unknown, username: string) {
         const earlyPickupTimes = isRecord(student.earlyPickupTimes)
             ? Object.fromEntries(Object.entries(student.earlyPickupTimes).filter(([date, time]) => isDate(date) && isTime(time)))
             : {};
-        const vanRide = student.vanRide === "2pm" || student.vanRide === "5pm" ? student.vanRide : "none";
+        const vanRide = student.vanRide === "5pm" ? student.vanRide : "none";
 
         return {
             allergies: readString(student.allergies),

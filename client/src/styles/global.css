@@ -8408,6 +8408,16 @@ button {
   color: #182333;
 }
 
+.corporate-dashboard-content [hidden] { display: none !important; }
+
+.admin-workspace-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0 0 20px; }
+.admin-workspace-grid > a { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: center; gap: 12px; min-height: 90px; border: 1px solid #dce3e9; border-radius: 9px; background: #fff; color: inherit; padding: 15px; text-decoration: none; transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease; }
+.admin-workspace-grid > a:hover { transform: translateY(-1px); border-color: #9bcac0; box-shadow: 0 8px 22px rgb(20 42 67 / 8%); }
+.admin-workspace-grid > a > span { display: grid; width: 44px; height: 44px; border-radius: 9px; background: #e8f4f1; color: #28796f; place-items: center; }
+.admin-workspace-grid > a > div { display: grid; gap: 4px; }
+.admin-workspace-grid strong { color: #243a51; font-size: .78rem; }
+.admin-workspace-grid small { color: #728095; font-size: .64rem; line-height: 1.45; }
+
 .corporate-heading-action {
   display: inline-flex;
   align-items: center;
@@ -8897,6 +8907,44 @@ button {
 .admin-roster-list button { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #d3dce5; border-radius: 6px; background: #fff; color: #3d526a; font-size: 0.62rem; font-weight: 750; padding: 7px 9px; }
 .admin-roster-list button.is-danger { border-color: #e4caca; color: #9c4141; }
 .admin-swimming-table-wrap { overflow-x: auto; border: 1px solid #e0e6eb; border-radius: 9px; }
+.admin-swimming-calendar { margin-bottom: 16px; overflow: hidden; border: 1px solid #dfe6eb; border-radius: 10px; background: #f7f9fa; padding: 10px; }
+.admin-swimming-weekdays, .admin-swimming-dates { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.admin-swimming-weekdays { margin-bottom: 6px; }
+.admin-swimming-weekdays span { color: #7b8796; font-size: .57rem; font-weight: 850; letter-spacing: .05em; text-align: center; text-transform: uppercase; }
+.admin-swimming-dates button { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; min-height: 56px; border: 1px solid #dde4e9; border-radius: 7px; background: #fff; color: #526377; padding: 8px 9px; text-align: left; }
+.admin-swimming-dates button span { overflow: hidden; font-size: .62rem; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+.admin-swimming-dates button strong { grid-row: 1 / 3; grid-column: 2; align-self: center; color: #28796f; font-size: .9rem; }
+.admin-swimming-dates button small { color: #8a96a4; font-size: .52rem; }
+.admin-swimming-dates button.is-active { border-color: #2f8b7e; background: #e8f5f1; box-shadow: 0 0 0 2px rgb(47 139 126 / 10%); color: #1f685e; }
+.admin-swimming-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; margin-bottom: 14px; }
+.admin-swimming-summary article { display: grid; gap: 3px; border: 1px solid #e0e6eb; border-radius: 8px; background: #fff; padding: 12px 14px; }
+.admin-swimming-summary strong { color: #253d54; font-size: .95rem; }
+.admin-swimming-summary span { color: #748296; font-size: .58rem; font-weight: 750; text-transform: uppercase; }
+.admin-swimming-heading-actions { display: flex; align-items: center; gap: 12px; }
+.admin-swimming-heading-actions p { margin: 0; }
+.admin-swimming-heading-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 38px; border: 0; border-radius: 6px; background: #173451; color: #fff; font-size: .65rem; font-weight: 800; padding: 0 12px; white-space: nowrap; }
+.admin-swimming-picker { margin-bottom: 14px; overflow: hidden; border: 1px solid #cfdde3; border-radius: 9px; background: #f8fafb; }
+.admin-swimming-picker > header { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #dfe6ea; padding: 13px 14px; }
+.admin-swimming-picker > header div { display: grid; gap: 2px; }
+.admin-swimming-picker > header span { color: #28796f; font-size: .56rem; font-weight: 850; text-transform: uppercase; }
+.admin-swimming-picker > header h3 { margin: 0; color: #263d54; font-size: .78rem; }
+.admin-swimming-picker > header small { border-radius: 999px; background: #e6f3ef; color: #287568; font-size: .58rem; font-weight: 800; padding: 5px 9px; }
+.admin-swimming-picker-filters { display: grid; grid-template-columns: minmax(220px, 1fr) minmax(150px, .35fr); gap: 10px; border-bottom: 1px solid #e2e8ec; padding: 12px 14px; }
+.admin-swimming-picker-filters label { display: flex; align-items: center; gap: 7px; color: #68788a; font-size: .61rem; font-weight: 800; }
+.admin-swimming-picker-filters label:first-child { min-height: 39px; border: 1px solid #d5dee5; border-radius: 7px; background: #fff; padding: 0 10px; }
+.admin-swimming-picker-filters input { min-width: 0; width: 100%; border: 0; outline: 0; background: transparent; color: #2a4057; font: inherit; }
+.admin-swimming-picker-filters select { min-height: 39px; flex: 1; border: 1px solid #d5dee5; border-radius: 7px; background: #fff; color: #2a4057; padding: 0 9px; }
+.admin-swimming-picker-list { display: grid; max-height: 310px; overflow-y: auto; }
+.admin-swimming-picker-list article { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: center; gap: 10px; border-bottom: 1px solid #e4eaee; background: #fff; padding: 10px 14px; }
+.admin-swimming-picker-list article:last-of-type { border-bottom: 0; }
+.admin-swimming-picker-list article > span { display: grid; width: 34px; height: 34px; border-radius: 50%; background: #e6f3f0; color: #28786c; font-size: .62rem; font-weight: 800; place-items: center; }
+.admin-swimming-picker-list article > div { display: grid; gap: 3px; }
+.admin-swimming-picker-list strong { color: #293f56; font-size: .7rem; }
+.admin-swimming-picker-list small { color: #7b8797; font-size: .57rem; }
+.admin-swimming-picker-list button, .admin-swimming-remove { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 32px; border: 1px solid #b9d7d1; border-radius: 6px; background: #e7f4f1; color: #287568; font-size: .6rem; font-weight: 800; padding: 0 9px; }
+.admin-swimming-remove { border-color: #e2cece; background: #fff6f6; color: #9a4a4a; }
+.admin-swimming-picker-list button:disabled, .admin-swimming-remove:disabled { cursor: wait; opacity: .55; }
+.admin-swimming-picker-list > p { margin: 0; color: #748195; font-size: .65rem; padding: 15px; }
 .admin-swimming-table { width: 100%; border-collapse: collapse; }
 .admin-swimming-table th,
 .admin-swimming-table td { border-bottom: 1px solid #e9edf1; color: #637286; font-size: 0.68rem; padding: 12px 14px; text-align: left; }
@@ -8904,6 +8952,11 @@ button {
 .admin-swimming-table tbody th { display: flex; align-items: center; gap: 9px; min-width: 210px; }
 .admin-swimming-table tbody th > span { display: grid; width: 34px; height: 34px; border-radius: 50%; background: #e6f3f0; color: #28786c; font-size: 0.64rem; font-weight: 800; place-items: center; }
 .admin-swimming-table tbody th strong { color: #283d54; font-size: 0.74rem; }
+.admin-swimming-table tbody td:nth-child(2) { min-width: 150px; }
+.admin-swimming-table tbody td:nth-child(2) strong, .admin-swimming-table tbody td:nth-child(2) small { display: block; }
+.admin-swimming-table tbody td:nth-child(2) strong { color: #334a62; font-size: .67rem; }
+.admin-swimming-table tbody td:nth-child(2) small { margin-top: 3px; color: #8490a0; font-size: .57rem; }
+.admin-swimming-table tbody tr.is-selected { background: #fbfefd; }
 .admin-swimming-table tbody tr:last-child > * { border-bottom: 0; }
 .admin-swimming-table-wrap > p { margin: 0; color: #748195; font-size: 0.68rem; padding: 16px; }
 .admin-swimming-checkbox { position: relative; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
@@ -8912,6 +8965,8 @@ button {
 .admin-swimming-checkbox em { color: #788598; font-size: 0.62rem; font-style: normal; font-weight: 750; }
 .admin-swimming-checkbox.is-checked > span { border-color: #6db3a4; background: #dff2ed; color: #277a6b; }
 .admin-swimming-checkbox.is-checked em { color: #277a6b; }
+.admin-swimming-roster-check.is-checked > span { border-color: #347c9a; background: #e4f1f7; color: #286b88; }
+.admin-swimming-roster-check.is-checked em { color: #286b88; }
 .admin-swimming-checkbox:focus-within > span { outline: 3px solid rgb(45 135 121 / 16%); outline-offset: 2px; }
 .admin-swimming-checkbox:has(input:disabled) { cursor: wait; opacity: 0.65; }
 .staff-task-count { border-radius: 999px; background: #e8f4f1; color: #28766c; font-size: .61rem; font-weight: 850; padding: 6px 10px; }
@@ -9012,8 +9067,9 @@ button {
 .staff-dismissal-list > article > div { display: grid; justify-items: start; gap: 4px; min-width: 0; }
 .staff-dismissal-list > article > div strong { overflow: hidden; color: #263b52; font-size: .7rem; text-overflow: ellipsis; white-space: nowrap; }
 .staff-dismissal-list > article > div small { border-radius: 999px; background: #edf1f4; color: #718093; padding: 3px 7px; font-size: .54rem; font-weight: 800; }
-.staff-dismissal-list > article > div small.is-2pm { background: #e3f3ef; color: #216d62; }
 .staff-dismissal-list > article > div small.is-5pm { background: #ebedfa; color: #505b94; }
+.admin-dismissal-panel { margin-bottom: 20px; }
+.admin-dismissal-list > article > div em { color: #7a8797; font-size: .54rem; font-style: normal; }
 .staff-dismissal-list label { display: grid; gap: 3px; color: #778598; font-size: .55rem; font-weight: 800; }
 .staff-dismissal-list button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 36px; border: 1px solid #d4dde4; border-radius: 6px; background: #fff; color: #54677a; padding: 0 11px; font-size: .6rem; font-weight: 800; }
 .staff-dismissal-list button.is-early { border-color: #dda45c; background: #fff3df; color: #8b5a1b; }
@@ -9141,7 +9197,6 @@ button {
 .teacher-dismissal-name { display: grid; justify-items: start; gap: 5px; min-width: 0; }
 .teacher-dismissal-name strong { overflow: hidden; max-width: 100%; color: #213d38; text-overflow: ellipsis; white-space: nowrap; }
 .teacher-van-indicator { border-radius: 999px; background: #f0f3f2; color: #71807c; padding: 4px 8px; font-size: .65rem; font-weight: 800; }
-.teacher-van-indicator.is-2pm { background: #e6f4f0; color: #216b60; }
 .teacher-van-indicator.is-5pm { background: #eef0fb; color: #4f5990; }
 .teacher-dismissal-list label { display: grid; gap: 4px; color: #6a7975; font-size: .66rem; font-weight: 750; }
 .teacher-dismissal-list button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 38px; border: 1px solid #d6dfdd; border-radius: 7px; background: #fff; color: #526661; padding: 0 12px; font-size: .7rem; font-weight: 800; cursor: pointer; }
@@ -9168,6 +9223,10 @@ button {
 }
 
 @media (max-width: 680px) {
+  .admin-workspace-grid { grid-template-columns: 1fr; }
+  .admin-swimming-heading-actions { align-items: stretch; flex-direction: column; width: 100%; }
+  .admin-swimming-heading-actions button { width: 100%; }
+  .admin-swimming-picker-filters { grid-template-columns: 1fr; }
   .admin-school-attendance-widget > header { align-items: stretch; flex-direction: column; }
   .admin-school-attendance-widget label { width: 100%; }
   .admin-attendance-view-switch { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
@@ -9199,6 +9258,9 @@ button {
   .admin-schedule-layout { grid-template-columns: 1fr; }
   .admin-task-layout { grid-template-columns: 1fr; }
   .admin-staff-attendance-layout { grid-template-columns: 1fr; }
+  .admin-swimming-calendar { overflow-x: auto; }
+  .admin-swimming-weekdays, .admin-swimming-dates { min-width: 590px; }
+  .admin-swimming-summary { grid-template-columns: 1fr; }
   .admin-class-assignment { grid-template-columns: 1fr; }
   .admin-schedule-list > article { grid-template-columns: 72px 1fr; }
   .admin-schedule-list article > div:last-child { grid-column: 2; flex-wrap: wrap; }
