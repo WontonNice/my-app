@@ -8,6 +8,7 @@ import { practiceTopics } from "../content/practice";
 import { getExamSessionProgress, getLearningProgress, getStudentAssessments, getStudentClasses, type ExamSessionProgress, type StudentAssessment } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getExamResults, replaceExamResults, type ExamResult } from "../lib/examResults";
+import { isExamResultCompleteForQuestionCount } from "../lib/examSessionProgress";
 import { isSupabaseConfigured } from "../lib/supabase";
 import { cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "../lib/sessionCache";
 import { getStudentClassNavigation } from "../lib/studentClassNavigation";
@@ -44,11 +45,6 @@ function getAssessmentStartHref(assessmentId: string) {
   }
 
   return `/exam/${assessmentId}?preview=student&teacherTools=1`;
-}
-
-function getAssessmentResultHref(assessmentId: string) {
-  const query = hasTeacherPreviewTools ? "?preview=student&teacherTools=1" : "";
-  return `/results/${assessmentId}${query}`;
 }
 
 function getAdvancedPassageHref(passageId: string) {
@@ -167,7 +163,7 @@ function getSectionHeading(section: LabSection) {
 
   if (section === "Test Results") {
     return {
-      description: "Review your scores and see which topics deserve your next study session.",
+      description: "See which assessments are complete or still need another section.",
       title: "Assessment history",
     };
   }
@@ -293,7 +289,10 @@ export function AdaptivePracticePage() {
       </header>
       <section className="staff-kpi-grid" aria-label="SHSAT learning summary">
         <article><span><Target size={19} /></span><div><p>Practice topics</p><strong>{practiceTopics.length}</strong></div><em>Four difficulty levels</em></article>
-        <article><span><BarChart3 size={19} /></span><div><p>Tests completed</p><strong>{examResults.filter((result) => result.completionStatus !== "english_complete").length}</strong></div><em>Saved assessment history</em></article>
+        <article><span><BarChart3 size={19} /></span><div><p>Tests completed</p><strong>{examResults.filter((result) => {
+          const currentQuestionCount = assessments.find((assessment) => assessment.id === result.assessmentId)?.questionCount ?? result.total;
+          return isExamResultCompleteForQuestionCount(result, currentQuestionCount);
+        }).length}</strong></div><em>Saved assessment history</em></article>
         <article><span><ClipboardList size={19} /></span><div><p>Open assessments</p><strong>{assessments.filter((assessment) => assessment.status === "open").length}</strong></div><em>{assessments.length} assigned total</em></article>
         <article><span><Sparkles size={19} /></span><div><p>Advanced passages</p><strong>{advancedPracticePassages.length}</strong></div><em>Close-reading catalog</em></article>
       </section>
@@ -303,7 +302,7 @@ export function AdaptivePracticePage() {
         {activeSection === "Assessments" ? (
           <AssessmentsSection assessments={assessments} examSessions={examSessions} message={assessmentMessage} results={examResults} />
         ) : activeSection === "Test Results" ? (
-          <ResultsSection results={examResults} />
+          <ResultsSection assessments={assessments} results={examResults} />
         ) : activeSection === "Advanced Practice" ? (
           <AdvancedPracticeCatalogue />
         ) : (
@@ -480,10 +479,6 @@ function AdvancedPracticeCatalogue() {
   );
 }
 
-function formatQuestionType(questionType: string) {
-  return questionType.replace("_", " ");
-}
-
 function TopicsSection({ results }: { results: ExamResult[] }) {
   const progressByTopic = getEnglishTopicProgress(results);
   const topicCards = practiceTopics.map((topic, index) => {
@@ -564,12 +559,9 @@ function TopicsSection({ results }: { results: ExamResult[] }) {
                 <div className="topic-card-footer">
                   <span>
                     {topic.progress.total > 0
-                      ? `${topic.progress.correct}/${topic.progress.total} correct`
+                      ? "Updated from completed assessments"
                       : "Tap to explore"}
                   </span>
-                  {topic.progress.total > 0 ? (
-                    <span>{topic.percentage}%</span>
-                  ) : null}
                 </div>
               </AppLink>
             );
@@ -616,13 +608,29 @@ function AssessmentsSection({
       <div className="assessment-grid">
         {assessments.map((assessment) => {
           const result = results.find((candidate) => candidate.assessmentId === assessment.id);
-          const englishComplete = assessment.split && (examSessions[assessment.id]?.completedSections.includes("english") || result?.completionStatus === "english_complete");
-          const resultIsComplete = result && result.completionStatus !== "english_complete";
+          const session = examSessions[assessment.id];
+          const englishComplete = Boolean(
+            assessment.split &&
+            (session?.completedSections.includes("english") || result?.completedSections?.includes("english")),
+          );
+          const sessionIsComplete = Boolean(
+            session?.status === "submitted" &&
+            session.completedSections.includes("english") &&
+            session.completedSections.includes("math") &&
+            Object.keys(session.answers).length >= assessment.questionCount,
+          );
+          const resultIsComplete =
+            isExamResultCompleteForQuestionCount(result, assessment.questionCount) || sessionIsComplete;
+          const hasSavedProgress = Boolean(
+            session && (Object.keys(session.answers).length > 0 || session.completedSections.length > 0),
+          );
 
           return (
           <article className="assessment-card" key={assessment.id}>
             <div className="assessment-card-top">
-              <span className={`status-pill status-pill-${assessment.status}`}>{assessment.status}</span>
+              <span className={`status-pill status-pill-${resultIsComplete ? "complete" : assessment.status}`}>
+                {resultIsComplete ? "Complete" : assessment.status}
+              </span>
               <small>{assessment.split ? "2 sessions" : `${assessment.durationMinutes} min`}</small>
             </div>
             <h3>{assessment.title}</h3>
@@ -630,23 +638,27 @@ function AssessmentsSection({
             <div className="assessment-meta">
               <span>{assessment.questionCount} questions</span>
               <span>{assessment.passageCount} passages</span>
-              <span>{assessment.questionTypes.map(formatQuestionType).join(", ") || "mixed"}</span>
             </div>
             <div className="assessment-card-actions">
-              {assessment.status === "open" ? (
+              {resultIsComplete ? (
+                <button className="assessment-complete-button" disabled type="button">
+                  Complete
+                </button>
+              ) : assessment.status === "open" ? (
                 <AppLink className="assessment-start-link" href={getAssessmentStartHref(assessment.id)}>
-                  {englishComplete && !resultIsComplete ? "Start Math" : resultIsComplete ? "Retake exam" : assessment.split ? "Start English" : "Start exam"}
+                  {englishComplete
+                    ? "Continue Math"
+                    : hasSavedProgress || result
+                      ? "Continue exam"
+                      : assessment.split
+                        ? "Start English"
+                        : "Start exam"}
                 </AppLink>
               ) : (
                 <button disabled type="button">
                   Locked by teacher
                 </button>
               )}
-              {result ? (
-                <AppLink className="assessment-result-link" href={getAssessmentResultHref(assessment.id)}>
-                  {result.completionStatus === "english_complete" ? "English score" : "Results"}: {result.correct}/{result.total}
-                </AppLink>
-              ) : null}
             </div>
           </article>
           );
@@ -656,39 +668,65 @@ function AssessmentsSection({
   );
 }
 
-function ResultsSection({ results }: { results: ExamResult[] }) {
+function ResultsSection({
+  assessments,
+  results,
+}: {
+  assessments: StudentAssessment[];
+  results: ExamResult[];
+}) {
+  const completedCount = results.filter((result) => {
+    const currentQuestionCount =
+      assessments.find((assessment) => assessment.id === result.assessmentId)?.questionCount ?? result.total;
+    return isExamResultCompleteForQuestionCount(result, currentQuestionCount);
+  }).length;
+
   return (
     <section className="assessments-panel" aria-labelledby="results-title">
       <div className="section-heading">
         <div>
-          <span>Test Results</span>
-          <h2 id="results-title">Your completed assessments</h2>
+          <span>Assessment status</span>
+          <h2 id="results-title">Your assessment history</h2>
         </div>
-        <p>{results.length} completed</p>
+        <p>{completedCount} completed</p>
       </div>
 
       {results.length > 0 ? (
         <div className="assessment-grid">
-          {results.map((result) => (
+          {results.map((result) => {
+            const assessment = assessments.find((candidate) => candidate.id === result.assessmentId);
+            const isComplete = isExamResultCompleteForQuestionCount(
+              result,
+              assessment?.questionCount ?? result.total,
+            );
+
+            return (
             <article className="assessment-card result-summary-card" key={result.assessmentId}>
               <div className="assessment-card-top">
-                <span className="result-score-pill">{result.percentage}%</span>
+                <span className={`status-pill status-pill-${isComplete ? "complete" : "open"}`}>
+                  {isComplete ? "Complete" : "In progress"}
+                </span>
                 <small>{result.completionStatus === "english_complete" ? "English submitted · Math pending" : new Date(result.completedAt).toLocaleDateString()}</small>
               </div>
               <h3>{result.title}</h3>
               <p>
-                {result.correct} of {result.total} questions correct across {result.topics.length} topics.
+                {isComplete
+                  ? "Your answers were submitted. Your teacher can view your score."
+                  : "Additional questions are available. Your earlier answers are saved."}
               </p>
-              <AppLink className="assessment-result-link" href={getAssessmentResultHref(result.assessmentId)}>
-                View breakdown
-              </AppLink>
+              {!isComplete && assessment?.status === "open" ? (
+                <AppLink className="assessment-start-link" href={getAssessmentStartHref(result.assessmentId)}>
+                  Continue assessment
+                </AppLink>
+              ) : null}
             </article>
-          ))}
+            );
+          })}
         </div>
       ) : (
         <div className="results-empty-state">
-          <h3>No results yet</h3>
-          <p>Finish an assessment and its score and topic breakdown will appear here.</p>
+          <h3>No completed assessments yet</h3>
+          <p>Your completed assessments will appear here. Scores are available to your teacher.</p>
         </div>
       )}
     </section>

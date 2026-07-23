@@ -20,8 +20,10 @@ export type QuestionType =
   | "multiple_choice"
   | "multi_select"
   | "category_sort"
+  | "table_match"
   | "inline_dropdown"
   | "numeric_entry"
+  | "transition_drop"
   | "short_response"
   | "grid_in"
   | "essay";
@@ -40,11 +42,20 @@ export type StudentAssessment = {
 };
 
 export type TeacherAssessment = {
+  assignedFormId?: string;
+  assignedFormLabel?: string;
   classId: string;
   createdAt: string;
   description: string;
   durationMinutes: number;
+  formAssignments?: Record<string, string>;
+  forms?: {
+    id: string;
+    label: string;
+    passageOrder: string[];
+  }[];
   id: string;
+  passageOrder?: string[];
   passages: {
     id: string;
     imageUrl: string;
@@ -353,8 +364,9 @@ export type StudentProgressSnapshot = {
     practiceAttempts: number;
     testsCompleted: number;
   };
-  lastLoginAt: string | null;
-  progress: LearningProgressSnapshot;
+    lastLoginAt: string | null;
+    examSessions: Record<string, ExamSessionProgress>;
+    progress: LearningProgressSnapshot;
   username: string;
 };
 
@@ -544,9 +556,11 @@ export async function registerStudent(input: RegisterStudentInput) {
 }
 
 export type ExamSessionProgress = {
-  answers: Record<string, unknown>;
-  completedSections: ("english" | "math")[];
-  updatedAt: string;
+    answers: Record<string, unknown>;
+    completedSections: ("english" | "math")[];
+    status: "in_progress" | "submitted";
+    submittedAt?: string;
+    updatedAt: string;
 };
 
 export async function getExamSessionProgress(accessToken: string) {
@@ -559,7 +573,9 @@ export async function getExamSessionProgress(accessToken: string) {
 export async function saveExamSessionProgress(
   accessToken: string,
   assessmentId: string,
-  input: Pick<ExamSessionProgress, "answers" | "completedSections">,
+  input: Pick<ExamSessionProgress, "answers" | "completedSections"> & {
+    status?: ExamSessionProgress["status"];
+  },
 ) {
   const data = await requestApi<{ session: ExamSessionProgress | null }>(
     `/api/progress/exam-sessions/${encodeURIComponent(assessmentId)}`,
@@ -745,6 +761,23 @@ export async function updateTeacherAssessmentSplit(
   const data = await requestApi<{ assessment: TeacherAssessment }>(
     `/api/assessments/teacher/${assessmentId}/split`,
     { body: JSON.stringify({ split }), headers: createAuthHeaders(accessToken), method: "PATCH" },
+  );
+  return data.assessment;
+}
+
+export async function updateTeacherAssessmentForms(
+  accessToken: string,
+  assessmentId: string,
+  forms: NonNullable<TeacherAssessment["forms"]>,
+  assignments: Record<string, string>,
+) {
+  const data = await requestApi<{ assessment: TeacherAssessment }>(
+    `/api/assessments/teacher/${assessmentId}/forms`,
+    {
+      body: JSON.stringify({ assignments, forms }),
+      headers: createAuthHeaders(accessToken),
+      method: "PUT",
+    },
   );
   return data.assessment;
 }

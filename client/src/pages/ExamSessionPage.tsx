@@ -1,4 +1,6 @@
-import { useEffect, useState, type DragEvent, type MouseEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type DragEvent, type MouseEvent, type ReactNode } from "react";
+import katex from "katex";
+import "katex/dist/katex.min.css";
 import {
   Bookmark,
   Check,
@@ -17,20 +19,30 @@ import {
   X,
 } from "lucide-react";
 import { resolveExamContent, type ExamQuestion } from "../content/exams";
-import { getExamSessionProgress, getStudentAssessment, saveCloudExamResult, saveExamSessionProgress, type TeacherAssessment } from "../lib/api";
+import { getExamSessionProgress, getLearningProgress, getStudentAssessment, saveCloudExamResult, saveExamSessionProgress, type TeacherAssessment } from "../lib/api";
 import { getUserRole } from "../lib/auth";
 import { formatDuration, getAssessmentIdFromPath, getDisplayName } from "../lib/exam";
 import {
   getExamTimerDisplay,
   loadExamTimer,
   pauseExamTimer,
+  resetExamTimer,
   resumeExamTimer,
   saveExamTimerState,
   type ExamTimerState,
 } from "../lib/examTimer";
-import { clearLocalExamSession, loadLocalExamSession, saveLocalExamSession } from "../lib/examSessionProgress";
+import {
+  getCurrentCompletedSections,
+  getNextExamSubject,
+  isExamResultCompleteForQuestionCount,
+  isExamSessionCompleteForContent,
+  loadLocalExamSession,
+  saveLocalExamSession,
+  type ExamSection,
+} from "../lib/examSessionProgress";
 import {
   createExamResult,
+  getExamResult,
   getAllExamQuestions,
   saveExamResult,
   type CategoryPlacements,
@@ -185,120 +197,32 @@ function getTextEntryValue(answer: SelectedAnswer | undefined) {
   return typeof answer === "string" ? answer : "";
 }
 
-function parseLatexFraction(expression: string) {
-  const fractionMatch = expression.match(/^\\frac\{(.+)\}\{(.+)\}$/);
-
-  if (!fractionMatch) {
-    return null;
-  }
-
-  return {
-    denominator: fractionMatch[2],
-    numerator: fractionMatch[1],
-  };
+function renderKatexExpression(expression: string, displayMode = false) {
+  const markup = katex.renderToString(expression, {
+    displayMode,
+    output: "htmlAndMathml",
+    strict: false,
+    throwOnError: false,
+    trust: false,
+  });
+  return (
+    <span
+      className={displayMode ? "exam-katex-display" : "exam-katex-inline"}
+      dangerouslySetInnerHTML={{ __html: markup }}
+    />
+  );
 }
 
 function renderMathExpression(expression: string) {
-  const fraction = parseLatexFraction(expression);
-
-  if (!fraction) {
-    return <span className="exam-math-expression">{renderMathInline(expression)}</span>;
-  }
-
   return (
-    <span className="exam-math-expression exam-math-fraction" aria-label={expression}>
-      <span className="exam-math-fraction-row">{renderMathInline(fraction.numerator)}</span>
-      <span className="exam-math-fraction-bar" />
-      <span className="exam-math-fraction-row">{renderMathInline(fraction.denominator)}</span>
+    <span className="exam-math-expression" aria-label={expression}>
+      {renderKatexExpression(expression)}
     </span>
   );
 }
 
-function renderMathInline(expression: string) {
-  const compactExpression = expression.replace(/\s*\\cdot\s*/g, " \\cdot ").trim();
-
-  return compactExpression
-    .split(/(\\cdot|[+\-=()]|[a-zA-Z]+|\s+)/)
-    .filter(Boolean)
-    .map((part, index) => {
-      if (/^\s+$/.test(part)) {
-        return null;
-      }
-
-      if (/^[a-zA-Z]+$/.test(part)) {
-        return (
-          <span className="exam-math-variable" key={`${part}-${index}`}>
-            {part}
-          </span>
-        );
-      }
-
-      if (part === "\\cdot") {
-        return (
-          <span className="exam-math-dot" key={`${part}-${index}`}>
-            &middot;
-          </span>
-        );
-      }
-
-      if (part === "-") {
-        return (
-          <span className="exam-math-operator" key={`${part}-${index}`}>
-            &minus;
-          </span>
-        );
-      }
-
-      if (part === "+" || part === "=") {
-        return (
-          <span className="exam-math-operator" key={`${part}-${index}`}>
-            {part}
-          </span>
-        );
-      }
-
-      return part === "(" || part === ")" ? (
-        <span className="exam-math-parenthesis" key={`${part}-${index}`}>
-          {part}
-        </span>
-      ) : (
-        <span key={`${part}-${index}`}>{part}</span>
-      );
-    });
-}
-
 function renderInlineMathText(expression: string) {
-  return expression.split(/([a-zA-Z]+|=|-|\+|\\cdot)/).map((part, index) => {
-    if (!part) {
-      return null;
-    }
-
-    if (/^[a-zA-Z]+$/.test(part)) {
-      return (
-        <span className="exam-inline-math-variable" key={`${part}-${index}`}>
-          {part}
-        </span>
-      );
-    }
-
-    if (part === "-") {
-      return (
-        <span className="exam-inline-math-operator" key={`${part}-${index}`}>
-          &minus;
-        </span>
-      );
-    }
-
-    if (part === "=" || part === "+" || part === "\\cdot") {
-      return (
-        <span className="exam-inline-math-operator" key={`${part}-${index}`}>
-          {part === "\\cdot" ? <>&middot;</> : part}
-        </span>
-      );
-    }
-
-    return <span key={`${part}-${index}`}>{part}</span>;
-  });
+  return renderKatexExpression(expression);
 }
 
 function getPassageSetLabel(index: number, total: number) {
@@ -322,7 +246,7 @@ function isQuestionAnswered(question: ExamQuestion, selectedAnswers: SelectedAns
     return getSelectedChoiceIds(selectedAnswers[question.id]).length >= getRequiredSelectionCount(question);
   }
 
-  if (question.type === "category_sort") {
+  if (question.type === "category_sort" || question.type === "table_match") {
     const placements = getCategoryPlacements(selectedAnswers[question.id]);
     const items = question.items ?? [];
     const requiredPlacements = question.requiredPlacements ?? items.length;
@@ -365,15 +289,24 @@ function createRandomQuestionAnswer(question: ExamQuestion): SelectedAnswer {
     return [...choiceIds].sort(() => Math.random() - 0.5).slice(0, selectionCount);
   }
 
-  if (question.type === "category_sort") {
+  if (question.type === "category_sort" || question.type === "table_match") {
     const categoryIds = (question.categories ?? []).map((category) => category.id);
     const items = [...(question.items ?? [])].sort(() => Math.random() - 0.5);
     const placementCount = Math.min(question.requiredPlacements ?? items.length, items.length);
+    const randomizedCategoryIds =
+      question.categoryCapacity === 1
+        ? [...categoryIds].sort(() => Math.random() - 0.5)
+        : categoryIds;
 
     return Object.fromEntries(
       items
         .slice(0, placementCount)
-        .map((item) => [item.id, getRandomItem(categoryIds) ?? "preview-category"]),
+        .map((item, index) => [
+          item.id,
+          question.categoryCapacity === 1
+            ? randomizedCategoryIds[index] ?? "preview-category"
+            : getRandomItem(categoryIds) ?? "preview-category",
+        ]),
     );
   }
 
@@ -401,16 +334,6 @@ function getStoredExamName(assessmentId: string, fallbackName: string) {
 function getStoredStartingSubject(assessmentId: string): StartingSubject {
   const storedSubject = window.sessionStorage.getItem(`exam-start-subject:${assessmentId}`);
   return storedSubject === "math" ? "math" : "english";
-}
-
-function getTeacherPreviewDashboardHref() {
-  const searchParams = new URLSearchParams(window.location.search);
-
-  if (searchParams.get("preview") === "student" && searchParams.get("teacherTools") === "1") {
-    return "/study-hall?preview=student&teacherTools=1";
-  }
-
-  return "/study-hall";
 }
 
 function getAssessmentDashboardHref() {
@@ -853,16 +776,15 @@ export function ExamSessionPage() {
   const [activeStandaloneQuestionIndex, setActiveStandaloneQuestionIndex] = useState(0);
   const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<string[]>([]);
   const [choiceLimitWarnings, setChoiceLimitWarnings] = useState<ChoiceLimitWarning[]>([]);
+  const [completedSections, setCompletedSections] = useState<ExamSection[]>([]);
   const [eliminatedChoices, setEliminatedChoices] = useState<EliminatedChoices>({});
   const [errorMessage, setErrorMessage] = useState("");
   const [highlightToolbar, setHighlightToolbar] = useState<HighlightToolbarState | null>(null);
-  const [hasCompletedMath, setHasCompletedMath] = useState(false);
   const [isFastForwardEnabled, setIsFastForwardEnabled] = useState(false);
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
   const [isNotepadOpen, setIsNotepadOpen] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [isSubmittingSection, setIsSubmittingSection] = useState(false);
-  const [isSplitEnglishComplete, setIsSplitEnglishComplete] = useState(false);
   const [isTimerVisible, setIsTimerVisible] = useState(false);
   const [isUnansweredModalOpen, setIsUnansweredModalOpen] = useState(false);
   const [isTeacherPreviewSession, setIsTeacherPreviewSession] = useState(false);
@@ -872,12 +794,16 @@ export function ExamSessionPage() {
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
   const [selectedCategoryItemId, setSelectedCategoryItemId] = useState("");
   const [sessionScreen, setSessionScreen] = useState<SessionScreen>("directions");
-  const [startingSubject, setStartingSubject] = useState<StartingSubject>("english");
   const [studentId, setStudentId] = useState("");
   const [studentName, setStudentName] = useState("Student");
   const [textHighlights, setTextHighlights] = useState<TextHighlights>({});
   const [timerNow, setTimerNow] = useState(() => Date.now());
   const [timerState, setTimerState] = useState<ExamTimerState | null>(null);
+  const autosaveInFlightRef = useRef(false);
+  const autosavePromiseRef = useRef<Promise<void> | null>(null);
+  const finalSubmissionRef = useRef(false);
+  const latestAnswersRef = useRef<SelectedAnswers>({});
+  const lastAutosaveSignatureRef = useRef("");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -895,38 +821,81 @@ export function ExamSessionPage() {
       }
 
       const fallbackName = getDisplayName(data.session.user);
-      const nextStartingSubject = getStoredStartingSubject(assessmentId);
+      const storedStartingSubject = getStoredStartingSubject(assessmentId);
       setTimerState(loadExamTimer(assessmentId));
       setTimerNow(Date.now());
       setStudentId(data.session.user.id);
       setAccessToken(data.session.access_token);
       setStudentName(getStoredExamName(assessmentId, fallbackName));
-      setStartingSubject(nextStartingSubject);
-      setSessionScreen(nextStartingSubject === "math" ? "mathIntro" : "directions");
-      setIsTeacherPreviewSession(
+      const isTeacherPreview =
         new URLSearchParams(window.location.search).get("preview") === "student" &&
           new URLSearchParams(window.location.search).get("teacherTools") === "1" &&
-          getUserRole(data.session.user) === "teacher",
-      );
+          getUserRole(data.session.user) === "teacher";
+      setIsTeacherPreviewSession(isTeacherPreview);
 
       try {
         const nextAssessment = await getStudentAssessment(data.session.access_token, assessmentId);
         setAssessment(nextAssessment);
-        if (nextAssessment.split && nextStartingSubject === "math") {
+        let nextStartingSubject = storedStartingSubject;
+        if (!isTeacherPreview) {
           const localProgress = loadLocalExamSession(data.session.user.id, assessmentId);
           let progress = localProgress;
+          let savedResult = getExamResult(data.session.user.id, assessmentId);
           try {
-            const cloudSessions = await getExamSessionProgress(data.session.access_token);
-            progress = cloudSessions[assessmentId] ?? localProgress;
+            const [cloudSessions, cloudLearningProgress] = await Promise.all([
+              getExamSessionProgress(data.session.access_token),
+              getLearningProgress(data.session.access_token),
+            ]);
+            const cloudSession = cloudSessions[assessmentId];
+            progress =
+              cloudSession &&
+              (!localProgress || Date.parse(cloudSession.updatedAt) >= Date.parse(localProgress.updatedAt))
+                ? cloudSession
+                : localProgress;
+            savedResult =
+              (cloudLearningProgress.examResults.find((candidate) => candidate.assessmentId === assessmentId) as unknown as
+                NonNullable<ReturnType<typeof getExamResult>> | undefined) ??
+              savedResult;
           } catch {
             // Continue with the locally saved English answers when cloud sync is unavailable.
           }
-          if (!progress?.completedSections.includes("english")) {
-            window.location.assign(`/exam/${assessmentId}${window.location.search}`);
+          if (!progress && savedResult) {
+            progress = {
+              answers: savedResult.answers,
+              completedSections: savedResult.completedSections,
+              status: savedResult.completionStatus === "complete" ? "submitted" : "in_progress",
+              submittedAt: savedResult.completedAt,
+              updatedAt: savedResult.completedAt,
+            };
+          }
+          const examContent = resolveExamContent(nextAssessment);
+          if (
+            isExamSessionCompleteForContent(examContent, progress) ||
+            isExamResultCompleteForQuestionCount(savedResult, nextAssessment.questions.length)
+          ) {
+            window.location.assign(getAssessmentDashboardHref());
             return;
           }
-          setSelectedAnswers(progress.answers as SelectedAnswers);
+          const currentCompletedSections = getCurrentCompletedSections(examContent, progress);
+          setCompletedSections(currentCompletedSections);
+          nextStartingSubject = nextAssessment.split
+            ? currentCompletedSections.includes("english")
+              ? "math"
+              : "english"
+            : getNextExamSubject(storedStartingSubject, currentCompletedSections);
+          if (progress) {
+            setSelectedAnswers((progress?.answers ?? {}) as SelectedAnswers);
+            if (nextStartingSubject === "math") {
+              const firstUnansweredMathIndex =
+                examContent.mathSection?.questions.findIndex((question) =>
+                  !Object.prototype.hasOwnProperty.call(progress.answers, question.id),
+                ) ?? -1;
+              setActiveMathQuestionIndex(firstUnansweredMathIndex >= 0 ? firstUnansweredMathIndex : 0);
+            }
+          }
         }
+        window.sessionStorage.setItem(`exam-start-subject:${assessmentId}`, nextStartingSubject);
+        setSessionScreen(nextStartingSubject === "math" ? "mathIntro" : "directions");
       } catch (error) {
         setErrorMessage(error instanceof Error ? error.message : "Could not load this exam.");
       } finally {
@@ -936,6 +905,51 @@ export function ExamSessionPage() {
 
     loadExamSession();
   }, []);
+
+  useEffect(() => {
+    latestAnswersRef.current = selectedAnswers;
+    if (!assessment || !studentId || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
+    saveLocalExamSession(studentId, assessment.id, selectedAnswers, completedSections);
+  }, [assessment, completedSections, isCheckingSession, isTeacherPreviewSession, selectedAnswers, sessionScreen, studentId]);
+
+  useEffect(() => {
+    if (!assessment || !accessToken || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
+
+    const assessmentId = assessment.id;
+    async function syncAnswers() {
+      const answers = latestAnswersRef.current;
+      if (autosaveInFlightRef.current || finalSubmissionRef.current) return;
+      const signature = JSON.stringify({ answers, completedSections });
+      if (signature === lastAutosaveSignatureRef.current) return;
+      autosaveInFlightRef.current = true;
+      const savePromise = saveExamSessionProgress(accessToken, assessmentId, {
+        answers: answers as Record<string, unknown>,
+        completedSections,
+        status: "in_progress",
+      }).then(() => {
+        lastAutosaveSignatureRef.current = signature;
+      }).catch(() => {
+        // Local storage remains the immediate fallback; the interval retries the database save.
+      }).finally(() => {
+        autosaveInFlightRef.current = false;
+        if (autosavePromiseRef.current === savePromise) autosavePromiseRef.current = null;
+      });
+      autosavePromiseRef.current = savePromise;
+      await savePromise;
+    }
+
+    const firstSave = window.setTimeout(() => void syncAnswers(), 2_000);
+    const saveInterval = window.setInterval(() => void syncAnswers(), 15_000);
+    const saveWhenHidden = () => {
+      if (document.visibilityState === "hidden") void syncAnswers();
+    };
+    document.addEventListener("visibilitychange", saveWhenHidden);
+    return () => {
+      window.clearTimeout(firstSave);
+      window.clearInterval(saveInterval);
+      document.removeEventListener("visibilitychange", saveWhenHidden);
+    };
+  }, [accessToken, assessment, completedSections, isCheckingSession, isTeacherPreviewSession, sessionScreen]);
 
   useEffect(() => {
     if (!timerState || timerState.pausedAt !== null) {
@@ -985,6 +999,7 @@ export function ExamSessionPage() {
   }
 
   const currentAssessmentId = assessment.id;
+  const isSplitAssessment = assessment.split;
   const examContent = resolveExamContent(assessment);
   const mathSection = examContent.mathSection ?? {
     directions: {
@@ -1035,7 +1050,10 @@ export function ExamSessionPage() {
     (activeQuestion.instructions?.length ?? 0) > 160 ||
     activeQuestionChoices.some((choice) => choice.text.length > 130) ||
     (activeQuestion.items ?? []).some((item) => item.text.length > 90);
-  const isExpandedQuestionLayout = activeQuestion.type === "category_sort" || hasLongAnswerContent;
+  const isExpandedQuestionLayout =
+    activeQuestion.type === "category_sort" ||
+    activeQuestion.type === "table_match" ||
+    hasLongAnswerContent;
   const activeQuestionSelectedChoiceIds = getSelectedChoiceIds(selectedAnswers[activeQuestion.id]);
   const activeQuestionCategoryPlacements = getCategoryPlacements(selectedAnswers[activeQuestion.id]);
   const activeQuestionEliminatedChoiceIds = eliminatedChoices[activeQuestion.id] ?? [];
@@ -1051,10 +1069,10 @@ export function ExamSessionPage() {
     ? getExamTimerDisplay(timerState, timerNow)
     : { isOvertime: false, text: "3:00:00" };
   const isExamPaused = Boolean(timerState && timerState.pausedAt !== null);
-  const passageSetDisplayLabel = getPassageSetLabel(
-    activePassageSetIndex,
-    examContent.passageSets.length,
-  );
+  const passageSetDisplayLabel =
+    activePassageSet.section && activePassageSet.section !== "reading"
+      ? activePassageSet.label ?? getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length)
+      : getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length);
   const passageSetLabel = passageSetDisplayLabel.toUpperCase();
   const isProsePassage = activePassageSet.passage.format === "prose";
   const isSentenceProsePassage = activePassageSet.passage.format === "sentence_prose";
@@ -1123,21 +1141,58 @@ export function ExamSessionPage() {
       throw new Error("Your student session is unavailable. Refresh and try again.");
     }
 
-    const result = createExamResult(examContent, answers);
-    saveExamResult(studentId, result);
-    if (accessToken && !isTeacherPreviewSession) {
-      await saveCloudExamResult(
-        accessToken,
-        result.assessmentId,
-        result as unknown as Record<string, unknown>,
-      );
+    finalSubmissionRef.current = true;
+    try {
+      await autosavePromiseRef.current;
+      const result = createExamResult(examContent, answers);
+      if (accessToken && !isTeacherPreviewSession) {
+        await saveCloudExamResult(
+          accessToken,
+          result.assessmentId,
+          result as unknown as Record<string, unknown>,
+        );
+        try {
+          await saveExamSessionProgress(accessToken, result.assessmentId, {
+            answers: answers as Record<string, unknown>,
+            completedSections: ["english", "math"],
+            status: "submitted",
+          });
+        } catch {
+          // The submitted result itself also contains the permanent answer record.
+        }
+      }
+      saveExamResult(studentId, result);
+      saveLocalExamSession(studentId, result.assessmentId, answers, ["english", "math"], "submitted");
+      setCompletedSections(["english", "math"]);
+    } catch (error) {
+      finalSubmissionRef.current = false;
+      throw error;
+    }
+  }
+
+  async function saveSectionCompletion(section: ExamSection) {
+    if (!studentId) {
+      throw new Error("Your student session is unavailable. Refresh and try again.");
     }
 
-    if (assessment?.split) {
-      clearLocalExamSession(studentId, result.assessmentId);
-      if (accessToken && !isTeacherPreviewSession) {
-        await saveExamSessionProgress(accessToken, result.assessmentId, { answers: {}, completedSections: [] });
+    const nextCompletedSections = [...new Set([...completedSections, section])];
+    finalSubmissionRef.current = true;
+    try {
+      await autosavePromiseRef.current;
+      if (!isTeacherPreviewSession) {
+        saveLocalExamSession(studentId, currentAssessmentId, selectedAnswers, nextCompletedSections);
+        if (accessToken) {
+          await saveExamSessionProgress(accessToken, currentAssessmentId, {
+            answers: selectedAnswers as Record<string, unknown>,
+            completedSections: nextCompletedSections,
+            status: "in_progress",
+          });
+        }
       }
+      setCompletedSections(nextCompletedSections);
+      return nextCompletedSections;
+    } finally {
+      finalSubmissionRef.current = false;
     }
   }
 
@@ -1151,7 +1206,6 @@ export function ExamSessionPage() {
     );
 
     setSelectedAnswers(randomAnswers);
-    setHasCompletedMath(true);
     clearTransientExamUi();
     setActiveTool("pointer");
     setIsNotepadOpen(false);
@@ -1625,6 +1679,79 @@ export function ExamSessionPage() {
     return nodes;
   }
 
+  function renderAuthoredText(html: string | undefined, text: string, highlightKey: string) {
+    return html ? <span className="exam-rich-text" dangerouslySetInnerHTML={{ __html: html }} /> : renderHighlightedText(text, highlightKey);
+  }
+
+  function renderMathAuthoredText(text: string, highlightKey: string) {
+    return text
+      .split(/(\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\))/g)
+      .filter(Boolean)
+      .map((part, index) => {
+        if (part.startsWith("\\[") && part.endsWith("\\]")) {
+          return (
+            <span key={`${highlightKey}-display-math-${index}`}>
+              {renderKatexExpression(part.slice(2, -2), true)}
+            </span>
+          );
+        }
+        if (part.startsWith("\\(") && part.endsWith("\\)")) {
+          return (
+            <span key={`${highlightKey}-inline-math-${index}`}>
+              {renderKatexExpression(part.slice(2, -2))}
+            </span>
+          );
+        }
+        return (
+          <span key={`${highlightKey}-text-${index}`}>
+            {renderHighlightedText(part, `${highlightKey}:text:${index}`)}
+          </span>
+        );
+      });
+  }
+
+  function renderMathRichText(html: string | undefined, text: string, highlightKey: string) {
+    if (!html) {
+      return renderMathAuthoredText(text, highlightKey);
+    }
+
+    const container = document.createElement("span");
+    container.innerHTML = html;
+    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+    const textNodes: Text[] = [];
+    while (walker.nextNode()) {
+      textNodes.push(walker.currentNode as Text);
+    }
+    textNodes.forEach((textNode) => {
+      const parts = (textNode.nodeValue ?? "")
+        .split(/(\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\))/g)
+        .filter(Boolean);
+      if (parts.length === 1) return;
+      const fragment = document.createDocumentFragment();
+      parts.forEach((part) => {
+        const isDisplayMath = part.startsWith("\\[") && part.endsWith("\\]");
+        const isInlineMath = part.startsWith("\\(") && part.endsWith("\\)");
+        if (!isDisplayMath && !isInlineMath) {
+          fragment.appendChild(document.createTextNode(part));
+          return;
+        }
+        const span = document.createElement("span");
+        span.className = isDisplayMath ? "exam-katex-display" : "exam-katex-inline";
+        span.innerHTML = katex.renderToString(part.slice(2, -2), {
+          displayMode: isDisplayMath,
+          output: "htmlAndMathml",
+          strict: false,
+          throwOnError: false,
+          trust: false,
+        });
+        fragment.appendChild(span);
+      });
+      textNode.replaceWith(fragment);
+    });
+
+    return <span className="exam-rich-text" dangerouslySetInnerHTML={{ __html: container.innerHTML }} />;
+  }
+
   function renderInlineDropdownText(question: ExamQuestion, template: string, templateIndex: number) {
     const dropdownAnswers = getCategoryPlacements(selectedAnswers[question.id]);
 
@@ -1678,18 +1805,29 @@ export function ExamSessionPage() {
   }
 
   function handlePlaceCategoryItem(question: ExamQuestion, itemId: string, categoryId: string) {
-    setSelectedAnswers((currentAnswers) => ({
-      ...currentAnswers,
-      [question.id]:
+    setSelectedAnswers((currentAnswers) => {
+      const currentPlacements = getCategoryPlacements(currentAnswers[question.id]);
+      const nextPlacements =
         question.requiredPlacements === 1
-          ? {
-              [itemId]: categoryId,
-            }
+          ? {}
           : {
-              ...getCategoryPlacements(currentAnswers[question.id]),
-              [itemId]: categoryId,
-            },
-    }));
+              ...currentPlacements,
+            };
+
+      if (question.categoryCapacity === 1) {
+        Object.entries(nextPlacements).forEach(([placedItemId, placedCategoryId]) => {
+          if (placedItemId !== itemId && placedCategoryId === categoryId) {
+            delete nextPlacements[placedItemId];
+          }
+        });
+      }
+
+      nextPlacements[itemId] = categoryId;
+      return {
+        ...currentAnswers,
+        [question.id]: nextPlacements,
+      };
+    });
     setSelectedCategoryItemId("");
   }
 
@@ -1852,46 +1990,24 @@ export function ExamSessionPage() {
     setIsUnansweredModalOpen(false);
     setSelectedCategoryItemId("");
 
-    if (startingSubject === "english" && assessment.split) {
-      setIsSubmittingSection(true);
-      setErrorMessage("");
-      saveLocalExamSession(studentId, assessment.id, selectedAnswers, ["english"]);
-      const englishResult = createExamResult(examContent, selectedAnswers, ["english"]);
-      saveExamResult(studentId, englishResult);
-      try {
-        if (accessToken && !isTeacherPreviewSession) {
-          await saveCloudExamResult(
-            accessToken,
-            assessment.id,
-            englishResult as unknown as Record<string, unknown>,
-          );
-          await saveExamSessionProgress(accessToken, assessment.id, {
-            answers: selectedAnswers as Record<string, unknown>,
-            completedSections: ["english"],
-          });
-        }
-        setIsSplitEnglishComplete(true);
-        setSessionScreen("testOver");
-      } catch (error) {
-        setErrorMessage(error instanceof Error ? error.message : "Your English score could not be saved. Please submit again.");
-      } finally {
-        setIsSubmittingSection(false);
-      }
-      return;
-    }
-
-    if (startingSubject === "english" && !hasCompletedMath) {
-      setSessionScreen("mathIntro");
-      return;
-    }
-
     setIsSubmittingSection(true);
     setErrorMessage("");
     try {
-      await saveCompletedExam(selectedAnswers);
-      setSessionScreen("testOver");
+      const nextCompletedSections = await saveSectionCompletion("english");
+      if (!nextCompletedSections.includes("math")) {
+        window.sessionStorage.setItem(`exam-start-subject:${assessment.id}`, "math");
+        if (assessment.split) {
+          const nextTimer = resetExamTimer(assessment.id);
+          setTimerState(nextTimer);
+          setTimerNow(nextTimer.startedAt);
+        }
+        setSessionScreen("mathIntro");
+      } else {
+        await saveCompletedExam(selectedAnswers);
+        setSessionScreen("testOver");
+      }
     } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Your result could not be saved. Please submit again.");
+      setErrorMessage(error instanceof Error ? error.message : "Your English answers could not be saved. Please submit again.");
       setSessionScreen("endSection");
     } finally {
       setIsSubmittingSection(false);
@@ -1901,27 +2017,32 @@ export function ExamSessionPage() {
   async function finishMathSection() {
     clearTransientExamUi();
     setActiveTool("pointer");
-    setHasCompletedMath(true);
     setIsNotepadOpen(false);
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
     setReviewFilter("all");
     setSelectedCategoryItemId("");
 
-    if (startingSubject === "math" && !assessment?.split) {
-      setActivePassageSetIndex(0);
-      setActiveQuestionIndex(0);
-      setSessionScreen("passageIntro");
-      return;
-    }
-
     setIsSubmittingSection(true);
     setErrorMessage("");
     try {
-      await saveCompletedExam(selectedAnswers);
-      setSessionScreen("testOver");
+      const nextCompletedSections = await saveSectionCompletion("math");
+      if (!nextCompletedSections.includes("english")) {
+        window.sessionStorage.setItem(`exam-start-subject:${currentAssessmentId}`, "english");
+        if (isSplitAssessment) {
+          const nextTimer = resetExamTimer(currentAssessmentId);
+          setTimerState(nextTimer);
+          setTimerNow(nextTimer.startedAt);
+        }
+        setActivePassageSetIndex(0);
+        setActiveQuestionIndex(0);
+        setSessionScreen(isSplitAssessment ? "directions" : "passageIntro");
+      } else {
+        await saveCompletedExam(selectedAnswers);
+        setSessionScreen("testOver");
+      }
     } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Your result could not be saved. Please submit again.");
+      setErrorMessage(error instanceof Error ? error.message : "Your Math answers could not be saved. Please submit again.");
       setSessionScreen("endSection");
     } finally {
       setIsSubmittingSection(false);
@@ -1931,7 +2052,10 @@ export function ExamSessionPage() {
   function handleStartMathSection() {
     clearTransientExamUi();
     setActiveTool("pointer");
-    setActiveMathQuestionIndex(0);
+    const firstUnansweredMathIndex = mathQuestions.findIndex((question) =>
+      !Object.prototype.hasOwnProperty.call(selectedAnswers, question.id),
+    );
+    setActiveMathQuestionIndex(firstUnansweredMathIndex >= 0 ? firstUnansweredMathIndex : 0);
     setIsNotepadOpen(false);
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
@@ -2151,6 +2275,9 @@ export function ExamSessionPage() {
             {activeMathQuestion.image ? (
               <figure className="exam-question-image">
                 <img alt={activeMathQuestion.image.alt} src={activeMathQuestion.image.src} />
+                {activeMathQuestion.image.caption ? (
+                  <figcaption>{activeMathQuestion.image.caption}</figcaption>
+                ) : null}
               </figure>
             ) : null}
 
@@ -2159,7 +2286,11 @@ export function ExamSessionPage() {
               data-highlight-key={`prompt:${activeMathQuestion.id}`}
               id={`math-title-${activeMathQuestion.id}`}
             >
-              {renderHighlightedText(activeMathQuestion.prompt, `prompt:${activeMathQuestion.id}`)}
+              {renderMathRichText(
+                activeMathQuestion.promptHtml,
+                activeMathQuestion.prompt,
+                `prompt:${activeMathQuestion.id}`,
+              )}
             </h1>
 
             {activeMathQuestion.stimulus ? (
@@ -2167,7 +2298,11 @@ export function ExamSessionPage() {
                 className="exam-standalone-stimulus exam-highlightable"
                 data-highlight-key={`stimulus:${activeMathQuestion.id}`}
               >
-                {renderHighlightedText(activeMathQuestion.stimulus, `stimulus:${activeMathQuestion.id}`)}
+                {renderMathRichText(
+                  activeMathQuestion.stimulusHtml,
+                  activeMathQuestion.stimulus,
+                  `stimulus:${activeMathQuestion.id}`,
+                )}
               </div>
             ) : null}
 
@@ -2176,7 +2311,8 @@ export function ExamSessionPage() {
                 className="exam-standalone-instructions exam-highlightable"
                 data-highlight-key={`instructions:${activeMathQuestion.id}`}
               >
-                {renderHighlightedText(
+                {renderMathRichText(
+                  activeMathQuestion.instructionsHtml,
                   activeMathQuestion.instructions,
                   `instructions:${activeMathQuestion.id}`,
                 )}
@@ -2184,7 +2320,11 @@ export function ExamSessionPage() {
             ) : null}
 
             {isTextEntryQuestion(activeMathQuestion) ? (
-              <div className="exam-math-text-entry">
+              <div
+                className={`exam-math-text-entry ${
+                  activeMathQuestion.type === "short_response" ? "is-short-response" : ""
+                }`}
+              >
                 <input
                   aria-label="Answer"
                   inputMode={activeMathQuestion.type === "short_response" ? "text" : "decimal"}
@@ -2239,7 +2379,11 @@ export function ExamSessionPage() {
                     >
                       {choice.math
                         ? renderMathExpression(choice.math)
-                        : renderHighlightedText(choice.text, `choice:${activeMathQuestion.id}:${choice.id}`)}
+                        : renderMathRichText(
+                            choice.html,
+                            choice.text,
+                            `choice:${activeMathQuestion.id}:${choice.id}`,
+                          )}
                     </span>
                     {activeMathQuestionEliminatedChoiceIds.includes(choice.id) ? (
                       <svg
@@ -2467,7 +2611,8 @@ export function ExamSessionPage() {
               data-highlight-key={`prompt:${activeStandaloneQuestion.id}`}
               id={`standalone-title-${activeStandaloneQuestion.id}`}
             >
-              {renderHighlightedText(
+              {renderAuthoredText(
+                activeStandaloneQuestion.promptHtml,
                 activeStandaloneQuestion.prompt,
                 `prompt:${activeStandaloneQuestion.id}`,
               )}
@@ -2478,7 +2623,8 @@ export function ExamSessionPage() {
                 className="exam-standalone-stimulus exam-highlightable"
                 data-highlight-key={`stimulus:${activeStandaloneQuestion.id}`}
               >
-                {renderHighlightedText(
+                {renderAuthoredText(
+                  activeStandaloneQuestion.stimulusHtml,
                   activeStandaloneQuestion.stimulus,
                   `stimulus:${activeStandaloneQuestion.id}`,
                 )}
@@ -2500,7 +2646,11 @@ export function ExamSessionPage() {
             {activeStandaloneQuestion.type === "category_sort" &&
             activeStandaloneQuestion.items &&
             activeStandaloneQuestion.categories ? (
-              <div className="exam-standalone-category-sort">
+              <div
+                className={`exam-standalone-category-sort ${
+                  activeStandaloneQuestion.categoryCapacity === 1 ? "is-single-capacity" : ""
+                }`}
+              >
                 <div
                   aria-label="Answer choice bank. Drop an answer here to undo a selection."
                   className="exam-standalone-category-bank"
@@ -2608,7 +2758,8 @@ export function ExamSessionPage() {
                       className="exam-highlightable"
                       data-highlight-key={`choice:${activeStandaloneQuestion.id}:${choice.id}`}
                     >
-                      {renderHighlightedText(
+                      {renderAuthoredText(
+                        choice.html,
                         choice.text,
                         `choice:${activeStandaloneQuestion.id}:${choice.id}`,
                       )}
@@ -2682,7 +2833,7 @@ export function ExamSessionPage() {
               </button>
             </header>
             <textarea
-              aria-label="Stand-alone item notes"
+              aria-label="Revising/Editing Part B notes"
               autoFocus
               onChange={(event) =>
                 setPassageNotes((currentNotes) => ({
@@ -2732,7 +2883,7 @@ export function ExamSessionPage() {
   }
 
   if (sessionScreen === "endSection") {
-    const endSectionLabel = standaloneSection?.label ?? "ELA - Stand alone items";
+    const endSectionLabel = standaloneSection?.label ?? "ELA - Revising/Editing Part B";
 
     return (
       <main className="exam-session-shell">
@@ -2782,20 +2933,19 @@ export function ExamSessionPage() {
         />
 
         <section className="exam-end-section-card exam-test-over-card" aria-labelledby="exam-test-over-title">
-          <h1 id="exam-test-over-title">{isSplitEnglishComplete ? "English Session Complete" : "Test Over"}</h1>
+          <h1 id="exam-test-over-title">Complete</h1>
           <span className="exam-end-section-check" aria-hidden="true">
             <Check size={31} strokeWidth={3.2} />
           </span>
-          <p>{isSplitEnglishComplete ? "Your English answers have been saved." : "Your answers have been submitted."}</p>
-          <p className="exam-end-section-copy">{isSplitEnglishComplete ? "Return to your dashboard when you are ready to start Math." : "You can now return to your dashboard."}</p>
+          <p>Your answers have been submitted.</p>
+          <p className="exam-end-section-copy">Your teacher can view your score from the teacher dashboard.</p>
           <div className="exam-test-over-actions">
-            {!isSplitEnglishComplete && <a className="exam-end-section-submit" href={`/results/${assessment.id}${window.location.search}`}>View Results</a>}
             <button
-              className="exam-end-section-submit is-secondary"
-              onClick={() => window.location.assign(isSplitEnglishComplete ? getAssessmentDashboardHref() : getTeacherPreviewDashboardHref())}
+              className="exam-end-section-submit"
+              onClick={() => window.location.assign(getAssessmentDashboardHref())}
               type="button"
             >
-              Return to Dashboard
+              Return to Assessments
             </button>
           </div>
         </section>
@@ -2955,7 +3105,7 @@ export function ExamSessionPage() {
               }`}
               aria-label={activePassageSet.passage.title}
             >
-              {activePassageSet.passage.lines.map((line, index) =>
+              {activePassageSet.passage.lines.filter((line) => line.kind !== "image").map((line, index) =>
                 isSentenceProsePassage && !line.text ? (
                   <p
                     aria-hidden="true"
@@ -2965,7 +3115,7 @@ export function ExamSessionPage() {
                 ) : isSentenceProsePassage ? (
                   <p
                     className={`exam-sentence-prose-line ${
-                      line.align === "center" ? "is-title" : ""
+                      line.kind ? `is-${line.kind}` : line.align === "center" ? "is-title" : ""
                     }`}
                     key={`${line.lineNumber}-${line.text}-${index}`}
                   >
@@ -2973,7 +3123,7 @@ export function ExamSessionPage() {
                       className="exam-highlightable"
                       data-highlight-key={`passage:${activePassageSet.id}:line-${index}`}
                     >
-                      {renderHighlightedText(line.text, `passage:${activePassageSet.id}:line-${index}`)}
+                      {renderAuthoredText(line.html, line.text, `passage:${activePassageSet.id}:line-${index}`)}
                     </span>
                   </p>
                 ) : isProsePassage && !line.text ? (
@@ -3004,7 +3154,8 @@ export function ExamSessionPage() {
                             className="exam-highlightable"
                             data-highlight-key={`passage:${activePassageSet.id}:line-${index}`}
                           >
-                            {renderHighlightedText(
+                            {renderAuthoredText(
+                              line.html,
                               line.text,
                               `passage:${activePassageSet.id}:line-${index}`,
                             )}
@@ -3016,7 +3167,8 @@ export function ExamSessionPage() {
                               className="exam-highlightable"
                               data-highlight-key={`passage:${activePassageSet.id}:line-${index}`}
                             >
-                              {renderHighlightedText(
+                              {renderAuthoredText(
+                                line.html,
                                 line.text,
                                 `passage:${activePassageSet.id}:line-${index}`,
                               )}
@@ -3029,6 +3181,8 @@ export function ExamSessionPage() {
                 ) : (
                   <p
                     className={`exam-poem-line ${line.align === "center" ? "is-centered" : ""} ${
+                      line.kind ? `is-${line.kind}` : ""
+                    } ${
                       line.text ? "" : "is-spacer"
                     }`}
                     key={`${line.lineNumber}-${line.text}-${index}`}
@@ -3038,7 +3192,7 @@ export function ExamSessionPage() {
                       className="exam-highlightable"
                       data-highlight-key={`passage:${activePassageSet.id}:line-${index}`}
                     >
-                      {renderHighlightedText(line.text, `passage:${activePassageSet.id}:line-${index}`)}
+                      {renderAuthoredText(line.html, line.text, `passage:${activePassageSet.id}:line-${index}`)}
                     </span>
                   </p>
                 ),
@@ -3046,6 +3200,16 @@ export function ExamSessionPage() {
               {activePassageSet.passage.sourceNote ? (
                 <p className="exam-passage-source-note">{activePassageSet.passage.sourceNote}</p>
               ) : null}
+              {activePassageSet.passage.lines
+                .filter((line) => line.kind === "image" && line.image)
+                .map((line, index) =>
+                  line.image ? (
+                    <figure className="exam-passage-image" key={`${line.image.src}-footer-${index}`}>
+                      <img alt={line.image.alt} src={line.image.src} />
+                      {line.image.caption ? <figcaption>{line.image.caption}</figcaption> : null}
+                    </figure>
+                  ) : null,
+                )}
             </div>
           </div>
 
@@ -3055,7 +3219,7 @@ export function ExamSessionPage() {
               data-highlight-key={`prompt:${activeQuestion.id}`}
               id={activeQuestionTitleId}
             >
-              {renderHighlightedText(activeQuestion.prompt, `prompt:${activeQuestion.id}`)}
+              {renderAuthoredText(activeQuestion.promptHtml, activeQuestion.prompt, `prompt:${activeQuestion.id}`)}
             </h1>
             {activeQuestion.instructions ? (
               <p
@@ -3068,8 +3232,103 @@ export function ExamSessionPage() {
                 )}
               </p>
             ) : null}
-            {activeQuestion.type === "category_sort" && activeQuestion.items && activeQuestion.categories ? (
-              <div className="exam-category-sort">
+            {activeQuestion.type === "table_match" && activeQuestion.items && activeQuestion.categories ? (
+              <div className="exam-table-match">
+                <div
+                  aria-label="Answer choice bank. Drop an answer here to undo a table selection."
+                  className={`exam-table-match-bank ${
+                    selectedCategoryItemId && activeQuestionCategoryPlacements[selectedCategoryItemId]
+                      ? "is-return-target"
+                      : ""
+                  }`}
+                  onClick={() => handleCategoryBankClick(activeQuestion)}
+                  onDragOver={(event) => event.preventDefault()}
+                  onDrop={(event) => handleCategoryBankDrop(activeQuestion, event)}
+                >
+                  {activeQuestion.items
+                    .filter((item) => !activeQuestionCategoryPlacements[item.id])
+                    .map((item) => (
+                      <button
+                        className={`exam-table-match-card ${
+                          selectedCategoryItemId === item.id ? "is-selected" : ""
+                        }`}
+                        draggable
+                        key={item.id}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setSelectedCategoryItemId((currentItemId) =>
+                            currentItemId === item.id ? "" : item.id,
+                          );
+                        }}
+                        onDragStart={(event) => {
+                          event.dataTransfer.setData("text/plain", item.id);
+                          setSelectedCategoryItemId(item.id);
+                        }}
+                        type="button"
+                      >
+                        {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
+                      </button>
+                    ))}
+                </div>
+
+                <table className="exam-table-match-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">{activeQuestion.tableHeaders?.row ?? "Rows"}</th>
+                      <th scope="col">{activeQuestion.tableHeaders?.answer ?? "Answer"}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {activeQuestion.categories.map((category) => {
+                      const placedItems = activeQuestion.items?.filter(
+                        (item) => activeQuestionCategoryPlacements[item.id] === category.id,
+                      );
+                      return (
+                        <tr key={category.id}>
+                          <th scope="row">{category.title}</th>
+                          <td
+                            className="exam-table-match-target"
+                            onClick={() => handleCategoryClick(activeQuestion, category.id)}
+                            onDragOver={(event) => event.preventDefault()}
+                            onDrop={(event) => handleCategoryDrop(activeQuestion, category.id, event)}
+                          >
+                            <div className="exam-table-match-slot">
+                              {placedItems?.map((item) => (
+                                <button
+                                  className={`exam-table-match-card is-placed ${
+                                    selectedCategoryItemId === item.id ? "is-selected" : ""
+                                  }`}
+                                  draggable
+                                  key={item.id}
+                                  onClick={(event) => {
+                                    event.stopPropagation();
+                                    setSelectedCategoryItemId((currentItemId) =>
+                                      currentItemId === item.id ? "" : item.id,
+                                    );
+                                  }}
+                                  onDragStart={(event) => {
+                                    event.dataTransfer.setData("text/plain", item.id);
+                                    setSelectedCategoryItemId(item.id);
+                                  }}
+                                  type="button"
+                                >
+                                  {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
+                                </button>
+                              ))}
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            ) : activeQuestion.type === "category_sort" && activeQuestion.items && activeQuestion.categories ? (
+              <div
+                className={`exam-category-sort ${
+                  activeQuestion.categoryCapacity === 1 ? "is-single-capacity" : ""
+                }`}
+              >
                 <div
                   aria-label="Answer choice bank. Drop an answer here to undo a category selection."
                   className={`exam-category-bank ${
@@ -3102,7 +3361,7 @@ export function ExamSessionPage() {
                         }}
                         type="button"
                       >
-                        {item.text}
+                        {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
                       </button>
                     ))}
                 </div>
@@ -3142,7 +3401,7 @@ export function ExamSessionPage() {
                               }}
                               type="button"
                             >
-                              {item.text}
+                              {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
                             </button>
                           ))}
                         </div>
@@ -3154,7 +3413,7 @@ export function ExamSessionPage() {
             ) : activeQuestion.type === "transition_drop" && activeQuestionChoices.length > 0 ? (
               <div className="exam-transition-drop">
                 <div
-                  aria-label="Transition answer bank"
+                  aria-label="Drag-and-drop answer bank"
                   className="exam-transition-bank"
                   onDragOver={(event) => event.preventDefault()}
                   onDrop={(event) => handleTransitionBankDrop(activeQuestion, event)}
@@ -3239,7 +3498,7 @@ export function ExamSessionPage() {
                         className="exam-highlightable"
                         data-highlight-key={`choice:${activeQuestion.id}:${choice.id}`}
                       >
-                        {renderHighlightedText(choice.text, `choice:${activeQuestion.id}:${choice.id}`)}
+                        {renderAuthoredText(choice.html, choice.text, `choice:${activeQuestion.id}:${choice.id}`)}
                       </span>
                       {activeQuestionEliminatedChoiceIds.includes(choice.id) ? (
                         <svg
@@ -3283,7 +3542,7 @@ export function ExamSessionPage() {
                         className="exam-highlightable"
                         data-highlight-key={`choice:${activeQuestion.id}:${choice.id}`}
                       >
-                        {renderHighlightedText(choice.text, `choice:${activeQuestion.id}:${choice.id}`)}
+                        {renderAuthoredText(choice.html, choice.text, `choice:${activeQuestion.id}:${choice.id}`)}
                       </span>
                       {activeQuestionEliminatedChoiceIds.includes(choice.id) ? (
                         <svg
@@ -3493,7 +3752,7 @@ export function ExamSessionPage() {
                 If the timer is enabled, your session will end after {formatDuration(assessment.durationMinutes)}.
               </li>
               <li>
-                You should answer every question. For Math and stand-alone revising and editing items, you will
+                You should answer every question. For Math and Revising/Editing Part B stand-alone items, you will
                 not be able to return to a question after moving forward.
               </li>
               <li>

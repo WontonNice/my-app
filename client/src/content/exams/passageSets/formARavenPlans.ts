@@ -127,7 +127,7 @@ const ravenPlansQuestions: ExamQuestion[] = [
   },
 ];
 
-export const test: ExamPassageSet = {
+export const formARavenPlansPassageSet: ExamPassageSet = {
   id: "ela-passage-set-2",
   questionCount: ravenPlansQuestions.length,
   directions: {
@@ -138,7 +138,7 @@ export const test: ExamPassageSet = {
       "Read each text and answer the related questions. As needed, you may use the online notepad tool or write on scrap paper to take notes. You should reread relevant parts of each text, while being mindful of time, before selecting the best answer for each question. Base your answers only on the content within the text.",
   },
   passage: createProsePassage({
-    id: "raven-plans",
+    id: "form-a-raven-plans",
     title: "The Best Laid Plans of Ravens",
     sourceNote: "\"The Best Laid Plans of Ravens\" by Nathan Tutors",
     text: ravenPlansPassageText,

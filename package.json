@@ -27,6 +27,8 @@
         "lint:client": "npm run lint --workspace client",
         "verify": "npm run typecheck && npm run lint && npm run build",
         "preview": "npm run preview --workspace client",
+        "exam-editor": "node tools/exam-content-editor.mjs",
+        "exam-editor:validate": "node tools/exam-content-editor.mjs --validate",
         "question-editor": "node tools/question-bank-editor.mjs",
         "question-editor:validate": "node tools/question-bank-editor.mjs --validate"
     },

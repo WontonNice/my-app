@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { Activity, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, LayoutDashboard, Pencil, Target, Trash2, UserRoundPlus, Users, X } from "lucide-react";
+import { Activity, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, LayoutDashboard, Pencil, Shuffle, Target, Trash2, UserRoundPlus, Users, X } from "lucide-react";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
+import { resolveExamContent, type ExamQuestion } from "../content/exams";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import {
   getTeacherAssessments,
@@ -9,11 +10,13 @@ import {
   updateStudentAccount,
   updateTeacherAssessmentSplit,
   updateTeacherAssessmentStatus,
+  updateTeacherAssessmentForms,
   type AssessmentStatus,
   type StudentProgressSnapshot,
   type TeacherAssessment,
 } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
+import { getAllExamQuestions } from "../lib/examResults";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 function formatDate(value: string | null) {
@@ -45,11 +48,155 @@ function questionTypeSummary(result: Record<string, unknown>) {
     if (!item || typeof item !== "object" || Array.isArray(item)) return [];
     const value = item as Record<string, unknown>;
     if (typeof value.questionType !== "string" || typeof value.correct !== "number" || typeof value.total !== "number") return [];
-    return [{ correct: value.correct, label: labelFromSlug(value.questionType), total: value.total }];
+    return [{
+      correct: value.correct,
+      label: value.questionType === "transition_drop" ? "Drag and Drop" : labelFromSlug(value.questionType),
+      total: value.total,
+    }];
   });
 }
 
-function StudentDetail({ student }: { student: StudentProgressSnapshot }) {
+function choiceLabel(question: ExamQuestion, choiceId: string) {
+  const choice = question.choices?.find((candidate) => candidate.id === choiceId);
+  return choice ? `${choiceId} — ${choice.text}` : choiceId;
+}
+
+function placementLabel(question: ExamQuestion, placements: Record<string, string>) {
+  return Object.entries(placements).map(([itemId, categoryId]) => {
+    const item = question.items?.find((candidate) => candidate.id === itemId);
+    const category = question.categories?.find((candidate) => candidate.id === categoryId);
+    return `${item?.text ?? itemId} → ${category?.title ?? categoryId}`;
+  }).join("; ");
+}
+
+function correctAnswerLabel(question: ExamQuestion) {
+  if (question.type === "multiple_choice" || question.type === "transition_drop") {
+    return choiceLabel(question, question.correctChoiceId ?? "—");
+  }
+  if (question.type === "multi_select") {
+    return (question.correctChoiceIds ?? []).map((choiceId) => choiceLabel(question, choiceId)).join("; ") || "—";
+  }
+  if (question.type === "category_sort" || question.type === "table_match") {
+    return placementLabel(question, question.correctPlacements ?? {}) || "—";
+  }
+  if (question.type === "inline_dropdown") {
+    return (question.dropdowns ?? []).map((dropdown) => {
+      const option = dropdown.options.find((candidate) => candidate.id === dropdown.correctChoiceId);
+      return `${dropdown.id}: ${option?.text ?? dropdown.correctChoiceId ?? "—"}`;
+    }).join("; ");
+  }
+  return question.correctTextAnswers?.join(" or ") || "Teacher scored";
+}
+
+function studentAnswerLabel(question: ExamQuestion, answer: unknown) {
+  if (typeof answer === "string") {
+    return question.choices?.length ? choiceLabel(question, answer) : answer || "Blank";
+  }
+  if (Array.isArray(answer)) {
+    return answer.map((choiceId) => choiceLabel(question, String(choiceId))).join("; ") || "Blank";
+  }
+  if (answer && typeof answer === "object") {
+    const values = answer as Record<string, string>;
+    if (question.type === "category_sort" || question.type === "table_match") {
+      return placementLabel(question, values) || "Blank";
+    }
+    if (question.type === "inline_dropdown") {
+      return Object.entries(values).map(([dropdownId, optionId]) => {
+        const dropdown = question.dropdowns?.find((candidate) => candidate.id === dropdownId);
+        const option = dropdown?.options.find((candidate) => candidate.id === optionId);
+        return `${dropdownId}: ${option?.text ?? optionId}`;
+      }).join("; ") || "Blank";
+    }
+  }
+  return "Blank";
+}
+
+function ExamAnswerKey({ assessment }: { assessment: TeacherAssessment }) {
+  const questions = getAllExamQuestions(resolveExamContent(assessment));
+  return (
+    <section className="teacher-answer-key" aria-label={`${assessment.title} answer key`}>
+      {questions.map((question, index) => (
+        <div className="teacher-answer-row" key={question.id}>
+          <strong>{index + 1}</strong>
+          <span>{question.prompt}</span>
+          <b>{correctAnswerLabel(question)}</b>
+        </div>
+      ))}
+      {!questions.length && <p className="teacher-empty-state">No questions are in this exam yet.</p>}
+    </section>
+  );
+}
+
+type FormDraft = {
+  assignments: Record<string, string>;
+  forms: NonNullable<TeacherAssessment["forms"]>;
+};
+
+function shuffled<T>(values: T[]) {
+  const result = [...values];
+  for (let index = result.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [result[index], result[swapIndex]] = [result[swapIndex], result[index]];
+  }
+  return result;
+}
+
+function createPassageForms(assessment: TeacherAssessment): FormDraft["forms"] {
+  const passageIds = assessment.passages.map((passage) => passage.id);
+  if (!passageIds.length) return [];
+
+  const maximumForms = passageIds.length === 1 ? 1 : passageIds.length === 2 ? 2 : 4;
+  const orders = new Map<string, string[]>([[passageIds.join("\u0000"), passageIds]]);
+  for (let attempt = 0; orders.size < maximumForms && attempt < 100; attempt += 1) {
+    const order = shuffled(passageIds);
+    orders.set(order.join("\u0000"), order);
+  }
+  for (let offset = 1; orders.size < maximumForms && offset < passageIds.length; offset += 1) {
+    const order = [...passageIds.slice(offset), ...passageIds.slice(0, offset)];
+    orders.set(order.join("\u0000"), order);
+  }
+
+  return Array.from(orders.values(), (passageOrder, index) => ({
+    id: `form-${String.fromCharCode(97 + index)}`,
+    label: `Form ${String.fromCharCode(65 + index)}`,
+    passageOrder,
+  }));
+}
+
+function StudentDetail({
+  assessments,
+  student,
+}: {
+  assessments: TeacherAssessment[];
+  student: StudentProgressSnapshot;
+}) {
+  const responseRecords = new Map<string, {
+    answers: Record<string, unknown>;
+    status: string;
+    updatedAt: string | null;
+  }>();
+  student.progress.examResults.forEach((result) => {
+    if (typeof result.assessmentId !== "string") return;
+    const answers =
+      result.answers && typeof result.answers === "object" && !Array.isArray(result.answers)
+        ? result.answers as Record<string, unknown>
+        : {};
+    responseRecords.set(result.assessmentId, {
+      answers,
+      status: result.completionStatus === "english_complete" ? "English submitted · Math pending" : "Submitted",
+      updatedAt: typeof result.completedAt === "string" ? result.completedAt : null,
+    });
+  });
+  Object.entries(student.examSessions ?? {}).forEach(([assessmentId, session]) => {
+    const existing = responseRecords.get(assessmentId);
+    if (session.status === "submitted" && existing && Object.keys(existing.answers).length) return;
+    responseRecords.set(assessmentId, {
+      answers: session.answers,
+      status: session.status === "submitted" ? "Submitted" : "Autosaved · In progress",
+      updatedAt: session.updatedAt,
+    });
+  });
+
   return (
     <section className="teacher-student-detail" aria-label={`${student.fullName} record`}>
       <div className="teacher-panel-header"><div><span>Student record</span><h2>{student.fullName}</h2></div><p>Last login: {formatDate(student.lastLoginAt)}</p></div>
@@ -72,6 +219,37 @@ function StudentDetail({ student }: { student: StudentProgressSnapshot }) {
         ))}
         {!student.progress.examResults.length && <p className="teacher-empty-state">No test results recorded yet.</p>}
       </div>
+      <h3 className="teacher-detail-heading">Saved student answers</h3>
+      <div className="teacher-response-list">
+        {Array.from(responseRecords, ([assessmentId, record]) => {
+          const assessment = assessments.find((candidate) => candidate.id === assessmentId);
+          const questions = assessment ? getAllExamQuestions(resolveExamContent(assessment)) : [];
+          return (
+            <details className="teacher-response-details" key={assessmentId}>
+              <summary>
+                <span><strong>{assessment?.title ?? labelFromSlug(assessmentId)}</strong><small>{record.status} · {formatDate(record.updatedAt)}</small></span>
+                <b>{Object.keys(record.answers).length} saved</b>
+              </summary>
+              <div className="teacher-answer-key">
+                {questions.map((question, index) => (
+                  <div className="teacher-answer-row" key={question.id}>
+                    <strong>{index + 1}</strong>
+                    <span>{question.prompt}</span>
+                    <b>{studentAnswerLabel(question, record.answers[question.id])}</b>
+                  </div>
+                ))}
+                {!questions.length && Object.entries(record.answers).map(([questionId, answer]) => (
+                  <div className="teacher-answer-row" key={questionId}>
+                    <strong>•</strong><span>{questionId}</span><b>{typeof answer === "string" ? answer : JSON.stringify(answer)}</b>
+                  </div>
+                ))}
+                {!Object.keys(record.answers).length && <p className="teacher-empty-state">No answers saved yet.</p>}
+              </div>
+            </details>
+          );
+        })}
+        {!responseRecords.size && <p className="teacher-empty-state">No student answer records yet.</p>}
+      </div>
       <h3 className="teacher-detail-heading">Practice progress</h3>
       <div className="teacher-practice-grid">
         {Object.entries(student.progress.practice).map(([topic, progress]) => {
@@ -93,6 +271,10 @@ export function TeacherDashboardPage() {
   const [message, setMessage] = useState("");
   const [savingStatusId, setSavingStatusId] = useState("");
   const [savingAccountId, setSavingAccountId] = useState("");
+  const [savingFormsId, setSavingFormsId] = useState("");
+  const [openFormEditorId, setOpenFormEditorId] = useState("");
+  const [openAnswerKeyId, setOpenAnswerKeyId] = useState("");
+  const [formDrafts, setFormDrafts] = useState<Record<string, FormDraft>>({});
   const [editingStudentAccountId, setEditingStudentAccountId] = useState("");
   const [studentAccountDraft, setStudentAccountDraft] = useState({ fullName: "", password: "", username: "" });
   const [teacherName, setTeacherName] = useState("Teacher");
@@ -167,6 +349,66 @@ export function TeacherDashboardPage() {
       setMessage(`${updated.title} will ${updated.split ? "run in two sessions" : "run as one continuous session"}.`);
     } catch (error) { setMessage(error instanceof Error ? error.message : "Could not update the exam format."); }
     finally { setSavingStatusId(""); }
+  }
+
+  function openFormEditor(assessment: TeacherAssessment) {
+    setOpenFormEditorId((current) => current === assessment.id ? "" : assessment.id);
+    setFormDrafts((current) => current[assessment.id] ? current : {
+      ...current,
+      [assessment.id]: {
+        assignments: { ...(assessment.formAssignments ?? {}) },
+        forms: assessment.forms?.length ? assessment.forms : createPassageForms(assessment),
+      },
+    });
+  }
+
+  function regenerateForms(assessment: TeacherAssessment) {
+    setFormDrafts((current) => ({
+      ...current,
+      [assessment.id]: {
+        assignments: {},
+        forms: createPassageForms(assessment),
+      },
+    }));
+  }
+
+  function assignStudentForm(assessmentId: string, studentId: string, formId: string) {
+    setFormDrafts((current) => {
+      const draft = current[assessmentId];
+      if (!draft) return current;
+      const assignments = { ...draft.assignments };
+      if (formId) assignments[studentId] = formId;
+      else delete assignments[studentId];
+      return { ...current, [assessmentId]: { ...draft, assignments } };
+    });
+  }
+
+  async function handleSaveForms(assessment: TeacherAssessment) {
+    const draft = formDrafts[assessment.id];
+    if (!accessToken || !draft) return;
+    setSavingFormsId(assessment.id);
+    setMessage("");
+    try {
+      const updated = await updateTeacherAssessmentForms(
+        accessToken,
+        assessment.id,
+        draft.forms,
+        draft.assignments,
+      );
+      setAssessments((current) => current.map((item) => item.id === updated.id ? updated : item));
+      setFormDrafts((current) => ({
+        ...current,
+        [assessment.id]: {
+          assignments: { ...(updated.formAssignments ?? {}) },
+          forms: updated.forms ?? [],
+        },
+      }));
+      setMessage(`${updated.title} forms and student assignments are live.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not save the exam forms.");
+    } finally {
+      setSavingFormsId("");
+    }
   }
 
   function beginEditingStudentAccount(student: StudentProgressSnapshot) {
@@ -261,7 +503,7 @@ export function TeacherDashboardPage() {
                 <span className="teacher-score-badge">{student.insights.averageTestScore === null ? "—" : `${student.insights.averageTestScore}%`}<small>avg.</small></span>
                 <ChevronDown className="teacher-roster-chevron" size={18} />
               </button>
-              {isOpen && <StudentDetail student={student} />}
+              {isOpen && <StudentDetail assessments={assessments} student={student} />}
               </div>;
             })}
             {!shsatStudents.length && <p className="teacher-empty-state">No students are enrolled in SHSAT yet.</p>}
@@ -300,10 +542,13 @@ export function TeacherDashboardPage() {
       </section>
 
       <section className="teacher-panel" id="assessments">
-        <div className="teacher-panel-header"><div><span>Assignments</span><h2>Exam access and sessions</h2></div><p>Open or lock each exam, and choose whether English and Math run separately.</p></div>
+        <div className="teacher-panel-header"><div><span>Assignments</span><h2>Exam access, sessions, and forms</h2></div><p>Open or lock each exam, split sections, and assign Reading Comprehension passage forms in real time.</p></div>
         <div className="teacher-assessment-list">
           {assessments.map((assessment) => {
             const classResult = assessmentAverages.get(assessment.id);
+            const formDraft = formDrafts[assessment.id];
+            const isFormEditorOpen = openFormEditorId === assessment.id;
+            const passageTitleById = new Map(assessment.passages.map((passage) => [passage.id, passage.title]));
             return <article className="teacher-assessment-card" key={assessment.id}>
               <div><span className={`status-pill status-pill-${assessment.status}`}>{assessment.status}</span><small>{assessment.split ? "Split · 2 sessions" : "Continuous · 1 session"}</small><small>{assessment.durationMinutes} min</small></div>
               <h3>{assessment.title}</h3><p>{assessment.description || "No description yet."}</p>
@@ -311,7 +556,34 @@ export function TeacherDashboardPage() {
               <div className="teacher-assessment-actions">
                 <button disabled={savingStatusId === assessment.id} type="button" onClick={() => handleToggleAssessment(assessment)}>{assessment.status === "open" ? "Lock exam" : "Open exam"}</button>
                 <button className="is-secondary" disabled={savingStatusId === assessment.id} type="button" onClick={() => handleToggleSplit(assessment)}>{assessment.split ? "Make one session" : "Split English / Math"}</button>
+                <button className="is-secondary teacher-form-toggle" disabled={!assessment.passages.length} type="button" onClick={() => openFormEditor(assessment)}><Shuffle size={15} /> {isFormEditorOpen ? "Close form assignments" : "Assign passage forms"}</button>
+                <button className="is-secondary teacher-answer-key-toggle" type="button" onClick={() => setOpenAnswerKeyId((current) => current === assessment.id ? "" : assessment.id)}>{openAnswerKeyId === assessment.id ? "Close answer key" : "View answer key"}</button>
               </div>
+              {openAnswerKeyId === assessment.id && <ExamAnswerKey assessment={assessment} />}
+              {isFormEditorOpen && formDraft ? <section className="teacher-form-editor" aria-label={`${assessment.title} passage forms`}>
+                <header>
+                  <div><strong>Reading passage-order forms</strong><small>Only Reading Comprehension passages move. Passage-based Part A, stand-alone Part B, and Math remain fixed.</small></div>
+                  <button className="is-secondary" onClick={() => regenerateForms(assessment)} type="button"><Shuffle size={14} /> Regenerate</button>
+                </header>
+                <div className="teacher-form-order-list">
+                  {formDraft.forms.map((form) => <article key={form.id}>
+                    <strong>{form.label}</strong>
+                    <ol>{form.passageOrder.map((passageId) => <li key={passageId}>{passageTitleById.get(passageId) ?? labelFromSlug(passageId)}</li>)}</ol>
+                  </article>)}
+                </div>
+                <div className="teacher-form-roster">
+                  <div className="teacher-form-roster-head"><strong>Student</strong><strong>Assigned form</strong></div>
+                  {shsatStudents.map((student) => <label key={student.id}>
+                    <span><strong>{student.fullName}</strong><small>{student.username}</small></span>
+                    <select aria-label={`Form for ${student.fullName}`} onChange={(event) => assignStudentForm(assessment.id, student.id, event.target.value)} value={formDraft.assignments[student.id] ?? ""}>
+                      <option value="">Default passage order</option>
+                      {formDraft.forms.map((form) => <option key={form.id} value={form.id}>{form.label}</option>)}
+                    </select>
+                  </label>)}
+                  {!shsatStudents.length ? <p className="teacher-empty-state">No SHSAT students are available to assign.</p> : null}
+                </div>
+                <button className="teacher-form-save" disabled={savingFormsId === assessment.id || !formDraft.forms.length} onClick={() => handleSaveForms(assessment)} type="button">{savingFormsId === assessment.id ? "Saving forms…" : "Save live assignments"}</button>
+              </section> : null}
             </article>;
           })}
         </div>

@@ -6,8 +6,10 @@ export type QuestionType =
     | "multiple_choice"
     | "multi_select"
     | "category_sort"
+    | "table_match"
     | "inline_dropdown"
     | "numeric_entry"
+    | "transition_drop"
     | "short_response"
     | "grid_in"
     | "essay";
@@ -30,11 +32,19 @@ export type AssessmentQuestion = {
     type: QuestionType;
 };
 
+export type AssessmentForm = {
+    id: string;
+    label: string;
+    passageOrder: string[];
+};
+
 export type Assessment = {
     classId: string;
     createdAt: string;
     description: string;
     durationMinutes: number;
+    formAssignments: Record<string, string>;
+    forms: AssessmentForm[];
     id: string;
     passages: AssessmentPassage[];
     questions: AssessmentQuestion[];
@@ -55,6 +65,12 @@ export type AssessmentSummary = {
     split: boolean;
     status: AssessmentStatus;
     title: string;
+};
+
+export type StudentAssessmentDetail = Omit<Assessment, "formAssignments" | "forms"> & {
+    assignedFormId?: string;
+    assignedFormLabel?: string;
+    passageOrder?: string[];
 };
 
 export type CreateAssessmentInput = {
@@ -91,7 +107,15 @@ function readAssessments(): Assessment[] {
         const assessments = JSON.parse(contents) as unknown;
 
         return Array.isArray(assessments)
-            ? (assessments as Assessment[]).map((assessment) => ({ ...assessment, split: assessment.split === true }))
+            ? (assessments as Assessment[]).map((assessment) => ({
+                  ...assessment,
+                  formAssignments:
+                      assessment.formAssignments && typeof assessment.formAssignments === "object"
+                          ? assessment.formAssignments
+                          : {},
+                  forms: Array.isArray(assessment.forms) ? assessment.forms : [],
+                  split: assessment.split === true,
+              }))
             : [];
     } catch {
         return [];
@@ -155,6 +179,8 @@ export function createAssessment(input: CreateAssessmentInput) {
         createdAt: timestamp,
         description: input.description,
         durationMinutes: input.durationMinutes,
+        formAssignments: {},
+        forms: [],
         id,
         passages: input.passageText
             ? [
@@ -224,4 +250,79 @@ export function updateAssessmentSplit(assessmentId: string, split: boolean) {
 
     writeAssessments(assessments);
     return updatedAssessment;
+}
+
+function isAssessmentForm(value: unknown): value is AssessmentForm {
+    if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+    const form = value as Record<string, unknown>;
+    return (
+        typeof form.id === "string" &&
+        Boolean(form.id.trim()) &&
+        typeof form.label === "string" &&
+        Boolean(form.label.trim()) &&
+        Array.isArray(form.passageOrder) &&
+        form.passageOrder.every((passageId) => typeof passageId === "string" && Boolean(passageId.trim()))
+    );
+}
+
+export function updateAssessmentForms(
+    assessmentId: string,
+    formsInput: unknown,
+    assignmentsInput: unknown,
+) {
+    if (!Array.isArray(formsInput) || !formsInput.every(isAssessmentForm)) return null;
+    if (!assignmentsInput || typeof assignmentsInput !== "object" || Array.isArray(assignmentsInput)) return null;
+
+    const forms = formsInput.map((form) => ({
+        id: form.id.trim(),
+        label: form.label.trim(),
+        passageOrder: Array.from(new Set(form.passageOrder.map((passageId) => passageId.trim()))),
+    }));
+    const formIds = new Set(forms.map((form) => form.id));
+    if (formIds.size !== forms.length) return null;
+
+    const formAssignments = Object.fromEntries(
+        Object.entries(assignmentsInput as Record<string, unknown>).flatMap(([studentId, formId]) =>
+            studentId.trim() && typeof formId === "string" && formIds.has(formId)
+                ? [[studentId.trim(), formId]]
+                : [],
+        ),
+    );
+
+    let updatedAssessment: Assessment | null = null;
+    const timestamp = new Date().toISOString();
+    const assessments = readAssessments().map((assessment) => {
+        if (assessment.id !== assessmentId) return assessment;
+        const allowedPassageIds = new Set(assessment.passages.map((passage) => passage.id));
+        if (
+            forms.some(
+                (form) =>
+                    form.passageOrder.length !== allowedPassageIds.size ||
+                    form.passageOrder.some((passageId) => !allowedPassageIds.has(passageId)),
+            )
+        ) {
+            return assessment;
+        }
+        updatedAssessment = { ...assessment, formAssignments, forms, updatedAt: timestamp };
+        return updatedAssessment;
+    });
+
+    if (!updatedAssessment) return null;
+    writeAssessments(assessments);
+    return updatedAssessment;
+}
+
+export function toStudentAssessmentDetail(
+    assessment: Assessment,
+    studentId: string,
+): StudentAssessmentDetail {
+    const { formAssignments: _formAssignments, forms: _forms, ...studentAssessment } = assessment;
+    const assignedFormId = assessment.formAssignments[studentId];
+    const assignedForm = assessment.forms.find((form) => form.id === assignedFormId);
+    return {
+        ...studentAssessment,
+        assignedFormId: assignedForm?.id,
+        assignedFormLabel: assignedForm?.label,
+        passageOrder: assignedForm?.passageOrder,
+    };
 }

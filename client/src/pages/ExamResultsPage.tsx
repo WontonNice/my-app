@@ -1,6 +1,6 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import { getLearningProgress } from "../lib/api";
-import { getExamResult, replaceExamResults, type ExamResult, type ExamSubjectResult } from "../lib/examResults";
+import { getExamResult, replaceExamResults, type ExamResult } from "../lib/examResults";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 function getAssessmentIdFromResultsPath() {
@@ -9,50 +9,19 @@ function getAssessmentIdFromResultsPath() {
 
 function getDashboardHref() {
   const searchParams = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams({ section: "assessments" });
+  if (searchParams.get("preview") === "student" && searchParams.get("teacherTools") === "1") {
+    params.set("preview", "student");
+    params.set("teacherTools", "1");
+  }
+  return `/study-hall?${params.toString()}`;
+}
+
+function getAssessmentHref(assessmentId: string) {
+  const searchParams = new URLSearchParams(window.location.search);
   return searchParams.get("preview") === "student" && searchParams.get("teacherTools") === "1"
-    ? "/study-hall?preview=student&teacherTools=1"
-    : "/study-hall";
-}
-
-function SubjectTopicBreakdown({ subjectResult }: { subjectResult: ExamSubjectResult }) {
-  const subjectPercentage = Math.round((subjectResult.correct / subjectResult.total) * 100);
-
-  return (
-    <section className="results-topic-panel" aria-labelledby={`topic-breakdown-${subjectResult.subject}`}>
-      <div className="results-topic-heading">
-        <div>
-          <p>Category breakdown</p>
-          <h2 id={`topic-breakdown-${subjectResult.subject}`}>{subjectResult.subject}</h2>
-        </div>
-        <span>
-          {subjectResult.correct}/{subjectResult.total} correct ({subjectPercentage}%)
-        </span>
-      </div>
-
-      <div className="results-topic-list">
-        {subjectResult.topics.map((topicResult) => {
-          const percentage = Math.round((topicResult.correct / topicResult.total) * 100);
-
-          return (
-            <article className="results-topic-row" key={topicResult.topic}>
-              <div>
-                <h3>{topicResult.topic}</h3>
-                <strong>{topicResult.correct}/{topicResult.total} correct</strong>
-              </div>
-              <div className="results-topic-track" aria-label={`${percentage}% correct`}>
-                <span style={{ width: `${percentage}%` }} />
-              </div>
-              <span>{percentage}%</span>
-            </article>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
-function formatQuestionType(value: string) {
-  return value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+    ? `/exam/${assessmentId}?preview=student&teacherTools=1`
+    : `/exam/${assessmentId}`;
 }
 
 export function ExamResultsPage() {
@@ -76,7 +45,7 @@ export function ExamResultsPage() {
           replaceExamResults(data.session.user.id, cloudProgress.examResults as unknown as ExamResult[]);
         }
       } catch {
-        // Use the device cache when cloud storage is temporarily unavailable.
+        // Use the device completion record when cloud storage is temporarily unavailable.
       }
       setResult(getExamResult(data.session.user.id, getAssessmentIdFromResultsPath()));
       setIsLoading(false);
@@ -84,97 +53,46 @@ export function ExamResultsPage() {
   }, []);
 
   if (isLoading) {
-    return <main className="loading-shell">Loading results...</main>;
+    return <main className="loading-shell">Loading assessment status...</main>;
   }
 
   if (!result) {
     return (
       <main className="results-page-shell">
         <section className="results-missing-card">
-          <p>Test results</p>
-          <h1>No saved result was found.</h1>
-          <a href={getDashboardHref()}>Return to dashboard</a>
+          <p>Assessment status</p>
+          <h1>No completion record was found.</h1>
+          <a href={getDashboardHref()}>Return to assessments</a>
         </section>
       </main>
     );
   }
 
+  const englishOnly = result.completionStatus === "english_complete";
+
   return (
     <main className="results-page-shell">
       <header className="results-page-header">
         <div>
-          <p>Assessment results</p>
+          <p>Assessment status</p>
           <h1>{result.title}</h1>
-          <span>{result.completionStatus === "english_complete" ? "English submitted · Math pending" : "Completed"} {new Date(result.completedAt).toLocaleString()}</span>
+          <span>{new Date(result.completedAt).toLocaleString()}</span>
         </div>
-        <a href={getDashboardHref()}>Back to dashboard</a>
+        <a href={getDashboardHref()}>Back to assessments</a>
       </header>
 
-      <section className="results-score-panel" aria-label="Overall score">
-        <div className="results-score-ring" style={{ "--score": `${result.percentage * 3.6}deg` } as CSSProperties}>
-          <strong>{result.percentage}%</strong>
-          <span>overall</span>
-        </div>
-        <div>
-          <p>Questions correct</p>
-          <h2>{result.correct} / {result.total}</h2>
-          <span>Use the topic breakdown to decide what to review next.</span>
-        </div>
+      <section className="results-missing-card">
+        <p>{englishOnly ? "Section complete" : "Complete"}</p>
+        <h1>{englishOnly ? "English is complete. Math is next." : "Your assessment is complete."}</h1>
+        <span>
+          {englishOnly
+            ? "Your English answers are saved. Continue to Math when it opens."
+            : "Your answers were submitted. Your teacher can view your score from the teacher dashboard."}
+        </span>
+        <a href={englishOnly ? getAssessmentHref(result.assessmentId) : getDashboardHref()}>
+          {englishOnly ? "Continue assessment" : "Return to assessments"}
+        </a>
       </section>
-
-      {Array.isArray(result.questionTypes) && result.questionTypes.length > 0 ? (
-        <section className="results-topic-panel" aria-labelledby="question-type-breakdown-title">
-          <div className="results-topic-heading"><div><p>Raw score</p><h2 id="question-type-breakdown-title">By question type</h2></div></div>
-          <div className="results-topic-list">
-            {result.questionTypes.map((item) => {
-              const percentage = item.total ? Math.round((item.correct / item.total) * 100) : 0;
-              return <article className="results-topic-row" key={item.questionType}><div><h3>{formatQuestionType(item.questionType)}</h3><strong>{item.correct}/{item.total} correct</strong></div><div className="results-topic-track"><span style={{ width: `${percentage}%` }} /></div><span>{percentage}%</span></article>;
-            })}
-          </div>
-        </section>
-      ) : null}
-
-      {result.passages.length > 0 ? (
-        <section className="results-passage-panel" aria-labelledby="passage-breakdown-title">
-          <div className="results-topic-heading">
-            <div>
-              <p>English breakdown</p>
-              <h2 id="passage-breakdown-title">Performance by passage</h2>
-            </div>
-            <span>{result.passages.length} passages</span>
-          </div>
-
-          <div className="results-passage-grid">
-            {result.passages.map((passageResult) => {
-              const percentage = Math.round((passageResult.correct / passageResult.total) * 100);
-
-              return (
-                <article className="results-passage-row" key={passageResult.id}>
-                  <div>
-                    <span>{passageResult.label}</span>
-                    <h3>{passageResult.title}</h3>
-                  </div>
-                  <strong>{passageResult.correct}/{passageResult.total}</strong>
-                  <div className="results-topic-track" aria-label={`${percentage}% correct`}>
-                    <span style={{ width: `${percentage}%` }} />
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
-
-      {result.subjects.length > 0 ? (
-        result.subjects.map((subjectResult) => (
-          <SubjectTopicBreakdown key={subjectResult.subject} subjectResult={subjectResult} />
-        ))
-      ) : (
-        <section className="results-detail-unavailable">
-          <h2>Detailed breakdown unavailable</h2>
-          <p>Retake this assessment once to generate separate English, Math, and passage results.</p>
-        </section>
-      )}
     </main>
   );
 }

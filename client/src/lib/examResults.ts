@@ -32,6 +32,7 @@ export type ExamQuestionTypeResult = {
 };
 
 export type ExamResult = {
+  answers: SelectedAnswers;
   assessmentId: string;
   completedSections: ("english" | "math")[];
   completionStatus: "complete" | "english_complete";
@@ -84,7 +85,7 @@ export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAn
     return Array.isArray(answer) && hasExactIds(answer, question.correctChoiceIds ?? []);
   }
 
-  if (question.type === "category_sort") {
+  if (question.type === "category_sort" || question.type === "table_match") {
     const placements = getCategoryPlacements(answer);
     const correctPlacements = question.correctPlacements ?? {};
     const requiredItemIds = Object.keys(correctPlacements);
@@ -194,6 +195,7 @@ export function createExamResult(
   }) : [];
 
   return {
+    answers: { ...answers },
     assessmentId: examContent.assessmentId,
     completedSections,
     completionStatus: completedSections.includes("math") ? "complete" : "english_complete",
@@ -224,6 +226,7 @@ export function getExamResults(userId: string): ExamResult[] {
 
     return (storedResults as ExamResult[]).map((result) => ({
       ...result,
+      answers: result.answers && typeof result.answers === "object" ? result.answers : {},
       completedSections: Array.isArray(result.completedSections) ? result.completedSections : ["english", "math"],
       completionStatus: result.completionStatus === "english_complete" ? "english_complete" : "complete",
       passages: Array.isArray(result.passages) ? result.passages : [],

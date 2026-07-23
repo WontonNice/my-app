@@ -1,16 +1,1035 @@
 [
   {
     "classId": "shsat",
+    "createdAt": "2026-07-23T00:00:00.000Z",
+    "description": "Form A assessment for the 2025-2026 SHSAT cycle.",
+    "durationMinutes": 180,
+    "id": "2025-2026-form-a",
+    "passages": [
+      {
+        "id": "snowy-mountains",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Snowy Mountains"
+      },
+      {
+        "id": "scribe-like-an-egyptian",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from “Scribe Like an Egyptian”"
+      },
+      {
+        "id": "winter-wheat",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from Winter Wheat"
+      },
+      {
+        "id": "dothemnoharm",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from Do Them No Harm!"
+      },
+      {
+        "id": "spirit-of-the-herd",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"The Spirit of the Herd\""
+      },
+      {
+        "id": "massachusetts",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Massachusetts: Lowell National Historical Park"
+      }
+    ],
+    "questions": [
+      {
+        "answer": "B",
+        "choices": [
+          "comparing the length of time the mountains have existed with the length of time the city has existed.",
+          "contrasting the grandeur of the mountains with the structures in the city below them.",
+          "implying that the mountains are a source of inspiration to the people in the city below.",
+          "suggesting that the mountains are larger than the people in the city realize."
+        ],
+        "id": "snowy-mountains-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The description in the first stanza (lines 1–7) helps establish a central idea of the poem by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "“The mountains from the great plateau” (line 6)",
+          "“They have been here now for too long a time.” (line 9)",
+          "“Splits down their shining sides,” (line 12)",
+          "“To which the future is as was the past,” (line 18)"
+        ],
+        "id": "snowy-mountains-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which detail from the poem reflects the speaker’s view that people often fail to appreciate what is familiar?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It creates a contrast between the great plateau and the city buildings.",
+          "It reveals the similarity between the tall buildings in the city and the tall mountains on the horizon.",
+          "It creates a vision of the region before people developed the land.",
+          "It emphasizes that the mountains dominate the landscape."
+        ],
+        "id": "snowy-mountains-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does isolating the word “Uprise” in line 7 affect the meaning of the poem?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B,E",
+        "choices": [
+          "by describing the mountains’ awe-inspiring size and strength",
+          "by comparing the various methods humans use to control nature",
+          "by criticizing the careless actions of humans that harm the natural environment",
+          "by demonstrating how the mountains and the people are able to benefit from each other",
+          "by depicting the unfortunate plight of the mountains with vivid details"
+        ],
+        "id": "snowy-mountains-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In which two ways does the poet develop the speaker’s point of view in the second stanza (lines 8–14)? \nSelect the two correct answers.",
+        "topic": "Author's Point of View",
+        "type": "multi_select"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "by reflecting nature’s capacity to resist change",
+          "by showing that nature is capable of influencing human will",
+          "by exposing how a lack of awareness leads to nature’s ruin",
+          "by explaining why people must respect nature"
+        ],
+        "id": "snowy-mountains-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How do the details in the third stanza (lines 15–26) **most** contribute to the development of a theme of the poem?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "They suggest that the speaker wants to remove the obstacles that prevent others from experiencing the wonders of nature.",
+          "They reveal the speaker’s opinion that some people are too busy to appreciate natural beauty.",
+          "They reflect the speaker’s dismay that people destroy the natural landscape without understanding the ramifications of their actions.",
+          "They explain that the speaker is confident that nature will never be fully destroyed by people."
+        ],
+        "id": "snowy-mountains-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 21–22 from the poem.\n**Barrier broken down by those who do not need**\n**The joy of time-resisting storm-worn stone,**\nHow do the lines help convey the speaker’s point of view?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "gracious hosts who are untroubled by the actions of people.",
+          "unaware of their coming destruction.",
+          "lively entertainers who are amused by the everyday concerns of people.",
+          "too proud to reveal their pain."
+        ],
+        "id": "snowy-mountains-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 23–26 from the poem.\n\n**The mountains swing along\nThe south horizon of the sky;\nWelcoming with wide floors of blue-green ice\nThe mists that dance and drive before the sun.**\n\nThe personification in these concluding lines of the poem suggests that the mountains are",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "snowy-mountains-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which quotations from the poem support the theme that nature’s unspoiled beauty is splendid, and which quotations support the theme that human creations detract from natural wonder?",
+        "topic": "Central Idea & Theme",
+        "type": "category_sort"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“However, contrary to popular belief, not all Egyptian scribes understood hieroglyphs.” (paragraph 1)",
+          "“For everyday purposes, however, scribes used a shorthand version of the hieroglyphic script known as hieratic, which was quicker to write and more economical of space.” (paragraph 2)",
+          "“This limited the scope for employment but such ‘on the job’ training allowed apprentices to help out at home while learning.” (paragraph 4)",
+          "“For professions such as those of government official, priest or lawyer, a scribe would train for several more years, increasing his vocabulary to perhaps a thousand or more signs.” (paragraph 6)"
+        ],
+        "id": "passage-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt best supports the idea that there were different levels of education for a scribe?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "explain that hieroglyphs were reserved for royal and religious purposes.",
+          "demonstrate the methods experts use to interpret hieroglyphs.",
+          "clarify the significance of hieroglyphs in language and literature.",
+          "describe the basic features of hieroglyphs and how they were typically used."
+        ],
+        "id": "scribe-like-an-egyptian-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 2.\n\nIncluding both ideograms (which convey a whole word or idea, either concrete or abstract, in a single sign) and phonograms (representing either an alphabetic sound or a group of consonants), [the writing system] was used in formal inscriptions on tomb and temple walls as well as on elaborate funerary papyri.\n\nThe author’s purpose for including the sentence is to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Boys had to memorize around 450 hieratic signs. Once they had learned these, they were expected to copy literary texts that contained valuable lessons.",
+          "Boys spent at least five years learning hieratic signs, which they practiced by copying texts. During this period, they were also introduced to basic hieroglyphs.",
+          "Boys spent five or six years learning the basics of hieratic script. After this period, they could become apprentices and begin learning hieroglyphics.",
+          "Boys were taught two different scripts. They practiced both types by copying lists and eventually progressed to writing letters, reports, and contracts."
+        ],
+        "id": "scribe-like-an-egyptian-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement summarizes the process that schools used to train scribes?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Education was difficult for the common citizens of Egypt to obtain.",
+          "Once students began studying to become scribes, their future held more possibilities.",
+          "If someone wanted to become a scribe, support from outside sources such as the government or a temple was necessary.",
+          "Becoming a successful scribe required a student’s family to sacrifice time and money in order to ensure the best education."
+        ],
+        "id": "scribe-like-an-egyptian-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which claim is best supported by the information presented in paragraphs 3 and 4?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "using hieratic script was an efficient way for scribes to produce large amounts of documentation.",
+          "many members of the general public could comprehend information that was written in hieratic script.",
+          "knowledge of hieratic script prepared scribes to serve their society in increasingly challenging roles.",
+          "people from different professional backgrounds could easily communicate with one another in hieratic script."
+        ],
+        "id": "scribe-like-an-egyptian-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Hieratic script was particularly valuable in a bureaucratic government because",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "demonstrating the place of scribes in ancient Egyptian social structure.",
+          "depicting the types of tasks performed by each social class.",
+          "indicating that scribes were able to easily improve their social ranking.",
+          "comparing the social positions of each social class in ancient Egypt."
+        ],
+        "id": "scribe-like-an-egyptian-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The diagram after paragraph 6 best provides additional support for the topic of the excerpt by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Boys in Egypt were encouraged to enter the same profession as older male relatives.",
+          "Knowledge of hieroglyphs was helpful to Egyptians who were interested in becoming scribes.",
+          "Hieratic script was more practical to ancient Egyptians than hieroglyphs were.",
+          "Boys in Egypt who studied for only a few years were unlikely to find employment as scribes."
+        ],
+        "id": "scribe-like-an-egyptian-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Based on the excerpt, which statement would the author most strongly agree with?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "passage-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt supports the idea that Ellen understands what her father is really thinking, and which sentence supports the idea that Ellen and her father share similar interests?",
+        "topic": "Central Idea & Theme",
+        "type": "category_sort"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "suggesting that life presents people with many challenges.",
+          "implying that the stress of major life events can cause confusion.",
+          "demonstrating that moving on from the familiar is a common human experience.",
+          "emphasizing the idea that people can easily learn the routines of being part of a new culture."
+        ],
+        "id": "winter-wheat-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read these sentences from paragraph 2.\n\nDad always said Mom could make all the dishes he’d had back in Vermont as well as though she were a New Englander herself, instead of a Russian. All of a sudden, I realized that tomorrow when those beans would be ready to eat I’d be going away. It gave me a funny feeling.\n\nThe sentences help develop a theme of the excerpt by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "revealing Dad’s reasons for wanting to drive to the city.",
+          "causing tension between Mom and Dad.",
+          "leading Ellen to distance herself from both Mom and Dad.",
+          "showing Mom’s reluctance to plan that far in advance."
+        ],
+        "id": "winter-wheat-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 3.\n\n“I’ll be taking the train tomorrow night,” I said aloud, more to hear it myself.\n\nThis remark contributes to the conflict in the excerpt by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It shows that Ellen is willing to deal with a problem directly instead of ignoring it.",
+          "It suggests that Ellen studies all parts of an issue and not just its surface.",
+          "It illustrates that Ellen examines both sides of an argument.",
+          "It implies that Ellen is eager to seek wisdom from past experiences."
+        ],
+        "id": "winter-wheat-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 9.\n\nI tried to, and then I just sat still and looked straight at it.\n\nHow does the phrase “looked straight at it” contribute to the meaning of the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "highlighting the feeling of unpredictability among the family members.",
+          "showing the feelings of anger and resentment Ellen directs toward her parents.",
+          "exaggerating the feeling of regret Dad experiences when leaving his family.",
+          "emphasizing the feelings of separation and loss that Ellen feels."
+        ],
+        "id": "winter-wheat-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The words “cold” and “dark” affect the tone in paragraph 10 by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "suggesting that practical people focus on current needs rather than worrying about the future.",
+          "showing that parents tend to consider the needs of their children before thinking of themselves.",
+          "revealing that it is sometimes important to plan ahead.",
+          "illustrating that dreaming about the future is a waste of time."
+        ],
+        "id": "winter-wheat-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read these sentences from the excerpt.\n\nMom seems to think of nothing farther away than today or perhaps yesterday or tomorrow morning. (paragraph 1)\n\nMom was fixing oatmeal for tomorrow morning. (paragraph 19)\n\nThe sentences help develop a central idea of the excerpt by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "showing that the departure of one member of the family makes extra work for those left on the farm.",
+          "showing that the bond within the family persists even when its members are apart.",
+          "explaining why Ellen fears that leaving her parents will be too difficult.",
+          "illustrating the close connection Ellen has with both of her parents."
+        ],
+        "id": "winter-wheat-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The flashback in paragraphs 10–24 affects the plot by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“Mom folded the ironing board and put it inside their bedroom that was just off the kitchen.” (paragraph 2)",
+          "“ ‘There’s no need to go to town; she can catch the train at Gotham just as well.’ ” (paragraph 5)",
+          "“We’d go in right after dinner and go around to the stores, Dad going one way and Mom and I another.” (paragraph 7)",
+          "“ ‘Why, Yeléna, you know that; Anna Petrovna.’ ” (paragraph 22)"
+        ],
+        "id": "winter-wheat-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt provides evidence that Mom wants Ellen to understand the family’s heritage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "winter-wheat-9",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is Ellen’s primary mood at key points in the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "table_match"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "the story’s location is a plentiful place that allows The People to enjoy a comfortable gathering.",
+          "the events in the story occurred in the past and are being remembered by The People.",
+          "the camp in the story is changing and that the changes are causing problems for The People.",
+          "the story’s plot begins as The People are observing their land and what it offers them."
+        ],
+        "id": "passage-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Paragraph 1 contributes to the setting of the excerpt by establishing that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "causing them to collect their bounty and feel eager to celebrate before it becomes cold.",
+          "making them want to rest and relax before the challenging work of the harvest begins.",
+          "forcing them to give up leisure time to prepare their camp for the coming winter.",
+          "allowing them to trade the goods they have prepared during the warm months."
+        ],
+        "id": "dothemnoharm-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In paragraphs 4 and 6, the beginning of the change in seasons affects the characters mainly by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "by explaining that The People often explore different areas, which shows the value of trying new things",
+          "by revealing that The People must complete many tasks, which shows the necessity of being organized",
+          "by suggesting that The People are influenced by the weather, which shows their close relationship with nature",
+          "by demonstrating that The People work together, which shows the importance of contributing to the community"
+        ],
+        "id": "dothemnoharm-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How do paragraphs 7 and 9 convey a central idea of the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "emphasize how much the adults enjoy observing the children.",
+          "show how everyone finds a way to enjoy being at the gathering.",
+          "indicate the variety of activities available at the gathering.",
+          "characterize the manner in which the children master the work of adults."
+        ],
+        "id": "dothemnoharm-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In paragraph 8, the author repeats the word “played” most likely to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "They establish a feeling of mystery by presenting different points of view about the arriving people.",
+          "They contribute to the rising action by developing the idea that the arriving people could present a problem.",
+          "They lead to a turning point by describing the moment that the crowd realizes why the strangers have come.",
+          "They explain the cause of the main conflict by providing background information about the strangers."
+        ],
+        "id": "dothemnoharm-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How do paragraphs 11–13 affect the plot of the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "suggesting that the hunters are rewarded for their leadership.",
+          "emphasizing that The People are dependent on the hunters for food.",
+          "revealing that the hunters are pleased with their success.",
+          "indicating that The People have gathered specifically to welcome the hunters."
+        ],
+        "id": "dothemnoharm-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In paragraph 20, the phrases “trophies of their hunt” and “paraded around” affect the paragraph by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "“As was their custom since wahk-kee-ma, a time far back beyond the memory of man, they set up their camps in the same locations their parents and grandparents had occupied before them.” (paragraph 5)",
+          "“ ‘Would they have news of the families who had gone long ago to Buffalo Country and never returned?’ ” (paragraph 13)",
+          "“ ‘Looks like hunters,’ the older men agreed. ‘Looks like they had good hunting.’ ” (paragraph 15)",
+          "“But it was the sight of the frail figure of the woman that aroused their curiosity.” (paragraph 21)"
+        ],
+        "id": "dothemnoharm-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which quotation from the excerpt best supports the idea that The People feel a connection to members of their group in spite of distance?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It increases their concern about why the woman is in their camp.",
+          "It makes them hopeful that more lost members will return before the winter.",
+          "It causes shock, leading them to grieve for the loss of the woman and her family.",
+          "It inspires amazement, making them want to reconnect with their returned family member."
+        ],
+        "id": "dothemnoharm-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read these sentences from paragraph 22.\n\n“Belongs to Red Bear people. Gone then come back.”\n\nHow does this statement affect the villagers in the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "revealing the difficulties posed by moving often each year.",
+          "showing the connectedness among The People through the years.",
+          "indicating the value to The People of retelling stories about the past.",
+          "demonstrating the importance of choosing appropriate names."
+        ],
+        "id": "dothemnoharm-9",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The details in paragraph 5 about the locations of the camps and the details in paragraphs 23–24 about the reaction to the woman convey a theme of the excerpt by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“Are there not superior horses as well as superior men—a Peroxide Jim to complement a Wade?” (paragraph 1)",
+          "“Before him, behind him, beside him, pressing hard upon his horse, galloped the frenzied steers, and beyond them a multitude borne on, and bearing him on, by the heave of the galloping herd.” (paragraph 10)",
+          "“He knew that he was being borne toward the rim, how fast he could not tell, but he knew by the swish of the brush against his tapaderos and the plunging of the horse that the ground was growing stonier, that they were nearing the rocks.” (paragraph 11)",
+          "“From the flash of the lightning the horse had taken the bit, had covered an indescribably perilous path at top speed, had outrun the herd and turned it from the edge of the rim rock, without a false step or a tremor of fear.” (paragraph 16)"
+        ],
+        "id": "spirit-herd-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt best explains why Wade reserved Peroxide Jim for “emergency work” (paragraph 1)?",
+        "topic": "Supporting Evidence",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "revealing the respect Wade had for his horse.",
+          "emphasizing Wade’s high expectations of his horse and himself.",
+          "indicating that Wade and his horse understood the cattle business.",
+          "demonstrating Wade’s ability to gauge a horse’s competence."
+        ],
+        "id": "spirit-herd-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Paragraphs 1–2 contribute to the development of the central idea of the excerpt by",
+        "topic": "Inference",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It shows how the growing darkness created challenges for the riders in getting the herd to move.",
+          "It describes how the changing elevation contributed to the dangerousness of the environment.",
+          "It describes how the desert created an uncomfortable feeling of isolation for the riders and the cattle.",
+          "It shows how the steep terrain made it difficult for the cattle to keep moving forward."
+        ],
+        "id": "spirit-herd-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does paragraph 3 convey the effect of the setting on the cattle drive?",
+        "topic": "Vocabulary in Context",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It hints at the change in the setting that caused Wade to suddenly become alert.",
+          "It creates a false sense of calm that shows how unprepared the men were for what was about to happen.",
+          "It introduces the idea that Wade was a skillful leader in unpredictable circumstances.",
+          "It presents the incident that caused the main conflict Wade and Peroxide Jim addressed."
+        ],
+        "id": "spirit-herd-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does paragraph 9 fit into the overall structure of the excerpt?",
+        "topic": "Character & Relationships",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "struggled to see the front of the herd.",
+          "had to ride quickly to keep up with the herd.",
+          "was forced to ride between the edge of the cliff and the herd.",
+          "knew that the drop of the cliff would frighten the herd."
+        ],
+        "id": "spirit-of-the-herd-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 13.\n\nClose on their left bore down the flank of the herd, and on their right, under their very feet, was a precipice, so close that they felt its blackness—its three hundred feet of fall!\n\nThe phrase “bore down the flank of the herd” conveys that Wade",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "They suggest that Wade would have been unable to save the herd without Peroxide Jim.",
+          "They imply that Wade spent many hours training Peroxide Jim to herd cattle.",
+          "They show that Peroxide Jim was able to understand a situation and take action.",
+          "They indicate that Peroxide Jim was unafraid of the dangers presented by the stampede and the cliff."
+        ],
+        "id": "spirit-of-the-herd-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read these sentences from the excerpt.\n\nHe was riding to turn the herd, too, back from the rim, as the horse also knew. (paragraph 11)\n\nIt was Peroxide Jim’s, according to Wade, for not by word or by touch of hand or knee had the horse been directed in the run. (paragraph 16)\n\nHow do these sentences develop a central idea in the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "They highlight Peroxide Jim’s natural ability to control the herd.",
+          "They emphasize the danger of the situation from which Peroxide Jim rescued the herd.",
+          "They show that Peroxide Jim’s physical strength allowed him to force the herd to turn.",
+          "They indicate that Peroxide Jim anticipated the herd’s stampede before the men did."
+        ],
+        "id": "spirit-of-the-herd-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How do the details in paragraphs 14–16 help convey a central idea of the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "“The herd when overtaken by the dusk had been headed for a pass descending to the next lower bench, but was now halted within a mile of the rim rock on the east, where there was a perpendicular fall of about three hundred feet.” (paragraph 3)",
+          "“It was not to soothe their savage breasts that the riders sang to the cattle, but rather to preempt the dreaded silence, to relieve the tension, and so to prevent the shock of any sudden startling noise.” (paragraph 5)",
+          "“He checked his horse instantly, listening as the wind swept past him over the cattle.” (paragraph 7)",
+          "“Then the breeze caught the dust and carried it back from the gray-coated, ghostly shapes, and Wade saw that the animals were still moving in a circle.” (paragraph 9)"
+        ],
+        "id": "spirit-of-the-herd-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt best reveals the mood on the drive before the lightning struck?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "suggest that people around the world saw the direct contribution of nature and industry to the United States.",
+          "compare the natural and industrial attractions in the United States at that time.",
+          "convey the idea that the United States offered both natural and industrial attractions.",
+          "imply that the natural resources in the United States contributed to the development of industry."
+        ],
+        "id": "passage-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 1.\n\nAs one Scottish traveler observed during his visit to America, “Niagara and Lowell are the two objects I will longest remember in my American journey, the one the glory of American scenery, the other of American industry.”\n\nThe author most likely includes the quotation from the Scottish traveler in order to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "canals, mills, and boardinghouses that were built by immigrants.",
+          "mill girls and immigrants who comprised Lowell’s workforce.",
+          "development of the mills and the workforce established to support them.",
+          "cultural diversity of the people who lived in the area."
+        ],
+        "id": "massachusetts-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A central idea that Lowell was “one of America’s most significant industrial cities” (paragraph 1) is conveyed in the passage primarily through a description of the",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“The Boston merchants who founded Lowell in 1821 and named it after Francis Cabot Lowell chose to locate the town along Massachusetts’s Merrimack River to take advantage of the kinetic energy offered by the Pawtucket waterfalls.”",
+          "“Over six miles of canals powered the waterwheels of Lowell’s mills, whose massive five- and six-story brick buildings dominated the city’s landscape.”",
+          "“The most recognized of these buildings are the Lowell Manufacturing Company chartered in 1821, the Suffolk or Wannalancit Mill completed around the 1880s, the Boott Mill Company established in 1835, and the Boott Mill Boardinghouse that opened in 1838.”",
+          "“By the 1850s, 40 textile mills employing over 10,000 workers stretched for about a mile along the river.”"
+        ],
+        "id": "massachusetts-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from paragraph 2 best supports the idea that Lowell became “a bustling industrial city” (paragraph 1) in a short period of time?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It provides a transition from a description of the mills to a description of the workforce in those mills.",
+          "It indicates a shift in tone from positive and hopeful to negative and dissatisfied with working conditions at the mill.",
+          "It summarizes a challenge that led many women to leave their hometown and seek work in urban areas.",
+          "It begins a comparison of the mill workforce between the mid-1800s and the late 1800s."
+        ],
+        "id": "massachusetts-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 3.\n\nFrom the early to mid-1800s, women left the constricted lifestyle of small rural towns and rural areas for independent industrial city life.\n\nWhich statement best describes how the sentence fits into the overall structure of the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It implies that Lowell was founded by early Irish immigrants.",
+          "It emphasizes the important role Irish immigrants played in Lowell’s history.",
+          "It suggests that the new Irish immigrants were readily accepted into the community.",
+          "It highlights the working relationship between the mill girls and the new Irish immigrants."
+        ],
+        "id": "massachusetts-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 5.\n\nAlthough Lowell received an influx of Irish families during this time, the Irish were a part of the city’s history from its birth, and before the “mill girls” arrived, they built Lowell’s historic canals, mills, and boardinghouses.\n\nHow does this sentence contribute to the development of ideas in the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "The mill girls were eager to leave their domestic duties and small towns behind, so they went to work in the mills of Lowell.",
+          "Originally, the mill girls were satisfied to work in Lowell, but as they left their jobs at the Lowell mills, immigrants arrived to fill the empty positions.",
+          "Young women left home to work in the Lowell mills, but the mill girls soon became dissatisfied with the working conditions and rigid boardinghouse rules.",
+          "The mill girls embraced city life when they came to work in Lowell’s mills, but when their protests about unfavorable working conditions went unanswered, they left."
+        ],
+        "id": "massachusetts-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence best summarizes the mill girls’ experience as the dominant workforce in Lowell?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "description of poor living and working conditions.",
+          "explanation for why some immigrant groups struggled to live together.",
+          "comparison with other mills that used modern methods.",
+          "information about the mills opening temporarily during World War II."
+        ],
+        "id": "massachusetts-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The reason Lowell lost its status as an industrial leader is best illustrated through the",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Placing plants in homes and offices can provide a healthy bridge between nature and the indoors.",
+          "It is important for people to realize that they need to spend more time near plants, whether indoors or out in nature.",
+          "For their personal health and well-being, people need to spend more time outdoors or bring the outdoors in.",
+          "Individuals with little connection to nature can experience illness, depression, and higher levels of stress."
+        ],
+        "id": "indoor-plants-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence should follow sentence 3 to best introduce the topic of the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "As a result,",
+          "Primarily,",
+          "In contrast,",
+          "Unfortunately,"
+        ],
+        "id": "indoor-plants-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which transition word or phrase should be added to the beginning of sentence 5 to emphasize the relationship between sentences 4 and 5?",
+        "topic": "Transitions & Organization",
+        "type": "transition_drop"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "A global study of 7,600 workers from sixteen countries revealed that employees who worked in spaces with natural elements, such as indoor plants, were more creative and productive than employees who worked in spaces without natural elements.",
+          "Specifically, a study suggests that one well-known hotel is popular among guests because its owners have made a significant investment in landscaping and indoor plants known to have a relaxing effect.",
+          "In fact, one recent study suggested that people who are routinely exposed to natural elements seem to increase their compassion for others, perhaps because that exposure generates compassion for the environment in which they live.",
+          "According to a study that was conducted in 2003, plants can reduce the amount of noise that people perceive in indoor spaces with hard surfaces, just as adding carpet can make a room seem quieter."
+        ],
+        "id": "indoor-plants-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence could best follow sentence 13 to support the ideas in the third paragraph (sentences 11–14)?",
+        "topic": "Supporting Evidence",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "sentence 11",
+          "sentence 14",
+          "sentence 15",
+          "sentence 16"
+        ],
+        "id": "indoor-plants-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence presents ideas irrelevant to the topic of the passage and should be deleted?",
+        "topic": "Revising & Editing",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Because indoor plants absorb the carbon dioxide in our air and release the oxygen we need to breathe, they are vital to our wholeness and wellness.",
+          "Experts say that adding a Boston fern, a spider plant, or an aloe vera plant is a good place to start if you want to begin to incorporate nature into your home or office.",
+          "More people should consider bringing natural elements inside to improve general wellness and reverse some of the negative effects of an indoor-centered society.",
+          "As one study has confirmed, houseplants are a wise investment because they can remove almost 90 percent of the toxins in the air within the span of 24 hours."
+        ],
+        "id": "indoor-plants-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which concluding sentence should follow sentence 17 to best support the information presented in the passage?",
+        "topic": "Tone & Mood",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "sentence 1",
+          "sentence 2",
+          "sentence 3",
+          "sentence 4"
+        ],
+        "id": "standalone-vague-pronoun-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence of the paragraph should be revised to correct a vague pronoun?",
+        "topic": "Pronouns",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "continents. At",
+          "surface; additionally,",
+          "Panthalassa. Much",
+          "crust, in fact,"
+        ],
+        "id": "standalone-pangaea-sentence-structure-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision corrects the error in sentence structure in the paragraph?",
+        "topic": "Sentence Construction",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Sentence 1: Delete the comma after \nYalina\n, AND change \ntheir\n to \nher\n.",
+          "Sentence 2: Change \nis\n to \nare\n, AND delete the comma after \nbowl\n.",
+          "Sentence 3: Change \nit \nis\n to \nthey \nare\n, AND delete the comma after \nsmooth\n.",
+          "Sentence 4: Change \nthey \nstart\n to \nit \nstarts\n, AND insert a comma after \nsweet\n."
+        ],
+        "id": "standalone-pancakes-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which pair of revisions is needed to correct the errors in the paragraph?",
+        "topic": "Conventions & Grammar",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "standalone-blobfish-construction-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence in the paragraph contains an error in construction?",
+        "topic": "Sentence Construction",
+        "type": "category_sort"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "0.001",
+          "0.01",
+          "0.1",
+          "0.12"
+        ],
+        "id": "2025-2026-form-a-math-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
+        "topic": "Algebra",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "(55 times 5,280) divided by 1",
+          "(55 times 5,280) divided by 3,600",
+          "(55 times 3,600) divided by 5,280",
+          "(55 times 5,280) divided by 60"
+        ],
+        "id": "2025-2026-form-a-math-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A car is traveling 55 miles per hour, and 1 mile = 5,280 feet. Which of the following calculations would give the car's speed in feet per second?",
+        "topic": "Rates & Unit Conversion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "-4",
+        "choices": [],
+        "id": "2025-2026-form-a-math-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "For what value of \\(w\\) is \\(4w = 2w - 8\\)?",
+        "topic": "Algebra",
+        "type": "numeric_entry"
+      },
+      {
+        "answer": "45",
+        "choices": [],
+        "id": "2025-2026-form-a-math-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true:\n\n• 20 students have cats.\n• 23 students have dogs.\n• 3 students have both dogs and cats.\n• 5 students have no dogs or cats.\n\nHow many students were surveyed?",
+        "topic": "Probability & Statistics",
+        "type": "numeric_entry"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "4",
+          "8",
+          "10",
+          "20"
+        ],
+        "id": "2025-2026-form-a-math-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The sum of the numbers \\(x\\), \\(y\\), and \\(z\\) is 50. The ratio of \\(x\\) to \\(y\\) is 1:4, and the ratio of \\(y\\) to \\(z\\) is 4:5. What is the value of \\(y\\)?",
+        "topic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "{3, 4, 5}",
+          "{4, 5, 6}",
+          "{8, 10, 12}",
+          "{10, 14, 18}"
+        ],
+        "id": "2025-2026-form-a-math-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The set of possible values of \\(m\\) is \\(\\{5, 7, 9\\}\\). What is the set of possible values of \\(k\\) if \\(2k = m + 3\\)?",
+        "topic": "Algebra",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "5 - n",
+          "5 + n",
+          "21 - n",
+          "21 + n"
+        ],
+        "id": "2025-2026-form-a-math-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(7 + (3n + 6) - (4n + 8) =\\)",
+        "topic": "Algebra",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A,E",
+        "choices": [
+          "5 - n + 6n + 21 - 5n - 8",
+          "5 - n + 6n + 21 - 5n + 8",
+          "5 - n + 5n + 21 - 5n - 8",
+          "18 - n",
+          "18",
+          "34"
+        ],
+        "id": "2025-2026-form-a-math-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Three expressions are given:\n\n\\[-2(2.5n + 4)\\]\n\\[5 - n\\]\n\\[3(2n + 7)\\]\n\nWhich of these are equivalent to the sum of these three expressions?\n\nSelect the **two** correct answers.",
+        "topic": "Algebra",
+        "type": "multi_select"
+      }
+    ],
+    "status": "open",
+    "title": "2025-2026 Form A",
+    "updatedAt": "2026-07-23T12:31:15.841Z",
+    "split": false,
+    "formAssignments": {},
+    "forms": []
+  },
+  {
+    "classId": "shsat",
     "createdAt": "2026-06-16T00:00:00.000Z",
     "description": "A full-length baseline checkpoint that stays locked until assigned.",
     "durationMinutes": 180,
     "id": "shsat-diagnostic-1",
     "passages": [
       {
-        "id": "passage-1",
+        "id": "snowy-mountains",
         "imageUrl": "",
-        "text": "Filler passage text for the first diagnostic exam.",
-        "title": "Diagnostic Passage"
+        "text": "The complete passage is provided by the registered diagnostic exam content.",
+        "title": "Snowy Mountains"
+      },
+      {
+        "id": "raven-plans",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered diagnostic exam content.",
+        "title": "The Best Laid Plans of Ravens"
+      },
+      {
+        "id": "spirit-of-the-herd",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered diagnostic exam content.",
+        "title": "The Spirit of the Herd"
+      },
+      {
+        "id": "indoor-plants",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered diagnostic exam content.",
+        "title": "Bringing Nature Indoors"
       }
     ],
     "questions": [
@@ -30,64 +1049,11 @@
         "type": "multiple_choice"
       }
     ],
-    "status": "open",
+    "status": "locked",
     "title": "SHSAT Diagnostic 1",
-    "updatedAt": "2026-07-07T09:25:07.860Z",
-    "split": true
-  },
-  {
-    "classId": "shsat",
-    "createdAt": "2026-06-16T00:00:00.000Z",
-    "description": "Reading comprehension passages with mixed main idea and inference questions.",
-    "durationMinutes": 45,
-    "id": "reading-checkpoint-a",
-    "passages": [
-      {
-        "id": "passage-1",
-        "imageUrl": "",
-        "text": "Filler passage text for the reading checkpoint.",
-        "title": "Reading Checkpoint Passage"
-      }
-    ],
-    "questions": [
-      {
-        "answer": "Student response",
-        "choices": [],
-        "id": "question-1",
-        "imageUrl": "",
-        "points": 2,
-        "prompt": "Explain the central idea of the passage.",
-        "topic": "Central Idea & Theme",
-        "type": "short_response"
-      }
-    ],
-    "status": "locked",
-    "title": "Reading Checkpoint A",
-    "updatedAt": "2026-06-16T00:00:00.000Z",
-    "split": false
-  },
-  {
-    "classId": "shsat",
-    "createdAt": "2026-06-16T00:00:00.000Z",
-    "description": "A short math section with arithmetic, algebra, and word-problem practice.",
-    "durationMinutes": 60,
-    "id": "math-foundations-checkpoint",
-    "passages": [],
-    "questions": [
-      {
-        "answer": "42",
-        "choices": [],
-        "id": "question-1",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Filler grid-in question for math foundations.",
-        "topic": "Arithmetic",
-        "type": "grid_in"
-      }
-    ],
-    "status": "locked",
-    "title": "Math Foundations Checkpoint",
-    "updatedAt": "2026-06-16T00:00:00.000Z",
-    "split": false
+    "updatedAt": "2026-07-23T09:17:04.723Z",
+    "split": true,
+    "formAssignments": {},
+    "forms": []
   }
 ]

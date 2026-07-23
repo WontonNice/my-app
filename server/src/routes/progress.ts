@@ -11,9 +11,12 @@ type LearningProgress = {
 type ExamSessionProgress = {
     answers: JsonRecord;
     completedSections: ("english" | "math")[];
+    status: "in_progress" | "submitted";
+    submittedAt?: string;
     updatedAt: string;
 };
 type VanRide = "none" | "5pm";
+const examSessionResultPrefix = "__exam_session__:";
 
 function isDate(value: unknown): value is string {
     return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
@@ -38,10 +41,74 @@ function getDismissal(user: User) {
     return { earlyPickupDates: [...new Set(earlyPickupDates)].sort(), earlyPickupTimes, vanRide };
 }
 
-function getExamSessions(user: User) {
+function getMetadataExamSessions(user: User) {
     const stored = user.user_metadata.exam_sessions;
     if (!stored || typeof stored !== "object" || Array.isArray(stored)) return {};
     return stored as Record<string, ExamSessionProgress>;
+}
+
+function normalizeExamSession(value: unknown): ExamSessionProgress | null {
+    if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+    const candidate = value as Record<string, unknown>;
+    const answers =
+        candidate.answers && typeof candidate.answers === "object" && !Array.isArray(candidate.answers)
+            ? candidate.answers as JsonRecord
+            : {};
+    const completedSections = Array.isArray(candidate.completedSections)
+        ? candidate.completedSections.filter(
+            (section): section is "english" | "math" => section === "english" || section === "math",
+        )
+        : [];
+    return {
+        answers,
+        completedSections,
+        status: candidate.status === "submitted" ? "submitted" : "in_progress",
+        ...(typeof candidate.submittedAt === "string" ? { submittedAt: candidate.submittedAt } : {}),
+        updatedAt: typeof candidate.updatedAt === "string" ? candidate.updatedAt : new Date().toISOString(),
+    };
+}
+
+async function getExamSessions(user: User): Promise<Record<string, ExamSessionProgress>> {
+    const [query, resultFallback] = await Promise.all([
+        supabase
+            .from("student_exam_sessions")
+            .select("assessment_id,answers,completed_sections,status,updated_at,submitted_at")
+            .eq("user_id", user.id),
+        supabase
+            .from("student_exam_results")
+            .select("assessment_id,result")
+            .eq("user_id", user.id)
+            .like("assessment_id", `${examSessionResultPrefix}%`),
+    ]);
+    if (query.error && resultFallback.error) return getMetadataExamSessions(user);
+
+    const fallbackSessions = resultFallback.error
+        ? {}
+        : Object.fromEntries((resultFallback.data ?? []).flatMap((row) => {
+            const session = normalizeExamSession(row.result);
+            return session
+                ? [[String(row.assessment_id).slice(examSessionResultPrefix.length), session]]
+                : [];
+        }));
+
+    const dedicatedSessions = query.error ? {} : Object.fromEntries((query.data ?? []).map((row) => [
+        row.assessment_id,
+        {
+            answers:
+                row.answers && typeof row.answers === "object" && !Array.isArray(row.answers)
+                    ? row.answers as JsonRecord
+                    : {},
+            completedSections: Array.isArray(row.completed_sections)
+                ? row.completed_sections.filter(
+                    (section): section is "english" | "math" => section === "english" || section === "math",
+                )
+                : [],
+            status: row.status === "submitted" ? "submitted" : "in_progress",
+            ...(typeof row.submitted_at === "string" ? { submittedAt: row.submitted_at } : {}),
+            updatedAt: typeof row.updated_at === "string" ? row.updated_at : new Date().toISOString(),
+        },
+    ]));
+    return { ...fallbackSessions, ...dedicatedSessions };
 }
 
 function getMetadataProgress(user: User): LearningProgress {
@@ -64,7 +131,9 @@ async function getDatabaseProgress(user: User): Promise<LearningProgress> {
 
     if (examQuery.error || practiceQuery.error) return getMetadataProgress(user);
 
-    const examResults = (examQuery.data ?? []).map((row) => {
+    const examResults = (examQuery.data ?? []).filter(
+        (row) => !String(row.assessment_id).startsWith(examSessionResultPrefix),
+    ).map((row) => {
         const result = row.result && typeof row.result === "object" && !Array.isArray(row.result) ? row.result as JsonRecord : {};
         return { ...result, assessmentId: result.assessmentId ?? row.assessment_id };
     });
@@ -138,7 +207,10 @@ progressRouter.get("/students", async (request, response) => {
     }
     const students = listed.data.users.filter((candidate) => getUserRole(candidate) === "student");
     const snapshots = await Promise.all(students.map(async (student) => {
-        const progress = await getDatabaseProgress(student);
+        const [progress, examSessions] = await Promise.all([
+            getDatabaseProgress(student),
+            getExamSessions(student),
+        ]);
         return {
             classes: getEnrolledClassIds(student.app_metadata),
             dismissal: getDismissal(student),
@@ -147,6 +219,7 @@ progressRouter.get("/students", async (request, response) => {
             id: student.id,
             insights: createInsights(progress),
             lastLoginAt: student.last_sign_in_at ?? null,
+            examSessions,
             progress,
             username: typeof student.user_metadata.username === "string" ? student.user_metadata.username : student.email?.split("@")[0] ?? "student",
         };
@@ -161,7 +234,7 @@ progressRouter.get("/exam-sessions", async (request, response) => {
         response.status(401).json({ message: error });
         return;
     }
-    response.json({ sessions: getExamSessions(user) });
+    response.json({ sessions: await getExamSessions(user) });
 });
 
 progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => {
@@ -179,23 +252,57 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
     const normalizedSections = completedSections.filter(
         (section: unknown): section is "english" | "math" => section === "english" || section === "math",
     );
-    const sessions = getExamSessions(user);
-    const session: ExamSessionProgress = {
-        answers: answers as JsonRecord,
-        completedSections: [...new Set(normalizedSections)],
-        updatedAt: new Date().toISOString(),
+    const status: "in_progress" | "submitted" =
+        request.body?.status === "submitted" ? "submitted" : "in_progress";
+    const existingSession = (await getExamSessions(user))[request.params.assessmentId];
+    const mergedAnswers = {
+        ...(existingSession?.answers ?? {}),
+        ...(answers as JsonRecord),
     };
-    const nextSessions = normalizedSections.length
-        ? { ...sessions, [request.params.assessmentId]: session }
-        : Object.fromEntries(Object.entries(sessions).filter(([id]) => id !== request.params.assessmentId));
-    const updated = await supabase.auth.admin.updateUserById(user.id, {
-        user_metadata: { ...user.user_metadata, exam_sessions: nextSessions },
-    });
-    if (updated.error) {
-        response.status(400).json({ message: updated.error.message });
+    const updatedAt = new Date().toISOString();
+    const session: ExamSessionProgress = {
+        answers: mergedAnswers,
+        completedSections: [...new Set(normalizedSections)],
+        status,
+        ...(status === "submitted" ? { submittedAt: updatedAt } : {}),
+        updatedAt,
+    };
+    const saved = await supabase.from("student_exam_sessions").upsert({
+        answers: mergedAnswers,
+        assessment_id: request.params.assessmentId,
+        completed_sections: session.completedSections,
+        status,
+        submitted_at: status === "submitted" ? updatedAt : null,
+        updated_at: updatedAt,
+        user_id: user.id,
+    }, { onConflict: "user_id,assessment_id" });
+    if (saved.error) {
+        const resultFallback = await supabase.from("student_exam_results").upsert({
+            assessment_id: `${examSessionResultPrefix}${request.params.assessmentId}`,
+            completed_at: session.submittedAt ?? updatedAt,
+            result: session,
+            updated_at: updatedAt,
+            user_id: user.id,
+        }, { onConflict: "user_id,assessment_id" });
+        if (!resultFallback.error) {
+            response.json({ session, storage: "results-database-fallback" });
+            return;
+        }
+        const sessions = getMetadataExamSessions(user);
+        const updated = await supabase.auth.admin.updateUserById(user.id, {
+            user_metadata: {
+                ...user.user_metadata,
+                exam_sessions: { ...sessions, [request.params.assessmentId]: session },
+            },
+        });
+        if (updated.error) {
+            response.status(400).json({ message: resultFallback.error.message });
+            return;
+        }
+        response.json({ session, storage: "metadata-fallback" });
         return;
     }
-    response.json({ session: normalizedSections.length ? session : null });
+    response.json({ session, storage: "database" });
 });
 
 progressRouter.patch("/students/:studentId/dismissal", async (request, response) => {

@@ -1,10 +1,10 @@
-import { SnowyMountainsPassageSet } from "./passageSets/Snowy Mountains";
-import { indoorPlantsPassageSet } from "./passageSets/indoorPlants";
-import { shsatDiagnostic1MathSection } from "./mathSets/shsatDiagnostic1Math";
-import { ravenPlansPassageSet } from "./passageSets/ravenPlans";
-import { spiritOfTheHerdPassageSet } from "./passageSets/spiritOfTheHerd";
-import { getStandaloneItemsById } from "./standaloneItems";
-import type { ExamContent } from "./types";
+import { shsatDiagnostic1MathSection } from "../mathSets/shsatDiagnostic1Math";
+import { SnowyMountainsPassageSet } from "../passageSets/Snowy Mountains";
+import { indoorPlantsPassageSet } from "../passageSets/indoorPlants";
+import { ravenPlansPassageSet } from "../passageSets/ravenPlans";
+import { spiritOfTheHerdPassageSet } from "../passageSets/spiritOfTheHerd";
+import { getStandaloneItemsById } from "../standaloneItems";
+import type { ExamContent } from "../types";
 
 const selectedStandaloneItems = getStandaloneItemsById([
   "standalone-vague-pronoun-1",
@@ -23,8 +23,8 @@ export const shsatDiagnostic1Content: ExamContent = {
     indoorPlantsPassageSet,
   ],
   standaloneSection: {
-    id: "ela-standalone-items",
-    label: "ELA - Stand alone items",
+    id: "ela-revising-editing-part-b",
+    label: "ELA - Revising/Editing Part B",
     questionCount: selectedStandaloneItems.length,
     directions: {
       subject: "English Language Arts",

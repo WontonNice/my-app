@@ -400,7 +400,7 @@ export function AdvancedPassagePage() {
       <section className="exam-question-document" aria-labelledby={`advanced-question-${currentQuestionId}`}>
         <div className="exam-question-passage">
           <div className="exam-question-passage-scroll is-prose" aria-label={passageSet.passage.title}>
-            {passageSet.passage.lines.map((line, index) => {
+            {passageSet.passage.lines.filter((line) => line.kind !== "image").map((line, index) => {
               if (!line.text) {
                 return <p aria-hidden="true" className="exam-prose-line is-spacer" key={`spacer-${index}`} />;
               }
@@ -419,6 +419,16 @@ export function AdvancedPassagePage() {
               );
             })}
             {passageSet.passage.sourceNote ? <p className="exam-passage-source-note">{passageSet.passage.sourceNote}</p> : null}
+            {passageSet.passage.lines
+              .filter((line) => line.kind === "image" && line.image)
+              .map((line, index) =>
+                line.image ? (
+                  <figure className="exam-passage-image" key={`${line.image.src}-footer-${index}`}>
+                    <img alt={line.image.alt} src={line.image.src} />
+                    {line.image.caption ? <figcaption>{line.image.caption}</figcaption> : null}
+                  </figure>
+                ) : null,
+              )}
           </div>
         </div>
 

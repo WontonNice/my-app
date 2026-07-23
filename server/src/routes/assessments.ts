@@ -3,7 +3,9 @@ import {
     findAssessmentForStudent,
     listStudentAssessments,
     listTeacherAssessments,
+    toStudentAssessmentDetail,
     type AssessmentStatus,
+    updateAssessmentForms,
     updateAssessmentSplit,
     updateAssessmentStatus,
 } from "../config/assessments";
@@ -14,6 +16,7 @@ type UpdateStatusBody = {
 };
 
 type UpdateSplitBody = { split?: unknown };
+type UpdateFormsBody = { assignments?: unknown; forms?: unknown };
 
 function parseStatus(value: unknown): AssessmentStatus | null {
     return value === "locked" || value === "open" ? value : null;
@@ -56,7 +59,7 @@ assessmentsRouter.get("/student/:assessmentId", async (request, response) => {
         return;
     }
 
-    response.json({ assessment });
+    response.json({ assessment: toStudentAssessmentDetail(assessment, user.id) });
 });
 
 assessmentsRouter.get("/teacher", async (request, response) => {
@@ -125,6 +128,28 @@ assessmentsRouter.patch("/teacher/:assessmentId/split", async (request, response
     const assessment = updateAssessmentSplit(request.params.assessmentId, split);
     if (!assessment) {
         response.status(404).json({ message: "Assessment was not found." });
+        return;
+    }
+    response.json({ assessment });
+});
+
+assessmentsRouter.put("/teacher/:assessmentId/forms", async (request, response) => {
+    const { error, user } = await getAuthenticatedUser(request.headers.authorization);
+    if (error || !user) {
+        response.status(401).json({ message: error });
+        return;
+    }
+    if (getUserRole(user) !== "teacher") {
+        response.status(403).json({ message: "Teacher access is required." });
+        return;
+    }
+
+    const { assignments, forms } = request.body as UpdateFormsBody;
+    const assessment = updateAssessmentForms(request.params.assessmentId, forms, assignments);
+    if (!assessment) {
+        response.status(400).json({
+            message: "Forms must contain each Reading Comprehension passage exactly once, and every assignment must use a saved form.",
+        });
         return;
     }
     response.json({ assessment });

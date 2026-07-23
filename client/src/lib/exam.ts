@@ -15,7 +15,7 @@ export const shsatSectionTemplate: ExamSectionLine[] = [
   { label: "ELA - Passage Set 5 of 7", questionCount: 7 },
   { label: "ELA - Passage Set 6 of 7", questionCount: 7 },
   { label: "ELA - Passage Set 7 of 7", questionCount: 5 },
-  { label: "ELA - Stand alone items", questionCount: 3 },
+  { label: "ELA - Revising/Editing Part B", questionCount: 3 },
   { label: "Math", questionCount: 50 },
 ];
 
