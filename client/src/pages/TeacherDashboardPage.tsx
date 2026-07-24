@@ -16,7 +16,13 @@ import {
   type TeacherAssessment,
 } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
-import { getAllExamQuestions } from "../lib/examResults";
+import {
+  createExamResult,
+  getAllExamQuestions,
+  type ExamPassageResult,
+  type ExamSubjectResult,
+  type SelectedAnswers,
+} from "../lib/examResults";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 function formatDate(value: string | null) {
@@ -54,6 +60,345 @@ function questionTypeSummary(result: Record<string, unknown>) {
       total: value.total,
     }];
   });
+}
+
+function scorePercentage(correct: number, total: number) {
+  return total > 0 ? Math.max(0, Math.min(100, Math.round((correct / total) * 100))) : 0;
+}
+
+function selectedAnswersFromResult(result: Record<string, unknown>): SelectedAnswers | null {
+  if (!result.answers || typeof result.answers !== "object" || Array.isArray(result.answers)) return null;
+
+  const answers: SelectedAnswers = {};
+  Object.entries(result.answers as Record<string, unknown>).forEach(([questionId, answer]) => {
+    if (typeof answer === "string") {
+      answers[questionId] = answer;
+      return;
+    }
+    if (Array.isArray(answer) && answer.every((value) => typeof value === "string")) {
+      answers[questionId] = answer;
+      return;
+    }
+    if (answer && typeof answer === "object" && !Array.isArray(answer)) {
+      const placements = answer as Record<string, unknown>;
+      if (Object.values(placements).every((value) => typeof value === "string")) {
+        answers[questionId] = placements as Record<string, string>;
+      }
+    }
+  });
+
+  return Object.keys(answers).length ? answers : null;
+}
+
+function subjectResultsFromRecord(result: Record<string, unknown>) {
+  if (!Array.isArray(result.subjects)) return [];
+  return result.subjects.flatMap((item): ExamSubjectResult[] => {
+    if (!item || typeof item !== "object" || Array.isArray(item)) return [];
+    const value = item as Record<string, unknown>;
+    if (
+      (value.subject !== "English Language Arts" && value.subject !== "Mathematics") ||
+      typeof value.correct !== "number" ||
+      typeof value.total !== "number"
+    ) return [];
+    return [{
+      correct: value.correct,
+      subject: value.subject,
+      topics: Array.isArray(value.topics) ? value.topics as ExamSubjectResult["topics"] : [],
+      total: value.total,
+    }];
+  });
+}
+
+function passageResultsFromRecord(result: Record<string, unknown>) {
+  if (!Array.isArray(result.passages)) return [];
+  return result.passages.flatMap((item): ExamPassageResult[] => {
+    if (!item || typeof item !== "object" || Array.isArray(item)) return [];
+    const value = item as Record<string, unknown>;
+    if (
+      typeof value.correct !== "number" ||
+      typeof value.total !== "number" ||
+      typeof value.id !== "string"
+    ) return [];
+    return [{
+      correct: value.correct,
+      id: value.id,
+      label: typeof value.label === "string" ? value.label : "Passage",
+      title: typeof value.title === "string" ? value.title : labelFromSlug(value.id),
+      total: value.total,
+    }];
+  });
+}
+
+function scoreBreakdownForResult(
+  result: Record<string, unknown>,
+  assessment: TeacherAssessment | undefined,
+) {
+  const storedSubjects = subjectResultsFromRecord(result);
+  const storedPassages = passageResultsFromRecord(result);
+  const answers = selectedAnswersFromResult(result);
+  if ((!storedSubjects.length || !storedPassages.length) && assessment && answers) {
+    const completedSections = Array.isArray(result.completedSections)
+      ? result.completedSections.filter(
+        (section): section is "english" | "math" => section === "english" || section === "math",
+      )
+      : result.completionStatus === "english_complete"
+        ? ["english" as const]
+        : ["english" as const, "math" as const];
+    const recalculated = createExamResult(resolveExamContent(assessment), answers, completedSections);
+    return {
+      passages: storedPassages.length ? storedPassages : recalculated.passages,
+      subjects: storedSubjects.length ? storedSubjects : recalculated.subjects,
+    };
+  }
+  return { passages: storedPassages, subjects: storedSubjects };
+}
+
+function SectionScoreBreakdown({
+  assessment,
+  result,
+}: {
+  assessment: TeacherAssessment | undefined;
+  result: Record<string, unknown>;
+}) {
+  const { passages, subjects } = scoreBreakdownForResult(result, assessment);
+  const english = subjects.find((subject) => subject.subject === "English Language Arts");
+  const math = subjects.find((subject) => subject.subject === "Mathematics");
+  const passageCorrect = passages.reduce((sum, passage) => sum + passage.correct, 0);
+  const passageTotal = passages.reduce((sum, passage) => sum + passage.total, 0);
+  const standalone = english && english.total > passageTotal
+    ? {
+      correct: Math.max(0, Math.min(english.total - passageTotal, english.correct - passageCorrect)),
+      total: english.total - passageTotal,
+    }
+    : null;
+
+  if (!english && !math) {
+    return <p className="teacher-score-breakdown-empty">Section scoring is unavailable for this older result.</p>;
+  }
+
+  return (
+    <section className="teacher-score-breakdown" aria-label="Section score breakdown">
+      <div className="teacher-score-breakdown-heading">
+        <strong>Section score breakdown</strong>
+        <span>Correct answers and percent accuracy</span>
+      </div>
+      <div className="teacher-section-score-grid">
+        {english ? (
+          <article className="teacher-section-score">
+            <header>
+              <div><span>English total</span><strong>{english.correct} / {english.total}</strong></div>
+              <b>{scorePercentage(english.correct, english.total)}%</b>
+            </header>
+            <div
+              className="teacher-score-meter"
+              role="progressbar"
+              aria-label="English score"
+              aria-valuemin={0}
+              aria-valuemax={english.total}
+              aria-valuenow={english.correct}
+            >
+              <span style={{ width: `${scorePercentage(english.correct, english.total)}%` }} />
+            </div>
+            {passages.length ? (
+              <>
+                <h4>Score by passage</h4>
+                <div className="teacher-passage-score-grid">
+                  {passages.map((passage) => (
+                    <div key={passage.id}>
+                      <span>{passage.label}</span>
+                      <strong>{passage.title}</strong>
+                      <p><b>{passage.correct} / {passage.total}</b><small>{scorePercentage(passage.correct, passage.total)}%</small></p>
+                    </div>
+                  ))}
+                  {standalone ? (
+                    <div>
+                      <span>English section</span>
+                      <strong>Stand-alone questions</strong>
+                      <p><b>{standalone.correct} / {standalone.total}</b><small>{scorePercentage(standalone.correct, standalone.total)}%</small></p>
+                    </div>
+                  ) : null}
+                </div>
+              </>
+            ) : null}
+          </article>
+        ) : null}
+        {math ? (
+          <article className="teacher-section-score">
+            <header>
+              <div><span>Math total</span><strong>{math.correct} / {math.total}</strong></div>
+              <b>{scorePercentage(math.correct, math.total)}%</b>
+            </header>
+            <div
+              className="teacher-score-meter"
+              role="progressbar"
+              aria-label="Math score"
+              aria-valuemin={0}
+              aria-valuemax={math.total}
+              aria-valuenow={math.correct}
+            >
+              <span style={{ width: `${scorePercentage(math.correct, math.total)}%` }} />
+            </div>
+          </article>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
+type LeaderboardScore = {
+  correct: number;
+  total: number;
+};
+
+type LeaderboardEntry = {
+  fullName: string;
+  rank: number | null;
+  score: LeaderboardScore | null;
+  status: string;
+  studentId: string;
+  username: string;
+};
+
+type ClassLeaderboard = {
+  average: number | null;
+  entries: LeaderboardEntry[];
+  id: string;
+  scoredStudents: number;
+  title: string;
+};
+
+type ClassAssessmentInsight = {
+  assessmentId: string;
+  english: ClassLeaderboard;
+  math: ClassLeaderboard;
+  overallAverage: number | null;
+  passages: ClassLeaderboard[];
+  submissions: number;
+  title: string;
+};
+
+function validLeaderboardScore(score: LeaderboardScore | null | undefined) {
+  return score &&
+    Number.isFinite(score.correct) &&
+    Number.isFinite(score.total) &&
+    score.total > 0 &&
+    score.correct >= 0 &&
+    score.correct <= score.total
+    ? score
+    : null;
+}
+
+function buildLeaderboard(
+  id: string,
+  title: string,
+  students: StudentProgressSnapshot[],
+  getScore: (student: StudentProgressSnapshot) => LeaderboardScore | null | undefined,
+  getStatus: (student: StudentProgressSnapshot) => string,
+): ClassLeaderboard {
+  const entries = students.map((student): LeaderboardEntry => ({
+    fullName: student.fullName,
+    rank: null,
+    score: validLeaderboardScore(getScore(student)),
+    status: getStatus(student),
+    studentId: student.id,
+    username: student.username,
+  })).sort((left, right) => {
+    if (left.score && right.score) {
+      const ratioComparison =
+        right.score.correct * left.score.total - left.score.correct * right.score.total;
+      if (ratioComparison !== 0) return ratioComparison;
+      if (right.score.correct !== left.score.correct) return right.score.correct - left.score.correct;
+    } else if (left.score) return -1;
+    else if (right.score) return 1;
+    return left.fullName.localeCompare(right.fullName);
+  });
+
+  let previousScore: LeaderboardScore | null = null;
+  let previousRank = 0;
+  entries.forEach((entry, index) => {
+    if (!entry.score) return;
+    const isTie = previousScore !== null &&
+      entry.score.correct * previousScore.total === previousScore.correct * entry.score.total;
+    entry.rank = isTie ? previousRank : index + 1;
+    previousScore = entry.score;
+    previousRank = entry.rank;
+  });
+
+  const scoredEntries = entries.filter(
+    (entry): entry is LeaderboardEntry & { score: LeaderboardScore } => entry.score !== null,
+  );
+  return {
+    average: scoredEntries.length
+      ? Math.round(
+        scoredEntries.reduce((sum, entry) => sum + (entry.score.correct / entry.score.total) * 100, 0) /
+        scoredEntries.length,
+      )
+      : null,
+    entries,
+    id,
+    scoredStudents: scoredEntries.length,
+    title,
+  };
+}
+
+function leaderboardStatus(
+  result: Record<string, unknown> | undefined,
+  kind: "english" | "math" | "passage",
+) {
+  if (!result) return "Not submitted";
+  if (kind === "math" && result.completionStatus === "english_complete") return "Math pending";
+  return kind === "passage" ? "Passage data unavailable" : "Section data unavailable";
+}
+
+function initials(fullName: string) {
+  return fullName.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase();
+}
+
+function ClassScoreLeaderboardCard({
+  leaderboard,
+  subtitle,
+}: {
+  leaderboard: ClassLeaderboard;
+  subtitle: string;
+}) {
+  return (
+    <article className="teacher-leaderboard-card">
+      <header>
+        <div><span>{subtitle}</span><h3>{leaderboard.title}</h3></div>
+        <div><strong>{leaderboard.average === null ? "—" : `${leaderboard.average}%`}</strong><small>class avg.</small></div>
+      </header>
+      <div className="teacher-leaderboard-meta">
+        <span>{leaderboard.scoredStudents} scored</span>
+        <span>{leaderboard.entries.length} students shown</span>
+      </div>
+      <div className="teacher-leaderboard-list" role="list" aria-label={`${leaderboard.title} rankings`}>
+        {leaderboard.entries.map((entry) => {
+          const percentage = entry.score ? scorePercentage(entry.score.correct, entry.score.total) : null;
+          return (
+            <div className={`teacher-leaderboard-row${entry.score ? "" : " is-unscored"}`} key={entry.studentId} role="listitem">
+              <span className={`teacher-leaderboard-rank${entry.rank && entry.rank <= 3 ? ` is-top-${entry.rank}` : ""}`}>
+                {entry.rank === null ? "—" : entry.rank}
+              </span>
+              <span className="teacher-leaderboard-avatar">{initials(entry.fullName)}</span>
+              <span className="teacher-leaderboard-student">
+                <strong>{entry.fullName}</strong>
+                <small>{entry.username}</small>
+              </span>
+              {entry.score ? (
+                <>
+                  <span className="teacher-leaderboard-meter" aria-hidden="true"><i style={{ width: `${percentage}%` }} /></span>
+                  <span className="teacher-leaderboard-score"><strong>{percentage}%</strong><small>{entry.score.correct} / {entry.score.total}</small></span>
+                </>
+              ) : (
+                <span className="teacher-leaderboard-status">{entry.status}</span>
+              )}
+            </div>
+          );
+        })}
+        {!leaderboard.entries.length ? <p className="teacher-empty-state">No SHSAT students are enrolled.</p> : null}
+      </div>
+    </article>
+  );
 }
 
 function choiceLabel(question: ExamQuestion, choiceId: string) {
@@ -209,14 +554,21 @@ function StudentDetail({
       <h3 className="teacher-detail-heading">Test history</h3>
       <div className="teacher-results-table" role="table" aria-label={`${student.fullName} test history`}>
         <div className="teacher-results-row teacher-results-head" role="row"><span>Assessment</span><span>Date</span><span>Score</span><span>Correct</span></div>
-        {student.progress.examResults.map((result, index) => (
-          <div className="teacher-results-row" key={`${examValue(result, "assessmentId")}-${index}`} role="row">
-            <strong>{examValue(result, "title", examValue(result, "assessmentId", "Assessment"))}<small>{result.completionStatus === "english_complete" ? "English submitted · Math pending" : "Complete"}</small></strong>
-            <span>{typeof result.completedAt === "string" ? formatDate(result.completedAt) : "—"}</span>
-            <strong>{examValue(result, "percentage")}%</strong>
-            <span>{examValue(result, "correct")} / {examValue(result, "total")}{questionTypeSummary(result).map((item) => <small key={item.label}>{item.label}: {item.correct}/{item.total}</small>)}</span>
-          </div>
-        ))}
+        {student.progress.examResults.map((result, index) => {
+          const assessmentId = examValue(result, "assessmentId", "");
+          const assessment = assessments.find((candidate) => candidate.id === assessmentId);
+          return (
+            <article className="teacher-result-entry" key={`${assessmentId}-${index}`}>
+              <div className="teacher-results-row" role="row">
+                <strong>{examValue(result, "title", assessment?.title ?? (assessmentId || "Assessment"))}<small>{result.completionStatus === "english_complete" ? "English submitted · Math pending" : "Complete"}</small></strong>
+                <span>{typeof result.completedAt === "string" ? formatDate(result.completedAt) : "—"}</span>
+                <strong>{examValue(result, "percentage")}%</strong>
+                <span>{examValue(result, "correct")} / {examValue(result, "total")}{questionTypeSummary(result).map((item) => <small key={item.label}>{item.label}: {item.correct}/{item.total}</small>)}</span>
+              </div>
+              <SectionScoreBreakdown assessment={assessment} result={result} />
+            </article>
+          );
+        })}
         {!student.progress.examResults.length && <p className="teacher-empty-state">No test results recorded yet.</p>}
       </div>
       <h3 className="teacher-detail-heading">Saved student answers</h3>
@@ -327,6 +679,97 @@ export function TeacherDashboardPage() {
       title: value.title,
     }]));
   }, [shsatStudents]);
+  const classAssessmentInsights = useMemo<ClassAssessmentInsight[]>(() => {
+    const resultsByAssessment = new Map<string, Map<string, Record<string, unknown>>>();
+    shsatStudents.forEach((student) => {
+      student.progress.examResults.forEach((result) => {
+        if (typeof result.assessmentId !== "string" || !result.assessmentId) return;
+        const assessmentResults = resultsByAssessment.get(result.assessmentId) ?? new Map();
+        assessmentResults.set(student.id, result);
+        resultsByAssessment.set(result.assessmentId, assessmentResults);
+      });
+    });
+
+    const assessmentById = new Map(assessments.map((assessment) => [assessment.id, assessment]));
+    const currentAssessmentIds = assessments
+      .map((assessment) => assessment.id)
+      .filter((assessmentId) => resultsByAssessment.has(assessmentId));
+    const historicalAssessmentIds = Array.from(resultsByAssessment.keys())
+      .filter((assessmentId) => !assessmentById.has(assessmentId));
+
+    return [...currentAssessmentIds, ...historicalAssessmentIds].map((assessmentId) => {
+      const assessment = assessmentById.get(assessmentId);
+      const resultByStudent = resultsByAssessment.get(assessmentId) ?? new Map();
+      const breakdownByStudent = new Map<string, ReturnType<typeof scoreBreakdownForResult>>();
+      resultByStudent.forEach((result, studentId) => {
+        breakdownByStudent.set(studentId, scoreBreakdownForResult(result, assessment));
+      });
+
+      const english = buildLeaderboard(
+        "english",
+        "English",
+        shsatStudents,
+        (student) => {
+          const subject = breakdownByStudent.get(student.id)?.subjects.find(
+            (item) => item.subject === "English Language Arts",
+          );
+          return subject ? { correct: subject.correct, total: subject.total } : null;
+        },
+        (student) => leaderboardStatus(resultByStudent.get(student.id), "english"),
+      );
+      const math = buildLeaderboard(
+        "math",
+        "Math",
+        shsatStudents,
+        (student) => {
+          const subject = breakdownByStudent.get(student.id)?.subjects.find(
+            (item) => item.subject === "Mathematics",
+          );
+          return subject ? { correct: subject.correct, total: subject.total } : null;
+        },
+        (student) => leaderboardStatus(resultByStudent.get(student.id), "math"),
+      );
+
+      const passageDetails = new Map<string, { label: string; title: string }>();
+      if (assessment) {
+        resolveExamContent(assessment).passageSets.forEach((passageSet, index) => {
+          passageDetails.set(passageSet.id, {
+            label: passageSet.label || `Passage ${index + 1}`,
+            title: passageSet.passage.title,
+          });
+        });
+      }
+      breakdownByStudent.forEach((breakdown) => {
+        breakdown.passages.forEach((passage) => {
+          if (!passageDetails.has(passage.id)) {
+            passageDetails.set(passage.id, { label: passage.label, title: passage.title });
+          }
+        });
+      });
+      const passages = Array.from(passageDetails, ([passageId, passage]) => buildLeaderboard(
+        passageId,
+        passage.title,
+        shsatStudents,
+        (student) => {
+          const score = breakdownByStudent.get(student.id)?.passages.find((item) => item.id === passageId);
+          return score ? { correct: score.correct, total: score.total } : null;
+        },
+        (student) => leaderboardStatus(resultByStudent.get(student.id), "passage"),
+      ));
+
+      const average = assessmentAverages.get(assessmentId);
+      const firstResult = resultByStudent.values().next().value as Record<string, unknown> | undefined;
+      return {
+        assessmentId,
+        english,
+        math,
+        overallAverage: average?.average ?? null,
+        passages,
+        submissions: resultByStudent.size,
+        title: assessment?.title ?? average?.title ?? (firstResult ? examValue(firstResult, "title", assessmentId) : assessmentId),
+      };
+    });
+  }, [assessmentAverages, assessments, shsatStudents]);
 
   async function handleToggleAssessment(assessment: TeacherAssessment) {
     if (!accessToken) return;
@@ -531,13 +974,43 @@ export function TeacherDashboardPage() {
       </section>
 
       <section className="teacher-panel teacher-class-averages" aria-labelledby="class-averages-title">
-        <div className="teacher-panel-header"><div><span>Class insights</span><h2 id="class-averages-title">Overall average by test</h2></div><p>Calculated from all SHSAT student submissions.</p></div>
-        <div className="teacher-results-table" role="table" aria-label="Overall class average by test">
-          <div className="teacher-results-row teacher-class-average-row teacher-results-head" role="row"><span>Assessment</span><span>Submissions</span><span>Class average</span></div>
-          {Array.from(assessmentAverages, ([assessmentId, result]) => (
-            <div className="teacher-results-row teacher-class-average-row" key={assessmentId} role="row"><strong>{result.title}</strong><span>{result.submissions}</span><strong>{result.average}%</strong></div>
+        <div className="teacher-panel-header"><div><span>Class insights</span><h2 id="class-averages-title">Section averages and leaderboards</h2></div><p>Every SHSAT student is shown. Rankings use percent accuracy, and tied scores share a rank.</p></div>
+        <div className="teacher-assessment-insights">
+          {classAssessmentInsights.map((insight, index) => (
+            <details className="teacher-assessment-insight" key={insight.assessmentId} open={index === 0}>
+              <summary>
+                <span><strong>{insight.title}</strong><small>{insight.submissions} submission{insight.submissions === 1 ? "" : "s"}</small></span>
+                <span className="teacher-assessment-average"><small>Overall</small><strong>{insight.overallAverage === null ? "—" : `${insight.overallAverage}%`}</strong></span>
+                <span className="teacher-assessment-average"><small>English</small><strong>{insight.english.average === null ? "—" : `${insight.english.average}%`}</strong></span>
+                <span className="teacher-assessment-average"><small>Math</small><strong>{insight.math.average === null ? "—" : `${insight.math.average}%`}</strong></span>
+                <ChevronDown className="teacher-assessment-insight-chevron" size={19} />
+              </summary>
+              <div className="teacher-assessment-insight-body">
+                <div className="teacher-leaderboard-grid teacher-section-leaderboards">
+                  <ClassScoreLeaderboardCard leaderboard={insight.english} subtitle="Section ranking" />
+                  <ClassScoreLeaderboardCard leaderboard={insight.math} subtitle="Section ranking" />
+                </div>
+                {insight.passages.length ? (
+                  <section className="teacher-passage-leaderboards" aria-label={`${insight.title} passage rankings`}>
+                    <header><div><span>English detail</span><h3>Passage leaderboards</h3></div><p>Class average and complete roster for each passage.</p></header>
+                    <div className="teacher-leaderboard-grid">
+                      {insight.passages.map((leaderboard, passageIndex) => (
+                        <ClassScoreLeaderboardCard
+                          key={leaderboard.id}
+                          leaderboard={leaderboard}
+                          subtitle={`Passage ${passageIndex + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </section>
+                ) : (
+                  <p className="teacher-leaderboard-note">Passage-level scoring is unavailable for this assessment.</p>
+                )}
+                <p className="teacher-leaderboard-note">Averages include students with detailed section scores. Older summary-only results remain visible as data unavailable.</p>
+              </div>
+            </details>
           ))}
-          {!assessmentAverages.size && <p className="teacher-empty-state">No completed tests yet.</p>}
+          {!classAssessmentInsights.length && <p className="teacher-empty-state">No completed tests yet.</p>}
         </div>
       </section>
 
