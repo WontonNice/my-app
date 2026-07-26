@@ -28,14 +28,14 @@ import {
   type PracticeQuestion,
 } from "../content/practice";
 import { getLearningProgress, saveCloudPracticeProgress } from "../lib/api";
+import { appendStudentPreview, getStudentPreviewContext } from "../lib/studentPreview";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 type PracticeMode = "levels" | "questions" | "complete";
 type PracticeTool = "pointer" | "eliminator" | "notepad" | "pencil";
 
-const practiceSearchParams = new URLSearchParams(window.location.search);
-const hasTeacherPracticePreview = practiceSearchParams.get("preview") === "student" && practiceSearchParams.get("teacherTools") === "1";
-const practiceBackHref = hasTeacherPracticePreview ? "/study-hall?preview=student&teacherTools=1#topics" : "/study-hall#topics";
+const hasTeacherPracticePreview = getStudentPreviewContext().isPreview;
+const practiceBackHref = appendStudentPreview("/study-hall#topics");
 
 type LevelProgress = {
   answered: number;

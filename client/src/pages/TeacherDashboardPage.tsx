@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { Activity, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, LayoutDashboard, Pencil, Shuffle, Target, Trash2, UserRoundPlus, Users, X } from "lucide-react";
+import { Activity, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, Eye, LayoutDashboard, Pencil, Shuffle, Trash2, UserRoundPlus, Users, X } from "lucide-react";
+import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { resolveExamContent, type ExamQuestion } from "../content/exams";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
@@ -508,6 +509,37 @@ function createPassageForms(assessment: TeacherAssessment): FormDraft["forms"] {
   }));
 }
 
+type TeacherWorkspace = "overview" | "students" | "accounts" | "insights" | "assessments";
+
+function getTeacherWorkspace(pathname: string): TeacherWorkspace {
+  if (pathname.startsWith("/teacher/students")) return "students";
+  if (pathname.startsWith("/teacher/accounts")) return "accounts";
+  if (pathname.startsWith("/teacher/insights")) return "insights";
+  if (pathname.startsWith("/teacher/assessments")) return "assessments";
+  return "overview";
+}
+
+function getInsightAssessmentId(pathname: string) {
+  const encodedId = pathname.split("/").filter(Boolean)[2];
+  if (!encodedId) return "";
+  try {
+    return decodeURIComponent(encodedId);
+  } catch {
+    return encodedId;
+  }
+}
+
+function getStudentPreviewHref(student: StudentProgressSnapshot) {
+  const params = new URLSearchParams({
+    preview: "student",
+    returnTo: "/teacher/accounts",
+    studentId: student.id,
+    studentName: student.fullName,
+    teacherTools: "1",
+  });
+  return `/dashboard?${params.toString()}`;
+}
+
 function StudentDetail({
   assessments,
   student,
@@ -914,26 +946,83 @@ export function TeacherDashboardPage() {
     { icon: CheckCircle2, label: "Tests completed", value: String(students.reduce((sum, student) => sum + student.insights.testsCompleted, 0)) },
     { icon: BookOpen, label: "Open exams", value: String(assessments.filter((assessment) => assessment.status === "open").length) },
   ];
+  const activeWorkspace = getTeacherWorkspace(window.location.pathname);
+  const insightAssessmentId = getInsightAssessmentId(window.location.pathname);
+  const selectedClassInsight = classAssessmentInsights.find((insight) => insight.assessmentId === insightAssessmentId);
   const navItems = [
     { id: "overview", label: "Overview", href: "/teacher", icon: LayoutDashboard },
-    { id: "students", label: "Student progress", href: "#students", icon: Activity },
-    { id: "accounts", label: "Student accounts", href: "#student-accounts", icon: UserRoundPlus },
-    { id: "assessments", label: "Assessments", href: "#assessments", icon: ClipboardList },
-    { id: "student", label: "Student view", href: "/dashboard?preview=student&teacherTools=1", icon: Target },
+    { id: "students", label: "Student progress", href: "/teacher/students", icon: Activity },
+    { id: "accounts", label: "Student accounts", href: "/teacher/accounts", icon: UserRoundPlus },
+    { id: "insights", label: "Exam insights", href: "/teacher/insights", icon: BarChart3 },
+    { id: "assessments", label: "Assessments", href: "/teacher/assessments", icon: ClipboardList },
   ];
+  const workspaceCopy = {
+    overview: {
+      description: "A focused snapshot of SHSAT enrollment, activity, scores, and open exams.",
+      eyebrow: "Teacher dashboard",
+      icon: LayoutDashboard,
+      title: "Workspace overview",
+    },
+    students: {
+      description: "Open any student record to review test history, saved answers, and practice progress.",
+      eyebrow: "Student progress",
+      icon: Activity,
+      title: "SHSAT student progress",
+    },
+    accounts: {
+      description: "Manage student credentials and open the exact student experience for any account.",
+      eyebrow: "Account access",
+      icon: UserRoundPlus,
+      title: "Student accounts",
+    },
+    insights: {
+      description: selectedClassInsight
+        ? "Section performance, passage-level rankings, and the complete class roster for this exam."
+        : "Choose an exam to open its complete performance dashboard.",
+      eyebrow: selectedClassInsight ? "Exam Insight Studio" : "Class insights",
+      icon: BarChart3,
+      title: selectedClassInsight?.title ?? "Exam Insight Studio",
+    },
+    assessments: {
+      description: "Open or lock exams, manage sessions, assign passage forms, and review answer keys.",
+      eyebrow: "Assignments",
+      icon: ClipboardList,
+      title: "Assessments",
+    },
+  }[activeWorkspace];
+  const WorkspaceIcon = workspaceCopy.icon;
 
   return (
-    <CorporateDashboardShell activeId="overview" enableAccountSwitcher navItems={navItems} onSignOut={handleSignOut} profileName={teacherName} profileRole="Teacher account">
+    <CorporateDashboardShell activeId={activeWorkspace} enableAccountSwitcher navItems={navItems} onSignOut={handleSignOut} profileName={teacherName} profileRole="Teacher account">
       <header className="staff-page-heading corporate-page-heading">
-        <div><p><LayoutDashboard size={15} /> Teacher dashboard</p><h1>Student performance</h1><span>SHSAT enrollment, recent activity, test scores, and practice progress in one view.</span></div>
-        <a className="corporate-heading-action" href="/dashboard?preview=student&teacherTools=1">Preview student view</a>
+        <div><p><WorkspaceIcon size={15} /> {workspaceCopy.eyebrow}</p><h1>{workspaceCopy.title}</h1><span>{workspaceCopy.description}</span></div>
+        {selectedClassInsight ? (
+          <AppLink className="corporate-heading-action" href="/teacher/insights"><ArrowLeft size={15} /> All exam insights</AppLink>
+        ) : activeWorkspace === "overview" ? (
+          <AppLink className="corporate-heading-action" href="/teacher/accounts">Open student views <ArrowUpRight size={15} /></AppLink>
+        ) : null}
       </header>
 
-      <section className="staff-kpi-grid" aria-label="Analytics summary">
-        {teacherStats.map(({ icon: Icon, label, value }) => <article key={label}><span><Icon size={19} /></span><div><p>{label}</p><strong>{value}</strong></div><em>Live student data</em></article>)}
-      </section>
       {message && <p className="teacher-message corporate-message">{message}</p>}
 
+      {activeWorkspace === "overview" ? (
+        <>
+          <section className="staff-kpi-grid" aria-label="Analytics summary">
+            {teacherStats.map(({ icon: Icon, label, value }) => <article key={label}><span><Icon size={19} /></span><div><p>{label}</p><strong>{value}</strong></div><em>Live student data</em></article>)}
+          </section>
+          <section className="teacher-panel teacher-workspace-panel">
+            <div className="teacher-panel-header"><div><span>Workspaces</span><h2>Choose where to work</h2></div><p>Each area now opens as its own page.</p></div>
+            <div className="teacher-workspace-grid">
+              <AppLink href="/teacher/students"><Activity size={20} /><span><strong>Student progress</strong><small>{shsatStudents.length} SHSAT student{shsatStudents.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
+              <AppLink href="/teacher/accounts"><UserRoundPlus size={20} /><span><strong>Student accounts</strong><small>Edit access or preview an account</small></span><ArrowUpRight size={17} /></AppLink>
+              <AppLink href="/teacher/insights"><BarChart3 size={20} /><span><strong>Exam Insight Studio</strong><small>{classAssessmentInsights.length} exam dashboard{classAssessmentInsights.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
+              <AppLink href="/teacher/assessments"><ClipboardList size={20} /><span><strong>Assessments</strong><small>{assessments.length} exam{assessments.length === 1 ? "" : "s"} available</small></span><ArrowUpRight size={17} /></AppLink>
+            </div>
+          </section>
+        </>
+      ) : null}
+
+      {activeWorkspace === "students" ? (
       <section className="teacher-panel teacher-roster-panel" id="students">
           <div className="teacher-panel-header"><div><span>Roster</span><h2>SHSAT student progress</h2></div><p>Tap a student to open their record here.</p></div>
           <div className="teacher-student-list">
@@ -953,7 +1042,9 @@ export function TeacherDashboardPage() {
           </div>
 
       </section>
+      ) : null}
 
+      {activeWorkspace === "accounts" ? (
       <section className="teacher-panel teacher-staff-panel teacher-student-accounts-panel" id="student-accounts">
         <div className="teacher-panel-header"><div><span>Account access</span><h2>SHSAT student accounts</h2></div><p>Edit student names, usernames, and passwords or delete accounts that should no longer have access.</p></div>
         <div className="teacher-staff-layout">
@@ -968,52 +1059,70 @@ export function TeacherDashboardPage() {
             </div>
           </form>
           <div className="teacher-staff-list" aria-label="SHSAT student accounts">
-            {shsatStudents.length ? shsatStudents.map((student) => <article key={student.id}><span>{student.fullName.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase()}</span><div><strong>{student.fullName}</strong><small>Username: {student.username}</small><small>Email: {student.email}</small></div><div className="admin-account-actions"><button disabled={savingAccountId === student.id} onClick={() => beginEditingStudentAccount(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-danger" disabled={savingAccountId === student.id} onClick={() => handleDeleteStudentAccount(student)} type="button"><Trash2 size={14} /> Delete</button></div></article>) : <p>No SHSAT student accounts found.</p>}
+            {shsatStudents.length ? shsatStudents.map((student) => <article key={student.id}><span>{student.fullName.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase()}</span><div><strong>{student.fullName}</strong><small>Username: {student.username}</small><small>Email: {student.email}</small></div><div className="admin-account-actions"><AppLink className="teacher-student-view-link" href={getStudentPreviewHref(student)}><Eye size={14} /> View as student</AppLink><button disabled={savingAccountId === student.id} onClick={() => beginEditingStudentAccount(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-danger" disabled={savingAccountId === student.id} onClick={() => handleDeleteStudentAccount(student)} type="button"><Trash2 size={14} /> Delete</button></div></article>) : <p>No SHSAT student accounts found.</p>}
           </div>
         </div>
       </section>
+      ) : null}
 
-      <section className="teacher-panel teacher-class-averages" aria-labelledby="class-averages-title">
-        <div className="teacher-panel-header"><div><span>Class insights</span><h2 id="class-averages-title">Section averages and leaderboards</h2></div><p>Every SHSAT student is shown. Rankings use percent accuracy, and tied scores share a rank.</p></div>
-        <div className="teacher-assessment-insights">
-          {classAssessmentInsights.map((insight, index) => (
-            <details className="teacher-assessment-insight" key={insight.assessmentId} open={index === 0}>
-              <summary>
-                <span><strong>{insight.title}</strong><small>{insight.submissions} submission{insight.submissions === 1 ? "" : "s"}</small></span>
-                <span className="teacher-assessment-average"><small>Overall</small><strong>{insight.overallAverage === null ? "—" : `${insight.overallAverage}%`}</strong></span>
-                <span className="teacher-assessment-average"><small>English</small><strong>{insight.english.average === null ? "—" : `${insight.english.average}%`}</strong></span>
-                <span className="teacher-assessment-average"><small>Math</small><strong>{insight.math.average === null ? "—" : `${insight.math.average}%`}</strong></span>
-                <ChevronDown className="teacher-assessment-insight-chevron" size={19} />
-              </summary>
-              <div className="teacher-assessment-insight-body">
-                <div className="teacher-leaderboard-grid teacher-section-leaderboards">
-                  <ClassScoreLeaderboardCard leaderboard={insight.english} subtitle="Section ranking" />
-                  <ClassScoreLeaderboardCard leaderboard={insight.math} subtitle="Section ranking" />
+      {activeWorkspace === "insights" && !insightAssessmentId ? (
+        <section className="teacher-panel teacher-class-averages" aria-labelledby="class-averages-title">
+          <div className="teacher-panel-header"><div><span>Exam dashboards</span><h2 id="class-averages-title">Choose an exam</h2></div><p>Each exam opens in a full Insight Studio instead of expanding in a dropdown.</p></div>
+          <div className="teacher-insight-studio-grid">
+            {classAssessmentInsights.map((insight) => (
+              <AppLink className="teacher-insight-launch-card" href={`/teacher/insights/${encodeURIComponent(insight.assessmentId)}`} key={insight.assessmentId}>
+                <header><span>Exam insight</span><ArrowUpRight size={18} /></header>
+                <h3>{insight.title}</h3>
+                <p>{insight.submissions} submission{insight.submissions === 1 ? "" : "s"}</p>
+                <div>
+                  <span><small>Overall</small><strong>{insight.overallAverage === null ? "—" : `${insight.overallAverage}%`}</strong></span>
+                  <span><small>English</small><strong>{insight.english.average === null ? "—" : `${insight.english.average}%`}</strong></span>
+                  <span><small>Math</small><strong>{insight.math.average === null ? "—" : `${insight.math.average}%`}</strong></span>
                 </div>
-                {insight.passages.length ? (
-                  <section className="teacher-passage-leaderboards" aria-label={`${insight.title} passage rankings`}>
-                    <header><div><span>English detail</span><h3>Passage leaderboards</h3></div><p>Class average and complete roster for each passage.</p></header>
-                    <div className="teacher-leaderboard-grid">
-                      {insight.passages.map((leaderboard, passageIndex) => (
-                        <ClassScoreLeaderboardCard
-                          key={leaderboard.id}
-                          leaderboard={leaderboard}
-                          subtitle={`Passage ${passageIndex + 1}`}
-                        />
-                      ))}
-                    </div>
-                  </section>
-                ) : (
-                  <p className="teacher-leaderboard-note">Passage-level scoring is unavailable for this assessment.</p>
-                )}
-                <p className="teacher-leaderboard-note">Averages include students with detailed section scores. Older summary-only results remain visible as data unavailable.</p>
-              </div>
-            </details>
-          ))}
-          {!classAssessmentInsights.length && <p className="teacher-empty-state">No completed tests yet.</p>}
-        </div>
-      </section>
+                <b>Open Insight Studio <ArrowUpRight size={15} /></b>
+              </AppLink>
+            ))}
+            {!classAssessmentInsights.length && <p className="teacher-empty-state">No completed tests yet.</p>}
+          </div>
+        </section>
+      ) : null}
 
+      {activeWorkspace === "insights" && insightAssessmentId ? (
+        selectedClassInsight ? (
+          <section className="teacher-insight-studio" aria-label={`${selectedClassInsight.title} Insight Studio`}>
+            <div className="teacher-insight-studio-hero">
+              <div><span>Live class performance</span><h2>{selectedClassInsight.title}</h2><p>Every SHSAT student is shown. Rankings use percent accuracy, and tied scores share a rank.</p></div>
+              <div className="teacher-insight-studio-metrics">
+                <span><small>Submissions</small><strong>{selectedClassInsight.submissions}</strong></span>
+                <span><small>Overall</small><strong>{selectedClassInsight.overallAverage === null ? "—" : `${selectedClassInsight.overallAverage}%`}</strong></span>
+                <span><small>English</small><strong>{selectedClassInsight.english.average === null ? "—" : `${selectedClassInsight.english.average}%`}</strong></span>
+                <span><small>Math</small><strong>{selectedClassInsight.math.average === null ? "—" : `${selectedClassInsight.math.average}%`}</strong></span>
+              </div>
+            </div>
+            <div className="teacher-leaderboard-grid teacher-section-leaderboards">
+              <ClassScoreLeaderboardCard leaderboard={selectedClassInsight.english} subtitle="Section ranking" />
+              <ClassScoreLeaderboardCard leaderboard={selectedClassInsight.math} subtitle="Section ranking" />
+            </div>
+            {selectedClassInsight.passages.length ? (
+              <section className="teacher-passage-leaderboards" aria-label={`${selectedClassInsight.title} passage rankings`}>
+                <header><div><span>English detail</span><h3>Passage leaderboards</h3></div><p>Class average and complete roster for each passage.</p></header>
+                <div className="teacher-leaderboard-grid">
+                  {selectedClassInsight.passages.map((leaderboard, passageIndex) => (
+                    <ClassScoreLeaderboardCard key={leaderboard.id} leaderboard={leaderboard} subtitle={`Passage ${passageIndex + 1}`} />
+                  ))}
+                </div>
+              </section>
+            ) : (
+              <p className="teacher-leaderboard-note">Passage-level scoring is unavailable for this assessment.</p>
+            )}
+            <p className="teacher-leaderboard-note">Averages include students with detailed section scores. Older summary-only results remain visible as data unavailable.</p>
+          </section>
+        ) : (
+          <section className="teacher-panel teacher-insight-not-found"><h2>Insight dashboard not found</h2><p>This exam may not have any completed submissions yet.</p><AppLink href="/teacher/insights"><ArrowLeft size={15} /> Return to all exam insights</AppLink></section>
+        )
+      ) : null}
+
+      {activeWorkspace === "assessments" ? (
       <section className="teacher-panel" id="assessments">
         <div className="teacher-panel-header"><div><span>Assignments</span><h2>Exam access, sessions, and forms</h2></div><p>Open or lock each exam, split sections, and assign Reading Comprehension passage forms in real time.</p></div>
         <div className="teacher-assessment-list">
@@ -1027,6 +1136,7 @@ export function TeacherDashboardPage() {
               <h3>{assessment.title}</h3><p>{assessment.description || "No description yet."}</p>
               <dl><div><dt>Passages</dt><dd>{assessment.passages.length}</dd></div><div><dt>Questions</dt><dd>{assessment.questions.length}</dd></div><div><dt>Class average</dt><dd>{classResult ? `${classResult.average}%` : "—"}</dd></div><div><dt>Submissions</dt><dd>{classResult?.submissions ?? 0}</dd></div></dl>
               <div className="teacher-assessment-actions">
+                {classResult ? <AppLink className="teacher-assessment-insight-link" href={`/teacher/insights/${encodeURIComponent(assessment.id)}`}><BarChart3 size={15} /> Open insights</AppLink> : null}
                 <button disabled={savingStatusId === assessment.id} type="button" onClick={() => handleToggleAssessment(assessment)}>{assessment.status === "open" ? "Lock exam" : "Open exam"}</button>
                 <button className="is-secondary" disabled={savingStatusId === assessment.id} type="button" onClick={() => handleToggleSplit(assessment)}>{assessment.split ? "Make one session" : "Split English / Math"}</button>
                 <button className="is-secondary teacher-form-toggle" disabled={!assessment.passages.length} type="button" onClick={() => openFormEditor(assessment)}><Shuffle size={15} /> {isFormEditorOpen ? "Close form assignments" : "Assign passage forms"}</button>
@@ -1061,6 +1171,7 @@ export function TeacherDashboardPage() {
           })}
         </div>
       </section>
+      ) : null}
     </CorporateDashboardShell>
   );
 }

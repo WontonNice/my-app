@@ -16,21 +16,17 @@ import {
   loadLocalExamSession,
 } from "../lib/examSessionProgress";
 import { getExamResult, type ExamResult } from "../lib/examResults";
+import { appendStudentPreview, getStudentPreviewContext } from "../lib/studentPreview";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 type StartingSubject = "english" | "math";
 
 function getAssessmentDashboardHref() {
-  const searchParams = new URLSearchParams(window.location.search);
-  const params = new URLSearchParams({ section: "assessments" });
-  if (searchParams.get("preview") === "student" && searchParams.get("teacherTools") === "1") {
-    params.set("preview", "student");
-    params.set("teacherTools", "1");
-  }
-  return `/study-hall?${params.toString()}`;
+  return appendStudentPreview("/study-hall?section=assessments");
 }
 
 export function ExamLaunchPage() {
+  const previewContext = getStudentPreviewContext();
   const [assessment, setAssessment] = useState<TeacherAssessment | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
@@ -56,7 +52,7 @@ export function ExamLaunchPage() {
         return;
       }
 
-      const nextStudentName = getDisplayName(data.session.user);
+      const nextStudentName = previewContext.studentName || getDisplayName(data.session.user);
       setStudentName(nextStudentName);
       setTypedName(nextStudentName);
 
@@ -113,7 +109,7 @@ export function ExamLaunchPage() {
     }
 
     loadExam();
-  }, []);
+  }, [previewContext.studentName]);
 
   const sectionLines = useMemo(() => (assessment ? createAssessmentSectionLines(assessment) : []), [assessment]);
 

@@ -14,6 +14,7 @@ import {
 import { getAdvancedPracticePassage } from "../content/advancedPractice";
 import { getDisplayName } from "../lib/exam";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
+import { appendStudentPreview } from "../lib/studentPreview";
 
 type AdvancedTool = "pointer" | "eliminator" | "notepad" | "pencil";
 type ReviewFilter = "all" | "notAnswered" | "bookmarks";
@@ -263,10 +264,7 @@ export function AdvancedPassagePage() {
   const questions = useMemo(() => passageSet?.questions ?? [], [passageSet]);
   const activeQuestion = questions[questionIndex];
   const questionIds = questions.map((question) => question.id);
-  const searchParams = new URLSearchParams(window.location.search);
-  const hasTeacherPreviewTools = searchParams.get("preview") === "student" && searchParams.get("teacherTools") === "1";
-  const previewQuery = hasTeacherPreviewTools ? "&preview=student&teacherTools=1" : "";
-  const backHref = `/study-hall?section=advanced${previewQuery}`;
+  const backHref = appendStudentPreview("/study-hall?section=advanced");
 
   function handleNext() {
     if (!activeQuestion || !selectedAnswers[activeQuestion.id]) {

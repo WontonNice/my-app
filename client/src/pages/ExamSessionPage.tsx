@@ -53,6 +53,7 @@ import {
   type SelectedAnswer,
   type SelectedAnswers,
 } from "../lib/examResults";
+import { appendStudentPreview, getStudentPreviewContext } from "../lib/studentPreview";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 type StartingSubject = "english" | "math";
@@ -486,13 +487,7 @@ function getStoredStartingSubject(assessmentId: string): StartingSubject {
 }
 
 function getAssessmentDashboardHref() {
-  const searchParams = new URLSearchParams(window.location.search);
-  const params = new URLSearchParams({ section: "assessments" });
-  if (searchParams.get("preview") === "student" && searchParams.get("teacherTools") === "1") {
-    params.set("preview", "student");
-    params.set("teacherTools", "1");
-  }
-  return `/study-hall?${params.toString()}`;
+  return appendStudentPreview("/study-hall?section=assessments");
 }
 
 function ExamUserMenu({
@@ -969,7 +964,7 @@ export function ExamSessionPage() {
         return;
       }
 
-      const fallbackName = getDisplayName(data.session.user);
+      const fallbackName = getStudentPreviewContext().studentName || getDisplayName(data.session.user);
       const storedStartingSubject = getStoredStartingSubject(assessmentId);
       setTimerState(loadExamTimer(assessmentId));
       setTimerNow(Date.now());

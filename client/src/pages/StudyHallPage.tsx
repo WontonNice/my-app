@@ -8,15 +8,10 @@ import { getStudentClasses, joinStudentClass, type StudentClass } from "../lib/a
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 import { cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "../lib/sessionCache";
-
-const isStudentPreview = new URLSearchParams(window.location.search).get("preview") === "student";
-const previewQuery = isStudentPreview ? "?preview=student&teacherTools=1" : "";
-
-function getClassPath(studentClass: StudentClass) {
-  return `/study-hall/${studentClass.id}${previewQuery}`;
-}
+import { getStudentPreviewContext } from "../lib/studentPreview";
 
 export function StudyHallPage() {
+  const previewContext = getStudentPreviewContext();
   const initialSession = peekActiveSession();
   const initialMetadata = initialSession?.user.user_metadata as { full_name?: string; name?: string } | undefined;
   const [accessToken, setAccessToken] = useState(initialSession?.access_token ?? "");
@@ -25,7 +20,7 @@ export function StudyHallPage() {
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured && !initialSession);
   const [isJoining, setIsJoining] = useState(false);
   const [message, setMessage] = useState("");
-  const [studentName, setStudentName] = useState(initialMetadata?.full_name ?? initialMetadata?.name ?? "Student");
+  const [studentName, setStudentName] = useState(previewContext.studentName || initialMetadata?.full_name || initialMetadata?.name || "Student");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -44,14 +39,14 @@ export function StudyHallPage() {
 
       const userRole = getUserRole(session.user);
       const metadata = session.user.user_metadata as { full_name?: string; name?: string };
-      setStudentName(metadata.full_name ?? metadata.name ?? "Student");
+      setStudentName(previewContext.studentName || metadata.full_name || metadata.name || "Student");
 
-      if (userRole !== "student" && !(userRole === "teacher" && isStudentPreview)) {
+      if (userRole !== "student" && !(userRole === "teacher" && previewContext.isPreview)) {
         window.location.assign(getDashboardPath(userRole));
         return;
       }
 
-      if (userRole === "teacher" && isStudentPreview) {
+      if (userRole === "teacher" && previewContext.isPreview) {
         setAccessToken(session.access_token);
         setClasses([{
           description: "SHSAT prep room for lessons, practice missions, assessments, and progress checks.",
@@ -96,7 +91,7 @@ export function StudyHallPage() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [previewContext.isPreview, previewContext.studentName]);
 
   async function handleJoinClass(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -139,7 +134,7 @@ export function StudyHallPage() {
     );
   }
 
-  const navItems = [{ id: "classes", label: "My classes", href: `/dashboard${previewQuery}`, icon: GraduationCap }];
+  const navItems = [{ id: "classes", label: "My classes", href: `/dashboard${previewContext.query}`, icon: GraduationCap }];
 
   return (
     <CorporateDashboardShell
@@ -147,14 +142,14 @@ export function StudyHallPage() {
       navItems={navItems}
       onSignOut={handleSignOut}
       profileName={studentName}
-      profileRole={isStudentPreview ? "Teacher preview" : "Student account"}
-      returnHref={isStudentPreview ? "/teacher" : undefined}
+      profileRole={previewContext.isPreview ? `Viewing ${studentName}` : "Student account"}
+      returnHref={previewContext.isPreview ? previewContext.returnHref : undefined}
       returnLabel="Teacher dashboard"
     >
       <header className="staff-page-heading corporate-page-heading">
         <div><p><BookOpen size={15} /> Student workspace</p><h1>My classes</h1><span>Choose a class to open its assignments, practice, assessments, and progress.</span></div>
       </header>
-      {classes.length > 0 ? <ClassList classes={classes} message={message} /> : (
+      {classes.length > 0 ? <ClassList classes={classes} message={message} previewQuery={previewContext.query} /> : (
         <JoinClassPanel classCode={classCode} isJoining={isJoining} message={message} onClassCodeChange={setClassCode} onJoinClass={handleJoinClass} />
       )}
     </CorporateDashboardShell>
@@ -209,7 +204,7 @@ function JoinClassPanel({
   );
 }
 
-function ClassList({ classes, message }: { classes: StudentClass[]; message: string }) {
+function ClassList({ classes, message, previewQuery }: { classes: StudentClass[]; message: string; previewQuery: string }) {
   return (
     <section className="staff-panel student-class-panel" aria-labelledby="class-list-title">
       <header className="staff-panel-header"><div><p>Current enrollment</p><h2 id="class-list-title">My classes</h2></div><span className="student-class-count">{classes.length} active</span></header>
@@ -221,7 +216,7 @@ function ClassList({ classes, message }: { classes: StudentClass[]; message: str
 
         <div className="study-class-cards">
           {classes.map((studentClass) => (
-            <AppLink className="study-class-card" href={getClassPath(studentClass)} key={studentClass.id}>
+            <AppLink className="study-class-card" href={`/study-hall/${studentClass.id}${previewQuery}`} key={studentClass.id}>
               <span>{studentClass.schedule}</span>
               <strong>{studentClass.name}</strong>
               <small>{studentClass.level}</small>

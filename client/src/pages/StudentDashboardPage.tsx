@@ -8,15 +8,14 @@ import { getDashboardPath, getUserRole } from "../lib/auth";
 import { isSupabaseConfigured } from "../lib/supabase";
 import { cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "../lib/sessionCache";
 import { getStudentClassNavigation } from "../lib/studentClassNavigation";
-
-const isStudentPreview = new URLSearchParams(window.location.search).get("preview") === "student";
-const previewQuery = isStudentPreview ? "?preview=student&teacherTools=1" : "";
+import { appendStudentPreview, getStudentPreviewContext } from "../lib/studentPreview";
 
 export function StudentDashboardPage() {
+  const previewContext = getStudentPreviewContext();
   const initialSession = peekActiveSession();
   const initialMetadata = initialSession?.user.user_metadata as { full_name?: string; name?: string } | undefined;
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured && !initialSession);
-  const [studentName, setStudentName] = useState(initialMetadata?.full_name ?? initialMetadata?.name ?? "Student");
+  const [studentName, setStudentName] = useState(previewContext.studentName || initialMetadata?.full_name || initialMetadata?.name || "Student");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -31,9 +30,9 @@ export function StudentDashboardPage() {
 
       const userRole = getUserRole(session.user);
       const metadata = session.user.user_metadata as { full_name?: string; name?: string };
-      setStudentName(metadata.full_name ?? metadata.name ?? "Student");
+      setStudentName(previewContext.studentName || metadata.full_name || metadata.name || "Student");
 
-      if (userRole !== "student" && !(userRole === "teacher" && isStudentPreview)) {
+      if (userRole !== "student" && !(userRole === "teacher" && previewContext.isPreview)) {
         window.location.assign(getDashboardPath(userRole));
         return;
       }
@@ -58,7 +57,7 @@ export function StudentDashboardPage() {
 
       setIsCheckingSession(false);
     });
-  }, []);
+  }, [previewContext.isPreview, previewContext.studentName]);
 
   async function handleSignOut() {
     if (isSupabaseConfigured) {
@@ -80,10 +79,10 @@ export function StudentDashboardPage() {
     );
   }
 
-  const navItems = getStudentClassNavigation(previewQuery);
+  const navItems = getStudentClassNavigation(previewContext.query);
 
   return (
-    <CorporateDashboardShell activeId="class" navItems={navItems} onSignOut={handleSignOut} profileName={studentName} profileRole={isStudentPreview ? "Teacher preview" : "Student account"} returnHref={isStudentPreview ? "/teacher" : undefined} returnLabel="Teacher dashboard">
+    <CorporateDashboardShell activeId="class" navItems={navItems} onSignOut={handleSignOut} profileName={studentName} profileRole={previewContext.isPreview ? `Viewing ${studentName}` : "Student account"} returnHref={previewContext.isPreview ? previewContext.returnHref : undefined} returnLabel="Teacher dashboard">
       <header className="staff-page-heading corporate-page-heading">
         <div><p><BookOpen size={15} /> Class portal</p><h1>SHSAT Prep</h1><span>Your assignments, practice tools, and progress for this class.</span></div>
       </header>
@@ -94,9 +93,9 @@ export function StudentDashboardPage() {
         <article><span><CalendarDays size={19} /></span><div><p>Next session</p><strong>Sat</strong></div><em>10:00 AM</em></article>
       </section>
       <section className="student-portal-grid">
-        <AppLink className="staff-panel student-portal-card" href={`/study-hall${previewQuery}`}><span><Target size={21} /></span><div><small>Practice question catalog</small><h2>All SHSAT reading skills</h2><p>Practice Author's Point of View, inference, evidence, vocabulary, tone, and more.</p></div></AppLink>
-        <AppLink className="staff-panel student-portal-card" href={`/practice/authors-point-of-view${previewQuery}`}><span><ClipboardList size={21} /></span><div><small>Featured practice</small><h2>Author's Point of View</h2><p>Work through the complete question bank across all four difficulty levels.</p></div></AppLink>
-        <AppLink className="staff-panel student-portal-card" href={`/study-hall?section=advanced${isStudentPreview ? "&preview=student&teacherTools=1" : ""}`}><span><BookOpen size={21} /></span><div><small>Advanced practice</small><h2>Passage catalog</h2><p>Browse every advanced close-reading passage by genre, skill, and difficulty.</p></div></AppLink>
+        <AppLink className="staff-panel student-portal-card" href={`/study-hall${previewContext.query}`}><span><Target size={21} /></span><div><small>Practice question catalog</small><h2>All SHSAT reading skills</h2><p>Practice Author's Point of View, inference, evidence, vocabulary, tone, and more.</p></div></AppLink>
+        <AppLink className="staff-panel student-portal-card" href={`/practice/authors-point-of-view${previewContext.query}`}><span><ClipboardList size={21} /></span><div><small>Featured practice</small><h2>Author's Point of View</h2><p>Work through the complete question bank across all four difficulty levels.</p></div></AppLink>
+        <AppLink className="staff-panel student-portal-card" href={appendStudentPreview("/study-hall?section=advanced", previewContext)}><span><BookOpen size={21} /></span><div><small>Advanced practice</small><h2>Passage catalog</h2><p>Browse every advanced close-reading passage by genre, skill, and difficulty.</p></div></AppLink>
         <article className="staff-panel student-upcoming-panel"><header><small>Upcoming</small><h2>This week</h2></header><div><span>Sat</span><p><strong>SHSAT class session</strong><small>10:00 AM · Rooms 201–204</small></p></div><div><span>Mon</span><p><strong>Practice review due</strong><small>11:59 PM · Online</small></p></div></article>
       </section>
     </CorporateDashboardShell>

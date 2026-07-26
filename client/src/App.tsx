@@ -113,7 +113,7 @@ function CurrentPage() {
     return withClassAccess(<ExamLaunchPage />);
   }
 
-  if (path === "/teacher") {
+  if (path === "/teacher" || path.startsWith("/teacher/")) {
     return <TeacherDashboardPage />;
   }
 

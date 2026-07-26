@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getLearningProgress } from "../lib/api";
 import { getExamResult, replaceExamResults, type ExamResult } from "../lib/examResults";
+import { appendStudentPreview } from "../lib/studentPreview";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
 function getAssessmentIdFromResultsPath() {
@@ -8,20 +9,11 @@ function getAssessmentIdFromResultsPath() {
 }
 
 function getDashboardHref() {
-  const searchParams = new URLSearchParams(window.location.search);
-  const params = new URLSearchParams({ section: "assessments" });
-  if (searchParams.get("preview") === "student" && searchParams.get("teacherTools") === "1") {
-    params.set("preview", "student");
-    params.set("teacherTools", "1");
-  }
-  return `/study-hall?${params.toString()}`;
+  return appendStudentPreview("/study-hall?section=assessments");
 }
 
 function getAssessmentHref(assessmentId: string) {
-  const searchParams = new URLSearchParams(window.location.search);
-  return searchParams.get("preview") === "student" && searchParams.get("teacherTools") === "1"
-    ? `/exam/${assessmentId}?preview=student&teacherTools=1`
-    : `/exam/${assessmentId}`;
+  return appendStudentPreview(`/exam/${assessmentId}`);
 }
 
 export function ExamResultsPage() {

@@ -5,18 +5,14 @@ import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { advancedPracticePassages } from "../content/advancedPractice";
 import { practiceTopics } from "../content/practice";
-import { getExamSessionProgress, getLearningProgress, getStudentAssessments, getStudentClasses, type ExamSessionProgress, type StudentAssessment } from "../lib/api";
+import { getExamSessionProgress, getLearningProgress, getStudentAssessments, getStudentClasses, getTeacherStudentProgress, type ExamSessionProgress, type StudentAssessment } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getExamResults, replaceExamResults, type ExamResult } from "../lib/examResults";
 import { isExamResultCompleteForQuestionCount } from "../lib/examSessionProgress";
 import { isSupabaseConfigured } from "../lib/supabase";
 import { cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "../lib/sessionCache";
 import { getStudentClassNavigation } from "../lib/studentClassNavigation";
-
-const pageSearchParams = new URLSearchParams(window.location.search);
-const isStudentPreview = pageSearchParams.get("preview") === "student";
-const hasTeacherPreviewTools = isStudentPreview && pageSearchParams.get("teacherTools") === "1";
-const previewQuery = hasTeacherPreviewTools ? "?preview=student&teacherTools=1" : "";
+import { appendStudentPreview, getStudentPreviewContext } from "../lib/studentPreview";
 
 type LabSection = "Adaptive Practice" | "Advanced Practice" | "Assessments" | "Test Results";
 
@@ -31,30 +27,20 @@ function getInitialSection(): LabSection {
 function getLabHref(section?: "advanced" | "assessments" | "results") {
   const params = new URLSearchParams();
   if (section) params.set("section", section);
-  if (hasTeacherPreviewTools) {
-    params.set("preview", "student");
-    params.set("teacherTools", "1");
-  }
   const query = params.toString();
-  return `/study-hall${query ? `?${query}` : ""}`;
+  return appendStudentPreview(`/study-hall${query ? `?${query}` : ""}`);
 }
 
 function getAssessmentStartHref(assessmentId: string) {
-  if (!hasTeacherPreviewTools) {
-    return `/exam/${assessmentId}`;
-  }
-
-  return `/exam/${assessmentId}?preview=student&teacherTools=1`;
+  return appendStudentPreview(`/exam/${assessmentId}`);
 }
 
 function getAdvancedPassageHref(passageId: string) {
-  const query = hasTeacherPreviewTools ? "?preview=student&teacherTools=1" : "";
-  return `/advanced-practice/${passageId}${query}`;
+  return appendStudentPreview(`/advanced-practice/${passageId}`);
 }
 
 function getTopicHref(topicSlug: string) {
-  const query = hasTeacherPreviewTools ? "?preview=student&teacherTools=1" : "";
-  return `/practice/${topicSlug}${query}`;
+  return appendStudentPreview(`/practice/${topicSlug}`);
 }
 
 const targetCards = [
@@ -153,7 +139,7 @@ function getEnglishTopicProgress(results: ExamResult[]) {
   return progress;
 }
 
-function getSectionHeading(section: LabSection) {
+function getSectionHeading(section: LabSection, isStudentPreview: boolean) {
   if (section === "Assessments") {
     return {
       description: "Exams stay locked until your teacher opens them from the teacher dashboard.",
@@ -184,6 +170,7 @@ function getSectionHeading(section: LabSection) {
 }
 
 export function AdaptivePracticePage() {
+  const previewContext = getStudentPreviewContext();
   const initialSession = peekActiveSession();
   const initialMetadata = initialSession?.user.user_metadata as { full_name?: string; name?: string } | undefined;
   const [activeSection] = useState<LabSection>(getInitialSection);
@@ -192,7 +179,7 @@ export function AdaptivePracticePage() {
   const [examResults, setExamResults] = useState<ExamResult[]>([]);
   const [examSessions, setExamSessions] = useState<Record<string, ExamSessionProgress>>({});
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured && !initialSession);
-  const [studentName, setStudentName] = useState(initialMetadata?.full_name ?? initialMetadata?.name ?? initialSession?.user.email?.split("@")[0] ?? "Student");
+  const [studentName, setStudentName] = useState(previewContext.studentName || initialMetadata?.full_name || initialMetadata?.name || initialSession?.user.email?.split("@")[0] || "Student");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -207,27 +194,44 @@ export function AdaptivePracticePage() {
 
       const userRole = getUserRole(session.user);
       const metadata = session.user.user_metadata as { full_name?: string; name?: string };
-      setStudentName(metadata.full_name ?? metadata.name ?? session.user.email?.split("@")[0] ?? "Student");
-      let savedResults = getExamResults(session.user.id);
-      try {
-        const cloudProgress = await getLearningProgress(session.access_token);
-        if (cloudProgress.examResults.length > 0) {
-          replaceExamResults(session.user.id, cloudProgress.examResults as unknown as ExamResult[]);
-          savedResults = getExamResults(session.user.id);
-        }
-      } catch {
-        // Local results remain available while offline.
-      }
-      setExamResults(savedResults);
-      try {
-        setExamSessions(await getExamSessionProgress(session.access_token));
-      } catch {
-        // Assessment cards can still load when session progress is temporarily unavailable.
-      }
+      setStudentName(previewContext.studentName || metadata.full_name || metadata.name || session.user.email?.split("@")[0] || "Student");
 
-      if (userRole !== "student" && !(userRole === "teacher" && isStudentPreview)) {
+      if (userRole !== "student" && !(userRole === "teacher" && previewContext.isPreview)) {
         window.location.assign(getDashboardPath(userRole));
         return;
+      }
+
+      if (userRole === "teacher" && previewContext.isPreview && previewContext.studentId) {
+        try {
+          const previewStudent = (await getTeacherStudentProgress(session.access_token))
+            .find((student) => student.id === previewContext.studentId);
+          if (previewStudent) {
+            setStudentName(previewStudent.fullName);
+            setExamResults(previewStudent.progress.examResults as unknown as ExamResult[]);
+            setExamSessions(previewStudent.examSessions);
+          } else {
+            setAssessmentMessage("This student account is no longer available.");
+          }
+        } catch {
+          setAssessmentMessage("Could not load this student's saved progress.");
+        }
+      } else {
+        let savedResults = getExamResults(session.user.id);
+        try {
+          const cloudProgress = await getLearningProgress(session.access_token);
+          if (cloudProgress.examResults.length > 0) {
+            replaceExamResults(session.user.id, cloudProgress.examResults as unknown as ExamResult[]);
+            savedResults = getExamResults(session.user.id);
+          }
+        } catch {
+          // Local results remain available while offline.
+        }
+        setExamResults(savedResults);
+        try {
+          setExamSessions(await getExamSessionProgress(session.access_token));
+        } catch {
+          // Assessment cards can still load when session progress is temporarily unavailable.
+        }
       }
 
       if (userRole === "student") {
@@ -255,7 +259,7 @@ export function AdaptivePracticePage() {
 
       setIsCheckingSession(false);
     });
-  }, []);
+  }, [previewContext.isPreview, previewContext.studentId, previewContext.studentName]);
 
   async function handleSignOut() {
     if (isSupabaseConfigured) {
@@ -277,12 +281,12 @@ export function AdaptivePracticePage() {
     );
   }
 
-  const sectionHeading = getSectionHeading(activeSection);
+  const sectionHeading = getSectionHeading(activeSection, previewContext.isPreview);
   const activeId = activeSection === "Test Results" ? "results" : activeSection === "Assessments" ? "assessments" : activeSection === "Advanced Practice" ? "advanced" : "practice";
-  const navItems = getStudentClassNavigation(previewQuery);
+  const navItems = getStudentClassNavigation(previewContext.query);
 
   return (
-    <CorporateDashboardShell activeId={activeId} navItems={navItems} onSignOut={handleSignOut} profileName={studentName} profileRole={isStudentPreview ? "Teacher preview" : "Student account"} returnHref={isStudentPreview ? "/teacher" : undefined} returnLabel="Teacher dashboard">
+    <CorporateDashboardShell activeId={activeId} navItems={navItems} onSignOut={handleSignOut} profileName={studentName} profileRole={previewContext.isPreview ? `Viewing ${studentName}` : "Student account"} returnHref={previewContext.isPreview ? previewContext.returnHref : undefined} returnLabel="Teacher dashboard">
       <header className="staff-page-heading corporate-page-heading shsat-lab-heading">
         <div><p><BookOpen size={15} /> SHSAT Lab</p><h1>{sectionHeading.title}</h1><span>{sectionHeading.description}</span></div>
         <AppLink className="corporate-heading-action" href={getLabHref("advanced")}><Sparkles size={15} /> Browse advanced practice</AppLink>
