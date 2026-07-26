@@ -11,8 +11,8 @@ This folder keeps exam content modular:
 - Passage set labels are calculated from the order in the test file, so you do not need to add or update
   `label: "ELA - Passage Set X of Y"` inside passage files.
 
-For the fastest authoring workflow, run `npm run exam-editor` from the repository
-root. Exam Content Studio writes these TypeScript files for you and supports
+For the fastest authoring workflow, run `npm run content-editor` from the repository
+root. The centralized Content Studio writes these TypeScript files for you and supports
 passage images, author subtitles, rich-text formatting, a dedicated Part B
 stand-alone question-bank creator for multiple-choice and one-box drag-and-drop items, multiple choice,
 five-choice multi-select, both category-sort modes, table-match questions, and

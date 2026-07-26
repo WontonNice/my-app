@@ -178,4 +178,12 @@ export function resolveExamContent(assessment: AssessmentContentSource) {
   };
 }
 
-export type { ExamChoice, ExamContent, ExamPassage, ExamPassageLine, ExamPassageSet, ExamQuestion } from "./types";
+export type {
+  ExamChoice,
+  ExamContent,
+  ExamNumberLine,
+  ExamPassage,
+  ExamPassageLine,
+  ExamPassageSet,
+  ExamQuestion,
+} from "./types";

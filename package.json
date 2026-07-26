@@ -27,10 +27,12 @@
         "lint:client": "npm run lint --workspace client",
         "verify": "npm run typecheck && npm run lint && npm run build",
         "preview": "npm run preview --workspace client",
-        "exam-editor": "node tools/exam-content-editor.mjs",
-        "exam-editor:validate": "node tools/exam-content-editor.mjs --validate",
-        "question-editor": "node tools/question-bank-editor.mjs",
-        "question-editor:validate": "node tools/question-bank-editor.mjs --validate"
+        "content-editor": "node tools/content-studio.mjs",
+        "content-editor:validate": "node tools/content-studio.mjs --validate",
+        "exam-editor": "npm run content-editor",
+        "exam-editor:validate": "npm run content-editor:validate",
+        "question-editor": "npm run content-editor",
+        "question-editor:validate": "npm run content-editor:validate"
     },
     "devDependencies": {
         "concurrently": "^9.1.2"

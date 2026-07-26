@@ -13,7 +13,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
 },
   id: "2025-2026-form-a-math",
   label: "Math",
-  questionCount: 8,
+  questionCount: 14,
   questions: [
   {
     "id": "2025-2026-form-a-math-1",
@@ -152,39 +152,149 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "type": "multiple_choice"
   },
   {
-    "id": "2025-2026-form-a-math-8",
+    "id": "simplify-linear-expression",
     "points": 1,
-    "prompt": "\\(7 + (3n + 6) - (4n + 8) =\\)",
-    "promptHtml": "\\(7 + (3n + 6) - (4n + 8) =\\)",
+    "prompt": "\\(7+(3n+6)-(4n+8)=\\)",
     "topic": "Algebra",
     "choices": [
       {
         "id": "A",
-        "html": "5 - n",
-        "math": "5 - n",
-        "text": "5 - n"
+        "math": "5-n",
+        "text": "5 minus n"
       },
       {
         "id": "B",
-        "html": "5 + n",
-        "math": "5 + n",
-        "text": "5 + n"
+        "math": "5+n",
+        "text": "5 plus n"
       },
       {
         "id": "C",
-        "html": "21 - n",
-        "math": "21 - n",
-        "text": "21 - n"
+        "math": "21-n",
+        "text": "21 minus n"
       },
       {
         "id": "D",
-        "html": "21 + n",
-        "math": "21 + n",
-        "text": "21 + n"
+        "math": "21+n",
+        "text": "21 plus n"
       }
     ],
     "correctChoiceId": "A",
     "type": "multiple_choice"
+  },
+  {
+    "id": "same-sum-course-grades",
+    "points": 1,
+    "prompt": "In a certain school, course grades range from 0 to 100. Adrianna took 4 courses and her mean course grade was 90. Roberto took 5 courses. If both students have the same sum of course grades, what was Roberto’s mean?",
+    "topic": "Arithmetic",
+    "choices": [
+      {
+        "id": "A",
+        "math": "72",
+        "text": "72"
+      },
+      {
+        "id": "B",
+        "math": "80",
+        "text": "80"
+      },
+      {
+        "id": "C",
+        "math": "90",
+        "text": "90"
+      },
+      {
+        "id": "D",
+        "math": "92",
+        "text": "92"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "2025-2026-form-a-math-9",
+    "instructions": "Select the correct answer from each drop-down to complete the sentences.",
+    "points": 1,
+    "prompt": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives \n8\n8\n of his stamps to Kevin. Liam now has \n12\n12\n more stamps than Kevin.\n\n\nHow many stamps did Liam start with?",
+    "promptHtml": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives&nbsp;<strong>8</strong>&nbsp;of his stamps to Kevin. Liam now has&nbsp;<strong>12</strong>&nbsp;more stamps than Kevin.<div><br><div>How many stamps did Liam start with?</div></div><div><br></div>",
+    "topic": "Algebra",
+    "dropdownContent": [
+      "An equation that relates the number of stamps originally in Liam’s and Kevin’s collections is L ={{answer-1}}K.",
+      "After Liam gives 8 stamps to Kevin, the equation becomes L − 8 ={{answer-2}}.",
+      "By solving the equation, it can be determined that Liam started with{{answer-3}}stamps."
+    ],
+    "dropdowns": [
+      {
+        "correctChoiceId": "option-2",
+        "id": "answer-1",
+        "options": [
+          {
+            "id": "option-1",
+            "text": "0.5"
+          },
+          {
+            "id": "option-2",
+            "text": "2"
+          },
+          {
+            "id": "option-3",
+            "text": "3"
+          }
+        ]
+      },
+      {
+        "correctChoiceId": "option-3",
+        "id": "answer-2",
+        "options": [
+          {
+            "id": "option-1",
+            "text": "L + 8"
+          },
+          {
+            "id": "option-2",
+            "text": "L + 12"
+          },
+          {
+            "id": "option-3",
+            "text": "K + 20"
+          }
+        ]
+      },
+      {
+        "correctChoiceId": "option-3",
+        "id": "answer-3",
+        "options": [
+          {
+            "id": "option-1",
+            "text": "44"
+          },
+          {
+            "id": "option-2",
+            "text": "48"
+          },
+          {
+            "id": "option-3",
+            "text": "56"
+          }
+        ]
+      }
+    ],
+    "type": "inline_dropdown"
+  },
+  {
+    "id": "2025-2026-form-a-math-11",
+    "image": {
+      "alt": "Math question diagram",
+      "src": "/exam-images/2025-2026-form-a-2025-2026-form-a-math-11-math.png"
+    },
+    "points": 1,
+    "prompt": "In the figure above, PQRS is a parallelogram. What is the value of x?\n\nEnter your answer in the space.",
+    "promptHtml": "<div><p>In the figure above,&nbsp;\\(PQRS\\)&nbsp;is a parallelogram. What is the value of&nbsp;\\(x\\)?</p></div><div><p>Enter your answer in the space.</p></div>",
+    "topic": "Algebra",
+    "correctTextAnswers": [
+      "162"
+    ],
+    "type": "short_response"
   },
   {
     "id": "2025-2026-form-a-math-2",
@@ -229,6 +339,110 @@ export const content20252026FormAMathSection: ExamMathSection = {
     ],
     "requiredSelections": 2,
     "type": "multi_select"
+  },
+  {
+    "id": "square-pyramid-lateral-surface-area",
+    "image": {
+      "alt": "Math question diagram",
+      "src": "/exam-images/2025-2026-form-a-square-pyramid-lateral-surface-area-math.png"
+    },
+    "points": 1,
+    "prompt": "In the pyramid above, each triangular face has the same area, and the base \\(MNPQ\\) is a square that measures 8 centimeters on each side. If the length of \\(\\overline{RS}\\) = 6 centimeters, what is the surface area of the pyramid excluding the base?",
+    "promptHtml": "In the pyramid above, each triangular face has the same area, and the base \\(MNPQ\\) is a square that measures 8 centimeters on each side. If the length of \\(\\overline{RS}\\) = 6 centimeters, what is the surface area of the pyramid <strong>excluding</strong> the base?",
+    "topic": "Geometry",
+    "choices": [
+      {
+        "id": "A",
+        "text": "48 sq cm"
+      },
+      {
+        "id": "B",
+        "text": "96 sq cm"
+      },
+      {
+        "id": "C",
+        "text": "128 sq cm"
+      },
+      {
+        "id": "D",
+        "text": "160 sq cm"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "rectangle-dimensions-ratio-perimeter",
+    "points": 1,
+    "prompt": "The perimeter of a rectangle is 510 centimeters. The ratio of the length to the width is 3:2. What are the dimensions of this rectangle?",
+    "topic": "Ratios & Proportions",
+    "choices": [
+      {
+        "id": "A",
+        "text": "150 cm by 105 cm"
+      },
+      {
+        "id": "B",
+        "text": "153 cm by 102 cm"
+      },
+      {
+        "id": "C",
+        "text": "158 cm by 97 cm"
+      },
+      {
+        "id": "D",
+        "text": "165 cm by 90 cm"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "2025-2026-form-a-math-13",
+    "points": 1,
+    "prompt": "Which number line below shows the solution to the inequality \n−\n4\n<\nx\n2\n<\n2\n?\n-\n4\n<\n𝑥\n2\n<\n2\n?",
+    "promptHtml": "Which number line below shows the solution to the inequality&nbsp;−4&lt;x2&lt;2?",
+    "topic": "Algebra",
+    "choices": [
+      {
+        "id": "A",
+        "html": "a",
+        "image": {
+          "alt": "a",
+          "src": "/exam-images/2025-2026-form-a-2025-2026-form-a-math-13-choice-a.svgz"
+        },
+        "text": "a"
+      },
+      {
+        "id": "B",
+        "html": "b",
+        "image": {
+          "alt": "b",
+          "src": "/exam-images/2025-2026-form-a-2025-2026-form-a-math-13-choice-b.svgz"
+        },
+        "text": "b"
+      },
+      {
+        "id": "C",
+        "html": "c",
+        "image": {
+          "alt": "c",
+          "src": "/exam-images/2025-2026-form-a-2025-2026-form-a-math-13-choice-c.svgz"
+        },
+        "text": "c"
+      },
+      {
+        "id": "D",
+        "html": "d",
+        "image": {
+          "alt": "d",
+          "src": "/exam-images/2025-2026-form-a-2025-2026-form-a-math-13-choice-d.svgz"
+        },
+        "text": "d"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
   }
 ],
 };

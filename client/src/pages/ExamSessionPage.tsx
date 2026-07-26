@@ -18,7 +18,11 @@ import {
   User,
   X,
 } from "lucide-react";
-import { resolveExamContent, type ExamQuestion } from "../content/exams";
+import {
+  resolveExamContent,
+  type ExamNumberLine,
+  type ExamQuestion,
+} from "../content/exams";
 import { getExamSessionProgress, getLearningProgress, getStudentAssessment, saveCloudExamResult, saveExamSessionProgress, type TeacherAssessment } from "../lib/api";
 import { getUserRole } from "../lib/auth";
 import { formatDuration, getAssessmentIdFromPath, getDisplayName } from "../lib/exam";
@@ -218,6 +222,151 @@ function renderMathExpression(expression: string) {
     <span className="exam-math-expression" aria-label={expression}>
       {renderKatexExpression(expression)}
     </span>
+  );
+}
+
+function ExamNumberLineGraphic({
+  description,
+  numberLine,
+}: {
+  description: string;
+  numberLine: ExamNumberLine;
+}) {
+  const min = Number.isFinite(numberLine.min) ? numberLine.min : -10;
+  const max = Number.isFinite(numberLine.max) && numberLine.max > min ? numberLine.max : min + 20;
+  const tickStep =
+    Number.isFinite(numberLine.tickStep) && numberLine.tickStep > 0
+      ? numberLine.tickStep
+      : 1;
+  const labelStep =
+    Number.isFinite(numberLine.labelStep) && numberLine.labelStep > 0
+      ? numberLine.labelStep
+      : 5;
+  const solutionStart = Math.max(min, Math.min(max, numberLine.solutionStart));
+  const solutionEnd = Math.max(
+    solutionStart,
+    Math.min(max, numberLine.solutionEnd),
+  );
+  const axisStart = 18;
+  const axisEnd = 312;
+  const axisY = 25;
+  const xFor = (value: number) =>
+    axisStart + ((value - min) / (max - min)) * (axisEnd - axisStart);
+  const formatValue = (value: number) =>
+    String(Number(value.toFixed(6))).replace("-", "−");
+  const tickCount = Math.min(
+    100,
+    Math.floor((max - min) / tickStep + 0.000001),
+  );
+  const ticks = Array.from({ length: tickCount + 1 }, (_, index) => {
+    const value = min + index * tickStep;
+    const labelRatio = (value - min) / labelStep;
+    return {
+      showLabel:
+        Math.abs(labelRatio - Math.round(labelRatio)) < 0.000001,
+      value,
+      x: xFor(value),
+    };
+  }).filter((tick) => tick.value <= max + tickStep / 1000);
+  const lastTick = ticks.at(-1);
+  if (!lastTick || Math.abs(lastTick.value - max) > 0.000001) {
+    ticks.push({ showLabel: true, value: max, x: xFor(max) });
+  }
+  const solutionX1 = numberLine.extendLeft
+    ? axisStart + 4
+    : xFor(solutionStart);
+  const solutionX2 = numberLine.extendRight
+    ? axisEnd - 4
+    : xFor(solutionEnd);
+
+  return (
+    <svg
+      aria-label={description}
+      className="exam-number-line"
+      role="img"
+      viewBox="0 0 330 58"
+    >
+      <title>{description}</title>
+      <line
+        stroke="currentColor"
+        strokeWidth="1.4"
+        x1={axisStart}
+        x2={axisEnd}
+        y1={axisY}
+        y2={axisY}
+      />
+      <path
+        d={`M ${axisStart} ${axisY} l 7 -4 v 8 z`}
+        fill="currentColor"
+      />
+      <path
+        d={`M ${axisEnd} ${axisY} l -7 -4 v 8 z`}
+        fill="currentColor"
+      />
+      {ticks.map((tick, index) => (
+        <g key={`${tick.value}-${index}`}>
+          <line
+            stroke="currentColor"
+            strokeWidth={tick.showLabel ? 1.4 : 1}
+            x1={tick.x}
+            x2={tick.x}
+            y1={tick.showLabel ? 17 : 19}
+            y2={33}
+          />
+          {tick.showLabel ? (
+            <text
+              fill="currentColor"
+              fontFamily="Arial, sans-serif"
+              fontSize="11"
+              textAnchor="middle"
+              x={tick.x}
+              y="49"
+            >
+              {formatValue(tick.value)}
+            </text>
+          ) : null}
+        </g>
+      ))}
+      <line
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeWidth="3"
+        x1={solutionX1}
+        x2={solutionX2}
+        y1={axisY}
+        y2={axisY}
+      />
+      {numberLine.extendLeft ? (
+        <path
+          d={`M ${axisStart + 2} ${axisY} l 8 -5 v 10 z`}
+          fill="currentColor"
+        />
+      ) : (
+        <circle
+          cx={solutionX1}
+          cy={axisY}
+          fill={numberLine.startClosed ? "currentColor" : "#fff"}
+          r="4"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+      )}
+      {numberLine.extendRight ? (
+        <path
+          d={`M ${axisEnd - 2} ${axisY} l -8 -5 v 10 z`}
+          fill="currentColor"
+        />
+      ) : (
+        <circle
+          cx={solutionX2}
+          cy={axisY}
+          fill={numberLine.endClosed ? "currentColor" : "#fff"}
+          r="4"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+      )}
+    </svg>
   );
 }
 
@@ -1726,7 +1875,12 @@ export function ExamSessionPage() {
       const parts = (textNode.nodeValue ?? "")
         .split(/(\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\))/g)
         .filter(Boolean);
-      if (parts.length === 1) return;
+      const hasMath = parts.some(
+        (part) =>
+          (part.startsWith("\\[") && part.endsWith("\\]")) ||
+          (part.startsWith("\\(") && part.endsWith("\\)")),
+      );
+      if (!hasMath) return;
       const fragment = document.createDocumentFragment();
       parts.forEach((part) => {
         const isDisplayMath = part.startsWith("\\[") && part.endsWith("\\]");
@@ -2372,18 +2526,38 @@ export function ExamSessionPage() {
                     <span>{choice.id}.</span>
                     <span
                       aria-label={choice.math ? choice.text : undefined}
-                      className={choice.math ? "exam-choice-math" : "exam-highlightable"}
+                      className={
+                        choice.math
+                          ? "exam-choice-math"
+                          : choice.image?.src || choice.numberLine
+                            ? "exam-choice-visual"
+                            : "exam-highlightable"
+                      }
                       data-highlight-key={
-                        choice.math ? undefined : `choice:${activeMathQuestion.id}:${choice.id}`
+                        choice.math || choice.image?.src || choice.numberLine
+                          ? undefined
+                          : `choice:${activeMathQuestion.id}:${choice.id}`
                       }
                     >
-                      {choice.math
-                        ? renderMathExpression(choice.math)
-                        : renderMathRichText(
-                            choice.html,
-                            choice.text,
-                            `choice:${activeMathQuestion.id}:${choice.id}`,
-                          )}
+                      {choice.image?.src ? (
+                        <img
+                          alt={choice.image.alt || choice.text}
+                          src={choice.image.src}
+                        />
+                      ) : choice.numberLine ? (
+                        <ExamNumberLineGraphic
+                          description={choice.text}
+                          numberLine={choice.numberLine}
+                        />
+                      ) : choice.math ? (
+                        renderMathExpression(choice.math)
+                      ) : (
+                        renderMathRichText(
+                          choice.html,
+                          choice.text,
+                          `choice:${activeMathQuestion.id}:${choice.id}`,
+                        )
+                      )}
                     </span>
                     {activeMathQuestionEliminatedChoiceIds.includes(choice.id) ? (
                       <svg

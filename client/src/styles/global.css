@@ -4741,6 +4741,26 @@ button {
   min-height: 36px;
 }
 
+.exam-choice-visual {
+  display: block;
+  width: min(100%, 390px);
+}
+
+.exam-choice-visual > img {
+  display: block;
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+}
+
+.exam-number-line {
+  display: block;
+  width: min(100%, 330px);
+  height: auto;
+  overflow: visible;
+  color: #111820;
+}
+
 .exam-math-expression {
   display: inline-flex;
   align-items: center;

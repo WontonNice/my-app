@@ -963,17 +963,52 @@
       {
         "answer": "A",
         "choices": [
-          "5 - n",
-          "5 + n",
-          "21 - n",
-          "21 + n"
+          "5 minus n",
+          "5 plus n",
+          "21 minus n",
+          "21 plus n"
         ],
-        "id": "2025-2026-form-a-math-8",
+        "id": "simplify-linear-expression",
         "imageUrl": "",
         "points": 1,
-        "prompt": "\\(7 + (3n + 6) - (4n + 8) =\\)",
+        "prompt": "\\(7+(3n+6)-(4n+8)=\\)",
         "topic": "Algebra",
         "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "72",
+          "80",
+          "90",
+          "92"
+        ],
+        "id": "same-sum-course-grades",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a certain school, course grades range from 0 to 100. Adrianna took 4 courses and her mean course grade was 90. Roberto took 5 courses. If both students have the same sum of course grades, what was Roberto’s mean?",
+        "topic": "Arithmetic",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "2025-2026-form-a-math-9",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives \n8\n8\n of his stamps to Kevin. Liam now has \n12\n12\n more stamps than Kevin.\n\n\nHow many stamps did Liam start with?",
+        "topic": "Algebra",
+        "type": "inline_dropdown"
+      },
+      {
+        "answer": "162",
+        "choices": [],
+        "id": "2025-2026-form-a-math-11",
+        "imageUrl": "/exam-images/2025-2026-form-a-2025-2026-form-a-math-11-math.png",
+        "points": 1,
+        "prompt": "In the figure above, PQRS is a parallelogram. What is the value of x?\n\nEnter your answer in the space.",
+        "topic": "Algebra",
+        "type": "short_response"
       },
       {
         "answer": "A,E",
@@ -991,11 +1026,56 @@
         "prompt": "Three expressions are given:\n\n\\[-2(2.5n + 4)\\]\n\\[5 - n\\]\n\\[3(2n + 7)\\]\n\nWhich of these are equivalent to the sum of these three expressions?\n\nSelect the **two** correct answers.",
         "topic": "Algebra",
         "type": "multi_select"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "48 sq cm",
+          "96 sq cm",
+          "128 sq cm",
+          "160 sq cm"
+        ],
+        "id": "square-pyramid-lateral-surface-area",
+        "imageUrl": "/exam-images/2025-2026-form-a-square-pyramid-lateral-surface-area-math.png",
+        "points": 1,
+        "prompt": "In the pyramid above, each triangular face has the same area, and the base \\(MNPQ\\) is a square that measures 8 centimeters on each side. If the length of \\(\\overline{RS}\\) = 6 centimeters, what is the surface area of the pyramid excluding the base?",
+        "topic": "Geometry",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "150 cm by 105 cm",
+          "153 cm by 102 cm",
+          "158 cm by 97 cm",
+          "165 cm by 90 cm"
+        ],
+        "id": "rectangle-dimensions-ratio-perimeter",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The perimeter of a rectangle is 510 centimeters. The ratio of the length to the width is 3:2. What are the dimensions of this rectangle?",
+        "topic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "id": "2025-2026-form-a-math-13",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which number line below shows the solution to the inequality \n−\n4\n<\nx\n2\n<\n2\n?\n-\n4\n<\n𝑥\n2\n<\n2\n?",
+        "topic": "Algebra",
+        "type": "multiple_choice"
       }
     ],
     "status": "open",
     "title": "2025-2026 Form A",
-    "updatedAt": "2026-07-23T12:31:15.841Z",
+    "updatedAt": "2026-07-26T17:47:15.374Z",
     "split": false,
     "formAssignments": {},
     "forms": []

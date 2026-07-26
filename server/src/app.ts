@@ -61,6 +61,10 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
     app.use(express.static(clientDistPath, {
         index: false,
         setHeaders(response, filePath) {
+            if (path.extname(filePath).toLowerCase() === ".svgz") {
+                response.setHeader("Content-Encoding", "gzip");
+                response.setHeader("Content-Type", "image/svg+xml");
+            }
             response.setHeader(
                 "Cache-Control",
                 filePath.includes(`${path.sep}assets${path.sep}`)

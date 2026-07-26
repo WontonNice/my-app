@@ -19,10 +19,14 @@ Add new questions directly to the matching difficulty file. Keep every question 
 From the repository root, run:
 
 ```bash
-npm run question-editor
+npm run content-editor
 ```
 
-The local editor opens in your browser. Choose the topic and difficulty, paste the passage, question, four answers, correct-answer explanation, and three wrong-answer explanations, then preview and write. It validates required fields and duplicate IDs before appending a `PracticeQuestion` to the selected `.ts` file.
+The centralized Content Studio opens in your browser. Choose **Regular
+practice**, select the topic and difficulty, paste the passage, question, four
+answers, correct-answer explanation, and three wrong-answer explanations, then
+preview and write. It validates required fields and duplicate IDs before
+appending a `PracticeQuestion` to the selected `.ts` file.
 
 For an all-at-once paste, use the editor's labeled template:
 

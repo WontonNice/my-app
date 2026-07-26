@@ -4,6 +4,7 @@ import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, extname, join, relative, resolve } from "node:path";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { gunzipSync, gzipSync } from "node:zlib";
 import ts from "typescript";
 
 const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -12,10 +13,34 @@ const mathSetsRoot = join(workspaceRoot, "client", "src", "content", "exams", "m
 const testsRoot = join(workspaceRoot, "client", "src", "content", "exams", "tests");
 const examsIndexPath = join(workspaceRoot, "client", "src", "content", "exams", "index.ts");
 const standaloneItemsPath = join(workspaceRoot, "client", "src", "content", "exams", "standaloneItems.ts");
+const advancedPassageSetsRoot = join(
+  workspaceRoot,
+  "client",
+  "src",
+  "content",
+  "advancedPractice",
+  "passageSets",
+);
+const advancedPracticeIndexPath = join(
+  workspaceRoot,
+  "client",
+  "src",
+  "content",
+  "advancedPractice",
+  "index.ts",
+);
+const questionBanksRoot = join(
+  workspaceRoot,
+  "client",
+  "src",
+  "content",
+  "practice",
+  "questionBanks",
+);
 const examImagesRoot = join(workspaceRoot, "client", "public", "exam-images");
 const katexDistRoot = join(workspaceRoot, "node_modules", "katex", "dist");
 const assessmentsPath = join(workspaceRoot, "server", "data", "assessments.json");
-const editorHtmlPath = join(workspaceRoot, "tools", "exam-content-editor.html");
+const editorHtmlPath = join(workspaceRoot, "tools", "content-studio.html");
 const appStylesPath = join(workspaceRoot, "client", "src", "styles", "global.css");
 const editToken = randomBytes(24).toString("hex");
 const passageFormats = ["prose", "poem", "sentence_prose"];
@@ -46,6 +71,25 @@ const mathTopics = [
   "Rates & Unit Conversion",
   "Ratios & Proportions",
   "Uncategorized",
+];
+const advancedGenres = ["Fiction", "History", "Science", "Social Science"];
+const advancedTones = ["blue", "coral", "emerald", "gold"];
+const mathImportFormat = "nathan-tutors-math-question-v1";
+const practiceDifficulties = ["easy", "medium", "hard", "elite"];
+const practiceTopics = [
+  { folder: "authorsPointOfView", label: "Author's Point of View", prefix: "pov", slug: "authors-point-of-view" },
+  { folder: "centralIdeaTheme", label: "Central Idea & Theme", prefix: "central", slug: "central-idea-theme" },
+  { folder: "wordPhraseMeaning", label: "Word & Phrase Meaning", prefix: "words", slug: "word-phrase-meaning" },
+  {
+    folder: "figurativeLanguageImagery",
+    label: "Figurative Language & Imagery",
+    prefix: "figurative",
+    slug: "figurative-language-imagery",
+  },
+  { folder: "toneMood", label: "Tone & Mood", prefix: "tone", slug: "tone-mood" },
+  { folder: "textStructure", label: "Text Structure", prefix: "structure", slug: "text-structure" },
+  { folder: "evidenceSupport", label: "Evidence & Support", prefix: "evidence", slug: "evidence-support" },
+  { folder: "inference", label: "Inference", prefix: "inference", slug: "inference" },
 ];
 
 class EditorError extends Error {
@@ -296,6 +340,111 @@ async function listPassages() {
   }
   passages.sort((left, right) => left.title.localeCompare(right.title));
   return { passageErrors, passages };
+}
+
+async function parseAdvancedPassageFile(filePath) {
+  const source = await readFile(filePath, "utf8");
+  const sourceFile = ts.createSourceFile(filePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  const environment = collectEnvironment(sourceFile);
+  const exported = exportedObject(
+    sourceFile,
+    environment,
+    (objectNode) =>
+      Boolean(
+        objectProperty(objectNode, "id") &&
+          objectProperty(objectNode, "genre") &&
+          objectProperty(objectNode, "passageSet"),
+      ),
+  );
+  if (!exported) throw new Error("No exported AdvancedPracticePassage object was found.");
+
+  const passageSetProperty = objectProperty(exported.initializer, "passageSet");
+  const passageSet = resolveNode(passageSetProperty?.initializer, environment);
+  if (!passageSet || !ts.isObjectLiteralExpression(passageSet)) {
+    throw new Error("The advanced-practice passageSet could not be read.");
+  }
+  const passageProperty = objectProperty(passageSet, "passage");
+  const passageExpression = resolveNode(passageProperty?.initializer, environment);
+  if (!passageExpression || !ts.isCallExpression(passageExpression) || !passageExpression.arguments[0]) {
+    throw new Error("The advanced-practice passage must use an exam passage formatter.");
+  }
+  const formatterName = ts.isIdentifier(passageExpression.expression) ? passageExpression.expression.text : "";
+  const format =
+    formatterName === "createPlainTextPassage"
+      ? "poem"
+      : formatterName === "createSentenceNumberedPassage"
+        ? "sentence_prose"
+        : "prose";
+  const passageInput = valueFromNode(passageExpression.arguments[0], environment);
+  const questionsProperty =
+    objectProperty(passageSet, "questions") ||
+    passageSet.properties.find(
+      (property) => ts.isShorthandPropertyAssignment(property) && property.name.text === "questions",
+    );
+  const questions = questionsProperty
+    ? valueFromNode(
+        ts.isShorthandPropertyAssignment(questionsProperty)
+          ? questionsProperty.name
+          : questionsProperty.initializer,
+        environment,
+      )
+    : undefined;
+  if (!passageInput || typeof passageInput !== "object" || !Array.isArray(questions)) {
+    throw new Error("The advanced-practice passage or questions could not be read.");
+  }
+
+  const readValue = (objectNode, name) => {
+    const property = objectProperty(objectNode, name);
+    return property ? valueFromNode(property.initializer, environment) : undefined;
+  };
+  return {
+    advancedId: String(readValue(exported.initializer, "id") ?? ""),
+    author: typeof passageInput.author === "string" ? passageInput.author : "",
+    blurb:
+      typeof passageInput.blurb === "string"
+        ? passageInput.blurb
+        : typeof passageInput.header === "string"
+          ? passageInput.header
+          : "",
+    directions: readValue(passageSet, "directions"),
+    excerpt: String(readValue(exported.initializer, "excerpt") ?? ""),
+    exportName: exported.exportName,
+    fileName: filePath.slice(advancedPassageSetsRoot.length + 1),
+    format,
+    genre: String(readValue(exported.initializer, "genre") ?? ""),
+    id: String(passageInput.id ?? ""),
+    image: passageInput.image && typeof passageInput.image === "object" ? passageInput.image : undefined,
+    label: readValue(passageSet, "label"),
+    passageSetId: String(readValue(passageSet, "id") ?? ""),
+    questions,
+    richText: typeof passageInput.richText === "string" ? passageInput.richText : "",
+    sourceHash: hashSource(source),
+    sourceNote: typeof passageInput.sourceNote === "string" ? passageInput.sourceNote : "",
+    text: typeof passageInput.text === "string" ? passageInput.text : "",
+    thumbnail: String(readValue(exported.initializer, "thumbnail") ?? ""),
+    thumbnailAlt: String(readValue(exported.initializer, "thumbnailAlt") ?? ""),
+    title: typeof passageInput.title === "string" ? passageInput.title : "",
+    tone: String(readValue(exported.initializer, "tone") ?? ""),
+  };
+}
+
+async function listAdvancedPassages() {
+  await mkdir(advancedPassageSetsRoot, { recursive: true });
+  const entries = await readdir(advancedPassageSetsRoot, { withFileTypes: true });
+  const advancedPassages = [];
+  const advancedPassageErrors = [];
+  for (const entry of entries.filter((candidate) => candidate.isFile() && extname(candidate.name) === ".ts")) {
+    try {
+      advancedPassages.push(await parseAdvancedPassageFile(join(advancedPassageSetsRoot, entry.name)));
+    } catch (error) {
+      advancedPassageErrors.push({
+        fileName: entry.name,
+        message: error instanceof Error ? error.message : "The advanced-practice passage could not be read.",
+      });
+    }
+  }
+  advancedPassages.sort((left, right) => left.title.localeCompare(right.title));
+  return { advancedPassageErrors, advancedPassages };
 }
 
 async function parseMathFile(filePath) {
@@ -685,12 +834,345 @@ async function savePassage(input) {
   return parsePassageFile(filePath);
 }
 
+function normalizeAdvancedPassage(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new EditorError(400, "Advanced-practice passage data is invalid.");
+  }
+  const advancedId = slugify(requiredText(input.advancedId || input.id, "Card ID"));
+  if (!advancedId) throw new EditorError(400, "The advanced-practice card ID must contain letters or numbers.");
+  const genre = requiredText(input.genre, "Genre");
+  if (!advancedGenres.includes(genre)) throw new EditorError(400, "Choose a valid advanced-practice genre.");
+  const tone = requiredText(input.tone, "Card color");
+  if (!advancedTones.includes(tone)) throw new EditorError(400, "Choose a valid advanced-practice card color.");
+  const passage = normalizePassage({
+    ...input,
+    exportName: input.exportName || identifierFrom(advancedId),
+    fileName: input.fileName || `${advancedId}.ts`,
+    passageSetId: input.passageSetId || `advanced-${input.id || advancedId}`,
+  });
+  return {
+    ...passage,
+    advancedId,
+    excerpt: requiredText(input.excerpt, "Card excerpt"),
+    genre,
+    thumbnail: typeof input.thumbnail === "string" ? input.thumbnail.trim() : "",
+    thumbnailAlt: requiredText(input.thumbnailAlt, "Thumbnail description"),
+    tone,
+  };
+}
+
+function buildAdvancedPassageSource(passage) {
+  const formatter =
+    passage.format === "poem"
+      ? "createPlainTextPassage"
+      : passage.format === "sentence_prose"
+        ? "createSentenceNumberedPassage"
+        : "createProsePassage";
+  const textName = identifierFrom(passage.id, "PassageText");
+  const questionsName = identifierFrom(passage.id, "Questions");
+  const passageOptions = [
+    `      id: ${quote(passage.id)},`,
+    `      title: ${quote(passage.title)},`,
+    ...(passage.author ? [`      author: ${quote(passage.author)},`] : []),
+    ...(passage.blurb ? [`      blurb: ${quote(passage.blurb)},`] : []),
+    ...(passage.image ? [`      image: ${JSON.stringify(passage.image)},`] : []),
+    ...(passage.richText ? [`      richText: ${quote(passage.richText)},`] : []),
+    ...(passage.sourceNote ? [`      sourceNote: ${quote(passage.sourceNote)},`] : []),
+    `      text: ${textName},`,
+  ].join("\n");
+  return [
+    `import { ${formatter} } from "../../exams/formatters";`,
+    'import type { ExamQuestion } from "../../exams/types";',
+    'import type { AdvancedPracticePassage } from "../types";',
+    "",
+    `const ${textName} = ${quote(passage.text)};`,
+    "",
+    `const ${questionsName}: ExamQuestion[] = ${JSON.stringify(passage.questions, null, 2)};`,
+    "",
+    `export const ${passage.exportName}: AdvancedPracticePassage = {`,
+    `  id: ${quote(passage.advancedId)},`,
+    `  genre: ${quote(passage.genre)},`,
+    `  excerpt: ${quote(passage.excerpt)},`,
+    ...(passage.thumbnail ? [`  thumbnail: ${quote(passage.thumbnail)},`] : []),
+    `  thumbnailAlt: ${quote(passage.thumbnailAlt)},`,
+    `  tone: ${quote(passage.tone)},`,
+    "  passageSet: {",
+    `    id: ${quote(passage.passageSetId)},`,
+    ...(passage.label ? [`    label: ${quote(passage.label)},`] : []),
+    `    questionCount: ${questionsName}.length,`,
+    `    directions: ${JSON.stringify(passage.directions, null, 2)},`,
+    `    passage: ${formatter}({`,
+    passageOptions,
+    "    }),",
+    `    questions: ${questionsName},`,
+    "  },",
+    "};",
+    "",
+  ].join("\n");
+}
+
+async function ensureAdvancedPassageRegistration(passage) {
+  let source = await readFile(advancedPracticeIndexPath, "utf8");
+  const importPath = `./passageSets/${passage.fileName.replace(/\.ts$/, "")}`;
+  if (!source.includes(`from ${quote(importPath)}`) && !source.includes(`from '${importPath}'`)) {
+    const imports = Array.from(source.matchAll(/^import .*;\r?$/gm));
+    const insertionIndex = imports.length ? imports.at(-1).index + imports.at(-1)[0].length : 0;
+    source = `${source.slice(0, insertionIndex)}\nimport { ${passage.exportName} } from ${quote(importPath)};${source.slice(insertionIndex)}`;
+  }
+  const marker = "export const advancedPracticePassages = [";
+  const markerIndex = source.indexOf(marker);
+  if (markerIndex < 0) throw new EditorError(500, "The advanced-practice registry could not be found.");
+  const closingIndex = source.indexOf("];", markerIndex);
+  if (closingIndex < 0) throw new EditorError(500, "The advanced-practice registry is not closed.");
+  const registeredSource = source.slice(markerIndex, closingIndex);
+  if (!new RegExp(`\\b${passage.exportName}\\b`).test(registeredSource)) {
+    source = `${source.slice(0, closingIndex).trimEnd()}\n  ${passage.exportName},\n${source.slice(closingIndex)}`;
+  }
+  await writeFile(advancedPracticeIndexPath, source, "utf8");
+}
+
+async function saveAdvancedPassage(input) {
+  const passage = normalizeAdvancedPassage(input);
+  const filePath = join(advancedPassageSetsRoot, passage.fileName);
+  let existingSource = "";
+  try {
+    existingSource = await readFile(filePath, "utf8");
+  } catch {
+    // A new file has no source hash.
+  }
+  if (existingSource) {
+    if (!passage.sourceHash || hashSource(existingSource) !== passage.sourceHash) {
+      throw new EditorError(
+        409,
+        "This advanced-practice passage changed after it was loaded. Refresh the Studio before saving.",
+      );
+    }
+  } else {
+    const { advancedPassages } = await listAdvancedPassages();
+    if (
+      advancedPassages.some(
+        (candidate) =>
+          candidate.advancedId === passage.advancedId ||
+          candidate.id === passage.id ||
+          candidate.exportName === passage.exportName,
+      )
+    ) {
+      throw new EditorError(409, "That advanced-practice card ID, passage ID, or export name already exists.");
+    }
+  }
+  await writeFile(filePath, buildAdvancedPassageSource(passage), "utf8");
+  await ensureAdvancedPassageRegistration(passage);
+  return parseAdvancedPassageFile(filePath);
+}
+
+function getPracticeTarget(topicSlug, difficulty) {
+  const topic = practiceTopics.find((candidate) => candidate.slug === topicSlug);
+  if (!topic) throw new EditorError(400, "Choose a valid regular-practice topic.");
+  if (!practiceDifficulties.includes(difficulty)) {
+    throw new EditorError(400, "Choose a valid regular-practice difficulty.");
+  }
+  return {
+    filePath: join(questionBanksRoot, topic.folder, `${difficulty}.ts`),
+    topic,
+  };
+}
+
+function normalizePracticeQuestion(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new EditorError(400, "Regular-practice question data is invalid.");
+  }
+  const topic = requiredText(input.topic, "Topic");
+  const difficulty = requiredText(input.difficulty, "Difficulty");
+  const id = requiredText(input.id, "Question ID").toLowerCase();
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(id)) {
+    throw new EditorError(400, "Question ID may contain only lowercase letters, numbers, and hyphens.");
+  }
+  const correctChoiceId = requiredText(input.correctChoiceId, "Correct answer").toUpperCase();
+  if (!["A", "B", "C", "D"].includes(correctChoiceId)) {
+    throw new EditorError(400, "Correct answer must be A, B, C, or D.");
+  }
+  const choices = ["A", "B", "C", "D"].map((choiceId) => ({
+    id: choiceId,
+    text: requiredText(input.choices?.[choiceId], `Answer ${choiceId}`),
+  }));
+  const incorrectChoiceExplanations = {};
+  for (const choice of choices) {
+    if (choice.id === correctChoiceId) continue;
+    incorrectChoiceExplanations[choice.id] = requiredText(
+      input.incorrectChoiceExplanations?.[choice.id],
+      `Explanation for wrong answer ${choice.id}`,
+    );
+  }
+  getPracticeTarget(topic, difficulty);
+  return {
+    choices,
+    correctChoiceId,
+    difficulty,
+    explanation: requiredText(input.explanation, "Correct-answer explanation"),
+    id,
+    incorrectChoiceExplanations,
+    prompt: requiredText(input.prompt, "Question"),
+    stimulus: requiredText(input.stimulus, "Passage"),
+    topic,
+  };
+}
+
+function formatPracticeStimulus(value) {
+  if (!value.includes("\n")) return quote(value);
+  const escaped = value.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${");
+  return `\`${escaped}\``;
+}
+
+function buildPracticeQuestionSnippet(question) {
+  return [
+    "  {",
+    `    id: ${quote(question.id)},`,
+    `    difficulty: ${quote(question.difficulty)},`,
+    `    stimulus: ${formatPracticeStimulus(question.stimulus)},`,
+    `    prompt: ${quote(question.prompt)},`,
+    "    choices: [",
+    ...question.choices.map((choice) => `      { id: ${quote(choice.id)}, text: ${quote(choice.text)} },`),
+    "    ],",
+    `    correctChoiceId: ${quote(question.correctChoiceId)},`,
+    `    explanation: ${quote(question.explanation)},`,
+    "    incorrectChoiceExplanations: {",
+    ...Object.entries(question.incorrectChoiceExplanations).map(
+      ([choiceId, explanation]) => `      ${choiceId}: ${quote(explanation)},`,
+    ),
+    "    },",
+    "  },",
+  ].join("\n");
+}
+
+async function getPracticeQuestionBankFiles() {
+  const entries = await readdir(questionBanksRoot, { recursive: true, withFileTypes: true });
+  return entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".ts") && entry.name !== "index.ts")
+    .map((entry) => join(entry.parentPath, entry.name));
+}
+
+async function assertUniquePracticeQuestionId(questionId) {
+  for (const filePath of await getPracticeQuestionBankFiles()) {
+    const source = await readFile(filePath, "utf8");
+    if (source.includes(`id: "${questionId}"`) || source.includes(`id: '${questionId}'`)) {
+      throw new EditorError(
+        409,
+        `Question ID ${questionId} already exists in ${relativePath(filePath)}.`,
+      );
+    }
+  }
+}
+
+async function getPracticeSuggestedId(topic, difficulty) {
+  const { filePath } = getPracticeTarget(topic.slug, difficulty);
+  const source = await readFile(filePath, "utf8");
+  const pattern = new RegExp(`id:\\s*["']${topic.prefix}-${difficulty}-(\\d+)["']`, "g");
+  let highest = 0;
+  for (const match of source.matchAll(pattern)) highest = Math.max(highest, Number(match[1]));
+  return `${topic.prefix}-${difficulty}-${highest + 1}`;
+}
+
+async function getPracticeSuggestions() {
+  const suggestions = {};
+  for (const topic of practiceTopics) {
+    suggestions[topic.slug] = {};
+    for (const difficulty of practiceDifficulties) {
+      suggestions[topic.slug][difficulty] = await getPracticeSuggestedId(topic, difficulty);
+    }
+  }
+  return suggestions;
+}
+
+async function getPracticeConfig() {
+  return {
+    difficulties: practiceDifficulties,
+    suggestions: await getPracticeSuggestions(),
+    topics: practiceTopics,
+  };
+}
+
+async function previewPracticeQuestion(input) {
+  const question = normalizePracticeQuestion(input);
+  await assertUniquePracticeQuestionId(question.id);
+  const { filePath } = getPracticeTarget(question.topic, question.difficulty);
+  const source = await readFile(filePath, "utf8");
+  if (!source.includes("PracticeQuestion[] = [") || source.lastIndexOf("\n];") < 0) {
+    throw new EditorError(
+      500,
+      `The target file does not have the expected PracticeQuestion array format: ${relativePath(filePath)}`,
+    );
+  }
+  return {
+    question,
+    snippet: buildPracticeQuestionSnippet(question),
+    sourceHash: hashSource(source),
+    target: relativePath(filePath),
+  };
+}
+
+async function savePracticeQuestion(input, expectedSourceHash) {
+  const preview = await previewPracticeQuestion(input);
+  const { filePath, topic } = getPracticeTarget(preview.question.topic, preview.question.difficulty);
+  const source = await readFile(filePath, "utf8");
+  if (!expectedSourceHash || hashSource(source) !== expectedSourceHash) {
+    throw new EditorError(409, "The question-bank file changed after preview. Preview again before writing.");
+  }
+  const closingIndex = source.lastIndexOf("\n];");
+  const updated = `${source.slice(0, closingIndex).trimEnd()}\n${preview.snippet}${source.slice(closingIndex)}`;
+  await writeFile(filePath, updated, "utf8");
+  return {
+    id: preview.question.id,
+    nextId: await getPracticeSuggestedId(topic, preview.question.difficulty),
+    target: preview.target,
+  };
+}
+
 const imageExtensions = {
   "image/gif": "gif",
   "image/jpeg": "jpg",
   "image/png": "png",
   "image/webp": "webp",
 };
+const svgzMimeTypes = new Set([
+  "application/gzip",
+  "application/x-gzip",
+  "image/svg+xml",
+  "image/svgz",
+]);
+
+function uploadedImageExtension(input) {
+  const mimeType = requiredText(input.mimeType, "Image type").toLowerCase();
+  const originalFileName =
+    typeof input.fileName === "string" ? input.fileName.trim() : "";
+  if (extname(originalFileName).toLowerCase() === ".svgz") {
+    if (!svgzMimeTypes.has(mimeType)) {
+      throw new EditorError(400, "The selected .svgz file has an unsupported image type.");
+    }
+    return "svgz";
+  }
+  const extension = imageExtensions[mimeType];
+  if (!extension) {
+    throw new EditorError(400, "Use a PNG, JPEG, GIF, WebP, or SVGZ image.");
+  }
+  return extension;
+}
+
+function normalizeSvgz(bytes) {
+  const isGzipCompressed = bytes[0] === 0x1f && bytes[1] === 0x8b;
+  let svgBytes = bytes;
+  if (isGzipCompressed) {
+    try {
+      svgBytes = gunzipSync(bytes, { maxOutputLength: 5_000_000 });
+    } catch {
+      throw new EditorError(400, "The SVGZ file contains invalid compressed data.");
+    }
+  }
+  const sourceHead = svgBytes.subarray(0, 100_000).toString("latin1");
+  if (!/<svg(?:\s|>)/i.test(sourceHead)) {
+    throw new EditorError(400, "The SVGZ file does not contain a valid SVG image.");
+  }
+  return isGzipCompressed ? bytes : gzipSync(svgBytes);
+}
 
 async function savePassageImage(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
@@ -698,16 +1180,15 @@ async function savePassageImage(input) {
   }
   const passageId = slugify(requiredText(input.passageId, "Passage ID"));
   if (!passageId) throw new EditorError(400, "Passage ID must contain letters or numbers.");
-  const mimeType = requiredText(input.mimeType, "Image type").toLowerCase();
-  const extension = imageExtensions[mimeType];
-  if (!extension) throw new EditorError(400, "Use a PNG, JPEG, GIF, or WebP image.");
+  const extension = uploadedImageExtension(input);
   const dataUrl = requiredText(input.dataUrl, "Image file", { preserve: true });
   const match = dataUrl.match(/^data:[^;]+;base64,([a-zA-Z0-9+/=\s]+)$/);
   if (!match) throw new EditorError(400, "The uploaded image could not be read.");
-  const bytes = Buffer.from(match[1].replace(/\s/g, ""), "base64");
+  let bytes = Buffer.from(match[1].replace(/\s/g, ""), "base64");
   if (!bytes.length || bytes.length > 5_000_000) {
     throw new EditorError(413, "Passage images must be smaller than 5 MB.");
   }
+  if (extension === "svgz") bytes = normalizeSvgz(bytes);
 
   const fileName = `${passageId}-passage.${extension}`;
   await mkdir(examImagesRoot, { recursive: true });
@@ -731,6 +1212,85 @@ function normalizeMathImage(image, questionNumber) {
   };
 }
 
+function normalizeMathChoiceImage(image, questionNumber, choiceId) {
+  if (image === undefined || image === null) return undefined;
+  if (!image || typeof image !== "object" || Array.isArray(image)) {
+    throw new EditorError(400, `Math question ${questionNumber} answer ${choiceId} image is invalid.`);
+  }
+  return {
+    alt: requiredText(
+      image.alt,
+      `Math question ${questionNumber} answer ${choiceId} image description`,
+    ),
+    ...(typeof image.caption === "string" && image.caption.trim()
+      ? { caption: image.caption.trim() }
+      : {}),
+    src: requiredText(
+      image.src,
+      `Math question ${questionNumber} answer ${choiceId} uploaded image`,
+    ),
+  };
+}
+
+function normalizeMathNumberLine(numberLine, questionNumber, choiceId) {
+  if (numberLine === undefined || numberLine === null) return undefined;
+  if (!numberLine || typeof numberLine !== "object" || Array.isArray(numberLine)) {
+    throw new EditorError(400, `Math question ${questionNumber} answer ${choiceId} number line is invalid.`);
+  }
+  const readNumber = (field, label) => {
+    const value = Number(numberLine[field]);
+    if (!Number.isFinite(value)) {
+      throw new EditorError(
+        400,
+        `Math question ${questionNumber} answer ${choiceId} number-line ${label} must be a number.`,
+      );
+    }
+    return value;
+  };
+  const min = readNumber("min", "minimum");
+  const max = readNumber("max", "maximum");
+  const tickStep = readNumber("tickStep", "tick spacing");
+  const labelStep = readNumber("labelStep", "label spacing");
+  const solutionStart = readNumber("solutionStart", "solution start");
+  const solutionEnd = readNumber("solutionEnd", "solution end");
+  if (max <= min) {
+    throw new EditorError(
+      400,
+      `Math question ${questionNumber} answer ${choiceId} number-line maximum must be greater than its minimum.`,
+    );
+  }
+  if (tickStep <= 0 || labelStep <= 0 || (max - min) / tickStep > 100) {
+    throw new EditorError(
+      400,
+      `Math question ${questionNumber} answer ${choiceId} number-line spacing must be positive and produce no more than 100 ticks.`,
+    );
+  }
+  if (
+    solutionStart > solutionEnd ||
+    solutionStart < min ||
+    solutionStart > max ||
+    solutionEnd < min ||
+    solutionEnd > max
+  ) {
+    throw new EditorError(
+      400,
+      `Math question ${questionNumber} answer ${choiceId} solution endpoints must stay within the number-line range and be in order.`,
+    );
+  }
+  return {
+    endClosed: numberLine.endClosed === true,
+    ...(numberLine.extendLeft === true ? { extendLeft: true } : {}),
+    ...(numberLine.extendRight === true ? { extendRight: true } : {}),
+    labelStep,
+    max,
+    min,
+    solutionEnd,
+    solutionStart,
+    startClosed: numberLine.startClosed === true,
+    tickStep,
+  };
+}
+
 function normalizeMathChoice(choice, index, questionNumber) {
   const fallbackId = String.fromCharCode(65 + index);
   const id = String(choice?.id || fallbackId).trim().toUpperCase();
@@ -738,9 +1298,24 @@ function normalizeMathChoice(choice, index, questionNumber) {
     throw new EditorError(400, `Math question ${questionNumber} answer IDs must be letters.`);
   }
   const math = typeof choice?.math === "string" ? choice.math.trim() : "";
+  const image = normalizeMathChoiceImage(choice?.image, questionNumber, id);
+  const numberLine = normalizeMathNumberLine(choice?.numberLine, questionNumber, id);
+  if ([Boolean(math), Boolean(image), Boolean(numberLine)].filter(Boolean).length > 1) {
+    throw new EditorError(
+      400,
+      `Math question ${questionNumber} answer ${id} must use only one of formula, image, or number-line formatting.`,
+    );
+  }
   const text = requiredText(choice?.text || math, `Math question ${questionNumber} answer ${id}`);
   const html = sanitizeInlineRichText(choice?.html);
-  return { id, ...(html ? { html } : {}), ...(math ? { math } : {}), text };
+  return {
+    id,
+    ...(html ? { html } : {}),
+    ...(image ? { image } : {}),
+    ...(math ? { math } : {}),
+    ...(numberLine ? { numberLine } : {}),
+    text,
+  };
 }
 
 function normalizeMathDropdownOption(option, optionIndex, questionNumber, dropdownNumber) {
@@ -948,6 +1523,85 @@ function normalizeMathQuestion(question, assessmentId, index) {
   throw new EditorError(400, `Math question ${questionNumber} uses an unsupported question type.`);
 }
 
+function parseMathImportSource(source) {
+  let raw = requiredText(source, "Imported question", { preserve: true }).trim();
+  const fenced = raw.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
+  if (fenced) raw = fenced[1].trim();
+  let document;
+  try {
+    document = JSON.parse(raw);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : "Unknown JSON error";
+    throw new EditorError(400, `The imported question is not valid JSON: ${detail}`);
+  }
+  if (!document || typeof document !== "object" || Array.isArray(document)) {
+    throw new EditorError(400, "The imported document must be one JSON object.");
+  }
+  if (
+    typeof document.format === "string" &&
+    document.format.trim() &&
+    document.format !== mathImportFormat
+  ) {
+    throw new EditorError(
+      400,
+      `This import uses ${document.format}; the Studio expects ${mathImportFormat}.`,
+    );
+  }
+  const question =
+    document.question && typeof document.question === "object" && !Array.isArray(document.question)
+      ? document.question
+      : document;
+  const reviewNotes = Array.isArray(document.reviewNotes)
+    ? document.reviewNotes.map((note) => String(note).trim()).filter(Boolean)
+    : [];
+  const imageDescription =
+    typeof document.imageDescription === "string" ? document.imageDescription.trim() : "";
+  return { imageDescription, question, reviewNotes };
+}
+
+async function previewMathImport(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new EditorError(400, "Math import data is invalid.");
+  }
+  const assessmentId = requiredText(input.assessmentId, "Assessment");
+  const state = await getState();
+  const assessment = state.assessments.find((candidate) => candidate.id === assessmentId);
+  if (!assessment) throw new EditorError(404, "The selected assessment was not found.");
+  const parsed = parseMathImportSource(input.source);
+  const question = normalizeMathQuestion(parsed.question, assessmentId, 0);
+  const test = state.tests.find((candidate) => candidate.assessmentId === assessmentId);
+  const registeredSection = test?.mathSectionFileName
+    ? state.mathSections.find((candidate) => candidate.fileName === test.mathSectionFileName)
+    : undefined;
+  const existingIds = new Set([
+    ...(registeredSection?.questions || []).map((candidate) => candidate.id),
+    ...(Array.isArray(input.existingQuestionIds)
+      ? input.existingQuestionIds.map((candidate) => String(candidate))
+      : []),
+  ]);
+  if (existingIds.has(question.id)) {
+    throw new EditorError(
+      409,
+      `Math question ID ${question.id} already exists in this exam. Ask ChatGPT for a different ID or edit it before importing.`,
+    );
+  }
+  const warnings = [
+    ...parsed.reviewNotes,
+    ...(parsed.imageDescription
+      ? [
+          `The screenshot includes visual content: ${parsed.imageDescription}. Add the original image with the Math image uploader before saving.`,
+        ]
+      : []),
+  ];
+  return {
+    format: mathImportFormat,
+    imageDescription: parsed.imageDescription,
+    normalizedJson: JSON.stringify(question, null, 2),
+    question,
+    warnings,
+  };
+}
+
 function normalizeMathSection(input, assessment) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Math section data is invalid.");
@@ -1045,17 +1699,26 @@ async function saveMathImage(input) {
   }
   const assessmentId = slugify(requiredText(input.assessmentId, "Assessment"));
   const questionId = slugify(requiredText(input.questionId, "Math question ID"));
-  const mimeType = requiredText(input.mimeType, "Image type").toLowerCase();
-  const extension = imageExtensions[mimeType];
-  if (!extension) throw new EditorError(400, "Use a PNG, JPEG, GIF, or WebP image.");
+  const hasChoiceId = typeof input.choiceId === "string" && input.choiceId.trim();
+  const choiceId = hasChoiceId ? slugify(input.choiceId) : "";
+  if (hasChoiceId && !choiceId) {
+    throw new EditorError(400, "Answer choice ID must contain letters or numbers.");
+  }
+  const extension = uploadedImageExtension(input);
+  if (choiceId && extension !== "png" && extension !== "svgz") {
+    throw new EditorError(400, "Answer-choice images must be PNG or SVGZ files.");
+  }
   const dataUrl = requiredText(input.dataUrl, "Image file", { preserve: true });
   const match = dataUrl.match(/^data:[^;]+;base64,([a-zA-Z0-9+/=\s]+)$/);
   if (!match) throw new EditorError(400, "The uploaded image could not be read.");
-  const bytes = Buffer.from(match[1].replace(/\s/g, ""), "base64");
+  let bytes = Buffer.from(match[1].replace(/\s/g, ""), "base64");
   if (!bytes.length || bytes.length > 5_000_000) {
     throw new EditorError(413, "Math question images must be smaller than 5 MB.");
   }
-  const fileName = `${assessmentId}-${questionId}-math.${extension}`;
+  if (extension === "svgz") bytes = normalizeSvgz(bytes);
+  const fileName = choiceId
+    ? `${assessmentId}-${questionId}-choice-${choiceId}.${extension}`
+    : `${assessmentId}-${questionId}-math.${extension}`;
   await mkdir(examImagesRoot, { recursive: true });
   await writeFile(join(examImagesRoot, fileName), bytes);
   return {
@@ -1426,10 +2089,15 @@ async function saveStandaloneItem(input) {
 
 async function getState() {
   const { passageErrors, passages } = await listPassages();
+  const { advancedPassageErrors, advancedPassages } = await listAdvancedPassages();
   const { mathErrors, mathSections } = await listMathSections();
   const { testErrors, tests } = await listTests(passages, mathSections);
   const standaloneSource = await readFile(standaloneItemsPath, "utf8");
   return {
+    advancedGenres,
+    advancedPassageErrors,
+    advancedPassages,
+    advancedTones,
     assessments: await readAssessments(),
     editToken,
     mathErrors,
@@ -1438,6 +2106,7 @@ async function getState() {
     passageErrors,
     passageFormats,
     passages,
+    practice: await getPracticeConfig(),
     standaloneItems: await listStandaloneItems(),
     standaloneSourceHash: hashSource(standaloneSource),
     testErrors,
@@ -1685,7 +2354,7 @@ function verifyEditRequest(request) {
   }
   const origin = request.headers.origin;
   if (origin && !/^http:\/\/(127\.0\.0\.1|localhost)(:\d+)?$/.test(origin)) {
-    throw new EditorError(403, "Only the local editor may write exam files.");
+    throw new EditorError(403, "Only the local Content Studio may write content files.");
   }
 }
 
@@ -1747,10 +2416,15 @@ async function handleRequest(request, response) {
         ".jpeg": "image/jpeg",
         ".jpg": "image/jpeg",
         ".png": "image/png",
+        ".svgz": "image/svg+xml",
         ".webp": "image/webp",
       }[extension];
       if (!contentType) throw new EditorError(404, "Image not found.");
-      response.writeHead(200, { "Cache-Control": "no-store", "Content-Type": contentType });
+      response.writeHead(200, {
+        "Cache-Control": "no-store",
+        ...(extension === ".svgz" ? { "Content-Encoding": "gzip" } : {}),
+        "Content-Type": contentType,
+      });
       response.end(await readFile(join(examImagesRoot, fileName)));
       return;
     }
@@ -1763,6 +2437,11 @@ async function handleRequest(request, response) {
       sendJson(response, 201, { passage: await savePassage(await readJson(request)) });
       return;
     }
+    if (request.method === "POST" && url.pathname === "/api/advanced-passages") {
+      verifyEditRequest(request);
+      sendJson(response, 201, { passage: await saveAdvancedPassage(await readJson(request)) });
+      return;
+    }
     if (request.method === "POST" && url.pathname === "/api/images") {
       verifyEditRequest(request);
       sendJson(response, 201, { image: await savePassageImage(await readJson(request)) });
@@ -1771,6 +2450,20 @@ async function handleRequest(request, response) {
     if (request.method === "POST" && url.pathname === "/api/math-images") {
       verifyEditRequest(request);
       sendJson(response, 201, { image: await saveMathImage(await readJson(request)) });
+      return;
+    }
+    if (request.method === "POST" && url.pathname === "/api/math-choice-images") {
+      verifyEditRequest(request);
+      const input = await readJson(request);
+      if (typeof input.choiceId !== "string" || !input.choiceId.trim()) {
+        throw new EditorError(400, "Choose the answer choice before uploading its image.");
+      }
+      sendJson(response, 201, { image: await saveMathImage(input) });
+      return;
+    }
+    if (request.method === "POST" && url.pathname === "/api/math/import-preview") {
+      verifyEditRequest(request);
+      sendJson(response, 200, await previewMathImport(await readJson(request)));
       return;
     }
     if (request.method === "POST" && url.pathname === "/api/math") {
@@ -1788,11 +2481,22 @@ async function handleRequest(request, response) {
       sendJson(response, 201, { standalone: await saveStandaloneItem(await readJson(request)) });
       return;
     }
+    if (request.method === "POST" && url.pathname === "/api/practice/preview") {
+      verifyEditRequest(request);
+      sendJson(response, 200, await previewPracticeQuestion(await readJson(request)));
+      return;
+    }
+    if (request.method === "POST" && url.pathname === "/api/practice/questions") {
+      verifyEditRequest(request);
+      const body = await readJson(request);
+      sendJson(response, 201, await savePracticeQuestion(body.question, body.sourceHash));
+      return;
+    }
     sendJson(response, 404, { message: "Not found." });
   } catch (error) {
     const status = error instanceof EditorError ? error.status : 500;
     sendJson(response, status, {
-      message: error instanceof Error ? error.message : "Unexpected exam editor error.",
+      message: error instanceof Error ? error.message : "Unexpected Content Studio error.",
     });
   }
 }
@@ -1801,6 +2505,27 @@ async function validateSetup() {
   await readFile(editorHtmlPath, "utf8");
   await readFile(appStylesPath, "utf8");
   await readFile(join(katexDistRoot, "katex.min.js"), "utf8");
+  const svgFixture = Buffer.from(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"></svg>',
+  );
+  const compressedSvgzFixture = normalizeSvgz(gzipSync(svgFixture));
+  const normalizedPlainSvgzFixture = normalizeSvgz(svgFixture);
+  if (
+    compressedSvgzFixture[0] !== 0x1f ||
+    compressedSvgzFixture[1] !== 0x8b ||
+    normalizedPlainSvgzFixture[0] !== 0x1f ||
+    normalizedPlainSvgzFixture[1] !== 0x8b
+  ) {
+    throw new Error("SVGZ compression normalization failed.");
+  }
+  if (
+    uploadedImageExtension({
+      fileName: "answer-choice.svgz",
+      mimeType: "image/svg+xml",
+    }) !== "svgz"
+  ) {
+    throw new Error("SVGZ image upload validation failed.");
+  }
   const featureFixture = normalizePassage({
     blurb: "Context above the title.",
     format: "prose",
@@ -1899,6 +2624,51 @@ async function validateSetup() {
   ) {
     throw new Error("Exam editor feature validation failed.");
   }
+  const advancedFixture = normalizeAdvancedPassage({
+    ...featureFixture,
+    advancedId: "editor-feature-validation",
+    excerpt: "A short advanced-practice validation excerpt.",
+    genre: "Science",
+    thumbnailAlt: "A validation illustration",
+    tone: "emerald",
+  });
+  const advancedSource = buildAdvancedPassageSource(advancedFixture);
+  if (
+    advancedFixture.advancedId !== "editor-feature-validation" ||
+    advancedFixture.genre !== "Science" ||
+    advancedFixture.tone !== "emerald" ||
+    !advancedSource.includes("AdvancedPracticePassage") ||
+    !advancedSource.includes('thumbnailAlt: "A validation illustration"')
+  ) {
+    throw new Error("Advanced-practice editor feature validation failed.");
+  }
+  const practiceFixture = normalizePracticeQuestion({
+    choices: {
+      A: "Correct",
+      B: "Distractor B",
+      C: "Distractor C",
+      D: "Distractor D",
+    },
+    correctChoiceId: "A",
+    difficulty: "easy",
+    explanation: "A is supported by the passage.",
+    id: "pov-easy-validation",
+    incorrectChoiceExplanations: {
+      B: "B is not supported.",
+      C: "C is not supported.",
+      D: "D is not supported.",
+    },
+    prompt: "Which answer is supported?",
+    stimulus: "Validation passage.",
+    topic: "authors-point-of-view",
+  });
+  if (
+    practiceFixture.choices.length !== 4 ||
+    practiceFixture.correctChoiceId !== "A" ||
+    !buildPracticeQuestionSnippet(practiceFixture).includes('id: "pov-easy-validation"')
+  ) {
+    throw new Error("Regular-practice editor feature validation failed.");
+  }
   const mathFixture = normalizeMathSection(
     {
       assessmentId: "math-editor-validation",
@@ -1907,6 +2677,28 @@ async function validateSetup() {
           choices: [
             { id: "A", math: "\\frac{1}{2}", text: "one half" },
             { html: "<em>2</em>", id: "B", text: "2" },
+            {
+              id: "C",
+              image: {
+                alt: "A sample answer-choice diagram",
+                src: "/exam-images/sample-choice.png",
+              },
+              text: "sample answer-choice diagram",
+            },
+            {
+              id: "D",
+              numberLine: {
+                endClosed: false,
+                labelStep: 5,
+                max: 10,
+                min: -10,
+                solutionEnd: 2,
+                solutionStart: -4,
+                startClosed: false,
+                tickStep: 1,
+              },
+              text: "open interval from negative four to two",
+            },
           ],
           correctChoiceId: "A",
           id: "math-editor-validation-1",
@@ -1969,6 +2761,8 @@ async function validateSetup() {
     mathFixture.questions.length !== 3 ||
     mathFixture.questions[0].choices[0].math !== "\\frac{1}{2}" ||
     mathFixture.questions[0].choices[1].html !== "<em>2</em>" ||
+    mathFixture.questions[0].choices[2].image.alt !== "A sample answer-choice diagram" ||
+    mathFixture.questions[0].choices[3].numberLine.solutionStart !== -4 ||
     mathFixture.questions[0].instructionsHtml !== "Choose <em>one</em> answer." ||
     !mathFixture.questions[0].promptHtml.includes("<strong>value</strong>") ||
     mathFixture.questions[1].correctTextAnswers.length !== 2 ||
@@ -1977,6 +2771,37 @@ async function validateSetup() {
     !mathSource.includes("ExamMathSection")
   ) {
     throw new Error("Math editor feature validation failed.");
+  }
+  const importedMathDocument = parseMathImportSource(
+    JSON.stringify({
+      format: mathImportFormat,
+      imageDescription: "A coordinate grid with one plotted line.",
+      question: {
+        choices: [
+          { id: "A", math: "\\frac{1}{2}", text: "one half" },
+          { id: "B", math: "2", text: "two" },
+        ],
+        correctChoiceId: "A",
+        id: "math-import-validation",
+        points: 1,
+        prompt: "Which value equals \\(\\frac{1}{2}\\)?",
+        topic: "Number Sense",
+        type: "multiple_choice",
+      },
+      reviewNotes: ["Verify the plotted intercept."],
+    }),
+  );
+  const importedMathQuestion = normalizeMathQuestion(
+    importedMathDocument.question,
+    "math-import-validation",
+    0,
+  );
+  if (
+    importedMathQuestion.choices[0].math !== "\\frac{1}{2}" ||
+    importedMathDocument.reviewNotes[0] !== "Verify the plotted intercept." ||
+    !importedMathDocument.imageDescription.includes("coordinate grid")
+  ) {
+    throw new Error("KaTeX math import validation failed.");
   }
   const standaloneDragFixture = normalizeStandaloneItem({
     categories: [{ id: "construction-error", title: "Contains an error in construction" }],
@@ -1999,14 +2824,27 @@ async function validateSetup() {
     throw new Error("Part B drag-and-drop validation failed.");
   }
   const state = await getState();
-  if (state.passageErrors.length || state.mathErrors.length || state.testErrors.length) {
-    const errors = [...state.passageErrors, ...state.mathErrors, ...state.testErrors]
+  if (
+    state.advancedPassageErrors.length ||
+    state.passageErrors.length ||
+    state.mathErrors.length ||
+    state.testErrors.length
+  ) {
+    const errors = [
+      ...state.advancedPassageErrors,
+      ...state.passageErrors,
+      ...state.mathErrors,
+      ...state.testErrors,
+    ]
       .map((error) => `${error.fileName}: ${error.message}`)
       .join("\n");
-    throw new Error(`Exam editor could not read every source file:\n${errors}`);
+    throw new Error(`Content Studio could not read every source file:\n${errors}`);
   }
   const diagnosticTest = state.tests.find((test) => test.assessmentId === "shsat-diagnostic-1");
   if (
+    state.advancedPassages.length < 1 ||
+    state.practice.topics.length !== practiceTopics.length ||
+    Object.keys(state.practice.suggestions).length !== practiceTopics.length ||
     state.standaloneItems.length < 4 ||
     !state.standaloneSourceHash ||
     !state.standaloneItems.some(
@@ -2018,10 +2856,10 @@ async function validateSetup() {
     diagnosticTest?.standaloneItemIds.length !== 3 ||
     diagnosticTest.readingPassageIds.length !== diagnosticTest.passageIds.length
   ) {
-    throw new Error("English section and stand-alone bank validation failed.");
+    throw new Error("Centralized content-bank validation failed.");
   }
   console.log(
-    `Exam editor validated ${state.passages.length} passages, ${state.mathSections.length} math sections, ${state.tests.length} tests, and ${state.assessments.length} assessments.`,
+    `Content Studio validated ${state.passages.length} exam passages, ${state.advancedPassages.length} advanced-practice passages, ${state.practice.topics.length * practiceDifficulties.length} regular-practice banks, ${state.mathSections.length} math sections, ${state.tests.length} tests, and ${state.assessments.length} assessments.`,
   );
 }
 
@@ -2039,7 +2877,7 @@ if (!Number.isInteger(port) || port < 1024 || port > 65535) {
 const server = createServer(handleRequest);
 server.listen(port, "127.0.0.1", () => {
   const url = `http://127.0.0.1:${port}`;
-  console.log(`Exam Content Studio is running at ${url}`);
+  console.log(`Nathan Tutors Content Studio is running at ${url}`);
   console.log("Press Ctrl+C when you are finished.");
   if (process.argv.includes("--no-open")) return;
   if (process.platform === "win32") {

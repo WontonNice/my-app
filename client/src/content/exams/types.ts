@@ -31,10 +31,25 @@ export type ExamPassage = {
   title: string;
 };
 
+export type ExamNumberLine = {
+  endClosed: boolean;
+  extendLeft?: boolean;
+  extendRight?: boolean;
+  labelStep: number;
+  max: number;
+  min: number;
+  solutionEnd: number;
+  solutionStart: number;
+  startClosed: boolean;
+  tickStep: number;
+};
+
 export type ExamChoice = {
   html?: string;
   id: string;
+  image?: ExamQuestionImage;
   math?: string;
+  numberLine?: ExamNumberLine;
   text: string;
 };
 
