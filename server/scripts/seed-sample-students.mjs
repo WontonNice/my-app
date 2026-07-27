@@ -12,8 +12,7 @@ const samples = [
     fullName: "Erin Choi",
     password: "ErinSHSAT26!",
     exams: [
-      { assessmentId: "shsat-diagnostic-1", completedAt: "2026-06-18T19:35:00.000Z", correct: 47, percentage: 78, title: "SHSAT Diagnostic 1", total: 60 },
-      { assessmentId: "shsat-practice-2", completedAt: "2026-06-29T18:20:00.000Z", correct: 51, percentage: 85, title: "SHSAT Practice Test 2", total: 60 },
+      { assessmentId: "2025-2026-form-a", completedAt: "2026-06-18T19:35:00.000Z", correct: 47, percentage: 78, title: "2025-2026 Form A", total: 60 },
     ],
     practice: {
       "central-idea-theme": { attempts: 4, correct: 31, questionsAnswered: 40, total: 40, updatedAt: "2026-07-02T21:05:00.000Z" },
@@ -25,9 +24,7 @@ const samples = [
     fullName: "David Kim",
     password: "DavidSHSAT26!",
     exams: [
-      { assessmentId: "shsat-diagnostic-1", completedAt: "2026-06-19T20:10:00.000Z", correct: 43, percentage: 72, title: "SHSAT Diagnostic 1", total: 60 },
-      { assessmentId: "shsat-practice-2", completedAt: "2026-06-30T17:55:00.000Z", correct: 48, percentage: 80, title: "SHSAT Practice Test 2", total: 60 },
-      { assessmentId: "shsat-practice-3", completedAt: "2026-07-04T19:42:00.000Z", correct: 50, percentage: 83, title: "SHSAT Practice Test 3", total: 60 },
+      { assessmentId: "2025-2026-form-a", completedAt: "2026-06-19T20:10:00.000Z", correct: 43, percentage: 72, title: "2025-2026 Form A", total: 60 },
     ],
     practice: {
       "evidence-support": { attempts: 5, correct: 36, questionsAnswered: 48, total: 48, updatedAt: "2026-07-03T22:10:00.000Z" },

@@ -5,7 +5,7 @@ const dothemnoharmPassageText = "In the moon of Ta-Yum, the hottest days of summ
 
 const dothemnoharmQuestions: ExamQuestion[] = [
   {
-    "id": "passage-1",
+    "id": "dothemnoharm-1",
     "points": 1,
     "prompt": "Paragraph 1 contributes to the setting of the excerpt by establishing that",
     "promptHtml": "Paragraph 1 contributes to the setting of the excerpt by establishing that",

@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts",
+    "dev": "nodemon --exitcrash --watch src --ext ts --exec ts-node src/server.ts",
     "start": "node dist/server.js",
     "seed:students": "node scripts/seed-sample-students.mjs",
     "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && tsc",

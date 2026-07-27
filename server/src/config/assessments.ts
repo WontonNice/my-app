@@ -6,11 +6,14 @@ export type QuestionType =
     | "multiple_choice"
     | "multi_select"
     | "category_sort"
+    | "graph_point_select"
     | "table_match"
     | "inline_dropdown"
-    | "numeric_entry"
+    | "math_drag_drop"
+    | "number_line_response"
     | "transition_drop"
     | "short_response"
+    | "numeric_entry"
     | "grid_in"
     | "essay";
 
@@ -38,7 +41,11 @@ export type AssessmentForm = {
     passageOrder: string[];
 };
 
+export type AssessmentSection = "english" | "math";
+export type AssessmentSectionAccess = Record<AssessmentSection, boolean>;
+
 export type Assessment = {
+    allowCompletedAccess: boolean;
     classId: string;
     createdAt: string;
     description: string;
@@ -48,6 +55,7 @@ export type Assessment = {
     id: string;
     passages: AssessmentPassage[];
     questions: AssessmentQuestion[];
+    sectionAccess: AssessmentSectionAccess;
     split: boolean;
     status: AssessmentStatus;
     title: string;
@@ -55,6 +63,7 @@ export type Assessment = {
 };
 
 export type AssessmentSummary = {
+    allowCompletedAccess: boolean;
     classId: string;
     description: string;
     durationMinutes: number;
@@ -62,6 +71,7 @@ export type AssessmentSummary = {
     passageCount: number;
     questionCount: number;
     questionTypes: QuestionType[];
+    sectionAccess: AssessmentSectionAccess;
     split: boolean;
     status: AssessmentStatus;
     title: string;
@@ -107,15 +117,31 @@ function readAssessments(): Assessment[] {
         const assessments = JSON.parse(contents) as unknown;
 
         return Array.isArray(assessments)
-            ? (assessments as Assessment[]).map((assessment) => ({
-                  ...assessment,
-                  formAssignments:
-                      assessment.formAssignments && typeof assessment.formAssignments === "object"
-                          ? assessment.formAssignments
-                          : {},
-                  forms: Array.isArray(assessment.forms) ? assessment.forms : [],
-                  split: assessment.split === true,
-              }))
+            ? (assessments as Assessment[]).map((assessment) => {
+                  const fallbackAccess = assessment.status === "open";
+                  const sectionAccess = {
+                      english:
+                          typeof assessment.sectionAccess?.english === "boolean"
+                              ? assessment.sectionAccess.english
+                              : fallbackAccess,
+                      math:
+                          typeof assessment.sectionAccess?.math === "boolean"
+                              ? assessment.sectionAccess.math
+                              : fallbackAccess,
+                  };
+                  return {
+                      ...assessment,
+                      formAssignments:
+                          assessment.formAssignments && typeof assessment.formAssignments === "object"
+                              ? assessment.formAssignments
+                              : {},
+                      forms: Array.isArray(assessment.forms) ? assessment.forms : [],
+                      allowCompletedAccess: assessment.allowCompletedAccess === true,
+                      sectionAccess,
+                      split: false,
+                      status: sectionAccess.english || sectionAccess.math ? "open" : "locked",
+                  };
+              })
             : [];
     } catch {
         return [];
@@ -137,6 +163,7 @@ function slugify(value: string) {
 
 export function toAssessmentSummary(assessment: Assessment): AssessmentSummary {
     return {
+        allowCompletedAccess: assessment.allowCompletedAccess,
         classId: assessment.classId,
         description: assessment.description,
         durationMinutes: assessment.durationMinutes,
@@ -144,7 +171,8 @@ export function toAssessmentSummary(assessment: Assessment): AssessmentSummary {
         passageCount: assessment.passages.length,
         questionCount: assessment.questions.length,
         questionTypes: Array.from(new Set(assessment.questions.map((question) => question.type))),
-        split: assessment.split,
+        sectionAccess: assessment.sectionAccess,
+        split: false,
         status: assessment.status,
         title: assessment.title,
     };
@@ -175,6 +203,7 @@ export function createAssessment(input: CreateAssessmentInput) {
     const timestamp = new Date().toISOString();
     const id = `${slugify(input.title) || "assessment"}-${Date.now().toString(36)}`;
     const assessment: Assessment = {
+        allowCompletedAccess: false,
         classId: input.classId,
         createdAt: timestamp,
         description: input.description,
@@ -206,6 +235,7 @@ export function createAssessment(input: CreateAssessmentInput) {
                   },
               ]
             : [],
+        sectionAccess: { english: false, math: false },
         split: false,
         status: "locked",
         title: input.title,
@@ -227,6 +257,10 @@ export function updateAssessmentStatus(assessmentId: string, status: AssessmentS
 
         updatedAssessment = {
             ...assessment,
+            sectionAccess: {
+                english: status === "open",
+                math: status === "open",
+            },
             status,
             updatedAt: timestamp,
         };
@@ -239,12 +273,39 @@ export function updateAssessmentStatus(assessmentId: string, status: AssessmentS
     return updatedAssessment;
 }
 
-export function updateAssessmentSplit(assessmentId: string, split: boolean) {
+export function updateAssessmentSectionAccess(
+    assessmentId: string,
+    section: AssessmentSection,
+    open: boolean,
+) {
     let updatedAssessment: Assessment | null = null;
     const timestamp = new Date().toISOString();
     const assessments = readAssessments().map((assessment) => {
         if (assessment.id !== assessmentId) return assessment;
-        updatedAssessment = { ...assessment, split, updatedAt: timestamp };
+        const sectionAccess = { ...assessment.sectionAccess, [section]: open };
+        updatedAssessment = {
+            ...assessment,
+            sectionAccess,
+            split: false,
+            status: sectionAccess.english || sectionAccess.math ? "open" : "locked",
+            updatedAt: timestamp,
+        };
+        return updatedAssessment;
+    });
+
+    writeAssessments(assessments);
+    return updatedAssessment;
+}
+
+export function updateAssessmentCompletedAccess(
+    assessmentId: string,
+    allowCompletedAccess: boolean,
+) {
+    let updatedAssessment: Assessment | null = null;
+    const timestamp = new Date().toISOString();
+    const assessments = readAssessments().map((assessment) => {
+        if (assessment.id !== assessmentId) return assessment;
+        updatedAssessment = { ...assessment, allowCompletedAccess, split: false, updatedAt: timestamp };
         return updatedAssessment;
     });
 

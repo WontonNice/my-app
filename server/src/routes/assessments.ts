@@ -4,9 +4,11 @@ import {
     listStudentAssessments,
     listTeacherAssessments,
     toStudentAssessmentDetail,
+    type AssessmentSection,
     type AssessmentStatus,
+    updateAssessmentCompletedAccess,
     updateAssessmentForms,
-    updateAssessmentSplit,
+    updateAssessmentSectionAccess,
     updateAssessmentStatus,
 } from "../config/assessments";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole } from "../lib/auth";
@@ -15,8 +17,9 @@ type UpdateStatusBody = {
     status?: unknown;
 };
 
-type UpdateSplitBody = { split?: unknown };
+type UpdateCompletedAccessBody = { allowCompletedAccess?: unknown };
 type UpdateFormsBody = { assignments?: unknown; forms?: unknown };
+type UpdateSectionAccessBody = { open?: unknown };
 
 function parseStatus(value: unknown): AssessmentStatus | null {
     return value === "locked" || value === "open" ? value : null;
@@ -109,7 +112,7 @@ assessmentsRouter.patch("/teacher/:assessmentId/status", async (request, respons
     response.json({ assessment });
 });
 
-assessmentsRouter.patch("/teacher/:assessmentId/split", async (request, response) => {
+assessmentsRouter.patch("/teacher/:assessmentId/completed-access", async (request, response) => {
     const { error, user } = await getAuthenticatedUser(request.headers.authorization);
     if (error || !user) {
         response.status(401).json({ message: error });
@@ -120,12 +123,48 @@ assessmentsRouter.patch("/teacher/:assessmentId/split", async (request, response
         return;
     }
 
-    const { split } = request.body as UpdateSplitBody;
-    if (typeof split !== "boolean") {
-        response.status(400).json({ message: "Split must be true or false." });
+    const { allowCompletedAccess } = request.body as UpdateCompletedAccessBody;
+    if (typeof allowCompletedAccess !== "boolean") {
+        response.status(400).json({ message: "Completed access must be true or false." });
         return;
     }
-    const assessment = updateAssessmentSplit(request.params.assessmentId, split);
+    const assessment = updateAssessmentCompletedAccess(
+        request.params.assessmentId,
+        allowCompletedAccess,
+    );
+    if (!assessment) {
+        response.status(404).json({ message: "Assessment was not found." });
+        return;
+    }
+    response.json({ assessment });
+});
+
+assessmentsRouter.patch("/teacher/:assessmentId/sections/:section", async (request, response) => {
+    const { error, user } = await getAuthenticatedUser(request.headers.authorization);
+    if (error || !user) {
+        response.status(401).json({ message: error });
+        return;
+    }
+    if (getUserRole(user) !== "teacher") {
+        response.status(403).json({ message: "Teacher access is required." });
+        return;
+    }
+
+    const section = request.params.section as AssessmentSection;
+    if (section !== "english" && section !== "math") {
+        response.status(400).json({ message: "Section must be English or Math." });
+        return;
+    }
+    const { open } = request.body as UpdateSectionAccessBody;
+    if (typeof open !== "boolean") {
+        response.status(400).json({ message: "Section access must be true or false." });
+        return;
+    }
+    const assessment = updateAssessmentSectionAccess(
+        request.params.assessmentId,
+        section,
+        open,
+    );
     if (!assessment) {
         response.status(404).json({ message: "Assessment was not found." });
         return;

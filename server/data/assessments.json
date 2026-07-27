@@ -918,7 +918,7 @@
         "points": 1,
         "prompt": "For what value of \\(w\\) is \\(4w = 2w - 8\\)?",
         "topic": "Algebra",
-        "type": "numeric_entry"
+        "type": "short_response"
       },
       {
         "answer": "45",
@@ -926,9 +926,9 @@
         "id": "2025-2026-form-a-math-5",
         "imageUrl": "",
         "points": 1,
-        "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true:\n\n• 20 students have cats.\n• 23 students have dogs.\n• 3 students have both dogs and cats.\n• 5 students have no dogs or cats.\n\nHow many students were surveyed?",
+        "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true:\n\n. 20 students have cats.\n. 23 students have dogs.\n. 3 students have both dogs and cats.\n. 5 students have no dogs or cats.\n\nHow many students were surveyed?",
         "topic": "Probability & Statistics",
-        "type": "numeric_entry"
+        "type": "short_response"
       },
       {
         "answer": "D",
@@ -986,7 +986,7 @@
         "id": "same-sum-course-grades",
         "imageUrl": "",
         "points": 1,
-        "prompt": "In a certain school, course grades range from 0 to 100. Adrianna took 4 courses and her mean course grade was 90. Roberto took 5 courses. If both students have the same sum of course grades, what was Roberto’s mean?",
+        "prompt": "In a certain school, course grades range from 0 to 100. Adrianna took 4 courses and her mean course grade was 90. Roberto took 5 courses. If both students have the same sum of course grades, what was Roberto's mean?",
         "topic": "Arithmetic",
         "type": "multiple_choice"
       },
@@ -1068,71 +1068,370 @@
         "id": "2025-2026-form-a-math-13",
         "imageUrl": "",
         "points": 1,
-        "prompt": "Which number line below shows the solution to the inequality \n−\n4\n<\nx\n2\n<\n2\n?\n-\n4\n<\n𝑥\n2\n<\n2\n?",
+        "prompt": "Which number line below shows the solution to the inequality \\(-4\\) \\(\\lt\\) \\(\\frac{x}{2 }\\) \\(\\lt\\) \\(2\\)?",
         "topic": "Algebra",
         "type": "multiple_choice"
+      },
+      {
+        "answer": "63",
+        "choices": [],
+        "id": "2025-2026-form-a-math-15",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The sum of two consecutive integers is \\(-15\\). If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?\n\nEnter your answer in the space.",
+        "topic": "Algebra",
+        "type": "short_response"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "5",
+          "15",
+          "21",
+          "30"
+        ],
+        "id": "colored-pencils-not-red",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
+        "topic": "Probability & Statistics",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "$28",
+          "$52",
+          "$182",
+          "$282"
+        ],
+        "id": "lorgs-dalts-dollar-exchange",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "1 dollar = 7 lorgs\n\n1 dollar = 0.5 dalt\n\nKevin has 140 lorgs and 16 dalts. If he exchanges the lorgs and dalts for dollars according to the rates above, how many dollars will he receive?",
+        "topic": "Rates & Unit Conversion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "0.25 square unit",
+          "0.5 square unit",
+          "1 square unit",
+          "1.5 square units"
+        ],
+        "id": "shaded-region-area",
+        "imageUrl": "/exam-images/2025-2026-form-a-shaded-region-area-math.svgz",
+        "points": 1,
+        "prompt": "What is the area of the shaded region in the graph above?",
+        "topic": "Geometry",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "absolute-value-equivalent-drag",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Consider this expression:",
+        "topic": "Algebra",
+        "type": "math_drag_drop"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "$2.80",
+          "$3.25",
+          "$14.40",
+          "$22.40"
+        ],
+        "id": "meat-price-per-pound",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, not including tax. What was the price per pound of the meat?",
+        "topic": "Rates & Unit Conversion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "2 over 15",
+          "4 over 25",
+          "3 over 10",
+          "1 over 3"
+        ],
+        "id": "cards-without-replacement-not-blue",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
+        "topic": "Probability & Statistics",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "sind",
+          "dalt",
+          "harp",
+          "plunk"
+        ],
+        "id": "most-valuable-coin",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "1 sind = 4 lorgs\n\n2 plunks = 5 dalts\n\n5 sinds = 2 harps\n\n1 plunk = 3 harps\n\nA nation has five types of coins: sinds, dalts, lorgs, harps, and plunks. The relationship between the coins is shown above. Which coin is most valuable?",
+        "topic": "Rates & Unit Conversion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "1,989",
+          "2,022",
+          "2,652",
+          "2,685"
+        ],
+        "id": "college-student-faculty-ratio",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The faculty of a certain four-year college consists of 179 teachers. There are 663 first-year students. The student-to-faculty ratio for the entire college is 15 to 1. What is the total number of second-, third-, and fourth-year students?",
+        "topic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "2,500",
+          "2,700",
+          "2,800",
+          "3,000"
+        ],
+        "id": "center-city-walk-vs-bicycle",
+        "imageUrl": "/exam-images/2025-2026-form-a-center-city-walk-vs-bicycle-math.svgz",
+        "points": 1,
+        "prompt": "How many more people in Center City walk to work than ride their bicycle to work?",
+        "topic": "Percent",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "30",
+          "35",
+          "39",
+          "44"
+        ],
+        "id": "smallest-factor-of-91",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following numbers has factors that include the smallest factor (other than 1) of 91?",
+        "topic": "Number Sense",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "16 ft",
+          "32 ft",
+          "40 ft",
+          "48 ft"
+        ],
+        "id": "triangular-banner-scale-drawing",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
+        "topic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "2l",
+          "3l",
+          "l plus 2",
+          "l plus 5"
+        ],
+        "id": "average-of-consecutive-integers",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The least of 5 consecutive integers is \\(l\\), and the greatest is \\(g\\). What is the value of \\(\\frac{l+g}{2}\\) in terms of \\(l\\)?",
+        "topic": "Algebra",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "99",
+        "choices": [],
+        "id": "2025-2026-form-a-math-33",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The owner of a tree farm plants pine trees and oak trees in a ratio of 8:3. How many oak trees are planted if 264 pine trees are planted?",
+        "topic": "Algebra",
+        "type": "short_response"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "4 years old",
+          "6 years old",
+          "12 years old",
+          "16 years old"
+        ],
+        "id": "tien-jordan-age-ratio",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
+        "topic": "Algebra",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "solve-equation-steps-drag",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Complete the steps to show one way to solve the equation \\(24=-0.5(x+8)\\) for \\(x\\).",
+        "topic": "Algebra",
+        "type": "math_drag_drop"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "14 and 7 twentieths",
+          "14 and 2 fifths",
+          "15 and 7 twentieths",
+          "15 and 2 fifths"
+        ],
+        "id": "sum-of-mixed-numbers",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the value of the expression shown above?\n\n\\(2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\)",
+        "topic": "Arithmetic",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "3 ft",
+          "4 ft",
+          "6 ft",
+          "8 ft"
+        ],
+        "id": "longest-stick-common-factor",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An unmarked straight stick will be laid end over end to measure a distance of exactly 72 feet. The same stick will be used in the same way to measure a distance of exactly 30 feet. What is the length of the longest possible stick that can be used for both measurements?",
+        "topic": "Number Sense",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "12",
+          "15",
+          "30",
+          "36"
+        ],
+        "id": "choose-pairs-of-cookies",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
+        "topic": "Probability & Statistics",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "16",
+          "30",
+          "33",
+          "55"
+        ],
+        "id": "combined-slide-creation-rate",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "For a presentation, Deion can create 5 slides in 20 minutes, working at a constant rate. Kyra can create 3 slides in 10 minutes, working at her own constant rate. What is the total number of slides the two of them can create in one hour?",
+        "topic": "Rates & Unit Conversion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "4.26",
+          "4.31",
+          "4.35",
+          "4.58"
+        ],
+        "id": "point-between-fraction-number-line",
+        "imageUrl": "/exam-images/2025-2026-form-a-point-between-fraction-number-line-math.svgz",
+        "points": 1,
+        "prompt": "On the number line above, \\(LN=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
+        "topic": "Number Sense",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "-13/3",
+        "choices": [],
+        "id": "solve-6x-equation-math-entry",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the value of \\(x\\) in the equation \\(6x=9x+13\\)?",
+        "topic": "Algebra",
+        "type": "numeric_entry"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "2 and 1 sixth hours",
+          "3 and 1 fourth hours",
+          "3 and 3 fourths hours",
+          "7 and 1 half hours"
+        ],
+        "id": "reading-additional-time",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Ryan must read 150 pages for school this weekend. It took him 30 minutes to read the first 20 pages. At this rate, how much additional time will it take him to finish the reading?",
+        "topic": "Rates & Unit Conversion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "notebook-cost-graph-points",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "When a student buys 4 notebooks, the total cost is $12. Each notebook costs the same amount. Select each point on the graph that best represents \\(y\\), the total cost of \\(x\\) notebooks.",
+        "topic": "Rates & Unit Conversion",
+        "type": "graph_point_select"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "inequality-number-line-ray",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Graph the solution set for the inequality \\(-3 \\le 2x-5\\).",
+        "topic": "Algebra",
+        "type": "number_line_response"
+      },
+      {
+        "answer": "16/15",
+        "choices": [],
+        "id": "compound-fraction-math-entry",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Let \\(b=3\\), \\(c=4\\), and \\(d=5\\). Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\).",
+        "topic": "Arithmetic",
+        "type": "numeric_entry"
       }
     ],
     "status": "open",
     "title": "2025-2026 Form A",
-    "updatedAt": "2026-07-26T17:47:15.374Z",
+    "updatedAt": "2026-07-27T11:24:15.774Z",
     "split": false,
-    "formAssignments": {},
-    "forms": []
-  },
-  {
-    "classId": "shsat",
-    "createdAt": "2026-06-16T00:00:00.000Z",
-    "description": "A full-length baseline checkpoint that stays locked until assigned.",
-    "durationMinutes": 180,
-    "id": "shsat-diagnostic-1",
-    "passages": [
-      {
-        "id": "snowy-mountains",
-        "imageUrl": "",
-        "text": "The complete passage is provided by the registered diagnostic exam content.",
-        "title": "Snowy Mountains"
-      },
-      {
-        "id": "raven-plans",
-        "imageUrl": "",
-        "text": "The complete passage is provided by the registered diagnostic exam content.",
-        "title": "The Best Laid Plans of Ravens"
-      },
-      {
-        "id": "spirit-of-the-herd",
-        "imageUrl": "",
-        "text": "The complete passage is provided by the registered diagnostic exam content.",
-        "title": "The Spirit of the Herd"
-      },
-      {
-        "id": "indoor-plants",
-        "imageUrl": "",
-        "text": "The complete passage is provided by the registered diagnostic exam content.",
-        "title": "Bringing Nature Indoors"
-      }
-    ],
-    "questions": [
-      {
-        "answer": "A",
-        "choices": [
-          "A",
-          "B",
-          "C",
-          "D"
-        ],
-        "id": "question-1",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Filler question for diagnostic readiness.",
-        "topic": "Diagnostic Readiness",
-        "type": "multiple_choice"
-      }
-    ],
-    "status": "locked",
-    "title": "SHSAT Diagnostic 1",
-    "updatedAt": "2026-07-23T09:17:04.723Z",
-    "split": true,
+    "allowCompletedAccess": true,
+    "sectionAccess": {
+      "english": true,
+      "math": true
+    },
     "formAssignments": {},
     "forms": []
   }

@@ -1,6 +1,5 @@
 import { createPlainTextPassage } from "./formatters";
 import { formA2025_2026Content } from "./tests/formA2025_2026";
-import { shsatDiagnostic1Content } from "./tests/shsatDiagnostic1";
 import type {
   AssessmentContentSource,
   ExamChoice,
@@ -12,7 +11,6 @@ import type {
 
 const examContentByAssessmentId: Record<string, ExamContent> = {
   [formA2025_2026Content.assessmentId]: formA2025_2026Content,
-  [shsatDiagnostic1Content.assessmentId]: shsatDiagnostic1Content,
 };
 
 function createChoices(choices: string[]): ExamChoice[] {
@@ -37,9 +35,18 @@ function parseAnswerIds(answer: string) {
 }
 
 function isChoiceBasedQuestion(question: AssessmentContentSource["questions"][number]) {
-  return !["numeric_entry", "short_response", "grid_in", "essay", "category_sort", "table_match", "inline_dropdown"].includes(
-    question.type,
-  );
+  return ![
+    "short_response",
+    "numeric_entry",
+    "grid_in",
+    "essay",
+    "category_sort",
+    "table_match",
+    "inline_dropdown",
+    "math_drag_drop",
+    "graph_point_select",
+    "number_line_response",
+  ].includes(question.type);
 }
 
 function createFallbackQuestions(assessment: AssessmentContentSource): ExamQuestion[] {
@@ -64,7 +71,7 @@ function createFallbackQuestions(assessment: AssessmentContentSource): ExamQuest
     const correctChoiceIds = question.type === "multi_select" ? parseAnswerIds(question.answer) : [];
     const isCategorySort = question.type === "category_sort" || question.type === "table_match";
     const isTableMatch = question.type === "table_match";
-    const isTextEntry = ["numeric_entry", "short_response", "grid_in"].includes(question.type);
+    const isTextEntry = ["short_response", "numeric_entry", "grid_in"].includes(question.type);
 
     return {
       categories: isCategorySort

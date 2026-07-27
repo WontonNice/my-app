@@ -51,7 +51,11 @@ Rules:
 - Allowed types:
   - multiple_choice: choices plus correctChoiceId.
   - multi_select: choices plus correctChoiceIds and requiredSelections.
-  - numeric_entry or short_response: correctTextAnswers instead of choices.
+  - short_response: correctTextAnswers and a plain response box.
+  - numeric_entry: correctTextAnswers and entryLayout (plain, x_equals, or fraction) for the on-screen keypad.
+  - math_drag_drop: items, dragDropSlots, dragDropContent, and allowReuse.
+  - graph_point_select: graph points and correctPointIds.
+  - number_line_response: numberLineResponse settings.
   - inline_dropdown: dropdownContent and dropdowns; each sentence must contain exactly one matching {{menu-id}} placeholder.
 - Use lowercase letters, numbers, and hyphens for the question id.
 - Never invent an image URL. If a diagram, graph, table, or other visual is required, describe it precisely in imageDescription and mention it in reviewNotes. The original image will be uploaded separately in the Studio.
@@ -90,7 +94,7 @@ Multi-select:
 }
 ```
 
-Numeric or short response:
+Calculator input:
 
 ```json
 {
@@ -102,6 +106,7 @@ Numeric or short response:
     "points": 1,
     "instructions": "Enter your answer in the space.",
     "prompt": "Solve \\(3x+4=19\\).",
+    "entryLayout": "x_equals",
     "correctTextAnswers": ["5"]
   },
   "reviewNotes": [],

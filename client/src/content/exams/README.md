@@ -36,7 +36,7 @@ To add a new passage set:
 
 To add or change a test:
 
-1. Create or edit a test file in `tests/`, such as `tests/shsatDiagnostic1.ts`.
+1. Create or edit a test file in `tests/`, such as `tests/formA2025_2026.ts`.
 2. Import the passage set modules you want.
 3. Arrange them in `passageSets` and use `passageSections` to classify each
    passage as `reading` or `revising_editing_a`. Teacher-assigned forms reorder
@@ -46,8 +46,9 @@ To add or change a test:
    passage-based Part A.
 5. Register the test file in `index.ts`.
 
-Math TEIs can live directly inside the exam's math set. Use `type: "numeric_entry"` for a one-box
-numeric fill-in item with `instructions: "Enter your answer in the space."`.
+Math TEIs can live directly inside the exam's math set. Use `type: "short_response"` for a plain answer
+box and `type: "numeric_entry"` only when the question should show the on-screen math keypad. Both use
+`correctTextAnswers`; numeric entry also supports `entryLayout`.
 
 The exam player loads local content by `assessmentId`. If a local test file is not registered yet, it falls back to
 the basic assessment data from the server.

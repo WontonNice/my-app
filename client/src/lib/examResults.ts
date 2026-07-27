@@ -41,6 +41,7 @@ export type ExamResult = {
   passages: ExamPassageResult[];
   percentage: number;
   questionTypes: ExamQuestionTypeResult[];
+  source?: "digital" | "manual";
   subjects: ExamSubjectResult[];
   title: string;
   topics: ExamTopicResult[];
@@ -81,8 +82,33 @@ export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAn
     return typeof answer === "string" && answer === question.correctChoiceId;
   }
 
-  if (question.type === "multi_select") {
-    return Array.isArray(answer) && hasExactIds(answer, question.correctChoiceIds ?? []);
+  if (question.type === "multi_select" || question.type === "graph_point_select") {
+    const expectedIds =
+      question.type === "graph_point_select"
+        ? question.correctPointIds ?? []
+        : question.correctChoiceIds ?? [];
+    return Array.isArray(answer) && hasExactIds(answer, expectedIds);
+  }
+
+  if (question.type === "math_drag_drop") {
+    const placements = getCategoryPlacements(answer);
+    const slots = question.dragDropSlots ?? [];
+    return (
+      slots.length > 0 &&
+      Object.keys(placements).length === slots.length &&
+      slots.every((slot) => placements[slot.id] === slot.correctItemId)
+    );
+  }
+
+  if (question.type === "number_line_response") {
+    const response = getCategoryPlacements(answer);
+    const correct = question.numberLineResponse;
+    return Boolean(
+      correct &&
+        response.direction === correct.correctDirection &&
+        response.endpoint === correct.correctEndpoint &&
+        Number(response.value) === correct.correctValue,
+    );
   }
 
   if (question.type === "category_sort" || question.type === "table_match") {
@@ -111,7 +137,7 @@ export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAn
     );
   }
 
-  if (["numeric_entry", "short_response", "grid_in"].includes(question.type)) {
+  if (["short_response", "numeric_entry", "grid_in"].includes(question.type)) {
     const acceptedAnswers = question.correctTextAnswers ?? [];
 
     return (

@@ -5,7 +5,7 @@ const winterWheatPassageText = "I love Dad’s way of talking that makes him see
 
 const winterWheatQuestions: ExamQuestion[] = [
   {
-    "id": "passage-1",
+    "id": "winter-wheat-1",
     "points": 1,
     "prompt": "Which sentence from the excerpt supports the idea that Ellen understands what her father is really thinking, and which sentence supports the idea that Ellen and her father share similar interests?",
     "topic": "Central Idea & Theme",

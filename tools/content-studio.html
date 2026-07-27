@@ -296,12 +296,13 @@
       display: grid; grid-template-columns: 27px minmax(0, 1fr); gap: 8px; align-items: center;
       width: 100%; border: 1px solid var(--border); border-radius: 8px; background: var(--subtle);
       padding: 8px; color: var(--text); cursor: grab; text-align: left; user-select: none;
+      transition: border-color .16s ease, background-color .16s ease, box-shadow .16s ease, opacity .16s ease, transform .18s ease;
     }
     .math-question-nav-list button:active { cursor: grabbing; }
     .math-question-nav-list button.is-active { border-color: #70aa9f; background: var(--accent-soft); }
-    .math-question-nav-list button.is-dragging { opacity: .45; }
-    .math-question-nav-list button.is-drop-before { box-shadow: 0 -3px 0 var(--accent); }
-    .math-question-nav-list button.is-drop-after { box-shadow: 0 3px 0 var(--accent); }
+    .math-question-nav-list button.is-dragging { opacity: .45; transform: scale(.975); }
+    .math-question-nav-list button.is-drop-before { box-shadow: 0 -3px 0 var(--accent); transform: translateY(4px); }
+    .math-question-nav-list button.is-drop-after { box-shadow: 0 3px 0 var(--accent); transform: translateY(-4px); }
     .math-question-nav-list button > span:first-child {
       display: grid; width: 27px; height: 27px; border-radius: 50%; background: #e7edf2;
       color: #40546a; font-size: .65rem; font-weight: 850; place-items: center;
@@ -315,17 +316,19 @@
     .math-question-nav-copy small { margin-top: 2px; color: var(--muted); font-size: .58rem; }
     .math-editor-stack { display: grid; gap: 14px; }
     .math-formula-toolbar {
-      display: flex; flex-wrap: wrap; gap: 5px; border: 1px solid var(--border);
-      border-radius: 7px; background: #f1f4f6; padding: 6px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px; border: 1px solid var(--border);
+      border-radius: 0 0 8px 8px; background: #f5f7f9; padding: 8px;
     }
-    .math-formula-toolbar > span { align-self: center; margin: 0 5px 0 2px; color: var(--muted); font-size: .61rem; font-weight: 750; }
+    .math-formula-toolbar > span { align-self: center; margin: 0 5px 0 2px; color: #526477; font-size: .62rem; font-weight: 800; }
     .math-formula-toolbar button {
-      min-width: 34px; min-height: 30px; border: 1px solid #cbd5df; border-radius: 5px;
-      background: #fff; color: #344b62; padding: 3px 8px; font-size: .72rem; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+      min-width: 38px; min-height: 32px; border: 1px solid #c7d2dd; border-radius: 6px;
+      background: #fff; color: #274058; padding: 4px 9px; font-size: .68rem; font-weight: 750;
     }
     .math-formula-toolbar button:hover { border-color: #70aa9f; color: var(--accent); }
+    .math-formula-toolbar button .math-button-symbol { color: #152d45; font-size: .84rem; }
     .math-formula-toolbar .math-template-picker {
-      width: auto; min-width: 170px; min-height: 30px; margin-left: auto; padding: 3px 28px 3px 8px;
+      width: auto; min-width: 170px; min-height: 32px; margin-left: auto; padding: 3px 28px 3px 8px;
       background: #fff; font-size: .68rem;
     }
     .math-import-panel { display: grid; gap: 13px; border-color: #a9c9c3; background: #f8fcfb; }
@@ -337,12 +340,81 @@
     .math-import-warnings { border: 1px solid #ead5a9; border-radius: 7px; background: #fff9ec; color: #76561f; padding: 10px 12px; font-size: .68rem; line-height: 1.5; }
     .math-import-warnings ul { margin: 5px 0 0; padding-left: 18px; }
     .math-import-json { max-height: 280px; overflow: auto; margin: 0; border-radius: 7px; background: #172335; color: #e8eef7; padding: 12px; font: .63rem/1.5 Consolas, monospace; white-space: pre-wrap; }
-    .math-rich-prompt { min-height: 125px; font-family: "Segoe UI", Arial, sans-serif; line-height: 1.55; white-space: pre-wrap; }
+    .math-prompt-editor { overflow: visible; border-color: #bfcbd6; border-radius: 9px 9px 0 0; }
+    .math-prompt-editor .rich-editor-toolbar { border-radius: 8px 8px 0 0; }
+    .math-rich-prompt {
+      min-height: 132px; background: #fff; padding: 15px; font-family: "Segoe UI", Arial, sans-serif;
+      font-size: .86rem; line-height: 1.75; white-space: pre-wrap;
+    }
+    .math-visual-token {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      min-height: 31px; margin: 1px 3px; border: 1px solid #9fc9c1; border-radius: 6px;
+      background: #edf8f5; padding: 3px 9px; color: #142c42; cursor: pointer;
+      line-height: 1; vertical-align: middle;
+    }
+    .math-visual-token:hover, .math-visual-token:focus {
+      border-color: var(--accent); background: #e0f3ee; box-shadow: 0 0 0 3px rgb(40 121 111 / 10%);
+      outline: none;
+    }
+    .math-visual-token::after {
+      margin-left: 6px; color: #4b776f; content: "✎"; font-family: "Segoe UI Symbol", "Segoe UI", Arial, sans-serif;
+      font-size: .67rem; font-weight: 800;
+    }
+    .math-visual-token.is-display {
+      display: flex; width: calc(100% - 6px); min-height: 50px; margin: 7px 3px;
+    }
+    .math-prompt-note {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin: 7px 0 0; color: var(--muted); font-size: .62rem; line-height: 1.45;
+    }
+    .math-prompt-note strong { color: var(--accent); }
+    .math-formula-dialog {
+      width: min(92vw, 470px); border: 0; border-radius: 12px; background: #fff; padding: 0;
+      color: var(--text); box-shadow: 0 22px 70px rgb(19 39 58 / 28%);
+    }
+    .math-formula-dialog::backdrop { background: rgb(17 34 51 / 46%); }
+    .math-formula-dialog form { display: grid; gap: 15px; padding: 19px; }
+    .math-formula-dialog header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .math-formula-dialog header div { display: grid; gap: 3px; }
+    .math-formula-dialog h2 { margin: 0; color: var(--heading); font-size: 1rem; }
+    .math-formula-dialog header p { margin: 0; color: var(--muted); font-size: .67rem; line-height: 1.45; }
+    .math-formula-dialog-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .math-formula-dialog-fields .wide { grid-column: 1 / -1; }
+    .math-formula-dialog-preview {
+      display: grid; min-height: 68px; border: 1px solid #cfe0dd; border-radius: 8px;
+      background: #f7fbfa; padding: 13px; color: #152d45; place-items: center;
+    }
+    .math-formula-dialog footer { display: flex; justify-content: flex-end; gap: 8px; }
     .math-rich-instructions { min-height: 54px; font-family: "Segoe UI", Arial, sans-serif; line-height: 1.5; white-space: pre-wrap; }
     .math-live-preview {
       min-height: 115px; border: 1px solid #cfd7df; border-radius: 8px; background: #fff;
       padding: 20px 22px; color: #111820; font-family: Arial, Helvetica, sans-serif;
     }
+    .studio-math-entry-preview { width: min(100%, 520px); border: 1px solid #9aa3ad; border-radius: 5px; overflow: hidden; }
+    .studio-math-entry-display { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 7px; }
+    .studio-math-entry-display > input { flex: 1; height: 32px; border: 0; border-bottom: 1px dashed #8a949e; }
+    .studio-fraction-entry { display: grid; grid-template-rows: 22px 1px 22px; width: 54px; }
+    .studio-fraction-entry span { background: #172536; }
+    .studio-fraction-entry input { min-width: 0; border: 0; text-align: center; }
+    .studio-math-keypad-preview { display: grid; grid-template-columns: repeat(6, minmax(38px, 1fr)); gap: 4px; border-top: 1px solid #aeb6bf; background: #f1f1f1; padding: 6px; }
+    .studio-math-keypad-preview button { min-height: 30px; border: 1px solid #8c949d; border-radius: 3px; background: #fff; }
+    .studio-math-drag-preview { display: grid; gap: 20px; }
+    .studio-math-drag-bank { display: flex; flex-wrap: wrap; gap: 7px; width: fit-content; min-width: 190px; background: #eee; padding: 10px; }
+    .studio-math-drag-bank button, .studio-math-drag-line button { min-width: 42px; min-height: 32px; border: 1px solid #0871d1; background: #fff; }
+    .studio-math-drag-line { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; min-height: 38px; }
+    .studio-graph-preview { width: min(100%, 360px); }
+    .studio-graph-preview > strong { display: block; margin-left: 46px; font-size: .72rem; }
+    .studio-graph-preview svg { display: block; width: 100%; overflow: visible; }
+    .studio-graph-preview line { stroke: #9ba2a9; stroke-width: 1; }
+    .studio-graph-preview circle { fill: #111; stroke: #1825e0; stroke-width: 3; }
+    .studio-graph-preview text { fill: #172536; font: 10px Arial, sans-serif; text-anchor: middle; }
+    .studio-number-line-response-preview { display: grid; gap: 18px; width: min(100%, 560px); }
+    .studio-number-line-axis { display: flex; align-items: end; border-bottom: 2px solid #111; padding: 0 10px; }
+    .studio-number-line-axis span { display: grid; flex: 1; justify-items: center; }
+    .studio-number-line-axis strong { font-size: .7rem; }
+    .studio-number-line-axis i { display: block; width: 1px; height: 26px; background: #111; }
+    .studio-ray-picker { display: grid; grid-template-columns: repeat(2, 64px); width: fit-content; border: 5px solid #050505; border-radius: 7px; overflow: hidden; gap: 1px; background: #050505; }
+    .studio-ray-picker button { min-height: 42px; border: 0; background: #fff; font-size: 1.1rem; }
     .math-live-preview h3 { margin: 0 0 14px; font-size: 1rem; font-weight: 400; line-height: 1.55; white-space: normal; }
     .math-live-preview .exam-rich-text ul, .math-live-preview .exam-rich-text ol { margin: 9px 0; padding-left: 24px; }
     .math-live-preview .exam-rich-text li { margin: 3px 0; }
@@ -405,6 +477,17 @@
     .math-dropdown-option-heading { color: var(--muted); font-size: .61rem; font-weight: 750; }
     .math-dropdown-option-row .scantron-bubble { justify-self: center; }
     .math-dropdown-option-row .scantron-bubble span { width: 34px; height: 34px; }
+    .math-config-list { display: grid; gap: 8px; margin-top: 12px; }
+    .math-config-list h3 { margin: 0; color: var(--heading); font-size: .72rem; }
+    .math-config-row {
+      display: grid; grid-template-columns: minmax(72px, auto) minmax(0, 1fr) auto;
+      gap: 8px; align-items: center;
+    }
+    .math-config-row code { color: var(--accent); font-size: .63rem; font-weight: 800; }
+    .math-config-card { display: grid; gap: 8px; border: 1px solid var(--border); border-radius: 8px; background: var(--subtle); padding: 10px; }
+    .math-point-config-row { grid-template-columns: 76px minmax(80px, 1fr) minmax(80px, 1fr) auto auto; }
+    .math-point-config-row .field { gap: 3px; }
+    .math-point-config-row .field span { font-size: .58rem; }
     .math-live-preview .exam-inline-dropdown-content { display: grid; gap: 20px; margin-top: 16px; line-height: 1.5; }
     .math-live-preview .exam-inline-dropdown-content p { margin: 0; }
     .math-live-preview .exam-inline-dropdown-select {
@@ -426,6 +509,9 @@
       .math-question-nav-list { grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); max-height: none; }
       .math-choice-row { grid-template-columns: 32px minmax(0, 1fr); }
       .math-choice-row > .danger { grid-column: 2; justify-self: start; }
+      .math-prompt-note { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .math-formula-dialog-fields { grid-template-columns: 1fr; }
+      .math-formula-dialog-fields .wide { grid-column: 1; }
       .math-number-line-controls { grid-template-columns: repeat(2, minmax(90px, 1fr)); }
       .math-dropdown-sentence-grid { grid-template-columns: 1fr; }
       .math-dropdown-menu-marker { justify-items: start; padding-top: 0; text-align: left; }
@@ -951,8 +1037,63 @@ Why D is wrong."></textarea>
           instructions: "Select the correct answer from each drop-down to complete the sentences.",
         };
       }
-      if (type === "short_response" || type === "numeric_entry") {
+      if (type === "short_response") {
         return { ...base, correctTextAnswers: [""] };
+      }
+      if (type === "numeric_entry") {
+        return { ...base, correctTextAnswers: [""], entryLayout: "plain" };
+      }
+      if (type === "math_drag_drop") {
+        return {
+          ...base,
+          allowReuse: false,
+          dragDropContent: ["{{box-1}}"],
+          dragDropSlots: [{ correctItemId: "answer-1", id: "box-1" }],
+          instructions: "Move the correct answer to each box.",
+          items: [
+            { id: "answer-1", text: "Answer 1" },
+            { id: "answer-2", text: "Answer 2" },
+            { id: "answer-3", text: "Answer 3" },
+          ],
+        };
+      }
+      if (type === "graph_point_select") {
+        return {
+          ...base,
+          correctPointIds: ["point-1"],
+          graph: {
+            points: [
+              { id: "point-1", x: 1, y: 1 },
+              { id: "point-2", x: 2, y: 2 },
+            ],
+            title: "GRAPH TITLE",
+            xLabel: "x",
+            xMax: 6,
+            xMin: 0,
+            xStep: 1,
+            yLabel: "y",
+            yMax: 6,
+            yMin: 0,
+            yStep: 1,
+          },
+          instructions: "Select all the correct answers.",
+          requiredSelections: 1,
+        };
+      }
+      if (type === "number_line_response") {
+        return {
+          ...base,
+          instructions: "Select a ray. Then move the endpoint of the ray to the correct position on the number line.",
+          numberLineResponse: {
+            correctDirection: "right",
+            correctEndpoint: "closed",
+            correctValue: 0,
+            labelStep: 1,
+            max: 5,
+            min: -5,
+            tickStep: 1,
+          },
+        };
       }
       const choices = ["A", "B", "C", "D"].map((id) => ({ id, text: "" }));
       return type === "multi_select"
@@ -1022,7 +1163,11 @@ Rules:
 - Allowed types:
   - multiple_choice: choices plus correctChoiceId.
   - multi_select: choices plus correctChoiceIds and requiredSelections.
-  - numeric_entry or short_response: correctTextAnswers instead of choices.
+  - short_response: correctTextAnswers and a plain response box.
+  - numeric_entry: correctTextAnswers and entryLayout (plain, x_equals, or fraction) for the on-screen keypad.
+  - math_drag_drop: items, dragDropSlots, dragDropContent, and allowReuse.
+  - graph_point_select: graph points and correctPointIds.
+  - number_line_response: numberLineResponse settings.
   - inline_dropdown: dropdownContent and dropdowns; each sentence must contain exactly one matching {{menu-id}} placeholder.
 - Use lowercase letters, numbers, and hyphens for the question id.
 - Never invent an image URL. If a diagram, graph, table, or other visual is required, describe it precisely in imageDescription and mention it in reviewNotes. The original image will be uploaded separately in the Studio.
@@ -1035,85 +1180,206 @@ Rules:
       ).join("");
     }
 
+    function friendlyMathExpression(value) {
+      let expression = String(value || "")
+        .trim()
+        .replace(/^\\\(([\s\S]*)\\\)$/, "$1")
+        .replace(/^\\\[([\s\S]*)\\\]$/, "$1")
+        .replaceAll("≤", "\\le ")
+        .replaceAll("≥", "\\ge ")
+        .replaceAll("≠", "\\ne ")
+        .replaceAll("≈", "\\approx ")
+        .replaceAll("×", "\\times ")
+        .replaceAll("÷", "\\div ")
+        .replaceAll("π", "\\pi ");
+      expression = expression.replace(/(?:sqrt|√)\s*\(([^()]*)\)/gi, "\\sqrt{$1}");
+      if (!expression.includes("\\frac") && /^[^/]+\/[^/]+$/.test(expression)) {
+        const [numerator, denominator] = expression.split("/");
+        expression = `\\frac{${numerator.trim()}}{${denominator.trim()}}`;
+      }
+      return expression;
+    }
+
+    const mathFormulaBuilders = {
+      variable: {
+        title: "Add variables or an expression",
+        description: "Type the letters, numbers, or expression. The editor will format them as math.",
+        fields: [{ name: "value", label: "Math to show", placeholder: "Example: MNPQ or x + 4", wide: true }],
+        build: ({ value }) => friendlyMathExpression(value),
+      },
+      fraction: {
+        title: "Add a fraction",
+        description: "Enter the top and bottom values. No formula notation is needed.",
+        fields: [
+          { name: "numerator", label: "Top number or expression", placeholder: "Example: x + 1" },
+          { name: "denominator", label: "Bottom number or expression", placeholder: "Example: 2" },
+        ],
+        build: ({ numerator, denominator }) =>
+          `\\frac{${friendlyMathExpression(numerator)}}{${friendlyMathExpression(denominator)}}`,
+      },
+      exponent: {
+        title: "Add an exponent",
+        description: "Enter the base and the raised power.",
+        fields: [
+          { name: "base", label: "Base", placeholder: "Example: x", value: "x" },
+          { name: "power", label: "Exponent", placeholder: "Example: 2", value: "2" },
+        ],
+        build: ({ base, power }) => `${friendlyMathExpression(base)}^{${friendlyMathExpression(power)}}`,
+      },
+      squareRoot: {
+        title: "Add a square root",
+        description: "Enter the value that belongs under the root symbol.",
+        fields: [{ name: "value", label: "Value under the root", placeholder: "Example: x + 9", wide: true }],
+        build: ({ value }) => `\\sqrt{${friendlyMathExpression(value)}}`,
+      },
+      mixedNumber: {
+        title: "Add a mixed number",
+        description: "Enter the whole number and the fraction.",
+        fields: [
+          { name: "whole", label: "Whole number", placeholder: "Example: 2" },
+          { name: "numerator", label: "Top number", placeholder: "Example: 1" },
+          { name: "denominator", label: "Bottom number", placeholder: "Example: 3" },
+        ],
+        build: ({ whole, numerator, denominator }) =>
+          `${friendlyMathExpression(whole)}\\frac{${friendlyMathExpression(numerator)}}{${friendlyMathExpression(denominator)}}`,
+      },
+      scientificNotation: {
+        title: "Add scientific notation",
+        description: "Enter the coefficient and the power of ten.",
+        fields: [
+          { name: "coefficient", label: "Coefficient", placeholder: "Example: 3.5" },
+          { name: "power", label: "Power of 10", placeholder: "Example: 6" },
+        ],
+        build: ({ coefficient, power }) =>
+          `${friendlyMathExpression(coefficient)}\\times 10^{${friendlyMathExpression(power)}}`,
+      },
+      subscript: {
+        title: "Add a subscript",
+        description: "Enter the main value and the smaller value shown below it.",
+        fields: [
+          { name: "base", label: "Main value", placeholder: "Example: x", value: "x" },
+          { name: "subscript", label: "Subscript", placeholder: "Example: 1" },
+        ],
+        build: ({ base, subscript }) => `${friendlyMathExpression(base)}_{${friendlyMathExpression(subscript)}}`,
+      },
+      nthRoot: {
+        title: "Add an nth root",
+        description: "Enter the small root number and the value under the root.",
+        fields: [
+          { name: "index", label: "Root number", placeholder: "Example: 3" },
+          { name: "value", label: "Value under the root", placeholder: "Example: 8" },
+        ],
+        build: ({ index, value }) =>
+          `\\sqrt[${friendlyMathExpression(index)}]{${friendlyMathExpression(value)}}`,
+      },
+      absoluteValue: {
+        title: "Add an absolute value",
+        description: "Enter the expression that belongs between the bars.",
+        fields: [{ name: "value", label: "Expression", placeholder: "Example: x - 4", wide: true }],
+        build: ({ value }) => `\\left\\lvert ${friendlyMathExpression(value)}\\right\\rvert`,
+      },
+      degrees: {
+        title: "Add degrees",
+        description: "Enter the number or expression before the degree symbol.",
+        fields: [{ name: "value", label: "Degrees", placeholder: "Example: 90", wide: true }],
+        build: ({ value }) => `${friendlyMathExpression(value)}^{\\circ}`,
+      },
+      orderedPair: {
+        title: "Add an ordered pair",
+        description: "Enter the horizontal and vertical coordinates.",
+        fields: [
+          { name: "x", label: "x-coordinate", placeholder: "Example: -2" },
+          { name: "y", label: "y-coordinate", placeholder: "Example: 5" },
+        ],
+        build: ({ x, y }) => `\\left(${friendlyMathExpression(x)}, ${friendlyMathExpression(y)}\\right)`,
+      },
+      advanced: {
+        title: "Add a custom equation",
+        description: "Most questions can use the buttons above. Use this field only for a custom equation.",
+        fields: [{ name: "value", label: "Equation", placeholder: "Example: y = 2x + 3", wide: true }],
+        build: ({ value }) => friendlyMathExpression(value),
+      },
+      display: {
+        title: "Add a centered equation",
+        description: "Enter the equation and it will appear on its own centered line.",
+        displayMode: true,
+        fields: [{ name: "value", label: "Equation", placeholder: "Example: y = 2x + 3", wide: true }],
+        build: ({ value }) => friendlyMathExpression(value),
+      },
+    };
+
+    const mathFormulaSymbols = {
+      pi: { expression: "\\pi", label: "Pi" },
+      lessEqual: { expression: "\\le", label: "Less than or equal to" },
+      greaterEqual: { expression: "\\ge", label: "Greater than or equal to" },
+      multiply: { expression: "\\times", label: "Multiply" },
+      divide: { expression: "\\div", label: "Divide" },
+      plusMinus: { expression: "\\pm", label: "Plus or minus" },
+      infinity: { expression: "\\infty", label: "Infinity" },
+      notEqual: { expression: "\\ne", label: "Not equal to" },
+      approximately: { expression: "\\approx", label: "Approximately equal to" },
+      parallel: { expression: "\\parallel", label: "Parallel" },
+      perpendicular: { expression: "\\perp", label: "Perpendicular" },
+    };
+
+    mathFormulaBuilders.symbol = {
+      title: "Change this math symbol",
+      description: "Choose the symbol students should see.",
+      fields: [{
+        name: "symbol",
+        label: "Symbol",
+        options: Object.entries(mathFormulaSymbols).map(([value, symbol]) => ({
+          label: symbol.label,
+          value,
+        })),
+        wide: true,
+      }],
+      build: ({ symbol }) => mathFormulaSymbols[symbol]?.expression || "",
+    };
+
     function mathFormulaToolbarHtml(targetId, compact = false, rawExpression = false) {
-      const wrap = (expression) => rawExpression ? expression : `\\(${expression}\\)`;
       const quickButtons = [
-        ["Fraction", wrap("\\frac{|}{ }"), "a/b"],
-        ["Exponent", wrap("x^{|}"), "x^n"],
-        ["Square root", wrap("\\sqrt{|}"), "sqrt"],
-        ["Pi", `${wrap("\\pi")}|`, "pi"],
-        ["Less than or equal", `${wrap("\\le")}|`, "<="],
-        ["Greater than or equal", `${wrap("\\ge")}|`, ">="],
-        ["Multiply", `${wrap("\\times")}|`, "times"],
-        ["Divide", `${wrap("\\div")}|`, "divide"],
-        ...(rawExpression ? [] : [["Display formula", "\\[|\\]", "Display"]]),
-      ];
-      const templateGroups = [
-        ["Numbers", [
-          ["Mixed number", wrap("|\\frac{ }{ }")],
-          ["Plus or minus", `${wrap("\\pm")}|`],
-          ["Percent", `${wrap("\\%")}|`],
-          ["Infinity", `${wrap("\\infty")}|`],
-          ["Scientific notation", wrap("|\\times 10^{ }")],
-        ]],
-        ["Algebra", [
-          ["Subscript", wrap("x_{|}")],
-          ["Nth root", wrap("\\sqrt[|]{ }")],
-          ["Absolute value", wrap("\\left\\lvert |\\right\\rvert")],
-          ["Parentheses", wrap("\\left(|\\right)")],
-          ["Brackets", wrap("\\left[|\\right]")],
-          ["Not equal", `${wrap("\\ne")}|`],
-          ["Approximately equal", `${wrap("\\approx")}|`],
-          ["Proportional to", `${wrap("\\propto")}|`],
-          ["Quadratic formula", `${wrap("x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}")}|`],
-          ["Aligned equations", wrap("\\begin{aligned}|\\end{aligned}")],
-        ]],
-        ["Geometry", [
-          ["Degrees", `${wrap("^{\\circ}")}|`],
-          ["Angle", wrap("\\angle |")],
-          ["Triangle", wrap("\\triangle |")],
-          ["Parallel", `${wrap("\\parallel")}|`],
-          ["Perpendicular", `${wrap("\\perp")}|`],
-          ["Line segment", wrap("\\overline{|}")],
-          ["Arc", wrap("\\widehat{|}")],
-        ]],
-        ["Functions & statistics", [
-          ["Function", wrap("f(|)")],
-          ["Logarithm", wrap("\\log_{|}( )")],
-          ["Sine", wrap("\\sin(|)")],
-          ["Cosine", wrap("\\cos(|)")],
-          ["Tangent", wrap("\\tan(|)")],
-          ["Mean", wrap("\\bar{|}")],
-          ["Summation", wrap("\\sum_{i=1}^{|}")],
-          ["Probability", wrap("P(|)")],
-        ]],
-        ["Coordinates & sets", [
-          ["Ordered pair", wrap("(|, )")],
-          ["Interval", wrap("\\left[|, \\right]")],
-          ["Set braces", wrap("\\left\\{|\\right\\}")],
-          ["Union", `${wrap("\\cup")}|`],
-          ["Intersection", `${wrap("\\cap")}|`],
-          ["Element of", `${wrap("\\in")}|`],
-        ]],
+        ["builder", "fraction", "Fraction", "a⁄b"],
+        ["builder", "exponent", "Exponent", "xⁿ"],
+        ["builder", "squareRoot", "Square root", "√"],
+        ["symbol", "pi", "Pi", "π"],
+        ["symbol", "lessEqual", "Less than or equal to", "≤"],
+        ["symbol", "greaterEqual", "Greater than or equal to", "≥"],
+        ["symbol", "multiply", "Multiply", "×"],
+        ["symbol", "divide", "Divide", "÷"],
       ];
       return `
         <div class="math-formula-toolbar">
-          ${compact ? "" : "<span>Insert formula</span>"}
-          ${rawExpression ? "" : `
-            <button class="math-variable-button" data-math-variable data-math-target="${escapeHtml(targetId)}" title="Format selected letters, such as MNPQ, as KaTeX variables" type="button">Variables</button>
-          `}
-          ${quickButtons.map(([title, snippet, label]) => `
-            <button data-math-insert="${escapeHtml(snippet)}" data-math-target="${escapeHtml(targetId)}" title="${escapeHtml(title)}" type="button">${escapeHtml(label)}</button>
+          ${compact ? "" : "<span>Add math</span>"}
+          ${rawExpression ? "" : `<button data-math-builder="variable" data-math-target="${escapeHtml(targetId)}" title="Add variables or a math expression" type="button"><span class="math-button-symbol">x</span> Variable</button>`}
+          ${quickButtons.map(([kind, key, title, label]) => `
+            <button data-math-${kind}="${escapeHtml(key)}" data-math-raw="${rawExpression ? "true" : "false"}" data-math-target="${escapeHtml(targetId)}" title="${escapeHtml(title)}" type="button"><span class="math-button-symbol">${escapeHtml(label)}</span>${compact ? "" : ` ${escapeHtml(title)}`}</button>
           `).join("")}
           <select aria-label="More math formulas" class="math-template-picker" data-math-template-picker data-math-target="${escapeHtml(targetId)}">
-            <option value="">More formulas...</option>
-            ${templateGroups.map(([group, templates]) => `
-              <optgroup label="${escapeHtml(group)}">
-                ${templates.map(([label, snippet]) => `<option value="${escapeHtml(snippet)}">${escapeHtml(label)}</option>`).join("")}
-              </optgroup>
-            `).join("")}
+            <option value="">More math...</option>
+            <optgroup label="Numbers">
+              <option value="builder:mixedNumber">Mixed number</option>
+              <option value="builder:scientificNotation">Scientific notation</option>
+              <option value="symbol:plusMinus">Plus or minus</option>
+              <option value="symbol:infinity">Infinity</option>
+            </optgroup>
+            <optgroup label="Algebra">
+              <option value="builder:subscript">Subscript</option>
+              <option value="builder:nthRoot">Nth root</option>
+              <option value="builder:absoluteValue">Absolute value</option>
+              <option value="symbol:notEqual">Not equal</option>
+              <option value="symbol:approximately">Approximately equal</option>
+              <option value="builder:advanced">Custom equation</option>
+              ${rawExpression ? "" : `<option value="builder:display">Centered equation</option>`}
+            </optgroup>
+            <optgroup label="Geometry and coordinates">
+              <option value="builder:degrees">Degrees</option>
+              <option value="builder:orderedPair">Ordered pair</option>
+              <option value="symbol:parallel">Parallel</option>
+              <option value="symbol:perpendicular">Perpendicular</option>
+            </optgroup>
           </select>
-          <button data-math-template-insert title="Insert the selected formula" type="button">Insert</button>
+          <button data-math-raw="${rawExpression ? "true" : "false"}" data-math-template-insert title="Add the selected math" type="button">Add</button>
         </div>
       `;
     }
@@ -1185,6 +1451,260 @@ Rules:
         textNode.replaceWith(fragment);
       });
       return container.innerHTML;
+    }
+
+    function createMathVisualToken(expression, displayMode = false) {
+      const token = document.createElement("span");
+      token.className = `math-visual-token${displayMode ? " is-display" : ""}`;
+      token.contentEditable = "false";
+      token.dataset.mathExpression = expression;
+      token.dataset.mathDisplay = displayMode ? "true" : "false";
+      token.tabIndex = 0;
+      token.setAttribute("role", "button");
+      token.setAttribute("aria-label", `Edit formula: ${expression}`);
+      token.title = "Click to edit this formula";
+      token.innerHTML = renderKatexExpression(expression, displayMode);
+      return token;
+    }
+
+    function hydrateMathPromptEditor(editor) {
+      if (!editor) return;
+      const walker = document.createTreeWalker(editor, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          return node.parentElement?.closest(".math-visual-token")
+            ? NodeFilter.FILTER_REJECT
+            : NodeFilter.FILTER_ACCEPT;
+        },
+      });
+      const textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+      textNodes.forEach((textNode) => {
+        const parts = String(textNode.nodeValue || "")
+          .split(/(\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\))/g)
+          .filter(Boolean);
+        if (!parts.some((part) => /^\\[\[(]/.test(part))) return;
+        const fragment = document.createDocumentFragment();
+        parts.forEach((part) => {
+          const displayMode = part.startsWith("\\[") && part.endsWith("\\]");
+          const inlineMode = part.startsWith("\\(") && part.endsWith("\\)");
+          fragment.appendChild(
+            displayMode || inlineMode
+              ? createMathVisualToken(part.slice(2, -2), displayMode)
+              : document.createTextNode(part),
+          );
+        });
+        textNode.replaceWith(fragment);
+      });
+    }
+
+    function mathPromptEditorHtml(html, fallbackText) {
+      const container = document.createElement("div");
+      container.innerHTML = html || escapeHtml(fallbackText || "").replaceAll("\n", "<br>");
+      hydrateMathPromptEditor(container);
+      return container.innerHTML;
+    }
+
+    function serializeMathPromptEditor(editor) {
+      const cloneEditor = editor.cloneNode(true);
+      $$(".math-visual-token", cloneEditor).forEach((token) => {
+        const expression = token.dataset.mathExpression || "";
+        const delimiter = token.dataset.mathDisplay === "true"
+          ? `\\[${expression}\\]`
+          : `\\(${expression}\\)`;
+        token.replaceWith(document.createTextNode(delimiter));
+      });
+      const html = cloneEditor.innerHTML;
+      const textContainer = document.createElement("div");
+      textContainer.innerHTML = html
+        .replaceAll("<br>", "\n")
+        .replace(/<\/(?:p|div|li)>/gi, "\n");
+      return {
+        html,
+        text: (textContainer.textContent || "")
+          .replace(/\u00a0/g, " ")
+          .replace(/\r\n?/g, "\n")
+          .replace(/\n{3,}/g, "\n\n")
+          .trim(),
+      };
+    }
+
+    function detectMathFormulaBuilder(expression) {
+      const matchedSymbol = Object.entries(mathFormulaSymbols).find(([, symbol]) => symbol.expression === expression);
+      if (matchedSymbol) return { key: "symbol", values: { symbol: matchedSymbol[0] } };
+      let match = expression.match(/^\\frac\{([^{}]*)\}\{([^{}]*)\}$/);
+      if (match) return { key: "fraction", values: { numerator: match[1], denominator: match[2] } };
+      match = expression.match(/^(.+)\^\{([^{}]*)\}$/);
+      if (match && match[2] !== "\\circ") return { key: "exponent", values: { base: match[1], power: match[2] } };
+      match = expression.match(/^\\sqrt\{([^{}]*)\}$/);
+      if (match) return { key: "squareRoot", values: { value: match[1] } };
+      match = expression.match(/^(.+)\^\{\\circ\}$/);
+      if (match) return { key: "degrees", values: { value: match[1] } };
+      match = expression.match(/^\\left\((.+),\s*(.+)\\right\)$/);
+      if (match) return { key: "orderedPair", values: { x: match[1], y: match[2] } };
+      return { key: "advanced", values: { value: expression } };
+    }
+
+    let mathFormulaComposerState = null;
+
+    function ensureMathFormulaDialog() {
+      let dialog = $("#math-formula-dialog");
+      if (dialog) return dialog;
+      dialog = document.createElement("dialog");
+      dialog.className = "math-formula-dialog";
+      dialog.id = "math-formula-dialog";
+      dialog.innerHTML = `
+        <form>
+          <header>
+            <div><h2 id="math-formula-dialog-title">Add math</h2><p id="math-formula-dialog-description"></p></div>
+            <button aria-label="Close" class="icon-button" id="close-math-formula-dialog" type="button">×</button>
+          </header>
+          <div class="math-formula-dialog-fields" id="math-formula-dialog-fields"></div>
+          <div aria-label="Formula preview" class="math-formula-dialog-preview" id="math-formula-dialog-preview"></div>
+          <footer>
+            <button class="danger" id="remove-math-formula" type="button" hidden>Remove formula</button>
+            <button class="secondary" id="cancel-math-formula" type="button">Cancel</button>
+            <button class="primary" type="submit">Use this math</button>
+          </footer>
+        </form>
+      `;
+      document.body.appendChild(dialog);
+      const close = () => {
+        mathFormulaComposerState = null;
+        dialog.close();
+      };
+      $("#close-math-formula-dialog", dialog).addEventListener("click", close);
+      $("#cancel-math-formula", dialog).addEventListener("click", close);
+      $("#remove-math-formula", dialog).addEventListener("click", () => {
+        const state = mathFormulaComposerState;
+        if (!state?.token) return;
+        state.token.remove();
+        state.target.dispatchEvent(new Event("input", { bubbles: true }));
+        close();
+        state.target.focus();
+      });
+      $("form", dialog).addEventListener("submit", (event) => {
+        event.preventDefault();
+        const state = mathFormulaComposerState;
+        if (!state) return;
+        const values = Object.fromEntries(
+          $$("[data-math-formula-field]", dialog).map((input) => [input.dataset.mathFormulaField, input.value]),
+        );
+        const expression = state.builder.build(values);
+        if (!expression.trim()) {
+          setStatus("Enter the math you want students to see.", "error");
+          return;
+        }
+        if (state.token) {
+          state.token.dataset.mathExpression = expression;
+          state.token.dataset.mathDisplay = state.displayMode ? "true" : "false";
+          state.token.classList.toggle("is-display", state.displayMode);
+          state.token.setAttribute("aria-label", `Edit formula: ${expression}`);
+          state.token.innerHTML = renderKatexExpression(expression, state.displayMode);
+        } else {
+          insertBuiltMath(state.target, expression, state.displayMode, state.rawExpression, state.range);
+        }
+        state.target.dispatchEvent(new Event("input", { bubbles: true }));
+        close();
+        state.target.focus();
+      });
+      return dialog;
+    }
+
+    function updateMathFormulaDialogPreview() {
+      const state = mathFormulaComposerState;
+      const dialog = $("#math-formula-dialog");
+      if (!state || !dialog) return;
+      const values = Object.fromEntries(
+        $$("[data-math-formula-field]", dialog).map((input) => [input.dataset.mathFormulaField, input.value]),
+      );
+      const expression = state.builder.build(values);
+      $("#math-formula-dialog-preview", dialog).innerHTML = expression
+        ? renderKatexExpression(expression, state.displayMode)
+        : `<span class="field-note">Your formatted math will appear here.</span>`;
+    }
+
+    function openMathFormulaComposer(target, builderKey, options = {}) {
+      if (!target) return;
+      const dialog = ensureMathFormulaDialog();
+      const detected = options.token
+        ? detectMathFormulaBuilder(options.token.dataset.mathExpression || "")
+        : null;
+      const resolvedKey = detected?.key || builderKey || "advanced";
+      const builder = mathFormulaBuilders[resolvedKey] || mathFormulaBuilders.advanced;
+      const selection = window.getSelection();
+      const range =
+        selection?.rangeCount && target.contains(selection.getRangeAt(0).commonAncestorContainer)
+          ? selection.getRangeAt(0).cloneRange()
+          : null;
+      mathFormulaComposerState = {
+        builder,
+        displayMode: options.token
+          ? options.token.dataset.mathDisplay === "true"
+          : builder.displayMode === true,
+        range,
+        rawExpression: options.rawExpression === true,
+        target,
+        token: options.token || null,
+      };
+      $("#math-formula-dialog-title", dialog).textContent = builder.title;
+      $("#math-formula-dialog-description", dialog).textContent = builder.description;
+      $("#remove-math-formula", dialog).hidden = !options.token;
+      const values = detected?.values || options.values || {};
+      $("#math-formula-dialog-fields", dialog).innerHTML = builder.fields.map((field) => `
+        <label class="field${field.wide ? " wide" : ""}">
+          <span>${escapeHtml(field.label)}</span>
+          ${field.options ? `
+            <select data-math-formula-field="${escapeHtml(field.name)}">
+              ${field.options.map((option) => `<option ${option.value === (values[field.name] ?? field.value) ? "selected" : ""} value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</option>`).join("")}
+            </select>
+          ` : `
+            <input autocomplete="off" data-math-formula-field="${escapeHtml(field.name)}" placeholder="${escapeHtml(field.placeholder || "")}" value="${escapeHtml(values[field.name] ?? field.value ?? "")}">
+          `}
+        </label>
+      `).join("");
+      $$("[data-math-formula-field]", dialog).forEach((input) => {
+        input.addEventListener("input", updateMathFormulaDialogPreview);
+        input.addEventListener("change", updateMathFormulaDialogPreview);
+      });
+      updateMathFormulaDialogPreview();
+      dialog.showModal();
+      $("[data-math-formula-field]", dialog)?.focus();
+    }
+
+    function insertMathVisualToken(target, expression, displayMode = false, savedRange = null) {
+      const selection = window.getSelection();
+      const activeRange =
+        selection?.rangeCount && target.contains(selection.getRangeAt(0).commonAncestorContainer)
+          ? selection.getRangeAt(0).cloneRange()
+          : null;
+      const range = savedRange?.cloneRange() || activeRange || document.createRange();
+      target.focus({ preventScroll: true });
+      if (!savedRange && !activeRange) {
+        range.selectNodeContents(target);
+        range.collapse(false);
+      }
+      range.deleteContents();
+      const token = createMathVisualToken(expression, displayMode);
+      const spacer = document.createTextNode(" ");
+      range.insertNode(spacer);
+      range.insertNode(token);
+      range.setStartAfter(spacer);
+      range.collapse(true);
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+    }
+
+    function insertBuiltMath(target, expression, displayMode = false, rawExpression = false, savedRange = null) {
+      if (target.isContentEditable && target.dataset.richKind === "math-prompt") {
+        insertMathVisualToken(target, expression, displayMode, savedRange);
+        return;
+      }
+      const snippet = rawExpression
+        ? expression
+        : displayMode
+          ? `\\[${expression}\\]`
+          : `\\(${expression}\\)`;
+      insertMathSnippet(target, `${snippet}|`);
     }
 
     function confirmDiscard() {
@@ -1442,6 +1962,7 @@ Rules:
             "standalone-stimulus",
             "math-prompt",
             "math-instructions",
+            "math-stimulus",
           ]);
           const inline = !blockRichKinds.has(editor.dataset.richKind);
           const content = richHtml
@@ -1454,11 +1975,29 @@ Rules:
                 ? escapeHtml(plainText).replaceAll("\n", "<br>")
                 : plainTextToRich(plainText, app.passageDraft.format);
           document.execCommand("insertHTML", false, content);
+          if (editor.dataset.richKind === "math-prompt") hydrateMathPromptEditor(editor);
           editor.dispatchEvent(new Event("input", { bubbles: true }));
         });
+        if (editor.dataset.richKind === "math-prompt") {
+          editor.addEventListener("click", (event) => {
+            const token = event.target.closest(".math-visual-token");
+            if (!token || !editor.contains(token)) return;
+            event.preventDefault();
+            openMathFormulaComposer(editor, "", { token });
+          });
+          editor.addEventListener("blur", () => {
+            if (!/\\[\[(]/.test(editor.innerText)) return;
+            hydrateMathPromptEditor(editor);
+            editor.dispatchEvent(new Event("input", { bubbles: true }));
+          });
+        }
         editor.addEventListener("input", () => {
-          const html = editor.innerHTML;
-          const text = editor.innerText.replace(/\u00a0/g, " ").replace(/\r\n?/g, "\n").trim();
+          const visualMathValue =
+            editor.dataset.richKind === "math-prompt"
+              ? serializeMathPromptEditor(editor)
+              : null;
+          const html = visualMathValue?.html || editor.innerHTML;
+          const text = visualMathValue?.text || editor.innerText.replace(/\u00a0/g, " ").replace(/\r\n?/g, "\n").trim();
           const questionIndex = Number(editor.dataset.questionIndex);
           if (editor.dataset.richKind === "standalone-prompt") {
             app.standaloneDraft.promptHtml = html;
@@ -1493,6 +2032,13 @@ Rules:
             const question = app.mathDraft.questions[app.selectedMathQuestionIndex];
             question.instructionsHtml = html;
             question.instructions = text;
+            markMathDirty();
+            renderMathPreview();
+            return;
+          } else if (editor.dataset.richKind === "math-stimulus") {
+            const question = app.mathDraft.questions[app.selectedMathQuestionIndex];
+            question.stimulusHtml = html;
+            question.stimulus = text;
             markMathDirty();
             renderMathPreview();
             return;
@@ -1532,7 +2078,16 @@ Rules:
               ? app.activeRichEditor
               : $("[contenteditable='true']", scope);
           if (!activeEditor) return;
-          activeEditor.focus();
+          const selection = window.getSelection();
+          const savedRange =
+            selection?.rangeCount && activeEditor.contains(selection.getRangeAt(0).commonAncestorContainer)
+              ? selection.getRangeAt(0).cloneRange()
+              : null;
+          activeEditor.focus({ preventScroll: true });
+          if (savedRange) {
+            selection.removeAllRanges();
+            selection.addRange(savedRange);
+          }
           document.execCommand(button.dataset.richCommand, false);
           activeEditor.dispatchEvent(new Event("input", { bubbles: true }));
         });
@@ -1864,10 +2419,18 @@ Rules:
       $("#student-preview-subtitle").textContent = "Live student view of the current unsaved Math question";
       const choices = question?.choices || [];
       const answerMarkup =
-        question?.type === "short_response" || question?.type === "numeric_entry"
-          ? `<div class="exam-math-text-entry ${question.type === "short_response" ? "is-short-response" : ""}"><input aria-label="Answer" type="text"></div>`
+        question?.type === "short_response"
+          ? renderShortResponsePreviewMarkup()
+          : question?.type === "numeric_entry"
+            ? renderMathEntryPreviewMarkup(question)
           : question?.type === "inline_dropdown"
             ? renderMathInlineDropdownMarkup(question, "math-student-preview")
+            : question?.type === "math_drag_drop"
+              ? renderMathDragDropPreviewMarkup(question)
+              : question?.type === "graph_point_select"
+                ? renderMathGraphPreviewMarkup(question)
+                : question?.type === "number_line_response"
+                  ? renderMathNumberLineResponsePreviewMarkup(question)
             : choices.length
               ? `<div class="exam-choice-list exam-standalone-choice-list">
                   ${choices.map((choice) => `
@@ -3280,6 +3843,22 @@ Rules:
       if (question.type === "multi_select") {
         return (question.correctChoiceIds || []).map(choiceLabel).join("; ") || "—";
       }
+      if (question.type === "graph_point_select") {
+        return (question.correctPointIds || []).map((pointId) => {
+          const point = question.graph?.points?.find((candidate) => candidate.id === pointId);
+          return point ? `(${point.x}, ${point.y})` : pointId;
+        }).join("; ") || "—";
+      }
+      if (question.type === "math_drag_drop") {
+        return (question.dragDropSlots || []).map((slot) => {
+          const item = (question.items || []).find((candidate) => candidate.id === slot.correctItemId);
+          return `${slot.id}: ${item?.text || slot.correctItemId}`;
+        }).join("; ") || "—";
+      }
+      if (question.type === "number_line_response") {
+        const response = question.numberLineResponse;
+        return response ? `${response.correctDirection} ray, ${response.correctEndpoint} at ${response.correctValue}` : "—";
+      }
       if (question.type === "category_sort" || question.type === "table_match") {
         return Object.entries(question.correctPlacements || {}).map(([itemId, categoryId]) => {
           const item = (question.items || []).find((candidate) => candidate.id === itemId);
@@ -3395,22 +3974,90 @@ Rules:
       renderErrors("#math-errors", app.state.mathErrors);
     }
 
-    function selectMathAssessment(id) {
+    function captureMathBuilderView() {
+      return {
+        navScrollTop: $(".math-question-nav-list", $("#math-builder"))?.scrollTop || 0,
+        pageScrollTop: window.scrollY,
+      };
+    }
+
+    function restoreMathBuilderView(view = {}, revealSelected = false) {
+      window.requestAnimationFrame(() => {
+        const nav = $(".math-question-nav-list", $("#math-builder"));
+        const selectedButton = $(
+          `[data-math-question-index="${app.selectedMathQuestionIndex}"]`,
+          nav || $("#math-builder"),
+        );
+        if (nav) {
+          nav.scrollTop = Number.isFinite(view.navScrollTop) ? view.navScrollTop : nav.scrollTop;
+          if (revealSelected && selectedButton) {
+            const itemTop = selectedButton.offsetTop;
+            const itemBottom = itemTop + selectedButton.offsetHeight;
+            if (itemTop < nav.scrollTop) nav.scrollTop = itemTop;
+            else if (itemBottom > nav.scrollTop + nav.clientHeight) {
+              nav.scrollTop = itemBottom - nav.clientHeight;
+            }
+          }
+        }
+        selectedButton?.focus({ preventScroll: true });
+        if (Number.isFinite(view.pageScrollTop)) {
+          window.scrollTo({ left: 0, top: view.pageScrollTop });
+        }
+      });
+    }
+
+    function captureMathQuestionPositions() {
+      return new Map(
+        $$("[data-math-question-id]", $("#math-builder")).map((button) => [
+          button.dataset.mathQuestionId,
+          button.getBoundingClientRect().top,
+        ]),
+      );
+    }
+
+    function animateMathQuestionPositions(previousPositions) {
+      window.requestAnimationFrame(() => {
+        $$("[data-math-question-id]", $("#math-builder")).forEach((button) => {
+          const previousTop = previousPositions.get(button.dataset.mathQuestionId);
+          if (!Number.isFinite(previousTop)) return;
+          const delta = previousTop - button.getBoundingClientRect().top;
+          if (Math.abs(delta) < 1) return;
+          button.animate(
+            [
+              { transform: `translateY(${delta}px)` },
+              { transform: "translateY(0)" },
+            ],
+            { duration: 260, easing: "cubic-bezier(.2,.8,.2,1)" },
+          );
+        });
+      });
+    }
+
+    function selectMathAssessment(id, options = {}) {
       if (app.mathDirty && !window.confirm("Discard the unsaved math changes?")) return;
       const assessment = app.state.assessments.find((candidate) => candidate.id === id);
       if (!assessment) return;
       const section = linkedMathSection(id);
       app.selectedMathAssessmentId = id;
-      app.selectedMathQuestionIndex = 0;
       app.mathDraft = section
         ? { ...clone(section), assessmentId: id }
         : defaultMathDraft(assessment);
+      const selectedQuestionIndex = options.selectedQuestionId
+        ? app.mathDraft.questions.findIndex((question) => question.id === options.selectedQuestionId)
+        : -1;
+      const fallbackIndex = Number.isInteger(options.selectedQuestionIndex)
+        ? options.selectedQuestionIndex
+        : 0;
+      app.selectedMathQuestionIndex = selectedQuestionIndex >= 0
+        ? selectedQuestionIndex
+        : Math.max(0, Math.min(fallbackIndex, Math.max(app.mathDraft.questions.length - 1, 0)));
       app.mathDirty = false;
       app.mathImportOpen = false;
       app.mathImportReview = null;
       app.mathImportSource = "";
       renderMathAssessmentList();
       renderMathBuilder();
+      restoreMathBuilderView(options.view, options.revealSelected === true);
       setStatus(`Editing the math section for ${assessment.title}.`);
     }
 
@@ -3666,14 +4313,116 @@ Rules:
       `;
     }
 
+    function mathDragDropEditorMarkup(question) {
+      const items = question.items || [];
+      const slots = question.dragDropSlots || [];
+      return `
+        <section class="math-answer-editor">
+          <div class="panel-head"><div><h2>Drag-and-drop math boxes</h2><small>Students move an answer from the bank into each box. Put each box token, such as {{box-1}}, exactly where it should appear.</small></div></div>
+          <label class="toggle-row">
+            <input ${question.allowReuse ? "checked" : ""} id="math-drag-allow-reuse" type="checkbox">
+            <span><strong>Allow answers to be reused</strong><small>Turn this on when the same answer may fill more than one box.</small></span>
+          </label>
+          <div class="math-config-list">
+            <h3>Answer bank</h3>
+            ${items.map((item, itemIndex) => `
+              <div class="math-config-row">
+                <code>${escapeHtml(item.id)}</code>
+                <input aria-label="Answer ${itemIndex + 1}" data-math-drag-item-index="${itemIndex}" value="${escapeHtml(item.text)}">
+                <button class="danger" data-math-drag-item-remove="${itemIndex}" ${items.length <= 2 ? "disabled" : ""} type="button">Remove</button>
+              </div>
+            `).join("")}
+            <button class="secondary" id="add-math-drag-item" type="button">+ Add answer</button>
+          </div>
+          <div class="math-config-list">
+            <h3>Answer boxes and rows</h3>
+            ${slots.map((slot, slotIndex) => `
+              <article class="math-config-card">
+                <div class="math-config-row">
+                  <code>{{${escapeHtml(slot.id)}}}</code>
+                  <select aria-label="Correct answer for box ${slotIndex + 1}" data-math-drag-correct-index="${slotIndex}">
+                    ${items.map((item) => `<option ${item.id === slot.correctItemId ? "selected" : ""} value="${escapeHtml(item.id)}">${escapeHtml(item.text)}</option>`).join("")}
+                  </select>
+                  <button class="danger" data-math-drag-slot-remove="${slotIndex}" ${slots.length <= 1 ? "disabled" : ""} type="button">Remove</button>
+                </div>
+              </article>
+            `).join("")}
+            <button class="secondary" id="add-math-drag-slot" type="button">+ Add answer box</button>
+            <label class="field"><span>Answer layout <small class="field-note">One visual row per line; insert each box token where it belongs.</small></span><textarea id="math-drag-content-rows">${escapeHtml((question.dragDropContent || []).join("\n"))}</textarea></label>
+          </div>
+        </section>
+      `;
+    }
+
+    function mathGraphEditorMarkup(question) {
+      const graph = question.graph || {};
+      const points = graph.points || [];
+      return `
+        <section class="math-answer-editor">
+          <div class="panel-head"><div><h2>Selectable graph points</h2><small>Students select every plotted point that answers the question.</small></div></div>
+          <div class="question-grid">
+            <label class="field wide"><span>Graph title</span><input data-math-graph-field="title" value="${escapeHtml(graph.title || "")}"></label>
+            <label class="field"><span>x-axis label</span><input data-math-graph-field="xLabel" value="${escapeHtml(graph.xLabel || "x")}"></label>
+            <label class="field"><span>y-axis label</span><input data-math-graph-field="yLabel" value="${escapeHtml(graph.yLabel || "y")}"></label>
+            ${["xMin", "xMax", "xStep", "yMin", "yMax", "yStep"].map((field) => `
+              <label class="field"><span>${escapeHtml(field.replace(/([A-Z])/g, " $1"))}</span><input data-math-graph-field="${field}" step="any" type="number" value="${escapeHtml(graph[field] ?? (field.endsWith("Step") ? 1 : 0))}"></label>
+            `).join("")}
+          </div>
+          <div class="math-config-list">
+            <h3>Plotted points</h3>
+            ${points.map((point, pointIndex) => `
+              <div class="math-config-row math-point-config-row">
+                <code>${escapeHtml(point.id)}</code>
+                <label class="field"><span>x</span><input data-math-graph-point-field="x" data-math-graph-point-index="${pointIndex}" step="any" type="number" value="${escapeHtml(point.x)}"></label>
+                <label class="field"><span>y</span><input data-math-graph-point-field="y" data-math-graph-point-index="${pointIndex}" step="any" type="number" value="${escapeHtml(point.y)}"></label>
+                <label class="check-field"><input ${(question.correctPointIds || []).includes(point.id) ? "checked" : ""} data-math-graph-correct-index="${pointIndex}" type="checkbox"><span>Correct</span></label>
+                <button class="danger" data-math-graph-point-remove="${pointIndex}" ${points.length <= 2 ? "disabled" : ""} type="button">Remove</button>
+              </div>
+            `).join("")}
+            <button class="secondary" id="add-math-graph-point" type="button">+ Add point</button>
+          </div>
+        </section>
+      `;
+    }
+
+    function mathNumberLineResponseEditorMarkup(question) {
+      const numberLine = question.numberLineResponse || {};
+      return `
+        <section class="math-answer-editor">
+          <div class="panel-head"><div><h2>Interactive number-line ray</h2><small>Students choose a ray style, then place its endpoint on the number line.</small></div></div>
+          <div class="question-grid">
+            ${["min", "max", "tickStep", "labelStep", "correctValue"].map((field) => `
+              <label class="field"><span>${escapeHtml(field.replace(/([A-Z])/g, " $1"))}</span><input data-math-number-line-response-field="${field}" step="any" type="number" value="${escapeHtml(numberLine[field] ?? 0)}"></label>
+            `).join("")}
+            <label class="field"><span>Correct ray direction</span>
+              <select data-math-number-line-response-field="correctDirection">
+                <option ${numberLine.correctDirection === "left" ? "selected" : ""} value="left">Left</option>
+                <option ${numberLine.correctDirection !== "left" ? "selected" : ""} value="right">Right</option>
+              </select>
+            </label>
+            <label class="field"><span>Correct endpoint</span>
+              <select data-math-number-line-response-field="correctEndpoint">
+                <option ${numberLine.correctEndpoint === "open" ? "selected" : ""} value="open">Open circle</option>
+                <option ${numberLine.correctEndpoint !== "open" ? "selected" : ""} value="closed">Closed circle</option>
+              </select>
+            </label>
+          </div>
+        </section>
+      `;
+    }
+
     function mathQuestionEditorMarkup(question) {
       if (!question) {
         return `<div class="editor-empty">Add the first math question.</div>`;
       }
-      const supported = ["multiple_choice", "multi_select", "short_response", "numeric_entry", "inline_dropdown"].includes(question.type);
+      const supported = ["multiple_choice", "multi_select", "short_response", "numeric_entry", "inline_dropdown", "math_drag_drop", "graph_point_select", "number_line_response"].includes(question.type);
       const isChoice = question.type === "multiple_choice" || question.type === "multi_select";
       const isTextEntry = question.type === "short_response" || question.type === "numeric_entry";
+      const isCalculatorEntry = question.type === "numeric_entry";
       const isInlineDropdown = question.type === "inline_dropdown";
+      const isMathDragDrop = question.type === "math_drag_drop";
+      const isGraphPointSelect = question.type === "graph_point_select";
+      const isNumberLineResponse = question.type === "number_line_response";
       const promptId = `math-prompt-${app.selectedMathQuestionIndex}`;
       const image = question.image;
       return `
@@ -3691,8 +4440,11 @@ Rules:
                 <option ${question.type === "multiple_choice" ? "selected" : ""} value="multiple_choice">Multiple choice</option>
                 <option ${question.type === "multi_select" ? "selected" : ""} value="multi_select">Multi-select</option>
                 <option ${question.type === "short_response" ? "selected" : ""} value="short_response">Short answer</option>
-                <option ${question.type === "numeric_entry" ? "selected" : ""} value="numeric_entry">Numeric entry</option>
+                <option ${question.type === "numeric_entry" ? "selected" : ""} value="numeric_entry">Calculator input</option>
                 <option ${question.type === "inline_dropdown" ? "selected" : ""} value="inline_dropdown">Inline drop-down sentences</option>
+                <option ${question.type === "math_drag_drop" ? "selected" : ""} value="math_drag_drop">Drag answers into math</option>
+                <option ${question.type === "graph_point_select" ? "selected" : ""} value="graph_point_select">Select points on a graph</option>
+                <option ${question.type === "number_line_response" ? "selected" : ""} value="number_line_response">Graph a number-line ray</option>
                 ${supported ? "" : `<option selected value="${escapeHtml(question.type)}">${escapeHtml(question.type)} (preserved)</option>`}
               </select>
             </label>
@@ -3700,15 +4452,21 @@ Rules:
             <label class="field"><span>Topic</span><select data-math-field="topic">${mathTopicOptions(question.topic)}</select></label>
             <label class="field"><span>Points</span><input data-math-field="points" min="1" type="number" value="${escapeHtml(question.points || 1)}"></label>
             <div class="wide">
-              <label class="field"><span>Question prompt</span></label>
-              <div class="question-rich-toolbar">${richToolbarHtml("Math text formatting")}</div>
-              <div class="rich-editor-shell"><div class="rich-editor-content math-rich-prompt" contenteditable="true" data-placeholder="Write the question exactly as students should see it." data-rich-kind="math-prompt" id="${promptId}" role="textbox">${question.promptHtml || escapeHtml(question.prompt || "").replaceAll("\n", "<br>")}</div></div>
+              <label class="field"><span>Question prompt <small class="field-note">This is how students will see it</small></span></label>
+              <div class="rich-editor-shell math-prompt-editor">
+                ${richToolbarHtml("Text style")}
+                <div aria-label="Question prompt" class="rich-editor-content math-rich-prompt" contenteditable="true" data-placeholder="Write the question here. Use the buttons below to add formatted math." data-rich-kind="math-prompt" id="${promptId}" role="textbox">${mathPromptEditorHtml(question.promptHtml, question.prompt)}</div>
+              </div>
               ${mathFormulaToolbarHtml(promptId)}
-              <p class="field-note">Place the cursor and click Variables, then type MNPQ—or select existing letters and click Variables to wrap them. Use Enter for a new line.</p>
+              <p class="math-prompt-note"><span><strong>No notation required.</strong> Click a math button and enter ordinary values such as <em>x + 2</em>.</span><span>Click any green formula to edit or remove it.</span></p>
             </div>
             <div class="wide">
               <label class="field"><span>Optional directions</span></label>
               <div class="rich-editor-shell"><div class="rich-editor-content math-rich-instructions" contenteditable="true" data-placeholder="Example: Enter your answer in the space." data-rich-kind="math-instructions" role="textbox">${question.instructionsHtml || escapeHtml(question.instructions || "").replaceAll("\n", "<br>")}</div></div>
+            </div>
+            <div class="wide">
+              <label class="field"><span>Optional expression or supporting text</span></label>
+              <div class="rich-editor-shell"><div class="rich-editor-content math-rich-instructions" contenteditable="true" data-placeholder="Example: a displayed expression students need for this question." data-rich-kind="math-stimulus" role="textbox">${question.stimulusHtml || escapeHtml(question.stimulus || "").replaceAll("\n", "<br>")}</div></div>
             </div>
           </div>
 
@@ -3758,7 +4516,14 @@ Rules:
 
           ${isTextEntry ? `
             <section class="math-answer-editor">
-              <label class="field"><span>Accepted answer${question.type === "short_response" ? "s" : ""}</span>
+              ${isCalculatorEntry ? `<label class="field"><span>Calculator input display</span>
+                <select id="math-entry-layout">
+                  <option ${question.entryLayout === "plain" || !question.entryLayout ? "selected" : ""} value="plain">Plain answer box</option>
+                  <option ${question.entryLayout === "x_equals" ? "selected" : ""} value="x_equals">x = answer</option>
+                  <option ${question.entryLayout === "fraction" ? "selected" : ""} value="fraction">Fraction answer</option>
+                </select>
+              </label>` : ""}
+              <label class="field"><span>Accepted answers</span>
                 <textarea id="math-accepted-answers" placeholder="Put each accepted answer on its own line.">${escapeHtml((question.correctTextAnswers || []).join("\n"))}</textarea>
               </label>
               <p class="field-note">Student responses ignore capitalization and extra surrounding spaces when scored.</p>
@@ -3766,9 +4531,12 @@ Rules:
           ` : ""}
 
           ${isInlineDropdown ? mathDropdownEditorMarkup(question) : ""}
+          ${isMathDragDrop ? mathDragDropEditorMarkup(question) : ""}
+          ${isGraphPointSelect ? mathGraphEditorMarkup(question) : ""}
+          ${isNumberLineResponse ? mathNumberLineResponseEditorMarkup(question) : ""}
 
           <section>
-            <div class="panel-head"><div><h2>Student preview</h2><small>KaTeX renders the same math notation used in the exam player.</small></div></div>
+            <div class="panel-head"><div><h2>Complete student preview</h2><small>Review the full question and answer interaction exactly as students will see it.</small></div></div>
             <div class="math-live-preview" id="math-live-preview"></div>
           </section>
         </div>
@@ -3846,7 +4614,7 @@ Rules:
             <p class="math-question-nav-hint">Drag questions to reorder them. Keyboard: Alt + ↑ or ↓.</p>
             <div class="math-question-nav-list">
               ${questions.map((item, index) => `
-                <button aria-label="Question ${index + 1}: ${escapeHtml(item.prompt || "Untitled question")}. Click and drag to reorder." class="${index === app.selectedMathQuestionIndex ? "is-active" : ""}" data-math-question-index="${index}" type="button">
+                <button aria-label="Question ${index + 1}: ${escapeHtml(item.prompt || "Untitled question")}. Click and drag to reorder." class="${index === app.selectedMathQuestionIndex ? "is-active" : ""}" data-math-question-id="${escapeHtml(item.id)}" data-math-question-index="${index}" type="button">
                   <span>${index + 1}</span>
                   <span class="math-question-nav-copy"><strong>${escapeHtml(item.prompt || `Question ${index + 1}`)}</strong><small>${escapeHtml(item.type.replaceAll("_", " "))}</small></span>
                 </button>
@@ -3893,6 +4661,86 @@ Rules:
       `;
     }
 
+    function renderMathEntryPreviewMarkup(question) {
+      const layout = question.entryLayout || "plain";
+      const entry = layout === "fraction"
+        ? `<span class="studio-fraction-entry"><input aria-label="Numerator"><span></span><input aria-label="Denominator"></span>`
+        : `${layout === "x_equals" ? `<span class="studio-entry-prefix">${renderKatexExpression("x =")}</span>` : ""}<input aria-label="Student answer" class="short-answer-preview" type="text">`;
+      return `
+        <div class="studio-math-entry-preview">
+          <div class="studio-math-entry-display">${entry}</div>
+          <div class="studio-math-keypad-preview">
+            ${["←", "→", "↶", "↷", "⌫", "⌧", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "%", "−", ".", "a⁄b", "1 a⁄b"].map((key) => `<button type="button">${key}</button>`).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderShortResponsePreviewMarkup() {
+      return `
+        <label class="exam-math-text-entry is-short-response">
+          <span class="sr-only">Answer</span>
+          <input aria-label="Answer" type="text">
+        </label>
+      `;
+    }
+
+    function renderMathDragDropPreviewMarkup(question) {
+      const boxes = new Map((question.dragDropSlots || []).map((slot) => [slot.id, slot]));
+      const lines = (question.dragDropContent || []).map((line) => `
+        <div class="studio-math-drag-line">
+          ${line.split(/(\{\{[\w-]+\}\})/g).filter(Boolean).map((part) => {
+            if (part.startsWith("{{") && part.endsWith("}}")) {
+              const slotId = part.slice(2, -2);
+              return boxes.has(slotId) ? `<button aria-label="Empty answer box" type="button">&nbsp;</button>` : "";
+            }
+            return renderMathTextHtml(part);
+          }).join("")}
+        </div>
+      `).join("");
+      return `
+        <div class="studio-math-drag-preview">
+          <div class="studio-math-drag-bank">${(question.items || []).map((item) => `<button type="button">${renderMathTextHtml(item.text)}</button>`).join("")}</div>
+          <div>${lines}</div>
+        </div>
+      `;
+    }
+
+    function renderMathGraphPreviewMarkup(question) {
+      const graph = question.graph;
+      if (!graph) return "";
+      const left = 46;
+      const right = 306;
+      const top = 25;
+      const bottom = 285;
+      const xFor = (value) => left + ((value - graph.xMin) / (graph.xMax - graph.xMin)) * (right - left);
+      const yFor = (value) => bottom - ((value - graph.yMin) / (graph.yMax - graph.yMin)) * (bottom - top);
+      const xTicks = Array.from({ length: Math.floor((graph.xMax - graph.xMin) / graph.xStep) + 1 }, (_, index) => graph.xMin + index * graph.xStep);
+      const yTicks = Array.from({ length: Math.floor((graph.yMax - graph.yMin) / graph.yStep) + 1 }, (_, index) => graph.yMin + index * graph.yStep);
+      return `
+        <div class="studio-graph-preview">
+          ${graph.title ? `<strong>${escapeHtml(graph.title)}</strong>` : ""}
+          <svg aria-label="Selectable coordinate graph" viewBox="0 0 350 335">
+            ${xTicks.map((value) => `<line x1="${xFor(value)}" x2="${xFor(value)}" y1="${top}" y2="${bottom}"></line><text x="${xFor(value)}" y="${bottom + 18}">${escapeHtml(value)}</text>`).join("")}
+            ${yTicks.map((value) => `<line x1="${left}" x2="${right}" y1="${yFor(value)}" y2="${yFor(value)}"></line><text x="${left - 8}" y="${yFor(value) + 4}">${escapeHtml(value)}</text>`).join("")}
+            ${(graph.points || []).map((point) => `<circle cx="${xFor(point.x)}" cy="${yFor(point.y)}" r="7"></circle>`).join("")}
+          </svg>
+        </div>
+      `;
+    }
+
+    function renderMathNumberLineResponsePreviewMarkup(question) {
+      const config = question.numberLineResponse;
+      if (!config) return "";
+      const ticks = Array.from({ length: Math.floor((config.max - config.min) / config.tickStep) + 1 }, (_, index) => config.min + index * config.tickStep);
+      return `
+        <div class="studio-number-line-response-preview">
+          <div class="studio-number-line-axis">${ticks.map((tick) => `<span><strong>${escapeHtml(tick)}</strong><i></i></span>`).join("")}</div>
+          <div class="studio-ray-picker">${["←●", "←○", "○→", "●→"].map((ray) => `<button type="button">${ray}</button>`).join("")}</div>
+        </div>
+      `;
+    }
+
     function mathQuestionPreviewMarkup(question, namePrefix = "math-preview") {
       const image = question.image?.src
         ? `<figure><img alt="${escapeHtml(question.image.alt || "")}" src="${escapeHtml(question.image.src)}">${question.image.caption ? `<figcaption>${escapeHtml(question.image.caption)}</figcaption>` : ""}</figure>`
@@ -3910,16 +4758,25 @@ Rules:
             `).join("")}
           </div>
         `;
-      } else if (question.type === "short_response" || question.type === "numeric_entry") {
-        answerMarkup = `<input aria-label="Student answer" class="short-answer-preview" type="text">`;
+      } else if (question.type === "short_response") {
+        answerMarkup = renderShortResponsePreviewMarkup();
+      } else if (question.type === "numeric_entry") {
+        answerMarkup = renderMathEntryPreviewMarkup(question);
       } else if (question.type === "inline_dropdown") {
         answerMarkup = renderMathInlineDropdownMarkup(question, namePrefix);
+      } else if (question.type === "math_drag_drop") {
+        answerMarkup = renderMathDragDropPreviewMarkup(question);
+      } else if (question.type === "graph_point_select") {
+        answerMarkup = renderMathGraphPreviewMarkup(question);
+      } else if (question.type === "number_line_response") {
+        answerMarkup = renderMathNumberLineResponsePreviewMarkup(question);
       } else {
         answerMarkup = `<p class="field-note">The existing ${escapeHtml(question.type)} interaction is preserved in code.</p>`;
       }
       return `
         ${image}
         <h3 class="exam-rich-text">${renderMathRichTextHtml(question.promptHtml, question.prompt || "Add the question prompt to preview it.")}</h3>
+        ${question.stimulus ? `<div class="exam-rich-text">${renderMathRichTextHtml(question.stimulusHtml, question.stimulus)}</div>` : ""}
         ${question.instructions ? `<div class="exam-rich-text">${renderMathRichTextHtml(question.instructionsHtml, question.instructions)}</div>` : ""}
         ${answerMarkup}
       `;
@@ -3968,48 +4825,23 @@ Rules:
     }
 
     function wrapSelectedMathVariables(target) {
-      if (!target?.isContentEditable) return;
+      if (!target?.isContentEditable || target.dataset.richKind !== "math-prompt") return false;
       const selection = window.getSelection();
       const hasSelectedText =
         selection?.rangeCount &&
         !selection.isCollapsed &&
         target.contains(selection.getRangeAt(0).commonAncestorContainer);
-      if (!hasSelectedText) {
-        insertMathSnippet(target, "\\(|\\)");
-        setStatus("Inline math added. Type the variable letters between the delimiters.");
-        return;
-      }
+      if (!hasSelectedText) return false;
       const selectedText = selection.toString();
-      const leadingSpace = selectedText.match(/^\s*/)?.[0] || "";
-      const trailingSpace = selectedText.match(/\s*$/)?.[0] || "";
       const variableText = selectedText.trim();
       if (!variableText) {
-        setStatus("Select one or more variable letters first.", "error");
-        return;
+        return false;
       }
-      const replacement = `${leadingSpace}\\(${variableText}\\)${trailingSpace}`;
-      const range = selection.getRangeAt(0);
-      range.deleteContents();
-      const textNode = document.createTextNode(replacement);
-      range.insertNode(textNode);
-      const formattingTags = new Set(["B", "EM", "I", "S", "STRIKE", "STRONG", "SUB", "SUP", "U"]);
-      let formattingParent = textNode.parentElement;
-      while (
-        formattingParent &&
-        formattingTags.has(formattingParent.tagName) &&
-        formattingParent.textContent === replacement
-      ) {
-        formattingParent.parentNode?.insertBefore(textNode, formattingParent);
-        formattingParent.remove();
-        formattingParent = textNode.parentElement;
-      }
-      range.setStartAfter(textNode);
-      range.collapse(true);
-      selection.removeAllRanges();
-      selection.addRange(range);
-      target.focus();
+      const range = selection.getRangeAt(0).cloneRange();
+      insertMathVisualToken(target, friendlyMathExpression(variableText), false, range);
       target.dispatchEvent(new Event("input", { bubbles: true }));
-      setStatus(`${variableText} formatted as KaTeX variables.`, "success");
+      setStatus(`${variableText} formatted as math.`, "success");
+      return true;
     }
 
     function changeMathQuestionType(type) {
@@ -4021,6 +4853,8 @@ Rules:
       next.points = current.points || 1;
       next.prompt = current.prompt || "";
       next.promptHtml = current.promptHtml || "";
+      next.stimulus = current.stimulus || "";
+      next.stimulusHtml = current.stimulusHtml || "";
       next.topic = current.topic || "Algebra";
       next.image = current.image;
       if (type === "multiple_choice" || type === "multi_select") {
@@ -4045,6 +4879,9 @@ Rules:
       }
       if (type === "short_response" || type === "numeric_entry") {
         next.correctTextAnswers = current.correctTextAnswers?.length ? [...current.correctTextAnswers] : [""];
+        if (type === "numeric_entry") {
+          next.entryLayout = current.entryLayout || "plain";
+        }
       }
       app.mathDraft.questions[app.selectedMathQuestionIndex] = next;
       markMathDirty();
@@ -4126,11 +4963,15 @@ Rules:
       ) {
         return;
       }
+      const view = captureMathBuilderView();
+      const previousPositions = captureMathQuestionPositions();
       const [movedQuestion] = questions.splice(fromIndex, 1);
       questions.splice(toIndex, 0, movedQuestion);
       app.selectedMathQuestionIndex = toIndex;
       markMathDirty(`Question moved to position ${toIndex + 1}.`);
       renderMathBuilder();
+      restoreMathBuilderView(view, true);
+      animateMathQuestionPositions(previousPositions);
     }
 
     function mathChoiceAction(choiceIndex) {
@@ -4386,8 +5227,10 @@ Rules:
             suppressMathQuestionClick = false;
             return;
           }
+          const view = captureMathBuilderView();
           app.selectedMathQuestionIndex = Number(button.dataset.mathQuestionIndex);
           renderMathBuilder();
+          restoreMathBuilderView(view, true);
         });
         button.addEventListener("keydown", (event) => {
           if (!event.altKey || !["ArrowUp", "ArrowDown"].includes(event.key)) return;
@@ -4452,12 +5295,14 @@ Rules:
         });
       });
       $("#add-math-question")?.addEventListener("click", () => {
+        const view = captureMathBuilderView();
         let number = app.mathDraft.questions.length + 1;
         while (app.mathDraft.questions.some((item) => item.id === `${app.selectedMathAssessmentId}-math-${number}`)) number += 1;
         app.mathDraft.questions.push(defaultMathQuestion(app.selectedMathAssessmentId, number));
         app.selectedMathQuestionIndex = app.mathDraft.questions.length - 1;
-        markMathDirty();
+        markMathDirty(`Question ${app.selectedMathQuestionIndex + 1} was added and selected.`);
         renderMathBuilder();
+        restoreMathBuilderView(view, true);
       });
       if (!question) {
         $("#save-math")?.addEventListener("click", saveMath);
@@ -4477,26 +5322,47 @@ Rules:
         });
       });
       bindRichEditors($("#math-builder"));
-      $$("[data-math-variable]", $("#math-builder")).forEach((button) => {
+      $$("[data-math-builder]", $("#math-builder")).forEach((button) => {
         button.addEventListener("mousedown", (event) => {
           event.preventDefault();
-          wrapSelectedMathVariables(document.getElementById(button.dataset.mathTarget));
+          const target = document.getElementById(button.dataset.mathTarget);
+          const rawExpression = button.dataset.mathRaw === "true";
+          if (button.dataset.mathBuilder === "variable" && wrapSelectedMathVariables(target)) return;
+          openMathFormulaComposer(target, button.dataset.mathBuilder, { rawExpression });
         });
       });
-      $$("[data-math-insert]", $("#math-builder")).forEach((button) => {
-        button.addEventListener("click", () => {
-          insertMathSnippet(document.getElementById(button.dataset.mathTarget), button.dataset.mathInsert);
+      $$("[data-math-symbol]", $("#math-builder")).forEach((button) => {
+        button.addEventListener("mousedown", (event) => {
+          event.preventDefault();
+          const target = document.getElementById(button.dataset.mathTarget);
+          const symbol = mathFormulaSymbols[button.dataset.mathSymbol];
+          if (!target || !symbol) return;
+          insertBuiltMath(target, symbol.expression, false, button.dataset.mathRaw === "true");
+          target.dispatchEvent(new Event("input", { bubbles: true }));
+          target.focus();
         });
       });
       $$("[data-math-template-insert]", $("#math-builder")).forEach((button) => {
-        button.addEventListener("click", () => {
+        button.addEventListener("mousedown", (event) => {
+          event.preventDefault();
           const toolbar = button.closest(".math-formula-toolbar");
           const picker = $("[data-math-template-picker]", toolbar);
           if (!picker?.value) {
-            setStatus("Choose a formula from the More formulas menu first.", "error");
+            setStatus("Choose an item from More math first.", "error");
             return;
           }
-          insertMathSnippet(document.getElementById(picker.dataset.mathTarget), picker.value);
+          const target = document.getElementById(picker.dataset.mathTarget);
+          const [kind, key] = picker.value.split(":");
+          if (kind === "builder") {
+            openMathFormulaComposer(target, key, { rawExpression: button.dataset.mathRaw === "true" });
+          } else {
+            const symbol = mathFormulaSymbols[key];
+            if (target && symbol) {
+              insertBuiltMath(target, symbol.expression, false, button.dataset.mathRaw === "true");
+              target.dispatchEvent(new Event("input", { bubbles: true }));
+              target.focus();
+            }
+          }
           picker.value = "";
         });
       });
@@ -4642,6 +5508,140 @@ Rules:
         question.correctTextAnswers = event.target.value.split(/\r?\n/);
         markMathDirty();
       });
+      $("#math-entry-layout")?.addEventListener("change", (event) => {
+        question.entryLayout = event.target.value;
+        markMathDirty();
+        renderMathPreview();
+      });
+      $("#math-drag-allow-reuse")?.addEventListener("change", (event) => {
+        question.allowReuse = event.target.checked;
+        markMathDirty();
+      });
+      $$("[data-math-drag-item-index]", $("#math-builder")).forEach((input) => {
+        input.addEventListener("input", () => {
+          const item = question.items?.[Number(input.dataset.mathDragItemIndex)];
+          if (!item) return;
+          item.text = input.value;
+          markMathDirty();
+          renderMathPreview();
+        });
+      });
+      $$("[data-math-drag-item-remove]", $("#math-builder")).forEach((button) => {
+        button.addEventListener("click", () => {
+          if (!question.items || question.items.length <= 2) return;
+          const index = Number(button.dataset.mathDragItemRemove);
+          const removed = question.items[index];
+          question.items.splice(index, 1);
+          (question.dragDropSlots || []).forEach((slot) => {
+            if (slot.correctItemId === removed?.id) slot.correctItemId = question.items[0].id;
+          });
+          markMathDirty();
+          renderMathBuilder();
+        });
+      });
+      $("#add-math-drag-item")?.addEventListener("click", () => {
+        question.items ||= [];
+        let number = question.items.length + 1;
+        while (question.items.some((item) => item.id === `answer-${number}`)) number += 1;
+        question.items.push({ id: `answer-${number}`, text: `Answer ${number}` });
+        markMathDirty();
+        renderMathBuilder();
+      });
+      $$("[data-math-drag-correct-index]", $("#math-builder")).forEach((select) => {
+        select.addEventListener("change", () => {
+          const slot = question.dragDropSlots?.[Number(select.dataset.mathDragCorrectIndex)];
+          if (!slot) return;
+          slot.correctItemId = select.value;
+          markMathDirty();
+        });
+      });
+      $("#math-drag-content-rows")?.addEventListener("input", (event) => {
+        question.dragDropContent = event.target.value.split(/\r?\n/);
+        markMathDirty();
+        renderMathPreview();
+      });
+      $$("[data-math-drag-slot-remove]", $("#math-builder")).forEach((button) => {
+        button.addEventListener("click", () => {
+          if (!question.dragDropSlots || question.dragDropSlots.length <= 1) return;
+          const index = Number(button.dataset.mathDragSlotRemove);
+          const [removed] = question.dragDropSlots.splice(index, 1);
+          if (removed) {
+            question.dragDropContent = (question.dragDropContent || [])
+              .map((line) => line.replaceAll(`{{${removed.id}}}`, ""))
+              .filter((line) => line.trim());
+          }
+          markMathDirty();
+          renderMathBuilder();
+        });
+      });
+      $("#add-math-drag-slot")?.addEventListener("click", () => {
+        question.dragDropSlots ||= [];
+        question.dragDropContent ||= [];
+        let number = question.dragDropSlots.length + 1;
+        while (question.dragDropSlots.some((slot) => slot.id === `box-${number}`)) number += 1;
+        const id = `box-${number}`;
+        question.dragDropSlots.push({ correctItemId: question.items?.[0]?.id || "", id });
+        question.dragDropContent.push(`{{${id}}}`);
+        markMathDirty();
+        renderMathBuilder();
+      });
+      $$("[data-math-graph-field]", $("#math-builder")).forEach((input) => {
+        input.addEventListener("input", () => {
+          if (!question.graph) return;
+          const field = input.dataset.mathGraphField;
+          question.graph[field] = input.type === "number" ? Number(input.value) : input.value;
+          markMathDirty();
+          renderMathPreview();
+        });
+      });
+      $$("[data-math-graph-point-index]", $("#math-builder")).forEach((input) => {
+        input.addEventListener("input", () => {
+          const point = question.graph?.points?.[Number(input.dataset.mathGraphPointIndex)];
+          if (!point) return;
+          point[input.dataset.mathGraphPointField] = Number(input.value);
+          markMathDirty();
+          renderMathPreview();
+        });
+      });
+      $$("[data-math-graph-correct-index]", $("#math-builder")).forEach((input) => {
+        input.addEventListener("change", () => {
+          const point = question.graph?.points?.[Number(input.dataset.mathGraphCorrectIndex)];
+          if (!point) return;
+          const selected = new Set(question.correctPointIds || []);
+          input.checked ? selected.add(point.id) : selected.delete(point.id);
+          question.correctPointIds = [...selected];
+          question.requiredSelections = question.correctPointIds.length;
+          markMathDirty();
+        });
+      });
+      $$("[data-math-graph-point-remove]", $("#math-builder")).forEach((button) => {
+        button.addEventListener("click", () => {
+          if (!question.graph?.points || question.graph.points.length <= 2) return;
+          const [removed] = question.graph.points.splice(Number(button.dataset.mathGraphPointRemove), 1);
+          question.correctPointIds = (question.correctPointIds || []).filter((id) => id !== removed?.id);
+          question.requiredSelections = question.correctPointIds.length;
+          markMathDirty();
+          renderMathBuilder();
+        });
+      });
+      $("#add-math-graph-point")?.addEventListener("click", () => {
+        if (!question.graph) return;
+        let number = question.graph.points.length + 1;
+        while (question.graph.points.some((point) => point.id === `point-${number}`)) number += 1;
+        question.graph.points.push({ id: `point-${number}`, x: number, y: number });
+        markMathDirty();
+        renderMathBuilder();
+      });
+      $$("[data-math-number-line-response-field]", $("#math-builder")).forEach((input) => {
+        const eventName = input.tagName === "SELECT" ? "change" : "input";
+        input.addEventListener(eventName, () => {
+          if (!question.numberLineResponse) return;
+          const field = input.dataset.mathNumberLineResponseField;
+          question.numberLineResponse[field] = input.tagName === "SELECT" ? input.value : Number(input.value);
+          markMathDirty();
+          renderMathPreview();
+        });
+      });
       $("#choose-math-image")?.addEventListener("click", () => $("#math-image-file").click());
       $("#open-math-student-preview")?.addEventListener("click", openMathStudentPreview);
       $("#math-image-file")?.addEventListener("change", (event) => uploadMathImage(event.target.files?.[0]));
@@ -4663,6 +5663,10 @@ Rules:
 
     async function saveMath() {
       if (app.saving || !app.mathDraft) return;
+      const selectedQuestion = app.mathDraft.questions[app.selectedMathQuestionIndex];
+      const selectedQuestionId = selectedQuestion?.id || "";
+      const selectedQuestionIndex = app.selectedMathQuestionIndex;
+      const view = captureMathBuilderView();
       app.saving = true;
       const button = $("#save-math");
       if (button) {
@@ -4675,7 +5679,12 @@ Rules:
         const assessmentId = data.math.assessmentId;
         app.mathDirty = false;
         await reloadState();
-        selectMathAssessment(assessmentId);
+        selectMathAssessment(assessmentId, {
+          revealSelected: true,
+          selectedQuestionId,
+          selectedQuestionIndex,
+          view,
+        });
         setStatus(`${data.math.questionCount} math questions were written to ${data.math.target}.`, "success");
       } catch (error) {
         setStatus(error.message, "error");

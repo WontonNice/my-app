@@ -5,7 +5,7 @@ const scribeLikeAnEgyptianPassageText = " In ancient Egypt, literacy was the key
 
 const scribeLikeAnEgyptianQuestions: ExamQuestion[] = [
   {
-    "id": "passage-1",
+    "id": "scribe-like-an-egyptian-1",
     "points": 1,
     "prompt": "Which sentence from the excerpt best supports the idea that there were different levels of education for a scribe?",
     "topic": "Central Idea & Theme",

@@ -1,5 +1,6 @@
 export type StudentPreviewContext = {
   isPreview: boolean;
+  mode: "" | "student" | "teacher";
   query: string;
   returnHref: string;
   studentId: string;
@@ -10,9 +11,11 @@ const previewKeys = ["preview", "teacherTools", "studentId", "studentName", "ret
 
 export function getStudentPreviewContext(search = window.location.search): StudentPreviewContext {
   const source = new URLSearchParams(search);
-  const isPreview = source.get("preview") === "student" && source.get("teacherTools") === "1";
+  const requestedMode = source.get("preview");
+  const mode = requestedMode === "student" || requestedMode === "teacher" ? requestedMode : "";
+  const isPreview = Boolean(mode) && source.get("teacherTools") === "1";
   if (!isPreview) {
-    return { isPreview: false, query: "", returnHref: "/teacher", studentId: "", studentName: "" };
+    return { isPreview: false, mode: "", query: "", returnHref: "/teacher", studentId: "", studentName: "" };
   }
 
   const previewParams = new URLSearchParams();
@@ -24,6 +27,7 @@ export function getStudentPreviewContext(search = window.location.search): Stude
   const requestedReturnHref = source.get("returnTo") ?? "";
   return {
     isPreview: true,
+    mode,
     query: `?${previewParams.toString()}`,
     returnHref: requestedReturnHref.startsWith("/teacher") ? requestedReturnHref : "/teacher",
     studentId: source.get("studentId") ?? "",

@@ -10,7 +10,14 @@ import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getExamResults, replaceExamResults, type ExamResult } from "../lib/examResults";
 import { isExamResultCompleteForQuestionCount } from "../lib/examSessionProgress";
 import { isSupabaseConfigured } from "../lib/supabase";
-import { cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "../lib/sessionCache";
+import {
+  cacheStudentClasses,
+  cacheStudentDashboard,
+  getActiveSession,
+  getCachedStudentClasses,
+  getCachedStudentDashboard,
+  peekActiveSession,
+} from "../lib/sessionCache";
 import { getStudentClassNavigation } from "../lib/studentClassNavigation";
 import { appendStudentPreview, getStudentPreviewContext } from "../lib/studentPreview";
 
@@ -172,14 +179,23 @@ function getSectionHeading(section: LabSection, isStudentPreview: boolean) {
 export function AdaptivePracticePage() {
   const previewContext = getStudentPreviewContext();
   const initialSession = peekActiveSession();
+  const initialDashboardCacheKey = previewContext.isPreview && previewContext.studentId
+    ? `preview:${previewContext.studentId}`
+    : initialSession?.user.id ?? "";
+  const initialDashboardCache = initialDashboardCacheKey
+    ? getCachedStudentDashboard(initialDashboardCacheKey)
+    : null;
   const initialMetadata = initialSession?.user.user_metadata as { full_name?: string; name?: string } | undefined;
   const [activeSection] = useState<LabSection>(getInitialSection);
   const [assessmentMessage, setAssessmentMessage] = useState("");
-  const [assessments, setAssessments] = useState<StudentAssessment[]>([]);
-  const [examResults, setExamResults] = useState<ExamResult[]>([]);
-  const [examSessions, setExamSessions] = useState<Record<string, ExamSessionProgress>>({});
-  const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured && !initialSession);
+  const [assessments, setAssessments] = useState<StudentAssessment[]>(initialDashboardCache?.assessments ?? []);
+  const [examResults, setExamResults] = useState<ExamResult[]>(initialDashboardCache?.examResults ?? []);
+  const [examSessions, setExamSessions] = useState<Record<string, ExamSessionProgress>>(initialDashboardCache?.examSessions ?? {});
+  const [isCheckingSession, setIsCheckingSession] = useState(
+    isSupabaseConfigured && !initialDashboardCache,
+  );
   const [studentName, setStudentName] = useState(previewContext.studentName || initialMetadata?.full_name || initialMetadata?.name || initialSession?.user.email?.split("@")[0] || "Student");
+  const [dashboardCacheKey, setDashboardCacheKey] = useState(initialDashboardCacheKey);
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -199,6 +215,18 @@ export function AdaptivePracticePage() {
       if (userRole !== "student" && !(userRole === "teacher" && previewContext.isPreview)) {
         window.location.assign(getDashboardPath(userRole));
         return;
+      }
+
+      const nextDashboardCacheKey = previewContext.isPreview && previewContext.studentId
+        ? `preview:${previewContext.studentId}`
+        : session.user.id;
+      setDashboardCacheKey(nextDashboardCacheKey);
+      const cachedDashboard = getCachedStudentDashboard(nextDashboardCacheKey);
+      if (cachedDashboard) {
+        setAssessments(cachedDashboard.assessments);
+        setExamResults(cachedDashboard.examResults);
+        setExamSessions(cachedDashboard.examSessions);
+        setIsCheckingSession(false);
       }
 
       if (userRole === "teacher" && previewContext.isPreview && previewContext.studentId) {
@@ -261,6 +289,11 @@ export function AdaptivePracticePage() {
     });
   }, [previewContext.isPreview, previewContext.studentId, previewContext.studentName]);
 
+  useEffect(() => {
+    if (!dashboardCacheKey || isCheckingSession) return;
+    cacheStudentDashboard(dashboardCacheKey, assessments, examResults, examSessions);
+  }, [assessments, dashboardCacheKey, examResults, examSessions, isCheckingSession]);
+
   async function handleSignOut() {
     if (isSupabaseConfigured) {
       await signOutCurrentAccount();
@@ -281,6 +314,10 @@ export function AdaptivePracticePage() {
     );
   }
 
+  const visibleExamResults = examResults.filter((result) =>
+    result.source === "manual" ||
+    assessments.some((assessment) => assessment.id === result.assessmentId),
+  );
   const sectionHeading = getSectionHeading(activeSection, previewContext.isPreview);
   const activeId = activeSection === "Test Results" ? "results" : activeSection === "Assessments" ? "assessments" : activeSection === "Advanced Practice" ? "advanced" : "practice";
   const navItems = getStudentClassNavigation(previewContext.query);
@@ -293,7 +330,7 @@ export function AdaptivePracticePage() {
       </header>
       <section className="staff-kpi-grid" aria-label="SHSAT learning summary">
         <article><span><Target size={19} /></span><div><p>Practice topics</p><strong>{practiceTopics.length}</strong></div><em>Four difficulty levels</em></article>
-        <article><span><BarChart3 size={19} /></span><div><p>Tests completed</p><strong>{examResults.filter((result) => {
+        <article><span><BarChart3 size={19} /></span><div><p>Tests completed</p><strong>{visibleExamResults.filter((result) => {
           const currentQuestionCount = assessments.find((assessment) => assessment.id === result.assessmentId)?.questionCount ?? result.total;
           return isExamResultCompleteForQuestionCount(result, currentQuestionCount);
         }).length}</strong></div><em>Saved assessment history</em></article>
@@ -304,9 +341,9 @@ export function AdaptivePracticePage() {
       <div className="shsat-lab-content" id="adaptive">
 
         {activeSection === "Assessments" ? (
-          <AssessmentsSection assessments={assessments} examSessions={examSessions} message={assessmentMessage} results={examResults} />
+          <AssessmentsSection assessments={assessments} examSessions={examSessions} message={assessmentMessage} results={visibleExamResults} />
         ) : activeSection === "Test Results" ? (
-          <ResultsSection assessments={assessments} results={examResults} />
+          <ResultsSection assessments={assessments} results={visibleExamResults} />
         ) : activeSection === "Advanced Practice" ? (
           <AdvancedPracticeCatalogue />
         ) : (
@@ -374,7 +411,7 @@ export function AdaptivePracticePage() {
               </div>
             </section>
 
-            <TopicsSection results={examResults} />
+            <TopicsSection results={visibleExamResults} />
           </>
         )}
       </div>
@@ -614,8 +651,8 @@ function AssessmentsSection({
           const result = results.find((candidate) => candidate.assessmentId === assessment.id);
           const session = examSessions[assessment.id];
           const englishComplete = Boolean(
-            assessment.split &&
-            (session?.completedSections.includes("english") || result?.completedSections?.includes("english")),
+            session?.completedSections.includes("english") ||
+            result?.completedSections?.includes("english"),
           );
           const sessionIsComplete = Boolean(
             session?.status === "submitted" &&
@@ -628,6 +665,14 @@ function AssessmentsSection({
           const hasSavedProgress = Boolean(
             session && (Object.keys(session.answers).length > 0 || session.completedSections.length > 0),
           );
+          const onlyOpenSection = assessment.sectionAccess.english && !assessment.sectionAccess.math
+            ? "English"
+            : assessment.sectionAccess.math && !assessment.sectionAccess.english
+              ? "Math"
+              : "";
+          const nextSection = englishComplete && assessment.sectionAccess.math
+            ? "Math"
+            : onlyOpenSection;
 
           return (
           <article className="assessment-card" key={assessment.id}>
@@ -635,7 +680,7 @@ function AssessmentsSection({
               <span className={`status-pill status-pill-${resultIsComplete ? "complete" : assessment.status}`}>
                 {resultIsComplete ? "Complete" : assessment.status}
               </span>
-              <small>{assessment.split ? "2 sessions" : `${assessment.durationMinutes} min`}</small>
+              <small>{assessment.durationMinutes} min · one session</small>
             </div>
             <h3>{assessment.title}</h3>
             <p>{assessment.description}</p>
@@ -644,19 +689,23 @@ function AssessmentsSection({
               <span>{assessment.passageCount} passages</span>
             </div>
             <div className="assessment-card-actions">
-              {resultIsComplete ? (
+              {resultIsComplete && assessment.allowCompletedAccess && assessment.status === "open" ? (
+                <AppLink className="assessment-start-link" href={getAssessmentStartHref(assessment.id)}>
+                  {onlyOpenSection ? `Reopen ${onlyOpenSection}` : "Reopen submitted exam"}
+                </AppLink>
+              ) : resultIsComplete ? (
                 <button className="assessment-complete-button" disabled type="button">
                   Complete
                 </button>
               ) : assessment.status === "open" ? (
                 <AppLink className="assessment-start-link" href={getAssessmentStartHref(assessment.id)}>
-                  {englishComplete
-                    ? "Continue Math"
-                    : hasSavedProgress || result
-                      ? "Continue exam"
-                      : assessment.split
-                        ? "Start English"
-                        : "Start exam"}
+                  {hasSavedProgress || result
+                    ? nextSection
+                      ? `Continue ${nextSection}`
+                      : "Continue exam"
+                    : onlyOpenSection
+                      ? `Start ${onlyOpenSection}`
+                      : "Start exam"}
                 </AppLink>
               ) : (
                 <button disabled type="button">
@@ -703,6 +752,12 @@ function ResultsSection({
               result,
               assessment?.questionCount ?? result.total,
             );
+            const englishScore = result.subjects.find(
+              (subject) => subject.subject === "English Language Arts",
+            );
+            const mathScore = result.subjects.find(
+              (subject) => subject.subject === "Mathematics",
+            );
 
             return (
             <article className="assessment-card result-summary-card" key={result.assessmentId}>
@@ -714,13 +769,31 @@ function ResultsSection({
               </div>
               <h3>{result.title}</h3>
               <p>
-                {isComplete
+                {result.source === "manual"
+                  ? "This paper exam score was entered by your teacher."
+                  : isComplete
                   ? "Your answers were submitted. Your teacher can view your score."
                   : "Additional questions are available. Your earlier answers are saved."}
               </p>
-              {!isComplete && assessment?.status === "open" ? (
+              <div className="assessment-meta">
+                <span>{result.correct} / {result.total} correct</span>
+                <span>{result.percentage}%</span>
+              </div>
+              {result.source === "manual" ? (
+                <div className="paper-result-sections">
+                  <span><small>English</small><strong>{englishScore ? `${englishScore.correct} / ${englishScore.total}` : "—"}</strong></span>
+                  <span><small>Math</small><strong>{mathScore ? `${mathScore.correct} / ${mathScore.total}` : "—"}</strong></span>
+                </div>
+              ) : null}
+              {result.source !== "manual" && assessment?.status === "open" && (
+                !isComplete || assessment.allowCompletedAccess
+              ) ? (
                 <AppLink className="assessment-start-link" href={getAssessmentStartHref(result.assessmentId)}>
-                  Continue assessment
+                  {isComplete
+                    ? assessment.sectionAccess.english && assessment.sectionAccess.math
+                      ? "Reopen submitted exam"
+                      : `Reopen ${assessment.sectionAccess.english ? "English" : "Math"}`
+                    : "Continue assessment"}
                 </AppLink>
               ) : null}
             </article>

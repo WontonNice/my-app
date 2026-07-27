@@ -26,6 +26,7 @@ const serveSvgz = (): Plugin => ({
 export default defineConfig({
   plugins: [serveSvgz(), react()],
   server: {
+    strictPort: true,
     proxy: {
       "/api": "http://127.0.0.1:8080",
       "/health": "http://127.0.0.1:8080",

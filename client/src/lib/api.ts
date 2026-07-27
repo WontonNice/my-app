@@ -16,19 +16,25 @@ export type StudentClass = {
 };
 
 export type AssessmentStatus = "locked" | "open";
+export type AssessmentSection = "english" | "math";
+export type AssessmentSectionAccess = Record<AssessmentSection, boolean>;
 export type QuestionType =
   | "multiple_choice"
   | "multi_select"
   | "category_sort"
+  | "graph_point_select"
   | "table_match"
   | "inline_dropdown"
-  | "numeric_entry"
+  | "math_drag_drop"
+  | "number_line_response"
   | "transition_drop"
   | "short_response"
+  | "numeric_entry"
   | "grid_in"
   | "essay";
 
 export type StudentAssessment = {
+  allowCompletedAccess: boolean;
   classId: string;
   description: string;
   durationMinutes: number;
@@ -36,12 +42,14 @@ export type StudentAssessment = {
   passageCount: number;
   questionCount: number;
   questionTypes: QuestionType[];
+  sectionAccess: AssessmentSectionAccess;
   split: boolean;
   status: AssessmentStatus;
   title: string;
 };
 
 export type TeacherAssessment = {
+  allowCompletedAccess: boolean;
   assignedFormId?: string;
   assignedFormLabel?: string;
   classId: string;
@@ -72,6 +80,7 @@ export type TeacherAssessment = {
     topic: string;
     type: QuestionType;
   }[];
+  sectionAccess: AssessmentSectionAccess;
   split: boolean;
   status: AssessmentStatus;
   title: string;
@@ -345,6 +354,15 @@ export async function syncGoogleSheetsAttendance(accessToken: string) {
 export type LearningProgressSnapshot = {
   examResults: Record<string, unknown>[];
   practice: Record<string, Record<string, unknown>>;
+};
+
+export type ManualExamScoreInput = {
+  completedDate: string;
+  englishCorrect: number;
+  englishTotal: number;
+  mathCorrect: number;
+  mathTotal: number;
+  title: string;
 };
 
 export type StudentProgressSnapshot = {
@@ -633,6 +651,22 @@ export async function getTeacherStudentProgress(accessToken: string) {
   return data.students;
 }
 
+export async function createTeacherManualExamResult(
+  accessToken: string,
+  studentId: string,
+  input: ManualExamScoreInput,
+) {
+  const data = await requestApi<{ result: Record<string, unknown> }>(
+    `/api/progress/students/${encodeURIComponent(studentId)}/manual-exam-results`,
+    {
+      body: JSON.stringify(input),
+      headers: createAuthHeaders(accessToken),
+      method: "POST",
+    },
+  );
+  return data.result;
+}
+
 export async function updateStudentDismissal(
   accessToken: string,
   studentId: string,
@@ -753,14 +787,35 @@ export async function updateTeacherAssessmentStatus(
   return data.assessment;
 }
 
-export async function updateTeacherAssessmentSplit(
+export async function updateTeacherAssessmentCompletedAccess(
   accessToken: string,
   assessmentId: string,
-  split: boolean,
+  allowCompletedAccess: boolean,
 ) {
   const data = await requestApi<{ assessment: TeacherAssessment }>(
-    `/api/assessments/teacher/${assessmentId}/split`,
-    { body: JSON.stringify({ split }), headers: createAuthHeaders(accessToken), method: "PATCH" },
+    `/api/assessments/teacher/${assessmentId}/completed-access`,
+    {
+      body: JSON.stringify({ allowCompletedAccess }),
+      headers: createAuthHeaders(accessToken),
+      method: "PATCH",
+    },
+  );
+  return data.assessment;
+}
+
+export async function updateTeacherAssessmentSectionAccess(
+  accessToken: string,
+  assessmentId: string,
+  section: AssessmentSection,
+  open: boolean,
+) {
+  const data = await requestApi<{ assessment: TeacherAssessment }>(
+    `/api/assessments/teacher/${assessmentId}/sections/${section}`,
+    {
+      body: JSON.stringify({ open }),
+      headers: createAuthHeaders(accessToken),
+      method: "PATCH",
+    },
   );
   return data.assessment;
 }

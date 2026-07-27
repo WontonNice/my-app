@@ -1347,6 +1347,7 @@ function normalizeMathQuestion(question, assessmentId, index) {
   const type = requiredText(question.type, `Math question ${questionNumber} type`);
   const instructionsHtml = sanitizeRichText(question.instructionsHtml);
   const promptHtml = sanitizeRichText(question.promptHtml);
+  const stimulusHtml = sanitizeRichText(question.stimulusHtml);
   const baseQuestion = {
     id,
     ...(normalizeMathImage(question.image, questionNumber)
@@ -1359,6 +1360,10 @@ function normalizeMathQuestion(question, assessmentId, index) {
     points: Number.isFinite(Number(question.points)) ? Math.max(1, Number(question.points)) : 1,
     prompt: requiredText(question.prompt, `Math question ${questionNumber}`, { preserve: true }),
     ...(promptHtml ? { promptHtml } : {}),
+    ...(typeof question.stimulus === "string" && question.stimulus.trim()
+      ? { stimulus: question.stimulus.trim() }
+      : {}),
+    ...(stimulusHtml ? { stimulusHtml } : {}),
     topic: requiredText(question.topic || "Uncategorized", `Math question ${questionNumber} topic`),
   };
 
@@ -1401,7 +1406,7 @@ function normalizeMathQuestion(question, assessmentId, index) {
     };
   }
 
-  if (type === "numeric_entry" || type === "short_response" || type === "grid_in") {
+  if (type === "short_response" || type === "numeric_entry" || type === "grid_in") {
     const correctTextAnswers = Array.isArray(question.correctTextAnswers)
       ? Array.from(
           new Set(
@@ -1414,7 +1419,138 @@ function normalizeMathQuestion(question, assessmentId, index) {
     if (!correctTextAnswers.length) {
       throw new EditorError(400, `Math question ${questionNumber} needs at least one accepted answer.`);
     }
-    return { ...baseQuestion, correctTextAnswers, type };
+    if (type === "short_response") {
+      return { ...baseQuestion, correctTextAnswers, type };
+    }
+    const entryLayout = ["plain", "x_equals", "fraction"].includes(question.entryLayout)
+      ? question.entryLayout
+      : "plain";
+    return { ...baseQuestion, correctTextAnswers, entryLayout, type };
+  }
+
+  if (type === "math_drag_drop") {
+    const items = Array.isArray(question.items)
+      ? question.items.map((item, itemIndex) => ({
+          id: requiredText(item?.id, `Math question ${questionNumber} answer ${itemIndex + 1} ID`),
+          text: requiredText(item?.text, `Math question ${questionNumber} answer ${itemIndex + 1}`, {
+            preserve: true,
+          }),
+        }))
+      : [];
+    if (items.length < 2 || new Set(items.map((item) => item.id)).size !== items.length) {
+      throw new EditorError(400, `Math question ${questionNumber} needs at least two uniquely named drag answers.`);
+    }
+    const itemIds = new Set(items.map((item) => item.id));
+    const dragDropSlots = Array.isArray(question.dragDropSlots)
+      ? question.dragDropSlots.map((slot, slotIndex) => {
+          const slotId = requiredText(slot?.id, `Math question ${questionNumber} box ${slotIndex + 1} ID`);
+          const correctItemId = requiredText(
+            slot?.correctItemId,
+            `Math question ${questionNumber} box ${slotIndex + 1} correct answer`,
+          );
+          if (!itemIds.has(correctItemId)) {
+            throw new EditorError(400, `Math question ${questionNumber} box ${slotIndex + 1} needs a valid answer.`);
+          }
+          return { correctItemId, id: slotId };
+        })
+      : [];
+    if (!dragDropSlots.length || new Set(dragDropSlots.map((slot) => slot.id)).size !== dragDropSlots.length) {
+      throw new EditorError(400, `Math question ${questionNumber} needs uniquely named answer boxes.`);
+    }
+    const dragDropContent = Array.isArray(question.dragDropContent)
+      ? question.dragDropContent.map((line, lineIndex) =>
+          requiredText(line, `Math question ${questionNumber} answer row ${lineIndex + 1}`, { preserve: true }),
+        )
+      : [];
+    if (!dragDropContent.length) {
+      throw new EditorError(400, `Math question ${questionNumber} needs at least one answer row.`);
+    }
+    const referencedSlots = dragDropContent.flatMap((line) =>
+      Array.from(line.matchAll(/\{\{([\w-]+)\}\}/g), (match) => match[1]),
+    );
+    const unknownSlot = referencedSlots.find(
+      (slotId) => !dragDropSlots.some((slot) => slot.id === slotId),
+    );
+    const missingSlot = dragDropSlots.find((slot) => !referencedSlots.includes(slot.id));
+    if (unknownSlot || missingSlot) {
+      throw new EditorError(400, `Math question ${questionNumber} answer rows must include every configured box.`);
+    }
+    return {
+      ...baseQuestion,
+      allowReuse: question.allowReuse === true,
+      dragDropContent,
+      dragDropSlots,
+      items,
+      type,
+    };
+  }
+
+  if (type === "graph_point_select") {
+    const graph = question.graph;
+    if (!graph || typeof graph !== "object" || !Array.isArray(graph.points) || graph.points.length < 2) {
+      throw new EditorError(400, `Math question ${questionNumber} needs a graph with at least two selectable points.`);
+    }
+    const numberValue = (value, fallback) => Number.isFinite(Number(value)) ? Number(value) : fallback;
+    const points = graph.points.map((point, pointIndex) => ({
+      id: requiredText(point?.id, `Math question ${questionNumber} point ${pointIndex + 1} ID`),
+      x: numberValue(point?.x, 0),
+      y: numberValue(point?.y, 0),
+    }));
+    if (new Set(points.map((point) => point.id)).size !== points.length) {
+      throw new EditorError(400, `Math question ${questionNumber} graph point IDs must be unique.`);
+    }
+    const correctPointIds = Array.isArray(question.correctPointIds)
+      ? Array.from(new Set(question.correctPointIds.map(String)))
+      : [];
+    if (!correctPointIds.length || correctPointIds.some((pointId) => !points.some((point) => point.id === pointId))) {
+      throw new EditorError(400, `Math question ${questionNumber} needs at least one valid correct graph point.`);
+    }
+    return {
+      ...baseQuestion,
+      correctPointIds,
+      graph: {
+        points,
+        ...(typeof graph.title === "string" && graph.title.trim() ? { title: graph.title.trim() } : {}),
+        xLabel: requiredText(graph.xLabel || "x", `Math question ${questionNumber} graph x-axis label`),
+        xMax: numberValue(graph.xMax, 10),
+        xMin: numberValue(graph.xMin, 0),
+        xStep: Math.max(0.1, numberValue(graph.xStep, 1)),
+        yLabel: requiredText(graph.yLabel || "y", `Math question ${questionNumber} graph y-axis label`),
+        yMax: numberValue(graph.yMax, 10),
+        yMin: numberValue(graph.yMin, 0),
+        yStep: Math.max(0.1, numberValue(graph.yStep, 1)),
+      },
+      requiredSelections: correctPointIds.length,
+      type,
+    };
+  }
+
+  if (type === "number_line_response") {
+    const response = question.numberLineResponse;
+    if (!response || typeof response !== "object") {
+      throw new EditorError(400, `Math question ${questionNumber} needs number-line settings.`);
+    }
+    const min = Number(response.min);
+    const max = Number(response.max);
+    const correctValue = Number(response.correctValue);
+    if (![min, max, correctValue].every(Number.isFinite) || max <= min || correctValue < min || correctValue > max) {
+      throw new EditorError(400, `Math question ${questionNumber} has invalid number-line values.`);
+    }
+    const correctDirection = response.correctDirection === "left" ? "left" : "right";
+    const correctEndpoint = response.correctEndpoint === "open" ? "open" : "closed";
+    return {
+      ...baseQuestion,
+      numberLineResponse: {
+        correctDirection,
+        correctEndpoint,
+        correctValue,
+        labelStep: Math.max(0.1, Number(response.labelStep) || 1),
+        max,
+        min,
+        tickStep: Math.max(0.1, Number(response.tickStep) || 1),
+      },
+      type,
+    };
   }
 
   if (type === "inline_dropdown") {
@@ -2824,6 +2960,14 @@ async function validateSetup() {
     throw new Error("Part B drag-and-drop validation failed.");
   }
   const state = await getState();
+  const examQuestionIds = [
+    ...state.passages.flatMap((passage) => passage.questions.map((question) => question.id)),
+    ...state.standaloneItems.map((question) => question.id),
+    ...state.mathSections.flatMap((section) => section.questions.map((question) => question.id)),
+  ];
+  if (new Set(examQuestionIds).size !== examQuestionIds.length) {
+    throw new Error("Exam question IDs must be unique across the complete content bank.");
+  }
   if (
     state.advancedPassageErrors.length ||
     state.passageErrors.length ||
@@ -2840,7 +2984,7 @@ async function validateSetup() {
       .join("\n");
     throw new Error(`Content Studio could not read every source file:\n${errors}`);
   }
-  const diagnosticTest = state.tests.find((test) => test.assessmentId === "shsat-diagnostic-1");
+  const formATest = state.tests.find((test) => test.assessmentId === "2025-2026-form-a");
   if (
     state.advancedPassages.length < 1 ||
     state.practice.topics.length !== practiceTopics.length ||
@@ -2853,8 +2997,8 @@ async function validateSetup() {
         item.type === "multiple_choice" &&
         item.correctChoiceId === "A",
     ) ||
-    diagnosticTest?.standaloneItemIds.length !== 3 ||
-    diagnosticTest.readingPassageIds.length !== diagnosticTest.passageIds.length
+    formATest?.standaloneItemIds.length !== 4 ||
+    formATest.readingPassageIds.length + formATest.revisingEditingPartAPassageIds.length !== formATest.passageIds.length
   ) {
     throw new Error("Centralized content-bank validation failed.");
   }

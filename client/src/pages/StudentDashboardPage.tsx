@@ -96,7 +96,6 @@ export function StudentDashboardPage() {
         <AppLink className="staff-panel student-portal-card" href={`/study-hall${previewContext.query}`}><span><Target size={21} /></span><div><small>Practice question catalog</small><h2>All SHSAT reading skills</h2><p>Practice Author's Point of View, inference, evidence, vocabulary, tone, and more.</p></div></AppLink>
         <AppLink className="staff-panel student-portal-card" href={`/practice/authors-point-of-view${previewContext.query}`}><span><ClipboardList size={21} /></span><div><small>Featured practice</small><h2>Author's Point of View</h2><p>Work through the complete question bank across all four difficulty levels.</p></div></AppLink>
         <AppLink className="staff-panel student-portal-card" href={appendStudentPreview("/study-hall?section=advanced", previewContext)}><span><BookOpen size={21} /></span><div><small>Advanced practice</small><h2>Passage catalog</h2><p>Browse every advanced close-reading passage by genre, skill, and difficulty.</p></div></AppLink>
-        <article className="staff-panel student-upcoming-panel"><header><small>Upcoming</small><h2>This week</h2></header><div><span>Sat</span><p><strong>SHSAT class session</strong><small>10:00 AM · Rooms 201–204</small></p></div><div><span>Mon</span><p><strong>Practice review due</strong><small>11:59 PM · Online</small></p></div></article>
       </section>
     </CorporateDashboardShell>
   );

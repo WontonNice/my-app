@@ -2,15 +2,16 @@ import { useEffect, useRef, useState, type DragEvent, type MouseEvent, type Reac
 import katex from "katex";
 import "katex/dist/katex.min.css";
 import {
+  BatteryCharging,
   Bookmark,
   Check,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   Clock3,
+  Folder,
   List,
   MessageSquare,
-  Monitor,
   MousePointer2,
   Pause,
   Pencil,
@@ -23,7 +24,7 @@ import {
   type ExamNumberLine,
   type ExamQuestion,
 } from "../content/exams";
-import { getExamSessionProgress, getLearningProgress, getStudentAssessment, saveCloudExamResult, saveExamSessionProgress, type TeacherAssessment } from "../lib/api";
+import { getExamSessionProgress, getLearningProgress, getStudentAssessment, getTeacherStudentProgress, saveCloudExamResult, saveExamSessionProgress, type TeacherAssessment } from "../lib/api";
 import { getUserRole } from "../lib/auth";
 import { formatDuration, getAssessmentIdFromPath, getDisplayName } from "../lib/exam";
 import {
@@ -38,6 +39,7 @@ import {
 import {
   getCurrentCompletedSections,
   getNextExamSubject,
+  getOpenExamSubject,
   isExamResultCompleteForQuestionCount,
   isExamSessionCompleteForContent,
   loadLocalExamSession,
@@ -71,15 +73,20 @@ type SessionScreen =
   | "mathDirections"
   | "mathQuestion"
   | "testOver";
-type ReviewItemId = "directions" | "passageEnd" | "endSection" | `question-${number}`;
+type ReviewItemId = string;
 type ReviewFilter = "all" | "notAnswered" | "bookmarks";
-type ReviewItemKind = "directions" | "question" | "passageEnd" | "endSection";
+type ReviewItemKind = "directions" | "endSection" | "passageEnd" | "question";
+type ReviewItemTarget =
+  | { kind: "math"; questionIndex: number }
+  | { kind: "passage"; passageSetIndex: number; questionIndex: number }
+  | { kind: "standalone"; questionIndex: number };
 type ReviewItem = {
   id: ReviewItemId;
   isAnswered?: boolean;
   isBookmarked?: boolean;
   kind: ReviewItemKind;
   label: string;
+  target?: ReviewItemTarget;
 };
 type ExamTool = "pointer" | "eliminator" | "notepad" | "pencil";
 type EliminatedChoices = Record<string, string[]>;
@@ -111,7 +118,15 @@ type BoldTextRange = {
 };
 
 function isTextEntryQuestion(question: ExamQuestion) {
-  return question.type === "numeric_entry" || question.type === "short_response" || question.type === "grid_in";
+  return (
+    question.type === "short_response" ||
+    question.type === "numeric_entry" ||
+    question.type === "grid_in"
+  );
+}
+
+function usesMathEntryKeypad(question: ExamQuestion) {
+  return question.type === "numeric_entry" || question.type === "grid_in";
 }
 
 function isInlineDropdownQuestion(question: ExamQuestion) {
@@ -187,7 +202,7 @@ function getBoldFormattedText(text: string) {
 }
 
 function getRequiredSelectionCount(question: ExamQuestion) {
-  return question.requiredSelections ?? question.correctChoiceIds?.length ?? 2;
+  return question.requiredSelections ?? question.correctPointIds?.length ?? question.correctChoiceIds?.length ?? 2;
 }
 
 function getSelectedChoiceIds(answer: SelectedAnswer | undefined) {
@@ -375,6 +390,482 @@ function renderInlineMathText(expression: string) {
   return renderKatexExpression(expression);
 }
 
+function renderInteractionMath(text: string, keyPrefix: string) {
+  return text
+    .split(/(\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\))/g)
+    .filter(Boolean)
+    .map((part, index) => {
+      if (part.startsWith("\\[") && part.endsWith("\\]")) {
+        return (
+          <span className="exam-katex-template-display" key={`${keyPrefix}-display-${index}`}>
+            {renderKatexExpression(part.slice(2, -2), true)}
+          </span>
+        );
+      }
+      if (part.startsWith("\\(") && part.endsWith("\\)")) {
+        return (
+          <span className="exam-inline-math" key={`${keyPrefix}-inline-${index}`}>
+            {renderKatexExpression(part.slice(2, -2))}
+          </span>
+        );
+      }
+      return part.split("\n").map((line, lineIndex, lines) => (
+        <span key={`${keyPrefix}-text-${index}-${lineIndex}`}>
+          {line}
+          {lineIndex < lines.length - 1 ? <br /> : null}
+        </span>
+      ));
+    });
+}
+
+function MathEntryResponse({
+  layout,
+  onChange,
+  value,
+}: {
+  layout: "fraction" | "plain" | "x_equals";
+  onChange: (value: string) => void;
+  value: string;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const numeratorRef = useRef<HTMLInputElement>(null);
+  const denominatorRef = useRef<HTMLInputElement>(null);
+  const [activePart, setActivePart] = useState<"denominator" | "numerator">("numerator");
+  const [redoValues, setRedoValues] = useState<string[]>([]);
+  const [undoValues, setUndoValues] = useState<string[]>([]);
+  const [numerator = "", denominator = ""] = layout === "fraction" ? value.split("/", 2) : ["", ""];
+
+  function commit(nextValue: string) {
+    if (nextValue === value) return;
+    setUndoValues((current) => [...current.slice(-39), value]);
+    setRedoValues([]);
+    onChange(nextValue);
+  }
+
+  function replaceActiveText(replacement: string) {
+    if (layout === "fraction") {
+      const nextNumerator = activePart === "numerator" ? `${numerator}${replacement}` : numerator;
+      const nextDenominator = activePart === "denominator" ? `${denominator}${replacement}` : denominator;
+      commit(`${nextNumerator}/${nextDenominator}`);
+      window.requestAnimationFrame(() => {
+        (activePart === "numerator" ? numeratorRef.current : denominatorRef.current)?.focus();
+      });
+      return;
+    }
+
+    const input = inputRef.current;
+    const start = input?.selectionStart ?? value.length;
+    const end = input?.selectionEnd ?? start;
+    commit(`${value.slice(0, start)}${replacement}${value.slice(end)}`);
+    window.requestAnimationFrame(() => {
+      input?.focus();
+      input?.setSelectionRange(start + replacement.length, start + replacement.length);
+    });
+  }
+
+  function moveCaret(direction: -1 | 1) {
+    const input =
+      layout === "fraction"
+        ? activePart === "numerator"
+          ? numeratorRef.current
+          : denominatorRef.current
+        : inputRef.current;
+    if (!input) return;
+    const position = Math.max(0, Math.min((input.selectionStart ?? input.value.length) + direction, input.value.length));
+    input.focus();
+    input.setSelectionRange(position, position);
+  }
+
+  function removeLastCharacter() {
+    if (layout === "fraction") {
+      const currentPart = activePart === "numerator" ? numerator : denominator;
+      const nextPart = currentPart.slice(0, -1);
+      commit(activePart === "numerator" ? `${nextPart}/${denominator}` : `${numerator}/${nextPart}`);
+      return;
+    }
+    const input = inputRef.current;
+    const start = input?.selectionStart ?? value.length;
+    const end = input?.selectionEnd ?? start;
+    if (start !== end) commit(`${value.slice(0, start)}${value.slice(end)}`);
+    else if (start > 0) commit(`${value.slice(0, start - 1)}${value.slice(end)}`);
+  }
+
+  function undo() {
+    const previous = undoValues.at(-1);
+    if (previous === undefined) return;
+    setUndoValues((current) => current.slice(0, -1));
+    setRedoValues((current) => [value, ...current].slice(0, 40));
+    onChange(previous);
+  }
+
+  function redo() {
+    const next = redoValues[0];
+    if (next === undefined) return;
+    setRedoValues((current) => current.slice(1));
+    setUndoValues((current) => [...current.slice(-39), value]);
+    onChange(next);
+  }
+
+  return (
+    <div className="exam-math-entry-response">
+      <div className={`exam-math-entry-display is-${layout}`}>
+        {layout === "x_equals" ? <span>{renderKatexExpression("x =")}</span> : null}
+        {layout === "fraction" ? (
+          <span className="exam-math-entry-fraction">
+            <input
+              aria-label="Fraction numerator"
+              inputMode="decimal"
+              onChange={(event) => onChange(`${event.target.value}/${denominator}`)}
+              onFocus={() => setActivePart("numerator")}
+              ref={numeratorRef}
+              value={numerator}
+            />
+            <span aria-hidden="true" />
+            <input
+              aria-label="Fraction denominator"
+              inputMode="decimal"
+              onChange={(event) => onChange(`${numerator}/${event.target.value}`)}
+              onFocus={() => setActivePart("denominator")}
+              ref={denominatorRef}
+              value={denominator}
+            />
+          </span>
+        ) : (
+          <input
+            aria-label="Answer"
+            inputMode="decimal"
+            onChange={(event) => onChange(event.target.value)}
+            ref={inputRef}
+            type="text"
+            value={value}
+          />
+        )}
+      </div>
+      <div aria-label="Math answer keypad" className="exam-math-keypad">
+        <div className="exam-math-keypad-tools">
+          <button aria-label="Move cursor left" onClick={() => moveCaret(-1)} type="button">←</button>
+          <button aria-label="Move cursor right" onClick={() => moveCaret(1)} type="button">→</button>
+          <button aria-label="Undo" disabled={!undoValues.length} onClick={undo} type="button">↶</button>
+          <button aria-label="Redo" disabled={!redoValues.length} onClick={redo} type="button">↷</button>
+          <button aria-label="Backspace" onClick={removeLastCharacter} type="button">⌫</button>
+          <button aria-label="Clear answer" onClick={() => commit(layout === "fraction" ? "/" : "")} type="button">⌧</button>
+        </div>
+        {[["1", "2", "3", "4", "5"], ["6", "7", "8", "9", "0"]].map((row, rowIndex) => (
+          <div className="exam-math-keypad-row" key={`keypad-row-${rowIndex}`}>
+            {row.map((key) => (
+              <button
+                key={key}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => replaceActiveText(key)}
+                type="button"
+              >
+                {key}
+              </button>
+            ))}
+          </div>
+        ))}
+        <div className="exam-math-keypad-row">
+          <button onClick={() => replaceActiveText("%")} type="button">%</button>
+          <button onClick={() => replaceActiveText("-")} type="button">−</button>
+          <button onClick={() => replaceActiveText(".")} type="button">.</button>
+          <button
+            aria-label="Fraction"
+            onClick={() => {
+              if (layout === "fraction") {
+                setActivePart("denominator");
+                denominatorRef.current?.focus();
+              } else replaceActiveText("/");
+            }}
+            type="button"
+          >
+            a⁄b
+          </button>
+          <button aria-label="Mixed number" onClick={() => replaceActiveText(" ")} type="button">1 a⁄b</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MathDragDropResponse({
+  answer,
+  onChange,
+  question,
+}: {
+  answer: CategoryPlacements;
+  onChange: (answer: CategoryPlacements) => void;
+  question: ExamQuestion;
+}) {
+  const [selectedItemId, setSelectedItemId] = useState("");
+  const items = question.items ?? [];
+  const slots = question.dragDropSlots ?? [];
+  const placedItemIds = Object.values(answer);
+  const availableItems = question.allowReuse
+    ? items
+    : items.filter((item) => !placedItemIds.includes(item.id));
+
+  function place(itemId: string, slotId: string) {
+    if (!itemId || !slots.some((slot) => slot.id === slotId)) return;
+    const next = { ...answer };
+    if (!question.allowReuse) {
+      Object.entries(next).forEach(([existingSlotId, existingItemId]) => {
+        if (existingItemId === itemId) delete next[existingSlotId];
+      });
+    }
+    next[slotId] = itemId;
+    onChange(next);
+    setSelectedItemId("");
+  }
+
+  function renderSlot(slotId: string, key: string) {
+    const placedItem = items.find((item) => item.id === answer[slotId]);
+    return (
+      <button
+        aria-label={placedItem ? `Answer ${placedItem.text}. Click to remove.` : "Empty answer box"}
+        className={`exam-math-drag-slot ${placedItem ? "is-filled" : ""}`}
+        key={key}
+        onClick={() => {
+          if (selectedItemId) place(selectedItemId, slotId);
+          else if (placedItem) {
+            const next = { ...answer };
+            delete next[slotId];
+            onChange(next);
+          }
+        }}
+        onDragOver={(event) => event.preventDefault()}
+        onDrop={(event) => {
+          event.preventDefault();
+          place(event.dataTransfer.getData("text/plain"), slotId);
+        }}
+        type="button"
+      >
+        {placedItem ? renderInteractionMath(placedItem.text, `${key}-placed`) : "\u00a0"}
+      </button>
+    );
+  }
+
+  function renderLine(template: string, lineIndex: number) {
+    return template
+      .split(/(\{\{[\w-]+\}\})/g)
+      .filter(Boolean)
+      .map((part, partIndex) => {
+        if (part.startsWith("{{") && part.endsWith("}}")) {
+          return renderSlot(part.slice(2, -2), `drag-slot-${lineIndex}-${partIndex}`);
+        }
+        return renderInteractionMath(part, `drag-text-${lineIndex}-${partIndex}`);
+      });
+  }
+
+  return (
+    <div className="exam-math-drag-response">
+      <div
+        aria-label="Answer bank"
+        className="exam-math-drag-bank"
+        onDragOver={(event) => event.preventDefault()}
+        onDrop={(event) => {
+          event.preventDefault();
+          const itemId = event.dataTransfer.getData("text/plain");
+          const slotId = Object.keys(answer).find((candidate) => answer[candidate] === itemId);
+          if (slotId) {
+            const next = { ...answer };
+            delete next[slotId];
+            onChange(next);
+          }
+        }}
+      >
+        {availableItems.map((item) => (
+          <button
+            className={selectedItemId === item.id ? "is-selected" : ""}
+            draggable
+            key={item.id}
+            onClick={() => setSelectedItemId((current) => current === item.id ? "" : item.id)}
+            onDragStart={(event) => {
+              event.dataTransfer.setData("text/plain", item.id);
+              setSelectedItemId(item.id);
+            }}
+            type="button"
+          >
+            {renderInteractionMath(item.text, `drag-bank-${item.id}`)}
+          </button>
+        ))}
+      </div>
+      <div className="exam-math-drag-lines">
+        {(question.dragDropContent ?? []).map((line, lineIndex) => (
+          <div className="exam-math-drag-line" key={`drag-line-${lineIndex}`}>
+            {renderLine(line, lineIndex)}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function GraphPointResponse({
+  onToggle,
+  question,
+  selectedIds,
+}: {
+  onToggle: (pointId: string) => void;
+  question: ExamQuestion;
+  selectedIds: string[];
+}) {
+  const graph = question.graph;
+  if (!graph) return null;
+  const axisLeft = 64;
+  const axisRight = 404;
+  const axisTop = 38;
+  const axisBottom = 378;
+  const xFor = (value: number) => axisLeft + ((value - graph.xMin) / (graph.xMax - graph.xMin)) * (axisRight - axisLeft);
+  const yFor = (value: number) => axisBottom - ((value - graph.yMin) / (graph.yMax - graph.yMin)) * (axisBottom - axisTop);
+  const xTicks = Array.from(
+    { length: Math.floor((graph.xMax - graph.xMin) / graph.xStep) + 1 },
+    (_, index) => graph.xMin + index * graph.xStep,
+  );
+  const yTicks = Array.from(
+    { length: Math.floor((graph.yMax - graph.yMin) / graph.yStep) + 1 },
+    (_, index) => graph.yMin + index * graph.yStep,
+  );
+
+  return (
+    <div className="exam-graph-point-response">
+      {graph.title ? <h2>{graph.title}</h2> : null}
+      <svg aria-label="Selectable coordinate graph" role="group" viewBox="0 0 470 440">
+        {xTicks.map((value) => (
+          <g key={`x-${value}`}>
+            <line className="exam-graph-grid-line" x1={xFor(value)} x2={xFor(value)} y1={axisTop} y2={axisBottom} />
+            <text x={xFor(value)} y={axisBottom + 22}>{value}</text>
+          </g>
+        ))}
+        {yTicks.map((value) => (
+          <g key={`y-${value}`}>
+            <line className="exam-graph-grid-line" x1={axisLeft} x2={axisRight} y1={yFor(value)} y2={yFor(value)} />
+            <text textAnchor="end" x={axisLeft - 10} y={yFor(value) + 5}>{value}</text>
+          </g>
+        ))}
+        <line className="exam-graph-axis" x1={axisLeft} x2={axisRight + 20} y1={axisBottom} y2={axisBottom} />
+        <line className="exam-graph-axis" x1={axisLeft} x2={axisLeft} y1={axisBottom + 4} y2={axisTop - 20} />
+        <text className="exam-graph-x-label" textAnchor="middle" x={(axisLeft + axisRight) / 2} y="432">{graph.xLabel}</text>
+        <text className="exam-graph-y-label" textAnchor="middle" transform="rotate(-90 18 208)" x="18" y="208">{graph.yLabel}</text>
+        {graph.points.map((point) => {
+          const selected = selectedIds.includes(point.id);
+          return (
+            <g
+              aria-label={`Point ${point.x}, ${point.y}${selected ? ", selected" : ""}`}
+              className={`exam-graph-point ${selected ? "is-selected" : ""}`}
+              key={point.id}
+              onClick={() => onToggle(point.id)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  onToggle(point.id);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+            >
+              <circle cx={xFor(point.x)} cy={yFor(point.y)} r="11" />
+              {selected ? <path d={`M ${xFor(point.x) - 5} ${yFor(point.y)} l 4 4 l 7 -8`} /> : null}
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+  );
+}
+
+function NumberLineResponse({
+  answer,
+  onChange,
+  question,
+}: {
+  answer: CategoryPlacements;
+  onChange: (answer: CategoryPlacements) => void;
+  question: ExamQuestion;
+}) {
+  const config = question.numberLineResponse;
+  if (!config) return null;
+  const axisLeft = 48;
+  const axisRight = 572;
+  const axisY = 78;
+  const xFor = (value: number) => axisLeft + ((value - config.min) / (config.max - config.min)) * (axisRight - axisLeft);
+  const ticks = Array.from(
+    { length: Math.floor((config.max - config.min) / config.tickStep) + 1 },
+    (_, index) => config.min + index * config.tickStep,
+  );
+  const selectedValue = Number(answer.value);
+  const hasValue = answer.value !== undefined && Number.isFinite(selectedValue);
+  const direction = answer.direction as "left" | "right" | undefined;
+  const endpoint = answer.endpoint as "closed" | "open" | undefined;
+
+  function chooseRay(nextDirection: "left" | "right", nextEndpoint: "closed" | "open") {
+    onChange({ ...answer, direction: nextDirection, endpoint: nextEndpoint });
+  }
+
+  return (
+    <div className="exam-number-line-response">
+      <svg
+        aria-label="Interactive number line"
+        onClick={(event) => {
+          const bounds = event.currentTarget.getBoundingClientRect();
+          const svgX = ((event.clientX - bounds.left) / bounds.width) * 620;
+          const rawValue = config.min + ((svgX - axisLeft) / (axisRight - axisLeft)) * (config.max - config.min);
+          const snapped = Math.max(config.min, Math.min(config.max, Math.round(rawValue / config.tickStep) * config.tickStep));
+          onChange({ ...answer, value: String(Number(snapped.toFixed(6))) });
+        }}
+        role="application"
+        viewBox="0 0 620 130"
+      >
+        <line className="exam-number-line-axis" x1={axisLeft} x2={axisRight} y1={axisY} y2={axisY} />
+        <path className="exam-number-line-axis" d={`M ${axisLeft} ${axisY} l 18 -24 M ${axisLeft} ${axisY} l 18 24`} />
+        <path className="exam-number-line-axis" d={`M ${axisRight} ${axisY} l -18 -24 M ${axisRight} ${axisY} l -18 24`} />
+        {ticks.map((tick) => (
+          <g key={tick}>
+            <line className="exam-number-line-tick" x1={xFor(tick)} x2={xFor(tick)} y1={axisY - 28} y2={axisY + 28} />
+            <text textAnchor="middle" x={xFor(tick)} y={axisY - 38}>{tick}</text>
+          </g>
+        ))}
+        {hasValue && direction && endpoint ? (
+          <g className="exam-number-line-selected-ray">
+            <line
+              x1={direction === "left" ? axisLeft + 8 : xFor(selectedValue)}
+              x2={direction === "right" ? axisRight - 8 : xFor(selectedValue)}
+              y1={axisY}
+              y2={axisY}
+            />
+            <circle
+              cx={xFor(selectedValue)}
+              cy={axisY}
+              fill={endpoint === "closed" ? "currentColor" : "#fff"}
+              r="10"
+            />
+          </g>
+        ) : null}
+      </svg>
+      <p className="exam-number-line-help">
+        {hasValue ? `Endpoint: ${selectedValue}.` : "Click the number line to place the endpoint."}
+      </p>
+      <div aria-label="Choose a ray" className="exam-number-line-ray-picker">
+        {[
+          ["left", "closed", "←●", "Left ray with a closed endpoint"],
+          ["left", "open", "←○", "Left ray with an open endpoint"],
+          ["right", "open", "○→", "Right ray with an open endpoint"],
+          ["right", "closed", "●→", "Right ray with a closed endpoint"],
+        ].map(([rayDirection, rayEndpoint, symbol, label]) => (
+          <button
+            aria-label={label}
+            className={direction === rayDirection && endpoint === rayEndpoint ? "is-selected" : ""}
+            key={`${rayDirection}-${rayEndpoint}`}
+            onClick={() => chooseRay(rayDirection as "left" | "right", rayEndpoint as "closed" | "open")}
+            type="button"
+          >
+            {symbol}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function getPassageSetLabel(index: number, total: number) {
   return `ELA - Passage Set ${index + 1} of ${total}`;
 }
@@ -392,8 +883,19 @@ function isQuestionAnswered(question: ExamQuestion, selectedAnswers: SelectedAns
     return typeof selectedAnswers[question.id] === "string" && Boolean(selectedAnswers[question.id]);
   }
 
-  if (question.type === "multi_select") {
+  if (question.type === "multi_select" || question.type === "graph_point_select") {
     return getSelectedChoiceIds(selectedAnswers[question.id]).length >= getRequiredSelectionCount(question);
+  }
+
+  if (question.type === "math_drag_drop") {
+    const placements = getCategoryPlacements(selectedAnswers[question.id]);
+    const slots = question.dragDropSlots ?? [];
+    return slots.length > 0 && slots.every((slot) => Boolean(placements[slot.id]));
+  }
+
+  if (question.type === "number_line_response") {
+    const response = getCategoryPlacements(selectedAnswers[question.id]);
+    return Boolean(response.direction && response.endpoint && response.value !== undefined);
   }
 
   if (question.type === "category_sort" || question.type === "table_match") {
@@ -432,11 +934,29 @@ function createRandomQuestionAnswer(question: ExamQuestion): SelectedAnswer {
     return getRandomItem(question.choices ?? [])?.id ?? "preview-answer";
   }
 
-  if (question.type === "multi_select") {
+  if (question.type === "multi_select" || question.type === "graph_point_select") {
     const choiceIds = (question.choices ?? []).map((choice) => choice.id);
-    const selectionCount = Math.min(getRequiredSelectionCount(question), choiceIds.length);
+    const graphPointIds = question.graph?.points.map((point) => point.id) ?? [];
+    const selectableIds = choiceIds.length ? choiceIds : graphPointIds;
+    const selectionCount = Math.min(getRequiredSelectionCount(question), selectableIds.length);
 
-    return [...choiceIds].sort(() => Math.random() - 0.5).slice(0, selectionCount);
+    return [...selectableIds].sort(() => Math.random() - 0.5).slice(0, selectionCount);
+  }
+
+  if (question.type === "math_drag_drop") {
+    const itemIds = (question.items ?? []).map((item) => item.id);
+    return Object.fromEntries(
+      (question.dragDropSlots ?? []).map((slot) => [slot.id, getRandomItem(itemIds) ?? "preview-item"]),
+    );
+  }
+
+  if (question.type === "number_line_response") {
+    const config = question.numberLineResponse;
+    return {
+      direction: Math.random() > 0.5 ? "right" : "left",
+      endpoint: Math.random() > 0.5 ? "closed" : "open",
+      value: String(config?.min ?? 0),
+    };
   }
 
   if (question.type === "category_sort" || question.type === "table_match") {
@@ -469,7 +989,11 @@ function createRandomQuestionAnswer(question: ExamQuestion): SelectedAnswer {
     );
   }
 
-  if (question.type === "numeric_entry" || question.type === "grid_in") {
+  if (
+    question.type === "short_response" ||
+    question.type === "numeric_entry" ||
+    question.type === "grid_in"
+  ) {
     return String(Math.floor(Math.random() * 100));
   }
 
@@ -487,7 +1011,10 @@ function getStoredStartingSubject(assessmentId: string): StartingSubject {
 }
 
 function getAssessmentDashboardHref() {
-  return appendStudentPreview("/study-hall?section=assessments");
+  const previewContext = getStudentPreviewContext();
+  return previewContext.mode === "teacher"
+    ? previewContext.returnHref
+    : appendStudentPreview("/study-hall?section=assessments", previewContext);
 }
 
 function ExamUserMenu({
@@ -556,6 +1083,43 @@ function ExamModuleHeader({
   );
 }
 
+function ExamExhibits({ showExhibits = false }: { showExhibits?: boolean }) {
+  const [isExhibitsOpen, setIsExhibitsOpen] = useState(false);
+
+  return (
+    <>
+      {showExhibits ? (
+        <button
+          aria-expanded={isExhibitsOpen}
+          className="exam-exhibits-toggle"
+          onClick={() => setIsExhibitsOpen(true)}
+          type="button"
+        >
+          <span>Exhibits</span>
+          <Folder aria-hidden="true" fill="currentColor" size={19} />
+        </button>
+      ) : null}
+
+      {isExhibitsOpen ? (
+        <div className="exam-exhibits-layer">
+          <section aria-labelledby="exam-exhibits-title" aria-modal="true" className="exam-exhibits-dialog" role="dialog">
+            <header>
+              <h2 id="exam-exhibits-title">Exhibits</h2>
+              <button aria-label="Close exhibits" onClick={() => setIsExhibitsOpen(false)} type="button">
+                x
+              </button>
+            </header>
+            <div className="exam-exhibits-tabs"><span>Exhibit 1</span></div>
+            <div className="exam-exhibits-content">
+              <p>Reference materials provided for a question will appear in this window.</p>
+            </div>
+          </section>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 function ExamToolbar({
   assessmentLabel,
   breadcrumbMiddle,
@@ -585,6 +1149,7 @@ function ExamToolbar({
   reviewFilter = "all",
   reviewItems = [],
   reviewQuestionCount = 0,
+  showExhibits = false,
   showReviewTools = true,
   showStatusIcon = true,
   showTimer = true,
@@ -627,6 +1192,7 @@ function ExamToolbar({
   reviewFilter?: ReviewFilter;
   reviewItems?: ReviewItem[];
   reviewQuestionCount?: number;
+  showExhibits?: boolean;
   showReviewTools?: boolean;
   showStatusIcon?: boolean;
   showTimer?: boolean;
@@ -900,12 +1466,14 @@ function ExamToolbar({
             ) : null}
           </div>
           {showStatusIcon ? (
-            <span className="exam-session-status-icon" aria-hidden="true">
-              <Monitor size={19} strokeWidth={2.2} />
+            <span className="exam-session-status-icon" aria-label="Current battery level 100%">
+              <BatteryCharging size={20} strokeWidth={2.2} />
+              <small>100%</small>
             </span>
           ) : null}
         </div>
       </nav>
+      {showWorkTools ? <ExamExhibits showExhibits={showExhibits} /> : null}
     </>
   );
 }
@@ -964,27 +1532,32 @@ export function ExamSessionPage() {
         return;
       }
 
-      const fallbackName = getStudentPreviewContext().studentName || getDisplayName(data.session.user);
+      const previewContext = getStudentPreviewContext();
+      const fallbackName = previewContext.studentName || getDisplayName(data.session.user);
       const storedStartingSubject = getStoredStartingSubject(assessmentId);
       setTimerState(loadExamTimer(assessmentId));
       setTimerNow(Date.now());
       setStudentId(data.session.user.id);
       setAccessToken(data.session.access_token);
       setStudentName(getStoredExamName(assessmentId, fallbackName));
-      const isTeacherPreview =
-        new URLSearchParams(window.location.search).get("preview") === "student" &&
-          new URLSearchParams(window.location.search).get("teacherTools") === "1" &&
-          getUserRole(data.session.user) === "teacher";
+      const isTeacherPreview = previewContext.isPreview && getUserRole(data.session.user) === "teacher";
       setIsTeacherPreviewSession(isTeacherPreview);
 
       try {
         const nextAssessment = await getStudentAssessment(data.session.access_token, assessmentId);
         setAssessment(nextAssessment);
         let nextStartingSubject = storedStartingSubject;
-        if (!isTeacherPreview) {
-          const localProgress = loadLocalExamSession(data.session.user.id, assessmentId);
-          let progress = localProgress;
-          let savedResult = getExamResult(data.session.user.id, assessmentId);
+        const localProgress = isTeacherPreview ? null : loadLocalExamSession(data.session.user.id, assessmentId);
+        let progress = localProgress;
+        let savedResult = isTeacherPreview ? null : getExamResult(data.session.user.id, assessmentId);
+        if (isTeacherPreview && previewContext.studentId) {
+          const previewStudent = (await getTeacherStudentProgress(data.session.access_token))
+            .find((student) => student.id === previewContext.studentId);
+          progress = previewStudent?.examSessions[assessmentId] ?? null;
+          savedResult = (previewStudent?.progress.examResults.find(
+            (candidate) => candidate.assessmentId === assessmentId,
+          ) as unknown as NonNullable<ReturnType<typeof getExamResult>> | undefined) ?? null;
+        } else if (!isTeacherPreview) {
           try {
             const [cloudSessions, cloudLearningProgress] = await Promise.all([
               getExamSessionProgress(data.session.access_token),
@@ -1003,39 +1576,62 @@ export function ExamSessionPage() {
           } catch {
             // Continue with the locally saved English answers when cloud sync is unavailable.
           }
-          if (!progress && savedResult) {
-            progress = {
-              answers: savedResult.answers,
-              completedSections: savedResult.completedSections,
-              status: savedResult.completionStatus === "complete" ? "submitted" : "in_progress",
-              submittedAt: savedResult.completedAt,
-              updatedAt: savedResult.completedAt,
-            };
-          }
-          const examContent = resolveExamContent(nextAssessment);
-          if (
-            isExamSessionCompleteForContent(examContent, progress) ||
-            isExamResultCompleteForQuestionCount(savedResult, nextAssessment.questions.length)
-          ) {
-            window.location.assign(getAssessmentDashboardHref());
-            return;
-          }
-          const currentCompletedSections = getCurrentCompletedSections(examContent, progress);
-          setCompletedSections(currentCompletedSections);
-          nextStartingSubject = nextAssessment.split
-            ? currentCompletedSections.includes("english")
-              ? "math"
-              : "english"
-            : getNextExamSubject(storedStartingSubject, currentCompletedSections);
-          if (progress) {
-            setSelectedAnswers((progress?.answers ?? {}) as SelectedAnswers);
-            if (nextStartingSubject === "math") {
-              const firstUnansweredMathIndex =
-                examContent.mathSection?.questions.findIndex((question) =>
-                  !Object.prototype.hasOwnProperty.call(progress.answers, question.id),
-                ) ?? -1;
-              setActiveMathQuestionIndex(firstUnansweredMathIndex >= 0 ? firstUnansweredMathIndex : 0);
-            }
+        }
+        if (!progress && savedResult) {
+          progress = {
+            answers: savedResult.answers,
+            completedSections: savedResult.completedSections,
+            status: savedResult.completionStatus === "complete" ? "submitted" : "in_progress",
+            submittedAt: savedResult.completedAt,
+            updatedAt: savedResult.completedAt,
+          };
+        }
+        const examContent = resolveExamContent(nextAssessment);
+        const hasCompletedAttempt =
+          isExamSessionCompleteForContent(examContent, progress) ||
+          isExamResultCompleteForQuestionCount(savedResult, nextAssessment.questions.length);
+        if (
+          !isTeacherPreview &&
+          hasCompletedAttempt &&
+          !nextAssessment.allowCompletedAccess
+        ) {
+          window.location.assign(getAssessmentDashboardHref());
+          return;
+        }
+        const isReopeningCompletedAttempt =
+          !isTeacherPreview && hasCompletedAttempt && nextAssessment.allowCompletedAccess;
+        const effectiveSectionAccess = isTeacherPreview
+          ? { english: true, math: true }
+          : nextAssessment.sectionAccess;
+        const savedCompletedSections = getCurrentCompletedSections(examContent, progress);
+        const currentCompletedSections = isReopeningCompletedAttempt
+          ? savedCompletedSections.filter((section) => !effectiveSectionAccess[section])
+          : savedCompletedSections;
+        setCompletedSections(currentCompletedSections);
+        const preferredStartingSubject = isReopeningCompletedAttempt
+          ? storedStartingSubject
+          : nextAssessment.split
+          ? currentCompletedSections.includes("english")
+            ? "math"
+            : "english"
+          : getNextExamSubject(storedStartingSubject, currentCompletedSections);
+        const openStartingSubject = getOpenExamSubject(
+          preferredStartingSubject,
+          effectiveSectionAccess,
+        );
+        if (!openStartingSubject) {
+          window.location.assign(getAssessmentDashboardHref());
+          return;
+        }
+        nextStartingSubject = openStartingSubject;
+        if (progress) {
+          setSelectedAnswers((progress.answers ?? {}) as SelectedAnswers);
+          if (nextStartingSubject === "math") {
+            const firstUnansweredMathIndex =
+              examContent.mathSection?.questions.findIndex((question) =>
+                !Object.prototype.hasOwnProperty.call(progress.answers, question.id),
+              ) ?? -1;
+            setActiveMathQuestionIndex(firstUnansweredMathIndex >= 0 ? firstUnansweredMathIndex : 0);
           }
         }
         window.sessionStorage.setItem(`exam-start-subject:${assessmentId}`, nextStartingSubject);
@@ -1144,6 +1740,8 @@ export function ExamSessionPage() {
 
   const currentAssessmentId = assessment.id;
   const isSplitAssessment = assessment.split;
+  const canAccessEnglish = isTeacherPreviewSession || assessment.sectionAccess.english;
+  const canAccessMath = isTeacherPreviewSession || assessment.sectionAccess.math;
   const examContent = resolveExamContent(assessment);
   const mathSection = examContent.mathSection ?? {
     directions: {
@@ -1207,73 +1805,176 @@ export function ExamSessionPage() {
     (choice) => choice.id === activeTransitionChoiceId,
   );
   const activeQuestionTitleId = `question-title-${activeQuestion.id}`;
-  const activeQuestionNumber = Math.min(activeQuestionIndex + 1, activePassageSet.questionCount);
+  const passageQuestionCount = examContent.passageSets.reduce(
+    (total, passageSet) => total + passageSet.questions.length,
+    0,
+  );
+  const standaloneQuestionCount = standaloneSection?.questions.length ?? 0;
+  const mathQuestionCount = mathQuestions.length;
+  const englishQuestionCount = passageQuestionCount + standaloneQuestionCount;
+  const totalExamQuestionCount = passageQuestionCount + standaloneQuestionCount + mathQuestionCount;
   const assessmentLabel = examContent.title.toUpperCase();
   const timerDisplay = timerState
     ? getExamTimerDisplay(timerState, timerNow)
     : { isOvertime: false, text: "3:00:00" };
   const isExamPaused = Boolean(timerState && timerState.pausedAt !== null);
+  const activePassageSection =
+    activePassageSet.section ?? examContent.passageSections?.[activePassageSet.id] ?? "reading";
   const passageSetDisplayLabel =
-    activePassageSet.section && activePassageSet.section !== "reading"
-      ? activePassageSet.label ?? getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length)
-      : getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length);
+    activePassageSection === "reading"
+      ? "ELA Rdg Comp"
+      : activePassageSection === "revising_editing_a"
+        ? "ELA Rev/Edit A"
+        : activePassageSet.label ?? getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length);
   const passageSetLabel = passageSetDisplayLabel.toUpperCase();
   const isProsePassage = activePassageSet.passage.format === "prose";
   const isSentenceProsePassage = activePassageSet.passage.format === "sentence_prose";
   const hasNextPassageSet = activePassageSetIndex < examContent.passageSets.length - 1;
-  const accessibleQuestionCount =
-    isFastForwardEnabled && (sessionScreen === "passage" || sessionScreen === "passageEnd")
-      ? activePassageSet.questions.length
-      : sessionScreen === "passage"
-      ? activeQuestionIndex + 1
-      : sessionScreen === "passageEnd"
+  const shouldShowPassageDirections = activePassageSetIndex === 0 || Boolean(activePassageSet.showDirectionsBefore);
+  const reviewItems: ReviewItem[] = [];
+  const accessibleQuestions: ExamQuestion[] = [];
+  const addReviewQuestion = (
+    id: ReviewItemId,
+    question: ExamQuestion,
+    label: string,
+    target: ReviewItemTarget,
+  ) => {
+    accessibleQuestions.push(question);
+    reviewItems.push({
+      id,
+      isAnswered: isQuestionAnswered(question, selectedAnswers),
+      isBookmarked: bookmarkedQuestionIds.includes(id),
+      kind: "question",
+      label,
+      target,
+    });
+  };
+
+  if (sessionScreen === "directions") {
+    reviewItems.push({
+      id: "review:directions:general",
+      kind: "directions",
+      label: "General Directions",
+    });
+  } else if (
+    sessionScreen === "readingDirections" ||
+    sessionScreen === "passage" ||
+    sessionScreen === "passageEnd"
+  ) {
+    if (shouldShowPassageDirections) {
+      reviewItems.push({
+        id: `review:directions:passage:${activePassageSetIndex}`,
+        kind: "directions",
+        label: activePassageSet.directions.breadcrumbLabel ?? "ELA Rdg Comp Directions",
+      });
+    }
+
+    const accessibleQuestionCount =
+      isFastForwardEnabled || sessionScreen === "passageEnd"
         ? activePassageSet.questions.length
-        : 0;
-  const accessibleQuestions = activePassageSet.questions.slice(0, accessibleQuestionCount);
+        : sessionScreen === "passage"
+          ? activeQuestionIndex + 1
+          : 0;
+    activePassageSet.questions.slice(0, accessibleQuestionCount).forEach((question, questionIndex) => {
+      addReviewQuestion(
+        `review:passage:${activePassageSetIndex}:${questionIndex}`,
+        question,
+        `Question ${questionIndex + 1}`,
+        { kind: "passage", passageSetIndex: activePassageSetIndex, questionIndex },
+      );
+    });
+
+    if (sessionScreen === "passageEnd") {
+      reviewItems.push(
+        {
+          id: `review:passage-end:${activePassageSetIndex}`,
+          kind: "passageEnd",
+          label: "Passage End Directions",
+        },
+        {
+          id: `review:end-section:passage:${activePassageSetIndex}`,
+          kind: "endSection",
+          label: "End of Section",
+        },
+      );
+    }
+  } else if (sessionScreen === "standaloneDirections" && standaloneSection) {
+    reviewItems.push({
+      id: "review:directions:standalone",
+      kind: "directions",
+      label: standaloneSection.directions.breadcrumbLabel ?? "ELA Rev/Edit B Directions",
+    });
+  } else if (sessionScreen === "standaloneQuestion" && standaloneSection && activeStandaloneQuestion) {
+    const firstQuestionIndex = isFastForwardEnabled ? 0 : activeStandaloneQuestionIndex;
+    standaloneSection.questions
+      .slice(firstQuestionIndex, activeStandaloneQuestionIndex + 1)
+      .forEach((question, localIndex) => {
+        const questionIndex = firstQuestionIndex + localIndex;
+        addReviewQuestion(
+          `review:standalone:${questionIndex}`,
+          question,
+          `Question ${questionIndex + 1}`,
+          { kind: "standalone", questionIndex },
+        );
+      });
+  } else if (sessionScreen === "mathDirections") {
+    reviewItems.push({
+      id: "review:directions:math",
+      kind: "directions",
+      label: mathSection.directions.breadcrumbLabel ?? "Math Directions",
+    });
+  } else if (sessionScreen === "mathQuestion" && activeMathQuestion) {
+    const firstQuestionIndex = isFastForwardEnabled ? 0 : activeMathQuestionIndex;
+    mathQuestions
+      .slice(firstQuestionIndex, activeMathQuestionIndex + 1)
+      .forEach((question, localIndex) => {
+        const questionIndex = firstQuestionIndex + localIndex;
+        addReviewQuestion(
+          `review:math:${questionIndex}`,
+          question,
+          `Question ${questionIndex + 1}`,
+          { kind: "math", questionIndex },
+        );
+      });
+  } else if (sessionScreen === "endSection") {
+    reviewItems.push({
+      id: "review:end-section",
+      kind: "endSection",
+      label: "End of Section",
+    });
+  }
   const unansweredCount = accessibleQuestions.filter(
     (question) => !isQuestionAnswered(question, selectedAnswers),
   ).length;
-  const bookmarkCount = accessibleQuestions.filter((question) =>
-    bookmarkedQuestionIds.includes(question.id),
+  const bookmarkCount = reviewItems.filter(
+    (item) => item.kind === "question" && item.isBookmarked,
   ).length;
-  const isActiveQuestionBookmarked =
-    sessionScreen === "passage" && bookmarkedQuestionIds.includes(activeQuestion.id);
+  const currentReviewItemId: ReviewItemId | undefined =
+    sessionScreen === "directions"
+      ? "review:directions:general"
+      : sessionScreen === "readingDirections"
+        ? `review:directions:passage:${activePassageSetIndex}`
+        : sessionScreen === "passage"
+          ? `review:passage:${activePassageSetIndex}:${activeQuestionIndex}`
+          : sessionScreen === "passageEnd"
+            ? `review:passage-end:${activePassageSetIndex}`
+            : sessionScreen === "standaloneDirections"
+              ? "review:directions:standalone"
+              : sessionScreen === "standaloneQuestion"
+                ? `review:standalone:${activeStandaloneQuestionIndex}`
+                : sessionScreen === "mathDirections"
+                  ? "review:directions:math"
+                  : sessionScreen === "mathQuestion"
+                    ? `review:math:${activeMathQuestionIndex}`
+                    : sessionScreen === "endSection"
+                      ? "review:end-section"
+                      : undefined;
+  const isActiveQuestionBookmarked = Boolean(
+    currentReviewItemId && bookmarkedQuestionIds.includes(currentReviewItemId),
+  );
   const directionsBreadcrumbLabel =
     activePassageSet.directions.breadcrumbLabel ??
     `${activePassageSet.directions.title.split(" ").slice(0, 3).join(" ")} DIRECTIONS`;
-  const shouldShowPassageDirections = activePassageSetIndex === 0 || Boolean(activePassageSet.showDirectionsBefore);
-  const reviewItems: ReviewItem[] = [
-    ...(shouldShowPassageDirections && (sessionScreen === "readingDirections" || sessionScreen === "passageEnd")
-      ? [
-          {
-            id: "directions" as const,
-            kind: "directions" as const,
-            label: "ELA Rdg Comp Directions",
-          },
-        ]
-      : []),
-    ...accessibleQuestions.map((question, index) => ({
-      id: `question-${index}` as const,
-      isAnswered: isQuestionAnswered(question, selectedAnswers),
-      isBookmarked: bookmarkedQuestionIds.includes(question.id),
-      kind: "question" as const,
-      label: `Question ${index + 1}`,
-    })),
-    ...(sessionScreen === "passageEnd"
-      ? [
-          {
-            id: "passageEnd" as const,
-            kind: "passageEnd" as const,
-            label: "Passage End Directions",
-          },
-          {
-            id: "endSection" as const,
-            kind: "endSection" as const,
-            label: "End of Section",
-          },
-        ]
-      : []),
-  ];
 
   function clearTransientExamUi() {
     setChoiceLimitWarnings([]);
@@ -1446,6 +2147,10 @@ export function ExamSessionPage() {
   }
 
   function handlePassagePrevious() {
+    if (activeQuestionIndex === 0 && !shouldShowPassageDirections && !isFastForwardEnabled) {
+      return;
+    }
+
     clearTransientExamUi();
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
@@ -1473,6 +2178,13 @@ export function ExamSessionPage() {
   }
 
   function handleChangeTextEntry(questionId: string, value: string) {
+    setSelectedAnswers((currentAnswers) => ({
+      ...currentAnswers,
+      [questionId]: value,
+    }));
+  }
+
+  function handleChangeStructuredAnswer(questionId: string, value: CategoryPlacements) {
     setSelectedAnswers((currentAnswers) => ({
       ...currentAnswers,
       [questionId]: value,
@@ -2050,43 +2762,60 @@ export function ExamSessionPage() {
   }
 
   function handleToggleBookmark() {
-    if (sessionScreen !== "passage") {
-      return;
-    }
+    if (!currentReviewItemId || !reviewItems.some((item) => item.id === currentReviewItemId && item.kind === "question")) return;
 
     setBookmarkedQuestionIds((currentIds) =>
-      currentIds.includes(activeQuestion.id)
-        ? currentIds.filter((questionId) => questionId !== activeQuestion.id)
-        : [...currentIds, activeQuestion.id],
+      currentIds.includes(currentReviewItemId)
+        ? currentIds.filter((questionId) => questionId !== currentReviewItemId)
+        : [...currentIds, currentReviewItemId],
     );
   }
 
   function handleReviewItemSelect(itemId: ReviewItemId) {
-    if (!reviewItems.some((item) => item.id === itemId)) {
-      return;
-    }
+    const item = reviewItems.find((candidate) => candidate.id === itemId);
+    if (!item) return;
 
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
     clearTransientExamUi();
     setSelectedCategoryItemId("");
 
-    if (itemId === "directions") {
-      setSessionScreen("readingDirections");
+    if (item.kind === "directions") {
+      if (sessionScreen === "directions") {
+        setSessionScreen("directions");
+      } else if (sessionScreen === "standaloneDirections") {
+        setSessionScreen("standaloneDirections");
+      } else if (sessionScreen === "mathDirections") {
+        setSessionScreen("mathDirections");
+      } else {
+        setSessionScreen("readingDirections");
+      }
       return;
     }
 
-    if (itemId === "passageEnd" || itemId === "endSection") {
-      setSessionScreen("passageEnd");
+    if (item.kind === "passageEnd" || item.kind === "endSection") {
+      setSessionScreen(
+        item.kind === "passageEnd" || item.id.startsWith("review:end-section:passage:")
+          ? "passageEnd"
+          : "endSection",
+      );
       return;
     }
 
-    const questionIndex = Number(itemId.replace("question-", ""));
-
-    if (!Number.isNaN(questionIndex) && activePassageSet.questions[questionIndex]) {
-      setActiveQuestionIndex(questionIndex);
+    if (!item.target) return;
+    if (item.target.kind === "passage") {
+      setActivePassageSetIndex(item.target.passageSetIndex);
+      setActiveQuestionIndex(item.target.questionIndex);
       setSessionScreen("passage");
+      return;
     }
+    if (item.target.kind === "standalone") {
+      setActiveStandaloneQuestionIndex(item.target.questionIndex);
+      setSessionScreen("standaloneQuestion");
+      return;
+    }
+    setActiveMathQuestionIndex(item.target.questionIndex);
+    setSessionScreen("mathQuestion");
   }
 
   function handleStandaloneNext() {
@@ -2117,6 +2846,10 @@ export function ExamSessionPage() {
   }
 
   function handleStandalonePrevious() {
+    if (!isFastForwardEnabled) {
+      return;
+    }
+
     clearTransientExamUi();
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
@@ -2144,6 +2877,10 @@ export function ExamSessionPage() {
     try {
       const nextCompletedSections = await saveSectionCompletion("english");
       if (!nextCompletedSections.includes("math")) {
+        if (!canAccessMath) {
+          window.location.assign(getAssessmentDashboardHref());
+          return;
+        }
         window.sessionStorage.setItem(`exam-start-subject:${assessment.id}`, "math");
         if (assessment.split) {
           const nextTimer = resetExamTimer(assessment.id);
@@ -2177,6 +2914,10 @@ export function ExamSessionPage() {
     try {
       const nextCompletedSections = await saveSectionCompletion("math");
       if (!nextCompletedSections.includes("english")) {
+        if (!canAccessEnglish) {
+          window.location.assign(getAssessmentDashboardHref());
+          return;
+        }
         window.sessionStorage.setItem(`exam-start-subject:${currentAssessmentId}`, "english");
         if (isSplitAssessment) {
           const nextTimer = resetExamTimer(currentAssessmentId);
@@ -2259,14 +3000,6 @@ export function ExamSessionPage() {
     setSessionScreen("mathDirections");
   }
 
-  const currentReviewItemId: ReviewItemId | undefined =
-    sessionScreen === "readingDirections"
-      ? "directions"
-      : sessionScreen === "passageEnd"
-        ? "passageEnd"
-        : sessionScreen === "passage"
-          ? (`question-${activeQuestionIndex}` as const)
-          : undefined;
   const timerToolbarProps = {
     isTimerOvertime: timerDisplay.isOvertime,
     isTimerVisible,
@@ -2298,7 +3031,11 @@ export function ExamSessionPage() {
     onReviewFilterChange: setReviewFilter,
     onReviewItemSelect: handleReviewItemSelect,
     onSelectTool: handleSelectTool,
-    onToggleBookmark: sessionScreen === "passage" ? handleToggleBookmark : undefined,
+    onToggleBookmark:
+      currentReviewItemId &&
+      reviewItems.some((item) => item.id === currentReviewItemId && item.kind === "question")
+        ? handleToggleBookmark
+        : undefined,
     onToggleReview: () => {
       setReviewFilter("all");
       setIsReviewOpen((currentValue) => !currentValue);
@@ -2352,11 +3089,10 @@ export function ExamSessionPage() {
     return (
       <main className="exam-session-shell">
         <ExamToolbar
-          activeTool={activeTool}
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={mathSection.directions.breadcrumbLabel ?? "MATH DIRECTIONS"}
           breadcrumbMiddle={mathSection.label.toUpperCase()}
-          {...fastForwardToolbarProps}
+          {...reviewToolbarProps}
           isNotepadOpen={isNotepadOpen}
           onNext={() => {
             setHighlightToolbar(null);
@@ -2366,7 +3102,6 @@ export function ExamSessionPage() {
             setSessionScreen("mathQuestion");
           }}
           onSelectTool={handleSelectTool}
-          showReviewTools={false}
           studentName={studentName}
         />
 
@@ -2397,17 +3132,16 @@ export function ExamSessionPage() {
     return (
       <main className="exam-session-shell">
         <ExamToolbar
-          activeTool={activeTool}
           assessmentLabel={assessmentLabel}
-          breadcrumbCurrent={`${activeMathQuestionIndex + 1} OF ${mathSection.questionCount}`}
+          breadcrumbCurrent={`${activeMathQuestionIndex + 1} OF ${mathQuestions.length}`}
           breadcrumbMiddle={mathSection.label.toUpperCase()}
-          {...fastForwardToolbarProps}
+          {...reviewToolbarProps}
           isNotepadOpen={isNotepadOpen}
           isPreviousActive={isFastForwardEnabled}
           onNext={handleMathNext}
           onPrevious={handleMathPrevious}
           onSelectTool={handleSelectTool}
-          showReviewTools={false}
+          showExhibits
           studentName={studentName}
         />
 
@@ -2468,20 +3202,42 @@ export function ExamSessionPage() {
               </p>
             ) : null}
 
-            {isTextEntryQuestion(activeMathQuestion) ? (
-              <div
-                className={`exam-math-text-entry ${
-                  activeMathQuestion.type === "short_response" ? "is-short-response" : ""
-                }`}
-              >
+            {activeMathQuestion.type === "short_response" ? (
+              <label className="exam-math-text-entry is-short-response">
+                <span className="sr-only">Answer</span>
                 <input
                   aria-label="Answer"
-                  inputMode={activeMathQuestion.type === "short_response" ? "text" : "decimal"}
-                  onChange={(event) => handleChangeTextEntry(activeMathQuestion.id, event.target.value)}
+                  onChange={(event) =>
+                    handleChangeTextEntry(activeMathQuestion.id, event.target.value)
+                  }
                   type="text"
                   value={getTextEntryValue(selectedAnswers[activeMathQuestion.id])}
                 />
-              </div>
+              </label>
+            ) : usesMathEntryKeypad(activeMathQuestion) ? (
+              <MathEntryResponse
+                layout={activeMathQuestion.entryLayout ?? "plain"}
+                onChange={(value) => handleChangeTextEntry(activeMathQuestion.id, value)}
+                value={getTextEntryValue(selectedAnswers[activeMathQuestion.id])}
+              />
+            ) : activeMathQuestion.type === "math_drag_drop" ? (
+              <MathDragDropResponse
+                answer={getCategoryPlacements(selectedAnswers[activeMathQuestion.id])}
+                onChange={(value) => handleChangeStructuredAnswer(activeMathQuestion.id, value)}
+                question={activeMathQuestion}
+              />
+            ) : activeMathQuestion.type === "graph_point_select" ? (
+              <GraphPointResponse
+                onToggle={(pointId) => handleToggleMultiSelectAnswer(activeMathQuestion, pointId)}
+                question={activeMathQuestion}
+                selectedIds={getSelectedChoiceIds(selectedAnswers[activeMathQuestion.id])}
+              />
+            ) : activeMathQuestion.type === "number_line_response" ? (
+              <NumberLineResponse
+                answer={getCategoryPlacements(selectedAnswers[activeMathQuestion.id])}
+                onChange={(value) => handleChangeStructuredAnswer(activeMathQuestion.id, value)}
+                question={activeMathQuestion}
+              />
             ) : isInlineDropdownQuestion(activeMathQuestion) && activeMathQuestion.dropdownContent ? (
               <div className="exam-inline-dropdown-content">
                 {activeMathQuestion.dropdownContent.map((line, index) => (
@@ -2612,7 +3368,7 @@ export function ExamSessionPage() {
         {isNotepadOpen ? (
           <section className="exam-notepad-window" aria-label="Notepad">
             <header>
-              <h2>Notepad</h2>
+              <h2>Global Notepad</h2>
               <button
                 aria-label="Close notepad"
                 onClick={() => {
@@ -2709,11 +3465,10 @@ export function ExamSessionPage() {
     return (
       <main className="exam-session-shell">
         <ExamToolbar
-          activeTool={activeTool}
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={standaloneSection.directions.breadcrumbLabel ?? "ELA REV/EDIT B DIRECTIONS"}
           breadcrumbMiddle={standaloneSection.label.toUpperCase()}
-          {...fastForwardToolbarProps}
+          {...reviewToolbarProps}
           isNotepadOpen={isNotepadOpen}
           onNext={() => {
             setHighlightToolbar(null);
@@ -2728,7 +3483,6 @@ export function ExamSessionPage() {
             setSessionScreen("standaloneIntro");
           }}
           onSelectTool={handleSelectTool}
-          showReviewTools={false}
           studentName={studentName}
         />
 
@@ -2755,17 +3509,16 @@ export function ExamSessionPage() {
     return (
       <main className="exam-session-shell">
         <ExamToolbar
-          activeTool={activeTool}
           assessmentLabel={assessmentLabel}
-          breadcrumbCurrent={`${activeStandaloneQuestionIndex + 1} OF ${standaloneSection.questionCount}`}
+          breadcrumbCurrent={`${activeStandaloneQuestionIndex + 1} OF ${standaloneSection.questions.length}`}
           breadcrumbMiddle={standaloneSection.label.toUpperCase()}
-          {...fastForwardToolbarProps}
+          {...reviewToolbarProps}
           isNotepadOpen={isNotepadOpen}
-          isPreviousActive
+          isPreviousActive={isFastForwardEnabled}
           onNext={handleStandaloneNext}
           onPrevious={handleStandalonePrevious}
           onSelectTool={handleSelectTool}
-          showReviewTools={false}
+          showExhibits
           studentName={studentName}
         />
 
@@ -2989,7 +3742,7 @@ export function ExamSessionPage() {
         {isNotepadOpen ? (
           <section className="exam-notepad-window" aria-label="Notepad">
             <header>
-              <h2>Notepad</h2>
+              <h2>Global Notepad</h2>
               <button
                 aria-label="Close notepad"
                 onClick={() => {
@@ -3253,12 +4006,13 @@ export function ExamSessionPage() {
       <main className="exam-session-shell">
         <ExamToolbar
           assessmentLabel={assessmentLabel}
-          breadcrumbCurrent={`${activeQuestionNumber} OF ${activePassageSet.questionCount}`}
+          breadcrumbCurrent={`${activeQuestionIndex + 1} OF ${activePassageSet.questions.length}`}
           breadcrumbMiddle={passageSetLabel}
-          isPreviousActive
+          isPreviousActive={activeQuestionIndex > 0 || shouldShowPassageDirections || isFastForwardEnabled}
           {...reviewToolbarProps}
           onNext={handlePassageNext}
           onPrevious={handlePassagePrevious}
+          showExhibits
           studentName={studentName}
         />
 
@@ -3810,7 +4564,7 @@ export function ExamSessionPage() {
         {isNotepadOpen ? (
           <section className="exam-notepad-window" aria-label="Notepad">
             <header>
-              <h2>Notepad</h2>
+              <h2>Global Notepad</h2>
               <button
                 aria-label="Close notepad"
                 onClick={() => {
@@ -3873,7 +4627,7 @@ export function ExamSessionPage() {
         assessmentLabel={assessmentLabel}
         breadcrumbCurrent="GENERAL DIRECTIONS"
         breadcrumbMiddle="GENERAL DIRECTIONS"
-        {...fastForwardToolbarProps}
+        {...reviewToolbarProps}
         onNext={() => {
           setHighlightToolbar(null);
           setActivePassageSetIndex(0);
@@ -3894,21 +4648,24 @@ export function ExamSessionPage() {
           <section className="exam-session-content-block">
             <h2>General Directions</h2>
             <p>
-              This practice test has 100 questions across two subjects, English Language Arts and Mathematics.
+              This test consists of {totalExamQuestionCount} questions across two subjects, English Language Arts
+              and Mathematics.
             </p>
 
             <div className="exam-session-section-list">
               <p>
                 <strong>PART 1 - ENGLISH LANGUAGE ARTS</strong>
-                <strong>50 QUESTIONS</strong>
+                <strong>{englishQuestionCount} QUESTIONS</strong>
               </p>
-              <p className="exam-session-question-range">Questions 1-50</p>
+              <p className="exam-session-question-range">Questions 1-{englishQuestionCount}</p>
 
               <p>
                 <strong>PART 2 - MATHEMATICS</strong>
-                <strong>50 QUESTIONS</strong>
+                <strong>{mathQuestionCount} QUESTIONS</strong>
               </p>
-              <p className="exam-session-question-range">Questions 51-100</p>
+              <p className="exam-session-question-range">
+                Questions {englishQuestionCount + 1}-{totalExamQuestionCount}
+              </p>
             </div>
           </section>
 

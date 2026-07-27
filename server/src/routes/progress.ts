@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { randomUUID } from "node:crypto";
 import type { User } from "@supabase/supabase-js";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole } from "../lib/auth";
 import { supabase } from "../lib/supabase";
@@ -129,7 +130,8 @@ async function getDatabaseProgress(user: User): Promise<LearningProgress> {
         supabase.from("student_practice_progress").select("topic_slug,progress").eq("user_id", user.id),
     ]);
 
-    if (examQuery.error || practiceQuery.error) return getMetadataProgress(user);
+    const metadataProgress = getMetadataProgress(user);
+    if (examQuery.error || practiceQuery.error) return metadataProgress;
 
     const examResults = (examQuery.data ?? []).filter(
         (row) => !String(row.assessment_id).startsWith(examSessionResultPrefix),
@@ -137,8 +139,15 @@ async function getDatabaseProgress(user: User): Promise<LearningProgress> {
         const result = row.result && typeof row.result === "object" && !Array.isArray(row.result) ? row.result as JsonRecord : {};
         return { ...result, assessmentId: result.assessmentId ?? row.assessment_id };
     });
-    const practice = Object.fromEntries((practiceQuery.data ?? []).map((row) => [row.topic_slug, row.progress as JsonRecord]));
-    return { examResults, practice };
+    const databaseAssessmentIds = new Set(examResults.map((result) => result.assessmentId));
+    const fallbackExamResults = metadataProgress.examResults.filter(
+        (result) => !databaseAssessmentIds.has(result.assessmentId),
+    );
+    const practice = {
+        ...metadataProgress.practice,
+        ...Object.fromEntries((practiceQuery.data ?? []).map((row) => [row.topic_slug, row.progress as JsonRecord])),
+    };
+    return { examResults: [...examResults, ...fallbackExamResults], practice };
 }
 
 async function saveMetadataProgress(user: User, progress: LearningProgress) {
@@ -363,6 +372,104 @@ progressRouter.patch("/students/:studentId/dismissal", async (request, response)
         return;
     }
     response.json({ dismissal });
+});
+
+progressRouter.post("/students/:studentId/manual-exam-results", async (request, response) => {
+    const authenticated = await getAuthenticatedUser(request.headers.authorization);
+    if (authenticated.error || !authenticated.user) {
+        response.status(401).json({ message: authenticated.error });
+        return;
+    }
+    const role = getUserRole(authenticated.user);
+    if (role !== "teacher" && role !== "admin") {
+        response.status(403).json({ message: "Teacher access is required." });
+        return;
+    }
+
+    const studentResult = await supabase.auth.admin.getUserById(request.params.studentId);
+    const student = studentResult.data.user;
+    if (studentResult.error || !student || getUserRole(student) !== "student") {
+        response.status(404).json({ message: "Student not found." });
+        return;
+    }
+
+    const title = typeof request.body?.title === "string" ? request.body.title.trim() : "";
+    const completedDate = request.body?.completedDate;
+    const englishCorrect = request.body?.englishCorrect;
+    const englishTotal = request.body?.englishTotal;
+    const mathCorrect = request.body?.mathCorrect;
+    const mathTotal = request.body?.mathTotal;
+    const scores = [englishCorrect, englishTotal, mathCorrect, mathTotal];
+    if (!title || !isDate(completedDate)) {
+        response.status(400).json({ message: "Enter an exam title and valid test date." });
+        return;
+    }
+    if (
+        scores.some((score) => typeof score !== "number" || !Number.isFinite(score) || score < 0) ||
+        englishTotal <= 0 ||
+        mathTotal <= 0 ||
+        englishCorrect > englishTotal ||
+        mathCorrect > mathTotal
+    ) {
+        response.status(400).json({ message: "Enter valid English and Math scores with earned points no greater than possible points." });
+        return;
+    }
+
+    const assessmentId = `manual-${randomUUID()}`;
+    const completedAt = new Date(`${completedDate}T12:00:00.000Z`).toISOString();
+    const correct = englishCorrect + mathCorrect;
+    const total = englishTotal + mathTotal;
+    const result: JsonRecord = {
+        answers: {},
+        assessmentId,
+        completedAt,
+        completedSections: ["english", "math"],
+        completionStatus: "complete",
+        correct,
+        passages: [],
+        percentage: Math.round((correct / total) * 100),
+        questionTypes: [],
+        recordedByTeacherId: authenticated.user.id,
+        source: "manual",
+        subjects: [
+            {
+                correct: englishCorrect,
+                subject: "English Language Arts",
+                topics: [],
+                total: englishTotal,
+            },
+            {
+                correct: mathCorrect,
+                subject: "Mathematics",
+                topics: [],
+                total: mathTotal,
+            },
+        ],
+        title,
+        topics: [],
+        total,
+    };
+
+    const saved = await supabase.from("student_exam_results").upsert({
+        assessment_id: assessmentId,
+        completed_at: completedAt,
+        result,
+        updated_at: new Date().toISOString(),
+        user_id: student.id,
+    }, { onConflict: "user_id,assessment_id" });
+    if (saved.error) {
+        const progress = getMetadataProgress(student);
+        const fallback = await saveMetadataProgress(student, {
+            ...progress,
+            examResults: [result, ...progress.examResults],
+        });
+        if (fallback.error) {
+            response.status(400).json({ message: saved.error.message });
+            return;
+        }
+    }
+
+    response.status(201).json({ result });
 });
 
 progressRouter.put("/exam-results/:assessmentId", async (request, response) => {

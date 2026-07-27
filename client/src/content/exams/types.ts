@@ -2,11 +2,14 @@ export type ExamQuestionType =
   | "multiple_choice"
   | "multi_select"
   | "category_sort"
+  | "graph_point_select"
   | "table_match"
   | "inline_dropdown"
-  | "numeric_entry"
+  | "math_drag_drop"
+  | "number_line_response"
   | "transition_drop"
   | "short_response"
+  | "numeric_entry"
   | "grid_in"
   | "essay";
 
@@ -42,6 +45,40 @@ export type ExamNumberLine = {
   solutionStart: number;
   startClosed: boolean;
   tickStep: number;
+};
+
+export type ExamNumberLineResponse = {
+  correctDirection: "left" | "right";
+  correctEndpoint: "closed" | "open";
+  correctValue: number;
+  labelStep: number;
+  max: number;
+  min: number;
+  tickStep: number;
+};
+
+export type ExamGraphPoint = {
+  id: string;
+  x: number;
+  y: number;
+};
+
+export type ExamPointGraph = {
+  points: ExamGraphPoint[];
+  title?: string;
+  xLabel: string;
+  xMax: number;
+  xMin: number;
+  xStep: number;
+  yLabel: string;
+  yMax: number;
+  yMin: number;
+  yStep: number;
+};
+
+export type ExamMathDragSlot = {
+  correctItemId: string;
+  id: string;
 };
 
 export type ExamChoice = {
@@ -88,20 +125,27 @@ export type ExamQuestionImage = {
 };
 
 export type ExamQuestion = {
+  allowReuse?: boolean;
   categories?: ExamCategoryTarget[];
   categoryCapacity?: 1;
   choices?: ExamChoice[];
   correctChoiceId?: string;
   correctChoiceIds?: string[];
+  correctPointIds?: string[];
   correctPlacements?: Record<string, string>;
   correctTextAnswers?: string[];
+  dragDropContent?: string[];
+  dragDropSlots?: ExamMathDragSlot[];
   dropdownContent?: string[];
   dropdowns?: ExamInlineDropdown[];
+  entryLayout?: "fraction" | "plain" | "x_equals";
+  graph?: ExamPointGraph;
   id: string;
   image?: ExamQuestionImage;
   instructions?: string;
   instructionsHtml?: string;
   items?: ExamCategoryItem[];
+  numberLineResponse?: ExamNumberLineResponse;
   points?: number;
   prompt: string;
   promptHtml?: string;

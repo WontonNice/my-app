@@ -85,6 +85,15 @@ export function getNextExamSubject(defaultSubject: ExamSection, completedSection
   return defaultSubject;
 }
 
+export function getOpenExamSubject(
+  preferredSubject: ExamSection,
+  sectionAccess: Record<ExamSection, boolean>,
+): ExamSection | null {
+  if (sectionAccess[preferredSubject]) return preferredSubject;
+  const alternateSubject = preferredSubject === "english" ? "math" : "english";
+  return sectionAccess[alternateSubject] ? alternateSubject : null;
+}
+
 export function isExamResultCompleteForQuestionCount(
   result: Pick<ExamResult, "completionStatus" | "total"> | null | undefined,
   currentQuestionCount: number,
