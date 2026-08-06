@@ -2,6 +2,12 @@ import type { User } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
 
 export const classIdsKey = "class_ids";
+export const classJoinRequestsKey = "class_join_requests";
+
+export type ClassJoinRequest = {
+    classId: string;
+    requestedAt: string;
+};
 
 type AuthenticatedUserResult =
     | {
@@ -75,6 +81,24 @@ export function getEnrolledClassIds(appMetadata: Record<string, unknown> | undef
     }
 
     return classIds.filter((classId): classId is string => typeof classId === "string");
+}
+
+export function getClassJoinRequests(appMetadata: Record<string, unknown> | undefined): ClassJoinRequest[] {
+    const requests = appMetadata?.[classJoinRequestsKey];
+
+    if (!Array.isArray(requests)) {
+        return [];
+    }
+
+    return requests.flatMap((request) => {
+        if (!request || typeof request !== "object" || Array.isArray(request)) return [];
+        const candidate = request as Record<string, unknown>;
+        if (typeof candidate.classId !== "string" || !candidate.classId) return [];
+        return [{
+            classId: candidate.classId,
+            requestedAt: typeof candidate.requestedAt === "string" ? candidate.requestedAt : new Date(0).toISOString(),
+        }];
+    });
 }
 
 export function getUserRole(user: User) {

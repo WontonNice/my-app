@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { Activity, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, Eye, LayoutDashboard, Pencil, PlusCircle, RotateCcw, Shuffle, Trash2, UserRoundPlus, Users, X } from "lucide-react";
+import { Activity, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, Clock3, Eye, LayoutDashboard, Pencil, PlusCircle, RotateCcw, Shuffle, Trash2, UserRoundCheck, UserRoundPlus, Users, X } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { resolveExamContent, type ExamQuestion } from "../content/exams";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import {
   getTeacherAssessments,
+  getTeacherClassJoinRequests,
   getTeacherStudentProgress,
   createTeacherManualExamResult,
   deleteStudentAccount,
+  reviewTeacherClassJoinRequest,
   updateStudentAccount,
   updateTeacherAssessmentCompletedAccess,
   updateTeacherAssessmentSectionAccess,
@@ -18,6 +20,7 @@ import {
   type AssessmentStatus,
   type ManualExamScoreInput,
   type StudentProgressSnapshot,
+  type TeacherClassJoinRequest,
   type TeacherAssessment,
 } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
@@ -612,11 +615,12 @@ function createPassageForms(assessment: TeacherAssessment): FormDraft["forms"] {
   }));
 }
 
-type TeacherWorkspace = "overview" | "students" | "accounts" | "assessments";
+type TeacherWorkspace = "overview" | "students" | "accounts" | "assessments" | "enrollment";
 
 function getTeacherWorkspace(pathname: string): TeacherWorkspace {
   if (pathname.startsWith("/teacher/students")) return "students";
   if (pathname.startsWith("/teacher/accounts")) return "accounts";
+  if (pathname.startsWith("/teacher/enrollment")) return "enrollment";
   if (pathname.startsWith("/teacher/insights")) return "assessments";
   if (pathname.startsWith("/teacher/assessments")) return "assessments";
   return "overview";
@@ -851,6 +855,8 @@ export function TeacherDashboardPage() {
     isSupabaseConfigured && !initialDashboardCache,
   );
   const [message, setMessage] = useState("");
+  const [classJoinRequests, setClassJoinRequests] = useState<TeacherClassJoinRequest[]>([]);
+  const [savingClassRequestKey, setSavingClassRequestKey] = useState("");
   const [savingStatusId, setSavingStatusId] = useState("");
   const [savingCompletedAccessId, setSavingCompletedAccessId] = useState("");
   const [savingSectionAccessKey, setSavingSectionAccessKey] = useState("");
@@ -882,12 +888,14 @@ export function TeacherDashboardPage() {
         setIsCheckingSession(false);
       }
       try {
-        const [nextAssessments, nextStudents] = await Promise.all([
+        const [nextAssessments, nextStudents, nextClassJoinRequests] = await Promise.all([
           getTeacherAssessments(data.session.access_token),
           getTeacherStudentProgress(data.session.access_token),
+          getTeacherClassJoinRequests(data.session.access_token),
         ]);
         setAssessments(nextAssessments);
         setStudents(nextStudents);
+        setClassJoinRequests(nextClassJoinRequests);
         cacheTeacherDashboard(data.session.user.id, nextAssessments, nextStudents);
       } catch (error) {
         setMessage(error instanceof Error ? error.message : "Could not load the teacher dashboard.");
@@ -1206,6 +1214,28 @@ export function TeacherDashboardPage() {
     }
   }
 
+  async function handleClassJoinRequest(request: TeacherClassJoinRequest, action: "approve" | "reject") {
+    if (!accessToken) return;
+    const requestKey = `${request.studentId}:${request.classroom.id}`;
+    setSavingClassRequestKey(requestKey);
+    setMessage("");
+    try {
+      await reviewTeacherClassJoinRequest(accessToken, request.studentId, request.classroom.id, action);
+      setClassJoinRequests((current) => current.filter((item) => `${item.studentId}:${item.classroom.id}` !== requestKey));
+      if (action === "approve") {
+        const nextStudents = await getTeacherStudentProgress(accessToken);
+        setStudents(nextStudents);
+      }
+      setMessage(action === "approve"
+        ? `${request.studentName} can now access ${request.classroom.name}.`
+        : `${request.studentName}'s ${request.classroom.name} request was declined.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not review the class request.");
+    } finally {
+      setSavingClassRequestKey("");
+    }
+  }
+
   async function handleSignOut() {
     if (isSupabaseConfigured) await signOutCurrentAccount();
     window.location.assign("/");
@@ -1226,6 +1256,7 @@ export function TeacherDashboardPage() {
   const navItems = [
     { id: "overview", label: "Overview", href: "/teacher", icon: LayoutDashboard },
     { id: "students", label: "Student progress", href: "/teacher/students", icon: Activity },
+    { id: "enrollment", label: "Class requests", href: "/teacher/enrollment", icon: UserRoundCheck },
     { id: "accounts", label: "Student accounts", href: "/teacher/accounts", icon: UserRoundPlus },
     { id: "assessments", label: "Assessments & insights", href: "/teacher/assessments", icon: ClipboardList },
   ];
@@ -1247,6 +1278,12 @@ export function TeacherDashboardPage() {
       eyebrow: "Account access",
       icon: UserRoundPlus,
       title: "Student accounts",
+    },
+    enrollment: {
+      description: "Review classroom-code requests before students receive access.",
+      eyebrow: "Enrollment approval",
+      icon: UserRoundCheck,
+      title: "Class requests",
     },
     assessments: {
       description: selectedClassInsight
@@ -1281,6 +1318,7 @@ export function TeacherDashboardPage() {
             <div className="teacher-panel-header"><div><span>Workspaces</span><h2>Choose where to work</h2></div><p>Each area now opens as its own page.</p></div>
             <div className="teacher-workspace-grid">
               <AppLink href="/teacher/students"><Activity size={20} /><span><strong>Student progress</strong><small>{shsatStudents.length} SHSAT student{shsatStudents.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
+              <AppLink href="/teacher/enrollment"><UserRoundCheck size={20} /><span><strong>Class requests</strong><small>{classJoinRequests.length} awaiting approval</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/accounts"><UserRoundPlus size={20} /><span><strong>Student accounts</strong><small>Edit access or preview an account</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/assessments"><ClipboardList size={20} /><span><strong>Assessments & insights</strong><small>{assessments.length} exam{assessments.length === 1 ? "" : "s"} · {classAssessmentInsights.length} performance dashboard{classAssessmentInsights.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
             </div>
@@ -1309,6 +1347,25 @@ export function TeacherDashboardPage() {
           </div>
 
       </section>
+      ) : null}
+
+      {activeWorkspace === "enrollment" ? (
+        <section className="teacher-panel teacher-enrollment-panel" id="class-requests">
+          <div className="teacher-panel-header"><div><span>Teacher approval</span><h2>Pending class requests</h2></div><p>Students stay outside the class until you approve their request.</p></div>
+          <div className="teacher-enrollment-list">
+            {classJoinRequests.map((request) => {
+              const requestKey = `${request.studentId}:${request.classroom.id}`;
+              const isSaving = savingClassRequestKey === requestKey;
+              return <article key={requestKey}>
+                <span className="teacher-student-avatar">{request.studentName.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span>
+                <div><strong>{request.studentName}</strong><small>@{request.studentUsername} · {request.studentEmail}</small><span><Clock3 size={13} /> Requested {formatDate(request.requestedAt)}</span></div>
+                <b>{request.classroom.name}</b>
+                <div className="teacher-enrollment-actions"><button className="is-approve" disabled={isSaving} onClick={() => handleClassJoinRequest(request, "approve")} type="button"><CheckCircle2 size={15} /> {isSaving ? "Saving…" : "Approve"}</button><button className="is-reject" disabled={isSaving} onClick={() => handleClassJoinRequest(request, "reject")} type="button"><X size={15} /> Decline</button></div>
+              </article>;
+            })}
+            {!classJoinRequests.length ? <div className="teacher-enrollment-empty"><CheckCircle2 size={24} /><strong>No requests waiting</strong><p>New classroom-code requests will appear here.</p></div> : null}
+          </div>
+        </section>
       ) : null}
 
       {activeWorkspace === "accounts" ? (

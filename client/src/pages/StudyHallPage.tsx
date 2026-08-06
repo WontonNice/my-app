@@ -1,10 +1,10 @@
 import { useEffect, useState, type FormEvent } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { BookOpen, GraduationCap } from "lucide-react";
+import { BookOpen, Clock3, GraduationCap } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
-import { getStudentClasses, joinStudentClass, type StudentClass } from "../lib/api";
+import { getStudentClassAccess, joinStudentClass, type StudentClass, type StudentClassJoinRequest } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 import { cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "../lib/sessionCache";
@@ -20,6 +20,7 @@ export function StudyHallPage() {
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured && !initialSession);
   const [isJoining, setIsJoining] = useState(false);
   const [message, setMessage] = useState("");
+  const [pendingRequests, setPendingRequests] = useState<StudentClassJoinRequest[]>([]);
   const [studentName, setStudentName] = useState(previewContext.studentName || initialMetadata?.full_name || initialMetadata?.name || "Student");
 
   useEffect(() => {
@@ -55,6 +56,7 @@ export function StudyHallPage() {
           name: "SHSAT",
           schedule: "Study Hall",
         }]);
+        setPendingRequests([]);
         setIsCheckingSession(false);
         return;
       }
@@ -64,7 +66,7 @@ export function StudyHallPage() {
 
     async function loadStudentClasses(session: Session) {
       try {
-        const nextClasses = getCachedStudentClasses(session.user.id) ?? await getStudentClasses(session.access_token);
+        const { classes: nextClasses, pendingRequests: nextPendingRequests } = await getStudentClassAccess(session.access_token);
 
         if (!isMounted) {
           return;
@@ -72,6 +74,7 @@ export function StudyHallPage() {
 
         setAccessToken(session.access_token);
         setClasses(nextClasses);
+        setPendingRequests(nextPendingRequests);
         cacheStudentClasses(session.user.id, nextClasses);
       } catch (error) {
         if (!isMounted) {
@@ -99,14 +102,19 @@ export function StudyHallPage() {
     setIsJoining(true);
 
     try {
-      const { classes: nextClasses, joinedClass } = await joinStudentClass(accessToken, classCode);
+      const result = await joinStudentClass(accessToken, classCode);
 
-      setClasses(nextClasses);
+      setClasses(result.classes);
       const session = await getActiveSession();
-      if (session) cacheStudentClasses(session.user.id, nextClasses);
+      if (session) cacheStudentClasses(session.user.id, result.classes);
       setClassCode("");
-      setMessage(`You joined ${joinedClass.name}.`);
-      await getSupabaseClient().auth.refreshSession();
+      if (result.status === "pending" && result.request) {
+        setPendingRequests((current) => current.some((request) => request.classId === result.request?.classId) ? current : [...current, result.request as StudentClassJoinRequest]);
+        setMessage(`Your ${result.request.classroom.name} request was sent to your teacher.`);
+      } else if (result.joinedClass) {
+        setMessage(`You are already enrolled in ${result.joinedClass.name}.`);
+        await getSupabaseClient().auth.refreshSession();
+      }
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Could not join that class.");
     } finally {
@@ -150,7 +158,7 @@ export function StudyHallPage() {
         <div><p><BookOpen size={15} /> Student workspace</p><h1>My classes</h1><span>Choose a class to open its assignments, practice, assessments, and progress.</span></div>
       </header>
       {classes.length > 0 ? <ClassList classes={classes} message={message} previewQuery={previewContext.query} /> : (
-        <JoinClassPanel classCode={classCode} isJoining={isJoining} message={message} onClassCodeChange={setClassCode} onJoinClass={handleJoinClass} />
+        <JoinClassPanel classCode={classCode} isJoining={isJoining} message={message} onClassCodeChange={setClassCode} onJoinClass={handleJoinClass} pendingRequest={pendingRequests[0]} />
       )}
     </CorporateDashboardShell>
   );
@@ -162,6 +170,7 @@ type JoinClassPanelProps = {
   message: string;
   onClassCodeChange: (value: string) => void;
   onJoinClass: (event: FormEvent<HTMLFormElement>) => void;
+  pendingRequest?: StudentClassJoinRequest;
 };
 
 function JoinClassPanel({
@@ -170,18 +179,18 @@ function JoinClassPanel({
   message,
   onClassCodeChange,
   onJoinClass,
+  pendingRequest,
 }: JoinClassPanelProps) {
   return (
     <section className="staff-panel student-class-panel" aria-labelledby="study-title">
       <div className="student-class-panel-copy">
         <span>Enrollment</span>
         <h2 id="study-title">Join a class</h2>
-        <p>
-          Enter the classroom code from your tutor. Once you join, Study Hall becomes your
-          class hub for assignments, assessments, and prep missions.
-        </p>
+        <p>{pendingRequest
+          ? `Your request to join ${pendingRequest.classroom.name} is waiting for teacher approval. You will see the class here after it is approved.`
+          : "Enter the classroom code from your tutor. Your teacher will review the request before the class is added to your account."}</p>
 
-        <form className="study-code-form" onSubmit={onJoinClass}>
+        {pendingRequest ? <div className="study-pending-request" role="status"><Clock3 size={18} /><span><strong>Approval pending</strong><small>Requested {new Date(pendingRequest.requestedAt).toLocaleDateString()}</small></span></div> : <form className="study-code-form" onSubmit={onJoinClass}>
           <label htmlFor="class-code">Classroom code</label>
           <div className="study-code-row">
             <input
@@ -194,11 +203,12 @@ function JoinClassPanel({
               onChange={(event) => onClassCodeChange(event.target.value)}
             />
             <button disabled={isJoining} type="submit">
-              {isJoining ? "Joining" : "Join"}
+              {isJoining ? "Sending request" : "Request access"}
             </button>
           </div>
           {message && <p className="study-message">{message}</p>}
-        </form>
+        </form>}
+        {pendingRequest && message ? <p className="study-message">{message}</p> : null}
       </div>
     </section>
   );

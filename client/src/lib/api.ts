@@ -15,6 +15,22 @@ export type StudentClass = {
   schedule: string;
 };
 
+export type StudentClassJoinRequest = {
+  classId: string;
+  classroom: StudentClass;
+  requestedAt: string;
+  status: "pending";
+};
+
+export type TeacherClassJoinRequest = {
+  classroom: StudentClass;
+  requestedAt: string;
+  studentEmail: string;
+  studentId: string;
+  studentName: string;
+  studentUsername: string;
+};
+
 export type AssessmentStatus = "locked" | "open";
 export type AssessmentSection = "english" | "math";
 export type AssessmentSectionAccess = Record<AssessmentSection, boolean>;
@@ -120,12 +136,29 @@ export type StaffDashboardData = {
     id: string;
     lastName?: string;
     name: string;
+    points: number;
     specialNotes?: string;
     status: "Active" | "Waitlist";
     earlyPickupDates?: string[];
     earlyPickupTimes?: Record<string, string>;
     vanRide?: "none" | "5pm";
   }[];
+};
+
+export type SquidGamesStudent = {
+  accountId: string;
+  className: string | null;
+  grade: string;
+  name: string;
+  points: number;
+  staffName: string;
+  studentId: string;
+};
+
+export type SquidGamesData = {
+  availableGrades: string[];
+  leaderboardGrades: string[];
+  students: SquidGamesStudent[];
 };
 
 export type SwimmingStatus = {
@@ -728,18 +761,74 @@ export async function saveCloudPracticeProgress(
 }
 
 export async function getStudentClasses(accessToken: string) {
-  const data = await requestApi<{ classes: StudentClass[] }>("/api/classes/mine", {
-    headers: createAuthHeaders(accessToken),
-  });
-
+  const data = await getStudentClassAccess(accessToken);
   return data.classes;
 }
 
+export async function getStudentClassAccess(accessToken: string) {
+  return requestApi<{ classes: StudentClass[]; pendingRequests: StudentClassJoinRequest[] }>("/api/classes/mine", {
+    headers: createAuthHeaders(accessToken),
+  });
+}
+
 export async function joinStudentClass(accessToken: string, code: string) {
-  return requestApi<{ classes: StudentClass[]; joinedClass: StudentClass }>("/api/classes/join", {
+  return requestApi<{
+    classes: StudentClass[];
+    joinedClass?: StudentClass;
+    request?: StudentClassJoinRequest;
+    status: "approved" | "pending";
+  }>("/api/classes/join", {
     body: JSON.stringify({ code }),
     headers: createAuthHeaders(accessToken),
     method: "POST",
+  });
+}
+
+export async function getTeacherClassJoinRequests(accessToken: string) {
+  const data = await requestApi<{ requests: TeacherClassJoinRequest[] }>("/api/classes/requests", {
+    headers: createAuthHeaders(accessToken),
+  });
+  return data.requests;
+}
+
+export async function reviewTeacherClassJoinRequest(
+  accessToken: string,
+  studentId: string,
+  classId: string,
+  action: "approve" | "reject",
+) {
+  return requestApi<{ action: "approve" | "reject"; classroom: StudentClass; studentId: string }>(
+    `/api/classes/requests/${encodeURIComponent(studentId)}/${encodeURIComponent(classId)}`,
+    {
+      body: JSON.stringify({ action }),
+      headers: createAuthHeaders(accessToken),
+      method: "PATCH",
+    },
+  );
+}
+
+export async function getSquidGames(accessToken: string) {
+  return requestApi<SquidGamesData>("/api/staff/squid-games", {
+    headers: createAuthHeaders(accessToken),
+  });
+}
+
+export async function saveSquidGamesPoints(accessToken: string, accountId: string, studentId: string, points: number) {
+  return requestApi<{ accountId: string; points: number; studentId: string }>(
+    `/api/staff/squid-games/${encodeURIComponent(studentId)}`,
+    {
+      body: JSON.stringify({ accountId, points }),
+      headers: createAuthHeaders(accessToken),
+      method: "PATCH",
+    },
+  );
+}
+
+export async function saveSquidGamesLeaderboardGrades(accessToken: string, grades: string[]) {
+  return requestApi<{ leaderboardGrades: string[] }>("/api/staff/squid-games/leaderboard-grades", {
+    body: JSON.stringify({ grades }),
+    headers: createAuthHeaders(accessToken),
+    method: "PUT",
   });
 }
 

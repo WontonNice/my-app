@@ -14,6 +14,7 @@ const boazRoster = ["Chloe Tong", "Harrison Cheng", "Kaitlyn Lim", "Dylan Cui", 
         grade: String(6 + (index % 3)),
         id: `PSS-5${String(index + 1).padStart(2, "0")}`,
         name,
+        points: 0,
         status: "Active",
     }),
 );
@@ -23,8 +24,9 @@ export const staffRouter = Router();
 const sheetsWebhookMetadataKey = "google_sheets_attendance_webhook_url";
 const tasksMetadataKey = "staff_tasks";
 const staffAttendanceMetadataKey = "staff_attendance_records";
+const squidGamesGradesMetadataKey = "squid_games_leaderboard_grades";
 const globalStoreEmail = "pss-store@staff.nathantutors.local";
-const globalStoreMetadataKeys = [tasksMetadataKey, staffAttendanceMetadataKey] as const;
+const globalStoreMetadataKeys = [tasksMetadataKey, staffAttendanceMetadataKey, squidGamesGradesMetadataKey] as const;
 
 const defaultWeekdaySchedule = [
     { endTime: "09:15", id: "morning-arrival", place: "Student Commons", startTime: "08:30", studentIds: [], title: "Arrival and breakfast", weekdays: [1, 2, 3, 4, 5] },
@@ -50,6 +52,25 @@ function currentEasternDate() {
     const parts = new Intl.DateTimeFormat("en-US", { day: "2-digit", month: "2-digit", timeZone: "America/New_York", year: "numeric" }).formatToParts(new Date());
     const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
     return `${values.year}-${values.month}-${values.day}`;
+}
+
+function squidGamesGrade(student: Record<string, unknown>) {
+    const grade = typeof student.grade === "string" ? student.grade.trim() : "";
+    if (grade && grade !== "â€”" && grade !== "—") return grade;
+    const className = typeof student.className === "string" ? student.className : "";
+    return className.match(/\d+/)?.[0] ?? "Unassigned";
+}
+
+function squidGamesPoints(value: unknown) {
+    const points = typeof value === "number" && Number.isFinite(value) ? Math.round(value) : 0;
+    return Math.max(0, Math.min(1_000_000, points));
+}
+
+function readSquidGamesGrades(user: { app_metadata: Record<string, unknown> }, availableGrades: string[]) {
+    const stored = user.app_metadata[squidGamesGradesMetadataKey];
+    if (!Array.isArray(stored)) return availableGrades;
+    const available = new Set(availableGrades);
+    return Array.from(new Set(stored.filter((grade): grade is string => typeof grade === "string" && available.has(grade))));
 }
 
 function weeklyDates(start: string, repeatUntil: string) {
@@ -453,10 +474,146 @@ staffRouter.get("/dashboard", async (request, response) => {
     const dashboardData = {
         ...storedDashboardData,
         roster: roster.map((student) => student && typeof student === "object" && !Array.isArray(student)
-            ? { ...student, vanRide: student.vanRide === "5pm" ? "5pm" : "none" }
+            ? { ...student, points: squidGamesPoints(student.points), vanRide: student.vanRide === "5pm" ? "5pm" : "none" }
             : student),
     };
     response.json({ dashboardData });
+});
+
+staffRouter.get("/squid-games", async (request, response) => {
+    const authenticated = await getAuthenticatedUser(request.headers.authorization);
+    if (authenticated.error || !authenticated.user) {
+        response.status(401).json({ message: authenticated.error });
+        return;
+    }
+    const role = getUserRole(authenticated.user);
+    if (role !== "staff" && role !== "admin") {
+        response.status(403).json({ message: "Staff or administrator access is required." });
+        return;
+    }
+
+    const [listed, store] = await Promise.all([
+        supabase.auth.admin.listUsers({ page: 1, perPage: 1000 }),
+        getGlobalStoreAdmin(),
+    ]);
+    if (listed.error || store.error || !store.user) {
+        response.status(400).json({ message: listed.error?.message ?? store.error ?? "Could not load Squid Games." });
+        return;
+    }
+    const staffUsers = listed.data.users.filter((candidate) => getUserRole(candidate) === "staff");
+    let dashboards: Awaited<ReturnType<typeof getStaffDashboardDataMap>>;
+    try {
+        dashboards = await getStaffDashboardDataMap(staffUsers);
+    } catch (error) {
+        response.status(400).json({ message: error instanceof Error ? error.message : "Could not load staff rosters." });
+        return;
+    }
+    const students = staffUsers.flatMap((staff) => {
+        const dashboard = dashboards.get(staff.id) ?? {};
+        const roster = Array.isArray(dashboard.roster) ? dashboard.roster : [];
+        const staffName = typeof staff.user_metadata.full_name === "string"
+            ? staff.user_metadata.full_name
+            : typeof staff.user_metadata.username === "string" ? staff.user_metadata.username : "Staff";
+        return roster.flatMap((student) => {
+            if (!student || typeof student !== "object" || Array.isArray(student)) return [];
+            const candidate = student as Record<string, unknown>;
+            if (typeof candidate.id !== "string" || typeof candidate.name !== "string") return [];
+            return [{
+                accountId: staff.id,
+                className: typeof candidate.className === "string" && candidate.className.trim() ? candidate.className : null,
+                grade: squidGamesGrade(candidate),
+                name: candidate.name,
+                points: squidGamesPoints(candidate.points),
+                staffName,
+                studentId: candidate.id,
+            }];
+        });
+    }).sort((left, right) => right.points - left.points || left.name.localeCompare(right.name) || left.staffName.localeCompare(right.staffName));
+    const availableGrades = Array.from(new Set(students.map((student) => student.grade).filter((grade) => grade !== "Unassigned")))
+        .sort((left, right) => left.localeCompare(right, undefined, { numeric: true }));
+
+    response.json({
+        availableGrades,
+        leaderboardGrades: readSquidGamesGrades(store.user, availableGrades),
+        students,
+    });
+});
+
+staffRouter.patch("/squid-games/:studentId", async (request, response) => {
+    const authenticated = await getAuthenticatedUser(request.headers.authorization);
+    if (authenticated.error || !authenticated.user) {
+        response.status(401).json({ message: authenticated.error });
+        return;
+    }
+    const role = getUserRole(authenticated.user);
+    if (role !== "staff" && role !== "admin") {
+        response.status(403).json({ message: "Staff or administrator access is required." });
+        return;
+    }
+    if (typeof request.body?.points !== "number" || !Number.isFinite(request.body.points) || request.body.points < 0 || request.body.points > 1_000_000) {
+        response.status(400).json({ message: "Points must be a number from 0 to 1,000,000." });
+        return;
+    }
+
+    const requestedAccountId = typeof request.body?.accountId === "string" ? request.body.accountId : "";
+    const accountId = role === "staff" ? authenticated.user.id : requestedAccountId;
+    if (!accountId) {
+        response.status(400).json({ message: "Choose the staff roster for this student." });
+        return;
+    }
+    if (role === "staff" && requestedAccountId && requestedAccountId !== authenticated.user.id) {
+        response.status(403).json({ message: "Staff can only update points for students on their own roster." });
+        return;
+    }
+
+    const targetResult = await supabase.auth.admin.getUserById(accountId);
+    const target = targetResult.data.user;
+    if (targetResult.error || !target || getUserRole(target) !== "staff") {
+        response.status(404).json({ message: "Staff roster was not found." });
+        return;
+    }
+    const dashboard = await getStaffDashboardData(target);
+    const roster = Array.isArray(dashboard.roster) ? dashboard.roster as Record<string, unknown>[] : [];
+    const student = roster.find((candidate) => candidate.id === request.params.studentId);
+    if (!student) {
+        response.status(404).json({ message: "Student was not found on this staff roster." });
+        return;
+    }
+
+    const points = squidGamesPoints(request.body.points);
+    const nextRoster = roster.map((candidate) => candidate.id === request.params.studentId ? { ...candidate, points } : candidate);
+    const saved = await saveStaffDashboardData(target.id, { ...dashboard, roster: nextRoster });
+    if (saved.error) {
+        response.status(400).json({ message: saved.error });
+        return;
+    }
+    response.json({ accountId: target.id, points, studentId: request.params.studentId });
+});
+
+staffRouter.put("/squid-games/leaderboard-grades", async (request, response) => {
+    const admin = await requireAdmin(request.headers.authorization);
+    if (admin.error || !admin.user) {
+        response.status(admin.error === "Administrator access is required." ? 403 : 401).json({ message: admin.error });
+        return;
+    }
+    if (!Array.isArray(request.body?.grades) || request.body.grades.some((grade: unknown) => typeof grade !== "string" || !grade.trim() || grade.length > 32)) {
+        response.status(400).json({ message: "Choose valid grades for the leaderboard." });
+        return;
+    }
+    const grades = Array.from(new Set((request.body.grades as string[]).map((grade) => grade.trim())));
+    const store = await getGlobalStoreAdmin();
+    if (store.error || !store.user) {
+        response.status(400).json({ message: store.error });
+        return;
+    }
+    const saved = await supabase.auth.admin.updateUserById(store.user.id, {
+        app_metadata: { ...store.user.app_metadata, [squidGamesGradesMetadataKey]: grades },
+    });
+    if (saved.error) {
+        response.status(400).json({ message: saved.error.message });
+        return;
+    }
+    response.json({ leaderboardGrades: grades });
 });
 
 staffRouter.get("/schedules", async (request, response) => {
@@ -693,6 +850,7 @@ staffRouter.put("/roster/:accountId", async (request, response) => {
         id: existing?.id ?? `PSS-${randomUUID().slice(0, 8).toUpperCase()}`,
         lastName,
         name: `${firstName} ${lastName}`,
+        points: squidGamesPoints(existing?.points),
         specialNotes,
         status: existing?.status === "Waitlist" ? "Waitlist" : "Active",
     };

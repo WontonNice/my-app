@@ -30,6 +30,141 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Enrollment approvals */
+.study-pending-request {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 440px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  border: 1px solid #e5c778;
+  border-radius: 10px;
+  background: #fff8df;
+  color: #6f5512;
+}
+
+.study-pending-request span { display: grid; gap: 2px; }
+.study-pending-request small { color: #8a7130; }
+
+.teacher-enrollment-list { display: grid; gap: 10px; }
+
+.teacher-enrollment-list > article {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--dashboard-border);
+  border-radius: 10px;
+  background: var(--dashboard-surface);
+}
+
+.teacher-enrollment-list > article > div:nth-of-type(1) { display: grid; gap: 3px; min-width: 0; }
+.teacher-enrollment-list > article > div:nth-of-type(1) small { overflow: hidden; color: var(--dashboard-muted); text-overflow: ellipsis; }
+.teacher-enrollment-list > article > div:nth-of-type(1) span { display: flex; align-items: center; gap: 5px; color: #8b6c1b; font-size: 12px; }
+.teacher-enrollment-list > article > b { padding: 6px 10px; border-radius: 999px; background: var(--dashboard-accent-soft); color: var(--dashboard-accent-strong); font-size: 12px; }
+.teacher-enrollment-actions { display: flex; gap: 8px; }
+.teacher-enrollment-actions button { display: inline-flex; align-items: center; gap: 6px; padding: 9px 12px; border: 1px solid transparent; border-radius: 7px; font-weight: 700; cursor: pointer; }
+.teacher-enrollment-actions .is-approve { background: var(--dashboard-primary); color: #fff; }
+.teacher-enrollment-actions .is-reject { border-color: #e1b7b4; background: #fff5f4; color: #a13b35; }
+.teacher-enrollment-actions button:disabled { cursor: wait; opacity: .6; }
+.teacher-enrollment-empty { display: grid; justify-items: center; gap: 5px; padding: 42px 20px; color: var(--dashboard-muted); text-align: center; }
+.teacher-enrollment-empty svg { color: var(--dashboard-accent); }
+.teacher-enrollment-empty strong { color: var(--dashboard-heading); }
+.teacher-enrollment-empty p { margin: 0; }
+
+/* Squid Games */
+.squid-games-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(310px, .8fr);
+  align-items: start;
+  gap: 18px;
+}
+
+.squid-games-total {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #edf5f3;
+  color: #1b6d5d;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.squid-games-grade-grid { display: grid; gap: 16px; }
+.squid-games-grade-grid > section { overflow: hidden; border: 1px solid var(--dashboard-border); border-radius: 10px; }
+.squid-games-grade-grid > section > header { display: flex; justify-content: space-between; padding: 10px 14px; background: #f3f6f8; color: var(--dashboard-heading); font-weight: 800; }
+.squid-games-grade-grid > section > header strong { color: var(--dashboard-muted); font-size: 12px; }
+.squid-games-grade-grid > section > div { display: grid; }
+.squid-games-grade-grid article { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 12px; padding: 12px 14px; border-top: 1px solid var(--dashboard-border); }
+.squid-games-grade-grid article:first-child { border-top: 0; }
+.squid-games-grade-grid article > div:nth-of-type(1) { display: grid; gap: 2px; }
+.squid-games-grade-grid article > div:nth-of-type(1) small { color: var(--dashboard-muted); }
+.squid-games-grade-grid article > b { min-width: 66px; color: #162f4a; font-size: 20px; text-align: right; }
+.squid-games-grade-grid article > b small { color: var(--dashboard-muted); font-size: 11px; }
+.squid-games-point-actions { display: flex; gap: 5px; }
+.squid-games-point-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 2px; min-width: 34px; height: 32px; padding: 0 8px; border: 1px solid #c9d6df; border-radius: 6px; background: #fff; color: #31506c; font-weight: 800; cursor: pointer; }
+.squid-games-point-actions button:hover { border-color: var(--dashboard-accent-border); background: var(--dashboard-accent-soft); color: var(--dashboard-accent-strong); }
+.squid-games-point-actions button:disabled { cursor: wait; opacity: .45; }
+
+.squid-games-leaderboard { position: sticky; top: 18px; }
+.squid-games-leaderboard > header { display: flex; align-items: center; gap: 11px; }
+.squid-games-leaderboard > header > span { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 9px; background: #fff2c9; color: #9b6a00; }
+.squid-games-leaderboard > header p,
+.squid-games-leaderboard > header h2 { margin: 0; }
+.squid-games-leaderboard > header p { color: var(--dashboard-accent); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.squid-games-leaderboard > header h2 { color: var(--dashboard-heading); font-size: 20px; }
+.squid-games-leaderboard > small { display: block; margin: 12px 0; color: var(--dashboard-muted); }
+.squid-games-leaderboard ol { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.squid-games-leaderboard li { display: grid; grid-template-columns: 24px auto minmax(0, 1fr) auto; align-items: center; gap: 9px; padding: 9px; border-radius: 8px; background: #f6f8fa; }
+.squid-games-leaderboard li > b { color: #748394; text-align: center; }
+.squid-games-leaderboard li:nth-child(1) > b { color: #a36f00; }
+.squid-games-leaderboard li:nth-child(2) > b { color: #647385; }
+.squid-games-leaderboard li:nth-child(3) > b { color: #9b5c34; }
+.squid-games-leaderboard li > div { display: grid; min-width: 0; }
+.squid-games-leaderboard li > div strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.squid-games-leaderboard li > div small { color: var(--dashboard-muted); font-size: 10px; }
+.squid-games-leaderboard li > em { color: var(--dashboard-accent-strong); font-size: 12px; font-style: normal; font-weight: 800; }
+
+.admin-squid-games-layout { display: grid; grid-template-columns: minmax(280px, .75fr) minmax(0, 1.25fr); gap: 18px; }
+.admin-squid-games-settings,
+.admin-squid-games-preview { padding: 18px; border: 1px solid var(--dashboard-border); border-radius: 10px; background: #fff; }
+.admin-squid-games-settings > header { display: flex; align-items: center; gap: 10px; color: var(--dashboard-accent-strong); }
+.admin-squid-games-settings > header div { display: grid; }
+.admin-squid-games-settings > header small { color: var(--dashboard-muted); }
+.admin-squid-games-grade-options { display: grid; gap: 8px; margin: 18px 0; }
+.admin-squid-games-grade-options label { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 9px; padding: 11px 12px; border: 1px solid #dbe3e9; border-radius: 8px; cursor: pointer; }
+.admin-squid-games-grade-options input { width: 17px; height: 17px; accent-color: var(--dashboard-primary); }
+.admin-squid-games-grade-options span { color: var(--dashboard-heading); font-weight: 800; }
+.admin-squid-games-grade-options small { color: var(--dashboard-muted); }
+.admin-squid-games-settings > button { display: inline-flex; align-items: center; gap: 7px; padding: 10px 14px; border: 0; border-radius: 7px; background: var(--dashboard-primary); color: #fff; font-weight: 800; cursor: pointer; }
+.admin-squid-games-settings > button:disabled { cursor: default; opacity: .45; }
+.admin-squid-games-preview > header { display: flex; align-items: end; justify-content: space-between; margin-bottom: 12px; }
+.admin-squid-games-preview > header span { color: var(--dashboard-accent); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.admin-squid-games-preview > header h3 { margin: 2px 0 0; color: var(--dashboard-heading); }
+.admin-squid-games-preview > header > strong { color: var(--dashboard-muted); font-size: 12px; }
+.admin-squid-games-preview ol { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.admin-squid-games-preview li { display: grid; grid-template-columns: 24px 34px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 10px; border-radius: 8px; background: #f6f8fa; }
+.admin-squid-games-preview li > b { color: #778493; text-align: center; }
+.admin-squid-games-preview li > span { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: #e2eeeb; color: #246b5e; font-size: 11px; font-weight: 800; }
+.admin-squid-games-preview li > div { display: grid; }
+.admin-squid-games-preview li > div small { color: var(--dashboard-muted); }
+.admin-squid-games-preview li > em { color: var(--dashboard-accent-strong); font-size: 13px; font-style: normal; font-weight: 800; }
+
+@media (max-width: 900px) {
+  .squid-games-workspace,
+  .admin-squid-games-layout { grid-template-columns: 1fr; }
+  .squid-games-leaderboard { position: static; }
+}
+
+@media (max-width: 680px) {
+  .teacher-enrollment-list > article { grid-template-columns: auto 1fr; }
+  .teacher-enrollment-list > article > b,
+  .teacher-enrollment-actions { grid-column: 2; justify-self: start; }
+  .squid-games-grade-grid article { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .squid-games-point-actions { grid-column: 2 / -1; }
+}
+
 * {
   box-sizing: border-box;
 }

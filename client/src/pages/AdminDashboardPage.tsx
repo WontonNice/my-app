@@ -1,8 +1,8 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { Bus, CalendarDays, Check, CheckCircle2, ClipboardCheck, Cloud, Copy, Eye, FileSpreadsheet, LayoutDashboard, ListTodo, Pencil, Plus, RefreshCw, Search, ShieldCheck, Trash2, UserCog, UserRoundPlus, Users, Waves, X } from "lucide-react";
+import { Bus, CalendarDays, Check, CheckCircle2, ClipboardCheck, Cloud, Copy, Eye, FileSpreadsheet, LayoutDashboard, ListTodo, Pencil, Plus, RefreshCw, Search, ShieldCheck, Trash2, Trophy, UserCog, UserRoundPlus, Users, Waves, X } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
-import { assignStaffAccount, createStaffTask, deleteRosterStudent, deleteStaffAttendanceEntry, deleteStaffTask, getGoogleSheetsAttendanceSettings, getStaffAccounts, getStaffAttendanceEntries, getStaffSchedules, getStaffTasks, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveStaffAttendance, saveStaffAttendanceEntry, saveStaffClasses, saveStaffDismissal, saveStaffSchedule, saveSwimmingRoster, saveSwimmingStatus, syncGoogleSheetsAttendance, updateStaffAccount, updateStaffTask, type ScheduleItem, type StaffAccount, type StaffAttendanceEntry, type StaffSchedule, type StaffTask } from "../lib/api";
+import { assignStaffAccount, createStaffTask, deleteRosterStudent, deleteStaffAttendanceEntry, deleteStaffTask, getGoogleSheetsAttendanceSettings, getSquidGames, getStaffAccounts, getStaffAttendanceEntries, getStaffSchedules, getStaffTasks, saveGoogleSheetsAttendanceSettings, saveRosterStudent, saveSquidGamesLeaderboardGrades, saveStaffAttendance, saveStaffAttendanceEntry, saveStaffClasses, saveStaffDismissal, saveStaffSchedule, saveSwimmingRoster, saveSwimmingStatus, syncGoogleSheetsAttendance, updateStaffAccount, updateStaffTask, type ScheduleItem, type SquidGamesData, type StaffAccount, type StaffAttendanceEntry, type StaffSchedule, type StaffTask } from "../lib/api";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
@@ -40,9 +40,9 @@ function doPost(e) {
 
 const weekdayLabels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 type AttendanceStatus = "Absent" | "Late" | "Present" | "Unmarked";
-type AdminWorkspace = "accounts" | "attendance" | "dismissals" | "overview" | "roster" | "schedules" | "sheets" | "staff-attendance" | "swimming" | "tasks";
+type AdminWorkspace = "accounts" | "attendance" | "dismissals" | "overview" | "roster" | "schedules" | "sheets" | "squid-games" | "staff-attendance" | "swimming" | "tasks";
 
-const adminWorkspaceIds = new Set<AdminWorkspace>(["accounts", "attendance", "dismissals", "overview", "roster", "schedules", "sheets", "staff-attendance", "swimming", "tasks"]);
+const adminWorkspaceIds = new Set<AdminWorkspace>(["accounts", "attendance", "dismissals", "overview", "roster", "schedules", "sheets", "squid-games", "staff-attendance", "swimming", "tasks"]);
 const adminWorkspaceCopy: Record<AdminWorkspace, { eyebrow: string; title: string; description: string }> = {
   accounts: { eyebrow: "Staff access", title: "Staff accounts", description: "Create, update, and preview staff login accounts." },
   attendance: { eyebrow: "Program records", title: "Student attendance", description: "Review and update daily attendance across the summer program." },
@@ -51,6 +51,7 @@ const adminWorkspaceCopy: Record<AdminWorkspace, { eyebrow: string; title: strin
   roster: { eyebrow: "Class enrollment", title: "Student rosters", description: "Manage staff classes and the students assigned to them." },
   schedules: { eyebrow: "Program calendar", title: "Staff schedules", description: "Coordinate recurring activities, locations, and student groups." },
   sheets: { eyebrow: "Cloud integration", title: "Google Sheets", description: "Configure attendance exports and synchronize saved records." },
+  "squid-games": { eyebrow: "School competition", title: "Squid Games", description: "Choose which grades appear on the school-wide leaderboard." },
   "staff-attendance": { eyebrow: "Staff records", title: "Staff attendance", description: "Record staff hours for payroll and coverage review." },
   swimming: { eyebrow: "Swimming program", title: "Daily swimming rosters", description: "Plan every weekday roster through August 14 and review student readiness." },
   tasks: { eyebrow: "Staff workflow", title: "Staff tasks", description: "Assign work and follow each task through completion." },
@@ -162,6 +163,9 @@ export function AdminDashboardPage() {
   const [attendanceOverrides, setAttendanceOverrides] = useState<Record<string, AttendanceStatus>>({});
   const [isSavingAdminAttendance, setIsSavingAdminAttendance] = useState(false);
   const [actionFeedback, setActionFeedback] = useState<{ text: string; tone: "error" | "loading" | "success" } | null>(null);
+  const [squidGames, setSquidGames] = useState<SquidGamesData>({ availableGrades: [], leaderboardGrades: [], students: [] });
+  const [squidGamesGradeDraft, setSquidGamesGradeDraft] = useState<string[]>([]);
+  const [isSavingSquidGamesGrades, setIsSavingSquidGamesGrades] = useState(false);
 
   useEffect(() => {
     if (!isSupabaseConfigured) return;
@@ -208,8 +212,9 @@ export function AdminDashboardPage() {
           getStaffSchedules(data.session.access_token),
           getStaffTasks(data.session.access_token),
           getStaffAttendanceEntries(data.session.access_token),
+          getSquidGames(data.session.access_token),
         ] as const);
-      const [sheetsResult, schedulesResult, tasksResult, staffAttendanceResult] = results;
+      const [sheetsResult, schedulesResult, tasksResult, staffAttendanceResult, squidGamesResult] = results;
       if (sheetsResult.status === "fulfilled") {
         setSheetsWebhookUrl(sheetsResult.value.webhookUrl);
         setSheetsConfigured(sheetsResult.value.configured);
@@ -217,6 +222,10 @@ export function AdminDashboardPage() {
       if (schedulesResult.status === "fulfilled") setStaffSchedules(schedulesResult.value);
       if (tasksResult.status === "fulfilled") setTasks(tasksResult.value);
       if (staffAttendanceResult.status === "fulfilled") setStaffAttendanceEntries(staffAttendanceResult.value);
+      if (squidGamesResult.status === "fulfilled") {
+        setSquidGames(squidGamesResult.value);
+        setSquidGamesGradeDraft(squidGamesResult.value.leaderboardGrades);
+      }
 
       const failures = results.filter((result): result is PromiseRejectedResult => result.status === "rejected");
       if (failures.length) {
@@ -621,6 +630,23 @@ export function AdminDashboardPage() {
     }
   }
 
+  async function handleSaveSquidGamesGrades() {
+    if (!accessToken) return;
+    setIsSavingSquidGamesGrades(true);
+    setMessage("");
+    try {
+      const result = await saveSquidGamesLeaderboardGrades(accessToken, squidGamesGradeDraft);
+      setSquidGames((current) => ({ ...current, leaderboardGrades: result.leaderboardGrades }));
+      setMessage(result.leaderboardGrades.length
+        ? `The global leaderboard now includes ${result.leaderboardGrades.map((grade) => grade === "Unassigned" ? grade : `Grade ${grade}`).join(", ")}.`
+        : "The global leaderboard is hidden until at least one grade is selected.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not save the leaderboard grades.");
+    } finally {
+      setIsSavingSquidGamesGrades(false);
+    }
+  }
+
   if (isLoading) return <main className="loading-shell">Loading administration...</main>;
 
   const requestedWorkspace = window.location.pathname.split("/").filter(Boolean)[1] ?? "overview";
@@ -636,6 +662,7 @@ export function AdminDashboardPage() {
     { id: "swimming", label: "Swimming", href: "/admin/swimming", icon: Waves },
     { id: "schedules", label: "Staff schedules", href: "/admin/schedules", icon: CalendarDays },
     { id: "tasks", label: "Staff tasks", href: "/admin/tasks", icon: ListTodo },
+    { id: "squid-games", label: "Squid Games", href: "/admin/squid-games", icon: Trophy },
     { id: "sheets", label: "Google Sheets", href: "/admin/sheets", icon: FileSpreadsheet },
     { id: "accounts", label: "Staff accounts", href: "/admin/accounts", icon: UserCog },
   ];
@@ -726,6 +753,10 @@ export function AdminDashboardPage() {
       ? dayItems.map((item) => ({ ...item, fullName: schedule.fullName, username: schedule.username }))
       : [{ endTime: "", fullName: schedule.fullName, id: `${schedule.accountId}-empty`, place: "No scheduled location", startTime: "", studentIds: [], title: "No blocks scheduled", username: schedule.username, weekdays: [masterScheduleDay] }];
   }).sort((first, second) => (first.startTime || "99:99").localeCompare(second.startTime || "99:99") || first.fullName.localeCompare(second.fullName));
+  const squidGamesLeaderboardGrades = new Set(squidGames.leaderboardGrades);
+  const squidGamesLeaderboard = squidGames.students
+    .filter((student) => squidGamesLeaderboardGrades.has(student.grade))
+    .sort((first, second) => second.points - first.points || first.name.localeCompare(second.name));
 
   return (
     <CorporateDashboardShell activeId={activeWorkspace} enableAccountSwitcher navItems={navItems} onSignOut={handleSignOut} profileName={adminName} profileRole="Administrator account">
@@ -845,6 +876,22 @@ export function AdminDashboardPage() {
             return <article key={savingKey}><span className="staff-avatar">{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small className={`is-${student.vanRide}`}>{pickupLabel}</small><em>{student.className ?? gradeClassName(student.grade)} · {student.staffName}</em></div><label>Ride home<select disabled={Boolean(savingDismissalStudentId)} value={student.vanRide} onChange={(event) => handleAdminDismissalUpdate(student.accountId, student, { vanRide: event.target.value as "none" | "5pm" })}><option value="none">No van</option><option value="5pm">Van at 5 PM</option></select></label><label>Time picked up<input disabled={Boolean(savingDismissalStudentId)} type="time" value={pickupTime} onChange={(event) => setDismissalPickupDrafts((current) => ({ ...current, [pickupDraftKey]: event.target.value }))} /></label><div className="staff-dismissal-actions"><button className={pickedUpEarly ? "is-early" : ""} disabled={Boolean(savingDismissalStudentId) || !pickupTime} onClick={() => handleAdminDismissalUpdate(student.accountId, student, { date: selectedDismissalDate, pickedUpEarly: true, pickupTime })} type="button"><CheckCircle2 size={15} /> {isSavingDismissal ? "Saving…" : pickedUpEarly ? "Save pickup time" : "Mark early pickup"}</button>{pickedUpEarly ? <button className="is-clear" disabled={Boolean(savingDismissalStudentId)} onClick={() => handleAdminDismissalUpdate(student.accountId, student, { date: selectedDismissalDate, pickedUpEarly: false })} type="button">Clear</button> : null}</div></article>;
           })}
           {!dismissalRows.length ? <p className="staff-empty-state">Add students to a class roster before managing dismissals.</p> : null}
+        </div>
+      </section>
+      <section className="teacher-panel admin-squid-games-panel" hidden={activeWorkspace !== "squid-games"} id="squid-games-settings">
+        <div className="teacher-panel-header"><div><span>Leaderboard controls</span><h2>Choose leaderboard grades</h2></div><p>Staff still see every student on their own roster. These settings control the global ranking.</p></div>
+        <div className="admin-squid-games-layout">
+          <section className="admin-squid-games-settings">
+            <header><Trophy size={20} /><div><strong>Included grades</strong><small>Changes apply to every staff account.</small></div></header>
+            <div className="admin-squid-games-grade-options">{squidGames.availableGrades.map((grade) => <label key={grade}><input checked={squidGamesGradeDraft.includes(grade)} type="checkbox" onChange={() => setSquidGamesGradeDraft((current) => current.includes(grade) ? current.filter((item) => item !== grade) : [...current, grade])} /><span>{grade === "Unassigned" ? grade : `Grade ${grade}`}</span><small>{squidGames.students.filter((student) => student.grade === grade).length} students</small></label>)}</div>
+            {!squidGames.availableGrades.length ? <p className="staff-empty-state">Add students to staff rosters to create grade options.</p> : null}
+            <button disabled={isSavingSquidGamesGrades || squidGamesGradeDraft.every((grade) => squidGames.leaderboardGrades.includes(grade)) && squidGames.leaderboardGrades.every((grade) => squidGamesGradeDraft.includes(grade))} onClick={handleSaveSquidGamesGrades} type="button"><CheckCircle2 size={15} /> {isSavingSquidGamesGrades ? "Saving…" : "Save leaderboard grades"}</button>
+          </section>
+          <section className="admin-squid-games-preview">
+            <header><div><span>Live preview</span><h3>Global leaderboard</h3></div><strong>{squidGamesLeaderboard.length} students</strong></header>
+            <ol>{squidGamesLeaderboard.map((student, index) => <li key={`${student.accountId}:${student.studentId}`}><b>{index + 1}</b><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>Grade {student.grade} · {student.staffName}</small></div><em>{student.points} pts</em></li>)}</ol>
+            {!squidGamesLeaderboard.length ? <p className="staff-empty-state">Select and save at least one grade to publish the leaderboard.</p> : null}
+          </section>
         </div>
       </section>
       <section className="teacher-panel admin-swimming-panel" hidden={activeWorkspace !== "swimming"} id="swimming-management">

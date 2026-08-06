@@ -36,6 +36,7 @@ const boazRoster: Record<string, unknown>[] = ["Chloe Tong", "Harrison Cheng", "
         grade: String(6 + (index % 3)),
         id: `PSS-5${String(index + 1).padStart(2, "0")}`,
         name,
+        points: 0,
         status: "Active",
     }),
 );
@@ -194,6 +195,7 @@ function normalizeRoster(value: unknown, username: string) {
             id: readString(student.id, `student-${index + 1}`),
             lastName,
             name: readString(student.name, fallbackName || `Student ${index + 1}`),
+            points: typeof student.points === "number" && Number.isFinite(student.points) ? Math.max(0, Math.round(student.points)) : 0,
             specialNotes: readString(student.specialNotes),
             status: student.status === "Waitlist" ? "Waitlist" : "Active",
             vanRide,

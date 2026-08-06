@@ -13,8 +13,11 @@ import {
   LogOut,
   MapPin,
   Menu,
+  Minus,
+  Plus,
   Search,
   Save,
+  Trophy,
   UserCheck,
   Users,
   Waves,
@@ -23,10 +26,10 @@ import {
 import { AccountSwitcher } from "../components/CorporateDashboardShell";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { getDashboardPath, getUserRole } from "../lib/auth";
-import { getStaffDashboard, getStaffSchedules, getStaffTasks, saveStaffAttendance, saveStaffDismissal, updateStaffTask, type StaffDashboardData, type StaffSchedule, type StaffTask } from "../lib/api";
+import { getSquidGames, getStaffDashboard, getStaffSchedules, getStaffTasks, saveSquidGamesPoints, saveStaffAttendance, saveStaffDismissal, updateStaffTask, type SquidGamesData, type SquidGamesStudent, type StaffDashboardData, type StaffSchedule, type StaffTask } from "../lib/api";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
-type StaffTab = "attendance" | "schedule" | "roster" | "swimming" | "dismissal" | "tasks";
+type StaffTab = "attendance" | "schedule" | "roster" | "swimming" | "dismissal" | "tasks" | "squid-games";
 
 const staffTabs = [
   { id: "attendance", label: "Attendance", icon: UserCheck },
@@ -35,6 +38,7 @@ const staffTabs = [
   { id: "swimming", label: "Swimming", icon: Waves },
   { id: "dismissal", label: "Dismissal", icon: Bus },
   { id: "tasks", label: "Tasks", icon: ListTodo },
+  { id: "squid-games", label: "Squid Games", icon: Trophy },
 ] as const;
 
 const defaultAttendanceRows: StaffDashboardData["attendance"] = [
@@ -45,11 +49,11 @@ const defaultAttendanceRows: StaffDashboardData["attendance"] = [
 ];
 
 const defaultRosterRows: StaffDashboardData["roster"] = [
-  { name: "Aaliyah Johnson", id: "PSS-2048", grade: "7", cohort: "Cohort A", assignment: "SHSAT Foundations", status: "Active" },
-  { name: "Ethan Williams", id: "PSS-2062", grade: "8", cohort: "Cohort B", assignment: "Advanced SHSAT", status: "Active" },
-  { name: "Sofia Martinez", id: "PSS-2071", grade: "6", cohort: "Cohort A", assignment: "Math Foundations", status: "Active" },
-  { name: "Noah Thompson", id: "PSS-2084", grade: "7", cohort: "Cohort C", assignment: "ELA Foundations", status: "Active" },
-  { name: "Isabella Brooks", id: "PSS-2093", grade: "8", cohort: "Cohort B", assignment: "Advanced SHSAT", status: "Waitlist" },
+  { name: "Aaliyah Johnson", id: "PSS-2048", grade: "7", cohort: "Cohort A", assignment: "SHSAT Foundations", points: 0, status: "Active" },
+  { name: "Ethan Williams", id: "PSS-2062", grade: "8", cohort: "Cohort B", assignment: "Advanced SHSAT", points: 0, status: "Active" },
+  { name: "Sofia Martinez", id: "PSS-2071", grade: "6", cohort: "Cohort A", assignment: "Math Foundations", points: 0, status: "Active" },
+  { name: "Noah Thompson", id: "PSS-2084", grade: "7", cohort: "Cohort C", assignment: "ELA Foundations", points: 0, status: "Active" },
+  { name: "Isabella Brooks", id: "PSS-2093", grade: "8", cohort: "Cohort B", assignment: "Advanced SHSAT", points: 0, status: "Waitlist" },
 ];
 
 const defaultDashboardData: StaffDashboardData = {
@@ -65,6 +69,7 @@ const boazRoster: StaffDashboardData["roster"] = [
   grade: String(6 + (index % 3)),
   id: `PSS-5${String(index + 1).padStart(2, "0")}`,
   name,
+  points: 0,
   status: "Active",
 }));
 
@@ -322,6 +327,58 @@ function StaffTasksPanel({ onToggle, tasks }: { onToggle: (task: StaffTask) => v
   return <section className="staff-panel staff-tasks-panel"><header className="staff-panel-header"><div><p>Assigned work</p><h2>Today&apos;s tasks</h2><small>Weekly tasks appear here on their due day. Open overdue tasks stay visible.</small></div><span className="staff-task-count">{openTasks.length} open</span></header><div className="staff-task-list">{[...openTasks, ...completedTasks].length ? [...openTasks, ...completedTasks].map((task) => <article className={`${task.status === "completed" ? "is-completed" : ""} ${selectedTaskId === task.id ? "is-open" : ""}`} key={task.id}><button aria-label={`${task.status === "completed" ? "Reopen" : "Complete"} ${task.title}`} className="staff-task-check" onClick={() => onToggle(task)} type="button">{task.status === "completed" ? <CheckCircle2 size={16} /> : null}</button><button className="staff-task-summary" onClick={() => setSelectedTaskId(selectedTaskId === task.id ? "" : task.id)} type="button"><span><strong>{task.title}</strong><small>Due {task.dueDate}</small></span><ChevronRight size={16} /></button>{selectedTaskId === task.id ? <div className="staff-task-detail"><p>{task.description}</p><button onClick={() => onToggle(task)} type="button">{task.status === "completed" ? "Mark as open" : "Check off as complete"}</button></div> : null}</article>) : <p className="staff-empty-state">No tasks are due today.</p>}</div></section>;
 }
 
+function squidGradeLabel(grade: string) {
+  return grade === "Unassigned" ? grade : `Grade ${grade}`;
+}
+
+function SquidGamesPanel({
+  data,
+  message,
+  onUpdatePoints,
+  savingKey,
+  staffAccountId,
+}: {
+  data: SquidGamesData;
+  message: string;
+  onUpdatePoints: (student: SquidGamesStudent, points: number) => void;
+  savingKey: string;
+  staffAccountId: string;
+}) {
+  const staffStudents = data.students.filter((student) => student.accountId === staffAccountId);
+  const groupedStudents = Array.from(staffStudents.reduce((groups, student) => {
+    groups.set(student.grade, [...(groups.get(student.grade) ?? []), student]);
+    return groups;
+  }, new Map<string, SquidGamesStudent[]>())).sort(([first], [second]) => first.localeCompare(second, undefined, { numeric: true }));
+  const enabledGrades = new Set(data.leaderboardGrades);
+  const leaderboard = data.students
+    .filter((student) => enabledGrades.has(student.grade))
+    .sort((first, second) => second.points - first.points || first.name.localeCompare(second.name));
+
+  return <section className="squid-games-workspace">
+    <section className="staff-panel squid-games-rosters">
+      <header className="staff-panel-header"><div><p>Score desk</p><h2>Students by grade</h2><small>Award points to students on your assigned roster.</small></div><span className="squid-games-total">{staffStudents.length} students</span></header>
+      {message ? <p className="staff-attendance-message" role="status">{message}</p> : null}
+      <div className="squid-games-grade-grid">
+        {groupedStudents.map(([grade, students]) => <section key={grade}>
+          <header><span>{squidGradeLabel(grade)}</span><strong>{students.length}</strong></header>
+          <div>{students.sort((first, second) => first.name.localeCompare(second.name)).map((student) => {
+            const key = `${student.accountId}:${student.studentId}`;
+            const isSaving = savingKey === key;
+            return <article key={key}><span className="staff-avatar">{getInitials(student.name)}</span><div><strong>{student.name}</strong><small>{student.className ?? squidGradeLabel(student.grade)}</small></div><b>{student.points}<small> pts</small></b><div className="squid-games-point-actions"><button aria-label={`Remove one point from ${student.name}`} disabled={isSaving || student.points === 0} onClick={() => onUpdatePoints(student, Math.max(0, student.points - 1))} type="button"><Minus size={14} /></button><button disabled={isSaving} onClick={() => onUpdatePoints(student, student.points + 1)} type="button"><Plus size={14} /> 1</button><button disabled={isSaving} onClick={() => onUpdatePoints(student, student.points + 5)} type="button"><Plus size={14} /> 5</button></div></article>;
+          })}</div>
+        </section>)}
+        {!groupedStudents.length ? <p className="staff-empty-state">No students are assigned to this staff roster.</p> : null}
+      </div>
+    </section>
+    <aside className="staff-panel squid-games-leaderboard">
+      <header><span><Trophy size={18} /></span><div><p>School-wide</p><h2>Global leaderboard</h2></div></header>
+      <small>{data.leaderboardGrades.length ? data.leaderboardGrades.map(squidGradeLabel).join(" · ") : "No grades selected by the administrator"}</small>
+      <ol>{leaderboard.map((student, index) => <li key={`${student.accountId}:${student.studentId}`}><b>{index + 1}</b><span className="staff-avatar">{getInitials(student.name)}</span><div><strong>{student.name}</strong><small>{squidGradeLabel(student.grade)} · {student.staffName}</small></div><em>{student.points} pts</em></li>)}</ol>
+      {!leaderboard.length ? <p className="staff-empty-state">The leaderboard will appear after an administrator selects grades.</p> : null}
+    </aside>
+  </section>;
+}
+
 export function StaffDashboardPage() {
   const [accessToken, setAccessToken] = useState("");
   const [activeTab, setActiveTab] = useState<StaffTab>("attendance");
@@ -342,6 +399,9 @@ export function StaffDashboardPage() {
   const [staffTasks, setStaffTasks] = useState<StaffTask[]>([]);
   const [staffAccountId, setStaffAccountId] = useState("");
   const [sessionExpiredMessage, setSessionExpiredMessage] = useState("");
+  const [squidGames, setSquidGames] = useState<SquidGamesData>({ availableGrades: [], leaderboardGrades: [], students: [] });
+  const [squidGamesMessage, setSquidGamesMessage] = useState("");
+  const [savingSquidGamesKey, setSavingSquidGamesKey] = useState("");
 
   const showSessionExpiredOverlay = useCallback((message = "Your session expired. Reload the staff dashboard before taking attendance or making changes.") => {
     setSessionExpiredMessage(message);
@@ -371,12 +431,13 @@ export function StaffDashboardPage() {
         return;
       }
 
-      const [schedulesResult, tasksResult, dashboardResult] = await Promise.allSettled([
+      const [schedulesResult, tasksResult, dashboardResult, squidGamesResult] = await Promise.allSettled([
         getStaffSchedules(data.session.access_token),
         getStaffTasks(data.session.access_token),
         getStaffDashboard(data.session.access_token, previewAccountId ?? undefined),
+        getSquidGames(data.session.access_token),
       ]);
-      const expiredResult = [schedulesResult, tasksResult, dashboardResult]
+      const expiredResult = [schedulesResult, tasksResult, dashboardResult, squidGamesResult]
         .find((result) => result.status === "rejected" && isSessionExpiredError(result.reason));
       if (expiredResult) {
         showSessionExpiredOverlay(expiredResult.status === "rejected" && expiredResult.reason instanceof Error ? expiredResult.reason.message : undefined);
@@ -391,6 +452,8 @@ export function StaffDashboardPage() {
       if (tasksResult.status === "fulfilled") {
         setStaffTasks(previewAccountId ? tasksResult.value.filter((task) => task.assignedToId === previewAccountId) : tasksResult.value);
       }
+      if (squidGamesResult.status === "fulfilled") setSquidGames(squidGamesResult.value);
+      else setSquidGamesMessage(squidGamesResult.reason instanceof Error ? squidGamesResult.reason.message : "Squid Games could not be loaded.");
       setSelectedScheduleId(previewAccountId ?? currentUser.id);
 
       const metadata = currentUser.user_metadata as { dashboard_data?: StaffDashboardData; full_name?: string; name?: string; username?: string };
@@ -497,6 +560,30 @@ export function StaffDashboardPage() {
     }
   }
 
+  async function handleSquidGamesPoints(student: SquidGamesStudent, points: number) {
+    if (!accessToken) return;
+    const key = `${student.accountId}:${student.studentId}`;
+    setSavingSquidGamesKey(key);
+    setSquidGamesMessage("");
+    try {
+      const result = await saveSquidGamesPoints(accessToken, student.accountId, student.studentId, points);
+      setSquidGames((current) => ({
+        ...current,
+        students: current.students.map((item) => item.accountId === result.accountId && item.studentId === result.studentId ? { ...item, points: result.points } : item),
+      }));
+      setDashboardData((current) => student.accountId === staffAccountId ? { ...current, roster: current.roster.map((item) => item.id === student.studentId ? { ...item, points: result.points } : item) } : current);
+      setSquidGamesMessage(`${student.name} now has ${result.points} points.`);
+    } catch (error) {
+      if (isSessionExpiredError(error)) {
+        showSessionExpiredOverlay();
+        return;
+      }
+      setSquidGamesMessage(error instanceof Error ? error.message : "Could not update points.");
+    } finally {
+      setSavingSquidGamesKey("");
+    }
+  }
+
   if (isCheckingSession) return <main className="loading-shell">Loading staff workspace...</main>;
 
   const activeLabel = staffTabs.find((tab) => tab.id === activeTab)?.label ?? "Attendance";
@@ -551,6 +638,7 @@ export function StaffDashboardPage() {
           {activeTab === "swimming" ? <SwimmingPanel data={dashboardData} /> : null}
           {activeTab === "dismissal" ? <DismissalPanel date={dismissalDate} isSaving={savingDismissalId} onChangeDate={setDismissalDate} onUpdate={handleDismissalUpdate} rows={dashboardData.roster} /> : null}
           {activeTab === "tasks" ? <StaffTasksPanel onToggle={handleToggleTask} tasks={visibleStaffTasks} /> : null}
+          {activeTab === "squid-games" ? <SquidGamesPanel data={squidGames} message={squidGamesMessage} onUpdatePoints={handleSquidGamesPoints} savingKey={savingSquidGamesKey} staffAccountId={staffAccountId} /> : null}
         </div>
       </section>
     </main>
