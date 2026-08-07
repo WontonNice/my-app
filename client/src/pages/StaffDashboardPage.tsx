@@ -331,6 +331,10 @@ function squidGradeLabel(grade: string) {
   return grade === "Unassigned" ? grade : `Grade ${grade}`;
 }
 
+function squidPlayerNumber(playerNumber: number) {
+  return `Player ${String(playerNumber).padStart(3, "0")}`;
+}
+
 function SquidGamesPanel({
   data,
   message,
@@ -344,7 +348,9 @@ function SquidGamesPanel({
   savingKey: string;
   staffAccountId: string;
 }) {
-  const staffStudents = data.students.filter((student) => student.accountId === staffAccountId);
+  const staffStudents = data.students
+    .filter((student) => student.accountId === staffAccountId)
+    .sort((first, second) => first.name.localeCompare(second.name, undefined, { sensitivity: "base" }));
   const groupedStudents = Array.from(staffStudents.reduce((groups, student) => {
     groups.set(student.grade, [...(groups.get(student.grade) ?? []), student]);
     return groups;
@@ -360,11 +366,11 @@ function SquidGamesPanel({
       {message ? <p className="staff-attendance-message" role="status">{message}</p> : null}
       <div className="squid-games-grade-grid">
         {groupedStudents.map(([grade, students]) => <section key={grade}>
-          <header><span>{squidGradeLabel(grade)}</span><strong>{students.length}</strong></header>
-          <div>{students.sort((first, second) => first.name.localeCompare(second.name)).map((student) => {
+          <header><span>{squidGradeLabel(grade)}</span><strong>{students.length} · A–Z</strong></header>
+          <div>{students.map((student) => {
             const key = `${student.accountId}:${student.studentId}`;
             const isSaving = savingKey === key;
-            return <article key={key}><span className="staff-avatar">{getInitials(student.name)}</span><div><strong>{student.name}</strong><small>{student.className ?? squidGradeLabel(student.grade)}</small></div><b>{student.points}<small> pts</small></b><div className="squid-games-point-actions"><button aria-label={`Remove one point from ${student.name}`} disabled={isSaving || student.points === 0} onClick={() => onUpdatePoints(student, Math.max(0, student.points - 1))} type="button"><Minus size={14} /></button><button disabled={isSaving} onClick={() => onUpdatePoints(student, student.points + 1)} type="button"><Plus size={14} /> 1</button><button disabled={isSaving} onClick={() => onUpdatePoints(student, student.points + 5)} type="button"><Plus size={14} /> 5</button></div></article>;
+            return <article key={key}><span className="staff-avatar">{getInitials(student.name)}</span><div><strong>{student.name}</strong><small><span className="squid-player-number">{squidPlayerNumber(student.playerNumber)}</span> · {student.className ?? squidGradeLabel(student.grade)}</small></div><div className="squid-games-point-actions" role="group" aria-label={`Points for ${student.name}`}><button aria-label={`Remove 50 points from ${student.name}`} disabled={isSaving || student.points === 0} onClick={() => onUpdatePoints(student, Math.max(0, student.points - 50))} type="button"><Minus size={15} /></button><output aria-live="polite">{student.points}<small> pts</small></output><button aria-label={`Add 50 points to ${student.name}`} disabled={isSaving} onClick={() => onUpdatePoints(student, student.points + 50)} type="button"><Plus size={15} /></button></div></article>;
           })}</div>
         </section>)}
         {!groupedStudents.length ? <p className="staff-empty-state">No students are assigned to this staff roster.</p> : null}
@@ -373,7 +379,7 @@ function SquidGamesPanel({
     <aside className="staff-panel squid-games-leaderboard">
       <header><span><Trophy size={18} /></span><div><p>School-wide</p><h2>Global leaderboard</h2></div></header>
       <small>{data.leaderboardGrades.length ? data.leaderboardGrades.map(squidGradeLabel).join(" · ") : "No grades selected by the administrator"}</small>
-      <ol>{leaderboard.map((student, index) => <li key={`${student.accountId}:${student.studentId}`}><b>{index + 1}</b><span className="staff-avatar">{getInitials(student.name)}</span><div><strong>{student.name}</strong><small>{squidGradeLabel(student.grade)} · {student.staffName}</small></div><em>{student.points} pts</em></li>)}</ol>
+      <ol>{leaderboard.map((student, index) => <li key={`${student.accountId}:${student.studentId}`}><b>{index + 1}</b><span className="staff-avatar">{getInitials(student.name)}</span><div><strong>{student.name}</strong><small>{squidPlayerNumber(student.playerNumber)} · {squidGradeLabel(student.grade)} · {student.staffName}</small></div><em>{student.points} pts</em></li>)}</ol>
       {!leaderboard.length ? <p className="staff-empty-state">The leaderboard will appear after an administrator selects grades.</p> : null}
     </aside>
   </section>;

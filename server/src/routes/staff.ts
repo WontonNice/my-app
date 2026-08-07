@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { randomUUID } from "node:crypto";
+import { randomInt, randomUUID } from "node:crypto";
 import { env } from "../config/env";
 import { getAuthenticatedUser, getUserRole } from "../lib/auth";
 import { fetchWithTimeout } from "../lib/fetchWithTimeout";
@@ -64,6 +64,17 @@ function squidGamesGrade(student: Record<string, unknown>) {
 function squidGamesPoints(value: unknown) {
     const points = typeof value === "number" && Number.isFinite(value) ? Math.round(value) : 0;
     return Math.max(0, Math.min(1_000_000, points));
+}
+
+function squidGamesPlayerNumber(value: unknown) {
+    return typeof value === "number" && Number.isInteger(value) && value >= 1 && value <= 456 ? value : null;
+}
+
+function nextSquidGamesPlayerNumber(usedNumbers: Set<number>) {
+    if (usedNumbers.size >= 456) return randomInt(1, 457);
+    let playerNumber = randomInt(1, 457);
+    while (usedNumbers.has(playerNumber)) playerNumber = randomInt(1, 457);
+    return playerNumber;
 }
 
 function readSquidGamesGrades(user: { app_metadata: Record<string, unknown> }, availableGrades: string[]) {
@@ -508,9 +519,35 @@ staffRouter.get("/squid-games", async (request, response) => {
         response.status(400).json({ message: error instanceof Error ? error.message : "Could not load staff rosters." });
         return;
     }
-    const students = staffUsers.flatMap((staff) => {
+    const usedPlayerNumbers = new Set<number>();
+    const squidGamesRosters = new Map<string, Record<string, unknown>[]>();
+    const numberSaves: Promise<{ error: string | null }>[] = [];
+    for (const staff of staffUsers) {
         const dashboard = dashboards.get(staff.id) ?? {};
-        const roster = Array.isArray(dashboard.roster) ? dashboard.roster : [];
+        const roster = Array.isArray(dashboard.roster)
+            ? dashboard.roster.filter((student): student is Record<string, unknown> => Boolean(student) && typeof student === "object" && !Array.isArray(student))
+            : [];
+        let changed = false;
+        const numberedRoster = roster.map((student) => {
+            let playerNumber = squidGamesPlayerNumber(student.squidNumber);
+            if (playerNumber === null || usedPlayerNumbers.has(playerNumber)) {
+                playerNumber = nextSquidGamesPlayerNumber(usedPlayerNumbers);
+                changed = true;
+            }
+            usedPlayerNumbers.add(playerNumber);
+            return student.squidNumber === playerNumber ? student : { ...student, squidNumber: playerNumber };
+        });
+        squidGamesRosters.set(staff.id, numberedRoster);
+        if (changed) numberSaves.push(saveStaffDashboardData(staff.id, { ...dashboard, roster: numberedRoster }));
+    }
+    const numberSaveResults = await Promise.all(numberSaves);
+    const numberSaveError = numberSaveResults.find((result) => result.error)?.error;
+    if (numberSaveError) {
+        response.status(400).json({ message: numberSaveError });
+        return;
+    }
+    const students = staffUsers.flatMap((staff) => {
+        const roster = squidGamesRosters.get(staff.id) ?? [];
         const staffName = typeof staff.user_metadata.full_name === "string"
             ? staff.user_metadata.full_name
             : typeof staff.user_metadata.username === "string" ? staff.user_metadata.username : "Staff";
@@ -523,6 +560,7 @@ staffRouter.get("/squid-games", async (request, response) => {
                 className: typeof candidate.className === "string" && candidate.className.trim() ? candidate.className : null,
                 grade: squidGamesGrade(candidate),
                 name: candidate.name,
+                playerNumber: squidGamesPlayerNumber(candidate.squidNumber) ?? nextSquidGamesPlayerNumber(usedPlayerNumbers),
                 points: squidGamesPoints(candidate.points),
                 staffName,
                 studentId: candidate.id,

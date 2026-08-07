@@ -889,7 +889,7 @@ export function AdminDashboardPage() {
           </section>
           <section className="admin-squid-games-preview">
             <header><div><span>Live preview</span><h3>Global leaderboard</h3></div><strong>{squidGamesLeaderboard.length} students</strong></header>
-            <ol>{squidGamesLeaderboard.map((student, index) => <li key={`${student.accountId}:${student.studentId}`}><b>{index + 1}</b><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>Grade {student.grade} · {student.staffName}</small></div><em>{student.points} pts</em></li>)}</ol>
+            <ol>{squidGamesLeaderboard.map((student, index) => <li key={`${student.accountId}:${student.studentId}`}><b>{index + 1}</b><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><div><strong>{student.name}</strong><small>Player {String(student.playerNumber).padStart(3, "0")} · Grade {student.grade} · {student.staffName}</small></div><em>{student.points} pts</em></li>)}</ol>
             {!squidGamesLeaderboard.length ? <p className="staff-empty-state">Select and save at least one grade to publish the leaderboard.</p> : null}
           </section>
         </div>

@@ -198,6 +198,7 @@ function normalizeRoster(value: unknown, username: string) {
             points: typeof student.points === "number" && Number.isFinite(student.points) ? Math.max(0, Math.round(student.points)) : 0,
             specialNotes: readString(student.specialNotes),
             status: student.status === "Waitlist" ? "Waitlist" : "Active",
+            squidNumber: typeof student.squidNumber === "number" && Number.isInteger(student.squidNumber) && student.squidNumber >= 1 && student.squidNumber <= 456 ? student.squidNumber : undefined,
             vanRide,
         };
     });

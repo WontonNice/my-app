@@ -96,14 +96,15 @@
 .squid-games-grade-grid > section > header { display: flex; justify-content: space-between; padding: 10px 14px; background: #f3f6f8; color: var(--dashboard-heading); font-weight: 800; }
 .squid-games-grade-grid > section > header strong { color: var(--dashboard-muted); font-size: 12px; }
 .squid-games-grade-grid > section > div { display: grid; }
-.squid-games-grade-grid article { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 12px; padding: 12px 14px; border-top: 1px solid var(--dashboard-border); }
+.squid-games-grade-grid article { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 12px 14px; border-top: 1px solid var(--dashboard-border); }
 .squid-games-grade-grid article:first-child { border-top: 0; }
 .squid-games-grade-grid article > div:nth-of-type(1) { display: grid; gap: 2px; }
 .squid-games-grade-grid article > div:nth-of-type(1) small { color: var(--dashboard-muted); }
-.squid-games-grade-grid article > b { min-width: 66px; color: #162f4a; font-size: 20px; text-align: right; }
-.squid-games-grade-grid article > b small { color: var(--dashboard-muted); font-size: 11px; }
-.squid-games-point-actions { display: flex; gap: 5px; }
-.squid-games-point-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 2px; min-width: 34px; height: 32px; padding: 0 8px; border: 1px solid #c9d6df; border-radius: 6px; background: #fff; color: #31506c; font-weight: 800; cursor: pointer; }
+.squid-player-number { color: var(--dashboard-accent-strong); font-weight: 800; }
+.squid-games-point-actions { display: grid; grid-template-columns: 34px minmax(76px, auto) 34px; align-items: center; overflow: hidden; border: 1px solid #c9d6df; border-radius: 7px; background: #fff; }
+.squid-games-point-actions output { color: #162f4a; font-size: 19px; font-weight: 800; text-align: center; }
+.squid-games-point-actions output small { margin-left: 3px; color: var(--dashboard-muted); font-size: 10px; }
+.squid-games-point-actions button { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; padding: 0; border: 0; background: #f4f7f9; color: #31506c; cursor: pointer; }
 .squid-games-point-actions button:hover { border-color: var(--dashboard-accent-border); background: var(--dashboard-accent-soft); color: var(--dashboard-accent-strong); }
 .squid-games-point-actions button:disabled { cursor: wait; opacity: .45; }
 

@@ -138,6 +138,7 @@ export type StaffDashboardData = {
     name: string;
     points: number;
     specialNotes?: string;
+    squidNumber?: number;
     status: "Active" | "Waitlist";
     earlyPickupDates?: string[];
     earlyPickupTimes?: Record<string, string>;
@@ -150,6 +151,7 @@ export type SquidGamesStudent = {
   className: string | null;
   grade: string;
   name: string;
+  playerNumber: number;
   points: number;
   staffName: string;
   studentId: string;
