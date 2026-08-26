@@ -1,0 +1,66 @@
+[
+  {
+    "description": "Find the main idea, recurring themes, and the best summary of a passage.",
+    "folder": "centralIdeaTheme",
+    "key": "Central Idea & Theme",
+    "label": "Central Idea & Theme",
+    "prefix": "central",
+    "slug": "central-idea-theme"
+  },
+  {
+    "description": "Determine the author's perspective, attitude, purpose, and beliefs.",
+    "folder": "authorsPointOfView",
+    "key": "Author's Point of View",
+    "label": "Author's Point of View",
+    "prefix": "pov",
+    "slug": "authors-point-of-view"
+  },
+  {
+    "description": "Use context clues to interpret precise words and phrases in a passage.",
+    "folder": "wordPhraseMeaning",
+    "key": "Vocabulary in Context",
+    "label": "Word & Phrase Meaning",
+    "prefix": "words",
+    "slug": "word-phrase-meaning"
+  },
+  {
+    "description": "Analyze similes, metaphors, personification, and imagery for meaning.",
+    "folder": "figurativeLanguageImagery",
+    "key": "Figurative Language & Imagery",
+    "label": "Figurative Language & Imagery",
+    "prefix": "figurative",
+    "slug": "figurative-language-imagery"
+  },
+  {
+    "description": "Recognize tone and mood through word choice, syntax, and atmosphere.",
+    "folder": "toneMood",
+    "key": "Tone & Mood",
+    "label": "Tone & Mood",
+    "prefix": "tone",
+    "slug": "tone-mood"
+  },
+  {
+    "description": "Analyze how paragraphs and sentences build ideas and support purpose.",
+    "folder": "textStructure",
+    "key": "Text Structure & Purpose",
+    "label": "Text Structure",
+    "prefix": "structure",
+    "slug": "text-structure"
+  },
+  {
+    "description": "Choose the quotation or detail that best supports a stated claim.",
+    "folder": "evidenceSupport",
+    "key": "Supporting Evidence",
+    "label": "Evidence & Support",
+    "prefix": "evidence",
+    "slug": "evidence-support"
+  },
+  {
+    "description": "Draw logical conclusions from implied details and character actions.",
+    "folder": "inference",
+    "key": "Inference",
+    "label": "Inference",
+    "prefix": "inference",
+    "slug": "inference"
+  }
+]

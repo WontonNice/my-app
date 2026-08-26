@@ -17,6 +17,8 @@ export type ExamPassageSection =
   | "reading"
   | "revising_editing_a";
 
+export type ExamPassageType = "informational" | "literary" | "long_reading" | "poem";
+
 export type ExamPassageLine = {
   align?: "left" | "center";
   html?: string;
@@ -27,9 +29,11 @@ export type ExamPassageLine = {
 };
 
 export type ExamPassage = {
+  coverImage?: ExamQuestionImage;
   format?: "poem" | "prose" | "sentence_prose";
   id: string;
   lines: ExamPassageLine[];
+  passageType?: ExamPassageType;
   sourceNote?: string;
   title: string;
 };

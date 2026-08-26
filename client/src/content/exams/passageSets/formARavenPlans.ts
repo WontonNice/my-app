@@ -139,6 +139,7 @@ export const formARavenPlansPassageSet: ExamPassageSet = {
   },
   passage: createProsePassage({
     id: "form-a-raven-plans",
+    passageType: "informational",
     title: "The Best Laid Plans of Ravens",
     sourceNote: "\"The Best Laid Plans of Ravens\" by Nathan Tutors",
     text: ravenPlansPassageText,

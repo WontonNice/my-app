@@ -5,6 +5,11 @@ import type { ExamResult, SelectedAnswers } from "./examResults";
 const storagePrefix = "nathan-tutors:exam-session-progress:v1";
 export type ExamSection = "english" | "math";
 
+export function getStoredStartingSubject(assessmentId: string): ExamSection {
+  const storedSubject = window.sessionStorage.getItem(`exam-start-subject:${assessmentId}`);
+  return storedSubject === "math" ? "math" : "english";
+}
+
 function storageKey(userId: string, assessmentId: string) {
   return `${storagePrefix}:${userId}:${assessmentId}`;
 }

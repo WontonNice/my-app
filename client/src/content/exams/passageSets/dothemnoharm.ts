@@ -296,6 +296,7 @@ export const dothemnoharmPassageSet: ExamPassageSet = {
 },
   passage: createProsePassage({
     id: "dothemnoharm",
+    passageType: "literary",
     title: "Excerpt from Do Them No Harm!",
     author: "Zoa L. Swayne",
     blurb: "This narrative is about the Nez Perce, an American Indian tribe, in what is now northern Idaho. The tribe is preparing for a gathering before the coming winter.",

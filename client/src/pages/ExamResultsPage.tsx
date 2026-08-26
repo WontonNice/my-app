@@ -9,7 +9,7 @@ function getAssessmentIdFromResultsPath() {
 }
 
 function getDashboardHref() {
-  return appendStudentPreview("/study-hall?section=assessments");
+  return appendStudentPreview("/study-hall/shsat/assessments");
 }
 
 function getAssessmentHref(assessmentId: string) {
@@ -61,6 +61,10 @@ export function ExamResultsPage() {
   }
 
   const englishOnly = result.completionStatus === "english_complete";
+  const mathOnly = result.completionStatus === "math_complete";
+  const sectionOnly = englishOnly || mathOnly;
+  const completedSection = englishOnly ? "English" : "Math";
+  const nextSection = englishOnly ? "Math" : "English";
 
   return (
     <main className="results-page-shell">
@@ -74,15 +78,15 @@ export function ExamResultsPage() {
       </header>
 
       <section className="results-missing-card">
-        <p>{englishOnly ? "Section complete" : "Complete"}</p>
-        <h1>{englishOnly ? "English is complete. Math is next." : "Your assessment is complete."}</h1>
+        <p>{sectionOnly ? "Section complete" : "Complete"}</p>
+        <h1>{sectionOnly ? `${completedSection} is complete. ${nextSection} is next.` : "Your assessment is complete."}</h1>
         <span>
-          {englishOnly
-            ? "Your English answers are saved. Continue to Math when it opens."
+          {sectionOnly
+            ? `Your ${completedSection} answers are saved. Continue to ${nextSection} when it opens.`
             : "Your answers were submitted. Your teacher can view your score from the teacher dashboard."}
         </span>
-        <a href={englishOnly ? getAssessmentHref(result.assessmentId) : getDashboardHref()}>
-          {englishOnly ? "Continue assessment" : "Return to assessments"}
+        <a href={sectionOnly ? getAssessmentHref(result.assessmentId) : getDashboardHref()}>
+          {sectionOnly ? "Continue assessment" : "Return to assessments"}
         </a>
       </section>
     </main>

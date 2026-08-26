@@ -48,16 +48,7 @@ export function StudyHallPage() {
       }
 
       if (userRole === "teacher" && previewContext.isPreview) {
-        setAccessToken(session.access_token);
-        setClasses([{
-          description: "SHSAT prep room for lessons, practice missions, assessments, and progress checks.",
-          id: "shsat",
-          level: "Entrance exam prep",
-          name: "SHSAT",
-          schedule: "Study Hall",
-        }]);
-        setPendingRequests([]);
-        setIsCheckingSession(false);
+        window.location.assign(`/study-hall/shsat${previewContext.query}`);
         return;
       }
 
@@ -76,6 +67,10 @@ export function StudyHallPage() {
         setClasses(nextClasses);
         setPendingRequests(nextPendingRequests);
         cacheStudentClasses(session.user.id, nextClasses);
+        if (nextClasses.length === 1) {
+          window.location.assign(`/study-hall/${nextClasses[0].id}${previewContext.query}`);
+          return;
+        }
       } catch (error) {
         if (!isMounted) {
           return;
@@ -94,7 +89,7 @@ export function StudyHallPage() {
     return () => {
       isMounted = false;
     };
-  }, [previewContext.isPreview, previewContext.studentName]);
+  }, [previewContext.isPreview, previewContext.query, previewContext.studentName]);
 
   async function handleJoinClass(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

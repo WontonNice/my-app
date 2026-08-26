@@ -265,6 +265,7 @@ export const spiritOfTheHerdPassageSet: ExamPassageSet = {
 },
   passage: createProsePassage({
     id: "spirit-of-the-herd",
+    passageType: "literary",
     title: "Excerpt from \"The Spirit of the Herd\"",
     author: "Dallas Lore Sharp",
     blurb: "In this excerpt, published in 1914, author and professor Dallas Lore Sharp describes a summer cattle roundup in Oregon. The heat and dust had been relentless for three days. The cowboys were exhausted, and the cattle were restless. The ranch boss, Wade, had led the drive to a watering place, only to find it empty.",

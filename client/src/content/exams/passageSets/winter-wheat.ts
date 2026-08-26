@@ -333,6 +333,7 @@ export const winterWheatPassageSet: ExamPassageSet = {
 },
   passage: createProsePassage({
     id: "winter-wheat",
+    passageType: "literary",
     title: "Excerpt from Winter Wheat",
     author: "Mildred Walker",
     blurb: "Ellen, the narrator, is preparing to leave her parents and the family farm for college the next day.",

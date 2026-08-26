@@ -257,6 +257,7 @@ export const SnowyMountainsPassageSet: ExamPassageSet = {
 },
   passage: createPlainTextPassage({
     id: "snowy-mountains",
+    passageType: "poem",
     title: "Snowy Mountains",
     sourceNote: "\"Snowy Mountains\" by John Gould Fletcher—Public Domain",
     text: snowyMountainsPassageText,

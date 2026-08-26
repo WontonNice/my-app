@@ -92,12 +92,22 @@ function studentExamResultsForAssessments(
   );
 }
 
+function isCompleteExamResult(result: Record<string, unknown>) {
+  return result.completionStatus !== "english_complete" && result.completionStatus !== "math_complete";
+}
+
+function examResultStatusLabel(result: Record<string, unknown>) {
+  if (result.completionStatus === "english_complete") return "English submitted · Math pending";
+  if (result.completionStatus === "math_complete") return "Math submitted · English pending";
+  return "Complete";
+}
+
 function studentAssessmentAverage(
   student: StudentProgressSnapshot,
   assessments: TeacherAssessment[],
 ) {
   const percentages = studentExamResultsForAssessments(student, assessments).flatMap((result) =>
-    typeof result.percentage === "number" ? [result.percentage] : [],
+    isCompleteExamResult(result) && typeof result.percentage === "number" ? [result.percentage] : [],
   );
   return percentages.length
     ? Math.round(percentages.reduce((sum, percentage) => sum + percentage, 0) / percentages.length)
@@ -201,6 +211,8 @@ function scoreBreakdownForResult(
       )
       : result.completionStatus === "english_complete"
         ? ["english" as const]
+        : result.completionStatus === "math_complete"
+          ? ["math" as const]
         : ["english" as const, "math" as const];
     const recalculated = createExamResult(resolveOriginalExamContent(assessment), answers, completedSections);
     return {
@@ -405,6 +417,9 @@ function leaderboardStatus(
 ) {
   if (!result) return "Not submitted";
   if (kind === "math" && result.completionStatus === "english_complete") return "Math pending";
+  if ((kind === "english" || kind === "passage") && result.completionStatus === "math_complete") {
+    return "English pending";
+  }
   return kind === "passage" ? "Passage data unavailable" : "Section data unavailable";
 }
 
@@ -688,7 +703,7 @@ function StudentDetail({
   const assessmentIds = new Set(assessments.map((assessment) => assessment.id));
   const examResults = studentExamResultsForAssessments(student, assessments);
   const resultPercentages = examResults.flatMap((result) =>
-    typeof result.percentage === "number" ? [result.percentage] : [],
+    isCompleteExamResult(result) && typeof result.percentage === "number" ? [result.percentage] : [],
   );
   const averageTestScore = resultPercentages.length
     ? Math.round(resultPercentages.reduce((sum, percentage) => sum + percentage, 0) / resultPercentages.length)
@@ -708,7 +723,7 @@ function StudentDetail({
         : {};
     responseRecords.set(result.assessmentId, {
       answers,
-      status: result.completionStatus === "english_complete" ? "English submitted · Math pending" : "Submitted",
+      status: examResultStatusLabel(result),
       updatedAt: typeof result.completedAt === "string" ? result.completedAt : null,
     });
   });
@@ -751,7 +766,7 @@ function StudentDetail({
       <div className="teacher-insight-grid">
         <article><span>Test average</span><strong>{averageTestScore === null ? "—" : `${averageTestScore}%`}</strong></article>
         <article><span>Best score</span><strong>{bestTestScore === null ? "—" : `${bestTestScore}%`}</strong></article>
-        <article><span>Tests taken</span><strong>{examResults.length}</strong></article>
+        <article><span>Tests completed</span><strong>{examResults.filter(isCompleteExamResult).length}</strong></article>
         <article><span>Practice accuracy</span><strong>{student.insights.practiceAccuracy === null ? "—" : `${student.insights.practiceAccuracy}%`}</strong></article>
       </div>
       <details className="teacher-paper-score-entry">
@@ -784,7 +799,7 @@ function StudentDetail({
           return (
             <article className="teacher-result-entry" key={`${assessmentId}-${index}`}>
               <div className="teacher-results-row" role="row">
-                <strong>{examValue(result, "title", assessment?.title ?? (assessmentId || "Assessment"))}<small>{result.source === "manual" ? "Paper score · Teacher entered" : result.completionStatus === "english_complete" ? "English submitted · Math pending" : "Complete"}</small></strong>
+                <strong>{examValue(result, "title", assessment?.title ?? (assessmentId || "Assessment"))}<small>{result.source === "manual" ? "Paper score · Teacher entered" : examResultStatusLabel(result)}</small></strong>
                 <span>{typeof result.completedAt === "string" ? formatDate(result.completedAt) : "—"}</span>
                 <strong>{examValue(result, "percentage")}%</strong>
                 <span>{examValue(result, "correct")} / {examValue(result, "total")}{questionTypeSummary(result).map((item) => <small key={item.label}>{item.label}: {item.correct}/{item.total}</small>)}</span>
@@ -917,6 +932,7 @@ export function TeacherDashboardPage() {
       student.progress.examResults.flatMap((result) =>
         typeof result.assessmentId === "string" &&
         (assessmentIds.has(result.assessmentId) || result.source === "manual") &&
+        isCompleteExamResult(result) &&
         typeof result.percentage === "number"
           ? [result.percentage]
           : [],
@@ -930,7 +946,7 @@ export function TeacherDashboardPage() {
       student.progress.examResults.forEach((result) => {
         const assessmentId = examValue(result, "assessmentId", "unknown");
         const percentage = typeof result.percentage === "number" ? result.percentage : null;
-        if (percentage === null) return;
+        if (percentage === null || !isCompleteExamResult(result)) return;
         const current = grouped.get(assessmentId) ?? { scores: [], title: examValue(result, "title", assessmentId) };
         current.scores.push(percentage);
         grouped.set(assessmentId, current);
@@ -1247,7 +1263,7 @@ export function TeacherDashboardPage() {
   const teacherStats = [
     { icon: Users, label: "SHSAT students", value: String(shsatStudents.length) },
     { icon: BarChart3, label: "Average test score", value: classAverage === null ? "—" : `${classAverage}%` },
-    { icon: CheckCircle2, label: "Tests completed", value: String(students.reduce((sum, student) => sum + studentExamResultsForAssessments(student, assessments).length, 0)) },
+    { icon: CheckCircle2, label: "Tests completed", value: String(students.reduce((sum, student) => sum + studentExamResultsForAssessments(student, assessments).filter(isCompleteExamResult).length, 0)) },
     { icon: BookOpen, label: "Open exams", value: String(assessments.filter((assessment) => assessment.status === "open").length) },
   ];
   const activeWorkspace = getTeacherWorkspace(window.location.pathname);

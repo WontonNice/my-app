@@ -1,102 +1,91 @@
-import { useEffect, useState } from "react";
-import { BarChart3, BookOpen, CalendarDays, CheckCircle2, ClipboardList, Target, Zap } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { ArrowRight, BookOpen, CalendarDays, CheckCircle2, ClipboardList, Megaphone } from "lucide-react";
 import { AppLink } from "../components/AppLink";
-import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
+import { StudentPortalShell } from "../components/StudentPortalShell";
+import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
-import { getStudentClasses } from "../lib/api";
-import { getDashboardPath, getUserRole } from "../lib/auth";
-import { isSupabaseConfigured } from "../lib/supabase";
-import { cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "../lib/sessionCache";
-import { getStudentClassNavigation } from "../lib/studentClassNavigation";
-import { appendStudentPreview, getStudentPreviewContext } from "../lib/studentPreview";
+import { getStudentAssessments, type StudentAssessment } from "../lib/api";
+import { appendStudentPreview } from "../lib/studentPreview";
 
 export function StudentDashboardPage() {
-  const previewContext = getStudentPreviewContext();
-  const initialSession = peekActiveSession();
-  const initialMetadata = initialSession?.user.user_metadata as { full_name?: string; name?: string } | undefined;
-  const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured && !initialSession);
-  const [studentName, setStudentName] = useState(previewContext.studentName || initialMetadata?.full_name || initialMetadata?.name || "Student");
+  const { accessToken, hasMultipleClasses, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
+  const [assessments, setAssessments] = useState<StudentAssessment[]>([]);
 
   useEffect(() => {
-    if (!isSupabaseConfigured) {
-      return;
-    }
+    if (!accessToken) return;
+    let isMounted = true;
+    getStudentAssessments(accessToken).then((nextAssessments) => {
+      if (isMounted) setAssessments(nextAssessments);
+    }).catch(() => undefined);
+    return () => { isMounted = false; };
+  }, [accessToken]);
 
-    getActiveSession().then(async (session) => {
-      if (!session) {
-        window.location.assign("/login");
-        return;
-      }
-
-      const userRole = getUserRole(session.user);
-      const metadata = session.user.user_metadata as { full_name?: string; name?: string };
-      setStudentName(previewContext.studentName || metadata.full_name || metadata.name || "Student");
-
-      if (userRole !== "student" && !(userRole === "teacher" && previewContext.isPreview)) {
-        window.location.assign(getDashboardPath(userRole));
-        return;
-      }
-
-      const classId = window.location.pathname.split("/").filter(Boolean)[1];
-
-      if (classId && userRole !== "teacher") {
-        try {
-          const studentClasses = getCachedStudentClasses(session.user.id) ?? await getStudentClasses(session.access_token);
-          cacheStudentClasses(session.user.id, studentClasses);
-          const isInClass = studentClasses.some((studentClass) => studentClass.id === classId);
-
-          if (!isInClass) {
-            window.location.assign("/dashboard");
-            return;
-          }
-        } catch {
-          window.location.assign("/dashboard");
-          return;
-        }
-      }
-
-      setIsCheckingSession(false);
-    });
-  }, [previewContext.isPreview, previewContext.studentName]);
+  const openAssessments = useMemo(() => assessments.filter((assessment) => assessment.status === "open"), [assessments]);
+  const today = useMemo(() => new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long", weekday: "long" }).format(new Date()), []);
 
   async function handleSignOut() {
-    if (isSupabaseConfigured) {
-      await signOutCurrentAccount();
-    }
-
+    if (isSupabaseConfigured) await signOutCurrentAccount();
     window.location.assign("/");
   }
 
-  if (isCheckingSession) {
-    return <main className="loading-shell">Loading dashboard...</main>;
-  }
+  if (isCheckingSession) return <main className="loading-shell">Loading course portal...</main>;
+  if (!isSupabaseConfigured) return <main className="loading-shell">Supabase auth is not configured. Add your Vite Supabase env vars, then log in.</main>;
 
-  if (!isSupabaseConfigured) {
-    return (
-      <main className="loading-shell">
-        Supabase auth is not configured. Add your Vite Supabase env vars, then log in.
-      </main>
-    );
-  }
-
-  const navItems = getStudentClassNavigation(previewContext.query);
+  const practiceHref = appendStudentPreview("/practice/authors-point-of-view", previewContext);
+  const materialsHref = appendStudentPreview("/study-hall/shsat/materials", previewContext);
+  const englishMaterialsHref = appendStudentPreview("/study-hall/shsat/materials?subject=english", previewContext);
+  const assignmentsHref = appendStudentPreview("/study-hall/shsat/assignments", previewContext);
+  const assessmentsHref = appendStudentPreview("/study-hall/shsat/assessments", previewContext);
 
   return (
-    <CorporateDashboardShell activeId="class" navItems={navItems} onSignOut={handleSignOut} profileName={studentName} profileRole={previewContext.isPreview ? `Viewing ${studentName}` : "Student account"} returnHref={previewContext.isPreview ? previewContext.returnHref : undefined} returnLabel="Teacher dashboard">
-      <header className="staff-page-heading corporate-page-heading">
-        <div><p><BookOpen size={15} /> Class portal</p><h1>SHSAT Prep</h1><span>Your assignments, practice tools, and progress for this class.</span></div>
-      </header>
-      <section className="staff-kpi-grid" aria-label="Class summary">
-        <article><span><CheckCircle2 size={19} /></span><div><p>Completed</p><strong>8 <small>/ 12</small></strong></div><em>4 items remaining</em></article>
-        <article><span><Zap size={19} /></span><div><p>Current streak</p><strong>7</strong></div><em>Days in a row</em></article>
-        <article><span><BarChart3 size={19} /></span><div><p>Accuracy</p><strong>84%</strong></div><em>Up 6% this month</em></article>
-        <article><span><CalendarDays size={19} /></span><div><p>Next session</p><strong>Sat</strong></div><em>10:00 AM</em></article>
-      </section>
-      <section className="student-portal-grid">
-        <AppLink className="staff-panel student-portal-card" href={`/study-hall${previewContext.query}`}><span><Target size={21} /></span><div><small>Practice question catalog</small><h2>All SHSAT reading skills</h2><p>Practice Author's Point of View, inference, evidence, vocabulary, tone, and more.</p></div></AppLink>
-        <AppLink className="staff-panel student-portal-card" href={`/practice/authors-point-of-view${previewContext.query}`}><span><ClipboardList size={21} /></span><div><small>Featured practice</small><h2>Author's Point of View</h2><p>Work through the complete question bank across all four difficulty levels.</p></div></AppLink>
-        <AppLink className="staff-panel student-portal-card" href={appendStudentPreview("/study-hall?section=advanced", previewContext)}><span><BookOpen size={21} /></span><div><small>Advanced practice</small><h2>Passage catalog</h2><p>Browse every advanced close-reading passage by genre, skill, and difficulty.</p></div></AppLink>
-      </section>
-    </CorporateDashboardShell>
+    <StudentPortalShell activeId="home" hasMultipleClasses={hasMultipleClasses} onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
+      <div className="student-course-home">
+        <header className="student-course-heading">
+          <div><p>{today}</p><h1>Your work for this week</h1><span>Everything below was posted, assigned, or organized by your teacher.</span></div>
+          <AppLink href={assignmentsHref}>View all assignments <ArrowRight size={15} /></AppLink>
+        </header>
+
+        <div className="student-course-layout">
+          <div className="student-course-primary">
+            <section className="student-current-assignment" aria-labelledby="current-assignment-title">
+              <div>
+                <p>Continue practice</p><h2 id="current-assignment-title">Author&apos;s Point of View</h2><span>Reading comprehension · Medium · 10 questions</span>
+                <div className="student-assignment-progress" aria-label="6 of 10 questions complete" role="progressbar" aria-valuemax={10} aria-valuemin={0} aria-valuenow={6}><span /></div>
+                <small>6 of 10 complete</small>
+              </div>
+              <AppLink href={practiceHref}>Continue</AppLink>
+            </section>
+
+            <section className="student-upcoming" id="coming-up" aria-labelledby="coming-up-title">
+              <header><h2 id="coming-up-title">Coming up</h2><AppLink href={assignmentsHref}>Open assignments</AppLink></header>
+              <article><div><span>Study guide</span><strong>Reading Skills Review</strong><small>English · Reading comprehension</small></div><AppLink href={englishMaterialsHref}>Open</AppLink></article>
+              {openAssessments.length > 0 ? openAssessments.slice(0, 2).map((assessment) => (
+                <article key={assessment.id}><div><span>Assessment</span><strong>{assessment.title}</strong><small>{assessment.questionCount} questions · {assessment.durationMinutes} minutes</small></div><AppLink href={appendStudentPreview(`/exam/${assessment.id}`, previewContext)}>Details</AppLink></article>
+              )) : (
+                <article><div><span>Assessments</span><strong>No assessment is open right now</strong><small>Your teacher will make the next test available when it is time.</small></div><AppLink href={assessmentsHref}>View</AppLink></article>
+              )}
+            </section>
+
+            <AppLink className="student-materials-callout" href={materialsHref}>
+              <div><BookOpen size={21} /><span><small>Study Hall</small><strong>Browse English and Math by topic</strong><em>Focused practice, a passage library, long reading, and assessment resources</em></span></div><ArrowRight size={20} />
+            </AppLink>
+          </div>
+
+          <aside className="student-course-aside">
+            <section className="student-teacher-announcement" aria-labelledby="teacher-announcement-title">
+              <Megaphone size={19} /><p>Teacher announcement</p><h2 id="teacher-announcement-title">Prepare before your next assessment</h2><span>Complete the Reading Skills Review and bring your calculator when your teacher opens the next form.</span><AppLink href={englishMaterialsHref}>Open review materials <ArrowRight size={14} /></AppLink>
+            </section>
+            <section className="student-course-progress" aria-labelledby="course-progress-title">
+              <p>Course progress</p><div><strong id="course-progress-title">68%</strong><span>of assigned coursework complete</span></div>
+              <div className="student-progress-track" aria-label="68 percent complete" role="progressbar" aria-valuemax={100} aria-valuemin={0} aria-valuenow={68}><span /></div>
+              <dl><div><dt>Completed</dt><dd>8</dd></div><div><dt>In progress</dt><dd>2</dd></div><div><dt>Open assessments</dt><dd>{openAssessments.length}</dd></div></dl>
+            </section>
+            <section className="student-recent-activity" aria-labelledby="recent-activity-title">
+              <p id="recent-activity-title">Recent activity</p><div><CheckCircle2 size={17} /><span><strong>Inference · Hard</strong><small>Completed · 8/10</small></span></div><div><ClipboardList size={17} /><span><strong>Vocabulary Review</strong><small>Opened recently</small></span></div><div><CalendarDays size={17} /><span><strong>Course calendar</strong><small>Teacher-managed schedule</small></span></div>
+            </section>
+          </aside>
+        </div>
+      </div>
+    </StudentPortalShell>
   );
 }

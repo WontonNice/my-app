@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { getAdvancedPracticePassage } from "../content/advancedPractice";
+import { getExamLibraryPassage } from "../content/exams/passageLibrary";
 import { getDisplayName } from "../lib/exam";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 import { appendStudentPreview } from "../lib/studentPreview";
@@ -20,7 +21,7 @@ type AdvancedTool = "pointer" | "eliminator" | "notepad" | "pencil";
 type ReviewFilter = "all" | "notAnswered" | "bookmarks";
 
 function getPassageIdFromPath() {
-  return window.location.pathname.split("/").filter(Boolean)[1] ?? "";
+  return window.location.pathname.split("/").filter(Boolean).at(-1) ?? "";
 }
 
 function renderFormattedText(text: string): ReactNode {
@@ -40,6 +41,7 @@ function renderFormattedText(text: string): ReactNode {
 function AdvancedExamToolbar({
   activeTool,
   bookmarkedQuestionIds,
+  collectionLabel,
   currentQuestionIndex,
   isComplete,
   isNotepadOpen,
@@ -60,6 +62,7 @@ function AdvancedExamToolbar({
 }: {
   activeTool: AdvancedTool;
   bookmarkedQuestionIds: string[];
+  collectionLabel: string;
   currentQuestionIndex: number;
   isComplete: boolean;
   isNotepadOpen: boolean;
@@ -102,7 +105,7 @@ function AdvancedExamToolbar({
 
   return (
     <>
-      <header className="exam-session-toolbar" aria-label="Advanced practice controls">
+      <header className="exam-session-toolbar" aria-label={`${collectionLabel} controls`}>
         <div className="exam-session-toolbar-inner">
           <div className="exam-session-toolbar-cluster">
             <div className="exam-session-toolbar-group exam-session-question-nav">
@@ -214,10 +217,10 @@ function AdvancedExamToolbar({
         </div>
       </header>
       <div className="exam-session-bluebar" />
-      <nav className="exam-session-breadcrumb" aria-label="Advanced practice location">
+      <nav className="exam-session-breadcrumb" aria-label={`${collectionLabel} location`}>
         <div className="exam-session-breadcrumb-inner">
           <div className="exam-session-breadcrumb-text">
-            <span>ADVANCED PRACTICE</span><span>/</span><span>{passageTitle.toUpperCase()}</span><span>/</span>
+            <span>{collectionLabel.toUpperCase()}</span><span>/</span><span>{passageTitle.toUpperCase()}</span><span>/</span>
             <span>{isComplete ? "PASSAGE END DIRECTIONS" : `${currentQuestionIndex + 1} OF ${questionIds.length}`}</span>
           </div>
           <span className="exam-session-status-icon" aria-hidden="true"><Monitor size={19} /></span>
@@ -228,7 +231,10 @@ function AdvancedExamToolbar({
 }
 
 export function AdvancedPassagePage() {
-  const passageEntry = getAdvancedPracticePassage(getPassageIdFromPath());
+  const isShsatLibraryPassage = window.location.pathname.includes("/study-hall/shsat/library/");
+  const passageEntry = isShsatLibraryPassage
+    ? getExamLibraryPassage(getPassageIdFromPath())
+    : getAdvancedPracticePassage(getPassageIdFromPath());
   const passageSet = passageEntry?.passageSet;
   const [activeTool, setActiveTool] = useState<AdvancedTool>("pointer");
   const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<string[]>([]);
@@ -264,7 +270,8 @@ export function AdvancedPassagePage() {
   const questions = useMemo(() => passageSet?.questions ?? [], [passageSet]);
   const activeQuestion = questions[questionIndex];
   const questionIds = questions.map((question) => question.id);
-  const backHref = appendStudentPreview("/study-hall?section=advanced");
+  const backHref = appendStudentPreview("/study-hall/shsat/materials?subject=english");
+  const collectionLabel = isShsatLibraryPassage ? "SHSAT Library" : "Advanced Practice";
 
   function handleNext() {
     if (!activeQuestion || !selectedAnswers[activeQuestion.id]) {
@@ -328,7 +335,7 @@ export function AdvancedPassagePage() {
   }
 
   if (isCheckingSession) {
-    return <main className="loading-shell">Loading advanced practice...</main>;
+    return <main className="loading-shell">Loading passage...</main>;
   }
 
   if (!passageEntry || !passageSet || !activeQuestion) {
@@ -336,7 +343,7 @@ export function AdvancedPassagePage() {
       <main className="advanced-passage-page">
         <section className="advanced-passage-missing">
           <h1>Passage not found</h1>
-          <a href={backHref}>Return to Advanced Practice</a>
+          <a href={backHref}>Return to Study Hall</a>
         </section>
       </main>
     );
@@ -348,6 +355,7 @@ export function AdvancedPassagePage() {
     <AdvancedExamToolbar
       activeTool={activeTool}
       bookmarkedQuestionIds={bookmarkedQuestionIds}
+      collectionLabel={collectionLabel}
       currentQuestionIndex={questionIndex}
       isComplete={isComplete}
       isNotepadOpen={isNotepadOpen}
@@ -384,7 +392,7 @@ export function AdvancedPassagePage() {
             <div className="exam-passage-end-content advanced-passage-end-content">
               <p id="advanced-passage-end-title"><strong>There are no more questions for this passage set.</strong></p>
               <p>Use the review button to return to any question you have completed.</p>
-              <a href={backHref}>Return to Advanced Practice</a>
+              <a href={backHref}>Return to Study Hall</a>
             </div>
           </article>
         </section>

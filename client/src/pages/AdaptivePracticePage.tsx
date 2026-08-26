@@ -765,7 +765,11 @@ function ResultsSection({
                 <span className={`status-pill status-pill-${isComplete ? "complete" : "open"}`}>
                   {isComplete ? "Complete" : "In progress"}
                 </span>
-                <small>{result.completionStatus === "english_complete" ? "English submitted · Math pending" : new Date(result.completedAt).toLocaleDateString()}</small>
+                <small>{result.completionStatus === "english_complete"
+                  ? "English submitted · Math pending"
+                  : result.completionStatus === "math_complete"
+                    ? "Math submitted · English pending"
+                    : new Date(result.completedAt).toLocaleDateString()}</small>
               </div>
               <h3>{result.title}</h3>
               <p>

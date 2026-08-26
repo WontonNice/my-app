@@ -1,11 +1,11 @@
-import { authorsPointOfViewQuestions } from "./questionBanks/authorsPointOfView/index";
 import { centralIdeaThemeQuestions } from "./questionBanks/centralIdeaTheme/index";
-import { evidenceSupportQuestions } from "./questionBanks/evidenceSupport/index";
-import { figurativeLanguageImageryQuestions } from "./questionBanks/figurativeLanguageImagery/index";
-import { inferenceQuestions } from "./questionBanks/inference/index";
-import { textStructureQuestions } from "./questionBanks/textStructure/index";
-import { toneMoodQuestions } from "./questionBanks/toneMood/index";
+import { authorsPointOfViewQuestions } from "./questionBanks/authorsPointOfView/index";
 import { wordPhraseMeaningQuestions } from "./questionBanks/wordPhraseMeaning/index";
+import { figurativeLanguageImageryQuestions } from "./questionBanks/figurativeLanguageImagery/index";
+import { toneMoodQuestions } from "./questionBanks/toneMood/index";
+import { textStructureQuestions } from "./questionBanks/textStructure/index";
+import { evidenceSupportQuestions } from "./questionBanks/evidenceSupport/index";
+import { inferenceQuestions } from "./questionBanks/inference/index";
 import type { PracticeTopic } from "./types";
 
 export const practiceTopics: PracticeTopic[] = [

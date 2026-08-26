@@ -1,6 +1,6 @@
 import { createHash, randomBytes } from "node:crypto";
 import { createServer } from "node:http";
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, extname, join, relative, resolve } from "node:path";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -12,6 +12,7 @@ const passageSetsRoot = join(workspaceRoot, "client", "src", "content", "exams",
 const mathSetsRoot = join(workspaceRoot, "client", "src", "content", "exams", "mathSets");
 const testsRoot = join(workspaceRoot, "client", "src", "content", "exams", "tests");
 const examsIndexPath = join(workspaceRoot, "client", "src", "content", "exams", "index.ts");
+const examPassageLibraryPath = join(workspaceRoot, "client", "src", "content", "exams", "passageLibrary.ts");
 const standaloneItemsPath = join(workspaceRoot, "client", "src", "content", "exams", "standaloneItems.ts");
 const advancedPassageSetsRoot = join(
   workspaceRoot,
@@ -37,6 +38,8 @@ const questionBanksRoot = join(
   "practice",
   "questionBanks",
 );
+const practiceTopicsPath = join(workspaceRoot, "tools", "practice-topics.json");
+const contentTopicsPath = join(workspaceRoot, "tools", "content-topics.json");
 const examImagesRoot = join(workspaceRoot, "client", "public", "exam-images");
 const katexDistRoot = join(workspaceRoot, "node_modules", "katex", "dist");
 const assessmentsPath = join(workspaceRoot, "server", "data", "assessments.json");
@@ -44,8 +47,10 @@ const editorHtmlPath = join(workspaceRoot, "tools", "content-studio.html");
 const appStylesPath = join(workspaceRoot, "client", "src", "styles", "global.css");
 const editToken = randomBytes(24).toString("hex");
 const passageFormats = ["prose", "poem", "sentence_prose"];
-const topics = [
+const passageTypes = ["informational", "literary", "poem", "long_reading"];
+const defaultTopics = [
   "Author's Point of View",
+  "Character & Relationships",
   "Central Idea & Theme",
   "Supporting Evidence",
   "Inference",
@@ -53,6 +58,7 @@ const topics = [
   "Text Structure & Purpose",
   "Figurative Language & Imagery",
   "Tone & Mood",
+  "Transitions & Organization",
   "Revising & Editing",
   "Grammar & Usage",
   "Conventions & Grammar",
@@ -60,6 +66,7 @@ const topics = [
   "Sentence Construction",
   "Uncategorized",
 ];
+let topics = await readContentTopics();
 const mathTopics = [
   "Arithmetic",
   "Algebra",
@@ -76,21 +83,73 @@ const advancedGenres = ["Fiction", "History", "Science", "Social Science"];
 const advancedTones = ["blue", "coral", "emerald", "gold"];
 const mathImportFormat = "nathan-tutors-math-question-v1";
 const practiceDifficulties = ["easy", "medium", "hard", "elite"];
-const practiceTopics = [
-  { folder: "authorsPointOfView", label: "Author's Point of View", prefix: "pov", slug: "authors-point-of-view" },
-  { folder: "centralIdeaTheme", label: "Central Idea & Theme", prefix: "central", slug: "central-idea-theme" },
-  { folder: "wordPhraseMeaning", label: "Word & Phrase Meaning", prefix: "words", slug: "word-phrase-meaning" },
+const defaultPracticeTopics = [
   {
+    description: "Find the main idea, recurring themes, and the best summary of a passage.",
+    folder: "centralIdeaTheme",
+    key: "Central Idea & Theme",
+    label: "Central Idea & Theme",
+    prefix: "central",
+    slug: "central-idea-theme",
+  },
+  {
+    description: "Determine the author's perspective, attitude, purpose, and beliefs.",
+    folder: "authorsPointOfView",
+    key: "Author's Point of View",
+    label: "Author's Point of View",
+    prefix: "pov",
+    slug: "authors-point-of-view",
+  },
+  {
+    description: "Use context clues to interpret precise words and phrases in a passage.",
+    folder: "wordPhraseMeaning",
+    key: "Vocabulary in Context",
+    label: "Word & Phrase Meaning",
+    prefix: "words",
+    slug: "word-phrase-meaning",
+  },
+  {
+    description: "Analyze similes, metaphors, personification, and imagery for meaning.",
     folder: "figurativeLanguageImagery",
+    key: "Figurative Language & Imagery",
     label: "Figurative Language & Imagery",
     prefix: "figurative",
     slug: "figurative-language-imagery",
   },
-  { folder: "toneMood", label: "Tone & Mood", prefix: "tone", slug: "tone-mood" },
-  { folder: "textStructure", label: "Text Structure", prefix: "structure", slug: "text-structure" },
-  { folder: "evidenceSupport", label: "Evidence & Support", prefix: "evidence", slug: "evidence-support" },
-  { folder: "inference", label: "Inference", prefix: "inference", slug: "inference" },
+  {
+    description: "Recognize tone and mood through word choice, syntax, and atmosphere.",
+    folder: "toneMood",
+    key: "Tone & Mood",
+    label: "Tone & Mood",
+    prefix: "tone",
+    slug: "tone-mood",
+  },
+  {
+    description: "Analyze how paragraphs and sentences build ideas and support purpose.",
+    folder: "textStructure",
+    key: "Text Structure & Purpose",
+    label: "Text Structure",
+    prefix: "structure",
+    slug: "text-structure",
+  },
+  {
+    description: "Choose the quotation or detail that best supports a stated claim.",
+    folder: "evidenceSupport",
+    key: "Supporting Evidence",
+    label: "Evidence & Support",
+    prefix: "evidence",
+    slug: "evidence-support",
+  },
+  {
+    description: "Draw logical conclusions from implied details and character actions.",
+    folder: "inference",
+    key: "Inference",
+    label: "Inference",
+    prefix: "inference",
+    slug: "inference",
+  },
 ];
+let practiceTopics = await readPracticeTopics();
 
 class EditorError extends Error {
   constructor(status, message) {
@@ -130,6 +189,176 @@ function identifierFrom(value, suffix = "") {
     .join("");
   const safeIdentifier = /^[a-zA-Z_$]/.test(identifier) ? identifier : `content${identifier}`;
   return `${safeIdentifier || "content"}${suffix}`;
+}
+
+async function readContentTopics() {
+  try {
+    const parsed = JSON.parse(await readFile(contentTopicsPath, "utf8"));
+    if (!Array.isArray(parsed) || !parsed.length) throw new Error("The content topic list is empty.");
+    return parsed.map((topic) => String(topic ?? "").trim()).filter(Boolean);
+  } catch (error) {
+    if (error?.code === "ENOENT") return [...defaultTopics];
+    throw error;
+  }
+}
+
+async function readPracticeTopics() {
+  try {
+    const parsed = JSON.parse(await readFile(practiceTopicsPath, "utf8"));
+    if (!Array.isArray(parsed) || !parsed.length) throw new Error("The practice topic list is empty.");
+    return parsed.map((topic) => ({
+      description: String(topic.description ?? "").trim(),
+      folder: String(topic.folder ?? "").trim(),
+      key: String(topic.key ?? topic.label ?? "").trim(),
+      label: String(topic.label ?? "").trim(),
+      prefix: String(topic.prefix ?? "").trim(),
+      slug: String(topic.slug ?? "").trim(),
+    }));
+  } catch (error) {
+    if (error?.code === "ENOENT") return cloneJson(defaultPracticeTopics);
+    throw error;
+  }
+}
+
+function cloneJson(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function practiceBankExportName(topic) {
+  return `${topic.folder}Questions`;
+}
+
+function practiceDifficultyExportName(topic, difficulty) {
+  return `${topic.folder}${difficulty.charAt(0).toUpperCase()}${difficulty.slice(1)}Questions`;
+}
+
+function buildPracticeBankIndexSource(topic) {
+  const lines = practiceDifficulties.map(
+    (difficulty) =>
+      `import { ${practiceDifficultyExportName(topic, difficulty)} } from ${quote(`./${difficulty}`)};`,
+  );
+  return `${lines.join("\n")}\n\nexport const ${practiceBankExportName(topic)} = [\n${practiceDifficulties
+    .map((difficulty) => `  ...${practiceDifficultyExportName(topic, difficulty)},`)
+    .join("\n")}\n];\n`;
+}
+
+function buildEmptyPracticeBankSource(topic, difficulty) {
+  return `import type { PracticeQuestion } from "../../types";\n\nexport const ${practiceDifficultyExportName(topic, difficulty)}: PracticeQuestion[] = [\n];\n`;
+}
+
+function buildPracticeIndexSource(topicList) {
+  const imports = topicList
+    .map(
+      (topic) =>
+        `import { ${practiceBankExportName(topic)} } from ${quote(`./questionBanks/${topic.folder}/index`)};`,
+    )
+    .join("\n");
+  const entries = topicList
+    .map(
+      (topic) => `  {
+    description: ${quote(topic.description)},
+    key: ${quote(topic.key)},
+    questionBank: ${practiceBankExportName(topic)},
+    slug: ${quote(topic.slug)},
+    title: ${quote(topic.label)},
+  },`,
+    )
+    .join("\n");
+  return `${imports}\nimport type { PracticeTopic } from "./types";\n\nexport const practiceTopics: PracticeTopic[] = [\n${entries}\n];\n\nexport function getPracticeTopicBySlug(slug: string) {\n  return practiceTopics.find((topic) => topic.slug === slug) ?? null;\n}\n\nexport type { PracticeDifficulty, PracticeQuestion, PracticeTopic } from "./types";\n`;
+}
+
+async function practiceTopicQuestionCount(topic) {
+  let count = 0;
+  for (const difficulty of practiceDifficulties) {
+    const source = await readFile(join(questionBanksRoot, topic.folder, `${difficulty}.ts`), "utf8");
+    count += source.match(/\bcorrectChoiceId\s*:/g)?.length ?? 0;
+  }
+  return count;
+}
+
+async function writePracticeTopics(topicList) {
+  await writeFile(practiceTopicsPath, `${JSON.stringify(topicList, null, 2)}\n`, "utf8");
+  await writeFile(
+    join(workspaceRoot, "client", "src", "content", "practice", "index.ts"),
+    buildPracticeIndexSource(topicList),
+    "utf8",
+  );
+}
+
+async function savePracticeTopics(input) {
+  if (!input || !Array.isArray(input.topics) || !input.topics.length) {
+    throw new EditorError(400, "Keep at least one regular-practice topic.");
+  }
+  if (input.topics.length > 100) throw new EditorError(400, "The topic list may contain at most 100 topics.");
+
+  const existingBySlug = new Map(practiceTopics.map((topic) => [topic.slug, topic]));
+  const nextTopics = input.topics.map((candidate, index) => {
+    if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) {
+      throw new EditorError(400, `Topic ${index + 1} is invalid.`);
+    }
+    const label = requiredText(candidate.label, `Topic ${index + 1} name`);
+    const existing = existingBySlug.get(String(candidate.slug ?? ""));
+    const description =
+      typeof candidate.description === "string" && candidate.description.trim()
+        ? candidate.description.trim()
+        : `Practice ${label.toLowerCase()} questions and build mastery.`;
+    if (existing) return { ...existing, description, label };
+
+    const slug = slugify(label);
+    if (!slug) throw new EditorError(400, `Topic ${index + 1} needs a name containing letters or numbers.`);
+    const folder = identifierFrom(label);
+    const prefix = slug.split("-").slice(0, 2).join("-");
+    return { description, folder, key: label, label, prefix, slug };
+  });
+
+  for (const field of ["label", "slug", "folder"]) {
+    const values = nextTopics.map((topic) => topic[field].toLowerCase());
+    if (new Set(values).size !== values.length) {
+      throw new EditorError(409, `Every topic needs a unique ${field}.`);
+    }
+  }
+
+  const nextSlugs = new Set(nextTopics.map((topic) => topic.slug));
+  const removedTopics = practiceTopics.filter((topic) => !nextSlugs.has(topic.slug));
+  for (const topic of removedTopics) {
+    const questionCount = await practiceTopicQuestionCount(topic);
+    if (questionCount > 0) {
+      throw new EditorError(
+        409,
+        `${topic.label} contains ${questionCount} question${questionCount === 1 ? "" : "s"} and cannot be removed. Move or archive those questions first.`,
+      );
+    }
+  }
+
+  const currentSlugs = new Set(practiceTopics.map((topic) => topic.slug));
+  for (const topic of nextTopics.filter((candidate) => !currentSlugs.has(candidate.slug))) {
+    const topicRoot = resolve(questionBanksRoot, topic.folder);
+    if (!topicRoot.startsWith(`${resolve(questionBanksRoot)}\\`) && !topicRoot.startsWith(`${resolve(questionBanksRoot)}/`)) {
+      throw new EditorError(400, "The generated topic folder is outside the question bank.");
+    }
+    try {
+      await mkdir(topicRoot, { recursive: false });
+    } catch (error) {
+      if (error?.code === "EEXIST") throw new EditorError(409, `A question-bank folder already exists for ${topic.label}.`);
+      throw error;
+    }
+    await Promise.all(
+      practiceDifficulties.map((difficulty) =>
+        writeFile(join(topicRoot, `${difficulty}.ts`), buildEmptyPracticeBankSource(topic, difficulty), "utf8"),
+      ),
+    );
+    await writeFile(join(topicRoot, "index.ts"), buildPracticeBankIndexSource(topic), "utf8");
+  }
+
+  await writePracticeTopics(nextTopics);
+  for (const topic of removedTopics) {
+    const topicRoot = resolve(questionBanksRoot, topic.folder);
+    if (topicRoot.startsWith(`${resolve(questionBanksRoot)}\\`) || topicRoot.startsWith(`${resolve(questionBanksRoot)}/`)) {
+      await rm(topicRoot, { force: false, recursive: true });
+    }
+  }
+  practiceTopics = nextTopics;
+  return getPracticeConfig();
 }
 
 function requiredText(value, label, { preserve = false } = {}) {
@@ -308,6 +537,10 @@ async function parsePassageFile(filePath) {
           ? passageInput.header
           : "",
     directions: directionsProperty ? valueFromNode(directionsProperty.initializer, environment) : undefined,
+    coverImage:
+      passageInput.coverImage && typeof passageInput.coverImage === "object"
+        ? passageInput.coverImage
+        : undefined,
     exportName: exported.exportName,
     fileName: filePath.slice(passageSetsRoot.length + 1),
     format,
@@ -315,6 +548,12 @@ async function parsePassageFile(filePath) {
     label: labelProperty ? valueFromNode(labelProperty.initializer, environment) : undefined,
     image: passageInput.image && typeof passageInput.image === "object" ? passageInput.image : undefined,
     passageSetId: idProperty ? String(valueFromNode(idProperty.initializer, environment) ?? "") : "",
+    passageType:
+      typeof passageInput.passageType === "string" && passageTypes.includes(passageInput.passageType)
+        ? passageInput.passageType
+        : format === "poem"
+          ? "poem"
+          : "informational",
     questions,
     richText: typeof passageInput.richText === "string" ? passageInput.richText : "",
     sourceHash: hashSource(source),
@@ -407,6 +646,10 @@ async function parseAdvancedPassageFile(filePath) {
           ? passageInput.header
           : "",
     directions: readValue(passageSet, "directions"),
+    coverImage:
+      passageInput.coverImage && typeof passageInput.coverImage === "object"
+        ? passageInput.coverImage
+        : undefined,
     excerpt: String(readValue(exported.initializer, "excerpt") ?? ""),
     exportName: exported.exportName,
     fileName: filePath.slice(advancedPassageSetsRoot.length + 1),
@@ -416,6 +659,14 @@ async function parseAdvancedPassageFile(filePath) {
     image: passageInput.image && typeof passageInput.image === "object" ? passageInput.image : undefined,
     label: readValue(passageSet, "label"),
     passageSetId: String(readValue(passageSet, "id") ?? ""),
+    passageType:
+      typeof passageInput.passageType === "string" && passageTypes.includes(passageInput.passageType)
+        ? passageInput.passageType
+        : format === "poem"
+          ? "poem"
+          : String(readValue(exported.initializer, "genre") ?? "") === "Fiction"
+            ? "literary"
+            : "informational",
     questions,
     richText: typeof passageInput.richText === "string" ? passageInput.richText : "",
     sourceHash: hashSource(source),
@@ -701,6 +952,21 @@ function normalizeQuestion(question, passageId, index) {
   return question;
 }
 
+function normalizePassageImage(image, label) {
+  if (!image || typeof image !== "object" || Array.isArray(image)) return undefined;
+  return {
+    alt: requiredText(image.alt, `${label} alt text`),
+    ...(typeof image.caption === "string" && image.caption.trim()
+      ? { caption: image.caption.trim() }
+      : {}),
+    src: /^\/exam-images\/[a-zA-Z0-9._-]+$/.test(String(image.src ?? ""))
+      ? String(image.src)
+      : (() => {
+          throw new EditorError(400, `Upload the ${label.toLowerCase()} through the studio before saving.`);
+        })(),
+  };
+}
+
 function normalizePassage(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Passage data is invalid.");
@@ -709,6 +975,11 @@ function normalizePassage(input) {
   if (!id) throw new EditorError(400, "Passage ID must contain letters or numbers.");
   const format = requiredText(input.format, "Passage format");
   if (!passageFormats.includes(format)) throw new EditorError(400, "Choose a valid passage format.");
+  const passageType = requiredText(
+    input.passageType || (format === "poem" ? "poem" : "informational"),
+    "Library passage type",
+  );
+  if (!passageTypes.includes(passageType)) throw new EditorError(400, "Choose a valid library passage type.");
   const fileName = input.fileName
     ? requiredText(input.fileName, "Source file")
     : `${id}.ts`;
@@ -730,6 +1001,7 @@ function normalizePassage(input) {
   return {
     author: typeof input.author === "string" ? input.author.trim() : "",
     blurb: typeof input.blurb === "string" ? input.blurb.trim() : "",
+    coverImage: normalizePassageImage(input.coverImage, "Book cover image"),
     directions:
       input.directions && typeof input.directions === "object" && !Array.isArray(input.directions)
         ? input.directions
@@ -744,22 +1016,10 @@ function normalizePassage(input) {
     fileName,
     format,
     id,
-    image:
-      input.image && typeof input.image === "object" && !Array.isArray(input.image)
-        ? {
-            alt: requiredText(input.image.alt, "Passage image alt text"),
-            ...(typeof input.image.caption === "string" && input.image.caption.trim()
-              ? { caption: input.image.caption.trim() }
-              : {}),
-            src: /^\/exam-images\/[a-zA-Z0-9._-]+$/.test(String(input.image.src ?? ""))
-              ? String(input.image.src)
-              : (() => {
-                  throw new EditorError(400, "Upload the passage image through the studio before saving.");
-                })(),
-          }
-        : undefined,
+    image: normalizePassageImage(input.image, "Passage image"),
     label: typeof input.label === "string" ? input.label.trim() : "",
     passageSetId,
+    passageType,
     questions,
     richText: sanitizeRichText(input.richText),
     sourceHash: typeof input.sourceHash === "string" ? input.sourceHash : "",
@@ -783,7 +1043,9 @@ function buildPassageSource(passage) {
     `    title: ${quote(passage.title)},`,
     ...(passage.author ? [`    author: ${quote(passage.author)},`] : []),
     ...(passage.blurb ? [`    blurb: ${quote(passage.blurb)},`] : []),
+    ...(passage.coverImage ? [`    coverImage: ${JSON.stringify(passage.coverImage)},`] : []),
     ...(passage.image ? [`    image: ${JSON.stringify(passage.image)},`] : []),
+    `    passageType: ${quote(passage.passageType)},`,
     ...(passage.richText ? [`    richText: ${quote(passage.richText)},`] : []),
     ...(passage.sourceNote ? [`    sourceNote: ${quote(passage.sourceNote)},`] : []),
     `    text: ${textName},`,
@@ -831,7 +1093,29 @@ async function savePassage(input) {
   }
 
   await writeFile(filePath, buildPassageSource(passage), "utf8");
-  return parsePassageFile(filePath);
+  const savedPassage = await parsePassageFile(filePath);
+  await ensureExamPassageRegistration(savedPassage);
+  return savedPassage;
+}
+
+async function ensureExamPassageRegistration(passage) {
+  let source = await readFile(examPassageLibraryPath, "utf8");
+  const importPath = `./passageSets/${passage.fileName.replace(/\.ts$/, "")}`;
+  if (!source.includes(`from ${quote(importPath)}`) && !source.includes(`from '${importPath}'`)) {
+    const imports = Array.from(source.matchAll(/^import .*;\r?$/gm));
+    const insertionIndex = imports.length ? imports.at(-1).index + imports.at(-1)[0].length : 0;
+    source = `${source.slice(0, insertionIndex)}\nimport { ${passage.exportName} } from ${quote(importPath)};${source.slice(insertionIndex)}`;
+  }
+  const marker = "export const examPassageLibrary: ExamPassageSet[] = [";
+  const markerIndex = source.indexOf(marker);
+  if (markerIndex < 0) throw new EditorError(500, "The exam-passage library registry could not be found.");
+  const closingIndex = source.indexOf("];", markerIndex);
+  if (closingIndex < 0) throw new EditorError(500, "The exam-passage library registry is not closed.");
+  const registeredSource = source.slice(markerIndex, closingIndex);
+  if (!new RegExp(`\\b${passage.exportName}\\b`).test(registeredSource)) {
+    source = `${source.slice(0, closingIndex).trimEnd()}\n  ${passage.exportName},\n${source.slice(closingIndex)}`;
+  }
+  await writeFile(examPassageLibraryPath, source, "utf8");
 }
 
 function normalizeAdvancedPassage(input) {
@@ -875,7 +1159,9 @@ function buildAdvancedPassageSource(passage) {
     `      title: ${quote(passage.title)},`,
     ...(passage.author ? [`      author: ${quote(passage.author)},`] : []),
     ...(passage.blurb ? [`      blurb: ${quote(passage.blurb)},`] : []),
+    ...(passage.coverImage ? [`      coverImage: ${JSON.stringify(passage.coverImage)},`] : []),
     ...(passage.image ? [`      image: ${JSON.stringify(passage.image)},`] : []),
+    `      passageType: ${quote(passage.passageType)},`,
     ...(passage.richText ? [`      richText: ${quote(passage.richText)},`] : []),
     ...(passage.sourceNote ? [`      sourceNote: ${quote(passage.sourceNote)},`] : []),
     `      text: ${textName},`,
@@ -1084,10 +1370,16 @@ async function getPracticeSuggestions() {
 }
 
 async function getPracticeConfig() {
+  const topicsWithCounts = await Promise.all(
+    practiceTopics.map(async (topic) => ({
+      ...topic,
+      questionCount: await practiceTopicQuestionCount(topic),
+    })),
+  );
   return {
     difficulties: practiceDifficulties,
     suggestions: await getPracticeSuggestions(),
-    topics: practiceTopics,
+    topics: topicsWithCounts,
   };
 }
 
@@ -1180,6 +1472,10 @@ async function savePassageImage(input) {
   }
   const passageId = slugify(requiredText(input.passageId, "Passage ID"));
   if (!passageId) throw new EditorError(400, "Passage ID must contain letters or numbers.");
+  const imageRole = input.imageRole === undefined ? "passage" : requiredText(input.imageRole, "Image role");
+  if (!["cover", "passage"].includes(imageRole)) {
+    throw new EditorError(400, "Choose a valid passage image role.");
+  }
   const extension = uploadedImageExtension(input);
   const dataUrl = requiredText(input.dataUrl, "Image file", { preserve: true });
   const match = dataUrl.match(/^data:[^;]+;base64,([a-zA-Z0-9+/=\s]+)$/);
@@ -1190,7 +1486,7 @@ async function savePassageImage(input) {
   }
   if (extension === "svgz") bytes = normalizeSvgz(bytes);
 
-  const fileName = `${passageId}-passage.${extension}`;
+  const fileName = `${passageId}-${imageRole}.${extension}`;
   await mkdir(examImagesRoot, { recursive: true });
   await writeFile(join(examImagesRoot, fileName), bytes);
   return {
@@ -2223,12 +2519,122 @@ async function saveStandaloneItem(input) {
   };
 }
 
+function buildContentTopicDetails(passages, advancedPassages, standaloneItems) {
+  const counts = new Map(topics.map((topic) => [topic, 0]));
+  const countQuestion = (question) => {
+    const topic = String(question?.topic ?? "Uncategorized");
+    counts.set(topic, (counts.get(topic) ?? 0) + 1);
+  };
+  passages.forEach((passage) => passage.questions.forEach(countQuestion));
+  advancedPassages.forEach((passage) => passage.questions.forEach(countQuestion));
+  standaloneItems.forEach(countQuestion);
+  return [
+    ...topics.map((label) => ({ label, questionCount: counts.get(label) ?? 0 })),
+    ...Array.from(counts)
+      .filter(([label]) => !topics.includes(label))
+      .map(([label, questionCount]) => ({ label, questionCount })),
+  ];
+}
+
+async function getContentTopicConfiguration() {
+  const [{ passages }, { advancedPassages }, standaloneItems] = await Promise.all([
+    listPassages(),
+    listAdvancedPassages(),
+    listStandaloneItems(),
+  ]);
+  return {
+    topicDetails: buildContentTopicDetails(passages, advancedPassages, standaloneItems),
+    topics,
+  };
+}
+
+async function topicSourceFiles() {
+  const files = [];
+  for (const root of [passageSetsRoot, advancedPassageSetsRoot]) {
+    const entries = await readdir(root, { withFileTypes: true });
+    files.push(...entries.filter((entry) => entry.isFile() && entry.name.endsWith(".ts")).map((entry) => join(root, entry.name)));
+  }
+  files.push(standaloneItemsPath);
+  return files;
+}
+
+async function renameTopicsInContent(renames) {
+  if (!renames.length) return;
+  for (const filePath of await topicSourceFiles()) {
+    const source = await readFile(filePath, "utf8");
+    let updated = source;
+    for (const { from, to } of renames) {
+      updated = updated
+        .replaceAll(`topic: ${quote(from)}`, `topic: ${quote(to)}`)
+        .replaceAll(`${quote("topic")}: ${quote(from)}`, `${quote("topic")}: ${quote(to)}`);
+    }
+    if (updated !== source) await writeFile(filePath, updated, "utf8");
+  }
+
+  const assessments = await readAssessments();
+  let assessmentsChanged = false;
+  for (const assessment of assessments) {
+    for (const question of assessment.questions ?? []) {
+      const rename = renames.find((candidate) => candidate.from === question.topic);
+      if (!rename) continue;
+      question.topic = rename.to;
+      assessmentsChanged = true;
+    }
+  }
+  if (assessmentsChanged) {
+    await writeFile(assessmentsPath, `${JSON.stringify(assessments, null, 2)}\n`, "utf8");
+  }
+}
+
+async function saveContentTopics(input) {
+  if (!input || !Array.isArray(input.topics) || !input.topics.length) {
+    throw new EditorError(400, "Keep at least one content topic.");
+  }
+  if (input.topics.length > 150) throw new EditorError(400, "The topic list may contain at most 150 topics.");
+
+  const normalized = input.topics.map((candidate, index) => {
+    if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) {
+      throw new EditorError(400, `Topic ${index + 1} is invalid.`);
+    }
+    const label = requiredText(candidate.label, `Topic ${index + 1} name`);
+    const original = typeof candidate.original === "string" ? candidate.original.trim() : "";
+    if (original && !topics.includes(original)) throw new EditorError(409, `${original} is no longer in the topic list.`);
+    return { label, original };
+  });
+  const labels = normalized.map((topic) => topic.label.toLowerCase());
+  if (new Set(labels).size !== labels.length) throw new EditorError(409, "Every topic needs a unique name.");
+  const originals = normalized.map((topic) => topic.original).filter(Boolean);
+  if (new Set(originals).size !== originals.length) throw new EditorError(409, "A topic can appear only once.");
+
+  const currentConfiguration = await getContentTopicConfiguration();
+  const usageByTopic = new Map(currentConfiguration.topicDetails.map((topic) => [topic.label, topic.questionCount]));
+  const retainedTopics = new Set(originals);
+  for (const removedTopic of topics.filter((topic) => !retainedTopics.has(topic))) {
+    const questionCount = usageByTopic.get(removedTopic) ?? 0;
+    if (questionCount > 0) {
+      throw new EditorError(
+        409,
+        `${removedTopic} is used by ${questionCount} question${questionCount === 1 ? "" : "s"} and cannot be removed. Rename it or move those questions first.`,
+      );
+    }
+  }
+
+  const renames = normalized
+    .filter((topic) => topic.original && topic.original !== topic.label)
+    .map((topic) => ({ from: topic.original, to: topic.label }));
+  await renameTopicsInContent(renames);
+  topics = normalized.map((topic) => topic.label);
+  await writeFile(contentTopicsPath, `${JSON.stringify(topics, null, 2)}\n`, "utf8");
+  return getContentTopicConfiguration();
+}
+
 async function getState() {
   const { passageErrors, passages } = await listPassages();
   const { advancedPassageErrors, advancedPassages } = await listAdvancedPassages();
   const { mathErrors, mathSections } = await listMathSections();
   const { testErrors, tests } = await listTests(passages, mathSections);
   const standaloneSource = await readFile(standaloneItemsPath, "utf8");
+  const standaloneItems = await listStandaloneItems();
   return {
     advancedGenres,
     advancedPassageErrors,
@@ -2241,12 +2647,14 @@ async function getState() {
     mathTopics,
     passageErrors,
     passageFormats,
+    passageTypes,
     passages,
     practice: await getPracticeConfig(),
-    standaloneItems: await listStandaloneItems(),
+    standaloneItems,
     standaloneSourceHash: hashSource(standaloneSource),
     testErrors,
     tests,
+    topicDetails: buildContentTopicDetails(passages, advancedPassages, standaloneItems),
     topics,
   };
 }
@@ -2617,6 +3025,16 @@ async function handleRequest(request, response) {
       sendJson(response, 201, { standalone: await saveStandaloneItem(await readJson(request)) });
       return;
     }
+    if (request.method === "PUT" && url.pathname === "/api/topics") {
+      verifyEditRequest(request);
+      sendJson(response, 200, await saveContentTopics(await readJson(request)));
+      return;
+    }
+    if (request.method === "PUT" && url.pathname === "/api/practice/topics") {
+      verifyEditRequest(request);
+      sendJson(response, 200, { practice: await savePracticeTopics(await readJson(request)) });
+      return;
+    }
     if (request.method === "POST" && url.pathname === "/api/practice/preview") {
       verifyEditRequest(request);
       sendJson(response, 200, await previewPracticeQuestion(await readJson(request)));
@@ -2664,6 +3082,10 @@ async function validateSetup() {
   }
   const featureFixture = normalizePassage({
     blurb: "Context above the title.",
+    coverImage: {
+      alt: "A validation book cover",
+      src: "/exam-images/editor-feature-validation-cover.webp",
+    },
     format: "prose",
     id: "editor-feature-validation",
     questions: [
@@ -2756,7 +3178,8 @@ async function validateSetup() {
     featureFixture.questions[3].type !== "transition_drop" ||
     featureFixture.questions[3].correctChoiceId !== "B" ||
     featureFixture.questions[3].transitionSentenceNumber !== "(5)" ||
-    !featureSource.includes('blurb: "Context above the title."')
+    !featureSource.includes('blurb: "Context above the title."') ||
+    !featureSource.includes('coverImage: {"alt":"A validation book cover","src":"/exam-images/editor-feature-validation-cover.webp"}')
   ) {
     throw new Error("Exam editor feature validation failed.");
   }

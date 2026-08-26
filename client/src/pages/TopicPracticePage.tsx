@@ -35,7 +35,7 @@ type PracticeMode = "levels" | "questions" | "complete";
 type PracticeTool = "pointer" | "eliminator" | "notepad" | "pencil";
 
 const hasTeacherPracticePreview = getStudentPreviewContext().isPreview;
-const practiceBackHref = appendStudentPreview("/study-hall#topics");
+const practiceBackHref = appendStudentPreview("/study-hall/shsat/materials");
 
 type LevelProgress = {
   answered: number;

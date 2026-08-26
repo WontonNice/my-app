@@ -199,6 +199,7 @@ export const scribeLikeAnEgyptianPassageSet: ExamPassageSet = {
 },
   passage: createProsePassage({
     id: "scribe-like-an-egyptian",
+    passageType: "informational",
     title: "Excerpt from “Scribe Like an Egyptian”",
     image: {"alt":"Excerpt from “Scribe Like an Egyptian” illustration","src":"/exam-images/scribe-like-an-egyptian-passage.png"},
     sourceNote: "From “Scribe Like an Egyptian” by Hilary Wilson from HISTORY TODAY, August 8, 2019. Copyright © 2019 by History Today Ltd. Company.",

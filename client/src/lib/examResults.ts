@@ -35,7 +35,7 @@ export type ExamResult = {
   answers: SelectedAnswers;
   assessmentId: string;
   completedSections: ("english" | "math")[];
-  completionStatus: "complete" | "english_complete";
+  completionStatus: "complete" | "english_complete" | "math_complete";
   completedAt: string;
   correct: number;
   passages: ExamPassageResult[];
@@ -224,7 +224,12 @@ export function createExamResult(
     answers: { ...answers },
     assessmentId: examContent.assessmentId,
     completedSections,
-    completionStatus: completedSections.includes("math") ? "complete" : "english_complete",
+    completionStatus:
+      completedSections.includes("english") && completedSections.includes("math")
+        ? "complete"
+        : completedSections.includes("math")
+          ? "math_complete"
+          : "english_complete",
     completedAt: new Date().toISOString(),
     correct: overallScore.correct,
     passages,
@@ -250,15 +255,27 @@ export function getExamResults(userId: string): ExamResult[] {
       return [];
     }
 
-    return (storedResults as ExamResult[]).map((result) => ({
-      ...result,
-      answers: result.answers && typeof result.answers === "object" ? result.answers : {},
-      completedSections: Array.isArray(result.completedSections) ? result.completedSections : ["english", "math"],
-      completionStatus: result.completionStatus === "english_complete" ? "english_complete" : "complete",
-      passages: Array.isArray(result.passages) ? result.passages : [],
-      questionTypes: Array.isArray(result.questionTypes) ? result.questionTypes : [],
-      subjects: Array.isArray(result.subjects) ? result.subjects : [],
-    }));
+    return (storedResults as ExamResult[]).map((result) => {
+      const completedSections: ExamResult["completedSections"] = Array.isArray(result.completedSections)
+        ? result.completedSections
+        : ["english", "math"];
+      const completionStatus =
+        result.completionStatus === "english_complete" || result.completionStatus === "math_complete"
+          ? result.completionStatus
+          : completedSections.includes("math") && !completedSections.includes("english")
+            ? "math_complete"
+            : "complete";
+
+      return {
+        ...result,
+        answers: result.answers && typeof result.answers === "object" ? result.answers : {},
+        completedSections,
+        completionStatus,
+        passages: Array.isArray(result.passages) ? result.passages : [],
+        questionTypes: Array.isArray(result.questionTypes) ? result.questionTypes : [],
+        subjects: Array.isArray(result.subjects) ? result.subjects : [],
+      };
+    });
   } catch {
     return [];
   }

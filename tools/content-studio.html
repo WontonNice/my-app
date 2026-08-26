@@ -114,9 +114,12 @@
     .image-editor { display: grid; grid-template-columns: minmax(180px, .65fr) minmax(240px, 1fr); gap: 12px; align-items: start; border: 1px solid var(--border-soft); border-radius: 8px; background: var(--subtle); padding: 11px; }
     .image-editor-preview { display: grid; min-height: 126px; border: 1px dashed #b8c3cf; border-radius: 7px; background: #fff; color: var(--muted); font-size: .67rem; place-items: center; }
     .image-editor-preview img { display: block; max-width: 100%; max-height: 210px; object-fit: contain; }
+    .image-editor-preview.is-book-cover { justify-self: start; width: 142px; min-height: 0; aspect-ratio: 3 / 4; overflow: hidden; }
+    .image-editor-preview.is-book-cover img { width: 100%; height: 100%; max-height: none; object-fit: cover; }
     .image-editor-fields { display: grid; gap: 9px; }
     .image-editor-actions { display: flex; flex-wrap: wrap; gap: 7px; }
     .image-editor-actions input[type="file"] { display: none; }
+    .passage-media-stack { display: grid; gap: 10px; }
     .preview { max-height: 430px; overflow: auto; border: 1px solid var(--border-soft); border-radius: 8px; background: #fcfcfb; padding: 22px 30px; color: #222; font-family: Georgia, "Times New Roman", serif; font-size: .88rem; line-height: 1.7; }
     .preview h3 { margin: 0 0 18px; text-align: center; }
     .preview .preview-blurb { margin: 0 0 16px; font-style: italic; }
@@ -496,9 +499,153 @@
     }
     .math-question-image { margin-top: 10px; }
     .math-editor-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    /* Compact professional authoring shell */
+    .app-header { min-height: 60px; padding: 9px 20px; }
+    .brand-mark { width: 34px; height: 34px; border-radius: 8px; font-size: .78rem; }
+    .brand strong { font-size: .86rem; }
+    .brand small { font-size: .64rem; }
+    .save-status { padding: 7px 10px; }
+    .tabbar { position: sticky; top: 60px; z-index: 19; padding: 0 20px; box-shadow: 0 5px 14px rgb(27 44 62 / 5%); }
+    .tabbar button { padding: 10px 13px 9px; }
+    .test-shell { padding: 20px; }
+    .panel { border-radius: 12px; box-shadow: 0 7px 20px rgb(26 43 60 / 4%); }
+    .studio-page-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 13px !important; }
+    .studio-page-heading > div:first-child { display: grid; gap: 4px; }
+    .studio-eyebrow { color: var(--accent); font-size: .6rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+    .studio-heading-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+    .studio-heading-meta span { border: 1px solid var(--border); border-radius: 999px; background: #fff; color: var(--muted); padding: 6px 9px; font-size: .62rem; }
+    .studio-heading-meta strong { color: var(--heading); }
+
+    .practice-shell { max-width: 1580px; margin: 0 auto; }
+    .practice-studio-grid { grid-template-columns: minmax(0, 1fr) minmax(300px, 340px); gap: 13px; }
+    .practice-question-form { min-width: 0; margin: 0; padding: 0; }
+    .practice-form-title { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 14px; border-bottom: 1px solid var(--border-soft); }
+    .practice-form-title > div { display: grid; gap: 2px; }
+    .practice-form-title span { color: var(--accent); font-size: .57rem; font-weight: 850; letter-spacing: .07em; text-transform: uppercase; }
+    .practice-form-title h2 { margin: 0; color: var(--heading); font-size: .88rem; }
+    .practice-form-title small { color: var(--muted); font-size: .61rem; }
+    .practice-question-form > .save-row.practice-action-bar {
+      position: sticky; top: 108px; z-index: 12; margin: 0; border: 0; border-bottom: 1px solid var(--border);
+      border-radius: 0; background: rgb(255 255 255 / 96%); padding: 8px 14px;
+      box-shadow: 0 8px 18px rgb(24 42 61 / 8%);
+    }
+    .practice-action-bar small { max-width: 330px; font-size: .6rem; line-height: 1.4; }
+    .practice-action-bar .primary, .practice-action-bar .secondary { min-height: 32px; padding: 0 10px; font-size: .66rem; }
+    .practice-workflow-section { display: grid; gap: 11px; padding: 13px 14px; border-bottom: 1px solid var(--border-soft); scroll-margin-top: 160px; }
+    .practice-workflow-section:last-child { border-bottom: 0; }
+    .practice-workflow-section > header { display: grid; grid-template-columns: 25px minmax(0, 1fr); gap: 8px; align-items: center; }
+    .practice-workflow-section > header > span { display: grid; width: 25px; height: 25px; border-radius: 7px; background: var(--accent-soft); color: var(--accent); font-size: .62rem; font-weight: 850; place-items: center; }
+    .practice-workflow-section > header > div { display: grid; gap: 1px; }
+    .practice-workflow-section h3 { margin: 0; color: var(--heading); font-size: .76rem; }
+    .practice-workflow-section header p { margin: 0; color: var(--muted); font-size: .59rem; line-height: 1.35; }
+    .practice-workflow-section > header.practice-section-head { grid-template-columns: 25px minmax(0, 1fr) 132px; }
+    .practice-meta-grid { display: grid; grid-template-columns: minmax(250px, 1.15fr) minmax(130px, .55fr) minmax(190px, .8fr); gap: 9px; align-items: end; }
+    .practice-topic-control { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px; align-items: end; }
+    .topic-manage-trigger { min-height: 34px; padding: 0 9px; white-space: nowrap; }
+    .practice-content-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(250px, .7fr); gap: 9px; align-items: stretch; }
+    .practice-passage-input { min-height: 150px; }
+    .practice-content-grid #practice-prompt { min-height: 150px; resize: vertical; }
+    .practice-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .practice-choice-grid textarea { min-height: 64px; resize: vertical; }
+    .practice-choice-grid label > span { justify-content: flex-start; }
+    .practice-choice-grid b { display: grid; width: 20px; height: 20px; border-radius: 5px; background: #e7edf2; color: #3e5369; font-size: .61rem; place-items: center; }
+    .practice-correct-field { min-width: 0; }
+    .practice-correct-field select { padding-top: 7px; padding-bottom: 7px; }
+    .practice-correct-explanation textarea { min-height: 72px; resize: vertical; }
+    .practice-explanation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .practice-explanation-grid textarea { min-height: 72px; resize: vertical; }
+    .practice-side-column { position: sticky; top: 120px; max-height: calc(100vh - 132px); gap: 12px; overflow: auto; padding-right: 2px; }
+    .practice-side-column .panel { padding: 13px; }
+    .practice-side-column .panel-head { margin-bottom: 10px; }
+    .practice-side-column .panel-head > div { gap: 2px; }
+    .practice-side-column .field { margin-bottom: 8px; }
+    .practice-quick-paste { min-height: 210px; max-height: 310px; resize: vertical; }
+    .practice-paste-actions button { flex: 1; min-height: 32px; padding: 0 8px; font-size: .64rem; }
+    .practice-code-preview { min-height: 180px; max-height: 280px; padding: 11px; }
+
+    .passage-layout { grid-template-columns: 260px minmax(0, 1fr); }
+    .sidebar { position: sticky; top: 108px; align-self: start; height: calc(100vh - 108px); overflow: auto; padding: 14px; }
+    .editor { min-width: 0; padding: 16px; }
+    .content-editor-heading { align-items: center; margin-bottom: 11px; }
+    .content-editor-heading .source-path { max-width: min(46vw, 620px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .content-editor-command-bar {
+      position: sticky; top: 108px; z-index: 14; display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; margin-bottom: 12px; border: 1px solid var(--border); border-radius: 10px;
+      background: rgb(255 255 255 / 96%); padding: 8px; box-shadow: 0 8px 22px rgb(23 41 58 / 10%);
+      backdrop-filter: blur(10px);
+    }
+    .content-editor-command-bar nav, .content-editor-command-bar > div { display: flex; flex-wrap: wrap; gap: 5px; }
+    .content-editor-command-bar nav button {
+      min-height: 31px; border: 0; border-radius: 6px; background: transparent; color: var(--muted);
+      padding: 0 8px; font-size: .63rem; font-weight: 780;
+    }
+    .content-editor-command-bar nav button:hover { background: var(--accent-soft); color: var(--accent); }
+    .content-editor-command-bar nav span { border-radius: 999px; background: #e7edf2; padding: 2px 5px; font-size: .54rem; }
+    .content-editor-command-bar .primary, .content-editor-command-bar .secondary { min-height: 32px; padding: 0 9px; font-size: .64rem; }
+    .content-editor-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(285px, 330px); gap: 12px; align-items: start; }
+    .content-editor-main { display: grid; min-width: 0; gap: 11px; }
+    .content-editor-main > .panel, .content-editor-preview-column .panel { margin: 0; padding: 14px; }
+    .content-editor-section { scroll-margin-top: 162px; }
+    .content-editor-section .panel-head { margin-bottom: 10px; }
+    .content-editor-basic-grid { grid-template-columns: minmax(250px, 1.15fr) minmax(210px, .85fr); gap: 9px; }
+    .content-editor-basic-grid .wide { grid-column: 1; }
+    .content-editor-basic-grid textarea { min-height: 64px; resize: vertical; }
+    .content-editor-details { padding: 0 !important; overflow: hidden; }
+    .content-editor-details > summary {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 14px;
+      cursor: pointer; list-style: none;
+    }
+    .content-editor-details > summary::-webkit-details-marker { display: none; }
+    .content-editor-details > summary > span { display: grid; gap: 2px; }
+    .content-editor-details > summary strong { color: var(--heading); font-size: .76rem; }
+    .content-editor-details > summary small { color: var(--muted); font-size: .59rem; font-weight: 500; line-height: 1.35; }
+    .content-editor-details > summary > b { color: var(--muted); transition: transform .16s ease; }
+    .content-editor-details[open] > summary > b { transform: rotate(180deg); }
+    .content-editor-details[open] > summary { border-bottom: 1px solid var(--border-soft); background: #fbfcfd; }
+    .content-editor-details > .field-grid, .content-editor-details > .image-editor, .content-editor-details > .passage-media-stack { margin: 12px 14px 14px; }
+    .content-editor-settings-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+    .content-editor-settings-grid .wide { grid-column: span 2; }
+    .passage-content-editor { min-height: 230px; max-height: 520px; overflow: auto; }
+    .content-editor-question-heading { align-items: end; }
+    .content-editor-question-heading > button { flex: 0 0 auto; min-height: 32px; }
+    .content-editor-preview-column { position: sticky; top: 161px; min-width: 0; scroll-margin-top: 162px; }
+    .content-editor-preview-column .preview { max-height: calc(100vh - 250px); min-height: 360px; padding: 17px 19px; }
+    .content-editor-main .question-list { gap: 9px; }
+    .content-editor-main .question-card { padding: 11px; }
+    .content-editor-main .question-card > header { margin-bottom: 9px; }
+    .content-editor-main .question-type-row { grid-template-columns: minmax(220px, .55fr) minmax(180px, 1fr); margin-bottom: 8px; }
+    .content-editor-main .question-grid { grid-template-columns: minmax(170px, .42fr) minmax(250px, 1fr); gap: 8px; }
+    .content-editor-main .question-grid textarea { min-height: 72px; }
+    .content-editor-main .rich-editor-content.is-compact { min-height: 62px; }
+    .content-topic-dialog .topic-manager-row { grid-template-columns: 30px minmax(0, 1fr) auto; }
+    .content-topic-dialog .topic-manager-row small { grid-column: 2; }
+
+    .topic-manager-dialog { width: min(94vw, 780px); max-height: 88vh; border: 0; border-radius: 14px; background: #fff; padding: 0; color: var(--text); box-shadow: 0 24px 80px rgb(17 35 53 / 30%); }
+    .topic-manager-dialog::backdrop { background: rgb(14 31 48 / 48%); backdrop-filter: blur(2px); }
+    .topic-manager-shell { display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto; max-height: 88vh; }
+    .topic-manager-shell > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; border-bottom: 1px solid var(--border); padding: 17px 18px 14px; }
+    .topic-manager-shell > header > div { display: grid; gap: 4px; }
+    .topic-manager-shell h2 { margin: 0; color: var(--heading); font-size: 1rem; }
+    .topic-manager-shell header p { max-width: 620px; margin: 0; color: var(--muted); font-size: .66rem; line-height: 1.45; }
+    .topic-manager-safety { display: flex; gap: 8px; margin: 12px 18px 0; border: 1px solid #d7e6e2; border-radius: 8px; background: #f3f9f7; padding: 9px 10px; color: var(--muted); font-size: .63rem; line-height: 1.4; }
+    .topic-manager-safety strong { flex: 0 0 auto; color: var(--accent); }
+    .topic-manager-list { display: grid; align-content: start; gap: 7px; overflow: auto; padding: 12px 18px; }
+    .topic-manager-row { display: grid; grid-template-columns: 30px minmax(160px, .72fr) minmax(240px, 1.28fr) auto; gap: 8px; align-items: center; border: 1px solid var(--border-soft); border-radius: 9px; background: var(--subtle); padding: 8px; }
+    .topic-manager-index { display: grid; width: 27px; height: 27px; border-radius: 7px; background: #e6ecef; color: #506477; font-size: .61rem; font-weight: 850; place-items: center; }
+    .topic-manager-row label { display: grid; gap: 3px; color: var(--muted); font-size: .56rem; font-weight: 750; }
+    .topic-manager-row input { padding: 7px 8px; font-size: .68rem; }
+    .topic-manager-row-actions { display: flex; gap: 4px; }
+    .topic-manager-row-actions button { min-width: 31px; min-height: 31px; padding: 0 7px; }
+    .topic-manager-row-actions .danger { min-width: 74px; }
+    .topic-manager-row-actions .danger.is-confirming { border-color: var(--danger); background: var(--danger); color: #fff; }
+    .topic-manager-row small { grid-column: 2 / 4; color: var(--muted); font-size: .57rem; }
+    .topic-manager-row small strong { color: var(--heading); }
+    .topic-manager-shell > footer { display: grid; grid-template-columns: auto 1fr auto auto; gap: 8px; border-top: 1px solid var(--border); background: #fbfcfd; padding: 11px 18px; }
+    .topic-manager-empty { margin: 18px 0; color: var(--muted); font-size: .7rem; text-align: center; }
     @media (max-width: 860px) {
       .passage-layout, .test-grid, .practice-studio-grid { grid-template-columns: 1fr; }
-      .sidebar { border-right: 0; border-bottom: 1px solid var(--border); }
+      .sidebar { position: static; height: auto; max-height: 320px; border-right: 0; border-bottom: 1px solid var(--border); }
       .passage-list { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
       .field-grid, .question-grid, .choices { grid-template-columns: 1fr; }
       .question-type-row, .category-item-row { grid-template-columns: 1fr; }
@@ -516,7 +663,21 @@
       .math-dropdown-sentence-grid { grid-template-columns: 1fr; }
       .math-dropdown-menu-marker { justify-items: start; padding-top: 0; text-align: left; }
       .math-dropdown-menu-marker select { width: min(100%, 190px); }
-      .practice-side-column { order: -1; }
+      .practice-side-column { position: static; order: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); max-height: none; overflow: visible; padding: 0; }
+      .practice-meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .practice-topic-control { grid-column: 1 / -1; }
+      .practice-content-grid { grid-template-columns: 1fr; }
+      .practice-content-grid #practice-prompt { min-height: 100px; }
+      .practice-explanation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topic-manager-row { grid-template-columns: 30px minmax(0, 1fr) auto; }
+      .topic-manager-row label:nth-of-type(2) { grid-column: 2 / 4; }
+      .topic-manager-row small { grid-column: 2 / 4; }
+      .content-editor-layout { grid-template-columns: 1fr; }
+      .content-editor-main .question-type-row, .content-editor-main .question-grid { grid-template-columns: 1fr; }
+      .content-editor-preview-column { position: static; }
+      .content-editor-preview-column .preview { min-height: 260px; max-height: 480px; }
+      .content-editor-basic-grid, .content-editor-settings-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .content-editor-basic-grid .wide, .content-editor-settings-grid .wide { grid-column: 1 / -1; }
     }
     @media (max-width: 560px) {
       .app-header { align-items: flex-start; flex-direction: column; padding: 13px 16px; }
@@ -535,6 +696,26 @@
       .field-input-action { grid-template-columns: 1fr; }
       .math-dropdown-option-heading, .math-dropdown-option-row { grid-template-columns: 44px minmax(0, 1fr); }
       .math-dropdown-option-row > .danger { grid-column: 2; justify-self: start; }
+      .studio-page-heading, .practice-form-title { align-items: flex-start; flex-direction: column; }
+      .practice-question-form > .save-row.practice-action-bar { position: static; justify-content: stretch; }
+      .practice-action-bar small { width: 100%; max-width: none; }
+      .practice-action-bar button { flex: 1; }
+      .practice-meta-grid, .practice-choice-grid, .practice-explanation-grid, .practice-side-column { grid-template-columns: 1fr; }
+      .practice-topic-control { grid-column: 1; grid-template-columns: 1fr; }
+      .practice-workflow-section > header.practice-section-head { grid-template-columns: 25px minmax(0, 1fr); }
+      .practice-workflow-section > header.practice-section-head .practice-correct-field { grid-column: 2; }
+      .topic-manager-dialog { width: calc(100vw - 16px); max-height: 94vh; }
+      .topic-manager-shell { max-height: 94vh; }
+      .topic-manager-row { grid-template-columns: 28px minmax(0, 1fr); }
+      .topic-manager-row label:nth-of-type(2), .topic-manager-row-actions, .topic-manager-row small { grid-column: 2; }
+      .topic-manager-shell > footer { grid-template-columns: 1fr 1fr; }
+      .topic-manager-shell > footer span { display: none; }
+      .content-editor-command-bar { position: static; align-items: stretch; flex-direction: column; }
+      .content-editor-command-bar nav, .content-editor-command-bar > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .content-editor-basic-grid, .content-editor-settings-grid { grid-template-columns: 1fr; }
+      .content-editor-basic-grid .wide, .content-editor-settings-grid .wide { grid-column: 1; }
+      .content-editor-heading .source-path { max-width: 100%; }
+      .content-topic-dialog .topic-manager-row { grid-template-columns: 28px minmax(0, 1fr); }
     }
   </style>
 </head>
@@ -626,49 +807,76 @@
     </section>
 
     <section class="view" id="practice-view">
-      <div class="test-shell">
-        <header>
-          <h1>Regular practice question bank</h1>
-          <p>Create a question once, validate its answer key and explanations, then write it to the selected topic and difficulty bank.</p>
+      <div class="test-shell practice-shell">
+        <header class="studio-page-heading">
+          <div>
+            <span class="studio-eyebrow">Content library</span>
+            <h1>Regular practice editor</h1>
+            <p>Create, validate, and publish repeatable practice questions without leaving the authoring workspace.</p>
+          </div>
+          <div class="studio-heading-meta" aria-label="Practice library summary">
+            <span><strong id="practice-topic-count">0</strong> topics</span>
+            <span><strong>4</strong> difficulty levels</span>
+          </div>
         </header>
         <div class="practice-studio-grid">
           <form class="panel practice-question-form" id="practice-question-form">
-            <div class="panel-head">
-              <div><h2>Question details</h2><small>Every field is checked before a source file changes.</small></div>
+            <div class="practice-form-title">
+              <div><span>Question authoring</span><h2>Build one practice question</h2></div>
+              <small>Drafts save automatically on this device.</small>
             </div>
-            <div class="field-grid">
-              <label class="field"><span>Topic</span><select id="practice-topic" required></select></label>
-              <label class="field"><span>Difficulty</span><select id="practice-difficulty" required></select></label>
-              <label class="field wide"><span>Question ID <small>Suggested automatically</small></span><input id="practice-question-id" pattern="[a-z0-9-]+" required></label>
-              <label class="field wide"><span>Passage</span><textarea class="practice-passage-input" id="practice-stimulus" placeholder="Paste the complete passage here." required></textarea></label>
-              <label class="field wide"><span>Question</span><textarea id="practice-prompt" placeholder="Paste the question here." required></textarea></label>
+            <div class="save-row practice-action-bar">
+              <small>Preview validates the exact draft before any source file changes.</small>
+              <button class="secondary" id="practice-clear" type="button">Clear draft</button>
+              <button class="secondary" id="practice-preview-button" type="submit">Preview &amp; validate</button>
+              <button class="primary" disabled id="practice-write-button" type="button">Publish question</button>
             </div>
-            <div class="panel-head practice-section-head">
-              <div><h2>Answer choices</h2><small>Mark the correct answer, then explain every distractor.</small></div>
-              <label class="field practice-correct-field"><span>Correct answer</span><select id="practice-correct-choice"><option>A</option><option>B</option><option>C</option><option>D</option></select></label>
-            </div>
-            <div class="field-grid">
-              <label class="field"><span>Answer A</span><textarea id="practice-choice-a" required></textarea></label>
-              <label class="field"><span>Answer B</span><textarea id="practice-choice-b" required></textarea></label>
-              <label class="field"><span>Answer C</span><textarea id="practice-choice-c" required></textarea></label>
-              <label class="field"><span>Answer D</span><textarea id="practice-choice-d" required></textarea></label>
-              <label class="field wide"><span>Why the correct answer works</span><textarea id="practice-explanation" required></textarea></label>
-              <label class="field" data-practice-wrong="A"><span>Why A is wrong</span><textarea id="practice-wrong-a"></textarea></label>
-              <label class="field" data-practice-wrong="B"><span>Why B is wrong</span><textarea id="practice-wrong-b"></textarea></label>
-              <label class="field" data-practice-wrong="C"><span>Why C is wrong</span><textarea id="practice-wrong-c"></textarea></label>
-              <label class="field" data-practice-wrong="D"><span>Why D is wrong</span><textarea id="practice-wrong-d"></textarea></label>
-            </div>
-            <div class="save-row">
-              <small>Preview first; writing is enabled only for the exact validated draft.</small>
-              <button class="secondary" id="practice-clear" type="button">Clear for next question</button>
-              <button class="secondary" id="practice-preview-button" type="submit">Preview TypeScript</button>
-              <button class="primary" disabled id="practice-write-button" type="button">Write to question bank</button>
-            </div>
+
+            <section class="practice-workflow-section" id="practice-basics">
+              <header><span>1</span><div><h3>Basic information</h3><p>Choose where this question belongs and confirm its reusable ID.</p></div></header>
+              <div class="practice-meta-grid">
+                <div class="practice-topic-control">
+                  <label class="field"><span>Topic</span><select id="practice-topic" required></select></label>
+                  <button aria-haspopup="dialog" class="secondary topic-manage-trigger" id="practice-manage-topics" type="button">Manage topics</button>
+                </div>
+                <label class="field"><span>Difficulty</span><select id="practice-difficulty" required></select></label>
+                <label class="field"><span>Question ID <small>Suggested automatically</small></span><input id="practice-question-id" pattern="[a-z0-9-]+" required></label>
+              </div>
+            </section>
+
+            <section class="practice-workflow-section" id="practice-content">
+              <header><span>2</span><div><h3>Question content</h3><p>Keep the source passage and student prompt together while editing.</p></div></header>
+              <div class="practice-content-grid">
+                <label class="field"><span>Passage</span><textarea class="practice-passage-input" id="practice-stimulus" placeholder="Paste the complete passage here." required></textarea></label>
+                <label class="field"><span>Question</span><textarea id="practice-prompt" placeholder="Paste the question here." required></textarea></label>
+              </div>
+            </section>
+
+            <section class="practice-workflow-section" id="practice-answers">
+              <header class="practice-section-head"><span>3</span><div><h3>Answer choices</h3><p>Enter all four options and identify the correct response.</p></div><label class="field practice-correct-field"><span>Correct answer</span><select id="practice-correct-choice"><option>A</option><option>B</option><option>C</option><option>D</option></select></label></header>
+              <div class="practice-choice-grid">
+                <label class="field"><span><b>A</b> Answer choice</span><textarea id="practice-choice-a" required></textarea></label>
+                <label class="field"><span><b>B</b> Answer choice</span><textarea id="practice-choice-b" required></textarea></label>
+                <label class="field"><span><b>C</b> Answer choice</span><textarea id="practice-choice-c" required></textarea></label>
+                <label class="field"><span><b>D</b> Answer choice</span><textarea id="practice-choice-d" required></textarea></label>
+              </div>
+            </section>
+
+            <section class="practice-workflow-section" id="practice-explanations">
+              <header><span>4</span><div><h3>Explanations</h3><p>Explain the correct reasoning and each distractor students may choose.</p></div></header>
+              <label class="field practice-correct-explanation"><span>Why the correct answer works</span><textarea id="practice-explanation" required></textarea></label>
+              <div class="practice-explanation-grid">
+                <label class="field" data-practice-wrong="A"><span>Why A is wrong</span><textarea id="practice-wrong-a"></textarea></label>
+                <label class="field" data-practice-wrong="B"><span>Why B is wrong</span><textarea id="practice-wrong-b"></textarea></label>
+                <label class="field" data-practice-wrong="C"><span>Why C is wrong</span><textarea id="practice-wrong-c"></textarea></label>
+                <label class="field" data-practice-wrong="D"><span>Why D is wrong</span><textarea id="practice-wrong-d"></textarea></label>
+              </div>
+            </section>
           </form>
 
-          <div class="practice-side-column">
-            <section class="panel">
-              <div class="panel-head"><div><h2>One-box paste</h2><small>Paste a labeled question and fill every form field at once.</small></div></div>
+          <aside class="practice-side-column">
+            <section class="panel practice-paste-panel">
+              <div class="panel-head"><div><span class="studio-eyebrow">Fast entry</span><h2>One-box paste</h2><small>Paste a labeled question and fill every field at once.</small></div></div>
               <label class="field">
                 <span>Question template</span>
                 <textarea class="practice-quick-paste" id="practice-quick-paste" spellcheck="false" placeholder="PASSAGE:
@@ -698,16 +906,50 @@ Why D is wrong."></textarea>
                 <button class="secondary" id="practice-copy-template" type="button">Copy blank template</button>
               </div>
             </section>
-            <section class="panel">
-              <div class="panel-head"><div><h2>TypeScript preview</h2><small>Nothing is written until you confirm the validated preview.</small></div></div>
+            <section class="panel practice-preview-panel">
+              <div class="panel-head"><div><span class="studio-eyebrow">Validation</span><h2>Publish preview</h2><small>Nothing is written until you confirm the validated draft.</small></div></div>
               <p class="practice-target"><span>Target file</span><strong id="practice-target">Preview a question to choose a file.</strong></p>
               <pre class="practice-code-preview" id="practice-code-preview">Your generated PracticeQuestion object will appear here.</pre>
             </section>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
   </main>
+
+  <dialog aria-labelledby="practice-topic-dialog-title" class="topic-manager-dialog" id="practice-topic-dialog">
+    <div class="topic-manager-shell">
+      <header>
+        <div><span class="studio-eyebrow">Categorization</span><h2 id="practice-topic-dialog-title">Manage practice topics</h2><p>Add, rename, describe, remove, or reorder the topics shown in the question editor and student library.</p></div>
+        <button aria-label="Close topic manager" class="icon-button" id="practice-topic-close" type="button">×</button>
+      </header>
+      <div class="topic-manager-safety"><strong>Protected changes</strong><span>Edits are staged until you choose Save topics. A topic containing questions cannot be removed.</span></div>
+      <div class="topic-manager-list" id="practice-topic-list"></div>
+      <footer>
+        <button class="secondary" id="practice-topic-add" type="button">+ Add topic</button>
+        <span></span>
+        <button class="secondary" id="practice-topic-cancel" type="button">Cancel</button>
+        <button class="primary" id="practice-topic-save" type="button">Save topics</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog aria-labelledby="content-topic-dialog-title" class="topic-manager-dialog content-topic-dialog" id="content-topic-dialog">
+    <div class="topic-manager-shell">
+      <header>
+        <div><span class="studio-eyebrow">Question categorization</span><h2 id="content-topic-dialog-title">Manage question topics</h2><p>Control the ordered Topic dropdown used by exam passages, advanced practice, and Part B questions.</p></div>
+        <button aria-label="Close question topic manager" class="icon-button" id="content-topic-close" type="button">×</button>
+      </header>
+      <div class="topic-manager-safety"><strong>Protected changes</strong><span>Renames update existing question records when saved. Topics in use cannot be removed, and removals require confirmation.</span></div>
+      <div class="topic-manager-list" id="content-topic-list"></div>
+      <footer>
+        <button class="secondary" id="content-topic-add" type="button">+ Add topic</button>
+        <span></span>
+        <button class="secondary" id="content-topic-cancel" type="button">Cancel</button>
+        <button class="primary" id="content-topic-save" type="button">Save topics</button>
+      </footer>
+    </div>
+  </dialog>
 
   <section aria-label="Student exam preview" aria-modal="true" class="student-preview-modal" id="student-preview-modal" role="dialog" hidden>
     <header>
@@ -750,6 +992,12 @@ Why D is wrong."></textarea>
       studentStyles: "",
       practiceBusy: false,
       practicePreview: null,
+      practiceTopicBusy: false,
+      practiceTopicDeleteConfirm: "",
+      practiceTopicDrafts: null,
+      contentTopicBusy: false,
+      contentTopicDeleteConfirm: "",
+      contentTopicDrafts: null,
     };
 
     const $ = (selector, root = document) => root.querySelector(selector);
@@ -944,10 +1192,12 @@ Why D is wrong."></textarea>
         exportName: "",
         fileName: "",
         format: "prose",
+        coverImage: undefined,
         id: "",
         image: undefined,
         label: "",
         passageSetId: "",
+        passageType: "informational",
         questions: [defaultQuestion("passage", 1)],
         richText: "",
         sourceHash: "",
@@ -1717,8 +1967,10 @@ Rules:
       if (requestedPassageMode && requestedPassageMode !== app.passageMode) {
         if (!confirmDiscard()) return;
         app.passageMode = requestedPassageMode;
-        app.selectedPassageId = "";
-        app.passageDraft = null;
+        const sourcePassages = requestedPassageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
+        const firstPassage = sourcePassages[0];
+        app.selectedPassageId = firstPassage?.id || "";
+        app.passageDraft = firstPassage ? clone(firstPassage) : null;
         app.passageDirty = false;
         updatePassageWorkspaceLabels();
         renderPassageList();
@@ -1806,6 +2058,11 @@ Rules:
       return app.state.passageFormats.map((format) => `<option ${format === selected ? "selected" : ""} value="${format}">${labels[format]}</option>`).join("");
     }
 
+    function passageTypeOptions(selected) {
+      const labels = { informational: "Informational", literary: "Literary", poem: "Poem", long_reading: "Long reading" };
+      return app.state.passageTypes.map((type) => `<option ${type === selected ? "selected" : ""} value="${type}">${labels[type]}</option>`).join("");
+    }
+
     function renderPassageEditor() {
       const passage = app.passageDraft;
       if (!passage) {
@@ -1827,7 +2084,7 @@ Rules:
           `
         : "";
       $("#passage-editor").innerHTML = `
-        <div class="editor-head">
+        <div class="editor-head content-editor-heading">
           <div>
             <h1>${passage.sourceHash ? "Edit" : "Create"} ${advanced ? "advanced-practice" : "exam"} passage</h1>
             <p>${advanced ? "Create the library card, passage, and complete question set in one place." : "Paste clean text, preserve the intended layout, and add every answer choice and correct answer before saving."}</p>
@@ -1835,66 +2092,107 @@ Rules:
           <span class="source-path">${escapeHtml(passage.fileName ? `${sourceFolder}/${passage.fileName}` : "New .ts source file")}</span>
         </div>
 
-        <section class="panel">
-          <div class="panel-head"><div><h2>Passage details</h2><small>These values become the identifiers and labels used throughout ${advanced ? "advanced practice" : "an exam"}.</small></div></div>
-          <div class="field-grid">
-            <label class="field"><span>Passage title</span><input data-field="title" value="${escapeHtml(passage.title)}" placeholder="The title students see"></label>
-            <label class="field"><span>Passage ID</span>
-              <div class="field-input-action">
-                <input data-field="id" value="${escapeHtml(passage.id)}" placeholder="lowercase-passage-id">
-                <button class="secondary" id="generate-passage-id" type="button">Generate from title</button>
-              </div>
-            </label>
-            ${advancedFields}
-            <label class="field wide"><span>Blurb above title <small>Optional · shown in italics</small></span><textarea data-field="blurb" placeholder="Brief context students should read before the title">${escapeHtml(passage.blurb || "")}</textarea></label>
-            <label class="field"><span>Subtitle / author <small>Optional · “by” is added automatically</small></span><input data-field="author" value="${escapeHtml(passage.author || "")}" placeholder="Author name"></label>
-            <label class="field"><span>Formatting type</span><select data-field="format">${formatOptions(passage.format)}</select></label>
-            <label class="field"><span>Source or copyright note <small>Optional</small></span><input data-field="sourceNote" value="${escapeHtml(passage.sourceNote)}" placeholder="Publication, adaptation, or copyright note"></label>
-            <label class="field"><span>Passage-set ID</span><input data-field="passageSetId" value="${escapeHtml(passage.passageSetId)}" placeholder="ela-passage-name"></label>
-            <label class="field"><span>Section label <small>Optional</small></span><input data-field="label" value="${escapeHtml(passage.label)}" placeholder="Reading Comprehension"></label>
-            <div class="image-editor wide">
-              <div class="image-editor-preview">
-                ${passage.image ? `<img alt="${escapeHtml(passage.image.alt)}" src="${escapeHtml(passage.image.src)}">` : "<span>No passage image</span>"}
-              </div>
-              <div class="image-editor-fields">
-                <strong>Passage image <small class="field-note">Optional · shown below the source footer · PNG, JPEG, GIF, WebP, or SVGZ up to 5 MB</small></strong>
-                <div class="image-editor-actions">
-                  <label class="secondary">Choose image<input accept=".svgz,image/gif,image/jpeg,image/png,image/svg+xml,image/webp" id="passage-image-file" type="file"></label>
-                  ${passage.image ? `<button class="danger" id="remove-passage-image" type="button">Remove image</button>` : ""}
-                </div>
-                <label class="field"><span>Image description for accessibility</span><input data-image-field="alt" ${passage.image ? "" : "disabled"} value="${escapeHtml(passage.image?.alt || "")}" placeholder="Describe what the image shows"></label>
-                <label class="field"><span>Caption <small>Optional</small></span><input data-image-field="caption" ${passage.image ? "" : "disabled"} value="${escapeHtml(passage.image?.caption || "")}" placeholder="Caption shown below the image"></label>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel">
-          <div class="panel-head"><div><h2>Paste passage</h2><small id="format-note"></small></div></div>
-          <div class="passage-toolbar">
-            <button class="secondary" id="paste-clipboard" type="button">Paste plain text</button>
+        <div class="content-editor-command-bar">
+          <nav aria-label="Editor section navigation">
+            <button data-editor-jump="passage-information" type="button">Information</button>
+            <button data-editor-jump="passage-content" type="button">Passage</button>
+            <button data-editor-jump="passage-questions" type="button">Questions <span>${passage.questions.length}</span></button>
+            <button data-editor-jump="passage-preview-panel" type="button">Preview</button>
+          </nav>
+          <div>
             <button class="secondary" id="refresh-preview" type="button">Refresh preview</button>
-            <button class="primary" id="open-student-preview" type="button">Open student exam preview</button>
+            <button class="secondary" id="open-student-preview" type="button">Student view</button>
+            <button class="secondary" id="add-question" type="button">+ Add question</button>
+            <button class="primary" id="save-passage" type="button">${app.saving ? "Saving…" : "Save to code"}</button>
           </div>
-          <div class="rich-editor-shell">
-            ${richToolbarHtml("Passage formatting")}
-            <div class="rich-editor-content" contenteditable="true" data-placeholder="Paste or type the complete passage here." data-rich-kind="passage" id="passage-rich-editor" role="textbox">${passage.richText || plainTextToRich(passage.text, passage.format)}</div>
-          </div>
-          <small class="field-note">Paste with Ctrl+V to retain bold, italic, underline, superscript, and other supported formatting.</small>
-          <div class="preview" id="passage-preview"></div>
-        </section>
+        </div>
 
-        <section class="panel">
-          <div class="panel-head">
-            <div><h2>Answer questions</h2><small>Rich formatting works in prompts, choices, and category cards.</small></div>
-          </div>
-          <div class="question-list" id="question-list"></div>
-        </section>
+        <div class="content-editor-layout">
+          <div class="content-editor-main">
+            <section class="panel content-editor-section" id="passage-information">
+              <div class="panel-head"><div><span class="studio-eyebrow">Basic information</span><h2>Passage identity</h2><small>The student-facing title and stable source identifiers.</small></div></div>
+              <div class="field-grid content-editor-basic-grid">
+                <label class="field"><span>Passage title</span><input data-field="title" value="${escapeHtml(passage.title)}" placeholder="The title students see"></label>
+                <label class="field"><span>Passage ID</span>
+                  <div class="field-input-action">
+                    <input data-field="id" value="${escapeHtml(passage.id)}" placeholder="lowercase-passage-id">
+                    <button class="secondary" id="generate-passage-id" type="button">Generate</button>
+                  </div>
+                </label>
+                <label class="field wide"><span>Blurb above title <small>Optional · shown in italics</small></span><textarea data-field="blurb" placeholder="Brief context students should read before the title">${escapeHtml(passage.blurb || "")}</textarea></label>
+                <label class="field"><span>Subtitle / author <small>Optional · “by” is added automatically</small></span><input data-field="author" value="${escapeHtml(passage.author || "")}" placeholder="Author name"></label>
+              </div>
+            </section>
 
-        <div class="save-row">
-          <small>Saving rewrites this passage’s TypeScript source in a consistent, editable format.</small>
-          <button class="secondary" id="add-question" type="button">+ Add question</button>
-          <button class="primary" id="save-passage" type="button">${app.saving ? "Saving…" : "Write passage into code"}</button>
+            <details class="panel content-editor-details" open>
+              <summary><span><span class="studio-eyebrow">Categorization &amp; settings</span><strong>Library and source metadata</strong><small>Format, placement, source information${advanced ? ", and advanced-practice card settings" : ""}.</small></span><b>⌄</b></summary>
+              <div class="field-grid content-editor-settings-grid">
+                ${advancedFields}
+                <label class="field"><span>Library passage type</span><select data-field="passageType">${passageTypeOptions(passage.passageType)}</select><small class="field-note">Controls the Study Hall tag and shelf.</small></label>
+                <label class="field"><span>Formatting type</span><select data-field="format">${formatOptions(passage.format)}</select></label>
+                <label class="field"><span>Section label <small>Optional</small></span><input data-field="label" value="${escapeHtml(passage.label)}" placeholder="Reading Comprehension"></label>
+                <label class="field"><span>Passage-set ID</span><input data-field="passageSetId" value="${escapeHtml(passage.passageSetId)}" placeholder="ela-passage-name"></label>
+                <label class="field"><span>Source or copyright note <small>Optional</small></span><input data-field="sourceNote" value="${escapeHtml(passage.sourceNote)}" placeholder="Publication, adaptation, or copyright note"></label>
+              </div>
+            </details>
+
+            <details class="panel content-editor-details">
+              <summary><span><span class="studio-eyebrow">Media &amp; visuals</span><strong>Book cover &amp; passage image</strong><small>Keep the Study Hall cover separate from any image students see inside the passage.</small></span><b>⌄</b></summary>
+              <div class="passage-media-stack">
+                <div class="image-editor">
+                  <div class="image-editor-preview is-book-cover">
+                    ${passage.coverImage ? `<img alt="${escapeHtml(passage.coverImage.alt)}" src="${escapeHtml(passage.coverImage.src)}">` : "<span>No book cover</span>"}
+                  </div>
+                  <div class="image-editor-fields">
+                    <strong>Study Hall book cover <small class="field-note">Recommended: 900 × 1200 px (3:4 portrait) · shown behind the standard cover text</small></strong>
+                    <div class="image-editor-actions">
+                      <label class="secondary">Choose cover<input accept=".svgz,image/gif,image/jpeg,image/png,image/svg+xml,image/webp" id="passage-cover-file" type="file"></label>
+                      ${passage.coverImage ? `<button class="danger" id="remove-passage-cover" type="button">Remove cover</button>` : ""}
+                    </div>
+                    <label class="field"><span>Cover description for accessibility</span><input data-cover-image-field="alt" ${passage.coverImage ? "" : "disabled"} value="${escapeHtml(passage.coverImage?.alt || "")}" placeholder="Describe the book cover"></label>
+                  </div>
+                </div>
+                <div class="image-editor">
+                  <div class="image-editor-preview">
+                    ${passage.image ? `<img alt="${escapeHtml(passage.image.alt)}" src="${escapeHtml(passage.image.src)}">` : "<span>No passage image</span>"}
+                  </div>
+                  <div class="image-editor-fields">
+                    <strong>Passage image <small class="field-note">Shown inside the passage · PNG, JPEG, GIF, WebP, or SVGZ up to 5 MB</small></strong>
+                    <div class="image-editor-actions">
+                      <label class="secondary">Choose image<input accept=".svgz,image/gif,image/jpeg,image/png,image/svg+xml,image/webp" id="passage-image-file" type="file"></label>
+                      ${passage.image ? `<button class="danger" id="remove-passage-image" type="button">Remove image</button>` : ""}
+                    </div>
+                    <label class="field"><span>Image description for accessibility</span><input data-image-field="alt" ${passage.image ? "" : "disabled"} value="${escapeHtml(passage.image?.alt || "")}" placeholder="Describe what the image shows"></label>
+                    <label class="field"><span>Caption <small>Optional</small></span><input data-image-field="caption" ${passage.image ? "" : "disabled"} value="${escapeHtml(passage.image?.caption || "")}" placeholder="Caption shown below the image"></label>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <section class="panel content-editor-section" id="passage-content">
+              <div class="panel-head"><div><span class="studio-eyebrow">Question content</span><h2>Passage text</h2><small id="format-note"></small></div><button class="secondary" id="paste-clipboard" type="button">Paste plain text</button></div>
+              <div class="rich-editor-shell">
+                ${richToolbarHtml("Passage formatting")}
+                <div class="rich-editor-content passage-content-editor" contenteditable="true" data-placeholder="Paste or type the complete passage here." data-rich-kind="passage" id="passage-rich-editor" role="textbox">${passage.richText || plainTextToRich(passage.text, passage.format)}</div>
+              </div>
+              <small class="field-note">Paste with Ctrl+V to retain bold, italic, underline, superscript, and other supported formatting.</small>
+            </section>
+
+            <section class="panel content-editor-section" id="passage-questions">
+              <div class="panel-head content-editor-question-heading">
+                <div><span class="studio-eyebrow">Answer choices &amp; scoring</span><h2>Questions</h2><small>Rich formatting works in prompts, choices, and category cards.</small></div>
+                <button class="secondary" id="manage-content-topics" type="button">Manage topics</button>
+              </div>
+              <div class="question-list" id="question-list"></div>
+            </section>
+          </div>
+
+          <aside class="content-editor-preview-column" id="passage-preview-panel">
+            <section class="panel">
+              <div class="panel-head"><div><span class="studio-eyebrow">Live preview</span><h2>Student passage</h2><small>Refreshes while you edit. Use Student view for the complete exam experience.</small></div></div>
+              <div class="preview" id="passage-preview"></div>
+            </section>
+          </aside>
         </div>
       `;
       bindPassageFields();
@@ -1923,6 +2221,12 @@ Rules:
       $("#paste-clipboard").addEventListener("click", pasteFromClipboard);
       $("#open-student-preview").addEventListener("click", openStudentPreview);
       $("#save-passage").addEventListener("click", savePassage);
+      $("#manage-content-topics").addEventListener("click", openContentTopicManager);
+      $$("[data-editor-jump]", $("#passage-editor")).forEach((button) => {
+        button.addEventListener("click", () => {
+          document.getElementById(button.dataset.editorJump)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
     }
 
     function markDirty() {
@@ -1935,8 +2239,16 @@ Rules:
       $$("[data-field]", $("#passage-editor")).forEach((element) => {
         element.addEventListener("input", () => {
           app.passageDraft[element.dataset.field] = element.value;
+          if (element.dataset.field === "passageType" && element.value === "poem" && app.passageDraft.format !== "poem") {
+            app.passageDraft.format = "poem";
+            $("[data-field='format']", $("#passage-editor")).value = "poem";
+          }
+          if (element.dataset.field === "format" && element.value === "poem" && app.passageDraft.passageType !== "poem") {
+            app.passageDraft.passageType = "poem";
+            $("[data-field='passageType']", $("#passage-editor")).value = "poem";
+          }
           markDirty();
-          if (element.dataset.field === "format") updateFormatNote();
+          if (element.dataset.field === "format" || element.dataset.field === "passageType") updateFormatNote();
         });
       });
     }
@@ -2103,16 +2415,16 @@ Rules:
     }
 
     function bindPassageImageEditor() {
-      $("#passage-image-file")?.addEventListener("change", async (event) => {
-        const file = event.target.files?.[0];
+      async function uploadPassageAsset(file, imageRole) {
         const passageId = app.passageDraft.id.trim();
         if (!file) return;
         if (!passageId) {
-          setStatus("Enter the passage ID before uploading its image.", "error");
-          event.target.value = "";
+          setStatus(`Enter the passage ID before uploading its ${imageRole === "cover" ? "book cover" : "image"}.`, "error");
           return;
         }
-        setStatus("Copying the passage image into the app…");
+        const draftKey = imageRole === "cover" ? "coverImage" : "image";
+        const assetLabel = imageRole === "cover" ? "book cover" : "passage image";
+        setStatus(`Copying the ${assetLabel} into the app…`);
         try {
           const dataUrl = await new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -2124,22 +2436,40 @@ Rules:
             body: JSON.stringify({
               dataUrl,
               fileName: file.name,
+              imageRole,
               mimeType: imageUploadMimeType(file),
               passageId,
             }),
             method: "POST",
           });
-          app.passageDraft.image = {
-            alt: app.passageDraft.image?.alt || `${app.passageDraft.title || "Passage"} illustration`,
-            caption: app.passageDraft.image?.caption || "",
+          app.passageDraft[draftKey] = {
+            alt: app.passageDraft[draftKey]?.alt || `${app.passageDraft.title || "Passage"} ${imageRole === "cover" ? "book cover" : "illustration"}`,
+            ...(imageRole === "passage" ? { caption: app.passageDraft.image?.caption || "" } : {}),
             src: result.image.src,
           };
           markDirty();
           renderPassageEditor();
-          setStatus(`Image copied to ${result.image.target}.`, "success");
+          setStatus(`${imageRole === "cover" ? "Cover" : "Image"} copied to ${result.image.target}.`, "success");
         } catch (error) {
           setStatus(error.message, "error");
         }
+      }
+      $("#passage-cover-file")?.addEventListener("change", (event) => {
+        const file = event.target.files?.[0];
+        if (!app.passageDraft.id.trim()) event.target.value = "";
+        uploadPassageAsset(file, "cover");
+      });
+      $("#passage-image-file")?.addEventListener("change", (event) => {
+        const file = event.target.files?.[0];
+        if (!app.passageDraft.id.trim()) event.target.value = "";
+        uploadPassageAsset(file, "passage");
+      });
+      $$("[data-cover-image-field]", $("#passage-editor")).forEach((element) => {
+        element.addEventListener("input", () => {
+          if (!app.passageDraft.coverImage) return;
+          app.passageDraft.coverImage[element.dataset.coverImageField] = element.value;
+          markDirty();
+        });
       });
       $$("[data-image-field]", $("#passage-editor")).forEach((element) => {
         element.addEventListener("input", () => {
@@ -2147,6 +2477,11 @@ Rules:
           app.passageDraft.image[element.dataset.imageField] = element.value;
           markDirty();
         });
+      });
+      $("#remove-passage-cover")?.addEventListener("click", () => {
+        app.passageDraft.coverImage = undefined;
+        markDirty();
+        renderPassageEditor();
       });
       $("#remove-passage-image")?.addEventListener("click", () => {
         app.passageDraft.image = undefined;
@@ -3461,7 +3796,10 @@ Rules:
         <div class="standalone-bank-editor">
           <header>
             <div><h1>${app.selectedStandaloneItemId ? "Edit Part B question" : "New Part B question"}</h1><p>Paste the paragraph and answers directly. Formatting such as bold, italics, and underlining is preserved.</p></div>
-            <button class="secondary" id="refresh-standalone-preview" type="button">Refresh preview</button>
+            <div class="standalone-item-actions">
+              <button class="secondary" id="manage-standalone-topics" type="button">Manage topics</button>
+              <button class="secondary" id="refresh-standalone-preview" type="button">Refresh preview</button>
+            </div>
           </header>
           <div class="standalone-bank-form">
             <label class="field"><span>Question ID</span><div class="field-input-action"><input id="standalone-id" data-standalone-field="id" ${app.selectedStandaloneItemId ? "disabled" : ""} value="${escapeHtml(item.id)}"><button class="secondary" id="generate-standalone-id" ${app.selectedStandaloneItemId ? "disabled" : ""} type="button">Generate</button></div></label>
@@ -3579,6 +3917,7 @@ Rules:
       bindRichEditors($("#standalone-editor"));
       $("#add-standalone-card")?.addEventListener("click", addStandaloneAnswerCard);
       $("#generate-standalone-id")?.addEventListener("click", generateStandaloneId);
+      $("#manage-standalone-topics")?.addEventListener("click", openContentTopicManager);
       $("#refresh-standalone-preview")?.addEventListener("click", renderStandaloneEditor);
       $("#save-standalone")?.addEventListener("click", saveStandaloneItem);
     }
@@ -5896,14 +6235,280 @@ WRONG D:`;
       }
     }
 
+    function renderContentTopicManager() {
+      const list = $("#content-topic-list");
+      const topicDrafts = app.contentTopicDrafts || [];
+      list.innerHTML = topicDrafts.length ? topicDrafts.map((topic, index) => {
+        const topicKey = topic.original || `new-${index}`;
+        const protectedTopic = Boolean(topic.original && topic.questionCount > 0);
+        const isConfirming = app.contentTopicDeleteConfirm === topicKey;
+        return `
+          <article class="topic-manager-row" data-content-topic-index="${index}">
+            <span class="topic-manager-index">${index + 1}</span>
+            <label>Topic name<input data-content-topic-field="label" maxlength="80" required value="${escapeHtml(topic.label)}"></label>
+            <div class="topic-manager-row-actions">
+              <button aria-label="Move ${escapeHtml(topic.label || "new topic")} up" class="icon-button" data-content-topic-action="up" ${index === 0 ? "disabled" : ""} title="Move up" type="button">↑</button>
+              <button aria-label="Move ${escapeHtml(topic.label || "new topic")} down" class="icon-button" data-content-topic-action="down" ${index === topicDrafts.length - 1 ? "disabled" : ""} title="Move down" type="button">↓</button>
+              <button class="danger${isConfirming ? " is-confirming" : ""}" data-content-topic-action="remove" ${protectedTopic ? "disabled" : ""} title="${protectedTopic ? "Move these questions to another topic before removing it." : isConfirming ? "Confirm topic removal" : "Stage this topic for removal"}" type="button">${isConfirming ? "Confirm" : "Remove"}</button>
+            </div>
+            <small>${topic.original ? `<strong>${topic.questionCount}</strong> question${topic.questionCount === 1 ? "" : "s"} use this topic${topic.label !== topic.original ? ` · Renaming ${escapeHtml(topic.original)}` : ""}` : "New topic · It will become available in every question Topic dropdown when saved."}</small>
+          </article>`;
+      }).join("") : `<p class="topic-manager-empty">Add at least one topic before saving.</p>`;
+    }
+
+    function openContentTopicManager() {
+      if (app.passageDirty || app.standaloneDirty || app.mathDirty) {
+        setStatus("Save or discard the current editor changes before managing the shared Topic dropdown.", "error");
+        return;
+      }
+      const usageByTopic = new Map((app.state.topicDetails || []).map((topic) => [topic.label, topic.questionCount]));
+      app.contentTopicDrafts = app.state.topics.map((label) => ({
+        label,
+        original: label,
+        questionCount: Number(usageByTopic.get(label)) || 0,
+      }));
+      app.contentTopicDeleteConfirm = "";
+      renderContentTopicManager();
+      $("#content-topic-dialog").showModal();
+    }
+
+    function closeContentTopicManager() {
+      if (app.contentTopicBusy) return;
+      app.contentTopicDrafts = null;
+      app.contentTopicDeleteConfirm = "";
+      $("#content-topic-dialog").close();
+    }
+
+    function addContentTopicDraft() {
+      if (!app.contentTopicDrafts) return;
+      app.contentTopicDrafts.push({ label: "", original: "", questionCount: 0 });
+      app.contentTopicDeleteConfirm = "";
+      renderContentTopicManager();
+      $$("[data-content-topic-field='label']", $("#content-topic-list")).at(-1)?.focus();
+    }
+
+    function handleContentTopicAction(event) {
+      const button = event.target.closest("[data-content-topic-action]");
+      const row = event.target.closest("[data-content-topic-index]");
+      if (!button || !row || !app.contentTopicDrafts) return;
+      const index = Number(row.dataset.contentTopicIndex);
+      const topic = app.contentTopicDrafts[index];
+      if (!topic) return;
+      if (button.dataset.contentTopicAction === "up" && index > 0) {
+        [app.contentTopicDrafts[index - 1], app.contentTopicDrafts[index]] = [topic, app.contentTopicDrafts[index - 1]];
+        app.contentTopicDeleteConfirm = "";
+      } else if (button.dataset.contentTopicAction === "down" && index < app.contentTopicDrafts.length - 1) {
+        [app.contentTopicDrafts[index + 1], app.contentTopicDrafts[index]] = [topic, app.contentTopicDrafts[index + 1]];
+        app.contentTopicDeleteConfirm = "";
+      } else if (button.dataset.contentTopicAction === "remove") {
+        const topicKey = topic.original || `new-${index}`;
+        if (app.contentTopicDeleteConfirm !== topicKey) app.contentTopicDeleteConfirm = topicKey;
+        else {
+          app.contentTopicDrafts.splice(index, 1);
+          app.contentTopicDeleteConfirm = "";
+        }
+      }
+      renderContentTopicManager();
+    }
+
+    function handleContentTopicInput(event) {
+      const row = event.target.closest("[data-content-topic-index]");
+      if (!row || !app.contentTopicDrafts) return;
+      const topic = app.contentTopicDrafts[Number(row.dataset.contentTopicIndex)];
+      if (topic) topic.label = event.target.value;
+      app.contentTopicDeleteConfirm = "";
+    }
+
+    async function saveContentTopicManager() {
+      if (app.contentTopicBusy || !app.contentTopicDrafts) return;
+      const emptyTopicIndex = app.contentTopicDrafts.findIndex((topic) => !topic.label.trim());
+      if (emptyTopicIndex >= 0) {
+        setStatus(`Topic ${emptyTopicIndex + 1} needs a name.`, "error");
+        $$("[data-content-topic-field='label']", $("#content-topic-list"))[emptyTopicIndex]?.focus();
+        return;
+      }
+      const selectedPassageId = app.selectedPassageId;
+      const passageMode = app.passageMode;
+      app.contentTopicBusy = true;
+      $("#content-topic-save").disabled = true;
+      $("#content-topic-save").textContent = "Saving topics…";
+      setStatus("Updating the shared question Topic dropdown...");
+      try {
+        await api("/api/topics", {
+          method: "PUT",
+          body: JSON.stringify({
+            topics: app.contentTopicDrafts.map(({ label, original }) => ({ label, original })),
+          }),
+        });
+        app.contentTopicDrafts = null;
+        app.contentTopicDeleteConfirm = "";
+        $("#content-topic-dialog").close();
+        await reloadState();
+        app.passageMode = passageMode;
+        const passageSource = passageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
+        const refreshedPassage = passageSource.find((passage) => passage.id === selectedPassageId);
+        if (refreshedPassage) {
+          app.passageDraft = clone(refreshedPassage);
+          app.passageDirty = false;
+          renderPassageList();
+          renderPassageEditor();
+        }
+        setStatus(`Saved ${app.state.topics.length} shared question topics.`, "success");
+      } catch (error) {
+        setStatus(error.message, "error");
+      } finally {
+        app.contentTopicBusy = false;
+        const saveButton = $("#content-topic-save");
+        if (saveButton) {
+          saveButton.disabled = false;
+          saveButton.textContent = "Save topics";
+        }
+      }
+    }
+
+    function populatePracticeTopicSelect(preferredSlug = "") {
+      const topicSelect = $("#practice-topic");
+      const selectedSlug = preferredSlug || topicSelect.value;
+      topicSelect.replaceChildren();
+      for (const topic of app.state.practice.topics) topicSelect.add(new Option(topic.label, topic.slug));
+      if (app.state.practice.topics.some((topic) => topic.slug === selectedSlug)) {
+        topicSelect.value = selectedSlug;
+      }
+      $("#practice-topic-count").textContent = String(app.state.practice.topics.length);
+    }
+
+    function renderPracticeTopicManager() {
+      const list = $("#practice-topic-list");
+      const topics = app.practiceTopicDrafts || [];
+      list.innerHTML = topics.length ? topics.map((topic, index) => {
+        const topicKey = topic.slug || `new-${index}`;
+        const protectedTopic = Boolean(topic.slug && topic.questionCount > 0);
+        const isConfirming = app.practiceTopicDeleteConfirm === topicKey;
+        return `
+          <article class="topic-manager-row" data-topic-index="${index}">
+            <span class="topic-manager-index">${index + 1}</span>
+            <label>Name<input data-topic-field="label" maxlength="80" required value="${escapeHtml(topic.label)}"></label>
+            <label>Student-facing description<input data-topic-field="description" maxlength="240" placeholder="What students practice in this topic" value="${escapeHtml(topic.description)}"></label>
+            <div class="topic-manager-row-actions">
+              <button aria-label="Move ${escapeHtml(topic.label || "new topic")} up" class="icon-button" data-topic-action="up" ${index === 0 ? "disabled" : ""} title="Move up" type="button">↑</button>
+              <button aria-label="Move ${escapeHtml(topic.label || "new topic")} down" class="icon-button" data-topic-action="down" ${index === topics.length - 1 ? "disabled" : ""} title="Move down" type="button">↓</button>
+              <button class="danger${isConfirming ? " is-confirming" : ""}" data-topic-action="remove" ${protectedTopic ? "disabled" : ""} title="${protectedTopic ? "Move or archive this topic's questions before removing it." : isConfirming ? "Confirm topic removal" : "Stage this topic for removal"}" type="button">${isConfirming ? "Confirm" : "Remove"}</button>
+            </div>
+            <small>${topic.slug ? `<strong>${topic.questionCount}</strong> question${topic.questionCount === 1 ? "" : "s"} · Stable ID: ${escapeHtml(topic.slug)}` : "New topic · Its stable ID and question banks will be created when saved."}</small>
+          </article>`;
+      }).join("") : `<p class="topic-manager-empty">Add at least one topic before saving.</p>`;
+    }
+
+    function openPracticeTopicManager() {
+      app.practiceTopicDrafts = app.state.practice.topics.map((topic) => ({
+        description: topic.description || "",
+        label: topic.label,
+        questionCount: Number(topic.questionCount) || 0,
+        slug: topic.slug,
+      }));
+      app.practiceTopicDeleteConfirm = "";
+      renderPracticeTopicManager();
+      $("#practice-topic-dialog").showModal();
+    }
+
+    function closePracticeTopicManager() {
+      if (app.practiceTopicBusy) return;
+      app.practiceTopicDrafts = null;
+      app.practiceTopicDeleteConfirm = "";
+      $("#practice-topic-dialog").close();
+    }
+
+    function addPracticeTopicDraft() {
+      if (!app.practiceTopicDrafts) return;
+      app.practiceTopicDrafts.push({ description: "", label: "", questionCount: 0, slug: "" });
+      app.practiceTopicDeleteConfirm = "";
+      renderPracticeTopicManager();
+      const fields = $$("[data-topic-field='label']", $("#practice-topic-list"));
+      fields.at(-1)?.focus();
+    }
+
+    function handlePracticeTopicAction(event) {
+      const button = event.target.closest("[data-topic-action]");
+      const row = event.target.closest("[data-topic-index]");
+      if (!button || !row || !app.practiceTopicDrafts) return;
+      const index = Number(row.dataset.topicIndex);
+      const topic = app.practiceTopicDrafts[index];
+      if (!topic) return;
+      if (button.dataset.topicAction === "up" && index > 0) {
+        [app.practiceTopicDrafts[index - 1], app.practiceTopicDrafts[index]] = [topic, app.practiceTopicDrafts[index - 1]];
+        app.practiceTopicDeleteConfirm = "";
+      } else if (button.dataset.topicAction === "down" && index < app.practiceTopicDrafts.length - 1) {
+        [app.practiceTopicDrafts[index + 1], app.practiceTopicDrafts[index]] = [topic, app.practiceTopicDrafts[index + 1]];
+        app.practiceTopicDeleteConfirm = "";
+      } else if (button.dataset.topicAction === "remove") {
+        const topicKey = topic.slug || `new-${index}`;
+        if (app.practiceTopicDeleteConfirm !== topicKey) {
+          app.practiceTopicDeleteConfirm = topicKey;
+        } else {
+          app.practiceTopicDrafts.splice(index, 1);
+          app.practiceTopicDeleteConfirm = "";
+        }
+      }
+      renderPracticeTopicManager();
+    }
+
+    function handlePracticeTopicInput(event) {
+      const row = event.target.closest("[data-topic-index]");
+      const field = event.target.dataset.topicField;
+      if (!row || !field || !app.practiceTopicDrafts) return;
+      const topic = app.practiceTopicDrafts[Number(row.dataset.topicIndex)];
+      if (topic) topic[field] = event.target.value;
+      app.practiceTopicDeleteConfirm = "";
+    }
+
+    async function savePracticeTopicManager() {
+      if (app.practiceTopicBusy || !app.practiceTopicDrafts) return;
+      const emptyTopicIndex = app.practiceTopicDrafts.findIndex((topic) => !topic.label.trim());
+      if (emptyTopicIndex >= 0) {
+        setStatus(`Topic ${emptyTopicIndex + 1} needs a name.`, "error");
+        $$("[data-topic-field='label']", $("#practice-topic-list"))[emptyTopicIndex]?.focus();
+        return;
+      }
+      const selectedSlug = $("#practice-topic").value;
+      app.practiceTopicBusy = true;
+      $("#practice-topic-save").disabled = true;
+      $("#practice-topic-save").textContent = "Saving topics…";
+      setStatus("Updating practice topics and question-bank navigation...");
+      try {
+        const data = await api("/api/practice/topics", {
+          method: "PUT",
+          body: JSON.stringify({
+            topics: app.practiceTopicDrafts.map(({ description, label, slug }) => ({ description, label, slug })),
+          }),
+        });
+        app.state.practice = data.practice;
+        populatePracticeTopicSelect(selectedSlug);
+        updatePracticeSuggestedId(true);
+        savePracticeDraft();
+        app.practiceTopicDrafts = null;
+        app.practiceTopicDeleteConfirm = "";
+        $("#practice-topic-dialog").close();
+        setStatus(`Saved ${data.practice.topics.length} practice topics. Student navigation is updated.`, "success");
+      } catch (error) {
+        setStatus(error.message, "error");
+      } finally {
+        app.practiceTopicBusy = false;
+        $("#practice-topic-save").disabled = false;
+        $("#practice-topic-save").textContent = "Save topics";
+      }
+    }
+
     function initializePracticeEditor() {
       const topicSelect = $("#practice-topic");
       const difficultySelect = $("#practice-difficulty");
-      if (!topicSelect.options.length) {
-        for (const topic of app.state.practice.topics) topicSelect.add(new Option(topic.label, topic.slug));
+      const isFirstInitialization = !topicSelect.options.length;
+      populatePracticeTopicSelect(topicSelect.value);
+      if (!difficultySelect.options.length) {
         for (const difficulty of app.state.practice.difficulties) {
           difficultySelect.add(new Option(difficulty[0].toUpperCase() + difficulty.slice(1), difficulty));
         }
+      }
+      if (isFirstInitialization) {
         restorePracticeDraft();
       }
       updatePracticeSuggestedId();
@@ -5926,6 +6531,14 @@ WRONG D:`;
       try {
         await reloadState();
         updatePassageWorkspaceLabels();
+        const firstPassage = app.state.passages[0];
+        if (!app.passageDraft && firstPassage) {
+          app.selectedPassageId = firstPassage.id;
+          app.passageDraft = clone(firstPassage);
+          app.passageDirty = false;
+          renderPassageList();
+          renderPassageEditor();
+        }
         initializePracticeEditor();
         setStatus(
           `Ready: ${app.state.assessments.length} exams, ${app.state.advancedPassages.length} advanced passages, and ${app.state.practice.topics.length} regular-practice banks.`,
@@ -5946,6 +6559,33 @@ WRONG D:`;
     $("#practice-write-button").addEventListener("click", writePracticeQuestion);
     $("#practice-clear").addEventListener("click", clearPracticeQuestion);
     $("#practice-parse").addEventListener("click", fillPracticeFromPaste);
+    $("#practice-manage-topics").addEventListener("click", openPracticeTopicManager);
+    $("#practice-topic-add").addEventListener("click", addPracticeTopicDraft);
+    $("#practice-topic-list").addEventListener("click", handlePracticeTopicAction);
+    $("#practice-topic-list").addEventListener("input", handlePracticeTopicInput);
+    $("#practice-topic-save").addEventListener("click", savePracticeTopicManager);
+    $("#practice-topic-close").addEventListener("click", closePracticeTopicManager);
+    $("#practice-topic-cancel").addEventListener("click", closePracticeTopicManager);
+    $("#practice-topic-dialog").addEventListener("cancel", (event) => {
+      if (app.practiceTopicBusy) event.preventDefault();
+      else {
+        app.practiceTopicDrafts = null;
+        app.practiceTopicDeleteConfirm = "";
+      }
+    });
+    $("#content-topic-add").addEventListener("click", addContentTopicDraft);
+    $("#content-topic-list").addEventListener("click", handleContentTopicAction);
+    $("#content-topic-list").addEventListener("input", handleContentTopicInput);
+    $("#content-topic-save").addEventListener("click", saveContentTopicManager);
+    $("#content-topic-close").addEventListener("click", closeContentTopicManager);
+    $("#content-topic-cancel").addEventListener("click", closeContentTopicManager);
+    $("#content-topic-dialog").addEventListener("cancel", (event) => {
+      if (app.contentTopicBusy) event.preventDefault();
+      else {
+        app.contentTopicDrafts = null;
+        app.contentTopicDeleteConfirm = "";
+      }
+    });
     $("#practice-copy-template").addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(practiceBlankTemplate);

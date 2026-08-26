@@ -6,6 +6,11 @@ import { cacheActiveSession, cacheStudentClasses, getActiveSession, getCachedStu
 import { getSupabaseClient, isSupabaseConfigured } from "./lib/supabase";
 import { AdaptivePracticePage } from "./pages/AdaptivePracticePage";
 import { StudentDashboardPage } from "./pages/StudentDashboardPage";
+import { StudentAssignmentsPage } from "./pages/StudentAssignmentsPage";
+import { StudentAssessmentsPage } from "./pages/StudentAssessmentsPage";
+import { StudentMaterialsPage } from "./pages/StudentMaterialsPage";
+import { StudentResultsPage } from "./pages/StudentResultsPage";
+import { StudentTopicHubPage } from "./pages/StudentTopicHubPage";
 import { StudyHallPage } from "./pages/StudyHallPage";
 
 const AdminDashboardPage = lazy(() =>
@@ -90,6 +95,24 @@ function CurrentPage() {
   }
 
   if (path.startsWith("/study-hall/")) {
+    if (path === "/study-hall/shsat/assignments") {
+      return <StudentAssignmentsPage />;
+    }
+    if (path === "/study-hall/shsat/assessments") {
+      return <StudentAssessmentsPage />;
+    }
+    if (path === "/study-hall/shsat/materials") {
+      return <StudentMaterialsPage />;
+    }
+    if (path.startsWith("/study-hall/shsat/topics/")) {
+      return <StudentTopicHubPage />;
+    }
+    if (path.startsWith("/study-hall/shsat/library/")) {
+      return withClassAccess(<AdvancedPassagePage />);
+    }
+    if (path === "/study-hall/shsat/results") {
+      return <StudentResultsPage />;
+    }
     return <StudentDashboardPage />;
   }
 

@@ -40,6 +40,7 @@ import {
   getCurrentCompletedSections,
   getNextExamSubject,
   getOpenExamSubject,
+  getStoredStartingSubject,
   isExamResultCompleteForQuestionCount,
   isExamSessionCompleteForContent,
   loadLocalExamSession,
@@ -58,7 +59,6 @@ import {
 import { appendStudentPreview, getStudentPreviewContext } from "../lib/studentPreview";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 
-type StartingSubject = "english" | "math";
 type SessionScreen =
   | "directions"
   | "passageIntro"
@@ -1005,16 +1005,11 @@ function getStoredExamName(assessmentId: string, fallbackName: string) {
   return storedName?.trim() || fallbackName;
 }
 
-function getStoredStartingSubject(assessmentId: string): StartingSubject {
-  const storedSubject = window.sessionStorage.getItem(`exam-start-subject:${assessmentId}`);
-  return storedSubject === "math" ? "math" : "english";
-}
-
 function getAssessmentDashboardHref() {
   const previewContext = getStudentPreviewContext();
   return previewContext.mode === "teacher"
     ? previewContext.returnHref
-    : appendStudentPreview("/study-hall?section=assessments", previewContext);
+    : appendStudentPreview("/study-hall/shsat/assessments", previewContext);
 }
 
 function ExamUserMenu({
@@ -1067,7 +1062,7 @@ function ExamModuleHeader({
   return (
     <>
       <header className="exam-module-header">
-        <a className="exam-module-brand" href="/study-hall">
+        <a className="exam-module-brand" href={getAssessmentDashboardHref()}>
           Nathan Tutors
         </a>
         <ExamUserMenu
@@ -1610,10 +1605,6 @@ export function ExamSessionPage() {
         setCompletedSections(currentCompletedSections);
         const preferredStartingSubject = isReopeningCompletedAttempt
           ? storedStartingSubject
-          : nextAssessment.split
-          ? currentCompletedSections.includes("english")
-            ? "math"
-            : "english"
           : getNextExamSubject(storedStartingSubject, currentCompletedSections);
         const openStartingSubject = getOpenExamSubject(
           preferredStartingSubject,
@@ -1732,7 +1723,7 @@ export function ExamSessionPage() {
         <section className="exam-session-error">
           <h1>Exam unavailable</h1>
           <p>{errorMessage || "This exam could not be loaded."}</p>
-          <a href="/study-hall">Return to Study Hall</a>
+          <a href={getAssessmentDashboardHref()}>Return to assessments</a>
         </section>
       </main>
     );
@@ -2033,6 +2024,16 @@ export function ExamSessionPage() {
             status: "in_progress",
           });
         }
+
+        const sectionResult = createExamResult(examContent, selectedAnswers, nextCompletedSections);
+        if (accessToken) {
+          await saveCloudExamResult(
+            accessToken,
+            sectionResult.assessmentId,
+            sectionResult as unknown as Record<string, unknown>,
+          );
+        }
+        saveExamResult(studentId, sectionResult);
       }
       setCompletedSections(nextCompletedSections);
       return nextCompletedSections;

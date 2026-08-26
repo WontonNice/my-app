@@ -172,7 +172,9 @@ function practiceTotals(item: JsonRecord) {
 }
 
 function createInsights(progress: LearningProgress) {
-    const completedResults = progress.examResults.filter((result) => result.completionStatus !== "english_complete");
+    const completedResults = progress.examResults.filter((result) =>
+        result.completionStatus !== "english_complete" && result.completionStatus !== "math_complete"
+    );
     const scores = completedResults.map((result) => numberValue(result.percentage));
     const topicTotals = Object.values(progress.practice).map(practiceTotals);
     const questions = topicTotals.reduce((total, item) => total + item.questions, 0);

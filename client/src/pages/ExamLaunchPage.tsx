@@ -12,6 +12,7 @@ import {
   getCurrentCompletedSections,
   getNextExamSubject,
   getOpenExamSubject,
+  getStoredStartingSubject,
   isExamResultCompleteForQuestionCount,
   isExamSessionCompleteForContent,
   loadLocalExamSession,
@@ -26,7 +27,7 @@ function getAssessmentDashboardHref() {
   const previewContext = getStudentPreviewContext();
   return previewContext.mode === "teacher"
     ? previewContext.returnHref
-    : appendStudentPreview("/study-hall?section=assessments", previewContext);
+    : appendStudentPreview("/study-hall/shsat/assessments", previewContext);
 }
 
 export function ExamLaunchPage() {
@@ -113,9 +114,10 @@ export function ExamLaunchPage() {
         setHasSavedProgress(
           Boolean(progress && (Object.keys(progress.answers).length > 0 || currentCompletedSections.length > 0)),
         );
+        const storedStartingSubject = getStoredStartingSubject(assessmentId);
         const preferredSubject = complete
-          ? "english"
-          : getNextExamSubject("english", currentCompletedSections);
+          ? storedStartingSubject
+          : getNextExamSubject(storedStartingSubject, currentCompletedSections);
         setStartingSubject(
           getOpenExamSubject(preferredSubject, nextAssessment.sectionAccess) ?? "english",
         );
@@ -165,7 +167,7 @@ export function ExamLaunchPage() {
   return (
     <main className="exam-launch-shell">
       <header className="exam-launch-header">
-        <a className="exam-launch-brand" href="/study-hall">
+        <a className="exam-launch-brand" href={getAssessmentDashboardHref()}>
           Nathan Tutors
         </a>
         <div className="exam-launch-user">
@@ -262,7 +264,7 @@ export function ExamLaunchPage() {
             <div className="exam-launch-error">
               <h1>Exam unavailable</h1>
               <p>{errorMessage || "This exam could not be loaded."}</p>
-              <a href="/study-hall">Return to Study Hall</a>
+              <a href={getAssessmentDashboardHref()}>Return to assessments</a>
             </div>
           )}
         </div>

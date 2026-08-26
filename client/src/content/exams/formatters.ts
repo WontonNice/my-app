@@ -1,11 +1,13 @@
-import type { ExamPassage, ExamPassageLine, ExamQuestionImage } from "./types";
+import type { ExamPassage, ExamPassageLine, ExamPassageType, ExamQuestionImage } from "./types";
 
 type PlainTextPassageInput = {
   author?: string;
   blurb?: string;
+  coverImage?: ExamQuestionImage;
   id: string;
   image?: ExamQuestionImage;
   lineNumberInterval?: number;
+  passageType?: ExamPassageType;
   richText?: string;
   sourceNote?: string;
   text: string;
@@ -93,9 +95,11 @@ function numberRichSentences(value: string, firstSentenceNumber: number) {
 export function createPlainTextPassage({
   author,
   blurb,
+  coverImage,
   id,
   image,
   lineNumberInterval = 5,
+  passageType,
   richText,
   sourceNote,
   text,
@@ -126,9 +130,11 @@ export function createPlainTextPassage({
     passageLines.push({ text: "Passage content has not been added for this assessment yet." });
 
     return {
+      coverImage,
       format: "poem",
       id,
       lines: passageLines,
+      passageType,
       sourceNote,
       title,
     };
@@ -157,9 +163,11 @@ export function createPlainTextPassage({
     });
 
   return {
+    coverImage,
     format: "poem",
     id,
     lines: passageLines,
+    passageType,
     sourceNote,
     title,
   };
@@ -168,9 +176,11 @@ export function createPlainTextPassage({
 type ProsePassageInput = {
   author?: string;
   blurb?: string;
+  coverImage?: ExamQuestionImage;
   header?: string;
   id: string;
   image?: ExamQuestionImage;
+  passageType?: ExamPassageType;
   richText?: string;
   sourceNote?: string;
   text: string;
@@ -180,9 +190,11 @@ type ProsePassageInput = {
 export function createProsePassage({
   author,
   blurb,
+  coverImage,
   header,
   id,
   image,
+  passageType,
   richText,
   sourceNote,
   text,
@@ -214,9 +226,11 @@ export function createProsePassage({
     });
 
     return {
+      coverImage,
       format: "prose",
       id,
       lines: passageLines,
+      passageType,
       sourceNote,
       title,
     };
@@ -237,9 +251,11 @@ export function createProsePassage({
   });
 
   return {
+    coverImage,
     format: "prose",
     id,
     lines: passageLines,
+    passageType,
     sourceNote,
     title,
   };
@@ -248,8 +264,10 @@ export function createProsePassage({
 type SentenceNumberedPassageInput = {
   author?: string;
   blurb?: string;
+  coverImage?: ExamQuestionImage;
   id: string;
   image?: ExamQuestionImage;
+  passageType?: ExamPassageType;
   richText?: string;
   sourceNote?: string;
   text: string;
@@ -259,8 +277,10 @@ type SentenceNumberedPassageInput = {
 export function createSentenceNumberedPassage({
   author,
   blurb,
+  coverImage,
   id,
   image,
+  passageType,
   richText,
   sourceNote,
   text,
@@ -280,9 +300,11 @@ export function createSentenceNumberedPassage({
     });
 
     return {
+      coverImage,
       format: "sentence_prose",
       id,
       lines: passageLines,
+      passageType,
       sourceNote,
       title,
     };
@@ -316,9 +338,11 @@ export function createSentenceNumberedPassage({
   });
 
   return {
+    coverImage,
     format: "sentence_prose",
     id,
     lines: passageLines,
+    passageType,
     sourceNote,
     title,
   };
