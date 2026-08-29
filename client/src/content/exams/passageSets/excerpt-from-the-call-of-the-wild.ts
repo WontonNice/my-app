@@ -253,54 +253,6 @@ const excerptFromTheCallOfTheWildQuestions: ExamQuestion[] = [
     "type": "multiple_choice"
   },
   {
-    "id": "excerpt-from-the-call-of-the-wild-9",
-    "points": 1,
-    "prompt": "Sort each statement from the passage into the category that best describes it.",
-    "promptHtml": "Sort each statement from the passage into the category that&nbsp;<strong>best</strong>&nbsp;describes it.",
-    "topic": "Figurative Language & Imagery",
-    "categories": [
-      {
-        "id": "category-1",
-        "title": "Literal Statement"
-      },
-      {
-        "id": "category-2",
-        "title": "Figurative Language"
-      }
-    ],
-    "correctPlacements": {
-      "item-1": "category-1",
-      "item-2": "category-1",
-      "item-3": "category-2",
-      "item-4": "category-2"
-    },
-    "instructions": "Move each answer to the correct box.",
-    "items": [
-      {
-        "html": "<strong>Fitch grew tired of watching repairable appliances end up at the curb.</strong>",
-        "id": "item-1",
-        "text": "Fitch grew tired of watching repairable appliances end up at the curb."
-      },
-      {
-        "html": "<strong>Volunteers examined 134 items in five broad categories.</strong>",
-        "id": "item-2",
-        "text": "Volunteers examined 134 items in five broad categories."
-      },
-      {
-        "html": "<strong>By the end of that afternoon, word began to spread.</strong>",
-        "id": "item-3",
-        "text": "By the end of that afternoon, word began to spread."
-      },
-      {
-        "html": "<strong>A repair that doesn't hold is really just a delay.</strong>",
-        "id": "item-4",
-        "text": "A repair that doesn't hold is really just a delay."
-      }
-    ],
-    "requiredPlacements": 4,
-    "type": "category_sort"
-  },
-  {
     "id": "excerpt-from-the-call-of-the-wild-10",
     "points": 1,
     "prompt": "The sentence 'Furniture told a different story,' which opens the paragraph about the twelve chairs, stools, and small tables the fixers examined, most directly serves to signal a shift from the passage's earlier examples toward information that complicates its optimistic pattern of high repair rates.",
