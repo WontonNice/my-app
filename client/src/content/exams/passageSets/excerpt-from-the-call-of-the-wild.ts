@@ -220,68 +220,6 @@ const excerptFromTheCallOfTheWildQuestions: ExamQuestion[] = [
     ],
     "correctChoiceId": "A",
     "type": "multiple_choice"
-  },
-  {
-    "id": "excerpt-from-the-call-of-the-wild-8",
-    "points": 1,
-    "prompt": "The contrast between furniture's repair rate and clothing's repair rate most directly supports which idea developed in the passage?",
-    "promptHtml": "The contrast between furniture's repair rate and clothing's repair rate&nbsp;<strong>most directly</strong>&nbsp;supports which idea developed in the passage?",
-    "topic": "Evidence & Support",
-    "choices": [
-      {
-        "id": "A",
-        "html": "Some categories of household objects are inherently easier to fix than others.",
-        "text": "Some categories of household objects are inherently easier to fix than others."
-      },
-      {
-        "id": "B",
-        "html": "Fitch believes clothing repairs are more valuable to the community than furniture repairs.",
-        "text": "Fitch believes clothing repairs are more valuable to the community than furniture repairs."
-      },
-      {
-        "id": "C",
-        "html": "The library plans to stop accepting furniture donations at future sessions entirely.",
-        "text": "The library plans to stop accepting furniture donations at future sessions entirely."
-      },
-      {
-        "id": "D",
-        "html": "Volunteers are generally better trained in sewing repairs than in woodworking repairs.",
-        "text": "Volunteers are generally better trained in sewing repairs than in woodworking repairs."
-      }
-    ],
-    "correctChoiceId": "A",
-    "type": "multiple_choice"
-  },
-  {
-    "id": "excerpt-from-the-call-of-the-wild-10",
-    "points": 1,
-    "prompt": "The sentence 'Furniture told a different story,' which opens the paragraph about the twelve chairs, stools, and small tables the fixers examined, most directly serves to signal a shift from the passage's earlier examples toward information that complicates its optimistic pattern of high repair rates.",
-    "promptHtml": "The sentence 'Furniture told a different story,' which opens the paragraph about the twelve chairs, stools, and small tables the fixers examined,&nbsp;<strong>most directly</strong>&nbsp;serves to signal a shift from the passage's earlier examples toward information that complicates its optimistic pattern of high repair rates.",
-    "topic": "Text Structure & Purpose",
-    "choices": [
-      {
-        "id": "A",
-        "html": "to announce that the library will stop accepting all furniture donations soon",
-        "text": "to announce that the library will stop accepting all furniture donations soon"
-      },
-      {
-        "id": "B",
-        "html": "to contradict Fitch's claim that a failed repair is not wasted effort",
-        "text": "to contradict Fitch's claim that a failed repair is not wasted effort"
-      },
-      {
-        "id": "C",
-        "html": "to introduce a category fixers cannot always repair",
-        "text": "to introduce a category fixers cannot always repair"
-      },
-      {
-        "id": "D",
-        "html": "to shift the passage's entire focus permanently away from the volunteer program",
-        "text": "to shift the passage's entire focus permanently away from the volunteer program"
-      }
-    ],
-    "correctChoiceId": "C",
-    "type": "multiple_choice"
   }
 ];
 
