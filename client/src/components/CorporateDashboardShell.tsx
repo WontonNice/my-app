@@ -14,6 +14,7 @@ type CorporateDashboardShellProps = {
   activeId: string;
   children: ReactNode;
   enableAccountSwitcher?: boolean;
+  learningRoom?: boolean;
   navItems: DashboardNavItem[];
   onSignOut?: () => void;
   profileName: string;
@@ -138,6 +139,7 @@ export function CorporateDashboardShell({
   activeId,
   children,
   enableAccountSwitcher,
+  learningRoom = false,
   navItems,
   onSignOut,
   profileName,
@@ -159,12 +161,12 @@ export function CorporateDashboardShell({
   }
 
   return (
-    <main className="staff-shell corporate-dashboard-shell">
+    <main className={`staff-shell corporate-dashboard-shell${learningRoom ? " is-learning-room" : ""}`}>
       <aside className={`staff-sidebar ${isNavigationOpen ? "is-open" : ""}`}>
         <button aria-label="Close navigation" className="staff-sidebar-close" onClick={() => setIsNavigationOpen(false)} type="button"><X size={18} /></button>
-        <a className="staff-brand" href={navItems[0]?.href ?? "/dashboard"} onClick={(event) => handleInternalNavigation(event, navItems[0]?.href ?? "/dashboard")}>
-          <span>PSS</span>
-          <div><strong>Promise Summer School</strong><small>Learning Operations</small></div>
+        <a className="staff-brand" href={navItems[0]?.href ?? "/"} onClick={(event) => handleInternalNavigation(event, navItems[0]?.href ?? "/")}>
+          <span>{learningRoom ? "LR" : "PSS"}</span>
+          <div><strong>{learningRoom ? "The Learning Room" : "Promise Summer School"}</strong><small>{learningRoom ? "Teacher portal" : "Learning Operations"}</small></div>
         </a>
         <nav aria-label="Dashboard navigation">
           <p>Workspace</p>
@@ -191,7 +193,7 @@ export function CorporateDashboardShell({
       <section className="staff-main">
         <header className="staff-topbar">
           <button aria-label="Open navigation" className="staff-menu-button" onClick={() => setIsNavigationOpen((value) => !value)} type="button"><Menu size={20} /></button>
-          <div><span>{today}</span><small>Promise Summer School portal</small></div>
+          <div><span>{today}</span><small>{learningRoom ? "SHSAT teacher workspace" : "Promise Summer School portal"}</small></div>
           {enableAccountSwitcher ? <AccountSwitcher /> : null}
           <div className="staff-profile"><span>{getInitials(profileName)}</span><div><strong>{profileName}</strong><small>{profileRole}</small></div></div>
         </header>

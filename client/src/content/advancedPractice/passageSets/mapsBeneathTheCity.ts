@@ -29,7 +29,7 @@ const questions: ExamQuestion[] = [
   },
   {
     id: "city-maps-2",
-    topic: "Supporting Evidence",
+    topic: "Evidence & Support",
     type: "multiple_choice",
     prompt: "Which detail best supports the idea that underground construction required flexibility?",
     correctChoiceId: "B",

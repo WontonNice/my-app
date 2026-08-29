@@ -1,26 +1,16 @@
 import { useEffect, useState } from "react";
-import { getStudentClasses } from "../lib/api";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { isSupabaseConfigured } from "../lib/supabase";
-import {
-  cacheStudentClasses,
-  getActiveSession,
-  getCachedStudentClasses,
-  peekActiveSession,
-} from "../lib/sessionCache";
+import { getActiveSession, peekActiveSession } from "../lib/sessionCache";
 import { getStudentPreviewContext } from "../lib/studentPreview";
 
-export function useStudentPortalAccess(classId = "shsat") {
+export function useStudentPortalAccess() {
   const previewContext = getStudentPreviewContext();
   const initialSession = peekActiveSession();
   const initialMetadata = initialSession?.user.user_metadata as
     | { full_name?: string; name?: string }
     | undefined;
-  const initialClasses = initialSession
-    ? getCachedStudentClasses(initialSession.user.id) ?? []
-    : [];
   const [accessToken, setAccessToken] = useState(initialSession?.access_token ?? "");
-  const [hasMultipleClasses, setHasMultipleClasses] = useState(initialClasses.length > 1);
   const [isCheckingSession, setIsCheckingSession] = useState(
     isSupabaseConfigured && !initialSession,
   );
@@ -67,26 +57,8 @@ export function useStudentPortalAccess(classId = "shsat") {
 
       if (canPreviewStudentPortal) {
         if (isMounted) {
-          setHasMultipleClasses(false);
           setIsCheckingSession(false);
         }
-        return;
-      }
-
-      try {
-        const studentClasses =
-          getCachedStudentClasses(session.user.id) ??
-          (await getStudentClasses(session.access_token));
-        cacheStudentClasses(session.user.id, studentClasses);
-
-        if (!studentClasses.some((studentClass) => studentClass.id === classId)) {
-          window.location.assign("/dashboard");
-          return;
-        }
-
-        if (isMounted) setHasMultipleClasses(studentClasses.length > 1);
-      } catch {
-        window.location.assign("/dashboard");
         return;
       }
 
@@ -96,11 +68,10 @@ export function useStudentPortalAccess(classId = "shsat") {
     return () => {
       isMounted = false;
     };
-  }, [classId, previewContext.isPreview, previewContext.studentName]);
+  }, [previewContext.isPreview, previewContext.studentName]);
 
   return {
     accessToken,
-    hasMultipleClasses,
     isCheckingSession,
     isSupabaseConfigured,
     previewContext,

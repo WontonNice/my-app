@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowRight, BookMarked, BookOpen, FileText, Filter, Library, Search } from "lucide-react";
+import { ArrowRight, BookMarked, BookOpen, FileText, Filter, KeyRound, Library, Search } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { StudentPortalShell } from "../components/StudentPortalShell";
 import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
@@ -41,7 +41,7 @@ function materialMatchesQuery(material: StudentMaterial, query: string) {
 }
 
 export function StudentMaterialsPage() {
-  const { hasMultipleClasses, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
+  const { isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
   const [activeSubject, setActiveSubject] = useState<MaterialSubject>(getInitialSubject);
   const [activeCollection, setActiveCollection] = useState<CollectionFilter>("All collections");
   const [activePassageType, setActivePassageType] = useState<PassageFilter>("All passage types");
@@ -96,7 +96,7 @@ export function StudentMaterialsPage() {
   const activeFilterCount = Number(activeCollection !== "All collections") + Number(activePassageType !== "All passage types");
 
   return (
-    <StudentPortalShell activeId="materials" hasMultipleClasses={hasMultipleClasses} onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
+    <StudentPortalShell activeId="materials" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
       <div className="student-materials-page study-hall-catalog-page">
         <header className="student-materials-heading">
           <p>Study Hall / {activeSubject}</p>
@@ -220,6 +220,7 @@ function LibraryBook({ material, previewContext }: { material: StudentMaterial; 
       <span className="study-hall-book-tags"><small>{material.libraryCollection}</small><small>{material.readingFormat}</small></span>
       <strong className="study-hall-book-title">{material.title}</strong>
       <span className="study-hall-book-author">{material.author || "Teacher selection"}</span>
+      <span className="study-hall-book-access"><KeyRound size={12} /> Teacher code required</span>
       <span className="study-hall-book-meta">{material.questionCount} questions <ArrowRight size={15} /></span>
     </AppLink>
   );

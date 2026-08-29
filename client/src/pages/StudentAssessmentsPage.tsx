@@ -8,7 +8,7 @@ import { getStudentAssessments, type StudentAssessment } from "../lib/api";
 import { appendStudentPreview } from "../lib/studentPreview";
 
 export function StudentAssessmentsPage() {
-  const { accessToken, hasMultipleClasses, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
+  const { accessToken, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
   const [assessments, setAssessments] = useState<StudentAssessment[]>([]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export function StudentAssessmentsPage() {
   if (!isSupabaseConfigured) return <main className="loading-shell">Supabase auth is not configured. Add your Vite Supabase env vars, then log in.</main>;
 
   return (
-    <StudentPortalShell activeId="assessments" hasMultipleClasses={hasMultipleClasses} onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
+    <StudentPortalShell activeId="assessments" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
       <div className="student-section-page">
         <header className="student-section-heading"><div><p>Teacher-controlled access</p><h1>Assessments</h1><span>Your teacher decides when each assessment and subject section is available.</span></div><strong>{openCount} open</strong></header>
         {assessments.length > 0 ? (

@@ -18,6 +18,7 @@ type ExamSessionProgress = {
 };
 type VanRide = "none" | "5pm";
 const examSessionResultPrefix = "__exam_session__:";
+const libraryProgressPrefix = "english-library:";
 
 function isDate(value: unknown): value is string {
     return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
@@ -145,7 +146,9 @@ async function getDatabaseProgress(user: User): Promise<LearningProgress> {
     );
     const practice = {
         ...metadataProgress.practice,
-        ...Object.fromEntries((practiceQuery.data ?? []).map((row) => [row.topic_slug, row.progress as JsonRecord])),
+        ...Object.fromEntries((practiceQuery.data ?? [])
+            .filter((row) => !String(row.topic_slug).startsWith(libraryProgressPrefix))
+            .map((row) => [row.topic_slug, row.progress as JsonRecord])),
     };
     return { examResults: [...examResults, ...fallbackExamResults], practice };
 }

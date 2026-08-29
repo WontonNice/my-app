@@ -41,7 +41,7 @@ function getTopicSlugFromPath() {
 }
 
 export function StudentTopicHubPage() {
-  const { hasMultipleClasses, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
+  const { isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
   const topic = getPracticeTopicBySlug(getTopicSlugFromPath());
 
   async function handleSignOut() {
@@ -54,7 +54,7 @@ export function StudentTopicHubPage() {
 
   if (!topic) {
     return (
-      <StudentPortalShell activeId="materials" hasMultipleClasses={hasMultipleClasses} onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
+      <StudentPortalShell activeId="materials" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
         <section className="student-topic-missing">
           <FolderOpen size={30} />
           <h1>Topic not found</h1>
@@ -77,7 +77,7 @@ export function StudentTopicHubPage() {
   const assignmentsHref = appendStudentPreview("/study-hall/shsat/assignments", previewContext);
 
   return (
-    <StudentPortalShell activeId="materials" hasMultipleClasses={hasMultipleClasses} onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
+    <StudentPortalShell activeId="materials" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
       <div className="student-topic-hub">
         <AppLink className="student-topic-back" href={catalogHref}><ArrowLeft size={15} /> English topic catalog</AppLink>
 

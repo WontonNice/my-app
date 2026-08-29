@@ -8,7 +8,7 @@ import { getStudentAssessments, type StudentAssessment } from "../lib/api";
 import { appendStudentPreview } from "../lib/studentPreview";
 
 export function StudentDashboardPage() {
-  const { accessToken, hasMultipleClasses, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
+  const { accessToken, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
   const [assessments, setAssessments] = useState<StudentAssessment[]>([]);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export function StudentDashboardPage() {
   const assessmentsHref = appendStudentPreview("/study-hall/shsat/assessments", previewContext);
 
   return (
-    <StudentPortalShell activeId="home" hasMultipleClasses={hasMultipleClasses} onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
+    <StudentPortalShell activeId="home" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
       <div className="student-course-home">
         <header className="student-course-heading">
           <div><p>{today}</p><h1>Your work for this week</h1><span>Everything below was posted, assigned, or organized by your teacher.</span></div>

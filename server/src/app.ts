@@ -7,6 +7,7 @@ import { assessmentsRouter } from "./routes/assessments";
 import { authRouter } from "./routes/auth";
 import { classesRouter } from "./routes/classes";
 import { healthRouter } from "./routes/health";
+import { libraryRouter } from "./routes/library";
 import { progressRouter } from "./routes/progress";
 import { staffRouter } from "./routes/staff";
 
@@ -51,6 +52,7 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
     app.use("/api/assessments", assessmentsRouter);
     app.use("/api/auth", authRouter);
     app.use("/api/classes", classesRouter);
+    app.use("/api/library", libraryRouter);
     app.use("/api/progress", progressRouter);
     app.use("/api/staff", staffRouter);
 

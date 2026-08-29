@@ -659,7 +659,7 @@ function getStudentPreviewHref(student: StudentProgressSnapshot) {
     studentName: student.fullName,
     teacherTools: "1",
   });
-  return `/dashboard?${params.toString()}`;
+  return `/study-hall/shsat?${params.toString()}`;
 }
 
 function getTeacherExamPreviewHref(assessmentId: string) {
@@ -1274,6 +1274,7 @@ export function TeacherDashboardPage() {
     { id: "students", label: "Student progress", href: "/teacher/students", icon: Activity },
     { id: "enrollment", label: "Class requests", href: "/teacher/enrollment", icon: UserRoundCheck },
     { id: "accounts", label: "Student accounts", href: "/teacher/accounts", icon: UserRoundPlus },
+    { id: "library", label: "English library", href: "/teacher/library", icon: BookOpen },
     { id: "assessments", label: "Assessments & insights", href: "/teacher/assessments", icon: ClipboardList },
   ];
   const workspaceCopy = {
@@ -1313,7 +1314,7 @@ export function TeacherDashboardPage() {
   const WorkspaceIcon = workspaceCopy.icon;
 
   return (
-    <CorporateDashboardShell activeId={activeWorkspace} enableAccountSwitcher navItems={navItems} onSignOut={handleSignOut} profileName={teacherName} profileRole="Teacher account">
+    <CorporateDashboardShell activeId={activeWorkspace} enableAccountSwitcher learningRoom navItems={navItems} onSignOut={handleSignOut} profileName={teacherName} profileRole="Teacher account">
       <header className="staff-page-heading corporate-page-heading">
         <div><p><WorkspaceIcon size={15} /> {workspaceCopy.eyebrow}</p><h1>{workspaceCopy.title}</h1><span>{workspaceCopy.description}</span></div>
         {selectedClassInsight ? (
@@ -1336,6 +1337,7 @@ export function TeacherDashboardPage() {
               <AppLink href="/teacher/students"><Activity size={20} /><span><strong>Student progress</strong><small>{shsatStudents.length} SHSAT student{shsatStudents.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/enrollment"><UserRoundCheck size={20} /><span><strong>Class requests</strong><small>{classJoinRequests.length} awaiting approval</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/accounts"><UserRoundPlus size={20} /><span><strong>Student accounts</strong><small>Edit access or preview an account</small></span><ArrowUpRight size={17} /></AppLink>
+              <AppLink href="/teacher/library"><BookOpen size={20} /><span><strong>English library</strong><small>Book codes, previews, and attempt results</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/assessments"><ClipboardList size={20} /><span><strong>Assessments & insights</strong><small>{assessments.length} exam{assessments.length === 1 ? "" : "s"} · {classAssessmentInsights.length} performance dashboard{classAssessmentInsights.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
             </div>
           </section>

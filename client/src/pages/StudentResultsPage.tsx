@@ -12,7 +12,7 @@ function isExamResult(value: Record<string, unknown>): value is ExamResult & Rec
 }
 
 export function StudentResultsPage() {
-  const { accessToken, hasMultipleClasses, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
+  const { accessToken, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
   const initialSession = peekActiveSession();
   const [results, setResults] = useState<ExamResult[]>(() => initialSession ? getExamResults(initialSession.user.id) : []);
 
@@ -37,7 +37,7 @@ export function StudentResultsPage() {
   if (!isSupabaseConfigured) return <main className="loading-shell">Supabase auth is not configured. Add your Vite Supabase env vars, then log in.</main>;
 
   return (
-    <StudentPortalShell activeId="results" hasMultipleClasses={hasMultipleClasses} onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
+    <StudentPortalShell activeId="results" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
       <div className="student-section-page">
         <header className="student-section-heading"><div><p>Performance history</p><h1>Results</h1><span>Review completed assessments and the subject scores shared with your teacher.</span></div><strong>{average === null ? "No results yet" : `${average}% average`}</strong></header>
         {results.length > 0 ? (

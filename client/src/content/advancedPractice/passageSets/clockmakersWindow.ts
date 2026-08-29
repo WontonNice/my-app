@@ -43,7 +43,7 @@ const questions: ExamQuestion[] = [
   },
   {
     id: "clockmaker-3",
-    topic: "Supporting Evidence",
+    topic: "Evidence & Support",
     type: "multiple_choice",
     prompt: "Which detail most strongly connects the card to Lena's family?",
     correctChoiceId: "D",

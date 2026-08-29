@@ -18,7 +18,7 @@ Scientists continue to debate what the findings mean. Some argue that the ravens
 const ravenPlansQuestions: ExamQuestion[] = [
   {
     id: "raven-plans-1",
-    topic: "Supporting Evidence",
+    topic: "Evidence & Support",
     type: "multiple_choice",
     prompt:
       "Read this sentence from paragraph 1.\n\n**At Lund University in Sweden, researchers argue that ravens may be able to think ahead and even plan for the future.**\n\nWhich sentence from paragraph 4 provides support for this argument?",
@@ -73,7 +73,7 @@ const ravenPlansQuestions: ExamQuestion[] = [
   },
   {
     id: "raven-plans-4",
-    topic: "Supporting Evidence",
+    topic: "Evidence & Support",
     type: "multiple_choice",
     prompt: "Which detail from the passage best supports the idea that the ravens could delay a reward?",
     correctChoiceId: "A",

@@ -124,6 +124,20 @@ function getPassageDescription(lines: { kind?: string; text: string }[]) {
 // appear on the dedicated Long reading shelf and use coverImage when supplied.
 export const longReadingMaterials: StudentMaterial[] = [];
 
+export const englishLibraryMaterials: StudentMaterial[] = [
+  ...shsatPassageMaterials,
+  ...advancedPassageMaterials,
+  ...longReadingMaterials,
+];
+
+export function getLibraryBookId(material: StudentMaterial) {
+  return material.href.split("/").filter(Boolean).at(-1) ?? material.id;
+}
+
+export function getEnglishLibraryMaterial(bookId: string) {
+  return englishLibraryMaterials.find((material) => getLibraryBookId(material) === bookId);
+}
+
 const revisingEditingMaterial: StudentMaterial = {
   category: "Revising & editing",
   description: "Practice grammar, sentence construction, usage, and organization in the assigned SHSAT form.",

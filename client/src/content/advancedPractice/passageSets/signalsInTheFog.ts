@@ -29,7 +29,7 @@ const questions: ExamQuestion[] = [
   },
   {
     id: "signals-fog-2",
-    topic: "Supporting Evidence",
+    topic: "Evidence & Support",
     type: "multiple_choice",
     prompt: "Which detail best supports the idea that the sensors provide information older forecasts could not?",
     correctChoiceId: "C",

@@ -10,7 +10,7 @@ import { appendStudentPreview } from "../lib/studentPreview";
 type AssignmentFilter = "All" | "Assessments" | "Materials" | "Practice";
 
 export function StudentAssignmentsPage() {
-  const { accessToken, hasMultipleClasses, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
+  const { accessToken, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
   const [assessments, setAssessments] = useState<StudentAssessment[]>([]);
   const [filter, setFilter] = useState<AssignmentFilter>("All");
 
@@ -58,7 +58,7 @@ export function StudentAssignmentsPage() {
   if (!isSupabaseConfigured) return <main className="loading-shell">Supabase auth is not configured. Add your Vite Supabase env vars, then log in.</main>;
 
   return (
-    <StudentPortalShell activeId="assignments" hasMultipleClasses={hasMultipleClasses} onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
+    <StudentPortalShell activeId="assignments" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
       <div className="student-section-page">
         <header className="student-section-heading"><div><p>Teacher-assigned work</p><h1>Assignments</h1><span>Everything your teacher expects you to complete or review.</span></div><strong>{assignedItems.length} items</strong></header>
         <div className="student-section-tabs" aria-label="Filter assignments">

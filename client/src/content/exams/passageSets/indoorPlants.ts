@@ -70,7 +70,7 @@ const indoorPlantsQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence could best follow sentence 13 to support the ideas in the third paragraph (sentences 11–14)?",
     "promptHtml": "Which sentence could <strong>best</strong> follow sentence 13 to support the ideas in the third paragraph (sentences 11–14)?",
-    "topic": "Supporting Evidence",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",

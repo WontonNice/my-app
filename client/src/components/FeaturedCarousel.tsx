@@ -108,7 +108,7 @@ export function FeaturedCarousel({ slides }: FeaturedCarouselProps) {
       </div>
 
       <div className="hero-footer">
-        <a className="see-all-link" href="/study-hall">
+        <a className="see-all-link" href="/study-hall/shsat">
           Study hall <span aria-hidden="true">{">"}</span>
         </a>
         <div className="thumbnail-strip" aria-label="Choose a preview">

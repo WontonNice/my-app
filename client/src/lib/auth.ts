@@ -36,5 +36,5 @@ export function getDashboardPath(role: UserRole) {
     return "/staff";
   }
 
-  return role === "teacher" ? "/teacher" : "/dashboard";
+  return role === "teacher" ? "/teacher" : "/study-hall/shsat";
 }

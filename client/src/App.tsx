@@ -4,14 +4,12 @@ import { rememberAccountSession } from "./lib/accountSwitching";
 import { getUserRole } from "./lib/auth";
 import { cacheActiveSession, cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "./lib/sessionCache";
 import { getSupabaseClient, isSupabaseConfigured } from "./lib/supabase";
-import { AdaptivePracticePage } from "./pages/AdaptivePracticePage";
 import { StudentDashboardPage } from "./pages/StudentDashboardPage";
 import { StudentAssignmentsPage } from "./pages/StudentAssignmentsPage";
 import { StudentAssessmentsPage } from "./pages/StudentAssessmentsPage";
 import { StudentMaterialsPage } from "./pages/StudentMaterialsPage";
 import { StudentResultsPage } from "./pages/StudentResultsPage";
 import { StudentTopicHubPage } from "./pages/StudentTopicHubPage";
-import { StudyHallPage } from "./pages/StudyHallPage";
 
 const AdminDashboardPage = lazy(() =>
   import("./pages/AdminDashboardPage").then((module) => ({ default: module.AdminDashboardPage })),
@@ -34,6 +32,9 @@ const StaffDashboardPage = lazy(() =>
 );
 const TeacherDashboardPage = lazy(() =>
   import("./pages/TeacherDashboardPage").then((module) => ({ default: module.TeacherDashboardPage })),
+);
+const TeacherLibraryPage = lazy(() =>
+  import("./pages/TeacherLibraryPage").then((module) => ({ default: module.TeacherLibraryPage })),
 );
 const TopicPracticePage = lazy(() =>
   import("./pages/TopicPracticePage").then((module) => ({ default: module.TopicPracticePage })),
@@ -58,7 +59,7 @@ function ClassAccessGate({ children }: { children: ReactNode }) {
       }
       const cachedClasses = getCachedStudentClasses(session.user.id);
       if (cachedClasses) {
-        if (!cachedClasses.some((studentClass) => studentClass.id === "shsat")) window.location.assign("/dashboard");
+        if (!cachedClasses.some((studentClass) => studentClass.id === "shsat")) window.location.assign("/study-hall/shsat");
         else setIsChecking(false);
         return;
       }
@@ -66,12 +67,12 @@ function ClassAccessGate({ children }: { children: ReactNode }) {
         const classes = await getStudentClasses(session.access_token);
         cacheStudentClasses(session.user.id, classes);
         if (!classes.some((studentClass) => studentClass.id === "shsat")) {
-          window.location.assign("/dashboard");
+          window.location.assign("/study-hall/shsat");
           return;
         }
         setIsChecking(false);
       } catch {
-        window.location.assign("/dashboard");
+        window.location.assign("/study-hall/shsat");
       }
     });
   }, [isTeacherPreview]);
@@ -83,15 +84,31 @@ function withClassAccess(page: ReactNode) {
   return <ClassAccessGate>{page}</ClassAccessGate>;
 }
 
+function LegacyStudentHomeRedirect() {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const section = params.get("section");
+    params.delete("section");
+    const destination = section === "results"
+      ? "/study-hall/shsat/results"
+      : section === "assessments"
+        ? "/study-hall/shsat/assessments"
+        : section === "advanced"
+          ? "/study-hall/shsat/materials?subject=english"
+          : "/study-hall/shsat";
+    const destinationUrl = new URL(destination, window.location.origin);
+    params.forEach((value, key) => destinationUrl.searchParams.set(key, value));
+    window.location.replace(`${destinationUrl.pathname}${destinationUrl.search}${window.location.hash}`);
+  }, []);
+
+  return <main className="loading-shell">Opening your dashboard...</main>;
+}
+
 function CurrentPage() {
   const path = window.location.pathname;
 
-  if (path === "/dashboard") {
-    return <StudyHallPage />;
-  }
-
-  if (path === "/study-hall") {
-    return <AdaptivePracticePage />;
+  if (path === "/dashboard" || path === "/study-hall") {
+    return <LegacyStudentHomeRedirect />;
   }
 
   if (path.startsWith("/study-hall/")) {
@@ -137,7 +154,7 @@ function CurrentPage() {
   }
 
   if (path === "/teacher" || path.startsWith("/teacher/")) {
-    return <TeacherDashboardPage />;
+    return path.startsWith("/teacher/library") ? <TeacherLibraryPage /> : <TeacherDashboardPage />;
   }
 
   if (path === "/admin" || path.startsWith("/admin/")) {

@@ -9,7 +9,7 @@ const spiritOfTheHerdQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence from the excerpt best explains why Wade reserved Peroxide Jim for “emergency work” (paragraph 1)?",
     "promptHtml": "Which sentence from the excerpt <strong>best</strong> explains why Wade reserved Peroxide Jim for “emergency work” (paragraph 1)?",
-    "topic": "Supporting Evidence",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -102,7 +102,7 @@ const spiritOfTheHerdQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does paragraph 9 fit into the overall structure of the excerpt?",
     "promptHtml": "How does paragraph 9 fit into the overall structure of the excerpt?",
-    "topic": "Character & Relationships",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",

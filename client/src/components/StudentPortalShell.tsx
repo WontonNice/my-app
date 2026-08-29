@@ -23,7 +23,6 @@ import { AppLink } from "./AppLink";
 type StudentPortalShellProps = {
   activeId: "assessments" | "assignments" | "home" | "materials" | "results";
   children: ReactNode;
-  hasMultipleClasses: boolean;
   onSignOut: () => void;
   previewContext: StudentPreviewContext;
   studentName: string;
@@ -43,7 +42,6 @@ function getInitials(name: string) {
 export function StudentPortalShell({
   activeId,
   children,
-  hasMultipleClasses,
   onSignOut,
   previewContext,
   studentName,
@@ -145,11 +143,6 @@ export function StudentPortalShell({
           {isProfileOpen ? (
             <div className="student-portal-profile-popover" role="menu">
               <div><UserRound size={17} /><span><strong>{studentName}</strong><small>{previewContext.isPreview ? "Student preview" : "Student account"}</small></span></div>
-              {hasMultipleClasses ? (
-                <AppLink href={appendStudentPreview("/dashboard", previewContext)} role="menuitem">
-                  <Library size={16} /> Change course
-                </AppLink>
-              ) : null}
               {previewContext.isPreview ? (
                 <AppLink href={previewContext.returnHref} role="menuitem"><LogOut size={16} /> Return to teacher dashboard</AppLink>
               ) : (

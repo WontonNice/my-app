@@ -103,6 +103,70 @@ export type TeacherAssessment = {
   updatedAt: string;
 };
 
+export type LibraryBookAccess = {
+  accessCode: string;
+  bookId: string;
+  title: string;
+  updatedAt: string;
+};
+
+export type StudentLibraryQuestionStat = {
+  questionId: string;
+  questionNumber: number;
+  timeSpentSeconds: number;
+};
+
+export type TeacherLibraryQuestionStat = StudentLibraryQuestionStat & {
+  correctAnswerId: string;
+  isCorrect: boolean;
+  selectedAnswerId: string;
+};
+
+export type StudentLibraryAttempt = {
+  attemptNumber: number;
+  bookId: string;
+  completedAt: string;
+  id: string;
+  questions: StudentLibraryQuestionStat[];
+  score: number;
+  startedAt: string;
+  totalQuestions: number;
+  totalTimeSeconds: number;
+};
+
+export type LibraryCorrectionResponse = {
+  questionId: string;
+  whyChosenIncorrect: string;
+  whyCorrectAnswerCorrect: string;
+};
+
+export type StudentLibraryCorrection = {
+  attemptId: string;
+  bookId: string;
+  id: string;
+  responses: LibraryCorrectionResponse[];
+  submittedAt: string;
+  updatedAt: string;
+};
+
+export type TeacherLibraryAttempt = Omit<StudentLibraryAttempt, "questions"> & {
+  correction: StudentLibraryCorrection | null;
+  questions: TeacherLibraryQuestionStat[];
+};
+
+export type StudentLibraryCorrectionView = {
+  attempt: TeacherLibraryAttempt;
+  correction: StudentLibraryCorrection | null;
+};
+
+export type TeacherLibraryStudent = {
+  attempts: TeacherLibraryAttempt[];
+  email: string;
+  id: string;
+  name: string;
+  username: string;
+};
+
 export type StaffAccount = {
     accessPassword: string | null;
   createdAt: string;
@@ -677,6 +741,100 @@ export async function getLearningProgress(accessToken: string) {
     headers: createAuthHeaders(accessToken),
   });
   return data.progress;
+}
+
+export async function getTeacherLibraryBooks(accessToken: string) {
+  const data = await requestApi<{ books: LibraryBookAccess[] }>("/api/library/teacher/books", {
+    headers: createAuthHeaders(accessToken),
+  });
+  return data.books;
+}
+
+export async function generateTeacherLibraryBookCode(accessToken: string, bookId: string, title: string) {
+  const data = await requestApi<{ book: LibraryBookAccess }>(
+    `/api/library/teacher/books/${encodeURIComponent(bookId)}/code`,
+    {
+      body: JSON.stringify({ title }),
+      headers: createAuthHeaders(accessToken),
+      method: "POST",
+    },
+  );
+  return data.book;
+}
+
+export async function getTeacherLibraryBook(accessToken: string, bookId: string) {
+  return requestApi<{ book: LibraryBookAccess | null; students: TeacherLibraryStudent[] }>(
+    `/api/library/teacher/books/${encodeURIComponent(bookId)}`,
+    { headers: createAuthHeaders(accessToken) },
+  );
+}
+
+export async function unlockLibraryBook(accessToken: string, bookId: string, code: string) {
+  return requestApi<{ bookId: string; title: string; unlocked: boolean }>(
+    `/api/library/books/${encodeURIComponent(bookId)}/unlock`,
+    {
+      body: JSON.stringify({ code }),
+      headers: createAuthHeaders(accessToken),
+      method: "POST",
+    },
+  );
+}
+
+export async function getStudentLibraryAttempts(accessToken: string, bookId: string) {
+  const data = await requestApi<{ attempts: StudentLibraryAttempt[] }>(
+    `/api/library/books/${encodeURIComponent(bookId)}/attempts`,
+    { headers: createAuthHeaders(accessToken) },
+  );
+  return data.attempts;
+}
+
+export async function getStudentLibraryCorrections(accessToken: string, bookId: string) {
+  return requestApi<StudentLibraryCorrectionView>(
+    `/api/library/books/${encodeURIComponent(bookId)}/corrections`,
+    { headers: createAuthHeaders(accessToken) },
+  );
+}
+
+export async function submitStudentLibraryCorrections(
+  accessToken: string,
+  bookId: string,
+  responses: LibraryCorrectionResponse[],
+) {
+  const data = await requestApi<{ correction: StudentLibraryCorrection }>(
+    `/api/library/books/${encodeURIComponent(bookId)}/corrections`,
+    {
+      body: JSON.stringify({ responses }),
+      headers: createAuthHeaders(accessToken),
+      method: "POST",
+    },
+  );
+  return data.correction;
+}
+
+export async function saveStudentLibraryAttempt(
+  accessToken: string,
+  bookId: string,
+  input: {
+    code: string;
+    questions: {
+      correctAnswerId: string;
+      questionId: string;
+      selectedAnswerId: string;
+      timeSpentSeconds: number;
+    }[];
+    startedAt: string;
+    totalTimeSeconds: number;
+  },
+) {
+  const data = await requestApi<{ attempt: StudentLibraryAttempt }>(
+    `/api/library/books/${encodeURIComponent(bookId)}/attempts`,
+    {
+      body: JSON.stringify(input),
+      headers: createAuthHeaders(accessToken),
+      method: "POST",
+    },
+  );
+  return data.attempt;
 }
 
 export async function getTeacherStudentProgress(accessToken: string) {
