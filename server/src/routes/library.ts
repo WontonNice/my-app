@@ -53,6 +53,7 @@ type LibraryBookRow = {
 type FallbackLibraryProgress = {
     attempts: LibraryAttemptRow[];
     correction: LibraryCorrectionRow | null;
+    unlockedAt: string | null;
 };
 
 const accessCodeAlphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
@@ -236,10 +237,11 @@ function fallbackTopicSlug(bookId: string) {
 }
 
 function readFallbackProgress(value: unknown): FallbackLibraryProgress {
-    if (!isRecord(value)) return { attempts: [], correction: null };
+    if (!isRecord(value)) return { attempts: [], correction: null, unlockedAt: null };
     return {
         attempts: Array.isArray(value.attempts) ? value.attempts as LibraryAttemptRow[] : [],
         correction: isRecord(value.correction) ? value.correction as LibraryCorrectionRow : null,
+        unlockedAt: typeof value.unlockedAt === "string" ? value.unlockedAt : null,
     };
 }
 
@@ -274,6 +276,27 @@ async function getFallbackAttemptsForBook(bookId: string) {
         corrections: progressRows.flatMap((row) => row.progress.correction ? [{ ...row.progress.correction, user_id: row.userId }] : []),
         error: null,
     };
+}
+
+async function getStudentLibraryAttemptRows(userId: string, bookId: string) {
+    const result = await supabase
+        .from("student_library_attempts")
+        .select("id,user_id,book_id,attempt_number,score,total_questions,total_time_seconds,question_stats,started_at,completed_at")
+        .eq("user_id", userId)
+        .eq("book_id", bookId)
+        .order("attempt_number", { ascending: true });
+    if (result.error && !isMissingLibraryTable(result.error)) {
+        return { attempts: [] as LibraryAttemptRow[], error: result.error, fallbackProgress: null as Awaited<ReturnType<typeof getFallbackProgress>> | null };
+    }
+    if (isMissingLibraryTable(result.error)) {
+        const fallbackProgress = await getFallbackProgress(userId, bookId);
+        return {
+            attempts: [...fallbackProgress.data.attempts].sort((left, right) => left.attempt_number - right.attempt_number),
+            error: fallbackProgress.error,
+            fallbackProgress,
+        };
+    }
+    return { attempts: (result.data ?? []) as LibraryAttemptRow[], error: null, fallbackProgress: null };
 }
 
 async function getBook(bookId: string): Promise<{ data: LibraryBookRow | null; error: { code?: string; message: string } | null }> {
@@ -449,6 +472,25 @@ libraryRouter.get("/teacher/books/:bookId", async (request, response) => {
     });
 });
 
+libraryRouter.get("/books/:bookId/access", async (request, response) => {
+    const authenticated = await getAuthenticatedUser(request.headers.authorization);
+    if (authenticated.error || !authenticated.user) {
+        response.status(401).json({ message: authenticated.error });
+        return;
+    }
+    if (getUserRole(authenticated.user) !== "student") {
+        response.json({ unlocked: false, unlockedAt: null });
+        return;
+    }
+    const progress = await getFallbackProgress(authenticated.user.id, request.params.bookId);
+    if (progress.error) {
+        response.status(400).json({ message: progress.error.message });
+        return;
+    }
+    const unlockedAt = progress.data.unlockedAt ?? progress.data.attempts[0]?.completed_at ?? null;
+    response.json({ unlocked: Boolean(unlockedAt), unlockedAt });
+});
+
 libraryRouter.post("/books/:bookId/unlock", async (request, response) => {
     const authenticated = await getAuthenticatedUser(request.headers.authorization);
     if (authenticated.error || !authenticated.user) {
@@ -464,7 +506,24 @@ libraryRouter.post("/books/:bookId/unlock", async (request, response) => {
         response.status(403).json({ message: "That code does not unlock this book. Check the code and try again." });
         return;
     }
-    response.json({ bookId: book.data.book_id, title: book.data.title, unlocked: true });
+    if (getUserRole(authenticated.user) === "student") {
+        const progress = await getFallbackProgress(authenticated.user.id, request.params.bookId);
+        if (progress.error) {
+            response.status(400).json({ message: progress.error.message });
+            return;
+        }
+        const unlockedAt = progress.data.unlockedAt ?? new Date().toISOString();
+        if (!progress.data.unlockedAt) {
+            const saved = await saveFallbackProgress(authenticated.user.id, request.params.bookId, { ...progress.data, unlockedAt });
+            if (saved.error) {
+                response.status(400).json({ message: saved.error.message });
+                return;
+            }
+        }
+        response.json({ bookId: book.data.book_id, title: book.data.title, unlocked: true, unlockedAt });
+        return;
+    }
+    response.json({ bookId: book.data.book_id, title: book.data.title, unlocked: true, unlockedAt: null });
 });
 
 libraryRouter.get("/books/:bookId/attempts", async (request, response) => {
@@ -513,28 +572,12 @@ libraryRouter.get("/books/:bookId/corrections", async (request, response) => {
         response.status(400).json({ message: "That library book is not valid." });
         return;
     }
-    const firstAttempt = await supabase
-        .from("student_library_attempts")
-        .select("id,user_id,book_id,attempt_number,score,total_questions,total_time_seconds,question_stats,started_at,completed_at")
-        .eq("user_id", authenticated.user.id)
-        .eq("book_id", request.params.bookId)
-        .order("attempt_number", { ascending: true })
-        .limit(1)
-        .maybeSingle();
-    if (firstAttempt.error && !isMissingLibraryTable(firstAttempt.error)) {
-        response.status(400).json({ message: firstAttempt.error.message });
+    const attemptResult = await getStudentLibraryAttemptRows(authenticated.user.id, request.params.bookId);
+    if (attemptResult.error) {
+        response.status(400).json({ message: attemptResult.error.message });
         return;
     }
-    const fallbackProgress = isMissingLibraryTable(firstAttempt.error)
-        ? await getFallbackProgress(authenticated.user.id, request.params.bookId)
-        : null;
-    if (fallbackProgress?.error) {
-        response.status(400).json({ message: fallbackProgress.error.message });
-        return;
-    }
-    const attempt = isMissingLibraryTable(firstAttempt.error)
-        ? [...(fallbackProgress?.data.attempts ?? [])].sort((left, right) => left.attempt_number - right.attempt_number)[0]
-        : firstAttempt.data as LibraryAttemptRow | null;
+    const attempt = attemptResult.attempts[0];
     if (!attempt) {
         response.status(404).json({ message: "Finish your first attempt before opening corrections." });
         return;
@@ -543,20 +586,37 @@ libraryRouter.get("/books/:bookId/corrections", async (request, response) => {
         response.status(409).json({ message: "Your first attempt was already perfect, so no corrections are needed." });
         return;
     }
-    const correction = fallbackProgress ? { data: fallbackProgress.data.correction, error: null } : await supabase
+    if (!attemptResult.attempts.some((candidate) => candidate.score >= candidate.total_questions)) {
+        response.status(403).json({ message: "Earn a perfect score on a new attempt before opening Corrections." });
+        return;
+    }
+    let correctionData = attemptResult.fallbackProgress?.data.correction ?? null;
+    if (!attemptResult.fallbackProgress) {
+        const correction = await supabase
             .from("student_library_corrections")
             .select("id,user_id,book_id,attempt_id,responses,submitted_at,updated_at")
             .eq("user_id", authenticated.user.id)
             .eq("book_id", request.params.bookId)
             .eq("attempt_id", attempt.id)
             .maybeSingle();
-    if (correction.error) {
-        response.status(400).json({ message: correction.error.message });
-        return;
+        if (correction.error && !isMissingLibraryTable(correction.error)) {
+            response.status(400).json({ message: correction.error.message });
+            return;
+        }
+        if (isMissingLibraryTable(correction.error)) {
+            const fallback = await getFallbackProgress(authenticated.user.id, request.params.bookId);
+            if (fallback.error) {
+                response.status(400).json({ message: fallback.error.message });
+                return;
+            }
+            correctionData = fallback.data.correction;
+        } else {
+            correctionData = correction.data as LibraryCorrectionRow | null;
+        }
     }
     response.json({
         attempt: teacherAttempt(attempt),
-        correction: correction.data ? correctionSubmission(correction.data as LibraryCorrectionRow) : null,
+        correction: correctionData ? correctionSubmission(correctionData) : null,
     });
 });
 
@@ -574,28 +634,12 @@ libraryRouter.post("/books/:bookId/corrections", async (request, response) => {
         response.status(400).json({ message: "That library book is not valid." });
         return;
     }
-    const firstAttempt = await supabase
-        .from("student_library_attempts")
-        .select("id,user_id,book_id,attempt_number,score,total_questions,total_time_seconds,question_stats,started_at,completed_at")
-        .eq("user_id", authenticated.user.id)
-        .eq("book_id", request.params.bookId)
-        .order("attempt_number", { ascending: true })
-        .limit(1)
-        .maybeSingle();
-    if (firstAttempt.error && !isMissingLibraryTable(firstAttempt.error)) {
-        response.status(400).json({ message: firstAttempt.error.message });
+    const attemptResult = await getStudentLibraryAttemptRows(authenticated.user.id, request.params.bookId);
+    if (attemptResult.error) {
+        response.status(400).json({ message: attemptResult.error.message });
         return;
     }
-    const fallbackProgress = isMissingLibraryTable(firstAttempt.error)
-        ? await getFallbackProgress(authenticated.user.id, request.params.bookId)
-        : null;
-    if (fallbackProgress?.error) {
-        response.status(400).json({ message: fallbackProgress.error.message });
-        return;
-    }
-    const attempt = isMissingLibraryTable(firstAttempt.error)
-        ? [...(fallbackProgress?.data.attempts ?? [])].sort((left, right) => left.attempt_number - right.attempt_number)[0]
-        : firstAttempt.data as LibraryAttemptRow | null;
+    const attempt = attemptResult.attempts[0];
     if (!attempt) {
         response.status(404).json({ message: "Finish your first attempt before submitting corrections." });
         return;
@@ -605,19 +649,41 @@ libraryRouter.post("/books/:bookId/corrections", async (request, response) => {
         response.status(409).json({ message: "Your first attempt was already perfect, so no corrections are needed." });
         return;
     }
+    if (!attemptResult.attempts.some((candidate) => candidate.score >= candidate.total_questions)) {
+        response.status(403).json({ message: "Earn a perfect score on a new attempt before submitting Corrections." });
+        return;
+    }
     const responses = normalizeCorrectionResponses(request.body?.responses, missedQuestionIds);
     if (!responses) {
         response.status(400).json({ message: "Explain both why your choice was incorrect and why the correct answer is correct for every missed question." });
         return;
     }
-    const alreadySubmitted = fallbackProgress ? fallbackProgress.data.correction : (await supabase
+    let correctionFallback = attemptResult.fallbackProgress;
+    let existingCorrection = correctionFallback?.data.correction ?? null;
+    if (!correctionFallback) {
+        const existing = await supabase
             .from("student_library_corrections")
             .select("id")
             .eq("user_id", authenticated.user.id)
             .eq("book_id", request.params.bookId)
             .eq("attempt_id", attempt.id)
-            .maybeSingle()).data;
-    if (alreadySubmitted) {
+            .maybeSingle();
+        if (existing.error && !isMissingLibraryTable(existing.error)) {
+            response.status(400).json({ message: existing.error.message });
+            return;
+        }
+        if (isMissingLibraryTable(existing.error)) {
+            correctionFallback = await getFallbackProgress(authenticated.user.id, request.params.bookId);
+            if (correctionFallback.error) {
+                response.status(400).json({ message: correctionFallback.error.message });
+                return;
+            }
+            existingCorrection = correctionFallback.data.correction;
+        } else {
+            existingCorrection = existing.data ? ({ id: existing.data.id } as LibraryCorrectionRow) : null;
+        }
+    }
+    if (existingCorrection) {
         response.status(409).json({ message: "These corrections have already been submitted to your teacher." });
         return;
     }
@@ -631,9 +697,9 @@ libraryRouter.post("/books/:bookId/corrections", async (request, response) => {
         updated_at: submittedAt,
         user_id: authenticated.user.id,
     };
-    if (fallbackProgress) {
+    if (correctionFallback) {
         const fallbackSaved = await saveFallbackProgress(authenticated.user.id, request.params.bookId, {
-            ...fallbackProgress.data,
+            ...correctionFallback.data,
             correction: correctionRow,
         });
         if (fallbackSaved.error) {
@@ -666,7 +732,13 @@ libraryRouter.post("/books/:bookId/attempts", async (request, response) => {
         response.status(400).json({ message: book.error.message });
         return;
     }
-    if (!book.data || normalizeAccessCode(request.body?.code) !== normalizeAccessCode(book.data.access_code)) {
+    const accessProgress = await getFallbackProgress(authenticated.user.id, request.params.bookId);
+    if (accessProgress.error) {
+        response.status(400).json({ message: accessProgress.error.message });
+        return;
+    }
+    const hasPermanentAccess = Boolean(accessProgress.data.unlockedAt || accessProgress.data.attempts.length);
+    if (!book.data || (!hasPermanentAccess && normalizeAccessCode(request.body?.code) !== normalizeAccessCode(book.data.access_code))) {
         response.status(403).json({ message: "Your book code is no longer valid. Enter the current code and try again." });
         return;
     }
@@ -693,7 +765,7 @@ libraryRouter.post("/books/:bookId/attempts", async (request, response) => {
         return;
     }
     const fallbackProgress = isMissingLibraryTable(latest.error)
-        ? await getFallbackProgress(authenticated.user.id, request.params.bookId)
+        ? accessProgress
         : null;
     if (fallbackProgress?.error) {
         response.status(400).json({ message: fallbackProgress.error.message });

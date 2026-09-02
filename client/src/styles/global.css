@@ -13501,6 +13501,15 @@ button {
 .library-submission-error button { border: 0; background: transparent; color: inherit; font: 800 .62rem/1 inherit; cursor: pointer; }
 .library-saving-attempt { border-color: #bdd8ca; background: #edf6f0; color: var(--student-green); }
 
+.library-correction-gate-layer { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; background: rgb(24 39 32 / 58%); padding: 20px; }
+.library-correction-gate-popup { position: relative; display: grid; justify-items: center; width: min(100%, 440px); border: 1px solid #dbc99f; border-radius: 18px; background: #fffdf8; box-shadow: 0 25px 70px rgb(19 32 26 / 30%); color: #24382f; padding: 34px; text-align: center; }
+.library-correction-gate-popup > button:first-child { position: absolute; top: 13px; right: 13px; display: grid; width: 31px; height: 31px; place-items: center; border: 0; border-radius: 50%; background: #eee9df; color: #5e665f; padding: 0; cursor: pointer; }
+.library-correction-gate-popup > span { display: grid; width: 51px; height: 51px; place-items: center; border-radius: 50%; background: #f2c66d; color: #1f4a3a; }
+.library-correction-gate-popup > p { margin: 18px 0 5px; color: #92713f; font-size: .55rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+.library-correction-gate-popup h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 1.55rem; font-weight: 600; }
+.library-correction-gate-popup small { max-width: 340px; margin-top: 10px; color: #6e756f; font-size: .63rem; line-height: 1.6; }
+.library-correction-gate-popup > button:last-child { min-height: 42px; margin-top: 20px; border: 0; border-radius: 8px; background: #1f4a3a; color: #fff; padding: 0 19px; font: 800 .64rem/1 inherit; cursor: pointer; }
+
 .library-corrections-page { padding: clamp(22px, 4vw, 48px); }
 .library-corrections-topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: min(100%, 1180px); margin: 0 auto; }
 .library-corrections-topbar button { display: inline-flex; align-items: center; gap: 7px; border: 0; background: transparent; color: var(--library-green-2); padding: 0; font: 800 .72rem/1 inherit; cursor: pointer; }
@@ -13731,6 +13740,27 @@ button {
 .teacher-book-no-attempt p { max-width: 280px; margin: 0; font-size: .55rem; line-height: 1.5; }
 .teacher-library-loading { display: grid; min-height: 360px; place-items: center; color: var(--student-muted); }
 
+.student-classroom-page { --classroom-ink: #24382f; --classroom-green: #1f4a3a; --classroom-green-2: #2e7257; min-height: 100vh; background: radial-gradient(circle at 10% 7%, rgb(242 198 109 / 24%), transparent 28%), #f4f0e7; color: var(--classroom-ink); padding: clamp(20px, 4vw, 46px); }
+.student-classroom-page > header { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: min(100%, 1040px); margin: 0 auto; }
+.student-classroom-page > header a { color: var(--classroom-green); font-family: Georgia, "Times New Roman", serif; font-size: .85rem; font-weight: 700; text-decoration: none; }
+.student-classroom-page > header button { display: inline-flex; align-items: center; gap: 6px; border: 0; background: transparent; color: #6e756f; padding: 6px; font: 750 .61rem/1 inherit; cursor: pointer; }
+.student-classroom-card { display: grid; justify-items: center; width: min(100%, 570px); margin: clamp(55px, 10vh, 110px) auto 0; border: 1px solid #ddd6ca; border-radius: 20px; background: #fffdf8; box-shadow: 0 24px 65px rgb(36 56 47 / 10%); padding: clamp(30px, 6vw, 58px); text-align: center; }
+.student-classroom-icon { display: grid; width: 62px; height: 62px; place-items: center; border-radius: 50%; background: #e4eee7; color: var(--classroom-green-2); }
+.student-classroom-card > p { margin: 22px 0 7px; color: #92713f; font-size: .57rem; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; }
+.student-classroom-card h1 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 500; line-height: 1.05; }
+.student-classroom-card > span { max-width: 430px; margin-top: 15px; color: #6e756f; font-size: .72rem; line-height: 1.65; }
+.student-classroom-card form { display: grid; gap: 9px; width: 100%; margin-top: 29px; text-align: left; }
+.student-classroom-card label { display: flex; align-items: center; gap: 6px; font-size: .62rem; font-weight: 850; }
+.student-classroom-card input { width: 100%; min-height: 56px; border: 1px solid #cfc6b8; border-radius: 10px; outline: 0; background: #fff; color: var(--classroom-ink); padding: 0 16px; font: 800 1rem/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .11em; text-transform: uppercase; }
+.student-classroom-card input:focus { border-color: var(--classroom-green-2); box-shadow: 0 0 0 4px rgb(46 114 87 / 12%); }
+.student-classroom-card form > p { margin: 0; color: #a34444; font-size: .61rem; line-height: 1.4; }
+.student-classroom-card form > button { min-height: 46px; border: 0; border-radius: 9px; background: var(--classroom-green); color: #fff; font: 800 .68rem/1 inherit; cursor: pointer; }
+.student-classroom-card form > button:disabled { cursor: not-allowed; opacity: .55; }
+.student-classroom-pending { display: flex; align-items: flex-start; gap: 11px; width: 100%; margin-top: 25px; border: 1px solid #bad6c7; border-radius: 12px; background: #edf6f0; color: #2d6549; padding: 16px; text-align: left; }
+.student-classroom-pending > span { display: grid; gap: 4px; }
+.student-classroom-pending strong { font-size: .72rem; }
+.student-classroom-pending small { color: #527163; font-size: .6rem; line-height: 1.55; }
+
 @media (max-width: 1120px) {
   .teacher-library-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .teacher-library-detail-layout { grid-template-columns: minmax(0, 1fr) 360px; }
@@ -13764,4 +13794,6 @@ button {
   .teacher-library-heading > div:last-child { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .teacher-library-detail-heading > div:last-child { width: 100%; flex-wrap: wrap; }
   .teacher-library-detail-heading > div:last-child > span { flex: 1 1 100%; }
+  .student-classroom-page { padding: 18px; }
+  .student-classroom-card { margin-top: 40px; padding: 30px 22px; }
 }

@@ -24,6 +24,7 @@ import { getExamLibraryPassage } from "../content/exams/passageLibrary";
 import type { ExamPassageSet } from "../content/exams/types";
 import {
   getStudentLibraryCorrections,
+  getStudentLibraryBookAccess,
   getStudentLibraryAttempts,
   saveStudentLibraryAttempt,
   submitStudentLibraryCorrections,
@@ -93,6 +94,21 @@ function StudentAttemptSummary({ attempt, featured = false }: { attempt: Student
       </div>
       <p className="library-student-privacy-note">Question results stay hidden in your score history. If corrections are needed, review them in the separate Corrections workspace.</p>
     </article>
+  );
+}
+
+function CorrectionEligibilityPopup({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="library-correction-gate-layer" role="presentation">
+      <section aria-labelledby="correction-gate-title" aria-modal="true" className="library-correction-gate-popup" role="dialog">
+        <button aria-label="Close" onClick={onClose} type="button"><X size={17} /></button>
+        <span><Trophy size={24} /></span>
+        <p>Corrections are still locked</p>
+        <h2 id="correction-gate-title">Get a perfect score first</h2>
+        <small>Start another attempt and answer every question correctly. Your first attempt and all previous answers are already saved.</small>
+        <button onClick={onClose} type="button">Keep practicing</button>
+      </section>
+    </div>
   );
 }
 
@@ -425,6 +441,7 @@ export function AdvancedPassagePage() {
   const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<string[]>([]);
   const [correctionDraft, setCorrectionDraft] = useState<CorrectionDraft>({});
   const [correctionError, setCorrectionError] = useState("");
+  const [isCorrectionGateOpen, setIsCorrectionGateOpen] = useState(false);
   const [correctionView, setCorrectionView] = useState<StudentLibraryCorrectionView | null>(null);
   const [eliminatedChoices, setEliminatedChoices] = useState<Record<string, string[]>>({});
   const [isCorrectionsOpen, setIsCorrectionsOpen] = useState(false);
@@ -452,8 +469,19 @@ export function AdvancedPassagePage() {
   useEffect(() => {
     if (!accessToken || previewContext.isPreview || !passageSet) return;
     let isMounted = true;
-    getStudentLibraryAttempts(accessToken, bookId)
-      .then((nextAttempts) => { if (isMounted) setAttempts(nextAttempts); })
+    Promise.all([
+      getStudentLibraryAttempts(accessToken, bookId),
+      getStudentLibraryBookAccess(accessToken, bookId),
+    ])
+      .then(([nextAttempts, bookAccess]) => {
+        if (!isMounted) return;
+        setAttempts(nextAttempts);
+        if (bookAccess.unlocked) {
+          attemptStartedAtRef.current = new Date().toISOString();
+          questionStartedAtRef.current = Date.now();
+          setIsUnlocked(true);
+        }
+      })
       .catch(() => undefined);
     return () => { isMounted = false; };
   }, [accessToken, bookId, passageSet, previewContext.isPreview]);
@@ -470,7 +498,8 @@ export function AdvancedPassagePage() {
   const firstAttempt = attempts.reduce<StudentLibraryAttempt | null>((first, attempt) => (
     !first || attempt.attemptNumber < first.attemptNumber ? attempt : first
   ), null);
-  const canOpenCorrections = Boolean(firstAttempt && firstAttempt.score < firstAttempt.totalQuestions);
+  const canRequestCorrections = Boolean(firstAttempt && firstAttempt.score < firstAttempt.totalQuestions);
+  const hasPerfectScore = attempts.some((attempt) => attempt.score >= attempt.totalQuestions);
 
   function recordCurrentQuestionTime() {
     const question = questions[questionIndex];
@@ -564,6 +593,10 @@ export function AdvancedPassagePage() {
 
   async function openCorrections() {
     if (!accessToken || previewContext.isPreview) return;
+    if (!hasPerfectScore) {
+      setIsCorrectionGateOpen(true);
+      return;
+    }
     setIsCorrectionsOpen(true);
     setIsLoadingCorrections(true);
     setCorrectionError("");
@@ -739,9 +772,10 @@ export function AdvancedPassagePage() {
                 <StudentAttemptSummary attempt={attempt} />
               </details>
             )) : <p>Finish this book once and your score and timing history will appear here.</p>}
-            {canOpenCorrections ? <button className="library-open-corrections" onClick={openCorrections} type="button"><MessageSquare size={16} /> Corrections</button> : null}
+            {canRequestCorrections ? <button className="library-open-corrections" onClick={openCorrections} type="button"><MessageSquare size={16} /> Corrections</button> : null}
           </aside>
         </section>
+        {isCorrectionGateOpen ? <CorrectionEligibilityPopup onClose={() => setIsCorrectionGateOpen(false)} /> : null}
       </main>
     );
   }
@@ -795,7 +829,7 @@ export function AdvancedPassagePage() {
               <StudentAttemptSummary attempt={resultAttempt} featured />
               <div className="library-finish-actions">
                 <button onClick={startAnotherAttempt} type="button"><RotateCcw size={16} /> Attempt again</button>
-                {canOpenCorrections ? <button className="is-corrections" onClick={openCorrections} type="button"><MessageSquare size={16} /> Corrections</button> : null}
+                {canRequestCorrections ? <button className="is-corrections" onClick={openCorrections} type="button"><MessageSquare size={16} /> Corrections</button> : null}
                 <a href={backHref}>Return to library</a>
               </div>
             </div>
@@ -809,6 +843,7 @@ export function AdvancedPassagePage() {
               ))}
             </aside>
           </div>
+          {isCorrectionGateOpen ? <CorrectionEligibilityPopup onClose={() => setIsCorrectionGateOpen(false)} /> : null}
         </main>
       );
     }

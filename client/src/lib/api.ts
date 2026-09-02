@@ -770,13 +770,20 @@ export async function getTeacherLibraryBook(accessToken: string, bookId: string)
 }
 
 export async function unlockLibraryBook(accessToken: string, bookId: string, code: string) {
-  return requestApi<{ bookId: string; title: string; unlocked: boolean }>(
+  return requestApi<{ bookId: string; title: string; unlocked: boolean; unlockedAt: string | null }>(
     `/api/library/books/${encodeURIComponent(bookId)}/unlock`,
     {
       body: JSON.stringify({ code }),
       headers: createAuthHeaders(accessToken),
       method: "POST",
     },
+  );
+}
+
+export async function getStudentLibraryBookAccess(accessToken: string, bookId: string) {
+  return requestApi<{ unlocked: boolean; unlockedAt: string | null }>(
+    `/api/library/books/${encodeURIComponent(bookId)}/access`,
+    { headers: createAuthHeaders(accessToken) },
   );
 }
 

@@ -61,7 +61,7 @@ export function AuthPage({ mode }: AuthPageProps) {
 
         const { data } = await supabase.auth.getSession();
         if (data.session) rememberAccountSession(data.session);
-        window.location.assign("/study-hall/shsat");
+        window.location.assign("/study-hall/classroom");
         return;
       }
 

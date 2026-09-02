@@ -7,6 +7,7 @@ import { getSupabaseClient, isSupabaseConfigured } from "./lib/supabase";
 import { StudentDashboardPage } from "./pages/StudentDashboardPage";
 import { StudentAssignmentsPage } from "./pages/StudentAssignmentsPage";
 import { StudentAssessmentsPage } from "./pages/StudentAssessmentsPage";
+import { StudentClassroomPage } from "./pages/StudentClassroomPage";
 import { StudentMaterialsPage } from "./pages/StudentMaterialsPage";
 import { StudentResultsPage } from "./pages/StudentResultsPage";
 import { StudentTopicHubPage } from "./pages/StudentTopicHubPage";
@@ -59,7 +60,7 @@ function ClassAccessGate({ children }: { children: ReactNode }) {
       }
       const cachedClasses = getCachedStudentClasses(session.user.id);
       if (cachedClasses) {
-        if (!cachedClasses.some((studentClass) => studentClass.id === "shsat")) window.location.assign("/study-hall/shsat");
+        if (!cachedClasses.some((studentClass) => studentClass.id === "shsat")) window.location.assign("/study-hall/classroom");
         else setIsChecking(false);
         return;
       }
@@ -67,12 +68,12 @@ function ClassAccessGate({ children }: { children: ReactNode }) {
         const classes = await getStudentClasses(session.access_token);
         cacheStudentClasses(session.user.id, classes);
         if (!classes.some((studentClass) => studentClass.id === "shsat")) {
-          window.location.assign("/study-hall/shsat");
+          window.location.assign("/study-hall/classroom");
           return;
         }
         setIsChecking(false);
       } catch {
-        window.location.assign("/study-hall/shsat");
+        window.location.assign("/study-hall/classroom");
       }
     });
   }, [isTeacherPreview]);
@@ -112,25 +113,28 @@ function CurrentPage() {
   }
 
   if (path.startsWith("/study-hall/")) {
+    if (path === "/study-hall/classroom") {
+      return <StudentClassroomPage />;
+    }
     if (path === "/study-hall/shsat/assignments") {
-      return <StudentAssignmentsPage />;
+      return withClassAccess(<StudentAssignmentsPage />);
     }
     if (path === "/study-hall/shsat/assessments") {
-      return <StudentAssessmentsPage />;
+      return withClassAccess(<StudentAssessmentsPage />);
     }
     if (path === "/study-hall/shsat/materials") {
-      return <StudentMaterialsPage />;
+      return withClassAccess(<StudentMaterialsPage />);
     }
     if (path.startsWith("/study-hall/shsat/topics/")) {
-      return <StudentTopicHubPage />;
+      return withClassAccess(<StudentTopicHubPage />);
     }
     if (path.startsWith("/study-hall/shsat/library/")) {
       return withClassAccess(<AdvancedPassagePage />);
     }
     if (path === "/study-hall/shsat/results") {
-      return <StudentResultsPage />;
+      return withClassAccess(<StudentResultsPage />);
     }
-    return <StudentDashboardPage />;
+    return withClassAccess(<StudentDashboardPage />);
   }
 
   if (path.startsWith("/advanced-practice/")) {
