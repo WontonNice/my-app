@@ -1,0 +1,244 @@
+import type { ExamContent, ExamQuestion } from "./examTypes";
+export type CategoryPlacements = Record<string, string>;
+export type SelectedAnswer = string | string[] | CategoryPlacements;
+export type SelectedAnswers = Record<string, SelectedAnswer>;
+
+export type ExamTopicResult = {
+  correct: number;
+  topic: string;
+  total: number;
+};
+
+export type ExamSubjectResult = {
+  correct: number;
+  subject: "English Language Arts" | "Mathematics";
+  topics: ExamTopicResult[];
+  total: number;
+};
+
+export type ExamPassageResult = {
+  correct: number;
+  id: string;
+  label: string;
+  title: string;
+  total: number;
+};
+
+export type ExamQuestionTypeResult = {
+  correct: number;
+  questionType: string;
+  total: number;
+};
+
+export type ExamResult = {
+  answers: SelectedAnswers;
+  assessmentId: string;
+  completedSections: ("english" | "math")[];
+  completionStatus: "complete" | "english_complete" | "math_complete";
+  completedAt: string;
+  correct: number;
+  passages: ExamPassageResult[];
+  percentage: number;
+  questionTypes: ExamQuestionTypeResult[];
+  source?: "digital" | "manual";
+  subjects: ExamSubjectResult[];
+  title: string;
+  topics: ExamTopicResult[];
+  total: number;
+};
+
+export function getAllExamQuestions(examContent: ExamContent) {
+  return [
+    ...examContent.passageSets.flatMap((passageSet) => passageSet.questions),
+    ...(examContent.standaloneSection?.questions ?? []),
+    ...(examContent.mathSection?.questions ?? []),
+  ];
+}
+
+function normalizeText(value: string) {
+  return value.trim().replace(/\s+/g, " ").toLowerCase();
+}
+
+function getCategoryPlacements(answer: SelectedAnswer | undefined): CategoryPlacements {
+  if (!answer || typeof answer === "string" || Array.isArray(answer)) {
+    return {};
+  }
+
+  return answer;
+}
+
+function hasExactIds(actualIds: string[], expectedIds: string[]) {
+  return (
+    actualIds.length === expectedIds.length &&
+    expectedIds.every((expectedId) => actualIds.includes(expectedId))
+  );
+}
+
+export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAnswer | undefined) {
+  if (question.type === "multiple_choice" || question.type === "transition_drop") {
+    return typeof answer === "string" && answer === question.correctChoiceId;
+  }
+
+  if (question.type === "multi_select" || question.type === "graph_point_select") {
+    const expectedIds =
+      question.type === "graph_point_select"
+        ? question.correctPointIds ?? []
+        : question.correctChoiceIds ?? [];
+    return Array.isArray(answer) && hasExactIds(answer, expectedIds);
+  }
+
+  if (question.type === "math_drag_drop") {
+    const placements = getCategoryPlacements(answer);
+    const slots = question.dragDropSlots ?? [];
+    return (
+      slots.length > 0 &&
+      Object.keys(placements).length === slots.length &&
+      slots.every((slot) => placements[slot.id] === slot.correctItemId)
+    );
+  }
+
+  if (question.type === "number_line_response") {
+    const response = getCategoryPlacements(answer);
+    const correct = question.numberLineResponse;
+    return Boolean(
+      correct &&
+        typeof response.value === "string" && response.value.trim() !== "" &&
+        response.direction === correct.correctDirection &&
+        response.endpoint === correct.correctEndpoint &&
+        Number(response.value) === correct.correctValue,
+    );
+  }
+
+  if (question.type === "category_sort" || question.type === "table_match") {
+    const placements = getCategoryPlacements(answer);
+    const correctPlacements = question.correctPlacements ?? {};
+    const requiredItemIds = Object.keys(correctPlacements);
+    const requiredPlacements = question.requiredPlacements ?? requiredItemIds.length;
+
+    return (
+      requiredItemIds.length > 0 &&
+      Object.keys(placements).length === requiredPlacements &&
+      requiredItemIds.every((itemId) => placements[itemId] === correctPlacements[itemId])
+    );
+  }
+
+  if (question.type === "inline_dropdown") {
+    const dropdownAnswers = getCategoryPlacements(answer);
+    const dropdowns = question.dropdowns ?? [];
+
+    return (
+      dropdowns.length > 0 &&
+      dropdowns.every(
+        (dropdown) =>
+          Boolean(dropdown.correctChoiceId) && dropdownAnswers[dropdown.id] === dropdown.correctChoiceId,
+      )
+    );
+  }
+
+  if (["short_response", "numeric_entry", "grid_in"].includes(question.type)) {
+    const acceptedAnswers = question.correctTextAnswers ?? [];
+
+    return (
+      typeof answer === "string" &&
+      acceptedAnswers.some((acceptedAnswer) => normalizeText(answer) === normalizeText(acceptedAnswer))
+    );
+  }
+
+  return false;
+}
+
+function scoreQuestions(questions: ExamQuestion[], answers: SelectedAnswers) {
+  const topics = new Map<string, ExamTopicResult>();
+  let correct = 0;
+
+  questions.forEach((question) => {
+    const isCorrect = isExamQuestionCorrect(question, answers[question.id]);
+    const currentTopic = topics.get(question.topic) ?? {
+      correct: 0,
+      topic: question.topic,
+      total: 0,
+    };
+
+    currentTopic.total += 1;
+    currentTopic.correct += isCorrect ? 1 : 0;
+    topics.set(question.topic, currentTopic);
+    correct += isCorrect ? 1 : 0;
+  });
+
+  return {
+    correct,
+    topics: Array.from(topics.values()).sort((left, right) => left.topic.localeCompare(right.topic)),
+    total: questions.length,
+  };
+}
+
+function scoreQuestionTypes(questions: ExamQuestion[], answers: SelectedAnswers) {
+  const scores = new Map<string, ExamQuestionTypeResult>();
+  questions.forEach((question) => {
+    const current = scores.get(question.type) ?? { correct: 0, questionType: question.type, total: 0 };
+    current.total += 1;
+    current.correct += isExamQuestionCorrect(question, answers[question.id]) ? 1 : 0;
+    scores.set(question.type, current);
+  });
+  return Array.from(scores.values()).sort((left, right) => left.questionType.localeCompare(right.questionType));
+}
+
+export function createExamResult(
+  examContent: ExamContent,
+  answers: SelectedAnswers,
+  completedSections: ("english" | "math")[] = ["english", "math"],
+): ExamResult {
+  const englishQuestions = [
+    ...examContent.passageSets.flatMap((passageSet) => passageSet.questions),
+    ...(examContent.standaloneSection?.questions ?? []),
+  ];
+  const mathQuestions = examContent.mathSection?.questions ?? [];
+  const questions = [
+    ...(completedSections.includes("english") ? englishQuestions : []),
+    ...(completedSections.includes("math") ? mathQuestions : []),
+  ];
+  const englishScore = scoreQuestions(englishQuestions, answers);
+  const mathScore = scoreQuestions(mathQuestions, answers);
+  const overallScore = scoreQuestions(questions, answers);
+  const subjects: ExamSubjectResult[] = [
+    ...(completedSections.includes("english") && englishScore.total > 0
+      ? [{ ...englishScore, subject: "English Language Arts" as const }]
+      : []),
+    ...(completedSections.includes("math") && mathScore.total > 0 ? [{ ...mathScore, subject: "Mathematics" as const }] : []),
+  ];
+  const passages = completedSections.includes("english") ? examContent.passageSets.map((passageSet, index) => {
+    const passageScore = scoreQuestions(passageSet.questions, answers);
+
+    return {
+      correct: passageScore.correct,
+      id: passageSet.id,
+      label: `Passage ${index + 1}`,
+      title: passageSet.passage.title,
+      total: passageScore.total,
+    };
+  }) : [];
+
+  return {
+    answers: { ...answers },
+    assessmentId: examContent.assessmentId,
+    completedSections,
+    completionStatus:
+      completedSections.includes("english") && completedSections.includes("math")
+        ? "complete"
+        : completedSections.includes("math")
+          ? "math_complete"
+          : "english_complete",
+    completedAt: new Date().toISOString(),
+    correct: overallScore.correct,
+    passages,
+    percentage:
+      overallScore.total > 0 ? Math.round((overallScore.correct / overallScore.total) * 100) : 0,
+    questionTypes: scoreQuestionTypes(questions, answers),
+    subjects,
+    title: examContent.title,
+    topics: overallScore.topics,
+    total: overallScore.total,
+  };
+}
+
+

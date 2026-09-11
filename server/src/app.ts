@@ -9,6 +9,7 @@ import { classesRouter } from "./routes/classes";
 import { healthRouter } from "./routes/health";
 import { libraryRouter } from "./routes/library";
 import { progressRouter } from "./routes/progress";
+import { examReviewRouter } from "./routes/examReview";
 import { staffRouter } from "./routes/staff";
 
 type CreateAppOptions = {
@@ -54,6 +55,7 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
     app.use("/api/classes", classesRouter);
     app.use("/api/library", libraryRouter);
     app.use("/api/progress", progressRouter);
+    app.use("/api/exam-review", examReviewRouter);
     app.use("/api/staff", staffRouter);
 
     app.use("/api", (_request, response) => {

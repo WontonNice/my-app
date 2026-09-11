@@ -13,6 +13,8 @@ import { excerptFromTheFixItSaturdaysPassageSet } from "./passageSets/excerpt-fr
 import { excerptFromTheRoadNotTakenPassageSet } from "./passageSets/excerpt-from-the-road-not-taken";
 import { excerptFromThePuzzleOfTheRiderlessBicyclePassageSet } from "./passageSets/excerpt-from-the-puzzle-of-the-riderless-bicycle";
 import { excerptFromTheLastMulePassageSet } from "./passageSets/excerpt-from-the-last-mule";
+import { excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvilPassageSet } from "./passageSets/excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil";
+import { excerptFromInSearchOfTheUnknownPassageSet } from "./passageSets/excerpt-from-in-search-of-the-unknown";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -29,6 +31,8 @@ export const examPassageLibrary: ExamPassageSet[] = [
   excerptFromTheRoadNotTakenPassageSet,
   excerptFromThePuzzleOfTheRiderlessBicyclePassageSet,
   excerptFromTheLastMulePassageSet,
+  excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvilPassageSet,
+  excerptFromInSearchOfTheUnknownPassageSet,
 ];
 
 export function getExamLibraryPassage(passageId: string) {

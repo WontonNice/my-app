@@ -1,0 +1,88 @@
+.exam-corrections-page { min-height: 100vh; background: #f6f7f5; color: #20352d; padding: clamp(20px, 4vw, 52px); }
+.exam-corrections-page > header, .exam-corrections-layout, .exam-corrections-page > .exam-review-error { max-width: 1280px; margin: 0 auto 24px; }
+.exam-corrections-page > header a { color: #275a49; font-weight: 700; }
+.exam-corrections-page > header p { margin: 28px 0 8px; text-transform: uppercase; letter-spacing: .1em; font-size: .75rem; }
+.exam-corrections-page h1 { margin: 0 0 10px; font: 500 clamp(1.8rem, 4vw, 3rem)/1.15 Georgia, serif; }
+.exam-corrections-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 24px; align-items: start; }
+.exam-corrections-layout > aside { position: sticky; top: 20px; max-height: calc(100vh - 40px); overflow: auto; border: 1px solid #dbe3dc; background: #fff; border-radius: 14px; padding: 20px; }
+.exam-corrections-layout > aside h2 { font-size: 1.1rem; margin: 0; }
+.exam-corrections-layout > aside p { font-size: .75rem; color: #637267; line-height: 1.5; }
+.exam-corrections-layout nav h3 { font-size: .85rem; margin: 20px 0 10px; }
+.exam-correction-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.exam-correction-nav button { min-height: 40px; border: 1px solid; border-radius: 7px; font-weight: 700; cursor: pointer; }
+.exam-correction-nav .is-incorrect { color: #a52d32; background: #fff0f0; border-color: #e7b1b3; }
+.exam-correction-nav .is-correct { color: #24613e; background: #edf7ee; border-color: #bbd8c5; }
+.exam-correction-nav .is-active { outline: 3px solid #243f36; outline-offset: 2px; }
+.exam-correction-work { min-width: 0; }
+.exam-correction-work > article { background: #fff; border: 1px solid #dbe3dc; border-radius: 14px; padding: clamp(18px, 3vw, 32px); }
+.exam-correction-question-heading { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-bottom: 20px; color: #617369; font-size: .82rem; }
+.exam-review-question-content h2 { font-size: 1.15rem; line-height: 1.65; margin: 22px 0; }
+.exam-review-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.exam-review-text p { margin: 8px 0; }
+.exam-review-question-content img, .exam-review-question-content svg, .exam-review-answer-comparison img { display: block; max-width: 100%; max-height: 420px; object-fit: contain; margin: 12px 0; }
+.exam-review-question-content svg { width: 400px; }
+.exam-review-question-content .katex-display { overflow-x: auto; overflow-y: hidden; }
+.exam-review-passage { background: #f6f7f5; border: 1px solid #e0e5e0; border-radius: 8px; padding: 15px; }
+.exam-review-passage p { line-height: 1.8; }
+.exam-review-passage summary { cursor: pointer; font-weight: 700; }
+.exam-review-choices { display: grid; gap: 9px; }
+.exam-review-choices > div { display: flex; gap: 12px; align-items: baseline; border: 1px solid #e0e5e0; padding: 12px; border-radius: 8px; }
+.exam-review-answer-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
+.exam-review-answer-comparison > section { min-width: 0; border: 1px solid; border-radius: 9px; padding: 16px; }
+.exam-review-answer-comparison h3 { font-size: .8rem; margin: 0 0 10px; }
+.exam-review-answer-comparison .is-incorrect { border-color: #ecc3c4; background: #fff3f3; }
+.exam-review-answer-comparison .is-correct { border-color: #bfdbca; background: #f0f8f2; }
+.exam-correction-work fieldset, .exam-paper-entry fieldset { display: grid; gap: 20px; min-width: 0; border: 0; margin: 0; padding: 0; }
+.exam-correction-work label, .exam-paper-entry label, .teacher-paper-panel > label { display: grid; gap: 8px; font-size: .9rem; font-weight: 650; }
+.exam-correction-work label small { font-weight: 400; color: #66776d; }
+.exam-correction-work textarea, .exam-paper-entry input:not([type=checkbox]), .teacher-paper-panel select { width: 100%; box-sizing: border-box; border: 1px solid #b8c8bd; background: #fff; border-radius: 7px; padding: 12px; color: inherit; font: inherit; }
+.exam-correction-work textarea { resize: vertical; }
+.exam-correction-work input[type=range] { width: 100%; accent-color: #245840; cursor: pointer; }
+.exam-correction-work fieldset:disabled textarea { background: #f4f6f3; }
+.exam-slider-labels { display: flex; justify-content: space-between; font-size: .75rem; font-weight: 400; }
+.exam-correction-work footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; background: #fff; padding: 18px; border: 1px solid #dbe3dc; border-radius: 12px; margin-top: 16px; }
+.exam-correction-work footer > span { font-size: .75rem; max-width: 250px; color: #637267; }
+.exam-correction-pagination { display: flex; gap: 8px; }
+.exam-correction-work button, .teacher-exam-tools button, .exam-review-error button { border: 1px solid #bccdc0; background: #fff; color: #254938; border-radius: 7px; min-height: 40px; padding: 8px 13px; cursor: pointer; font: 650 .82rem/1.4 inherit; }
+button.exam-review-primary { background: #245840; border-color: #245840; color: #fff; }
+.exam-corrections-page button:disabled, .teacher-exam-tools button:disabled { opacity: .5; cursor: default; }
+.exam-review-error { background: #fff0f0; border: 1px solid #e6b6b6; color: #8e252a; padding: 14px; border-radius: 8px; }
+.exam-review-success { background: #eaf6ed; border: 1px solid #b9d6c0; color: #245e38; padding: 16px; border-radius: 8px; }
+.teacher-exam-tools { padding: 18px; border-top: 1px solid #dbe3dc; }
+.teacher-exam-tools-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.teacher-exam-tools-actions > span { display: grid; gap: 5px; margin-right: auto; }
+.teacher-exam-tools-actions small { max-width: 310px; color: #687c70; font-size: .72rem; line-height: 1.5; }
+.teacher-paper-panel, .teacher-correction-submissions { margin-top: 22px; padding-top: 18px; border-top: 1px solid #dbe3dc; }
+.teacher-paper-panel h3, .teacher-correction-submissions h3 { font-size: 1rem; }
+.teacher-paper-panel > label { max-width: 440px; }
+.exam-paper-entry { margin-top: 18px; font-size: .88rem; }
+.exam-paper-entry > p { line-height: 1.6; }
+.exam-paper-entry input[type=date] { max-width: 220px; }
+.exam-answer-checkboxes { display: flex; flex-wrap: wrap; gap: 16px; }
+.exam-answer-checkboxes label, .exam-paper-entry .exam-paper-confirm { display: flex; align-items: center; gap: 8px; }
+.exam-paper-question-list { max-height: 560px; overflow: auto; display: grid; gap: 12px; padding-right: 8px; }
+.exam-paper-question-list > article { display: grid; gap: 12px; padding: 16px; border: 1px solid #dbe3dc; border-radius: 9px; background: #fff; }
+.exam-paper-question-list summary { cursor: pointer; font-weight: 700; }
+.exam-paper-question-list select { max-width: 500px; }
+.exam-paper-summary { display: flex; gap: 18px; flex-wrap: wrap; padding: 16px; background: #edf5ef; border-radius: 8px; }
+.exam-paper-number-line { display: flex; flex-wrap: wrap; gap: 12px; }
+.teacher-correction-submissions header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.teacher-correction-submissions > details { border: 1px solid #cbd9cf; border-radius: 9px; background: #fff; margin-top: 12px; padding: 16px; }
+.teacher-correction-submissions summary { cursor: pointer; font-size: .9rem; }
+.teacher-correction-submissions article { padding: 20px 0; border-top: 1px solid #dbe3dc; margin-top: 18px; }
+.teacher-correction-submissions article p { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.65; }
+.teacher-correction-submissions h5 { margin-bottom: 6px; font-size: .85rem; }
+.student-result-correction-action { display: grid; justify-items: end; gap: 12px; }
+.student-results-list article { grid-template-columns: 110px minmax(0, 1fr) auto auto; }
+.student-result-correction-action a { border-radius: 6px; background: #245840; color: #fff; padding: 10px 14px; font-weight: 700; font-size: .8rem; text-decoration: none; }
+.student-result-correction-action button { border: 1px solid #dbe3dc; padding: 9px; border-radius: 6px; font-size: .75rem; color: #707970; }
+@media (max-width: 850px) {
+  .student-results-list article { grid-template-columns: 74px minmax(0, 1fr); }
+  .student-result-correction-action { justify-items: start; }
+  .exam-corrections-layout { grid-template-columns: 1fr; }
+  .exam-corrections-layout > aside { position: static; max-height: 260px; }
+  .exam-correction-nav { grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); }
+  .exam-review-answer-comparison { grid-template-columns: 1fr; }
+  .teacher-exam-tools-actions { align-items: stretch; }
+  .teacher-exam-tools-actions > span { width: 100%; }
+}

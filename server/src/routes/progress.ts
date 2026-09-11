@@ -125,9 +125,9 @@ function getMetadataProgress(user: User): LearningProgress {
     };
 }
 
-async function getDatabaseProgress(user: User): Promise<LearningProgress> {
+export async function getDatabaseProgress(user: User): Promise<LearningProgress> {
     const [examQuery, practiceQuery] = await Promise.all([
-        supabase.from("student_exam_results").select("assessment_id,result").eq("user_id", user.id),
+        supabase.from("student_exam_results").select("assessment_id,result").eq("user_id", user.id).not("assessment_id", "like", "\\_\\_%"),
         supabase.from("student_practice_progress").select("topic_slug,progress").eq("user_id", user.id),
     ]);
 
@@ -135,7 +135,7 @@ async function getDatabaseProgress(user: User): Promise<LearningProgress> {
     if (examQuery.error || practiceQuery.error) return metadataProgress;
 
     const examResults = (examQuery.data ?? []).filter(
-        (row) => !String(row.assessment_id).startsWith(examSessionResultPrefix),
+        (row) => !String(row.assessment_id).startsWith("__"),
     ).map((row) => {
         const result = row.result && typeof row.result === "object" && !Array.isArray(row.result) ? row.result as JsonRecord : {};
         return { ...result, assessmentId: result.assessmentId ?? row.assessment_id };
@@ -489,6 +489,10 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
         return;
     }
     const assessmentId = request.params.assessmentId;
+    if (assessmentId.startsWith("__")) {
+        response.status(400).json({ message: "Invalid assessment ID." });
+        return;
+    }
     const saved = await supabase.from("student_exam_results").upsert({
         assessment_id: assessmentId,
         completed_at: typeof result.completedAt === "string" ? result.completedAt : new Date().toISOString(),

@@ -179,10 +179,13 @@ function StudentCorrectionsPage({
         </aside>
         <form className="library-correction-form" onSubmit={onSubmit}>
           {passageSet.questions.map((question, index) => {
-            const result = view.attempt.questions.find((item) => item.questionId === question.id);
+            const result =
+              view.attempt.questions.find((item) => item.questionId === question.id) ??
+              view.attempt.questions.find((item) => item.questionNumber === index + 1);
             if (!result) return null;
-            const savedResponse = responsesByQuestion.get(question.id);
-            const draft = correctionDraft[question.id] ?? { whyChosenIncorrect: "", whyCorrectAnswerCorrect: "" };
+            const responseQuestionId = result.questionId;
+            const savedResponse = responsesByQuestion.get(responseQuestionId);
+            const draft = correctionDraft[responseQuestionId] ?? { whyChosenIncorrect: "", whyCorrectAnswerCorrect: "" };
             return (
               <article className={`library-correction-question${result.isCorrect ? " is-correct" : " is-missed"}`} key={question.id}>
                 <header><span>Question {index + 1}</span><strong>{result.isCorrect ? "Correct on first attempt" : "Correction required"}</strong></header>
@@ -202,7 +205,7 @@ function StudentCorrectionsPage({
                       <span>Why is the answer I chose incorrect?</span>
                       <textarea
                         maxLength={4000}
-                        onChange={(event) => onDraftChange(question.id, "whyChosenIncorrect", event.target.value)}
+                        onChange={(event) => onDraftChange(responseQuestionId, "whyChosenIncorrect", event.target.value)}
                         placeholder="Explain the mistake in your first answer…"
                         readOnly={isSubmitted}
                         required
@@ -214,7 +217,7 @@ function StudentCorrectionsPage({
                       <span>Why is the correct answer correct?</span>
                       <textarea
                         maxLength={4000}
-                        onChange={(event) => onDraftChange(question.id, "whyCorrectAnswerCorrect", event.target.value)}
+                        onChange={(event) => onDraftChange(responseQuestionId, "whyCorrectAnswerCorrect", event.target.value)}
                         placeholder="Use evidence or reasoning to explain the correct answer…"
                         readOnly={isSubmitted}
                         required

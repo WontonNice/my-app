@@ -25,6 +25,7 @@ const ExamLaunchPage = lazy(() =>
 const ExamResultsPage = lazy(() =>
   import("./pages/ExamResultsPage").then((module) => ({ default: module.ExamResultsPage })),
 );
+const ExamCorrectionsPage = lazy(() => import("./pages/ExamCorrectionsPage").then(module => ({ default: module.ExamCorrectionsPage })));
 const ExamSessionPage = lazy(() =>
   import("./pages/ExamSessionPage").then((module) => ({ default: module.ExamSessionPage })),
 );
@@ -149,6 +150,9 @@ function CurrentPage() {
     return withClassAccess(<ExamSessionPage />);
   }
 
+  if (path.startsWith("/results/") && path.endsWith("/corrections")) {
+    return withClassAccess(<ExamCorrectionsPage />);
+  }
   if (path.startsWith("/results/")) {
     return withClassAccess(<ExamResultsPage />);
   }

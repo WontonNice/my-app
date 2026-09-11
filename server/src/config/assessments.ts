@@ -45,6 +45,7 @@ export type AssessmentSection = "english" | "math";
 export type AssessmentSectionAccess = Record<AssessmentSection, boolean>;
 
 export type Assessment = {
+    correctionsOpen?: boolean;
     allowCompletedAccess: boolean;
     classId: string;
     createdAt: string;
@@ -63,6 +64,7 @@ export type Assessment = {
 };
 
 export type AssessmentSummary = {
+    correctionsOpen: boolean;
     allowCompletedAccess: boolean;
     classId: string;
     description: string;
@@ -163,6 +165,7 @@ function slugify(value: string) {
 
 export function toAssessmentSummary(assessment: Assessment): AssessmentSummary {
     return {
+        correctionsOpen: assessment.correctionsOpen === true,
         allowCompletedAccess: assessment.allowCompletedAccess,
         classId: assessment.classId,
         description: assessment.description,
@@ -311,6 +314,16 @@ export function updateAssessmentCompletedAccess(
 
     writeAssessments(assessments);
     return updatedAssessment;
+}
+
+export function updateAssessmentCorrectionsAccess(assessmentId: string, open: boolean) {
+    const assessments = readAssessments();
+    const assessment = assessments.find((item) => item.id === assessmentId);
+    if (!assessment) return null;
+    assessment.correctionsOpen = open;
+    assessment.updatedAt = new Date().toISOString();
+    writeAssessments(assessments);
+    return assessment;
 }
 
 function isAssessmentForm(value: unknown): value is AssessmentForm {

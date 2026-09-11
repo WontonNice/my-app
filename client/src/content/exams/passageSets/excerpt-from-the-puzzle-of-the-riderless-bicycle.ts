@@ -5,7 +5,7 @@ const excerptFromThePuzzleOfTheRiderlessBicyclePassageText = "Push a bicycle har
 
 const excerptFromThePuzzleOfTheRiderlessBicycleQuestions: ExamQuestion[] = [
   {
-    "id": "passage-1",
+    "id": "excerpt-from-the-puzzle-of-the-riderless-bicycle-1",
     "points": 1,
     "prompt": "The word choices in the first paragraph, such as describing the bicycle's self-balancing as 'something strange' guided by 'an invisible hand,' most clearly establish a tone of",
     "promptHtml": "The word choices in the first paragraph, such as describing the bicycle's self-balancing as 'something strange' guided by 'an invisible hand,'&nbsp;<strong>most clearly</strong>&nbsp;establish a tone of",

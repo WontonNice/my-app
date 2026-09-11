@@ -2618,9 +2618,16 @@ export function ExamSessionPage() {
     const dropdownAnswers = getCategoryPlacements(selectedAnswers[question.id]);
 
     return template
-      .split(/(\\\([\s\S]+?\\\)|\{\{[\w-]+\}\})/g)
+      .split(/(\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)|\{\{[\w-]+\}\})/g)
       .filter(Boolean)
       .map((part, partIndex) => {
+        if (part.startsWith("\\[") && part.endsWith("\\]")) {
+          return (
+            <span className="exam-katex-template-display" key={`display-math-${templateIndex}-${partIndex}`}>
+              {renderKatexExpression(part.slice(2, -2), true)}
+            </span>
+          );
+        }
         if (part.startsWith("\\(") && part.endsWith("\\)")) {
           return (
             <span className="exam-inline-math" key={`math-${templateIndex}-${partIndex}`}>

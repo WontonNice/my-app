@@ -81,6 +81,7 @@ function createFallbackQuestions(assessment: AssessmentContentSource): ExamQuest
           ]
         : undefined,
       choices: isChoiceBasedQuestion(question) ? createChoices(question.choices) : undefined,
+      correctChoiceId: ["multiple_choice", "transition_drop"].includes(question.type) ? question.answer.trim() : undefined,
       correctChoiceIds: correctChoiceIds.length > 0 ? correctChoiceIds : undefined,
       correctTextAnswers: isTextEntry && question.answer ? [question.answer] : undefined,
       categoryCapacity: isTableMatch ? 1 : undefined,

@@ -6,6 +6,7 @@ import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { gunzipSync, gzipSync } from "node:zlib";
 import ts from "typescript";
+import examExporter from "./export-exam-content.cjs";
 
 const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const passageSetsRoot = join(workspaceRoot, "client", "src", "content", "exams", "passageSets");
@@ -42,6 +43,7 @@ const practiceTopicsPath = join(workspaceRoot, "tools", "practice-topics.json");
 const contentTopicsPath = join(workspaceRoot, "tools", "content-topics.json");
 const examImagesRoot = join(workspaceRoot, "client", "public", "exam-images");
 const katexDistRoot = join(workspaceRoot, "node_modules", "katex", "dist");
+const mathliveRoot = join(workspaceRoot, "node_modules", "mathlive");
 const assessmentsPath = join(workspaceRoot, "server", "data", "assessments.json");
 const editorHtmlPath = join(workspaceRoot, "tools", "content-studio.html");
 const appStylesPath = join(workspaceRoot, "client", "src", "styles", "global.css");
@@ -755,13 +757,12 @@ function normalizeQuestion(question, passageId, index) {
   if (!question || typeof question !== "object" || Array.isArray(question)) {
     throw new EditorError(400, `Question ${index + 1} is invalid.`);
   }
-  const id = requiredText(question.id, `Question ${index + 1} ID`).toLowerCase();
+  let id = requiredText(question.id, `Question ${index + 1} ID`).toLowerCase();
   if (!/^[a-z0-9][a-z0-9-]*$/.test(id)) {
     throw new EditorError(400, `Question ${index + 1} ID may use lowercase letters, numbers, and hyphens.`);
   }
-  if (!id.startsWith(`${passageId}-`) && id !== passageId) {
-    // IDs may be intentionally shared with an imported official source, so this is advisory rather than destructive.
-  }
+  const placeholderId = /^passage-(\d+)$/.exec(id);
+  if (placeholderId && passageId !== "passage") id = `${passageId}-${placeholderId[1]}`;
   const promptHtml = sanitizeInlineRichText(question.promptHtml);
   const baseQuestion = {
     id,
@@ -971,8 +972,8 @@ function normalizePassage(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Passage data is invalid.");
   }
-  const id = slugify(requiredText(input.id, "Passage ID"));
-  if (!id) throw new EditorError(400, "Passage ID must contain letters or numbers.");
+  const id = slugify(String(input.id || input.title || ""));
+  if (!id) throw new EditorError(400, "Add a passage title so the Studio can create its internal ID.");
   const format = requiredText(input.format, "Passage format");
   if (!passageFormats.includes(format)) throw new EditorError(400, "Choose a valid passage format.");
   const passageType = requiredText(
@@ -2629,6 +2630,7 @@ async function saveContentTopics(input) {
 }
 
 async function getState() {
+  examExporter.exportExamContent(workspaceRoot);
   const { passageErrors, passages } = await listPassages();
   const { advancedPassageErrors, advancedPassages } = await listAdvancedPassages();
   const { mathErrors, mathSections } = await listMathSections();
@@ -2735,9 +2737,6 @@ async function saveTest(input) {
     ...readingPassageIds,
     ...revisingEditingPartAPassageIds,
   ];
-  if (!passageIds.length && !standaloneItemIds.length) {
-    throw new EditorError(400, "Add at least one English passage or Revising/Editing Part B question.");
-  }
   if (new Set(passageIds).size !== passageIds.length) {
     throw new EditorError(400, "A passage can appear in only one English section.");
   }
@@ -2769,6 +2768,13 @@ async function saveTest(input) {
   const existingMathSection = existingTest?.mathSectionFileName
     ? state.mathSections.find((candidate) => candidate.fileName === existingTest.mathSectionFileName)
     : undefined;
+  const selectedQuestionIds = [
+    ...selectedPassages.flatMap(passage => passage.questions.map(question => question.id)),
+    ...selectedStandaloneItems.map(question => question.id),
+    ...(existingMathSection?.questions ?? []).map(question => question.id),
+  ];
+  const duplicateId = selectedQuestionIds.find((id, index) => selectedQuestionIds.indexOf(id) !== index);
+  if (duplicateId) throw new EditorError(400, `Selected questions share the ID "${duplicateId}". Give each question a unique ID before saving this exam.`);
   const importBlock = selectedPassages
     .map(
       (passage) =>
@@ -2871,6 +2877,30 @@ async function saveTest(input) {
   };
 }
 
+async function createExam(input) {
+  const title = requiredText(input?.title, "Exam title");
+  const durationMinutes = Number(input.durationMinutes ?? 180);
+  if (title.length > 160 || !Number.isInteger(durationMinutes) || durationMinutes < 1 || durationMinutes > 600) {
+    throw new EditorError(400, "Use a title under 160 characters and a duration from 1 to 600 minutes.");
+  }
+  const assessments = await readAssessments();
+  const id = slugify(title);
+  if (!id) throw new EditorError(400, "Include letters or numbers in the exam title.");
+  if (assessments.some((assessment) => assessment.id === id || assessment.title.toLowerCase() === title.toLowerCase())) {
+    throw new EditorError(409, "An exam with this title already exists. Choose another title.");
+  }
+  const timestamp = new Date().toISOString();
+  const assessment = {
+    id, title, classId: "shsat", description: String(input.description ?? "").trim(), durationMinutes,
+    createdAt: timestamp, updatedAt: timestamp, passages: [], questions: [], forms: [], formAssignments: {},
+    status: "locked", sectionAccess: { english: false, math: false }, correctionsOpen: false,
+    allowCompletedAccess: false, split: false,
+  };
+  await writeFile(assessmentsPath, `${JSON.stringify([...assessments, assessment], null, 2)}\n`, "utf8");
+  await saveTest({ assessmentId: id });
+  return assessment;
+}
+
 function sendJson(response, status, value) {
   response.writeHead(status, {
     "Cache-Control": "no-store",
@@ -2913,12 +2943,31 @@ async function handleRequest(request, response) {
       response.end(await readFile(editorHtmlPath, "utf8"));
       return;
     }
+    if (request.method === "GET" && ["/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js"].includes(url.pathname)) {
+      response.writeHead(200, {
+        "Cache-Control": "no-store",
+        "Content-Type": url.pathname.endsWith(".css") ? "text/css; charset=utf-8" : "text/javascript; charset=utf-8",
+      });
+      response.end(await readFile(join(workspaceRoot, "tools", url.pathname.slice(1)), "utf8"));
+      return;
+    }
     if (request.method === "GET" && url.pathname === "/app-styles.css") {
       response.writeHead(200, {
         "Cache-Control": "no-store",
         "Content-Type": "text/css; charset=utf-8",
       });
       response.end(await readFile(appStylesPath, "utf8"));
+      return;
+    }
+    if (request.method === "GET" && url.pathname.startsWith("/vendor/mathlive/")) {
+      const asset = decodeURIComponent(url.pathname.slice("/vendor/mathlive/".length));
+      if (asset !== "mathlive.min.js" && !/^fonts\/[a-zA-Z0-9_-]+\.(woff2?|ttf)$/.test(asset)) {
+        throw new EditorError(404, "Math editor asset not found.");
+      }
+      const contentType = { ".js": "text/javascript; charset=utf-8", ".woff2": "font/woff2", ".woff": "font/woff", ".ttf": "font/ttf" }[extname(asset)];
+      const content = await readFile(join(mathliveRoot, asset));
+      response.writeHead(200, { "Cache-Control": "public, max-age=86400", "Content-Type": contentType });
+      response.end(content);
       return;
     }
     if (request.method === "GET" && url.pathname === "/vendor/katex.min.css") {
@@ -3020,6 +3069,11 @@ async function handleRequest(request, response) {
       sendJson(response, 201, { test: await saveTest(await readJson(request)) });
       return;
     }
+    if (request.method === "POST" && url.pathname === "/api/exams") {
+      verifyEditRequest(request);
+      sendJson(response, 201, { assessment: await createExam(await readJson(request)) });
+      return;
+    }
     if (request.method === "POST" && url.pathname === "/api/standalone-items") {
       verifyEditRequest(request);
       sendJson(response, 201, { standalone: await saveStandaloneItem(await readJson(request)) });
@@ -3092,7 +3146,7 @@ async function validateSetup() {
       {
         choices: ["A", "B", "C", "D", "E"].map((id) => ({ id, text: `Choice ${id}` })),
         correctChoiceIds: ["A", "E"],
-        id: "editor-feature-validation-1",
+        id: "passage-1",
         points: 1,
         prompt: "Choose two answers.",
         promptHtml: "Choose two answers.<div>Keep this on a new line.</div>",
@@ -3164,6 +3218,7 @@ async function validateSetup() {
   });
   const featureSource = buildPassageSource(featureFixture);
   if (
+    featureFixture.questions[0].id !== "editor-feature-validation-1" ||
     featureFixture.questions[0].choices.length !== 5 ||
     featureFixture.questions[0].correctChoiceIds.at(-1) !== "E" ||
     featureFixture.questions[0].instructions !== undefined ||
@@ -3389,7 +3444,8 @@ async function validateSetup() {
     ...state.mathSections.flatMap((section) => section.questions.map((question) => question.id)),
   ];
   if (new Set(examQuestionIds).size !== examQuestionIds.length) {
-    throw new Error("Exam question IDs must be unique across the complete content bank.");
+    const duplicateIds = [...new Set(examQuestionIds.filter((id, index) => examQuestionIds.indexOf(id) !== index))];
+    throw new Error(`Exam question IDs must be unique across the complete content bank. Duplicate IDs: ${duplicateIds.join(", ")}.`);
   }
   if (
     state.advancedPassageErrors.length ||

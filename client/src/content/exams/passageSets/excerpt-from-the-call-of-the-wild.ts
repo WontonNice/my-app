@@ -5,7 +5,7 @@ const excerptFromTheCallOfTheWildPassageText = "Buck did not read the newspapers
 
 const excerptFromTheCallOfTheWildQuestions: ExamQuestion[] = [
   {
-    "id": "passage-1",
+    "id": "excerpt-from-the-call-of-the-wild-1",
     "points": 1,
     "prompt": "The author's decision to reveal, in the very first lines, that 'trouble was brewing' for tide-water dogs like Buck, before ever describing Buck's comfortable life at Judge Miller's estate, most strongly serves to",
     "promptHtml": "The author's decision to reveal, in the very first lines, that 'trouble was brewing' for tide-water dogs like Buck, before ever describing Buck's comfortable life at Judge Miller's estate,&nbsp;<strong>most strongly</strong>&nbsp;serves to",

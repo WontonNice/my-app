@@ -67,7 +67,7 @@ const excerptFromTheFixItSaturdaysQuestions: ExamQuestion[] = [
     "type": "multiple_choice"
   },
   {
-    "id": "passage-1",
+    "id": "excerpt-from-the-fix-it-saturdays-1",
     "points": 1,
     "prompt": "By including Fitch's own words explaining why he refuses to turn Fix-It Saturdays into a paid, weekly program, the author most strongly emphasizes which aspect of the program?",
     "promptHtml": "By including Fitch's own words explaining why he refuses to turn Fix-It Saturdays into a paid, weekly program, the author&nbsp;<strong>most strongly</strong>&nbsp;emphasizes which aspect of the program?",

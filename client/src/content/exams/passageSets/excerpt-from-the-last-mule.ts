@@ -5,7 +5,7 @@ const excerptFromTheLastMulePassageText = "The Last Mule\n\n\nOttoline pulled a 
 
 const excerptFromTheLastMuleQuestions: ExamQuestion[] = [
   {
-    "id": "passage-1",
+    "id": "excerpt-from-the-last-mule-1",
     "points": 1,
     "prompt": "The poem's six stanzas move chronologically from the tractor's arrival, through the father's shifting relationship with the mule and the machine, to Ottoline's death and the speaker's later reflection. This structure most clearly emphasizes",
     "promptHtml": "The poem's six stanzas move chronologically from the tractor's arrival, through the father's shifting relationship with the mule and the machine, to Ottoline's death and the speaker's later reflection. This structure&nbsp;<strong>most clearly</strong>&nbsp;emphasizes",

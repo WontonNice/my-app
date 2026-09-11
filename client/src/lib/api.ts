@@ -50,6 +50,7 @@ export type QuestionType =
   | "essay";
 
 export type StudentAssessment = {
+  correctionsOpen?: boolean;
   allowCompletedAccess: boolean;
   classId: string;
   description: string;
@@ -65,6 +66,7 @@ export type StudentAssessment = {
 };
 
 export type TeacherAssessment = {
+  correctionsOpen?: boolean;
   allowCompletedAccess: boolean;
   assignedFormId?: string;
   assignedFormLabel?: string;
@@ -1024,6 +1026,36 @@ export async function getTeacherAssessments(accessToken: string) {
   });
 
   return data.assessments;
+}
+
+export async function setExamCorrectionsAccess(accessToken: string, assessmentId: string, open: boolean) {
+  const data = await requestApi<{ assessment: TeacherAssessment }>(`/api/exam-review/teacher/${encodeURIComponent(assessmentId)}/access`, {
+    headers: createAuthHeaders(accessToken), method: "PATCH", body: JSON.stringify({ open }),
+  });
+  return data.assessment;
+}
+
+export async function getExamCorrectionView(accessToken: string, assessmentId: string) {
+  return requestApi<import("../../../server/src/shared/examCorrections").ExamCorrectionView>(`/api/exam-review/student/${encodeURIComponent(assessmentId)}`, { headers: createAuthHeaders(accessToken) });
+}
+
+export async function submitExamCorrections(accessToken: string, assessmentId: string, resultVersion: string, responses: import("../../../server/src/shared/examCorrections").CorrectionResponse[]) {
+  const data = await requestApi<{ submission: import("../../../server/src/shared/examCorrections").CorrectionSubmission }>(`/api/exam-review/student/${encodeURIComponent(assessmentId)}`, {
+    headers: createAuthHeaders(accessToken), method: "POST", body: JSON.stringify({ resultVersion, responses }),
+  });
+  return data.submission;
+}
+
+export async function getExamCorrectionSubmissions(accessToken: string, assessmentId: string) {
+  const data = await requestApi<{ submissions: import("../../../server/src/shared/examCorrections").CorrectionSubmission[] }>(`/api/exam-review/teacher/${encodeURIComponent(assessmentId)}/submissions`, { headers: createAuthHeaders(accessToken) });
+  return data.submissions;
+}
+
+export async function enterStudentExamAnswers(accessToken: string, assessmentId: string, studentId: string, input: { answers: import("./examResults").SelectedAnswers; completedDate: string; completedSections: AssessmentSection[] }) {
+  const data = await requestApi<{ result: import("./examResults").ExamResult }>(`/api/exam-review/teacher/${encodeURIComponent(assessmentId)}/answers/${encodeURIComponent(studentId)}`, {
+    headers: createAuthHeaders(accessToken), method: "POST", body: JSON.stringify(input),
+  });
+  return data.result;
 }
 
 export async function updateTeacherAssessmentStatus(

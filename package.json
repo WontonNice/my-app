@@ -29,12 +29,15 @@
         "preview": "npm run preview --workspace client",
         "content-editor": "node tools/content-studio.mjs",
         "content-editor:validate": "node tools/content-studio.mjs --validate",
+        "content-editor:test": "node --test tools/content-studio-workspace.test.mjs tools/content-studio-math.test.mjs tools/content-studio-exams.test.mjs",
+        "test:exam-review": "node --test server/tests/exam-review.test.cjs",
         "exam-editor": "npm run content-editor",
         "exam-editor:validate": "npm run content-editor:validate",
         "question-editor": "npm run content-editor",
         "question-editor:validate": "npm run content-editor:validate"
     },
     "devDependencies": {
-        "concurrently": "^9.1.2"
+        "concurrently": "^9.1.2",
+        "mathlive": "0.110.0"
     }
 }

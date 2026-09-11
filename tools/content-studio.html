@@ -255,6 +255,10 @@
     .assessment-list button.is-active { border-color: #70aa9f; background: var(--accent-soft); }
     .assessment-list strong { font-size: .74rem; }
     .assessment-list small { color: var(--muted); font-size: .62rem; }
+    #new-exam-form { gap: 12px; }
+    #new-exam-form > label { display: grid; gap: 6px; font-size: .75rem; font-weight: 650; }
+    #new-exam-form > label:has(input[type="checkbox"]) { display: flex; align-items: center; gap: 8px; }
+    #new-exam-form input[type="checkbox"] { width: 17px; height: 17px; min-height: 0; padding: 0; flex-shrink: 0; }
     .test-builder { min-height: 420px; }
     .test-summary { display: flex; flex-wrap: wrap; gap: 7px; margin: 10px 0 16px; }
     .test-summary span { border-radius: 999px; background: #edf1f4; color: #506277; padding: 5px 9px; font-size: .63rem; font-weight: 750; }
@@ -718,6 +722,8 @@
       .content-topic-dialog .topic-manager-row { grid-template-columns: 28px minmax(0, 1fr); }
     }
   </style>
+  <link rel="stylesheet" href="/content-studio-workspace.css">
+  <link rel="stylesheet" href="/content-studio-math.css">
 </head>
 <body>
   <header class="app-header">
@@ -725,7 +731,7 @@
       <span class="brand-mark">NT</span>
       <div><strong>Nathan Tutors Content Studio</strong><small>One workspace for exams, advanced practice, and regular practice</small></div>
     </div>
-    <div class="save-status" id="status">Loading repository content…</div>
+    <div class="save-status" id="status" role="status" aria-live="polite">Loading repository content…</div>
   </header>
 
   <nav class="tabbar" aria-label="Editor sections">
@@ -780,7 +786,17 @@
         </header>
         <div class="test-grid">
           <section class="panel">
-            <div class="panel-head"><div><h2>Existing exams</h2><small>Select the exam whose English section you want to assemble.</small></div></div>
+            <div class="panel-head"><div><h2>Exams</h2><small>Create an exam or select one to assemble.</small></div><button class="primary" id="new-exam" type="button">+ New exam</button></div>
+            <form id="new-exam-form" hidden style="padding:16px;display:none">
+              <label>Exam title<input name="title" required maxlength="160" placeholder="2026 Fall Practice Test"></label>
+              <label>Duration (minutes)<input name="durationMinutes" type="number" min="1" max="600" value="180" required></label>
+              <label>Description<textarea name="description" rows="2"></textarea></label>
+              <p class="field-note">New exams start locked. Add English and Math questions, then open access from the teacher dashboard.</p>
+              <label><input name="paperAnswers" type="checkbox"> Enter answers from a test students already took</label>
+              <p class="field-note">After saving your questions and answer key, use Enter student answers in the teacher dashboard.</p>
+              <button class="primary" type="submit">Create exam</button>
+              <p id="new-exam-error" role="alert"></p>
+            </form>
             <div class="assessment-list" id="assessment-list"></div>
             <div class="error-list" id="test-errors" hidden></div>
           </section>
@@ -792,8 +808,8 @@
     <section class="view" id="math-view">
       <div class="test-shell">
         <header>
-          <h1>Math question creator</h1>
-          <p>Select an exam first, then create and arrange the unique math questions for that exam. Use the formula buttons for fractions, exponents, roots, and symbols without writing formatting code yourself.</p>
+          <h1>Math authoring</h1>
+          <p>Write, structure, and preview your exam questions.</p>
         </header>
         <div class="test-grid">
           <section class="panel">
@@ -963,6 +979,9 @@ Why D is wrong."></textarea>
   </section>
 
   <script src="/vendor/katex.min.js"></script>
+  <script src="/vendor/mathlive/mathlive.min.js"></script>
+  <script src="/content-studio-math.js"></script>
+  <script src="/content-studio-workspace.js"></script>
   <script>
     const app = {
       state: null,
@@ -1014,6 +1033,28 @@ Why D is wrong."></textarea>
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-|-$/g, "");
+
+    function ensurePassageIdentity() {
+      const passage = app.passageDraft;
+      if (!passage) return false;
+      if (passage.id) return true;
+      const generatedId = slugFromTitle(passage.title);
+      if (!generatedId) {
+        setStatus("Add a passage title first.", "error");
+        return false;
+      }
+      passage.id = generatedId;
+      passage.passageSetId ||= `${app.passageMode === "advanced" ? "advanced" : "ela"}-${generatedId}`;
+      if (app.passageMode === "advanced") passage.advancedId ||= generatedId;
+      passage.questions.forEach((question) => {
+        const placeholderId = /^passage-(\d+)$/.exec(question.id || "");
+        if (!placeholderId) return;
+        const previousId = question.id;
+        question.id = `${generatedId}-${placeholderId[1]}`;
+        if (studioUI.selectedQuestionId === previousId) studioUI.selectedQuestionId = question.id;
+      });
+      return true;
+    }
 
     function sanitizePastedRichText(html, inline = false) {
       const source = document.createElement("div");
@@ -1080,6 +1121,7 @@ Why D is wrong."></textarea>
       const element = $("#status");
       element.textContent = message;
       element.className = `save-status${tone ? ` is-${tone}` : ""}`;
+      studioUI.updateDialogStatus(message, tone);
     }
 
     async function api(path, options = {}) {
@@ -1430,211 +1472,12 @@ Rules:
       ).join("");
     }
 
-    function friendlyMathExpression(value) {
-      let expression = String(value || "")
-        .trim()
-        .replace(/^\\\(([\s\S]*)\\\)$/, "$1")
-        .replace(/^\\\[([\s\S]*)\\\]$/, "$1")
-        .replaceAll("≤", "\\le ")
-        .replaceAll("≥", "\\ge ")
-        .replaceAll("≠", "\\ne ")
-        .replaceAll("≈", "\\approx ")
-        .replaceAll("×", "\\times ")
-        .replaceAll("÷", "\\div ")
-        .replaceAll("π", "\\pi ");
-      expression = expression.replace(/(?:sqrt|√)\s*\(([^()]*)\)/gi, "\\sqrt{$1}");
-      if (!expression.includes("\\frac") && /^[^/]+\/[^/]+$/.test(expression)) {
-        const [numerator, denominator] = expression.split("/");
-        expression = `\\frac{${numerator.trim()}}{${denominator.trim()}}`;
-      }
-      return expression;
-    }
-
-    const mathFormulaBuilders = {
-      variable: {
-        title: "Add variables or an expression",
-        description: "Type the letters, numbers, or expression. The editor will format them as math.",
-        fields: [{ name: "value", label: "Math to show", placeholder: "Example: MNPQ or x + 4", wide: true }],
-        build: ({ value }) => friendlyMathExpression(value),
-      },
-      fraction: {
-        title: "Add a fraction",
-        description: "Enter the top and bottom values. No formula notation is needed.",
-        fields: [
-          { name: "numerator", label: "Top number or expression", placeholder: "Example: x + 1" },
-          { name: "denominator", label: "Bottom number or expression", placeholder: "Example: 2" },
-        ],
-        build: ({ numerator, denominator }) =>
-          `\\frac{${friendlyMathExpression(numerator)}}{${friendlyMathExpression(denominator)}}`,
-      },
-      exponent: {
-        title: "Add an exponent",
-        description: "Enter the base and the raised power.",
-        fields: [
-          { name: "base", label: "Base", placeholder: "Example: x", value: "x" },
-          { name: "power", label: "Exponent", placeholder: "Example: 2", value: "2" },
-        ],
-        build: ({ base, power }) => `${friendlyMathExpression(base)}^{${friendlyMathExpression(power)}}`,
-      },
-      squareRoot: {
-        title: "Add a square root",
-        description: "Enter the value that belongs under the root symbol.",
-        fields: [{ name: "value", label: "Value under the root", placeholder: "Example: x + 9", wide: true }],
-        build: ({ value }) => `\\sqrt{${friendlyMathExpression(value)}}`,
-      },
-      mixedNumber: {
-        title: "Add a mixed number",
-        description: "Enter the whole number and the fraction.",
-        fields: [
-          { name: "whole", label: "Whole number", placeholder: "Example: 2" },
-          { name: "numerator", label: "Top number", placeholder: "Example: 1" },
-          { name: "denominator", label: "Bottom number", placeholder: "Example: 3" },
-        ],
-        build: ({ whole, numerator, denominator }) =>
-          `${friendlyMathExpression(whole)}\\frac{${friendlyMathExpression(numerator)}}{${friendlyMathExpression(denominator)}}`,
-      },
-      scientificNotation: {
-        title: "Add scientific notation",
-        description: "Enter the coefficient and the power of ten.",
-        fields: [
-          { name: "coefficient", label: "Coefficient", placeholder: "Example: 3.5" },
-          { name: "power", label: "Power of 10", placeholder: "Example: 6" },
-        ],
-        build: ({ coefficient, power }) =>
-          `${friendlyMathExpression(coefficient)}\\times 10^{${friendlyMathExpression(power)}}`,
-      },
-      subscript: {
-        title: "Add a subscript",
-        description: "Enter the main value and the smaller value shown below it.",
-        fields: [
-          { name: "base", label: "Main value", placeholder: "Example: x", value: "x" },
-          { name: "subscript", label: "Subscript", placeholder: "Example: 1" },
-        ],
-        build: ({ base, subscript }) => `${friendlyMathExpression(base)}_{${friendlyMathExpression(subscript)}}`,
-      },
-      nthRoot: {
-        title: "Add an nth root",
-        description: "Enter the small root number and the value under the root.",
-        fields: [
-          { name: "index", label: "Root number", placeholder: "Example: 3" },
-          { name: "value", label: "Value under the root", placeholder: "Example: 8" },
-        ],
-        build: ({ index, value }) =>
-          `\\sqrt[${friendlyMathExpression(index)}]{${friendlyMathExpression(value)}}`,
-      },
-      absoluteValue: {
-        title: "Add an absolute value",
-        description: "Enter the expression that belongs between the bars.",
-        fields: [{ name: "value", label: "Expression", placeholder: "Example: x - 4", wide: true }],
-        build: ({ value }) => `\\left\\lvert ${friendlyMathExpression(value)}\\right\\rvert`,
-      },
-      degrees: {
-        title: "Add degrees",
-        description: "Enter the number or expression before the degree symbol.",
-        fields: [{ name: "value", label: "Degrees", placeholder: "Example: 90", wide: true }],
-        build: ({ value }) => `${friendlyMathExpression(value)}^{\\circ}`,
-      },
-      orderedPair: {
-        title: "Add an ordered pair",
-        description: "Enter the horizontal and vertical coordinates.",
-        fields: [
-          { name: "x", label: "x-coordinate", placeholder: "Example: -2" },
-          { name: "y", label: "y-coordinate", placeholder: "Example: 5" },
-        ],
-        build: ({ x, y }) => `\\left(${friendlyMathExpression(x)}, ${friendlyMathExpression(y)}\\right)`,
-      },
-      advanced: {
-        title: "Add a custom equation",
-        description: "Most questions can use the buttons above. Use this field only for a custom equation.",
-        fields: [{ name: "value", label: "Equation", placeholder: "Example: y = 2x + 3", wide: true }],
-        build: ({ value }) => friendlyMathExpression(value),
-      },
-      display: {
-        title: "Add a centered equation",
-        description: "Enter the equation and it will appear on its own centered line.",
-        displayMode: true,
-        fields: [{ name: "value", label: "Equation", placeholder: "Example: y = 2x + 3", wide: true }],
-        build: ({ value }) => friendlyMathExpression(value),
-      },
-    };
-
-    const mathFormulaSymbols = {
-      pi: { expression: "\\pi", label: "Pi" },
-      lessEqual: { expression: "\\le", label: "Less than or equal to" },
-      greaterEqual: { expression: "\\ge", label: "Greater than or equal to" },
-      multiply: { expression: "\\times", label: "Multiply" },
-      divide: { expression: "\\div", label: "Divide" },
-      plusMinus: { expression: "\\pm", label: "Plus or minus" },
-      infinity: { expression: "\\infty", label: "Infinity" },
-      notEqual: { expression: "\\ne", label: "Not equal to" },
-      approximately: { expression: "\\approx", label: "Approximately equal to" },
-      parallel: { expression: "\\parallel", label: "Parallel" },
-      perpendicular: { expression: "\\perp", label: "Perpendicular" },
-    };
-
-    mathFormulaBuilders.symbol = {
-      title: "Change this math symbol",
-      description: "Choose the symbol students should see.",
-      fields: [{
-        name: "symbol",
-        label: "Symbol",
-        options: Object.entries(mathFormulaSymbols).map(([value, symbol]) => ({
-          label: symbol.label,
-          value,
-        })),
-        wide: true,
-      }],
-      build: ({ symbol }) => mathFormulaSymbols[symbol]?.expression || "",
-    };
-
     function mathFormulaToolbarHtml(targetId, compact = false, rawExpression = false) {
-      const quickButtons = [
-        ["builder", "fraction", "Fraction", "a⁄b"],
-        ["builder", "exponent", "Exponent", "xⁿ"],
-        ["builder", "squareRoot", "Square root", "√"],
-        ["symbol", "pi", "Pi", "π"],
-        ["symbol", "lessEqual", "Less than or equal to", "≤"],
-        ["symbol", "greaterEqual", "Greater than or equal to", "≥"],
-        ["symbol", "multiply", "Multiply", "×"],
-        ["symbol", "divide", "Divide", "÷"],
-      ];
-      return `
-        <div class="math-formula-toolbar">
-          ${compact ? "" : "<span>Add math</span>"}
-          ${rawExpression ? "" : `<button data-math-builder="variable" data-math-target="${escapeHtml(targetId)}" title="Add variables or a math expression" type="button"><span class="math-button-symbol">x</span> Variable</button>`}
-          ${quickButtons.map(([kind, key, title, label]) => `
-            <button data-math-${kind}="${escapeHtml(key)}" data-math-raw="${rawExpression ? "true" : "false"}" data-math-target="${escapeHtml(targetId)}" title="${escapeHtml(title)}" type="button"><span class="math-button-symbol">${escapeHtml(label)}</span>${compact ? "" : ` ${escapeHtml(title)}`}</button>
-          `).join("")}
-          <select aria-label="More math formulas" class="math-template-picker" data-math-template-picker data-math-target="${escapeHtml(targetId)}">
-            <option value="">More math...</option>
-            <optgroup label="Numbers">
-              <option value="builder:mixedNumber">Mixed number</option>
-              <option value="builder:scientificNotation">Scientific notation</option>
-              <option value="symbol:plusMinus">Plus or minus</option>
-              <option value="symbol:infinity">Infinity</option>
-            </optgroup>
-            <optgroup label="Algebra">
-              <option value="builder:subscript">Subscript</option>
-              <option value="builder:nthRoot">Nth root</option>
-              <option value="builder:absoluteValue">Absolute value</option>
-              <option value="symbol:notEqual">Not equal</option>
-              <option value="symbol:approximately">Approximately equal</option>
-              <option value="builder:advanced">Custom equation</option>
-              ${rawExpression ? "" : `<option value="builder:display">Centered equation</option>`}
-            </optgroup>
-            <optgroup label="Geometry and coordinates">
-              <option value="builder:degrees">Degrees</option>
-              <option value="builder:orderedPair">Ordered pair</option>
-              <option value="symbol:parallel">Parallel</option>
-              <option value="symbol:perpendicular">Perpendicular</option>
-            </optgroup>
-          </select>
-          <button data-math-raw="${rawExpression ? "true" : "false"}" data-math-template-insert title="Add the selected math" type="button">Add</button>
-        </div>
-      `;
+      return studioMath.toolbar(targetId, compact, rawExpression);
     }
 
     function renderKatexExpression(expression, displayMode = false) {
+      expression = studioMath.previewLatex(String(expression || ""));
       try {
         return window.katex.renderToString(expression, {
           displayMode,
@@ -1704,17 +1547,7 @@ Rules:
     }
 
     function createMathVisualToken(expression, displayMode = false) {
-      const token = document.createElement("span");
-      token.className = `math-visual-token${displayMode ? " is-display" : ""}`;
-      token.contentEditable = "false";
-      token.dataset.mathExpression = expression;
-      token.dataset.mathDisplay = displayMode ? "true" : "false";
-      token.tabIndex = 0;
-      token.setAttribute("role", "button");
-      token.setAttribute("aria-label", `Edit formula: ${expression}`);
-      token.title = "Click to edit this formula";
-      token.innerHTML = renderKatexExpression(expression, displayMode);
-      return token;
+      return studioMath.token(expression, displayMode);
     }
 
     function hydrateMathPromptEditor(editor) {
@@ -1754,7 +1587,7 @@ Rules:
       return container.innerHTML;
     }
 
-    function serializeMathPromptEditor(editor) {
+    function serializeMathPromptEditor(editor, { trim = true } = {}) {
       const cloneEditor = editor.cloneNode(true);
       $$(".math-visual-token", cloneEditor).forEach((token) => {
         const expression = token.dataset.mathExpression || "";
@@ -1768,193 +1601,10 @@ Rules:
       textContainer.innerHTML = html
         .replaceAll("<br>", "\n")
         .replace(/<\/(?:p|div|li)>/gi, "\n");
-      return {
-        html,
-        text: (textContainer.textContent || "")
-          .replace(/\u00a0/g, " ")
-          .replace(/\r\n?/g, "\n")
-          .replace(/\n{3,}/g, "\n\n")
-          .trim(),
-      };
-    }
-
-    function detectMathFormulaBuilder(expression) {
-      const matchedSymbol = Object.entries(mathFormulaSymbols).find(([, symbol]) => symbol.expression === expression);
-      if (matchedSymbol) return { key: "symbol", values: { symbol: matchedSymbol[0] } };
-      let match = expression.match(/^\\frac\{([^{}]*)\}\{([^{}]*)\}$/);
-      if (match) return { key: "fraction", values: { numerator: match[1], denominator: match[2] } };
-      match = expression.match(/^(.+)\^\{([^{}]*)\}$/);
-      if (match && match[2] !== "\\circ") return { key: "exponent", values: { base: match[1], power: match[2] } };
-      match = expression.match(/^\\sqrt\{([^{}]*)\}$/);
-      if (match) return { key: "squareRoot", values: { value: match[1] } };
-      match = expression.match(/^(.+)\^\{\\circ\}$/);
-      if (match) return { key: "degrees", values: { value: match[1] } };
-      match = expression.match(/^\\left\((.+),\s*(.+)\\right\)$/);
-      if (match) return { key: "orderedPair", values: { x: match[1], y: match[2] } };
-      return { key: "advanced", values: { value: expression } };
-    }
-
-    let mathFormulaComposerState = null;
-
-    function ensureMathFormulaDialog() {
-      let dialog = $("#math-formula-dialog");
-      if (dialog) return dialog;
-      dialog = document.createElement("dialog");
-      dialog.className = "math-formula-dialog";
-      dialog.id = "math-formula-dialog";
-      dialog.innerHTML = `
-        <form>
-          <header>
-            <div><h2 id="math-formula-dialog-title">Add math</h2><p id="math-formula-dialog-description"></p></div>
-            <button aria-label="Close" class="icon-button" id="close-math-formula-dialog" type="button">×</button>
-          </header>
-          <div class="math-formula-dialog-fields" id="math-formula-dialog-fields"></div>
-          <div aria-label="Formula preview" class="math-formula-dialog-preview" id="math-formula-dialog-preview"></div>
-          <footer>
-            <button class="danger" id="remove-math-formula" type="button" hidden>Remove formula</button>
-            <button class="secondary" id="cancel-math-formula" type="button">Cancel</button>
-            <button class="primary" type="submit">Use this math</button>
-          </footer>
-        </form>
-      `;
-      document.body.appendChild(dialog);
-      const close = () => {
-        mathFormulaComposerState = null;
-        dialog.close();
-      };
-      $("#close-math-formula-dialog", dialog).addEventListener("click", close);
-      $("#cancel-math-formula", dialog).addEventListener("click", close);
-      $("#remove-math-formula", dialog).addEventListener("click", () => {
-        const state = mathFormulaComposerState;
-        if (!state?.token) return;
-        state.token.remove();
-        state.target.dispatchEvent(new Event("input", { bubbles: true }));
-        close();
-        state.target.focus();
-      });
-      $("form", dialog).addEventListener("submit", (event) => {
-        event.preventDefault();
-        const state = mathFormulaComposerState;
-        if (!state) return;
-        const values = Object.fromEntries(
-          $$("[data-math-formula-field]", dialog).map((input) => [input.dataset.mathFormulaField, input.value]),
-        );
-        const expression = state.builder.build(values);
-        if (!expression.trim()) {
-          setStatus("Enter the math you want students to see.", "error");
-          return;
-        }
-        if (state.token) {
-          state.token.dataset.mathExpression = expression;
-          state.token.dataset.mathDisplay = state.displayMode ? "true" : "false";
-          state.token.classList.toggle("is-display", state.displayMode);
-          state.token.setAttribute("aria-label", `Edit formula: ${expression}`);
-          state.token.innerHTML = renderKatexExpression(expression, state.displayMode);
-        } else {
-          insertBuiltMath(state.target, expression, state.displayMode, state.rawExpression, state.range);
-        }
-        state.target.dispatchEvent(new Event("input", { bubbles: true }));
-        close();
-        state.target.focus();
-      });
-      return dialog;
-    }
-
-    function updateMathFormulaDialogPreview() {
-      const state = mathFormulaComposerState;
-      const dialog = $("#math-formula-dialog");
-      if (!state || !dialog) return;
-      const values = Object.fromEntries(
-        $$("[data-math-formula-field]", dialog).map((input) => [input.dataset.mathFormulaField, input.value]),
-      );
-      const expression = state.builder.build(values);
-      $("#math-formula-dialog-preview", dialog).innerHTML = expression
-        ? renderKatexExpression(expression, state.displayMode)
-        : `<span class="field-note">Your formatted math will appear here.</span>`;
-    }
-
-    function openMathFormulaComposer(target, builderKey, options = {}) {
-      if (!target) return;
-      const dialog = ensureMathFormulaDialog();
-      const detected = options.token
-        ? detectMathFormulaBuilder(options.token.dataset.mathExpression || "")
-        : null;
-      const resolvedKey = detected?.key || builderKey || "advanced";
-      const builder = mathFormulaBuilders[resolvedKey] || mathFormulaBuilders.advanced;
-      const selection = window.getSelection();
-      const range =
-        selection?.rangeCount && target.contains(selection.getRangeAt(0).commonAncestorContainer)
-          ? selection.getRangeAt(0).cloneRange()
-          : null;
-      mathFormulaComposerState = {
-        builder,
-        displayMode: options.token
-          ? options.token.dataset.mathDisplay === "true"
-          : builder.displayMode === true,
-        range,
-        rawExpression: options.rawExpression === true,
-        target,
-        token: options.token || null,
-      };
-      $("#math-formula-dialog-title", dialog).textContent = builder.title;
-      $("#math-formula-dialog-description", dialog).textContent = builder.description;
-      $("#remove-math-formula", dialog).hidden = !options.token;
-      const values = detected?.values || options.values || {};
-      $("#math-formula-dialog-fields", dialog).innerHTML = builder.fields.map((field) => `
-        <label class="field${field.wide ? " wide" : ""}">
-          <span>${escapeHtml(field.label)}</span>
-          ${field.options ? `
-            <select data-math-formula-field="${escapeHtml(field.name)}">
-              ${field.options.map((option) => `<option ${option.value === (values[field.name] ?? field.value) ? "selected" : ""} value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</option>`).join("")}
-            </select>
-          ` : `
-            <input autocomplete="off" data-math-formula-field="${escapeHtml(field.name)}" placeholder="${escapeHtml(field.placeholder || "")}" value="${escapeHtml(values[field.name] ?? field.value ?? "")}">
-          `}
-        </label>
-      `).join("");
-      $$("[data-math-formula-field]", dialog).forEach((input) => {
-        input.addEventListener("input", updateMathFormulaDialogPreview);
-        input.addEventListener("change", updateMathFormulaDialogPreview);
-      });
-      updateMathFormulaDialogPreview();
-      dialog.showModal();
-      $("[data-math-formula-field]", dialog)?.focus();
-    }
-
-    function insertMathVisualToken(target, expression, displayMode = false, savedRange = null) {
-      const selection = window.getSelection();
-      const activeRange =
-        selection?.rangeCount && target.contains(selection.getRangeAt(0).commonAncestorContainer)
-          ? selection.getRangeAt(0).cloneRange()
-          : null;
-      const range = savedRange?.cloneRange() || activeRange || document.createRange();
-      target.focus({ preventScroll: true });
-      if (!savedRange && !activeRange) {
-        range.selectNodeContents(target);
-        range.collapse(false);
-      }
-      range.deleteContents();
-      const token = createMathVisualToken(expression, displayMode);
-      const spacer = document.createTextNode(" ");
-      range.insertNode(spacer);
-      range.insertNode(token);
-      range.setStartAfter(spacer);
-      range.collapse(true);
-      selection?.removeAllRanges();
-      selection?.addRange(range);
-    }
-
-    function insertBuiltMath(target, expression, displayMode = false, rawExpression = false, savedRange = null) {
-      if (target.isContentEditable && target.dataset.richKind === "math-prompt") {
-        insertMathVisualToken(target, expression, displayMode, savedRange);
-        return;
-      }
-      const snippet = rawExpression
-        ? expression
-        : displayMode
-          ? `\\[${expression}\\]`
-          : `\\(${expression}\\)`;
-      insertMathSnippet(target, `${snippet}|`);
+      const text = (textContainer.textContent || "")
+        .replace(/\u00a0/g, " ")
+        .replace(/\r\n?/g, "\n");
+      return { html, text: trim ? text.replace(/\n{3,}/g, "\n\n").trim() : text };
     }
 
     function confirmDiscard() {
@@ -1979,6 +1629,7 @@ Rules:
       $$("[data-tab]").forEach((button) => button.classList.toggle("is-active", button.dataset.tab === tab));
       const viewId = tab === "advanced" ? "passages-view" : `${tab}-view`;
       $$(".view").forEach((view) => view.classList.toggle("is-active", view.id === viewId));
+      studioUI.activateWorkspace(tab);
     }
 
     function renderErrors(elementId, errors) {
@@ -1992,12 +1643,13 @@ Rules:
     function renderPassageList() {
       const query = $("#passage-search").value.trim().toLowerCase();
       const sourcePassages = app.passageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
-      const passages = sourcePassages.filter((passage) =>
-        `${passage.title} ${passage.id} ${passage.advancedId || ""} ${passage.genre || ""} ${passage.fileName}`.toLowerCase().includes(query),
+      const matches = sourcePassages.filter((passage) =>
+        `${passage.title} ${passage.id} ${passage.advancedId || ""} ${passage.genre || ""} ${passage.fileName} ${passage.questions.map((q) => `${q.topic} ${q.prompt}`).join(" ")}`.toLowerCase().includes(query),
       );
+      const passages = studioUI.libraryPage(matches, "passages", query + app.passageMode, renderPassageList);
       $("#passage-count").textContent = sourcePassages.length;
       $("#passage-list").innerHTML = passages.map((passage) => `
-        <button class="${passage.id === app.selectedPassageId ? "is-active" : ""}" data-passage-id="${escapeHtml(passage.id)}" type="button">
+        <button aria-current="${passage.id === app.selectedPassageId}" title="${escapeHtml(passage.title)} · ${escapeHtml(passage.id)}" class="${passage.id === app.selectedPassageId ? "is-active" : ""}" data-passage-id="${escapeHtml(passage.id)}" type="button">
           <strong>${escapeHtml(passage.title)}</strong>
           <small>${escapeHtml(passage.format.replace("_", " "))} · ${passage.questions.length} question${passage.questions.length === 1 ? "" : "s"}</small>
         </button>
@@ -2030,6 +1682,7 @@ Rules:
 
     function startNewPassage() {
       if (!confirmDiscard()) return;
+      studioUI.passageContext = "";
       app.selectedPassageId = "";
       app.passageDraft = app.passageMode === "advanced" ? defaultAdvancedPassage() : defaultPassage();
       app.passageDirty = false;
@@ -2073,6 +1726,7 @@ Rules:
       const sourceFolder = advanced
         ? "client/src/content/advancedPractice/passageSets"
         : "client/src/content/exams/passageSets";
+      studioUI.preparePassage();
       const advancedFields = advanced
         ? `
             <label class="field"><span>Practice card ID</span><input data-advanced-field="advancedId" value="${escapeHtml(passage.advancedId || "")}" placeholder="lowercase-card-id"></label>
@@ -2110,15 +1764,9 @@ Rules:
         <div class="content-editor-layout">
           <div class="content-editor-main">
             <section class="panel content-editor-section" id="passage-information">
-              <div class="panel-head"><div><span class="studio-eyebrow">Basic information</span><h2>Passage identity</h2><small>The student-facing title and stable source identifiers.</small></div></div>
+              <div class="panel-head"><div><span class="studio-eyebrow">Basic information</span><h2>Passage information</h2><small>Technical IDs are generated from the title and kept stable automatically.</small></div></div>
               <div class="field-grid content-editor-basic-grid">
                 <label class="field"><span>Passage title</span><input data-field="title" value="${escapeHtml(passage.title)}" placeholder="The title students see"></label>
-                <label class="field"><span>Passage ID</span>
-                  <div class="field-input-action">
-                    <input data-field="id" value="${escapeHtml(passage.id)}" placeholder="lowercase-passage-id">
-                    <button class="secondary" id="generate-passage-id" type="button">Generate</button>
-                  </div>
-                </label>
                 <label class="field wide"><span>Blurb above title <small>Optional · shown in italics</small></span><textarea data-field="blurb" placeholder="Brief context students should read before the title">${escapeHtml(passage.blurb || "")}</textarea></label>
                 <label class="field"><span>Subtitle / author <small>Optional · “by” is added automatically</small></span><input data-field="author" value="${escapeHtml(passage.author || "")}" placeholder="Author name"></label>
               </div>
@@ -2131,7 +1779,6 @@ Rules:
                 <label class="field"><span>Library passage type</span><select data-field="passageType">${passageTypeOptions(passage.passageType)}</select><small class="field-note">Controls the Study Hall tag and shelf.</small></label>
                 <label class="field"><span>Formatting type</span><select data-field="format">${formatOptions(passage.format)}</select></label>
                 <label class="field"><span>Section label <small>Optional</small></span><input data-field="label" value="${escapeHtml(passage.label)}" placeholder="Reading Comprehension"></label>
-                <label class="field"><span>Passage-set ID</span><input data-field="passageSetId" value="${escapeHtml(passage.passageSetId)}" placeholder="ela-passage-name"></label>
                 <label class="field"><span>Source or copyright note <small>Optional</small></span><input data-field="sourceNote" value="${escapeHtml(passage.sourceNote)}" placeholder="Publication, adaptation, or copyright note"></label>
               </div>
             </details>
@@ -2203,36 +1850,20 @@ Rules:
       updateFormatNote();
       renderPreview();
       $("#add-question").addEventListener("click", addQuestion);
-      $("#generate-passage-id").addEventListener("click", () => {
-        const generatedId = slugFromTitle(passage.title);
-        if (!generatedId) {
-          setStatus("Add a passage title before generating its ID.", "error");
-          return;
-        }
-        passage.id = generatedId;
-        if (advanced && !passage.advancedId) passage.advancedId = generatedId;
-        $("[data-field='id']", $("#passage-editor")).value = generatedId;
-        const advancedIdField = $("[data-advanced-field='advancedId']", $("#passage-editor"));
-        if (advancedIdField) advancedIdField.value = passage.advancedId;
-        markDirty();
-        setStatus(`Passage ID generated as ${generatedId}.`);
-      });
       $("#refresh-preview").addEventListener("click", renderPreview);
       $("#paste-clipboard").addEventListener("click", pasteFromClipboard);
       $("#open-student-preview").addEventListener("click", openStudentPreview);
       $("#save-passage").addEventListener("click", savePassage);
       $("#manage-content-topics").addEventListener("click", openContentTopicManager);
-      $$("[data-editor-jump]", $("#passage-editor")).forEach((button) => {
-        button.addEventListener("click", () => {
-          document.getElementById(button.dataset.editorJump)?.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      });
+      studioUI.mountPassage();
     }
 
     function markDirty() {
       app.passageDirty = true;
       setStatus("Unsaved passage changes.");
       scheduleStudentPreview();
+      studioUI.updatePassageSummary();
+      studioUI.schedulePassagePreview();
     }
 
     function bindPassageFields() {
@@ -2266,6 +1897,7 @@ Rules:
       $$("[contenteditable='true']", root).forEach((editor) => {
         editor.addEventListener("focus", () => { app.activeRichEditor = editor; });
         editor.addEventListener("paste", (event) => {
+          if (event.target.closest("math-field")) return;
           event.preventDefault();
           const richHtml = event.clipboardData?.getData("text/html");
           const plainText = event.clipboardData?.getData("text/plain") || "";
@@ -2290,13 +1922,7 @@ Rules:
           if (editor.dataset.richKind === "math-prompt") hydrateMathPromptEditor(editor);
           editor.dispatchEvent(new Event("input", { bubbles: true }));
         });
-        if (editor.dataset.richKind === "math-prompt") {
-          editor.addEventListener("click", (event) => {
-            const token = event.target.closest(".math-visual-token");
-            if (!token || !editor.contains(token)) return;
-            event.preventDefault();
-            openMathFormulaComposer(editor, "", { token });
-          });
+        if (editor.dataset.richKind?.startsWith("math-")) {
           editor.addEventListener("blur", () => {
             if (!/\\[\[(]/.test(editor.innerText)) return;
             hydrateMathPromptEditor(editor);
@@ -2304,12 +1930,13 @@ Rules:
           });
         }
         editor.addEventListener("input", () => {
+          if (editor.dataset.richKind?.startsWith("math-")) studioMath.hydrate(editor);
           const visualMathValue =
-            editor.dataset.richKind === "math-prompt"
+            editor.dataset.richKind?.startsWith("math-")
               ? serializeMathPromptEditor(editor)
               : null;
-          const html = visualMathValue?.html || editor.innerHTML;
-          const text = visualMathValue?.text || editor.innerText.replace(/\u00a0/g, " ").replace(/\r\n?/g, "\n").trim();
+          const html = visualMathValue?.html ?? editor.innerHTML;
+          const text = visualMathValue?.text ?? editor.innerText.replace(/\u00a0/g, " ").replace(/\r\n?/g, "\n").trim();
           const questionIndex = Number(editor.dataset.questionIndex);
           if (editor.dataset.richKind === "standalone-prompt") {
             app.standaloneDraft.promptHtml = html;
@@ -2384,7 +2011,12 @@ Rules:
       $$("[data-rich-command]", root).forEach((button) => {
         button.addEventListener("mousedown", (event) => {
           event.preventDefault();
-          const scope = button.closest(".question-card") || button.closest(".panel") || root;
+          const mathContext = studioMath.active;
+          if (mathContext?.editor.isConnected && button.closest("#math-builder") && ["undo", "redo"].includes(button.dataset.richCommand)) {
+            studioMath.undo(mathContext, button.dataset.richCommand === "redo");
+            return;
+          }
+          const scope = button.closest(".question-card") || button.closest(".math-answer-editor") || button.closest(".panel") || root;
           const activeEditor =
             app.activeRichEditor && scope.contains(app.activeRichEditor)
               ? app.activeRichEditor
@@ -2416,12 +2048,12 @@ Rules:
 
     function bindPassageImageEditor() {
       async function uploadPassageAsset(file, imageRole) {
-        const passageId = app.passageDraft.id.trim();
         if (!file) return;
-        if (!passageId) {
-          setStatus(`Enter the passage ID before uploading its ${imageRole === "cover" ? "book cover" : "image"}.`, "error");
+        if (!ensurePassageIdentity()) {
+          setStatus(`Add the passage title before uploading its ${imageRole === "cover" ? "book cover" : "image"}.`, "error");
           return;
         }
+        const passageId = app.passageDraft.id;
         const draftKey = imageRole === "cover" ? "coverImage" : "image";
         const assetLabel = imageRole === "cover" ? "book cover" : "passage image";
         setStatus(`Copying the ${assetLabel} into the app…`);
@@ -2456,12 +2088,10 @@ Rules:
       }
       $("#passage-cover-file")?.addEventListener("change", (event) => {
         const file = event.target.files?.[0];
-        if (!app.passageDraft.id.trim()) event.target.value = "";
         uploadPassageAsset(file, "cover");
       });
       $("#passage-image-file")?.addEventListener("change", (event) => {
         const file = event.target.files?.[0];
-        if (!app.passageDraft.id.trim()) event.target.value = "";
         uploadPassageAsset(file, "passage");
       });
       $$("[data-cover-image-field]", $("#passage-editor")).forEach((element) => {
@@ -3059,7 +2689,7 @@ Rules:
 
     function openStudentPreview() {
       app.previewMode = "passage";
-      app.previewQuestionIndex = 0;
+      app.previewQuestionIndex = studioUI.passageSection === "questions" ? studioUI.selectedQuestionIndex : 0;
       $("#student-preview-modal").hidden = false;
       document.body.style.overflow = "hidden";
       renderStudentPreview();
@@ -3151,7 +2781,9 @@ Rules:
 
     function renderQuestionsV2() {
       const container = $("#question-list");
+      studioUI.ensureQuestionSelection();
       container.innerHTML = app.passageDraft.questions.map((question, index) => {
+        if (!studioUI.showAllQuestions && question.id !== studioUI.selectedQuestionId) return "";
         const isTransitionQuestion = question.type === "transition_drop";
         const isStandardChoiceQuestion = question.type === "multiple_choice" || question.type === "multi_select";
         const isChoiceQuestion = isStandardChoiceQuestion || isTransitionQuestion;
@@ -3434,6 +3066,7 @@ Rules:
         });
       });
       bindRichEditors(container);
+      studioUI.mountQuestions();
     }
 
     function choiceArrayFromQuestion(question, count) {
@@ -3612,13 +3245,17 @@ Rules:
     }
 
     function addQuestion() {
+      ensurePassageIdentity();
       const passageId = app.passageDraft.id || "passage";
       let number = app.passageDraft.questions.length + 1;
       while (app.passageDraft.questions.some((question) => question.id === `${passageId}-${number}`)) number += 1;
       app.passageDraft.questions.push(defaultQuestion(passageId, number));
+      studioUI.selectedQuestionId = app.passageDraft.questions.at(-1).id;
+      studioUI.showAllQuestions = false;
       markDirty();
       renderQuestionsV2();
-      $$("[data-question-index]").at(-1)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      studioUI.showPassageSection("questions");
+      $("#question-list [data-rich-kind='prompt']")?.focus();
     }
 
     function questionAction(index, action) {
@@ -3637,6 +3274,7 @@ Rules:
 
     async function savePassage() {
       if (app.saving) return;
+      if (!ensurePassageIdentity()) return;
       app.saving = true;
       $("#save-passage").disabled = true;
       $("#save-passage").textContent = "Writing code…";
@@ -3660,7 +3298,7 @@ Rules:
       } finally {
         app.saving = false;
         const button = $("#save-passage");
-        if (button) { button.disabled = false; button.textContent = "Write passage into code"; }
+        if (button) { button.disabled = false; button.textContent = "Save passage"; }
       }
     }
 
@@ -3675,12 +3313,13 @@ Rules:
 
     function renderStandaloneList() {
       const query = $("#standalone-search").value.trim().toLowerCase();
-      const items = app.state.standaloneItems.filter((item) =>
+      const matches = app.state.standaloneItems.filter((item) =>
         `${item.prompt} ${item.stimulus || ""} ${item.topic} ${item.id}`.toLowerCase().includes(query),
       );
+      const items = studioUI.libraryPage(matches, "standalone", query, renderStandaloneList);
       $("#standalone-count").textContent = app.state.standaloneItems.length;
       $("#standalone-list").innerHTML = items.map((item) => `
-        <button class="${item.id === app.selectedStandaloneItemId ? "is-active" : ""}" data-standalone-id="${escapeHtml(item.id)}" type="button">
+        <button aria-current="${item.id === app.selectedStandaloneItemId}" title="${escapeHtml(item.prompt || item.id)}" class="${item.id === app.selectedStandaloneItemId ? "is-active" : ""}" data-standalone-id="${escapeHtml(item.id)}" type="button">
           <strong>${escapeHtml(item.prompt || item.id)}</strong>
           <small>${escapeHtml(item.topic || "Uncategorized")} · ${escapeHtml(String(item.type).replaceAll("_", " "))}</small>
         </button>
@@ -3920,6 +3559,7 @@ Rules:
       $("#manage-standalone-topics")?.addEventListener("click", openContentTopicManager);
       $("#refresh-standalone-preview")?.addEventListener("click", renderStandaloneEditor);
       $("#save-standalone")?.addEventListener("click", saveStandaloneItem);
+      studioUI.mountStandalone();
     }
 
     async function saveStandaloneItem() {
@@ -3948,7 +3588,7 @@ Rules:
         const button = $("#save-standalone");
         if (button) {
           button.disabled = false;
-          button.textContent = "Write Part B question into code";
+          button.textContent = "Save Part B question";
         }
       }
     }
@@ -3967,6 +3607,7 @@ Rules:
         button.addEventListener("click", () => selectAssessment(button.dataset.assessmentId));
       });
       renderErrors("#test-errors", app.state.testErrors);
+      studioUI.filterAssessmentList("assessment-list");
     }
 
     function selectAssessment(id) {
@@ -4169,6 +3810,16 @@ Rules:
         );
       });
       $("#save-test")?.addEventListener("click", saveTest);
+      const answerEntry = document.createElement("p");
+      answerEntry.className = "field-note";
+      const answerLink = document.createElement("a");
+      answerLink.href = `http://localhost:5173/teacher/assessments?enterAnswers=${encodeURIComponent(app.selectedAssessmentId)}`;
+      answerLink.target = "_blank";
+      answerLink.rel = "noopener";
+      answerLink.textContent = "Enter student answers for a previously taken test →";
+      answerEntry.append(answerLink);
+      $("#test-builder").append(answerEntry);
+      studioUI.mountTestBuilder();
     }
 
     function studioCorrectAnswer(question) {
@@ -4286,7 +3937,7 @@ Rules:
       } finally {
         app.saving = false;
         const button = $("#save-test");
-        if (button) { button.disabled = false; button.textContent = "Write English test into code"; }
+        if (button) { button.disabled = false; button.textContent = "Save English test"; }
       }
     }
 
@@ -4311,11 +3962,13 @@ Rules:
         button.addEventListener("click", () => selectMathAssessment(button.dataset.mathAssessmentId));
       });
       renderErrors("#math-errors", app.state.mathErrors);
+      studioUI.filterAssessmentList("math-assessment-list");
     }
 
     function captureMathBuilderView() {
       return {
         navScrollTop: $(".math-question-nav-list", $("#math-builder"))?.scrollTop || 0,
+        editorScrollTop: $(".math-workspace > section", $("#math-builder"))?.scrollTop || 0,
         pageScrollTop: window.scrollY,
       };
     }
@@ -4339,6 +3992,8 @@ Rules:
           }
         }
         selectedButton?.focus({ preventScroll: true });
+        const editor = $(".math-workspace > section", $("#math-builder"));
+        if (editor) editor.scrollTop = Number.isFinite(view.editorScrollTop) ? view.editorScrollTop : 0;
         if (Number.isFinite(view.pageScrollTop)) {
           window.scrollTo({ left: 0, top: view.pageScrollTop });
         }
@@ -4794,10 +4449,10 @@ Rules:
               <label class="field"><span>Question prompt <small class="field-note">This is how students will see it</small></span></label>
               <div class="rich-editor-shell math-prompt-editor">
                 ${richToolbarHtml("Text style")}
-                <div aria-label="Question prompt" class="rich-editor-content math-rich-prompt" contenteditable="true" data-placeholder="Write the question here. Use the buttons below to add formatted math." data-rich-kind="math-prompt" id="${promptId}" role="textbox">${mathPromptEditorHtml(question.promptHtml, question.prompt)}</div>
+                <div aria-label="Question prompt" class="rich-editor-content math-rich-prompt" contenteditable="true" data-placeholder="Write naturally. Press Ctrl+M for an equation or / to find math." data-rich-kind="math-prompt" id="${promptId}" role="textbox">${mathPromptEditorHtml(question.promptHtml, question.prompt)}</div>
               </div>
               ${mathFormulaToolbarHtml(promptId)}
-              <p class="math-prompt-note"><span><strong>No notation required.</strong> Click a math button and enter ordinary values such as <em>x + 2</em>.</span><span>Click any green formula to edit or remove it.</span></p>
+              <p class="math-prompt-note"><span><strong>Text and math, together.</strong> Ctrl/⌘+M for an equation · / to find notation</span><span>Click inside any equation to edit.</span></p>
             </div>
             <div class="wide">
               <label class="field"><span>Optional directions</span></label>
@@ -4970,6 +4625,8 @@ Rules:
       `;
       bindMathBuilder();
       renderMathPreview();
+      studioUI.mountMath();
+      studioMath.mount($("#math-builder"));
     }
 
     function renderMathInlineDropdownMarkup(question, namePrefix = "math-preview") {
@@ -5126,61 +4783,6 @@ Rules:
       const question = app.mathDraft?.questions?.[app.selectedMathQuestionIndex];
       if (!preview || !question) return;
       preview.innerHTML = mathQuestionPreviewMarkup(question);
-    }
-
-    function insertMathSnippet(target, snippet) {
-      if (!target) return;
-      const markerIndex = snippet.indexOf("|");
-      const cleanSnippet = snippet.replace("|", "");
-      if (target.isContentEditable) {
-        target.focus();
-        const selection = window.getSelection();
-        const range =
-          selection?.rangeCount && target.contains(selection.anchorNode)
-            ? selection.getRangeAt(0)
-            : document.createRange();
-        if (!selection?.rangeCount || !target.contains(selection.anchorNode)) {
-          range.selectNodeContents(target);
-          range.collapse(false);
-        }
-        range.deleteContents();
-        const textNode = document.createTextNode(cleanSnippet);
-        range.insertNode(textNode);
-        const cursor = Math.max(0, Math.min(markerIndex >= 0 ? markerIndex : cleanSnippet.length, cleanSnippet.length));
-        range.setStart(textNode, cursor);
-        range.collapse(true);
-        selection?.removeAllRanges();
-        selection?.addRange(range);
-        target.dispatchEvent(new Event("input", { bubbles: true }));
-        return;
-      }
-      const start = target.selectionStart ?? target.value.length;
-      const end = target.selectionEnd ?? start;
-      target.setRangeText(cleanSnippet, start, end, "end");
-      const cursor = start + (markerIndex >= 0 ? markerIndex : cleanSnippet.length);
-      target.setSelectionRange(cursor, cursor);
-      target.focus();
-      target.dispatchEvent(new Event("input", { bubbles: true }));
-    }
-
-    function wrapSelectedMathVariables(target) {
-      if (!target?.isContentEditable || target.dataset.richKind !== "math-prompt") return false;
-      const selection = window.getSelection();
-      const hasSelectedText =
-        selection?.rangeCount &&
-        !selection.isCollapsed &&
-        target.contains(selection.getRangeAt(0).commonAncestorContainer);
-      if (!hasSelectedText) return false;
-      const selectedText = selection.toString();
-      const variableText = selectedText.trim();
-      if (!variableText) {
-        return false;
-      }
-      const range = selection.getRangeAt(0).cloneRange();
-      insertMathVisualToken(target, friendlyMathExpression(variableText), false, range);
-      target.dispatchEvent(new Event("input", { bubbles: true }));
-      setStatus(`${variableText} formatted as math.`, "success");
-      return true;
     }
 
     function changeMathQuestionType(type) {
@@ -5487,6 +5089,7 @@ Rules:
       const imported = app.mathImportReview?.question;
       if (!imported) return;
       app.mathDraft.questions.push(clone(imported));
+      studioUI.mathSection = "question";
       app.selectedMathQuestionIndex = app.mathDraft.questions.length - 1;
       app.mathImportOpen = false;
       app.mathImportReview = null;
@@ -5638,6 +5241,8 @@ Rules:
         let number = app.mathDraft.questions.length + 1;
         while (app.mathDraft.questions.some((item) => item.id === `${app.selectedMathAssessmentId}-math-${number}`)) number += 1;
         app.mathDraft.questions.push(defaultMathQuestion(app.selectedMathAssessmentId, number));
+        studioUI.mathSection = "question";
+        view.editorScrollTop = 0;
         app.selectedMathQuestionIndex = app.mathDraft.questions.length - 1;
         markMathDirty(`Question ${app.selectedMathQuestionIndex + 1} was added and selected.`);
         renderMathBuilder();
@@ -5661,50 +5266,6 @@ Rules:
         });
       });
       bindRichEditors($("#math-builder"));
-      $$("[data-math-builder]", $("#math-builder")).forEach((button) => {
-        button.addEventListener("mousedown", (event) => {
-          event.preventDefault();
-          const target = document.getElementById(button.dataset.mathTarget);
-          const rawExpression = button.dataset.mathRaw === "true";
-          if (button.dataset.mathBuilder === "variable" && wrapSelectedMathVariables(target)) return;
-          openMathFormulaComposer(target, button.dataset.mathBuilder, { rawExpression });
-        });
-      });
-      $$("[data-math-symbol]", $("#math-builder")).forEach((button) => {
-        button.addEventListener("mousedown", (event) => {
-          event.preventDefault();
-          const target = document.getElementById(button.dataset.mathTarget);
-          const symbol = mathFormulaSymbols[button.dataset.mathSymbol];
-          if (!target || !symbol) return;
-          insertBuiltMath(target, symbol.expression, false, button.dataset.mathRaw === "true");
-          target.dispatchEvent(new Event("input", { bubbles: true }));
-          target.focus();
-        });
-      });
-      $$("[data-math-template-insert]", $("#math-builder")).forEach((button) => {
-        button.addEventListener("mousedown", (event) => {
-          event.preventDefault();
-          const toolbar = button.closest(".math-formula-toolbar");
-          const picker = $("[data-math-template-picker]", toolbar);
-          if (!picker?.value) {
-            setStatus("Choose an item from More math first.", "error");
-            return;
-          }
-          const target = document.getElementById(picker.dataset.mathTarget);
-          const [kind, key] = picker.value.split(":");
-          if (kind === "builder") {
-            openMathFormulaComposer(target, key, { rawExpression: button.dataset.mathRaw === "true" });
-          } else {
-            const symbol = mathFormulaSymbols[key];
-            if (target && symbol) {
-              insertBuiltMath(target, symbol.expression, false, button.dataset.mathRaw === "true");
-              target.dispatchEvent(new Event("input", { bubbles: true }));
-              target.focus();
-            }
-          }
-          picker.value = "";
-        });
-      });
       $$("[data-math-question-action]", $("#math-builder")).forEach((button) => {
         button.addEventListener("click", () => mathQuestionAction(button.dataset.mathQuestionAction));
       });
@@ -6032,7 +5593,7 @@ Rules:
         const nextButton = $("#save-math");
         if (nextButton) {
           nextButton.disabled = false;
-          nextButton.textContent = "Write Math section into code";
+          nextButton.textContent = "Save math section";
         }
       }
     }
@@ -6199,6 +5760,7 @@ WRONG D:`;
         });
         $("#practice-code-preview").textContent = app.practicePreview.snippet;
         $("#practice-target").textContent = app.practicePreview.target;
+        studioUI.showPracticeTool?.("preview");
         $("#practice-write-button").disabled = false;
         setStatus("Regular-practice preview ready. Nothing has been written yet.", "success");
       } catch (error) {
@@ -6540,6 +6102,7 @@ WRONG D:`;
           renderPassageEditor();
         }
         initializePracticeEditor();
+        studioUI.initialize();
         setStatus(
           `Ready: ${app.state.assessments.length} exams, ${app.state.advancedPassages.length} advanced passages, and ${app.state.practice.topics.length} regular-practice banks.`,
           "success",
@@ -6552,6 +6115,29 @@ WRONG D:`;
     $$("[data-tab]").forEach((button) => button.addEventListener("click", () => switchTab(button.dataset.tab)));
     $("#passage-search").addEventListener("input", renderPassageList);
     $("#new-passage").addEventListener("click", startNewPassage);
+    $("#new-exam").addEventListener("click", () => {
+      const form = $("#new-exam-form");
+      form.hidden = !form.hidden;
+      form.style.display = form.hidden ? "none" : "grid";
+      if (!form.hidden) form.elements.title.focus();
+    });
+    $("#new-exam-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      $("#new-exam-error").textContent = "";
+      try {
+        const data = await api("/api/exams", { method: "POST", body: JSON.stringify({
+          title: form.elements.title.value, durationMinutes: Number(form.elements.durationMinutes.value), description: form.elements.description.value,
+        }) });
+        await reloadState();
+        selectAssessment(data.assessment.id);
+        setStatus(form.elements.paperAnswers.checked ? "Exam created. Save your questions and answer key, then use Enter student answers below the builder." : "Exam created and locked. Add English passages or switch to Exam math.", "success");
+        form.reset(); form.hidden = true; form.style.display = "none";
+      } catch (error) { $("#new-exam-error").textContent = error.message; }
+      finally { button.disabled = false; }
+    });
     $("#standalone-search").addEventListener("input", renderStandaloneList);
     $("#new-standalone").addEventListener("click", () => startNewStandaloneItem("multiple_choice"));
     $("#new-standalone-drag").addEventListener("click", () => startNewStandaloneItem("category_sort"));

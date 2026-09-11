@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Activity, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, Clock3, Eye, LayoutDashboard, Pencil, PlusCircle, RotateCcw, Shuffle, Trash2, UserRoundCheck, UserRoundPlus, Users, X } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
+import { TeacherExamTools } from "../components/TeacherExamTools";
 import { resolveExamContent, type ExamQuestion } from "../content/exams";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import {
@@ -716,7 +717,7 @@ function StudentDetail({
   }>();
   examResults.forEach((result) => {
     if (typeof result.assessmentId !== "string") return;
-    if (result.source === "manual") return;
+    if (result.source === "manual" && !assessmentIds.has(result.assessmentId)) return;
     const answers =
       result.answers && typeof result.answers === "object" && !Array.isArray(result.answers)
         ? result.answers as Record<string, unknown>
@@ -1524,6 +1525,10 @@ export function TeacherDashboardPage() {
                 <button className="is-secondary teacher-answer-key-toggle" type="button" onClick={() => setOpenAnswerKeyId((current) => current === assessment.id ? "" : assessment.id)}>{openAnswerKeyId === assessment.id ? "Close answer key" : "View answer key"}</button>
               </div>
               {openAnswerKeyId === assessment.id && <ExamAnswerKey assessment={assessment} />}
+              <TeacherExamTools assessment={assessment} accessToken={accessToken} students={students}
+                onAssessmentChange={updated => setAssessments(current => current.map(item => item.id === updated.id ? updated : item))}
+                onResultSaved={(studentId, result) => setStudents(current => current.map(student => student.id === studentId ? { ...student, progress: { ...student.progress, examResults: [result as unknown as Record<string, unknown>, ...student.progress.examResults.filter(item => item.assessmentId !== result.assessmentId)] } } : student))}
+              />
               {isFormEditorOpen && formDraft ? <section className="teacher-form-editor" aria-label={`${assessment.title} passage forms`}>
                 <header>
                   <div><strong>Reading passage-order forms</strong><small>Only Reading Comprehension passages move. Passage-based Part A, stand-alone Part B, and Math remain fixed.</small></div>

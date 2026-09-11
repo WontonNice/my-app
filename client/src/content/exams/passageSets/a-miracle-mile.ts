@@ -5,7 +5,7 @@ const aMiracleMilePassageText = "In the 1950s people compared running one mile i
 
 const aMiracleMileQuestions: ExamQuestion[] = [
   {
-    "id": "passage-1",
+    "id": "a-miracle-mile-1",
     "points": 1,
     "prompt": "The words “feat,” “humanly impossible,” and “impenetrable barrier” in paragraph 1 affect the tone of the paragraph because they",
     "promptHtml": "The words “feat,” “humanly impossible,” and “impenetrable barrier” in paragraph&nbsp;1 affect the tone of the paragraph because they",

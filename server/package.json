@@ -8,7 +8,9 @@
     "start": "node dist/server.js",
     "seed:students": "node scripts/seed-sample-students.mjs",
     "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && tsc",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prebuild": "node ../tools/export-exam-content.cjs",
+    "predev": "node ../tools/export-exam-content.cjs"
   },
   "keywords": [],
   "author": "",
