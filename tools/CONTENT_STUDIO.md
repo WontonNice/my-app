@@ -141,7 +141,22 @@ npm run content-editor:validate
 ```
 
 All write requests are restricted to localhost and protected by a new random
-edit token each time the Studio starts.
+edit token each time the Studio starts. In a GitHub Codespace, writes also allow
+the authenticated private forwarded-port origin for that exact Codespace.
+
+## Continue from another computer
+
+The teacher dashboard's **Content Studio** link opens or resumes a private GitHub
+Codespace for this repository. The repository configuration installs dependencies,
+starts the Studio, and opens its forwarded port automatically. GitHub authenticates
+the Codespace and keeps port 4319 private to its owner.
+
+Before changing computers, validate, commit, and push the work from the current
+computer. Uncommitted files exist only on that computer. In the Codespace, save
+through the Studio, run `npm run content-editor:validate`, review the Source
+Control list, commit, and sync the commit to GitHub. Stop the Codespace when the
+session is finished. Back on another clone, begin by pulling the latest commit;
+commit or stash local work before pulling if that clone is not clean.
 
 ## Exam corrections and paper answers
 

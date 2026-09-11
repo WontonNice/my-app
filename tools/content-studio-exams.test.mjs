@@ -28,8 +28,13 @@ test('new exams are locked, registered, editable, unique, and protected by the e
     await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
     const url = `http://127.0.0.1:${server.address().port}/api/exams`;
     const state = await studio.getState();
-    const send = (body, token = state.editToken) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-editor-token': token }, body: JSON.stringify(body) });
+    const send = (body, token = state.editToken, origin = '') => fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-editor-token': token, ...(origin ? { origin } : {}) },
+      body: JSON.stringify(body),
+    });
     assert.equal((await send({ title: 'New example' }, 'invalid')).status, 403);
+    assert.equal((await send({ title: 'New example' }, state.editToken, 'https://untrusted.example')).status, 403);
     assert.equal((await send({ title: ' ', durationMinutes: 180 })).status, 400);
     assert.equal((await send({ title: 'Example test', durationMinutes: 0 })).status, 400);
     const created = await send({ title: 'Example new exam', durationMinutes: 90, description: 'A past paper test.' });

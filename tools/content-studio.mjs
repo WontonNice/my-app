@@ -47,6 +47,7 @@ const mathliveRoot = join(workspaceRoot, "node_modules", "mathlive");
 const assessmentsPath = join(workspaceRoot, "server", "data", "assessments.json");
 const editorHtmlPath = join(workspaceRoot, "tools", "content-studio.html");
 const appStylesPath = join(workspaceRoot, "client", "src", "styles", "global.css");
+const isCodespaces = process.env.CODESPACES === "true";
 const editToken = randomBytes(24).toString("hex");
 const passageFormats = ["prose", "poem", "sentence_prose"];
 const passageTypes = ["informational", "literary", "poem", "long_reading"];
@@ -2922,13 +2923,36 @@ async function readJson(request) {
   }
 }
 
+function isAllowedEditorOrigin(origin) {
+  if (/^http:\/\/(127\.0\.0\.1|localhost)(:\d+)?$/.test(origin)) return true;
+  if (!isCodespaces) return false;
+  const codespaceName = process.env.CODESPACE_NAME;
+  const forwardingDomain = process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN;
+  if (!codespaceName || !forwardingDomain) return false;
+  try {
+    const parsed = new URL(origin);
+    const prefix = `${codespaceName}-`;
+    const suffix = `.${forwardingDomain}`;
+    const forwardedPort = parsed.hostname.slice(prefix.length, -suffix.length);
+    return (
+      parsed.protocol === "https:" &&
+      parsed.port === "" &&
+      parsed.hostname.startsWith(prefix) &&
+      parsed.hostname.endsWith(suffix) &&
+      /^\d+$/.test(forwardedPort)
+    );
+  } catch {
+    return false;
+  }
+}
+
 function verifyEditRequest(request) {
   if (request.headers["x-editor-token"] !== editToken) {
     throw new EditorError(403, "Editor token is missing or invalid.");
   }
   const origin = request.headers.origin;
-  if (origin && !/^http:\/\/(127\.0\.0\.1|localhost)(:\d+)?$/.test(origin)) {
-    throw new EditorError(403, "Only the local Content Studio may write content files.");
+  if (origin && !isAllowedEditorOrigin(origin)) {
+    throw new EditorError(403, "This browser origin may not write Content Studio files.");
   }
 }
 
@@ -3498,11 +3522,16 @@ if (!Number.isInteger(port) || port < 1024 || port > 65535) {
 }
 
 const server = createServer(handleRequest);
-server.listen(port, "127.0.0.1", () => {
-  const url = `http://127.0.0.1:${port}`;
+const listenHost = isCodespaces ? "0.0.0.0" : "127.0.0.1";
+server.listen(port, listenHost, () => {
+  const codespacesDomain = process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN;
+  const codespaceName = process.env.CODESPACE_NAME;
+  const url = isCodespaces && codespacesDomain && codespaceName
+    ? `https://${codespaceName}-${port}.${codespacesDomain}`
+    : `http://127.0.0.1:${port}`;
   console.log(`Nathan Tutors Content Studio is running at ${url}`);
   console.log("Press Ctrl+C when you are finished.");
-  if (process.argv.includes("--no-open")) return;
+  if (process.argv.includes("--no-open") || isCodespaces) return;
   if (process.platform === "win32") {
     spawn("cmd", ["/c", "start", "", url], {
       detached: true,

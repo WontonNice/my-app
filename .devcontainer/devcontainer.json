@@ -1,0 +1,15 @@
+{
+  "name": "Nathan Tutors Content Studio",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+  "postCreateCommand": "npm ci",
+  "postAttachCommand": "bash .devcontainer/start-content-studio.sh",
+  "forwardPorts": [4319],
+  "portsAttributes": {
+    "4319": {
+      "label": "Nathan Tutors Content Studio",
+      "onAutoForward": "openBrowser",
+      "visibility": "private"
+    }
+  },
+  "remoteUser": "node"
+}

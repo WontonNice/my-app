@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { Activity, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, Clock3, Eye, LayoutDashboard, Pencil, PlusCircle, RotateCcw, Shuffle, Trash2, UserRoundCheck, UserRoundPlus, Users, X } from "lucide-react";
+import { Activity, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, Clock3, Cloud, Eye, LayoutDashboard, Pencil, PlusCircle, RotateCcw, Shuffle, Trash2, UserRoundCheck, UserRoundPlus, Users, X } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { TeacherExamTools } from "../components/TeacherExamTools";
@@ -39,6 +39,8 @@ import {
   peekActiveSession,
 } from "../lib/sessionCache";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
+
+const contentStudioCodespaceUrl = "https://codespaces.new/WontonNice/my-app?quickstart=1";
 
 function formatDate(value: string | null) {
   if (!value) return "Never";
@@ -1322,6 +1324,8 @@ export function TeacherDashboardPage() {
           <AppLink className="corporate-heading-action" href="/teacher/assessments"><ArrowLeft size={15} /> All assessments</AppLink>
         ) : activeWorkspace === "overview" ? (
           <AppLink className="corporate-heading-action" href="/teacher/accounts">Open student views <ArrowUpRight size={15} /></AppLink>
+        ) : activeWorkspace === "assessments" ? (
+          <a className="corporate-heading-action" href={contentStudioCodespaceUrl} rel="noreferrer" target="_blank"><Cloud size={15} /> Open Content Studio <ArrowUpRight size={15} /></a>
         ) : null}
       </header>
 
@@ -1340,6 +1344,7 @@ export function TeacherDashboardPage() {
               <AppLink href="/teacher/accounts"><UserRoundPlus size={20} /><span><strong>Student accounts</strong><small>Edit access or preview an account</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/library"><BookOpen size={20} /><span><strong>English library</strong><small>Book codes, previews, and attempt results</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/assessments"><ClipboardList size={20} /><span><strong>Assessments & insights</strong><small>{assessments.length} exam{assessments.length === 1 ? "" : "s"} · {classAssessmentInsights.length} performance dashboard{classAssessmentInsights.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
+              <a href={contentStudioCodespaceUrl} rel="noreferrer" target="_blank"><Cloud size={20} /><span><strong>Content Studio</strong><small>Author exams and practice content from any computer</small></span><ArrowUpRight size={17} /></a>
             </div>
           </section>
         </>
