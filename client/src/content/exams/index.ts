@@ -1,4 +1,5 @@
 import { createPlainTextPassage } from "./formatters";
+import { content20252026FormBContent } from "./tests/2025-2026-form-b";
 import { formA2025_2026Content } from "./tests/formA2025_2026";
 import type {
   AssessmentContentSource,
@@ -10,6 +11,7 @@ import type {
 } from "./types";
 
 const examContentByAssessmentId: Record<string, ExamContent> = {
+  [content20252026FormBContent.assessmentId]: content20252026FormBContent,
   [formA2025_2026Content.assessmentId]: formA2025_2026Content,
 };
 

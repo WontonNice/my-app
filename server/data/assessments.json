@@ -1434,5 +1434,64 @@
     },
     "formAssignments": {},
     "forms": []
+  },
+  {
+    "id": "2025-2026-form-b",
+    "title": "2025-2026 Form B",
+    "classId": "shsat",
+    "description": "",
+    "durationMinutes": 180,
+    "createdAt": "2026-09-11T15:56:21.577Z",
+    "updatedAt": "2026-09-11T15:57:15.823Z",
+    "passages": [
+      {
+        "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from “It’s Time to Stop Thinking That All Non-Native Species Are Evil”"
+      }
+    ],
+    "questions": [
+      {
+        "answer": "A",
+        "choices": [
+          "“Among [Olden’s] findings: a substantial number of them said they would immediately eradicate a hypothetical non-native forest plant, even if it were shown to have no effect on the forest.” (paragraph 5)",
+          "“Regardless of what we label them, conservationists will be reluctant to remove them from their new environs—to do so would stymie their chances of adapting to the warmer future we’re creating.” (paragraph 8)",
+          "“A project to rip out and poison the spartina—which grows in dense swaths that exclude many other shorebirds—saw clapper rail numbers go tumbling downward.” (paragraph 10)",
+          "“In some cases we can best serve biodiversity by leaving the non-natives alone or even—brace yourself, now—introducing them on purpose.” (paragraph 14)"
+        ],
+        "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt supports the conclusion that Elton’s “militaristic ‘invasion’ metaphor” (paragraph 1) has influenced scientific understanding of non-native species?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "the mention in paragraph 8 of non-native species that are forced to seek new habitats",
+          "the acknowledgment in paragraph 9 that non-native species include many domestic crops",
+          "the description in paragraph 11 of the interactions between native and non-native species",
+          "the account in paragraph 13 of an ecologist who changed his beliefs about non-native species"
+        ],
+        "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which detail provides the most relevant support for the claim that “climate change is making it harder even to decide who the invaders are” (paragraph 7)?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      }
+    ],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false
   }
 ]
