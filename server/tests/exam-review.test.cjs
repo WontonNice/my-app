@@ -41,13 +41,15 @@ test('grading supports every automatically scored interaction and rejects an emp
     [{ type: 'math_drag_drop', dragDropSlots: [{ id: 'slot', correctItemId: 'item' }] }, { slot: 'item' }],
     [{ type: 'inline_dropdown', dropdowns: [{ id: 'drop', correctChoiceId: 'A' }] }, { drop: 'A' }],
     [{ type: 'category_sort', correctPlacements: { item: 'target' } }, { item: 'target' }],
+    [{ type: 'matrix_choice', correctPlacements: { sentence1: 'claim', sentence2: 'evidence' }, requiredPlacements: 2 }, { sentence1: 'claim', sentence2: 'evidence' }],
     [{ type: 'table_match', correctPlacements: { item: 'target' } }, { item: 'target' }],
     [{ type: 'number_line_response', numberLineResponse: { correctValue: 0, correctDirection: 'left', correctEndpoint: 'open' } }, { value: '0', direction: 'left', endpoint: 'open' }],
     [{ type: 'grid_in', correctTextAnswers: ['1/2', '0.5'] }, '0.5'],
     [{ type: 'short_response', correctTextAnswers: ['some words'] }, ' Some   Words '],
   ];
   fixtures.forEach(([question, answer]) => { assert.equal(isExamQuestionCorrect(question, answer), true, question.type); assert.equal(isExamQuestionCorrect(question, undefined), false, question.type); });
-  assert.equal(isExamQuestionCorrect(fixtures[9][0], { value: '', direction: 'left', endpoint: 'open' }), false);
+  assert.equal(isExamQuestionCorrect(fixtures[10][0], { value: '', direction: 'left', endpoint: 'open' }), false);
+  assert.equal(isExamQuestionCorrect(fixtures[8][0], { sentence1: 'claim' }), false);
 });
 
 test('single-category sort accepts several correct cards and rejects distractors', () => {

@@ -5495,6 +5495,100 @@ button {
   padding-top: 16px;
 }
 
+.exam-matrix-choice-wrap {
+  width: 100%;
+  overflow-x: auto;
+  padding: 16px 0 4px;
+}
+
+.exam-matrix-choice-table {
+  width: 100%;
+  min-width: 500px;
+  border-collapse: collapse;
+  color: #111820;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.94rem;
+  table-layout: fixed;
+}
+
+.exam-matrix-choice-table th,
+.exam-matrix-choice-table td {
+  border: 1px solid #b8b8b8;
+}
+
+.exam-matrix-choice-table thead th {
+  background: #ffffff;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 8px;
+  text-align: center;
+}
+
+.exam-matrix-choice-table thead th:first-child,
+.exam-matrix-choice-table tbody th {
+  width: 62%;
+}
+
+.exam-matrix-choice-table tbody th {
+  background: #ffffff;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 9px 8px;
+  text-align: left;
+}
+
+.exam-matrix-choice-table tbody td {
+  height: 62px;
+  background: #ffffff;
+  padding: 0;
+  text-align: center;
+}
+
+.exam-matrix-choice-option {
+  display: grid;
+  min-height: 62px;
+  cursor: pointer;
+  place-items: center;
+}
+
+.exam-matrix-choice-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.exam-matrix-choice-option > span {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #a7a7a7;
+  border-radius: 50%;
+  background: linear-gradient(#ffffff, #eeeeee);
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 12%);
+  place-items: center;
+}
+
+.exam-matrix-choice-option input:checked + span {
+  border-color: #126bc5;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgb(18 107 197 / 18%);
+}
+
+.exam-matrix-choice-option input:checked + span::after {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #126bc5;
+  content: "";
+}
+
+.exam-matrix-choice-option input:focus-visible + span {
+  outline: 3px solid rgb(18 107 197 / 32%);
+  outline-offset: 2px;
+}
+
 .exam-table-match-bank {
   display: flex;
   flex-wrap: wrap;

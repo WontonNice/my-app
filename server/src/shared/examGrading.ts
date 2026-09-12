@@ -109,7 +109,7 @@ export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAn
     );
   }
 
-  if (question.type === "category_sort" || question.type === "table_match") {
+  if (question.type === "category_sort" || question.type === "matrix_choice" || question.type === "table_match") {
     const placements = getCategoryPlacements(answer);
     const correctPlacements = question.correctPlacements ?? {};
     const requiredItemIds = Object.keys(correctPlacements);

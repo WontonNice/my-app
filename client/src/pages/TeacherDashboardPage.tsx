@@ -513,7 +513,7 @@ function correctAnswerLabel(question: ExamQuestion) {
     const response = question.numberLineResponse;
     return response ? `${response.correctDirection} ray, ${response.correctEndpoint} at ${response.correctValue}` : "—";
   }
-  if (question.type === "category_sort" || question.type === "table_match") {
+  if (["category_sort", "matrix_choice", "table_match"].includes(question.type)) {
     return placementLabel(question, question.correctPlacements ?? {}) || "—";
   }
   if (question.type === "inline_dropdown") {
@@ -540,7 +540,7 @@ function studentAnswerLabel(question: ExamQuestion, answer: unknown) {
   }
   if (answer && typeof answer === "object") {
     const values = answer as Record<string, string>;
-    if (question.type === "category_sort" || question.type === "table_match") {
+    if (["category_sort", "matrix_choice", "table_match"].includes(question.type)) {
       return placementLabel(question, values) || "Blank";
     }
     if (question.type === "inline_dropdown") {

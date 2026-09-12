@@ -43,6 +43,7 @@ function isChoiceBasedQuestion(question: AssessmentContentSource["questions"][nu
     "grid_in",
     "essay",
     "category_sort",
+    "matrix_choice",
     "table_match",
     "inline_dropdown",
     "math_drag_drop",
@@ -71,8 +72,9 @@ function createFallbackQuestions(assessment: AssessmentContentSource): ExamQuest
 
   return assessment.questions.map((question, index) => {
     const correctChoiceIds = question.type === "multi_select" ? parseAnswerIds(question.answer) : [];
-    const isCategorySort = question.type === "category_sort" || question.type === "table_match";
+    const isCategorySort = question.type === "category_sort" || question.type === "matrix_choice" || question.type === "table_match";
     const isTableMatch = question.type === "table_match";
+    const isMatrixChoice = question.type === "matrix_choice";
     const isTextEntry = ["short_response", "numeric_entry", "grid_in"].includes(question.type);
 
     return {
@@ -89,7 +91,9 @@ function createFallbackQuestions(assessment: AssessmentContentSource): ExamQuest
       categoryCapacity: isTableMatch ? 1 : undefined,
       id: question.id || `question-${index + 1}`,
       instructions: isCategorySort
-        ? isTableMatch
+        ? isMatrixChoice
+          ? "Select one answer in each row."
+          : isTableMatch
           ? "Move the correct answer to each box in the table."
           : "Move each answer to the correct box."
         : undefined,
@@ -98,7 +102,7 @@ function createFallbackQuestions(assessment: AssessmentContentSource): ExamQuest
       prompt: question.prompt,
       requiredSelections:
         question.type === "multi_select" ? Math.max(2, correctChoiceIds.length || 2) : undefined,
-      tableHeaders: isTableMatch ? { answer: "Answer", row: "Rows" } : undefined,
+      tableHeaders: isTableMatch || isMatrixChoice ? { answer: "Answer", row: isMatrixChoice ? "Sentence" : "Rows" } : undefined,
       topic: question.topic || "Uncategorized",
       type: question.type,
     };

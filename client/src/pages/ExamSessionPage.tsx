@@ -700,6 +700,54 @@ function MathDragDropResponse({
   );
 }
 
+function MatrixChoiceResponse({
+  answer,
+  onChange,
+  question,
+}: {
+  answer: CategoryPlacements;
+  onChange: (answer: CategoryPlacements) => void;
+  question: ExamQuestion;
+}) {
+  const categories = question.categories ?? [];
+  const items = question.items ?? [];
+
+  return (
+    <div className="exam-matrix-choice-wrap">
+      <table className="exam-matrix-choice-table">
+        <thead>
+          <tr>
+            <th scope="col">{question.tableHeaders?.row ?? "Sentence"}</th>
+            {categories.map((category) => <th key={category.id} scope="col">{category.title}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item) => (
+            <tr key={item.id}>
+              <th scope="row">{item.html ? <span className="exam-rich-text" dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}</th>
+              {categories.map((category) => (
+                <td key={category.id}>
+                  <label className="exam-matrix-choice-option">
+                    <input
+                      aria-label={`${item.text}: ${category.title}`}
+                      checked={answer[item.id] === category.id}
+                      name={`matrix-${question.id}-${item.id}`}
+                      onChange={() => onChange({ ...answer, [item.id]: category.id })}
+                      type="radio"
+                      value={category.id}
+                    />
+                    <span aria-hidden="true" />
+                  </label>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 function GraphPointResponse({
   onToggle,
   question,
@@ -898,7 +946,7 @@ function isQuestionAnswered(question: ExamQuestion, selectedAnswers: SelectedAns
     return Boolean(response.direction && response.endpoint && response.value !== undefined);
   }
 
-  if (question.type === "category_sort" || question.type === "table_match") {
+  if (["category_sort", "matrix_choice", "table_match"].includes(question.type)) {
     const placements = getCategoryPlacements(selectedAnswers[question.id]);
     const items = question.items ?? [];
     const requiredPlacements = question.requiredPlacements ?? items.length;
@@ -959,7 +1007,7 @@ function createRandomQuestionAnswer(question: ExamQuestion): SelectedAnswer {
     };
   }
 
-  if (question.type === "category_sort" || question.type === "table_match") {
+  if (["category_sort", "matrix_choice", "table_match"].includes(question.type)) {
     const categoryIds = (question.categories ?? []).map((category) => category.id);
     const items = [...(question.items ?? [])].sort(() => Math.random() - 0.5);
     const placementCount = Math.min(question.requiredPlacements ?? items.length, items.length);
@@ -1785,6 +1833,7 @@ export function ExamSessionPage() {
     (activeQuestion.items ?? []).some((item) => item.text.length > 90);
   const isExpandedQuestionLayout =
     activeQuestion.type === "category_sort" ||
+    activeQuestion.type === "matrix_choice" ||
     activeQuestion.type === "table_match" ||
     hasLongAnswerContent;
   const activeQuestionSelectedChoiceIds = getSelectedChoiceIds(selectedAnswers[activeQuestion.id]);
@@ -3573,7 +3622,15 @@ export function ExamSessionPage() {
               </p>
             ) : null}
 
-            {activeStandaloneQuestion.type === "category_sort" &&
+            {activeStandaloneQuestion.type === "matrix_choice" &&
+            activeStandaloneQuestion.items &&
+            activeStandaloneQuestion.categories ? (
+              <MatrixChoiceResponse
+                answer={activeStandaloneQuestionCategoryPlacements}
+                onChange={(answer) => handleChangeStructuredAnswer(activeStandaloneQuestion.id, answer)}
+                question={activeStandaloneQuestion}
+              />
+            ) : activeStandaloneQuestion.type === "category_sort" &&
             activeStandaloneQuestion.items &&
             activeStandaloneQuestion.categories ? (
               <div
@@ -4163,7 +4220,13 @@ export function ExamSessionPage() {
                 )}
               </p>
             ) : null}
-            {activeQuestion.type === "table_match" && activeQuestion.items && activeQuestion.categories ? (
+            {activeQuestion.type === "matrix_choice" && activeQuestion.items && activeQuestion.categories ? (
+              <MatrixChoiceResponse
+                answer={activeQuestionCategoryPlacements}
+                onChange={(answer) => handleChangeStructuredAnswer(activeQuestion.id, answer)}
+                question={activeQuestion}
+              />
+            ) : activeQuestion.type === "table_match" && activeQuestion.items && activeQuestion.categories ? (
               <div className="exam-table-match">
                 <div
                   aria-label="Answer choice bank. Drop an answer here to undo a table selection."

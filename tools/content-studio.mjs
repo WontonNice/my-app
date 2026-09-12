@@ -847,36 +847,37 @@ function normalizeQuestion(question, passageId, index) {
     };
   }
 
-  if (question.type === "category_sort" || question.type === "table_match") {
+  if (["category_sort", "matrix_choice", "table_match"].includes(question.type)) {
     const isTableMatch = question.type === "table_match";
+    const isMatrixChoice = question.type === "matrix_choice";
     const categoryCapacity = isTableMatch || Number(question.categoryCapacity) === 1 ? 1 : undefined;
-    const minimumCategoryCount = isTableMatch || categoryCapacity === 1 ? 2 : 1;
+    const minimumCategoryCount = isTableMatch || isMatrixChoice || categoryCapacity === 1 ? 2 : 1;
     if (!Array.isArray(question.categories) || question.categories.length < minimumCategoryCount) {
       throw new EditorError(
         400,
-        `Question ${index + 1} needs at least ${minimumCategoryCount === 1 ? "one category" : `two ${isTableMatch ? "table rows" : "categories"}`}.`,
+        `Question ${index + 1} needs at least ${minimumCategoryCount === 1 ? "one category" : `two ${isTableMatch ? "table rows" : isMatrixChoice ? "answer columns" : "categories"}`}.`,
       );
     }
     const categories = question.categories.map((category, categoryIndex) => ({
       id: slugify(String(category?.id || `category-${categoryIndex + 1}`)),
-      title: requiredText(category?.title, `Question ${index + 1} category ${categoryIndex + 1}`),
+      title: requiredText(category?.title, `Question ${index + 1} ${isMatrixChoice ? "answer column" : "category"} ${categoryIndex + 1}`),
     }));
     if (categories.some((category) => !category.id) || new Set(categories.map((category) => category.id)).size !== categories.length) {
       throw new EditorError(400, `Question ${index + 1} category names must be unique.`);
     }
     if (!Array.isArray(question.items) || question.items.length < 2) {
-      throw new EditorError(400, `Question ${index + 1} needs at least two answer cards.`);
+      throw new EditorError(400, `Question ${index + 1} needs at least two ${isMatrixChoice ? "rows" : "answer cards"}.`);
     }
     const items = question.items.map((item, itemIndex) => {
       const html = sanitizeInlineRichText(item?.html);
       return {
         ...(html ? { html } : {}),
         id: slugify(String(item?.id || `item-${itemIndex + 1}`)),
-        text: requiredText(item?.text, `Question ${index + 1} answer card ${itemIndex + 1}`),
+        text: requiredText(item?.text, `Question ${index + 1} ${isMatrixChoice ? "row" : "answer card"} ${itemIndex + 1}`),
       };
     });
     if (items.some((item) => !item.id) || new Set(items.map((item) => item.id)).size !== items.length) {
-      throw new EditorError(400, `Question ${index + 1} answer cards must be unique.`);
+      throw new EditorError(400, `Question ${index + 1} ${isMatrixChoice ? "rows" : "answer cards"} must be unique.`);
     }
     const categoryIds = new Set(categories.map((category) => category.id));
     const placementsInput =
@@ -945,7 +946,9 @@ function normalizeQuestion(question, passageId, index) {
       instructions:
         typeof question.instructions === "string" && question.instructions.trim()
           ? question.instructions.trim()
-          : isTableMatch
+          : isMatrixChoice
+            ? "Select one answer in each row."
+            : isTableMatch
             ? "Move the correct answer to each box in the table."
             : categoryCapacity === 1
             ? "Move one answer to each box. Each box accepts only one answer."
@@ -957,7 +960,7 @@ function normalizeQuestion(question, passageId, index) {
         categoryCapacity === 1 || isSingleCategoryMultiAnswer
           ? Object.keys(correctPlacements).length
           : items.length,
-      ...(isTableMatch
+      ...(isTableMatch || isMatrixChoice
         ? {
             tableHeaders: {
               answer: requiredText(
@@ -965,7 +968,7 @@ function normalizeQuestion(question, passageId, index) {
                 `Question ${index + 1} answer column header`,
               ),
               row: requiredText(
-                question.tableHeaders?.row || "Rows",
+                question.tableHeaders?.row || (isMatrixChoice ? "Sentence" : "Rows"),
                 `Question ${index + 1} row column header`,
               ),
             },
@@ -3277,6 +3280,28 @@ async function validateSetup() {
         topic: "Tone & Mood",
         type: "category_sort",
       },
+      {
+        categories: [
+          { id: "claim", title: "Presents a Claim" },
+          { id: "evidence", title: "Presents Evidence" },
+        ],
+        correctPlacements: {
+          "sentence-1": "claim",
+          "sentence-2": "evidence",
+          "sentence-3": "claim",
+        },
+        id: "editor-feature-validation-6",
+        items: [
+          { id: "sentence-1", text: "The author states an opinion." },
+          { id: "sentence-2", text: "The author gives a supporting example." },
+          { id: "sentence-3", text: "The author makes another claim." },
+        ],
+        points: 1,
+        prompt: "Determine whether each sentence presents a claim or evidence.",
+        tableHeaders: { answer: "Answer", row: "Sentence" },
+        topic: "Evidence & Support",
+        type: "matrix_choice",
+      },
     ],
     text: "Validation passage text.",
     title: "Validation Passage",
@@ -3302,6 +3327,10 @@ async function validateSetup() {
     featureFixture.questions[4].categoryCapacity !== undefined ||
     featureFixture.questions[4].requiredPlacements !== 2 ||
     Object.keys(featureFixture.questions[4].correctPlacements).length !== 2 ||
+    featureFixture.questions[5].type !== "matrix_choice" ||
+    featureFixture.questions[5].requiredPlacements !== 3 ||
+    featureFixture.questions[5].instructions !== "Select one answer in each row." ||
+    featureFixture.questions[5].tableHeaders.row !== "Sentence" ||
     !featureSource.includes('blurb: "Context above the title."') ||
     !featureSource.includes('coverImage: {"alt":"A validation book cover","src":"/exam-images/editor-feature-validation-cover.webp"}')
   ) {

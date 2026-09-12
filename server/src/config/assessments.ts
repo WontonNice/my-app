@@ -7,6 +7,7 @@ export type QuestionType =
     | "multi_select"
     | "category_sort"
     | "graph_point_select"
+    | "matrix_choice"
     | "table_match"
     | "inline_dropdown"
     | "math_drag_drop"

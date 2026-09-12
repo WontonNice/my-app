@@ -113,6 +113,9 @@ function ExamReviewPassage({ passage }: { passage: ExamPassage }) {
 function ReviewQuestionBody({ item, showAnswers, viewer }: { item: ReviewQuestion; showAnswers: boolean; viewer: boolean }) {
   const { question, passage } = item;
   const prompt = <ExamText html={question.promptHtml} text={question.prompt} />;
+  const submittedPlacements = item.submittedAnswer && typeof item.submittedAnswer === "object" && !Array.isArray(item.submittedAnswer)
+    ? item.submittedAnswer
+    : {};
 
   return <>
     {!viewer && passage && <details className="exam-review-passage"><summary>Read passage: {passage.title}</summary>{passage.lines.map((line, index) => <p key={index}>{line.lineNumber && <small>{line.lineNumber} </small>}<ExamText html={line.html} text={line.text} />{line.image && <img src={line.image.src} alt={line.image.alt} />}</p>)}{passage.sourceNote && <small>{passage.sourceNote}</small>}</details>}
@@ -127,6 +130,7 @@ function ReviewQuestionBody({ item, showAnswers, viewer }: { item: ReviewQuestio
     </svg>}
     {question.dropdownContent && <p><ExamText text={templateText(question, question.dropdownContent)} /></p>}
     {question.dragDropContent && <p><ExamText text={templateText(question, question.dragDropContent)} /></p>}
+    {question.type === "matrix_choice" && question.items && question.categories ? <div className="exam-matrix-choice-wrap"><table className="exam-matrix-choice-table"><thead><tr><th scope="col">{question.tableHeaders?.row ?? "Sentence"}</th>{question.categories.map(category => <th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(matrixItem => <tr key={matrixItem.id}><th scope="row"><ExamText html={matrixItem.html} text={matrixItem.text} /></th>{question.categories!.map(category => <td key={category.id}><label className="exam-matrix-choice-option"><input aria-label={`${matrixItem.text}: ${category.title}`} checked={submittedPlacements[matrixItem.id] === category.id} disabled readOnly type="radio" /><span aria-hidden="true" /></label></td>)}</tr>)}</tbody></table></div> : null}
     {question.choices?.length ? <div className={viewer ? "exam-choice-list exam-review-viewer-choices" : "exam-review-choices"}>{question.choices.map(choice => <div className={viewer ? "exam-choice" : undefined} key={choice.id}>{viewer ? <span className="exam-review-choice-marker" aria-hidden="true" /> : null}<b>{choice.id}.</b><ChoiceContent choice={choice} /></div>)}</div> : null}
     {showAnswers && <div className="exam-review-answer-comparison"><section className={item.isCorrect ? "is-correct" : "is-incorrect"}><h3>Your submitted answer</h3><ExamAnswer question={question} answer={item.submittedAnswer} /></section><section className="is-correct"><h3>Correct answer</h3><ExamAnswer question={question} answer={correctExamAnswer(question)} /></section></div>}
   </>;

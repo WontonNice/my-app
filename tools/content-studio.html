@@ -1221,6 +1221,35 @@ Why D is wrong."></textarea>
       };
     }
 
+    function defaultMatrixChoiceQuestion(passageId, number) {
+      const categories = [
+        { id: "column-1", title: "Presents a Claim" },
+        { id: "column-2", title: "Presents Evidence" },
+      ];
+      const items = Array.from({ length: 4 }, (_value, index) => ({
+        id: `row-${index + 1}`,
+        text: "",
+      }));
+      return {
+        categories,
+        correctPlacements: Object.fromEntries(
+          items.map((item, index) => [item.id, categories[index % categories.length].id]),
+        ),
+        id: `${passageId || "passage"}-${number}`,
+        instructions: "Select one answer in each row.",
+        items,
+        points: 1,
+        prompt: "",
+        requiredPlacements: items.length,
+        tableHeaders: {
+          answer: "Answer",
+          row: "Sentence",
+        },
+        topic: "Evidence & Support",
+        type: "matrix_choice",
+      };
+    }
+
     function defaultPassage() {
       return {
         author: "",
@@ -2290,6 +2319,20 @@ Rules:
 
     function studentQuestionMarkup(question) {
       if (!question) return `<p class="exam-question-placeholder">Add a question to preview this passage.</p>`;
+      if (question.type === "matrix_choice") {
+        return `
+          <div class="exam-matrix-choice-wrap">
+            <table class="exam-matrix-choice-table">
+              <thead><tr><th scope="col">${escapeHtml(question.tableHeaders?.row || "Sentence")}</th>${(question.categories || []).map((category) => `<th scope="col">${escapeHtml(category.title)}</th>`).join("")}</tr></thead>
+              <tbody>${(question.items || []).map((item) => `
+                <tr><th scope="row">${item.html || escapeHtml(item.text || "Untitled row")}</th>${(question.categories || []).map((category) => `
+                  <td><label class="exam-matrix-choice-option"><input aria-label="${escapeHtml(`${item.text || "Row"}: ${category.title}`)}" name="preview-matrix-${escapeHtml(item.id)}" type="radio" value="${escapeHtml(category.id)}"><span aria-hidden="true"></span></label></td>
+                `).join("")}</tr>
+              `).join("")}</tbody>
+            </table>
+          </div>
+        `;
+      }
       if (question.type === "table_match") {
         return `
           <div class="exam-table-match">
@@ -2788,18 +2831,21 @@ Rules:
         const isStandardChoiceQuestion = question.type === "multiple_choice" || question.type === "multi_select";
         const isChoiceQuestion = isStandardChoiceQuestion || isTransitionQuestion;
         const isTableQuestion = question.type === "table_match";
-        const isCategoryQuestion = question.type === "category_sort" || isTableQuestion;
+        const isMatrixQuestion = question.type === "matrix_choice";
+        const isCategoryQuestion = question.type === "category_sort" || isTableQuestion || isMatrixQuestion;
         if (!isChoiceQuestion && !isCategoryQuestion) {
           return `
             <article class="question-card">
               <header><div><span class="question-number">${index + 1}</span><strong>${escapeHtml(question.prompt || question.id)}</strong></div></header>
-              <div class="unsupported">This existing <strong>${escapeHtml(question.type)}</strong> question is preserved exactly in code. The friendly editor supports multiple choice, multi-select, category sort, and table match.</div>
+              <div class="unsupported">This existing <strong>${escapeHtml(question.type)}</strong> question is preserved exactly in code. The friendly editor supports multiple choice, multi-select, category sort, matrix choice, and table match.</div>
             </article>
           `;
         }
         const isSingleCategoryQuestion = question.type === "category_sort" && question.categoryCapacity !== 1 && question.categories?.length === 1;
         const typeLabel =
-          isTableQuestion
+          isMatrixQuestion
+            ? "Matrix choice - one answer per row"
+            : isTableQuestion
             ? "Table match - one answer per row"
             : isTransitionQuestion
             ? "Drag and drop"
@@ -2882,42 +2928,42 @@ Rules:
           </section>
         ` : "";
         const categoryEditor = isCategoryQuestion ? `
-          <label class="field wide"><span>Student instructions</span><input data-question-field="instructions" value="${escapeHtml(question.instructions || (isTableQuestion ? "Move the correct answer to each box in the table." : "Move each answer to the correct box."))}"></label>
+          <label class="field wide"><span>Student instructions</span><input data-question-field="instructions" value="${escapeHtml(question.instructions || (isMatrixQuestion ? "Select one answer in each row." : isTableQuestion ? "Move the correct answer to each box in the table." : "Move each answer to the correct box."))}"></label>
           <div class="category-editor wide">
-            ${isTableQuestion ? `
+            ${isTableQuestion || isMatrixQuestion ? `
               <section class="category-editor-section">
                 <header><strong>Table column headers</strong></header>
                 <div class="field-grid">
-                  <label class="field"><span>Left column</span><input data-table-header="row" value="${escapeHtml(question.tableHeaders?.row || "Rows")}" placeholder="Example: Paragraphs"></label>
-                  <label class="field"><span>Answer column</span><input data-table-header="answer" value="${escapeHtml(question.tableHeaders?.answer || "Answer")}" placeholder="Example: Ellen's Primary Mood"></label>
+                  <label class="field"><span>Left column</span><input data-table-header="row" value="${escapeHtml(question.tableHeaders?.row || (isMatrixQuestion ? "Sentence" : "Rows"))}" placeholder="Example: ${isMatrixQuestion ? "Sentence" : "Paragraphs"}"></label>
+                  ${isTableQuestion ? `<label class="field"><span>Answer column</span><input data-table-header="answer" value="${escapeHtml(question.tableHeaders?.answer || "Answer")}" placeholder="Example: Ellen's Primary Mood"></label>` : ""}
                 </div>
               </section>
             ` : ""}
             <section class="category-editor-section">
               <header>
-                <strong>${isTableQuestion ? "Table rows · one answer per row" : isSingleCategoryQuestion ? "One category box · multiple answers allowed" : `Category boxes${question.categoryCapacity === 1 ? " · one answer per box" : ""}`}</strong>
-                <button class="secondary" data-category-action="add" type="button">+ Add ${isTableQuestion ? "row" : "category"}</button>
+                <strong>${isMatrixQuestion ? "Answer columns · one choice per row" : isTableQuestion ? "Table rows · one answer per row" : isSingleCategoryQuestion ? "One category box · multiple answers allowed" : `Category boxes${question.categoryCapacity === 1 ? " · one answer per box" : ""}`}</strong>
+                <button class="secondary" data-category-action="add" type="button">+ Add ${isMatrixQuestion ? "column" : isTableQuestion ? "row" : "category"}</button>
               </header>
-              ${!isTableQuestion && question.categoryCapacity !== 1 ? `<small class="field-note">Keep one category for a single box that accepts several correct answers.</small>` : ""}
+              ${isMatrixQuestion ? `<small class="field-note">Each column becomes an answer heading across the top of the student table.</small>` : !isTableQuestion && question.categoryCapacity !== 1 ? `<small class="field-note">Keep one category for a single box that accepts several correct answers.</small>` : ""}
               ${question.categories.map((category, categoryIndex) => `
                 <div class="category-row">
-                  <input aria-label="${isTableQuestion ? "Row" : "Category"} ${categoryIndex + 1} title" data-category-index="${categoryIndex}" value="${escapeHtml(category.title)}" placeholder="${isTableQuestion ? "Row" : "Category"} ${categoryIndex + 1}">
+                  <input aria-label="${isMatrixQuestion ? "Column" : isTableQuestion ? "Row" : "Category"} ${categoryIndex + 1} title" data-category-index="${categoryIndex}" value="${escapeHtml(category.title)}" placeholder="${isMatrixQuestion ? "Column" : isTableQuestion ? "Row" : "Category"} ${categoryIndex + 1}">
                   <button class="danger" data-category-action="remove" data-category-index="${categoryIndex}" ${
-                    question.categories.length <= (isTableQuestion || question.categoryCapacity === 1 ? 2 : 1) ? "disabled" : ""
+                    question.categories.length <= (isTableQuestion || isMatrixQuestion || question.categoryCapacity === 1 ? 2 : 1) ? "disabled" : ""
                   } type="button">Remove</button>
                 </div>
               `).join("")}
             </section>
             <section class="category-editor-section">
               <header>
-                <strong>Answer cards and correct ${isTableQuestion ? "rows" : "boxes"}</strong>
-                <button class="secondary" data-item-action="add" type="button">+ Add answer card</button>
+                <strong>${isMatrixQuestion ? "Table rows and correct answers" : `Answer cards and correct ${isTableQuestion ? "rows" : "boxes"}`}</strong>
+                <button class="secondary" data-item-action="add" type="button">+ Add ${isMatrixQuestion ? "row" : "answer card"}</button>
               </header>
               ${question.categoryCapacity === 1 ? `<small class="field-note">Assign one correct card to each ${isTableQuestion ? "row" : "box"}. Mark all extra answer cards as not used.</small>` : isSingleCategoryQuestion ? `<small class="field-note">Assign every correct card to the box. Mark the distractor cards as not used.</small>` : ""}
               ${question.items.map((item, itemIndex) => `
                 <div class="category-item-row">
-                  <div aria-label="Answer card ${itemIndex + 1}" class="rich-editor-content is-choice" contenteditable="true" data-item-index="${itemIndex}" data-placeholder="Answer card ${itemIndex + 1}" data-question-index="${index}" data-rich-kind="item" role="textbox">${inlineRichValue(item.html, item.text)}</div>
-                  <div class="category-placement-bubbles" role="group" aria-label="Correct category for answer card ${itemIndex + 1}">
+                  <div aria-label="${isMatrixQuestion ? "Row" : "Answer card"} ${itemIndex + 1}" class="rich-editor-content is-choice" contenteditable="true" data-item-index="${itemIndex}" data-placeholder="${isMatrixQuestion ? "Sentence or statement" : "Answer card"} ${itemIndex + 1}" data-question-index="${index}" data-rich-kind="item" role="textbox">${inlineRichValue(item.html, item.text)}</div>
+                  <div class="category-placement-bubbles" role="group" aria-label="Correct ${isMatrixQuestion ? "answer" : "category"} for ${isMatrixQuestion ? "row" : "answer card"} ${itemIndex + 1}">
                     ${question.categories.map((category) => `
                       <label class="category-placement-bubble">
                         <input ${question.correctPlacements?.[item.id] === category.id ? "checked" : ""} data-item-placement="${escapeHtml(item.id)}" name="placement-${index}-${escapeHtml(item.id)}" type="radio" value="${escapeHtml(category.id)}">
@@ -2955,6 +3001,7 @@ Rules:
                   <option ${question.type === "transition_drop" ? "selected" : ""} value="transition_drop">Drag and drop — sentence blank</option>
                   <option ${question.type === "category_sort" && question.categoryCapacity !== 1 ? "selected" : ""} value="category_sort">Category sort — multiple answers per box</option>
                   <option ${question.type === "category_sort" && question.categoryCapacity === 1 ? "selected" : ""} value="category_sort_single">Category sort — one answer per box</option>
+                  <option ${question.type === "matrix_choice" ? "selected" : ""} value="matrix_choice">Matrix choice — one answer per row</option>
                   <option ${question.type === "table_match" ? "selected" : ""} value="table_match">Table match - one answer per row</option>
                 </select>
               </label>
@@ -3097,13 +3144,16 @@ Rules:
         ...(current.promptHtml ? { promptHtml: current.promptHtml } : {}),
         topic: current.topic || "Central Idea & Theme",
       };
-      if (type === "category_sort" || type === "category_sort_single" || type === "table_match") {
+      if (type === "category_sort" || type === "category_sort_single" || type === "matrix_choice" || type === "table_match") {
         const isTableMatch = type === "table_match";
-        const isPlacementQuestion = current.type === "category_sort" || current.type === "table_match";
+        const isMatrixChoice = type === "matrix_choice";
+        const isPlacementQuestion = current.type === "category_sort" || current.type === "matrix_choice" || current.type === "table_match";
         const categoryCapacity = isTableMatch || type === "category_sort_single" ? 1 : undefined;
         const next =
           isPlacementQuestion
             ? { ...clone(current), ...base }
+            : isMatrixChoice
+              ? defaultMatrixChoiceQuestion(app.passageDraft.id || "passage", index + 1)
             : isTableMatch
               ? defaultTableMatchQuestion(app.passageDraft.id || "passage", index + 1)
               : defaultCategoryQuestion(app.passageDraft.id || "passage", index + 1, categoryCapacity);
@@ -3115,6 +3165,9 @@ Rules:
             id: `item-${itemIndex + 1}`,
             text: choice.text,
           }));
+        }
+        if (isMatrixChoice && next.categories.length < 2) {
+          next.categories.push({ id: "column-2", title: "Presents Evidence" });
         }
         if (categoryCapacity === 1) {
           if (next.categories.length < 2) {
@@ -3141,13 +3194,23 @@ Rules:
               next.correctPlacements?.[item.id] || next.categories[itemIndex % next.categories.length].id,
             ]),
           );
-          if (next.instructions === "Move one answer to each box. Each box accepts only one answer.") {
-            next.instructions = "Move each answer to the correct box.";
-          }
+          next.instructions = isMatrixChoice
+            ? current.type === "matrix_choice" && current.instructions
+              ? current.instructions
+              : "Select one answer in each row."
+            : current.type === "category_sort" && current.categoryCapacity !== 1 && current.instructions
+              ? current.instructions
+              : "Move each answer to the correct box.";
         }
         if (isTableMatch) {
           next.tableHeaders ||= { answer: "Answer", row: "Rows" };
           next.type = "table_match";
+        } else if (isMatrixChoice) {
+          next.tableHeaders = {
+            answer: next.tableHeaders?.answer || "Answer",
+            row: current.type === "matrix_choice" ? next.tableHeaders?.row || "Sentence" : "Sentence",
+          };
+          next.type = "matrix_choice";
         } else {
           delete next.tableHeaders;
           next.type = "category_sort";
@@ -3206,14 +3269,14 @@ Rules:
 
     function categoryAction(questionIndex, action, categoryIndex) {
       const question = app.passageDraft.questions[questionIndex];
-      const minimumCategoryCount = question.type === "table_match" || question.categoryCapacity === 1 ? 2 : 1;
+      const minimumCategoryCount = question.type === "table_match" || question.type === "matrix_choice" || question.categoryCapacity === 1 ? 2 : 1;
       if (action === "add") {
-        const prefix = question.type === "table_match" ? "row" : "category";
+        const prefix = question.type === "table_match" ? "row" : question.type === "matrix_choice" ? "column" : "category";
         let number = question.categories.length + 1;
         while (question.categories.some((category) => category.id === `${prefix}-${number}`)) number += 1;
         question.categories.push({
           id: `${prefix}-${number}`,
-          title: `${question.type === "table_match" ? "Row" : "Category"} ${number}`,
+          title: `${question.type === "table_match" ? "Row" : question.type === "matrix_choice" ? "Column" : "Category"} ${number}`,
         });
         if (question.categoryCapacity !== 1 && question.categories.length > 1) {
           question.items.forEach((item) => {
@@ -3244,8 +3307,9 @@ Rules:
       const question = app.passageDraft.questions[questionIndex];
       if (action === "add") {
         let number = question.items.length + 1;
-        while (question.items.some((item) => item.id === `item-${number}`)) number += 1;
-        const item = { id: `item-${number}`, text: "" };
+        const prefix = question.type === "matrix_choice" ? "row" : "item";
+        while (question.items.some((item) => item.id === `${prefix}-${number}`)) number += 1;
+        const item = { id: `${prefix}-${number}`, text: "" };
         question.items.push(item);
         if (question.categoryCapacity !== 1 && question.categories.length > 1) {
           question.correctPlacements[item.id] = question.categories[0].id;
@@ -3868,7 +3932,7 @@ Rules:
         const response = question.numberLineResponse;
         return response ? `${response.correctDirection} ray, ${response.correctEndpoint} at ${response.correctValue}` : "—";
       }
-      if (question.type === "category_sort" || question.type === "table_match") {
+      if (["category_sort", "matrix_choice", "table_match"].includes(question.type)) {
         return Object.entries(question.correctPlacements || {}).map(([itemId, categoryId]) => {
           const item = (question.items || []).find((candidate) => candidate.id === itemId);
           const category = (question.categories || []).find((candidate) => candidate.id === categoryId);
