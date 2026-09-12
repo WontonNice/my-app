@@ -1443,13 +1443,27 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-09-11T15:56:21.577Z",
-    "updatedAt": "2026-09-11T15:57:15.823Z",
+    "updatedAt": "2026-09-12T09:28:20.983Z",
     "passages": [
       {
         "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil",
         "imageUrl": "",
         "text": "The complete passage is provided by the registered exam content.",
         "title": "Excerpt from “It’s Time to Stop Thinking That All Non-Native Species Are Evil”"
+      },
+      {
+        "id": "a-miracle-mile-version-2",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "A Miracle Mile",
+        "versionLabel": "2025-2026 Form B"
+      },
+      {
+        "id": "excerpt-from-in-search-of-the-unknown",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from In Search of the Unknown",
+        "versionLabel": "2025-2026 Form B"
       }
     ],
     "questions": [
@@ -1465,7 +1479,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Which sentence from the excerpt supports the conclusion that Elton’s “militaristic ‘invasion’ metaphor” (paragraph 1) has influenced scientific understanding of non-native species?",
-        "topic": "Central Idea & Theme",
+        "topic": "Evidence & Support",
         "type": "multiple_choice"
       },
       {
@@ -1480,7 +1494,237 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Which detail provides the most relevant support for the claim that “climate change is making it harder even to decide who the invaders are” (paragraph 7)?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which two phrases from paragraph 3 most affect the tone of the excerpt?",
+        "topic": "Tone & Mood",
+        "type": "category_sort"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "“Native gardens have become increasingly popular, both as ways to celebrate the unique flora of each region and as tiny hot spots of diversity.” (paragraph 3)",
+          "“Many native (and beautiful) Hawaiian flowers are now pollinated by the Japanese white-eye bird—because the native pollinators have been driven extinct by other non-native species.” (paragraph 11)",
+          "“After all, nativeness is just one environmental value, and arguably not as important as preventing extinctions and preserving biodiversity.” (paragraph 14)",
+          "“The islands lost their own large tortoises, and the fruiting plants that formerly had their seeds moved around by these fruit-loving reptiles have been on the decline.” (paragraph 15)"
+        ],
+        "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt supports the idea that some species are able to adjust to change?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "some non-native species can replace native species that are unable to survive on their own.",
+          "decisions about whether to keep non-native species should be considered on an individual basis.",
+          "the scientists who study rapidly changing ecosystems agree that non-native species enhance biodiversity.",
+          "a natural habitat that is healthy should be able to support a blend of native and non-native species."
+        ],
+        "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The details in the section “A Good Thing, Not the Only Thing” convey a central idea of the excerpt by suggesting that",
         "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "call upon the public to be more tolerant of the presence of non-native species.",
+          "admit that past attempts to eliminate non-native species have damaged the environment.",
+          "find ways of ensuring that native species are not harmed by the arrival of new species.",
+          "acknowledge that it is not realistic for some species to remain in their native habitats."
+        ],
+        "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Climate change has affected efforts to manage invasive species mainly by causing ecologists to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "by implying that the public becomes aware of non-native species only after removal is impossible",
+          "by showing that the complete removal of non-native species is usually not achievable after a certain period of time",
+          "by demonstrating why non-native species can be destructive if they are not removed from an area immediately",
+          "by explaining how some conservation groups have approached the removal of non-native species"
+        ],
+        "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the chart provide additional support for a central idea of the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Determine whether each sentence from the excerpt presents a claim or presents evidence to support a claim.",
+        "topic": "Central Idea & Theme",
+        "type": "matrix_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "highlight the idea that only the most skilled runners would be able to run a four-minute mile",
+          "emphasize the idea that running a mile in less than four minutes was a seemingly unattainable goal.",
+          "convey the competitiveness among elite runners to consistently set and break speed records.",
+          "show the intensity of the training programs athletes endure in order to achieve their goals."
+        ],
+        "id": "a-miracle-mile-version-2-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The words “feat,” “humanly impossible,” and “impenetrable barrier” in paragraph 1 affect the tone of the paragraph because they",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "knew that he was about to achieve the goal he had worked toward.",
+          "was no longer experiencing personal disappointment from his past failure in the Olympics.",
+          "felt grateful to his teammates for helping him take the lead.",
+          "was satisfied that his training had helped him perfect his running technique."
+        ],
+        "id": "a-miracle-mile-version-2-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read these sentences from paragraph 7.\n\nBannister said, “I felt that the moment of a lifetime had come. There was no pain, only a great unity of movement and aim.”\n\nThe sentences contribute to the development of ideas in the passage by showing that Bannister",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“Bannister’s performance was a disappointment for him and his country, Great Britain.” (paragraph 2)",
+          "“The amateur athlete decided to use intensive interval training to develop endurance and speed.” (paragraph 3)",
+          "“For these workouts, Bannister ran an interval of ten consecutive laps on a quarter-mile track, aiming for sixty seconds each lap.” (paragraph 3)",
+          "“Frustrated by the plateau he had reached, Bannister took a break from training and went mountain climbing for three days.” (paragraph 4)"
+        ],
+        "id": "a-miracle-mile-version-2-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence best supports the idea that Bannister needed an alternative to “logical planning” in order to accomplish his goal?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "“By early 1954, Bannister had succeeded in lowering his quarter-mile pace to sixty-one seconds, but he had to shave off at least one more second in order to reach his target.” (paragraph 4)",
+          "“When the starting pistol fired, Brasher pounced into the lead, and Bannister followed behind his first rabbit.” (paragraph 6)",
+          "“Propelled by the excitement, Bannister lost his instinctive feel for his pace and shouted ‘Faster!’ at Brasher.” (paragraph 7)",
+          "“At the beginning of the back straightaway of the track, Bannister bolted past Chataway.” (paragraph 7)"
+        ],
+        "id": "a-miracle-mile-version-2-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage indicates that Bannister nearly made a mistake that would have cost him the world record?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "allowing him to recognize his weaknesses and improve his running ability.",
+          "prompting him to take a different approach to his regular training.",
+          "motivating him to prove to himself that he could set and achieve a goal.",
+          "giving him the opportunity to reach a goal no runner had ever accomplished."
+        ],
+        "id": "a-miracle-mile-version-2-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Bannister’s loss in the 1952 Olympics influenced his decision to pursue breaking the four-minutemile barrier by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It helped him learn how to moderate his pace while running.",
+          "It helped him understand the importance of running with a team.",
+          "It helped him improve his pace and stamina while running.",
+          "It helped him decrease his recovery time after an intense run."
+        ],
+        "id": "a-miracle-mile-version-2-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How did interval training affect Bannister’s performance?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It presents the increasing physical effects of Bannister’s intense training methods as he prepared to break the four-minute-mile barrier.",
+          "It shows the increase in Bannister’s confidence in his ability to break the four-minutemile barrier",
+          "It emphasizes the key events in Bannister’s life that inspired him to break the four-minutemile barrier",
+          "It highlights the progression of Bannister’s training and details about his successful attempt to break the four-minute-mile barrier."
+        ],
+        "id": "a-miracle-mile-version-2-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the author’s use of chronological structure contribute to the development of ideas in the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "dislikes writing refusal letters for the animals offered to the zoological society.",
+          "attempts to predict what the professor would say in the refusal letters.",
+          "believes that many of the animals offered are not acceptable for the zoological society.",
+          "resents the professor’s insistence on reviewing the refusal letters."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read paragraph 2 from the excerpt.\nTo the proprietors of . . . mangy lynxes, moth-eaten coyotes, and dancing bears I returned courteous but uncompromising refusals—of course, first submitting all such letters, together with my replies, to Professor Farrago.\nThis paragraph helps develop the plot by establishing that the narrator",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It indicates that the professor feels bad that he has to call the narrator to his office after work.",
+          "It shows that the professor is hesitant to share his opinions with the narrator.",
+          "It implies that the professor is uncomfortable criticizing the narrator’s work.",
+          "It suggests that the professor knows that the conversation will be frustrating for the narrator."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 3.\nThe professor, who was sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his glasses down and looked over them at me with a whimsical smile that suggested amusement, impatience, annoyance, and perhaps a faint trace of apology.\nWhat does the phrase “a faint trace of apology” convey about the professor?",
+        "topic": "Word & Phrase Meaning",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It establishes the conflict between the professor and the narrator concerning the validity of the letter.",
+          "It suggests a theme of collaboration because the narrator and the professor regularly work together.",
+          "It reveals the characters’ traits by contrasting the narrator’s distrust with how easily the professor is deceived by what he reads.",
+          "It hints that the resolution will involve the narrator accepting the professor’s opinion about the content of the letter."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the exchange between the professor and the narrator in paragraphs 8–11 contribute to the development of the characters?",
+        "topic": "Text Structure & Purpose",
         "type": "multiple_choice"
       }
     ],

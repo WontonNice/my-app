@@ -15,6 +15,11 @@ import { excerptFromThePuzzleOfTheRiderlessBicyclePassageSet } from "./passageSe
 import { excerptFromTheLastMulePassageSet } from "./passageSets/excerpt-from-the-last-mule";
 import { excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvilPassageSet } from "./passageSets/excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil";
 import { excerptFromInSearchOfTheUnknownPassageSet } from "./passageSets/excerpt-from-in-search-of-the-unknown";
+import { aMiracleMileVersion2PassageSet } from "./passageSets/a-miracle-mile-version-2";
+import { atDusk20252026FormBPassageSet } from "./passageSets/at-dusk-2025-2026-form-b";
+import { usingFireToKeepAPrairieHealthyPassageSet } from "./passageSets/using-fire-to-keep-a-prairie-healthy";
+import { letterFromBrooklyn20252026FormBPassageSet } from "./passageSets/letter-from-brooklyn-2025-2026-form-b";
+import { theEndOfAnEraPassageSet } from "./passageSets/the-end-of-an-era";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -33,6 +38,11 @@ export const examPassageLibrary: ExamPassageSet[] = [
   excerptFromTheLastMulePassageSet,
   excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvilPassageSet,
   excerptFromInSearchOfTheUnknownPassageSet,
+  aMiracleMileVersion2PassageSet,
+  atDusk20252026FormBPassageSet,
+  usingFireToKeepAPrairieHealthyPassageSet,
+  letterFromBrooklyn20252026FormBPassageSet,
+  theEndOfAnEraPassageSet,
 ];
 
 export function getExamLibraryPassage(passageId: string) {
