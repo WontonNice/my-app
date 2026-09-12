@@ -906,7 +906,7 @@
             </section>
 
             <section class="practice-workflow-section" id="practice-answers">
-              <header class="practice-section-head"><span>3</span><div><h3>Answer choices</h3><p>Enter all four options and identify the correct response.</p></div><label class="field practice-correct-field"><span>Correct answer</span><select id="practice-correct-choice"><option>A</option><option>B</option><option>C</option><option>D</option></select></label></header>
+              <header class="practice-section-head"><span>3</span><div><h3>Answer choices</h3><p>Enter all four options and identify the correct response.</p></div><label class="field practice-correct-field"><span>Correct answer</span><select id="practice-correct-choice" required><option selected disabled value="">Choose answer…</option><option>A</option><option>B</option><option>C</option><option>D</option></select></label></header>
               <div class="practice-choice-grid">
                 <label class="field"><span><b>A</b> Answer choice</span><textarea id="practice-choice-a" required></textarea></label>
                 <label class="field"><span><b>B</b> Answer choice</span><textarea id="practice-choice-b" required></textarea></label>
@@ -1210,7 +1210,7 @@ Why D is wrong."></textarea>
       if (type === "transition_drop") {
         return {
           ...base,
-          correctChoiceId: "A",
+          correctChoiceId: "",
           instructions: "Move the correct answer to the box.",
           transitionBlankAfter: "",
           transitionBlankBefore: "",
@@ -1218,8 +1218,8 @@ Why D is wrong."></textarea>
         };
       }
       return type === "multi_select"
-        ? { ...base, correctChoiceIds: ["A", "B"], requiredSelections: 2 }
-        : { ...base, correctChoiceId: "A" };
+        ? { ...base, correctChoiceIds: [], requiredSelections: 0 }
+        : { ...base, correctChoiceId: "" };
     }
 
     function defaultCategoryQuestion(passageId, number, categoryCapacity) {
@@ -1235,7 +1235,7 @@ Why D is wrong."></textarea>
       return {
         categories,
         ...(categoryCapacity === 1 ? { categoryCapacity: 1 } : {}),
-        correctPlacements: Object.fromEntries(items.map((item, index) => [item.id, categories[index % 2].id])),
+        correctPlacements: {},
         id: `${passageId || "passage"}-${number}`,
         instructions:
           categoryCapacity === 1
@@ -1244,7 +1244,7 @@ Why D is wrong."></textarea>
         items,
         points: 1,
         prompt: "",
-        requiredPlacements: items.length,
+        requiredPlacements: 0,
         topic: "Central Idea & Theme",
         type: "category_sort",
       };
@@ -1263,15 +1263,13 @@ Why D is wrong."></textarea>
       return {
         categories,
         categoryCapacity: 1,
-        correctPlacements: Object.fromEntries(
-          categories.map((category, index) => [items[index].id, category.id]),
-        ),
+        correctPlacements: {},
         id: `${passageId || "passage"}-${number}`,
         instructions: "Move the correct answer to each box in the table.",
         items,
         points: 1,
         prompt: "",
-        requiredPlacements: categories.length,
+        requiredPlacements: 0,
         tableHeaders: {
           answer: "Answer",
           row: "Rows",
@@ -1292,15 +1290,13 @@ Why D is wrong."></textarea>
       }));
       return {
         categories,
-        correctPlacements: Object.fromEntries(
-          items.map((item, index) => [item.id, categories[index % categories.length].id]),
-        ),
+        correctPlacements: {},
         id: `${passageId || "passage"}-${number}`,
         instructions: "Select one answer in each row.",
         items,
         points: 1,
         prompt: "",
-        requiredPlacements: items.length,
+        requiredPlacements: 0,
         tableHeaders: {
           answer: "Answer",
           row: "Sentence",
@@ -1314,12 +1310,7 @@ Why D is wrong."></textarea>
       return {
         author: "",
         blurb: "",
-        directions: {
-          subject: "English Language Arts",
-          title: "READING COMPREHENSION",
-          breadcrumbLabel: "ELA RDG COMP DIRECTIONS",
-          body: "Read each text and answer the related questions. Base your answers only on the content within the text.",
-        },
+        directions: undefined,
         exportName: "",
         fileName: "",
         format: "prose",
@@ -1328,11 +1319,12 @@ Why D is wrong."></textarea>
         image: undefined,
         label: "",
         passageSetId: "",
-        passageType: "informational",
+        passageType: "",
         questions: [defaultQuestion("passage", 1)],
         richText: "",
         sourceHash: "",
         sourceNote: "",
+        section: "",
         teacherSource: "",
         text: "",
         title: "",
@@ -1373,20 +1365,20 @@ Why D is wrong."></textarea>
           ...base,
           categories: [{ id: "answer-box", title: "Contains an error in construction" }],
           categoryCapacity: 1,
-          correctPlacements: { "answer-card-1": "answer-box" },
+          correctPlacements: {},
           instructions: "Move the answer to the box. There is only one correct answer.",
           items: [1, 2, 3, 4].map((itemNumber) => ({
             id: `answer-card-${itemNumber}`,
             text: `Sentence ${itemNumber}`,
           })),
-          requiredPlacements: 1,
+          requiredPlacements: 0,
           type: "category_sort",
         };
       }
       return {
         ...base,
         choices: ["A", "B", "C", "D"].map((choiceId) => ({ id: choiceId, text: "" })),
-        correctChoiceId: "A",
+        correctChoiceId: "",
         type: "multiple_choice",
       };
     }
@@ -1408,7 +1400,7 @@ Why D is wrong."></textarea>
           ],
           dropdowns: [
             {
-              correctChoiceId: "option-1",
+              correctChoiceId: "",
               id: "answer-1",
               options: [
                 { id: "option-1", text: "Option 1" },
@@ -1431,7 +1423,7 @@ Why D is wrong."></textarea>
           ...base,
           allowReuse: false,
           dragDropContent: ["{{box-1}}"],
-          dragDropSlots: [{ correctItemId: "answer-1", id: "box-1" }],
+          dragDropSlots: [{ correctItemId: "", id: "box-1" }],
           instructions: "Move the correct answer to each box.",
           items: [
             { id: "answer-1", text: "Answer 1" },
@@ -1443,7 +1435,7 @@ Why D is wrong."></textarea>
       if (type === "graph_point_select") {
         return {
           ...base,
-          correctPointIds: ["point-1"],
+          correctPointIds: [],
           graph: {
             points: [
               { id: "point-1", x: 1, y: 1 },
@@ -1460,7 +1452,7 @@ Why D is wrong."></textarea>
             yStep: 1,
           },
           instructions: "Select all the correct answers.",
-          requiredSelections: 1,
+          requiredSelections: 0,
         };
       }
       if (type === "number_line_response") {
@@ -1480,8 +1472,8 @@ Why D is wrong."></textarea>
       }
       const choices = ["A", "B", "C", "D"].map((id) => ({ id, text: "" }));
       return type === "multi_select"
-        ? { ...base, choices, correctChoiceIds: ["A", "B"], requiredSelections: 2 }
-        : { ...base, choices, correctChoiceId: "A" };
+        ? { ...base, choices, correctChoiceIds: [], requiredSelections: 0 }
+        : { ...base, choices, correctChoiceId: "" };
     }
 
     function defaultMathDraft(assessment) {
@@ -1781,6 +1773,8 @@ Rules:
     }
 
     function examPassageSection(passage) {
+      if (passage?.section === "revising_editing_a") return "revising-editing";
+      if (passage?.section === "reading") return "reading";
       const directionsTitle = String(passage?.directions?.title || "").toLowerCase();
       return directionsTitle.includes("revising/editing") || passage.format === "sentence_prose"
         ? "revising-editing"
@@ -1869,7 +1863,7 @@ Rules:
       setStatus(
         `New ${app.passageMode === "advanced" ? "advanced-practice" : "exam"} passage draft. Nothing has been written yet.`,
       );
-      $("[data-field='title']")?.focus();
+      $(`[data-field='${app.passageMode === "advanced" ? "title" : "section"}']`)?.focus();
     }
 
     function nextPassageVersionLabel(passage) {
@@ -1927,7 +1921,34 @@ Rules:
 
     function passageTypeOptions(selected) {
       const labels = { informational: "Informational", literary: "Literary", poem: "Poem", long_reading: "Long reading" };
-      return app.state.passageTypes.map((type) => `<option ${type === selected ? "selected" : ""} value="${type}">${labels[type]}</option>`).join("");
+      return [
+        `<option ${selected ? "" : "selected"} disabled value="">Choose passage type…</option>`,
+        ...app.state.passageTypes.map((type) => `<option ${type === selected ? "selected" : ""} value="${type}">${labels[type]}</option>`),
+      ].join("");
+    }
+
+    function passageSectionOptions(selected) {
+      return [
+        `<option ${selected ? "" : "selected"} disabled value="">Choose exam section…</option>`,
+        `<option ${selected === "reading" ? "selected" : ""} value="reading">Reading Comprehension</option>`,
+        `<option ${selected === "revising_editing_a" ? "selected" : ""} value="revising_editing_a">Revising/Editing Part A</option>`,
+      ].join("");
+    }
+
+    function passageDirectionsForSection(section) {
+      return section === "revising_editing_a"
+        ? {
+            body: "Read each text and answer the related questions. You will be asked to recognize and correct errors so that the text follows the conventions of standard written English.",
+            breadcrumbLabel: "ELA REV/EDIT A DIRECTIONS",
+            subject: "English Language Arts",
+            title: "REVISING/EDITING PART A",
+          }
+        : {
+            body: "Read each text and answer the related questions. Base your answers only on the content within the text.",
+            breadcrumbLabel: "ELA RDG COMP DIRECTIONS",
+            subject: "English Language Arts",
+            title: "READING COMPREHENSION",
+          };
     }
 
     function renderPassageEditor() {
@@ -1954,6 +1975,7 @@ Rules:
       const teacherMetadataFields = advanced
         ? ""
         : `
+            <label class="field"><span>Exam section <small>Required</small></span><select data-field="section" required>${passageSectionOptions(passage.section)}</select><small class="field-note">Controls whether the passage is filed under Reading or Revising/Editing.</small></label>
             <label class="field"><span>Passage version <small>Teacher only</small></span><input data-field="versionLabel" value="${escapeHtml(passage.versionLabel || "")}" placeholder="Version 1, Form A, 2026 edition"><small class="field-note">Use a different label for each version of the same passage.</small></label>
             <label class="field wide"><span>Passage source <small>Teacher only</small></span><textarea data-field="teacherSource" placeholder="URL, book, test form, file name, page number, or private sourcing notes">${escapeHtml(passage.teacherSource || "")}</textarea><small class="field-note">Stored for your records and omitted from the student passage.</small></label>
           `;
@@ -2001,7 +2023,7 @@ Rules:
               <div class="field-grid content-editor-settings-grid">
                 ${advancedFields}
                 ${teacherMetadataFields}
-                <label class="field"><span>Library passage type</span><select data-field="passageType">${passageTypeOptions(passage.passageType)}</select><small class="field-note">Controls the Study Hall tag and shelf.</small></label>
+                <label class="field"><span>Library passage type <small>Required</small></span><select data-field="passageType" required>${passageTypeOptions(passage.passageType)}</select><small class="field-note">Controls the Study Hall tag and shelf.</small></label>
                 <label class="field"><span>Formatting type</span><select data-field="format">${formatOptions(passage.format)}</select></label>
                 <label class="field"><span>Section label <small>Optional</small></span><input data-field="label" value="${escapeHtml(passage.label)}" placeholder="Reading Comprehension"></label>
                 <label class="field"><span>Student source or copyright note <small>Optional · student visible</small></span><input data-field="sourceNote" value="${escapeHtml(passage.sourceNote)}" placeholder="Publication, adaptation, or copyright note"></label>
@@ -2106,6 +2128,9 @@ Rules:
           if (element.dataset.field === "versionLabel") {
             const indicator = $("#passage-version-indicator");
             if (indicator) indicator.textContent = `Teacher version: ${passageVersionText(app.passageDraft)}`;
+          }
+          if (element.dataset.field === "section") {
+            app.passageDraft.directions = passageDirectionsForSection(element.value);
           }
           if (element.dataset.field === "passageType" && element.value === "poem" && app.passageDraft.format !== "poem") {
             app.passageDraft.format = "poem";
@@ -3006,7 +3031,7 @@ Rules:
                 `).join("")}
               </div>
               <label class="field"><span>Correct answer</span>
-                <select data-question-field="correctChoiceId">${["A", "B", "C", "D"].map((choiceId) => `<option ${choiceId === question.correctChoiceId ? "selected" : ""} value="${choiceId}">${choiceId}</option>`).join("")}</select>
+                <select data-question-field="correctChoiceId"><option ${question.correctChoiceId ? "" : "selected"} disabled value="">Choose answer…</option>${["A", "B", "C", "D"].map((choiceId) => `<option ${choiceId === question.correctChoiceId ? "selected" : ""} value="${choiceId}">${choiceId}</option>`).join("")}</select>
               </label>
               <label class="field"><span>Points</span><input data-question-field="points" min="1" type="number" value="${escapeHtml(question.points || 1)}"></label>
             </div>
@@ -3385,9 +3410,11 @@ Rules:
             });
           }
           next.categoryCapacity = 1;
+          const validItemIds = new Set(next.items.map((item) => item.id));
+          const validCategoryIds = new Set(next.categories.map((category) => category.id));
           next.correctPlacements = Object.fromEntries(
-            next.categories.flatMap((category, categoryIndex) =>
-              next.items[categoryIndex] ? [[next.items[categoryIndex].id, category.id]] : [],
+            Object.entries(next.correctPlacements || {}).filter(
+              ([itemId, categoryId]) => validItemIds.has(itemId) && validCategoryIds.has(categoryId),
             ),
           );
           next.requiredPlacements = Object.keys(next.correctPlacements).length;
@@ -3396,11 +3423,12 @@ Rules:
             : "Move one answer to each box. Each box accepts only one answer.";
         } else {
           delete next.categoryCapacity;
+          const validCategoryIds = new Set(next.categories.map((category) => category.id));
           next.correctPlacements = Object.fromEntries(
-            next.items.map((item, itemIndex) => [
-              item.id,
-              next.correctPlacements?.[item.id] || next.categories[itemIndex % next.categories.length].id,
-            ]),
+            next.items.flatMap((item) => {
+              const categoryId = next.correctPlacements?.[item.id];
+              return categoryId && validCategoryIds.has(categoryId) ? [[item.id, categoryId]] : [];
+            }),
           );
           next.instructions = isMatrixChoice
             ? current.type === "matrix_choice" && current.instructions
@@ -3433,10 +3461,10 @@ Rules:
             : Math.min(5, Math.max(4, current.choices?.length || current.items?.length || 4));
         next.choices = choiceArrayFromQuestion(current, choiceCount);
         if (type === "multiple_choice" || type === "transition_drop") {
-          const previousCorrectChoiceId = current.correctChoiceId || current.correctChoiceIds?.[0] || "A";
+          const previousCorrectChoiceId = current.correctChoiceId || current.correctChoiceIds?.[0] || "";
           next.correctChoiceId = next.choices.some((choice) => choice.id === previousCorrectChoiceId)
             ? previousCorrectChoiceId
-            : "A";
+            : "";
           if (type === "transition_drop") {
             next.instructions = current.instructions || "Move the correct answer to the box.";
             next.transitionBlankAfter = current.transitionBlankAfter || "";
@@ -3444,9 +3472,8 @@ Rules:
             next.transitionSentenceNumber = current.transitionSentenceNumber || "";
           }
         } else {
-          const first = current.correctChoiceId || current.correctChoiceIds?.[0] || "A";
-          const second = ["A", "B", "C", "D"].find((choiceId) => choiceId !== first) || "B";
-          next.correctChoiceIds = current.correctChoiceIds?.length >= 2 ? [...current.correctChoiceIds] : [first, second];
+          next.correctChoiceIds = (current.correctChoiceIds || (current.correctChoiceId ? [current.correctChoiceId] : []))
+            .filter((choiceId) => next.choices.some((choice) => choice.id === choiceId));
           next.requiredSelections = next.correctChoiceIds.length;
         }
         app.passageDraft.questions[index] = next;
@@ -3463,9 +3490,6 @@ Rules:
       } else if (action === "remove-e" && question.choices.length >= 5) {
         question.choices = question.choices.slice(0, 4);
         question.correctChoiceIds = (question.correctChoiceIds || []).filter((choiceId) => choiceId !== "E");
-        if (question.correctChoiceIds.length < 2) {
-          question.correctChoiceIds = ["A", "B"];
-        }
         question.requiredSelections = question.correctChoiceIds.length;
         if (/^Select the \d+ correct answers\.$/i.test(question.instructions || "")) {
           delete question.instructions;
@@ -3486,20 +3510,11 @@ Rules:
           id: `${prefix}-${number}`,
           title: `${question.type === "table_match" ? "Row" : question.type === "matrix_choice" ? "Column" : "Category"} ${number}`,
         });
-        if (question.categoryCapacity !== 1 && question.categories.length > 1) {
-          question.items.forEach((item) => {
-            question.correctPlacements[item.id] ||= question.categories[0].id;
-          });
-        }
       } else if (question.categories.length > minimumCategoryCount) {
         const [removed] = question.categories.splice(categoryIndex, 1);
         Object.keys(question.correctPlacements).forEach((itemId) => {
           if (question.correctPlacements[itemId] !== removed.id) return;
-          if (question.categoryCapacity === 1) {
-            delete question.correctPlacements[itemId];
-          } else {
-            question.correctPlacements[itemId] = question.categories[0].id;
-          }
+          delete question.correctPlacements[itemId];
         });
       }
       const allowsUnusedCards = question.categoryCapacity === 1 ||
@@ -3519,9 +3534,6 @@ Rules:
         while (question.items.some((item) => item.id === `${prefix}-${number}`)) number += 1;
         const item = { id: `${prefix}-${number}`, text: "" };
         question.items.push(item);
-        if (question.categoryCapacity !== 1 && question.categories.length > 1) {
-          question.correctPlacements[item.id] = question.categories[0].id;
-        }
       } else if (question.items.length > 2) {
         const [removed] = question.items.splice(itemIndex, 1);
         delete question.correctPlacements[removed.id];
@@ -3682,7 +3694,7 @@ Rules:
       if (!item || item.type !== "category_sort" || item.items.length <= 2) return;
       const [removed] = item.items.splice(index, 1);
       if (removed && item.correctPlacements?.[removed.id]) {
-        item.correctPlacements = { [item.items[0].id]: item.categories[0].id };
+        delete item.correctPlacements[removed.id];
       }
       markStandaloneDirty();
       renderStandaloneEditor();
@@ -4660,6 +4672,7 @@ Rules:
                 <div class="math-config-row">
                   <code>{{${escapeHtml(slot.id)}}}</code>
                   <select aria-label="Correct answer for box ${slotIndex + 1}" data-math-drag-correct-index="${slotIndex}">
+                    <option ${slot.correctItemId ? "" : "selected"} disabled value="">Choose answer…</option>
                     ${items.map((item) => `<option ${item.id === slot.correctItemId ? "selected" : ""} value="${escapeHtml(item.id)}">${escapeHtml(item.text)}</option>`).join("")}
                   </select>
                   <button class="danger" data-math-drag-slot-remove="${slotIndex}" ${slots.length <= 1 ? "disabled" : ""} type="button">Remove</button>
@@ -5131,15 +5144,10 @@ Rules:
           next.correctChoiceId =
             current.correctChoiceId ||
             current.correctChoiceIds?.find((choiceId) => next.choices.some((choice) => choice.id === choiceId)) ||
-            next.choices[0].id;
+            "";
         } else {
-          next.correctChoiceIds = (current.correctChoiceIds || [current.correctChoiceId, next.choices[1]?.id])
+          next.correctChoiceIds = (current.correctChoiceIds || (current.correctChoiceId ? [current.correctChoiceId] : []))
             .filter((choiceId) => next.choices.some((choice) => choice.id === choiceId));
-          while (next.correctChoiceIds.length < Math.min(2, next.choices.length)) {
-            const available = next.choices.find((choice) => !next.correctChoiceIds.includes(choice.id));
-            if (!available) break;
-            next.correctChoiceIds.push(available.id);
-          }
           next.requiredSelections = next.correctChoiceIds.length;
         }
       }
@@ -5198,7 +5206,7 @@ Rules:
         const removed = dropdown.options[optionIndex];
         dropdown.options.splice(optionIndex, 1);
         if (removed?.id === dropdown.correctChoiceId) {
-          dropdown.correctChoiceId = dropdown.options[0].id;
+          dropdown.correctChoiceId = "";
         }
       }
       markMathDirty();
@@ -5257,16 +5265,11 @@ Rules:
         question.correctChoiceId =
           correctChoice && question.choices.includes(correctChoice)
             ? correctChoice.id
-            : question.choices[0].id;
+            : "";
       } else {
         question.correctChoiceIds = correctChoices
           .filter((choice) => question.choices.includes(choice))
           .map((choice) => choice.id);
-        while (question.correctChoiceIds.length < Math.min(2, question.choices.length)) {
-          const available = question.choices.find((choice) => !question.correctChoiceIds.includes(choice.id));
-          if (!available) break;
-          question.correctChoiceIds.push(available.id);
-        }
         question.requiredSelections = question.correctChoiceIds.length;
       }
       markMathDirty();
@@ -5717,7 +5720,7 @@ Rules:
         question.dropdowns ||= [];
         question.dropdownContent ||= [];
         question.dropdowns.push({
-          correctChoiceId: "option-1",
+          correctChoiceId: "",
           id,
           options: [
             { id: "option-1", text: "Option 1" },
@@ -5758,7 +5761,7 @@ Rules:
           const removed = question.items[index];
           question.items.splice(index, 1);
           (question.dragDropSlots || []).forEach((slot) => {
-            if (slot.correctItemId === removed?.id) slot.correctItemId = question.items[0].id;
+            if (slot.correctItemId === removed?.id) slot.correctItemId = "";
           });
           markMathDirty();
           renderMathBuilder();
@@ -5805,7 +5808,7 @@ Rules:
         let number = question.dragDropSlots.length + 1;
         while (question.dragDropSlots.some((slot) => slot.id === `box-${number}`)) number += 1;
         const id = `box-${number}`;
-        question.dragDropSlots.push({ correctItemId: question.items?.[0]?.id || "", id });
+        question.dragDropSlots.push({ correctItemId: "", id });
         question.dragDropContent.push(`{{${id}}}`);
         markMathDirty();
         renderMathBuilder();
@@ -5984,7 +5987,7 @@ WRONG D:`;
           $(`#practice-choice-${id.toLowerCase()}`).value = draft.choices?.[id] || "";
           $(`#practice-wrong-${id.toLowerCase()}`).value = draft.incorrectChoiceExplanations?.[id] || "";
         }
-        $("#practice-correct-choice").value = draft.correctChoiceId || "A";
+        $("#practice-correct-choice").value = draft.correctChoiceId || "";
         $("#practice-explanation").value = draft.explanation || "";
         $("#practice-quick-paste").value = draft.quickPaste || "";
       } catch {

@@ -51,6 +51,7 @@ const isCodespaces = process.env.CODESPACES === "true";
 const editToken = randomBytes(24).toString("hex");
 const passageFormats = ["prose", "poem", "sentence_prose"];
 const passageTypes = ["informational", "literary", "poem", "long_reading"];
+const examPassageSections = ["reading", "revising_editing_a"];
 const defaultTopics = [
   "Author's Point of View",
   "Character & Relationships",
@@ -526,10 +527,24 @@ async function parsePassageFile(filePath) {
   const directionsProperty = objectProperty(exported.initializer, "directions");
   const idProperty = objectProperty(exported.initializer, "id");
   const labelProperty = objectProperty(exported.initializer, "label");
+  const sectionProperty = objectProperty(exported.initializer, "section");
 
   if (!passageInput || typeof passageInput !== "object" || !Array.isArray(questions)) {
     throw new Error("The passage or question data could not be read.");
   }
+
+  const directions = directionsProperty ? valueFromNode(directionsProperty.initializer, environment) : undefined;
+  const savedSection = sectionProperty
+    ? String(valueFromNode(sectionProperty.initializer, environment) ?? "")
+    : "";
+  if (savedSection && !examPassageSections.includes(savedSection)) {
+    throw new Error("The passage section must be reading or revising_editing_a.");
+  }
+  const section = savedSection || (
+    String(directions?.title || "").toLowerCase().includes("revising/editing") || format === "sentence_prose"
+      ? "revising_editing_a"
+      : "reading"
+  );
 
   return {
     author: typeof passageInput.author === "string" ? passageInput.author : "",
@@ -539,7 +554,7 @@ async function parsePassageFile(filePath) {
         : typeof passageInput.header === "string"
           ? passageInput.header
           : "",
-    directions: directionsProperty ? valueFromNode(directionsProperty.initializer, environment) : undefined,
+    directions,
     coverImage:
       passageInput.coverImage && typeof passageInput.coverImage === "object"
         ? passageInput.coverImage
@@ -561,6 +576,7 @@ async function parsePassageFile(filePath) {
     richText: typeof passageInput.richText === "string" ? passageInput.richText : "",
     sourceHash: hashSource(source),
     sourceNote: typeof passageInput.sourceNote === "string" ? passageInput.sourceNote : "",
+    section,
     teacherSource: typeof passageInput.teacherSource === "string" ? passageInput.teacherSource : "",
     text: typeof passageInput.text === "string" ? passageInput.text : "",
     title: typeof passageInput.title === "string" ? passageInput.title : "",
@@ -1004,7 +1020,26 @@ function normalizePassageImage(image, label) {
   };
 }
 
-function normalizePassage(input) {
+function defaultDirectionsForSection(section) {
+  if (section === "revising_editing_a") {
+    return {
+      body:
+        "Read each text and answer the related questions. You will be asked to recognize and correct errors so that the text follows the conventions of standard written English.",
+      breadcrumbLabel: "ELA REV/EDIT A DIRECTIONS",
+      subject: "English Language Arts",
+      title: "REVISING/EDITING PART A",
+    };
+  }
+  return {
+    body:
+      "Read each text and answer the related questions. Base your answers only on the content within the text.",
+    breadcrumbLabel: "ELA RDG COMP DIRECTIONS",
+    subject: "English Language Arts",
+    title: "READING COMPREHENSION",
+  };
+}
+
+function normalizePassage(input, { requireExamSection = false } = {}) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Passage data is invalid.");
   }
@@ -1015,11 +1050,12 @@ function normalizePassage(input) {
   if (!id) throw new EditorError(400, "Add a passage title so the Studio can create its internal ID.");
   const format = requiredText(input.format, "Passage format");
   if (!passageFormats.includes(format)) throw new EditorError(400, "Choose a valid passage format.");
-  const passageType = requiredText(
-    input.passageType || (format === "poem" ? "poem" : "informational"),
-    "Library passage type",
-  );
+  const passageType = requiredText(input.passageType, "Library passage type");
   if (!passageTypes.includes(passageType)) throw new EditorError(400, "Choose a valid library passage type.");
+  const section = requireExamSection ? requiredText(input.section, "Exam section") : "reading";
+  if (requireExamSection && !examPassageSections.includes(section)) {
+    throw new EditorError(400, "Choose Reading or Revising/Editing Part A as the exam section.");
+  }
   const fileName = input.fileName
     ? requiredText(input.fileName, "Source file")
     : `${id}.ts`;
@@ -1045,13 +1081,7 @@ function normalizePassage(input) {
     directions:
       input.directions && typeof input.directions === "object" && !Array.isArray(input.directions)
         ? input.directions
-        : {
-            body:
-              "Read each text and answer the related questions. Base your answers only on the content within the text.",
-            breadcrumbLabel: "ELA RDG COMP DIRECTIONS",
-            subject: "English Language Arts",
-            title: "READING COMPREHENSION",
-          },
+        : defaultDirectionsForSection(section),
     exportName,
     fileName,
     format,
@@ -1064,6 +1094,7 @@ function normalizePassage(input) {
     richText: sanitizeRichText(input.richText),
     sourceHash: typeof input.sourceHash === "string" ? input.sourceHash : "",
     sourceNote: typeof input.sourceNote === "string" ? input.sourceNote.trim() : "",
+    ...(requireExamSection ? { section } : {}),
     teacherSource,
     text: requiredText(input.text, "Passage text", { preserve: true }),
     title,
@@ -1105,6 +1136,7 @@ function buildPassageSource(passage) {
     `export const ${passage.exportName}: ExamPassageSet = {`,
     `  id: ${quote(passage.passageSetId)},`,
     ...(passage.label ? [`  label: ${quote(passage.label)},`] : []),
+    `  section: ${quote(passage.section)},`,
     `  questionCount: ${questionsName}.length,`,
     `  directions: ${JSON.stringify(passage.directions, null, 2)},`,
     `  passage: ${formatter}({`,
@@ -1117,7 +1149,7 @@ function buildPassageSource(passage) {
 }
 
 async function savePassage(input) {
-  const passage = normalizePassage(input);
+  const passage = normalizePassage(input, { requireExamSection: true });
   const filePath = join(passageSetsRoot, passage.fileName);
   let existingSource = "";
   try {
@@ -3218,6 +3250,7 @@ async function validateSetup() {
       src: "/exam-images/editor-feature-validation-cover.webp",
     },
     format: "prose",
+    passageType: "informational",
     questions: [
       {
         choices: ["A", "B", "C", "D", "E"].map((id) => ({ id, text: `Choice ${id}` })),
@@ -3328,11 +3361,12 @@ async function validateSetup() {
         type: "matrix_choice",
       },
     ],
+    section: "revising_editing_a",
     teacherSource: "Teacher archive, practice set 4, page 18",
     text: "Validation passage text.",
     title: "Validation Passage",
     versionLabel: "Version 2",
-  });
+  }, { requireExamSection: true });
   const featureSource = buildPassageSource(featureFixture);
   if (
     featureFixture.id !== "validation-passage-version-2" ||
@@ -3360,10 +3394,12 @@ async function validateSetup() {
     featureFixture.questions[5].instructions !== "Select one answer in each row." ||
     featureFixture.questions[5].tableHeaders.row !== "Sentence" ||
     featureFixture.teacherSource !== "Teacher archive, practice set 4, page 18" ||
+    featureFixture.section !== "revising_editing_a" ||
     featureFixture.versionLabel !== "Version 2" ||
     !featureSource.includes('blurb: "Context above the title."') ||
     !featureSource.includes('coverImage: {"alt":"A validation book cover","src":"/exam-images/editor-feature-validation-cover.webp"}') ||
     !featureSource.includes('teacherSource: "Teacher archive, practice set 4, page 18"') ||
+    !featureSource.includes('section: "revising_editing_a"') ||
     !featureSource.includes('versionLabel: "Version 2"')
   ) {
     throw new Error("Exam editor feature validation failed.");

@@ -50,14 +50,24 @@ test('new exams are locked, registered, editable, unique, and protected by the e
     const exported = JSON.parse(await readFile(join(fixture, 'server/data/exam-content.json'), 'utf8'));
     assert.equal(exported[payload.assessment.id].passageSets.length, 0);
     const originalPassage = refreshed.passages.find(passage => passage.title === 'A Miracle Mile') || refreshed.passages[0];
+    await assert.rejects(
+      studio.savePassage({ ...originalPassage, passageType: '', section: 'reading' }),
+      /Library passage type/,
+    );
+    await assert.rejects(
+      studio.savePassage({ ...originalPassage, section: '' }),
+      /Exam section/,
+    );
     const versionLabel = `Automated Test ${Date.now()}`;
     const version = await studio.savePassage({
       ...originalPassage,
+      directions: undefined,
       exportName: '',
       fileName: '',
       id: '',
       passageSetId: '',
       questions: originalPassage.questions.map((question, index) => ({ ...question, id: `passage-${index + 1}` })),
+      section: 'revising_editing_a',
       sourceHash: '',
       teacherSource: 'Teacher archive, practice set 4, page 18',
       versionLabel,
@@ -65,12 +75,15 @@ test('new exams are locked, registered, editable, unique, and protected by the e
     assert.match(version.id, /^a-miracle-mile-automated-test-\d+$/);
     assert.equal(version.versionLabel, versionLabel);
     assert.equal(version.teacherSource, 'Teacher archive, practice set 4, page 18');
+    assert.equal(version.section, 'revising_editing_a');
+    assert.equal(version.directions.title, 'REVISING/EDITING PART A');
     assert.ok(version.questions.every(question => question.id.startsWith(`${version.id}-`)));
     const versionSource = await readFile(
       join(fixture, 'client/src/content/exams/passageSets', version.fileName),
       'utf8',
     );
     assert.match(versionSource, /teacherSource: "Teacher archive, practice set 4, page 18"/);
+    assert.match(versionSource, /section: "revising_editing_a"/);
     assert.match(versionSource, /versionLabel: "Automated Test \d+"/);
 
     await studio.saveTest({ assessmentId: payload.assessment.id, readingPassageIds: [originalPassage.id], sourceHash: exam.sourceHash });

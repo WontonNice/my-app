@@ -143,6 +143,7 @@ export function resolveExamContent(assessment: AssessmentContentSource) {
   const sectionFor = (passageSet: ExamPassageSet): ExamPassageSection =>
     content.passageSections?.[passageSet.passage.id] ??
     content.passageSections?.[passageSet.id] ??
+    passageSet.section ??
     "reading";
   const readingPassageSets = content.passageSets.filter(
     (passageSet) => sectionFor(passageSet) === "reading",
