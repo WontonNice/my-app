@@ -88,6 +88,7 @@ export type TeacherAssessment = {
     imageUrl: string;
     text: string;
     title: string;
+    versionLabel?: string;
   }[];
   questions: {
     answer: string;

@@ -23,6 +23,7 @@ export type AssessmentPassage = {
     imageUrl: string;
     text: string;
     title: string;
+    versionLabel?: string;
 };
 
 export type AssessmentQuestion = {

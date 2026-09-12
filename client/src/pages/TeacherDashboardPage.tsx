@@ -1467,7 +1467,10 @@ export function TeacherDashboardPage() {
             const assessmentInsight = classAssessmentInsights.find((insight) => insight.assessmentId === assessment.id);
             const formDraft = formDrafts[assessment.id];
             const isFormEditorOpen = openFormEditorId === assessment.id;
-            const passageTitleById = new Map(assessment.passages.map((passage) => [passage.id, passage.title]));
+            const passageTitleById = new Map(assessment.passages.map((passage) => [
+              passage.id,
+              passage.versionLabel ? `${passage.title} — ${passage.versionLabel}` : passage.title,
+            ]));
             const allSectionsOpen = assessment.sectionAccess.english && assessment.sectionAccess.math;
             const sectionAccessLabel = allSectionsOpen
               ? "English + Math open"

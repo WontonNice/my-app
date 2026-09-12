@@ -561,8 +561,10 @@ async function parsePassageFile(filePath) {
     richText: typeof passageInput.richText === "string" ? passageInput.richText : "",
     sourceHash: hashSource(source),
     sourceNote: typeof passageInput.sourceNote === "string" ? passageInput.sourceNote : "",
+    teacherSource: typeof passageInput.teacherSource === "string" ? passageInput.teacherSource : "",
     text: typeof passageInput.text === "string" ? passageInput.text : "",
     title: typeof passageInput.title === "string" ? passageInput.title : "",
+    versionLabel: typeof passageInput.versionLabel === "string" ? passageInput.versionLabel : "",
   };
 }
 
@@ -580,7 +582,11 @@ async function listPassages() {
       });
     }
   }
-  passages.sort((left, right) => left.title.localeCompare(right.title));
+  passages.sort(
+    (left, right) =>
+      left.title.localeCompare(right.title) ||
+      String(left.versionLabel || "").localeCompare(String(right.versionLabel || ""), undefined, { numeric: true }),
+  );
   return { passageErrors, passages };
 }
 
@@ -674,11 +680,13 @@ async function parseAdvancedPassageFile(filePath) {
     richText: typeof passageInput.richText === "string" ? passageInput.richText : "",
     sourceHash: hashSource(source),
     sourceNote: typeof passageInput.sourceNote === "string" ? passageInput.sourceNote : "",
+    teacherSource: typeof passageInput.teacherSource === "string" ? passageInput.teacherSource : "",
     text: typeof passageInput.text === "string" ? passageInput.text : "",
     thumbnail: String(readValue(exported.initializer, "thumbnail") ?? ""),
     thumbnailAlt: String(readValue(exported.initializer, "thumbnailAlt") ?? ""),
     title: typeof passageInput.title === "string" ? passageInput.title : "",
     tone: String(readValue(exported.initializer, "tone") ?? ""),
+    versionLabel: typeof passageInput.versionLabel === "string" ? passageInput.versionLabel : "",
   };
 }
 
@@ -1000,7 +1008,10 @@ function normalizePassage(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Passage data is invalid.");
   }
-  const id = slugify(String(input.id || input.title || ""));
+  const title = requiredText(input.title, "Passage title");
+  const versionLabel = typeof input.versionLabel === "string" ? input.versionLabel.trim() : "";
+  const teacherSource = typeof input.teacherSource === "string" ? input.teacherSource.trim() : "";
+  const id = slugify(String(input.id || `${title}${versionLabel ? ` ${versionLabel}` : ""}`));
   if (!id) throw new EditorError(400, "Add a passage title so the Studio can create its internal ID.");
   const format = requiredText(input.format, "Passage format");
   if (!passageFormats.includes(format)) throw new EditorError(400, "Choose a valid passage format.");
@@ -1053,8 +1064,10 @@ function normalizePassage(input) {
     richText: sanitizeRichText(input.richText),
     sourceHash: typeof input.sourceHash === "string" ? input.sourceHash : "",
     sourceNote: typeof input.sourceNote === "string" ? input.sourceNote.trim() : "",
+    teacherSource,
     text: requiredText(input.text, "Passage text", { preserve: true }),
-    title: requiredText(input.title, "Passage title"),
+    title,
+    versionLabel,
   };
 }
 
@@ -1077,7 +1090,9 @@ function buildPassageSource(passage) {
     `    passageType: ${quote(passage.passageType)},`,
     ...(passage.richText ? [`    richText: ${quote(passage.richText)},`] : []),
     ...(passage.sourceNote ? [`    sourceNote: ${quote(passage.sourceNote)},`] : []),
+    ...(passage.teacherSource ? [`    teacherSource: ${quote(passage.teacherSource)},`] : []),
     `    text: ${textName},`,
+    ...(passage.versionLabel ? [`    versionLabel: ${quote(passage.versionLabel)},`] : []),
   ].join("\n");
   return [
     `import { ${formatter} } from "../formatters";`,
@@ -1117,7 +1132,7 @@ async function savePassage(input) {
   } else {
     const { passages } = await listPassages();
     if (passages.some((candidate) => candidate.id === passage.id || candidate.exportName === passage.exportName)) {
-      throw new EditorError(409, "That passage ID or export name already exists.");
+      throw new EditorError(409, "That passage version already exists. Add a distinct teacher version label before saving.");
     }
   }
 
@@ -1193,7 +1208,9 @@ function buildAdvancedPassageSource(passage) {
     `      passageType: ${quote(passage.passageType)},`,
     ...(passage.richText ? [`      richText: ${quote(passage.richText)},`] : []),
     ...(passage.sourceNote ? [`      sourceNote: ${quote(passage.sourceNote)},`] : []),
+    ...(passage.teacherSource ? [`      teacherSource: ${quote(passage.teacherSource)},`] : []),
     `      text: ${textName},`,
+    ...(passage.versionLabel ? [`      versionLabel: ${quote(passage.versionLabel)},`] : []),
   ].join("\n");
   return [
     `import { ${formatter} } from "../../exams/formatters";`,
@@ -2780,6 +2797,14 @@ async function saveTest(input) {
     if (!passage) throw new EditorError(404, `Passage ${id} was not found.`);
     return passage;
   });
+  const passageFamilyTitles = selectedPassages.map((passage) => passage.title.trim().toLowerCase());
+  const duplicatePassageFamily = passageFamilyTitles.find(
+    (title, index) => passageFamilyTitles.indexOf(title) !== index,
+  );
+  if (duplicatePassageFamily) {
+    const passage = selectedPassages.find((candidate) => candidate.title.trim().toLowerCase() === duplicatePassageFamily);
+    throw new EditorError(400, `Choose only one version of “${passage?.title || duplicatePassageFamily}” for this exam.`);
+  }
   const selectedStandaloneItems = standaloneItemIds.map((id) => {
     const item = state.standaloneItems.find((candidate) => candidate.id === id);
     if (!item) throw new EditorError(404, `Stand-alone question ${id} was not found.`);
@@ -2885,6 +2910,7 @@ async function saveTest(input) {
       imageUrl: "",
       text: "The complete passage is provided by the registered exam content.",
       title: passage.title,
+      ...(passage.versionLabel ? { versionLabel: passage.versionLabel } : {}),
     })),
     questions: [
       ...selectedPassages.flatMap((passage) => passage.questions.map(assessmentQuestionFrom)),
@@ -3192,7 +3218,6 @@ async function validateSetup() {
       src: "/exam-images/editor-feature-validation-cover.webp",
     },
     format: "prose",
-    id: "editor-feature-validation",
     questions: [
       {
         choices: ["A", "B", "C", "D", "E"].map((id) => ({ id, text: `Choice ${id}` })),
@@ -3303,12 +3328,15 @@ async function validateSetup() {
         type: "matrix_choice",
       },
     ],
+    teacherSource: "Teacher archive, practice set 4, page 18",
     text: "Validation passage text.",
     title: "Validation Passage",
+    versionLabel: "Version 2",
   });
   const featureSource = buildPassageSource(featureFixture);
   if (
-    featureFixture.questions[0].id !== "editor-feature-validation-1" ||
+    featureFixture.id !== "validation-passage-version-2" ||
+    featureFixture.questions[0].id !== "validation-passage-version-2-1" ||
     featureFixture.questions[0].choices.length !== 5 ||
     featureFixture.questions[0].correctChoiceIds.at(-1) !== "E" ||
     featureFixture.questions[0].instructions !== undefined ||
@@ -3331,8 +3359,12 @@ async function validateSetup() {
     featureFixture.questions[5].requiredPlacements !== 3 ||
     featureFixture.questions[5].instructions !== "Select one answer in each row." ||
     featureFixture.questions[5].tableHeaders.row !== "Sentence" ||
+    featureFixture.teacherSource !== "Teacher archive, practice set 4, page 18" ||
+    featureFixture.versionLabel !== "Version 2" ||
     !featureSource.includes('blurb: "Context above the title."') ||
-    !featureSource.includes('coverImage: {"alt":"A validation book cover","src":"/exam-images/editor-feature-validation-cover.webp"}')
+    !featureSource.includes('coverImage: {"alt":"A validation book cover","src":"/exam-images/editor-feature-validation-cover.webp"}') ||
+    !featureSource.includes('teacherSource: "Teacher archive, practice set 4, page 18"') ||
+    !featureSource.includes('versionLabel: "Version 2"')
   ) {
     throw new Error("Exam editor feature validation failed.");
   }

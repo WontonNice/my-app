@@ -10,8 +10,10 @@ type PlainTextPassageInput = {
   passageType?: ExamPassageType;
   richText?: string;
   sourceNote?: string;
+  teacherSource?: string;
   text: string;
   title: string;
+  versionLabel?: string;
 };
 
 type RichTextBlock = {
@@ -183,8 +185,10 @@ type ProsePassageInput = {
   passageType?: ExamPassageType;
   richText?: string;
   sourceNote?: string;
+  teacherSource?: string;
   text: string;
   title: string;
+  versionLabel?: string;
 };
 
 export function createProsePassage({
@@ -270,8 +274,10 @@ type SentenceNumberedPassageInput = {
   passageType?: ExamPassageType;
   richText?: string;
   sourceNote?: string;
+  teacherSource?: string;
   text: string;
   title: string;
+  versionLabel?: string;
 };
 
 export function createSentenceNumberedPassage({

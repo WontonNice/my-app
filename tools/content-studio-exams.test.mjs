@@ -21,7 +21,7 @@ test('new exams are locked, registered, editable, unique, and protected by the e
     await cp(join(toolsRoot, 'content-topics.json'), join(fixture, 'tools/content-topics.json'));
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8'))
       .replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(fixture)};`)
-      .split('if (process.argv.includes("--validate"))')[0] + '\nexport { handleRequest, getState, saveTest };\n';
+      .split('if (process.argv.includes("--validate"))')[0] + '\nexport { handleRequest, getState, savePassage, saveTest };\n';
     await writeFile(modulePath, source);
     const studio = await import(pathToFileURL(modulePath).href);
     server = createServer(studio.handleRequest);
@@ -49,10 +49,49 @@ test('new exams are locked, registered, editable, unique, and protected by the e
     assert.ok(exam); assert.equal(exam.passageIds.length, 0);
     const exported = JSON.parse(await readFile(join(fixture, 'server/data/exam-content.json'), 'utf8'));
     assert.equal(exported[payload.assessment.id].passageSets.length, 0);
-    await studio.saveTest({ assessmentId: payload.assessment.id, readingPassageIds: [refreshed.passages[0].id], sourceHash: exam.sourceHash });
-    const saved = await studio.getState();
-    assert.equal(saved.assessments.find(item => item.id === payload.assessment.id).questions.length, refreshed.passages[0].questions.length);
-    assert.deepEqual(saved.tests.find(item => item.assessmentId === payload.assessment.id).readingPassageIds, [refreshed.passages[0].id]);
+    const originalPassage = refreshed.passages.find(passage => passage.title === 'A Miracle Mile') || refreshed.passages[0];
+    const version = await studio.savePassage({
+      ...originalPassage,
+      exportName: '',
+      fileName: '',
+      id: '',
+      passageSetId: '',
+      questions: originalPassage.questions.map((question, index) => ({ ...question, id: `passage-${index + 1}` })),
+      sourceHash: '',
+      teacherSource: 'Teacher archive, practice set 4, page 18',
+      versionLabel: 'Version 2',
+    });
+    assert.equal(version.id, 'a-miracle-mile-version-2');
+    assert.equal(version.versionLabel, 'Version 2');
+    assert.equal(version.teacherSource, 'Teacher archive, practice set 4, page 18');
+    assert.ok(version.questions.every(question => question.id.startsWith('a-miracle-mile-version-2-')));
+    const versionSource = await readFile(
+      join(fixture, 'client/src/content/exams/passageSets/a-miracle-mile-version-2.ts'),
+      'utf8',
+    );
+    assert.match(versionSource, /teacherSource: "Teacher archive, practice set 4, page 18"/);
+    assert.match(versionSource, /versionLabel: "Version 2"/);
+
+    await studio.saveTest({ assessmentId: payload.assessment.id, readingPassageIds: [originalPassage.id], sourceHash: exam.sourceHash });
+    let saved = await studio.getState();
+    assert.equal(saved.assessments.find(item => item.id === payload.assessment.id).questions.length, originalPassage.questions.length);
+    assert.deepEqual(saved.tests.find(item => item.assessmentId === payload.assessment.id).readingPassageIds, [originalPassage.id]);
+    await assert.rejects(
+      studio.saveTest({
+        assessmentId: payload.assessment.id,
+        readingPassageIds: [originalPassage.id, version.id],
+        sourceHash: saved.tests.find(item => item.assessmentId === payload.assessment.id).sourceHash,
+      }),
+      /Choose only one version/,
+    );
+    await studio.saveTest({
+      assessmentId: payload.assessment.id,
+      readingPassageIds: [version.id],
+      sourceHash: saved.tests.find(item => item.assessmentId === payload.assessment.id).sourceHash,
+    });
+    saved = await studio.getState();
+    assert.deepEqual(saved.tests.find(item => item.assessmentId === payload.assessment.id).readingPassageIds, [version.id]);
+    assert.equal(saved.assessments.find(item => item.id === payload.assessment.id).passages[0].versionLabel, 'Version 2');
   } finally {
     if (server) await new Promise(resolve => server.close(resolve));
     await rm(modulePath, { force: true });

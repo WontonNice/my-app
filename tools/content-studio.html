@@ -78,6 +78,10 @@
     .passage-list button:hover, .passage-list button.is-active { border-color: #77aaa2; background: #f0f8f6; }
     .passage-list strong { overflow: hidden; font-size: .73rem; text-overflow: ellipsis; white-space: nowrap; }
     .passage-list small { color: var(--muted); font-size: .62rem; }
+    .passage-version-tag, .passage-version-indicator {
+      width: fit-content; border: 1px solid #acd3cc; border-radius: 999px; background: #eef8f6;
+      color: #21675e; padding: 3px 7px; font-size: .58rem; font-weight: 800;
+    }
     .editor { padding: 24px; }
     .editor-empty { display: grid; min-height: 55vh; color: var(--muted); place-items: center; }
     .editor-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 20px; }
@@ -85,6 +89,7 @@
     .editor h1, .test-shell h1 { font-size: 1.25rem; }
     .editor-head p, .test-shell header p { max-width: 720px; margin: 0; color: var(--muted); font-size: .75rem; line-height: 1.55; }
     .source-path { border-radius: 5px; background: #edf1f4; color: #526477; padding: 5px 7px; font-family: Consolas, monospace; font-size: .61rem; }
+    .content-editor-heading-meta { display: grid; justify-items: end; gap: 6px; min-width: 0; }
     .panel { margin-bottom: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); padding: 17px; box-shadow: 0 6px 18px rgb(26 43 60 / 4%); }
     .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
     .panel-head div { display: grid; gap: 3px; }
@@ -278,6 +283,13 @@
     .passage-picker-actions { display: grid; gap: 5px; margin-top: auto; }
     .passage-picker-actions button { min-height: 30px; border: 1px solid #cbd5df; border-radius: 6px; background: #fff; color: #40546a; padding: 5px 7px; font-size: .61rem; font-weight: 750; text-align: left; }
     .passage-picker-actions button:hover { border-color: #70aa9f; color: var(--accent); }
+    .passage-version-groups { display: grid; gap: 11px; margin-bottom: 16px; }
+    .passage-version-group { display: grid; gap: 8px; border: 1px solid var(--border-soft); border-radius: 9px; background: #f8fafb; padding: 10px; }
+    .passage-version-group > header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .passage-version-group > header strong { color: var(--heading); font-size: .74rem; }
+    .passage-version-group > header small { color: var(--muted); font-size: .6rem; }
+    .passage-version-group .passage-picker { margin-bottom: 0; }
+    .passage-picker-card .teacher-source { overflow-wrap: anywhere; }
     .english-section-stack { display: grid; gap: 14px; margin-top: 16px; }
     .english-section-group { display: grid; gap: 9px; border: 1px solid var(--border-soft); border-radius: 9px; background: #fff; padding: 12px; }
     .english-section-group > header { display: grid; gap: 3px; }
@@ -1034,11 +1046,34 @@ Why D is wrong."></textarea>
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-|-$/g, "");
 
+    function generatedPassageId(passage) {
+      const versionSuffix = app.passageMode === "advanced" ? "" : String(passage?.versionLabel || "").trim();
+      return slugFromTitle(`${passage?.title || ""}${versionSuffix ? ` ${versionSuffix}` : ""}`);
+    }
+
+    function updateNewPassageIdentity() {
+      const passage = app.passageDraft;
+      if (!passage || passage.sourceHash) return;
+      const generatedId = generatedPassageId(passage);
+      if (!generatedId || passage.id === generatedId) return;
+      passage.id = generatedId;
+      passage.passageSetId = `${app.passageMode === "advanced" ? "advanced" : "ela"}-${generatedId}`;
+      passage.exportName = "";
+      passage.fileName = "";
+      if (app.passageMode === "advanced") passage.advancedId ||= generatedId;
+      passage.questions.forEach((question, index) => {
+        const previousId = question.id;
+        question.id = `${generatedId}-${index + 1}`;
+        if (studioUI.selectedQuestionId === previousId) studioUI.selectedQuestionId = question.id;
+      });
+    }
+
     function ensurePassageIdentity() {
       const passage = app.passageDraft;
       if (!passage) return false;
+      updateNewPassageIdentity();
       if (passage.id) return true;
-      const generatedId = slugFromTitle(passage.title);
+      const generatedId = generatedPassageId(passage);
       if (!generatedId) {
         setStatus("Add a passage title first.", "error");
         return false;
@@ -1273,8 +1308,10 @@ Why D is wrong."></textarea>
         richText: "",
         sourceHash: "",
         sourceNote: "",
+        teacherSource: "",
         text: "",
         title: "",
+        versionLabel: "",
       };
     }
 
@@ -1669,17 +1706,26 @@ Rules:
         : "";
     }
 
+    function passageVersionText(passage) {
+      return String(passage?.versionLabel || "").trim() || "Original / unlabeled";
+    }
+
+    function teacherPassageTitle(passage) {
+      return passage ? `${passage.title} — ${passageVersionText(passage)}` : "Unknown passage";
+    }
+
     function renderPassageList() {
       const query = $("#passage-search").value.trim().toLowerCase();
       const sourcePassages = app.passageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
       const matches = sourcePassages.filter((passage) =>
-        `${passage.title} ${passage.id} ${passage.advancedId || ""} ${passage.genre || ""} ${passage.fileName} ${passage.questions.map((q) => `${q.topic} ${q.prompt}`).join(" ")}`.toLowerCase().includes(query),
+        `${passage.title} ${passage.versionLabel || ""} ${passage.teacherSource || ""} ${passage.id} ${passage.advancedId || ""} ${passage.genre || ""} ${passage.fileName} ${passage.questions.map((q) => `${q.topic} ${q.prompt}`).join(" ")}`.toLowerCase().includes(query),
       );
       const passages = studioUI.libraryPage(matches, "passages", query + app.passageMode, renderPassageList);
       $("#passage-count").textContent = sourcePassages.length;
       $("#passage-list").innerHTML = passages.map((passage) => `
-        <button aria-current="${passage.id === app.selectedPassageId}" title="${escapeHtml(passage.title)} · ${escapeHtml(passage.id)}" class="${passage.id === app.selectedPassageId ? "is-active" : ""}" data-passage-id="${escapeHtml(passage.id)}" type="button">
+        <button aria-current="${passage.id === app.selectedPassageId}" title="${escapeHtml(teacherPassageTitle(passage))} · ${escapeHtml(passage.id)}" class="${passage.id === app.selectedPassageId ? "is-active" : ""}" data-passage-id="${escapeHtml(passage.id)}" type="button">
           <strong>${escapeHtml(passage.title)}</strong>
+          ${app.passageMode === "advanced" ? "" : `<span class="passage-version-tag">${escapeHtml(passageVersionText(passage))}</span>`}
           <small>${escapeHtml(passage.format.replace("_", " "))} · ${passage.questions.length} question${passage.questions.length === 1 ? "" : "s"}</small>
         </button>
       `).join("") || `<p class="field-note">No passages match this search.</p>`;
@@ -1721,6 +1767,42 @@ Rules:
         `New ${app.passageMode === "advanced" ? "advanced-practice" : "exam"} passage draft. Nothing has been written yet.`,
       );
       $("[data-field='title']")?.focus();
+    }
+
+    function nextPassageVersionLabel(passage) {
+      const matchingPassages = app.state.passages.filter(
+        (candidate) => candidate.title.trim().toLowerCase() === passage.title.trim().toLowerCase(),
+      );
+      const highestVersion = matchingPassages.reduce((highest, candidate) => {
+        const match = String(candidate.versionLabel || "").match(/(?:version|v)\s*(\d+)/i);
+        return Math.max(highest, match ? Number(match[1]) : 1);
+      }, 1);
+      return `Version ${highestVersion + 1}`;
+    }
+
+    function startPassageVersion() {
+      const current = app.passageDraft;
+      if (!current || app.passageMode === "advanced") return;
+      const draft = clone(current);
+      draft.id = "";
+      draft.exportName = "";
+      draft.fileName = "";
+      draft.passageSetId = "";
+      draft.sourceHash = "";
+      draft.versionLabel = nextPassageVersionLabel(current);
+      draft.questions = draft.questions.map((question, index) => ({
+        ...question,
+        id: `passage-${index + 1}`,
+      }));
+      app.selectedPassageId = "";
+      app.passageDraft = draft;
+      updateNewPassageIdentity();
+      studioUI.selectedQuestionId = draft.questions[0]?.id || "";
+      app.passageDirty = true;
+      renderPassageList();
+      renderPassageEditor();
+      setStatus(`${draft.title} ${draft.versionLabel} is a new unsaved passage version.`, "success");
+      $("[data-field='versionLabel']")?.focus();
     }
 
     function updatePassageWorkspaceLabels() {
@@ -1766,13 +1848,22 @@ Rules:
             <label class="field wide"><span>Thumbnail description</span><input data-advanced-field="thumbnailAlt" value="${escapeHtml(passage.thumbnailAlt || "")}" placeholder="Describe the card artwork for accessibility"></label>
           `
         : "";
+      const teacherMetadataFields = advanced
+        ? ""
+        : `
+            <label class="field"><span>Passage version <small>Teacher only</small></span><input data-field="versionLabel" value="${escapeHtml(passage.versionLabel || "")}" placeholder="Version 1, Form A, 2026 edition"><small class="field-note">Use a different label for each version of the same passage.</small></label>
+            <label class="field wide"><span>Passage source <small>Teacher only</small></span><textarea data-field="teacherSource" placeholder="URL, book, test form, file name, page number, or private sourcing notes">${escapeHtml(passage.teacherSource || "")}</textarea><small class="field-note">Stored for your records and omitted from the student passage.</small></label>
+          `;
       $("#passage-editor").innerHTML = `
         <div class="editor-head content-editor-heading">
           <div>
             <h1>${passage.sourceHash ? "Edit" : "Create"} ${advanced ? "advanced-practice" : "exam"} passage</h1>
             <p>${advanced ? "Create the library card, passage, and complete question set in one place." : "Paste clean text, preserve the intended layout, and add every answer choice and correct answer before saving."}</p>
           </div>
-          <span class="source-path">${escapeHtml(passage.fileName ? `${sourceFolder}/${passage.fileName}` : "New .ts source file")}</span>
+          <div class="content-editor-heading-meta">
+            ${advanced ? "" : `<span class="passage-version-indicator" id="passage-version-indicator">Teacher version: ${escapeHtml(passageVersionText(passage))}</span>`}
+            <span class="source-path">${escapeHtml(passage.fileName ? `${sourceFolder}/${passage.fileName}` : "New .ts source file")}</span>
+          </div>
         </div>
 
         <div class="content-editor-command-bar">
@@ -1785,6 +1876,7 @@ Rules:
           <div>
             <button class="secondary" id="refresh-preview" type="button">Refresh preview</button>
             <button class="secondary" id="open-student-preview" type="button">Student view</button>
+            ${!advanced && passage.sourceHash ? `<button class="secondary" id="create-passage-version" type="button">Create another version</button>` : ""}
             <button class="secondary" id="add-question" type="button">+ Add question</button>
             <button class="primary" id="save-passage" type="button">${app.saving ? "Saving…" : "Save to code"}</button>
           </div>
@@ -1805,10 +1897,11 @@ Rules:
               <summary><span><span class="studio-eyebrow">Categorization &amp; settings</span><strong>Library and source metadata</strong><small>Format, placement, source information${advanced ? ", and advanced-practice card settings" : ""}.</small></span><b>⌄</b></summary>
               <div class="field-grid content-editor-settings-grid">
                 ${advancedFields}
+                ${teacherMetadataFields}
                 <label class="field"><span>Library passage type</span><select data-field="passageType">${passageTypeOptions(passage.passageType)}</select><small class="field-note">Controls the Study Hall tag and shelf.</small></label>
                 <label class="field"><span>Formatting type</span><select data-field="format">${formatOptions(passage.format)}</select></label>
                 <label class="field"><span>Section label <small>Optional</small></span><input data-field="label" value="${escapeHtml(passage.label)}" placeholder="Reading Comprehension"></label>
-                <label class="field"><span>Source or copyright note <small>Optional</small></span><input data-field="sourceNote" value="${escapeHtml(passage.sourceNote)}" placeholder="Publication, adaptation, or copyright note"></label>
+                <label class="field"><span>Student source or copyright note <small>Optional · student visible</small></span><input data-field="sourceNote" value="${escapeHtml(passage.sourceNote)}" placeholder="Publication, adaptation, or copyright note"></label>
               </div>
             </details>
 
@@ -1882,6 +1975,7 @@ Rules:
       $("#refresh-preview").addEventListener("click", renderPreview);
       $("#paste-clipboard").addEventListener("click", pasteFromClipboard);
       $("#open-student-preview").addEventListener("click", openStudentPreview);
+      $("#create-passage-version")?.addEventListener("click", startPassageVersion);
       $("#save-passage").addEventListener("click", savePassage);
       $("#manage-content-topics").addEventListener("click", openContentTopicManager);
       studioUI.mountPassage();
@@ -1899,6 +1993,17 @@ Rules:
       $$("[data-field]", $("#passage-editor")).forEach((element) => {
         element.addEventListener("input", () => {
           app.passageDraft[element.dataset.field] = element.value;
+          if (
+            app.passageMode !== "advanced" &&
+            !app.passageDraft.sourceHash &&
+            (element.dataset.field === "title" || element.dataset.field === "versionLabel")
+          ) {
+            updateNewPassageIdentity();
+          }
+          if (element.dataset.field === "versionLabel") {
+            const indicator = $("#passage-version-indicator");
+            if (indicator) indicator.textContent = `Teacher version: ${passageVersionText(app.passageDraft)}`;
+          }
           if (element.dataset.field === "passageType" && element.value === "poem" && app.passageDraft.format !== "poem") {
             app.passageDraft.format = "poem";
             $("[data-field='format']", $("#passage-editor")).value = "poem";
@@ -3733,7 +3838,7 @@ Rules:
               const passage = passageById(passageId);
               return `
                 <article class="order-item">
-                  <div><strong>${escapeHtml(passage?.title || passageId)}</strong><small>${escapeHtml(passageId)} · ${passage?.questions.length || 0} questions</small></div>
+                  <div><strong>${escapeHtml(passage ? teacherPassageTitle(passage) : passageId)}</strong><small>${escapeHtml(passageId)} · ${passage?.questions.length || 0} questions${passage?.teacherSource ? ` · Source: ${escapeHtml(passage.teacherSource)}` : ""}</small></div>
                   <div class="order-actions">
                     <button class="icon-button" data-order-action="up" data-order-index="${index}" data-order-section="${field}" title="Move up" type="button">↑</button>
                     <button class="icon-button" data-order-action="down" data-order-index="${index}" data-order-section="${field}" title="Move down" type="button">↓</button>
@@ -3799,6 +3904,15 @@ Rules:
       const standaloneQuestionCount = app.testDraft.standaloneItemIds.length;
       const fixedPassageCount = app.testDraft.revisingEditingPartAPassageIds.length;
       const hasEnglishContent = selectedPassageIds.length > 0 || standaloneQuestionCount > 0;
+      const passageGroups = Array.from(
+        app.state.passages.reduce((groups, passage) => {
+          const key = passage.title.trim().toLowerCase();
+          const group = groups.get(key) || { passages: [], title: passage.title };
+          group.passages.push(passage);
+          groups.set(key, group);
+          return groups;
+        }, new Map()).values(),
+      );
       $("#test-builder").innerHTML = `
         <div class="panel-head"><div><h2>${escapeHtml(assessment.title)}</h2><small>${escapeHtml(assessment.description || "No exam description.")}</small></div></div>
         <div class="test-summary">
@@ -3810,23 +3924,31 @@ Rules:
         </div>
         ${testAnswerKeyMarkup(assessment.id)}
         <h2>Passage library</h2>
-        <p class="field-note">Passages belong to Reading Comprehension or Revising/Editing Part A. Part B is built from the separate stand-alone question bank below.</p>
-        <div class="passage-picker">
-          ${app.state.passages.map((passage) => {
-            const assignedSection = assignedSectionByPassage.get(passage.id);
-            return `
-              <article class="passage-picker-card ${assignedSection ? "is-selected" : ""}">
-                <strong>${assignedSection ? "✓ " : ""}${escapeHtml(passage.title)}</strong>
-                <small>${passage.questions.length} questions · ${escapeHtml(passage.format.replace("_", " "))}</small>
-                ${assignedSection
-                  ? `<small>Assigned to ${escapeHtml(assignedSection)}</small>`
-                  : `<div class="passage-picker-actions">
-                      <button data-add-passage="${escapeHtml(passage.id)}" data-section-field="readingPassageIds" type="button">+ Reading Comprehension</button>
-                      <button data-add-passage="${escapeHtml(passage.id)}" data-section-field="revisingEditingPartAPassageIds" type="button">+ Revising/Editing Part A</button>
-                    </div>`}
-              </article>
-            `;
-          }).join("")}
+        <p class="field-note">Choose one version of a passage for Reading Comprehension or Revising/Editing Part A. Choosing another version of the same title replaces the current selection. Part B is built from the separate stand-alone question bank below.</p>
+        <div class="passage-version-groups">
+          ${passageGroups.map((group) => `
+            <section class="passage-version-group">
+              <header><strong>${escapeHtml(group.title)}</strong><small>${group.passages.length} ${group.passages.length === 1 ? "version" : "versions"}</small></header>
+              <div class="passage-picker">
+                ${group.passages.map((passage) => {
+                  const assignedSection = assignedSectionByPassage.get(passage.id);
+                  return `
+                    <article class="passage-picker-card ${assignedSection ? "is-selected" : ""}">
+                      <span class="passage-version-tag">${assignedSection ? "✓ " : ""}${escapeHtml(passageVersionText(passage))}</span>
+                      <small>${passage.questions.length} questions · ${escapeHtml(passage.format.replace("_", " "))}</small>
+                      <small class="teacher-source">Teacher source: ${escapeHtml(passage.teacherSource || "Not recorded")}</small>
+                      ${assignedSection
+                        ? `<small>Assigned to ${escapeHtml(assignedSection)}</small>`
+                        : `<div class="passage-picker-actions">
+                            <button data-add-passage="${escapeHtml(passage.id)}" data-section-field="readingPassageIds" type="button">Use for Reading Comprehension</button>
+                            <button data-add-passage="${escapeHtml(passage.id)}" data-section-field="revisingEditingPartAPassageIds" type="button">Use for Revising/Editing Part A</button>
+                          </div>`}
+                    </article>
+                  `;
+                }).join("")}
+              </div>
+            </section>
+          `).join("")}
         </div>
         <div class="english-section-stack">
           ${testPassageSectionMarkup(
@@ -3865,6 +3987,15 @@ Rules:
       `;
       $$("[data-add-passage]", $("#test-builder")).forEach((button) => {
         button.addEventListener("click", () => {
+          const selectedPassage = passageById(button.dataset.addPassage);
+          if (selectedPassage) {
+            const familyTitle = selectedPassage.title.trim().toLowerCase();
+            sectionDefinitions.forEach(([field]) => {
+              app.testDraft[field] = app.testDraft[field].filter(
+                (passageId) => passageById(passageId)?.title.trim().toLowerCase() !== familyTitle,
+              );
+            });
+          }
           app.testDraft[button.dataset.sectionField].push(button.dataset.addPassage);
           renderTestBuilder();
         });
