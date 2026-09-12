@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import katex from "katex";
 import "katex/dist/katex.min.css";
-import type { ExamChoice, ExamQuestion } from "../content/exams";
+import type { ExamChoice, ExamPassage, ExamQuestion } from "../content/exams";
 import type { SelectedAnswer } from "../lib/examResults";
 import type { ReviewQuestion } from "../../../server/src/shared/examCorrections";
 
@@ -74,14 +74,52 @@ export function ExamAnswer({ question, answer }: { question: ExamQuestion; answe
   })}</div>;
 }
 
-export function ExamReviewQuestion({ item, showAnswers = true }: { item: ReviewQuestion; showAnswers?: boolean }) {
+function ExamReviewPassage({ passage }: { passage: ExamPassage }) {
+  const format = passage.format === "sentence_prose" ? "sentence_prose" : passage.format === "prose" ? "prose" : "poem";
+
+  return <div className="exam-question-passage">
+    <div className={`exam-question-passage-scroll is-${format.replace("_", "-")}`} aria-label={passage.title}>
+      {passage.lines.filter(line => line.kind !== "image").map((line, index) => {
+        if (format === "sentence_prose") {
+          if (!line.text && !line.html) return <p aria-hidden="true" className="exam-sentence-prose-line is-spacer" key={index} />;
+          return <p className={`exam-sentence-prose-line ${line.kind ? `is-${line.kind}` : line.align === "center" ? "is-title" : ""}`} key={index}>
+            <ExamText html={line.html} text={line.text} />
+          </p>;
+        }
+
+        if (format === "prose") {
+          if (!line.text && !line.html) return <p aria-hidden="true" className="exam-prose-line is-spacer" key={index} />;
+          const isFullWidth = Boolean(line.kind) || line.align === "center";
+          return <p className={`exam-prose-line ${line.kind ? `is-${line.kind}` : line.align === "center" ? "is-title" : ""}`} key={index}>
+            {!isFullWidth && line.lineNumber ? <span>{line.lineNumber}</span> : null}
+            <ExamText html={line.html} text={line.text} />
+          </p>;
+        }
+
+        return <p className={`exam-poem-line ${line.align === "center" ? "is-centered" : ""} ${line.kind ? `is-${line.kind}` : ""} ${line.text || line.html ? "" : "is-spacer"}`} key={index}>
+          <span>{line.lineNumber}</span>
+          <ExamText html={line.html} text={line.text} />
+        </p>;
+      })}
+      {passage.sourceNote ? <p className="exam-passage-source-note">{passage.sourceNote}</p> : null}
+      {passage.lines.filter(line => line.kind === "image" && line.image).map((line, index) => line.image ? <figure className="exam-passage-image" key={`${line.image.src}-${index}`}>
+        <img src={line.image.src} alt={line.image.alt} />
+        {line.image.caption ? <figcaption>{line.image.caption}</figcaption> : null}
+      </figure> : null)}
+    </div>
+  </div>;
+}
+
+function ReviewQuestionBody({ item, showAnswers, viewer }: { item: ReviewQuestion; showAnswers: boolean; viewer: boolean }) {
   const { question, passage } = item;
-  return <div className="exam-review-question-content">
-    {passage && <details className="exam-review-passage"><summary>Read passage: {passage.title}</summary>{passage.lines.map((line, index) => <p key={index}>{line.lineNumber && <small>{line.lineNumber} </small>}<ExamText html={line.html} text={line.text} />{line.image && <img src={line.image.src} alt={line.image.alt} />}</p>)}{passage.sourceNote && <small>{passage.sourceNote}</small>}</details>}
-    {(question.instructions || question.instructionsHtml) && <p><ExamText html={question.instructionsHtml} text={question.instructions} /></p>}
-    {(question.stimulus || question.stimulusHtml) && <p><ExamText html={question.stimulusHtml} text={question.stimulus} /></p>}
-    <h2><ExamText html={question.promptHtml} text={question.prompt} /></h2>
-    {question.image && <figure><img src={question.image.src} alt={question.image.alt} /><figcaption>{question.image.caption}</figcaption></figure>}
+  const prompt = <ExamText html={question.promptHtml} text={question.prompt} />;
+
+  return <>
+    {!viewer && passage && <details className="exam-review-passage"><summary>Read passage: {passage.title}</summary>{passage.lines.map((line, index) => <p key={index}>{line.lineNumber && <small>{line.lineNumber} </small>}<ExamText html={line.html} text={line.text} />{line.image && <img src={line.image.src} alt={line.image.alt} />}</p>)}{passage.sourceNote && <small>{passage.sourceNote}</small>}</details>}
+    {(question.instructions || question.instructionsHtml) && <p className={viewer ? "exam-question-instructions" : undefined}><ExamText html={question.instructionsHtml} text={question.instructions} /></p>}
+    {(question.stimulus || question.stimulusHtml) && <p className={viewer ? "exam-question-instructions" : undefined}><ExamText html={question.stimulusHtml} text={question.stimulus} /></p>}
+    {viewer ? <h1>{prompt}</h1> : <h2>{prompt}</h2>}
+    {question.image && <figure className={viewer ? "exam-question-image" : undefined}><img src={question.image.src} alt={question.image.alt} /><figcaption>{question.image.caption}</figcaption></figure>}
     {question.graph && <svg viewBox="0 0 400 300" role="img" aria-label={question.graph.title ?? "Question coordinate graph"}>
       <rect x="35" y="15" width="340" height="250" fill="#fafafa" stroke="#bbb" />
       {question.graph.points.map(point => <g key={point.id}><circle cx={35 + (point.x - question.graph!.xMin) / (question.graph!.xMax - question.graph!.xMin) * 340} cy={265 - (point.y - question.graph!.yMin) / (question.graph!.yMax - question.graph!.yMin) * 250} r="4" /><text x={40 + (point.x - question.graph!.xMin) / (question.graph!.xMax - question.graph!.xMin) * 340} y={260 - (point.y - question.graph!.yMin) / (question.graph!.yMax - question.graph!.yMin) * 250} fontSize="11">({point.x}, {point.y})</text></g>)}
@@ -89,7 +127,24 @@ export function ExamReviewQuestion({ item, showAnswers = true }: { item: ReviewQ
     </svg>}
     {question.dropdownContent && <p><ExamText text={templateText(question, question.dropdownContent)} /></p>}
     {question.dragDropContent && <p><ExamText text={templateText(question, question.dragDropContent)} /></p>}
-    {question.choices?.length ? <div className="exam-review-choices">{question.choices.map(choice => <div key={choice.id}><b>{choice.id}.</b><ChoiceContent choice={choice} /></div>)}</div> : null}
+    {question.choices?.length ? <div className={viewer ? "exam-choice-list exam-review-viewer-choices" : "exam-review-choices"}>{question.choices.map(choice => <div className={viewer ? "exam-choice" : undefined} key={choice.id}>{viewer ? <span className="exam-review-choice-marker" aria-hidden="true" /> : null}<b>{choice.id}.</b><ChoiceContent choice={choice} /></div>)}</div> : null}
     {showAnswers && <div className="exam-review-answer-comparison"><section className={item.isCorrect ? "is-correct" : "is-incorrect"}><h3>Your submitted answer</h3><ExamAnswer question={question} answer={item.submittedAnswer} /></section><section className="is-correct"><h3>Correct answer</h3><ExamAnswer question={question} answer={correctExamAnswer(question)} /></section></div>}
+  </>;
+}
+
+export function ExamReviewQuestion({ item, showAnswers = true, variant = "compact" }: { item: ReviewQuestion; showAnswers?: boolean; variant?: "compact" | "exam" }) {
+  if (variant === "exam") {
+    const panelClassName = item.passage ? "exam-question-panel" : "exam-standalone-panel exam-math-panel";
+    const documentClassName = item.passage ? "exam-question-document is-expanded-layout" : "exam-standalone-document exam-math-document";
+    return <div className={`exam-review-question-content is-exam-viewer ${documentClassName}`}>
+      {item.passage ? <ExamReviewPassage passage={item.passage} /> : null}
+      <div className={panelClassName}>
+        <ReviewQuestionBody item={item} showAnswers={showAnswers} viewer />
+      </div>
+    </div>;
+  }
+
+  return <div className="exam-review-question-content">
+    <ReviewQuestionBody item={item} showAnswers={showAnswers} viewer={false} />
   </div>;
 }
