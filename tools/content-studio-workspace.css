@@ -124,11 +124,18 @@ label.field > span { flex-wrap: wrap; }
 .test-summary { gap: 6px; margin: 10px 0; }
 .test-summary span { padding: 5px 7px; font-size: .6rem; }
 .studio-builder-columns { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(250px, .9fr); gap: 12px; align-items: start; margin-top: 10px; }
-.studio-builder-banks { display: grid; min-width: 0; gap: 10px; }
+.studio-builder-banks {
+  position: sticky; top: 108px; display: grid; min-width: 0; max-height: calc(100vh - 120px);
+  gap: 10px; overflow: auto; padding-right: 2px; scrollbar-gutter: stable;
+}
 .studio-disclosure { min-width: 0; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; background: #fff; }
 .studio-builder-banks .passage-picker, .studio-builder-banks .standalone-picker { grid-template-columns: 1fr; max-height: 430px; overflow: auto; margin: 8px 0 0; }
+.studio-builder-banks .passage-version-groups { display: grid; grid-template-columns: 1fr; gap: 6px; max-height: min(48vh, 430px); overflow: auto; margin: 8px 0 0; padding-right: 2px; }
+.studio-builder-banks .passage-version-group { gap: 6px; border-radius: 5px; padding: 8px; }
+.studio-builder-banks .passage-version-group .passage-picker { max-height: none; overflow: visible; margin: 0; }
 .studio-builder-banks .passage-picker-card { border-radius: 5px; padding: 9px; }
 .studio-builder-banks .passage-picker-card strong { font-size: .69rem; }
+.studio-builder-banks .passage-picker-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .studio-picker-tools { display: flex; gap: 6px; align-items: center; margin-top: 8px; }
 .studio-picker-tools input { flex: 1; }
 .studio-picker-tools span { font-size: .58rem; color: var(--muted); white-space: nowrap; }
@@ -265,6 +272,7 @@ label.field > span { flex-wrap: wrap; }
   .content-editor-command-bar nav { flex-basis: 50%; }
   .test-grid { grid-template-columns: 185px minmax(0, 1fr); }
   .studio-builder-columns, .studio-standalone-split { grid-template-columns: minmax(0, 1fr); }
+  .studio-builder-banks { position: static; max-height: none; overflow: visible; }
   .studio-standalone-split { overflow: auto; }
   .studio-standalone-split > * { overflow: visible; }
   .math-workspace { grid-template-columns: 135px minmax(0, 1fr); }
@@ -296,6 +304,7 @@ label.field > span { flex-wrap: wrap; }
   .studio-question-navigation { position: static; }
   .studio-math-tabs { position: static; }
   .studio-builder-columns, .studio-standalone-split { grid-template-columns: minmax(0, 1fr); }
+  .studio-builder-banks { position: static; max-height: none; overflow: visible; }
   .test-grid > .panel:first-child .assessment-list { max-height: 180px; overflow: auto; }
   .practice-question-form > .save-row.practice-action-bar { position: sticky; top: 39px; z-index: 12; }
   .practice-side-column { display: block; }

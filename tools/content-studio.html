@@ -3904,6 +3904,14 @@ Rules:
     function selectAssessment(id) {
       const assessment = app.state.assessments.find((candidate) => candidate.id === id);
       const test = app.state.tests.find((candidate) => candidate.assessmentId === id);
+      if (!assessment) {
+        app.selectedAssessmentId = "";
+        app.testDraft = null;
+        renderAssessmentList();
+        renderTestBuilder();
+        setStatus("That exam is no longer available. Refresh the Content Studio and choose it again.", "error");
+        return;
+      }
       app.selectedAssessmentId = id;
       app.testDraft = {
         assessmentId: id,
@@ -4043,8 +4051,8 @@ Rules:
                       ${assignedSection
                         ? `<small>Assigned to ${escapeHtml(assignedSection)}</small>`
                         : `<div class="passage-picker-actions">
-                            <button data-add-passage="${escapeHtml(passage.id)}" data-section-field="readingPassageIds" type="button">Use for Reading Comprehension</button>
-                            <button data-add-passage="${escapeHtml(passage.id)}" data-section-field="revisingEditingPartAPassageIds" type="button">Use for Revising/Editing Part A</button>
+                            <button data-add-passage="${escapeHtml(passage.id)}" data-section-field="readingPassageIds" title="Use for Reading Comprehension" type="button">+ Reading</button>
+                            <button data-add-passage="${escapeHtml(passage.id)}" data-section-field="revisingEditingPartAPassageIds" title="Use for Revising/Editing Part A" type="button">+ Part A</button>
                           </div>`}
                     </article>
                   `;

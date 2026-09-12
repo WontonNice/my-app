@@ -335,7 +335,7 @@ const studioUI = {
     split.append(root.querySelector(".standalone-bank-form"), root.querySelector(".standalone-bank-preview"));
   },
 
-  searchablePicker(container, key, placeholder) {
+  searchablePicker(container, key, placeholder, itemSelector = ":scope > article") {
     if (!container) return;
     const tools = this.element("div", "studio-picker-tools", `<input aria-label="${placeholder}" type="search" placeholder="${placeholder}"><span role="status"></span>`);
     const input = tools.querySelector("input");
@@ -345,7 +345,7 @@ const studioUI = {
       this.filters.set(key, input.value);
       const query = input.value.toLowerCase().trim();
       let count = 0;
-      container.querySelectorAll(":scope > article").forEach((card) => { card.hidden = !card.textContent.toLowerCase().includes(query); if (!card.hidden) count++; });
+      container.querySelectorAll(itemSelector).forEach((card) => { card.hidden = !card.textContent.toLowerCase().includes(query); if (!card.hidden) count++; });
       tools.querySelector("span").textContent = `${count} results`;
     };
     input.addEventListener("input", filter);
@@ -356,16 +356,17 @@ const studioUI = {
     const root = document.getElementById("test-builder");
     this.moveSaveBar(root, "Save English test");
     const sections = root.querySelector(".english-section-stack");
-    const library = root.querySelector(".passage-picker");
-    if (!sections || !library) return;
-    const libraryTitle = library.previousElementSibling.previousElementSibling;
+    const library = root.querySelector(".passage-version-groups");
+    const standalone = root.querySelector(".standalone-picker");
+    if (!sections || !library || !standalone) return;
+    const libraryTitle = library.previousElementSibling?.previousElementSibling;
     const libraryNote = library.previousElementSibling;
+    const bankHead = standalone.previousElementSibling;
+    if (!libraryTitle || !libraryNote || !bankHead) return;
     const passageDetails = this.element("details", "studio-disclosure", '<summary>Passage library <span>Add to Reading or Part A</span></summary>');
     passageDetails.open = this.folds.get("test-passages") ?? true;
     libraryTitle.before(passageDetails);
     passageDetails.append(libraryTitle, libraryNote, library);
-    const standalone = root.querySelector(".standalone-picker");
-    const bankHead = standalone.previousElementSibling;
     const bankDetails = this.element("details", "studio-disclosure", '<summary>Part B bank <span>Add stand-alone questions</span></summary>');
     bankDetails.open = this.folds.get("test-bank") ?? false;
     bankHead.before(bankDetails);
@@ -377,7 +378,7 @@ const studioUI = {
     banks.append(passageDetails, bankDetails);
     passageDetails.addEventListener("toggle", () => this.folds.set("test-passages", passageDetails.open));
     bankDetails.addEventListener("toggle", () => this.folds.set("test-bank", bankDetails.open));
-    this.searchablePicker(library, "test-passages", "Search passage library…");
+    this.searchablePicker(library, "test-passages", "Search passage library…", ":scope > .passage-version-group");
     this.searchablePicker(standalone, "test-bank", "Search Part B bank…");
     const sectionNav = this.element("nav", "studio-practice-nav studio-test-nav", ["Reading", "Part A", "Part B", "All sections"].map((label, index) => `<button type="button" data-test-section="${index}">${label}</button>`).join(""));
     sectionNav.setAttribute("aria-label", "English test sections");
