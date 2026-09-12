@@ -19,6 +19,7 @@ import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "rea
 import { navigateTo } from "../lib/navigation";
 import { appendStudentPreview, type StudentPreviewContext } from "../lib/studentPreview";
 import { AppLink } from "./AppLink";
+import { AccountSwitcher } from "./CorporateDashboardShell";
 
 type StudentPortalShellProps = {
   activeId: "assessments" | "assignments" | "home" | "materials" | "results";
@@ -128,6 +129,7 @@ export function StudentPortalShell({
             value={searchQuery}
           />
         </form>
+        {!previewContext.isPreview ? <AccountSwitcher /> : null}
         <div className="student-portal-profile-menu" ref={profileRef}>
           <button
             aria-expanded={isProfileOpen}

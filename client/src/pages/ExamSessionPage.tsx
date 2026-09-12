@@ -3579,7 +3579,7 @@ export function ExamSessionPage() {
               <div
                 className={`exam-standalone-category-sort ${
                   activeStandaloneQuestion.categoryCapacity === 1 ? "is-single-capacity" : ""
-                }`}
+                } ${activeStandaloneQuestion.categories.length === 1 ? "is-single-category" : ""}`}
               >
                 <div
                   aria-label="Answer choice bank. Drop an answer here to undo a selection."
@@ -4258,7 +4258,7 @@ export function ExamSessionPage() {
               <div
                 className={`exam-category-sort ${
                   activeQuestion.categoryCapacity === 1 ? "is-single-capacity" : ""
-                }`}
+                } ${activeQuestion.categories.length === 1 ? "is-single-category" : ""}`}
               >
                 <div
                   aria-label="Answer choice bank. Drop an answer here to undo a category selection."

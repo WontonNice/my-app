@@ -50,6 +50,19 @@ test('grading supports every automatically scored interaction and rejects an emp
   assert.equal(isExamQuestionCorrect(fixtures[9][0], { value: '', direction: 'left', endpoint: 'open' }), false);
 });
 
+test('single-category sort accepts several correct cards and rejects distractors', () => {
+  const question = {
+    type: 'category_sort',
+    categories: [{ id: 'tone', title: 'Phrases That Most Affect the Tone' }],
+    correctPlacements: { alarm: 'tone', popular: 'tone' },
+    requiredPlacements: 2,
+  };
+  assert.equal(isExamQuestionCorrect(question, { alarm: 'tone', popular: 'tone' }), true);
+  assert.equal(isExamQuestionCorrect(question, { alarm: 'tone' }), false);
+  assert.equal(isExamQuestionCorrect(question, { alarm: 'tone', message: 'tone' }), false);
+  assert.equal(isExamQuestionCorrect(question, { alarm: 'tone', popular: 'tone', message: 'tone' }), false);
+});
+
 const rows = [];
 const assessment = { id: 'test-exam', title: 'Test exam', classId: 'shsat', correctionsOpen: false, forms: [], formAssignments: {} };
 const users = Object.fromEntries(['student', 'other', 'teacher', 'outsider'].map(id => [id, { id, app_metadata: { role: id === 'teacher' ? 'teacher' : 'student', class_ids: id === 'outsider' ? [] : ['shsat'] }, user_metadata: {} }]));

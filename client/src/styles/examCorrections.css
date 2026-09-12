@@ -45,6 +45,8 @@
 .exam-correction-pagination { display: flex; gap: 8px; }
 .exam-correction-work button, .teacher-exam-tools button, .exam-review-error button { border: 1px solid #bccdc0; background: #fff; color: #254938; border-radius: 7px; min-height: 40px; padding: 8px 13px; cursor: pointer; font: 650 .82rem/1.4 inherit; }
 button.exam-review-primary { background: #245840; border-color: #245840; color: #fff; }
+.corporate-dashboard-content .teacher-assessment-card .teacher-exam-tools button { background: #fff; color: #254938; }
+.corporate-dashboard-content .teacher-assessment-card .teacher-exam-tools button.exam-review-primary { background: #245840; color: #fff; }
 .exam-corrections-page button:disabled, .teacher-exam-tools button:disabled { opacity: .5; cursor: default; }
 .exam-review-error { background: #fff0f0; border: 1px solid #e6b6b6; color: #8e252a; padding: 14px; border-radius: 8px; }
 .exam-review-success { background: #eaf6ed; border: 1px solid #b9d6c0; color: #245e38; padding: 16px; border-radius: 8px; }

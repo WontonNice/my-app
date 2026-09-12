@@ -2321,7 +2321,7 @@ Rules:
       }
       if (question.type === "category_sort") {
         return `
-          <div class="exam-category-sort ${question.categoryCapacity === 1 ? "is-single-capacity" : ""}">
+          <div class="exam-category-sort ${question.categoryCapacity === 1 ? "is-single-capacity" : ""} ${(question.categories || []).length === 1 ? "is-single-category" : ""}">
             <div class="exam-category-bank" aria-label="Answer choice bank" data-preview-category-bank>
               ${(question.items || []).map((item) => `
                 <button class="exam-category-card" data-preview-category-item="${escapeHtml(item.id)}" draggable="true" type="button">${item.html || escapeHtml(item.text || "Untitled answer card")}</button>
@@ -2797,6 +2797,7 @@ Rules:
             </article>
           `;
         }
+        const isSingleCategoryQuestion = question.type === "category_sort" && question.categoryCapacity !== 1 && question.categories?.length === 1;
         const typeLabel =
           isTableQuestion
             ? "Table match - one answer per row"
@@ -2804,6 +2805,8 @@ Rules:
             ? "Drag and drop"
             : question.type === "category_sort" && question.categoryCapacity === 1
             ? "Category sort — one answer per box"
+            : isSingleCategoryQuestion
+            ? "Category sort — multiple answers in one box"
             : {
                 multiple_choice: "Multiple choice",
                 multi_select: "Multi-select",
@@ -2892,14 +2895,15 @@ Rules:
             ` : ""}
             <section class="category-editor-section">
               <header>
-                <strong>${isTableQuestion ? "Table rows · one answer per row" : `Category boxes${question.categoryCapacity === 1 ? " · one answer per box" : ""}`}</strong>
+                <strong>${isTableQuestion ? "Table rows · one answer per row" : isSingleCategoryQuestion ? "One category box · multiple answers allowed" : `Category boxes${question.categoryCapacity === 1 ? " · one answer per box" : ""}`}</strong>
                 <button class="secondary" data-category-action="add" type="button">+ Add ${isTableQuestion ? "row" : "category"}</button>
               </header>
+              ${!isTableQuestion && question.categoryCapacity !== 1 ? `<small class="field-note">Keep one category for a single box that accepts several correct answers.</small>` : ""}
               ${question.categories.map((category, categoryIndex) => `
                 <div class="category-row">
                   <input aria-label="${isTableQuestion ? "Row" : "Category"} ${categoryIndex + 1} title" data-category-index="${categoryIndex}" value="${escapeHtml(category.title)}" placeholder="${isTableQuestion ? "Row" : "Category"} ${categoryIndex + 1}">
                   <button class="danger" data-category-action="remove" data-category-index="${categoryIndex}" ${
-                    question.categories.length <= 2 ? "disabled" : ""
+                    question.categories.length <= (isTableQuestion || question.categoryCapacity === 1 ? 2 : 1) ? "disabled" : ""
                   } type="button">Remove</button>
                 </div>
               `).join("")}
@@ -2909,7 +2913,7 @@ Rules:
                 <strong>Answer cards and correct ${isTableQuestion ? "rows" : "boxes"}</strong>
                 <button class="secondary" data-item-action="add" type="button">+ Add answer card</button>
               </header>
-              ${question.categoryCapacity === 1 ? `<small class="field-note">Assign one correct card to each ${isTableQuestion ? "row" : "box"}. Mark all extra answer cards as not used.</small>` : ""}
+              ${question.categoryCapacity === 1 ? `<small class="field-note">Assign one correct card to each ${isTableQuestion ? "row" : "box"}. Mark all extra answer cards as not used.</small>` : isSingleCategoryQuestion ? `<small class="field-note">Assign every correct card to the box. Mark the distractor cards as not used.</small>` : ""}
               ${question.items.map((item, itemIndex) => `
                 <div class="category-item-row">
                   <div aria-label="Answer card ${itemIndex + 1}" class="rich-editor-content is-choice" contenteditable="true" data-item-index="${itemIndex}" data-placeholder="Answer card ${itemIndex + 1}" data-question-index="${index}" data-rich-kind="item" role="textbox">${inlineRichValue(item.html, item.text)}</div>
@@ -2920,7 +2924,7 @@ Rules:
                         <span>${escapeHtml(category.title)}</span>
                       </label>
                     `).join("")}
-                    ${question.categoryCapacity === 1 ? `
+                    ${question.categoryCapacity === 1 || isSingleCategoryQuestion ? `
                       <label class="category-placement-bubble">
                         <input ${!question.correctPlacements?.[item.id] ? "checked" : ""} data-item-placement="${escapeHtml(item.id)}" name="placement-${index}-${escapeHtml(item.id)}" type="radio" value="__unused__">
                         <span>Not used</span>
@@ -3025,7 +3029,9 @@ Rules:
           element.addEventListener("change", () => {
             const question = app.passageDraft.questions[index];
             const itemId = element.dataset.itemPlacement;
-            if (question.categoryCapacity === 1 && element.value === "__unused__") {
+            const allowsUnusedCards = question.categoryCapacity === 1 ||
+              (question.type === "category_sort" && question.categories.length === 1);
+            if (allowsUnusedCards && element.value === "__unused__") {
               delete question.correctPlacements[itemId];
               question.requiredPlacements = Object.keys(question.correctPlacements).length;
               markDirty();
@@ -3047,10 +3053,9 @@ Rules:
               }
             }
             question.correctPlacements[itemId] = element.value;
-            question.requiredPlacements =
-              question.categoryCapacity === 1
-                ? Object.keys(question.correctPlacements).length
-                : question.items.length;
+            question.requiredPlacements = allowsUnusedCards
+              ? Object.keys(question.correctPlacements).length
+              : question.items.length;
             markDirty();
             if (question.categoryCapacity === 1) renderQuestionsV2();
           });
@@ -3112,6 +3117,12 @@ Rules:
           }));
         }
         if (categoryCapacity === 1) {
+          if (next.categories.length < 2) {
+            next.categories.push({
+              id: isTableMatch ? "row-2" : "category-2",
+              title: isTableMatch ? "Row 2" : "Category 2",
+            });
+          }
           next.categoryCapacity = 1;
           next.correctPlacements = Object.fromEntries(
             next.categories.flatMap((category, categoryIndex) =>
@@ -3195,6 +3206,7 @@ Rules:
 
     function categoryAction(questionIndex, action, categoryIndex) {
       const question = app.passageDraft.questions[questionIndex];
+      const minimumCategoryCount = question.type === "table_match" || question.categoryCapacity === 1 ? 2 : 1;
       if (action === "add") {
         const prefix = question.type === "table_match" ? "row" : "category";
         let number = question.categories.length + 1;
@@ -3203,7 +3215,12 @@ Rules:
           id: `${prefix}-${number}`,
           title: `${question.type === "table_match" ? "Row" : "Category"} ${number}`,
         });
-      } else if (question.categories.length > 2) {
+        if (question.categoryCapacity !== 1 && question.categories.length > 1) {
+          question.items.forEach((item) => {
+            question.correctPlacements[item.id] ||= question.categories[0].id;
+          });
+        }
+      } else if (question.categories.length > minimumCategoryCount) {
         const [removed] = question.categories.splice(categoryIndex, 1);
         Object.keys(question.correctPlacements).forEach((itemId) => {
           if (question.correctPlacements[itemId] !== removed.id) return;
@@ -3214,10 +3231,11 @@ Rules:
           }
         });
       }
-      question.requiredPlacements =
-        question.categoryCapacity === 1
-          ? Object.keys(question.correctPlacements).length
-          : question.items.length;
+      const allowsUnusedCards = question.categoryCapacity === 1 ||
+        (question.type === "category_sort" && question.categories.length === 1);
+      question.requiredPlacements = allowsUnusedCards
+        ? Object.keys(question.correctPlacements).length
+        : question.items.length;
       markDirty();
       renderQuestionsV2();
     }
@@ -3229,17 +3247,18 @@ Rules:
         while (question.items.some((item) => item.id === `item-${number}`)) number += 1;
         const item = { id: `item-${number}`, text: "" };
         question.items.push(item);
-        if (question.categoryCapacity !== 1) {
+        if (question.categoryCapacity !== 1 && question.categories.length > 1) {
           question.correctPlacements[item.id] = question.categories[0].id;
         }
       } else if (question.items.length > 2) {
         const [removed] = question.items.splice(itemIndex, 1);
         delete question.correctPlacements[removed.id];
       }
-      question.requiredPlacements =
-        question.categoryCapacity === 1
-          ? Object.keys(question.correctPlacements).length
-          : question.items.length;
+      const allowsUnusedCards = question.categoryCapacity === 1 ||
+        (question.type === "category_sort" && question.categories.length === 1);
+      question.requiredPlacements = allowsUnusedCards
+        ? Object.keys(question.correctPlacements).length
+        : question.items.length;
       markDirty();
       renderQuestionsV2();
     }

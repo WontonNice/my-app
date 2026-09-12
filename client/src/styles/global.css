@@ -5691,6 +5691,36 @@ button {
   margin-top: 12px;
 }
 
+.exam-category-sort.is-single-category,
+.exam-standalone-category-sort.is-single-category {
+  justify-items: center;
+}
+
+.exam-category-sort.is-single-category .exam-category-target-grid,
+.exam-standalone-category-sort.is-single-category .exam-standalone-category-target-grid {
+  order: -1;
+  grid-template-columns: 1fr;
+  width: min(100%, 370px);
+  margin: 0 auto;
+}
+
+.exam-standalone-category-sort.is-single-category .exam-standalone-category-bank {
+  display: grid;
+  width: min(100%, 370px);
+}
+
+.exam-category-sort.is-single-category .exam-category-card,
+.exam-standalone-category-sort.is-single-category .exam-standalone-category-card {
+  width: 100%;
+  min-height: 56px;
+}
+
+.exam-category-sort.is-single-category .exam-category-target,
+.exam-standalone-category-sort.is-single-category .exam-standalone-category-target {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .exam-category-sort.is-single-capacity .exam-category-target,
 .exam-standalone-category-sort.is-single-capacity .exam-standalone-category-target {
   min-height: 96px;
@@ -11527,13 +11557,33 @@ button {
   z-index: 30;
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: minmax(230px, 1fr) minmax(280px, 440px) minmax(180px, 1fr);
+  grid-template-columns: minmax(230px, 1fr) minmax(280px, 440px) auto minmax(180px, 1fr);
   align-items: center;
   gap: 24px;
   min-height: 78px;
   background: var(--student-green);
   padding: 0 30px;
   color: #fff;
+}
+
+.student-portal-topbar > .staff-account-switcher {
+  justify-self: end;
+}
+
+.student-portal-topbar .staff-account-switch {
+  border-color: rgb(255 255 255 / 25%);
+  background: #315d4d;
+  color: #fff;
+}
+
+.student-portal-topbar .staff-account-switch:hover {
+  border-color: rgb(255 255 255 / 55%);
+  background: #3a6958;
+  color: #fff;
+}
+
+.student-portal-topbar .staff-account-menu {
+  color: #22364c;
 }
 
 .student-portal-brand {
@@ -12183,7 +12233,7 @@ button {
 @media (max-width: 900px) {
   .student-portal-shell,
   .student-portal-shell.is-collapsed { grid-template-columns: 1fr; grid-template-rows: 66px auto; }
-  .student-portal-topbar { grid-template-columns: auto minmax(0, 1fr) auto; min-height: 66px; padding-inline: 16px; }
+  .student-portal-topbar { grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 12px; min-height: 66px; padding-inline: 16px; }
   .student-portal-brand small,
   .student-portal-global-search,
   .student-portal-profile-trigger > strong,

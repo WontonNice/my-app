@@ -849,10 +849,12 @@ function normalizeQuestion(question, passageId, index) {
 
   if (question.type === "category_sort" || question.type === "table_match") {
     const isTableMatch = question.type === "table_match";
-    if (!Array.isArray(question.categories) || question.categories.length < 2) {
+    const categoryCapacity = isTableMatch || Number(question.categoryCapacity) === 1 ? 1 : undefined;
+    const minimumCategoryCount = isTableMatch || categoryCapacity === 1 ? 2 : 1;
+    if (!Array.isArray(question.categories) || question.categories.length < minimumCategoryCount) {
       throw new EditorError(
         400,
-        `Question ${index + 1} needs at least two ${isTableMatch ? "table rows" : "categories"}.`,
+        `Question ${index + 1} needs at least ${minimumCategoryCount === 1 ? "one category" : `two ${isTableMatch ? "table rows" : "categories"}`}.`,
       );
     }
     const categories = question.categories.map((category, categoryIndex) => ({
@@ -881,9 +883,20 @@ function normalizeQuestion(question, passageId, index) {
       question.correctPlacements && typeof question.correctPlacements === "object" && !Array.isArray(question.correctPlacements)
         ? question.correctPlacements
         : {};
-    const categoryCapacity = isTableMatch || Number(question.categoryCapacity) === 1 ? 1 : undefined;
+    const isSingleCategoryMultiAnswer = !categoryCapacity && categories.length === 1;
     const correctPlacements =
       categoryCapacity === 1
+        ? Object.fromEntries(
+            items.flatMap((item) => {
+              const categoryId = String(placementsInput[item.id] ?? "");
+              if (!categoryId) return [];
+              if (!categoryIds.has(categoryId)) {
+                throw new EditorError(400, `Choose a valid correct box for every used answer card in question ${index + 1}.`);
+              }
+              return [[item.id, categoryId]];
+            }),
+          )
+        : isSingleCategoryMultiAnswer
         ? Object.fromEntries(
             items.flatMap((item) => {
               const categoryId = String(placementsInput[item.id] ?? "");
@@ -918,6 +931,12 @@ function normalizeQuestion(question, passageId, index) {
         );
       }
     }
+    if (isSingleCategoryMultiAnswer && Object.keys(correctPlacements).length < 2) {
+      throw new EditorError(
+        400,
+        `Question ${index + 1} needs at least two correct answer cards for its single category box.`,
+      );
+    }
     return {
       ...baseQuestion,
       categories,
@@ -930,9 +949,14 @@ function normalizeQuestion(question, passageId, index) {
             ? "Move the correct answer to each box in the table."
             : categoryCapacity === 1
             ? "Move one answer to each box. Each box accepts only one answer."
+            : isSingleCategoryMultiAnswer
+            ? "Move the correct answers to the box."
             : "Move each answer to the correct box.",
       items,
-      requiredPlacements: categoryCapacity === 1 ? Object.keys(correctPlacements).length : items.length,
+      requiredPlacements:
+        categoryCapacity === 1 || isSingleCategoryMultiAnswer
+          ? Object.keys(correctPlacements).length
+          : items.length,
       ...(isTableMatch
         ? {
             tableHeaders: {
@@ -3236,6 +3260,23 @@ async function validateSetup() {
         transitionSentenceNumber: "(5)",
         type: "transition_drop",
       },
+      {
+        categories: [{ id: "tone-box", title: "Phrases That Most Affect the Tone" }],
+        correctPlacements: { alarm: "tone-box", popular: "tone-box" },
+        id: "editor-feature-validation-5",
+        instructions: "Move the two correct answers to the box.",
+        items: [
+          { id: "alarm", text: "sounded the alarm" },
+          { id: "message", text: "gotten the message" },
+          { id: "rip-out", text: "rip out" },
+          { id: "popular", text: "become increasingly popular" },
+          { id: "food", text: "provide food" },
+        ],
+        points: 1,
+        prompt: "Which two phrases most affect the tone of the excerpt?",
+        topic: "Tone & Mood",
+        type: "category_sort",
+      },
     ],
     text: "Validation passage text.",
     title: "Validation Passage",
@@ -3257,6 +3298,10 @@ async function validateSetup() {
     featureFixture.questions[3].type !== "transition_drop" ||
     featureFixture.questions[3].correctChoiceId !== "B" ||
     featureFixture.questions[3].transitionSentenceNumber !== "(5)" ||
+    featureFixture.questions[4].categories.length !== 1 ||
+    featureFixture.questions[4].categoryCapacity !== undefined ||
+    featureFixture.questions[4].requiredPlacements !== 2 ||
+    Object.keys(featureFixture.questions[4].correctPlacements).length !== 2 ||
     !featureSource.includes('blurb: "Context above the title."') ||
     !featureSource.includes('coverImage: {"alt":"A validation book cover","src":"/exam-images/editor-feature-validation-cover.webp"}')
   ) {
