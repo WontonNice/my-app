@@ -50,6 +50,7 @@ test('new exams are locked, registered, editable, unique, and protected by the e
     const exported = JSON.parse(await readFile(join(fixture, 'server/data/exam-content.json'), 'utf8'));
     assert.equal(exported[payload.assessment.id].passageSets.length, 0);
     const originalPassage = refreshed.passages.find(passage => passage.title === 'A Miracle Mile') || refreshed.passages[0];
+    const versionLabel = `Automated Test ${Date.now()}`;
     const version = await studio.savePassage({
       ...originalPassage,
       exportName: '',
@@ -59,18 +60,18 @@ test('new exams are locked, registered, editable, unique, and protected by the e
       questions: originalPassage.questions.map((question, index) => ({ ...question, id: `passage-${index + 1}` })),
       sourceHash: '',
       teacherSource: 'Teacher archive, practice set 4, page 18',
-      versionLabel: 'Version 2',
+      versionLabel,
     });
-    assert.equal(version.id, 'a-miracle-mile-version-2');
-    assert.equal(version.versionLabel, 'Version 2');
+    assert.match(version.id, /^a-miracle-mile-automated-test-\d+$/);
+    assert.equal(version.versionLabel, versionLabel);
     assert.equal(version.teacherSource, 'Teacher archive, practice set 4, page 18');
-    assert.ok(version.questions.every(question => question.id.startsWith('a-miracle-mile-version-2-')));
+    assert.ok(version.questions.every(question => question.id.startsWith(`${version.id}-`)));
     const versionSource = await readFile(
-      join(fixture, 'client/src/content/exams/passageSets/a-miracle-mile-version-2.ts'),
+      join(fixture, 'client/src/content/exams/passageSets', version.fileName),
       'utf8',
     );
     assert.match(versionSource, /teacherSource: "Teacher archive, practice set 4, page 18"/);
-    assert.match(versionSource, /versionLabel: "Version 2"/);
+    assert.match(versionSource, /versionLabel: "Automated Test \d+"/);
 
     await studio.saveTest({ assessmentId: payload.assessment.id, readingPassageIds: [originalPassage.id], sourceHash: exam.sourceHash });
     let saved = await studio.getState();
@@ -91,7 +92,7 @@ test('new exams are locked, registered, editable, unique, and protected by the e
     });
     saved = await studio.getState();
     assert.deepEqual(saved.tests.find(item => item.assessmentId === payload.assessment.id).readingPassageIds, [version.id]);
-    assert.equal(saved.assessments.find(item => item.id === payload.assessment.id).passages[0].versionLabel, 'Version 2');
+    assert.equal(saved.assessments.find(item => item.id === payload.assessment.id).passages[0].versionLabel, versionLabel);
   } finally {
     if (server) await new Promise(resolve => server.close(resolve));
     await rm(modulePath, { force: true });

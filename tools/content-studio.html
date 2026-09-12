@@ -78,6 +78,31 @@
     .passage-list button:hover, .passage-list button.is-active { border-color: #77aaa2; background: #f0f8f6; }
     .passage-list strong { overflow: hidden; font-size: .73rem; text-overflow: ellipsis; white-space: nowrap; }
     .passage-list small { color: var(--muted); font-size: .62rem; }
+    .passage-library-section { display: grid; }
+    .passage-library-section + .passage-library-section { margin-top: 6px; border-top: 1px solid var(--border); padding-top: 9px; }
+    .passage-library-section > summary {
+      position: sticky; top: 0; z-index: 2; display: grid; grid-template-columns: 11px minmax(0, 1fr) auto;
+      align-items: center; gap: 6px; background: #fff; padding: 4px 2px 6px; color: var(--heading); cursor: pointer; list-style: none;
+    }
+    .passage-library-section > summary::-webkit-details-marker { display: none; }
+    .passage-library-section > summary::before { content: "›"; color: var(--muted); font-size: .82rem; font-weight: 900; }
+    .passage-library-section[open] > summary::before { transform: rotate(90deg); }
+    .passage-library-section > summary strong { font-size: .67rem; letter-spacing: .01em; }
+    .passage-library-section > summary span { color: var(--muted); font-size: .56rem; font-weight: 750; white-space: nowrap; }
+    .passage-library-section-list { display: grid; gap: 6px; padding-top: 2px; }
+    .passage-library-version-group { overflow: hidden; border: 1px solid var(--border-soft); border-radius: 8px; background: #fff; }
+    .passage-library-version-group > summary {
+      display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; align-items: center; gap: 6px;
+      padding: 10px; color: var(--text); cursor: pointer; list-style: none;
+    }
+    .passage-library-version-group > summary::-webkit-details-marker { display: none; }
+    .passage-library-version-group > summary::before { content: "›"; color: var(--muted); font-size: .9rem; font-weight: 900; transition: transform .15s ease; }
+    .passage-library-version-group[open] > summary::before { transform: rotate(90deg); }
+    .passage-library-version-group > summary:hover, .passage-library-version-group[open] > summary { background: #f7faf9; }
+    .passage-version-count { color: var(--muted); font-size: .58rem; font-weight: 750; white-space: nowrap; }
+    .passage-version-list { display: grid; gap: 5px; border-top: 1px solid var(--border-soft); padding: 6px; background: #fbfcfc; }
+    .passage-list .passage-version-list button { border-left: 3px solid #acd3cc; background: #fff; padding: 8px 9px; }
+    .passage-list .passage-version-list button strong { color: #21675e; }
     .passage-version-tag, .passage-version-indicator {
       width: fit-content; border: 1px solid #acd3cc; border-radius: 999px; background: #eef8f6;
       color: #21675e; padding: 3px 7px; font-size: .58rem; font-weight: 800;
@@ -1714,6 +1739,86 @@ Rules:
       return passage ? `${passage.title} — ${passageVersionText(passage)}` : "Unknown passage";
     }
 
+    function passageLibraryButtonMarkup(passage, nested = false) {
+      return `
+        <button aria-current="${passage.id === app.selectedPassageId}" title="${escapeHtml(teacherPassageTitle(passage))} · ${escapeHtml(passage.id)}" class="${passage.id === app.selectedPassageId ? "is-active" : ""}" data-passage-id="${escapeHtml(passage.id)}" type="button">
+          <strong>${escapeHtml(nested ? passageVersionText(passage) : passage.title)}</strong>
+          ${nested || app.passageMode === "advanced" ? "" : `<span class="passage-version-tag">${escapeHtml(passageVersionText(passage))}</span>`}
+          <small>${escapeHtml(passage.format.replace("_", " "))} · ${passage.questions.length} question${passage.questions.length === 1 ? "" : "s"}</small>
+        </button>
+      `;
+    }
+
+    function passageVersionGroupsMarkup(passages, query) {
+      const groups = [];
+      const groupByTitle = new Map();
+      passages.forEach((passage) => {
+        const key = passage.title.trim().toLowerCase();
+        let group = groupByTitle.get(key);
+        if (!group) {
+          group = { title: passage.title, passages: [] };
+          groupByTitle.set(key, group);
+          groups.push(group);
+        }
+        group.passages.push(passage);
+      });
+
+      return groups.map((group) => {
+        if (group.passages.length === 1) return passageLibraryButtonMarkup(group.passages[0]);
+        const isOpen = Boolean(query) || group.passages.some((passage) => passage.id === app.selectedPassageId);
+        return `
+          <details class="passage-library-version-group" ${isOpen ? "open" : ""}>
+            <summary title="${escapeHtml(group.title)}">
+              <strong>${escapeHtml(group.title)}</strong>
+              <span class="passage-version-count">${group.passages.length} versions</span>
+            </summary>
+            <div class="passage-version-list">
+              ${group.passages.map((passage) => passageLibraryButtonMarkup(passage, true)).join("")}
+            </div>
+          </details>
+        `;
+      }).join("");
+    }
+
+    function examPassageSection(passage) {
+      const directionsTitle = String(passage?.directions?.title || "").toLowerCase();
+      return directionsTitle.includes("revising/editing") || passage.format === "sentence_prose"
+        ? "revising-editing"
+        : "reading";
+    }
+
+    function passageLibraryMarkup(passages, query) {
+      if (app.passageMode === "advanced") {
+        return passages.map((passage) => passageLibraryButtonMarkup(passage)).join("");
+      }
+      if (!passages.length) return "";
+
+      const sections = [
+        { id: "reading", title: "Reading passages" },
+        { id: "revising-editing", title: "Revising/Editing passages" },
+      ];
+      return sections.map((section) => {
+        const sectionPassages = passages.filter((passage) => examPassageSection(passage) === section.id);
+        if (!sectionPassages.length) return "";
+        const passageTitleCount = new Set(sectionPassages.map((passage) => passage.title.trim().toLowerCase())).size;
+        const countLabel = sectionPassages.length === passageTitleCount
+          ? `${passageTitleCount} passage${passageTitleCount === 1 ? "" : "s"}`
+          : `${passageTitleCount} passages · ${sectionPassages.length} versions`;
+        const isOpen = Boolean(query) || sectionPassages.some((passage) => passage.id === app.selectedPassageId);
+        return `
+          <details class="passage-library-section" data-passage-section="${section.id}" ${isOpen ? "open" : ""}>
+            <summary>
+              <strong>${section.title}</strong>
+              <span>${countLabel}</span>
+            </summary>
+            <div class="passage-library-section-list">
+              ${passageVersionGroupsMarkup(sectionPassages, query)}
+            </div>
+          </details>
+        `;
+      }).join("");
+    }
+
     function renderPassageList() {
       const query = $("#passage-search").value.trim().toLowerCase();
       const sourcePassages = app.passageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
@@ -1722,16 +1827,14 @@ Rules:
       );
       const passages = studioUI.libraryPage(matches, "passages", query + app.passageMode, renderPassageList);
       $("#passage-count").textContent = sourcePassages.length;
-      $("#passage-list").innerHTML = passages.map((passage) => `
-        <button aria-current="${passage.id === app.selectedPassageId}" title="${escapeHtml(teacherPassageTitle(passage))} · ${escapeHtml(passage.id)}" class="${passage.id === app.selectedPassageId ? "is-active" : ""}" data-passage-id="${escapeHtml(passage.id)}" type="button">
-          <strong>${escapeHtml(passage.title)}</strong>
-          ${app.passageMode === "advanced" ? "" : `<span class="passage-version-tag">${escapeHtml(passageVersionText(passage))}</span>`}
-          <small>${escapeHtml(passage.format.replace("_", " "))} · ${passage.questions.length} question${passage.questions.length === 1 ? "" : "s"}</small>
-        </button>
-      `).join("") || `<p class="field-note">No passages match this search.</p>`;
-      $$("[data-passage-id]", $("#passage-list")).forEach((button) => {
+      const passageList = $("#passage-list");
+      passageList.innerHTML = passageLibraryMarkup(passages, query) || `<p class="field-note">No passages match this search.</p>`;
+      const passageButtons = $$("[data-passage-id]", passageList);
+      passageButtons.forEach((button) => {
         button.addEventListener("click", () => selectPassage(button.dataset.passageId));
       });
+      const selectedButton = passageButtons.find((button) => button.dataset.passageId === app.selectedPassageId);
+      if (selectedButton) requestAnimationFrame(() => selectedButton.scrollIntoView({ block: "nearest" }));
       renderErrors(
         "#passage-errors",
         app.passageMode === "advanced" ? app.state.advancedPassageErrors : app.state.passageErrors,
