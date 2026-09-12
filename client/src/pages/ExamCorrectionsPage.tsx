@@ -11,6 +11,8 @@ export function ExamCorrectionsPage() {
   const [view, setView] = useState<ExamCorrectionView | null>(null);
   const [draft, setDraft] = useState<Record<string, CorrectionResponse>>({});
   const [active, setActive] = useState(0);
+  const [isQuestionMenuOpen, setIsQuestionMenuOpen] = useState(false);
+  const [revealedQuestionIds, setRevealedQuestionIds] = useState<Set<string>>(() => new Set());
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
   const [draftNotice, setDraftNotice] = useState("");
@@ -79,6 +81,7 @@ export function ExamCorrectionsPage() {
           <button type="button" aria-label="Previous question" disabled={!view || active === 0} onClick={() => goToQuestion(active - 1)}><span aria-hidden="true">‹</span></button>
           <button type="button" aria-label="Next question" disabled={!view || active >= view.questions.length - 1} onClick={() => goToQuestion(active + 1)}><span aria-hidden="true">›</span></button>
         </div>
+        <button className="exam-corrections-question-toggle" type="button" aria-expanded={isQuestionMenuOpen} onClick={() => setIsQuestionMenuOpen(value => !value)}>Questions <span aria-hidden="true">{isQuestionMenuOpen ? "▴" : "▾"}</span></button>
         <strong>Exam corrections</strong>
         <span>{studentName}</span>
       </div>
@@ -100,22 +103,22 @@ export function ExamCorrectionsPage() {
       {error && <div className="exam-review-error" role="alert">{error} <button type="button" onClick={() => setReload(value => value + 1)}>Reload corrections</button></div>}
       {!view && !error && <p className="exam-corrections-loading">Loading corrections…</p>}
       {view && <div className="exam-corrections-layout">
-        <nav className="exam-corrections-question-map" aria-label="Question navigation">
+        {isQuestionMenuOpen && <nav className="exam-corrections-question-map" aria-label="Question navigation">
           <div className="exam-corrections-question-map-heading"><h2>Questions</h2><p><span className="is-incorrect" /> Incorrect <span className="is-correct" /> Correct <strong>✓</strong> Correction complete</p></div>
           <div className="exam-corrections-question-sections">{(["english", "math"] as const).map(section => {
             const sectionQuestions = view.questions.map((item, index) => ({ item, index })).filter(entry => entry.item.section === section);
             if (!sectionQuestions.length) return null;
             return <section key={section}><h3>{section === "english" ? "English" : "Math"}</h3><div className="exam-correction-nav">{sectionQuestions.map(({ item, index }) => <button key={item.question.id} type="button" className={`${item.isCorrect ? "is-correct" : "is-incorrect"}${index === active ? " is-active" : ""}`} aria-current={index === active ? "step" : undefined} aria-label={`${section} question ${item.number}, ${item.isCorrect ? "correct" : "incorrect"}`} onClick={() => goToQuestion(index)}>{item.number}{!item.isCorrect && (() => { try { validateCorrections([item], [draft[item.question.id]]); return " ✓"; } catch { return ""; } })()}</button>)}</div></section>;
           })}</div>
-        </nav>
+        </nav>}
 
         <section className="exam-correction-work">
           {view.submission && <p className="exam-review-success" role="status">Corrections submitted. Your teacher can now read your explanations and understanding ratings.</p>}
           {!incorrect.length && <p className="exam-review-success">All answers were correct. No corrections are required.</p>}
           {question && <div key={question.question.id}>
             <article className="exam-correction-viewer">
-              <div className="exam-correction-question-heading"><strong>{question.section === "english" ? "English" : "Math"} · Question {question.number}</strong><span className={question.isCorrect ? "is-correct" : "is-incorrect"}>{question.isCorrect ? "Correct answer" : "Incorrect answer"}</span></div>
-              <ExamReviewQuestion item={question} variant="exam" />
+              <div className="exam-correction-question-heading"><strong>{question.section === "english" ? "English" : "Math"} · Question {question.number}</strong><div className="exam-correction-question-actions"><span className={question.isCorrect ? "is-correct" : "is-incorrect"}>{question.isCorrect ? "Correct answer" : "Incorrect answer"}</span><button type="button" aria-pressed={revealedQuestionIds.has(question.question.id)} onClick={() => setRevealedQuestionIds(current => { const next = new Set(current); if (next.has(question.question.id)) next.delete(question.question.id); else next.add(question.question.id); return next; })}>{revealedQuestionIds.has(question.question.id) ? "Hide answer" : "Show answer"}</button></div></div>
+              <ExamReviewQuestion answerPresentation="correction" item={question} showAnswers={revealedQuestionIds.has(question.question.id)} variant="exam" />
             </article>
 
             {!question.isCorrect ? <section className="exam-correction-response-panel" aria-labelledby={`correction-response-${question.question.id}`}>

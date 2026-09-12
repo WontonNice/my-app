@@ -65,7 +65,7 @@ test('single-category sort accepts several correct cards and rejects distractors
   assert.equal(isExamQuestionCorrect(question, { alarm: 'tone', popular: 'tone', message: 'tone' }), false);
 });
 
-const rows = [];
+const rows = [{ user_id: 'student', assessment_id: 'test-exam', result }];
 const assessment = { id: 'test-exam', title: 'Test exam', classId: 'shsat', correctionsOpen: false, forms: [], formAssignments: {} };
 const users = Object.fromEntries(['student', 'other', 'teacher', 'outsider'].map(id => [id, { id, app_metadata: { role: id === 'teacher' ? 'teacher' : 'student', class_ids: id === 'outsider' ? [] : ['shsat'] }, user_metadata: {} }]));
 function stub(relative, exports) { const filename = require.resolve(relative); require.cache[filename] = { id: filename, filename, loaded: true, exports }; }
@@ -84,6 +84,9 @@ stub('../src/lib/supabase.ts', { supabase: {
     const query = {
       select() { return query; }, eq(key, value) { filters.push(row => row[key] === value); return query; },
       like(key, value) { filters.push(row => row[key].startsWith(value.replace(/%$/, ''))); return query; },
+      gte(key, value) { filters.push(row => row[key] >= value); return query; },
+      lt(key, value) { filters.push(row => row[key] < value); return query; },
+      in(key, values) { filters.push(row => values.includes(row[key])); return query; },
       maybeSingle() { return Promise.resolve({ data: rows.find(row => filters.every(filter => filter(row))) ?? null }); },
       insert(row) {
         if (rows.some(item => item.user_id === row.user_id && item.assessment_id === row.assessment_id)) return Promise.resolve({ error: { code: '23505' } });
@@ -119,10 +122,15 @@ test('API enforces teacher-only unlocking, student ownership, locked GET/POST, v
   assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: 'old', responses: completeResponses })).status, 409);
   assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: [completeResponses[0]] })).status, 400);
   assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: completeResponses })).status, 201);
+  const storedCorrection = rows.find(row => row.assessment_id.startsWith('__exam_corrections__:'));
+  assert.equal(storedCorrection.result.questions, undefined);
+  const reopened = await request('student', '/student/test-exam');
+  assert.equal(reopened.data.submission.questions[1].question.id, 'math-1');
   assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: completeResponses })).status, 409);
   assert.equal((await request('student', '/teacher/test-exam/submissions')).status, 403);
   const submissions = await request('teacher', '/teacher/test-exam/submissions');
   assert.equal(submissions.data.submissions[0].responses[1].understanding, 5);
+  assert.equal(submissions.data.submissions[0].questions[0].question.id, 'ela-1');
   await request('teacher', '/teacher/test-exam/access', 'PATCH', { open: false });
   assert.equal((await request('student', '/student/test-exam')).status, 403);
   assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: completeResponses })).status, 403);

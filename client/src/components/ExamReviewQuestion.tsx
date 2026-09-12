@@ -46,6 +46,14 @@ function correctExamAnswer(question: ExamQuestion): SelectedAnswer | undefined {
   if (question.numberLineResponse) return { direction: question.numberLineResponse.correctDirection, endpoint: question.numberLineResponse.correctEndpoint, value: String(question.numberLineResponse.correctValue) };
 }
 
+function answerIncludesChoice(answer: SelectedAnswer | undefined, choiceId: string) {
+  return typeof answer === "string" ? answer === choiceId : Array.isArray(answer) ? answer.includes(choiceId) : false;
+}
+
+function isStandardChoiceQuestion(question: ExamQuestion) {
+  return question.type === "multiple_choice";
+}
+
 function ChoiceContent({ choice }: { choice: ExamChoice }) {
   return <><ExamText text={choice.math ? `\\(${choice.math}\\)` : choice.text} html={choice.html} />{choice.image && <img src={choice.image.src} alt={choice.image.alt} />}{choice.numberLine && <span>Number line: {choice.numberLine.startClosed ? "[" : "("}{choice.numberLine.extendLeft ? "−∞" : choice.numberLine.solutionStart}, {choice.numberLine.extendRight ? "∞" : choice.numberLine.solutionEnd}{choice.numberLine.endClosed ? "]" : ")"}</span>}</>;
 }
@@ -110,9 +118,11 @@ function ExamReviewPassage({ passage }: { passage: ExamPassage }) {
   </div>;
 }
 
-function ReviewQuestionBody({ item, showAnswers, viewer }: { item: ReviewQuestion; showAnswers: boolean; viewer: boolean }) {
+function ReviewQuestionBody({ answerPresentation, item, showAnswers, viewer }: { answerPresentation: "comparison" | "correction"; item: ReviewQuestion; showAnswers: boolean; viewer: boolean }) {
   const { question, passage } = item;
   const prompt = <ExamText html={question.promptHtml} text={question.prompt} />;
+  const correctAnswer = correctExamAnswer(question);
+  const highlightsChoices = answerPresentation === "correction" && isStandardChoiceQuestion(question);
   const submittedPlacements = item.submittedAnswer && typeof item.submittedAnswer === "object" && !Array.isArray(item.submittedAnswer)
     ? item.submittedAnswer
     : {};
@@ -130,25 +140,33 @@ function ReviewQuestionBody({ item, showAnswers, viewer }: { item: ReviewQuestio
     </svg>}
     {question.dropdownContent && <p><ExamText text={templateText(question, question.dropdownContent)} /></p>}
     {question.dragDropContent && <p><ExamText text={templateText(question, question.dragDropContent)} /></p>}
-    {question.type === "matrix_choice" && question.items && question.categories ? <div className="exam-matrix-choice-wrap"><table className="exam-matrix-choice-table"><thead><tr><th scope="col">{question.tableHeaders?.row ?? "Sentence"}</th>{question.categories.map(category => <th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(matrixItem => <tr key={matrixItem.id}><th scope="row"><ExamText html={matrixItem.html} text={matrixItem.text} /></th>{question.categories!.map(category => <td key={category.id}><label className="exam-matrix-choice-option"><input aria-label={`${matrixItem.text}: ${category.title}`} checked={submittedPlacements[matrixItem.id] === category.id} disabled readOnly type="radio" /><span aria-hidden="true" /></label></td>)}</tr>)}</tbody></table></div> : null}
-    {question.choices?.length ? <div className={viewer ? "exam-choice-list exam-review-viewer-choices" : "exam-review-choices"}>{question.choices.map(choice => <div className={viewer ? "exam-choice" : undefined} key={choice.id}>{viewer ? <span className="exam-review-choice-marker" aria-hidden="true" /> : null}<b>{choice.id}.</b><ChoiceContent choice={choice} /></div>)}</div> : null}
-    {showAnswers && <div className="exam-review-answer-comparison"><section className={item.isCorrect ? "is-correct" : "is-incorrect"}><h3>Your submitted answer</h3><ExamAnswer question={question} answer={item.submittedAnswer} /></section><section className="is-correct"><h3>Correct answer</h3><ExamAnswer question={question} answer={correctExamAnswer(question)} /></section></div>}
+    {question.type === "matrix_choice" && question.items && question.categories ? <div className="exam-matrix-choice-wrap"><table className="exam-matrix-choice-table"><thead><tr><th scope="col">{question.tableHeaders?.row ?? "Sentence"}</th>{question.categories.map(category => <th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(matrixItem => <tr key={matrixItem.id}><th scope="row"><ExamText html={matrixItem.html} text={matrixItem.text} /></th>{question.categories!.map(category => <td key={category.id}><label className="exam-matrix-choice-option"><input aria-label={`${matrixItem.text}: ${category.title}`} checked={answerPresentation === "comparison" && submittedPlacements[matrixItem.id] === category.id} disabled readOnly type="radio" /><span aria-hidden="true" /></label></td>)}</tr>)}</tbody></table></div> : null}
+    {question.choices?.length ? <div className={viewer ? "exam-choice-list exam-review-viewer-choices" : "exam-review-choices"}>{question.choices.map(choice => {
+      const submitted = highlightsChoices && !item.isCorrect && answerIncludesChoice(item.submittedAnswer, choice.id);
+      const correct = highlightsChoices && showAnswers && answerIncludesChoice(correctAnswer, choice.id);
+      return <div className={`${viewer ? "exam-choice" : ""}${submitted ? " is-submitted-answer" : ""}${correct ? " is-correct-answer" : ""}`} key={choice.id}>{viewer ? <span className="exam-review-choice-marker" aria-hidden="true" /> : null}<b>{choice.id}.</b><span className="exam-review-choice-content"><ChoiceContent choice={choice} /></span>{submitted ? <span className="exam-review-choice-status">Your answer</span> : null}{correct ? <span className="exam-review-choice-status">Correct answer</span> : null}</div>;
+    })}</div> : null}
+    {answerPresentation === "correction" && !highlightsChoices ? <div className="exam-review-tei-answers">
+      <details open><summary>Your submitted answer</summary><div className={item.isCorrect ? "is-correct" : "is-incorrect"}><ExamAnswer question={question} answer={item.submittedAnswer} /></div></details>
+      {showAnswers ? <details open><summary>Correct answer</summary><div className="is-correct"><ExamAnswer question={question} answer={correctAnswer} /></div></details> : null}
+    </div> : null}
+    {answerPresentation === "comparison" && showAnswers && <div className="exam-review-answer-comparison"><section className={item.isCorrect ? "is-correct" : "is-incorrect"}><h3>Your submitted answer</h3><ExamAnswer question={question} answer={item.submittedAnswer} /></section><section className="is-correct"><h3>Correct answer</h3><ExamAnswer question={question} answer={correctAnswer} /></section></div>}
   </>;
 }
 
-export function ExamReviewQuestion({ item, showAnswers = true, variant = "compact" }: { item: ReviewQuestion; showAnswers?: boolean; variant?: "compact" | "exam" }) {
+export function ExamReviewQuestion({ answerPresentation = "comparison", item, showAnswers = true, variant = "compact" }: { answerPresentation?: "comparison" | "correction"; item: ReviewQuestion; showAnswers?: boolean; variant?: "compact" | "exam" }) {
   if (variant === "exam") {
     const panelClassName = item.passage ? "exam-question-panel" : "exam-standalone-panel exam-math-panel";
     const documentClassName = item.passage ? "exam-question-document is-expanded-layout" : "exam-standalone-document exam-math-document";
     return <div className={`exam-review-question-content is-exam-viewer ${documentClassName}`}>
       {item.passage ? <ExamReviewPassage passage={item.passage} /> : null}
       <div className={panelClassName}>
-        <ReviewQuestionBody item={item} showAnswers={showAnswers} viewer />
+        <ReviewQuestionBody answerPresentation={answerPresentation} item={item} showAnswers={showAnswers} viewer />
       </div>
     </div>;
   }
 
   return <div className="exam-review-question-content">
-    <ReviewQuestionBody item={item} showAnswers={showAnswers} viewer={false} />
+    <ReviewQuestionBody answerPresentation={answerPresentation} item={item} showAnswers={showAnswers} viewer={false} />
   </div>;
 }

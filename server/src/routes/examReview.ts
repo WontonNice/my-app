@@ -29,10 +29,28 @@ examReviewRouter.patch("/teacher/:assessmentId/access", (request, response) => {
 
 examReviewRouter.get("/teacher/:assessmentId/submissions", async (request, response) => {
     if (!isStaff(getUserRole(response.locals.user))) { response.status(403).json({ message: "Teacher access is required." }); return; }
-    const { data, error } = await supabase.from("student_exam_results").select("user_id,result")
-        .like("assessment_id", `${correctionPrefix}${request.params.assessmentId}:%`);
-    if (error) { response.status(503).json({ message: "Correction submissions could not be loaded. Try again." }); return; }
-    response.json({ submissions: (data ?? []).map(row => ({ ...row.result, studentId: row.user_id })) });
+    const assessment = listTeacherAssessments().find(item => item.id === request.params.assessmentId);
+    const content = assessment ? getExamContent(assessment.id) : null;
+    if (!assessment || !content) { response.status(404).json({ message: "Exam content was not found." }); return; }
+    const storagePrefix = `${correctionPrefix}${assessment.id}:`;
+    const correctionRows = await supabase.from("student_exam_results").select("user_id,result")
+        .gte("assessment_id", storagePrefix)
+        .lt("assessment_id", `${storagePrefix}\uffff`);
+    if (correctionRows.error) { response.status(503).json({ message: "Correction submissions could not be loaded. Try again." }); return; }
+    const studentIds = [...new Set((correctionRows.data ?? []).map(row => String(row.user_id)))];
+    const resultRows = studentIds.length
+        ? await supabase.from("student_exam_results").select("user_id,result").eq("assessment_id", assessment.id).in("user_id", studentIds)
+        : { data: [], error: null };
+    if (resultRows.error) { response.status(503).json({ message: "Correction submissions could not be loaded. Try again." }); return; }
+    const resultsByStudent = new Map((resultRows.data ?? []).map(row => [String(row.user_id), row.result as ExamResult]));
+    const submissions = (correctionRows.data ?? []).flatMap(row => {
+        const stored = row.result && typeof row.result === "object" && !Array.isArray(row.result) ? row.result as Partial<CorrectionSubmission> : null;
+        if (!stored || !Array.isArray(stored.responses) || typeof stored.submittedAt !== "string" || typeof stored.resultVersion !== "string") return [];
+        const studentResult = resultsByStudent.get(String(row.user_id));
+        const questions = Array.isArray(stored.questions) ? stored.questions : studentResult ? reviewQuestions(content, studentResult) : [];
+        return [{ ...stored, assessmentId: assessment.id, studentId: String(row.user_id), questions } as CorrectionSubmission];
+    });
+    response.json({ submissions });
 });
 
 examReviewRouter.post("/teacher/:assessmentId/answers/:studentId", async (request, response) => {
@@ -93,7 +111,13 @@ examReviewRouter.all("/student/:assessmentId", async (request, response) => {
     const storageId = `${correctionPrefix}${assessment.id}:${resultVersion}`;
     const existing = await supabase.from("student_exam_results").select("result").eq("user_id", user.id).eq("assessment_id", storageId).maybeSingle();
     if (existing.error) { response.status(503).json({ message: "Corrections could not be loaded. Try again." }); return; }
-    if (request.method === "GET") { response.json({ result, questions, resultVersion, submission: existing.data?.result ?? null }); return; }
+    const storedSubmission = existing.data?.result && typeof existing.data.result === "object" && !Array.isArray(existing.data.result)
+        ? existing.data.result as Partial<CorrectionSubmission>
+        : null;
+    const existingSubmission = storedSubmission
+        ? { ...storedSubmission, assessmentId: assessment.id, studentId: user.id, resultVersion, questions } as CorrectionSubmission
+        : null;
+    if (request.method === "GET") { response.json({ result, questions, resultVersion, submission: existingSubmission }); return; }
     if (request.body?.resultVersion !== resultVersion) { response.status(409).json({ message: "The exam or your answers changed. Reload corrections before submitting." }); return; }
     if (existing.data) { response.status(409).json({ message: "You already submitted these corrections." }); return; }
     let responses;
@@ -104,7 +128,8 @@ examReviewRouter.all("/student/:assessmentId", async (request, response) => {
         response.status(403).json({ message: "Your teacher has locked corrections. Your draft is still available." }); return;
     }
     const submission: CorrectionSubmission = { assessmentId: assessment.id, studentId: user.id, resultVersion, submittedAt, responses, questions };
-    const saved = await supabase.from("student_exam_results").insert({ user_id: user.id, assessment_id: storageId, result: submission, completed_at: submittedAt, updated_at: submittedAt });
+    const compactSubmission = { assessmentId: assessment.id, resultVersion, submittedAt, responses };
+    const saved = await supabase.from("student_exam_results").insert({ user_id: user.id, assessment_id: storageId, result: compactSubmission, completed_at: submittedAt, updated_at: submittedAt });
     if (saved.error) { response.status(saved.error.code === "23505" ? 409 : 503).json({ message: saved.error.code === "23505" ? "You already submitted these corrections." : "Corrections could not be saved. Your draft is still available; try again." }); return; }
     response.status(201).json({ submission });
 });

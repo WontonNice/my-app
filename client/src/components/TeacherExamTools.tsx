@@ -3,7 +3,7 @@ import { resolveExamContent, type ExamQuestion } from "../content/exams";
 import { createExamResult, type SelectedAnswer, type SelectedAnswers, type ExamResult } from "../lib/examResults";
 import { enterStudentExamAnswers, getExamCorrectionSubmissions, setExamCorrectionsAccess, type AssessmentSection, type StudentProgressSnapshot, type TeacherAssessment } from "../lib/api";
 import { reviewQuestions, type CorrectionSubmission } from "../../../server/src/shared/examCorrections";
-import { ExamAnswer, ExamReviewQuestion, ExamText } from "./ExamReviewQuestion";
+import { ExamReviewQuestion, ExamText } from "./ExamReviewQuestion";
 
 function AnswerInput({ question, answer, onChange }: { question: ExamQuestion; answer?: SelectedAnswer; onChange: (value: SelectedAnswer) => void }) {
   const scalar = typeof answer === "string" ? answer : "";
@@ -68,6 +68,46 @@ function PaperAnswerEntry({ assessment, student, accessToken, onSaved }: { asses
   </section>;
 }
 
+function CorrectionSubmissionReview({ studentName, submission }: { studentName: string; submission: CorrectionSubmission }) {
+  const items = submission.responses.flatMap(response => {
+    const item = submission.questions.find(question => question.question.id === response.questionId);
+    return item ? [{ item, response }] : [];
+  });
+  const [active, setActive] = useState(0);
+  const [isQuestionMenuOpen, setIsQuestionMenuOpen] = useState(false);
+  const [revealedQuestionIds, setRevealedQuestionIds] = useState<Set<string>>(() => new Set());
+  const current = items[active] ?? items[0];
+  if (!current) return <p className="exam-review-error">The submitted explanations were found, but their exam questions are no longer available.</p>;
+  const { item, response } = current;
+  const isRevealed = revealedQuestionIds.has(item.question.id);
+  const goTo = (index: number) => setActive(Math.max(0, Math.min(index, items.length - 1)));
+
+  return <section className="teacher-exam-correction-review exam-correction-work">
+    <header className="teacher-exam-correction-review-toolbar">
+      <div className="teacher-exam-correction-review-controls">
+        <button aria-label="Previous correction" disabled={active === 0} onClick={() => goTo(active - 1)} type="button">‹</button>
+        <button aria-expanded={isQuestionMenuOpen} onClick={() => setIsQuestionMenuOpen(value => !value)} type="button">Questions <span aria-hidden="true">{isQuestionMenuOpen ? "▴" : "▾"}</span></button>
+        <button aria-label="Next correction" disabled={active >= items.length - 1} onClick={() => goTo(active + 1)} type="button">›</button>
+      </div>
+      <div><strong>{studentName}</strong><span>{active + 1} of {items.length} · Submitted {new Date(submission.submittedAt).toLocaleString()}</span></div>
+    </header>
+    {isQuestionMenuOpen ? <nav className="teacher-exam-correction-question-menu" aria-label="Submitted correction navigation">{items.map(({ item: question }, index) => <button aria-current={index === active ? "step" : undefined} className={index === active ? "is-active" : ""} key={question.question.id} onClick={() => { goTo(index); setIsQuestionMenuOpen(false); }} type="button">{question.section === "math" ? "Math" : "English"} {question.number}</button>)}</nav> : null}
+    <article className="exam-correction-viewer">
+      <div className="exam-correction-question-heading">
+        <strong>{item.section === "english" ? "English" : "Math"} · Question {item.number}</strong>
+        <div className="exam-correction-question-actions"><span className="is-incorrect">Incorrect answer</span><button aria-pressed={isRevealed} onClick={() => setRevealedQuestionIds(currentIds => { const next = new Set(currentIds); if (next.has(item.question.id)) next.delete(item.question.id); else next.add(item.question.id); return next; })} type="button">{isRevealed ? "Hide answer" : "Show answer"}</button></div>
+      </div>
+      <ExamReviewQuestion answerPresentation="correction" item={item} showAnswers={isRevealed} variant="exam" />
+    </article>
+    <section className="exam-correction-response-panel teacher-correction-writing">
+      <header><div><p>Student correction</p><h4>Explanation and self assessment</h4></div><span>Submitted</span></header>
+      {response.whyChosenIncorrect ? <div><h5>Why the chosen answer is wrong</h5><p>{response.whyChosenIncorrect}</p></div> : null}
+      <div><h5>Why the correct answer is correct</h5><p>{response.whyCorrectAnswerCorrect}</p></div>
+      <strong>Understanding: {response.understanding} / 5</strong>
+    </section>
+  </section>;
+}
+
 export function TeacherExamTools({ assessment, students, accessToken, onAssessmentChange, onResultSaved }: {
   assessment: TeacherAssessment; students: StudentProgressSnapshot[]; accessToken: string;
   onAssessmentChange: (assessment: TeacherAssessment) => void;
@@ -75,19 +115,21 @@ export function TeacherExamTools({ assessment, students, accessToken, onAssessme
 }) {
   const [entryOpen, setEntryOpen] = useState(new URLSearchParams(window.location.search).get("enterAnswers") === assessment.id);
   const [submissionsOpen, setSubmissionsOpen] = useState(false);
+  const [selectedSubmissionKey, setSelectedSubmissionKey] = useState("");
   const [studentId, setStudentId] = useState("");
   const [submissions, setSubmissions] = useState<CorrectionSubmission[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [refresh, setRefresh] = useState(0);
   const student = students.find(student => student.id === studentId);
   useEffect(() => {
-    if (!submissionsOpen || !accessToken) return;
+    if (!accessToken) return;
     let mounted = true;
     getExamCorrectionSubmissions(accessToken, assessment.id).then(data => { if (mounted) { setSubmissions(data.sort((a, b) => b.submittedAt.localeCompare(a.submittedAt))); setError(""); } }).catch(reason => { if (mounted) setError(reason instanceof Error ? reason.message : "Submissions could not be loaded."); }).finally(() => { if (mounted) setLoading(false); });
     return () => { mounted = false; };
-  }, [submissionsOpen, accessToken, assessment.id, refresh]);
+  }, [accessToken, assessment.id, refresh]);
+  const activeSubmission = submissions.find(submission => `${submission.studentId}:${submission.resultVersion}` === selectedSubmissionKey) ?? submissions[0];
   async function toggleAccess() {
     setSaving(true); setError("");
     try { onAssessmentChange(await setExamCorrectionsAccess(accessToken, assessment.id, !assessment.correctionsOpen)); }
@@ -95,12 +137,13 @@ export function TeacherExamTools({ assessment, students, accessToken, onAssessme
     finally { setSaving(false); }
   }
   return <section className="teacher-exam-tools">
-    <div className="teacher-exam-tools-actions"><span><strong>Corrections {assessment.correctionsOpen ? "open" : "locked"}</strong><small>Students can open and submit corrections only while this is open.</small></span><button type="button" disabled={saving} onClick={toggleAccess}>{saving ? "Saving…" : assessment.correctionsOpen ? "Lock corrections" : "Open corrections"}</button><button type="button" onClick={() => { if (!submissionsOpen) setLoading(true); setSubmissionsOpen(value => !value); }}>{submissionsOpen ? "Hide correction submissions" : "View correction submissions"}</button><button type="button" onClick={() => setEntryOpen(value => !value)}>{entryOpen ? "Close answer entry" : "Enter student answers"}</button></div>
+    <div className="teacher-exam-tools-actions"><span><strong>Corrections {assessment.correctionsOpen ? "open" : "locked"}</strong><small>Students can open and submit corrections only while this is open.</small></span><button type="button" disabled={saving} onClick={toggleAccess}>{saving ? "Saving…" : assessment.correctionsOpen ? "Lock corrections" : "Open corrections"}</button><button type="button" onClick={() => setSubmissionsOpen(value => !value)}>{submissionsOpen ? "Hide correction submissions" : `Correction submissions${loading ? "" : ` (${submissions.length})`}`}</button><button type="button" onClick={() => setEntryOpen(value => !value)}>{entryOpen ? "Close answer entry" : "Enter student answers"}</button></div>
     {error && <p className="exam-review-error" role="alert">{error}</p>}
     {entryOpen && <section className="teacher-paper-panel"><h3>Enter answers from a previously taken test</h3><label>Student<select value={studentId} onChange={event => setStudentId(event.target.value)}><option value="">Choose a student</option>{students.filter(student => student.classes.includes(assessment.classId)).map(student => <option key={student.id} value={student.id}>{student.fullName}</option>)}</select></label>{student && <PaperAnswerEntry key={student.id} accessToken={accessToken} assessment={assessment} student={student} onSaved={result => onResultSaved(student.id, result)} />}</section>}
-    {submissionsOpen && <section className="teacher-correction-submissions"><header><h3>Correction submissions</h3><button type="button" disabled={loading} onClick={() => { setLoading(true); setRefresh(value => value + 1); }}>Refresh submissions</button></header>{loading ? <p>Loading submissions…</p> : !submissions.length ? <p>No corrections have been submitted yet.</p> : submissions.map(submission => <details key={`${submission.studentId}:${submission.resultVersion}`}><summary><strong>{students.find(student => student.id === submission.studentId)?.fullName ?? "Student"}</strong> · {new Date(submission.submittedAt).toLocaleString()} · {submission.responses.length} corrections</summary>{submission.responses.map(response => {
-      const item = submission.questions.find(item => item.question.id === response.questionId);
-      return <article key={response.questionId}><h4>{item?.section === "math" ? "Math" : "English"} · Question {item?.number ?? response.questionId}</h4>{item && <><details><summary>Question and original answers</summary><ExamReviewQuestion item={item} /></details><p><strong>Submitted answer: </strong><ExamAnswer question={item.question} answer={item.submittedAnswer} /></p></>}{response.whyChosenIncorrect && <div><h5>Why the chosen answer is wrong</h5><p>{response.whyChosenIncorrect}</p></div>}<div><h5>Why the correct answer is correct</h5><p>{response.whyCorrectAnswerCorrect}</p></div><strong>Understanding: {response.understanding} / 5</strong></article>;
-    })}</details>)}</section>}
+    {submissionsOpen && <section className="teacher-correction-submissions"><header><h3>Correction submissions</h3><button type="button" disabled={loading} onClick={() => { setLoading(true); setRefresh(value => value + 1); }}>Refresh submissions</button></header>{loading ? <p>Loading submissions…</p> : !submissions.length ? <p>No completed correction submissions yet.</p> : <><div aria-label="Submitted corrections" className="teacher-correction-submission-list">{submissions.map(submission => {
+      const key = `${submission.studentId}:${submission.resultVersion}`;
+      const name = students.find(student => student.id === submission.studentId)?.fullName ?? "Student";
+      return <button aria-pressed={activeSubmission === submission} key={key} onClick={() => setSelectedSubmissionKey(key)} type="button"><strong>{name}</strong><span>{new Date(submission.submittedAt).toLocaleString()} · {submission.responses.length} corrections</span></button>;
+    })}</div>{activeSubmission ? <CorrectionSubmissionReview key={`${activeSubmission.studentId}:${activeSubmission.resultVersion}`} studentName={students.find(student => student.id === activeSubmission.studentId)?.fullName ?? "Student"} submission={activeSubmission} /> : null}</>}</section>}
   </section>;
 }
