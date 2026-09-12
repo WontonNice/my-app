@@ -1425,7 +1425,7 @@
     ],
     "status": "open",
     "title": "2025-2026 Form A",
-    "updatedAt": "2026-09-10T16:49:56.489Z",
+    "updatedAt": "2026-09-12T07:47:23.165Z",
     "split": false,
     "allowCompletedAccess": true,
     "sectionAccess": {
@@ -1433,7 +1433,8 @@
       "math": true
     },
     "formAssignments": {},
-    "forms": []
+    "forms": [],
+    "correctionsOpen": true
   },
   {
     "id": "2025-2026-form-b",

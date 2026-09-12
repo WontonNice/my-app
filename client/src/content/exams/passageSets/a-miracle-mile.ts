@@ -251,6 +251,60 @@ const aMiracleMileQuestions: ExamQuestion[] = [
     ],
     "correctChoiceId": "A",
     "type": "multiple_choice"
+  },
+  {
+    "id": "a-miracle-mile-9",
+    "points": 1,
+    "prompt": "Which two phrases from paragraph 3 most affect the tone of the excerpt?",
+    "promptHtml": "Which <strong>two</strong> phrases from paragraph 3 <strong>most</strong> affect the tone of the excerpt?",
+    "topic": "Tone & Mood",
+    "categories": [
+      {
+        "id": "category-1",
+        "title": "Phrases That Most Affect the Tone of the Excerpt"
+      },
+      {
+        "id": "category-2",
+        "title": "Category 2"
+      }
+    ],
+    "correctPlacements": {
+      "item-1": "category-1",
+      "item-2": "category-1",
+      "item-3": "category-1",
+      "item-4": "category-1",
+      "item-5": "category-1"
+    },
+    "instructions": "Move the two correct answers to the box.",
+    "items": [
+      {
+        "html": "<strong>“sounded the alarm”</strong>",
+        "id": "item-1",
+        "text": "“sounded the alarm”"
+      },
+      {
+        "html": "<strong>“gotten the message”</strong>",
+        "id": "item-2",
+        "text": "“gotten the message”"
+      },
+      {
+        "html": "<strong>“rip out”</strong>",
+        "id": "item-3",
+        "text": "“rip out”"
+      },
+      {
+        "html": "<strong>“become increasingly popular”</strong>",
+        "id": "item-4",
+        "text": "“become increasingly popular”"
+      },
+      {
+        "html": "<strong>“provide food”</strong>",
+        "id": "item-5",
+        "text": "“provide food”"
+      }
+    ],
+    "requiredPlacements": 5,
+    "type": "category_sort"
   }
 ];
 
@@ -265,8 +319,8 @@ export const aMiracleMilePassageSet: ExamPassageSet = {
 },
   passage: createProsePassage({
     id: "a-miracle-mile",
-    passageType: "informational",
     title: "A Miracle Mile",
+    passageType: "informational",
     richText: "<p>In the 1950s people compared running one mile in four minutes to scaling Mount Everest and nicknamed the feat a “dream mile.” Although such an accomplishment was considered humanly impossible, several elite runners aimed to break that supposedly impenetrable barrier. One of them was a twenty-five-year-old medical student named Roger Bannister.</p><p><br>Roger Bannister had tasted failure during the 1952 Olympics. There, he was favored to win the 1,500-meter competition, a distance slightly shorter than a mile, but he finished in a dismal fourth place instead. Bannister’s performance was a disappointment for him and his country, Great Britain. Determined to redeem himself, Bannister postponed his plans to retire from racing and focused on the ultimate prize—breaking the four-minute-mile barrier. </p><p><br></p><p>Bannister attacked the elusive milestone with a positive attitude and logical planning. The amateur athlete decided to use intensive interval training to develop endurance and speed. For these workouts, Bannister ran an interval of ten consecutive laps on a quarter-mile track, aiming for sixty seconds each lap. In between intervals, he let his body recover for two minutes.</p><p><br>By early 1954, Bannister had succeeded in lowering his quarter-mile pace to sixty-one seconds, but he had to shave off at least one more second in order to reach his target. Frustrated by the plateau he had reached, Bannister took a break from training and went mountain climbing for three days. The rest from running permitted his muscles to recuperate and left him feeling refreshed. When Bannister returned to the track, he completed ten quarter-mile-long intervals at fifty-nine seconds each. He finally felt prepared to attempt to break the world record.</p><p><br>As a member of the Amateur Athletic Association (AAA), Bannister joined the AAA team for a track meet against Oxford University. The event took place on a cinder track in Oxford on May 6, 1954. Bannister and his two AAA teammates, Chris Chataway and Chris Brasher, were close friends and frequent running partners. Chataway and Brasher agreed to help Bannister accomplish his goal by being his “rabbits.”</p><p><br>In track and field, rabbits are runners who enter the race solely to pace a teammate for a segment of the course. Typically, a runner settles in behind the rabbit and allows the rabbit to set an appropriate tempo. Additionally, by running behind the rabbit, the runner conserves about 15 percent of his or her effort. When the starting pistol fired, Brasher pounced into the lead, and Bannister followed behind his first rabbit.</p><p><br>Propelled by the excitement, Bannister lost his instinctive feel for his pace and shouted “Faster!” at Brasher. Brasher, however, remained composed and maintained his current steady but grueling pace,<br>completing the first two laps in a desirable one minute and fifty-eight seconds. Then Chataway surged forward, leading Bannister at this same punishing rate for another lap and a half. At the beginning of<br>the back straightaway of the track, Bannister bolted past Chataway. Bannister said, “I felt that the moment of a lifetime had come. There was no pain, only a great unity of movement and aim.” Bannister crossed the finish line in 3 minutes 59.4 seconds. The ecstatic crowd erupted the moment the timekeeper announced the word “three.”</p><p><br>Soon after Bannister’s achievement, four other athletes matched his performance. A new mindset had taken root among runners. Over the years, the record continued to fall. However, the current record, 3 minutes 43.13 seconds, has stood unbroken since 1999. Some question whether this record represents the limits of human ability. But perhaps there is another Bannister, an athlete who, with willpower and dedication, will accomplish the miraculous.</p>",
     text: aMiracleMilePassageText,
   }),
