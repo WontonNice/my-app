@@ -26,7 +26,8 @@ export function ExamCorrectionsPage() {
       if (!mounted) return;
       let saved: Record<string, CorrectionResponse> = {};
       try { saved = JSON.parse(localStorage.getItem(`exam-corrections:${peekActiveSession()?.user.id}:${assessmentId}:${data.resultVersion}`) ?? "{}"); } catch { /* Start with an empty draft. */ }
-      setDraft(data.submission ? Object.fromEntries(data.submission.responses.map(item => [item.questionId, item])) : saved && typeof saved === "object" ? saved : {});
+      const submitted = data.submission ? Object.fromEntries(data.submission.responses.map(item => [item.questionId, item])) : {};
+      setDraft({ ...submitted, ...(saved && typeof saved === "object" ? saved : {}) });
       setView(data); setError("");
     }).catch(reason => { if (mounted) setError(reason instanceof Error ? reason.message : "Corrections could not be opened."); });
     return () => { mounted = false; };
@@ -42,21 +43,21 @@ export function ExamCorrectionsPage() {
   }
 
   async function submit() {
-    if (!view || saving || view.submission) return;
+    const item = view?.questions[active];
+    if (!view || !item || item.isCorrect || saving) return;
     setError("");
     let responses: CorrectionResponse[];
-    try { responses = validateCorrections(view.questions, view.questions.filter(item => !item.isCorrect).map(item => draft[item.question.id] ?? { questionId: item.question.id, whyChosenIncorrect: "", whyCorrectAnswerCorrect: "", understanding: 0 })); }
+    try { responses = validateCorrections([item], [draft[item.question.id] ?? { questionId: item.question.id, whyChosenIncorrect: "", whyCorrectAnswerCorrect: "", understanding: 0 }]); }
     catch (reason) {
-      setError(reason instanceof Error ? reason.message : "Complete all corrections.");
-      const missing = view.questions.findIndex(item => !item.isCorrect && (!draft[item.question.id]?.whyCorrectAnswerCorrect?.trim() || item.section === "english" && !draft[item.question.id]?.whyChosenIncorrect?.trim() || !draft[item.question.id]?.understanding));
-      if (missing >= 0) setActive(missing);
+      setError(reason instanceof Error ? reason.message : "Complete this correction before submitting it.");
       return;
     }
     setSaving(true);
     try {
       const submission = await submitExamCorrections(accessToken, assessmentId, view.resultVersion, responses);
       setView({ ...view, submission });
-      try { localStorage.removeItem(draftKey); } catch { /* Submission is safely stored on the server. */ }
+      setDraftNotice(`Question ${item.number} correction saved for your teacher.`);
+      try { localStorage.setItem(draftKey, JSON.stringify(draft)); } catch { /* The submitted correction is safely stored on the server. */ }
     } catch (reason) { setError(reason instanceof Error ? reason.message : "Corrections could not be submitted."); }
     finally { setSaving(false); }
   }
@@ -64,9 +65,8 @@ export function ExamCorrectionsPage() {
   const question = view?.questions[active];
   const response = question ? draft[question.question.id] : undefined;
   const incorrect = view?.questions.filter(item => !item.isCorrect) ?? [];
-  const completed = incorrect.filter(item => {
-    try { validateCorrections([item], [draft[item.question.id]]); return true; } catch { return false; }
-  }).length;
+  const submittedQuestionIds = new Set(view?.submission?.responses.map(item => item.questionId) ?? []);
+  const submittedCount = submittedQuestionIds.size;
 
   function goToQuestion(index: number) {
     setActive(index);
@@ -97,23 +97,23 @@ export function ExamCorrectionsPage() {
     <div className="exam-corrections-content">
       <header className="exam-corrections-intro">
         <div><p>Learn from your answers</p><h1>{view?.result.title ?? "Exam corrections"}</h1></div>
-        <span>{view?.submission ? `Submitted ${new Date(view.submission.submittedAt).toLocaleString()}` : `${completed} of ${incorrect.length} corrections complete`}</span>
+        <span>{submittedCount} of {incorrect.length} corrections submitted</span>
       </header>
 
       {error && <div className="exam-review-error" role="alert">{error} <button type="button" onClick={() => setReload(value => value + 1)}>Reload corrections</button></div>}
       {!view && !error && <p className="exam-corrections-loading">Loading corrections…</p>}
       {view && <div className="exam-corrections-layout">
         {isQuestionMenuOpen && <nav className="exam-corrections-question-map" aria-label="Question navigation">
-          <div className="exam-corrections-question-map-heading"><h2>Questions</h2><p><span className="is-incorrect" /> Incorrect <span className="is-correct" /> Correct <strong>✓</strong> Correction complete</p></div>
+          <div className="exam-corrections-question-map-heading"><h2>Questions</h2><p><span className="is-incorrect" /> Incorrect <span className="is-correct" /> Correct <strong>✓</strong> Submitted</p></div>
           <div className="exam-corrections-question-sections">{(["english", "math"] as const).map(section => {
             const sectionQuestions = view.questions.map((item, index) => ({ item, index })).filter(entry => entry.item.section === section);
             if (!sectionQuestions.length) return null;
-            return <section key={section}><h3>{section === "english" ? "English" : "Math"}</h3><div className="exam-correction-nav">{sectionQuestions.map(({ item, index }) => <button key={item.question.id} type="button" className={`${item.isCorrect ? "is-correct" : "is-incorrect"}${index === active ? " is-active" : ""}`} aria-current={index === active ? "step" : undefined} aria-label={`${section} question ${item.number}, ${item.isCorrect ? "correct" : "incorrect"}`} onClick={() => goToQuestion(index)}>{item.number}{!item.isCorrect && (() => { try { validateCorrections([item], [draft[item.question.id]]); return " ✓"; } catch { return ""; } })()}</button>)}</div></section>;
+            return <section key={section}><h3>{section === "english" ? "English" : "Math"}</h3><div className="exam-correction-nav">{sectionQuestions.map(({ item, index }) => <button key={item.question.id} type="button" className={`${item.isCorrect ? "is-correct" : "is-incorrect"}${index === active ? " is-active" : ""}`} aria-current={index === active ? "step" : undefined} aria-label={`${section} question ${item.number}, ${item.isCorrect ? "correct" : "incorrect"}`} onClick={() => goToQuestion(index)}>{item.number}{submittedQuestionIds.has(item.question.id) ? " ✓" : ""}</button>)}</div></section>;
           })}</div>
         </nav>}
 
         <section className="exam-correction-work">
-          {view.submission && <p className="exam-review-success" role="status">Corrections submitted. Your teacher can now read your explanations and understanding ratings.</p>}
+          {submittedCount > 0 && <p className="exam-review-success" role="status">{submittedCount} correction{submittedCount === 1 ? " is" : "s are"} saved for your teacher. You can keep working and submit the others as you finish them.</p>}
           {!incorrect.length && <p className="exam-review-success">All answers were correct. No corrections are required.</p>}
           {question && <div key={question.question.id}>
             <article className="exam-correction-viewer">
@@ -122,8 +122,8 @@ export function ExamCorrectionsPage() {
             </article>
 
             {!question.isCorrect ? <section className="exam-correction-response-panel" aria-labelledby={`correction-response-${question.question.id}`}>
-              <header><div><p>Correction response</p><h2 id={`correction-response-${question.question.id}`}>Explain your thinking</h2></div><span>{view.submission ? "Submitted" : "Required"}</span></header>
-              <fieldset disabled={Boolean(view.submission) || saving}>
+              <header><div><p>Correction response</p><h2 id={`correction-response-${question.question.id}`}>Explain your thinking</h2></div><span>{submittedQuestionIds.has(question.question.id) ? "Submitted" : "Required"}</span></header>
+              <fieldset disabled={saving}>
                 {question.section === "english" && <label>Why is the answer you chose wrong? <small>Required; if blank, explain why you did not answer.</small><textarea required maxLength={10000} rows={4} value={response?.whyChosenIncorrect ?? ""} onChange={event => update(question.question.id, { whyChosenIncorrect: event.target.value })} /></label>}
                 <label>Why is the correct answer correct? <small>Required{question.section === "math" ? ". Explain your reasoning or show your steps." : ". Use evidence from the text."}</small><textarea required maxLength={10000} rows={4} value={response?.whyCorrectAnswerCorrect ?? ""} onChange={event => update(question.question.id, { whyCorrectAnswerCorrect: event.target.value })} /></label>
                 <label className="exam-correction-understanding">How much do you understand the question now?<strong>{response?.understanding ? `${response.understanding} / 5` : "Choose a rating from 1–5"}</strong><input aria-label="Understanding from 1 to 5" type="range" min={1} max={5} step={1} value={response?.understanding || 1} onChange={event => update(question.question.id, { understanding: Number(event.target.value) })} onPointerUp={event => update(question.question.id, { understanding: Number(event.currentTarget.value) })} onKeyUp={event => { if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) update(question.question.id, { understanding: Number(event.currentTarget.value) }); }} /><span className="exam-slider-labels"><span>1 · Still unsure</span><span>5 · I can explain it</span></span></label>
@@ -131,7 +131,7 @@ export function ExamCorrectionsPage() {
             </section> : <p className="exam-correction-not-required">This answer was correct, so no written correction is required.</p>}
           </div>}
 
-          <footer><div className="exam-correction-pagination"><button type="button" disabled={active === 0} onClick={() => goToQuestion(active - 1)}>← Previous</button><button type="button" disabled={active >= view.questions.length - 1} onClick={() => goToQuestion(active + 1)}>Next →</button></div><span>{view.submission ? "Submission saved" : draftNotice || "Explanations are required for incorrect answers only."}</span>{!view.submission && incorrect.length > 0 && <button className="exam-review-primary" type="button" disabled={saving} onClick={submit}>{saving ? "Submitting…" : "Submit corrections"}</button>}</footer>
+          <footer><div className="exam-correction-pagination"><button type="button" disabled={active === 0} onClick={() => goToQuestion(active - 1)}>← Previous</button><button type="button" disabled={active >= view.questions.length - 1} onClick={() => goToQuestion(active + 1)}>Next →</button></div><span>{question && submittedQuestionIds.has(question.question.id) ? "This correction is saved. You may update and submit it again." : draftNotice || "Complete and submit each incorrect question when it is ready."}</span>{question && !question.isCorrect && <button className="exam-review-primary" type="button" disabled={saving} onClick={submit}>{saving ? "Saving…" : submittedQuestionIds.has(question.question.id) ? "Update this correction" : "Submit this correction"}</button>}</footer>
         </section>
       </div>}
     </div>

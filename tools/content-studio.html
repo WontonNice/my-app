@@ -1184,7 +1184,7 @@ Why D is wrong."></textarea>
       studioUI.updateDialogStatus(message, tone);
     }
 
-    async function api(path, options = {}) {
+    async function api(path, options = {}, retryEditorToken = true) {
       const response = await fetch(path, {
         ...options,
         headers: {
@@ -1194,6 +1194,20 @@ Why D is wrong."></textarea>
         },
       });
       const data = await response.json();
+      if (
+        retryEditorToken &&
+        response.status === 403 &&
+        data.message === "Editor token is missing or invalid." &&
+        options.method &&
+        options.method !== "GET"
+      ) {
+        const stateResponse = await fetch("/api/state", { cache: "no-store" });
+        const state = await stateResponse.json();
+        if (stateResponse.ok && typeof state.editToken === "string" && state.editToken) {
+          app.token = state.editToken;
+          return api(path, options, false);
+        }
+      }
       if (!response.ok) throw new Error(data.message || "The editor request failed.");
       return data;
     }

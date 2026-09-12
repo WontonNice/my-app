@@ -44,13 +44,24 @@ export function reviewQuestions(content: ExamContent, result: ExamResult): Revie
   ].map(item => ({ ...item, submittedAnswer: result.answers?.[item.question.id], isCorrect: isExamQuestionCorrect(item.question, result.answers?.[item.question.id]) }));
 }
 
-export function validateCorrections(questions: ReviewQuestion[], input: unknown): CorrectionResponse[] {
-  if (!Array.isArray(input)) throw new Error("Enter a correction for every incorrect question.");
+export function validateCorrections(
+  questions: ReviewQuestion[],
+  input: unknown,
+  { allowPartial = false }: { allowPartial?: boolean } = {},
+): CorrectionResponse[] {
+  if (!Array.isArray(input)) throw new Error(allowPartial ? "Submit at least one correction." : "Enter a correction for every incorrect question.");
   const incorrect = questions.filter(item => !item.isCorrect);
-  if (input.length !== incorrect.length || new Set(input.map(item => item?.questionId)).size !== incorrect.length) {
+  const submittedIds = input.map(item => item?.questionId);
+  const uniqueSubmittedIds = new Set(submittedIds);
+  if (allowPartial) {
+    const incorrectIds = new Set(incorrect.map(item => item.question.id));
+    if (!input.length || uniqueSubmittedIds.size !== input.length || submittedIds.some(id => !incorrectIds.has(id))) {
+      throw new Error("Submit each selected correction exactly once.");
+    }
+  } else if (input.length !== incorrect.length || uniqueSubmittedIds.size !== incorrect.length) {
     throw new Error("Enter a correction for every incorrect question exactly once.");
   }
-  return incorrect.map(item => {
+  return incorrect.filter(item => uniqueSubmittedIds.has(item.question.id)).map(item => {
     const response = input.find(value => value?.questionId === item.question.id);
     const wrong = typeof response?.whyChosenIncorrect === "string" ? response.whyChosenIncorrect.trim() : "";
     const correct = typeof response?.whyCorrectAnswerCorrect === "string" ? response.whyCorrectAnswerCorrect.trim() : "";

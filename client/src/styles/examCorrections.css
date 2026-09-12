@@ -81,6 +81,14 @@
 .exam-review-tei-answers details > div { border-top: 1px solid #d4dadd; padding: 13px; line-height: 1.65; }
 .exam-review-tei-answers details > .is-incorrect { border-left: 5px solid #c8283f; background: #fff0f2; color: #7f1726; }
 .exam-review-tei-answers details > .is-correct { border-left: 5px solid #25804a; background: #eaf7ee; color: #175d34; }
+.exam-review-answer-value-list, .exam-review-tei-selection-list { display: grid; gap: 9px; }
+.exam-review-answer-value { min-width: 0; }
+.exam-review-tei-selection { display: grid; grid-template-columns: minmax(120px, .8fr) minmax(170px, 1.2fr); align-items: center; gap: 10px 14px; }
+.exam-review-tei-selection > span { min-width: 0; color: #4b565e; font-size: .76rem; font-weight: 750; line-height: 1.4; }
+.exam-review-tei-selection > strong { display: flex; min-width: 0; min-height: 38px; box-sizing: border-box; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid #aeb9c0; border-radius: 4px; background: #fff; color: #222d35; padding: 8px 10px; font-size: .82rem; font-weight: 650; line-height: 1.4; }
+.exam-review-tei-selection > strong > span:last-child { flex: 0 0 auto; color: #68767e; }
+.exam-review-tei-answers details > .is-incorrect .exam-review-tei-selection > strong { border-color: #d98a97; }
+.exam-review-tei-answers details > .is-correct .exam-review-tei-selection > strong { border-color: #80b693; }
 .exam-review-answer-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
 .exam-review-answer-comparison > section { min-width: 0; border: 1px solid; border-radius: 9px; padding: 16px; }
 .exam-review-answer-comparison h3 { font-size: .8rem; margin: 0 0 10px; }
@@ -184,6 +192,7 @@ button.exam-review-primary { background: linear-gradient(#0877dc, #0051c8); bord
   .exam-correction-question-heading { align-items: flex-start; flex-direction: column; padding: 12px; }
   .exam-correction-response-panel { padding: 18px; }
   .exam-correction-response-panel > header { align-items: flex-start; }
+  .exam-review-tei-selection { grid-template-columns: 1fr; }
   .exam-slider-labels { gap: 12px; }
   .exam-correction-work footer { align-items: stretch; flex-direction: column; }
   .exam-correction-pagination { display: grid; grid-template-columns: 1fr 1fr; }

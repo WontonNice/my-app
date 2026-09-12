@@ -3031,8 +3031,19 @@ function isAllowedEditorOrigin(origin) {
   }
 }
 
+function isCurrentEditorOrigin(request) {
+  const origin = request.headers.origin;
+  const host = request.headers.host;
+  if (!origin || !host || !isAllowedEditorOrigin(origin)) return false;
+  try {
+    return new URL(origin).host === host;
+  } catch {
+    return false;
+  }
+}
+
 function verifyEditRequest(request) {
-  if (request.headers["x-editor-token"] !== editToken) {
+  if (request.headers["x-editor-token"] !== editToken && !isCurrentEditorOrigin(request)) {
     throw new EditorError(403, "Editor token is missing or invalid.");
   }
   const origin = request.headers.origin;

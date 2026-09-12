@@ -5,7 +5,7 @@ import { createServer } from 'node:http';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-test('new exams are locked, registered, editable, unique, and protected by the editor token', async () => {
+test('new exams are locked, registered, editable, unique, and protected by editor authorization', async () => {
   const toolsRoot = dirname(fileURLToPath(import.meta.url));
   const root = resolve(toolsRoot, '..');
   const fixture = await mkdtemp(join(toolsRoot, '.exam-create-test-'));
@@ -35,6 +35,7 @@ test('new exams are locked, registered, editable, unique, and protected by the e
     });
     assert.equal((await send({ title: 'New example' }, 'invalid')).status, 403);
     assert.equal((await send({ title: 'New example' }, state.editToken, 'https://untrusted.example')).status, 403);
+    assert.equal((await send({ title: ' ' }, 'stale-token', new URL(url).origin)).status, 400);
     assert.equal((await send({ title: ' ', durationMinutes: 180 })).status, 400);
     assert.equal((await send({ title: 'Example test', durationMinutes: 0 })).status, 400);
     const created = await send({ title: 'Example new exam', durationMinutes: 90, description: 'A past paper test.' });

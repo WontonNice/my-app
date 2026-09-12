@@ -51,7 +51,7 @@ function answerIncludesChoice(answer: SelectedAnswer | undefined, choiceId: stri
 }
 
 function isStandardChoiceQuestion(question: ExamQuestion) {
-  return question.type === "multiple_choice";
+  return question.type === "multiple_choice" || question.type === "multi_select";
 }
 
 function ChoiceContent({ choice }: { choice: ExamChoice }) {
@@ -67,18 +67,32 @@ export function ExamAnswer({ question, answer }: { question: ExamQuestion; answe
   if (answer === undefined || answer === "" || Array.isArray(answer) && !answer.length || typeof answer === "object" && !Object.keys(answer).length) return <span>No answer submitted</span>;
   if (typeof answer === "string") {
     const choice = question.choices?.find(item => item.id === answer);
-    return choice ? <span><b>{choice.id}. </b><ChoiceContent choice={choice} /></span> : <ExamText text={answer} />;
+    return <div className="exam-review-answer-value">{choice ? <><b>{choice.id}. </b><ChoiceContent choice={choice} /></> : <ExamText text={answer} />}</div>;
   }
-  if (Array.isArray(answer)) return <div>{answer.map(id => {
+  if (Array.isArray(answer)) return <div className="exam-review-answer-value-list">{answer.map(id => {
     const point = question.graph?.points.find(item => item.id === id);
-    return <div key={id}>{point ? `(${point.x}, ${point.y})` : <ExamAnswer question={question} answer={id} />}</div>;
+    return <div className="exam-review-answer-value" key={id}>{point ? `(${point.x}, ${point.y})` : <ExamAnswer question={question} answer={id} />}</div>;
   })}</div>;
-  return <div>{Object.entries(answer).map(([id, value]) => {
+  return <div className="exam-review-tei-selection-list">{Object.entries(answer).map(([id, value], index) => {
     const item = question.items?.find(item => item.id === id);
     const target = question.categories?.find(item => item.id === value);
-    const option = question.dropdowns?.find(item => item.id === id)?.options.find(item => item.id === value);
+    const dropdownIndex = question.dropdowns?.findIndex(item => item.id === id) ?? -1;
+    const dropdown = dropdownIndex >= 0 ? question.dropdowns?.[dropdownIndex] : undefined;
+    const option = dropdown?.options.find(item => item.id === value);
+    const slotIndex = question.dragDropSlots?.findIndex(slot => slot.id === id) ?? -1;
     const dragItem = question.type === "math_drag_drop" ? question.items?.find(item => item.id === value) : undefined;
-    return <div key={id}><ExamText text={item?.text ?? id} html={item?.html} />: <ExamText text={target?.title ?? (option?.math ? `\\(${option.math}\\)` : option?.text) ?? dragItem?.text ?? value} html={dragItem?.html} /></div>;
+    const label = item
+      ? <ExamText text={item.text} html={item.html} />
+      : question.numberLineResponse
+        ? id === "direction" ? "Direction" : id === "endpoint" ? "Endpoint" : "Value"
+        : dropdownIndex >= 0 ? `Answer menu ${dropdownIndex + 1}`
+        : slotIndex >= 0 ? `Answer box ${slotIndex + 1}`
+        : `Answer ${index + 1}`;
+    const displayValue = target?.title ?? (option?.math ? `\\(${option.math}\\)` : option?.text) ?? dragItem?.text ?? value;
+    return <div className="exam-review-tei-selection" key={id}>
+      <span>{label}</span>
+      <strong><ExamText text={displayValue} html={dragItem?.html} /><span aria-hidden="true">▾</span></strong>
+    </div>;
   })}</div>;
 }
 
@@ -140,8 +154,8 @@ function ReviewQuestionBody({ answerPresentation, item, showAnswers, viewer }: {
     </svg>}
     {question.dropdownContent && <p><ExamText text={templateText(question, question.dropdownContent)} /></p>}
     {question.dragDropContent && <p><ExamText text={templateText(question, question.dragDropContent)} /></p>}
-    {question.type === "matrix_choice" && question.items && question.categories ? <div className="exam-matrix-choice-wrap"><table className="exam-matrix-choice-table"><thead><tr><th scope="col">{question.tableHeaders?.row ?? "Sentence"}</th>{question.categories.map(category => <th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(matrixItem => <tr key={matrixItem.id}><th scope="row"><ExamText html={matrixItem.html} text={matrixItem.text} /></th>{question.categories!.map(category => <td key={category.id}><label className="exam-matrix-choice-option"><input aria-label={`${matrixItem.text}: ${category.title}`} checked={answerPresentation === "comparison" && submittedPlacements[matrixItem.id] === category.id} disabled readOnly type="radio" /><span aria-hidden="true" /></label></td>)}</tr>)}</tbody></table></div> : null}
-    {question.choices?.length ? <div className={viewer ? "exam-choice-list exam-review-viewer-choices" : "exam-review-choices"}>{question.choices.map(choice => {
+    {answerPresentation === "comparison" && question.type === "matrix_choice" && question.items && question.categories ? <div className="exam-matrix-choice-wrap"><table className="exam-matrix-choice-table"><thead><tr><th scope="col">{question.tableHeaders?.row ?? "Sentence"}</th>{question.categories.map(category => <th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(matrixItem => <tr key={matrixItem.id}><th scope="row"><ExamText html={matrixItem.html} text={matrixItem.text} /></th>{question.categories!.map(category => <td key={category.id}><label className="exam-matrix-choice-option"><input aria-label={`${matrixItem.text}: ${category.title}`} checked={submittedPlacements[matrixItem.id] === category.id} disabled readOnly type="radio" /><span aria-hidden="true" /></label></td>)}</tr>)}</tbody></table></div> : null}
+    {question.choices?.length && (answerPresentation === "comparison" || isStandardChoiceQuestion(question)) ? <div className={viewer ? "exam-choice-list exam-review-viewer-choices" : "exam-review-choices"}>{question.choices.map(choice => {
       const submitted = highlightsChoices && !item.isCorrect && answerIncludesChoice(item.submittedAnswer, choice.id);
       const correct = highlightsChoices && showAnswers && answerIncludesChoice(correctAnswer, choice.id);
       return <div className={`${viewer ? "exam-choice" : ""}${submitted ? " is-submitted-answer" : ""}${correct ? " is-correct-answer" : ""}`} key={choice.id}>{viewer ? <span className="exam-review-choice-marker" aria-hidden="true" /> : null}<b>{choice.id}.</b><span className="exam-review-choice-content"><ChoiceContent choice={choice} /></span>{submitted ? <span className="exam-review-choice-status">Your answer</span> : null}{correct ? <span className="exam-review-choice-status">Correct answer</span> : null}</div>;

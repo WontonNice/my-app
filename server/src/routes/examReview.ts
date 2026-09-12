@@ -114,23 +114,33 @@ examReviewRouter.all("/student/:assessmentId", async (request, response) => {
     const storedSubmission = existing.data?.result && typeof existing.data.result === "object" && !Array.isArray(existing.data.result)
         ? existing.data.result as Partial<CorrectionSubmission>
         : null;
-    const existingSubmission = storedSubmission
+    const existingSubmission = storedSubmission && Array.isArray(storedSubmission.responses)
         ? { ...storedSubmission, assessmentId: assessment.id, studentId: user.id, resultVersion, questions } as CorrectionSubmission
         : null;
     if (request.method === "GET") { response.json({ result, questions, resultVersion, submission: existingSubmission }); return; }
     if (request.body?.resultVersion !== resultVersion) { response.status(409).json({ message: "The exam or your answers changed. Reload corrections before submitting." }); return; }
-    if (existing.data) { response.status(409).json({ message: "You already submitted these corrections." }); return; }
     let responses;
-    try { responses = validateCorrections(questions, request.body?.responses); }
+    try { responses = validateCorrections(questions, request.body?.responses, { allowPartial: true }); }
     catch (error) { response.status(400).json({ message: error instanceof Error ? error.message : "Complete all required fields." }); return; }
     const submittedAt = new Date().toISOString();
     if (!findAssessmentForStudent(assessment.id, getEnrolledClassIds(user.app_metadata))?.correctionsOpen) {
         response.status(403).json({ message: "Your teacher has locked corrections. Your draft is still available." }); return;
     }
-    const submission: CorrectionSubmission = { assessmentId: assessment.id, studentId: user.id, resultVersion, submittedAt, responses, questions };
-    const compactSubmission = { assessmentId: assessment.id, resultVersion, submittedAt, responses };
-    const saved = await supabase.from("student_exam_results").insert({ user_id: user.id, assessment_id: storageId, result: compactSubmission, completed_at: submittedAt, updated_at: submittedAt });
-    if (saved.error) { response.status(saved.error.code === "23505" ? 409 : 503).json({ message: saved.error.code === "23505" ? "You already submitted these corrections." : "Corrections could not be saved. Your draft is still available; try again." }); return; }
-    response.status(201).json({ submission });
+    const responseByQuestionId = new Map(
+        (existingSubmission?.responses ?? []).map(item => [item.questionId, item]),
+    );
+    responses.forEach(item => responseByQuestionId.set(item.questionId, item));
+    const questionOrder = new Map(questions.map((item, index) => [item.question.id, index]));
+    const mergedResponses = [...responseByQuestionId.values()].sort(
+        (left, right) => (questionOrder.get(left.questionId) ?? Number.MAX_SAFE_INTEGER) - (questionOrder.get(right.questionId) ?? Number.MAX_SAFE_INTEGER),
+    );
+    const submission: CorrectionSubmission = { assessmentId: assessment.id, studentId: user.id, resultVersion, submittedAt, responses: mergedResponses, questions };
+    const compactSubmission = { assessmentId: assessment.id, resultVersion, submittedAt, responses: mergedResponses };
+    const values = { result: compactSubmission, completed_at: submittedAt, updated_at: submittedAt };
+    const saved = existing.data
+        ? await supabase.from("student_exam_results").update(values).eq("user_id", user.id).eq("assessment_id", storageId)
+        : await supabase.from("student_exam_results").insert({ user_id: user.id, assessment_id: storageId, ...values });
+    if (saved.error) { response.status(503).json({ message: "Corrections could not be saved. Your draft is still available; try again." }); return; }
+    response.status(existing.data ? 200 : 201).json({ submission });
 });
 

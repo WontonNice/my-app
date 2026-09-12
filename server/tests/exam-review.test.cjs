@@ -17,6 +17,9 @@ const completeResponses = [
 test('English requires both explanations, Math requires only correct reasoning, all require integer ratings', () => {
   const questions = reviewQuestions(content, result);
   assert.equal(validateCorrections(questions, completeResponses).length, 2);
+  assert.deepEqual(validateCorrections(questions, [completeResponses[0]], { allowPartial: true }), [completeResponses[0]]);
+  assert.throws(() => validateCorrections(questions, [], { allowPartial: true }));
+  assert.throws(() => validateCorrections(questions, [completeResponses[0], completeResponses[0]], { allowPartial: true }));
   for (const change of [{ whyChosenIncorrect: ' ' }, { whyCorrectAnswerCorrect: '' }, { understanding: 0 }, { understanding: 6 }, { understanding: 2.5 }, { understanding: '4' }]) {
     assert.throws(() => validateCorrections(questions, [{ ...completeResponses[0], ...change }, completeResponses[1]]));
   }
@@ -81,18 +84,24 @@ stub('../src/lib/supabase.ts', { supabase: {
   auth: { admin: { getUserById: async id => ({ data: { user: users[id] } }) } },
   from: () => {
     let filters = [];
+    let updateValues = null;
     const query = {
       select() { return query; }, eq(key, value) { filters.push(row => row[key] === value); return query; },
       like(key, value) { filters.push(row => row[key].startsWith(value.replace(/%$/, ''))); return query; },
       gte(key, value) { filters.push(row => row[key] >= value); return query; },
       lt(key, value) { filters.push(row => row[key] < value); return query; },
       in(key, values) { filters.push(row => values.includes(row[key])); return query; },
+      update(values) { updateValues = values; return query; },
       maybeSingle() { return Promise.resolve({ data: rows.find(row => filters.every(filter => filter(row))) ?? null }); },
       insert(row) {
         if (rows.some(item => item.user_id === row.user_id && item.assessment_id === row.assessment_id)) return Promise.resolve({ error: { code: '23505' } });
         rows.push(row); return Promise.resolve({ error: null });
       },
-      then(resolve) { return Promise.resolve({ data: rows.filter(row => filters.every(filter => filter(row))), error: null }).then(resolve); },
+      then(resolve) {
+        const matching = rows.filter(row => filters.every(filter => filter(row)));
+        if (updateValues) matching.forEach(row => Object.assign(row, updateValues));
+        return Promise.resolve({ data: matching, error: null }).then(resolve);
+      },
     }; return query;
   },
 } });
@@ -109,7 +118,7 @@ async function request(user, url, method = 'GET', body) {
   return { status: response.status, data: await response.json() };
 }
 
-test('API enforces teacher-only unlocking, student ownership, locked GET/POST, validation and single submission', async () => {
+test('API enforces access and lets students submit or update one completed correction at a time', async () => {
   assert.equal((await request('none', '/student/test-exam')).status, 401);
   assert.equal((await request('student', '/teacher/test-exam/access', 'PATCH', { open: true })).status, 403);
   assert.equal((await request('student', '/student/test-exam')).status, 403);
@@ -120,16 +129,20 @@ test('API enforces teacher-only unlocking, student ownership, locked GET/POST, v
   const view = await request('student', '/student/test-exam');
   assert.equal(view.status, 200); assert.equal(view.data.questions[0].submittedAnswer, 'A');
   assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: 'old', responses: completeResponses })).status, 409);
-  assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: [completeResponses[0]] })).status, 400);
-  assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: completeResponses })).status, 201);
+  assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: [] })).status, 400);
+  assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: [completeResponses[0]] })).status, 201);
   const storedCorrection = rows.find(row => row.assessment_id.startsWith('__exam_corrections__:'));
   assert.equal(storedCorrection.result.questions, undefined);
+  assert.equal(storedCorrection.result.responses.length, 1);
   const reopened = await request('student', '/student/test-exam');
   assert.equal(reopened.data.submission.questions[1].question.id, 'math-1');
-  assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: completeResponses })).status, 409);
+  assert.equal(reopened.data.submission.responses.length, 1);
+  assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: [completeResponses[1]] })).status, 200);
+  assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: [{ ...completeResponses[0], understanding: 3 }] })).status, 200);
   assert.equal((await request('student', '/teacher/test-exam/submissions')).status, 403);
   const submissions = await request('teacher', '/teacher/test-exam/submissions');
   assert.equal(submissions.data.submissions[0].responses[1].understanding, 5);
+  assert.equal(submissions.data.submissions[0].responses[0].understanding, 3);
   assert.equal(submissions.data.submissions[0].questions[0].question.id, 'ela-1');
   await request('teacher', '/teacher/test-exam/access', 'PATCH', { open: false });
   assert.equal((await request('student', '/student/test-exam')).status, 403);
