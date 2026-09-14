@@ -1143,6 +1143,7 @@ Why D is wrong."></textarea>
         if (tag === "br") return "<br>";
         if (tag === "li") return inline ? `${content}<br>` : `<li>${content}</li>`;
         if (tag === "ul" || tag === "ol") return inline ? content : `<${tag}>${content}</${tag}>`;
+        if (/^h[1-6]$/.test(tag)) return inline ? `${content}<br>` : `<h2>${content}</h2>`;
         if (tag === "p" || tag === "div") return inline ? `${content}<br>` : `<p>${content}</p>`;
         return content;
       }
@@ -1373,6 +1374,7 @@ Why D is wrong."></textarea>
         stimulus: "",
         stimulusHtml: "",
         topic: "Conventions & Grammar",
+        versionLabel: "",
       };
       if (type === "category_sort") {
         return {
@@ -2430,10 +2432,28 @@ Rules:
       if (!passage.richText) return null;
       const wrapper = document.createElement("div");
       wrapper.innerHTML = passage.richText;
-      const blocks = Array.from(wrapper.children)
-        .filter((element) => ["DIV", "P"].includes(element.tagName))
-        .map((element) => ({ html: element.innerHTML, text: element.innerText.trim() }));
-      return blocks.length ? blocks : [{ html: wrapper.innerHTML, text: wrapper.innerText.trim() }];
+      const blocks = [];
+      let inline = "";
+      const flushInline = () => {
+        if (!inline) return;
+        const fragment = document.createElement("div");
+        fragment.innerHTML = inline;
+        if (fragment.textContent.trim()) blocks.push({ html: inline, text: fragment.textContent.trimEnd() });
+        inline = "";
+      };
+      Array.from(wrapper.childNodes).forEach((element) => {
+        if (element.nodeType !== Node.ELEMENT_NODE || !/^(DIV|P|H[1-6]|UL|OL)$/.test(element.tagName)) {
+          inline += element.nodeType === Node.TEXT_NODE ? escapeHtml(element.textContent) : element.outerHTML || "";
+          return;
+        }
+        flushInline();
+        const text = element.textContent.trimEnd();
+        const heading = /^H[1-6]$/.test(element.tagName) || (/^\s*<(strong|b)>[\s\S]*<\/\1>\s*$/i.test(element.innerHTML) && text.trim().length <= 100 && !/[.!?]$/.test(text.trim()));
+        const list = /^(UL|OL)$/.test(element.tagName);
+        blocks.push({ html: list ? element.outerHTML : element.innerHTML, text, kind: heading ? "heading" : list ? "list" : "" });
+      });
+      flushInline();
+      return blocks.length ? blocks : [{ html: wrapper.innerHTML, text: wrapper.textContent.trimEnd() }];
     }
 
     function numberRichSentences(html, firstSentenceNumber) {
@@ -2479,7 +2499,7 @@ Rules:
       const image = passage.image
         ? `<figure class="exam-passage-image"><img alt="${escapeHtml(passage.image.alt)}" src="${location.origin}${escapeHtml(passage.image.src)}">${passage.image.caption ? `<figcaption>${escapeHtml(passage.image.caption)}</figcaption>` : ""}</figure>`
         : "";
-      const text = passage.text.trim();
+      const text = passage.format === "poem" ? passage.text.replace(/^\s*\n/, "").trimEnd() : passage.text.trim();
       const richBlocks = richBlocksFromPassage(passage);
 
       if (passage.format === "poem") {
@@ -2491,7 +2511,7 @@ Rules:
               return lines.map((html) => {
                 const wrapper = document.createElement("div");
                 wrapper.innerHTML = html;
-                return { html, text: wrapper.innerText.trim() };
+                return { html, text: wrapper.textContent.trimEnd() };
               });
             })
           : (text || "Passage content has not been added for this assessment yet.")
@@ -2499,13 +2519,13 @@ Rules:
               .map((line) => ({ html: "", text: line }));
         const contentLines = sourceLines.map((line) => {
             if (!line.text.trim()) return `<p class="exam-poem-line is-spacer"><span></span><span></span></p>`;
-            const lineNumber = contentLine === 1 || contentLine % 5 === 0 ? String(contentLine) : "";
+            const lineNumber = contentLine % Math.max(1, passage.lineNumberInterval || 5) === 0 ? String(contentLine) : "";
             contentLine += 1;
             return `<p class="exam-poem-line"><span>${lineNumber}</span><span>${line.html || escapeHtml(line.text.replace(/\s+$/, ""))}</span></p>`;
           });
         return [
           blurb,
-          `<p class="exam-poem-line is-centered"><span>${escapeHtml(passage.title || "Untitled Passage")}</span></p>`,
+          `<p class="exam-poem-line is-centered is-title"><span>${escapeHtml(passage.title || "Untitled Passage")}</span></p>`,
           author,
           `<p class="exam-poem-line is-spacer"><span></span><span></span></p>`,
           ...contentLines,
@@ -2547,12 +2567,12 @@ Rules:
       const sourceParagraphs = richBlocks ?? (text || "Passage content has not been added for this assessment yet.")
         .split(/\r?\n\s*\r?\n/)
         .map((paragraph) => ({ html: "", text: paragraph }));
-      const paragraphs = sourceParagraphs.map((paragraph, index) => `
-          <p class="exam-prose-line">
-            <span>${index + 1}</span>
-            <span>${paragraph.html || escapeHtml(paragraph.text.replace(/\s+/g, " ").trim())}</span>
-          </p>
-        `);
+      let paragraphNumber = 1;
+      const paragraphs = sourceParagraphs.map((paragraph) => {
+        if (!paragraph.text.trim()) return `<p class="exam-prose-line is-spacer"></p>`;
+        const tag = paragraph.kind === "list" ? "div" : "p";
+        return `<${tag} class="exam-prose-line${paragraph.kind ? ` is-${paragraph.kind}` : ""}"${paragraph.kind === "heading" ? ' role="heading" aria-level="2"' : ""}>${paragraph.kind ? "" : `<span class="exam-paragraph-number">${paragraphNumber++}</span> `}<span>${paragraph.html || escapeHtml(paragraph.text.replace(/\s+/g, " ").trim())}</span></${tag}>`;
+      });
       return [
         blurb,
         `<p class="exam-prose-line is-title"><span>${escapeHtml(passage.title || "Untitled Passage")}</span></p>`,
@@ -3631,13 +3651,14 @@ Rules:
     function renderStandaloneList() {
       const query = $("#standalone-search").value.trim().toLowerCase();
       const matches = app.state.standaloneItems.filter((item) =>
-        `${item.prompt} ${item.stimulus || ""} ${item.topic} ${item.id}`.toLowerCase().includes(query),
+        `${item.prompt} ${item.stimulus || ""} ${item.topic} ${item.versionLabel || ""} ${item.id}`.toLowerCase().includes(query),
       );
       const items = studioUI.libraryPage(matches, "standalone", query, renderStandaloneList);
       $("#standalone-count").textContent = app.state.standaloneItems.length;
       $("#standalone-list").innerHTML = items.map((item) => `
         <button aria-current="${item.id === app.selectedStandaloneItemId}" title="${escapeHtml(item.prompt || item.id)}" class="${item.id === app.selectedStandaloneItemId ? "is-active" : ""}" data-standalone-id="${escapeHtml(item.id)}" type="button">
           <strong>${escapeHtml(item.prompt || item.id)}</strong>
+          <span class="passage-version-tag">${escapeHtml(item.versionLabel || "Original / unlabeled")}</span>
           <small>${escapeHtml(item.topic || "Uncategorized")} · ${escapeHtml(String(item.type).replaceAll("_", " "))}</small>
         </button>
       `).join("") || `<p class="field-note">No Part B questions match this search.</p>`;
@@ -3684,6 +3705,7 @@ Rules:
         stimulus: app.standaloneDraft.stimulus,
         stimulusHtml: app.standaloneDraft.stimulusHtml,
         topic: app.standaloneDraft.topic,
+        versionLabel: app.standaloneDraft.versionLabel,
       };
       markStandaloneDirty();
       renderStandaloneEditor();
@@ -3762,6 +3784,7 @@ Rules:
             <label class="field"><span>Question type</span><select id="standalone-type"><option ${isDragDrop ? "" : "selected"} value="multiple_choice">Multiple choice</option><option ${isDragDrop ? "selected" : ""} value="category_sort">Drag and drop · one answer box</option></select></label>
             <label class="field"><span>Topic</span><select data-standalone-field="topic">${topicOptions(item.topic)}</select></label>
             <label class="field"><span>Points</span><input data-standalone-field="points" min="1" type="number" value="${escapeHtml(item.points || 1)}"></label>
+            <label class="field wide"><span>Passage version <small>Teacher only</small></span><input data-standalone-field="versionLabel" value="${escapeHtml(item.versionLabel || "")}" placeholder="Version 1, Form A, 2026 edition"><small class="field-note">Use this to identify which version of the Part B sentence or paragraph this question belongs to. Students will not see it.</small></label>
             <div class="wide">
               <label class="field"><span>Question prompt</span></label>
               <div class="question-rich-toolbar">${richToolbarHtml("Format selected question text")}</div>
@@ -4002,7 +4025,7 @@ Rules:
               const item = standaloneItemById(itemId);
               return `
                 <article class="order-item">
-                  <div><strong>${escapeHtml(item?.prompt || itemId)}</strong><small>${escapeHtml(item?.topic || "Uncategorized")} · ${escapeHtml(String(item?.type || "").replaceAll("_", " "))}</small></div>
+                  <div><strong>${escapeHtml(item?.prompt || itemId)}</strong><small>${escapeHtml(item?.versionLabel || "Original / unlabeled")} · ${escapeHtml(item?.topic || "Uncategorized")} · ${escapeHtml(String(item?.type || "").replaceAll("_", " "))}</small></div>
                   <div class="order-actions">
                     <button class="icon-button" data-standalone-action="up" data-standalone-index="${index}" title="Move up" type="button">↑</button>
                     <button class="icon-button" data-standalone-action="down" data-standalone-index="${index}" title="Move down" type="button">↓</button>
@@ -4109,6 +4132,7 @@ Rules:
             return `
               <article class="passage-picker-card ${selected ? "is-selected" : ""}">
                 <strong>${selected ? "✓ " : ""}${escapeHtml(item.prompt)}</strong>
+                <span class="passage-version-tag">${escapeHtml(item.versionLabel || "Original / unlabeled")}</span>
                 <small>${escapeHtml(item.topic)} · ${escapeHtml(String(item.type).replaceAll("_", " "))}</small>
                 ${selected
                   ? `<small>Added to this test</small>`

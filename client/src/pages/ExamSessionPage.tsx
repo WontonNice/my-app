@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState, type DragEvent, type MouseEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type DragEvent, type MouseEvent, type ReactNode } from "react";
 import katex from "katex";
+import { MathEntryResponse } from "../components/MathEntryResponse";
+import { isMathAnswerComplete } from "../../../server/src/shared/mathAnswer";
 import "katex/dist/katex.min.css";
 import {
   BatteryCharging,
@@ -116,6 +118,41 @@ type BoldTextRange = {
   end: number;
   start: number;
 };
+
+function QuestionTimeTracker({
+  onElapsed,
+  questionId,
+}: {
+  onElapsed: (questionId: string, seconds: number) => void;
+  questionId: string;
+}) {
+  useEffect(() => {
+    let startedAt = document.visibilityState === "visible" ? performance.now() : null;
+    const commitElapsed = () => {
+      if (startedAt === null) return;
+      const now = performance.now();
+      const seconds = (now - startedAt) / 1000;
+      startedAt = now;
+      if (seconds > 0) onElapsed(questionId, seconds);
+    };
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        commitElapsed();
+        startedAt = null;
+      } else {
+        startedAt = performance.now();
+      }
+    };
+    const interval = window.setInterval(commitElapsed, 1_000);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      commitElapsed();
+      window.clearInterval(interval);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [onElapsed, questionId]);
+  return null;
+}
 
 function isTextEntryQuestion(question: ExamQuestion) {
   return (
@@ -416,175 +453,6 @@ function renderInteractionMath(text: string, keyPrefix: string) {
         </span>
       ));
     });
-}
-
-function MathEntryResponse({
-  layout,
-  onChange,
-  value,
-}: {
-  layout: "fraction" | "plain" | "x_equals";
-  onChange: (value: string) => void;
-  value: string;
-}) {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const numeratorRef = useRef<HTMLInputElement>(null);
-  const denominatorRef = useRef<HTMLInputElement>(null);
-  const [activePart, setActivePart] = useState<"denominator" | "numerator">("numerator");
-  const [redoValues, setRedoValues] = useState<string[]>([]);
-  const [undoValues, setUndoValues] = useState<string[]>([]);
-  const [numerator = "", denominator = ""] = layout === "fraction" ? value.split("/", 2) : ["", ""];
-
-  function commit(nextValue: string) {
-    if (nextValue === value) return;
-    setUndoValues((current) => [...current.slice(-39), value]);
-    setRedoValues([]);
-    onChange(nextValue);
-  }
-
-  function replaceActiveText(replacement: string) {
-    if (layout === "fraction") {
-      const nextNumerator = activePart === "numerator" ? `${numerator}${replacement}` : numerator;
-      const nextDenominator = activePart === "denominator" ? `${denominator}${replacement}` : denominator;
-      commit(`${nextNumerator}/${nextDenominator}`);
-      window.requestAnimationFrame(() => {
-        (activePart === "numerator" ? numeratorRef.current : denominatorRef.current)?.focus();
-      });
-      return;
-    }
-
-    const input = inputRef.current;
-    const start = input?.selectionStart ?? value.length;
-    const end = input?.selectionEnd ?? start;
-    commit(`${value.slice(0, start)}${replacement}${value.slice(end)}`);
-    window.requestAnimationFrame(() => {
-      input?.focus();
-      input?.setSelectionRange(start + replacement.length, start + replacement.length);
-    });
-  }
-
-  function moveCaret(direction: -1 | 1) {
-    const input =
-      layout === "fraction"
-        ? activePart === "numerator"
-          ? numeratorRef.current
-          : denominatorRef.current
-        : inputRef.current;
-    if (!input) return;
-    const position = Math.max(0, Math.min((input.selectionStart ?? input.value.length) + direction, input.value.length));
-    input.focus();
-    input.setSelectionRange(position, position);
-  }
-
-  function removeLastCharacter() {
-    if (layout === "fraction") {
-      const currentPart = activePart === "numerator" ? numerator : denominator;
-      const nextPart = currentPart.slice(0, -1);
-      commit(activePart === "numerator" ? `${nextPart}/${denominator}` : `${numerator}/${nextPart}`);
-      return;
-    }
-    const input = inputRef.current;
-    const start = input?.selectionStart ?? value.length;
-    const end = input?.selectionEnd ?? start;
-    if (start !== end) commit(`${value.slice(0, start)}${value.slice(end)}`);
-    else if (start > 0) commit(`${value.slice(0, start - 1)}${value.slice(end)}`);
-  }
-
-  function undo() {
-    const previous = undoValues.at(-1);
-    if (previous === undefined) return;
-    setUndoValues((current) => current.slice(0, -1));
-    setRedoValues((current) => [value, ...current].slice(0, 40));
-    onChange(previous);
-  }
-
-  function redo() {
-    const next = redoValues[0];
-    if (next === undefined) return;
-    setRedoValues((current) => current.slice(1));
-    setUndoValues((current) => [...current.slice(-39), value]);
-    onChange(next);
-  }
-
-  return (
-    <div className="exam-math-entry-response">
-      <div className={`exam-math-entry-display is-${layout}`}>
-        {layout === "x_equals" ? <span>{renderKatexExpression("x =")}</span> : null}
-        {layout === "fraction" ? (
-          <span className="exam-math-entry-fraction">
-            <input
-              aria-label="Fraction numerator"
-              inputMode="decimal"
-              onChange={(event) => onChange(`${event.target.value}/${denominator}`)}
-              onFocus={() => setActivePart("numerator")}
-              ref={numeratorRef}
-              value={numerator}
-            />
-            <span aria-hidden="true" />
-            <input
-              aria-label="Fraction denominator"
-              inputMode="decimal"
-              onChange={(event) => onChange(`${numerator}/${event.target.value}`)}
-              onFocus={() => setActivePart("denominator")}
-              ref={denominatorRef}
-              value={denominator}
-            />
-          </span>
-        ) : (
-          <input
-            aria-label="Answer"
-            inputMode="decimal"
-            onChange={(event) => onChange(event.target.value)}
-            ref={inputRef}
-            type="text"
-            value={value}
-          />
-        )}
-      </div>
-      <div aria-label="Math answer keypad" className="exam-math-keypad">
-        <div className="exam-math-keypad-tools">
-          <button aria-label="Move cursor left" onClick={() => moveCaret(-1)} type="button">←</button>
-          <button aria-label="Move cursor right" onClick={() => moveCaret(1)} type="button">→</button>
-          <button aria-label="Undo" disabled={!undoValues.length} onClick={undo} type="button">↶</button>
-          <button aria-label="Redo" disabled={!redoValues.length} onClick={redo} type="button">↷</button>
-          <button aria-label="Backspace" onClick={removeLastCharacter} type="button">⌫</button>
-          <button aria-label="Clear answer" onClick={() => commit(layout === "fraction" ? "/" : "")} type="button">⌧</button>
-        </div>
-        {[["1", "2", "3", "4", "5"], ["6", "7", "8", "9", "0"]].map((row, rowIndex) => (
-          <div className="exam-math-keypad-row" key={`keypad-row-${rowIndex}`}>
-            {row.map((key) => (
-              <button
-                key={key}
-                onMouseDown={(event) => event.preventDefault()}
-                onClick={() => replaceActiveText(key)}
-                type="button"
-              >
-                {key}
-              </button>
-            ))}
-          </div>
-        ))}
-        <div className="exam-math-keypad-row">
-          <button onClick={() => replaceActiveText("%")} type="button">%</button>
-          <button onClick={() => replaceActiveText("-")} type="button">−</button>
-          <button onClick={() => replaceActiveText(".")} type="button">.</button>
-          <button
-            aria-label="Fraction"
-            onClick={() => {
-              if (layout === "fraction") {
-                setActivePart("denominator");
-                denominatorRef.current?.focus();
-              } else replaceActiveText("/");
-            }}
-            type="button"
-          >
-            a⁄b
-          </button>
-          <button aria-label="Mixed number" onClick={() => replaceActiveText(" ")} type="button">1 a⁄b</button>
-        </div>
-      </div>
-    </div>
-  );
 }
 
 function MathDragDropResponse({
@@ -967,7 +835,7 @@ function isQuestionAnswered(question: ExamQuestion, selectedAnswers: SelectedAns
   if (isTextEntryQuestion(question)) {
     const answer = selectedAnswers[question.id];
 
-    return typeof answer === "string" && answer.trim().length > 0;
+    return typeof answer === "string" && (usesMathEntryKeypad(question) ? isMathAnswerComplete(answer) : answer.trim().length > 0);
   }
 
   return true;
@@ -1289,6 +1157,7 @@ function ExamToolbar({
               <div className="exam-session-toolbar-group exam-session-review-tools">
                 <button
                   data-tooltip="Review"
+                  aria-expanded={isReviewOpen}
                   className={`exam-session-toolbar-button is-review ${isReviewOpen ? "is-active-review" : ""}`}
                   onClick={onToggleReview}
                   type="button"
@@ -1354,6 +1223,8 @@ function ExamToolbar({
                       {filteredReviewItems.length > 0 ? (
                         filteredReviewItems.map((item) => (
                           <button
+                            aria-current={currentReviewItemId === item.id ? "step" : undefined}
+                            aria-label={item.kind === "question" ? `${item.label}, ${item.isAnswered ? "answered" : "not answered"}${item.isBookmarked ? ", bookmarked" : ""}` : item.label}
                             className={`exam-review-row ${
                               currentReviewItemId === item.id ? "is-current" : ""
                             } ${item.kind === "question" && !item.isAnswered ? "is-unanswered" : ""}`}
@@ -1507,6 +1378,8 @@ function ExamToolbar({
                 <span>{breadcrumbCurrent}</span>
               </>
             ) : null}
+            {reviewQuestionCount > 0 && <span className="exam-session-progress"><progress aria-label="Questions answered" max={reviewQuestionCount} value={reviewQuestionCount - unansweredCount} /><span>{Math.round((reviewQuestionCount - unansweredCount) / reviewQuestionCount * 100)}%</span></span>}
+            <span className="exam-unofficial-label">Nathan Tutors · Unofficial practice</span>
           </div>
           {showStatusIcon ? (
             <span className="exam-session-status-icon" aria-label="Current battery level 100%">
@@ -1559,6 +1432,13 @@ export function ExamSessionPage() {
   const finalSubmissionRef = useRef(false);
   const latestAnswersRef = useRef<SelectedAnswers>({});
   const lastAutosaveSignatureRef = useRef("");
+  const questionTimesRef = useRef<Record<string, number>>({});
+  const recordQuestionTime = useCallback((questionId: string, seconds: number) => {
+    questionTimesRef.current[questionId] = (questionTimesRef.current[questionId] ?? 0) + seconds;
+  }, []);
+  const getQuestionTimesSnapshot = useCallback(() => Object.fromEntries(
+    Object.entries(questionTimesRef.current).map(([questionId, seconds]) => [questionId, Math.max(1, Math.round(seconds))]),
+  ), []);
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -1610,7 +1490,10 @@ export function ExamSessionPage() {
             progress =
               cloudSession &&
               (!localProgress || Date.parse(cloudSession.updatedAt) >= Date.parse(localProgress.updatedAt))
-                ? cloudSession
+                ? {
+                  ...cloudSession,
+                  ...(localProgress?.questionTimes ? { questionTimes: localProgress.questionTimes } : {}),
+                }
                 : localProgress;
             savedResult =
               (cloudLearningProgress.examResults.find((candidate) => candidate.assessmentId === assessmentId) as unknown as
@@ -1627,6 +1510,7 @@ export function ExamSessionPage() {
             status: savedResult.completionStatus === "complete" ? "submitted" : "in_progress",
             submittedAt: savedResult.completedAt,
             updatedAt: savedResult.completedAt,
+            ...(savedResult.questionTimes ? { questionTimes: savedResult.questionTimes } : {}),
           };
         }
         const examContent = resolveExamContent(nextAssessment);
@@ -1665,6 +1549,9 @@ export function ExamSessionPage() {
         nextStartingSubject = openStartingSubject;
         if (progress) {
           setSelectedAnswers((progress.answers ?? {}) as SelectedAnswers);
+          if (progress.questionTimes && typeof progress.questionTimes === "object") {
+            questionTimesRef.current = Object.fromEntries(Object.entries(progress.questionTimes).filter(([, seconds]) => Number.isFinite(seconds) && seconds > 0));
+          }
           if (nextStartingSubject === "math") {
             const firstUnansweredMathIndex =
               examContent.mathSection?.questions.findIndex((question) =>
@@ -1688,8 +1575,8 @@ export function ExamSessionPage() {
   useEffect(() => {
     latestAnswersRef.current = selectedAnswers;
     if (!assessment || !studentId || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
-    saveLocalExamSession(studentId, assessment.id, selectedAnswers, completedSections);
-  }, [assessment, completedSections, isCheckingSession, isTeacherPreviewSession, selectedAnswers, sessionScreen, studentId]);
+    saveLocalExamSession(studentId, assessment.id, selectedAnswers, completedSections, "in_progress", getQuestionTimesSnapshot());
+  }, [assessment, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, selectedAnswers, sessionScreen, studentId]);
 
   useEffect(() => {
     if (!assessment || !accessToken || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
@@ -1698,6 +1585,7 @@ export function ExamSessionPage() {
     async function syncAnswers() {
       const answers = latestAnswersRef.current;
       if (autosaveInFlightRef.current || finalSubmissionRef.current) return;
+      if (studentId) saveLocalExamSession(studentId, assessmentId, answers, completedSections, "in_progress", getQuestionTimesSnapshot());
       const signature = JSON.stringify({ answers, completedSections });
       if (signature === lastAutosaveSignatureRef.current) return;
       autosaveInFlightRef.current = true;
@@ -1728,7 +1616,7 @@ export function ExamSessionPage() {
       window.clearInterval(saveInterval);
       document.removeEventListener("visibilitychange", saveWhenHidden);
     };
-  }, [accessToken, assessment, completedSections, isCheckingSession, isTeacherPreviewSession, sessionScreen]);
+  }, [accessToken, assessment, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, sessionScreen, studentId]);
 
   useEffect(() => {
     if (!timerState || timerState.pausedAt !== null) {
@@ -1909,12 +1797,7 @@ export function ExamSessionPage() {
       });
     }
 
-    const accessibleQuestionCount =
-      isFastForwardEnabled || sessionScreen === "passageEnd"
-        ? activePassageSet.questions.length
-        : sessionScreen === "passage"
-          ? activeQuestionIndex + 1
-          : 0;
+    const accessibleQuestionCount = sessionScreen === "readingDirections" ? 0 : activePassageSet.questions.length;
     activePassageSet.questions.slice(0, accessibleQuestionCount).forEach((question, questionIndex) => {
       addReviewQuestion(
         `review:passage:${activePassageSetIndex}:${questionIndex}`,
@@ -1945,11 +1828,8 @@ export function ExamSessionPage() {
       label: standaloneSection.directions.breadcrumbLabel ?? "ELA Rev/Edit B Directions",
     });
   } else if (sessionScreen === "standaloneQuestion" && standaloneSection && activeStandaloneQuestion) {
-    const firstQuestionIndex = isFastForwardEnabled ? 0 : activeStandaloneQuestionIndex;
     standaloneSection.questions
-      .slice(firstQuestionIndex, activeStandaloneQuestionIndex + 1)
-      .forEach((question, localIndex) => {
-        const questionIndex = firstQuestionIndex + localIndex;
+      .forEach((question, questionIndex) => {
         addReviewQuestion(
           `review:standalone:${questionIndex}`,
           question,
@@ -1964,11 +1844,8 @@ export function ExamSessionPage() {
       label: mathSection.directions.breadcrumbLabel ?? "Math Directions",
     });
   } else if (sessionScreen === "mathQuestion" && activeMathQuestion) {
-    const firstQuestionIndex = isFastForwardEnabled ? 0 : activeMathQuestionIndex;
     mathQuestions
-      .slice(firstQuestionIndex, activeMathQuestionIndex + 1)
-      .forEach((question, localIndex) => {
-        const questionIndex = firstQuestionIndex + localIndex;
+      .forEach((question, questionIndex) => {
         addReviewQuestion(
           `review:math:${questionIndex}`,
           question,
@@ -2029,7 +1906,7 @@ export function ExamSessionPage() {
     finalSubmissionRef.current = true;
     try {
       await autosavePromiseRef.current;
-      const result = createExamResult(examContent, answers);
+      const result = createExamResult(examContent, answers, ["english", "math"], getQuestionTimesSnapshot());
       if (accessToken && !isTeacherPreviewSession) {
         await saveCloudExamResult(
           accessToken,
@@ -2047,7 +1924,7 @@ export function ExamSessionPage() {
         }
       }
       saveExamResult(studentId, result);
-      saveLocalExamSession(studentId, result.assessmentId, answers, ["english", "math"], "submitted");
+      saveLocalExamSession(studentId, result.assessmentId, answers, ["english", "math"], "submitted", getQuestionTimesSnapshot());
       setCompletedSections(["english", "math"]);
     } catch (error) {
       finalSubmissionRef.current = false;
@@ -2065,7 +1942,7 @@ export function ExamSessionPage() {
     try {
       await autosavePromiseRef.current;
       if (!isTeacherPreviewSession) {
-        saveLocalExamSession(studentId, currentAssessmentId, selectedAnswers, nextCompletedSections);
+        saveLocalExamSession(studentId, currentAssessmentId, selectedAnswers, nextCompletedSections, "in_progress", getQuestionTimesSnapshot());
         if (accessToken) {
           await saveExamSessionProgress(accessToken, currentAssessmentId, {
             answers: selectedAnswers as Record<string, unknown>,
@@ -2074,7 +1951,7 @@ export function ExamSessionPage() {
           });
         }
 
-        const sectionResult = createExamResult(examContent, selectedAnswers, nextCompletedSections);
+        const sectionResult = createExamResult(examContent, selectedAnswers, nextCompletedSections, getQuestionTimesSnapshot());
         if (accessToken) {
           await saveCloudExamResult(
             accessToken,
@@ -2157,6 +2034,12 @@ export function ExamSessionPage() {
       clearTransientExamUi();
       setIsReviewOpen(false);
       setActiveQuestionIndex((currentIndex) => currentIndex + 1);
+      return;
+    }
+
+    if (!isFastForwardEnabled && activePassageSet.questions.some(question => !isQuestionAnswered(question, selectedAnswers))) {
+      setReviewFilter("notAnswered");
+      setIsReviewOpen(true);
       return;
     }
 
@@ -2893,6 +2776,12 @@ export function ExamSessionPage() {
       return;
     }
 
+    if (!isFastForwardEnabled && standaloneSection.questions.some(question => !isQuestionAnswered(question, selectedAnswers))) {
+      setReviewFilter("notAnswered");
+      setIsReviewOpen(true);
+      return;
+    }
+
     setSelectedCategoryItemId("");
     clearTransientExamUi();
     setActiveTool("pointer");
@@ -2903,10 +2792,6 @@ export function ExamSessionPage() {
   }
 
   function handleStandalonePrevious() {
-    if (!isFastForwardEnabled) {
-      return;
-    }
-
     clearTransientExamUi();
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
@@ -3036,14 +2921,16 @@ export function ExamSessionPage() {
       return;
     }
 
+    if (!isFastForwardEnabled && mathQuestions.some(question => !isQuestionAnswered(question, selectedAnswers))) {
+      setReviewFilter("notAnswered");
+      setIsReviewOpen(true);
+      return;
+    }
+
     finishMathSection();
   }
 
   function handleMathPrevious() {
-    if (!isFastForwardEnabled) {
-      return;
-    }
-
     clearTransientExamUi();
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
@@ -3194,7 +3081,7 @@ export function ExamSessionPage() {
           breadcrumbMiddle={mathSection.label.toUpperCase()}
           {...reviewToolbarProps}
           isNotepadOpen={isNotepadOpen}
-          isPreviousActive={isFastForwardEnabled}
+          isPreviousActive
           onNext={handleMathNext}
           onPrevious={handleMathPrevious}
           onSelectTool={handleSelectTool}
@@ -3211,7 +3098,8 @@ export function ExamSessionPage() {
           }`}
           onMouseUp={handleExamTextSelection}
         >
-          <form className="exam-standalone-panel exam-math-panel">
+          <form key={activeMathQuestion.id} className="exam-standalone-panel exam-math-panel" onSubmit={event => event.preventDefault()}>
+            <QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeMathQuestion.id} />
             {activeMathQuestion.image ? (
               <figure className="exam-question-image">
                 <img alt={activeMathQuestion.image.alt} src={activeMathQuestion.image.src} />
@@ -3273,6 +3161,7 @@ export function ExamSessionPage() {
               </label>
             ) : usesMathEntryKeypad(activeMathQuestion) ? (
               <MathEntryResponse
+                key={activeMathQuestion.id}
                 layout={activeMathQuestion.entryLayout ?? "plain"}
                 onChange={(value) => handleChangeTextEntry(activeMathQuestion.id, value)}
                 value={getTextEntryValue(selectedAnswers[activeMathQuestion.id])}
@@ -3571,7 +3460,7 @@ export function ExamSessionPage() {
           breadcrumbMiddle={standaloneSection.label.toUpperCase()}
           {...reviewToolbarProps}
           isNotepadOpen={isNotepadOpen}
-          isPreviousActive={isFastForwardEnabled}
+          isPreviousActive
           onNext={handleStandaloneNext}
           onPrevious={handleStandalonePrevious}
           onSelectTool={handleSelectTool}
@@ -3584,7 +3473,8 @@ export function ExamSessionPage() {
           className="exam-standalone-document"
           onMouseUp={handleExamTextSelection}
         >
-          <form className="exam-standalone-panel">
+          <form key={activeStandaloneQuestion.id} className="exam-standalone-panel" onSubmit={event => event.preventDefault()}>
+            <QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeStandaloneQuestion.id} />
             <h1
               className="exam-highlightable"
               data-highlight-key={`prompt:${activeStandaloneQuestion.id}`}
@@ -4092,6 +3982,8 @@ export function ExamSessionPage() {
                 isSentenceProsePassage ? "is-sentence-prose" : isProsePassage ? "is-prose" : "is-poem"
               }`}
               aria-label={activePassageSet.passage.title}
+              tabIndex={0}
+              key={activePassageSet.id}
             >
               {activePassageSet.passage.lines.filter((line) => line.kind !== "image").map((line, index) =>
                 isSentenceProsePassage && !line.text ? (
@@ -4123,6 +4015,7 @@ export function ExamSessionPage() {
                 ) : isProsePassage ? (
                   (() => {
                     const isFullWidthProseLine = Boolean(line.kind) || line.align === "center";
+                    const ProseLine = line.kind === "list" ? "div" : "p";
                     const proseLineClassName = [
                       "exam-prose-line",
                       line.kind ? `is-${line.kind}` : "",
@@ -4133,8 +4026,10 @@ export function ExamSessionPage() {
                       .join(" ");
 
                     return (
-                      <p
+                      <ProseLine
                         className={proseLineClassName}
+                        role={line.kind === "heading" ? "heading" : undefined}
+                        aria-level={line.kind === "heading" ? 2 : undefined}
                         key={`${line.lineNumber}-${line.text}-${index}`}
                       >
                         {isFullWidthProseLine ? (
@@ -4150,7 +4045,7 @@ export function ExamSessionPage() {
                           </span>
                         ) : (
                           <>
-                            {line.lineNumber ? <span>{line.lineNumber}</span> : null}
+                            {line.lineNumber ? <span className="exam-paragraph-number">{line.lineNumber}</span> : null}
                             <span
                               className="exam-highlightable"
                               data-highlight-key={`passage:${activePassageSet.id}:line-${index}`}
@@ -4163,7 +4058,7 @@ export function ExamSessionPage() {
                             </span>
                           </>
                         )}
-                      </p>
+                      </ProseLine>
                     );
                   })()
                 ) : (
@@ -4201,7 +4096,8 @@ export function ExamSessionPage() {
             </div>
           </div>
 
-          <form className="exam-question-panel">
+          <form key={activeQuestion.id} className="exam-question-panel" onSubmit={event => event.preventDefault()}>
+            <QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeQuestion.id} />
             <h1
               className="exam-highlightable"
               data-highlight-key={`prompt:${activeQuestion.id}`}
@@ -4325,6 +4221,14 @@ export function ExamSessionPage() {
               >
                 <div
                   aria-label="Answer choice bank. Drop an answer here to undo a category selection."
+                  role="group"
+                  tabIndex={0}
+                  onKeyDown={event => {
+                    if (event.target === event.currentTarget && (event.key === "Enter" || event.key === " ")) {
+                      event.preventDefault();
+                      handleCategoryBankClick(activeQuestion);
+                    }
+                  }}
                   className={`exam-category-bank ${
                     selectedCategoryItemId && activeQuestionCategoryPlacements[selectedCategoryItemId]
                       ? "is-return-target"
@@ -4369,6 +4273,15 @@ export function ExamSessionPage() {
                     return (
                       <section
                         className="exam-category-target"
+                        role="group"
+                        aria-label={`${category.title}. Select an answer, then press Enter here to place it.`}
+                        tabIndex={0}
+                        onKeyDown={event => {
+                          if (event.target === event.currentTarget && (event.key === "Enter" || event.key === " ")) {
+                            event.preventDefault();
+                            handleCategoryClick(activeQuestion, category.id);
+                          }
+                        }}
                         key={category.id}
                         onClick={() => handleCategoryClick(activeQuestion, category.id)}
                         onDragOver={(event) => event.preventDefault()}
@@ -4711,32 +4624,31 @@ export function ExamSessionPage() {
       <section className="exam-session-document" aria-labelledby="exam-session-title">
         <article className="exam-session-page">
           <header className="exam-session-page-header">
-            <p>The New York City Department of Education</p>
-            <h1 id="exam-session-title">Specialized High Schools Admissions Test</h1>
+            <p>Nathan Tutors · Unofficial practice</p>
+            <h1 id="exam-session-title">SHSAT Practice Test</h1>
             <p>Grade 8</p>
           </header>
 
           <section className="exam-session-content-block">
             <h2>General Directions</h2>
             <p>
-              This test consists of {totalExamQuestionCount} questions across two subjects, English Language Arts
-              and Mathematics.
+              This test consists of {totalExamQuestionCount} questions in {[englishQuestionCount > 0 ? "English Language Arts" : "", mathQuestionCount > 0 ? "Mathematics" : ""].filter(Boolean).join(" and ")}.
             </p>
 
             <div className="exam-session-section-list">
-              <p>
+              {englishQuestionCount > 0 && <><p>
                 <strong>PART 1 - ENGLISH LANGUAGE ARTS</strong>
                 <strong>{englishQuestionCount} QUESTIONS</strong>
               </p>
-              <p className="exam-session-question-range">Questions 1-{englishQuestionCount}</p>
+              <p className="exam-session-question-range">Questions 1-{englishQuestionCount}</p></>}
 
-              <p>
-                <strong>PART 2 - MATHEMATICS</strong>
+              {mathQuestionCount > 0 && <><p>
+                <strong>PART {englishQuestionCount > 0 ? 2 : 1} - MATHEMATICS</strong>
                 <strong>{mathQuestionCount} QUESTIONS</strong>
               </p>
               <p className="exam-session-question-range">
                 Questions {englishQuestionCount + 1}-{totalExamQuestionCount}
-              </p>
+              </p></>}
             </div>
           </section>
 
@@ -4749,8 +4661,7 @@ export function ExamSessionPage() {
                 If the timer is enabled, your session will end after {formatDuration(assessment.durationMinutes)}.
               </li>
               <li>
-                You should answer every question. For Math and Revising/Editing Part B stand-alone items, you will
-                not be able to return to a question after moving forward.
+                Answer every question. Use Previous, Next, or Review to navigate within your current passage set or section.
               </li>
               <li>
                 For each ELA passage set, you may return to questions in that set until you advance past the final

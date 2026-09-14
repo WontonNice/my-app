@@ -372,6 +372,8 @@ function requiredText(value, label, { preserve = false } = {}) {
 }
 
 const allowedRichTags = new Set([
+  "h2",
+  "h3",
   "p",
   "div",
   "br",
@@ -2484,6 +2486,9 @@ function normalizeStandaloneItem(input) {
     stimulus: requiredText(input.stimulus, "Question paragraph", { preserve: true }),
     ...(stimulusHtml ? { stimulusHtml } : {}),
     topic: requiredText(input.topic, "Question topic"),
+    ...(typeof input.versionLabel === "string" && input.versionLabel.trim()
+      ? { versionLabel: input.versionLabel.trim() }
+      : {}),
   };
 
   if (input.type === "multiple_choice") {
@@ -2551,7 +2556,7 @@ function buildStandaloneItemsSource(items) {
   return [
     'import type { ExamQuestion } from "./types";',
     "",
-    `export const standaloneItems: ExamQuestion[] = ${JSON.stringify(items, null, 2)};`,
+    `export const standaloneItems: (ExamQuestion & { versionLabel?: string })[] = ${JSON.stringify(items, null, 2)};`,
     "",
     "export function getStandaloneItemsById(ids: string[]) {",
     "  return ids.map((id) => {",
@@ -2561,7 +2566,9 @@ function buildStandaloneItemsSource(items) {
     "      throw new Error(`Unknown standalone item: ${id}`);",
     "    }",
     "",
-    "    return item;",
+    "    const studentQuestion: ExamQuestion = { ...item };",
+    "    delete (studentQuestion as ExamQuestion & { versionLabel?: string }).versionLabel;",
+    "    return studentQuestion;",
     "  });",
     "}",
     "",

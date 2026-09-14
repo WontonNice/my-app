@@ -1,4 +1,5 @@
 import type { ExamContent, ExamQuestion } from "./examTypes";
+import { isMathAnswerComplete, normalizeMathAnswer } from "./mathAnswer";
 export type CategoryPlacements = Record<string, string>;
 export type SelectedAnswer = string | string[] | CategoryPlacements;
 export type SelectedAnswers = Record<string, SelectedAnswer>;
@@ -40,11 +41,13 @@ export type ExamResult = {
   passages: ExamPassageResult[];
   percentage: number;
   questionTypes: ExamQuestionTypeResult[];
+  questionTimes?: Record<string, number>;
   source?: "digital" | "manual";
   subjects: ExamSubjectResult[];
   title: string;
   topics: ExamTopicResult[];
   total: number;
+  totalTimeSeconds?: number;
 };
 
 export function getAllExamQuestions(examContent: ExamContent) {
@@ -140,7 +143,8 @@ export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAn
 
     return (
       typeof answer === "string" &&
-      acceptedAnswers.some((acceptedAnswer) => normalizeText(answer) === normalizeText(acceptedAnswer))
+      acceptedAnswers.some((acceptedAnswer) => normalizeText(answer) === normalizeText(acceptedAnswer) ||
+        (question.type !== "short_response" && isMathAnswerComplete(answer) && normalizeMathAnswer(answer) === normalizeMathAnswer(acceptedAnswer)))
     );
   }
 
@@ -187,6 +191,7 @@ export function createExamResult(
   examContent: ExamContent,
   answers: SelectedAnswers,
   completedSections: ("english" | "math")[] = ["english", "math"],
+  questionTimes: Record<string, number> = {},
 ): ExamResult {
   const englishQuestions = [
     ...examContent.passageSets.flatMap((passageSet) => passageSet.questions),
@@ -217,6 +222,13 @@ export function createExamResult(
       total: passageScore.total,
     };
   }) : [];
+  const normalizedQuestionTimes = Object.fromEntries(questions.flatMap((question) => {
+    const seconds = questionTimes[question.id];
+    return Number.isFinite(seconds) && seconds > 0
+      ? [[question.id, Math.max(1, Math.round(seconds))] as const]
+      : [];
+  }));
+  const totalTimeSeconds = Object.values(normalizedQuestionTimes).reduce((sum, seconds) => sum + seconds, 0);
 
   return {
     answers: { ...answers },
@@ -234,6 +246,7 @@ export function createExamResult(
     percentage:
       overallScore.total > 0 ? Math.round((overallScore.correct / overallScore.total) * 100) : 0,
     questionTypes: scoreQuestionTypes(questions, answers),
+    ...(totalTimeSeconds > 0 ? { questionTimes: normalizedQuestionTimes, totalTimeSeconds } : {}),
     subjects,
     title: examContent.title,
     topics: overallScore.topics,

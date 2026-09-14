@@ -4,6 +4,7 @@ import "katex/dist/katex.min.css";
 import type { ExamChoice, ExamPassage, ExamQuestion } from "../content/exams";
 import type { SelectedAnswer } from "../lib/examResults";
 import type { ReviewQuestion } from "../../../server/src/shared/examCorrections";
+import { mathAnswerToLatex } from "../../../server/src/shared/mathAnswer";
 
 export function ExamText({ text = "", html }: { text?: string; html?: string }) {
   const markup = useMemo(() => {
@@ -67,7 +68,7 @@ export function ExamAnswer({ question, answer }: { question: ExamQuestion; answe
   if (answer === undefined || answer === "" || Array.isArray(answer) && !answer.length || typeof answer === "object" && !Object.keys(answer).length) return <span>No answer submitted</span>;
   if (typeof answer === "string") {
     const choice = question.choices?.find(item => item.id === answer);
-    return <div className="exam-review-answer-value">{choice ? <><b>{choice.id}. </b><ChoiceContent choice={choice} /></> : <ExamText text={answer} />}</div>;
+    return <div className="exam-review-answer-value">{choice ? <><b>{choice.id}. </b><ChoiceContent choice={choice} /></> : ["numeric_entry", "grid_in"].includes(question.type) ? answer.split(" or ").map((value, index) => <span key={index}>{index > 0 ? " or " : ""}<ExamText text={`\\(${mathAnswerToLatex(value).replace(/\\placeholder(?:\[[^\]]*\])?\{[^{}]*\}/g, "\\square")}\\)`} /></span>) : <ExamText text={answer} />}</div>;
   }
   if (Array.isArray(answer)) return <div className="exam-review-answer-value-list">{answer.map(id => {
     const point = question.graph?.points.find(item => item.id === id);
@@ -112,10 +113,11 @@ function ExamReviewPassage({ passage }: { passage: ExamPassage }) {
         if (format === "prose") {
           if (!line.text && !line.html) return <p aria-hidden="true" className="exam-prose-line is-spacer" key={index} />;
           const isFullWidth = Boolean(line.kind) || line.align === "center";
-          return <p className={`exam-prose-line ${line.kind ? `is-${line.kind}` : line.align === "center" ? "is-title" : ""}`} key={index}>
-            {!isFullWidth && line.lineNumber ? <span>{line.lineNumber}</span> : null}
+          const ProseLine = line.kind === "list" ? "div" : "p";
+          return <ProseLine role={line.kind === "heading" ? "heading" : undefined} aria-level={line.kind === "heading" ? 2 : undefined} className={`exam-prose-line ${line.kind ? `is-${line.kind}` : line.align === "center" ? "is-title" : ""}`} key={index}>
+            {!isFullWidth && line.lineNumber ? <span className="exam-paragraph-number">{line.lineNumber}</span> : null}
             <ExamText html={line.html} text={line.text} />
-          </p>;
+          </ProseLine>;
         }
 
         return <p className={`exam-poem-line ${line.align === "center" ? "is-centered" : ""} ${line.kind ? `is-${line.kind}` : ""} ${line.text || line.html ? "" : "is-spacer"}`} key={index}>

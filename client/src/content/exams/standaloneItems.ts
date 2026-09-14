@@ -1,6 +1,6 @@
 import type { ExamQuestion } from "./types";
 
-export const standaloneItems: ExamQuestion[] = [
+export const standaloneItems: (ExamQuestion & { versionLabel?: string })[] = [
   {
     "id": "standalone-vague-pronoun-1",
     "topic": "Pronouns",
@@ -135,6 +135,8 @@ export function getStandaloneItemsById(ids: string[]) {
       throw new Error(`Unknown standalone item: ${id}`);
     }
 
-    return item;
+    const studentQuestion: ExamQuestion = { ...item };
+    delete (studentQuestion as ExamQuestion & { versionLabel?: string }).versionLabel;
+    return studentQuestion;
   });
 }

@@ -1,22 +1,34 @@
 import { useEffect, useState } from "react";
 import { resolveExamContent, type ExamQuestion } from "../content/exams";
-import { createExamResult, type SelectedAnswer, type SelectedAnswers, type ExamResult } from "../lib/examResults";
+import { createExamResult, isExamQuestionCorrect, type SelectedAnswer, type SelectedAnswers, type ExamResult } from "../lib/examResults";
 import { enterStudentExamAnswers, getExamCorrectionSubmissions, setExamCorrectionsAccess, type AssessmentSection, type StudentProgressSnapshot, type TeacherAssessment } from "../lib/api";
 import { reviewQuestions, type CorrectionSubmission } from "../../../server/src/shared/examCorrections";
 import { ExamReviewQuestion, ExamText } from "./ExamReviewQuestion";
+
+function hasEnteredAnswer(answer: SelectedAnswer | undefined) {
+  if (typeof answer === "string") return Boolean(answer.trim());
+  if (Array.isArray(answer)) return answer.length > 0;
+  return Boolean(answer && Object.values(answer).some(value => value.trim()));
+}
+
+function AnswerFeedback({ answer, question }: { answer: SelectedAnswer | undefined; question: ExamQuestion }) {
+  const hasAnswer = hasEnteredAnswer(answer);
+  const correct = hasAnswer && isExamQuestionCorrect(question, answer);
+  return <span className={`exam-paper-answer-feedback ${hasAnswer ? correct ? "is-correct" : "is-incorrect" : "is-blank"}`}>{hasAnswer ? correct ? "Correct answer" : "Incorrect answer" : "No answer selected"}</span>;
+}
 
 function AnswerInput({ question, answer, onChange }: { question: ExamQuestion; answer?: SelectedAnswer; onChange: (value: SelectedAnswer) => void }) {
   const scalar = typeof answer === "string" ? answer : "";
   const values = answer && typeof answer === "object" && !Array.isArray(answer) ? answer : {};
   const multiple = Array.isArray(answer) ? answer : [];
   const choices = question.type === "graph_point_select" ? question.graph?.points.map(point => ({ id: point.id, text: `(${point.x}, ${point.y})` })) : question.choices;
-  if (["multiple_choice", "transition_drop"].includes(question.type)) return <select aria-label="Student answer" value={scalar} onChange={event => onChange(event.target.value)}><option value="">No answer / blank</option>{question.choices?.map(choice => <option key={choice.id} value={choice.id}>{choice.id}</option>)}</select>;
-  if (["multi_select", "graph_point_select"].includes(question.type)) return <div className="exam-answer-checkboxes">{choices?.map(choice => <label key={choice.id}><input type="checkbox" checked={multiple.includes(choice.id)} onChange={event => onChange(event.target.checked ? [...multiple, choice.id] : multiple.filter(id => id !== choice.id))} /><ExamText text={choice.text || choice.id} /></label>)}</div>;
-  if (question.type === "inline_dropdown") return <div>{question.dropdowns?.map(dropdown => <label key={dropdown.id}>{dropdown.id}<select value={values[dropdown.id] ?? ""} onChange={event => onChange({ ...values, [dropdown.id]: event.target.value })}><option value="">No answer / blank</option>{dropdown.options.map(option => <option key={option.id} value={option.id}>{option.text || option.math || option.id}</option>)}</select></label>)}</div>;
-  if (["category_sort", "matrix_choice", "table_match"].includes(question.type)) return <div>{question.items?.map(item => <label key={item.id}><ExamText text={item.text} html={item.html} /><select value={values[item.id] ?? ""} onChange={event => { const next = { ...values }; if (event.target.value) next[item.id] = event.target.value; else delete next[item.id]; onChange(next); }}><option value="">No answer / blank</option>{question.categories?.map(category => <option key={category.id} value={category.id}>{category.title}</option>)}</select></label>)}</div>;
-  if (question.type === "math_drag_drop") return <div>{question.dragDropSlots?.map(slot => <label key={slot.id}>{slot.id}<select value={values[slot.id] ?? ""} onChange={event => { const next = { ...values }; if (event.target.value) next[slot.id] = event.target.value; else delete next[slot.id]; onChange(next); }}><option value="">Not placed</option>{question.items?.map(item => <option key={item.id} value={item.id}>{item.text || item.id}</option>)}</select></label>)}</div>;
-  if (question.type === "number_line_response") return <div className="exam-paper-number-line"><label>Boundary value<input type="text" inputMode="decimal" value={values.value ?? ""} onChange={event => onChange({ ...values, value: event.target.value })} /></label><label>Direction<select value={values.direction ?? ""} onChange={event => onChange({ ...values, direction: event.target.value })}><option value="">Blank</option><option value="left">Left</option><option value="right">Right</option></select></label><label>Endpoint<select value={values.endpoint ?? ""} onChange={event => onChange({ ...values, endpoint: event.target.value })}><option value="">Blank</option><option value="open">Open</option><option value="closed">Closed</option></select></label></div>;
-  return <input aria-label="Student answer" type="text" value={scalar} placeholder="Enter the student's answer; leave empty for blank" onChange={event => onChange(event.target.value)} />;
+  if (["multiple_choice", "transition_drop"].includes(question.type)) return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div aria-label="Student answer" className="exam-paper-bubbles" role="group">{question.choices?.map(choice => { const selected = scalar === choice.id; const correctChoice = question.correctChoiceId === choice.id; return <button aria-label={`Select ${choice.id}: ${choice.text}`} aria-pressed={selected} className={`${selected ? `is-selected ${correctChoice ? "is-correct" : "is-incorrect"}` : ""}${scalar && correctChoice && !selected ? " is-answer-key" : ""}`} key={choice.id} onClick={() => onChange(choice.id)} title={choice.text} type="button">{choice.id}</button>; })}<button aria-label="Mark this question blank" aria-pressed={!scalar} className={`exam-paper-blank-bubble${!scalar ? " is-selected" : ""}`} onClick={() => onChange("")} title="Blank" type="button">—</button></div></div>;
+  if (["multi_select", "graph_point_select"].includes(question.type)) { const correct = hasEnteredAnswer(answer) && isExamQuestionCorrect(question, answer); const correctIds = question.type === "graph_point_select" ? question.correctPointIds ?? [] : question.correctChoiceIds ?? []; return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div aria-label="Student answers" className="exam-paper-bubbles is-multiple" role="group">{choices?.map(choice => { const selected = multiple.includes(choice.id); return <button aria-label={`Toggle ${choice.id}: ${choice.text}`} aria-pressed={selected} className={`${selected ? `is-selected ${correct ? "is-correct" : "is-incorrect"}` : ""}${multiple.length && correctIds.includes(choice.id) && !selected ? " is-answer-key" : ""}`} key={choice.id} onClick={() => onChange(selected ? multiple.filter(id => id !== choice.id) : [...multiple, choice.id])} title={choice.text || choice.id} type="button">{question.type === "graph_point_select" ? choice.text : choice.id}</button>; })}<button aria-label="Clear all selections" className="exam-paper-blank-bubble" onClick={() => onChange([])} title="Clear all" type="button">—</button></div></div>; }
+  if (question.type === "inline_dropdown") return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div className="exam-paper-structured">{question.dropdowns?.map(dropdown => <label key={dropdown.id}><span>{dropdown.id}</span><select value={values[dropdown.id] ?? ""} onChange={event => onChange({ ...values, [dropdown.id]: event.target.value })}><option value="">Blank</option>{dropdown.options.map(option => <option key={option.id} value={option.id}>{option.text || option.math || option.id}</option>)}</select></label>)}</div></div>;
+  if (["category_sort", "matrix_choice", "table_match"].includes(question.type)) return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div className="exam-paper-structured">{question.items?.map(item => <label key={item.id}><span><ExamText text={item.text} html={item.html} /></span><select value={values[item.id] ?? ""} onChange={event => { const next = { ...values }; if (event.target.value) next[item.id] = event.target.value; else delete next[item.id]; onChange(next); }}><option value="">Blank</option>{question.categories?.map(category => <option key={category.id} value={category.id}>{category.title}</option>)}</select></label>)}</div></div>;
+  if (question.type === "math_drag_drop") return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div className="exam-paper-structured">{question.dragDropSlots?.map(slot => <label key={slot.id}><span>{slot.id}</span><select value={values[slot.id] ?? ""} onChange={event => { const next = { ...values }; if (event.target.value) next[slot.id] = event.target.value; else delete next[slot.id]; onChange(next); }}><option value="">Not placed</option>{question.items?.map(item => <option key={item.id} value={item.id}>{item.text || item.id}</option>)}</select></label>)}</div></div>;
+  if (question.type === "number_line_response") return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div className="exam-paper-number-line"><label>Boundary value<input type="text" inputMode="decimal" value={values.value ?? ""} onChange={event => onChange({ ...values, value: event.target.value })} /></label><label>Direction<select value={values.direction ?? ""} onChange={event => onChange({ ...values, direction: event.target.value })}><option value="">Blank</option><option value="left">Left</option><option value="right">Right</option></select></label><label>Endpoint<select value={values.endpoint ?? ""} onChange={event => onChange({ ...values, endpoint: event.target.value })}><option value="">Blank</option><option value="open">Open</option><option value="closed">Closed</option></select></label></div></div>;
+  return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><input aria-label="Student answer" type="text" value={scalar} placeholder="Enter answer; leave empty for blank" onChange={event => onChange(event.target.value)} /></div>;
 }
 
 function PaperAnswerEntry({ assessment, student, accessToken, onSaved }: { assessment: TeacherAssessment; student: StudentProgressSnapshot; accessToken: string; onSaved: (result: ExamResult) => void }) {
@@ -27,44 +39,58 @@ function PaperAnswerEntry({ assessment, student, accessToken, onSaved }: { asses
     ...(content.mathSection?.questions.length ? ["math" as const] : []),
   ];
   const draftKey = `teacher-paper-answers:${assessment.id}:${student.id}`;
-  const [answers, setAnswers] = useState<SelectedAnswers>(() => { try { const value = JSON.parse(localStorage.getItem(draftKey) ?? "{}"); return value && typeof value === "object" && !Array.isArray(value) ? value : {}; } catch { return {}; } });
-  const [sections, setSections] = useState<AssessmentSection[]>(availableSections);
-  const [completedDate, setCompletedDate] = useState(() => { const now = new Date(); return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`; });
+  const existingResult = student.progress.examResults.find(item => item.assessmentId === assessment.id);
+  const existingAnswers = existingResult?.answers && typeof existingResult.answers === "object" && !Array.isArray(existingResult.answers)
+    ? existingResult.answers as SelectedAnswers
+    : {};
+  const existingSections = Array.isArray(existingResult?.completedSections)
+    ? existingResult.completedSections.filter((section): section is AssessmentSection => section === "english" || section === "math")
+    : availableSections;
+  const [answers, setAnswers] = useState<SelectedAnswers>(() => {
+    try {
+      const storedDraft = localStorage.getItem(draftKey);
+      if (!storedDraft) return existingAnswers;
+      const value = JSON.parse(storedDraft);
+      return value && typeof value === "object" && !Array.isArray(value) ? value : existingAnswers;
+    } catch { return existingAnswers; }
+  });
+  const [sections, setSections] = useState<AssessmentSection[]>(existingSections.length ? existingSections : availableSections);
+  const [completedDate, setCompletedDate] = useState(() => {
+    if (typeof existingResult?.completedAt === "string" && /^\d{4}-\d{2}-\d{2}/.test(existingResult.completedAt)) return existingResult.completedAt.slice(0, 10);
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  });
   const [confirmed, setConfirmed] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
-  const [saved, setSaved] = useState(false);
+  const [saveSucceeded, setSaveSucceeded] = useState(false);
   const allItems = reviewQuestions(content, createExamResult(content, {}, sections));
   const selectedAnswers = Object.fromEntries(allItems.filter(item => Object.hasOwn(answers, item.question.id)).map(item => [item.question.id, answers[item.question.id]]));
   const result = createExamResult(content, selectedAnswers, sections);
-  const existing = student.progress.examResults.some(item => item.assessmentId === assessment.id);
   async function save() {
-    if (!confirmed || saving || existing || saved || !sections.length) return;
-    setSaving(true); setMessage("");
+    if (!confirmed || saving || !sections.length) return;
+    setSaving(true); setMessage(""); setSaveSucceeded(false);
     try {
       const result = await enterStudentExamAnswers(accessToken, assessment.id, student.id, { answers: selectedAnswers, completedSections: sections, completedDate });
-      setSaved(true); setMessage(`Answers saved for ${student.fullName}. Score: ${result.correct}/${result.total} (${result.percentage}%).`);
+      setSaveSucceeded(true); setConfirmed(false); setMessage(`Answers saved for ${student.fullName}. Score: ${result.correct}/${result.total} (${result.percentage}%). You can continue editing and save another update.`);
       try { localStorage.removeItem(draftKey); } catch { /* The cloud result is saved. */ }
       onSaved(result);
     } catch (reason) { setMessage(reason instanceof Error ? reason.message : "Answers could not be saved."); }
     finally { setSaving(false); }
   }
-  if (saved) return <p className="exam-review-success" role="status">{message}</p>;
-  if (existing) return <p>This student already has a saved result for this exam. Select another student to enter a past test.</p>;
   return <section className="exam-paper-entry">
-    <p>Enter answers from the student's original paper. {form ? `Numbering follows ${form.label}.` : "Numbering follows the default exam order."} Empty answers count as incorrect.</p>
+    <p>{existingResult ? "Update the student's saved answers. Saving will replace the current exam result. " : "Enter answers from the student's original paper. "}{form ? `Numbering follows ${form.label}.` : "Numbering follows the default exam order."} Empty answers count as incorrect.</p>
     <fieldset disabled={saving}>
-      <label>Test date<input type="date" required value={completedDate} onChange={event => setCompletedDate(event.target.value)} /></label>
-      <div className="exam-answer-checkboxes">{availableSections.map(section => <label key={section}><input type="checkbox" checked={sections.includes(section)} onChange={event => { setSections(current => event.target.checked ? [...current, section] : current.filter(value => value !== section)); setConfirmed(false); }} />{section === "english" ? "English" : "Math"}</label>)}</div>
-      <div className="exam-paper-question-list">{allItems.map(item => <article key={item.question.id}><details><summary>{item.section === "english" ? "English" : "Math"} · Question {item.number} · View question</summary><ExamReviewQuestion item={item} showAnswers={false} /></details><AnswerInput question={item.question} answer={answers[item.question.id]} onChange={answer => {
-        const next = { ...answers, [item.question.id]: answer }; setAnswers(next); setConfirmed(false);
+      <div className="exam-paper-entry-settings"><label>Test date<input type="date" required value={completedDate} onChange={event => setCompletedDate(event.target.value)} /></label><div className="exam-answer-checkboxes">{availableSections.map(section => <label key={section}><input type="checkbox" checked={sections.includes(section)} onChange={event => { setSections(current => event.target.checked ? [...current, section] : current.filter(value => value !== section)); setConfirmed(false); }} />{section === "english" ? "English" : "Math"}</label>)}</div></div>
+      <div className="exam-paper-question-list">{allItems.map(item => <article key={item.question.id}><strong className="exam-paper-question-number"><span>{item.section === "english" ? "ELA" : "Math"}</span>{item.number}</strong><div className="exam-paper-answer-control"><AnswerInput question={item.question} answer={answers[item.question.id]} onChange={answer => {
+        const next = { ...answers, [item.question.id]: answer }; setAnswers(next); setConfirmed(false); setSaveSucceeded(false);
         try { localStorage.setItem(draftKey, JSON.stringify(next)); } catch { setMessage("Device storage is unavailable. Keep this page open until you save."); }
-      }} /></article>)}</div>
+      }} /></div><details><summary>View question</summary><ExamReviewQuestion item={item} showAnswers={false} /></details></article>)}</div>
       <div className="exam-paper-summary"><strong>Score preview: {result.correct} / {result.total} ({result.percentage}%)</strong>{result.subjects.map(subject => <span key={subject.subject}>{subject.subject}: {subject.correct} / {subject.total}</span>)}</div>
-      <label className="exam-paper-confirm"><input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} />I checked these answers against the student's paper, including any blanks.</label>
-      <button type="button" className="exam-review-primary" disabled={!confirmed || !sections.length || !completedDate || !allItems.length} onClick={save}>{saving ? "Saving…" : `Save answers for ${student.fullName}`}</button>
+      <label className="exam-paper-confirm"><input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} />I checked these answers against the student's paper, including any blanks, and understand that saving replaces the current result.</label>
+      <button type="button" className="exam-review-primary" disabled={!confirmed || !sections.length || !completedDate || !allItems.length} onClick={save}>{saving ? "Saving…" : `${existingResult ? "Update" : "Save"} answers for ${student.fullName}`}</button>
     </fieldset>
-    {message && <p role="alert" className="exam-review-error">{message}</p>}
+    {message && <p role={saveSucceeded ? "status" : "alert"} className={saveSucceeded ? "exam-review-success" : "exam-review-error"}>{message}</p>}
   </section>;
 }
 

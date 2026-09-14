@@ -35,6 +35,17 @@ test('corrections include only completed sections; unanswered questions count as
   assert.deepEqual(validateCorrections(reviewQuestions(content, correct), []), []);
 });
 
+test('digital results retain valid per-question timing for teacher analytics', () => {
+  const timed = createExamResult(content, { 'ela-1': 'B', 'math-1': '5' }, ['english', 'math'], {
+    'ela-1': 18.6,
+    'math-1': 42.2,
+    unknown: 99,
+  });
+  assert.deepEqual(timed.questionTimes, { 'ela-1': 19, 'math-1': 42 });
+  assert.equal(timed.totalTimeSeconds, 61);
+  assert.equal(createExamResult(content, {}, ['english'], {}).questionTimes, undefined);
+});
+
 test('grading supports every automatically scored interaction and rejects an empty number-line boundary', () => {
   const fixtures = [
     [english, 'B'], [math, '5'],
@@ -97,6 +108,12 @@ stub('../src/lib/supabase.ts', { supabase: {
         if (rows.some(item => item.user_id === row.user_id && item.assessment_id === row.assessment_id)) return Promise.resolve({ error: { code: '23505' } });
         rows.push(row); return Promise.resolve({ error: null });
       },
+      upsert(row) {
+        const existing = rows.find(item => item.user_id === row.user_id && item.assessment_id === row.assessment_id);
+        if (existing) Object.assign(existing, row);
+        else rows.push(row);
+        return Promise.resolve({ error: null });
+      },
       then(resolve) {
         const matching = rows.filter(row => filters.every(filter => filter(row)));
         if (updateValues) matching.forEach(row => Object.assign(row, updateValues));
@@ -149,14 +166,16 @@ test('API enforces access and lets students submit or update one completed corre
   assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: completeResponses })).status, 403);
 });
 
-test('paper-answer API grades on the server, validates dates, and protects existing results', async () => {
+test('paper-answer API grades on the server, validates dates, and replaces existing results', async () => {
   const input = { answers: { 'ela-1': 'B', 'math-1': '5' }, completedDate: '2026-09-01', completedSections: ['english', 'math'], correct: 999 };
   assert.equal((await request('student', '/teacher/test-exam/answers/other', 'POST', input)).status, 403);
   assert.equal((await request('teacher', '/teacher/test-exam/answers/outsider', 'POST', input)).status, 404);
   assert.equal((await request('teacher', '/teacher/test-exam/answers/other', 'POST', { ...input, completedDate: '2026-02-30' })).status, 400);
   assert.equal((await request('teacher', '/teacher/test-exam/answers/other', 'POST', { ...input, answers: { unknown: 'A' } })).status, 400);
   const saved = await request('teacher', '/teacher/test-exam/answers/other', 'POST', input);
-  assert.equal(saved.status, 201); assert.equal(saved.data.result.correct, 2); assert.equal(saved.data.result.source, 'manual');
-  assert.equal((await request('teacher', '/teacher/test-exam/answers/other', 'POST', input)).status, 409);
-  assert.equal((await request('teacher', '/teacher/test-exam/answers/student', 'POST', input)).status, 409);
+  assert.equal(saved.status, 200); assert.equal(saved.data.result.correct, 2); assert.equal(saved.data.result.source, 'manual');
+  const replacement = await request('teacher', '/teacher/test-exam/answers/other', 'POST', { ...input, answers: { 'ela-1': 'A', 'math-1': '5' } });
+  assert.equal(replacement.status, 200); assert.equal(replacement.data.result.correct, 1);
+  const digitalReplacement = await request('teacher', '/teacher/test-exam/answers/student', 'POST', input);
+  assert.equal(digitalReplacement.status, 200); assert.equal(digitalReplacement.data.result.source, 'manual');
 });

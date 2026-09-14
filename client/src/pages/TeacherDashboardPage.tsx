@@ -28,6 +28,7 @@ import { getDashboardPath, getUserRole } from "../lib/auth";
 import {
   createExamResult,
   getAllExamQuestions,
+  isExamQuestionCorrect,
   type ExamPassageResult,
   type ExamSubjectResult,
   type SelectedAnswers,
@@ -74,9 +75,36 @@ function questionTypeSummary(result: Record<string, unknown>) {
     return [{
       correct: value.correct,
       label: value.questionType === "transition_drop" ? "Drag and Drop" : labelFromSlug(value.questionType),
+      questionType: value.questionType,
       total: value.total,
     }];
   });
+}
+
+function topicSummary(result: Record<string, unknown>) {
+  if (!Array.isArray(result.topics)) return [];
+  return result.topics.flatMap((item) => {
+    if (!item || typeof item !== "object" || Array.isArray(item)) return [];
+    const value = item as Record<string, unknown>;
+    if (typeof value.topic !== "string" || typeof value.correct !== "number" || typeof value.total !== "number") return [];
+    return [{ correct: value.correct, label: labelFromSlug(value.topic), total: value.total }];
+  });
+}
+
+function questionTimesFromResult(result: Record<string, unknown>) {
+  if (!result.questionTimes || typeof result.questionTimes !== "object" || Array.isArray(result.questionTimes)) return {};
+  return Object.fromEntries(Object.entries(result.questionTimes as Record<string, unknown>).flatMap(([questionId, seconds]) =>
+    typeof seconds === "number" && Number.isFinite(seconds) && seconds > 0 ? [[questionId, seconds]] : [],
+  ));
+}
+
+function formatQuestionTime(value: number | undefined) {
+  if (value === undefined) return "Not recorded";
+  const seconds = Math.max(1, Math.round(value));
+  if (seconds < 60) return `${seconds}s`;
+  const minutes = Math.floor(seconds / 60);
+  const remainder = seconds % 60;
+  return remainder ? `${minutes}m ${remainder}s` : `${minutes}m`;
 }
 
 function scorePercentage(correct: number, total: number) {
@@ -313,6 +341,87 @@ function SectionScoreBreakdown({
             </div>
           </article>
         ) : null}
+      </div>
+    </section>
+  );
+}
+
+function IndividualExamAnalytics({
+  assessment,
+  result,
+  studentId,
+}: {
+  assessment: TeacherAssessment | undefined;
+  result: Record<string, unknown>;
+  studentId: string;
+}) {
+  const answers = selectedAnswersFromResult(result) ?? {};
+  const questionTimes = questionTimesFromResult(result);
+  const recordedTime = Object.values(questionTimes).reduce((sum, seconds) => sum + seconds, 0);
+  const typeScores = questionTypeSummary(result);
+  const topicScores = topicSummary(result);
+  const completedSections = Array.isArray(result.completedSections)
+    ? result.completedSections.filter((section): section is AssessmentSection => section === "english" || section === "math")
+    : result.completionStatus === "english_complete"
+      ? ["english" as const]
+      : result.completionStatus === "math_complete"
+        ? ["math" as const]
+        : ["english" as const, "math" as const];
+  const content = assessment
+    ? resolveExamContent({
+      ...assessment,
+      passageOrder: assessment.forms?.find(form => form.id === assessment.formAssignments?.[studentId])?.passageOrder,
+    })
+    : null;
+  const questionRows = content ? [
+    ...(completedSections.includes("english") ? content.passageSets.flatMap((passageSet, passageIndex) =>
+      passageSet.questions.map((question, questionIndex) => ({
+        label: `Passage ${passageIndex + 1} · Q${questionIndex + 1}`,
+        question,
+      }))) : []),
+    ...(completedSections.includes("english") ? (content.standaloneSection?.questions ?? []).map((question, questionIndex) => ({
+      label: `Revising/Editing · Q${questionIndex + 1}`,
+      question,
+    })) : []),
+    ...(completedSections.includes("math") ? (content.mathSection?.questions ?? []).map((question, questionIndex) => ({
+      label: `Math · Q${questionIndex + 1}`,
+      question,
+    })) : []),
+  ] : [];
+
+  return (
+    <section className="teacher-individual-exam-analytics" aria-label="Individual exam analytics">
+      <header>
+        <span><BarChart3 aria-hidden="true" size={16} />Individual exam analytics</span>
+        <small>{recordedTime > 0 ? `${formatQuestionTime(recordedTime)} recorded` : "Question timing unavailable"}</small>
+      </header>
+      <div className="teacher-individual-exam-analytics-body">
+        {typeScores.length ? <section>
+          <header><strong>Performance by question type</strong><span>Accuracy and average recorded time</span></header>
+          <div className="teacher-targeted-analytics-grid">{typeScores.map(item => {
+            const matchingTimes = questionRows
+              .filter(({ question }) => question.type === item.questionType)
+              .flatMap(({ question }) => questionTimes[question.id] === undefined ? [] : [questionTimes[question.id]]);
+            const averageTime = matchingTimes.length
+              ? matchingTimes.reduce((sum, seconds) => sum + seconds, 0) / matchingTimes.length
+              : undefined;
+            return <article key={item.questionType}><span>{item.label}</span><strong>{scorePercentage(item.correct, item.total)}%</strong><p>{item.correct} / {item.total} correct</p><small>Avg. time: {formatQuestionTime(averageTime)}</small></article>;
+          })}</div>
+        </section> : null}
+        {topicScores.length ? <section>
+          <header><strong>Performance by skill</strong><span>Target areas from this exam</span></header>
+          <div className="teacher-targeted-analytics-grid">{topicScores.map(item => <article key={item.label}><span>{item.label}</span><strong>{scorePercentage(item.correct, item.total)}%</strong><p>{item.correct} / {item.total} correct</p></article>)}</div>
+        </section> : null}
+        {questionRows.length ? <section>
+          <header><strong>Question details</strong><span>Timing appears only when it was recorded during a digital attempt</span></header>
+          <div className="teacher-question-analytics-table" role="table" aria-label="Question analytics">
+            <div className="teacher-question-analytics-row is-head" role="row"><span>Question</span><span>Type / skill</span><span>Result</span><span>Time</span></div>
+            {questionRows.map(({ label, question }) => {
+              const correct = isExamQuestionCorrect(question, answers[question.id]);
+              return <div className="teacher-question-analytics-row" key={question.id} role="row"><span><strong>{label}</strong><small>{question.prompt}</small></span><span><strong>{question.type === "transition_drop" ? "Drag and Drop" : labelFromSlug(question.type)}</strong><small>{labelFromSlug(question.topic)}</small></span><b className={correct ? "is-correct" : "is-incorrect"}>{correct ? "Correct" : "Incorrect"}</b><span>{formatQuestionTime(questionTimes[question.id])}</span></div>;
+            })}
+          </div>
+        </section> : <p className="teacher-score-breakdown-empty">Detailed question analytics are unavailable because this saved result does not have matching exam content.</p>}
       </div>
     </section>
   );
@@ -675,6 +784,11 @@ function getTeacherExamPreviewHref(assessmentId: string) {
   return `/exam/${encodeURIComponent(assessmentId)}/session?${params.toString()}`;
 }
 
+function getStudentExamAnalyticsHref(studentId: string, assessmentId: string) {
+  const params = new URLSearchParams({ exam: assessmentId, student: studentId });
+  return `/teacher/students?${params.toString()}`;
+}
+
 type PaperScoreDraft = Record<
   "englishCorrect" | "englishTotal" | "mathCorrect" | "mathTotal" | "title",
   string
@@ -693,16 +807,19 @@ function createPaperScoreDraft(): PaperScoreDraft {
 
 function StudentDetail({
   assessments,
+  initialAnalyticsAssessmentId,
   onAddPaperScore,
   student,
 }: {
   assessments: TeacherAssessment[];
+  initialAnalyticsAssessmentId?: string;
   onAddPaperScore: (studentId: string, input: ManualExamScoreInput) => Promise<void>;
   student: StudentProgressSnapshot;
 }) {
   const [paperScoreDraft, setPaperScoreDraft] = useState<PaperScoreDraft>(createPaperScoreDraft);
   const [paperScoreMessage, setPaperScoreMessage] = useState("");
   const [isSavingPaperScore, setIsSavingPaperScore] = useState(false);
+  const [openAnalyticsAssessmentId, setOpenAnalyticsAssessmentId] = useState(initialAnalyticsAssessmentId ?? "");
   const assessmentIds = new Set(assessments.map((assessment) => assessment.id));
   const examResults = studentExamResultsForAssessments(student, assessments);
   const resultPercentages = examResults.flatMap((result) =>
@@ -802,12 +919,13 @@ function StudentDetail({
           return (
             <article className="teacher-result-entry" key={`${assessmentId}-${index}`}>
               <div className="teacher-results-row" role="row">
-                <strong>{examValue(result, "title", assessment?.title ?? (assessmentId || "Assessment"))}<small>{result.source === "manual" ? "Paper score · Teacher entered" : examResultStatusLabel(result)}</small></strong>
+                <div className="teacher-result-title"><strong>{examValue(result, "title", assessment?.title ?? (assessmentId || "Assessment"))}</strong><small>{result.source === "manual" ? "Paper score · Teacher entered" : examResultStatusLabel(result)}</small><button aria-expanded={openAnalyticsAssessmentId === assessmentId} onClick={() => setOpenAnalyticsAssessmentId(current => current === assessmentId ? "" : assessmentId)} type="button"><BarChart3 aria-hidden="true" size={13} />{openAnalyticsAssessmentId === assessmentId ? "Hide analytics" : "View individual analytics"}</button></div>
                 <span>{typeof result.completedAt === "string" ? formatDate(result.completedAt) : "—"}</span>
                 <strong>{examValue(result, "percentage")}%</strong>
                 <span>{examValue(result, "correct")} / {examValue(result, "total")}{questionTypeSummary(result).map((item) => <small key={item.label}>{item.label}: {item.correct}/{item.total}</small>)}</span>
               </div>
               <SectionScoreBreakdown assessment={assessment} result={result} />
+              {openAnalyticsAssessmentId === assessmentId ? <IndividualExamAnalytics assessment={assessment} result={result} studentId={student.id} /> : null}
             </article>
           );
         })}
@@ -868,7 +986,7 @@ export function TeacherDashboardPage() {
   const [students, setStudents] = useState<StudentProgressSnapshot[]>(
     initialDashboardCache?.students ?? [],
   );
-  const [selectedStudentId, setSelectedStudentId] = useState("");
+  const [selectedStudentId, setSelectedStudentId] = useState(() => new URLSearchParams(window.location.search).get("student") ?? "");
   const [isCheckingSession, setIsCheckingSession] = useState(
     isSupabaseConfigured && !initialDashboardCache,
   );
@@ -1364,7 +1482,7 @@ export function TeacherDashboardPage() {
                 <span className="teacher-score-badge">{studentAverage === null ? "—" : `${studentAverage}%`}<small>avg.</small></span>
                 <ChevronDown className="teacher-roster-chevron" size={18} />
               </button>
-              {isOpen && <StudentDetail assessments={assessments} onAddPaperScore={handleAddPaperScore} student={student} />}
+              {isOpen && <StudentDetail assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={student} />}
               </div>;
             })}
             {!shsatStudents.length && <p className="teacher-empty-state">No students are enrolled in SHSAT yet.</p>}
@@ -1425,6 +1543,14 @@ export function TeacherDashboardPage() {
                 <span><small>Math</small><strong>{selectedClassInsight.math.average === null ? "—" : `${selectedClassInsight.math.average}%`}</strong></span>
               </div>
             </div>
+            <section className="teacher-individual-analytics-launcher" aria-label="Individual student exam analytics">
+              <header><div><span>Student results</span><h3>Individual exam analytics</h3></div><p>Select a student to see question results, skill and question-type performance, and recorded time per question.</p></header>
+              <div>{shsatStudents.flatMap(student => {
+                const result = student.progress.examResults.find(candidate => candidate.assessmentId === selectedClassInsight.assessmentId);
+                if (!result) return [];
+                return [<AppLink href={getStudentExamAnalyticsHref(student.id, selectedClassInsight.assessmentId)} key={student.id}><span><strong>{student.fullName}</strong><small>{examResultStatusLabel(result)}</small></span><b>{examValue(result, "percentage")}%</b><em>View analytics <ArrowUpRight aria-hidden="true" size={13} /></em></AppLink>];
+              })}</div>
+            </section>
             <div className="teacher-leaderboard-grid teacher-section-leaderboards">
               <ClassScoreLeaderboardCard leaderboard={selectedClassInsight.english} subtitle="Section ranking" />
               <ClassScoreLeaderboardCard leaderboard={selectedClassInsight.math} subtitle="Section ranking" />

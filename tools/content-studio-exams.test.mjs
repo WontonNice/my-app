@@ -21,13 +21,25 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     await cp(join(toolsRoot, 'content-topics.json'), join(fixture, 'tools/content-topics.json'));
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8'))
       .replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(fixture)};`)
-      .split('if (process.argv.includes("--validate"))')[0] + '\nexport { handleRequest, getState, savePassage, saveTest };\n';
+      .split('if (process.argv.includes("--validate"))')[0] + '\nexport { handleRequest, getState, savePassage, saveStandaloneItem, saveTest };\n';
     await writeFile(modulePath, source);
     const studio = await import(pathToFileURL(modulePath).href);
     server = createServer(studio.handleRequest);
     await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
     const url = `http://127.0.0.1:${server.address().port}/api/exams`;
     const state = await studio.getState();
+    const originalPartBItem = state.standaloneItems[0];
+    const partBVersionLabel = `Part B Form ${Date.now()}`;
+    const savedPartBItem = await studio.saveStandaloneItem({
+      item: { ...originalPartBItem, versionLabel: partBVersionLabel },
+      originalId: originalPartBItem.id,
+      sourceHash: state.standaloneSourceHash,
+    });
+    assert.equal(savedPartBItem.item.versionLabel, partBVersionLabel);
+    const standaloneSource = await readFile(join(fixture, 'client/src/content/exams/standaloneItems.ts'), 'utf8');
+    assert.match(standaloneSource, /versionLabel\?: string/);
+    assert.match(standaloneSource, new RegExp(`"versionLabel": "${partBVersionLabel}"`));
+    assert.match(standaloneSource, /delete \(studentQuestion as ExamQuestion & \{ versionLabel\?: string \}\)\.versionLabel/);
     const send = (body, token = state.editToken, origin = '') => fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-editor-token': token, ...(origin ? { origin } : {}) },

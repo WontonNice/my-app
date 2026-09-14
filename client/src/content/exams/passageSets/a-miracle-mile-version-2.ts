@@ -9,7 +9,7 @@ const aMiracleMileVersion2Questions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The words “feat,” “humanly impossible,” and “impenetrable barrier” in paragraph 1 affect the tone of the paragraph because they",
     "promptHtml": "The words “feat,” “humanly impossible,” and “impenetrable barrier” in paragraph&nbsp;1 affect the tone of the paragraph because they",
-    "topic": "Central Idea & Theme",
+    "topic": "Tone & Mood",
     "choices": [
       {
         "id": "A",
@@ -71,7 +71,7 @@ const aMiracleMileVersion2Questions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence best supports the idea that Bannister needed an alternative to “logical planning” in order to accomplish his goal?",
     "promptHtml": "Which sentence best supports the idea that Bannister needed an alternative to “logical planning” in order to accomplish his goal?",
-    "topic": "Central Idea & Theme",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -102,7 +102,7 @@ const aMiracleMileVersion2Questions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence from the passage indicates that Bannister nearly made a mistake that would have cost him the world record?",
     "promptHtml": "Which sentence from the passage indicates that Bannister nearly made a mistake that would have cost him the world record?",
-    "topic": "Central Idea & Theme",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -133,7 +133,7 @@ const aMiracleMileVersion2Questions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Bannister’s loss in the 1952 Olympics influenced his decision to pursue breaking the four-minutemile barrier by",
     "promptHtml": "Bannister’s loss in the 1952 Olympics influenced his decision to pursue breaking the four-minutemile barrier by",
-    "topic": "Central Idea & Theme",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -164,7 +164,7 @@ const aMiracleMileVersion2Questions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How did interval training affect Bannister’s performance?",
     "promptHtml": "How did interval training affect Bannister’s performance?",
-    "topic": "Central Idea & Theme",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -195,7 +195,7 @@ const aMiracleMileVersion2Questions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the author’s use of chronological structure contribute to the development of ideas in the passage?",
     "promptHtml": "How does the author’s use of chronological structure contribute to the development of ideas in the passage?",
-    "topic": "Central Idea & Theme",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -225,6 +225,7 @@ const aMiracleMileVersion2Questions: ExamQuestion[] = [
 
 export const aMiracleMileVersion2PassageSet: ExamPassageSet = {
   id: "ela-a-miracle-mile-version-2",
+  section: "reading",
   questionCount: aMiracleMileVersion2Questions.length,
   directions: {
   "subject": "English Language Arts",

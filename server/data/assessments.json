@@ -1443,13 +1443,14 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-09-11T15:56:21.577Z",
-    "updatedAt": "2026-09-12T09:28:20.983Z",
+    "updatedAt": "2026-09-14T03:37:39.414Z",
     "passages": [
       {
         "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil",
         "imageUrl": "",
         "text": "The complete passage is provided by the registered exam content.",
-        "title": "Excerpt from “It’s Time to Stop Thinking That All Non-Native Species Are Evil”"
+        "title": "Excerpt from “It’s Time to Stop Thinking That All Non-Native Species Are Evil”",
+        "versionLabel": "2025-2026 Form B"
       },
       {
         "id": "a-miracle-mile-version-2",
@@ -1463,6 +1464,34 @@
         "imageUrl": "",
         "text": "The complete passage is provided by the registered exam content.",
         "title": "Excerpt from In Search of the Unknown",
+        "versionLabel": "2025-2026 Form B"
+      },
+      {
+        "id": "at-dusk-2025-2026-form-b",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "At Dusk",
+        "versionLabel": "2025-2026 Form B"
+      },
+      {
+        "id": "using-fire-to-keep-a-prairie-healthy",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Using Fire to Keep a Prairie Healthy",
+        "versionLabel": "2025-2026 Form B"
+      },
+      {
+        "id": "letter-from-brooklyn-2025-2026-form-b",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Letter from Brooklyn",
+        "versionLabel": "2025-2026 Form B"
+      },
+      {
+        "id": "the-end-of-an-era",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "The End of an Era",
         "versionLabel": "2025-2026 Form B"
       }
     ],
@@ -1725,6 +1754,531 @@
         "points": 1,
         "prompt": "How does the exchange between the professor and the narrator in paragraphs 8–11 contribute to the development of the characters?",
         "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "flustered by the professor’s criticism of his logic.",
+          "annoyed by the professor’s sarcasm about his inexperience.",
+          "confused by the professor’s lack of respect for his opinion.",
+          "frustrated by the professor’s lack of interest in his theory."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The professor’s observations in paragraphs 15–17 create tension in the excerpt by causing the narrator to feel",
+        "topic": "Tone & Mood",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It illustrates the professor’s patience as the narrator argues against making the expedition.",
+          "It reveals the narrator’s frustration with his limited role in making decisions for the zoological society.",
+          "It emphasizes the professor’s desire to acquire new specimens for the zoological society at any cost.",
+          "It shows the narrator’s acceptance of his assignment despite his personal objections."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the interaction between the narrator and the professor in paragraphs 26–28 contribute to the development of the theme?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“I believe now that Professor Farrago perfectly interpreted my thoughts, but he betrayed neither resentment nor impatience.” (paragraph 25)",
+          "“Together we made out a list of articles necessary for me and itemized the expenses I might incur, and I set a date for my return, allowing no margin for a successful termination to the expedition.” (paragraph 26)",
+          "“ ‘What I want you to do is to get those birds here safely.’ ” (paragraph 27)",
+          "“ ‘I can’t get away from the idea that we are on the eve of acquiring the rarest of living creatures.’ ” (paragraph 33)"
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt best explains why the professor is eager to send the narrator on an expedition?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It shows that the narrator is beginning to consider the possibility of finding the great auks.",
+          "It demonstrates that the narrator is struggling to understand why the professor thinks the great auks exist.",
+          "It establishes that the narrator is willing to let the professor overrule him about the great auks.",
+          "It emphasizes that the narrator feels a sense of urgency to complete the expedition to locate the great auks."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does paragraph 34 help develop the plot of the excerpt?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "“He disengaged the sheet of paper and handed it to me.” (paragraph 4)",
+          "“Clearly, Professor Farrago was on the verge of dotage—ah, what a loss to the world!” (paragraph 24)",
+          "“I drew a chair up beside his desk—there was nothing to do but to obey, and this fool’s errand was none of my conceiving.” (paragraph 25)",
+          "“ ‘Very well,’ said Professor Farrago, good-humoredly, ‘you shall have all the assistance you may require.’ ” (paragraph 29)"
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence best demonstrates the professional relationship between the narrator and the professor?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "by providing both the narrator’s and professor’s thoughts on how age and experience influence each other’s reasoning",
+          "by using the conversation between the narrator and the professor to emphasize their reactions to the letter",
+          "by describing the professor’s persistent efforts to change the narrator’s mind about the letter",
+          "by including dialogue that explains why the professor is the supervisor and the narrator is his subordinate"
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-9",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the author develop the contrast between the narrator’s point of view and the professor’s point of view?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“At first I think she is calling a child, / my neighbor” (lines 1–2)",
+          "“the high-pitched wheedling we send out / to animals who know only sound” (lines 5–6)",
+          "“I listen as my neighbor’s voice trails off. / She’s given up calling for now” (lines 20–21)",
+          "“left me to wonder that I too might lift / my voice, sure of someone out there” (lines 25–26)"
+        ],
+        "id": "at-dusk-2025-2026-form-b-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which lines from the poem best support the idea that the neighbor’s efforts to call the cat home directly affect the speaker?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "demonstrating how people try to communicate in familiar ways but are still sometimes misunderstood.",
+          "showing how people can feel desperate to connect with others but give up quickly when their first attempts are ignored.",
+          "using the unspoken bond between the neighbor and her cat to highlight the understanding people have with their pets.",
+          "illustrating the use of a simple expression to call home those who are loved and missed."
+        ],
+        "id": "at-dusk-2025-2026-form-b-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The isolation of the words “—here here—” in line 7 contributes to the meaning of the poem mainly by",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "showing that returning home after experiencing independence is challenging.",
+          "suggesting that caring for others means allowing them to grow and to roam freely.",
+          "implying that expecting to feel at home in the natural world leads to disappointment.",
+          "emphasizing the conflicting desires to return to the familiar and to explore the unknown."
+        ],
+        "id": "at-dusk-2025-2026-form-b-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The details in lines 10–17 about the cat convey a central idea of the poem by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "highlighting the cat’s lack of concern for the neighbor.",
+          "implying that the speaker finds the cat’s current situation interesting.",
+          "suggesting that the cat is compelled by its sense of wonder to remain outdoors.",
+          "indicating that the speaker supports the cat’s decision to ignore the neighbor."
+        ],
+        "id": "at-dusk-2025-2026-form-b-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The phrases “luminous possibility” and “all that would keep her / away from home” (lines 17–19) affect the poem by",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "The cat lacks a preference for going in or staying out.",
+          "The cat is eager to see what will happen next.",
+          "The cat wants to understand the unpredictable behavior of the fireflies.",
+          "The cat is fascinated by the natural world and finds the indoors unremarkable."
+        ],
+        "id": "at-dusk-2025-2026-form-b-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 11–13 from the poem.\ntoward the voice, then back\nto the constellation of fireflies flickering\nnear her head\nWhich idea from the poem does the imagery in these lines help convey?",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It enables the speaker to regularly overhear the neighbor calling for her cat at dusk.",
+          "It allows the speaker to observe the neighbor quietly without interacting with her.",
+          "It shows how living in close proximity helps the speaker feel connected to the neighbor.",
+          "It shows how feeling isolated causes the speaker to imagine interactions with the neighbor."
+        ],
+        "id": "at-dusk-2025-2026-form-b-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the setting affect the events of the poem?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "exploration of the desires of the speaker and the neighbor.",
+          "speaker’s observations of the sights and sounds in the neighborhood.",
+          "speculations the speaker makes about what the neighbor does inside her house.",
+          "speaker’s explanation of the cat’s thoughts and actions."
+        ],
+        "id": "at-dusk-2025-2026-form-b-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The poet develops a theme about making connections with others mainly through the",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "by drawing animals in to the area to feed on the new growth sprouting from the burned land",
+          "by destroying tall trees and reducing the shade that had hindered the growth of planted crops",
+          "by burning off excess vegetation and increasing the availability of nutrients for the remaining plants",
+          "by causing changes to the bison’s migration habits as bison herds fled from the wildfires on the prairie"
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "According to the passage, how did fires started by natural causes prompt American Indians to begin practicing controlled burns?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "ensuring that the animals’ main food source has the conditions needed for it to thrive.",
+          "endangering the animals that live near the trees scheduled for removal.",
+          "making sure that the water supply for the animals is sufficient.",
+          "reducing the animals’ natural source of shade and protection from the elements."
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Targeting red cedar trees in controlled burns affects the animals that live on the prairie mostly by",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "the conservationists are better qualified to lead preservation efforts than farmers are.",
+          "the conservationists are eager to involve others in the preservation of the prairie.",
+          "the conservationists’ efforts will restore the original beauty and biodiversity of the region.",
+          "the conservationists’ training program should serve as a model for other conservation organizations."
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 6.\nThe patch-burn system is so successful that the conservationists at the preserve provide training to prairie farmers about conducting controlled burns on their own land.\nThe author includes this sentence to show that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "the explanation that conservationists use the alternating burn pattern of the patch-burn method in order to allow the animals in the area to avoid the fire",
+          "the information that conservationists evaluate which land would most benefit from a controlled burn before applying the patch-burn method",
+          "the information that conservationists have determined that the patch-burn method has promoted the growth of species that were at risk of being crowded out",
+          "the explanation that conservationists are able to control the fire in the patch-burn method by arranging separate burns across the designated portion of land"
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which details from the passage best convey the central idea that using the patch-burn method is an effective way to protect and manage prairie land?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "“While one of the greatest threats to the prairie is wildfire, the use of controlled fires is actually an effective way to protect this idyllic landscape.” (paragraph 1)",
+          "“The American Indian people began to deliberately burn areas of land for bison to graze on, which enticed the herds away from the people’s crops.” (paragraph 2)",
+          "“This patch burning contains the fire within a specific area and allows animals in the burn area to safely relocate.” (paragraph 5)",
+          "“The following year, conservationists will burn a different section of the preserve, while the land burned the previous year regrows healthier than before.” (paragraph 5)"
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence supports the idea that farmers and people who manage land may be concerned about using fire as a way to benefit the land?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "the safest methods are sometimes the least effective at solving complex challenges.",
+          "thorough investigation of uncommon methodologies can lead to beneficial results.",
+          "detailed planning can ensure that a potentially destructive action has a positive impact.",
+          "plans that entail a certain amount of risk almost always result in success."
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 6.\nBurning land to make it healthy may seem counterintuitive, but strategic controlled fires have helped the prairie sustain life for hundreds of years and, with careful management, will continue to do so.\nThe words “counterintuitive” and “strategic” in the sentence convey the idea that",
+        "topic": "Word & Phrase Meaning",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It is important to explain the purposes and the risks of controlled burns to the people living near a proposed burn area.",
+          "It is necessary to thoroughly examine a particular region in order to plan and execute a successful controlled burn.",
+          "Monitoring animals’ reactions after a controlled burn on the prairie is a minor part of scientists’ research.",
+          "Conservationists should consider the helpful aspects of invasive species before executing a controlled burn."
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "With which statement would the author most likely agree?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "by depicting how the landscape in a given area changes as the patch-burn method is applied",
+          "by indicating that patch-burn fires are best suited for use in areas with certain features",
+          "by revealing that the patch-burn method is used primarily on uninhabited areas of land",
+          "by comparing the size of the area burned by the patch-burn method with that of unburned areas"
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How do the diagram and its text provide additional support for the topic presented in the passage?",
+        "topic": "Tone & Mood",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "The lack of a rhyming pattern suggests that the beauty of each passing day is unique.",
+          "The lengths of the sentences represent the complexity of the thoughts being represented.",
+          "The use of complete sentences implies the speaker’s appreciation for the clear beginning and ending of each season.",
+          "The single long stanza reflects the continuous flow of the speaker’s thoughts."
+        ],
+        "id": "letter-from-brooklyn-2025-2026-form-b-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the structure of the poem affect the poem’s meaning?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "“as though the air has been forced into intimacy / by the brevity of daylight.” (lines 11–12)",
+          "“But when it starts darkening at 4, / this closeness, I know, will be a felt distance,” (lines 13–14)",
+          "“like someone drawing your attention / to their lack of intimacy.” (lines 15–16)",
+          "“These days I am still walking . . . / beneath the branches bending across avenues,” (lines 17–18)"
+        ],
+        "id": "letter-from-brooklyn-2025-2026-form-b-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which lines support the idea that a change in the weather will lessen the speaker’s appreciation for the city?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "They highlight a contrast between the different seasons.",
+          "They show the sequence of the changes that are expected to occur.",
+          "They warn about a problem that requires thoughtful preparation.",
+          "They emphasize the importance of valuing the present."
+        ],
+        "id": "letter-from-brooklyn-2025-2026-form-b-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 5–6 from the poem.\nThe weather will turn cold.\nBut that all happens later.\nHow do the lines develop a central theme of the poem?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "the beauty of the current season should still be appreciated.",
+          "the changes in the weather signify the end of the most pleasant season.",
+          "the transition from one season to another happens swiftly and without warning.",
+          "the change in the weather is so subtle that people rarely observe or feel it."
+        ],
+        "id": "letter-from-brooklyn-2025-2026-form-b-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 7–9 from the poem.\nFor now it is the early edge of fall,\nleaves green still while the air narrows,\nis slightly crisp,\nThe word choice in the lines helps convey the speaker’s belief that",
+        "topic": "Tone & Mood",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "showing that the cool weather makes the speaker reflect more deeply on life.",
+          "suggesting that the speaker feels uncomfortable with what the coming weather signifies.",
+          "implying that the sensations the speaker experiences during the fall season are fleeting.",
+          "suggesting that the thought of fall approaching increases the loneliness the speaker feels."
+        ],
+        "id": "letter-from-brooklyn-2025-2026-form-b-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The details in lines 9–12 convey a central idea of the poem by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It reveals that some people are still influenced by powerful images from childhood.",
+          "It indicates that the neighborhood the speaker is walking through is charming and appealing.",
+          "It suggests that the speaker has wanted to live in the neighborhood since childhood.",
+          "It suggests that people often experience lingering regret from their past."
+        ],
+        "id": "letter-from-brooklyn-2025-2026-form-b-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which idea does the comparison of the brownstone houses to “a pop-up picture book I could have had as a child, / but didn’t” in lines 20–21 convey?",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "suggesting the speaker’s desire to find a way to break free from the repetitive pattern of daily life.",
+          "revealing the speaker’s feelings of disappointment over the predictable change in season.",
+          "emphasizing the speaker’s awareness of the future significance of the present moment in the setting.",
+          "showing the speaker’s anticipation of specific emotions caused by an intimate knowledge of the setting."
+        ],
+        "id": "letter-from-brooklyn-2025-2026-form-b-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read these lines from the poem.\nI can already see how this will end. (line 1)\nHow Brooklyn makes me nostalgic\nfor the moment I am walking inside of. (lines 21–22)\nThe lines develop a central idea of the poem by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "although people may hold expectations for the future, some people long for present experiences while they are still happening.",
+          "though people come from different places, most people feel drawn to the special charm a city holds.",
+          "although people can make decisions about their life, there will always be some things beyond their control.",
+          "though general expectations exist, people have no way of knowing what a given day will actually bring."
+        ],
+        "id": "letter-from-brooklyn-2025-2026-form-b-9",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The speaker’s thoughts throughout the poem develop a theme by showing that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "providing details about the speaker’s longing to be in a different place.",
+          "showing the speaker’s sense of unease about the passing seasons.",
+          "including details about the speaker’s hope that life will remain unchanged.",
+          "showing the speaker’s desire to treasure and appreciate the changes taking place."
+        ],
+        "id": "letter-from-brooklyn-2025-2026-form-b-10",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The poet develops the speaker’s point of view by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Despite the challenges of operating on the surface of another planet, the Opportunity rover made many valuable contributions to the field of space research.",
+          "The Opportunity rover mission was a success because it informed NASA scientists about how water might have existed on Mars.",
+          "Throughout the historic mission of the Opportunity rover, NASA scientists had to overcome challenges created by the flaws in the rover’s design.",
+          "The Opportunity rover mission surpassed the original timeline of the assignment and allowed scientists to collect additional data about the planet Mars."
+        ],
+        "id": "the-end-of-an-era-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence should follow sentence 3 to best introduce the topic of the passage?",
+        "topic": "Revising & Editing",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Overall,",
+          "Furthermore,",
+          "Meanwhile,",
+          "Consequently,"
+        ],
+        "id": "the-end-of-an-era-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which word should be added to the beginning of sentence 8 to provide a better transition to the third paragraph (sentences 8–11)?",
+        "topic": "Revising & Editing",
+        "type": "transition_drop"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "However, in 2018, a dust storm covered the planet, bringing the rover’s progress to a standstill.",
+          "However, in 2018, a dust storm shrouded the planet, impermanently halting the rover’s progress.",
+          "However, in 2018, a dust storm enveloped the whole of the planet, arresting the rover’s progress for a time.",
+          "However, in 2018, a dust storm covered up the whole planet, which quickly brought a stop to the progress of the rover."
+        ],
+        "id": "the-end-of-an-era-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision of sentence 11 best maintains the formal style established in the passage?",
+        "topic": "Revising & Editing",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "between sentences 2 and 3",
+          "at the beginning of the second paragraph (before sentence 4)",
+          "at the end of the second paragraph (after sentence 7)",
+          "between sentences 8 and 9"
+        ],
+        "id": "the-end-of-an-era-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence.\nOne of Opportunity’s major contributions was finding possible evidence of the presence of water on Mars.\nWhere should the sentence be added to the passage?",
+        "topic": "Revising & Editing",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Preventing the rover from charging its batteries, minor dust storms had periodically deposited a layer of dust onto the solar panels of the rover prior to this planet-wide dust storm.",
+          "Periodically depositing a layer of dust onto the solar panels of the rover prior to this planet-wide dust storm, minor dust storms had prevented it from charging its batteries.",
+          "Minor dust storms, prior to this planet-wide dust storm, prevented the rover from charging its batteries because they had periodically deposited a layer of dust onto the solar panels of the rover.",
+          "Prior to this planet-wide dust storm, minor dust storms had periodically deposited a layer of dust onto the solar panels of the rover, preventing it from charging its batteries."
+        ],
+        "id": "the-end-of-an-era-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the best way to combine sentences 12 and 13?",
+        "topic": "Revising & Editing",
         "type": "multiple_choice"
       }
     ],

@@ -31,12 +31,16 @@ export function saveLocalExamSession(
   answers: SelectedAnswers,
   completedSections: ExamSection[],
   status: ExamSessionProgress["status"] = "in_progress",
+  questionTimes?: Record<string, number>,
 ) {
   const savedAt = new Date().toISOString();
   const existing = loadLocalExamSession(userId, assessmentId);
   const progress: ExamSessionProgress = {
     answers: { ...(existing?.answers ?? {}), ...answers },
     completedSections: [...new Set(completedSections)],
+    ...((questionTimes && Object.keys(questionTimes).length) || existing?.questionTimes
+      ? { questionTimes: { ...(existing?.questionTimes ?? {}), ...(questionTimes ?? {}) } }
+      : {}),
     status,
     ...(status === "submitted" ? { submittedAt: savedAt } : {}),
     updatedAt: savedAt,

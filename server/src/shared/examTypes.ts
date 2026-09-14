@@ -24,7 +24,7 @@ export type ExamPassageLine = {
   align?: "left" | "center";
   html?: string;
   image?: ExamQuestionImage;
-  kind?: "intro" | "title" | "byline" | "image";
+  kind?: "intro" | "title" | "byline" | "heading" | "list" | "image";
   lineNumber?: string;
   text: string;
 };

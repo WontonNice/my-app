@@ -84,14 +84,12 @@ examReviewRouter.post("/teacher/:assessmentId/answers/:studentId", async (reques
     }
     result.source = "manual";
     result.completedAt = `${completedDate}T12:00:00.000Z`;
-    // Insert only: entering a past test must never replace existing student work.
-    const progress = await getDatabaseProgress(student);
-    if (progress.examResults.some(item => item.assessmentId === assessment.id)) {
-        response.status(409).json({ message: "This student already has a result for this exam. Existing answers were kept." }); return;
-    }
-    const saved = await supabase.from("student_exam_results").insert({ user_id: student.id, assessment_id: assessment.id, result, completed_at: result.completedAt, updated_at: new Date().toISOString() });
-    if (saved.error) { response.status(saved.error.code === "23505" ? 409 : 503).json({ message: saved.error.code === "23505" ? "This student already has a result for this exam." : "Answers could not be saved. Try again." }); return; }
-    response.status(201).json({ result });
+    const saved = await supabase.from("student_exam_results").upsert(
+        { user_id: student.id, assessment_id: assessment.id, result, completed_at: result.completedAt, updated_at: new Date().toISOString() },
+        { onConflict: "user_id,assessment_id" },
+    );
+    if (saved.error) { response.status(503).json({ message: "Answers could not be saved. Try again." }); return; }
+    response.json({ result });
 });
 
 examReviewRouter.all("/student/:assessmentId", async (request, response) => {

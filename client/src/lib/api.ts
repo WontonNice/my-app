@@ -679,6 +679,7 @@ export async function registerStudent(input: RegisterStudentInput) {
 export type ExamSessionProgress = {
     answers: Record<string, unknown>;
     completedSections: ("english" | "math")[];
+    questionTimes?: Record<string, number>;
     status: "in_progress" | "submitted";
     submittedAt?: string;
     updatedAt: string;

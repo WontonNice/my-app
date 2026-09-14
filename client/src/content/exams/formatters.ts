@@ -18,6 +18,7 @@ type PlainTextPassageInput = {
 
 type RichTextBlock = {
   html: string;
+  kind?: "heading" | "list";
   text: string;
 };
 
@@ -45,14 +46,28 @@ function plainTextFromHtml(value: string) {
 function richTextBlocks(value: string): RichTextBlock[] {
   const blocks: RichTextBlock[] = [];
   const normalized = value.trim();
-  const blockPattern = /<(p|div)>([\s\S]*?)<\/\1>/gi;
+  const blockPattern = /<(p|div|h[1-6]|ul|ol)(?:\s[^>]*)?>([\s\S]*?)<\/\1>/gi;
+  let cursor = 0;
   for (const match of normalized.matchAll(blockPattern)) {
-    blocks.push({ html: match[2], text: plainTextFromHtml(match[2]).trim() });
+    const prefix = normalized.slice(cursor, match.index);
+    if (plainTextFromHtml(prefix).trim()) blocks.push({ html: prefix, text: plainTextFromHtml(prefix).trimEnd() });
+    const tag = match[1].toLowerCase();
+    const text = plainTextFromHtml(match[2]).trimEnd();
+    const isHeading = /^h[1-6]$/.test(tag) || (
+      /^\s*<(strong|b)>[\s\S]*<\/\1>\s*$/i.test(match[2]) && text.trim().length <= 100 && !/[.!?]$/.test(text.trim())
+    );
+    const isList = tag === "ul" || tag === "ol";
+    blocks.push({ html: isList ? match[0] : match[2], text, ...(isHeading ? { kind: "heading" } : isList ? { kind: "list" } : {}) });
+    cursor = match.index + match[0].length;
   }
-  if (blocks.length) return blocks;
+  if (blocks.length) {
+    const suffix = normalized.slice(cursor);
+    if (plainTextFromHtml(suffix).trim()) blocks.push({ html: suffix, text: plainTextFromHtml(suffix).trimEnd() });
+    return blocks;
+  }
   return normalized.split(/<br\s*\/?>/gi).map((html) => ({
     html,
-    text: plainTextFromHtml(html).trim(),
+    text: plainTextFromHtml(html).trimEnd(),
   }));
 }
 
@@ -60,7 +75,7 @@ function richTextLines(value: string): RichTextBlock[] {
   return richTextBlocks(value).flatMap((block) => {
     const lines = block.html.split(/<br\s*\/?>/gi);
     if (lines.length > 1 && !lines.at(-1)) lines.pop();
-    return lines.map((html) => ({ html, text: plainTextFromHtml(html).trim() }));
+    return lines.map((html) => ({ html, text: plainTextFromHtml(html).trimEnd() }));
   });
 }
 
@@ -126,7 +141,7 @@ export function createPlainTextPassage({
   passageLines.push({ text: "" });
 
   let contentLineNumber = 1;
-  const normalizedText = text.trim();
+  const normalizedText = text.replace(/^\s*\n/, "").trimEnd();
 
   if (!normalizedText) {
     passageLines.push({ text: "Passage content has not been added for this assessment yet." });
@@ -154,7 +169,7 @@ export function createPlainTextPassage({
 
       passageLines.push({
         lineNumber:
-          contentLineNumber === 1 || contentLineNumber % lineNumberInterval === 0
+          contentLineNumber % Math.max(1, lineNumberInterval) === 0
             ? String(contentLineNumber)
             : "",
         html: line.html || undefined,
@@ -240,16 +255,18 @@ export function createProsePassage({
     };
   }
 
-  const paragraphs = richText?.trim()
+  const paragraphs: RichTextBlock[] = richText?.trim()
     ? richTextBlocks(richText)
     : normalizedText.split(/\r?\n\s*\r?\n/).map((rawParagraph) => ({
         html: "",
         text: rawParagraph.replace(/\s+/g, " ").trim(),
       }));
-  paragraphs.forEach((paragraph, index) => {
+  let paragraphNumber = 1;
+  paragraphs.forEach((paragraph) => {
     passageLines.push({
       html: paragraph.html || undefined,
-      lineNumber: String(index + 1),
+      ...(paragraph.kind ? { kind: paragraph.kind } : {}),
+      lineNumber: paragraph.kind || !paragraph.text.trim() ? undefined : String(paragraphNumber++),
       text: paragraph.text,
     });
   });
