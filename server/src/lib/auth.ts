@@ -3,6 +3,8 @@ import { supabase } from "./supabase";
 
 export const classIdsKey = "class_ids";
 export const classJoinRequestsKey = "class_join_requests";
+export const studentArchivedAtKey = "student_archived_at";
+export const studentArchivedClassIdsKey = "student_archived_class_ids";
 
 export type ClassJoinRequest = {
     classId: string;
@@ -48,7 +50,7 @@ async function verifyToken(token: string): Promise<User | null> {
             const issuedAt = Number.isFinite(claims.iat)
                 ? new Date(claims.iat * 1000).toISOString()
                 : new Date(0).toISOString();
-            return {
+            const user = {
                 app_metadata: isRecord(claims.app_metadata) ? claims.app_metadata : {},
                 aud: Array.isArray(claims.aud) ? claims.aud[0] ?? "authenticated" : claims.aud,
                 created_at: issuedAt,
@@ -60,6 +62,16 @@ async function verifyToken(token: string): Promise<User | null> {
                 updated_at: issuedAt,
                 user_metadata: isRecord(claims.user_metadata) ? claims.user_metadata : {},
             };
+
+            // Student access can be revoked by a teacher at any time. Always
+            // confirm student tokens with Auth so an already-issued JWT cannot
+            // keep using class APIs after the account has been archived.
+            if (getUserRole(user) === "student") {
+                const authoritative = await supabase.auth.getUser(token);
+                return authoritative.error ? null : authoritative.data.user;
+            }
+
+            return user;
         }
     } catch {
         // Fall through to Supabase Auth's authoritative user lookup.
@@ -74,6 +86,10 @@ async function verifyToken(token: string): Promise<User | null> {
 }
 
 export function getEnrolledClassIds(appMetadata: Record<string, unknown> | undefined) {
+    if (typeof appMetadata?.[studentArchivedAtKey] === "string") {
+        return [];
+    }
+
     const classIds = appMetadata?.[classIdsKey];
 
     if (!Array.isArray(classIds)) {
@@ -81,6 +97,10 @@ export function getEnrolledClassIds(appMetadata: Record<string, unknown> | undef
     }
 
     return classIds.filter((classId): classId is string => typeof classId === "string");
+}
+
+export function isStudentArchived(user: Pick<User, "app_metadata">) {
+    return typeof user.app_metadata[studentArchivedAtKey] === "string";
 }
 
 export function getClassJoinRequests(appMetadata: Record<string, unknown> | undefined): ClassJoinRequest[] {
@@ -127,6 +147,10 @@ export async function getAuthenticatedUser(
     const user = await verifyToken(token).catch(() => null);
     if (!user) {
         return { error: "Your session expired. Log in again.", user: null };
+    }
+
+    if (getUserRole(user) === "student" && isStudentArchived(user)) {
+        return { error: "This student account is archived. Ask your teacher to restore access.", user: null };
     }
 
     return { error: null, user };

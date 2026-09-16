@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import { getStudentClasses } from "./lib/api";
 import { rememberAccountSession } from "./lib/accountSwitching";
 import { getUserRole } from "./lib/auth";
-import { cacheActiveSession, cacheStudentClasses, getActiveSession, getCachedStudentClasses, peekActiveSession } from "./lib/sessionCache";
+import { cacheActiveSession, cacheStudentClasses, getActiveSession } from "./lib/sessionCache";
 import { getSupabaseClient, isSupabaseConfigured } from "./lib/supabase";
 import { StudentDashboardPage } from "./pages/StudentDashboardPage";
 import { StudentAssignmentsPage } from "./pages/StudentAssignmentsPage";
@@ -43,9 +43,7 @@ const TopicPracticePage = lazy(() =>
 );
 
 function ClassAccessGate({ children }: { children: ReactNode }) {
-  const cachedSession = peekActiveSession();
-  const hasCachedAccess = Boolean(cachedSession && getCachedStudentClasses(cachedSession.user.id)?.some((studentClass) => studentClass.id === "shsat"));
-  const [isChecking, setIsChecking] = useState(isSupabaseConfigured && !hasCachedAccess);
+  const [isChecking, setIsChecking] = useState(isSupabaseConfigured);
   const isTeacherPreview = new URLSearchParams(window.location.search).get("preview") === "student";
 
   useEffect(() => {
@@ -59,12 +57,6 @@ function ClassAccessGate({ children }: { children: ReactNode }) {
         setIsChecking(false);
         return;
       }
-      const cachedClasses = getCachedStudentClasses(session.user.id);
-      if (cachedClasses) {
-        if (!cachedClasses.some((studentClass) => studentClass.id === "shsat")) window.location.assign("/study-hall/classroom");
-        else setIsChecking(false);
-        return;
-      }
       try {
         const classes = await getStudentClasses(session.access_token);
         cacheStudentClasses(session.user.id, classes);
@@ -74,6 +66,7 @@ function ClassAccessGate({ children }: { children: ReactNode }) {
         }
         setIsChecking(false);
       } catch {
+        cacheStudentClasses(session.user.id, []);
         window.location.assign("/study-hall/classroom");
       }
     });

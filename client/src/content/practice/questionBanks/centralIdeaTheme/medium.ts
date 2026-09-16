@@ -76,4 +76,29 @@ One student once asked, halfway through a test prep session, 'Why do we always n
       D: "The passage critiques standardized tests specifically, not all forms of assessment, and does not claim curiosity is “prevented.”",
     },
   },
+  {
+    id: "central-medium-4",
+    difficulty: "medium",
+    stimulus: `Bright blue bins stand on nearly every city corner, promising a simple solution to overflowing landfills. For many, tossing a plastic bottle into a recycling bin feels like an easy win for the environment. The sense of accomplishment is immediate—a small, satisfying act that seems to make a difference. Few pause to wonder what really happens next.
+
+Inside the city’s recycling facility, mountains of material move along conveyor belts, sorted by swift-moving machines and workers. The process relies on careful separation: paper, glass, metals, and plastics each headed in different directions. Yet, the operation isn’t as flawless as it appears. Contaminated items—like greasy pizza boxes or plastic bags—can spoil entire batches, sending what looked recyclable to the landfill instead. The problem is magnified by wishful tossing—residents placing anything that ‘might’ be recyclable into the blue bin, hoping for the best.
+
+Many believe that nearly everything placed in a recycling bin is given new life. In reality, the fate of each item depends not just on the technology, but on decisions made long before it reaches the facility. If consumers ignore guidelines or believe all plastics are recyclable, the system is flooded with unrecyclable waste. The result: machines jam, costs rise, and much of what enters the facility never finds a second use.
+
+City officials often launch campaigns to change public behavior, but misunderstandings persist. On tours, visitors express surprise that their well-intended recycling efforts sometimes do more harm than good. For all its visibility, the recycling system is shaped as much by perception as by machinery. Whether a can becomes a new product or ends up as trash often comes down to what people believe, and how those beliefs guide their choices.`,
+    prompt: "Which statement best captures the central idea of the passage as a whole?",
+    choices: [
+      { id: "A", text: "Contaminated items in recycling bins can cause whole batches to end up in landfills, showing the system’s flaws." },
+      { id: "B", text: "The process of sorting materials in recycling facilities determines which items can be reused, illustrating an essential part of recycling." },
+      { id: "C", text: "Public assumptions about recycling shape the system’s effectiveness, sometimes more than the process itself, by influencing what is actually recycled." },
+      { id: "D", text: "Misunderstandings about recycling contribute to broader environmental problems affecting cities everywhere, showing the need for global reform." },
+    ],
+    correctChoiceId: "C",
+    explanation: "The question asks you to find the main idea that connects all parts of the passage. The passage explains how people's beliefs and choices about recycling affect what actually gets recycled, often even more than technology does. The central idea is that public perception and understanding play a key role in the recycling system’s effectiveness. - The opening describes people's sense of accomplishment from recycling, and how few wonder what happens after. - Later paragraphs focus on problems caused by people misunderstanding or ignoring recycling guidelines. - The text states, “Whether a can becomes a new product or ends up as trash often comes down to what people believe, and how those beliefs guide their choices.” - Every paragraph links back to how public behavior and assumptions directly impact recycling outcomes, more so than the machines or process itself.",
+    incorrectChoiceExplanations: {
+      A: "This focuses on one problem (contamination), but not on the passage’s main idea about the influence of public perception.",
+      B: "This option narrows in on the sorting process, missing the emphasis on public influence found throughout the passage.",
+      D: "This shifts to environmental problems globally, while the passage is about public understanding and local recycling effectiveness.",
+    },
+  },
 ];

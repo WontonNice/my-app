@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createHash } from "node:crypto";
 import { findAssessmentForStudent, listTeacherAssessments, updateAssessmentCorrectionsAccess } from "../config/assessments";
-import { getAuthenticatedUser, getEnrolledClassIds, getUserRole } from "../lib/auth";
+import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { getExamContent } from "../lib/examContent";
 import { supabase } from "../lib/supabase";
 import { createExamResult, getAllExamQuestions, type ExamResult, type SelectedAnswers } from "../shared/examGrading";
@@ -38,12 +38,20 @@ examReviewRouter.get("/teacher/:assessmentId/submissions", async (request, respo
         .lt("assessment_id", `${storagePrefix}\uffff`);
     if (correctionRows.error) { response.status(503).json({ message: "Correction submissions could not be loaded. Try again." }); return; }
     const studentIds = [...new Set((correctionRows.data ?? []).map(row => String(row.user_id)))];
-    const resultRows = studentIds.length
-        ? await supabase.from("student_exam_results").select("user_id,result").eq("assessment_id", assessment.id).in("user_id", studentIds)
+    let activeStudentIds = new Set(studentIds);
+    if (typeof supabase.auth.admin.listUsers === "function") {
+        const listed = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
+        if (listed.error) { response.status(503).json({ message: "Correction submissions could not be loaded. Try again." }); return; }
+        activeStudentIds = new Set(listed.data.users
+            .filter(user => studentIds.includes(user.id) && getUserRole(user) === "student" && !isStudentArchived(user))
+            .map(user => user.id));
+    }
+    const resultRows = activeStudentIds.size
+        ? await supabase.from("student_exam_results").select("user_id,result").eq("assessment_id", assessment.id).in("user_id", [...activeStudentIds])
         : { data: [], error: null };
     if (resultRows.error) { response.status(503).json({ message: "Correction submissions could not be loaded. Try again." }); return; }
     const resultsByStudent = new Map((resultRows.data ?? []).map(row => [String(row.user_id), row.result as ExamResult]));
-    const submissions = (correctionRows.data ?? []).flatMap(row => {
+    const submissions = (correctionRows.data ?? []).filter(row => activeStudentIds.has(String(row.user_id))).flatMap(row => {
         const stored = row.result && typeof row.result === "object" && !Array.isArray(row.result) ? row.result as Partial<CorrectionSubmission> : null;
         if (!stored || !Array.isArray(stored.responses) || typeof stored.submittedAt !== "string" || typeof stored.resultVersion !== "string") return [];
         const studentResult = resultsByStudent.get(String(row.user_id));

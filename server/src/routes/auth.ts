@@ -1,6 +1,15 @@
 import { Router } from "express";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
-import { getAuthenticatedUser, getUserRole } from "../lib/auth";
+import {
+    classIdsKey,
+    classJoinRequestsKey,
+    getAuthenticatedUser,
+    getEnrolledClassIds,
+    getUserRole,
+    isStudentArchived,
+    studentArchivedAtKey,
+    studentArchivedClassIdsKey,
+} from "../lib/auth";
 import { getStaffDashboardData, getStaffDashboardDataMap, saveStaffDashboardData, type StaffDashboardRecord } from "../lib/staffDashboardStore";
 import { supabase } from "../lib/supabase";
 
@@ -20,6 +29,10 @@ type UpdateStudentBody = {
     fullName?: unknown;
     password?: unknown;
     username?: unknown;
+};
+
+type ArchiveStudentBody = {
+    archived?: unknown;
 };
 
 const studentUsernamePattern = /^[a-z0-9][a-z0-9._-]{2,31}$/;
@@ -267,14 +280,26 @@ function toStaffAccount(user: {
 }
 
 function toStudentAccount(user: {
+    app_metadata: Record<string, unknown>;
+    created_at: string;
     email?: string;
     id: string;
     user_metadata: Record<string, unknown>;
 }) {
     const fallbackUsername = user.email?.split("@")[0] ?? "student";
     const username = typeof user.user_metadata.username === "string" ? user.user_metadata.username : fallbackUsername;
+    const archived = isStudentArchived(user);
+    const archivedClassIds = user.app_metadata[studentArchivedClassIdsKey];
 
     return {
+        archived,
+        archivedAt: archived && typeof user.app_metadata[studentArchivedAtKey] === "string"
+            ? user.app_metadata[studentArchivedAtKey]
+            : null,
+        classes: archived && Array.isArray(archivedClassIds)
+            ? archivedClassIds.filter((classId): classId is string => typeof classId === "string")
+            : getEnrolledClassIds(user.app_metadata),
+        createdAt: user.created_at,
         email: user.email ?? "",
         fullName: typeof user.user_metadata.full_name === "string" ? user.user_metadata.full_name : fallbackUsername,
         id: user.id,
@@ -325,6 +350,25 @@ authRouter.post("/register", async (request, response) => {
     }
 
     response.status(201).json({ loginEmail: email, message: "Student account created." });
+});
+
+authRouter.get("/students", async (request, response) => {
+    const teacher = await requireTeacherOrAdmin(request.headers.authorization);
+    if (teacher.error) {
+        response.status(teacher.status).json({ message: teacher.error });
+        return;
+    }
+
+    const listed = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
+    if (listed.error) {
+        response.status(400).json({ message: listed.error.message });
+        return;
+    }
+
+    const students = listed.data.users
+        .filter((user) => getUserRole(user) === "student")
+        .map(toStudentAccount);
+    response.json({ students });
 });
 
 authRouter.patch("/students/:userId", async (request, response) => {
@@ -389,6 +433,68 @@ authRouter.patch("/students/:userId", async (request, response) => {
 
     if (updated.error || !updated.data.user) {
         response.status(400).json({ message: updated.error?.message ?? "Could not update the student account." });
+        return;
+    }
+
+    response.json({ student: toStudentAccount(updated.data.user) });
+});
+
+authRouter.patch("/students/:userId/archive", async (request, response) => {
+    const teacher = await requireTeacherOrAdmin(request.headers.authorization);
+    if (teacher.error) {
+        response.status(teacher.status).json({ message: teacher.error });
+        return;
+    }
+
+    const { archived } = request.body as ArchiveStudentBody;
+    if (typeof archived !== "boolean") {
+        response.status(400).json({ message: "Archived must be true or false." });
+        return;
+    }
+
+    const targetResult = await supabase.auth.admin.getUserById(request.params.userId);
+    const target = targetResult.data.user;
+    if (targetResult.error || !target || getUserRole(target) !== "student") {
+        response.status(404).json({ message: "Student account was not found." });
+        return;
+    }
+
+    if (isStudentArchived(target) === archived) {
+        response.json({ student: toStudentAccount(target) });
+        return;
+    }
+
+    const {
+        [studentArchivedAtKey]: _archivedAt,
+        [studentArchivedClassIdsKey]: storedArchivedClassIds,
+        ...baseAppMetadata
+    } = target.app_metadata;
+    const restoredClassIds = Array.isArray(storedArchivedClassIds)
+        ? storedArchivedClassIds.filter((classId): classId is string => typeof classId === "string")
+        : [];
+    const appMetadata = archived
+        ? {
+            ...baseAppMetadata,
+            [classIdsKey]: [],
+            [classJoinRequestsKey]: [],
+            [studentArchivedAtKey]: new Date().toISOString(),
+            [studentArchivedClassIdsKey]: getEnrolledClassIds(target.app_metadata),
+        }
+        : {
+            ...baseAppMetadata,
+            [classIdsKey]: restoredClassIds,
+            [studentArchivedAtKey]: null,
+            [studentArchivedClassIdsKey]: [],
+        };
+
+    const updated = await supabase.auth.admin.updateUserById(target.id, {
+        app_metadata: appMetadata,
+        // Archived students remain in Auth and keep all saved records, but
+        // cannot create a new session until a teacher restores the account.
+        ban_duration: archived ? "876000h" : "none",
+    });
+    if (updated.error || !updated.data.user) {
+        response.status(400).json({ message: updated.error?.message ?? "Could not update the student archive." });
         return;
     }
 

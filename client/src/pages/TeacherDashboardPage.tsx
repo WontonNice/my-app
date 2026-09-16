@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { Activity, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, Clock3, Cloud, Eye, LayoutDashboard, Pencil, PlusCircle, RotateCcw, Shuffle, Trash2, UserRoundCheck, UserRoundPlus, Users, X } from "lucide-react";
+import { Activity, Archive, ArchiveRestore, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, Clock3, Cloud, Eye, LayoutDashboard, Pencil, PlusCircle, RotateCcw, Shuffle, Trash2, UserRoundCheck, UserRoundPlus, Users, X } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { TeacherExamTools } from "../components/TeacherExamTools";
@@ -8,10 +8,12 @@ import { signOutCurrentAccount } from "../lib/accountSwitching";
 import {
   getTeacherAssessments,
   getTeacherClassJoinRequests,
+  getTeacherStudentAccounts,
   getTeacherStudentProgress,
   createTeacherManualExamResult,
   deleteStudentAccount,
   reviewTeacherClassJoinRequest,
+  setStudentAccountArchived,
   updateStudentAccount,
   updateTeacherAssessmentCompletedAccess,
   updateTeacherAssessmentSectionAccess,
@@ -20,6 +22,7 @@ import {
   type AssessmentSection,
   type AssessmentStatus,
   type ManualExamScoreInput,
+  type StudentAccount,
   type StudentProgressSnapshot,
   type TeacherClassJoinRequest,
   type TeacherAssessment,
@@ -763,7 +766,7 @@ function getInsightAssessmentId(pathname: string) {
   }
 }
 
-function getStudentPreviewHref(student: StudentProgressSnapshot) {
+function getStudentPreviewHref(student: Pick<StudentProgressSnapshot, "fullName" | "id">) {
   const params = new URLSearchParams({
     preview: "student",
     returnTo: "/teacher/accounts",
@@ -986,6 +989,8 @@ export function TeacherDashboardPage() {
   const [students, setStudents] = useState<StudentProgressSnapshot[]>(
     initialDashboardCache?.students ?? [],
   );
+  const [studentAccounts, setStudentAccounts] = useState<StudentAccount[]>([]);
+  const [accountView, setAccountView] = useState<"current" | "archived">("current");
   const [selectedStudentId, setSelectedStudentId] = useState(() => new URLSearchParams(window.location.search).get("student") ?? "");
   const [isCheckingSession, setIsCheckingSession] = useState(
     isSupabaseConfigured && !initialDashboardCache,
@@ -1024,13 +1029,15 @@ export function TeacherDashboardPage() {
         setIsCheckingSession(false);
       }
       try {
-        const [nextAssessments, nextStudents, nextClassJoinRequests] = await Promise.all([
+        const [nextAssessments, nextStudents, nextStudentAccounts, nextClassJoinRequests] = await Promise.all([
           getTeacherAssessments(data.session.access_token),
           getTeacherStudentProgress(data.session.access_token),
+          getTeacherStudentAccounts(data.session.access_token),
           getTeacherClassJoinRequests(data.session.access_token),
         ]);
         setAssessments(nextAssessments);
         setStudents(nextStudents);
+        setStudentAccounts(nextStudentAccounts);
         setClassJoinRequests(nextClassJoinRequests);
         cacheTeacherDashboard(data.session.user.id, nextAssessments, nextStudents);
       } catch (error) {
@@ -1047,6 +1054,19 @@ export function TeacherDashboardPage() {
 
   const selectedStudent = students.find((student) => student.id === selectedStudentId);
   const shsatStudents = useMemo(() => students.filter((student) => student.classes.includes("shsat")), [students]);
+  const currentStudentAccounts = useMemo(
+    () => studentAccounts
+      .filter((student) => !student.archived && student.classes.includes("shsat"))
+      .sort((left, right) => left.fullName.localeCompare(right.fullName)),
+    [studentAccounts],
+  );
+  const archivedStudentAccounts = useMemo(
+    () => studentAccounts
+      .filter((student) => student.archived && student.classes.includes("shsat"))
+      .sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt)),
+    [studentAccounts],
+  );
+  const visibleStudentAccounts = accountView === "archived" ? archivedStudentAccounts : currentStudentAccounts;
   const classAverage = useMemo(() => {
     const assessmentIds = new Set(assessments.map((assessment) => assessment.id));
     const values = students.flatMap((student) =>
@@ -1305,7 +1325,7 @@ export function TeacherDashboardPage() {
     }
   }
 
-  function beginEditingStudentAccount(student: StudentProgressSnapshot) {
+  function beginEditingStudentAccount(student: StudentAccount) {
     setEditingStudentAccountId(student.id);
     setStudentAccountDraft({ fullName: student.fullName, password: "", username: student.username || student.email.split("@")[0] || "" });
     setMessage("");
@@ -1324,6 +1344,7 @@ export function TeacherDashboardPage() {
     setMessage("");
     try {
       const updated = await updateStudentAccount(accessToken, editingStudentAccountId, studentAccountDraft);
+      setStudentAccounts((current) => current.map((student) => student.id === updated.id ? updated : student));
       setStudents((current) => current.map((student) => student.id === updated.id ? { ...student, email: updated.email, fullName: updated.fullName, username: updated.username } : student));
       setMessage(`${updated.fullName}'s account was updated.`);
       cancelEditingStudentAccount();
@@ -1334,12 +1355,39 @@ export function TeacherDashboardPage() {
     }
   }
 
-  async function handleDeleteStudentAccount(student: StudentProgressSnapshot) {
+  async function handleArchiveStudentAccount(student: StudentAccount, archived: boolean) {
+    const action = archived ? "archive" : "restore";
+    const confirmation = archived
+      ? `Archive ${student.fullName}? They will lose class access and disappear from progress, assessments, insights, and other active student lists. Their account and saved work will be kept.`
+      : `Restore ${student.fullName}? Their previous class enrollment and login access will be restored.`;
+    if (!accessToken || !window.confirm(confirmation)) return;
+    setSavingAccountId(student.id);
+    setMessage("");
+    try {
+      const updated = await setStudentAccountArchived(accessToken, student.id, archived);
+      setStudentAccounts((current) => current.map((item) => item.id === updated.id ? updated : item));
+      if (archived) {
+        setStudents((current) => current.filter((item) => item.id !== student.id));
+        if (selectedStudentId === student.id) setSelectedStudentId("");
+      } else {
+        setStudents(await getTeacherStudentProgress(accessToken));
+      }
+      if (editingStudentAccountId === student.id) cancelEditingStudentAccount();
+      setMessage(`${student.fullName}'s account was ${action === "archive" ? "archived" : "restored"}.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : `Could not ${action} the student account.`);
+    } finally {
+      setSavingAccountId("");
+    }
+  }
+
+  async function handleDeleteStudentAccount(student: StudentAccount) {
     if (!accessToken || !window.confirm(`Delete ${student.fullName}'s student account? This removes their login and saved progress.`)) return;
     setSavingAccountId(student.id);
     setMessage("");
     try {
       await deleteStudentAccount(accessToken, student.id);
+      setStudentAccounts((current) => current.filter((item) => item.id !== student.id));
       setStudents((current) => current.filter((item) => item.id !== student.id));
       if (selectedStudentId === student.id) setSelectedStudentId("");
       if (editingStudentAccountId === student.id) cancelEditingStudentAccount();
@@ -1360,8 +1408,12 @@ export function TeacherDashboardPage() {
       await reviewTeacherClassJoinRequest(accessToken, request.studentId, request.classroom.id, action);
       setClassJoinRequests((current) => current.filter((item) => `${item.studentId}:${item.classroom.id}` !== requestKey));
       if (action === "approve") {
-        const nextStudents = await getTeacherStudentProgress(accessToken);
+        const [nextStudents, nextStudentAccounts] = await Promise.all([
+          getTeacherStudentProgress(accessToken),
+          getTeacherStudentAccounts(accessToken),
+        ]);
         setStudents(nextStudents);
+        setStudentAccounts(nextStudentAccounts);
       }
       setMessage(action === "approve"
         ? `${request.studentName} can now access ${request.classroom.name}.`
@@ -1512,7 +1564,12 @@ export function TeacherDashboardPage() {
 
       {activeWorkspace === "accounts" ? (
       <section className="teacher-panel teacher-staff-panel teacher-student-accounts-panel" id="student-accounts">
-        <div className="teacher-panel-header"><div><span>Account access</span><h2>SHSAT student accounts</h2></div><p>Edit student names, usernames, and passwords or delete accounts that should no longer have access.</p></div>
+        <div className="teacher-panel-header"><div><span>Account access</span><h2>SHSAT student accounts</h2></div><p>Archive former students without deleting their accounts or saved work.</p></div>
+        <div className="teacher-account-view-switch" aria-label="Student account status">
+          <button aria-pressed={accountView === "current"} className={accountView === "current" ? "is-active" : ""} onClick={() => { setAccountView("current"); cancelEditingStudentAccount(); }} type="button"><Users size={15} /> Current <span>{currentStudentAccounts.length}</span></button>
+          <button aria-pressed={accountView === "archived"} className={accountView === "archived" ? "is-active" : ""} onClick={() => { setAccountView("archived"); cancelEditingStudentAccount(); }} type="button"><Archive size={15} /> Archived <span>{archivedStudentAccounts.length}</span></button>
+          {accountView === "archived" ? <small>Newest accounts first by creation date</small> : null}
+        </div>
         <div className="teacher-staff-layout">
           <form className="teacher-assessment-form teacher-staff-form" onSubmit={handleSaveStudentAccount}>
             <div className="admin-student-form-title"><UserRoundPlus size={18} /><strong>{editingStudentAccountId ? "Edit student account" : "Choose a student"}</strong></div>
@@ -1524,8 +1581,8 @@ export function TeacherDashboardPage() {
               {editingStudentAccountId ? <button className="is-secondary" onClick={cancelEditingStudentAccount} type="button"><X size={15} /> Cancel</button> : null}
             </div>
           </form>
-          <div className="teacher-staff-list" aria-label="SHSAT student accounts">
-            {shsatStudents.length ? shsatStudents.map((student) => <article key={student.id}><span>{student.fullName.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase()}</span><div><strong>{student.fullName}</strong><small>Username: {student.username}</small><small>Email: {student.email}</small></div><div className="admin-account-actions"><AppLink className="teacher-student-view-link" href={getStudentPreviewHref(student)}><Eye size={14} /> View as student</AppLink><button disabled={savingAccountId === student.id} onClick={() => beginEditingStudentAccount(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-danger" disabled={savingAccountId === student.id} onClick={() => handleDeleteStudentAccount(student)} type="button"><Trash2 size={14} /> Delete</button></div></article>) : <p>No SHSAT student accounts found.</p>}
+          <div className="teacher-staff-list" aria-label={`${accountView === "archived" ? "Archived" : "Current"} SHSAT student accounts`}>
+            {visibleStudentAccounts.length ? visibleStudentAccounts.map((student) => <article className={student.archived ? "is-archived" : ""} key={student.id}><span>{student.fullName.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase()}</span><div><strong>{student.fullName}</strong><small>Username: {student.username}</small><small>Email: {student.email}</small><small>Created: {formatDate(student.createdAt)}</small>{student.archivedAt ? <small>Archived: {formatDate(student.archivedAt)}</small> : null}</div><div className="admin-account-actions">{student.archived ? <><button className="is-restore" disabled={savingAccountId === student.id} onClick={() => handleArchiveStudentAccount(student, false)} type="button"><ArchiveRestore size={14} /> Restore</button><button disabled={savingAccountId === student.id} onClick={() => beginEditingStudentAccount(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-danger" disabled={savingAccountId === student.id} onClick={() => handleDeleteStudentAccount(student)} type="button"><Trash2 size={14} /> Delete permanently</button></> : <><AppLink className="teacher-student-view-link" href={getStudentPreviewHref(student)}><Eye size={14} /> View as student</AppLink><button disabled={savingAccountId === student.id} onClick={() => beginEditingStudentAccount(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-archive" disabled={savingAccountId === student.id} onClick={() => handleArchiveStudentAccount(student, true)} type="button"><Archive size={14} /> Archive</button></>}</div></article>) : <p>{accountView === "archived" ? "No archived SHSAT student accounts." : "No current SHSAT student accounts found."}</p>}
           </div>
         </div>
       </section>

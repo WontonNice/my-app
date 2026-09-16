@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { findClassroomByCode, getPublicClassrooms } from "../config/classes";
-import { classIdsKey, classJoinRequestsKey, getAuthenticatedUser, getClassJoinRequests, getEnrolledClassIds, getUserRole } from "../lib/auth";
+import { classIdsKey, classJoinRequestsKey, getAuthenticatedUser, getClassJoinRequests, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { supabase } from "../lib/supabase";
 
 type JoinClassBody = {
@@ -111,7 +111,7 @@ classesRouter.get("/requests", async (request, response) => {
     }
 
     const requests = listed.data.users
-        .filter((candidate) => getUserRole(candidate) === "student")
+        .filter((candidate) => getUserRole(candidate) === "student" && !isStudentArchived(candidate))
         .flatMap((student) => getClassJoinRequests(student.app_metadata).flatMap((joinRequest) => {
             const classroom = getPublicClassrooms([joinRequest.classId])[0];
             if (!classroom) return [];
@@ -151,7 +151,7 @@ classesRouter.patch("/requests/:studentId/:classId", async (request, response) =
 
     const targetResult = await supabase.auth.admin.getUserById(request.params.studentId);
     const student = targetResult.data.user;
-    if (targetResult.error || !student || getUserRole(student) !== "student") {
+    if (targetResult.error || !student || getUserRole(student) !== "student" || isStudentArchived(student)) {
         response.status(404).json({ message: "Student account was not found." });
         return;
     }

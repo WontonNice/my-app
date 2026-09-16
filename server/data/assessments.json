@@ -1423,14 +1423,14 @@
         "type": "numeric_entry"
       }
     ],
-    "status": "open",
+    "status": "locked",
     "title": "2025-2026 Form A",
-    "updatedAt": "2026-09-12T07:47:23.165Z",
+    "updatedAt": "2026-09-15T05:16:00.837Z",
     "split": false,
     "allowCompletedAccess": true,
     "sectionAccess": {
-      "english": true,
-      "math": true
+      "english": false,
+      "math": false
     },
     "formAssignments": {},
     "forms": [],
@@ -1443,7 +1443,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-09-11T15:56:21.577Z",
-    "updatedAt": "2026-09-14T03:37:39.414Z",
+    "updatedAt": "2026-09-15T05:31:09.193Z",
     "passages": [
       {
         "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil",
@@ -1485,13 +1485,6 @@
         "imageUrl": "",
         "text": "The complete passage is provided by the registered exam content.",
         "title": "Letter from Brooklyn",
-        "versionLabel": "2025-2026 Form B"
-      },
-      {
-        "id": "the-end-of-an-era",
-        "imageUrl": "",
-        "text": "The complete passage is provided by the registered exam content.",
-        "title": "The End of an Era",
         "versionLabel": "2025-2026 Form B"
       }
     ],
@@ -1618,7 +1611,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The words “feat,” “humanly impossible,” and “impenetrable barrier” in paragraph 1 affect the tone of the paragraph because they",
-        "topic": "Central Idea & Theme",
+        "topic": "Tone & Mood",
         "type": "multiple_choice"
       },
       {
@@ -1648,7 +1641,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Which sentence best supports the idea that Bannister needed an alternative to “logical planning” in order to accomplish his goal?",
-        "topic": "Central Idea & Theme",
+        "topic": "Evidence & Support",
         "type": "multiple_choice"
       },
       {
@@ -1663,7 +1656,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Which sentence from the passage indicates that Bannister nearly made a mistake that would have cost him the world record?",
-        "topic": "Central Idea & Theme",
+        "topic": "Evidence & Support",
         "type": "multiple_choice"
       },
       {
@@ -1678,7 +1671,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Bannister’s loss in the 1952 Olympics influenced his decision to pursue breaking the four-minutemile barrier by",
-        "topic": "Central Idea & Theme",
+        "topic": "Text Structure & Purpose",
         "type": "multiple_choice"
       },
       {
@@ -1693,7 +1686,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "How did interval training affect Bannister’s performance?",
-        "topic": "Central Idea & Theme",
+        "topic": "Text Structure & Purpose",
         "type": "multiple_choice"
       },
       {
@@ -1708,7 +1701,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "How does the author’s use of chronological structure contribute to the development of ideas in the passage?",
-        "topic": "Central Idea & Theme",
+        "topic": "Text Structure & Purpose",
         "type": "multiple_choice"
       },
       {
@@ -2280,14 +2273,110 @@
         "prompt": "What is the best way to combine sentences 12 and 13?",
         "topic": "Revising & Editing",
         "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "While flyby missions near Jupiter have been happening since 1973, scientists collect data about the planet and its moons.",
+          "Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons.",
+          "Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973.",
+          "Flyby missions have been happening near Jupiter, but scientists have been collecting data about the planet and its moons since 1973."
+        ],
+        "id": "part-b-question-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read these sentences.\nWhat is the best way to combine the sentences to clarify the relationship between the ideas?",
+        "topic": "Conventions & Grammar",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "part-b-question-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence in the paragraph contains an error in construction and should be revised?",
+        "topic": "Conventions & Grammar",
+        "type": "category_sort"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Sentence 1: Change \nspent\n to \nhad spent\n, AND insert a comma after \nplay\n.",
+          "Sentence 2: Change \ndid\n to \ndoes\n, AND insert a comma after \nprojection\n.",
+          "Sentence 3: Change \nstudies\n to \nstudied\n, AND delete the comma after \nemotions\n.",
+          "Sentence 4: Change \nrecited\n to \nrecites\n, AND delete the comma after \ntimes\n."
+        ],
+        "id": "part-b-question-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How should the paragraph be revised?",
+        "topic": "Conventions & Grammar",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(18\\)",
+          "\\(45\\)",
+          "\\(144\\)",
+          "\\(207\\)"
+        ],
+        "id": "2025-2026-form-b-math-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(x = 9\\)  and \\(y=−7\\) , what is the value of \\(x(x − 2y)?\\)",
+        "topic": "Algebra",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(3\\)",
+          "\\(6\\)",
+          "\\(12\\)",
+          "\\(30\\)"
+        ],
+        "id": "2025-2026-form-b-math-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The decimal 0.06 can be written as the fraction \\(\\frac{x}{50}\\) . What is the value of \\(x\\) ?",
+        "topic": "Algebra",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A,C,D",
+        "choices": [
+          "\\(\\frac{18}{150}=\\frac{x}{250}\\)",
+          "\\(\\)",
+          "\\(\\)",
+          "\\(30\\)",
+          "\\frac{18}{150}=\\frac{x}{250}"
+        ],
+        "id": "2025-2026-form-b-math-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "At a diner, 18 dozen buns were used yesterday for 150 lunch customers. Today, there were 250 lunch customers. Assuming that the bun usage rate is the same for both days, which proportions can be used to determine how many dozen buns are needed for 250 lunch customers?\n\nSelect the three correct answers.",
+        "topic": "Algebra",
+        "type": "multi_select"
+      },
+      {
+        "answer": "116",
+        "choices": [],
+        "id": "2025-2026-form-b-math-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Maria is playing a game in which players earn points called minks, zogs, and barts.\n\\(1\\)  mink = \\(3\\)  zogs\n\\(1\\)  mink =\\(\\frac14\\)  bart\nMaria has 60 zogs and 24 barts. She wants to exchange her zogs and barts for minks.\nHow many minks will Maria receive from the exchange?\n\nEnter your answer in the space.",
+        "topic": "Algebra",
+        "type": "short_response"
       }
     ],
     "forms": [],
     "formAssignments": {},
-    "status": "locked",
+    "status": "open",
     "sectionAccess": {
-      "english": false,
-      "math": false
+      "english": true,
+      "math": true
     },
     "correctionsOpen": false,
     "allowCompletedAccess": false,

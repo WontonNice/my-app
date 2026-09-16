@@ -1,3 +1,4 @@
+import { content20252026FormBMathSection } from "../mathSets/2025-2026-form-bMath";
 import { excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvilPassageSet } from "../passageSets/excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil";
 import { aMiracleMileVersion2PassageSet } from "../passageSets/a-miracle-mile-version-2";
 import { excerptFromInSearchOfTheUnknownPassageSet } from "../passageSets/excerpt-from-in-search-of-the-unknown";
@@ -5,12 +6,19 @@ import { atDusk20252026FormBPassageSet } from "../passageSets/at-dusk-2025-2026-
 import { usingFireToKeepAPrairieHealthyPassageSet } from "../passageSets/using-fire-to-keep-a-prairie-healthy";
 import { letterFromBrooklyn20252026FormBPassageSet } from "../passageSets/letter-from-brooklyn-2025-2026-form-b";
 import { theEndOfAnEraPassageSet } from "../passageSets/the-end-of-an-era";
-
+import { getStandaloneItemsById } from "../standaloneItems";
 import type { ExamContent } from "../types";
+
+const selectedStandaloneItems = getStandaloneItemsById([
+  "part-b-question-5",
+  "part-b-question-6",
+  "part-b-question-7"
+]);
 
 export const content20252026FormBContent: ExamContent = {
   assessmentId: "2025-2026-form-b",
   title: "2025-2026 Form B",
+  mathSection: content20252026FormBMathSection,
   passageSections: {
   "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil": "reading",
   "a-miracle-mile-version-2": "reading",
@@ -18,7 +26,7 @@ export const content20252026FormBContent: ExamContent = {
   "at-dusk-2025-2026-form-b": "reading",
   "using-fire-to-keep-a-prairie-healthy": "reading",
   "letter-from-brooklyn-2025-2026-form-b": "reading",
-  "the-end-of-an-era": "reading"
+  "the-end-of-an-era": "revising_editing_a"
 },
   passageSets: [
     excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvilPassageSet,
@@ -29,4 +37,17 @@ export const content20252026FormBContent: ExamContent = {
     letterFromBrooklyn20252026FormBPassageSet,
     theEndOfAnEraPassageSet,
   ],
+  standaloneSection: {
+    id: "ela-revising-editing-part-b",
+    label: "ELA - Revising/Editing Part B",
+    questionCount: selectedStandaloneItems.length,
+    directions: {
+      subject: "English Language Arts",
+      title: "REVISING/EDITING PART B",
+      breadcrumbLabel: "ELA REV/EDIT B DIRECTIONS",
+      body:
+        "Read and answer the following stand-alone questions. You will be asked to recognize and correct errors so that the sentences or short paragraphs follow the conventions of standard written English. Reread each sentence or paragraph as needed before selecting the best answer.",
+    },
+    questions: selectedStandaloneItems,
+  },
 };

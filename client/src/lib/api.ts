@@ -491,7 +491,11 @@ export type StudentProgressSnapshot = {
   username: string;
 };
 
-export type StudentAccountUpdate = {
+export type StudentAccount = {
+  archived: boolean;
+  archivedAt: string | null;
+  classes: string[];
+  createdAt: string;
   email: string;
   fullName: string;
   id: string;
@@ -856,6 +860,13 @@ export async function getTeacherStudentProgress(accessToken: string) {
   return data.students;
 }
 
+export async function getTeacherStudentAccounts(accessToken: string) {
+  const data = await requestApi<{ students: StudentAccount[] }>("/api/auth/students", {
+    headers: createAuthHeaders(accessToken),
+  });
+  return data.students;
+}
+
 export async function createTeacherManualExamResult(
   accessToken: string,
   studentId: string,
@@ -893,8 +904,17 @@ export async function updateStudentAccount(
   studentId: string,
   input: { fullName: string; password?: string; username: string },
 ) {
-  const data = await requestApi<{ student: StudentAccountUpdate }>(`/api/auth/students/${encodeURIComponent(studentId)}`, {
+  const data = await requestApi<{ student: StudentAccount }>(`/api/auth/students/${encodeURIComponent(studentId)}`, {
     body: JSON.stringify(input),
+    headers: createAuthHeaders(accessToken),
+    method: "PATCH",
+  });
+  return data.student;
+}
+
+export async function setStudentAccountArchived(accessToken: string, studentId: string, archived: boolean) {
+  const data = await requestApi<{ student: StudentAccount }>(`/api/auth/students/${encodeURIComponent(studentId)}/archive`, {
+    body: JSON.stringify({ archived }),
     headers: createAuthHeaders(accessToken),
     method: "PATCH",
   });

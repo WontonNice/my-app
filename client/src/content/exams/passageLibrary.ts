@@ -20,6 +20,9 @@ import { atDusk20252026FormBPassageSet } from "./passageSets/at-dusk-2025-2026-f
 import { usingFireToKeepAPrairieHealthyPassageSet } from "./passageSets/using-fire-to-keep-a-prairie-healthy";
 import { letterFromBrooklyn20252026FormBPassageSet } from "./passageSets/letter-from-brooklyn-2025-2026-form-b";
 import { theEndOfAnEraPassageSet } from "./passageSets/the-end-of-an-era";
+import { excerptFromImpressionsOfAnIndianChildhood20242025FormAPassageSet } from "./passageSets/excerpt-from-impressions-of-an-indian-childhood-2024-2025-form-a";
+import { atDusk20242025FormAPassageSet } from "./passageSets/at-dusk-2024-2025-form-a";
+import { championOfTheChannelPassageSet } from "./passageSets/champion-of-the-channel";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -43,6 +46,9 @@ export const examPassageLibrary: ExamPassageSet[] = [
   usingFireToKeepAPrairieHealthyPassageSet,
   letterFromBrooklyn20252026FormBPassageSet,
   theEndOfAnEraPassageSet,
+  excerptFromImpressionsOfAnIndianChildhood20242025FormAPassageSet,
+  atDusk20242025FormAPassageSet,
+  championOfTheChannelPassageSet,
 ];
 
 export function getExamLibraryPassage(passageId: string) {

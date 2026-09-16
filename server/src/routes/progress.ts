@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { randomUUID } from "node:crypto";
 import type { User } from "@supabase/supabase-js";
-import { getAuthenticatedUser, getEnrolledClassIds, getUserRole } from "../lib/auth";
+import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { supabase } from "../lib/supabase";
 
 type JsonRecord = Record<string, unknown>;
@@ -219,7 +219,9 @@ progressRouter.get("/students", async (request, response) => {
         response.status(400).json({ message: listed.error.message });
         return;
     }
-    const students = listed.data.users.filter((candidate) => getUserRole(candidate) === "student");
+    const students = listed.data.users.filter(
+        (candidate) => getUserRole(candidate) === "student" && !isStudentArchived(candidate),
+    );
     const snapshots = await Promise.all(students.map(async (student) => {
         const [progress, examSessions] = await Promise.all([
             getDatabaseProgress(student),
@@ -333,7 +335,7 @@ progressRouter.patch("/students/:studentId/dismissal", async (request, response)
 
     const result = await supabase.auth.admin.getUserById(request.params.studentId);
     const student = result.data.user;
-    if (result.error || !student || getUserRole(student) !== "student") {
+    if (result.error || !student || getUserRole(student) !== "student" || isStudentArchived(student)) {
         response.status(404).json({ message: "Student not found." });
         return;
     }
@@ -393,7 +395,7 @@ progressRouter.post("/students/:studentId/manual-exam-results", async (request, 
 
     const studentResult = await supabase.auth.admin.getUserById(request.params.studentId);
     const student = studentResult.data.user;
-    if (studentResult.error || !student || getUserRole(student) !== "student") {
+    if (studentResult.error || !student || getUserRole(student) !== "student" || isStudentArchived(student)) {
         response.status(404).json({ message: "Student not found." });
         return;
     }
