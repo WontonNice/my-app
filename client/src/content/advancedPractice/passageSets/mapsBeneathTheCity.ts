@@ -43,7 +43,7 @@ const questions: ExamQuestion[] = [
   },
   {
     id: "city-maps-3",
-    topic: "Vocabulary in Context",
+    topic: "Word & Phrase Meaning",
     type: "multiple_choice",
     prompt: "What does the phrase *working documents* in paragraph 3 suggest about the maps?",
     correctChoiceId: "A",

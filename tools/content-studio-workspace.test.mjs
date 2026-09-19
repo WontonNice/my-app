@@ -96,3 +96,83 @@ test("pagination clamps after library shrinkage and keeps Part B and passages in
   assert.equal(ui.getLibrarySlice(records, "passages", "").page, 0);
   assert.equal(ui.getLibrarySlice(records, "standalone", "", "category_sort").page, 1);
 });
+
+test("ChatGPT export includes the classification prompt, every choice, and the answer key", () => {
+  const questions = [
+    {
+      id: "q-1",
+      type: "multiple_choice",
+      prompt: "Which detail best supports the central idea?",
+      choices: [
+        { id: "A", text: "The first detail" },
+        { id: "B", text: "The second detail" },
+      ],
+      correctChoiceId: "B",
+      topic: "Wrong existing label",
+    },
+    {
+      id: "q-2",
+      type: "category_sort",
+      promptHtml: "<strong>Sort</strong> each statement.",
+      categories: [{ id: "claim", title: "Claim" }, { id: "evidence", title: "Evidence" }],
+      items: [{ id: "item-1", text: "A supported statement" }],
+      correctPlacements: { "item-1": "claim" },
+    },
+  ];
+  const { app, ui } = setup(questions);
+  app.passageDraft.title = "A Sample Passage";
+  const exported = ui.buildQuestionClassificationExport();
+  assert.match(exported, /choose exactly one question type/i);
+  assert.match(exported, /\| Question \| Question type \| Confidence \| Brief reason \|/);
+  assert.match(exported, /PASSAGE: A Sample Passage/);
+  assert.match(exported, /QUESTION COUNT: 2/);
+  assert.match(exported, /- A: The first detail/);
+  assert.match(exported, /Correct answer\(s\): B — The second detail/);
+  assert.match(exported, /Prompt: Sort each statement\./);
+  assert.match(exported, /A supported statement → Claim/);
+  assert.doesNotMatch(exported, /Wrong existing label/);
+});
+
+test("ChatGPT export uses the editor's current topic list and omits interaction types", () => {
+  const { app, ui } = setup([{ id: "q-1", type: "multi_select", prompt: "Select two details.", choices: [], correctChoiceIds: [] }]);
+  app.state = { topics: ["Custom Skill", "Another Skill"] };
+  const exported = ui.buildQuestionClassificationExport();
+  assert.match(exported, /- Custom Skill\n- Another Skill/);
+  assert.doesNotMatch(exported, /Question format: multi_select/);
+  assert.match(exported, /Correct answer\(s\): Not set/);
+});
+
+test("ChatGPT export limits topics to the passage section", () => {
+  const { app, ui } = setup([{ id: "q-1", type: "multiple_choice", prompt: "Revise this sentence.", choices: [], correctChoiceId: "" }]);
+  app.state = {
+    readingTopics: ["Central Idea & Theme", "Inference"],
+    revisingEditingTopics: ["Sentence Structure", "Punctuation"],
+    topics: ["Central Idea & Theme", "Inference", "Sentence Structure", "Punctuation"],
+  };
+  app.passageDraft.section = "revising_editing_a";
+  const exported = ui.buildQuestionClassificationExport();
+  assert.match(exported, /- Sentence Structure\n- Punctuation/);
+  assert.doesNotMatch(exported, /- Central Idea & Theme/);
+  assert.doesNotMatch(exported, /- Inference/);
+});
+
+test("official passage prompt targets one PDF passage and matches the import contract", () => {
+  const { app, ui } = setup();
+  app.state = { topics: ["Central Idea & Theme", "Text Structure & Purpose"] };
+  const prompt = ui.buildOfficialPassagePrompt({
+    sourceLabel: "2020-2021 Form B",
+    target: "Massachusetts: Lowell National Historical Park, questions 10-16",
+  });
+  assert.match(prompt, /Convert exactly ONE passage/);
+  assert.match(prompt, /Massachusetts: Lowell National Historical Park, questions 10-16/);
+  assert.match(prompt, /Official source\/version: 2020-2021 Form B/);
+  assert.match(prompt, /"format": "nathan-tutors-official-passage-v1"/);
+  assert.match(prompt, /If the PDF prints E-H, map them to A-D in order/);
+  assert.match(prompt, /answer was inferred rather than read from an official key/);
+  assert.match(prompt, /- Central Idea & Theme\n- Text Structure & Purpose/);
+  assert.match(prompt, /Allowed Reading Comprehension topic values/);
+  assert.match(prompt, /Allowed Revising\/Editing topic values/);
+  assert.match(prompt, /- Sentence Structure/);
+  assert.match(prompt, /- Relevance & Conclusion/);
+  assert.match(prompt, /Do not include richText, HTML, sourceHash/);
+});

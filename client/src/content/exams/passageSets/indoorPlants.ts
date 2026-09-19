@@ -9,7 +9,7 @@ const indoorPlantsQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence should follow sentence 3 to best introduce the topic of the passage?",
     "promptHtml": "Which sentence should follow sentence 3 to <strong>best</strong> introduce the topic of the passage?",
-    "topic": "Central Idea & Theme",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -39,7 +39,7 @@ const indoorPlantsQuestions: ExamQuestion[] = [
     "id": "indoor-plants-2",
     "points": 1,
     "prompt": "Which transition word or phrase should be added to the beginning of sentence 5 to emphasize the relationship between sentences 4 and 5?",
-    "topic": "Transitions & Organization",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -70,7 +70,7 @@ const indoorPlantsQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence could best follow sentence 13 to support the ideas in the third paragraph (sentences 11–14)?",
     "promptHtml": "Which sentence could <strong>best</strong> follow sentence 13 to support the ideas in the third paragraph (sentences 11–14)?",
-    "topic": "Evidence & Support",
+    "topic": "Relevance & Conclusion",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const indoorPlantsQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence presents ideas irrelevant to the topic of the passage and should be deleted?",
     "promptHtml": "Which sentence presents ideas irrelevant to the topic of the passage and should be deleted?",
-    "topic": "Revising & Editing",
+    "topic": "Relevance & Conclusion",
     "choices": [
       {
         "id": "A",
@@ -132,7 +132,7 @@ const indoorPlantsQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which concluding sentence should follow sentence 17 to best support the information presented in the passage?",
     "promptHtml": "Which concluding sentence should follow sentence 17 to <strong>best</strong> support the information presented in the passage?",
-    "topic": "Tone & Mood",
+    "topic": "Relevance & Conclusion",
     "choices": [
       {
         "id": "A",

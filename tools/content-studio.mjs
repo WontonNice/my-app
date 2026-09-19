@@ -53,23 +53,24 @@ const passageFormats = ["prose", "poem", "sentence_prose"];
 const passageTypes = ["informational", "literary", "poem", "long_reading"];
 const examPassageSections = ["reading", "revising_editing_a"];
 const defaultTopics = [
-  "Author's Point of View",
-  "Character & Relationships",
   "Central Idea & Theme",
-  "Supporting Evidence",
-  "Inference",
-  "Vocabulary in Context",
-  "Text Structure & Purpose",
+  "Author's Point of View",
+  "Word & Phrase Meaning",
   "Figurative Language & Imagery",
   "Tone & Mood",
-  "Transitions & Organization",
-  "Revising & Editing",
-  "Grammar & Usage",
-  "Conventions & Grammar",
+  "Text Structure & Purpose",
+  "Evidence & Support",
+  "Inference",
+  "Sentence Structure",
   "Pronouns",
-  "Sentence Construction",
-  "Uncategorized",
+  "Verbs",
+  "Modifiers",
+  "Punctuation",
+  "Word Choice & Precision",
+  "Topic & Transitions",
+  "Relevance & Conclusion",
 ];
+const readingTopicCount = 8;
 let topics = await readContentTopics();
 const mathTopics = [
   "Arithmetic",
@@ -86,6 +87,7 @@ const mathTopics = [
 const advancedGenres = ["Fiction", "History", "Science", "Social Science"];
 const advancedTones = ["blue", "coral", "emerald", "gold"];
 const mathImportFormat = "nathan-tutors-math-question-v1";
+const passageImportFormat = "nathan-tutors-official-passage-v1";
 const practiceDifficulties = ["easy", "medium", "hard", "elite"];
 const defaultPracticeTopics = [
   {
@@ -1041,6 +1043,23 @@ function defaultDirectionsForSection(section) {
   };
 }
 
+function topicsForPassageSection(section) {
+  return section === "revising_editing_a"
+    ? topics.slice(readingTopicCount)
+    : topics.slice(0, readingTopicCount);
+}
+
+function validateQuestionTopics(questions, section, contextLabel) {
+  const allowedTopics = topicsForPassageSection(section);
+  const invalidIndex = questions.findIndex((question) => !allowedTopics.includes(question.topic));
+  if (invalidIndex < 0) return;
+  const sectionLabel = section === "revising_editing_a" ? "Revising/Editing" : "Reading Comprehension";
+  throw new EditorError(
+    400,
+    `${contextLabel} question ${invalidIndex + 1} uses ${questions[invalidIndex].topic}, which is not a ${sectionLabel} topic. Choose one of: ${allowedTopics.join(", ")}.`,
+  );
+}
+
 function normalizePassage(input, { requireExamSection = false } = {}) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Passage data is invalid.");
@@ -1073,6 +1092,7 @@ function normalizePassage(input, { requireExamSection = false } = {}) {
     ? input.questions.map((question, index) => normalizeQuestion(question, id, index))
     : [];
   if (!questions.length) throw new EditorError(400, "Add at least one question before saving.");
+  validateQuestionTopics(questions, section, "Passage");
   const questionIds = new Set(questions.map((question) => question.id));
   if (questionIds.size !== questions.length) throw new EditorError(400, "Every question needs a unique ID.");
 
@@ -2114,6 +2134,130 @@ async function previewMathImport(input) {
   };
 }
 
+function parsePassageImportSource(source) {
+  let raw = requiredText(source, "Imported passage", { preserve: true }).trim();
+  const fenced = raw.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
+  if (fenced) raw = fenced[1].trim();
+  let document;
+  try {
+    document = JSON.parse(raw);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : "Unknown JSON error";
+    throw new EditorError(400, `The imported passage is not valid JSON: ${detail}`);
+  }
+  if (!document || typeof document !== "object" || Array.isArray(document)) {
+    throw new EditorError(400, "The imported document must be one JSON object.");
+  }
+  const hasPassageEnvelope =
+    document.passage && typeof document.passage === "object" && !Array.isArray(document.passage);
+  if (
+    hasPassageEnvelope &&
+    typeof document.format === "string" &&
+    document.format.trim() &&
+    document.format !== passageImportFormat
+  ) {
+    throw new EditorError(
+      400,
+      `This import uses ${document.format}; the Studio expects ${passageImportFormat}.`,
+    );
+  }
+  const passage = hasPassageEnvelope ? document.passage : document;
+  const reviewNotes = Array.isArray(document.reviewNotes)
+    ? document.reviewNotes.map((note) => String(note).trim()).filter(Boolean)
+    : [];
+  const visuals = Array.isArray(document.visuals)
+    ? document.visuals.flatMap((visual) => {
+        if (typeof visual === "string" && visual.trim()) {
+          return [{ description: visual.trim(), scope: "Passage" }];
+        }
+        if (!visual || typeof visual !== "object" || Array.isArray(visual)) return [];
+        const description = typeof visual.description === "string" ? visual.description.trim() : "";
+        if (!description) return [];
+        const scope = typeof visual.scope === "string" && visual.scope.trim()
+          ? visual.scope.trim()
+          : "Passage";
+        return [{ description, scope }];
+      })
+    : [];
+  return { passage, reviewNotes, visuals };
+}
+
+async function previewPassageImport(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new EditorError(400, "Official passage import data is invalid.");
+  }
+  const parsed = parsePassageImportSource(input.source);
+  const importedQuestions = Array.isArray(parsed.passage.questions)
+    ? parsed.passage.questions
+    : [];
+  const allowedQuestionTypes = new Set(["multiple_choice", "multi_select"]);
+  const unsupportedQuestion = importedQuestions.find(
+    (question) => !allowedQuestionTypes.has(question?.type),
+  );
+  if (unsupportedQuestion) {
+    throw new EditorError(
+      400,
+      "Official passage imports currently support multiple-choice and multi-select questions only.",
+    );
+  }
+  const importedSection = String(parsed.passage.section || "");
+  if (!examPassageSections.includes(importedSection)) {
+    throw new EditorError(400, "The imported passage must use section=reading or section=revising_editing_a.");
+  }
+  const allowedTopics = topicsForPassageSection(importedSection);
+  const invalidTopic = importedQuestions.find(
+    (question) => !allowedTopics.includes(String(question?.topic || "")),
+  );
+  if (invalidTopic) {
+    const sectionLabel = importedSection === "reading" ? "Reading Comprehension" : "Revising/Editing";
+    throw new EditorError(
+      400,
+      `Question topic ${String(invalidTopic.topic || "(blank)")} is not allowed for ${sectionLabel}. Copy a fresh extraction prompt and choose one of: ${allowedTopics.join(", ")}.`,
+    );
+  }
+  const passage = normalizePassage(
+    {
+      ...parsed.passage,
+      directions: undefined,
+      exportName: "",
+      fileName: "",
+      id: "",
+      image: undefined,
+      passageSetId: "",
+      questions: importedQuestions.map((question, index) => ({
+        ...question,
+        id: `passage-${index + 1}`,
+      })),
+      richText: "",
+      sourceHash: "",
+    },
+    { requireExamSection: true },
+  );
+  const { passages } = await listPassages();
+  if (passages.some((candidate) => candidate.id === passage.id)) {
+    throw new EditorError(
+      409,
+      `A passage with the generated ID ${passage.id} already exists. Add or correct the official form in versionLabel, then validate again.`,
+    );
+  }
+  const warnings = [
+    "Confirm every imported answer against an official answer key when one is available. ChatGPT may have solved answers that were not printed in the PDF.",
+    ...parsed.reviewNotes,
+    ...parsed.visuals.map(
+      (visual) => `${visual.scope}: ${visual.description} Upload the original visual in the Studio before saving if students need it.`,
+    ),
+    ...(!passage.teacherSource
+      ? ["Add the PDF file name, printed page range, and source question range to Passage source before saving."]
+      : []),
+  ];
+  return {
+    format: passageImportFormat,
+    normalizedJson: JSON.stringify(passage, null, 2),
+    passage,
+    warnings,
+  };
+}
+
 function normalizeMathSection(input, assessment) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Math section data is invalid.");
@@ -2490,6 +2634,12 @@ function normalizeStandaloneItem(input) {
       ? { versionLabel: input.versionLabel.trim() }
       : {}),
   };
+  if (!topicsForPassageSection("revising_editing_a").includes(baseItem.topic)) {
+    throw new EditorError(
+      400,
+      `Part B questions must use a Revising/Editing topic: ${topicsForPassageSection("revising_editing_a").join(", ")}.`,
+    );
+  }
 
   if (input.type === "multiple_choice") {
     if (!Array.isArray(input.choices) || input.choices.length !== 4) {
@@ -2738,6 +2888,8 @@ async function getState() {
     practice: await getPracticeConfig(),
     standaloneItems,
     standaloneSourceHash: hashSource(standaloneSource),
+    readingTopics: topicsForPassageSection("reading"),
+    revisingEditingTopics: topicsForPassageSection("revising_editing_a"),
     testErrors,
     tests,
     topicDetails: buildContentTopicDetails(passages, advancedPassages, standaloneItems),
@@ -3186,6 +3338,11 @@ async function handleRequest(request, response) {
       sendJson(response, 200, await previewMathImport(await readJson(request)));
       return;
     }
+    if (request.method === "POST" && url.pathname === "/api/passages/import-preview") {
+      verifyEditRequest(request);
+      sendJson(response, 200, await previewPassageImport(await readJson(request)));
+      return;
+    }
     if (request.method === "POST" && url.pathname === "/api/math") {
       verifyEditRequest(request);
       sendJson(response, 201, { math: await saveMath(await readJson(request)) });
@@ -3277,7 +3434,7 @@ async function validateSetup() {
         points: 1,
         prompt: "Choose two answers.",
         promptHtml: "Choose two answers.<div>Keep this on a new line.</div>",
-        topic: "Central Idea & Theme",
+        topic: "Sentence Structure",
         type: "multi_select",
       },
       {
@@ -3295,7 +3452,7 @@ async function validateSetup() {
         ],
         points: 1,
         prompt: "Place one answer in each box.",
-        topic: "Central Idea & Theme",
+        topic: "Sentence Structure",
         type: "category_sort",
       },
       {
@@ -3323,7 +3480,7 @@ async function validateSetup() {
           answer: "Primary Mood",
           row: "Paragraphs",
         },
-        topic: "Tone & Mood",
+        topic: "Word Choice & Precision",
         type: "table_match",
       },
       {
@@ -3333,7 +3490,7 @@ async function validateSetup() {
         instructions: "Move the correct answer to the box.",
         points: 1,
         prompt: "Which transition best completes the sentence?",
-        topic: "Transitions & Organization",
+        topic: "Topic & Transitions",
         transitionBlankAfter: "the conclusion follows from the evidence.",
         transitionBlankBefore: "The examples support the claim;",
         transitionSentenceNumber: "(5)",
@@ -3353,7 +3510,7 @@ async function validateSetup() {
         ],
         points: 1,
         prompt: "Which two phrases most affect the tone of the excerpt?",
-        topic: "Tone & Mood",
+        topic: "Word Choice & Precision",
         type: "category_sort",
       },
       {
@@ -3375,7 +3532,7 @@ async function validateSetup() {
         points: 1,
         prompt: "Determine whether each sentence presents a claim or evidence.",
         tableHeaders: { answer: "Answer", row: "Sentence" },
-        topic: "Evidence & Support",
+        topic: "Relevance & Conclusion",
         type: "matrix_choice",
       },
     ],
@@ -3427,6 +3584,10 @@ async function validateSetup() {
     advancedId: "editor-feature-validation",
     excerpt: "A short advanced-practice validation excerpt.",
     genre: "Science",
+    questions: featureFixture.questions.map((question) => ({
+      ...question,
+      topic: "Central Idea & Theme",
+    })),
     thumbnailAlt: "A validation illustration",
     tone: "emerald",
   });
@@ -3610,7 +3771,7 @@ async function validateSetup() {
     points: 1,
     prompt: "Which sentence contains an error in construction?",
     stimulus: "(1) First sentence. (2) Second sentence. (3) Third sentence. (4) Fourth sentence.",
-    topic: "Sentence Construction",
+    topic: "Sentence Structure",
     type: "category_sort",
   });
   if (

@@ -2381,5 +2381,663 @@
     "correctionsOpen": false,
     "allowCompletedAccess": false,
     "split": false
+  },
+  {
+    "id": "2020-2021-form-b",
+    "title": "2020-2021 Form B",
+    "classId": "shsat",
+    "description": "",
+    "durationMinutes": 180,
+    "createdAt": "2026-09-19T14:37:43.255Z",
+    "updatedAt": "2026-09-19T14:54:43.839Z",
+    "passages": [
+      {
+        "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Massachusetts: Lowell National Historical Park",
+        "versionLabel": "2020-2021 Form B"
+      },
+      {
+        "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from A Tramp Abroad",
+        "versionLabel": "2020–2021 Form B"
+      },
+      {
+        "id": "using-fire-to-keep-a-prairie-healthy",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Using Fire to Keep a Prairie Healthy",
+        "versionLabel": "2025-2026 Form B"
+      },
+      {
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from “Impressions of an Indian Childhood”",
+        "versionLabel": "2020–2021 SHSAT Form B"
+      },
+      {
+        "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from “Niagara Falls”",
+        "versionLabel": "2020–2021 Form B"
+      }
+    ],
+    "questions": [
+      {
+        "answer": "C",
+        "choices": [
+          "suggest that people around the world saw the direct contribution of nature and industry to the United States.",
+          "compare the natural and industrial attractions in the United States at that time.",
+          "convey the idea that the United States offered both natural and industrial attractions.",
+          "imply that the natural resources in the United States contributed to the development of industry."
+        ],
+        "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 1.\n\nAs one Scottish traveler observed during his visit to America, “Niagara and Lowell are the two objects I will longest remember in my American journey, the one the glory of American scenery, the other of American industry.”\n\nThe author most likely includes the quotation from the Scottish traveler in order to",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“The Boston merchants who founded Lowell in 1821 and named it after Francis Cabot Lowell chose to locate the town along Massachusetts’s Merrimack River to take advantage of the kinetic energy offered by the Pawtucket waterfalls.”",
+          "“Over six miles of canals powered the waterwheels of Lowell’s mills, whose massive five- and six-story brick buildings dominated the city’s landscape.”",
+          "“The most recognized of these buildings are the Lowell Manufacturing Company chartered in 1821, the Suffolk or Wannalancit Mill completed around the 1880s, the Boott Mill Company established in 1835, and the Boott Mill Boardinghouse that opened in 1838.”",
+          "“By the 1850s, 40 textile mills employing over 10,000 workers stretched for about a mile along the river.”"
+        ],
+        "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from paragraph 2 best supports the idea that Lowell became “a bustling industrial city” (paragraph 1)?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It provides a transition from a description of the mills to a description of the workforce in those mills.",
+          "It indicates a shift in tone from positive and hopeful to negative and dissatisfied with working conditions at the mill.",
+          "It summarizes a challenge that led many women to leave their hometown and seek work in urban areas.",
+          "It begins a comparison of the mill workforce between the mid-1800s and the late 1800s."
+        ],
+        "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 3.\n\nFrom the early to mid-1800s, women left the constricted lifestyle of small rural towns and rural areas for independent industrial city life.\n\nWhich statement best describes how the sentence fits into the overall structure of the passage?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It implies that Lowell was founded by early Irish immigrants.",
+          "It emphasizes the important role Irish immigrants played in Lowell’s history.",
+          "It suggests that the new Irish immigrants were readily accepted into the community.",
+          "It highlights the working relationship between the mill girls and the new Irish immigrants."
+        ],
+        "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 5.\n\nAlthough Lowell received an influx of Irish families during this time, the Irish were a part of the city’s history from its birth, and before the “mill girls” arrived, they built Lowell’s historic canals, mills, and boardinghouses.\n\nHow does this sentence contribute to the development of ideas in the passage?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "The mill girls were eager to leave their domestic duties and small towns behind, so they went to work in the mills of Lowell.",
+          "Originally, the mill girls were satisfied to work in Lowell, but as they left their jobs at the Lowell mills, immigrants arrived to fill the empty positions.",
+          "Young women left home to work in the Lowell mills, but the mill girls soon became dissatisfied with the working conditions and rigid boardinghouse rules.",
+          "The mill girls embraced city life when they came to work in Lowell’s mills, but when their protests about unfavorable working conditions went unanswered, they left."
+        ],
+        "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence best summarizes the mill girls’ experience as the dominant workforce in Lowell?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "canals, mills, and boardinghouses that were built by immigrants.",
+          "mill girls and immigrants who comprised Lowell’s workforce.",
+          "development of the mills and the workforce established to support them.",
+          "cultural diversity of the people who lived in the area."
+        ],
+        "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A central idea that Lowell was “one of America’s most significant industrial cities” (paragraph 1) is conveyed in the passage primarily through a description of the",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "description of poor living and working conditions.",
+          "explanation for why some immigrant groups struggled to live together.",
+          "comparison with other mills that used modern methods.",
+          "information about the mills opening temporarily during World War II."
+        ],
+        "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The reason Lowell lost its status as an industrial leader is best illustrated through the",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "believes that the behavior of the ants is reflected in other living creatures.",
+          "acknowledges that his observations of a few do not necessarily apply to all.",
+          "knows that disproving a commonly held belief is challenging.",
+          "accepts that there are flaws in his interpretation of the behavior of the ants."
+        ],
+        "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The phrase “those wonderful Swiss and African ones which vote, keep drilled armies, . . . and dispute about religion” in paragraph 1 shows that the author",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "They highlight the ant’s belief that his work is important.",
+          "They illustrate that the ant is more efficient working on his own.",
+          "They indicate the speed with which the ant completes his tasks.",
+          "They emphasize the ant’s anxious efforts to be productive."
+        ],
+        "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In paragraph 2, how do the words “grabs,” “yanks,” and “tearing away” contribute to the meaning of the excerpt?",
+        "topic": "Word & Phrase Meaning",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It reveals that the ant is aware of the purposelessness of his efforts and that he does not enjoy his work.",
+          "It highlights how little the ant accomplishes despite the great amount of effort he exerts.",
+          "It suggests that the ant has an industrious attitude and does not easily give up.",
+          "It emphasizes that the ant does not thoughtfully consider how difficult it would be to carry his capture for such a long period of time."
+        ],
+        "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 2.\n\nAt the end of half an hour he fetches up within six inches of the place he started from, and lays his burden down.\n\nHow does the sentence contribute to the development of the central idea of the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "mistakes are necessary in order to make progress.",
+          "rushing to reach a goal may lead to an undesirable outcome.",
+          "breaking out of a familiar pattern of events is difficult.",
+          "industriousness and foolishness is an unfortunate combination."
+        ],
+        "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The description at the end of paragraph 2 of the ant repeating his actions conveys the idea that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "“He goes out foraging, he makes a capture, and then what does he do?”",
+          "“He lifts it bodily up in the air by main force,”",
+          "“When he gets up there he finds that that is not the place;”",
+          "“Now he wipes the sweat from his brow, strokes his limbs, and then marches aimlessly off, in as violent a hurry as ever.”"
+        ],
+        "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from paragraph 2 best supports the idea that sheer “leather-headedness” (paragraph 2) amounts to “ignorance” and “idiocy” (paragraph 4)?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The friend distracts the ant from finding the correct path home.",
+          "The friend inspires the ant to consider a new approach to the situation.",
+          "The friend encourages the ant to continue his worthless efforts.",
+          "The friend tries to prevent the ant from finishing his task."
+        ],
+        "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the presence of the friend in paragraph 3 influence the first ant’s behavior?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“During many summers now I have watched him, when I ought to have been in better business, and I have not yet come across a living ant that seemed to have any more sense than a dead one.” (paragraph 1)",
+          "“I admit his industry, of course; he is the hardest working creature in the world—” (paragraph 2)",
+          "“Science has recently discovered that the ant does not lay up anything for winter use.” (paragraph 4)",
+          "“It is strange beyond comprehension that so manifest a humbug as the ant has been able to fool so many nations and keep it up so many ages without being found out.” (paragraph 4)"
+        ],
+        "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following best explains the author’s fascination with the ants?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It indicates a shift to the realization that the ants place great importance on an item that has little value.",
+          "It emphasizes a shift from an analysis of the actions of the individual ant to an interpretation of the interaction between ants.",
+          "It introduces a transition to the idea that specific observations about one ant allow for generalizations about all ants.",
+          "It provides a transition to the observation that the ant’s friend is just as purposeful in his efforts toward a futile ending as the first ant is."
+        ],
+        "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 3.\n\nEvidently the friend remarks that a last year’s grasshopper leg is a very noble acquisition, and inquires where he got it.\n\nWhich statement best describes how the sentence fits into the overall structure of the excerpt?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "comical descriptions of the inability of the ants to accomplish the task at hand.",
+          "comparison between ants from other countries and the ants being observed.",
+          "keen observations that the level of intelligence of ants is mostly overstated.",
+          "conclusion that ants value objects that are of little practical use to them."
+        ],
+        "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-9",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The central idea that “the average ant is a sham” (paragraph 1) is conveyed mainly through the",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "by drawing animals in to the area to feed on the new growth sprouting from the burned land",
+          "by destroying tall trees and reducing the shade that had hindered the growth of planted crops",
+          "by burning off excess vegetation and increasing the availability of nutrients for the remaining plants",
+          "by causing changes to the bison’s migration habits as bison herds fled from the wildfires on the prairie"
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "According to the passage, how did fires started by natural causes prompt American Indians to begin practicing controlled burns?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "ensuring that the animals’ main food source has the conditions needed for it to thrive.",
+          "endangering the animals that live near the trees scheduled for removal.",
+          "making sure that the water supply for the animals is sufficient.",
+          "reducing the animals’ natural source of shade and protection from the elements."
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Targeting red cedar trees in controlled burns affects the animals that live on the prairie mostly by",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "the conservationists are better qualified to lead preservation efforts than farmers are.",
+          "the conservationists are eager to involve others in the preservation of the prairie.",
+          "the conservationists’ efforts will restore the original beauty and biodiversity of the region.",
+          "the conservationists’ training program should serve as a model for other conservation organizations."
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 6.\nThe patch-burn system is so successful that the conservationists at the preserve provide training to prairie farmers about conducting controlled burns on their own land.\nThe author includes this sentence to show that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "the explanation that conservationists use the alternating burn pattern of the patch-burn method in order to allow the animals in the area to avoid the fire",
+          "the information that conservationists evaluate which land would most benefit from a controlled burn before applying the patch-burn method",
+          "the information that conservationists have determined that the patch-burn method has promoted the growth of species that were at risk of being crowded out",
+          "the explanation that conservationists are able to control the fire in the patch-burn method by arranging separate burns across the designated portion of land"
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which details from the passage best convey the central idea that using the patch-burn method is an effective way to protect and manage prairie land?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "“While one of the greatest threats to the prairie is wildfire, the use of controlled fires is actually an effective way to protect this idyllic landscape.” (paragraph 1)",
+          "“The American Indian people began to deliberately burn areas of land for bison to graze on, which enticed the herds away from the people’s crops.” (paragraph 2)",
+          "“This patch burning contains the fire within a specific area and allows animals in the burn area to safely relocate.” (paragraph 5)",
+          "“The following year, conservationists will burn a different section of the preserve, while the land burned the previous year regrows healthier than before.” (paragraph 5)"
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence supports the idea that farmers and people who manage land may be concerned about using fire as a way to benefit the land?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "the safest methods are sometimes the least effective at solving complex challenges.",
+          "thorough investigation of uncommon methodologies can lead to beneficial results.",
+          "detailed planning can ensure that a potentially destructive action has a positive impact.",
+          "plans that entail a certain amount of risk almost always result in success."
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 6.\nBurning land to make it healthy may seem counterintuitive, but strategic controlled fires have helped the prairie sustain life for hundreds of years and, with careful management, will continue to do so.\nThe words “counterintuitive” and “strategic” in the sentence convey the idea that",
+        "topic": "Word & Phrase Meaning",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It is important to explain the purposes and the risks of controlled burns to the people living near a proposed burn area.",
+          "It is necessary to thoroughly examine a particular region in order to plan and execute a successful controlled burn.",
+          "Monitoring animals’ reactions after a controlled burn on the prairie is a minor part of scientists’ research.",
+          "Conservationists should consider the helpful aspects of invasive species before executing a controlled burn."
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "With which statement would the author most likely agree?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "by depicting how the landscape in a given area changes as the patch-burn method is applied",
+          "by indicating that patch-burn fires are best suited for use in areas with certain features",
+          "by revealing that the patch-burn method is used primarily on uninhabited areas of land",
+          "by comparing the size of the area burned by the patch-burn method with that of unburned areas"
+        ],
+        "id": "using-fire-to-keep-a-prairie-healthy-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How do the diagram and its text provide additional support for the topic presented in the passage?",
+        "topic": "Tone & Mood",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "the sadness that the author feels reflecting upon her former way of life.",
+          "the enthusiasm with which the author approached her work indoors.",
+          "the fond feelings that the author has toward her childhood experiences.",
+          "the mix of emotions that the author feels toward her work and her mother."
+        ],
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In paragraph 1, the phrases “cool morning breezes swept freely” and “wafting the perfume of sweet grasses” affect the tone of the excerpt by suggesting",
+        "topic": "Tone & Mood",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "beadwork is a true form of art.",
+          "color is a source of artistic inspiration.",
+          "all artistic activities begin with a series of steps.",
+          "the beadworker tries to imitate art."
+        ],
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The phrase “just as an artist arranges the paints upon his palette” in paragraph 2 suggests that",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "listing the many steps that are involved in the process of beading in order to explain its difficulty and complexity.",
+          "conveying the importance of following the steps of the beading process in a precise order to work most efficiently.",
+          "emphasizing the time required to fully prepare for and execute the many large and small tasks in the activity of beading.",
+          "detailing each step in preparation for beading in order to highlight the author’s enthusiasm for the work."
+        ],
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The author’s use of sequence in paragraphs 1 and 2 contributes to the development of ideas in the excerpt by",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "the author was interested in the work because she knew her mother was making something for her.",
+          "the author had difficulty learning through observation but wanted to help her mother.",
+          "the author was determined to behave according to her mother’s standards and sought her approval.",
+          "the author had great admiration for her mother’s precision and mastery of her craft."
+        ],
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The details in paragraph 3 convey a central idea of the excerpt by suggesting that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Take a buckskin bag full of beads and spread them out on a mat in different colors like a paint palette; take a double sheet of buckskin and smooth it out on a table; take a sinew and awl and thread the beads onto the buckskin in a desired pattern.",
+          "Cut the double sheet of buckskin into a shape; take a skein of sinew and pierce the buckskin with an awl; thread the sinew with beads of many different colors in a simple or complex pattern; twist the sinew to keep it tight after every stitch into the buckskin.",
+          "Arrange the beads into groups of colors on a mat; smooth out a double sheet of buckskin and cut it to shape; take a single thread of sinew; pierce the buckskin with an awl; thread the buckskin with the sinew and string it with beads, carefully twisting after every stitch.",
+          "Gather beads, buckskin, sinew, and awl and place them on a mat; cut the buckskin into the desired shape; decide on a pattern for the beads and create it using the sinews and the awl; thread the beads onto the sinew in the desired pattern and twist it tight."
+        ],
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence best summarizes the process of beading that is described in the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "the information about the advanced technique of incorporating porcupine quills into a design.",
+          "the descriptions of the special materials that must be used to make decorated moccasins.",
+          "the descriptions of the various color combinations that make an attractive moccasin design.",
+          "the example of the author successfully and independently using a sharpened rod."
+        ],
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The idea that mastering moccasin design and creation requires experience is best illustrated in the excerpt through",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "by describing their techniques for knotting sinew thread (paragraph 4)",
+          "by describing their approaches to beadwork design (paragraph 5)",
+          "by stating her mother’s instructions on working with quills (paragraph 6)",
+          "by stating her mother’s ideas about activities after lessons (paragraph 7)"
+        ],
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the author distinguish her point of view from that of her mother?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It introduces a shift from the author’s demanding relationship with her mother to her more relaxed relationships with friends.",
+          "It signals a change from the challenging aspects of life on the reservation to the advantages of living on the prairie.",
+          "It highlights a contrast between the focus and control required while working and the freedom of having fun outside.",
+          "It concludes the progression of events in the narrative by describing the sequence of events at the end of the author’s day."
+        ],
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 7.\n\nAlways after these confining lessons I was wild with surplus spirits, and found joyous relief in running loose in the open again.\n\nWhich sentence best describes how this sentence fits into the overall structure of the excerpt?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "the craft that the author was learning was a tradition that endured through many generations and changes.",
+          "the author’s family incorporated traditional materials into their craft as a way of resisting the influence from European traders.",
+          "the uniqueness of the cultural tradition that the author learned as a child was eventually recognized in Europe.",
+          "the author was able to incorporate color into her craftwork as a result of trade with other peoples."
+        ],
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-9",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The table after paragraph 7 expands upon a central idea in the excerpt because it shows that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "the glow of the precious stones visible within the water.",
+          "the dynamic flow of the colors that are visible in the water.",
+          "the sudden appearance and disappearance of rainbows.",
+          "the sounds associated with a sense of falling."
+        ],
+        "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The central idea that the Falls communicate a feeling of “unintelligible disaster” (paragraph 1) is conveyed in paragraph 2 through a description of",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It demonstrates the timelessness of the American Falls.",
+          "It conveys the secretive nature of the American Falls.",
+          "It illustrates the elegant uniformity of the American Falls.",
+          "It communicates the intense strength of the American Falls."
+        ],
+        "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 2.\n\nThey are extraordinarily level, one long curtain of lacework and woven foam.\n\nWhat is the effect of comparing the American Falls to a “long curtain of lacework and woven foam”?",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It signals a change from the positive aspects of the Falls to the negative aspects.",
+          "It indicates a progression from the literal description of the water to a discussion of timeless truths.",
+          "It reinforces a shift from the qualities of the Falls to the qualities of the river.",
+          "It introduces a contrast between the obvious and the hidden features of the rapids."
+        ],
+        "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 3.\n\nThese are the lower rapids, a sight more terrifying than the Falls, because less intelligible.\n\nWhich statement best describes how the sentence fits into the overall structure of the excerpt?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "“If that were taken away, there would be little visible change, but the heart would be gone.” (paragraph 1)",
+          "“By comparison their beauty is almost delicate and fragile.” (paragraph 2)",
+          "“One is drawn back, strangely, to a contemplation of the Falls, at every hour, and especially by night, when the cloud of spray becomes an immense visible ghost, straining and wavering high above the river, white and pathetic and translucent.” (paragraph 4)",
+          "“A man’s life is of many flashing moments, and yet one stream; a nation’s flows through all its citizens, and yet is more than they.” (paragraph 4)"
+        ],
+        "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt best supports the idea that the essence of the Falls lies in their emotional impact?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "suggesting that viewing the Falls can be a life-changing experience.",
+          "showing that the cliffs of the Falls are a good place for self-examination.",
+          "emphasizing that the grandeur of the Falls seems impossible to grasp.",
+          "highlighting the type of reflection that is inspired by a visit to the Falls."
+        ],
+        "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 4.\n\nThere one can sit and let great cloudy thoughts of destiny and the passage of empires drift through the mind; for such dreams are at home by Niagara.\n\nThe sentence most contributes to the development of ideas in the excerpt by",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "the discussion of how the rainbows visible in the Falls are like the art and beauty created by humankind.",
+          "the comparison between the movement of water in the Falls and the human experience.",
+          "the inclusion of details that show that every observer’s experience with the Falls is different.",
+          "the acknowledgment that contemplating the Falls at night sparks an awareness of humankind’s destiny."
+        ],
+        "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In paragraph 4, the idea that human life and history travel toward the same ending is illustrated mainly through",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "A sense of ease and assurance comes with accepting one’s fate.",
+          "No matter where one’s path goes in life, one will always have regrets.",
+          "The best way to overcome fear is to recognize it and then defy it.",
+          "Reason will die out with humanity, but art will remain immortal."
+        ],
+        "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "With which statement would the author of this excerpt most likely agree?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      }
+    ],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false
   }
 ]

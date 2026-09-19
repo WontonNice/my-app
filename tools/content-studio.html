@@ -672,6 +672,7 @@
     .topic-manager-safety { display: flex; gap: 8px; margin: 12px 18px 0; border: 1px solid #d7e6e2; border-radius: 8px; background: #f3f9f7; padding: 9px 10px; color: var(--muted); font-size: .63rem; line-height: 1.4; }
     .topic-manager-safety strong { flex: 0 0 auto; color: var(--accent); }
     .topic-manager-list { display: grid; align-content: start; gap: 7px; overflow: auto; padding: 12px 18px; }
+    .topic-manager-scope { margin: 9px 0 2px; color: var(--accent); font-size: .68rem; letter-spacing: .04em; text-transform: uppercase; }
     .topic-manager-row { display: grid; grid-template-columns: 30px minmax(160px, .72fr) minmax(240px, 1.28fr) auto; gap: 8px; align-items: center; border: 1px solid var(--border-soft); border-radius: 9px; background: var(--subtle); padding: 8px; }
     .topic-manager-index { display: grid; width: 27px; height: 27px; border-radius: 7px; background: #e6ecef; color: #506477; font-size: .61rem; font-weight: 850; place-items: center; }
     .topic-manager-row label { display: grid; gap: 3px; color: var(--muted); font-size: .56rem; font-weight: 750; }
@@ -788,6 +789,7 @@
             <div><h2 id="passage-library-title">Exam passages</h2><span class="count" id="passage-count">0</span></div>
             <input class="search" id="passage-search" placeholder="Search exam passages" type="search">
             <button class="primary" id="new-passage" type="button">+ New exam passage</button>
+            <button class="secondary" id="open-passage-import" type="button">Import official passage</button>
           </div>
           <div class="passage-list" id="passage-list"></div>
           <div class="error-list" id="passage-errors" hidden></div>
@@ -987,10 +989,45 @@ Why D is wrong."></textarea>
     </div>
   </dialog>
 
+  <dialog aria-labelledby="official-passage-dialog-title" class="studio-import-dialog official-passage-dialog" id="official-passage-dialog">
+    <section class="panel math-import-panel official-passage-import-panel">
+      <div class="panel-head">
+        <div>
+          <span class="studio-eyebrow">PDF-to-draft workflow</span>
+          <h2 id="official-passage-dialog-title">Official Passage Importer</h2>
+          <small>Extract one passage at a time with ChatGPT, then validate the returned JSON before creating an unsaved draft.</small>
+        </div>
+        <button class="secondary" id="close-passage-import" type="button">Close import</button>
+      </div>
+      <div class="studio-dialog-status" role="status" hidden></div>
+      <ol class="official-import-steps">
+        <li><b>1</b><span><strong>Name one passage</strong><small>Use its exact title or original question range.</small></span></li>
+        <li><b>2</b><span><strong>Copy the prompt</strong><small>Paste it into ChatGPT and attach the official PDF.</small></span></li>
+        <li><b>3</b><span><strong>Import the answer</strong><small>Paste JSON or upload the JSON/TXT response.</small></span></li>
+      </ol>
+      <div class="field-grid official-import-targets">
+        <label class="field"><span>Passage title or question range <small>Required for the prompt</small></span><input id="official-passage-target" placeholder="Massachusetts: Lowell National Historical Park or questions 10-16"></label>
+        <label class="field"><span>Official source/version <small>Optional</small></span><input id="official-passage-source-label" placeholder="2020-2021 Form B"></label>
+      </div>
+      <div class="math-import-actions">
+        <button class="secondary" id="copy-passage-import-prompt" type="button">Copy PDF extraction prompt</button>
+      </div>
+      <label class="field">
+        <span>ChatGPT passage JSON</span>
+        <textarea id="official-passage-import-source" placeholder='Paste {"format":"nathan-tutors-official-passage-v1","passage":{...}} here.' spellcheck="false"></textarea>
+      </label>
+      <div class="math-import-actions">
+        <label class="secondary official-import-file">Upload JSON or TXT<input accept=".json,.txt,application/json,text/plain" id="official-passage-import-file" type="file"></label>
+        <button class="primary" id="preview-passage-import" type="button">Validate and review</button>
+      </div>
+      <div class="math-import-review official-passage-import-review" id="official-passage-import-review" hidden></div>
+    </section>
+  </dialog>
+
   <dialog aria-labelledby="content-topic-dialog-title" class="topic-manager-dialog content-topic-dialog" id="content-topic-dialog">
     <div class="topic-manager-shell">
       <header>
-        <div><span class="studio-eyebrow">Question categorization</span><h2 id="content-topic-dialog-title">Manage question topics</h2><p>Control the ordered Topic dropdown used by exam passages, advanced practice, and Part B questions.</p></div>
+        <div><span class="studio-eyebrow">Question categorization</span><h2 id="content-topic-dialog-title">Manage question topics</h2><p>The first eight topics belong to Reading Comprehension. Every topic after that belongs exclusively to Revising/Editing.</p></div>
         <button aria-label="Close question topic manager" class="icon-button" id="content-topic-close" type="button">×</button>
       </header>
       <div class="topic-manager-safety"><strong>Protected changes</strong><span>Renames update existing question records when saved. Topics in use cannot be removed, and removals require confirmation.</span></div>
@@ -1026,6 +1063,9 @@ Why D is wrong."></textarea>
       passageMode: "exam",
       passageDraft: null,
       passageDirty: false,
+      passageImportBusy: false,
+      passageImportReview: null,
+      passageImportSource: "",
       standaloneDraft: null,
       standaloneDirty: false,
       selectedStandaloneItemId: "",
@@ -1209,14 +1249,18 @@ Why D is wrong."></textarea>
           return api(path, options, false);
         }
       }
-      if (!response.ok) throw new Error(data.message || "The editor request failed.");
+      if (!response.ok) {
+        const error = new Error(data.message || "The editor request failed.");
+        error.status = response.status;
+        throw error;
+      }
       return data;
     }
 
-    function defaultQuestion(passageId, number, type = "multiple_choice") {
+    function defaultQuestion(passageId, number, type = "multiple_choice", topic = "Central Idea & Theme") {
       const base = {
         id: `${passageId || "passage"}-${number}`,
-        topic: "Central Idea & Theme",
+        topic,
         type,
         prompt: "",
         points: 1,
@@ -1373,7 +1417,7 @@ Why D is wrong."></textarea>
         promptHtml: "",
         stimulus: "",
         stimulusHtml: "",
-        topic: "Conventions & Grammar",
+        topic: questionTopicsForSection("revising_editing_a")[0] || "Sentence Structure",
         versionLabel: "",
       };
       if (type === "category_sort") {
@@ -1923,11 +1967,173 @@ Rules:
       $("#passage-library-title").textContent = advanced ? "Advanced passages" : "Exam passages";
       $("#passage-search").placeholder = advanced ? "Search advanced practice" : "Search exam passages";
       $("#new-passage").textContent = advanced ? "+ New advanced passage" : "+ New exam passage";
+      $("#open-passage-import").hidden = advanced;
     }
 
-    function topicOptions(selected) {
-      const topics = app.state.topics.includes(selected) ? app.state.topics : [selected, ...app.state.topics];
+    function openOfficialPassageImport() {
+      app.passageImportReview = null;
+      $("#official-passage-import-review").hidden = true;
+      $("#official-passage-dialog").showModal();
+      $("#official-passage-target").focus();
+      setStatus("Choose one official passage, copy the extraction prompt, then import ChatGPT's JSON response.");
+    }
+
+    function closeOfficialPassageImport() {
+      if (app.passageImportBusy) return;
+      $("#official-passage-dialog").close();
+    }
+
+    function renderOfficialPassageImportReview() {
+      const review = app.passageImportReview;
+      const container = $("#official-passage-import-review");
+      if (!review) {
+        container.hidden = true;
+        container.innerHTML = "";
+        return;
+      }
+      const passage = review.passage;
+      container.hidden = false;
+      container.innerHTML = `
+        <div class="panel-head">
+          <div><h2>Review imported passage</h2><small>This is still temporary. Nothing has been written to code.</small></div>
+        </div>
+        <div class="math-import-meta">
+          <span>${escapeHtml(passage.title)}</span>
+          <span>${escapeHtml(passage.versionLabel || "No version label")}</span>
+          <span>${escapeHtml(passage.section.replaceAll("_", " "))}</span>
+          <span>${passage.questions.length} question${passage.questions.length === 1 ? "" : "s"}</span>
+        </div>
+        ${review.warnings.length ? `
+          <div class="math-import-warnings">
+            <strong>Required review</strong>
+            <ul>${review.warnings.map((warning) => `<li>${escapeHtml(warning)}</li>`).join("")}</ul>
+          </div>
+        ` : ""}
+        <details class="official-import-preview" open>
+          <summary>Passage transcription</summary>
+          <div><h3>${escapeHtml(passage.title)}</h3>${passage.author ? `<p>by ${escapeHtml(passage.author)}</p>` : ""}<pre>${escapeHtml(passage.text)}</pre></div>
+        </details>
+        <details class="official-import-preview" open>
+          <summary>Questions and answer key</summary>
+          <div class="official-import-question-list">
+            ${passage.questions.map((question, index) => `
+              <article>
+                <b>${index + 1}</b>
+                <span><strong>${escapeHtml(question.prompt)}</strong><small>${escapeHtml(question.topic)} · ${escapeHtml(studioCorrectAnswer(question))}</small></span>
+              </article>
+            `).join("")}
+          </div>
+        </details>
+        <details>
+          <summary>Normalized import JSON</summary>
+          <pre class="math-import-json">${escapeHtml(review.normalizedJson)}</pre>
+        </details>
+        <div class="math-import-actions">
+          <button class="primary" id="accept-passage-import" type="button">Create unsaved passage draft</button>
+          <button class="secondary" id="revise-passage-import" type="button">Keep editing JSON</button>
+        </div>
+      `;
+      $("#accept-passage-import").addEventListener("click", acceptOfficialPassageImport);
+      $("#revise-passage-import").addEventListener("click", () => {
+        app.passageImportReview = null;
+        renderOfficialPassageImportReview();
+        $("#official-passage-import-source").focus();
+      });
+    }
+
+    async function previewOfficialPassageImport() {
+      if (app.passageImportBusy) return;
+      const source = $("#official-passage-import-source").value || app.passageImportSource;
+      if (!source.trim()) {
+        setStatus("Paste or upload ChatGPT's passage JSON before validating.", "error");
+        return;
+      }
+      app.passageImportSource = source;
+      app.passageImportBusy = true;
+      $("#preview-passage-import").disabled = true;
+      $("#preview-passage-import").textContent = "Validating...";
+      setStatus("Validating the official passage, questions, and answer key...");
+      try {
+        app.passageImportReview = await api("/api/passages/import-preview", {
+          method: "POST",
+          body: JSON.stringify({ source }),
+        });
+        renderOfficialPassageImportReview();
+        setStatus("Import validated. Review the transcription and every inferred answer before creating the draft.", "success");
+      } catch (error) {
+        app.passageImportReview = null;
+        renderOfficialPassageImportReview();
+        const message =
+          error.status === 404 && error.message === "Not found."
+            ? "This Content Studio server was started before Official Passage Importer was added. Copy the JSON from this box, stop the old editor, run npm run content-editor again, reload the page, and paste it back in."
+            : error.message;
+        setStatus(message, "error");
+      } finally {
+        app.passageImportBusy = false;
+        $("#preview-passage-import").disabled = false;
+        $("#preview-passage-import").textContent = "Validate and review";
+      }
+    }
+
+    function acceptOfficialPassageImport() {
+      const imported = app.passageImportReview?.passage;
+      if (!imported || !confirmDiscard()) return;
+      studioUI.passageContext = "";
+      studioUI.selectedQuestionId = imported.questions[0]?.id || "";
+      studioUI.selectedQuestionIndex = 0;
+      app.passageMode = "exam";
+      app.selectedPassageId = "";
+      app.passageDraft = clone(imported);
+      app.passageDirty = true;
+      app.passageImportReview = null;
+      app.passageImportSource = "";
+      $("#official-passage-import-source").value = "";
+      $("#official-passage-dialog").close();
+      updatePassageWorkspaceLabels();
+      renderPassageList();
+      renderPassageEditor();
+      setStatus(`Imported ${imported.title} as an unsaved draft. Review it in Student view, then save the passage.`, "success");
+    }
+
+    async function loadOfficialPassageImportFile(file) {
+      if (!file) return;
+      if (file.size > 2_000_000) {
+        setStatus("The ChatGPT response file must be smaller than 2 MB.", "error");
+        return;
+      }
+      try {
+        app.passageImportSource = await file.text();
+        app.passageImportReview = null;
+        $("#official-passage-import-source").value = app.passageImportSource;
+        renderOfficialPassageImportReview();
+        setStatus(`${file.name} loaded. Validate it before creating a draft.`, "success");
+      } catch {
+        setStatus("The selected ChatGPT response file could not be read.", "error");
+      }
+    }
+
+    function questionTopicsForSection(section = "reading") {
+      if (section === "revising_editing_a") return app.state.revisingEditingTopics || app.state.topics.slice(8);
+      return app.state.readingTopics || app.state.topics.slice(0, 8);
+    }
+
+    function currentPassageQuestionSection() {
+      return app.passageMode === "advanced" || app.passageDraft?.section !== "revising_editing_a"
+        ? "reading"
+        : "revising_editing_a";
+    }
+
+    function topicOptions(selected, section = "reading") {
+      const topics = questionTopicsForSection(section);
       return topics.map((topic) => `<option ${topic === selected ? "selected" : ""} value="${escapeHtml(topic)}">${escapeHtml(topic)}</option>`).join("");
+    }
+
+    function resetInvalidPassageTopics(section) {
+      const allowedTopics = questionTopicsForSection(section);
+      const fallbackTopic = allowedTopics[0];
+      for (const question of app.passageDraft.questions) {
+        if (!allowedTopics.includes(question.topic)) question.topic = fallbackTopic;
+      }
     }
 
     function formatOptions(selected) {
@@ -2147,6 +2353,8 @@ Rules:
           }
           if (element.dataset.field === "section") {
             app.passageDraft.directions = passageDirectionsForSection(element.value);
+            resetInvalidPassageTopics(element.value);
+            renderQuestionsV2();
           }
           if (element.dataset.field === "passageType" && element.value === "poem" && app.passageDraft.format !== "poem") {
             app.passageDraft.format = "poem";
@@ -3057,7 +3265,7 @@ Rules:
             </header>
             <div class="question-grid">
               <label class="field"><span>Question ID</span><input data-question-field="id" value="${escapeHtml(question.id)}"></label>
-              <label class="field"><span>Topic</span><select data-question-field="topic">${topicOptions(question.topic)}</select></label>
+              <label class="field"><span>Topic</span><select data-question-field="topic">${topicOptions(question.topic, currentPassageQuestionSection())}</select></label>
               <label class="field wide"><span>Question prompt</span><textarea data-question-field="prompt">${escapeHtml(question.prompt)}</textarea></label>
               <div class="choices wide">
                 ${question.choices.map((choice, choiceIndex) => `
@@ -3276,7 +3484,7 @@ Rules:
             </div>
             <div class="question-rich-toolbar">${richToolbarHtml("Format selected question text")}</div>
             <div class="question-grid">
-              <label class="field"><span>Topic</span><select data-question-field="topic">${topicOptions(question.topic)}</select></label>
+              <label class="field"><span>Topic</span><select data-question-field="topic">${topicOptions(question.topic, currentPassageQuestionSection())}</select></label>
               <label class="field"><span>Points</span><input data-question-field="points" min="1" type="number" value="${escapeHtml(question.points || 1)}"></label>
               <label class="field wide"><span>Question prompt</span><div class="rich-editor-shell"><div class="rich-editor-content is-compact" contenteditable="true" data-placeholder="Type the question prompt" data-question-index="${index}" data-rich-kind="prompt" role="textbox">${inlineRichValue(question.promptHtml, question.prompt)}</div></div></label>
               ${transitionEditor}
@@ -3586,7 +3794,12 @@ Rules:
       const passageId = app.passageDraft.id || "passage";
       let number = app.passageDraft.questions.length + 1;
       while (app.passageDraft.questions.some((question) => question.id === `${passageId}-${number}`)) number += 1;
-      app.passageDraft.questions.push(defaultQuestion(passageId, number));
+      app.passageDraft.questions.push(defaultQuestion(
+        passageId,
+        number,
+        "multiple_choice",
+        questionTopicsForSection(currentPassageQuestionSection())[0],
+      ));
       studioUI.selectedQuestionId = app.passageDraft.questions.at(-1).id;
       studioUI.showAllQuestions = false;
       markDirty();
@@ -3782,7 +3995,7 @@ Rules:
           <div class="standalone-bank-form">
             <label class="field"><span>Question ID</span><div class="field-input-action"><input id="standalone-id" data-standalone-field="id" ${app.selectedStandaloneItemId ? "disabled" : ""} value="${escapeHtml(item.id)}"><button class="secondary" id="generate-standalone-id" ${app.selectedStandaloneItemId ? "disabled" : ""} type="button">Generate</button></div></label>
             <label class="field"><span>Question type</span><select id="standalone-type"><option ${isDragDrop ? "" : "selected"} value="multiple_choice">Multiple choice</option><option ${isDragDrop ? "selected" : ""} value="category_sort">Drag and drop · one answer box</option></select></label>
-            <label class="field"><span>Topic</span><select data-standalone-field="topic">${topicOptions(item.topic)}</select></label>
+            <label class="field"><span>Topic</span><select data-standalone-field="topic">${topicOptions(item.topic, "revising_editing_a")}</select></label>
             <label class="field"><span>Points</span><input data-standalone-field="points" min="1" type="number" value="${escapeHtml(item.points || 1)}"></label>
             <label class="field wide"><span>Passage version <small>Teacher only</small></span><input data-standalone-field="versionLabel" value="${escapeHtml(item.versionLabel || "")}" placeholder="Version 1, Form A, 2026 edition"><small class="field-note">Use this to identify which version of the Part B sentence or paragraph this question belongs to. Students will not see it.</small></label>
             <div class="wide">
@@ -6171,6 +6384,8 @@ WRONG D:`;
         const protectedTopic = Boolean(topic.original && topic.questionCount > 0);
         const isConfirming = app.contentTopicDeleteConfirm === topicKey;
         return `
+          ${index === 0 ? '<h3 class="topic-manager-scope">Reading Comprehension · topics 1–8</h3>' : ""}
+          ${index === 8 ? '<h3 class="topic-manager-scope">Revising/Editing · exclusive topics</h3>' : ""}
           <article class="topic-manager-row" data-content-topic-index="${index}">
             <span class="topic-manager-index">${index + 1}</span>
             <label>Topic name<input data-content-topic-field="label" maxlength="80" required value="${escapeHtml(topic.label)}"></label>
@@ -6179,7 +6394,7 @@ WRONG D:`;
               <button aria-label="Move ${escapeHtml(topic.label || "new topic")} down" class="icon-button" data-content-topic-action="down" ${index === topicDrafts.length - 1 ? "disabled" : ""} title="Move down" type="button">↓</button>
               <button class="danger${isConfirming ? " is-confirming" : ""}" data-content-topic-action="remove" ${protectedTopic ? "disabled" : ""} title="${protectedTopic ? "Move these questions to another topic before removing it." : isConfirming ? "Confirm topic removal" : "Stage this topic for removal"}" type="button">${isConfirming ? "Confirm" : "Remove"}</button>
             </div>
-            <small>${topic.original ? `<strong>${topic.questionCount}</strong> question${topic.questionCount === 1 ? "" : "s"} use this topic${topic.label !== topic.original ? ` · Renaming ${escapeHtml(topic.original)}` : ""}` : "New topic · It will become available in every question Topic dropdown when saved."}</small>
+            <small><strong>${index < 8 ? "Reading Comprehension" : "Revising/Editing"}</strong> · ${topic.original ? `${topic.questionCount} question${topic.questionCount === 1 ? "" : "s"} use this topic${topic.label !== topic.original ? ` · Renaming ${escapeHtml(topic.original)}` : ""}` : "New topic"}</small>
           </article>`;
       }).join("") : `<p class="topic-manager-empty">Add at least one topic before saving.</p>`;
     }
@@ -6481,6 +6696,38 @@ WRONG D:`;
     $$("[data-tab]").forEach((button) => button.addEventListener("click", () => switchTab(button.dataset.tab)));
     $("#passage-search").addEventListener("input", renderPassageList);
     $("#new-passage").addEventListener("click", startNewPassage);
+    $("#open-passage-import").addEventListener("click", openOfficialPassageImport);
+    $("#close-passage-import").addEventListener("click", closeOfficialPassageImport);
+    $("#official-passage-dialog").addEventListener("cancel", (event) => {
+      if (app.passageImportBusy) event.preventDefault();
+    });
+    $("#copy-passage-import-prompt").addEventListener("click", async () => {
+      const target = $("#official-passage-target").value.trim();
+      if (!target) {
+        setStatus("Enter one passage title or source question range before copying the prompt.", "error");
+        $("#official-passage-target").focus();
+        return;
+      }
+      try {
+        await studioUI.copyText(studioUI.buildOfficialPassagePrompt({
+          sourceLabel: $("#official-passage-source-label").value.trim(),
+          target,
+        }));
+        setStatus("PDF extraction prompt copied. Paste it into ChatGPT and attach the official handbook PDF.", "success");
+      } catch {
+        setStatus("The browser could not copy the PDF extraction prompt. Allow clipboard access, then try again.", "error");
+      }
+    });
+    $("#official-passage-import-source").addEventListener("input", (event) => {
+      app.passageImportSource = event.target.value;
+      app.passageImportReview = null;
+      renderOfficialPassageImportReview();
+    });
+    $("#official-passage-import-file").addEventListener("change", async (event) => {
+      await loadOfficialPassageImportFile(event.target.files?.[0]);
+      event.target.value = "";
+    });
+    $("#preview-passage-import").addEventListener("click", previewOfficialPassageImport);
     $("#new-exam").addEventListener("click", () => {
       const form = $("#new-exam-form");
       form.hidden = !form.hidden;

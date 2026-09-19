@@ -21,7 +21,7 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     await cp(join(toolsRoot, 'content-topics.json'), join(fixture, 'tools/content-topics.json'));
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8'))
       .replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(fixture)};`)
-      .split('if (process.argv.includes("--validate"))')[0] + '\nexport { handleRequest, getState, savePassage, saveStandaloneItem, saveTest };\n';
+      .split('if (process.argv.includes("--validate"))')[0] + '\nexport { handleRequest, getState, previewPassageImport, savePassage, saveStandaloneItem, saveTest };\n';
     await writeFile(modulePath, source);
     const studio = await import(pathToFileURL(modulePath).href);
     server = createServer(studio.handleRequest);
@@ -60,6 +60,96 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     const refreshed = await studio.getState();
     const exam = refreshed.tests.find(test => test.assessmentId === payload.assessment.id);
     assert.ok(exam); assert.equal(exam.passageIds.length, 0);
+    const passageImportDocument = {
+      format: 'nathan-tutors-official-passage-v1',
+      passage: {
+        title: 'Importer Fixture Passage',
+        author: 'Test Author',
+        blurb: '',
+        format: 'prose',
+        passageType: 'informational',
+        section: 'reading',
+        label: 'ELA - Reading Comprehension',
+        sourceNote: '',
+        teacherSource: 'Official fixture PDF, printed pages 10-12, questions 1-2',
+        versionLabel: '2020-2021 Form B',
+        text: 'First paragraph.\n\nSecond paragraph.',
+        questions: [{
+          id: 'passage-1',
+          type: 'multiple_choice',
+          topic: 'Central Idea & Theme',
+          points: 1,
+          prompt: 'What is the central idea?',
+          choices: ['First', 'Second', 'Third', 'Fourth'].map((text, index) => ({ id: String.fromCharCode(65 + index), text })),
+          correctChoiceId: 'B',
+        }],
+      },
+      reviewNotes: ['Question 1 answer was inferred because the PDF had no answer key.'],
+      visuals: [{ scope: 'Passage', description: 'A map appears above the text.' }],
+    };
+    const passageImport = await studio.previewPassageImport({ source: `\`\`\`json\n${JSON.stringify(passageImportDocument)}\n\`\`\`` });
+    assert.equal(passageImport.format, 'nathan-tutors-official-passage-v1');
+    assert.equal(passageImport.passage.id, 'importer-fixture-passage-2020-2021-form-b');
+    assert.equal(passageImport.passage.questions[0].id, 'importer-fixture-passage-2020-2021-form-b-1');
+    assert.match(passageImport.warnings.join('\n'), /inferred because the PDF had no answer key/);
+    assert.match(passageImport.warnings.join('\n'), /map appears above the text/);
+    await assert.rejects(
+      studio.previewPassageImport({
+        source: JSON.stringify({
+          ...passageImportDocument,
+          passage: {
+            ...passageImportDocument.passage,
+            questions: passageImportDocument.passage.questions.map(question => ({ ...question, topic: 'Invented Topic' })),
+          },
+        }),
+      }),
+      /not allowed for Reading Comprehension/,
+    );
+    const revisingImportDocument = {
+      ...passageImportDocument,
+      passage: {
+        ...passageImportDocument.passage,
+        label: 'ELA - Revising/Editing Part A',
+        section: 'revising_editing_a',
+        title: 'Revising Importer Fixture Passage',
+        questions: passageImportDocument.passage.questions.map(question => ({
+          ...question,
+          topic: 'Sentence Structure',
+        })),
+      },
+    };
+    const revisingPassageImport = await studio.previewPassageImport({
+      source: JSON.stringify(revisingImportDocument),
+    });
+    assert.equal(revisingPassageImport.passage.section, 'revising_editing_a');
+    assert.equal(revisingPassageImport.passage.questions[0].topic, 'Sentence Structure');
+    await assert.rejects(
+      studio.previewPassageImport({
+        source: JSON.stringify({
+          ...revisingImportDocument,
+          passage: {
+            ...revisingImportDocument.passage,
+            questions: revisingImportDocument.passage.questions.map(question => ({
+              ...question,
+              topic: 'Inference',
+            })),
+          },
+        }),
+      }),
+      /not allowed for Revising\/Editing/,
+    );
+    await assert.rejects(
+      studio.previewPassageImport({
+        source: JSON.stringify({
+          ...passageImportDocument,
+          passage: {
+            ...passageImportDocument.passage,
+            questions: passageImportDocument.passage.questions.map(question => ({ ...question, topic: 'Sentence Structure' })),
+          },
+        }),
+      }),
+      /not allowed for Reading Comprehension/,
+    );
     const exported = JSON.parse(await readFile(join(fixture, 'server/data/exam-content.json'), 'utf8'));
     assert.equal(exported[payload.assessment.id].passageSets.length, 0);
     const originalPassage = refreshed.passages.find(passage => passage.title === 'A Miracle Mile') || refreshed.passages[0];
@@ -79,7 +169,11 @@ test('new exams are locked, registered, editable, unique, and protected by edito
       fileName: '',
       id: '',
       passageSetId: '',
-      questions: originalPassage.questions.map((question, index) => ({ ...question, id: `passage-${index + 1}` })),
+      questions: originalPassage.questions.map((question, index) => ({
+        ...question,
+        id: `passage-${index + 1}`,
+        topic: 'Sentence Structure',
+      })),
       section: 'revising_editing_a',
       sourceHash: '',
       teacherSource: 'Teacher archive, practice set 4, page 18',

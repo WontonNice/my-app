@@ -43,7 +43,7 @@ const questions: ExamQuestion[] = [
   },
   {
     id: "signals-fog-3",
-    topic: "Vocabulary in Context",
+    topic: "Word & Phrase Meaning",
     type: "multiple_choice",
     prompt: "As used in paragraph 2, the word *precise* most nearly means",
     correctChoiceId: "A",

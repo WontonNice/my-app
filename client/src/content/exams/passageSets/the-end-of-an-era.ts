@@ -9,7 +9,7 @@ const theEndOfAnEraQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence should follow sentence 3 to best introduce the topic of the passage?",
     "promptHtml": "Which&nbsp;sentence&nbsp;should&nbsp;follow&nbsp;sentence&nbsp;3&nbsp;to&nbsp;<strong>best</strong>&nbsp;introduce&nbsp;the&nbsp;topic&nbsp;of&nbsp;the&nbsp;passage?",
-    "topic": "Revising & Editing",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -40,7 +40,7 @@ const theEndOfAnEraQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which word should be added to the beginning of sentence 8 to provide a better transition to the third paragraph (sentences 8–11)?",
     "promptHtml": "Which&nbsp;word&nbsp;should&nbsp;be&nbsp;added&nbsp;to&nbsp;the&nbsp;beginning&nbsp;of&nbsp;sentence&nbsp;8&nbsp;to&nbsp;provide&nbsp;a&nbsp;better&nbsp;transition&nbsp;to&nbsp;the&nbsp;third&nbsp;paragraph&nbsp;(sentences&nbsp;8–11)?",
-    "topic": "Revising & Editing",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -75,7 +75,7 @@ const theEndOfAnEraQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which revision of sentence 11 best maintains the formal style established in the passage?",
     "promptHtml": "Which&nbsp;revision&nbsp;of&nbsp;sentence&nbsp;11&nbsp;<strong>best</strong>&nbsp;maintains&nbsp;the&nbsp;formal&nbsp;style&nbsp;established&nbsp;in&nbsp;the&nbsp;passage?",
-    "topic": "Revising & Editing",
+    "topic": "Word Choice & Precision",
     "choices": [
       {
         "id": "A",
@@ -106,7 +106,7 @@ const theEndOfAnEraQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence.\nOne of Opportunity’s major contributions was finding possible evidence of the presence of water on Mars.\nWhere should the sentence be added to the passage?",
     "promptHtml": "Read&nbsp;this&nbsp;sentence.<br>One&nbsp;of&nbsp;<em>Opportunity</em>’s&nbsp;major&nbsp;contributions&nbsp;was&nbsp;finding&nbsp;possible&nbsp;evidence&nbsp;of&nbsp;the&nbsp;presence&nbsp;of&nbsp;water&nbsp;on&nbsp;Mars.<br>Where&nbsp;should&nbsp;the&nbsp;sentence&nbsp;be&nbsp;added&nbsp;to&nbsp;the&nbsp;passage?",
-    "topic": "Revising & Editing",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -137,7 +137,7 @@ const theEndOfAnEraQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "What is the best way to combine sentences 12 and 13?",
     "promptHtml": "What&nbsp;is&nbsp;the&nbsp;<strong>best</strong>&nbsp;way&nbsp;to&nbsp;combine&nbsp;sentences&nbsp;12&nbsp;and&nbsp;13?",
-    "topic": "Revising & Editing",
+    "topic": "Sentence Structure",
     "choices": [
       {
         "id": "A",

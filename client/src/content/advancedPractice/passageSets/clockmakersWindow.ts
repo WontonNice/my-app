@@ -57,7 +57,7 @@ const questions: ExamQuestion[] = [
   },
   {
     id: "clockmaker-4",
-    topic: "Vocabulary in Context",
+    topic: "Word & Phrase Meaning",
     type: "multiple_choice",
     prompt: "As used in the final sentence, the word *invitation* most nearly refers to",
     correctChoiceId: "A",

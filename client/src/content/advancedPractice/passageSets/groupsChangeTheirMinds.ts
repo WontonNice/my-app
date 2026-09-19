@@ -45,7 +45,7 @@ const questions: ExamQuestion[] = [
   },
   {
     id: "group-minds-3",
-    topic: "Vocabulary in Context",
+    topic: "Word & Phrase Meaning",
     type: "multiple_choice",
     prompt: "As used in paragraph 3, the word *procedural* most nearly means",
     correctChoiceId: "B",

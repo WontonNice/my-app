@@ -19,11 +19,11 @@ workspaces:
   shown inside the passage. Covers use a 3:4 portrait ratio; 900 × 1200 pixels
   is the recommended upload size. Passage and passage-set IDs are generated
   internally from the title; existing IDs stay stable when titles are edited.
-- **Exam Part B** manages the reusable Revising/Editing Part B bank. Exam
-  passages, Advanced practice, and Part B share an in-editor Topic manager
-  that can add, rename, reorder, and safely remove unused topics. Renames are
-  applied to existing question records and the ordered registry is stored in
-  `tools/content-topics.json`.
+- **Exam Part B** manages the reusable Revising/Editing Part B bank. Question
+  topics are section-specific: Reading Comprehension and Advanced practice use
+  the first eight topics in `tools/content-topics.json`; Revising/Editing Part A
+  and Part B use only the remaining topics. The Topic manager displays this
+  boundary and applies renames to existing question records.
 - **Exam builder** assembles English sections and synchronizes assessment data.
   **+ New exam** creates a named exam with a duration and description. New exams
   start with both sections and corrections locked. Empty exams can be saved
@@ -48,6 +48,18 @@ compatibility aliases that open this same centralized Studio.
 The content model, validation, and file writes live in `tools/content-studio.mjs`
 and `tools/content-studio.html`. Layout and navigation are separated into
 `tools/content-studio-workspace.js` and `tools/content-studio-workspace.css`.
+
+In a passage's **Questions** tab, **Copy for ChatGPT** copies every question,
+answer option, and correct answer from the current draft together with a prompt
+that asks ChatGPT to classify each item using only the topics allowed for that
+passage's section.
+
+In **Exam passages**, **Import official passage** opens a passage-by-passage PDF
+workflow. It generates a ChatGPT extraction prompt, accepts pasted or uploaded
+JSON, validates the passage and answer key, surfaces inferred answers and
+missing visuals, and creates an unsaved draft for final review. See
+`tools/OFFICIAL_PASSAGE_IMPORT.md`.
+
 Visual math authoring lives in `tools/content-studio-math.js` and
 `tools/content-studio-math.css`. Its pinned MathLive dependency and fonts are
 served locally from `node_modules`; authoring does not require a CDN.

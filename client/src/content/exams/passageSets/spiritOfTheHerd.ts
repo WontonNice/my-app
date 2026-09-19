@@ -71,7 +71,7 @@ const spiritOfTheHerdQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does paragraph 3 convey the effect of the setting on the cattle drive?",
     "promptHtml": "How does paragraph 3 convey the effect of the setting on the cattle drive?",
-    "topic": "Vocabulary in Context",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",

@@ -59,7 +59,7 @@ const ravenPlansQuestions: ExamQuestion[] = [
   },
   {
     id: "raven-plans-3",
-    topic: "Vocabulary in Context",
+    topic: "Word & Phrase Meaning",
     type: "multiple_choice",
     prompt: "As used in paragraph 3, the word unfamiliar most nearly means",
     correctChoiceId: "C",
