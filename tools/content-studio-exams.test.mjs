@@ -21,7 +21,7 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     await cp(join(toolsRoot, 'content-topics.json'), join(fixture, 'tools/content-topics.json'));
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8'))
       .replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(fixture)};`)
-      .split('if (process.argv.includes("--validate"))')[0] + '\nexport { handleRequest, getState, previewPassageImport, savePassage, saveStandaloneItem, saveTest };\n';
+      .split('if (process.argv.includes("--validate"))')[0] + '\nexport { deletePassage, handleRequest, getState, previewPassageImport, savePassage, saveStandaloneItem, saveTest };\n';
     await writeFile(modulePath, source);
     const studio = await import(pathToFileURL(modulePath).href);
     server = createServer(studio.handleRequest);
@@ -193,6 +193,30 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.match(versionSource, /section: "revising_editing_a"/);
     assert.match(versionSource, /versionLabel: "Automated Test \d+"/);
 
+    const deletionVersionLabel = `Delete Fixture ${Date.now()}`;
+    const deletionFixture = await studio.savePassage({
+      ...originalPassage,
+      directions: undefined,
+      exportName: '',
+      fileName: '',
+      id: '',
+      passageSetId: '',
+      questions: originalPassage.questions.map((question, index) => ({
+        ...question,
+        id: `passage-${index + 1}`,
+      })),
+      sourceHash: '',
+      versionLabel: deletionVersionLabel,
+    });
+    const deleted = await studio.deletePassage({ id: deletionFixture.id, sourceHash: deletionFixture.sourceHash });
+    assert.equal(deleted.id, deletionFixture.id);
+    await assert.rejects(
+      readFile(join(fixture, 'client/src/content/exams/passageSets', deletionFixture.fileName), 'utf8'),
+      error => error?.code === 'ENOENT',
+    );
+    const passageLibraryAfterDelete = await readFile(join(fixture, 'client/src/content/exams/passageLibrary.ts'), 'utf8');
+    assert.doesNotMatch(passageLibraryAfterDelete, new RegExp(`\\b${deletionFixture.exportName}\\b`));
+
     await studio.saveTest({ assessmentId: payload.assessment.id, readingPassageIds: [originalPassage.id], sourceHash: exam.sourceHash });
     let saved = await studio.getState();
     assert.equal(saved.assessments.find(item => item.id === payload.assessment.id).questions.length, originalPassage.questions.length);
@@ -213,6 +237,10 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     saved = await studio.getState();
     assert.deepEqual(saved.tests.find(item => item.assessmentId === payload.assessment.id).readingPassageIds, [version.id]);
     assert.equal(saved.assessments.find(item => item.id === payload.assessment.id).passages[0].versionLabel, versionLabel);
+    await assert.rejects(
+      studio.deletePassage({ id: version.id, sourceHash: version.sourceHash }),
+      /Remove it from that exam before deleting it/,
+    );
   } finally {
     if (server) await new Promise(resolve => server.close(resolve));
     await rm(modulePath, { force: true });

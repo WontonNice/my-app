@@ -1216,6 +1216,51 @@ async function ensureExamPassageRegistration(passage) {
   await writeFile(examPassageLibraryPath, source, "utf8");
 }
 
+function escapeRegularExpression(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+async function deletePassage(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new EditorError(400, "Passage deletion data is invalid.");
+  }
+  const id = requiredText(input.id, "Passage ID");
+  const { passages } = await listPassages();
+  const passage = passages.find((candidate) => candidate.id === id);
+  if (!passage) throw new EditorError(404, "The passage to delete was not found.");
+
+  const filePath = join(passageSetsRoot, passage.fileName);
+  const source = await readFile(filePath, "utf8");
+  if (!input.sourceHash || input.sourceHash !== hashSource(source)) {
+    throw new EditorError(409, "This passage file changed after it was loaded. Refresh the editor before deleting it.");
+  }
+
+  const { mathSections } = await listMathSections();
+  const { tests } = await listTests(passages, mathSections);
+  const assignedTests = tests.filter((test) => test.passageIds.includes(passage.id));
+  if (assignedTests.length) {
+    const titles = assignedTests.map((test) => test.title).join(", ");
+    throw new EditorError(
+      409,
+      `${passage.title} is assigned to ${titles}. Remove it from ${assignedTests.length === 1 ? "that exam" : "those exams"} before deleting it.`,
+    );
+  }
+
+  let librarySource = await readFile(examPassageLibraryPath, "utf8");
+  const importPath = `./passageSets/${passage.fileName.replace(/\.ts$/, "")}`;
+  const exportPattern = escapeRegularExpression(passage.exportName);
+  const importPathPattern = escapeRegularExpression(importPath);
+  librarySource = librarySource
+    .replace(
+      new RegExp(`^import\\s*\\{\\s*${exportPattern}\\s*\\}\\s*from\\s*["']${importPathPattern}["'];\\r?\\n?`, "m"),
+      "",
+    )
+    .replace(new RegExp(`^[ \\t]*${exportPattern},\\r?\\n`, "m"), "");
+  await writeFile(examPassageLibraryPath, librarySource, "utf8");
+  await rm(filePath);
+  return { id: passage.id, target: relativePath(filePath), title: passage.title };
+}
+
 function normalizeAdvancedPassage(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Advanced-practice passage data is invalid.");
@@ -3307,6 +3352,11 @@ async function handleRequest(request, response) {
     if (request.method === "POST" && url.pathname === "/api/passages") {
       verifyEditRequest(request);
       sendJson(response, 201, { passage: await savePassage(await readJson(request)) });
+      return;
+    }
+    if (request.method === "DELETE" && url.pathname === "/api/passages") {
+      verifyEditRequest(request);
+      sendJson(response, 200, { deleted: await deletePassage(await readJson(request)) });
       return;
     }
     if (request.method === "POST" && url.pathname === "/api/advanced-passages") {

@@ -28,6 +28,7 @@ import { excerptFromATrampAbroad20202021FormBPassageSet } from "./passageSets/ex
 import { excerptFromATrampAbroad20202021ShsatSampleTestFormBPassageSet } from "./passageSets/excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b";
 import { excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFormBPassageSet } from "./passageSets/excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b";
 import { excerptFromNiagaraFalls20202021ShsatSampleTestFormBPassageSet } from "./passageSets/excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b";
+import { crossPurposesFormBPassageSet } from "./passageSets/cross-purposes-form-b";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -59,6 +60,7 @@ export const examPassageLibrary: ExamPassageSet[] = [
   excerptFromATrampAbroad20202021ShsatSampleTestFormBPassageSet,
   excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFormBPassageSet,
   excerptFromNiagaraFalls20202021ShsatSampleTestFormBPassageSet,
+  crossPurposesFormBPassageSet,
 ];
 
 export function getExamLibraryPassage(passageId: string) {

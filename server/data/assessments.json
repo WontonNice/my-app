@@ -2389,7 +2389,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-09-19T14:37:43.255Z",
-    "updatedAt": "2026-09-19T14:54:43.839Z",
+    "updatedAt": "2026-09-21T16:59:13.572Z",
     "passages": [
       {
         "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b",
@@ -2411,6 +2411,13 @@
         "text": "The complete passage is provided by the registered exam content.",
         "title": "Using Fire to Keep a Prairie Healthy",
         "versionLabel": "2025-2026 Form B"
+      },
+      {
+        "id": "cross-purposes-form-b",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Cross-Purposes",
+        "versionLabel": "Form B"
       },
       {
         "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b",
@@ -2789,6 +2796,126 @@
         "type": "multiple_choice"
       },
       {
+        "answer": "A",
+        "choices": [
+          "It introduces the intended permanence of the structure and the ever-changing fluidity of the water.",
+          "It shows that the structure can bridge the gap caused by the water.",
+          "It suggests that the inflexible structure has more limitations than the adaptable water does.",
+          "It contrasts the stability of the structure with the instability of the water."
+        ],
+        "id": "cross-purposes-form-b-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the similar construction of the sentence in line 1 and the sentence in line 8 contribute to the meaning of the poem?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "They establish that both the structure and the water have endurance and control.",
+          "They highlight that both the structure and the water are powerful and impressive.",
+          "They suggest that the structure and the water are unaware of how similar they are.",
+          "They reveal that the structure and the water are surprised that they are interrelated."
+        ],
+        "id": "cross-purposes-form-b-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 2–4 and lines 12–14 from the poem.\n\nI am what every athlete\nwants: to remain at the apex of the leap,\nup in the air.\n\nI am the blood flowing in the runner’s chest,\nand I catch everything: from the hills,\nthe mountains.\n\nHow do the lines contribute to the development of a central idea of the poem?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "forms water can take are less diverse than the types of structures that exist.",
+          "number of human-made structures is rapidly increasing.",
+          "water passes under many similar-looking structures as it flows.",
+          "structure is powerful because it is one of many."
+        ],
+        "id": "cross-purposes-form-b-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The use of the words “siblings” and “my sisters and brothers” in lines 31–32 conveys the idea that the",
+        "topic": "Word & Phrase Meaning",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "enhances the beauty of the natural landscape.",
+          "brings people together more effectively than nature does.",
+          "provides clear boundaries for natural environments.",
+          "serves as a means for people to overcome an obstacle created by nature."
+        ],
+        "id": "cross-purposes-form-b-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The comparison to sewing in lines 33–35 helps show that the structure",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "demonstrating that both the structure and the water depend on each other to fulfill their functions.",
+          "implying that a stronger structure would be able to resist the degradation caused by the water.",
+          "revealing that the passage of time will render both the structure and the water obsolete.",
+          "suggesting that the water will eventually weaken the structure and will continue to exist after the structure is gone."
+        ],
+        "id": "cross-purposes-form-b-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The last stanza (lines 36–42) conveys a central idea of the poem by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "“I am older / than anything else you know.” (lines 8–9)",
+          "“No human / built me.” (lines 9–10)",
+          "“It all washes down through me.” (line 14)",
+          "“Those who made you will break you,” (line 26)"
+        ],
+        "id": "cross-purposes-form-b-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 41–42 from the poem.\n\nBecause I am,\nabove all else, patient. I will wait for you.\n\nWhich of the following supports what is implied in these lines?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "by giving an account of a discussion between them about the future of human civilization",
+          "by narrating a debate they have over their impact on the environment",
+          "by illustrating the unique power they each possess over nature",
+          "by using personification to allow them to debate who is more important"
+        ],
+        "id": "cross-purposes-form-b-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the poet develop the points of view of the structure and the water?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The use of an equal number of lines in each stanza emphasizes that both speakers are equally important.",
+          "The use of italics in some of the stanzas indicates the increasing tension between the structure and the water.",
+          "The alternating positions of the stanzas highlight the opposing points of view of the speakers.",
+          "The lack of a regular rhyme scheme or meter reflects the way the water changes the structure and the way the water itself changes."
+        ],
+        "id": "cross-purposes-form-b-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the form of the poem contribute to its meaning?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
         "answer": "C",
         "choices": [
           "the sadness that the author feels reflecting upon her former way of life.",
@@ -3031,10 +3158,10 @@
     ],
     "forms": [],
     "formAssignments": {},
-    "status": "locked",
+    "status": "open",
     "sectionAccess": {
-      "english": false,
-      "math": false
+      "english": true,
+      "math": true
     },
     "correctionsOpen": false,
     "allowCompletedAccess": false,

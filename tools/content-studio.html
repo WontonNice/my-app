@@ -623,7 +623,7 @@
     }
     .content-editor-command-bar nav button:hover { background: var(--accent-soft); color: var(--accent); }
     .content-editor-command-bar nav span { border-radius: 999px; background: #e7edf2; padding: 2px 5px; font-size: .54rem; }
-    .content-editor-command-bar .primary, .content-editor-command-bar .secondary { min-height: 32px; padding: 0 9px; font-size: .64rem; }
+    .content-editor-command-bar .primary, .content-editor-command-bar .secondary, .content-editor-command-bar .danger { min-height: 32px; padding: 0 9px; font-size: .64rem; }
     .content-editor-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(285px, 330px); gap: 12px; align-items: start; }
     .content-editor-main { display: grid; min-width: 0; gap: 11px; }
     .content-editor-main > .panel, .content-editor-preview-column .panel { margin: 0; padding: 14px; }
@@ -2225,6 +2225,7 @@ Rules:
             <button class="secondary" id="open-student-preview" type="button">Student view</button>
             ${!advanced && passage.sourceHash ? `<button class="secondary" id="create-passage-version" type="button">Create another version</button>` : ""}
             <button class="secondary" id="add-question" type="button">+ Add question</button>
+            ${!advanced && passage.sourceHash ? `<button class="danger" id="delete-passage" type="button">Delete passage</button>` : ""}
             <button class="primary" id="save-passage" type="button">${app.saving ? "Saving…" : "Save to code"}</button>
           </div>
         </div>
@@ -2323,6 +2324,7 @@ Rules:
       $("#paste-clipboard").addEventListener("click", pasteFromClipboard);
       $("#open-student-preview").addEventListener("click", openStudentPreview);
       $("#create-passage-version")?.addEventListener("click", startPassageVersion);
+      $("#delete-passage")?.addEventListener("click", deletePassage);
       $("#save-passage").addEventListener("click", savePassage);
       $("#manage-content-topics").addEventListener("click", openContentTopicManager);
       studioUI.mountPassage();
@@ -3849,6 +3851,43 @@ Rules:
         app.saving = false;
         const button = $("#save-passage");
         if (button) { button.disabled = false; button.textContent = "Save passage"; }
+      }
+    }
+
+    async function deletePassage() {
+      if (app.saving || app.passageMode !== "exam" || !app.passageDraft?.sourceHash) return;
+      const passage = app.passageDraft;
+      const confirmed = window.confirm(
+        `Delete “${passage.title}”?\n\nThis permanently removes its saved passage source file. Passages assigned to an exam cannot be deleted until they are removed from that exam.`,
+      );
+      if (!confirmed) return;
+      app.saving = true;
+      const deleteButton = $("#delete-passage");
+      const saveButton = $("#save-passage");
+      if (deleteButton) { deleteButton.disabled = true; deleteButton.textContent = "Deleting…"; }
+      if (saveButton) saveButton.disabled = true;
+      setStatus(`Deleting ${passage.title}…`);
+      try {
+        const data = await api("/api/passages", {
+          method: "DELETE",
+          body: JSON.stringify({ id: passage.id, sourceHash: passage.sourceHash }),
+        });
+        await reloadState();
+        const nextPassage = app.state.passages[0];
+        app.selectedPassageId = nextPassage?.id || "";
+        app.passageDraft = nextPassage ? clone(nextPassage) : defaultPassage();
+        app.passageDirty = false;
+        renderPassageList();
+        renderPassageEditor();
+        setStatus(`${data.deleted.title} was deleted from ${data.deleted.target}.`, "success");
+      } catch (error) {
+        setStatus(error.message, "error");
+      } finally {
+        app.saving = false;
+        const currentDeleteButton = $("#delete-passage");
+        const currentSaveButton = $("#save-passage");
+        if (currentDeleteButton) { currentDeleteButton.disabled = false; currentDeleteButton.textContent = "Delete passage"; }
+        if (currentSaveButton) currentSaveButton.disabled = false;
       }
     }
 
