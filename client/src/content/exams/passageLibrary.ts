@@ -24,11 +24,11 @@ import { excerptFromImpressionsOfAnIndianChildhood20242025FormAPassageSet } from
 import { atDusk20242025FormAPassageSet } from "./passageSets/at-dusk-2024-2025-form-a";
 import { championOfTheChannelPassageSet } from "./passageSets/champion-of-the-channel";
 import { massachusettsLowellNationalHistoricalPark20202021FormBPassageSet } from "./passageSets/massachusetts-lowell-national-historical-park-2020-2021-form-b";
-import { excerptFromATrampAbroad20202021FormBPassageSet } from "./passageSets/excerpt-from-a-tramp-abroad-2020-2021-form-b";
 import { excerptFromATrampAbroad20202021ShsatSampleTestFormBPassageSet } from "./passageSets/excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b";
 import { excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFormBPassageSet } from "./passageSets/excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b";
 import { excerptFromNiagaraFalls20202021ShsatSampleTestFormBPassageSet } from "./passageSets/excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b";
 import { crossPurposesFormBPassageSet } from "./passageSets/cross-purposes-form-b";
+import { usingFireToKeepAPrairieHealthy20202021FormBPassageSet } from "./passageSets/using-fire-to-keep-a-prairie-healthy-2020-2021-form-b";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -56,11 +56,11 @@ export const examPassageLibrary: ExamPassageSet[] = [
   atDusk20242025FormAPassageSet,
   championOfTheChannelPassageSet,
   massachusettsLowellNationalHistoricalPark20202021FormBPassageSet,
-  excerptFromATrampAbroad20202021FormBPassageSet,
   excerptFromATrampAbroad20202021ShsatSampleTestFormBPassageSet,
   excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFormBPassageSet,
   excerptFromNiagaraFalls20202021ShsatSampleTestFormBPassageSet,
   crossPurposesFormBPassageSet,
+  usingFireToKeepAPrairieHealthy20202021FormBPassageSet,
 ];
 
 export function getExamLibraryPassage(passageId: string) {

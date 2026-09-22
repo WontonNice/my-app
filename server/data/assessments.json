@@ -2389,7 +2389,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-09-19T14:37:43.255Z",
-    "updatedAt": "2026-09-21T16:59:13.572Z",
+    "updatedAt": "2026-09-22T17:04:31.764Z",
     "passages": [
       {
         "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b",
@@ -2406,25 +2406,25 @@
         "versionLabel": "2020–2021 Form B"
       },
       {
-        "id": "using-fire-to-keep-a-prairie-healthy",
+        "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b",
         "imageUrl": "",
         "text": "The complete passage is provided by the registered exam content.",
         "title": "Using Fire to Keep a Prairie Healthy",
-        "versionLabel": "2025-2026 Form B"
+        "versionLabel": "2020-2021 Form B"
       },
       {
         "id": "cross-purposes-form-b",
         "imageUrl": "",
         "text": "The complete passage is provided by the registered exam content.",
         "title": "Cross-Purposes",
-        "versionLabel": "Form B"
+        "versionLabel": "2020-2021 Form B"
       },
       {
         "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b",
         "imageUrl": "",
         "text": "The complete passage is provided by the registered exam content.",
         "title": "Excerpt from “Impressions of an Indian Childhood”",
-        "versionLabel": "2020–2021 SHSAT Form B"
+        "versionLabel": "2020–2021 Form B"
       },
       {
         "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b",
@@ -2511,7 +2511,7 @@
         "type": "multiple_choice"
       },
       {
-        "answer": "D",
+        "answer": "C",
         "choices": [
           "canals, mills, and boardinghouses that were built by immigrants.",
           "mill girls and immigrants who comprised Lowell’s workforce.",
@@ -2683,7 +2683,7 @@
           "by burning off excess vegetation and increasing the availability of nutrients for the remaining plants",
           "by causing changes to the bison’s migration habits as bison herds fled from the wildfires on the prairie"
         ],
-        "id": "using-fire-to-keep-a-prairie-healthy-1",
+        "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b-1",
         "imageUrl": "",
         "points": 1,
         "prompt": "According to the passage, how did fires started by natural causes prompt American Indians to begin practicing controlled burns?",
@@ -2698,7 +2698,7 @@
           "making sure that the water supply for the animals is sufficient.",
           "reducing the animals’ natural source of shade and protection from the elements."
         ],
-        "id": "using-fire-to-keep-a-prairie-healthy-2",
+        "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b-2",
         "imageUrl": "",
         "points": 1,
         "prompt": "Targeting red cedar trees in controlled burns affects the animals that live on the prairie mostly by",
@@ -2713,7 +2713,7 @@
           "the conservationists’ efforts will restore the original beauty and biodiversity of the region.",
           "the conservationists’ training program should serve as a model for other conservation organizations."
         ],
-        "id": "using-fire-to-keep-a-prairie-healthy-3",
+        "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b-3",
         "imageUrl": "",
         "points": 1,
         "prompt": "Read this sentence from paragraph 6.\nThe patch-burn system is so successful that the conservationists at the preserve provide training to prairie farmers about conducting controlled burns on their own land.\nThe author includes this sentence to show that",
@@ -2728,7 +2728,7 @@
           "the information that conservationists have determined that the patch-burn method has promoted the growth of species that were at risk of being crowded out",
           "the explanation that conservationists are able to control the fire in the patch-burn method by arranging separate burns across the designated portion of land"
         ],
-        "id": "using-fire-to-keep-a-prairie-healthy-4",
+        "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b-4",
         "imageUrl": "",
         "points": 1,
         "prompt": "Which details from the passage best convey the central idea that using the patch-burn method is an effective way to protect and manage prairie land?",
@@ -2743,7 +2743,7 @@
           "“This patch burning contains the fire within a specific area and allows animals in the burn area to safely relocate.” (paragraph 5)",
           "“The following year, conservationists will burn a different section of the preserve, while the land burned the previous year regrows healthier than before.” (paragraph 5)"
         ],
-        "id": "using-fire-to-keep-a-prairie-healthy-5",
+        "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b-5",
         "imageUrl": "",
         "points": 1,
         "prompt": "Which sentence supports the idea that farmers and people who manage land may be concerned about using fire as a way to benefit the land?",
@@ -2758,7 +2758,7 @@
           "detailed planning can ensure that a potentially destructive action has a positive impact.",
           "plans that entail a certain amount of risk almost always result in success."
         ],
-        "id": "using-fire-to-keep-a-prairie-healthy-6",
+        "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b-6",
         "imageUrl": "",
         "points": 1,
         "prompt": "Read this sentence from paragraph 6.\nBurning land to make it healthy may seem counterintuitive, but strategic controlled fires have helped the prairie sustain life for hundreds of years and, with careful management, will continue to do so.\nThe words “counterintuitive” and “strategic” in the sentence convey the idea that",
@@ -2773,7 +2773,7 @@
           "Monitoring animals’ reactions after a controlled burn on the prairie is a minor part of scientists’ research.",
           "Conservationists should consider the helpful aspects of invasive species before executing a controlled burn."
         ],
-        "id": "using-fire-to-keep-a-prairie-healthy-7",
+        "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b-7",
         "imageUrl": "",
         "points": 1,
         "prompt": "With which statement would the author most likely agree?",
@@ -2788,7 +2788,7 @@
           "by revealing that the patch-burn method is used primarily on uninhabited areas of land",
           "by comparing the size of the area burned by the patch-burn method with that of unburned areas"
         ],
-        "id": "using-fire-to-keep-a-prairie-healthy-8",
+        "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b-8",
         "imageUrl": "",
         "points": 1,
         "prompt": "How do the diagram and its text provide additional support for the topic presented in the passage?",
