@@ -792,9 +792,13 @@ function normalizeQuestion(question, passageId, index) {
   }
   const placeholderId = /^passage-(\d+)$/.exec(id);
   if (placeholderId && passageId !== "passage") id = `${passageId}-${placeholderId[1]}`;
+  const explanation = typeof question.explanation === "string" ? question.explanation.trim() : "";
+  const explanationHtml = sanitizeRichText(question.explanationHtml);
   const promptHtml = sanitizeInlineRichText(question.promptHtml);
   const baseQuestion = {
     id,
+    ...(explanation ? { explanation } : {}),
+    ...(explanationHtml ? { explanationHtml } : {}),
     points: Number.isFinite(Number(question.points)) ? Math.max(1, Number(question.points)) : 1,
     prompt: requiredText(question.prompt, `Question ${index + 1}`),
     ...(promptHtml ? { promptHtml } : {}),

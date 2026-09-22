@@ -187,7 +187,7 @@ const massachusettsLowellNationalHistoricalPark20202021FormBQuestions: ExamQuest
         "text": "cultural diversity of the people who lived in the area."
       }
     ],
-    "correctChoiceId": "D",
+    "correctChoiceId": "C",
     "type": "multiple_choice"
   },
   {

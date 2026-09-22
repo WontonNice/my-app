@@ -2480,6 +2480,10 @@ Rules:
           } else if (editor.dataset.richKind === "passage") {
             app.passageDraft.richText = html;
             app.passageDraft.text = text;
+          } else if (editor.dataset.richKind === "explanation") {
+            const question = app.passageDraft.questions[questionIndex];
+            question.explanationHtml = html;
+            question.explanation = text;
           } else if (editor.dataset.richKind === "prompt") {
             app.passageDraft.questions[questionIndex].promptHtml = html;
             app.passageDraft.questions[questionIndex].prompt = text;
@@ -3619,6 +3623,8 @@ Rules:
         points: current.points || 1,
         prompt: current.prompt || "",
         ...(current.promptHtml ? { promptHtml: current.promptHtml } : {}),
+        ...(current.explanation ? { explanation: current.explanation } : {}),
+        ...(current.explanationHtml ? { explanationHtml: current.explanationHtml } : {}),
         topic: current.topic || "Central Idea & Theme",
       };
       if (type === "category_sort" || type === "category_sort_single" || type === "matrix_choice" || type === "table_match") {

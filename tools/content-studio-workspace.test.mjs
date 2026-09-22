@@ -108,6 +108,7 @@ test("ChatGPT export includes the classification prompt, every choice, and the a
         { id: "B", text: "The second detail" },
       ],
       correctChoiceId: "B",
+      explanation: "The second detail directly supports the stated central idea.",
       topic: "Wrong existing label",
     },
     {
@@ -128,6 +129,7 @@ test("ChatGPT export includes the classification prompt, every choice, and the a
   assert.match(exported, /QUESTION COUNT: 2/);
   assert.match(exported, /- A: The first detail/);
   assert.match(exported, /Correct answer\(s\): B — The second detail/);
+  assert.match(exported, /Explanation: The second detail directly supports the stated central idea\./);
   assert.match(exported, /Prompt: Sort each statement\./);
   assert.match(exported, /A supported statement → Claim/);
   assert.doesNotMatch(exported, /Wrong existing label/);

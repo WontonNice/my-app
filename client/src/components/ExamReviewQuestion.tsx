@@ -120,7 +120,7 @@ function ExamReviewPassage({ passage }: { passage: ExamPassage }) {
           </ProseLine>;
         }
 
-        return <p className={`exam-poem-line ${line.align === "center" ? "is-centered" : ""} ${line.kind ? `is-${line.kind}` : ""} ${line.text || line.html ? "" : "is-spacer"}`} key={index}>
+        return <p className={`exam-poem-line ${line.align === "center" ? "is-centered" : line.align === "indent" ? "is-indented" : ""} ${line.kind ? `is-${line.kind}` : ""} ${line.text || line.html ? "" : "is-spacer"}`} key={index}>
           <span>{line.lineNumber}</span>
           <ExamText html={line.html} text={line.text} />
         </p>;

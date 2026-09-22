@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SAT Crash Course Reader</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">READ-ONLY PAGE TOOL</p>
+        <h1>SAT Crash Course Reader</h1>
+        <p class="lede">Extract the current page into structured, local data.</p>
+      </header>
+
+      <label class="option">
+        <input id="include-page-text" type="checkbox" />
+        <span>Also include raw visible page text</span>
+      </label>
+
+      <label class="option">
+        <input id="include-answer" type="checkbox" checked />
+        <span>Include the correct answer</span>
+      </label>
+
+      <button id="scan" class="primary" type="button">Read current page</button>
+
+      <p id="status" class="status" role="status" aria-live="polite">
+        Open a page on tutor.thesatcrashcourse.com to begin.
+      </p>
+
+      <section id="results" hidden>
+        <dl class="summary">
+          <div><dt>Tests</dt><dd id="test-count">0</dd></div>
+          <div><dt>Questions</dt><dd id="question-count">0</dd></div>
+          <div><dt>Tables</dt><dd id="table-count">0</dd></div>
+          <div><dt>Links</dt><dd id="link-count">0</dd></div>
+        </dl>
+
+        <div class="actions">
+          <button id="copy" type="button">Copy JSON</button>
+          <button id="json" type="button">Download JSON</button>
+          <button id="csv" type="button">Download CSV</button>
+        </div>
+
+        <details>
+          <summary>Preview extracted data</summary>
+          <pre id="preview"></pre>
+        </details>
+      </section>
+
+      <footer>
+        Uses your existing signed-in tab. To identify a correct answer, the reader briefly
+        toggles the site's Show answer control and restores it afterward. It never requests
+        or exports cookies.
+      </footer>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

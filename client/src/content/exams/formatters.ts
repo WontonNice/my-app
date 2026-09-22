@@ -17,6 +17,7 @@ type PlainTextPassageInput = {
 };
 
 type RichTextBlock = {
+  align?: ExamPassageLine["align"];
   html: string;
   kind?: "heading" | "list";
   text: string;
@@ -46,18 +47,35 @@ function plainTextFromHtml(value: string) {
 function richTextBlocks(value: string): RichTextBlock[] {
   const blocks: RichTextBlock[] = [];
   const normalized = value.trim();
-  const blockPattern = /<(p|div|h[1-6]|ul|ol)(?:\s[^>]*)?>([\s\S]*?)<\/\1>/gi;
+  const blockPattern = /<(p|div|h[1-6]|ul|ol)([^>]*)>([\s\S]*?)<\/\1>/gi;
   let cursor = 0;
   for (const match of normalized.matchAll(blockPattern)) {
     const prefix = normalized.slice(cursor, match.index);
     if (plainTextFromHtml(prefix).trim()) blocks.push({ html: prefix, text: plainTextFromHtml(prefix).trimEnd() });
     const tag = match[1].toLowerCase();
-    const text = plainTextFromHtml(match[2]).trimEnd();
+    const attributes = match[2];
+    const body = match[3];
+    const rawText = plainTextFromHtml(body).trimEnd();
+    const isIndented =
+      /data-align\s*=\s*["']indent["']/i.test(attributes) ||
+      /class\s*=\s*["'][^"']*\bpoem-indent\b/i.test(attributes) ||
+      /^\s{8,}\S/.test(rawText);
+    const html = isIndented
+      ? body
+          .replace(/^(\s*<(?:em|i)>)(?:(?:&nbsp;)|\s){4,}/i, "$1")
+          .replace(/^(?:(?:&nbsp;)|\s){4,}/i, "")
+      : body;
+    const text = plainTextFromHtml(html).trimEnd();
     const isHeading = /^h[1-6]$/.test(tag) || (
-      /^\s*<(strong|b)>[\s\S]*<\/\1>\s*$/i.test(match[2]) && text.trim().length <= 100 && !/[.!?]$/.test(text.trim())
+      /^\s*<(strong|b)>[\s\S]*<\/\1>\s*$/i.test(html) && text.trim().length <= 100 && !/[.!?]$/.test(text.trim())
     );
     const isList = tag === "ul" || tag === "ol";
-    blocks.push({ html: isList ? match[0] : match[2], text, ...(isHeading ? { kind: "heading" } : isList ? { kind: "list" } : {}) });
+    blocks.push({
+      ...(isIndented ? { align: "indent" as const } : {}),
+      html: isList ? match[0] : html,
+      text,
+      ...(isHeading ? { kind: "heading" } : isList ? { kind: "list" } : {}),
+    });
     cursor = match.index + match[0].length;
   }
   if (blocks.length) {
@@ -75,7 +93,11 @@ function richTextLines(value: string): RichTextBlock[] {
   return richTextBlocks(value).flatMap((block) => {
     const lines = block.html.split(/<br\s*\/?>/gi);
     if (lines.length > 1 && !lines.at(-1)) lines.pop();
-    return lines.map((html) => ({ html, text: plainTextFromHtml(html).trimEnd() }));
+    return lines.map((html) => ({
+      ...(block.align ? { align: block.align } : {}),
+      html,
+      text: plainTextFromHtml(html).trimEnd(),
+    }));
   });
 }
 
@@ -158,26 +180,29 @@ export function createPlainTextPassage({
   }
 
   const richLines = richText?.trim() ? richTextLines(richText) : null;
-  (richLines ?? normalizedText.split(/\r?\n/).map((rawLine) => ({ html: "", text: rawLine.trimEnd() })))
-    .forEach((line) => {
-      const nextLine = line.text;
+  const sourceLines: RichTextBlock[] = richLines ?? normalizedText
+    .split(/\r?\n/)
+    .map((rawLine) => ({ html: "", text: rawLine.trimEnd() }));
+  sourceLines.forEach((line) => {
+    const nextLine = line.text;
 
-      if (!nextLine.trim()) {
-        passageLines.push({ text: "" });
-        return;
-      }
+    if (!nextLine.trim()) {
+      passageLines.push({ text: "" });
+      return;
+    }
 
-      passageLines.push({
-        lineNumber:
-          contentLineNumber % Math.max(1, lineNumberInterval) === 0
-            ? String(contentLineNumber)
-            : "",
-        html: line.html || undefined,
-        text: nextLine,
-      });
-
-      contentLineNumber += 1;
+    passageLines.push({
+      ...(line.align ? { align: line.align } : {}),
+      lineNumber:
+        contentLineNumber % Math.max(1, lineNumberInterval) === 0
+          ? String(contentLineNumber)
+          : "",
+      html: line.html || undefined,
+      text: nextLine,
     });
+
+    contentLineNumber += 1;
+  });
 
   return {
     coverImage,

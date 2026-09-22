@@ -262,7 +262,7 @@ export const excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFor
     sourceNote: "From “Impressions of an Indian Childhood” by Zitkala-Sa—Public Domain",
     teacherSource: "20202021_form_b.pdf, printed pages 172–176, questions 42–50",
     text: excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFormBPassageText,
-    versionLabel: "2020–2021 SHSAT Form B",
+    versionLabel: "2020–2021 Form B",
   }),
   questions: excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFormBQuestions,
 };

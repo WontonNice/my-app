@@ -171,6 +171,10 @@ test('new exams are locked, registered, editable, unique, and protected by edito
       passageSetId: '',
       questions: originalPassage.questions.map((question, index) => ({
         ...question,
+        ...(index === 0 ? {
+          explanation: 'The keyed answer is supported by the passage.',
+          explanationHtml: '<p>The keyed answer is <strong>supported</strong> by the passage.</p>',
+        } : {}),
         id: `passage-${index + 1}`,
         topic: 'Sentence Structure',
       })),
@@ -183,6 +187,8 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.equal(version.versionLabel, versionLabel);
     assert.equal(version.teacherSource, 'Teacher archive, practice set 4, page 18');
     assert.equal(version.section, 'revising_editing_a');
+    assert.equal(version.questions[0].explanation, 'The keyed answer is supported by the passage.');
+    assert.equal(version.questions[0].explanationHtml, '<p>The keyed answer is <strong>supported</strong> by the passage.</p>');
     assert.equal(version.directions.title, 'REVISING/EDITING PART A');
     assert.ok(version.questions.every(question => question.id.startsWith(`${version.id}-`)));
     const versionSource = await readFile(

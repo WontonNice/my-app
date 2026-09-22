@@ -259,6 +259,7 @@ export const SnowyMountainsPassageSet: ExamPassageSet = {
     id: "snowy-mountains",
     passageType: "poem",
     title: "Snowy Mountains",
+    author: "John Gould Fletcher",
     sourceNote: "\"Snowy Mountains\" by John Gould Fletcher—Public Domain",
     text: snowyMountainsPassageText,
   }),

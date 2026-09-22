@@ -21,7 +21,7 @@ export type ExamPassageSection =
 export type ExamPassageType = "informational" | "literary" | "long_reading" | "poem";
 
 export type ExamPassageLine = {
-  align?: "left" | "center";
+  align?: "left" | "center" | "indent";
   html?: string;
   image?: ExamQuestionImage;
   kind?: "intro" | "title" | "byline" | "heading" | "list" | "image";
@@ -144,6 +144,8 @@ export type ExamQuestion = {
   dropdownContent?: string[];
   dropdowns?: ExamInlineDropdown[];
   entryLayout?: "fraction" | "plain" | "x_equals";
+  explanation?: string;
+  explanationHtml?: string;
   graph?: ExamPointGraph;
   id: string;
   image?: ExamQuestionImage;

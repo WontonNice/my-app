@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState, type DragEvent, type MouseEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type Dispatch, type SetStateAction, type DragEvent, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import katex from "katex";
 import { MathEntryResponse } from "../components/MathEntryResponse";
 import { isMathAnswerComplete } from "../../../server/src/shared/mathAnswer";
@@ -18,6 +19,9 @@ import {
   Pause,
   Pencil,
   Play,
+  Redo2,
+  Trash2,
+  Undo2,
   User,
   X,
 } from "lucide-react";
@@ -117,6 +121,24 @@ type ChoiceLimitWarning = {
 type BoldTextRange = {
   end: number;
   start: number;
+};
+
+type PencilPoint = {
+  x: number;
+  y: number;
+};
+
+type PencilStroke = {
+  points: PencilPoint[];
+};
+
+const emptyPencilStrokes: PencilStroke[] = [];
+type PencilDrawings = Record<string, PencilStroke[]>;
+type PencilStorage = {
+  drawings: PencilDrawings;
+  redoStacks: PencilDrawings;
+  setDrawings: Dispatch<SetStateAction<PencilDrawings>>;
+  setRedoStacks: Dispatch<SetStateAction<PencilDrawings>>;
 };
 
 function QuestionTimeTracker({
@@ -1031,6 +1053,177 @@ function ExamExhibits({ showExhibits = false }: { showExhibits?: boolean }) {
   );
 }
 
+function PencilWorkspace({
+  active,
+  drawingKey = "exam",
+  contained = false,
+  onDeactivate,
+  storage,
+}: {
+  active: boolean;
+  drawingKey?: string;
+  contained?: boolean;
+  onDeactivate?: () => void;
+  storage: PencilStorage;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const isDrawingRef = useRef(false);
+  const [canvasVersion, setCanvasVersion] = useState(0);
+  const { drawings, setDrawings, redoStacks, setRedoStacks } = storage;
+  const strokes = drawings[drawingKey] ?? emptyPencilStrokes;
+  const redoStrokes = redoStacks[drawingKey] ?? emptyPencilStrokes;
+
+  useEffect(() => {
+    const handleResize = () => setCanvasVersion((version) => version + 1);
+    const observer = new ResizeObserver(handleResize);
+    if (canvasRef.current) observer.observe(canvasRef.current);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    isDrawingRef.current = false;
+  }, [active, drawingKey]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const width = Math.max(1, canvas.clientWidth);
+    const height = Math.max(1, canvas.clientHeight);
+    const pixelRatio = Math.max(1, window.devicePixelRatio || 1);
+    canvas.width = Math.round(width * pixelRatio);
+    canvas.height = Math.round(height * pixelRatio);
+    const context = canvas.getContext("2d");
+    if (!context) return;
+    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    context.clearRect(0, 0, width, height);
+    context.lineCap = "round";
+    context.lineJoin = "round";
+    context.lineWidth = 2.4;
+    context.strokeStyle = "#151515";
+    for (const stroke of strokes) {
+      if (!stroke.points.length) continue;
+      context.beginPath();
+      const firstPoint = stroke.points[0];
+      context.moveTo(firstPoint.x * width, firstPoint.y * height);
+      for (const point of stroke.points.slice(1)) {
+        context.lineTo(point.x * width, point.y * height);
+      }
+      if (stroke.points.length === 1) {
+        context.lineTo(firstPoint.x * width + 0.01, firstPoint.y * height + 0.01);
+      }
+      context.stroke();
+    }
+  }, [canvasVersion, drawingKey, strokes]);
+
+  function pointFromEvent(event: ReactPointerEvent<HTMLCanvasElement>): PencilPoint {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    return {
+      x: (event.clientX - bounds.left) / bounds.width,
+      y: (event.clientY - bounds.top) / bounds.height,
+    };
+  }
+
+  function handlePointerDown(event: ReactPointerEvent<HTMLCanvasElement>) {
+    if (!active || event.button !== 0) return;
+    event.preventDefault();
+    event.currentTarget.setPointerCapture(event.pointerId);
+    isDrawingRef.current = true;
+    const point = pointFromEvent(event);
+    setDrawings((current) => ({
+      ...current,
+      [drawingKey]: [...(current[drawingKey] ?? []), { points: [point] }],
+    }));
+    setRedoStacks((current) => ({ ...current, [drawingKey]: [] }));
+  }
+
+  function handlePointerMove(event: ReactPointerEvent<HTMLCanvasElement>) {
+    if (!active || !isDrawingRef.current) return;
+    event.preventDefault();
+    const point = pointFromEvent(event);
+    setDrawings((current) => {
+      const currentStrokes = current[drawingKey] ?? [];
+      const activeStroke = currentStrokes.at(-1);
+      if (!activeStroke) return current;
+      const previousPoint = activeStroke.points.at(-1);
+      if (previousPoint && Math.abs(previousPoint.x - point.x) + Math.abs(previousPoint.y - point.y) < 0.0008) {
+        return current;
+      }
+      return {
+        ...current,
+        [drawingKey]: [
+          ...currentStrokes.slice(0, -1),
+          { points: [...activeStroke.points, point] },
+        ],
+      };
+    });
+  }
+
+  function finishStroke(event: ReactPointerEvent<HTMLCanvasElement>) {
+    if (!isDrawingRef.current) return;
+    isDrawingRef.current = false;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  }
+
+  function undo() {
+    const stroke = strokes.at(-1);
+    if (!stroke) return;
+    setDrawings((current) => ({ ...current, [drawingKey]: (current[drawingKey] ?? []).slice(0, -1) }));
+    setRedoStacks((current) => ({ ...current, [drawingKey]: [...(current[drawingKey] ?? []), stroke] }));
+  }
+
+  function redo() {
+    const stroke = redoStrokes.at(-1);
+    if (!stroke) return;
+    setRedoStacks((current) => ({ ...current, [drawingKey]: (current[drawingKey] ?? []).slice(0, -1) }));
+    setDrawings((current) => ({ ...current, [drawingKey]: [...(current[drawingKey] ?? []), stroke] }));
+  }
+
+  function clear() {
+    if (!strokes.length) return;
+    setDrawings((current) => ({ ...current, [drawingKey]: [] }));
+    setRedoStacks((current) => ({ ...current, [drawingKey]: [] }));
+  }
+
+  return (
+    <>
+    <div className={`exam-pencil-layer ${contained ? "is-contained" : ""} ${active ? "is-active" : ""}`}>
+      <canvas
+        aria-hidden="true"
+        className="exam-pencil-canvas"
+        onPointerCancel={finishStroke}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={finishStroke}
+        onLostPointerCapture={() => { isDrawingRef.current = false; }}
+        ref={canvasRef}
+      />
+    </div>
+      {active ? createPortal(
+        <div aria-label="Pencil controls" className="exam-pencil-controls" role="toolbar">
+          <button aria-label="Turn off pencil" aria-pressed="true" className="is-active" onClick={onDeactivate} type="button">
+            <Pencil aria-hidden="true" size={20} strokeWidth={2.2} />
+          </button>
+          <button aria-label="Undo pencil stroke" disabled={!strokes.length} onClick={undo} type="button">
+            <Undo2 aria-hidden="true" size={20} strokeWidth={2.2} />
+          </button>
+          <button aria-label="Redo pencil stroke" disabled={!redoStrokes.length} onClick={redo} type="button">
+            <Redo2 aria-hidden="true" size={20} strokeWidth={2.2} />
+          </button>
+          <button aria-label="Clear pencil marks" disabled={!strokes.length} onClick={clear} type="button">
+            <Trash2 aria-hidden="true" size={19} strokeWidth={2.2} />
+          </button>
+        </div>, document.body
+      ) : null}
+    </>
+  );
+}
+
 function ExamToolbar({
   assessmentLabel,
   breadcrumbMiddle,
@@ -1057,6 +1250,9 @@ function ExamToolbar({
   onToggleBookmark,
   onToggleTimer,
   onToggleUserMenu,
+  pencilKey,
+  pencilStorage,
+  pencilInPassage = false,
   reviewFilter = "all",
   reviewItems = [],
   reviewQuestionCount = 0,
@@ -1100,6 +1296,9 @@ function ExamToolbar({
   onToggleBookmark?: () => void;
   onToggleTimer?: () => void;
   onToggleUserMenu?: () => void;
+  pencilKey?: string;
+  pencilStorage?: PencilStorage;
+  pencilInPassage?: boolean;
   reviewFilter?: ReviewFilter;
   reviewItems?: ReviewItem[];
   reviewQuestionCount?: number;
@@ -1390,11 +1589,15 @@ function ExamToolbar({
         </div>
       </nav>
       {showWorkTools ? <ExamExhibits showExhibits={showExhibits} /> : null}
+      {showWorkTools && pencilStorage && !pencilInPassage ? <PencilWorkspace active={activeTool === "pencil"} drawingKey={pencilKey} storage={pencilStorage} onDeactivate={() => onSelectTool?.("pointer")} /> : null}
     </>
   );
 }
 
 export function ExamSessionPage() {
+  const [pencilDrawings, setPencilDrawings] = useState<PencilDrawings>({});
+  const [pencilRedoStacks, setPencilRedoStacks] = useState<PencilDrawings>({});
+  const pencilStorage: PencilStorage = { drawings: pencilDrawings, redoStacks: pencilRedoStacks, setDrawings: setPencilDrawings, setRedoStacks: setPencilRedoStacks };
   const [accessToken, setAccessToken] = useState("");
   const [assessment, setAssessment] = useState<TeacherAssessment | null>(null);
   const [activeTool, setActiveTool] = useState<ExamTool>("pointer");
@@ -2191,6 +2394,20 @@ export function ExamSessionPage() {
     handleChooseAnswer(question.id, choiceId);
   }
 
+  function handleChoiceLabelClick(event: MouseEvent<HTMLLabelElement>, question: ExamQuestion, choiceId: string) {
+    if (activeTool === "eliminator") {
+      event.preventDefault();
+      handleToggleEliminatedChoice(question.id, choiceId);
+      return;
+    }
+    const selection = window.getSelection();
+    if (!(event.target instanceof HTMLInputElement) && selection?.toString().trim()
+      && event.currentTarget.contains(selection.anchorNode)
+      && event.currentTarget.contains(selection.focusNode)) {
+      event.preventDefault();
+    }
+  }
+
   function handleSelectTool(tool: ExamTool) {
     setHighlightToolbar(null);
 
@@ -2968,6 +3185,9 @@ export function ExamSessionPage() {
     activeTool,
     bookmarkCount,
     currentReviewItemId,
+    pencilKey: currentReviewItemId,
+    pencilStorage,
+    pencilInPassage: sessionScreen === "passage",
     ...fastForwardToolbarProps,
     isBookmarkActive: isActiveQuestionBookmarked,
     isNotepadOpen,
@@ -3200,15 +3420,7 @@ export function ExamSessionPage() {
                       activeMathQuestionEliminatedChoiceIds.includes(choice.id) ? "is-eliminated" : ""
                     }`}
                     key={choice.id}
-                    onClick={(event) => {
-                      if (activeTool === "eliminator") {
-                        event.preventDefault();
-                      }
-                      if (window.getSelection()?.toString().trim()) {
-                        return;
-                      }
-                      handleChoiceClick(activeMathQuestion, choice.id);
-                    }}
+                    onClick={(event) => handleChoiceLabelClick(event, activeMathQuestion, choice.id)}
                   >
                     <input
                       checked={
@@ -3217,7 +3429,7 @@ export function ExamSessionPage() {
                           : selectedAnswers[activeMathQuestion.id] === choice.id
                       }
                       name={activeMathQuestion.id}
-                      onChange={() => undefined}
+                      onChange={() => handleChoiceClick(activeMathQuestion, choice.id)}
                       type={activeMathQuestion.type === "multi_select" ? "checkbox" : "radio"}
                     />
                     <span>{choice.id}.</span>
@@ -3610,15 +3822,7 @@ export function ExamSessionPage() {
                         : ""
                     }`}
                     key={choice.id}
-                    onClick={(event) => {
-                      if (activeTool === "eliminator") {
-                        event.preventDefault();
-                      }
-                      if (window.getSelection()?.toString().trim()) {
-                        return;
-                      }
-                      handleChoiceClick(activeStandaloneQuestion, choice.id);
-                    }}
+                    onClick={(event) => handleChoiceLabelClick(event, activeStandaloneQuestion, choice.id)}
                   >
                     <input
                       checked={
@@ -3627,7 +3831,7 @@ export function ExamSessionPage() {
                           : selectedAnswers[activeStandaloneQuestion.id] === choice.id
                       }
                       name={activeStandaloneQuestion.id}
-                      onChange={() => undefined}
+                      onChange={() => handleChoiceClick(activeStandaloneQuestion, choice.id)}
                       type={activeStandaloneQuestion.type === "multi_select" ? "checkbox" : "radio"}
                     />
                     <span>{choice.id}.</span>
@@ -3985,6 +4189,8 @@ export function ExamSessionPage() {
               tabIndex={0}
               key={activePassageSet.id}
             >
+              <div className="exam-passage-pencil-surface">
+              <PencilWorkspace active={activeTool === "pencil"} contained drawingKey={`passage:${activePassageSet.id}`} storage={pencilStorage} onDeactivate={() => handleSelectTool("pointer")} />
               {activePassageSet.passage.lines.filter((line) => line.kind !== "image").map((line, index) =>
                 isSentenceProsePassage && !line.text ? (
                   <p
@@ -4063,7 +4269,7 @@ export function ExamSessionPage() {
                   })()
                 ) : (
                   <p
-                    className={`exam-poem-line ${line.align === "center" ? "is-centered" : ""} ${
+                    className={`exam-poem-line ${line.align === "center" ? "is-centered" : line.align === "indent" ? "is-indented" : ""} ${
                       line.kind ? `is-${line.kind}` : ""
                     } ${
                       line.text ? "" : "is-spacer"
@@ -4093,6 +4299,7 @@ export function ExamSessionPage() {
                     </figure>
                   ) : null,
                 )}
+              </div>
             </div>
           </div>
 
@@ -4384,20 +4591,12 @@ export function ExamSessionPage() {
                         activeQuestionEliminatedChoiceIds.includes(choice.id) ? "is-eliminated" : ""
                       }`}
                       key={choice.id}
-                      onClick={(event) => {
-                        if (activeTool === "eliminator") {
-                          event.preventDefault();
-                        }
-                        if (window.getSelection()?.toString().trim()) {
-                          return;
-                        }
-                        handleChoiceClick(activeQuestion, choice.id);
-                      }}
+                      onClick={(event) => handleChoiceLabelClick(event, activeQuestion, choice.id)}
                     >
                       <input
                         checked={activeQuestionSelectedChoiceIds.includes(choice.id)}
                         name={activeQuestion.id}
-                        onChange={() => undefined}
+                        onChange={() => handleChoiceClick(activeQuestion, choice.id)}
                         type="checkbox"
                       />
                       <span>{choice.id}.</span>
@@ -4428,20 +4627,12 @@ export function ExamSessionPage() {
                         activeQuestionEliminatedChoiceIds.includes(choice.id) ? "is-eliminated" : ""
                       }`}
                       key={choice.id}
-                      onClick={(event) => {
-                        if (activeTool === "eliminator") {
-                          event.preventDefault();
-                        }
-                        if (window.getSelection()?.toString().trim()) {
-                          return;
-                        }
-                        handleChoiceClick(activeQuestion, choice.id);
-                      }}
+                      onClick={(event) => handleChoiceLabelClick(event, activeQuestion, choice.id)}
                     >
                       <input
                         checked={selectedAnswers[activeQuestion.id] === choice.id}
                         name={activeQuestion.id}
-                        onChange={() => undefined}
+                        onChange={() => handleChoiceClick(activeQuestion, choice.id)}
                         type="radio"
                       />
                       <span>{choice.id}.</span>

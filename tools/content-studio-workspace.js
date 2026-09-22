@@ -122,6 +122,8 @@ const studioUI = {
       question.items.forEach((item) => lines.push(`- ${item.id}: ${this.exportItemText(item)}`));
     }
     lines.push(`Correct answer(s): ${this.exportCorrectAnswer(question)}`);
+    const explanation = this.plainExportText(question.explanation || question.explanationHtml || "");
+    if (explanation) lines.push(`Explanation: ${explanation}`);
     return lines.join("\n");
   },
 
@@ -433,6 +435,10 @@ const studioUI = {
     media.open = true;
     content.dataset.passagePanel = "content";
     document.getElementById("passage-questions").dataset.passagePanel = "questions";
+    const explanations = this.element("section", "panel studio-tab-panel studio-explanations");
+    explanations.id = "studio-passage-explanations";
+    explanations.dataset.passagePanel = "explanations";
+    main.append(explanations);
     // The original source path stays available next to the source settings.
     const source = root.querySelector(".source-path");
     source.title = source.textContent;
@@ -441,7 +447,7 @@ const studioUI = {
     heading.querySelector("h1").textContent = app.passageDraft.title || "Untitled passage";
     heading.querySelector("p").className = "studio-record-summary";
     const nav = root.querySelector(".content-editor-command-bar nav");
-    nav.innerHTML = [ ["content", "Passage"], ["questions", "Questions"], ["settings", "Settings"], ["media", "Media"] ].map(([key, label]) => `<button data-passage-tab="${key}" type="button">${label}${key === "questions" ? ` <span data-question-count>${app.passageDraft.questions.length}</span>` : ""}</button>`).join("");
+    nav.innerHTML = [ ["content", "Passage"], ["questions", "Questions"], ["explanations", "Explanations"], ["settings", "Settings"], ["media", "Media"] ].map(([key, label]) => `<button data-passage-tab="${key}" type="button">${label}${key === "questions" || key === "explanations" ? ` <span data-question-count>${app.passageDraft.questions.length}</span>` : ""}</button>`).join("");
     nav.setAttribute("aria-label", "Passage editing sections");
     nav.querySelectorAll("button").forEach((button) => button.addEventListener("click", () => this.showPassageSection(button.dataset.passageTab)));
     const preview = document.getElementById("passage-preview-panel");
@@ -459,6 +465,7 @@ const studioUI = {
     nav.after(toggle);
     document.getElementById("save-passage").textContent = app.saving ? "Saving…" : "Save passage";
     document.getElementById("save-passage").title = "Save passage (Ctrl / ⌘ + S)";
+    this.renderExplanations();
     this.showPassageSection(this.passageSection);
     this.updatePreviewVisibility();
     this.updatePassageSummary();
@@ -522,6 +529,46 @@ const studioUI = {
     this.selectedQuestionId = questions[this.selectedQuestionIndex]?.id || "";
   },
 
+  renderExplanations() {
+    const panel = document.getElementById("studio-passage-explanations");
+    if (!panel || !app.passageDraft) return;
+    this.ensureQuestionSelection();
+    const questions = app.passageDraft.questions;
+    const question = questions[this.selectedQuestionIndex];
+    if (!question) {
+      panel.innerHTML = '<div class="studio-empty"><strong>No questions yet</strong><p>Add a question before writing an answer explanation.</p></div>';
+      return;
+    }
+    const correctAnswer = this.exportCorrectAnswer(question);
+    panel.innerHTML = `
+      <header class="panel-head studio-explanation-head">
+        <div><span class="studio-eyebrow">Answer rationale</span><h2>Correct-answer explanation</h2></div>
+        <div class="studio-explanation-navigation">
+          <button class="icon-button" data-explanation-step="-1" type="button" aria-label="Previous question" ${this.selectedQuestionIndex === 0 ? "disabled" : ""}>‹</button>
+          <label>Question <select aria-label="Choose a question explanation">${questions.map((candidate, index) => `<option value="${index}" ${index === this.selectedQuestionIndex ? "selected" : ""}>${index + 1} of ${questions.length}</option>`).join("")}</select></label>
+          <button class="icon-button" data-explanation-step="1" type="button" aria-label="Next question" ${this.selectedQuestionIndex >= questions.length - 1 ? "disabled" : ""}>›</button>
+        </div>
+      </header>
+      <section class="studio-explanation-context" aria-label="Question and correct answer">
+        <div><span>Question ${this.selectedQuestionIndex + 1}</span><strong>${escapeHtml(question.prompt || "Untitled question")}</strong></div>
+        <div><span>Correct answer</span><strong>${escapeHtml(correctAnswer)}</strong></div>
+      </section>
+      <div class="rich-editor-shell studio-explanation-editor">
+        ${richToolbarHtml("Format the correct-answer explanation")}
+        <div aria-label="Explanation for question ${this.selectedQuestionIndex + 1}" class="rich-editor-content" contenteditable="true" data-placeholder="Explain why the correct answer is correct. You can also address why the distractors are wrong." data-question-index="${this.selectedQuestionIndex}" data-rich-kind="explanation" role="textbox">${inlineRichValue(question.explanationHtml, question.explanation)}</div>
+      </div>
+      <p class="field-note">This explanation is saved with the question and included when you copy the question set for ChatGPT.</p>`;
+    const select = (index) => {
+      if (!questions[index]) return;
+      this.selectedQuestionIndex = index;
+      this.selectedQuestionId = questions[index].id;
+      this.renderExplanations();
+    };
+    panel.querySelector("select").addEventListener("change", (event) => select(Number(event.target.value)));
+    panel.querySelectorAll("[data-explanation-step]").forEach((button) => button.addEventListener("click", () => select(this.selectedQuestionIndex + Number(button.dataset.explanationStep))));
+    bindRichEditors(panel);
+  },
+
   mountQuestions() {
     const panel = document.getElementById("passage-questions");
     if (!panel) return;
@@ -577,6 +624,7 @@ const studioUI = {
       row.append(topic.closest("label"), points.closest("label"));
       card.append(id);
     });
+    this.renderExplanations();
   },
 
   moveSaveBar(root, label) {
