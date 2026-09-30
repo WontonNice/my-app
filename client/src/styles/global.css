@@ -1,3 +1,5 @@
+@import "./passage-glossary.css";
+
 :root {
   --dashboard-bg: #f3f5f8;
   --dashboard-surface: #ffffff;
@@ -14228,7 +14230,17 @@ button {
 .exam-session-shell .exam-choice:focus-within { outline: 2px solid #0871d1; outline-offset: 5px; }
 .exam-session-shell .exam-choice:hover { color: #000; }
 .exam-session-shell .exam-standalone-document { font-family: inherit; }
-.exam-session-shell .exam-standalone-choice-list { gap: 30px; }
+.exam-session-shell .exam-standalone-choice-list { gap: 33px; }
+.exam-session-shell .exam-math-document.is-math-drag .exam-standalone-stimulus { border: 0; padding: 0; margin-bottom: 10px; }
+.exam-session-shell .exam-math-document.is-math-drag .exam-standalone-stimulus .katex-display { margin: 0; text-align: left; }
+.exam-session-shell .exam-math-document.is-math-drag .exam-standalone-instructions { white-space: pre-line; margin-bottom: 28px; }
+.exam-session-shell .exam-math-drag-bank { min-width: 0; min-height: 52px; gap: 8px; padding: 8px 12px 20px; }
+.exam-session-shell .exam-math-drag-bank button { min-width: 30px; min-height: 24px; border: 1px solid #111; border-radius: 0; color: #111; font-size: 13px; font-weight: 400; padding: 2px 4px; }
+.exam-session-shell .exam-math-drag-bank button.is-selected { color: #fff; }
+.exam-session-shell .exam-math-drag-slot { min-width: 32px; min-height: 26px; padding: 2px 4px; border: 2px solid #556480; font-size: 13px; }
+.exam-session-shell .exam-math-drag-line { min-height: 26px; gap: 3px; }
+.exam-session-shell .exam-math-drag-response.is-single-line .exam-math-drag-lines { width: min(750px, 100%); }
+.exam-session-shell .exam-math-drag-response.is-single-line .exam-math-drag-line { justify-content: center; }
 .exam-session-shell .exam-matrix-choice-table { font-size: 16px; }
 .exam-session-shell .exam-matrix-choice-table thead th:first-child,
 .exam-session-shell .exam-matrix-choice-table tbody th { width: 67%; }
@@ -14236,7 +14248,8 @@ button {
 .exam-session-shell .exam-standalone-category-card,
 .exam-session-shell .exam-table-match-card { font: 700 16px/20px Arial, Helvetica, sans-serif; background: #f3f3f3; }
 .exam-session-shell .exam-category-bank { gap: 8px; }
-.exam-session-shell .exam-category-bank .exam-category-card { padding: 12px 4px; }
+.exam-session-shell .exam-category-bank .exam-category-card { padding: 12px 4px 22px; }
+.exam-session-shell .exam-category-sort:not(.is-single-category) .exam-category-target-grid { margin-inline: 18px; }
 .exam-session-shell .exam-category-target h2,
 .exam-session-shell .exam-standalone-category-target h2 { font: 700 16px/20px Arial, Helvetica, sans-serif; }
 .exam-category-target:focus-visible, .exam-category-bank:focus-visible { outline: 2px solid #0871d1; outline-offset: 3px; }

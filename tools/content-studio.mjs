@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import { gunzipSync, gzipSync } from "node:zlib";
 import ts from "typescript";
 import examExporter from "./export-exam-content.cjs";
+import { createGlossaryRichText } from "./content-studio-glossary.js";
 
 const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const passageSetsRoot = join(workspaceRoot, "client", "src", "content", "exams", "passageSets");
@@ -374,6 +375,7 @@ function requiredText(value, label, { preserve = false } = {}) {
 }
 
 const allowedRichTags = new Set([
+  "span",
   "h2",
   "h3",
   "p",
@@ -402,6 +404,15 @@ function sanitizeRichText(value) {
       const tag = rawTag.toLowerCase();
       if (!allowedRichTags.has(tag)) return "";
       const isClosing = match.startsWith("</");
+      if (tag === "span") {
+        if (isClosing) return "</span>";
+        const definition = /\bdata-glossary-definition\s*=\s*(?:"([^"]*)"|'([^']*)')/i.exec(match);
+        // Keep only an escaped, bounded plain-text definition and generated accessibility attrs.
+        // The regex captures the original encoded value: decoding/re-encoding here would double-escape it.
+        const encoded = (definition?.[1] ?? definition?.[2] ?? "").trim().slice(0, 4000)
+          .replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        return encoded ? `<span data-glossary-definition="${encoded}" role="link" tabindex="0">` : "<span>";
+      }
       if (tag === "br") return "<br>";
       const normalizedTag = tag === "b" ? "strong" : tag === "i" ? "em" : tag === "strike" ? "s" : tag;
       return `<${isClosing ? "/" : ""}${normalizedTag}>`;
@@ -577,7 +588,8 @@ async function parsePassageFile(filePath) {
           ? "poem"
           : "informational",
     questions,
-    richText: typeof passageInput.richText === "string" ? passageInput.richText : "",
+    richText: typeof passageInput.richText === "string" ? passageInput.richText :
+      Array.isArray(passageInput.glossary) ? createGlossaryRichText(String(passageInput.text || ""), passageInput.glossary, format) : "",
     sourceHash: hashSource(source),
     sourceNote: typeof passageInput.sourceNote === "string" ? passageInput.sourceNote : "",
     section,
@@ -2228,7 +2240,7 @@ function parsePassageImportSource(source) {
         return [{ description, scope }];
       })
     : [];
-  return { passage, reviewNotes, visuals };
+  return { passage, reviewNotes, visuals, sourceKind: document.sourceKind };
 }
 
 async function previewPassageImport(input) {
@@ -2289,8 +2301,16 @@ async function previewPassageImport(input) {
       `A passage with the generated ID ${passage.id} already exists. Add or correct the official form in versionLabel, then validate again.`,
     );
   }
+  const missingExplanationCount = passage.questions.filter(
+    (question) => !question.explanation && !question.explanationHtml,
+  ).length;
   const warnings = [
-    "Confirm every imported answer against an official answer key when one is available. ChatGPT may have solved answers that were not printed in the PDF.",
+    parsed.sourceKind === "sat-crash-course"
+      ? "Answers were copied from the SAT Crash Course preview. Verify them against the source and review each imported question before saving."
+      : "Confirm every imported answer against an official answer key when one is available. ChatGPT may have solved answers that were not printed in the PDF.",
+    ...(missingExplanationCount
+      ? [`${missingExplanationCount} question${missingExplanationCount === 1 ? " has" : "s have"} no answer explanation. Add the official rationale or a clearly identified generated explanation before saving.`]
+      : []),
     ...parsed.reviewNotes,
     ...parsed.visuals.map(
       (visual) => `${visual.scope}: ${visual.description} Upload the original visual in the Studio before saving if students need it.`,
@@ -3271,7 +3291,7 @@ async function handleRequest(request, response) {
       response.end(await readFile(editorHtmlPath, "utf8"));
       return;
     }
-    if (request.method === "GET" && ["/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js"].includes(url.pathname)) {
+    if (request.method === "GET" && ["/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-glossary.js"].includes(url.pathname)) {
       response.writeHead(200, {
         "Cache-Control": "no-store",
         "Content-Type": url.pathname.endsWith(".css") ? "text/css; charset=utf-8" : "text/javascript; charset=utf-8",
@@ -3285,6 +3305,11 @@ async function handleRequest(request, response) {
         "Content-Type": "text/css; charset=utf-8",
       });
       response.end(await readFile(appStylesPath, "utf8"));
+      return;
+    }
+    if (request.method === "GET" && url.pathname === "/passage-glossary.css") {
+      response.writeHead(200, { "Cache-Control": "no-store", "Content-Type": "text/css; charset=utf-8" });
+      response.end(await readFile(join(workspaceRoot, "client/src/styles/passage-glossary.css"), "utf8"));
       return;
     }
     if (request.method === "GET" && url.pathname.startsWith("/vendor/mathlive/")) {
@@ -3809,10 +3834,35 @@ async function validateSetup() {
     "math-import-validation",
     0,
   );
+  const importedGridInDocument = parseMathImportSource(
+    JSON.stringify({
+      format: mathImportFormat,
+      imageDescription: "",
+      question: {
+        correctTextAnswers: ["-0.8"],
+        entryLayout: "plain",
+        id: "2020-2021-form-b-q58",
+        instructions: "Enter your answer.",
+        points: 1,
+        prompt: "What is the coefficient of \\(x\\) expressed as a decimal?",
+        topic: "Algebra",
+        type: "numeric_entry",
+      },
+      reviewNotes: ["Source: 2020-2021 Form B, question 58."],
+    }),
+  );
+  const importedGridInQuestion = normalizeMathQuestion(
+    importedGridInDocument.question,
+    "2020-2021-form-b",
+    0,
+  );
   if (
     importedMathQuestion.choices[0].math !== "\\frac{1}{2}" ||
     importedMathDocument.reviewNotes[0] !== "Verify the plotted intercept." ||
-    !importedMathDocument.imageDescription.includes("coordinate grid")
+    !importedMathDocument.imageDescription.includes("coordinate grid") ||
+    importedGridInQuestion.type !== "numeric_entry" ||
+    importedGridInQuestion.entryLayout !== "plain" ||
+    importedGridInQuestion.correctTextAnswers[0] !== "-0.8"
   ) {
     throw new Error("KaTeX math import validation failed.");
   }

@@ -339,6 +339,10 @@ export const winterWheatPassageSet: ExamPassageSet = {
     blurb: "Ellen, the narrator, is preparing to leave her parents and the family farm for college the next day.",
     sourceNote: "From WINTER WHEAT by Mildred Walker, published by University of Nebraska Press. Copyright © 1944 by Harcourt, Brace and Company, Inc. Copyright renewed 1971 by Mildred Walker. All rights reserved.",
     text: winterWheatPassageText,
+    glossary: [
+      { term: "serial", definition: "story published in short segments at regular intervals" },
+      { term: "coulee", definition: "small gulch or ravine" },
+    ],
   }),
   questions: winterWheatQuestions,
 };

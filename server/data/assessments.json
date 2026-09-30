@@ -2389,7 +2389,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-09-19T14:37:43.255Z",
-    "updatedAt": "2026-09-22T17:04:31.764Z",
+    "updatedAt": "2026-09-28T15:55:57.848Z",
     "passages": [
       {
         "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b",
@@ -3154,6 +3154,16 @@
         "prompt": "With which statement would the author of this excerpt most likely agree?",
         "topic": "Author's Point of View",
         "type": "multiple_choice"
+      },
+      {
+        "answer": "-0.8",
+        "choices": [],
+        "id": "2020-2021-form-b-q58",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[\\frac{3}{5}(2x+5)-2x\\]\n\nAfter the expression above is simplified, what is the coefficient of \\(x\\) expressed as a decimal?",
+        "topic": "Algebra",
+        "type": "short_response"
       }
     ],
     "forms": [],
@@ -3163,7 +3173,7 @@
       "english": true,
       "math": true
     },
-    "correctionsOpen": false,
+    "correctionsOpen": true,
     "allowCompletedAccess": false,
     "split": false
   }

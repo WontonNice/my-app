@@ -4,7 +4,24 @@ const path = require('node:path');
 require('ts-node').register({ transpileOnly: true, project: path.resolve(__dirname, '../tsconfig.json'), compilerOptions: { module: 'CommonJS', moduleResolution: 'Node' }, moduleTypes: { '**': 'cjs' } });
 const { mathAnswerToLatex, mathAnswerFromLatex, normalizeMathAnswer, isMathAnswerComplete } = require('../src/shared/mathAnswer.ts');
 const { isExamQuestionCorrect, createExamResult, getAllExamQuestions } = require('../src/shared/examGrading.ts');
-const { createProsePassage, createPlainTextPassage } = require('../../client/src/content/exams/formatters.ts');
+const { createProsePassage, createPlainTextPassage, createSentenceNumberedPassage } = require('../../client/src/content/exams/formatters.ts');
+
+test('glossary definitions preserve visible text and selected occurrence across passage formats', () => {
+  const glossary = [{ term: 'serial', definition: 'A "story" & <series>.' }];
+  for (const formatter of [createProsePassage, createPlainTextPassage, createSentenceNumberedPassage]) {
+    const passage = formatter({ id: 'glossary-fixture', title: 'Definitions', text: 'First serial.\n\nSecond serial.', glossary });
+    const html = passage.lines.map(line => line.html || '').join('');
+    assert.equal((html.match(/data-glossary-definition/g) || []).length, 1);
+    assert.match(html, /data-glossary-definition="A &quot;story&quot; &amp; &lt;series&gt;." role="link" tabindex="0">serial<\/span>/);
+    assert.doesNotMatch(passage.lines.map(line => line.text).join(''), /story|<series>/);
+    assert.match(passage.lines.map(line => line.text).join(''), /First serial/);
+  }
+  const { winterWheatPassageSet } = require('../../client/src/content/exams/passageSets/winter-wheat.ts');
+  const lines = winterWheatPassageSet.passage.lines;
+  assert.match(lines.find(line => line.lineNumber === '1').html, /data-glossary-definition="story published in short segments at regular intervals"/);
+  assert.match(lines.find(line => line.lineNumber === '16').html, /data-glossary-definition="small gulch or ravine"/);
+  assert.equal(lines.filter(line => line.lineNumber).length, 25);
+});
 
 test('structured math preserves legacy numbers, fractions, mixed numbers, and percentages', () => {
   for (const answer of ['12', '-3.5', '0.25', '1/2', '-13/3', '1 1/2', '25%']) {
@@ -24,6 +41,7 @@ test('structured math preserves legacy numbers, fractions, mixed numbers, and pe
 
 test('math grades formatting variants without accepting new numerical equivalents', () => {
   const fraction = { type: 'numeric_entry', correctTextAnswers: ['1/2'] };
+  const formBGridIn = { type: 'numeric_entry', correctTextAnswers: ['-0.8'] };
   assert.equal(isExamQuestionCorrect(fraction, '\\(\\frac{1}{2}\\)'), true);
   assert.equal(isExamQuestionCorrect(fraction, '2/4'), false);
   assert.equal(isExamQuestionCorrect(fraction, '0.5'), false);
@@ -31,6 +49,8 @@ test('math grades formatting variants without accepting new numerical equivalent
   assert.equal(normalizeMathAnswer('x^2'), normalizeMathAnswer('\\(x^{2}\\)'));
   assert.equal(normalizeMathAnswer('\\left|x\\right|'), normalizeMathAnswer('|x|'));
   assert.equal(isExamQuestionCorrect({ type: 'short_response', correctTextAnswers: ['1/2'] }, '\\(\\frac{1}{2}\\)'), false);
+  assert.equal(isExamQuestionCorrect(formBGridIn, '-0.8'), true);
+  assert.equal(isExamQuestionCorrect(formBGridIn, '-4/5'), false);
 });
 
 test('prose headings, blank blocks, and lists do not consume paragraph numbers', () => {
@@ -70,4 +90,18 @@ test('registered exams still resolve, retain unique question IDs, and grade ever
     }
     assert.equal(createExamResult(content, {}).total, questions.length);
   }
+});
+
+test('Cross-Purposes retains alternating indented stanzas without literal spacer runs', () => {
+  const { crossPurposesFormBPassageSet } = require('../../client/src/content/exams/passageSets/cross-purposes-form-b.ts');
+  const lines = crossPurposesFormBPassageSet.passage.lines;
+  const indented = lines.filter(line => line.align === 'indent');
+  assert.equal(indented.length, 21);
+  for (const line of indented) {
+    assert.match(line.html, /^<em>/);
+    assert.doesNotMatch(line.html, /(?:&nbsp;){8,}/);
+    assert.doesNotMatch(line.text, /^\s{8,}/);
+  }
+  assert.deepEqual(lines.filter(line => line.lineNumber).map(line => line.lineNumber), ['5', '10', '15', '20', '25', '30', '35', '40']);
+  assert.equal(crossPurposesFormBPassageSet.questions.length, 8);
 });

@@ -9,7 +9,7 @@
   <body>
     <main>
       <header>
-        <p class="eyebrow">READ-ONLY PAGE TOOL</p>
+        <p class="eyebrow">READ-ONLY PAGE TOOL · 0.4.0</p>
         <h1>SAT Crash Course Reader</h1>
         <p class="lede">Extract the current page into structured, local data.</p>
       </header>
@@ -22,6 +22,11 @@
       <label class="option">
         <input id="include-answer" type="checkbox" checked />
         <span>Include the correct answer</span>
+      </label>
+
+      <label class="option">
+        <input id="include-passage-questions" type="checkbox" checked />
+        <span>Include all questions for this passage</span>
       </label>
 
       <button id="scan" class="primary" type="button">Read current page</button>
@@ -52,7 +57,8 @@
 
       <footer>
         Uses your existing signed-in tab. To identify a correct answer, the reader briefly
-        toggles the site's Show answer control and restores it afterward. It never requests
+        toggles the site's Show answer control. Passage capture uses BACK and NEXT until the passage
+        changes, then restores your starting question and answer visibility. It never requests
         or exports cookies.
       </footer>
     </main>

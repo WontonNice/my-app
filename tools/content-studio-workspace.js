@@ -12,6 +12,99 @@ const studioUI = {
   filters: new Map(),
   folds: new Map(),
 
+  convertSatCrashCourseImport(source, options = {}) {
+    const raw = String(source || "").trim().replace(/^```(?:json)?\s*([\s\S]*?)\s*```$/i, "$1");
+    let data;
+    try { data = JSON.parse(raw); }
+    catch { throw new Error("Paste valid JSON from SAT Crash Course Reader (Copy JSON or Download JSON), not CSV."); }
+    const preview = data?.testPreview;
+    if (!preview || typeof preview !== "object") throw new Error("This is not a SAT Crash Course Reader test-preview export.");
+    if (data.source?.url && new URL(data.source.url).hostname !== "tutor.thesatcrashcourse.com") {
+      throw new Error("The export must come from tutor.thesatcrashcourse.com.");
+    }
+    const questions = Array.isArray(preview.questions) ? [...preview.questions] : preview.question ? [preview.question] : [];
+    if (!questions.length) throw new Error("The export has no questions. Open a test preview and capture it again.");
+    const firstPassage = questions[0]?.passage;
+    if (!firstPassage?.text?.trim()) throw new Error("The export has no readable passage text.");
+    const normalizeText = (value) => String(value || "").replace(/\s+/g, " ").trim();
+    if (questions.some((q) => !q.passage ||
+      (firstPassage.id && q.passage.id ? firstPassage.id !== q.passage.id :
+        normalizeText(firstPassage.text) !== normalizeText(q.passage.text)))) {
+      throw new Error("Import one passage at a time. These questions belong to different passages.");
+    }
+    if (questions.some((q) => !Number.isInteger(q.number) || q.number < 1) ||
+      new Set(questions.map((q) => q.number)).size !== questions.length) {
+      throw new Error("Every captured question must have a unique original question number.");
+    }
+    questions.sort((a, b) => a.number - b.number);
+    const warnings = [...(preview.capture?.warnings || []).map(String)];
+    if (questions.length === 1) warnings.push("Only one question is present. Recapture with Include all questions for this passage if more questions belong to it.");
+    if (preview.capture?.mode !== "passage-all") warnings.push("This export may omit earlier questions. Reader 0.4.0 captures the entire passage, even from a midway start.");
+    if (questions.some((q, index) => index && q.number !== questions[index - 1].number + 1)) {
+      warnings.push("There are gaps in the original question numbers. Check that this passage capture is complete.");
+    }
+    if (preview.capture?.restoredStartingQuestion === false) warnings.push("The reader could not restore the starting question on the source site.");
+    const lines = firstPassage.text.replace(/\r\n?/g, "\n").split("\n");
+    const byline = lines.findIndex((line) => /^by\s+\S/i.test(line.trim()));
+    const title = String(options.title || firstPassage.title || (byline > 0 ? lines[byline - 1] : "") || firstPassage.id || preview.testTitle || "Imported passage").trim();
+    const author = String(firstPassage.author || (byline >= 0 ? lines[byline].trim().replace(/^by\s+/i, "") : "")).trim();
+    const blurb = String(firstPassage.blurb || (byline > 1 ? lines.slice(0, byline - 1).join("\n") : "")).trim();
+    let text = (byline >= 0 ? lines.slice(byline + 1).join("\n") : firstPassage.text).trim();
+    const format = options.format || "prose";
+    if (format === "prose") {
+      let nextNumber = 1;
+      const numberedLines = text.split("\n").map((line) => {
+        const match = line.match(/^(\d+)\s+(.+)$/);
+        if (match && Number(match[1]) === nextNumber) { nextNumber++; return match[2]; }
+        return line;
+      });
+      if (nextNumber > 2) {
+        text = numberedLines.join("\n\n").replace(/\n{3,}/g, "\n\n");
+        warnings.push("Sequential printed paragraph numbers were removed; Student view will number the prose paragraphs.");
+      }
+    }
+    const section = options.section || "reading";
+    const topic = options.topic || "Central Idea & Theme";
+    warnings.push(`All questions initially use the topic “${topic}”. Review each question's topic before saving.`);
+    warnings.push("Review the passage title, genre, paragraph breaks, and any poetry layout in Student view before saving.");
+    const mappedQuestions = questions.map((q, index) => {
+      if (!Array.isArray(q.choices) || q.choices.length !== 4) throw new Error(`Source Question ${q.number} is not a supported four-choice question.`);
+      const labelOf = (value) => String(value || "").replace(/[.\s]+/g, "").toUpperCase();
+      const choices = q.choices.map((choice, i) => ({
+        id: String.fromCharCode(65 + i), text: choice.text,
+        sourceLabel: labelOf(choice.label || String.fromCharCode(65 + i)),
+      }));
+      if (new Set(choices.map((choice) => choice.sourceLabel)).size !== 4) throw new Error(`Source Question ${q.number} has duplicate choice labels.`);
+      const flagged = q.choices.filter((choice) => choice.isCorrect === true);
+      const answerLabel = labelOf(q.correctAnswer?.label || (flagged.length === 1 ? flagged[0].label : ""));
+      const correct = choices.find((choice) => choice.sourceLabel === answerLabel);
+      if (!correct || flagged.length > 1 || (flagged.length === 1 && labelOf(flagged[0].label) !== answerLabel)) {
+        throw new Error(`Source Question ${q.number} has a missing or ambiguous correct answer. Enable Include the correct answer in the reader and capture again.`);
+      }
+      const media = [...(q.media || []), ...q.choices.flatMap((choice) => choice.media || [])];
+      if (media.length) warnings.push(`Source Question ${q.number} contains images. Upload the original visuals in the Studio; remote media URLs are not imported.`);
+      return {
+        id: `passage-${index + 1}`, type: "multiple_choice", points: 1, topic,
+        prompt: q.prompt, choices: choices.map(({ id, text }) => ({ id, text })),
+        correctChoiceId: correct.id, explanation: q.explanation || "",
+      };
+    });
+    if (firstPassage.media?.length) warnings.push("The passage contains images. Upload the original visuals in the Studio; remote media URLs are not imported.");
+    if (firstPassage.glossaryTerms?.length) warnings.push(`Glossary markings require review: ${firstPassage.glossaryTerms.join(", ")}. Definitions are not included in this export.`);
+    return {
+      format: "nathan-tutors-official-passage-v1", sourceKind: "sat-crash-course",
+      passage: {
+        title, author, blurb, text, format, section,
+        passageType: options.passageType || "informational",
+        label: section === "reading" ? "ELA - Reading Comprehension" : "ELA - Revising/Editing Part A",
+        versionLabel: options.versionLabel || preview.testTitle || "SAT Crash Course",
+        teacherSource: `${preview.testTitle || "SAT Crash Course"}; ${preview.module || ""}; original questions ${questions.map((q) => q.number).join(", ")}; passage ${firstPassage.id || "unknown"}; ${data.source?.url || ""}`,
+        questions: mappedQuestions,
+      },
+      reviewNotes: [...new Set(warnings)],
+    };
+  },
+
   element(tag, className, html = "") {
     const node = document.createElement(tag);
     node.className = className;
@@ -182,16 +275,33 @@ const studioUI = {
     return prompt.filter((line, index) => line || prompt[index - 1] !== "").join("\n").trim();
   },
 
-  buildOfficialPassagePrompt({ sourceLabel = "", target = "" } = {}) {
+  buildOfficialPassagePrompt({ answerGuideLabel = "", hasAnswerGuide = false, sourceLabel = "", target = "" } = {}) {
     const readingTopics = this.questionTopicsForSection("reading");
     const revisingEditingTopics = this.questionTopicsForSection("revising_editing_a");
     const requestedPassage = String(target || "[ENTER THE EXACT PASSAGE TITLE OR QUESTION RANGE]").trim();
     const requestedSource = String(sourceLabel || "Infer the official test/form name from the PDF or its filename.").trim();
+    const requestedAnswerGuide = String(
+      answerGuideLabel || "Infer the official answer-guide name from the second PDF or its filename.",
+    ).trim();
     return [
       "Convert exactly ONE passage and all questions belonging to it from the attached official exam PDF into Nathan Tutors Official Passage Import JSON.",
       "",
       `Target passage or source question range: ${requestedPassage}`,
       `Official source/version: ${requestedSource}`,
+      ...(hasAnswerGuide
+        ? [
+            `Official answer/explanation guide: ${requestedAnswerGuide}`,
+            "Two source PDFs are attached: the student exam and a separate official answer/explanation guide. Use the student exam for all student-visible wording and use the guide only to identify keyed answers and build explanations.",
+          ]
+        : [
+            "Official answer/explanation guide: None is expected. Infer answers only when necessary and identify every inferred answer in reviewNotes.",
+          ]),
+      "",
+      "Rights and transformation context:",
+      "- The user confirms that the requested material is public domain or that they are authorized to reproduce and adapt it for this educational platform.",
+      "- The PDFs are supplied directly by the user. This is a user-requested format conversion into structured JSON, not a request to locate or provide material from an unprovided source.",
+      "- Preserve the requested student-visible text exactly as instructed. Do not replace the transcription with a summary, refuse the conversion, or omit text merely because it appears in a published PDF.",
+      "- This permission applies only to the requested passage, its related questions, and its supplied answer explanations. Do not extract unrelated material from either PDF.",
       "",
       "Return ONLY one valid JSON object. Do not use Markdown fences and do not add commentary outside the JSON.",
       "",
@@ -223,11 +333,12 @@ const studioUI = {
       '          { "id": "C", "text": "Third answer choice" },',
       '          { "id": "D", "text": "Fourth answer choice" }',
       "        ],",
-      '        "correctChoiceId": "A"',
+      '        "correctChoiceId": "A",',
+      '        "explanation": "Why the keyed answer is correct, followed by why each distractor is incorrect when the answer guide provides those rationales"',
       "      }",
       "    ]",
       "  },",
-      '  "reviewNotes": ["List every uncertainty, inferred answer, damaged character, or omitted visual here."],',
+      '  "reviewNotes": ["List every uncertainty, inferred answer, generated explanation, answer-guide mismatch, damaged character, or omitted visual here."],',
       '  "visuals": [{ "scope": "Passage or Question 3", "description": "Describe any required chart, table, diagram, or image." }]',
       "}",
       "",
@@ -241,7 +352,19 @@ const studioUI = {
       "- Topic values are section-specific. Reading Comprehension questions must use only a Reading topic; Revising/Editing questions must use only a Revising/Editing topic.",
       "- Use type=multiple_choice for one-answer questions. Use type=multi_select only when the printed instructions require multiple answers; then replace correctChoiceId with correctChoiceIds and requiredSelections.",
       "- Keep each question's choices in printed order, but normalize their IDs to A, B, C, D (and E only for a five-choice multi-select). If the PDF prints E-H, map them to A-D in order.",
-      "- The PDF may not contain an answer key. Solve each question carefully when necessary, set the answer field, and add a reviewNotes entry saying that answer was inferred rather than read from an official key. Never call an inferred answer official.",
+      ...(hasAnswerGuide
+        ? [
+            "- Match the requested passage and every question to the answer guide by the original printed question number. Do not match by page position alone, and do not combine explanations from neighboring questions or another test form.",
+            "- The answer guide may paraphrase a question. Never replace the exact student-visible question or choice wording from the exam PDF with wording from the guide.",
+            "- Set each answer field from the official guide when the question number and test version match unambiguously. If the exam prints E-H, map both the choices and the guide's keyed letter to A-D in order (E→A, F→B, G→C, H→D).",
+            "- Fill explanation for every question. Faithfully incorporate the guide's rationale for the correct choice. When the guide explains distractors, include concise labeled reasons for each incorrect normalized choice in the same explanation string, separated by newline characters.",
+            "- If the guide gives only a keyed letter and no rationale, write a concise original explanation grounded in the passage and add a reviewNotes entry saying the explanation was generated from an official keyed answer.",
+            "- If a guide entry is missing, ambiguous, damaged, or appears to belong to another version, solve the question carefully, mark the answer as inferred in reviewNotes, and never call it official.",
+            "- Include both the exam PDF and answer-guide PDF names, relevant printed page ranges, and original question range in teacherSource.",
+          ]
+        : [
+            "- The PDF may not contain an answer key. Solve each question carefully when necessary, set the answer field, write a concise explanation, and add a reviewNotes entry saying that answer was inferred rather than read from an official key. Never call an inferred answer official.",
+          ]),
       "- Never invent missing or unreadable text. Put the uncertainty in reviewNotes instead.",
       "- Never invent image URLs and do not add image fields. Describe required visuals in visuals so they can be uploaded separately.",
       "- Use sequential question IDs passage-1, passage-2, and so on, regardless of the question numbers printed in the PDF.",
@@ -254,7 +377,7 @@ const studioUI = {
       "Allowed Revising/Editing topic values (section=revising_editing_a; use exactly one per question):",
       ...revisingEditingTopics.map((topic) => `- ${topic}`),
       "",
-      "Before responding, verify that the passage is complete, the question count matches the requested passage, every question has its full answer set, all normalized choice IDs are unique, and every correct answer refers to an included choice.",
+      "Before responding, verify that the passage is complete, the question count matches the requested passage, every question has its full answer set and a non-empty explanation, all normalized choice IDs are unique, and every correct answer refers to an included choice.",
     ].join("\n");
   },
 

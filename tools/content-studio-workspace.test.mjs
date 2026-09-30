@@ -6,8 +6,85 @@ import vm from "node:vm";
 const source = await readFile(new URL("./content-studio-workspace.js", import.meta.url), "utf8");
 const setup = (questions = []) => {
   const app = { passageMode: "exam", selectedPassageId: "passage-a", passageDraft: { questions } };
-  return { app, ui: vm.runInNewContext(`${source}\nstudioUI;`, { app }) };
+  return { app, ui: vm.runInNewContext(`${source}\nstudioUI;`, { app, URL }) };
 };
+
+const readerExport = () => ({
+  schemaVersion: 3,
+  source: { url: "https://tutor.thesatcrashcourse.com/tests/digital-shsat/fixture" },
+  testPreview: {
+    testTitle: "Digital SHSAT Fixture", module: "English Language Arts",
+    capture: { mode: "passage-all", warnings: [], restoredStartingQuestion: true },
+    questions: Array.from({ length: 7 }, (_, index) => ({
+      number: index + 1, passage: { id: "fixture-p1", text: 'Intro about an author.\nExcerpt from "A Fixture"\nby Test Author\n1 First paragraph.\n2 Second paragraph.' },
+      prompt: `Prompt ${index + 1}`, explanation: `Explanation ${index + 1}`,
+      choices: ["A", "B", "C", "D"].map(label => ({ label, text: `Choice ${label}`, isCorrect: label === "C" })),
+      correctAnswer: { label: "C", text: "Choice C" },
+    })),
+  },
+});
+
+test("SAT reader JSON maps all questions, answers, explanations, source numbers, and passage metadata", () => {
+  const { ui } = setup();
+  const document = ui.convertSatCrashCourseImport(JSON.stringify(readerExport()), { topic: "Inference", passageType: "literary" });
+  assert.equal(document.passage.questions.length, 7);
+  assert.equal(document.passage.title, 'Excerpt from "A Fixture"');
+  assert.equal(document.passage.author, "Test Author");
+  assert.equal(document.passage.blurb, "Intro about an author.");
+  assert.equal(document.passage.text, "First paragraph.\n\nSecond paragraph.");
+  assert.equal(document.passage.questions[6].correctChoiceId, "C");
+  assert.equal(document.passage.questions[6].explanation, "Explanation 7");
+  assert.equal(document.passage.questions[6].topic, "Inference");
+  assert.match(document.passage.teacherSource, /original questions 1, 2, 3, 4, 5, 6, 7/);
+  assert.equal(document.sourceKind, "sat-crash-course");
+});
+
+test("SAT importer accepts legacy current-question exports but warns about incomplete capture", () => {
+  const data = readerExport();
+  data.schemaVersion = 2;
+  data.testPreview.question = data.testPreview.questions[0];
+  delete data.testPreview.questions;
+  delete data.testPreview.capture;
+  const result = setup().ui.convertSatCrashCourseImport(JSON.stringify(data));
+  assert.equal(result.passage.questions.length, 1);
+  assert.match(result.reviewNotes.join("\n"), /Only one question|may omit earlier/);
+});
+
+test("SAT importer never invents missing or ambiguous answers", () => {
+  const data = readerExport();
+  data.testPreview.questions[2].correctAnswer = null;
+  data.testPreview.questions[2].choices.forEach(choice => { choice.isCorrect = false; });
+  assert.throws(() => setup().ui.convertSatCrashCourseImport(JSON.stringify(data)), /Question 3.*missing or ambiguous/);
+  data.testPreview.questions[2].correctAnswer = { label: "D" };
+  data.testPreview.questions[2].choices[0].isCorrect = true;
+  assert.throws(() => setup().ui.convertSatCrashCourseImport(JSON.stringify(data)), /Question 3.*ambiguous/);
+});
+
+test("SAT importer rejects mixed passages, duplicate numbers, empty groups, other sites, and invalid JSON", () => {
+  const { ui } = setup();
+  const mixed = readerExport(); mixed.testPreview.questions[1].passage.id = "another-passage";
+  assert.throws(() => ui.convertSatCrashCourseImport(JSON.stringify(mixed)), /different passages/);
+  const duplicate = readerExport(); duplicate.testPreview.questions[1].number = 1;
+  assert.throws(() => ui.convertSatCrashCourseImport(JSON.stringify(duplicate)), /unique original/);
+  const empty = readerExport(); empty.testPreview.questions = [];
+  assert.throws(() => ui.convertSatCrashCourseImport(JSON.stringify(empty)), /no questions/);
+  const other = readerExport(); other.source.url = "https://example.com";
+  assert.throws(() => ui.convertSatCrashCourseImport(JSON.stringify(other)), /must come from/);
+  assert.throws(() => ui.convertSatCrashCourseImport("not JSON"), /Paste valid JSON/);
+});
+
+test("SAT importer warns about partial exports, gaps and media, and preserves poetry lines", () => {
+  const data = readerExport(); data.testPreview.questions.splice(2, 1);
+  data.testPreview.capture.warnings = ["Timed out waiting for Question 8."];
+  data.testPreview.questions[0].media = [{ url: "https://example.com/figure.png" }];
+  data.testPreview.questions.forEach(q => { q.passage.text = "A poem\n  Indented line\nFinal line"; });
+  const result = setup().ui.convertSatCrashCourseImport(JSON.stringify(data), { title: "Poem override", format: "poem" });
+  assert.equal(result.passage.title, "Poem override");
+  assert.equal(result.passage.text, "A poem\n  Indented line\nFinal line");
+  assert.match(result.reviewNotes.join("\n"), /Timed out/);
+  assert.match(result.reviewNotes.join("\n"), /gaps/);
+  assert.match(result.reviewNotes.join("\n"), /contains images/);
+});
 
 test("focused editing follows the same question after a reorder without changing content", () => {
   const questions = [{ id: "a", prompt: "First" }, { id: "b", prompt: "Second", correctChoiceId: "D" }];
@@ -162,19 +239,40 @@ test("official passage prompt targets one PDF passage and matches the import con
   const { app, ui } = setup();
   app.state = { topics: ["Central Idea & Theme", "Text Structure & Purpose"] };
   const prompt = ui.buildOfficialPassagePrompt({
+    answerGuideLabel: "20202021_form_b_-_answers.pdf",
+    hasAnswerGuide: true,
     sourceLabel: "2020-2021 Form B",
     target: "Massachusetts: Lowell National Historical Park, questions 10-16",
   });
   assert.match(prompt, /Convert exactly ONE passage/);
   assert.match(prompt, /Massachusetts: Lowell National Historical Park, questions 10-16/);
   assert.match(prompt, /Official source\/version: 2020-2021 Form B/);
+  assert.match(prompt, /Official answer\/explanation guide: 20202021_form_b_-_answers\.pdf/);
+  assert.match(prompt, /Two source PDFs are attached/);
+  assert.match(prompt, /public domain or that they are authorized to reproduce and adapt it/);
+  assert.match(prompt, /user-requested format conversion into structured JSON/);
+  assert.match(prompt, /Do not replace the transcription with a summary, refuse the conversion, or omit text/);
+  assert.match(prompt, /permission applies only to the requested passage/);
   assert.match(prompt, /"format": "nathan-tutors-official-passage-v1"/);
+  assert.match(prompt, /"explanation": "Why the keyed answer is correct/);
   assert.match(prompt, /If the PDF prints E-H, map them to A-D in order/);
-  assert.match(prompt, /answer was inferred rather than read from an official key/);
+  assert.match(prompt, /Match the requested passage and every question to the answer guide by the original printed question number/);
+  assert.match(prompt, /E→A, F→B, G→C, H→D/);
+  assert.match(prompt, /include concise labeled reasons for each incorrect normalized choice/);
+  assert.match(prompt, /generated from an official keyed answer/);
   assert.match(prompt, /- Central Idea & Theme\n- Text Structure & Purpose/);
   assert.match(prompt, /Allowed Reading Comprehension topic values/);
   assert.match(prompt, /Allowed Revising\/Editing topic values/);
   assert.match(prompt, /- Sentence Structure/);
   assert.match(prompt, /- Relevance & Conclusion/);
   assert.match(prompt, /Do not include richText, HTML, sourceHash/);
+});
+
+test("official passage prompt keeps a safe inference fallback without an answer guide", () => {
+  const { app, ui } = setup();
+  app.state = { topics: ["Central Idea & Theme", "Inference"] };
+  const prompt = ui.buildOfficialPassagePrompt({ target: "Excerpt from A Tramp Abroad" });
+  assert.match(prompt, /Official answer\/explanation guide: None is expected/);
+  assert.match(prompt, /answer was inferred rather than read from an official key/);
+  assert.doesNotMatch(prompt, /Two source PDFs are attached/);
 });

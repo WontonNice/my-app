@@ -8,7 +8,6 @@ import { SnowyMountainsPassageSet } from "./passageSets/Snowy Mountains";
 import { spiritOfTheHerdPassageSet } from "./passageSets/spiritOfTheHerd";
 import { winterWheatPassageSet } from "./passageSets/winter-wheat";
 import type { ExamPassageSet } from "./types";
-import { excerptFromTheCallOfTheWildPassageSet } from "./passageSets/excerpt-from-the-call-of-the-wild";
 import { excerptFromTheFixItSaturdaysPassageSet } from "./passageSets/excerpt-from-the-fix-it-saturdays";
 import { excerptFromTheRoadNotTakenPassageSet } from "./passageSets/excerpt-from-the-road-not-taken";
 import { excerptFromThePuzzleOfTheRiderlessBicyclePassageSet } from "./passageSets/excerpt-from-the-puzzle-of-the-riderless-bicycle";
@@ -29,6 +28,7 @@ import { excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFormBPa
 import { excerptFromNiagaraFalls20202021ShsatSampleTestFormBPassageSet } from "./passageSets/excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b";
 import { crossPurposesFormBPassageSet } from "./passageSets/cross-purposes-form-b";
 import { usingFireToKeepAPrairieHealthy20202021FormBPassageSet } from "./passageSets/using-fire-to-keep-a-prairie-healthy-2020-2021-form-b";
+import { excerptFromTheCallOfTheWildDigitalShsatPracticeTest1PassageSet } from "./passageSets/excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -40,7 +40,6 @@ export const examPassageLibrary: ExamPassageSet[] = [
   SnowyMountainsPassageSet,
   spiritOfTheHerdPassageSet,
   winterWheatPassageSet,
-  excerptFromTheCallOfTheWildPassageSet,
   excerptFromTheFixItSaturdaysPassageSet,
   excerptFromTheRoadNotTakenPassageSet,
   excerptFromThePuzzleOfTheRiderlessBicyclePassageSet,
@@ -61,6 +60,7 @@ export const examPassageLibrary: ExamPassageSet[] = [
   excerptFromNiagaraFalls20202021ShsatSampleTestFormBPassageSet,
   crossPurposesFormBPassageSet,
   usingFireToKeepAPrairieHealthy20202021FormBPassageSet,
+  excerptFromTheCallOfTheWildDigitalShsatPracticeTest1PassageSet,
 ];
 
 export function getExamLibraryPassage(passageId: string) {

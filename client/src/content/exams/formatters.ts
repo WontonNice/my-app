@@ -1,4 +1,5 @@
 import type { ExamPassage, ExamPassageLine, ExamPassageType, ExamQuestionImage } from "./types";
+import { createGlossaryRichText } from "../../../../tools/content-studio-glossary.js";
 
 type PlainTextPassageInput = {
   author?: string;
@@ -9,6 +10,7 @@ type PlainTextPassageInput = {
   lineNumberInterval?: number;
   passageType?: ExamPassageType;
   richText?: string;
+  glossary?: { term: string; definition: string }[];
   sourceNote?: string;
   teacherSource?: string;
   text: string;
@@ -140,10 +142,12 @@ export function createPlainTextPassage({
   lineNumberInterval = 5,
   passageType,
   richText,
+  glossary,
   sourceNote,
   text,
   title,
 }: PlainTextPassageInput): ExamPassage {
+  if (!richText && glossary?.length) richText = createGlossaryRichText(text, glossary, "poem");
   const passageLines: ExamPassageLine[] = [];
 
   if (blurb) {
@@ -216,6 +220,7 @@ export function createPlainTextPassage({
 }
 
 type ProsePassageInput = {
+  glossary?: { term: string; definition: string }[];
   author?: string;
   blurb?: string;
   coverImage?: ExamQuestionImage;
@@ -232,6 +237,7 @@ type ProsePassageInput = {
 };
 
 export function createProsePassage({
+  glossary,
   author,
   blurb,
   coverImage,
@@ -244,6 +250,7 @@ export function createProsePassage({
   text,
   title,
 }: ProsePassageInput): ExamPassage {
+  if (!richText && glossary?.length) richText = createGlossaryRichText(text, glossary);
   const passageLines: ExamPassageLine[] = [];
 
   if (blurb || header) {
@@ -308,6 +315,7 @@ export function createProsePassage({
 }
 
 type SentenceNumberedPassageInput = {
+  glossary?: { term: string; definition: string }[];
   author?: string;
   blurb?: string;
   coverImage?: ExamQuestionImage;
@@ -323,6 +331,7 @@ type SentenceNumberedPassageInput = {
 };
 
 export function createSentenceNumberedPassage({
+  glossary,
   author,
   blurb,
   coverImage,
@@ -334,6 +343,7 @@ export function createSentenceNumberedPassage({
   text,
   title,
 }: SentenceNumberedPassageInput): ExamPassage {
+  if (!richText && glossary?.length) richText = createGlossaryRichText(text, glossary);
   const passageLines: ExamPassageLine[] = [];
   if (blurb) passageLines.push({ kind: "intro", text: blurb });
   passageLines.push({ align: "center", kind: "title", text: title });

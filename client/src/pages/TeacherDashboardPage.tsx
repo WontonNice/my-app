@@ -221,24 +221,68 @@ function scoreBreakdownForResult(
 ) {
   const storedSubjects = subjectResultsFromRecord(result);
   const storedPassages = passageResultsFromRecord(result);
-  const originalPassageOrder = assessment
-    ? new Map(
-      resolveOriginalExamContent(assessment).passageSets.flatMap((passageSet, index) => [
-        [passageSet.id, index] as const,
-        [passageSet.passage.id, index] as const,
-      ]),
-    )
+  const currentPassageByAlias = assessment
+    ? new Map<string, { id: string; index: number; label: string; title: string }>()
     : null;
-  const normalizePassageOrder = (passages: ExamPassageResult[]) =>
-    originalPassageOrder
-      ? [...passages].sort(
-        (left, right) =>
-          (originalPassageOrder.get(left.id) ?? Number.MAX_SAFE_INTEGER) -
-          (originalPassageOrder.get(right.id) ?? Number.MAX_SAFE_INTEGER),
-      )
-      : passages;
+  const currentPassageByTitle = assessment
+    ? new Map<string, { id: string; index: number; label: string; title: string } | null>()
+    : null;
+  if (assessment && currentPassageByAlias) {
+    const passageSets = resolveOriginalExamContent(assessment).passageSets;
+    const registerCurrentTitle = (current: { id: string; index: number; label: string; title: string }) => {
+      if (!currentPassageByTitle) return;
+      const title = current.title.trim().toLocaleLowerCase();
+      const existing = currentPassageByTitle.get(title);
+      currentPassageByTitle.set(title, existing && existing.id !== current.id ? null : current);
+    };
+    passageSets.forEach((passageSet, index) => {
+      const current = {
+        id: passageSet.id,
+        index,
+        label: passageSet.label || `Passage ${index + 1}`,
+        title: passageSet.passage.title,
+      };
+      currentPassageByAlias.set(passageSet.id, current);
+      currentPassageByAlias.set(passageSet.passage.id, current);
+      registerCurrentTitle(current);
+    });
+    let extraPassageIndex = passageSets.length;
+    assessment.passages.forEach((passage) => {
+      if (currentPassageByAlias.has(passage.id)) return;
+      const index = extraPassageIndex++;
+      const current = {
+        id: passage.id,
+        index,
+        label: `Passage ${index + 1}`,
+        title: passage.title,
+      };
+      currentPassageByAlias.set(passage.id, current);
+      registerCurrentTitle(current);
+    });
+  }
+  const normalizePassages = (passages: ExamPassageResult[]) => {
+    if (!currentPassageByAlias) return passages;
+    const currentPassages = new Map<string, ExamPassageResult>();
+    passages.forEach((passage) => {
+      const current = currentPassageByAlias.get(passage.id) ??
+        currentPassageByTitle?.get(passage.title.trim().toLocaleLowerCase());
+      if (!current || currentPassages.has(current.id)) return;
+      currentPassages.set(current.id, {
+        ...passage,
+        id: current.id,
+        label: current.label,
+        title: current.title,
+      });
+    });
+    return Array.from(currentPassages.values()).sort(
+      (left, right) =>
+        (currentPassageByAlias.get(left.id)?.index ?? Number.MAX_SAFE_INTEGER) -
+        (currentPassageByAlias.get(right.id)?.index ?? Number.MAX_SAFE_INTEGER),
+    );
+  };
+  const normalizedStoredPassages = normalizePassages(storedPassages);
   const answers = selectedAnswersFromResult(result);
-  if ((!storedSubjects.length || !storedPassages.length) && assessment && answers) {
+  if ((!storedSubjects.length || !normalizedStoredPassages.length) && assessment && answers) {
     const completedSections = Array.isArray(result.completedSections)
       ? result.completedSections.filter(
         (section): section is "english" | "math" => section === "english" || section === "math",
@@ -250,11 +294,11 @@ function scoreBreakdownForResult(
         : ["english" as const, "math" as const];
     const recalculated = createExamResult(resolveOriginalExamContent(assessment), answers, completedSections);
     return {
-      passages: normalizePassageOrder(storedPassages.length ? storedPassages : recalculated.passages),
+      passages: normalizedStoredPassages.length ? normalizedStoredPassages : normalizePassages(recalculated.passages),
       subjects: storedSubjects.length ? storedSubjects : recalculated.subjects,
     };
   }
-  return { passages: normalizePassageOrder(storedPassages), subjects: storedSubjects };
+  return { passages: normalizedStoredPassages, subjects: storedSubjects };
 }
 
 function SectionScoreBreakdown({

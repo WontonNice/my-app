@@ -142,6 +142,30 @@ const studioMath = {
       ${button("help", "?", "Math keyboard help")}
     </div>`;
   },
+  mountKeyboardExit() {
+    const keyboard = window.mathVirtualKeyboard;
+    if (!keyboard || document.querySelector(".math-keyboard-exit")) return;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "math-keyboard-exit";
+    button.hidden = true;
+    button.setAttribute("aria-label", "Close math keyboard");
+    button.innerHTML = '<span aria-hidden="true">×</span> Close keyboard';
+    const sync = () => {
+      button.hidden = !keyboard.visible;
+      if (button.hidden) return;
+      const rect = keyboard.boundingRect;
+      button.style.top = `${Math.max(8, Math.min(window.innerHeight - 42, (rect?.top ?? 0) + 8))}px`;
+    };
+    const scheduleSync = () => window.requestAnimationFrame(sync);
+    button.addEventListener("mousedown", (event) => event.preventDefault());
+    button.addEventListener("click", () => keyboard.hide({ animate: true }));
+    keyboard.addEventListener("virtual-keyboard-toggle", scheduleSync);
+    keyboard.addEventListener("geometrychange", scheduleSync);
+    window.addEventListener("resize", scheduleSync);
+    document.body.append(button);
+    sync();
+  },
   mount(root) {
     if (!window.MathfieldElement) return;
     if (!this.configured) {
@@ -149,6 +173,7 @@ const studioMath = {
       window.MathfieldElement.soundsDirectory = null;
       this.configured = true;
     }
+    this.mountKeyboardExit();
     root.querySelectorAll("[contenteditable='true'][data-rich-kind^='math-']").forEach((editor, index) => {
       editor.id ||= `equation-rich-${index}`;
       editor.setAttribute("aria-label", editor.getAttribute("aria-label") || editor.closest("label")?.querySelector("span")?.textContent || editor.dataset.richKind.replace("math-", "Math "));

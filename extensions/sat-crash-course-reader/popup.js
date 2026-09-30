@@ -1,11 +1,13 @@
 const state = {
   data: null,
 };
+const READER_VERSION = "0.4.0";
 
 const elements = {
   scan: document.querySelector("#scan"),
   includePageText: document.querySelector("#include-page-text"),
   includeAnswer: document.querySelector("#include-answer"),
+  includePassageQuestions: document.querySelector("#include-passage-questions"),
   status: document.querySelector("#status"),
   results: document.querySelector("#results"),
   testCount: document.querySelector("#test-count"),
@@ -49,9 +51,10 @@ function csvCell(value) {
 }
 
 function toCsv(data) {
-  if (data.testPreview?.question) {
-    const question = data.testPreview.question;
-    const choiceLabels = [...new Set(question.choices.map((choice) => choice.label))];
+  const questions = data.testPreview?.questions ||
+    (data.testPreview?.question ? [data.testPreview.question] : []);
+  if (questions.length) {
+    const choiceLabels = [...new Set(questions.flatMap((question) => question.choices.map((choice) => choice.label)))];
     const headers = [
       "testTitle",
       "module",
@@ -64,7 +67,7 @@ function toCsv(data) {
       "correctAnswer",
       "explanation",
     ];
-    const row = [
+    const rows = questions.map((question) => [
       data.testPreview.testTitle,
       data.testPreview.module,
       question.number,
@@ -79,8 +82,8 @@ function toCsv(data) {
         ? `${question.correctAnswer.label}. ${question.correctAnswer.text}`
         : "",
       question.explanation,
-    ];
-    return [headers, row].map((values) => values.map(csvCell).join(",")).join("\r\n");
+    ]);
+    return [headers, ...rows].map((values) => values.map(csvCell).join(",")).join("\r\n");
   }
 
   if (data.tests.length) {
@@ -119,8 +122,11 @@ async function currentTab() {
 
 async function scanPage() {
   elements.scan.disabled = true;
+  state.data = null;
   elements.results.hidden = true;
-  setStatus("Reading the current page…");
+  setStatus(elements.includePassageQuestions.checked
+    ? "Reading this passage’s questions… Keep this popup open and avoid navigating."
+    : "Reading the current page…");
 
   try {
     const tab = await currentTab();
@@ -133,14 +139,20 @@ async function scanPage() {
       options: {
         includePageText: elements.includePageText.checked,
         includeAnswer: elements.includeAnswer.checked,
+        includePassageQuestions: elements.includePassageQuestions.checked,
       },
     });
 
     if (!response?.ok) throw new Error(response?.error || "The page did not respond.");
+    if (response.data?.readerVersion !== READER_VERSION) {
+      throw new Error("This test tab is using an older reader script. Reload SAT Crash Course Reader in chrome://extensions, then refresh the test tab and scan again.");
+    }
 
     state.data = response.data;
     elements.testCount.textContent = String(state.data.tests.length);
-    elements.questionCount.textContent = String(state.data.testPreview?.question ? 1 : 0);
+    const questions = state.data.testPreview?.questions ||
+      (state.data.testPreview?.question ? [state.data.testPreview.question] : []);
+    elements.questionCount.textContent = String(questions.length);
     elements.tableCount.textContent = String(state.data.tables.length);
     elements.linkCount.textContent = String(state.data.links.length);
     elements.preview.textContent = JSON.stringify(state.data, null, 2);
@@ -149,17 +161,26 @@ async function scanPage() {
     if (!state.data.signedInLikely) {
       setStatus("This looks like the sign-in page. Sign in, open Tests, and scan again.", "error");
     } else if (state.data.testPreview?.question) {
-      const question = state.data.testPreview.question;
-      const answerNote = question.correctAnswer ? " with its correct answer" : "";
+      const question = questions[0] || state.data.testPreview.question;
+      const answerNote = questions.every((item) => item.correctAnswer) ? " with correct answers" : "";
+      const warnings = state.data.testPreview.capture?.warnings || [];
+      const range = questions.length > 1
+        ? `Questions ${question.number}–${questions.at(-1).number}`
+        : `Question ${question.number || "?"}`;
       setStatus(
-        `Captured Question ${question.number || "?"} of ${question.total || "?"}${answerNote}.`,
-        "success",
+        `Captured ${range} of ${question.total || "?"}${answerNote}. ${warnings.join(" ") || "Starting question restored."}`,
+        warnings.length ? "error" : "success",
       );
+    } else if (state.data.testPreview?.capture?.warnings.length) {
+      setStatus(state.data.testPreview.capture.warnings.join(" "), "error");
     } else {
       setStatus("Page read successfully. Nothing was sent off your computer.", "success");
     }
   } catch (error) {
-    const message = error instanceof Error ? error.message : "The page could not be read.";
+    const detail = error instanceof Error ? error.message : "The page could not be read.";
+    const message = /Receiving end does not exist|Extension context invalidated/i.test(detail)
+      ? "The page reader is not connected. Reload SAT Crash Course Reader in chrome://extensions, then refresh the test tab and scan again."
+      : detail;
     setStatus(message, "error");
   } finally {
     elements.scan.disabled = false;

@@ -28,7 +28,7 @@ label.field > span { flex-wrap: wrap; }
 .sidebar-head { gap: 9px; margin-bottom: 9px; }
 .sidebar-head h2 { font-size: .79rem; }
 .sidebar-head > .primary { width: 100%; }
-#open-passage-import { width: 100%; }
+#open-passage-import, #open-sat-passage-import { width: 100%; }
 .passage-list { gap: 2px; align-content: start; }
 .passage-list button { gap: 4px; padding: 10px 9px; border-color: transparent; border-radius: 5px; background: transparent; }
 .passage-list button:hover { background: #f3f6f7; border-color: transparent; }
@@ -206,6 +206,12 @@ label.field > span { flex-wrap: wrap; }
 .official-import-steps strong { color: var(--heading); font-size: .66rem; }
 .official-import-steps small { color: var(--muted); font-size: .58rem; line-height: 1.35; }
 .official-import-targets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.official-answer-guide-toggle { display: flex; grid-column: 1 / -1; gap: 9px; align-items: flex-start; border: 1px solid var(--border-soft); border-radius: 7px; background: #f7fbfa; padding: 10px 11px; color: var(--text); cursor: pointer; }
+.official-answer-guide-toggle input { flex: 0 0 auto; width: 17px; height: 17px; min-height: 0; margin: 1px 0 0; padding: 0; accent-color: var(--accent); }
+.official-answer-guide-toggle span { display: grid; gap: 3px; }
+.official-answer-guide-toggle strong { color: var(--heading); font-size: .68rem; }
+.official-answer-guide-toggle small { color: var(--muted); font-size: .6rem; line-height: 1.4; }
+.official-import-targets .is-disabled { opacity: .58; }
 .official-import-file { position: relative; display: inline-flex; align-items: center; cursor: pointer; }
 .official-import-file input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 .official-import-preview { border: 1px solid var(--border-soft); border-radius: 6px; padding: 8px 10px; background: #fff; }
@@ -220,6 +226,7 @@ label.field > span { flex-wrap: wrap; }
 .official-import-question-list article > span { display: grid; gap: 3px; }
 .official-import-question-list strong { color: var(--heading); font-size: .68rem; }
 .official-import-question-list small { color: var(--muted); font-size: .6rem; }
+.official-import-question-list .official-import-explanation { margin: 3px 0 0; border-left: 2px solid #c8ddd8; padding: 2px 0 2px 8px; color: #40546a; font-size: .61rem; line-height: 1.45; white-space: pre-wrap; }
 .studio-dialog-status { padding: 9px 11px; border: 1px solid #c7ded6; border-radius: 5px; background: #eef7f3; color: var(--accent); font-size: .72rem; }
 .studio-dialog-status.is-error { color: var(--danger); border-color: #e5c0c0; background: #fff4f4; }
 .practice-shell { max-width: none; }

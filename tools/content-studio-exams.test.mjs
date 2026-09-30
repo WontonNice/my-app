@@ -4,6 +4,7 @@ import { cp, mkdir, mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import vm from 'node:vm';
 
 test('new exams are locked, registered, editable, unique, and protected by editor authorization', async () => {
   const toolsRoot = dirname(fileURLToPath(import.meta.url));
@@ -19,6 +20,7 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     await cp(join(root, 'server/data/assessments.json'), join(fixture, 'server/data/assessments.json'));
     await cp(join(toolsRoot, 'practice-topics.json'), join(fixture, 'tools/practice-topics.json'));
     await cp(join(toolsRoot, 'content-topics.json'), join(fixture, 'tools/content-topics.json'));
+    await cp(join(toolsRoot, 'content-studio-glossary.js'), join(fixture, 'tools/content-studio-glossary.js'));
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8'))
       .replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(fixture)};`)
       .split('if (process.argv.includes("--validate"))')[0] + '\nexport { deletePassage, handleRequest, getState, previewPassageImport, savePassage, saveStandaloneItem, saveTest };\n';
@@ -82,17 +84,55 @@ test('new exams are locked, registered, editable, unique, and protected by edito
           prompt: 'What is the central idea?',
           choices: ['First', 'Second', 'Third', 'Fourth'].map((text, index) => ({ id: String.fromCharCode(65 + index), text })),
           correctChoiceId: 'B',
+          explanation: 'B is correct because the second paragraph states the controlling idea. A, C, and D are contradicted by the passage.',
         }],
       },
       reviewNotes: ['Question 1 answer was inferred because the PDF had no answer key.'],
       visuals: [{ scope: 'Passage', description: 'A map appears above the text.' }],
     };
     const passageImport = await studio.previewPassageImport({ source: `\`\`\`json\n${JSON.stringify(passageImportDocument)}\n\`\`\`` });
+    const workspaceCode = await readFile(join(toolsRoot, 'content-studio-workspace.js'), 'utf8');
+    const ui = vm.runInNewContext(`${workspaceCode}\nstudioUI;`, { URL });
+    const readerDocument = {
+      schemaVersion: 3,
+      source: { url: 'https://tutor.thesatcrashcourse.com/tests/digital-shsat/fixture' },
+      testPreview: {
+        testTitle: 'SAT Reader Integration Fixture', module: 'English Language Arts',
+        capture: { mode: 'passage-all', warnings: [], restoredStartingQuestion: true },
+        questions: Array.from({ length: 7 }, (_, index) => ({
+          number: index + 10, passage: { id: 'reader-fixture-p1', text: 'First paragraph.\n\nSecond paragraph.' },
+          prompt: `Reader prompt ${index + 10}`, explanation: `Reader explanation ${index + 10}`,
+          choices: ['A', 'B', 'C', 'D'].map(label => ({ label, text: `Reader choice ${label}`, isCorrect: label === 'D' })),
+          correctAnswer: { label: 'D', text: 'Reader choice D' },
+        })),
+      },
+    };
+    const converted = ui.convertSatCrashCourseImport(JSON.stringify(readerDocument));
+    const readerPreview = await studio.previewPassageImport({ source: JSON.stringify(converted) });
+    assert.equal(readerPreview.passage.questions.length, 7);
+    assert.equal(readerPreview.passage.questions[6].correctChoiceId, 'D');
+    assert.equal(readerPreview.passage.questions[6].explanation, 'Reader explanation 16');
+    assert.match(readerPreview.passage.teacherSource, /original questions 10, 11, 12, 13, 14, 15, 16/);
+    assert.match(readerPreview.warnings.join('\n'), /Answers were copied from the SAT Crash Course preview/);
+    assert.doesNotMatch(readerPreview.warnings.join('\n'), /ChatGPT may have solved/);
     assert.equal(passageImport.format, 'nathan-tutors-official-passage-v1');
     assert.equal(passageImport.passage.id, 'importer-fixture-passage-2020-2021-form-b');
     assert.equal(passageImport.passage.questions[0].id, 'importer-fixture-passage-2020-2021-form-b-1');
+    assert.match(passageImport.passage.questions[0].explanation, /B is correct/);
+    assert.doesNotMatch(passageImport.warnings.join('\n'), /no answer explanation/);
     assert.match(passageImport.warnings.join('\n'), /inferred because the PDF had no answer key/);
     assert.match(passageImport.warnings.join('\n'), /map appears above the text/);
+    const missingExplanationImport = await studio.previewPassageImport({
+      source: JSON.stringify({
+        ...passageImportDocument,
+        passage: {
+          ...passageImportDocument.passage,
+          title: 'Importer Fixture Without Explanation',
+          questions: passageImportDocument.passage.questions.map(({ explanation, ...question }) => question),
+        },
+      }),
+    });
+    assert.match(missingExplanationImport.warnings.join('\n'), /1 question has no answer explanation/);
     await assert.rejects(
       studio.previewPassageImport({
         source: JSON.stringify({
@@ -164,6 +204,8 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     const versionLabel = `Automated Test ${Date.now()}`;
     const version = await studio.savePassage({
       ...originalPassage,
+      text: 'First serial.\n\nSecond serial.',
+      richText: '<p>First <span data-glossary-definition="A &quot;story&quot; &amp; &lt;series&gt;." onclick="alert(1)" style="color:red">serial</span>.</p><p>Second serial.</p>',
       directions: undefined,
       exportName: '',
       fileName: '',
@@ -190,6 +232,15 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.equal(version.questions[0].explanation, 'The keyed answer is supported by the passage.');
     assert.equal(version.questions[0].explanationHtml, '<p>The keyed answer is <strong>supported</strong> by the passage.</p>');
     assert.equal(version.directions.title, 'REVISING/EDITING PART A');
+    const glossaryHtml = '<p>First <span data-glossary-definition="A &quot;story&quot; &amp; &lt;series&gt;." role="link" tabindex="0">serial</span>.</p><p>Second serial.</p>';
+    assert.equal(version.richText, glossaryHtml);
+    const reopenedVersion = (await studio.getState()).passages.find(passage => passage.id === version.id);
+    assert.equal(reopenedVersion.richText, glossaryHtml);
+    assert.equal(reopenedVersion.text, 'First serial.\n\nSecond serial.');
+    assert.equal((reopenedVersion.richText.match(/data-glossary-definition/g) || []).length, 1);
+    const seededWinterWheat = refreshed.passages.find(passage => passage.id === 'winter-wheat');
+    assert.match(seededWinterWheat.richText, /data-glossary-definition="story published in short segments at regular intervals"/);
+    assert.match(seededWinterWheat.richText, /data-glossary-definition="small gulch or ravine"/);
     assert.ok(version.questions.every(question => question.id.startsWith(`${version.id}-`)));
     const versionSource = await readFile(
       join(fixture, 'client/src/content/exams/passageSets', version.fileName),

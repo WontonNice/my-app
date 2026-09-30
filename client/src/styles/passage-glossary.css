@@ -1,0 +1,58 @@
+[data-glossary-definition] {
+  color: inherit;
+  border-bottom: 1px dotted #000;
+  text-decoration: none;
+  cursor: help;
+}
+[data-glossary-definition]:focus-visible { outline: 2px solid #0871d1; outline-offset: 2px; }
+.exam-glossary-popup {
+  position: fixed;
+  z-index: 1040;
+  box-sizing: border-box;
+  width: max-content;
+  min-width: min(340px, calc(100vw - 16px));
+  max-width: min(max(340px, 30vw), calc(100vw - 16px));
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, .3);
+  border-radius: 10px 10px 6px 6px;
+  background: #fff;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, .3);
+  color: #333;
+  font: 14px/20px Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: left;
+}
+.exam-glossary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 41px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  border-bottom: 1px solid #ccc;
+  background: linear-gradient(#fff, #e6e6e6);
+  color: #666;
+  cursor: move;
+  touch-action: none;
+  user-select: none;
+}
+.exam-glossary-header h2 { margin: 0; padding: 0 5px 0 0; font: 400 18px/40px Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.exam-glossary-popup .exam-glossary-close {
+  flex: none;
+  width: 37.5px;
+  height: 40px;
+  min-height: 0;
+  margin: 0;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #000;
+  opacity: .4;
+  font: 700 24px/40px Arial, sans-serif;
+  cursor: pointer;
+  box-shadow: none;
+}
+.exam-glossary-popup .exam-glossary-close:hover { opacity: .7; background: transparent; }
+.exam-glossary-popup .exam-glossary-close:focus-visible { outline: 1px solid #888; outline-offset: -1px; }
+.exam-glossary-body { max-height: calc(100dvh - 65px); overflow: auto; padding: 15px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.exam-glossary-body p { margin: 0 0 10px; color: inherit; font: inherit; }

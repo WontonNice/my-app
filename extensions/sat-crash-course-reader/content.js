@@ -1,6 +1,9 @@
 (() => {
   const MAX_PAGE_TEXT_LENGTH = 250_000;
   const MAX_ITEM_TEXT_LENGTH = 10_000;
+  const MAX_PASSAGE_QUESTIONS = 50;
+  const READER_VERSION = "0.4.0";
+  let scanInProgress = false;
 
   function cleanText(value) {
     return String(value ?? "")
@@ -282,23 +285,74 @@
   }
 
   function nextPaint() {
-    return new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    // Unlike animation frames, this also finishes when the popup leaves the tab unfocused.
+    return new Promise((resolve) => setTimeout(resolve, 100));
+  }
+
+  function previewButton(label) {
+    const preview = document.querySelector(".testSHSATPreview");
+    return [...(preview?.querySelectorAll("button") || [])].find(
+      (button) => textOf(button).toLowerCase() === label.toLowerCase(),
+    );
+  }
+
+  async function setAnswerVisible(visible) {
+    const button = previewButton(visible ? "Show answer" : "Hide answer");
+    if (button) {
+      button.click();
+      await nextPaint();
+    }
+  }
+
+  function previewModule() {
+    return textOf(document.querySelector(".testSHSATPreview__moduleSelect"));
+  }
+
+  function samePassage(first, next) {
+    if (!first || !next) return false;
+    if (first.id && next.id) return first.id === next.id;
+    if (first.text && next.text) return first.text === next.text;
+    return first.media.length > 0 &&
+      JSON.stringify(first.media) === JSON.stringify(next.media);
+  }
+
+  async function navigateQuestion(direction, expectedNumber, module) {
+    const button = previewButton(direction);
+    if (!button || button.disabled || button.getAttribute("aria-disabled") === "true") {
+      throw new Error(`The ${direction} question control is unavailable.`);
+    }
+    button.click();
+    const deadline = Date.now() + 4_000;
+    while (Date.now() < deadline) {
+      await nextPaint();
+      const question = readCurrentPreviewQuestion();
+      if (previewModule() !== module) throw new Error("The test module changed during capture.");
+      if (question?.number === expectedNumber && question.prompt) return question;
+      if (question?.number && question.number !== expectedNumber &&
+          question.number !== expectedNumber + (direction === "NEXT" ? -1 : 1)) {
+        throw new Error("The question changed unexpectedly. Please avoid navigating during capture.");
+      }
+    }
+    throw new Error(`Timed out waiting for Question ${expectedNumber}.`);
+  }
+
+  async function captureQuestion(includeAnswer) {
+    const wasVisible = Boolean(previewButton("Hide answer"));
+    try {
+      if (includeAnswer) await setAnswerVisible(true);
+      return readCurrentPreviewQuestion();
+    } finally {
+      await setAnswerVisible(wasVisible);
+    }
   }
 
   async function readTestPreview(options = {}) {
     const preview = document.querySelector(".testSHSATPreview");
     if (!preview) return null;
 
-    const showAnswerButton = [...preview.querySelectorAll("button")].find(
-      (button) => textOf(button).toLowerCase() === "show answer",
-    );
-    let restoredAnswerState = false;
-
-    if (options.includeAnswer && showAnswerButton) {
-      showAnswerButton.click();
-      restoredAnswerState = true;
-      await nextPaint();
-    }
+    const originalQuestion = readCurrentPreviewQuestion();
+    const originalModule = previewModule();
+    const originalAnswerVisible = Boolean(previewButton("Hide answer"));
 
     const title = [...document.querySelectorAll("h1")]
       .filter((heading) => !preview.contains(heading))
@@ -306,16 +360,89 @@
       .find(Boolean) || document.title;
     const result = {
       testTitle: title,
-      module: textOf(preview.querySelector(".testSHSATPreview__moduleSelect h1, .testSHSATPreview__moduleSelect")),
-      question: readCurrentPreviewQuestion(),
+      module: originalModule,
+      question: null, // Retained for older consumers expecting the starting question.
+      questions: [],
+      capture: {
+        mode: options.includePassageQuestions === false ? "current-question" : "passage-all",
+        stopReason: "current-question",
+        restoredStartingQuestion: false,
+        warnings: [],
+      },
     };
 
-    if (restoredAnswerState) {
-      const hideAnswerButton = [...preview.querySelectorAll("button")].find(
-        (button) => textOf(button).toLowerCase() === "hide answer",
-      );
-      hideAnswerButton?.click();
-      await nextPaint();
+    try {
+      result.question = await captureQuestion(options.includeAnswer);
+      if (result.question) result.questions.push(result.question);
+      if (options.includePassageQuestions !== false && originalQuestion?.passage && originalQuestion.number) {
+        const deadline = Date.now() + 60_000;
+        let current = originalQuestion;
+        // Find the first question for this passage, collecting preceding questions too.
+        while (current.number > 1 && result.questions.length < MAX_PASSAGE_QUESTIONS) {
+          if (Date.now() >= deadline) throw new Error("The passage capture reached its time limit.");
+          const previous = await navigateQuestion("BACK", current.number - 1, originalModule);
+          if (!samePassage(originalQuestion.passage, previous.passage)) {
+            current = await navigateQuestion("NEXT", previous.number + 1, originalModule);
+            break;
+          }
+          result.questions.push(await captureQuestion(options.includeAnswer));
+          current = previous;
+        }
+        while (result.questions.length < MAX_PASSAGE_QUESTIONS) {
+          if (readCurrentPreviewQuestion()?.number !== current.number || previewModule() !== originalModule) {
+            throw new Error("The question changed unexpectedly. Please avoid navigating during capture.");
+          }
+          const nextButton = previewButton("NEXT");
+          if (current.total && current.number >= current.total) {
+            result.capture.stopReason = "end-of-module";
+            break;
+          }
+          if (!nextButton || nextButton.disabled || nextButton.getAttribute("aria-disabled") === "true") {
+            throw new Error("Cannot continue: the NEXT question control is unavailable.");
+          }
+          if (Date.now() >= deadline) throw new Error("The passage capture reached its time limit.");
+          const next = await navigateQuestion("NEXT", current.number + 1, originalModule);
+          if (!samePassage(originalQuestion.passage, next.passage)) {
+            result.capture.stopReason = "next-passage";
+            break;
+          }
+          if (!result.questions.some((question) => question.number === next.number)) {
+            result.questions.push(await captureQuestion(options.includeAnswer));
+          }
+          current = next;
+        }
+        if (result.questions.length === MAX_PASSAGE_QUESTIONS) {
+          const last = [...result.questions].sort((a, b) => a.number - b.number).at(-1);
+          if (last.total && last.number === last.total) {
+            result.capture.stopReason = "end-of-module";
+          } else {
+            result.capture.stopReason = "question-limit";
+            result.capture.warnings.push("Stopped at the 50-question safety limit.");
+          }
+        }
+      } else if (options.includePassageQuestions !== false) {
+        result.capture.stopReason = "no-passage";
+      }
+    } catch (error) {
+      result.capture.stopReason = "interrupted";
+      result.capture.warnings.push(error.message || "Passage capture was interrupted.");
+    } finally {
+      result.questions.sort((a, b) => a.number - b.number);
+      try {
+        // Restore through the same visible navigation controls, even after a partial scan.
+        let current = readCurrentPreviewQuestion();
+        let steps = 0;
+        while (current?.number !== originalQuestion?.number) {
+          if (!current?.number || !originalQuestion?.number || previewModule() !== originalModule ||
+              steps++ >= MAX_PASSAGE_QUESTIONS) throw new Error("Cannot safely restore the starting question.");
+          const forward = current.number < originalQuestion.number;
+          current = await navigateQuestion(forward ? "NEXT" : "BACK", current.number + (forward ? 1 : -1), originalModule);
+        }
+        await setAnswerVisible(originalAnswerVisible);
+        result.capture.restoredStartingQuestion = true;
+      } catch (error) {
+        result.capture.warnings.push(`${error.message} Return to Question ${originalQuestion?.number || "?"} manually.`);
+      }
     }
 
     return result;
@@ -343,7 +470,8 @@
         }));
 
     return {
-      schemaVersion: 2,
+      schemaVersion: 3,
+      readerVersion: READER_VERSION,
       capturedAt: new Date().toISOString(),
       source: {
         title: document.title,
@@ -364,6 +492,11 @@
 
   chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     if (message?.type !== "SAT_READER_SCAN") return false;
+    if (scanInProgress) {
+      sendResponse({ ok: false, error: "A capture is already running. Wait for it to finish." });
+      return false;
+    }
+    scanInProgress = true;
 
     readPage(message.options)
       .then((data) => sendResponse({ ok: true, data }))
@@ -372,7 +505,8 @@
           ok: false,
           error: error instanceof Error ? error.message : "The page could not be read.",
         });
-      });
+      })
+      .finally(() => { scanInProgress = false; });
     return true;
   });
 })();

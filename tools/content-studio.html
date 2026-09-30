@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
+    <link rel="stylesheet" href="/passage-glossary.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nathan Tutors Content Studio</title>
@@ -790,6 +791,7 @@
             <input class="search" id="passage-search" placeholder="Search exam passages" type="search">
             <button class="primary" id="new-passage" type="button">+ New exam passage</button>
             <button class="secondary" id="open-passage-import" type="button">Import official passage</button>
+            <button class="secondary" id="open-sat-passage-import" type="button">Import SAT Crash Course passage</button>
           </div>
           <div class="passage-list" id="passage-list"></div>
           <div class="error-list" id="passage-errors" hidden></div>
@@ -989,6 +991,44 @@ Why D is wrong."></textarea>
     </div>
   </dialog>
 
+  <dialog aria-labelledby="passage-definition-title" class="studio-import-dialog" id="passage-definition-dialog">
+    <section class="panel math-import-panel">
+      <div class="panel-head"><div><h2 id="passage-definition-title">Word definition</h2><small>The selected occurrence will have a dotted underline and a clickable glossary box.</small></div></div>
+      <div class="studio-dialog-status" role="status" hidden></div>
+      <label class="field"><span>Selected word or phrase</span><input id="passage-definition-term" readonly></label>
+      <label class="field"><span>Definition</span><textarea id="passage-definition-text" maxlength="4000" placeholder="Write the definition students should see."></textarea></label>
+      <div class="math-import-actions">
+        <button class="primary" id="save-passage-definition" type="button">Insert definition</button>
+        <button class="danger" id="remove-passage-definition" type="button" hidden>Remove definition</button>
+        <button class="secondary" id="cancel-passage-definition" type="button">Cancel</button>
+      </div>
+    </section>
+  </dialog>
+
+  <dialog aria-labelledby="sat-passage-dialog-title" class="studio-import-dialog" id="sat-passage-dialog">
+    <section class="panel math-import-panel official-passage-import-panel">
+      <div class="panel-head">
+        <div><span class="studio-eyebrow">Reader JSON-to-draft</span><h2 id="sat-passage-dialog-title">SAT Crash Course Passage Import</h2><small>Paste the reader's complete JSON export. Review all questions and answers before creating an unsaved draft.</small></div>
+        <button class="secondary" id="close-sat-passage-import" type="button">Close import</button>
+      </div>
+      <div class="studio-dialog-status" role="status" hidden></div>
+      <div class="field-grid">
+        <label class="field"><span>Passage title override <small>Optional; otherwise read from the export</small></span><input id="sat-passage-title" placeholder="Use the exported title"></label>
+        <label class="field"><span>Source/version override <small>Optional; otherwise use test title</small></span><input id="sat-passage-version" placeholder="Digital SHSAT Practice Test 1"></label>
+        <label class="field"><span>Exam section</span><select id="sat-passage-section"><option value="reading">Reading Comprehension</option><option value="revising_editing_a">Revising/Editing Part A</option></select></label>
+        <label class="field"><span>Initial question topic <small>Review each question after importing</small></span><select id="sat-passage-topic"></select></label>
+        <label class="field"><span>Passage format</span><select id="sat-passage-format"><option value="prose">Prose</option><option value="poem">Poem</option><option value="sentence_prose">Sentence-numbered prose</option></select></label>
+        <label class="field"><span>Library passage type</span><select id="sat-passage-type"><option value="informational">Informational</option><option value="literary">Literary</option><option value="poem">Poem</option><option value="long_reading">Long reading</option></select></label>
+      </div>
+      <label class="field"><span>SAT Crash Course Reader JSON</span><textarea id="sat-passage-import-source" placeholder='Paste the complete {"schemaVersion":3,"testPreview":{"questions":[...]},...} export here.' spellcheck="false"></textarea></label>
+      <div class="math-import-actions">
+        <label class="secondary official-import-file">Upload JSON or TXT<input accept=".json,.txt,application/json,text/plain" id="sat-passage-import-file" type="file"></label>
+        <button class="primary" id="preview-sat-passage-import" type="button">Validate and review</button>
+      </div>
+      <div class="math-import-review official-passage-import-review" id="sat-passage-import-review" hidden></div>
+    </section>
+  </dialog>
+
   <dialog aria-labelledby="official-passage-dialog-title" class="studio-import-dialog official-passage-dialog" id="official-passage-dialog">
     <section class="panel math-import-panel official-passage-import-panel">
       <div class="panel-head">
@@ -1002,15 +1042,17 @@ Why D is wrong."></textarea>
       <div class="studio-dialog-status" role="status" hidden></div>
       <ol class="official-import-steps">
         <li><b>1</b><span><strong>Name one passage</strong><small>Use its exact title or original question range.</small></span></li>
-        <li><b>2</b><span><strong>Copy the prompt</strong><small>Paste it into ChatGPT and attach the official PDF.</small></span></li>
+        <li><b>2</b><span><strong>Attach the sources</strong><small>Paste the prompt into ChatGPT with the exam PDF and optional official answer guide.</small></span></li>
         <li><b>3</b><span><strong>Import the answer</strong><small>Paste JSON or upload the JSON/TXT response.</small></span></li>
       </ol>
       <div class="field-grid official-import-targets">
         <label class="field"><span>Passage title or question range <small>Required for the prompt</small></span><input id="official-passage-target" placeholder="Massachusetts: Lowell National Historical Park or questions 10-16"></label>
         <label class="field"><span>Official source/version <small>Optional</small></span><input id="official-passage-source-label" placeholder="2020-2021 Form B"></label>
+        <label class="official-answer-guide-toggle"><input checked id="official-passage-has-answer-guide" type="checkbox"><span><strong>Use a separate official answer guide</strong><small>Attach it to the same ChatGPT message. Keyed answers and published rationales will be matched by original question number.</small></span></label>
+        <label class="field" id="official-passage-answer-guide-field"><span>Answer guide <small>Optional name or filename</small></span><input id="official-passage-answer-guide-label" placeholder="20202021_form_b_-_answers.pdf"></label>
       </div>
       <div class="math-import-actions">
-        <button class="secondary" id="copy-passage-import-prompt" type="button">Copy PDF extraction prompt</button>
+        <button class="secondary" id="copy-passage-import-prompt" type="button">Copy exam + answer-guide prompt</button>
       </div>
       <label class="field">
         <span>ChatGPT passage JSON</span>
@@ -1079,6 +1121,7 @@ Why D is wrong."></textarea>
       mathImportOpen: false,
       mathImportReview: null,
       mathImportSource: "",
+      mathImportTarget: "",
       mathImportBusy: false,
       previewQuestionIndex: 0,
       previewMode: "passage",
@@ -1180,6 +1223,10 @@ Why D is wrong."></textarea>
         if (tag === "s" || tag === "strike" || node.style.textDecoration.includes("line-through")) content = `<s>${content}</s>`;
         if (tag === "sub") content = `<sub>${content}</sub>`;
         if (tag === "sup") content = `<sup>${content}</sup>`;
+        const definition = node.getAttribute("data-glossary-definition");
+        if (tag === "span" && definition?.trim()) {
+          content = `<span data-glossary-definition="${escapeHtml(definition.trim().slice(0, 4000))}" role="link" tabindex="0">${content}</span>`;
+        }
         if (tag === "br") return "<br>";
         if (tag === "li") return inline ? `${content}<br>` : `<li>${content}</li>`;
         if (tag === "ul" || tag === "ol") return inline ? content : `<${tag}>${content}</${tag}>`;
@@ -1558,20 +1605,28 @@ Why D is wrong."></textarea>
       };
     }
 
-    const mathScreenshotConversionPrompt = String.raw`Convert the attached math-question screenshot into Nathan Tutors Math Import JSON.
+    function mathOfficialQuestionConversionPrompt(sourceLabel, targetQuestion) {
+      const source = String(sourceLabel || "the attached official SHSAT PDF").trim();
+      const target = String(targetQuestion || "[ENTER ONE QUESTION NUMBER]").trim();
+      return String.raw`You are converting exactly ONE math question from an old official paper SHSAT into my existing Nathan Tutors digital SHSAT Content Studio.
 
-Return ONLY one valid JSON object. Do not use Markdown fences or add commentary outside the JSON.
+SOURCE / EXAM: ${source}
+TARGET QUESTION: ${target}
 
-Use this exact envelope:
+The old PDF is the authority for question content. My current digital platform is the authority for presentation and interaction. Inspect both the PDF text layer and the visibly rendered page containing the target question. When they disagree, trust the visible page. Do not process neighboring questions.
+
+Return ONLY one valid raw JSON object. Do not use Markdown fences. Do not add any text before or after the JSON.
+
+Use this exact envelope for a multiple-choice question:
 {
   "format": "nathan-tutors-math-question-v1",
   "question": {
-    "id": "short-descriptive-lowercase-id",
+    "id": "2020-2021-form-b-q63",
     "type": "multiple_choice",
     "topic": "Algebra",
     "points": 1,
     "instructions": "",
-    "prompt": "Question text with inline math such as \\(x^2+3x\\) and display math such as \\[\\frac{a}{b}\\].",
+    "prompt": "Exact question wording with inline math such as \\(x^2+3x\\) and display math such as \\[\\frac{a}{b}\\].",
     "choices": [
       { "id": "A", "text": "accessible spoken/plain-text answer", "math": "\\frac{1}{2}" },
       { "id": "B", "text": "accessible spoken/plain-text answer", "math": "2" },
@@ -1580,34 +1635,72 @@ Use this exact envelope:
     ],
     "correctChoiceId": "A"
   },
-  "reviewNotes": ["List anything uncertain or inferred here."],
+  "reviewNotes": ["Source: ${source}, question ${target}."],
   "imageDescription": ""
 }
 
-Rules:
-- Transcribe every visible word, number, symbol, unit, and answer choice accurately.
-- Solve the problem and provide the correct answer key. If uncertain, explain why in reviewNotes.
-- JSON backslashes MUST be escaped. For example, write "\\frac{1}{2}", not "\frac{1}{2}".
-- In prompt and instructions, wrap inline KaTeX in \\(...\\) and display KaTeX in \\[...\\].
-- In each choice, "math" is raw KaTeX without \\(...\\); "text" is a readable/accessibility equivalent.
-- Omit "math" when a choice is ordinary text.
-- For a generated number-line choice, omit "math" and add "numberLine" with: min, max, tickStep, labelStep, solutionStart, solutionEnd, startClosed, endClosed, extendLeft, and extendRight.
-- Use true for startClosed or endClosed when the endpoint is a filled circle; use false for an open circle. Use extendLeft or extendRight for a solution ray.
-- If an answer choice must remain a PNG or SVGZ, do not invent an image URL. Describe each image choice in its "text" field and mention in reviewNotes that its file must be uploaded in the Studio.
-- Allowed topics: Arithmetic, Algebra, Geometry, Measurement, Number Sense, Percent, Probability & Statistics, Rates & Unit Conversion, Ratios & Proportions, Uncategorized.
-- Allowed types:
-  - multiple_choice: choices plus correctChoiceId.
-  - multi_select: choices plus correctChoiceIds and requiredSelections.
-  - short_response: correctTextAnswers and a plain response box.
-  - numeric_entry: correctTextAnswers and entryLayout (plain, x_equals, or fraction) for the on-screen keypad.
-  - math_drag_drop: items, dragDropSlots, dragDropContent, and allowReuse.
-  - graph_point_select: graph points and correctPointIds.
-  - number_line_response: numberLineResponse settings.
-  - inline_dropdown: dropdownContent and dropdowns; each sentence must contain exactly one matching {{menu-id}} placeholder.
-- Use lowercase letters, numbers, and hyphens for the question id.
-- Never invent an image URL. If a diagram, graph, table, or other visual is required, describe it precisely in imageDescription and mention it in reviewNotes. The original image will be uploaded separately in the Studio.
-- Preserve multi-line expressions and all important layout information using KaTeX.
-- Do not include fields that are not part of this format.`;
+For an old paper grid-in, use this question shape instead of choices:
+{
+  "id": "2020-2021-form-b-q58",
+  "type": "numeric_entry",
+  "topic": "Algebra",
+  "points": 1,
+  "instructions": "Enter your answer.",
+  "prompt": "Exact question wording with properly formatted KaTeX.",
+  "entryLayout": "plain",
+  "correctTextAnswers": ["-0.8"]
+}
+
+Conversion rules:
+1. Process exactly target question ${target}. Transcribe every word, value, variable, symbol, answer choice, label, and unit that belongs to it. Preserve the original mathematics and choice order. Do not simplify, modernize, or rewrite the task.
+2. Remove paper-only mechanics: answer-sheet directions, bubble/grid directions, page numbers, column rules, booklet letters, and “continue” text. Do not reproduce the paper grid. Keep any instruction that is mathematically part of the question.
+3. Old paper multiple choice becomes "multiple_choice" with "choices" and exactly one "correctChoiceId". Preserve the printed answer-choice letters exactly (A-D or E-H) as choice IDs.
+4. Old paper grid-in becomes "numeric_entry", never "grid_in" and never "short_response". Use "entryLayout": "plain" for ordinary numbers, decimals, or general math; "fraction" only when a two-part numerator/denominator entry is truly appropriate; or "x_equals" only when the response should visibly be entered after x =. There is no separate equation-entry type: mathematical expressions use "numeric_entry" plus KaTeX-compatible "correctTextAnswers".
+5. The grader performs format normalization, not algebraic evaluation. Put the canonical correct response first in "correctTextAnswers", then list every other representation that should intentionally receive credit, such as ["1/2", "0.5"]. Do not add a mathematically nonequivalent variant.
+6. Solve the question independently and verify the stored answer against the visible source. For multiple choice, "correctChoiceId" must name one visible choice. If any source element or answer is genuinely uncertain, do not silently guess: describe the exact uncertainty in "reviewNotes".
+7. Allowed topics are exactly: "Arithmetic", "Algebra", "Geometry", "Measurement", "Number Sense", "Percent", "Probability & Statistics", "Rates & Unit Conversion", "Ratios & Proportions", or "Uncategorized".
+8. Use only lowercase letters, numbers, and hyphens in the question "id". Include the exam, form, and source question number when known, for example "2020-2021-form-b-q63". Do not invent a source-metadata field; this schema has none. Put the human-readable source reference in "reviewNotes".
+
+Math and JSON rules:
+9. JSON backslashes must be escaped. The JSON text for a fraction is "\\frac{1}{2}", never "\frac{1}{2}". The final response must parse as strict JSON: double quotes, no comments, no trailing commas, and no Markdown fence.
+10. In "prompt" and "instructions", wrap inline KaTeX in \\(...\\) and display KaTeX in \\[...\\]. Use proper KaTeX for stacked fractions, mixed numbers, exponents, radicals, absolute value, inequalities, repeating decimals, and grouped expressions. Example mixed number: \\(4\\frac{2}{3}\\).
+11. For a choice that is primarily a formula, include raw KaTeX in "math" without \\(...\\), plus a meaningful accessible "text" equivalent. A choice may use only one of "math", "image", or "numberLine". Omit "math" for ordinary prose or a value that should simply remain text.
+
+Visual rules:
+12. Keep question wording and answer interactions native digital content. Never use a screenshot of the whole question or page.
+13. A static line graph, coordinate graph, labeled-points number line, geometry figure, 3D solid, probability diagram, or source table should remain a tightly cropped high-fidelity visual when the existing schema cannot reproduce it exactly. Do not invent an image URL and do not add an "image" object. Instead, give a precise, accessibility-ready description in top-level "imageDescription" and add a "reviewNotes" item saying which source figure must be cropped and uploaded as the question image in Content Studio.
+14. If separate answer choices are visual (for example, the table choices in question 87 or a disjoint-union number-line choice), give each choice a precise accessible "text", omit "image" from the JSON, and list each required choice-image crop in "reviewNotes". The files will be uploaded to the choices after import.
+15. Use a structured "numberLine" choice only for one continuous interval, segment, or ray that this schema can represent exactly. Its exact fields are:
+{
+  "id": "E",
+  "text": "open interval from negative one to two",
+  "numberLine": {
+    "min": -3,
+    "max": 3,
+    "tickStep": 1,
+    "labelStep": 1,
+    "solutionStart": -1,
+    "solutionEnd": 2,
+    "startClosed": false,
+    "endClosed": false,
+    "extendLeft": false,
+    "extendRight": false
+  }
+}
+Use a filled endpoint for true and an open endpoint for false. A ray uses "extendLeft" or "extendRight". Do not misuse this continuous-range shape for two disjoint rays; use separately uploaded choice images in that case.
+16. Do not use "graph_point_select" for a source graph that the student only reads. That type is an interactive response and would change the question. A read-only source graph stays a visual attached to an otherwise faithful multiple-choice question.
+17. If no visual is required, return an empty "imageDescription" string. If a visual is required, the description must include every relevant label, coordinate, dimension, endpoint style, tick value, row/column heading, and spatial relationship visible in the source.
+
+Final verification before responding:
+- Exactly one import object and exactly one question.
+- "format" is exactly "nathan-tutors-math-question-v1".
+- "type" is either "multiple_choice" or "numeric_entry" for this paper exam.
+- Every visible answer choice is present in original order.
+- All KaTeX backslashes are valid JSON escapes.
+- The correct answer matches the transcribed question.
+- No invented fields or image URLs.
+- Any uncertainty or required manual visual upload is explicit in "reviewNotes".`;
+    }
 
     function mathTopicOptions(selected) {
       return app.state.mathTopics.map((topic) =>
@@ -1968,9 +2061,12 @@ Rules:
       $("#passage-search").placeholder = advanced ? "Search advanced practice" : "Search exam passages";
       $("#new-passage").textContent = advanced ? "+ New advanced passage" : "+ New exam passage";
       $("#open-passage-import").hidden = advanced;
+      $("#open-sat-passage-import").hidden = advanced;
     }
 
     function openOfficialPassageImport() {
+      app.passageImportKind = "official";
+      $("#sat-passage-import-review").innerHTML = "";
       app.passageImportReview = null;
       $("#official-passage-import-review").hidden = true;
       $("#official-passage-dialog").showModal();
@@ -1985,13 +2081,15 @@ Rules:
 
     function renderOfficialPassageImportReview() {
       const review = app.passageImportReview;
-      const container = $("#official-passage-import-review");
+      const sat = app.passageImportKind === "sat";
+      const container = $(sat ? "#sat-passage-import-review" : "#official-passage-import-review");
       if (!review) {
         container.hidden = true;
         container.innerHTML = "";
         return;
       }
       const passage = review.passage;
+      const explanationCount = passage.questions.filter((question) => question.explanation || question.explanationHtml).length;
       container.hidden = false;
       container.innerHTML = `
         <div class="panel-head">
@@ -2002,6 +2100,7 @@ Rules:
           <span>${escapeHtml(passage.versionLabel || "No version label")}</span>
           <span>${escapeHtml(passage.section.replaceAll("_", " "))}</span>
           <span>${passage.questions.length} question${passage.questions.length === 1 ? "" : "s"}</span>
+          <span>${explanationCount}/${passage.questions.length} explanation${passage.questions.length === 1 ? "" : "s"}</span>
         </div>
         ${review.warnings.length ? `
           <div class="math-import-warnings">
@@ -2019,7 +2118,11 @@ Rules:
             ${passage.questions.map((question, index) => `
               <article>
                 <b>${index + 1}</b>
-                <span><strong>${escapeHtml(question.prompt)}</strong><small>${escapeHtml(question.topic)} · ${escapeHtml(studioCorrectAnswer(question))}</small></span>
+                <span>
+                  <strong>${escapeHtml(question.prompt)}</strong>
+                  <small>${escapeHtml(question.topic)} · ${escapeHtml(studioCorrectAnswer(question))}</small>
+                  <p class="official-import-explanation">${question.explanation || question.explanationHtml ? escapeHtml(question.explanation || question.explanationHtml) : "No answer explanation was imported."}</p>
+                </span>
               </article>
             `).join("")}
           </div>
@@ -2033,11 +2136,11 @@ Rules:
           <button class="secondary" id="revise-passage-import" type="button">Keep editing JSON</button>
         </div>
       `;
-      $("#accept-passage-import").addEventListener("click", acceptOfficialPassageImport);
-      $("#revise-passage-import").addEventListener("click", () => {
+      container.querySelector("#accept-passage-import").addEventListener("click", acceptOfficialPassageImport);
+      container.querySelector("#revise-passage-import").addEventListener("click", () => {
         app.passageImportReview = null;
         renderOfficialPassageImportReview();
-        $("#official-passage-import-source").focus();
+        $(sat ? "#sat-passage-import-source" : "#official-passage-import-source").focus();
       });
     }
 
@@ -2059,7 +2162,7 @@ Rules:
           body: JSON.stringify({ source }),
         });
         renderOfficialPassageImportReview();
-        setStatus("Import validated. Review the transcription and every inferred answer before creating the draft.", "success");
+        setStatus("Import validated. Review the transcription, keyed answers, and explanations before creating the draft.", "success");
       } catch (error) {
         app.passageImportReview = null;
         renderOfficialPassageImportReview();
@@ -2089,6 +2192,10 @@ Rules:
       app.passageImportSource = "";
       $("#official-passage-import-source").value = "";
       $("#official-passage-dialog").close();
+      if (app.passageImportKind === "sat") {
+        $("#sat-passage-import-source").value = "";
+        $("#sat-passage-dialog").close();
+      }
       updatePassageWorkspaceLabels();
       renderPassageList();
       renderPassageEditor();
@@ -2109,6 +2216,53 @@ Rules:
         setStatus(`${file.name} loaded. Validate it before creating a draft.`, "success");
       } catch {
         setStatus("The selected ChatGPT response file could not be read.", "error");
+      }
+    }
+
+    function updateSatPassageTopics() {
+      $("#sat-passage-topic").innerHTML = questionTopicsForSection($("#sat-passage-section").value)
+        .map((topic) => `<option value="${escapeHtml(topic)}">${escapeHtml(topic)}</option>`).join("");
+    }
+
+    function openSatPassageImport() {
+      app.passageImportKind = "sat";
+      app.passageImportReview = null;
+      $("#official-passage-import-review").innerHTML = "";
+      renderOfficialPassageImportReview();
+      updateSatPassageTopics();
+      $("#sat-passage-dialog").showModal();
+      $("#sat-passage-import-source").focus();
+      setStatus("Paste SAT Crash Course Reader JSON, then validate the passage and all captured questions.");
+    }
+
+    async function previewSatPassageImport() {
+      if (app.passageImportBusy) return;
+      const button = $("#preview-sat-passage-import");
+      app.passageImportBusy = true;
+      button.disabled = true;
+      button.textContent = "Validating...";
+      const controls = [...$("#sat-passage-dialog").querySelectorAll("input, textarea, select")];
+      controls.forEach((control) => { control.disabled = true; });
+      app.passageImportReview = null;
+      renderOfficialPassageImportReview();
+      try {
+        const converted = studioUI.convertSatCrashCourseImport($("#sat-passage-import-source").value, {
+          title: $("#sat-passage-title").value.trim(), versionLabel: $("#sat-passage-version").value.trim(),
+          section: $("#sat-passage-section").value, topic: $("#sat-passage-topic").value,
+          format: $("#sat-passage-format").value, passageType: $("#sat-passage-type").value,
+        });
+        app.passageImportReview = await api("/api/passages/import-preview", {
+          method: "POST", body: JSON.stringify({ source: JSON.stringify(converted) }),
+        });
+        renderOfficialPassageImportReview();
+        setStatus(`Validated ${app.passageImportReview.passage.questions.length} captured questions. Review warnings and answers before creating the draft.`, "success");
+      } catch (error) {
+        setStatus(error.message, "error");
+      } finally {
+        app.passageImportBusy = false;
+        controls.forEach((control) => { control.disabled = false; });
+        button.disabled = false;
+        button.textContent = "Validate and review";
       }
     }
 
@@ -2290,9 +2444,12 @@ Rules:
               <div class="panel-head"><div><span class="studio-eyebrow">Question content</span><h2>Passage text</h2><small id="format-note"></small></div><button class="secondary" id="paste-clipboard" type="button">Paste plain text</button></div>
               <div class="rich-editor-shell">
                 ${richToolbarHtml("Passage formatting")}
+                <div class="passage-toolbar"><button class="secondary" id="edit-passage-definition" type="button">Add/edit word definition</button></div>
                 <div class="rich-editor-content passage-content-editor" contenteditable="true" data-placeholder="Paste or type the complete passage here." data-rich-kind="passage" id="passage-rich-editor" role="textbox">${passage.richText || plainTextToRich(passage.text, passage.format)}</div>
               </div>
               <small class="field-note">Paste with Ctrl+V to retain bold, italic, underline, superscript, and other supported formatting.</small>
+              <small class="field-note">Select a word or phrase, then choose Add/edit word definition. Each definition applies only to that selected occurrence.</small>
+              <div class="passage-definition-list" id="passage-definition-list"></div>
             </section>
 
             <section class="panel content-editor-section" id="passage-questions">
@@ -2316,6 +2473,9 @@ Rules:
       bindAdvancedPassageFields();
       renderQuestionsV2();
       bindRichEditors($("#passage-rich-editor").closest(".rich-editor-shell"));
+      $("#edit-passage-definition").addEventListener("mousedown", (event) => event.preventDefault());
+      $("#edit-passage-definition").addEventListener("click", () => openPassageDefinition());
+      renderPassageDefinitionList();
       bindPassageImageEditor();
       updateFormatNote();
       renderPreview();
@@ -2381,8 +2541,129 @@ Rules:
       });
     }
 
+    let passageDefinitionSelection = null;
+    const passageEditHistory = new WeakMap();
+
+    function recordPassageEdit(editor) {
+      const history = passageEditHistory.get(editor);
+      if (!history || history.restoring || history.entries[history.index] === editor.innerHTML) return;
+      history.entries.splice(history.index + 1);
+      history.entries.push(editor.innerHTML);
+      if (history.entries.length > 100) history.entries.shift();
+      history.index = history.entries.length - 1;
+    }
+
+    function restorePassageEdit(editor, redo = false) {
+      const history = passageEditHistory.get(editor);
+      if (!history) return false;
+      const next = history.index + (redo ? 1 : -1);
+      if (next < 0 || next >= history.entries.length) return true;
+      history.index = next;
+      history.restoring = true;
+      editor.innerHTML = history.entries[next];
+      editor.focus({ preventScroll: true });
+      const range = document.createRange();
+      range.selectNodeContents(editor);
+      range.collapse(false);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      editor.dispatchEvent(new Event("input", { bubbles: true }));
+      history.restoring = false;
+      return true;
+    }
+
+    function renderPassageDefinitionList() {
+      const list = $("#passage-definition-list"), editor = $("#passage-rich-editor");
+      if (!list || !editor) return;
+      list.replaceChildren();
+      editor.querySelectorAll("[data-glossary-definition]").forEach((term) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "secondary";
+        button.textContent = `${term.textContent} — ${term.getAttribute("data-glossary-definition")}`;
+        button.setAttribute("aria-label", `Edit definition for ${term.textContent}`);
+        button.addEventListener("click", () => openPassageDefinition(term));
+        list.append(button);
+      });
+    }
+
+    function openPassageDefinition(existingTerm = null) {
+      const editor = $("#passage-rich-editor"), selection = window.getSelection();
+      if (!editor) return;
+      let range = selection?.rangeCount ? selection.getRangeAt(0).cloneRange() : null;
+      if (!existingTerm && range && editor.contains(range.commonAncestorContainer)) {
+        const elementAt = (node) => node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+        const start = elementAt(range.startContainer)?.closest("[data-glossary-definition]");
+        const end = elementAt(range.endContainer)?.closest("[data-glossary-definition]");
+        if (start && start === end) existingTerm = start;
+        if (!existingTerm && (range.collapsed ||
+            elementAt(range.startContainer)?.closest("p,div,h2,li") !== elementAt(range.endContainer)?.closest("p,div,h2,li") ||
+            range.cloneContents().querySelector("[data-glossary-definition]"))) range = null;
+      } else if (!existingTerm) range = null;
+      if (existingTerm) { range = document.createRange(); range.selectNode(existingTerm); }
+      if (!range || !range.toString().trim() || range.toString().length > 200) {
+        setStatus("Select up to 200 characters within one paragraph or poem line, or choose an existing word definition.", "error");
+        return;
+      }
+      passageDefinitionSelection = { editor, range };
+      $("#passage-definition-term").value = range.toString();
+      $("#passage-definition-text").value = existingTerm?.getAttribute("data-glossary-definition") || "";
+      $("#save-passage-definition").textContent = existingTerm ? "Update definition" : "Insert definition";
+      $("#remove-passage-definition").hidden = !existingTerm;
+      $("#passage-definition-dialog").showModal();
+      $("#passage-definition-text").focus();
+      setStatus("Enter a plain-text definition. Preview it in Student view before saving the passage.");
+    }
+
+    function restoreDefinitionSelection() {
+      const context = passageDefinitionSelection;
+      if (!context?.editor.isConnected || !context.editor.contains(context.range.commonAncestorContainer)) return false;
+      context.editor.focus({ preventScroll: true });
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(context.range);
+      return true;
+    }
+
+    function applyPassageDefinition(remove = false) {
+      const definition = $("#passage-definition-text").value.trim();
+      if (!remove && !definition) { setStatus("Enter a definition before inserting it.", "error"); return; }
+      $("#passage-definition-dialog").close();
+      if (!restoreDefinitionSelection()) { setStatus("The passage selection changed. Select the word again.", "error"); return; }
+      const contents = document.createElement("div");
+      contents.append(passageDefinitionSelection.range.cloneContents());
+      contents.querySelectorAll("[data-glossary-definition]").forEach((term) => term.replaceWith(...term.childNodes));
+      const html = sanitizePastedRichText(contents.innerHTML, true);
+      const replacement = remove ? html : `<span data-glossary-definition="${escapeHtml(definition.slice(0, 4000))}" role="link" tabindex="0">${html}</span>`;
+      // Chrome's insertHTML command drops custom attributes on inline spans.
+      // Replace the captured occurrence directly, with our passage undo history.
+      const range = passageDefinitionSelection.range;
+      const fragment = range.createContextualFragment(replacement);
+      const last = fragment.lastChild;
+      range.deleteContents();
+      range.insertNode(fragment);
+      if (last) range.setStartAfter(last);
+      range.collapse(true);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      passageDefinitionSelection.editor.dispatchEvent(new Event("input", { bubbles: true }));
+      $("#passage-definition-dialog").close();
+      passageDefinitionSelection = null;
+      renderPassageDefinitionList();
+      setStatus(remove ? "Word definition removed from this draft." : "Word definition updated in this draft. Use Student view to try it, then save the passage.", "success");
+    }
+
     function bindRichEditors(root) {
       $$("[contenteditable='true']", root).forEach((editor) => {
+        if (editor.dataset.richKind === "passage") {
+          passageEditHistory.set(editor, { entries: [editor.innerHTML], index: 0, restoring: false });
+          editor.addEventListener("keydown", (event) => {
+            if (!(event.ctrlKey || event.metaKey) || event.altKey) return;
+            if (event.key.toLowerCase() !== "z" && event.key.toLowerCase() !== "y") return;
+            event.preventDefault();
+            restorePassageEdit(editor, event.shiftKey || event.key.toLowerCase() === "y");
+          });
+        }
         editor.addEventListener("focus", () => { app.activeRichEditor = editor; });
         editor.addEventListener("paste", (event) => {
           if (event.target.closest("math-field")) return;
@@ -2478,8 +2759,10 @@ Rules:
             renderMathPreview();
             return;
           } else if (editor.dataset.richKind === "passage") {
+            recordPassageEdit(editor);
             app.passageDraft.richText = html;
             app.passageDraft.text = text;
+            renderPassageDefinitionList();
           } else if (editor.dataset.richKind === "explanation") {
             const question = app.passageDraft.questions[questionIndex];
             question.explanationHtml = html;
@@ -2524,6 +2807,7 @@ Rules:
             selection.removeAllRanges();
             selection.addRange(savedRange);
           }
+          if (["undo", "redo"].includes(button.dataset.richCommand) && restorePassageEdit(activeEditor, button.dataset.richCommand === "redo")) return;
           document.execCommand(button.dataset.richCommand, false);
           activeEditor.dispatchEvent(new Event("input", { bubbles: true }));
         });
@@ -2664,7 +2948,8 @@ Rules:
         const text = element.textContent.trimEnd();
         const heading = /^H[1-6]$/.test(element.tagName) || (/^\s*<(strong|b)>[\s\S]*<\/\1>\s*$/i.test(element.innerHTML) && text.trim().length <= 100 && !/[.!?]$/.test(text.trim()));
         const list = /^(UL|OL)$/.test(element.tagName);
-        blocks.push({ html: list ? element.outerHTML : element.innerHTML, text, kind: heading ? "heading" : list ? "list" : "" });
+        const align = element.dataset.align === "indent" || element.classList.contains("poem-indent") ? "indent" : "";
+        blocks.push({ html: list ? element.outerHTML : element.innerHTML, text, align, kind: heading ? "heading" : list ? "list" : "" });
       });
       flushInline();
       return blocks.length ? blocks : [{ html: wrapper.innerHTML, text: wrapper.textContent.trimEnd() }];
@@ -2725,7 +3010,12 @@ Rules:
               return lines.map((html) => {
                 const wrapper = document.createElement("div");
                 wrapper.innerHTML = html;
-                return { html, text: wrapper.textContent.trimEnd() };
+                const isIndented = block.align === "indent" || /^\s{8,}\S/.test(wrapper.textContent);
+                const normalizedHtml = isIndented
+                  ? html.replace(/^(\s*<(?:em|i)>)(?:(?:&nbsp;)|\s){4,}/i, "$1").replace(/^(?:(?:&nbsp;)|\s){4,}/i, "")
+                  : html;
+                wrapper.innerHTML = normalizedHtml;
+                return { html: normalizedHtml, text: wrapper.textContent.trimEnd(), align: isIndented ? "indent" : "" };
               });
             })
           : (text || "Passage content has not been added for this assessment yet.")
@@ -2735,7 +3025,7 @@ Rules:
             if (!line.text.trim()) return `<p class="exam-poem-line is-spacer"><span></span><span></span></p>`;
             const lineNumber = contentLine % Math.max(1, passage.lineNumberInterval || 5) === 0 ? String(contentLine) : "";
             contentLine += 1;
-            return `<p class="exam-poem-line"><span>${lineNumber}</span><span>${line.html || escapeHtml(line.text.replace(/\s+$/, ""))}</span></p>`;
+            return `<p class="exam-poem-line${line.align === "indent" ? " is-indented" : ""}"><span>${lineNumber}</span><span>${line.html || escapeHtml(line.text.replace(/\s+$/, ""))}</span></p>`;
           });
         return [
           blurb,
@@ -2985,6 +3275,10 @@ Rules:
               </form>
             </section>
           </main>
+          <script type="module">
+            import { mountPassageGlossary } from '/content-studio-glossary.js';
+            mountPassageGlossary(document.body);
+          <\/script>
           <script>
             document.querySelectorAll("[data-preview-delta]").forEach(function (button) {
               button.addEventListener("click", function () {
@@ -3089,7 +3383,7 @@ Rules:
             <section class="exam-question-document ${longContent ? "is-expanded-layout" : ""}">
               <div class="exam-question-passage">
                 <div class="exam-question-passage-scroll is-${app.passageDraft.format === "sentence_prose" ? "sentence-prose" : app.passageDraft.format}">
-                  ${studentPassageMarkup(app.passageDraft)}
+                  <div class="exam-passage-pencil-surface">${studentPassageMarkup(app.passageDraft)}</div>
                 </div>
               </div>
               <form class="exam-question-panel">
@@ -3099,6 +3393,10 @@ Rules:
               </form>
             </section>
           </main>
+          <script type="module">
+            import { mountPassageGlossary } from '/content-studio-glossary.js';
+            mountPassageGlossary(document.body);
+          <\/script>
           <script>
             document.querySelectorAll("[data-preview-delta]").forEach(function (button) {
               button.addEventListener("click", function () {
@@ -4682,6 +4980,7 @@ Rules:
       app.mathImportOpen = false;
       app.mathImportReview = null;
       app.mathImportSource = "";
+      app.mathImportTarget = "";
       renderMathAssessmentList();
       renderMathBuilder();
       restoreMathBuilderView(options.view, options.revealSelected === true);
@@ -5173,21 +5472,26 @@ Rules:
 
     function mathImportPanelMarkup() {
       const review = app.mathImportReview;
+      const assessment = app.state.assessments.find((candidate) => candidate.id === app.selectedMathAssessmentId);
       return `
         <section class="panel math-import-panel">
           <div class="panel-head">
             <div>
-              <h2>Import a KaTeX-formatted question</h2>
-              <small>Paste the JSON produced from a screenshot, validate it, and review the exact student rendering before adding it to this unsaved exam draft.</small>
+              <h2>Official Math Question Importer</h2>
+              <small>Convert one old-paper question at a time, validate the ChatGPT JSON, and review the digital student rendering before adding it to this unsaved draft.</small>
             </div>
             <button class="secondary" id="close-math-import" type="button">Close import</button>
           </div>
+          <div class="field-grid official-import-targets">
+            <label class="field"><span>Official source/version</span><input disabled value="${escapeHtml(assessment?.title || app.selectedMathAssessmentId)}"></label>
+            <label class="field"><span>Question number <small>Used in the prompt</small></span><input id="math-import-target" inputmode="numeric" placeholder="58" value="${escapeHtml(app.mathImportTarget)}"></label>
+          </div>
           <label class="field">
-            <span>Import JSON</span>
+            <span>ChatGPT question JSON</span>
             <textarea id="math-import-source" placeholder='Paste {"format":"nathan-tutors-math-question-v1","question":{...}} here.' spellcheck="false">${escapeHtml(app.mathImportSource)}</textarea>
           </label>
           <div class="math-import-actions">
-            <button class="secondary" id="copy-math-import-prompt" type="button">Copy ChatGPT screenshot prompt</button>
+            <button class="secondary" id="copy-math-import-prompt" type="button">Copy official PDF conversion prompt</button>
             <button class="primary" id="preview-math-import" type="button">${app.mathImportBusy ? "Validating..." : "Validate and review"}</button>
           </div>
           ${review ? `
@@ -5234,7 +5538,7 @@ Rules:
       $("#math-builder").innerHTML = `
         <div class="panel-head">
           <div><h2>${escapeHtml(assessment.title)} - Math</h2><small>${questions.length} unique math question${questions.length === 1 ? "" : "s"} for this exam</small></div>
-          <button class="secondary" id="open-math-import" type="button">Import KaTeX question</button>
+          <button class="secondary" id="open-math-import" type="button">Import official PDF question</button>
         </div>
         ${app.mathImportOpen ? mathImportPanelMarkup() : ""}
         <div class="math-workspace">
@@ -5712,12 +6016,21 @@ Rules:
     function acceptMathImport() {
       const imported = app.mathImportReview?.question;
       if (!imported) return;
-      app.mathDraft.questions.push(clone(imported));
+      const starterQuestion = app.mathDraft.questions[0];
+      const replaceStarterQuestion =
+        !app.mathDirty &&
+        !app.mathDraft.sourceHash &&
+        app.mathDraft.questions.length === 1 &&
+        starterQuestion?.id === `${app.selectedMathAssessmentId}-math-1` &&
+        !String(starterQuestion.prompt || "").trim();
+      if (replaceStarterQuestion) app.mathDraft.questions[0] = clone(imported);
+      else app.mathDraft.questions.push(clone(imported));
       studioUI.mathSection = "question";
-      app.selectedMathQuestionIndex = app.mathDraft.questions.length - 1;
+      app.selectedMathQuestionIndex = replaceStarterQuestion ? 0 : app.mathDraft.questions.length - 1;
       app.mathImportOpen = false;
       app.mathImportReview = null;
       app.mathImportSource = "";
+      app.mathImportTarget = "";
       markMathDirty("Imported question added to the unsaved Math draft. Review or edit it, then write the Math section into code.");
       renderMathBuilder();
     }
@@ -5728,8 +6041,8 @@ Rules:
         app.mathImportOpen = true;
         app.mathImportReview = null;
         renderMathBuilder();
-        $("#math-import-source")?.focus();
-        setStatus("Paste import-compatible JSON, then validate and review it.");
+        $("#math-import-target")?.focus();
+        setStatus("Enter one official question number, copy the conversion prompt, then validate ChatGPT's JSON.");
       });
       $("#close-math-import")?.addEventListener("click", () => {
         app.mathImportOpen = false;
@@ -5741,10 +6054,25 @@ Rules:
         app.mathImportReview = null;
         $(".math-import-review", $("#math-builder"))?.setAttribute("hidden", "");
       });
+      $("#math-import-target")?.addEventListener("input", (event) => {
+        app.mathImportTarget = event.target.value;
+      });
       $("#copy-math-import-prompt")?.addEventListener("click", async () => {
+        const target = $("#math-import-target")?.value.trim();
+        if (!target) {
+          setStatus("Enter the one official question number you want ChatGPT to convert.", "error");
+          $("#math-import-target")?.focus();
+          return;
+        }
+        app.mathImportTarget = target;
+        const assessment = app.state.assessments.find(
+          (candidate) => candidate.id === app.selectedMathAssessmentId,
+        );
         try {
-          await navigator.clipboard.writeText(mathScreenshotConversionPrompt);
-          setStatus("ChatGPT screenshot-conversion prompt copied.", "success");
+          await navigator.clipboard.writeText(
+            mathOfficialQuestionConversionPrompt(assessment?.title, target),
+          );
+          setStatus(`Official PDF conversion prompt copied for question ${target}.`, "success");
         } catch {
           setStatus("The browser could not copy the prompt. Use the prompt in tools/MATH_QUESTION_IMPORT.md.", "error");
         }
@@ -6741,7 +7069,42 @@ WRONG D:`;
     $$("[data-tab]").forEach((button) => button.addEventListener("click", () => switchTab(button.dataset.tab)));
     $("#passage-search").addEventListener("input", renderPassageList);
     $("#new-passage").addEventListener("click", startNewPassage);
+    $("#save-passage-definition").addEventListener("click", () => applyPassageDefinition());
+    $("#remove-passage-definition").addEventListener("click", () => applyPassageDefinition(true));
+    $("#cancel-passage-definition").addEventListener("click", () => {
+      $("#passage-definition-dialog").close(); restoreDefinitionSelection(); passageDefinitionSelection = null;
+    });
+    $("#passage-definition-dialog").addEventListener("cancel", () => {
+      queueMicrotask(() => { restoreDefinitionSelection(); passageDefinitionSelection = null; });
+    });
     $("#open-passage-import").addEventListener("click", openOfficialPassageImport);
+    $("#open-sat-passage-import").addEventListener("click", openSatPassageImport);
+    $("#close-sat-passage-import").addEventListener("click", () => {
+      if (!app.passageImportBusy) $("#sat-passage-dialog").close();
+    });
+    $("#sat-passage-dialog").addEventListener("cancel", (event) => {
+      if (app.passageImportBusy) event.preventDefault();
+    });
+    $("#sat-passage-section").addEventListener("change", () => { updateSatPassageTopics(); app.passageImportReview = null; renderOfficialPassageImportReview(); });
+    for (const id of ["source", "title", "version", "topic", "format", "type"]) {
+      $(id === "source" ? "#sat-passage-import-source" : `#sat-passage-${id}`).addEventListener("input", () => {
+        app.passageImportReview = null;
+        renderOfficialPassageImportReview();
+      });
+    }
+    $("#sat-passage-import-file").addEventListener("change", async (event) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      try {
+        if (file.size > 2_000_000) throw new Error("The reader JSON file must be smaller than 2 MB.");
+        $("#sat-passage-import-source").value = await file.text();
+        app.passageImportReview = null;
+        renderOfficialPassageImportReview();
+        setStatus(`${file.name} loaded. Validate and review before creating a draft.`);
+      } catch (error) { setStatus(error.message, "error"); }
+      event.target.value = "";
+    });
+    $("#preview-sat-passage-import").addEventListener("click", previewSatPassageImport);
     $("#close-passage-import").addEventListener("click", closeOfficialPassageImport);
     $("#official-passage-dialog").addEventListener("cancel", (event) => {
       if (app.passageImportBusy) event.preventDefault();
@@ -6755,13 +7118,28 @@ WRONG D:`;
       }
       try {
         await studioUI.copyText(studioUI.buildOfficialPassagePrompt({
+          answerGuideLabel: $("#official-passage-answer-guide-label").value.trim(),
+          hasAnswerGuide: $("#official-passage-has-answer-guide").checked,
           sourceLabel: $("#official-passage-source-label").value.trim(),
           target,
         }));
-        setStatus("PDF extraction prompt copied. Paste it into ChatGPT and attach the official handbook PDF.", "success");
+        setStatus(
+          $("#official-passage-has-answer-guide").checked
+            ? "Prompt copied. Paste it into ChatGPT and attach both the exam PDF and its official answer/explanation guide."
+            : "Prompt copied. Paste it into ChatGPT and attach the official exam PDF.",
+          "success",
+        );
       } catch {
         setStatus("The browser could not copy the PDF extraction prompt. Allow clipboard access, then try again.", "error");
       }
+    });
+    $("#official-passage-has-answer-guide").addEventListener("change", (event) => {
+      const enabled = event.target.checked;
+      $("#official-passage-answer-guide-label").disabled = !enabled;
+      $("#official-passage-answer-guide-field").classList.toggle("is-disabled", !enabled);
+      $("#copy-passage-import-prompt").textContent = enabled
+        ? "Copy exam + answer-guide prompt"
+        : "Copy exam extraction prompt";
     });
     $("#official-passage-import-source").addEventListener("input", (event) => {
       app.passageImportSource = event.target.value;
@@ -6877,6 +7255,10 @@ WRONG D:`;
       event.returnValue = "";
     });
     initialize();
+  </script>
+  <script type="module">
+    import { mountPassageGlossary } from '/content-studio-glossary.js';
+    mountPassageGlossary(document.body);
   </script>
 </body>
 </html>

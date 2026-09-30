@@ -1,9 +1,45 @@
-import { useCallback, useEffect, useRef, useState, type Dispatch, type SetStateAction, type DragEvent, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction, type DragEvent, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import katex from "katex";
 import { MathEntryResponse } from "../components/MathEntryResponse";
+import { PassageGlossary } from "../components/PassageGlossary";
 import { isMathAnswerComplete } from "../../../server/src/shared/mathAnswer";
 import "katex/dist/katex.min.css";
+
+// Keep glossary anchors intact when the exam timer or answer state updates.
+const AuthoredRichText = memo(function AuthoredRichText({ html, highlights }: { html: string; highlights?: TextHighlightRange[] }) {
+  const displayHtml = useMemo(() => {
+    if (!highlights?.length) return html;
+    const container = document.createElement("span");
+    container.innerHTML = html;
+    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+    const textNodes: Text[] = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode as Text);
+    let offset = 0;
+    for (const node of textNodes) {
+      const value = node.data;
+      const ranges = highlights.map(range => ({ ...range, start: Math.max(0, range.start - offset), end: Math.min(value.length, range.end - offset) })).filter(range => range.end > range.start);
+      offset += value.length;
+      if (!ranges.length) continue;
+      const boundaries = [...new Set([0, value.length, ...ranges.flatMap(range => [range.start, range.end])])].sort((a, b) => a - b);
+      const fragment = document.createDocumentFragment();
+      boundaries.slice(0, -1).forEach((start, index) => {
+        const end = boundaries[index + 1];
+        const range = ranges.find(range => range.start <= start && range.end >= end);
+        if (!range) fragment.append(document.createTextNode(value.slice(start, end)));
+        else {
+          const mark = document.createElement("mark");
+          mark.className = `exam-text-highlight is-${range.color}`;
+          mark.textContent = value.slice(start, end);
+          fragment.append(mark);
+        }
+      });
+      node.replaceWith(fragment);
+    }
+    return container.innerHTML;
+  }, [html, highlights]);
+  return <span className="exam-rich-text" dangerouslySetInnerHTML={{ __html: displayHtml }} />;
+});
 import {
   BatteryCharging,
   Bookmark,
@@ -547,7 +583,7 @@ function MathDragDropResponse({
   }
 
   return (
-    <div className="exam-math-drag-response">
+    <div className={`exam-math-drag-response ${(question.dragDropContent?.length ?? 0) === 1 ? "is-single-line" : ""}`}>
       <div
         aria-label="Answer bank"
         className="exam-math-drag-bank"
@@ -2686,7 +2722,7 @@ export function ExamSessionPage() {
   }
 
   function renderAuthoredText(html: string | undefined, text: string, highlightKey: string) {
-    return html ? <span className="exam-rich-text" dangerouslySetInnerHTML={{ __html: html }} /> : renderHighlightedText(text, highlightKey);
+    return html ? <AuthoredRichText html={html} highlights={textHighlights[highlightKey]} /> : renderHighlightedText(text, highlightKey);
   }
 
   function renderMathAuthoredText(text: string, highlightKey: string) {
@@ -3315,6 +3351,7 @@ export function ExamSessionPage() {
             isTextEntryQuestion(activeMathQuestion) ? "is-text-entry" : ""
           } ${isInlineDropdownQuestion(activeMathQuestion) ? "is-inline-dropdown" : ""} ${
             activeMathQuestion.image ? "is-image-question" : ""
+          } ${activeMathQuestion.type === "math_drag_drop" ? "is-math-drag" : ""
           }`}
           onMouseUp={handleExamTextSelection}
         >
@@ -4191,6 +4228,7 @@ export function ExamSessionPage() {
             >
               <div className="exam-passage-pencil-surface">
               <PencilWorkspace active={activeTool === "pencil"} contained drawingKey={`passage:${activePassageSet.id}`} storage={pencilStorage} onDeactivate={() => handleSelectTool("pointer")} />
+              <PassageGlossary contextKey={activeQuestion.id}>
               {activePassageSet.passage.lines.filter((line) => line.kind !== "image").map((line, index) =>
                 isSentenceProsePassage && !line.text ? (
                   <p
@@ -4299,6 +4337,7 @@ export function ExamSessionPage() {
                     </figure>
                   ) : null,
                 )}
+              </PassageGlossary>
               </div>
             </div>
           </div>

@@ -22,6 +22,11 @@ math-field::part(container) { padding: 2px 3px; }
 math-field::part(virtual-keyboard-toggle) { display: none; }
 math-field::part(menu-toggle) { display: none; width: 19px; }
 math-field:focus-within::part(menu-toggle) { display: flex; }
+.math-keyboard-exit { position: fixed; right: 56px; z-index: 100000; display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 4px 10px; border: 1px solid #91a0ad; border-radius: 5px; background: #fff; color: #263c4c; box-shadow: 0 2px 8px #1b2b3826; font: 600 12px/1.2 "Segoe UI", sans-serif; cursor: pointer; }
+.math-keyboard-exit span { font-size: 19px; font-weight: 400; line-height: 1; }
+.math-keyboard-exit:hover { border-color: #4e7165; background: #eef7f3; color: #155d49; }
+.math-keyboard-exit:focus-visible { outline: 2px solid #197b68; outline-offset: 2px; }
+.math-keyboard-exit[hidden] { display: none; }
 .equation-dock { margin: 5px 0 8px; border: 1px solid #cbdcd5; border-left: 3px solid #599b86; background: #f8fbf9; border-radius: 5px; padding: 5px 8px; }
 .equation-context { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; }
 .equation-context strong { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #577067; margin-right: 6px; }

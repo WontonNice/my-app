@@ -220,7 +220,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "topic": "Algebra",
     "dropdownContent": [
       "An equation that relates the number of stamps originally in Liam's and Kevin's collections is L ={{answer-1}}K.",
-      "After Liam gives 8 stamps to Kevin, the equation becomes L ? 8 ={{answer-2}}.",
+      "After Liam gives 8 stamps to Kevin, the equation becomes L − 8 ={{answer-2}}.",
       "By solving the equation, it can be determined that Liam started with{{answer-3}}stamps."
     ],
     "dropdowns": [

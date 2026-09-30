@@ -52,6 +52,48 @@ test("preview placeholder conversion preserves nested expressions and ordinary s
   assert.equal(math.previewLatex(String.raw`\sqrt{\placeholder{}}+\square+\frac{x}{\placeholder{}}`), String.raw`\sqrt{\square{}}+\square+\frac{x}{\square{}}`);
 });
 
+test("the virtual keyboard has a visible close control that hides it without editing math", () => {
+  const buttonListeners = {};
+  const keyboardListeners = {};
+  const keyboard = {
+    boundingRect: { top: 200 },
+    hideOptions: null,
+    visible: true,
+    addEventListener(type, listener) { keyboardListeners[type] = listener; },
+    hide(options) { this.hideOptions = options; this.visible = false; },
+  };
+  const button = {
+    addEventListener(type, listener) { buttonListeners[type] = listener; },
+    setAttribute() {},
+    style: {},
+  };
+  const document = {
+    appended: null,
+    body: { append(node) { document.appended = node; } },
+    createElement() { return button; },
+    querySelector() { return null; },
+  };
+  const window = {
+    addEventListener() {},
+    innerHeight: 800,
+    katex,
+    mathVirtualKeyboard: keyboard,
+    requestAnimationFrame(callback) { callback(); },
+  };
+  const isolatedMath = vm.runInNewContext(`${source}\nstudioMath;`, { document, window });
+
+  isolatedMath.mountKeyboardExit();
+
+  assert.equal(document.appended, button);
+  assert.equal(button.hidden, false);
+  assert.equal(button.style.top, "208px");
+  assert.match(button.innerHTML, /Close keyboard/);
+  buttonListeners.click();
+  assert.equal(keyboard.hideOptions.animate, true);
+  keyboardListeners["virtual-keyboard-toggle"]();
+  assert.equal(button.hidden, true);
+});
+
 test("student dropdown sentences render display math while preserving answer values and plain menu labels", async () => {
   const page = await readFile(new URL("../client/src/pages/ExamSessionPage.tsx", import.meta.url), "utf8");
   const start = page.indexOf("  function renderInlineDropdownText(");
@@ -73,4 +115,29 @@ test("student dropdown sentences render display math while preserving answer val
   assert.equal(menu.props.value, "b");
   assert.equal(menu.children[1][1].props.value, "b");
   assert.equal(menu.children[1][1].children[0], "4");
+});
+
+test("the official PDF importer prompt matches the real one-question math schema", async () => {
+  const [studio, guide] = await Promise.all([
+    readFile(new URL("./content-studio.html", import.meta.url), "utf8"),
+    readFile(new URL("./MATH_QUESTION_IMPORT.md", import.meta.url), "utf8"),
+  ]);
+
+  for (const content of [studio, guide]) {
+    assert.match(content, /nathan-tutors-math-question-v1/);
+    assert.match(content, /Old paper grid-in becomes \"numeric_entry\"/);
+    assert.match(content, /never \"grid_in\" and never \"short_response\"/);
+    assert.match(content, /grader performs format normalization, not algebraic evaluation/);
+    assert.match(content, /Do not misuse this continuous-range shape for two disjoint rays/);
+    assert.match(content, /Do not use \"graph_point_select\" for a source graph that the student only reads/);
+    assert.match(content, /Do not invent a source-metadata field/);
+  }
+
+  assert.match(studio, /Official Math Question Importer/);
+  assert.match(studio, /id="math-import-target"/);
+  assert.match(studio, /mathOfficialQuestionConversionPrompt\(assessment\?\.title, target\)/);
+  assert.match(studio, /replaceStarterQuestion =/);
+  assert.match(studio, /starterQuestion\?\.id === `\$\{app\.selectedMathAssessmentId\}-math-1`/);
+  assert.match(guide, /Questions 58–62: `numeric_entry`/);
+  assert.match(guide, /Questions 63–114: `multiple_choice`/);
 });

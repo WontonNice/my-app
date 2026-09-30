@@ -1,3 +1,4 @@
+import { content20202021FormBMathSection } from "../mathSets/2020-2021-form-bMath";
 import { massachusettsLowellNationalHistoricalPark20202021FormBPassageSet } from "../passageSets/massachusetts-lowell-national-historical-park-2020-2021-form-b";
 import { excerptFromATrampAbroad20202021ShsatSampleTestFormBPassageSet } from "../passageSets/excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b";
 import { usingFireToKeepAPrairieHealthy20202021FormBPassageSet } from "../passageSets/using-fire-to-keep-a-prairie-healthy-2020-2021-form-b";
@@ -8,6 +9,7 @@ import { excerptFromNiagaraFalls20202021ShsatSampleTestFormBPassageSet } from ".
 import type { ExamContent } from "../types";
 
 export const content20202021FormBContent: ExamContent = {
+  mathSection: content20202021FormBMathSection,
   assessmentId: "2020-2021-form-b",
   title: "2020-2021 Form B",
   passageSections: {
