@@ -3,6 +3,8 @@ import { Activity, Archive, ArchiveRestore, ArrowLeft, ArrowUpRight, BarChart3, 
 import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { TeacherExamTools } from "../components/TeacherExamTools";
+import { StudentAnalyticsWorkstation } from "../components/StudentAnalyticsWorkstation";
+import { responseIsBlank, type Evidence } from "../lib/studentAnalytics";
 import { resolveExamContent, type ExamQuestion } from "../content/exams";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import {
@@ -394,47 +396,21 @@ function SectionScoreBreakdown({
 }
 
 function IndividualExamAnalytics({
-  assessment,
+  evidence,
   result,
-  studentId,
 }: {
-  assessment: TeacherAssessment | undefined;
+  evidence: Evidence[];
   result: Record<string, unknown>;
-  studentId: string;
 }) {
   const answers = selectedAnswersFromResult(result) ?? {};
   const questionTimes = questionTimesFromResult(result);
   const recordedTime = Object.values(questionTimes).reduce((sum, seconds) => sum + seconds, 0);
   const typeScores = questionTypeSummary(result);
   const topicScores = topicSummary(result);
-  const completedSections = Array.isArray(result.completedSections)
-    ? result.completedSections.filter((section): section is AssessmentSection => section === "english" || section === "math")
-    : result.completionStatus === "english_complete"
-      ? ["english" as const]
-      : result.completionStatus === "math_complete"
-        ? ["math" as const]
-        : ["english" as const, "math" as const];
-  const content = assessment
-    ? resolveExamContent({
-      ...assessment,
-      passageOrder: assessment.forms?.find(form => form.id === assessment.formAssignments?.[studentId])?.passageOrder,
-    })
-    : null;
-  const questionRows = content ? [
-    ...(completedSections.includes("english") ? content.passageSets.flatMap((passageSet, passageIndex) =>
-      passageSet.questions.map((question, questionIndex) => ({
-        label: `Passage ${passageIndex + 1} · Q${questionIndex + 1}`,
-        question,
-      }))) : []),
-    ...(completedSections.includes("english") ? (content.standaloneSection?.questions ?? []).map((question, questionIndex) => ({
-      label: `Revising/Editing · Q${questionIndex + 1}`,
-      question,
-    })) : []),
-    ...(completedSections.includes("math") ? (content.mathSection?.questions ?? []).map((question, questionIndex) => ({
-      label: `Math · Q${questionIndex + 1}`,
-      question,
-    })) : []),
-  ] : [];
+  const questionRows = evidence.map(row => ({
+    label: `${row.section === "math" ? "Math" : "English"} · Q${row.number}${row.passage ? ` · ${row.passage.title}` : ""}`,
+    question: row.question,
+  }));
 
   return (
     <section className="teacher-individual-exam-analytics" aria-label="Individual exam analytics">
@@ -465,10 +441,11 @@ function IndividualExamAnalytics({
             <div className="teacher-question-analytics-row is-head" role="row"><span>Question</span><span>Type / skill</span><span>Result</span><span>Time</span></div>
             {questionRows.map(({ label, question }) => {
               const correct = isExamQuestionCorrect(question, answers[question.id]);
-              return <div className="teacher-question-analytics-row" key={question.id} role="row"><span><strong>{label}</strong><small>{question.prompt}</small></span><span><strong>{question.type === "transition_drop" ? "Drag and Drop" : labelFromSlug(question.type)}</strong><small>{labelFromSlug(question.topic)}</small></span><b className={correct ? "is-correct" : "is-incorrect"}>{correct ? "Correct" : "Incorrect"}</b><span>{formatQuestionTime(questionTimes[question.id])}</span></div>;
+              const blank = responseIsBlank(answers[question.id]);
+              return <div className="teacher-question-analytics-row" key={question.id} role="row"><span><strong>{label}</strong><small>{question.prompt}</small></span><span><strong>{question.type === "transition_drop" ? "Drag and Drop" : labelFromSlug(question.type)}</strong><small>{labelFromSlug(question.topic)}</small></span><b className={blank ? "is-unanswered" : correct ? "is-correct" : "is-incorrect"}>{blank ? "Unanswered" : correct ? "Correct" : "Incorrect"}</b><span>{formatQuestionTime(questionTimes[question.id])}</span></div>;
             })}
           </div>
-        </section> : <p className="teacher-score-breakdown-empty">Detailed question analytics are unavailable because this saved result does not have matching exam content.</p>}
+        </section> : <p className="teacher-score-breakdown-empty">Individual answers are unavailable for this result, or matching exam content is missing. Stored summary scores are shown above.</p>}
       </div>
     </section>
   );
@@ -682,6 +659,7 @@ function correctAnswerLabel(question: ExamQuestion) {
 }
 
 function studentAnswerLabel(question: ExamQuestion, answer: unknown) {
+  if (responseIsBlank(answer)) return "Blank";
   if (typeof answer === "string") {
     return question.choices?.length ? choiceLabel(question, answer) : answer || "Blank";
   }
@@ -715,10 +693,11 @@ function studentAnswerLabel(question: ExamQuestion, answer: unknown) {
     if (question.type === "number_line_response") {
       return values.direction && values.endpoint && values.value !== undefined
         ? `${values.direction} ray, ${values.endpoint} at ${values.value}`
-        : "Blank";
+        : Object.entries(values).map(([key, value]) => `${key}: ${value}`).join("; ");
     }
+    return JSON.stringify(answer);
   }
-  return "Blank";
+  return String(answer);
 }
 
 function ExamAnswerKey({ assessment }: { assessment: TeacherAssessment }) {
@@ -852,7 +831,7 @@ function createPaperScoreDraft(): PaperScoreDraft {
   };
 }
 
-function StudentDetail({
+export function StudentDetail({
   assessments,
   initialAnalyticsAssessmentId,
   onAddPaperScore,
@@ -866,16 +845,19 @@ function StudentDetail({
   const [paperScoreDraft, setPaperScoreDraft] = useState<PaperScoreDraft>(createPaperScoreDraft);
   const [paperScoreMessage, setPaperScoreMessage] = useState("");
   const [isSavingPaperScore, setIsSavingPaperScore] = useState(false);
-  const [openAnalyticsAssessmentId, setOpenAnalyticsAssessmentId] = useState(initialAnalyticsAssessmentId ?? "");
   const assessmentIds = new Set(assessments.map((assessment) => assessment.id));
   const examResults = studentExamResultsForAssessments(student, assessments);
-  const resultPercentages = examResults.flatMap((result) =>
-    isCompleteExamResult(result) && typeof result.percentage === "number" ? [result.percentage] : [],
-  );
-  const averageTestScore = resultPercentages.length
-    ? Math.round(resultPercentages.reduce((sum, percentage) => sum + percentage, 0) / resultPercentages.length)
-    : null;
-  const bestTestScore = resultPercentages.length ? Math.max(...resultPercentages) : null;
+  const analyticsInputs = useMemo(() => {
+    const byId = new Map(assessments.map(assessment => [assessment.id, assessment]));
+    return studentExamResultsForAssessments(student, assessments).map(result => {
+      const assessment = byId.get(String(result.assessmentId));
+      return {
+        result,
+        content: assessment ? resolveExamContent({ ...assessment, passageOrder: assessment.forms?.find(form => form.id === assessment.formAssignments?.[student.id])?.passageOrder }) : undefined,
+        ...scoreBreakdownForResult(result, assessment),
+      };
+    });
+  }, [student, assessments]);
   const responseRecords = new Map<string, {
     answers: Record<string, unknown>;
     status: string;
@@ -929,13 +911,7 @@ function StudentDetail({
 
   return (
     <section className="teacher-student-detail" aria-label={`${student.fullName} record`}>
-      <div className="teacher-panel-header"><div><span>Student record</span><h2>{student.fullName}</h2></div><p>Last login: {formatDate(student.lastLoginAt)}</p></div>
-      <div className="teacher-insight-grid">
-        <article><span>Test average</span><strong>{averageTestScore === null ? "—" : `${averageTestScore}%`}</strong></article>
-        <article><span>Best score</span><strong>{bestTestScore === null ? "—" : `${bestTestScore}%`}</strong></article>
-        <article><span>Tests completed</span><strong>{examResults.filter(isCompleteExamResult).length}</strong></article>
-        <article><span>Practice accuracy</span><strong>{student.insights.practiceAccuracy === null ? "—" : `${student.insights.practiceAccuracy}%`}</strong></article>
-      </div>
+      <div className="teacher-panel-header"><div><span>Student record</span><h2>{student.fullName}</h2></div><p>{student.email} · Last login: {formatDate(student.lastLoginAt)}</p></div>
       <details className="teacher-paper-score-entry">
         <summary>
           <span><PlusCircle size={17} /><span><strong>Add paper exam score</strong><small>Record English and Math points for an offline test.</small></span></span>
@@ -957,28 +933,13 @@ function StudentDetail({
           {paperScoreMessage ? <p>{paperScoreMessage}</p> : null}
         </form>
       </details>
-      <h3 className="teacher-detail-heading">Test history</h3>
-      <div className="teacher-results-table" role="table" aria-label={`${student.fullName} test history`}>
-        <div className="teacher-results-row teacher-results-head" role="row"><span>Assessment</span><span>Date</span><span>Score</span><span>Correct</span></div>
-        {examResults.map((result, index) => {
-          const assessmentId = examValue(result, "assessmentId", "");
-          const assessment = assessments.find((candidate) => candidate.id === assessmentId);
-          return (
-            <article className="teacher-result-entry" key={`${assessmentId}-${index}`}>
-              <div className="teacher-results-row" role="row">
-                <div className="teacher-result-title"><strong>{examValue(result, "title", assessment?.title ?? (assessmentId || "Assessment"))}</strong><small>{result.source === "manual" ? "Paper score · Teacher entered" : examResultStatusLabel(result)}</small><button aria-expanded={openAnalyticsAssessmentId === assessmentId} onClick={() => setOpenAnalyticsAssessmentId(current => current === assessmentId ? "" : assessmentId)} type="button"><BarChart3 aria-hidden="true" size={13} />{openAnalyticsAssessmentId === assessmentId ? "Hide analytics" : "View individual analytics"}</button></div>
-                <span>{typeof result.completedAt === "string" ? formatDate(result.completedAt) : "—"}</span>
-                <strong>{examValue(result, "percentage")}%</strong>
-                <span>{examValue(result, "correct")} / {examValue(result, "total")}{questionTypeSummary(result).map((item) => <small key={item.label}>{item.label}: {item.correct}/{item.total}</small>)}</span>
-              </div>
-              <SectionScoreBreakdown assessment={assessment} result={result} />
-              {openAnalyticsAssessmentId === assessmentId ? <IndividualExamAnalytics assessment={assessment} result={result} studentId={student.id} /> : null}
-            </article>
-          );
-        })}
-        {!examResults.length && <p className="teacher-empty-state">No test results recorded yet.</p>}
-      </div>
-      <h3 className="teacher-detail-heading">Saved student answers</h3>
+      <StudentAnalyticsWorkstation inputs={analyticsInputs} initialAssessmentId={initialAnalyticsAssessmentId}
+        answerLabel={studentAnswerLabel} correctLabel={correctAnswerLabel}
+        renderExam={exam => {
+          const assessment = assessments.find(candidate => candidate.id === exam.result.assessmentId);
+          return <><SectionScoreBreakdown assessment={assessment} result={exam.result} /><details className="sa-individual-details"><summary>View individual analytics</summary><IndividualExamAnalytics evidence={exam.evidence} result={exam.result} /></details></>;
+        }} />
+      <details className="sa-retained-section"><summary>Saved answers & in-progress sessions ({responseRecords.size})</summary>
       <div className="teacher-response-list">
         {Array.from(responseRecords, ([assessmentId, record]) => {
           const assessment = assessments.find((candidate) => candidate.id === assessmentId);
@@ -1009,7 +970,8 @@ function StudentDetail({
         })}
         {!responseRecords.size && <p className="teacher-empty-state">No student answer records yet.</p>}
       </div>
-      <h3 className="teacher-detail-heading">Practice progress</h3>
+      </details>
+      <details className="sa-retained-section"><summary>Practice progress{student.insights.practiceAccuracy !== null ? ` · ${student.insights.practiceAccuracy}% accuracy` : ""}</summary>
       <div className="teacher-practice-grid">
         {Object.entries(student.progress.practice).map(([topic, progress]) => {
           const summary = practiceSummary(progress);
@@ -1017,6 +979,7 @@ function StudentDetail({
         })}
         {!Object.keys(student.progress.practice).length && <p className="teacher-empty-state">No practice activity recorded yet.</p>}
       </div>
+      </details>
     </section>
   );
 }
@@ -1565,11 +1528,11 @@ export function TeacherDashboardPage() {
       ) : null}
 
       {activeWorkspace === "students" ? (
-      <section className="teacher-panel teacher-roster-panel" id="students">
-          <div className="teacher-panel-header"><div><span>Roster</span><h2>SHSAT student progress</h2></div><p>Tap a student to open their record here.</p></div>
-          <div className="teacher-student-list">
+      <section className={`teacher-panel teacher-roster-panel${selectedStudent ? " sa-selected-workspace" : ""}`} id="students">
+          {selectedStudent ? <div className="sa-student-picker"><button onClick={() => setSelectedStudentId("")} type="button"><ArrowLeft size={14} /> All students</button><label>Student <select value={selectedStudentId} onChange={event => setSelectedStudentId(event.target.value)}>{shsatStudents.map(student => <option key={student.id} value={student.id}>{student.fullName}</option>)}</select></label><span>{shsatStudents.length} enrolled</span></div> : <div className="teacher-panel-header"><div><span>Roster</span><h2>SHSAT student progress</h2></div><p>Select a student to review progression and question evidence.</p></div>}
+          {!selectedStudent && <div className="teacher-student-list">
             {shsatStudents.map((student) => {
-              const isOpen = student.id === selectedStudent?.id;
+              const isOpen = student.id === selectedStudentId;
               const studentAverage = studentAssessmentAverage(student, assessments);
               return <div className={`teacher-student-entry${isOpen ? " is-open" : ""}`} key={student.id}>
               <button aria-expanded={isOpen} onClick={() => setSelectedStudentId(isOpen ? "" : student.id)} type="button">
@@ -1578,11 +1541,11 @@ export function TeacherDashboardPage() {
                 <span className="teacher-score-badge">{studentAverage === null ? "—" : `${studentAverage}%`}<small>avg.</small></span>
                 <ChevronDown className="teacher-roster-chevron" size={18} />
               </button>
-              {isOpen && <StudentDetail assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={student} />}
               </div>;
             })}
             {!shsatStudents.length && <p className="teacher-empty-state">No students are enrolled in SHSAT yet.</p>}
-          </div>
+          </div>}
+          {selectedStudent && <StudentDetail key={selectedStudent.id} assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={selectedStudent} />}
 
       </section>
       ) : null}

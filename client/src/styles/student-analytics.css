@@ -1,0 +1,99 @@
+.sa-workstation { --sa-border: var(--dashboard-border, #dfe7e5); --sa-muted: var(--dashboard-muted-strong, #61716d); --sa-accent: var(--dashboard-accent, #287a6f); color: var(--dashboard-heading, #203b36); display: grid; gap: 12px; font-size: .76rem; }
+.sa-selected-workspace { padding: 12px !important; }
+.sa-selected-workspace .teacher-student-detail > .teacher-panel-header { margin: 10px 0 8px; align-items: center; }
+.sa-selected-workspace .teacher-student-detail > .teacher-panel-header h2 { font-size: 1.12rem; }
+.sa-selected-workspace .teacher-student-detail > .teacher-panel-header p { font-size: .69rem; }
+.sa-student-picker, .sa-toolbar, .sa-panel > header, .sa-panel > footer, .sa-question-dialog > header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.sa-student-picker { padding-bottom: 10px; border-bottom: 1px solid var(--dashboard-border, #dfe7e5); font-size: .73rem; }
+.sa-student-picker > button { display: flex; align-items: center; gap: 5px; }
+.sa-workstation button, .sa-student-picker button { border: 1px solid var(--sa-border, #dfe7e5); border-radius: 5px; background: var(--dashboard-surface, #fff); color: var(--sa-accent, #287a6f); padding: 5px 8px; font-size: .7rem; cursor: pointer; }
+.sa-workstation button:hover, .sa-student-picker button:hover { background: var(--dashboard-surface-subtle, #f2f7f5); }
+.sa-workstation button:focus-visible, .sa-workstation select:focus-visible, .sa-workstation input:focus-visible, .sa-student-picker :focus-visible, .sa-retained-section summary:focus-visible { outline: 2px solid var(--sa-accent, #287a6f); outline-offset: 2px; }
+.sa-workstation button:disabled { opacity: .4; cursor: default; }
+.sa-workstation label, .sa-student-picker label { display: flex; align-items: center; gap: 6px; color: var(--sa-muted, #61716d); font-size: .68rem; }
+.sa-workstation select, .sa-workstation input:not([type="checkbox"]), .sa-student-picker select { min-width: 0; max-width: 235px; border: 1px solid var(--sa-border, #dfe7e5); border-radius: 5px; background: var(--dashboard-surface, #fff); color: inherit; padding: 5px 7px; font: inherit; }
+.sa-workstation small { display: block; color: var(--sa-muted); font-size: .63rem; line-height: 1.4; }
+.sa-snapshot { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border: 1px solid var(--sa-border); border-radius: 7px; background: var(--dashboard-surface-subtle, #f8faf9); }
+.sa-snapshot > div { display: grid; gap: 3px; padding: 10px 12px; border-left: 1px solid var(--sa-border); }
+.sa-snapshot > div:first-child { border-left: 0; }
+.sa-snapshot span { color: var(--sa-muted); font-size: .66rem; }
+.sa-snapshot strong { font-size: 1.22rem; font-variant-numeric: tabular-nums; }
+.sa-overview-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(290px, 1fr); gap: 12px; }
+.sa-panel { min-width: 0; overflow: hidden; border: 1px solid var(--sa-border); border-radius: 7px; background: var(--dashboard-surface, #fff); }
+.sa-panel > header { padding: 9px 11px; border-bottom: 1px solid var(--sa-border); }
+.sa-panel h3, .sa-panel h4 { margin: 0; font-size: .79rem; font-weight: 750; }
+.sa-panel > p { padding: 10px 12px; margin: 0; color: var(--sa-muted); }
+.sa-panel > footer { padding: 8px 11px; gap: 12px; border-top: 1px solid var(--sa-border); }
+.sa-panel > footer > div { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.sa-chart > small, .sa-focus > small { padding: 7px 11px; }
+.sa-segments { display: flex; gap: 3px; }
+.sa-segments button { padding: 3px 7px; }
+.sa-workstation button[aria-pressed="true"] { background: var(--sa-accent); color: #fff; border-color: var(--sa-accent); }
+.sa-progression { display: flex; gap: 16px; align-items: center; padding: 9px 11px 0; color: var(--sa-muted); font-size: .67rem; }
+.sa-progression b { margin-left: 5px; color: var(--dashboard-heading, #203b36); }
+.sa-progression > strong { margin-left: auto; color: var(--sa-accent); }
+.sa-chart svg { display: block; width: 100%; height: 145px; padding: 5px 12px 0; color: var(--sa-accent); }
+.sa-chart-points { display: flex; gap: 5px; overflow-x: auto; padding: 3px 11px; }
+.sa-chart-points button { flex-shrink: 0; font-size: .59rem; padding: 3px 5px; }
+.sa-focus > button { display: flex; justify-content: space-between; gap: 10px; width: 100%; border-width: 0 0 1px; border-radius: 0; padding: 7px 11px; text-align: left; }
+.sa-focus > button > span { display: grid; gap: 2px; }
+.sa-focus > button > span:last-child { text-align: right; }
+.sa-focus > button strong { font-size: .71rem; }
+.sa-tabs { display: flex; flex-wrap: wrap; gap: 5px; }
+.sa-tables-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.sa-table-scroll { overflow-x: auto; }
+.sa-workstation table { width: 100%; border-collapse: collapse; text-align: left; font-size: .69rem; font-variant-numeric: tabular-nums; }
+.sa-workstation th { color: var(--sa-muted); background: var(--dashboard-surface-subtle, #f7f9f8); font-size: .62rem; font-weight: 700; }
+.sa-workstation th, .sa-workstation td { padding: 7px 9px; border-bottom: 1px solid var(--sa-border); vertical-align: top; }
+.sa-workstation tbody tr:last-child td { border-bottom: 0; }
+.sa-workstation td small { margin-top: 2px; font-size: .59rem; }
+.sa-workstation td .sa-link { display: inline; padding: 0; border: 0; background: transparent; text-align: left; font-weight: 700; font-size: .69rem; }
+.sa-workstation td .sa-link:hover { text-decoration: underline; }
+.sa-meter { display: block; width: 48px; height: 3px; margin-top: 5px; background: #e5ece9; }
+.sa-meter > i { display: block; height: 100%; background: var(--sa-accent); }
+.sa-status { white-space: nowrap; font-size: .65rem; }
+.sa-status.is-correct { color: #237668; }
+.sa-status.is-incorrect { color: #a64545; }
+.sa-status.is-unanswered { color: #886924; }
+.sa-answer-cell { max-width: 260px; min-width: 110px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.sa-filters { display: flex; flex-wrap: wrap; gap: 7px; padding: 9px 11px; background: var(--dashboard-surface-subtle, #f7f9f8); }
+.sa-filters label { display: grid; gap: 3px; flex: 1 1 140px; }
+.sa-filters select, .sa-filters input { width: 100%; max-width: none !important; }
+.sa-skill-history { display: grid; gap: 5px; padding: 10px 12px; }
+.sa-skill-history > div { display: flex; gap: 6px; overflow: auto; }
+.sa-skill-history button { flex-shrink: 0; font-size: .62rem; }
+.sa-comparison { padding: 10px; border-top: 1px solid var(--sa-border); overflow-x: auto; }
+.sa-comparison header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.sa-exam-details { padding: 8px 0; }
+.sa-exam-details > small { margin: 5px 0 10px; }
+.sa-exam-details .teacher-section-score-grid { grid-template-columns: 1fr 1fr; }
+.sa-exam-details .teacher-score-breakdown { margin: 0 0 8px; padding: 9px; }
+.sa-exam-details .teacher-section-score { padding: 8px; }
+.sa-exam-details .teacher-section-score-grid article { background: transparent; border: 0; }
+.sa-exam-details .teacher-passage-score-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+.sa-exam-details .teacher-passage-score-grid > div { display: grid; grid-template-columns: minmax(0, 1fr) 100px; align-items: center; gap: 5px; border: 0; border-bottom: 1px solid var(--sa-border); border-radius: 0; padding: 5px 0; background: transparent; }
+.sa-exam-details .teacher-passage-score-grid > div > span { display: none; }
+.sa-exam-details .teacher-passage-score-grid p { margin: 0; }
+.sa-exam-details .teacher-passage-score-grid strong { white-space: normal; font-size: .65rem; }
+.sa-exam-details .teacher-individual-exam-analytics { margin: 0; }
+.sa-individual-details > summary { cursor: pointer; font-weight: 700; padding: 6px 0; }
+.sa-exam-details .teacher-targeted-analytics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); gap: 4px; }
+.sa-exam-details .teacher-targeted-analytics-grid article { padding: 6px; }
+.sa-exam-details .teacher-targeted-analytics-grid article strong { font-size: .9rem; }
+.sa-retained-section { margin-top: 12px; border-top: 1px solid var(--dashboard-border, #dfe7e5); padding-top: 9px; font-size: .75rem; }
+.sa-retained-section > summary { cursor: pointer; font-weight: 700; }
+.sa-retained-section .teacher-response-list, .sa-retained-section .teacher-practice-grid { margin-top: 8px; }
+.sa-selected-workspace .teacher-paper-score-entry { margin-bottom: 9px; border-radius: 5px; }
+.sa-selected-workspace .teacher-paper-score-entry > summary { padding: 7px 10px; }
+.sa-selected-workspace .teacher-paper-score-entry summary small { display: none; }
+.sa-question-dialog { width: min(860px, 94vw); max-height: 90dvh; border: 1px solid #cfded9; border-radius: 9px; padding: 0; color: #203b36; background: #fff; }
+.sa-question-dialog::backdrop { background: #142d3e88; }
+.sa-question-dialog > header { position: sticky; top: 0; z-index: 1; background: #f5f9f7; border-bottom: 1px solid #dfe7e5; padding: 12px 16px; }
+.sa-question-dialog header small { margin-top: 4px; }
+.sa-dialog-body { padding: 14px 18px; }
+.sa-dialog-body pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .75rem; }
+.sa-dialog-body .exam-review-question-content { padding: 0; border: 0; }
+.sa-dialog-body .exam-review-question-content h2 { font-size: 1rem; }
+@media (max-width: 1150px) { .sa-tables-grid { grid-template-columns: 1fr; } .sa-snapshot { grid-template-columns: repeat(3, 1fr); } .sa-snapshot > div:nth-child(4) { border-left: 0; } }
+@media (max-width: 800px) { .sa-overview-grid { grid-template-columns: 1fr; } .sa-toolbar { flex-wrap: wrap; } .sa-workstation th, .sa-workstation td { padding: 6px; } .sa-panel > footer { align-items: flex-start; flex-direction: column; } .sa-student-picker { flex-wrap: wrap; } .sa-exam-details .teacher-section-score-grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .sa-snapshot { grid-template-columns: repeat(2, 1fr); } .sa-snapshot > div:nth-child(odd) { border-left: 0; } .sa-snapshot > div:nth-child(4) { border-left: 1px solid var(--sa-border); } .sa-panel > header { flex-wrap: wrap; } .sa-progression { flex-wrap: wrap; gap: 6px; } }
