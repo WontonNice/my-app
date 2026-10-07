@@ -19,6 +19,7 @@ export type QuestionType =
     | "essay";
 
 export type AssessmentPassage = {
+    passageCategory?: import("../shared/passageCategories").PassageCategory;
     id: string;
     imageUrl: string;
     text: string;

@@ -1,0 +1,31 @@
+# SHSATLab ELA Capture
+
+This is a separate source pipeline. It reads **English only**, using the 16 ELA topic practice units verified in SHSATLab on October 5, 2026. Manual capture is read-only. Optional one-click capture submits a temporary answer and advances exactly one question after saving. It never reads Math/test pages, crawls, accesses cookies/account storage, inspects hidden application state, or calls private endpoints. Only use it for content you are authorized to import. It does not claim SHSATLab content is public domain or override source access restrictions.
+
+## Install and use
+
+1. Open Chrome's Extensions page, enable Developer mode, and choose **Load unpacked**.
+2. Select this folder (`extensions/shsatlab-ela-reader`). Review the local extension and its permissions before installing. It uses activeTab and local storage for the capture queue, plus a narrowly matched content script on SHSATLab unit practice pages. No cookies or all-sites permission.
+3. Save source-site work, then reload the ELA tab once. If updating from 1.0.0, reload the extension in Chrome's Extensions page first, then reload the ELA tab. Open a question with its passage visible (expand it on small screens if needed).
+4. **Manual:** reveal the answer yourself and leave the explanation expanded, then click **Capture visible ELA question**. This button never selects or submits an answer. Missing keys/explanations remain drafts.
+5. **One-click:** enable **Allow a temporary A answer to be submitted**, then click **Capture & next**. It selects/submits A only when no correct key is already revealed, opens See explanation if needed, waits for the full explanation, saves to the local queue, and clicks **Next Question** (or **Try Another**) once. **This changes your SHSATLab practice history, accuracy, XP, and streak and cannot undo those changes.** The checkbox resets when the popup closes. **Reveal & capture** does the same without advancing. Nothing runs on page load or continues to another item without another click.
+   Only explicit source “Correct answer” / “Correct Answer:” signals become the imported key; the temporary selection is never used as the key. Disagreeing signals, incomplete explanations, question changes, or failed saves stop advancement. Captures are saved by the content script before Next even if the popup closes. If storage fails, the ready text box provides a recovery JSON item; copy it before closing.
+   The **Ready import JSON** text box is populated automatically. Keep **Include all saved questions** checked to import a batch, or uncheck it for the latest capture. Click **Copy ready JSON** or download the saved queue. Repeated captures enrich a draft without duplication; conflicting keys retain the old capture and stop Next.
+6. Content Studio → **Question Bank · SHSAT Lab** → Import captures. Review each draft's text, original source topic, mapped topic, passage layout, choices, key, difficulty, and explanations. Upload required ELA supporting visuals separately before publication. Source topic headings are not necessarily original passage titles. Review source emphasis and numbered/poem formats manually.
+7. Publish reviewed questions. Filter by English / SHSAT Lab / section / topic / difficulty. Select exact questions, or select a random count from matching published items. Save a named practice set.
+   **Publish all matching drafts** previews every draft matching your filters, including other pages. Confirm that you checked the entire listed batch against the source, then publish once. Missing keys, explanations, difficulty, or required uploaded visuals leave items as drafts with reasons. Published questions and existing sets are never overwritten. **Show all questions** clears filters; imports show both drafts and published items, so duplicate imports do not make the bank appear empty.
+8. Teacher dashboard → student's **Available content** → Skill practice, Subject English, Content source SHSAT Lab. Refresh the catalog, select the saved set, and Assign. A saved set requires completion of its entire fixed membership, not an aggregate question target.
+9. Exact saved responses feed the separate **SHSAT Lab · ELA practice insights** panel and teacher library attempt details. Practice results are not Math evidence or scaled SHSAT exam scores.
+
+## Limits and deployment
+
+- The first eight source topics are Reading; units 9–16 are Revising/Editing. Source `Text Structure` maps to platform `Text Structure & Purpose`. Original labels are retained. New or changed source layouts/units require inspection before support is added; unsupported layouts fail closed.
+- Missing keys/explanations stay missing in drafts. No inference, auto-solving, or selected-answer guessing.
+- Captures contain plain text, not unsanitized source HTML. Paragraph boundaries and visible line breaks are retained. Review emphasis, indentation, original titles, and poem/numbered-sentence formats before publishing. Supporting visuals require a local uploaded image with alt text; the importer does not invent image URLs.
+- Published questions and saved sets are immutable to preserve assignment/attempt history. Corrections should be captured/reviewed as a new content version rather than overwriting published membership.
+- The canonical bank is `server/data/question-bank.json`. Keep it in source control/backups. Existing Math/exam/practice content is not moved or deleted. No new database migration is required; existing learning-plan and library attempt storage are reused.
+- The editor reads changes immediately; the server reads the bank dynamically. The student client bundles published content. Run `npm run build` and deploy the updated client and bank together; refresh browser/dev-client pages after changing content. Do not deploy only the server bank while students still use stale client content.
+
+## Tests
+
+Run `npm run test:question-bank`, `npm run content-editor:test`, and `npm run verify`. The synthetic controller/popup fixtures cover consent, correct-key versus temporary-answer separation, save-before-Next, loading waits/timeouts, duplicate actions, Math rejection, and recovery JSON. Tests never submit source-site answers or write real student records.

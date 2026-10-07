@@ -1,4 +1,34 @@
 import { getSupabaseClient, isSupabaseConfigured } from "./supabase";
+import type { AssignmentPage, ContentHistory, PlanClient, PlanOverview, PlanAssignment } from "./learningPlan";
+import type { ExamResult } from "./examResults";
+
+export function teacherPlanClient(accessToken: string, studentId: string): PlanClient {
+  const root = `/api/learning-plan/teacher/${encodeURIComponent(studentId)}`;
+  const call = <T>(path: string, method = "GET", body?: unknown) => requestApi<T>(root + path, { method, headers: createAuthHeaders(accessToken), ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
+  return {
+    overview: () => call<PlanOverview>(""),
+    list: (status, page, search = "") => call<AssignmentPage>(`/assignments?${new URLSearchParams({ status, page: String(page), search })}`),
+    create: async (items, batchId, allowRepeat) => { await call("/assignments", "POST", { items, batchId, allowRepeat }); },
+    update: async (id, revision, changes) => { await call(`/assignments/${encodeURIComponent(id)}`, "PATCH", { ...changes, revision }); },
+    settings: async settings => { await call("/settings", "PATCH", settings); },
+    detail: async id => (await call<{ assignment: PlanAssignment }>(`/assignments/${encodeURIComponent(id)}`)).assignment,
+    history: (kind, contentId, page) => call<ContentHistory>(`/content/${encodeURIComponent(kind)}/${encodeURIComponent(contentId)}?page=${page}`),
+  };
+}
+export async function getLearningPlanRoster(accessToken: string) {
+  return (await requestApi<{ students: Record<string, PlanOverview["summary"]> }>("/api/learning-plan/roster", { headers: createAuthHeaders(accessToken) })).students;
+}
+export async function getStudentLearningPlan(accessToken: string, studentId?: string) {
+  const path = studentId ? `/api/learning-plan/teacher/${encodeURIComponent(studentId)}/published` : "/api/learning-plan/student";
+  return requestApi<PlanOverview>(path, { headers: createAuthHeaders(accessToken) });
+}
+export async function getStudentPlanAssignments(accessToken: string, status: string, page = 0, studentId?: string, contentId?: string) {
+  const root = studentId ? `/api/learning-plan/teacher/${encodeURIComponent(studentId)}` : "/api/learning-plan/student";
+  return requestApi<AssignmentPage>(`${root}/assignments?${new URLSearchParams({ status, page: String(page), ...(studentId ? { published: "1" } : {}), ...(contentId ? { contentId, kind: "practice" } : {}) })}`, { headers: createAuthHeaders(accessToken) });
+}
+export async function updateStudentPlanAssignment(accessToken: string, assignment: PlanAssignment, action: "start" | "submit") {
+  return requestApi(`/api/learning-plan/student/assignments/${encodeURIComponent(assignment.id)}`, { method: "PATCH", headers: createAuthHeaders(accessToken), body: JSON.stringify({ action, revision: assignment.revision }) });
+}
 
 // Production serves the client and API from the same Render service. Only use
 // the configurable base URL during local Vite development so a checked-in or
@@ -84,6 +114,7 @@ export type TeacherAssessment = {
   id: string;
   passageOrder?: string[];
   passages: {
+    passageCategory?: import("../../../server/src/shared/passageCategories").PassageCategory;
     id: string;
     imageUrl: string;
     text: string;
@@ -142,6 +173,7 @@ export type LibraryCorrectionResponse = {
   questionId: string;
   whyChosenIncorrect: string;
   whyCorrectAnswerCorrect: string;
+  questionType?: string;
 };
 
 export type StudentLibraryCorrection = {
@@ -161,6 +193,7 @@ export type TeacherLibraryAttempt = Omit<StudentLibraryAttempt, "questions"> & {
 export type StudentLibraryCorrectionView = {
   attempt: TeacherLibraryAttempt;
   correction: StudentLibraryCorrection | null;
+  readOnly?: boolean;
 };
 
 export type TeacherLibraryStudent = {
@@ -601,7 +634,7 @@ async function fetchWithTimeout(url: string, init: RequestInit, headers: Headers
   }
 }
 
-async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
+export async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
   const method = (init.method ?? "GET").toUpperCase();
   const isReadOnly = method === "GET" || method === "HEAD";
   let url = `${apiBaseUrl}${path}`;
@@ -663,7 +696,7 @@ async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
   return (await response.json()) as TResponse;
 }
 
-function createAuthHeaders(accessToken: string) {
+export function createAuthHeaders(accessToken: string) {
   return {
     Authorization: `Bearer ${accessToken}`,
     "Content-Type": "application/json",
@@ -759,6 +792,12 @@ export async function getTeacherLibraryBooks(accessToken: string) {
   return data.books;
 }
 
+export type BankPracticeAttempt = { id: string; bookId: string; title: string; completedAt: string; score: number; totalQuestions: number;
+  questions: { questionId: string; topic: string; difficulty: string; isCorrect: boolean; selectedAnswerId: string; correctAnswerId: string; timeSpentSeconds: number }[] };
+export async function getBankPracticeAttempts(accessToken: string, studentId: string) {
+  return requestApi<{ attempts: BankPracticeAttempt[]; unverified?: number }>(`/api/library/teacher/bank-attempts/${encodeURIComponent(studentId)}`, { headers: createAuthHeaders(accessToken) });
+}
+
 export async function generateTeacherLibraryBookCode(accessToken: string, bookId: string, title: string) {
   const data = await requestApi<{ book: LibraryBookAccess }>(
     `/api/library/teacher/books/${encodeURIComponent(bookId)}/code`,
@@ -804,9 +843,9 @@ export async function getStudentLibraryAttempts(accessToken: string, bookId: str
   return data.attempts;
 }
 
-export async function getStudentLibraryCorrections(accessToken: string, bookId: string) {
+export async function getStudentLibraryCorrections(accessToken: string, bookId: string, studentId?: string) {
   return requestApi<StudentLibraryCorrectionView>(
-    `/api/library/books/${encodeURIComponent(bookId)}/corrections`,
+    `/api/library/books/${encodeURIComponent(bookId)}/corrections${studentId ? `?studentId=${encodeURIComponent(studentId)}` : ""}`,
     { headers: createAuthHeaders(accessToken) },
   );
 }
@@ -1058,8 +1097,12 @@ export async function setExamCorrectionsAccess(accessToken: string, assessmentId
   return data.assessment;
 }
 
-export async function getExamCorrectionView(accessToken: string, assessmentId: string) {
-  return requestApi<import("../../../server/src/shared/examCorrections").ExamCorrectionView>(`/api/exam-review/student/${encodeURIComponent(assessmentId)}`, { headers: createAuthHeaders(accessToken) });
+export async function getStudentPreviewResults(accessToken: string, studentId: string) {
+  return requestApi<{ results: ExamResult[]; assessments: StudentAssessment[] }>(`/api/exam-review/teacher/students/${encodeURIComponent(studentId)}/results`, { headers: createAuthHeaders(accessToken) });
+}
+export async function getExamCorrectionView(accessToken: string, assessmentId: string, studentId?: string) {
+  const path = studentId ? `/api/exam-review/teacher/${encodeURIComponent(assessmentId)}/students/${encodeURIComponent(studentId)}` : `/api/exam-review/student/${encodeURIComponent(assessmentId)}`;
+  return requestApi<import("../../../server/src/shared/examCorrections").ExamCorrectionView>(path, { headers: createAuthHeaders(accessToken) });
 }
 
 export async function submitExamCorrections(accessToken: string, assessmentId: string, resultVersion: string, responses: import("../../../server/src/shared/examCorrections").CorrectionResponse[]) {

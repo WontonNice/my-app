@@ -97,7 +97,7 @@ export function ExamAnswer({ question, answer }: { question: ExamQuestion; answe
   })}</div>;
 }
 
-function ExamReviewPassage({ passage }: { passage: ExamPassage }) {
+export function ExamReviewPassage({ passage }: { passage: ExamPassage }) {
   const format = passage.format === "sentence_prose" ? "sentence_prose" : passage.format === "prose" ? "prose" : "poem";
 
   return <div className="exam-question-passage">
@@ -134,7 +134,7 @@ function ExamReviewPassage({ passage }: { passage: ExamPassage }) {
   </div>;
 }
 
-function ReviewQuestionBody({ answerPresentation, item, showAnswers, viewer }: { answerPresentation: "comparison" | "correction"; item: ReviewQuestion; showAnswers: boolean; viewer: boolean }) {
+export function ReviewQuestionBody({ answerPresentation, item, showAnswers, viewer }: { answerPresentation: "comparison" | "correction"; item: ReviewQuestion; showAnswers: boolean; viewer: boolean }) {
   const { question, passage } = item;
   const prompt = <ExamText html={question.promptHtml} text={question.prompt} />;
   const correctAnswer = correctExamAnswer(question);

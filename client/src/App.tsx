@@ -11,6 +11,7 @@ import { StudentClassroomPage } from "./pages/StudentClassroomPage";
 import { StudentMaterialsPage } from "./pages/StudentMaterialsPage";
 import { StudentResultsPage } from "./pages/StudentResultsPage";
 import { StudentTopicHubPage } from "./pages/StudentTopicHubPage";
+import { studentCorrectionRoute } from "./lib/correctionNavigation";
 
 const AdminDashboardPage = lazy(() =>
   import("./pages/AdminDashboardPage").then((module) => ({ default: module.AdminDashboardPage })),
@@ -19,6 +20,8 @@ const AdvancedPassagePage = lazy(() =>
   import("./pages/AdvancedPassagePage").then((module) => ({ default: module.AdvancedPassagePage })),
 );
 const AuthPage = lazy(() => import("./pages/AuthPage").then((module) => ({ default: module.AuthPage })));
+const BoardPage = lazy(() => import("./pages/BoardPage").then(module => ({ default: module.BoardPage })));
+const StudentBoardsPage = lazy(() => import("./pages/StudentBoardsPage").then(module => ({ default: module.StudentBoardsPage })));
 const ExamLaunchPage = lazy(() =>
   import("./pages/ExamLaunchPage").then((module) => ({ default: module.ExamLaunchPage })),
 );
@@ -26,6 +29,7 @@ const ExamResultsPage = lazy(() =>
   import("./pages/ExamResultsPage").then((module) => ({ default: module.ExamResultsPage })),
 );
 const ExamCorrectionsPage = lazy(() => import("./pages/ExamCorrectionsPage").then(module => ({ default: module.ExamCorrectionsPage })));
+const LibraryCorrectionsPage = lazy(() => import("./pages/LibraryCorrectionsPage").then(module => ({ default: module.LibraryCorrectionsPage })));
 const ExamSessionPage = lazy(() =>
   import("./pages/ExamSessionPage").then((module) => ({ default: module.ExamSessionPage })),
 );
@@ -101,12 +105,17 @@ function LegacyStudentHomeRedirect() {
 
 function CurrentPage() {
   const path = window.location.pathname;
+  const correctionRoute = studentCorrectionRoute(path);
+  if (correctionRoute === "exam") return withClassAccess(<ExamCorrectionsPage />);
+  if (correctionRoute === "library") return withClassAccess(<LibraryCorrectionsPage />);
+  if (path.startsWith("/boards/")) return <BoardPage />;
 
   if (path === "/dashboard" || path === "/study-hall") {
     return <LegacyStudentHomeRedirect />;
   }
 
   if (path.startsWith("/study-hall/")) {
+    if (path === "/study-hall/shsat/boards") return withClassAccess(<StudentBoardsPage />);
     if (path === "/study-hall/classroom") {
       return <StudentClassroomPage />;
     }
@@ -143,9 +152,6 @@ function CurrentPage() {
     return withClassAccess(<ExamSessionPage />);
   }
 
-  if (path.startsWith("/results/") && path.endsWith("/corrections")) {
-    return withClassAccess(<ExamCorrectionsPage />);
-  }
   if (path.startsWith("/results/")) {
     return withClassAccess(<ExamResultsPage />);
   }

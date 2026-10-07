@@ -35,6 +35,16 @@ label.field > span { flex-wrap: wrap; }
 .passage-list button.is-active { border-color: #c7ded6; background: #edf6f2; box-shadow: inset 3px 0 var(--accent); }
 .passage-list strong { font-weight: 650; font-size: .72rem; }
 .passage-list small { font-size: .62rem; }
+.studio-category-row { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.studio-category-row > input[type="checkbox"] { width: 15px; height: 15px; min-height: 0; padding: 0; flex: 0 0 15px; margin: 0; accent-color: var(--accent); }
+.studio-category-row > button { flex: 1; min-width: 0; }
+.sidebar-head .passage-bulk { font-size: .68rem; }
+.sidebar-head .passage-bulk summary { cursor: pointer; color: var(--navy); font-weight: 650; }
+.sidebar-head .passage-bulk .field { margin-top: 8px; }
+.sidebar-head .passage-bulk-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin: 6px 0; }
+.sidebar-head .passage-bulk-actions button { padding: 0 5px; font-size: .6rem; }
+.sidebar-head .passage-bulk > .primary { width: 100%; }
+.sidebar-head .passage-bulk > small { display: block; margin-top: 5px; color: var(--muted); font-size: .6rem; line-height: 1.4; }
 .studio-library-filters { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 8px; }
 .studio-library-filters select { font-size: .63rem; padding: 5px; min-height: 29px; }
 .studio-library-pager { display: flex; align-items: center; gap: 5px; border-top: 1px solid var(--border-soft); padding-top: 8px; margin-top: 6px; }

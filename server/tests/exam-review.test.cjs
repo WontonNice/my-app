@@ -10,8 +10,8 @@ const math = { id: 'math-1', type: 'numeric_entry', topic: 'Algebra', prompt: '2
 const content = { assessmentId: 'test-exam', title: 'Test exam', passageSets: [{ id: 'passage-1', passage: { id: 'passage-1', title: 'Passage', lines: [{ text: 'Evidence.' }] }, questions: [english] }], mathSection: { questions: [math] } };
 const result = createExamResult(content, { 'ela-1': 'A', 'math-1': '4' });
 const completeResponses = [
-  { questionId: 'ela-1', whyChosenIncorrect: 'It is not supported by the text.', whyCorrectAnswerCorrect: 'The passage gives evidence for B.', understanding: 4 },
-  { questionId: 'math-1', whyChosenIncorrect: '', whyCorrectAnswerCorrect: 'Adding three to two gives five.', understanding: 5 },
+  { questionId: 'ela-1', whyChosenIncorrect: 'It is not supported by the text.', whyCorrectAnswerCorrect: 'The passage gives evidence for B.', understanding: 4, questionType: 'Inference' },
+  { questionId: 'math-1', whyChosenIncorrect: '', whyCorrectAnswerCorrect: 'Adding three to two gives five.', understanding: 5, questionType: 'Algebra' },
 ];
 
 test('English requires both explanations, Math requires only correct reasoning, all require integer ratings', () => {
@@ -20,7 +20,7 @@ test('English requires both explanations, Math requires only correct reasoning, 
   assert.deepEqual(validateCorrections(questions, [completeResponses[0]], { allowPartial: true }), [completeResponses[0]]);
   assert.throws(() => validateCorrections(questions, [], { allowPartial: true }));
   assert.throws(() => validateCorrections(questions, [completeResponses[0], completeResponses[0]], { allowPartial: true }));
-  for (const change of [{ whyChosenIncorrect: ' ' }, { whyCorrectAnswerCorrect: '' }, { understanding: 0 }, { understanding: 6 }, { understanding: 2.5 }, { understanding: '4' }]) {
+  for (const change of [{ whyChosenIncorrect: ' ' }, { whyCorrectAnswerCorrect: '' }, { understanding: 0 }, { understanding: 6 }, { understanding: 2.5 }, { understanding: '4' }, { questionType: '' }, { questionType: 'x'.repeat(121) }, { questionType: null }]) {
     assert.throws(() => validateCorrections(questions, [{ ...completeResponses[0], ...change }, completeResponses[1]]));
   }
   assert.throws(() => validateCorrections(questions, [completeResponses[0], completeResponses[0]]));
@@ -83,10 +83,11 @@ const rows = [{ user_id: 'student', assessment_id: 'test-exam', result }];
 const assessment = { id: 'test-exam', title: 'Test exam', classId: 'shsat', correctionsOpen: false, forms: [], formAssignments: {} };
 const users = Object.fromEntries(['student', 'other', 'teacher', 'outsider'].map(id => [id, { id, app_metadata: { role: id === 'teacher' ? 'teacher' : 'student', class_ids: id === 'outsider' ? [] : ['shsat'] }, user_metadata: {} }]));
 function stub(relative, exports) { const filename = require.resolve(relative); require.cache[filename] = { id: filename, filename, loaded: true, exports }; }
-stub('../src/lib/auth.ts', { getAuthenticatedUser: async header => ({ user: users[header?.replace('Bearer ', '')] ?? null, error: 'Unauthorized' }), getUserRole: user => user.app_metadata.role, getEnrolledClassIds: metadata => metadata.class_ids });
+stub('../src/lib/auth.ts', { getAuthenticatedUser: async header => ({ user: users[header?.replace('Bearer ', '')] ?? null, error: 'Unauthorized' }), getUserRole: user => user.app_metadata.role, getEnrolledClassIds: metadata => metadata.class_ids, isStudentArchived: user => Boolean(user.app_metadata.student_archived_at) });
 stub('../src/config/assessments.ts', {
   findAssessmentForStudent: (id, classes) => id === assessment.id && classes.includes('shsat') ? assessment : undefined,
   listTeacherAssessments: () => [assessment],
+  listStudentAssessments: classes => classes.includes('shsat') ? [assessment] : [],
   updateAssessmentCorrectionsAccess: (id, open) => { if (id !== assessment.id) return null; assessment.correctionsOpen = open; return assessment; },
 });
 stub('../src/lib/examContent.ts', { getExamContent: id => id === content.assessmentId ? content : null });
@@ -160,12 +161,31 @@ test('API enforces access and lets students submit or update one completed corre
   const submissions = await request('teacher', '/teacher/test-exam/submissions');
   assert.equal(submissions.data.submissions[0].responses[1].understanding, 5);
   assert.equal(submissions.data.submissions[0].responses[0].understanding, 3);
+  assert.equal(submissions.data.submissions[0].responses[0].questionType, 'Inference');
   assert.equal(submissions.data.submissions[0].questions[0].question.id, 'ela-1');
   await request('teacher', '/teacher/test-exam/access', 'PATCH', { open: false });
   assert.equal((await request('student', '/student/test-exam')).status, 403);
   assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: completeResponses })).status, 403);
 });
 
+test('student-view results and corrections use the selected student, stay read only, and retain locks', async () => {
+  const previewResult={...result,title:'Selected student result',answers:{'ela-1':'B','math-1':'4'}};
+  rows.push({user_id:'other',assessment_id:'test-exam',result:previewResult});
+  assert.equal((await request('student','/teacher/students/other/results')).status,403);
+  assert.equal((await request('teacher','/teacher/students/outsider/results')).status,404);
+  const results=await request('teacher','/teacher/students/other/results');
+  assert.equal(results.status,200);assert.equal(results.data.results[0].title,'Selected student result');
+  assert.equal((await request('teacher','/teacher/test-exam/students/other')).status,403);
+  assessment.correctionsOpen=true;
+  const preview=await request('teacher','/teacher/test-exam/students/other');
+  assert.equal(preview.status,200);assert.equal(preview.data.readOnly,true);
+  assert.equal(preview.data.questions[0].submittedAnswer,'B');
+  assert.equal((await request('student','/teacher/test-exam/students/other')).status,403);
+  assert.equal((await request('teacher','/teacher/test-exam/students/outsider')).status,404);
+  assert.equal((await request('teacher','/teacher/test-exam/students/other','POST',{responses:completeResponses})).status,405);
+  assert.equal((await request('teacher','/student/test-exam','POST',{resultVersion:preview.data.resultVersion,responses:completeResponses})).status,403);
+  assessment.correctionsOpen=false;
+});
 test('paper-answer API grades on the server, validates dates, and replaces existing results', async () => {
   const input = { answers: { 'ela-1': 'B', 'math-1': '5' }, completedDate: '2026-09-01', completedSections: ['english', 'math'], correct: 999 };
   assert.equal((await request('student', '/teacher/test-exam/answers/other', 'POST', input)).status, 403);

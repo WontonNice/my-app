@@ -1,9 +1,13 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { BankPracticeInsights } from "../components/BankPracticeInsights";
 import { Activity, Archive, ArchiveRestore, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, Clock3, Cloud, Eye, LayoutDashboard, Pencil, PlusCircle, RotateCcw, Shuffle, Trash2, UserRoundCheck, UserRoundPlus, Users, X } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { TeacherExamTools } from "../components/TeacherExamTools";
 import { StudentAnalyticsWorkstation } from "../components/StudentAnalyticsWorkstation";
+import { BoardLibrary } from "../features/boards/BoardLibrary";
+import { TeacherLearningPlan, type PlanView } from "../components/TeacherLearningPlan";
+import type { PlanOverview } from "../lib/learningPlan";
 import { responseIsBlank, type Evidence } from "../lib/studentAnalytics";
 import { resolveExamContent, type ExamQuestion } from "../content/exams";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
@@ -12,6 +16,7 @@ import {
   getTeacherClassJoinRequests,
   getTeacherStudentAccounts,
   getTeacherStudentProgress,
+  getLearningPlanRoster,
   createTeacherManualExamResult,
   deleteStudentAccount,
   reviewTeacherClassJoinRequest,
@@ -768,9 +773,10 @@ function createPassageForms(assessment: TeacherAssessment): FormDraft["forms"] {
   }));
 }
 
-type TeacherWorkspace = "overview" | "students" | "accounts" | "assessments" | "enrollment";
+type TeacherWorkspace = "overview" | "students" | "accounts" | "assessments" | "enrollment" | "boards";
 
 function getTeacherWorkspace(pathname: string): TeacherWorkspace {
+  if (pathname.startsWith("/teacher/boards")) return "boards";
   if (pathname.startsWith("/teacher/students")) return "students";
   if (pathname.startsWith("/teacher/accounts")) return "accounts";
   if (pathname.startsWith("/teacher/enrollment")) return "enrollment";
@@ -832,16 +838,25 @@ function createPaperScoreDraft(): PaperScoreDraft {
 }
 
 export function StudentDetail({
+  accessToken = "",
   assessments,
   initialAnalyticsAssessmentId,
+  planClient,
   onAddPaperScore,
   student,
 }: {
+  accessToken?: string;
   assessments: TeacherAssessment[];
   initialAnalyticsAssessmentId?: string;
+  planClient?: import("../lib/learningPlan").PlanClient;
   onAddPaperScore: (studentId: string, input: ManualExamScoreInput) => Promise<void>;
   student: StudentProgressSnapshot;
 }) {
+  const [workspaceView, setWorkspaceView] = useState<"progress" | "boards" | PlanView>(() => new URLSearchParams(window.location.search).get("workspace") === "boards" ? "boards" : "progress");
+  const [planSkill, setPlanSkill] = useState("");
+  const [planFocus, setPlanFocus] = useState(0);
+  const [planCategory, setPlanCategory] = useState("");
+  const [passageInventory, setPassageInventory] = useState<import("../lib/passageOrganization").ContentInventory>();
   const [paperScoreDraft, setPaperScoreDraft] = useState<PaperScoreDraft>(createPaperScoreDraft);
   const [paperScoreMessage, setPaperScoreMessage] = useState("");
   const [isSavingPaperScore, setIsSavingPaperScore] = useState(false);
@@ -912,6 +927,8 @@ export function StudentDetail({
   return (
     <section className="teacher-student-detail" aria-label={`${student.fullName} record`}>
       <div className="teacher-panel-header"><div><span>Student record</span><h2>{student.fullName}</h2></div><p>{student.email} · Last login: {formatDate(student.lastLoginAt)}</p></div>
+      {accessToken && <><nav className="lp-record-tabs" aria-label="Student record workspaces">{([["progress", "Progress & insights"], ["plan", "Learning plan"], ["content", "Available content"], ["schedule", "Weekly schedule"], ["history", "Homework history"], ["boards", "Boards"]] as const).map(([value, label]) => <button key={value} aria-pressed={workspaceView === value} onClick={() => { setWorkspaceView(value); setPlanSkill(""); }} type="button">{label}</button>)}</nav>{workspaceView === "boards" ? <BoardLibrary accessToken={accessToken} studentId={student.id} studentName={student.fullName} teacher /> : <TeacherLearningPlan client={planClient} key={planFocus} sourceCategory={planCategory} onSourceCategory={setPlanCategory} onInventory={setPassageInventory} accessToken={accessToken} studentId={student.id} studentName={student.fullName} view={workspaceView === "progress" ? "summary" : workspaceView} onView={setWorkspaceView} skillFilter={planSkill} onSkillFilter={setPlanSkill} />}</>}
+      <div hidden={workspaceView !== "progress"}>
       <details className="teacher-paper-score-entry">
         <summary>
           <span><PlusCircle size={17} /><span><strong>Add paper exam score</strong><small>Record English and Math points for an offline test.</small></span></span>
@@ -933,7 +950,11 @@ export function StudentDetail({
           {paperScoreMessage ? <p>{paperScoreMessage}</p> : null}
         </form>
       </details>
+      {accessToken && <BankPracticeInsights key={student.id} accessToken={accessToken} studentId={student.id} onAssignSkill={skill => { setPlanCategory(""); setPlanSkill(skill); setPlanFocus(value => value + 1); setWorkspaceView("content"); }} />}
       <StudentAnalyticsWorkstation inputs={analyticsInputs} initialAssessmentId={initialAnalyticsAssessmentId}
+        passageInventory={passageInventory}
+        onBrowseCategory={accessToken ? category => { setPlanCategory(category); setPlanSkill(""); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
+        onAssignSkill={accessToken ? skill => { setPlanCategory(""); setPlanSkill(skill); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
         answerLabel={studentAnswerLabel} correctLabel={correctAnswerLabel}
         renderExam={exam => {
           const assessment = assessments.find(candidate => candidate.id === exam.result.assessmentId);
@@ -980,6 +1001,7 @@ export function StudentDetail({
         {!Object.keys(student.progress.practice).length && <p className="teacher-empty-state">No practice activity recorded yet.</p>}
       </div>
       </details>
+      </div>
     </section>
   );
 }
@@ -999,6 +1021,7 @@ export function TeacherDashboardPage() {
   const [studentAccounts, setStudentAccounts] = useState<StudentAccount[]>([]);
   const [accountView, setAccountView] = useState<"current" | "archived">("current");
   const [selectedStudentId, setSelectedStudentId] = useState(() => new URLSearchParams(window.location.search).get("student") ?? "");
+  const [planRoster, setPlanRoster] = useState<Record<string, PlanOverview["summary"]>>({});
   const [isCheckingSession, setIsCheckingSession] = useState(
     isSupabaseConfigured && !initialDashboardCache,
   );
@@ -1017,6 +1040,12 @@ export function TeacherDashboardPage() {
   const [studentAccountDraft, setStudentAccountDraft] = useState({ fullName: "", password: "", username: "" });
   const [teacherName, setTeacherName] = useState("Teacher");
   const [teacherUserId, setTeacherUserId] = useState(initialSession?.user.id ?? "");
+  useEffect(() => {
+    if (!accessToken) return;
+    let active = true;
+    getLearningPlanRoster(accessToken).then(data => { if (active) setPlanRoster(data); }).catch(() => { /* The student's plan displays storage errors; existing analytics remain usable. */ });
+    return () => { active = false; };
+  }, [accessToken, selectedStudentId]);
 
   useEffect(() => {
     if (!isSupabaseConfigured) return;
@@ -1452,12 +1481,14 @@ export function TeacherDashboardPage() {
   const navItems = [
     { id: "overview", label: "Overview", href: "/teacher", icon: LayoutDashboard },
     { id: "students", label: "Student progress", href: "/teacher/students", icon: Activity },
+    { id: "boards", label: "Boards", href: "/teacher/boards", icon: LayoutDashboard },
     { id: "enrollment", label: "Class requests", href: "/teacher/enrollment", icon: UserRoundCheck },
     { id: "accounts", label: "Student accounts", href: "/teacher/accounts", icon: UserRoundPlus },
     { id: "library", label: "English library", href: "/teacher/library", icon: BookOpen },
     { id: "assessments", label: "Assessments & insights", href: "/teacher/assessments", icon: ClipboardList },
   ];
   const workspaceCopy = {
+    boards: { description: "Create a shared board and invite a student to work with you.", eyebrow: "Shared learning workspace", icon: LayoutDashboard, title: "Teaching boards" },
     overview: {
       description: "A focused snapshot of SHSAT enrollment, activity, scores, and open exams.",
       eyebrow: "Teacher dashboard",
@@ -1516,6 +1547,7 @@ export function TeacherDashboardPage() {
           <section className="teacher-panel teacher-workspace-panel">
             <div className="teacher-panel-header"><div><span>Workspaces</span><h2>Choose where to work</h2></div><p>Each area now opens as its own page.</p></div>
             <div className="teacher-workspace-grid">
+              <AppLink href="/teacher/boards"><LayoutDashboard size={20} /><span><strong>Boards</strong><small>Create a board and invite a student</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/students"><Activity size={20} /><span><strong>Student progress</strong><small>{shsatStudents.length} SHSAT student{shsatStudents.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/enrollment"><UserRoundCheck size={20} /><span><strong>Class requests</strong><small>{classJoinRequests.length} awaiting approval</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/accounts"><UserRoundPlus size={20} /><span><strong>Student accounts</strong><small>Edit access or preview an account</small></span><ArrowUpRight size={17} /></AppLink>
@@ -1527,6 +1559,7 @@ export function TeacherDashboardPage() {
         </>
       ) : null}
 
+      {activeWorkspace === "boards" && accessToken ? <section className="teacher-panel"><BoardLibrary accessToken={accessToken} teacher students={shsatStudents} /></section> : null}
       {activeWorkspace === "students" ? (
       <section className={`teacher-panel teacher-roster-panel${selectedStudent ? " sa-selected-workspace" : ""}`} id="students">
           {selectedStudent ? <div className="sa-student-picker"><button onClick={() => setSelectedStudentId("")} type="button"><ArrowLeft size={14} /> All students</button><label>Student <select value={selectedStudentId} onChange={event => setSelectedStudentId(event.target.value)}>{shsatStudents.map(student => <option key={student.id} value={student.id}>{student.fullName}</option>)}</select></label><span>{shsatStudents.length} enrolled</span></div> : <div className="teacher-panel-header"><div><span>Roster</span><h2>SHSAT student progress</h2></div><p>Select a student to review progression and question evidence.</p></div>}
@@ -1537,7 +1570,7 @@ export function TeacherDashboardPage() {
               return <div className={`teacher-student-entry${isOpen ? " is-open" : ""}`} key={student.id}>
               <button aria-expanded={isOpen} onClick={() => setSelectedStudentId(isOpen ? "" : student.id)} type="button">
                 <span className="teacher-student-avatar">{student.fullName.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span>
-                <span><strong>{student.fullName}</strong><small>{student.email}</small><small>Last login: {formatDate(student.lastLoginAt)}</small></span>
+                <span><strong>{student.fullName}</strong><small>{student.email}</small><small>Last login: {formatDate(student.lastLoginAt)}</small>{planRoster[student.id] && <small>{planRoster[student.id].assigned} active · {planRoster[student.id].overdue} overdue · {planRoster[student.id].planned} planned</small>}</span>
                 <span className="teacher-score-badge">{studentAverage === null ? "—" : `${studentAverage}%`}<small>avg.</small></span>
                 <ChevronDown className="teacher-roster-chevron" size={18} />
               </button>
@@ -1545,7 +1578,7 @@ export function TeacherDashboardPage() {
             })}
             {!shsatStudents.length && <p className="teacher-empty-state">No students are enrolled in SHSAT yet.</p>}
           </div>}
-          {selectedStudent && <StudentDetail key={selectedStudent.id} assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={selectedStudent} />}
+          {selectedStudent && <StudentDetail key={selectedStudent.id} accessToken={accessToken} assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={selectedStudent} />}
 
       </section>
       ) : null}

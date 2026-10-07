@@ -1,7 +1,29 @@
 import type { ExamPassage, ExamPassageLine, ExamPassageType, ExamQuestionImage } from "./types";
 import { createGlossaryRichText } from "../../../../tools/content-studio-glossary.js";
+import { passageCategory as normalizeCategory, type PassageCategory } from "../../../../server/src/shared/passageCategories";
+
+/** Imported source numbering and line breaks are authoritative. Never renumber them. */
+export function createSourcePassage(input: PlainTextPassageInput & {
+  format?: "prose" | "poem" | "sentence_prose";
+  preserveSourceLayout?: boolean;
+  images?: ExamQuestionImage[];
+}): ExamPassage {
+  const escape = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const lines: ExamPassageLine[] = [];
+  if (input.blurb) lines.push({ kind: "intro", text: input.blurb });
+  lines.push({ kind: "title", text: input.title, align: "center" });
+  if (input.author) lines.push({ kind: "byline", text: `by ${input.author}`, align: "center" });
+  const blocks = input.richText ? (input.format === "poem" ? richTextLines(input.richText) : richTextBlocks(input.richText))
+    : input.text.split(input.format === "poem" ? /\r?\n/ : /\r?\n\r?\n/).map(text => ({ text, html: escape(text).replace(/\n/g, "<br>").replace(/ {2}/g, " &nbsp;") }));
+  lines.push(...blocks);
+  for (const image of [...(input.image ? [input.image] : []), ...(input.images || [])]) lines.push({ kind: "image", text: "", image });
+  return { id: input.id, title: input.title, format: input.format || "prose", passageType: input.passageType,
+    passageCategory: normalizeCategory(input.passageCategory), versionLabel: input.versionLabel,
+    coverImage: input.coverImage, sourceNote: input.sourceNote, lines };
+}
 
 type PlainTextPassageInput = {
+  passageCategory?: PassageCategory;
   author?: string;
   blurb?: string;
   coverImage?: ExamQuestionImage;
@@ -134,6 +156,8 @@ function numberRichSentences(value: string, firstSentenceNumber: number) {
 }
 
 export function createPlainTextPassage({
+  passageCategory,
+  versionLabel,
   author,
   blurb,
   coverImage,
@@ -173,6 +197,8 @@ export function createPlainTextPassage({
     passageLines.push({ text: "Passage content has not been added for this assessment yet." });
 
     return {
+      passageCategory: normalizeCategory(passageCategory),
+      versionLabel,
       coverImage,
       format: "poem",
       id,
@@ -209,6 +235,8 @@ export function createPlainTextPassage({
   });
 
   return {
+    passageCategory: normalizeCategory(passageCategory),
+    versionLabel,
     coverImage,
     format: "poem",
     id,
@@ -220,6 +248,7 @@ export function createPlainTextPassage({
 }
 
 type ProsePassageInput = {
+  passageCategory?: PassageCategory;
   glossary?: { term: string; definition: string }[];
   author?: string;
   blurb?: string;
@@ -237,6 +266,8 @@ type ProsePassageInput = {
 };
 
 export function createProsePassage({
+  passageCategory,
+  versionLabel,
   glossary,
   author,
   blurb,
@@ -277,6 +308,8 @@ export function createProsePassage({
     });
 
     return {
+      passageCategory: normalizeCategory(passageCategory),
+      versionLabel,
       coverImage,
       format: "prose",
       id,
@@ -304,6 +337,8 @@ export function createProsePassage({
   });
 
   return {
+    passageCategory: normalizeCategory(passageCategory),
+    versionLabel,
     coverImage,
     format: "prose",
     id,
@@ -315,6 +350,7 @@ export function createProsePassage({
 }
 
 type SentenceNumberedPassageInput = {
+  passageCategory?: PassageCategory;
   glossary?: { term: string; definition: string }[];
   author?: string;
   blurb?: string;
@@ -331,6 +367,8 @@ type SentenceNumberedPassageInput = {
 };
 
 export function createSentenceNumberedPassage({
+  passageCategory,
+  versionLabel,
   glossary,
   author,
   blurb,
@@ -358,6 +396,8 @@ export function createSentenceNumberedPassage({
     });
 
     return {
+      passageCategory: normalizeCategory(passageCategory),
+      versionLabel,
       coverImage,
       format: "sentence_prose",
       id,
@@ -396,6 +436,8 @@ export function createSentenceNumberedPassage({
   });
 
   return {
+    passageCategory: normalizeCategory(passageCategory),
+    versionLabel,
     coverImage,
     format: "sentence_prose",
     id,

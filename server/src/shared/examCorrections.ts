@@ -6,6 +6,7 @@ export type CorrectionResponse = {
   whyChosenIncorrect: string;
   whyCorrectAnswerCorrect: string;
   understanding: number;
+  questionType?: string;
 };
 export type ReviewQuestion = {
   question: ExamQuestion;
@@ -28,6 +29,7 @@ export type ExamCorrectionView = {
   resultVersion: string;
   questions: ReviewQuestion[];
   submission: CorrectionSubmission | null;
+  readOnly?: boolean;
 };
 
 export function reviewQuestions(content: ExamContent, result: ExamResult): ReviewQuestion[] {
@@ -72,6 +74,8 @@ export function validateCorrections(
     if (!Number.isInteger(response.understanding) || response.understanding < 1 || response.understanding > 5) {
       throw new Error(`Question ${item.number}: choose an understanding rating from 1 to 5.`);
     }
-    return { questionId: item.question.id, whyChosenIncorrect: wrong, whyCorrectAnswerCorrect: correct, understanding: response.understanding };
+    const questionType = typeof response.questionType === "string" ? response.questionType.trim() : "";
+    if (!questionType || questionType.length > 120) throw new Error(`Question ${item.number}: select a question type.`);
+    return { questionId: item.question.id, whyChosenIncorrect: wrong, whyCorrectAnswerCorrect: correct, understanding: response.understanding, questionType };
   });
 }

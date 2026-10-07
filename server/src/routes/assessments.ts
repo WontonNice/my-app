@@ -12,6 +12,7 @@ import {
     updateAssessmentStatus,
 } from "../config/assessments";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole } from "../lib/auth";
+import { assignedContentIds, hasAssignedContent } from "../lib/learningPlanStore";
 
 type UpdateStatusBody = {
     status?: unknown;
@@ -37,7 +38,8 @@ assessmentsRouter.get("/student", async (request, response) => {
 
     const classIds = getUserRole(user) === "teacher" ? ["shsat"] : getEnrolledClassIds(user.app_metadata);
 
-    response.json({ assessments: listStudentAssessments(classIds) });
+    const personal = getUserRole(user) === "student" ? await assignedContentIds(user.id, "exam", true) : new Set<string>();
+    response.json({ assessments: listStudentAssessments(classIds).map(assessment => personal.has(assessment.id) ? { ...assessment, status: "open", allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment) });
 });
 
 assessmentsRouter.get("/student/:assessmentId", async (request, response) => {
@@ -57,12 +59,13 @@ assessmentsRouter.get("/student/:assessmentId", async (request, response) => {
         return;
     }
 
-    if (assessment.status !== "open" && !isTeacher) {
+    const personalAccess = getUserRole(user) === "student" && await hasAssignedContent(user.id, "exam", assessment.id, true);
+    if (assessment.status !== "open" && !isTeacher && !personalAccess) {
         response.status(403).json({ message: "This exam is still locked by your teacher." });
         return;
     }
 
-    response.json({ assessment: toStudentAssessmentDetail(assessment, user.id) });
+    response.json({ assessment: toStudentAssessmentDetail(personalAccess ? { ...assessment, status: "open", allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, user.id) });
 });
 
 assessmentsRouter.get("/teacher", async (request, response) => {

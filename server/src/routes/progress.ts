@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import type { User } from "@supabase/supabase-js";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { supabase } from "../lib/supabase";
+import { recordPlanCompletion, recordPracticePlanCompletion } from "../lib/learningPlanStore";
 
 type JsonRecord = Record<string, unknown>;
 type LearningProgress = {
@@ -516,6 +517,7 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
         response.status(503).json({ message: "Your result was backed up, but the results database did not confirm the save. Please submit again." });
         return;
     }
+    if (result.completionStatus !== "english_complete" && result.completionStatus !== "math_complete" && typeof result.completedAt === "string") await recordPlanCompletion(user.id, "exam", assessmentId, { source: "exam", at: result.completedAt, reference: assessmentId, correct: typeof result.correct === "number" ? result.correct : undefined, total: typeof result.total === "number" ? result.total : undefined });
     response.json({ progress: await getDatabaseProgress(user), storage: "database" });
 });
 
@@ -544,8 +546,10 @@ progressRouter.put("/practice/:topicSlug", async (request, response) => {
             response.status(400).json({ message: saved.error.message });
             return;
         }
+        await recordPracticePlanCompletion(user.id, request.params.topicSlug, topicProgress);
         response.json({ progress: nextProgress });
         return;
     }
+    await recordPracticePlanCompletion(user.id, request.params.topicSlug, topicProgress);
     response.json({ progress: await getDatabaseProgress(user) });
 });

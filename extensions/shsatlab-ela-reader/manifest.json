@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Nathan Tutors — SHSATLab ELA Capture",
+  "version": "1.1.0",
+  "description": "English capture with opt-in reveal, saved answer/explanation JSON, and one-click Next. No Math or crawling.",
+  "permissions": ["activeTab", "storage"],
+  "action": { "default_popup": "popup.html" },
+  "content_scripts": [{
+    "matches": ["https://www.shsatlab.com/units/unit-*/practice*", "https://shsatlab.com/units/unit-*/practice*"],
+    "js": ["reader.js", "queue.js", "automation.js", "content.js"],
+    "run_at": "document_idle"
+  }]
+}

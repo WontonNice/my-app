@@ -1,4 +1,5 @@
 import { aMiracleMilePassageSet } from "./passageSets/a-miracle-mile";
+import { getBankSet } from "../questionBank";
 import { dothemnoharmPassageSet } from "./passageSets/dothemnoharm";
 import { formARavenPlansPassageSet } from "./passageSets/formARavenPlans";
 import { indoorPlantsPassageSet } from "./passageSets/indoorPlants";
@@ -7,7 +8,8 @@ import { scribeLikeAnEgyptianPassageSet } from "./passageSets/scribe-like-an-egy
 import { SnowyMountainsPassageSet } from "./passageSets/Snowy Mountains";
 import { spiritOfTheHerdPassageSet } from "./passageSets/spiritOfTheHerd";
 import { winterWheatPassageSet } from "./passageSets/winter-wheat";
-import type { ExamPassageSet } from "./types";
+import type { ExamPassage, ExamPassageSet } from "./types";
+import { groupPassageBooks } from "../../../../server/src/shared/libraryBooks";
 import { excerptFromTheFixItSaturdaysPassageSet } from "./passageSets/excerpt-from-the-fix-it-saturdays";
 import { excerptFromTheRoadNotTakenPassageSet } from "./passageSets/excerpt-from-the-road-not-taken";
 import { excerptFromThePuzzleOfTheRiderlessBicyclePassageSet } from "./passageSets/excerpt-from-the-puzzle-of-the-riderless-bicycle";
@@ -63,7 +65,10 @@ export const examPassageLibrary: ExamPassageSet[] = [
   excerptFromTheCallOfTheWildDigitalShsatPracticeTest1PassageSet,
 ];
 
+export const examLibraryBooks = groupPassageBooks(examPassageLibrary);
 export function getExamLibraryPassage(passageId: string) {
-  const passageSet = examPassageLibrary.find((entry) => entry.passage.id === passageId);
-  return passageSet ? { id: passageSet.passage.id, passageSet } : undefined;
+  const book = examLibraryBooks.find(book => book.id === passageId && book.versions.length > 1);
+  if (book) return { ...book, isCombined: true };
+  const passageSet = examPassageLibrary.find((entry) => entry.passage.id === passageId) ?? getBankSet(passageId);
+  return passageSet ? { id: passageSet.passage.id, passageSet, isCombined: false, versions: [], questionPassages: {} as Record<string, ExamPassage> } : undefined;
 }

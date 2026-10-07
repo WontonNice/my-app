@@ -1,0 +1,70 @@
+.lp-workspace { color: var(--dashboard-heading, #233b36); font-size: .78rem; border: 1px solid var(--dashboard-border, #dce5e2); border-radius: 7px; margin: 10px 0; background: var(--dashboard-surface, #fff); overflow: hidden; }
+.lp-workspace button, .lp-dialog button, .lp-student-plan button, .lp-record-tabs button { padding: 5px 8px; border: 1px solid #d4e0dc; border-radius: 5px; background: #fff; color: #286f65; cursor: pointer; font: inherit; font-size: .72rem; }
+.lp-workspace button:hover, .lp-dialog button:hover, .lp-student-plan button:hover { background: #f0f7f4; }
+.lp-workspace button:disabled, .lp-dialog button:disabled, .lp-student-plan button:disabled { opacity: .45; cursor: default; }
+.lp-workspace :focus-visible, .lp-dialog :focus-visible, .lp-student-plan :focus-visible, .lp-record-tabs :focus-visible { outline: 2px solid #248478; outline-offset: 2px; }
+.lp-heading, .lp-workspace footer, .lp-toolbar, .lp-dialog > header, .lp-dialog footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 9px 11px; }
+.lp-heading { border-bottom: 1px solid #dce5e2; }
+.lp-heading h3, .lp-dialog h3 { margin: 0; font-size: .9rem; }
+.lp-heading > div:last-child, .lp-row-actions { display: flex; flex-wrap: wrap; gap: 5px; }
+.lp-workspace small, .lp-dialog small, .lp-student-plan small { display: block; font-size: .65rem; color: #5d716b; line-height: 1.5; }
+.lp-workspace p { margin: 8px 11px; }
+.lp-summary-strip { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); background: #f5f9f7; border-bottom: 1px solid #dce5e2; }
+.lp-summary-strip > span { padding: 7px 10px; border-right: 1px solid #dce5e2; }
+.lp-summary-strip strong { display: flex; align-items: center; gap: 7px; font-size: 1rem; }
+.lp-upcoming { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 7px; padding: 8px 10px; }
+.lp-upcoming > button { text-align: left; display: grid; gap: 4px; }
+.lp-chip { display: inline-block; width: fit-content; white-space: nowrap; font-size: .65rem; padding: 2px 5px; border-radius: 4px; background: #eaf2ef; color: #386159; }
+.lp-chip.is-overdue { background: #fff0e9; color: #9a442f; }
+.lp-chip.is-planned { background: #eef0fa; color: #575d8e; }
+.lp-chip.is-completed { background: #e2f3e8; color: #26663e; }
+.lp-chip.is-review { background: #fff6df; color: #816519; }
+.lp-chip.is-cancelled, .lp-chip.is-skipped { background: #f0f1f2; color: #61696e; }
+.lp-toolbar label, .lp-fields label, .lp-dialog form > label, .lp-settings label { display: grid; gap: 4px; font-size: .7rem; }
+.lp-toolbar input, .lp-toolbar select { max-width: 215px; }
+.lp-workspace input:not([type="checkbox"]), .lp-workspace select, .lp-workspace textarea, .lp-dialog input, .lp-dialog select, .lp-dialog textarea { font: inherit; font-size: .75rem; color: #233b36; border: 1px solid #cddcd6; border-radius: 5px; background: #fff; padding: 6px 8px; min-width: 0; }
+.lp-table-scroll { overflow-x: auto; }
+.lp-workspace table, .lp-dialog table { border-collapse: collapse; width: 100%; text-align: left; font-size: .72rem; }
+.lp-workspace th, .lp-dialog th { background: #f5f8f6; color: #5d716b; font-size: .66rem; }
+.lp-workspace td, .lp-workspace th, .lp-dialog td, .lp-dialog th { padding: 7px 9px; border-bottom: 1px solid #dce5e2; vertical-align: top; }
+.lp-workspace .lp-link, .lp-dialog .lp-link { padding: 0; border: 0; font-weight: 700; text-align: left; background: transparent; }
+.lp-inventory-summary, .lp-category-counts { display: flex; flex-wrap: wrap; gap: 6px; padding: 9px 11px; background: #f5f8f6; }
+.lp-category-counts { gap: 18px; font-size: .7rem; }
+.lp-category-counts > button { display: grid; gap: 4px; text-align: left; flex: 1 1 190px; }
+.lp-inventory-summary small { width: 100%; }
+.lp-settings { border-bottom: 1px solid #dce5e2; }
+.lp-settings > summary { padding: 9px 11px; cursor: pointer; font-weight: 700; }
+.lp-settings form { padding: 0 11px 10px; }
+.lp-settings label { margin-top: 8px; }
+.lp-settings textarea { width: 100%; box-sizing: border-box; }
+.lp-fields { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 10px; }
+.lp-settings footer { padding-left: 0; }
+.lp-error, .lp-repeat-warning { color: #963c2a; background: #fff1eb; border: 1px solid #ecd3c7; padding: 10px; border-radius: 5px; }
+.lp-week-grid { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); border-top: 1px solid #dce5e2; }
+.lp-week-grid > section { min-width: 0; border-right: 1px solid #dce5e2; padding: 8px; }
+.lp-week-grid header { font-size: .72rem; font-weight: 700; margin-bottom: 7px; }
+.lp-week-grid button { width: 100%; text-align: left; margin-bottom: 5px; overflow-wrap: anywhere; }
+.lp-week-grid button strong { display: block; }
+.lp-week-grid p { color: #74837e; font-size: .66rem; margin: 6px 0; }
+.lp-week-grid + small { padding: 8px 11px; }
+.lp-dialog { width: min(850px,94vw); max-height: 90dvh; color: #233b36; border: 1px solid #cddcd6; border-radius: 8px; background: #fff; padding: 0; font-size: .8rem; }
+.lp-dialog::backdrop { background: #102b4380; }
+.lp-dialog > header { position: sticky; top: 0; background: #f2f7f4; border-bottom: 1px solid #dce5e2; z-index: 1; }
+.lp-dialog form, .lp-dialog-body { display: grid; gap: 10px; padding: 14px 16px; }
+.lp-dialog form input, .lp-dialog form textarea { width: 100%; box-sizing: border-box; }
+.lp-dialog pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .7rem; }
+.lp-record-tabs { display: flex; flex-wrap: wrap; gap: 5px; margin: 9px 0; }
+.lp-record-tabs button[aria-pressed="true"] { color: #fff; background: #28786d; border-color: #28786d; }
+.lp-student-plan { color: #233b36; background: #fff; border: 1px solid #dce5e2; border-radius: 8px; overflow: hidden; }
+.lp-student-plan > header, .lp-student-plan > footer { padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 9px; flex-wrap: wrap; }
+.lp-student-plan h2 { margin: 0; font-size: 1.15rem; }
+.lp-student-plan > p { padding: 0 16px; }
+.lp-student-filters { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 16px; }
+.lp-student-task { border-top: 1px solid #dce5e2; padding: 11px 16px; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 12px; }
+.lp-student-task h3 { margin: 0 0 4px; font-size: .93rem; }
+.lp-student-task p { white-space: pre-wrap; font-size: .8rem; line-height: 1.5; }
+.lp-student-task > div:last-child { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.lp-student-task a { color: #267366; font-weight: 700; }
+.lp-student-plan .lp-summary-strip { grid-template-columns: repeat(4,minmax(0,1fr)); }
+@media(max-width:1000px) { .lp-week-grid { grid-template-columns: repeat(4,minmax(0,1fr)); } }
+@media(max-width:650px) { .lp-summary-strip { grid-template-columns: repeat(2,minmax(0,1fr)); } .lp-upcoming { grid-template-columns: 1fr; } .lp-week-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .lp-toolbar label { flex: 1 1 130px; } .lp-toolbar input, .lp-toolbar select { width: 100%; max-width: none; } .lp-student-task { grid-template-columns: 1fr; } .lp-student-task > div:last-child { flex-direction: row; flex-wrap: wrap; align-items: center; } .lp-student-plan .lp-summary-strip { grid-template-columns: repeat(2,minmax(0,1fr)); } }

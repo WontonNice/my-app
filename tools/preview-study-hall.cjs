@@ -1,0 +1,10 @@
+// Fictional UI session; no env files, Supabase connection or saved student work.
+const { createServer } = require('node:http');
+const { resolve, basename } = require('node:path');
+const { build } = require('esbuild');
+(async () => {
+  const result = await build({ entryPoints: [resolve(__dirname, 'study-hall-preview.tsx')], bundle: true, write: false, outdir: resolve(__dirname, '.study-hall-preview'), format: 'esm', jsx: 'automatic', loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file' }, define: { 'import.meta.env': '{}' }, plugins: [{ name: 'fictional-study-hall-session', setup(plugin) { plugin.onLoad({ filter: /useStudentPortalAccess\.ts$/ }, () => ({ loader: 'ts', contents: `export function useStudentPortalAccess() { return { accessToken: '', isCheckingSession: false, isSupabaseConfigured: true, studentName: 'QA Student', previewContext: { isPreview: true, mode: 'student', query: '?preview=student&teacherTools=1', returnHref: '/teacher', studentId: '', studentName: 'QA Student' } }; }` })); } }] });
+  const files = new Map(result.outputFiles.map(file => ['/' + basename(file.path), file.contents]));
+  const port = Number(process.argv.find(value => value.startsWith('--port='))?.slice(7)) || 4330;
+  createServer((request, response) => { const name = request.url.split('?')[0], file = files.get(name); response.setHeader('Content-Type', file ? name.endsWith('.js') ? 'text/javascript' : name.endsWith('.css') ? 'text/css' : 'application/octet-stream' : 'text/html'); response.end(file || '<!doctype html><html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>English Study Hall · isolated QA</title><link rel="stylesheet" href="/study-hall-preview.css"><div id="root"></div><script type="module" src="/study-hall-preview.js"></script></html>'); }).listen(port, '127.0.0.1', () => console.log(`Isolated English Study Hall: http://127.0.0.1:${port}/study-hall/shsat/materials?subject=english`));
+})().catch(error => { console.error(error.message); process.exitCode = 1; });

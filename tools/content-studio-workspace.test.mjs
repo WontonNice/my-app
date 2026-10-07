@@ -2,12 +2,32 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import vm from "node:vm";
+import DocumentImport from "./document-import.cjs";
 
 const source = await readFile(new URL("./content-studio-workspace.js", import.meta.url), "utf8");
 const setup = (questions = []) => {
   const app = { passageMode: "exam", selectedPassageId: "passage-a", passageDraft: { questions } };
-  return { app, ui: vm.runInNewContext(`${source}\nstudioUI;`, { app, URL }) };
+  return { app, ui: vm.runInNewContext(`${source}\nstudioUI;`, { app, URL, DocumentImport }) };
 };
+
+test("category filter counts include empty categories and default legacy content without changing passages", () => {
+  const { app, ui } = setup();
+  app.state = { passageCategories: [{ value: "official_handbook", label: "Official Handbook" }, { value: "prestige", label: "Prestige" }, { value: "miscellaneous", label: "Miscellaneous" }] };
+  const passages = [{ id: "a", passageCategory: "official_handbook" }, { id: "b" }, { id: "c", passageCategory: "miscellaneous" }];
+  assert.deepEqual(Array.from(ui.passageCategoryCounts(passages), category => [category.value, category.count]), [["official_handbook", 1], ["prestige", 0], ["miscellaneous", 2]]);
+  assert.deepEqual(passages, [{ id: "a", passageCategory: "official_handbook" }, { id: "b" }, { id: "c", passageCategory: "miscellaneous" }]);
+  assert.deepEqual(Array.from(ui.passageCategoryCounts([]), category => category.count), [0, 0, 0]);
+});
+
+test("passage library category and question-count sorting compose with format filtering and paging", () => {
+  const { app, ui } = setup();
+  app.state = { passageCategories: [{ value: 'official_handbook', label: 'Official Handbook' }, { value: 'prestige', label: 'Prestige' }, { value: 'miscellaneous', label: 'Miscellaneous' }] };
+  const passages = [{ id: 'a', title: 'Zeta', format: 'poem', passageCategory: 'official_handbook', questions: [1] }, { id: 'b', title: 'Alpha', format: 'prose', passageCategory: 'prestige', questions: [1, 2, 3] }, { id: 'c', title: 'Beta', format: 'poem', questions: [1, 2] }];
+  assert.deepEqual(Array.from(ui.getLibrarySlice(passages, 'passages', '', '', 'category').items, item => item.id), ['c', 'a', 'b']);
+  assert.deepEqual(Array.from(ui.getLibrarySlice(passages, 'passages', '', 'poem', 'questions').items, item => item.id), ['c', 'a']);
+  assert.deepEqual(Array.from(ui.getLibrarySlice(passages, 'passages', '', '', 'questions-asc').items, item => item.id), ['a', 'c', 'b']);
+  assert.deepEqual(passages.map(item => item.id), ['a', 'b', 'c']);
+});
 
 const readerExport = () => ({
   schemaVersion: 3,
@@ -235,44 +255,11 @@ test("ChatGPT export limits topics to the passage section", () => {
   assert.doesNotMatch(exported, /- Inference/);
 });
 
-test("official passage prompt targets one PDF passage and matches the import contract", () => {
+test("universal prompt is the shared contract with source-only answers and complete scope", () => {
   const { app, ui } = setup();
-  app.state = { topics: ["Central Idea & Theme", "Text Structure & Purpose"] };
-  const prompt = ui.buildOfficialPassagePrompt({
-    answerGuideLabel: "20202021_form_b_-_answers.pdf",
-    hasAnswerGuide: true,
-    sourceLabel: "2020-2021 Form B",
-    target: "Massachusetts: Lowell National Historical Park, questions 10-16",
-  });
-  assert.match(prompt, /Convert exactly ONE passage/);
-  assert.match(prompt, /Massachusetts: Lowell National Historical Park, questions 10-16/);
-  assert.match(prompt, /Official source\/version: 2020-2021 Form B/);
-  assert.match(prompt, /Official answer\/explanation guide: 20202021_form_b_-_answers\.pdf/);
-  assert.match(prompt, /Two source PDFs are attached/);
-  assert.match(prompt, /public domain or that they are authorized to reproduce and adapt it/);
-  assert.match(prompt, /user-requested format conversion into structured JSON/);
-  assert.match(prompt, /Do not replace the transcription with a summary, refuse the conversion, or omit text/);
-  assert.match(prompt, /permission applies only to the requested passage/);
-  assert.match(prompt, /"format": "nathan-tutors-official-passage-v1"/);
-  assert.match(prompt, /"explanation": "Why the keyed answer is correct/);
-  assert.match(prompt, /If the PDF prints E-H, map them to A-D in order/);
-  assert.match(prompt, /Match the requested passage and every question to the answer guide by the original printed question number/);
-  assert.match(prompt, /E→A, F→B, G→C, H→D/);
-  assert.match(prompt, /include concise labeled reasons for each incorrect normalized choice/);
-  assert.match(prompt, /generated from an official keyed answer/);
-  assert.match(prompt, /- Central Idea & Theme\n- Text Structure & Purpose/);
-  assert.match(prompt, /Allowed Reading Comprehension topic values/);
-  assert.match(prompt, /Allowed Revising\/Editing topic values/);
-  assert.match(prompt, /- Sentence Structure/);
-  assert.match(prompt, /- Relevance & Conclusion/);
-  assert.match(prompt, /Do not include richText, HTML, sourceHash/);
-});
-
-test("official passage prompt keeps a safe inference fallback without an answer guide", () => {
-  const { app, ui } = setup();
-  app.state = { topics: ["Central Idea & Theme", "Inference"] };
-  const prompt = ui.buildOfficialPassagePrompt({ target: "Excerpt from A Tramp Abroad" });
-  assert.match(prompt, /Official answer\/explanation guide: None is expected/);
-  assert.match(prompt, /answer was inferred rather than read from an official key/);
-  assert.doesNotMatch(prompt, /Two source PDFs are attached/);
+  app.state = { topics: ["Central Idea & Theme", "Text Structure & Purpose"], mathTopics: ["Algebra"] };
+  const prompt = ui.buildOfficialPassagePrompt({ target: "Entire packet", sourceLabel: "Fixture.pdf", answerGuideLabel: "Key.pdf" });
+  for (const text of ["Entire packet", "Fixture.pdf", "Key.pdf", "nathan-tutors-official-passage-v1", "DO NOT solve", "NEVER generate an explanation", "WHOLE passage", "sourceQuestion", "topicConfidence", "mathQuestions", "public-domain", "Return ONLY"]) assert.ok(prompt.includes(text), text);
+  assert.ok(prompt.includes('"Algebra"'));
+  assert.doesNotMatch(prompt, /Solve each question carefully|generated from an official keyed answer/);
 });

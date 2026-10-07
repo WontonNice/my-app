@@ -43,6 +43,8 @@ import {
 } from "../lib/studentMaterials";
 import { getActiveSession, peekActiveSession } from "../lib/sessionCache";
 import { isSupabaseConfigured } from "../lib/supabase";
+import { PASSAGE_CATEGORIES, passageCategory, passageCategoryLabel } from "../../../server/src/shared/passageCategories";
+import "../styles/learning-plan.css";
 
 const teacherNavItems: DashboardNavItem[] = [
   { id: "overview", label: "Overview", href: "/teacher", icon: LayoutDashboard },
@@ -110,6 +112,12 @@ export function TeacherLibraryPage() {
   const [selectedAttemptId, setSelectedAttemptId] = useState("");
   const [selectedStudentId, setSelectedStudentId] = useState("");
   const [showAnswers, setShowAnswers] = useState(false);
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [sourceFilter, setSourceFilter] = useState("");
+  const [genreFilter, setGenreFilter] = useState("");
+  const [librarySearch, setLibrarySearch] = useState("");
+  const [librarySort, setLibrarySort] = useState("title");
+  const [libraryDirection, setLibraryDirection] = useState<"asc" | "desc">("asc");
   const [students, setStudents] = useState<TeacherLibraryStudent[]>([]);
   const [teacherName, setTeacherName] = useState(
     initialMetadata?.full_name ?? initialMetadata?.name ?? initialSession?.user.email?.split("@")[0] ?? "Teacher",
@@ -160,6 +168,7 @@ export function TeacherLibraryPage() {
   }, [bookId]);
 
   const accessByBookId = useMemo(() => new Map(bookAccess.map((book) => [book.bookId, book])), [bookAccess]);
+  const visibleMaterials = useMemo(() => englishLibraryMaterials.filter(material => (!sourceFilter || material.contentSource === sourceFilter) && (!categoryFilter || !material.contentSource && passageCategory(material.passageCategory) === categoryFilter) && (!genreFilter || material.readingFormat === genreFilter) && (!librarySearch.trim() || `${material.title} ${material.author ?? ""}`.toLowerCase().includes(librarySearch.trim().toLowerCase()))).sort((a, b) => ((librarySort === "category" ? passageCategoryLabel(a.passageCategory).localeCompare(passageCategoryLabel(b.passageCategory)) : librarySort === "questions" ? a.questionCount - b.questionCount : a.title.localeCompare(b.title)) * (libraryDirection === "asc" ? 1 : -1)) || a.id.localeCompare(b.id)), [sourceFilter, categoryFilter, genreFilter, librarySearch, librarySort, libraryDirection]);
   const selectedStudent = students.find((student) => student.id === selectedStudentId);
   const selectedAttempt = selectedStudent?.attempts.find((attempt) => attempt.id === selectedAttemptId) ?? selectedStudent?.attempts[0];
   async function handleGenerateCode(material: StudentMaterial) {
@@ -224,8 +233,18 @@ export function TeacherLibraryPage() {
             <div><span><small>Books</small><strong>{englishLibraryMaterials.length}</strong></span><span><small>Codes live</small><strong>{bookAccess.length}</strong></span></div>
           </header>
           {message ? <p className="teacher-message corporate-message">{message}</p> : null}
+          <div className="lp-toolbar">
+            <label>Content source<select value={sourceFilter} onChange={event => { setSourceFilter(event.target.value); setCategoryFilter(""); }}><option value="">All sources</option><option>SHSAT Lab</option></select></label>
+            <label>Passage category<select value={categoryFilter} onChange={event => setCategoryFilter(event.target.value)}><option value="">All categories</option>{PASSAGE_CATEGORIES.map(category => <option key={category.value} value={category.value}>{category.label}</option>)}</select></label>
+            <label>Type / genre<select value={genreFilter} onChange={event => setGenreFilter(event.target.value)}><option value="">All types</option>{[...new Set(englishLibraryMaterials.map(material => material.readingFormat))].filter(Boolean).sort().map(genre => <option key={genre}>{genre}</option>)}</select></label>
+            <label>Find passage<input value={librarySearch} onChange={event => setLibrarySearch(event.target.value)} placeholder="Title or author" /></label>
+            <label>Sort by<select value={librarySort} onChange={event => setLibrarySort(event.target.value)}><option value="title">Title</option><option value="category">Passage category</option><option value="questions">Question count</option></select></label>
+            <label>Direction<select value={libraryDirection} onChange={event => setLibraryDirection(event.target.value as "asc" | "desc")}><option value="asc">{librarySort === "questions" ? "Fewest first" : "A–Z"}</option><option value="desc">{librarySort === "questions" ? "Most first" : "Z–A"}</option></select></label>
+            <button onClick={() => { setSourceFilter(""); setCategoryFilter(""); setGenreFilter(""); setLibrarySearch(""); }} type="button">Clear filters</button>
+          </div>
+          {!visibleMaterials.length && <p>No English passages match these filters. Clear filters or change the category.</p>}
           <section className="teacher-library-grid" aria-label="English library books">
-            {englishLibraryMaterials.map((material) => {
+            {visibleMaterials.map((material) => {
               const nextBookId = getLibraryBookId(material);
               const access = accessByBookId.get(nextBookId);
               return (
@@ -238,7 +257,7 @@ export function TeacherLibraryPage() {
                     </span>
                   </AppLink>
                   <div className="teacher-library-card-body">
-                    <span><small>{material.libraryCollection}</small><small>{material.readingFormat}</small></span>
+                    <span><small>English · {material.contentSource || passageCategoryLabel(material.passageCategory)}</small><small>{material.contentSource ? "ELA practice set" : material.readingFormat}</small></span>
                     <AppLink href={`/teacher/library/${encodeURIComponent(nextBookId)}`}><strong>{material.title}</strong><ArrowRight size={15} /></AppLink>
                     <p>{material.questionCount} questions</p>
                     <div className={access ? "is-code-ready" : ""}>
@@ -282,7 +301,7 @@ function TeacherLibraryBookDetail({ access, attempt, isLoading, material, messag
   return (
     <>
       <header className="teacher-library-detail-heading">
-        <div><AppLink href="/teacher/library"><ArrowLeft size={15} /> English library</AppLink><p>{material.libraryCollection} · {material.readingFormat}</p><h1>{material.title}</h1><span>{material.author || "Teacher selection"} · {material.questionCount} questions</span></div>
+        <div><AppLink href="/teacher/library"><ArrowLeft size={15} /> English library</AppLink><p>English · {material.contentSource || passageCategoryLabel(material.passageCategory)} · {material.contentSource ? "ELA practice set" : material.readingFormat}</p><h1>{material.title}</h1><span>{material.author || "Teacher selection"} · {material.questionCount} questions</span></div>
         <div className={access ? "is-code-ready" : ""}>
           <span><KeyRound size={17} /><small>Student access code</small><strong>{access?.accessCode ?? "Not generated"}</strong></span>
           {access ? <button aria-label="Copy student access code" onClick={() => navigator.clipboard.writeText(access.accessCode)} type="button"><Copy size={14} /> Copy</button> : null}
@@ -353,6 +372,7 @@ function TeacherAttemptDetail({ attempt, passageSet }: { attempt: TeacherLibrary
                 return (
                   <article key={response.questionId}>
                     <h4>Question {question?.questionNumber ?? response.questionId}</h4>
+                    {response.questionType && <p><small>Student-selected question type</small><span>{response.questionType}</span></p>}
                     <p><small>Why the chosen answer is incorrect</small><span>{response.whyChosenIncorrect}</span></p>
                     <p><small>Why the correct answer is correct</small><span>{response.whyCorrectAnswerCorrect}</span></p>
                   </article>

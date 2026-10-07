@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import {
   ArrowLeft,
   BarChart3,
@@ -21,19 +21,24 @@ import {
 } from "lucide-react";
 import { getAdvancedPracticePassage } from "../content/advancedPractice";
 import { getExamLibraryPassage } from "../content/exams/passageLibrary";
+import { getBankPassage, getBankSet } from "../content/questionBank";
 import type { ExamPassageSet } from "../content/exams/types";
 import {
-  getStudentLibraryCorrections,
   getStudentLibraryBookAccess,
   getStudentLibraryAttempts,
   saveStudentLibraryAttempt,
-  submitStudentLibraryCorrections,
   unlockLibraryBook,
   type StudentLibraryCorrectionView,
   type StudentLibraryAttempt,
 } from "../lib/api";
 import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
 import { appendStudentPreview } from "../lib/studentPreview";
+import { LibraryQuestionResponse } from "../components/LibraryQuestionResponse";
+import { ExamAnswer, ExamText } from "../components/ExamReviewQuestion";
+import { libraryAnswer, libraryQuestionAnswered } from "../../../server/src/shared/libraryBooks";
+import { libraryCorrectionsHref } from "../lib/correctionNavigation";
+import { navigateTo } from "../lib/navigation";
+import { correctionQuestionTypes } from "../../../server/src/shared/correctionTypes";
 
 type AdvancedTool = "pointer" | "eliminator" | "notepad" | "pencil";
 type ReviewFilter = "all" | "notAnswered" | "bookmarks";
@@ -97,27 +102,13 @@ function StudentAttemptSummary({ attempt, featured = false }: { attempt: Student
   );
 }
 
-function CorrectionEligibilityPopup({ onClose }: { onClose: () => void }) {
-  return (
-    <div className="library-correction-gate-layer" role="presentation">
-      <section aria-labelledby="correction-gate-title" aria-modal="true" className="library-correction-gate-popup" role="dialog">
-        <button aria-label="Close" onClick={onClose} type="button"><X size={17} /></button>
-        <span><Trophy size={24} /></span>
-        <p>Corrections are still locked</p>
-        <h2 id="correction-gate-title">Get a perfect score first</h2>
-        <small>Start another attempt and answer every question correctly. Your first attempt and all previous answers are already saved.</small>
-        <button onClick={onClose} type="button">Keep practicing</button>
-      </section>
-    </div>
-  );
-}
-
-type CorrectionDraft = Record<string, {
+export type CorrectionDraft = Record<string, {
   whyChosenIncorrect: string;
   whyCorrectAnswerCorrect: string;
+    questionType?: string;
 }>;
 
-function StudentCorrectionsPage({
+export function LibraryCorrectionsWorkspace({
   collectionLabel,
   correctionDraft,
   correctionError,
@@ -130,6 +121,7 @@ function StudentCorrectionsPage({
   passageSet,
   studentName,
   view,
+  readOnly = false,
 }: {
   collectionLabel: string;
   correctionDraft: CorrectionDraft;
@@ -143,7 +135,9 @@ function StudentCorrectionsPage({
   passageSet: ExamPassageSet;
   studentName: string;
   view: StudentLibraryCorrectionView | null;
+  readOnly?: boolean;
 }) {
+  const [active, setActive] = useState(0);
   if (isLoading) {
     return <main className="library-corrections-page"><div className="library-corrections-loading" role="status">Loading your first attempt…</div></main>;
   }
@@ -158,16 +152,18 @@ function StudentCorrectionsPage({
   }
 
   const isSubmitted = Boolean(view.correction);
+  const locked = isSubmitted || readOnly;
   const responsesByQuestion = new Map(view.correction?.responses.map((response) => [response.questionId, response]) ?? []);
 
   return (
     <main className="library-corrections-page">
-      <header className="library-corrections-topbar"><button onClick={onBack} type="button"><ArrowLeft size={16} /> Back to results</button><span>{studentName}</span></header>
+      <header className="library-corrections-topbar"><button onClick={onBack} type="button"><ArrowLeft size={16} /> Back to passage</button><span>{studentName}</span></header>
       <section className="library-corrections-hero">
         <span><MessageSquare size={25} /></span>
         <p>{collectionLabel} · {passageSet.passage.title}</p>
         <h1>Corrections</h1>
         <small>Your first-attempt answers are locked. Explain both parts for every question you missed.</small>
+        {readOnly && <p>Student preview · read only</p>}
       </section>
       <div className="library-corrections-layout">
         <aside>
@@ -178,7 +174,8 @@ function StudentCorrectionsPage({
           </div>
         </aside>
         <form className="library-correction-form" onSubmit={onSubmit}>
-          {passageSet.questions.map((question, index) => {
+          <nav className="library-correction-pagination" aria-label="Correction question navigation"><button type="button" disabled={active === 0} onClick={() => setActive(value => value - 1)}>← Previous</button><label>Question<select aria-label="Correction question" value={active} onChange={event => setActive(Number(event.target.value))}>{passageSet.questions.map((question, index) => <option key={question.id} value={index}>{index + 1}</option>)}</select> of {passageSet.questions.length}</label><button type="button" disabled={active >= passageSet.questions.length - 1} onClick={() => setActive(value => value + 1)}>Next →</button></nav>
+          {passageSet.questions.map((question, index) => ({ question, index })).filter(entry => entry.index === active).map(({ question, index }) => {
             const result =
               view.attempt.questions.find((item) => item.questionId === question.id) ??
               view.attempt.questions.find((item) => item.questionNumber === index + 1);
@@ -197,17 +194,19 @@ function StudentCorrectionsPage({
                     return <div className={`${isSelected ? " is-selected" : ""}${isCorrectAnswer ? " is-answer" : ""}`} key={choice.id}><b>{choice.id}</b><span>{renderFormattedText(choice.text)}</span>{isSelected ? <small>Your first answer</small> : null}{isCorrectAnswer ? <small>Correct answer</small> : null}</div>;
                   })}
                 </div>
+                {!["multiple_choice", "transition_drop"].includes(question.type) && <div><p>Your first answer</p><ExamAnswer question={question} answer={libraryAnswer(result.selectedAnswerId)} /><p>Correct answer</p><ExamAnswer question={question} answer={libraryAnswer(result.correctAnswerId)} /></div>}
                 {result.isCorrect ? (
                   <div className="library-correction-congrats"><CheckCircle2 size={20} /><span><strong>Congratulations, you got it correct.</strong><small>No written correction is needed for this question.</small></span></div>
                 ) : (
                   <div className="library-correction-explanations">
+                    <label><span>Question type</span>{locked ? <strong>{savedResponse?.questionType || draft.questionType || "Not recorded for this question"}</strong> : <select required value={draft.questionType || ""} onChange={event => onDraftChange(responseQuestionId, "questionType", event.target.value)}><option value="">Choose a question type</option>{correctionQuestionTypes(passageSet.questions, "english").map(type => <option key={type} value={type}>{type}</option>)}</select>}</label>
                     <label>
                       <span>Why is the answer I chose incorrect?</span>
                       <textarea
                         maxLength={4000}
                         onChange={(event) => onDraftChange(responseQuestionId, "whyChosenIncorrect", event.target.value)}
                         placeholder="Explain the mistake in your first answer…"
-                        readOnly={isSubmitted}
+                        readOnly={locked}
                         required
                         rows={4}
                         value={savedResponse?.whyChosenIncorrect ?? draft.whyChosenIncorrect}
@@ -219,7 +218,7 @@ function StudentCorrectionsPage({
                         maxLength={4000}
                         onChange={(event) => onDraftChange(responseQuestionId, "whyCorrectAnswerCorrect", event.target.value)}
                         placeholder="Use evidence or reasoning to explain the correct answer…"
-                        readOnly={isSubmitted}
+                        readOnly={locked}
                         required
                         rows={4}
                         value={savedResponse?.whyCorrectAnswerCorrect ?? draft.whyCorrectAnswerCorrect}
@@ -231,7 +230,7 @@ function StudentCorrectionsPage({
             );
           })}
           {correctionError ? <p className="library-correction-submit-error" role="alert">{correctionError}</p> : null}
-          {!isSubmitted ? <div className="library-correction-submit"><p>Corrections cannot be edited after submission.</p><button disabled={isSubmitting} type="submit"><Send size={16} /> {isSubmitting ? "Submitting…" : "Submit corrections"}</button></div> : null}
+          {!locked ? <div className="library-correction-submit"><p>Complete every missed question, then submit all corrections. Corrections cannot be edited after submission.</p><button disabled={isSubmitting} type="submit"><Send size={16} /> {isSubmitting ? "Submitting…" : "Submit all corrections"}</button></div> : null}
         </form>
       </div>
     </main>
@@ -259,6 +258,7 @@ function AdvancedExamToolbar({
   reviewFilter,
   selectedAnswers,
   studentName,
+  historyLinks,
 }: {
   activeTool: AdvancedTool;
   bookmarkedQuestionIds: string[];
@@ -280,6 +280,7 @@ function AdvancedExamToolbar({
   reviewFilter: ReviewFilter;
   selectedAnswers: Record<string, string>;
   studentName: string;
+  historyLinks?: ReactNode;
 }) {
   const currentQuestionId = questionIds[currentQuestionIndex];
   const unansweredCount = questionIds.filter((questionId, index) => index <= maxVisitedIndex && !selectedAnswers[questionId]).length;
@@ -407,6 +408,7 @@ function AdvancedExamToolbar({
           </div>
 
           <div className="exam-session-user-tools">
+            {historyLinks}
             <button aria-label="Show timer" className="exam-session-timer-button" type="button"><Clock3 aria-hidden="true" size={16} /></button>
             <span className="exam-session-user-name">{studentName}</span>
             <button aria-label="User menu" className="exam-session-user-button" type="button">
@@ -434,25 +436,19 @@ export function AdvancedPassagePage() {
   const { accessToken, isCheckingSession, previewContext, studentName } = useStudentPortalAccess();
   const isShsatLibraryPassage = window.location.pathname.includes("/study-hall/shsat/library/");
   const bookId = getPassageIdFromPath();
+  const libraryBook = isShsatLibraryPassage ? getExamLibraryPassage(bookId) : undefined;
   const passageEntry = isShsatLibraryPassage
-    ? getExamLibraryPassage(bookId)
+    ? libraryBook
     : getAdvancedPracticePassage(bookId);
   const passageSet = passageEntry?.passageSet;
   const [activeTool, setActiveTool] = useState<AdvancedTool>("pointer");
   const [accessCode, setAccessCode] = useState("");
   const [attempts, setAttempts] = useState<StudentLibraryAttempt[]>([]);
   const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<string[]>([]);
-  const [correctionDraft, setCorrectionDraft] = useState<CorrectionDraft>({});
-  const [correctionError, setCorrectionError] = useState("");
-  const [isCorrectionGateOpen, setIsCorrectionGateOpen] = useState(false);
-  const [correctionView, setCorrectionView] = useState<StudentLibraryCorrectionView | null>(null);
   const [eliminatedChoices, setEliminatedChoices] = useState<Record<string, string[]>>({});
-  const [isCorrectionsOpen, setIsCorrectionsOpen] = useState(false);
-  const [isLoadingCorrections, setIsLoadingCorrections] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [isNotepadOpen, setIsNotepadOpen] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
-  const [isSubmittingCorrections, setIsSubmittingCorrections] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUnansweredModalOpen, setIsUnansweredModalOpen] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(previewContext.isPreview);
@@ -493,16 +489,17 @@ export function AdvancedPassagePage() {
     if (previewContext.isPreview) questionStartedAtRef.current = Date.now();
   }, [previewContext.isPreview]);
 
-  const questions = useMemo(() => passageSet?.questions ?? [], [passageSet]);
+  const questions = passageSet?.questions ?? [];
   const activeQuestion = questions[questionIndex];
+  const isBankSet = Boolean(getBankSet(bookId));
+  const activePassage = (activeQuestion && isBankSet ? getBankPassage(activeQuestion.id) : undefined) ?? (activeQuestion ? libraryBook?.questionPassages[activeQuestion.id] : undefined) ?? passageSet?.passage;
   const questionIds = questions.map((question) => question.id);
   const backHref = appendStudentPreview("/study-hall/shsat/materials?subject=english");
-  const collectionLabel = isShsatLibraryPassage ? "SHSAT Library" : "Advanced Practice";
+  const collectionLabel = isBankSet ? "SHSAT Lab · ELA Practice" : isShsatLibraryPassage ? "SHSAT Library" : "Advanced Practice";
   const firstAttempt = attempts.reduce<StudentLibraryAttempt | null>((first, attempt) => (
     !first || attempt.attemptNumber < first.attemptNumber ? attempt : first
   ), null);
   const canRequestCorrections = Boolean(firstAttempt && firstAttempt.score < firstAttempt.totalQuestions);
-  const hasPerfectScore = attempts.some((attempt) => attempt.score >= attempt.totalQuestions);
 
   function recordCurrentQuestionTime() {
     const question = questions[questionIndex];
@@ -522,7 +519,7 @@ export function AdvancedPassagePage() {
   }
 
   async function handleNext() {
-    if (!activeQuestion || !selectedAnswers[activeQuestion.id]) {
+    if (!activeQuestion || !(libraryBook ? libraryQuestionAnswered(activeQuestion, selectedAnswers[activeQuestion.id] || "") : selectedAnswers[activeQuestion.id])) {
       setIsUnansweredModalOpen(true);
       return;
     }
@@ -594,66 +591,7 @@ export function AdvancedPassagePage() {
     }
   }
 
-  async function openCorrections() {
-    if (!accessToken || previewContext.isPreview) return;
-    if (!hasPerfectScore) {
-      setIsCorrectionGateOpen(true);
-      return;
-    }
-    setIsCorrectionsOpen(true);
-    setIsLoadingCorrections(true);
-    setCorrectionError("");
-    try {
-      const nextView = await getStudentLibraryCorrections(accessToken, bookId);
-      const savedByQuestion = new Map(nextView.correction?.responses.map((response) => [response.questionId, response]) ?? []);
-      setCorrectionView(nextView);
-      setCorrectionDraft(Object.fromEntries(nextView.attempt.questions
-        .filter((question) => !question.isCorrect)
-        .map((question) => {
-          const saved = savedByQuestion.get(question.questionId);
-          return [question.questionId, {
-            whyChosenIncorrect: saved?.whyChosenIncorrect ?? "",
-            whyCorrectAnswerCorrect: saved?.whyCorrectAnswerCorrect ?? "",
-          }];
-        })));
-    } catch (error) {
-      setCorrectionView(null);
-      setCorrectionError(error instanceof Error ? error.message : "Your corrections could not be opened.");
-    } finally {
-      setIsLoadingCorrections(false);
-    }
-  }
-
-  function updateCorrectionDraft(questionId: string, field: keyof CorrectionDraft[string], value: string) {
-    setCorrectionDraft((current) => ({
-      ...current,
-      [questionId]: {
-        whyChosenIncorrect: current[questionId]?.whyChosenIncorrect ?? "",
-        whyCorrectAnswerCorrect: current[questionId]?.whyCorrectAnswerCorrect ?? "",
-        [field]: value,
-      },
-    }));
-  }
-
-  async function handleSubmitCorrections(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!accessToken || !correctionView || correctionView.correction || isSubmittingCorrections) return;
-    setIsSubmittingCorrections(true);
-    setCorrectionError("");
-    try {
-      const responses = correctionView.attempt.questions.filter((question) => !question.isCorrect).map((question) => ({
-        questionId: question.questionId,
-        whyChosenIncorrect: correctionDraft[question.questionId]?.whyChosenIncorrect ?? "",
-        whyCorrectAnswerCorrect: correctionDraft[question.questionId]?.whyCorrectAnswerCorrect ?? "",
-      }));
-      const correction = await submitStudentLibraryCorrections(accessToken, bookId, responses);
-      setCorrectionView((current) => current ? { ...current, correction } : current);
-    } catch (error) {
-      setCorrectionError(error instanceof Error ? error.message : "Your corrections could not be submitted. Try again.");
-    } finally {
-      setIsSubmittingCorrections(false);
-    }
-  }
+  function openCorrections() { navigateTo(libraryCorrectionsHref(window.location.pathname, previewContext)); }
 
   function startAnotherAttempt() {
     setActiveTool("pointer");
@@ -719,25 +657,6 @@ export function AdvancedPassagePage() {
     );
   }
 
-  if (isCorrectionsOpen) {
-    return (
-      <StudentCorrectionsPage
-        collectionLabel={collectionLabel}
-        correctionDraft={correctionDraft}
-        correctionError={correctionError}
-        isLoading={isLoadingCorrections}
-        isSubmitting={isSubmittingCorrections}
-        onBack={() => setIsCorrectionsOpen(false)}
-        onDraftChange={updateCorrectionDraft}
-        onRetry={openCorrections}
-        onSubmit={handleSubmitCorrections}
-        passageSet={passageSet}
-        studentName={studentName}
-        view={correctionView}
-      />
-    );
-  }
-
   if (!isUnlocked) {
     return (
       <main className="library-access-page">
@@ -766,6 +685,7 @@ export function AdvancedPassagePage() {
                 {isUnlocking ? "Checking code…" : "Unlock book"}
               </button>
             </form>
+            {libraryBook?.isCombined && <nav className="library-version-history" aria-label="Earlier version history"><h2>Earlier version work</h2>{libraryBook.versions.map(version => <a key={version.id} href={appendStudentPreview(`/study-hall/shsat/library/${version.id}`, previewContext)}>{version.label} · original version</a>)}</nav>}
           </div>
           <aside className="library-access-history">
             <header><BarChart3 size={18} /><div><small>Your history</small><h2>{attempts.length ? `${attempts.length} completed ${attempts.length === 1 ? "attempt" : "attempts"}` : "No attempts yet"}</h2></div></header>
@@ -778,7 +698,6 @@ export function AdvancedPassagePage() {
             {canRequestCorrections ? <button className="library-open-corrections" onClick={openCorrections} type="button"><MessageSquare size={16} /> Corrections</button> : null}
           </aside>
         </section>
-        {isCorrectionGateOpen ? <CorrectionEligibilityPopup onClose={() => setIsCorrectionGateOpen(false)} /> : null}
       </main>
     );
   }
@@ -810,6 +729,7 @@ export function AdvancedPassagePage() {
       reviewFilter={reviewFilter}
       selectedAnswers={selectedAnswers}
       studentName={studentName}
+      historyLinks={libraryBook?.isCombined && <details className="library-toolbar-history"><summary>Earlier version work</summary><nav aria-label="Earlier version history">{libraryBook.versions.map(version => <a key={version.id} href={appendStudentPreview(`/study-hall/shsat/library/${version.id}`, previewContext)}>{version.label} · original version</a>)}</nav></details>}
     />
   );
 
@@ -830,6 +750,7 @@ export function AdvancedPassagePage() {
           <div className="library-finish-layout">
             <div>
               <StudentAttemptSummary attempt={resultAttempt} featured />
+              {isBankSet && <section className="bank-attempt-solutions"><h2>Answers & explanations</h2>{questions.map((q, index) => <details key={q.id}><summary>Question {index + 1} · Correct answer {q.correctChoiceId}</summary><h3>{q.prompt}</h3><p style={{ whiteSpace: "pre-wrap" }}>{getBankPassage(q.id)?.lines.map(line => line.text).join("\n\n")}</p><p style={{ whiteSpace: "pre-wrap" }}>{q.explanation}</p></details>)}</section>}
               <div className="library-finish-actions">
                 <button onClick={startAnotherAttempt} type="button"><RotateCcw size={16} /> Attempt again</button>
                 {canRequestCorrections ? <button className="is-corrections" onClick={openCorrections} type="button"><MessageSquare size={16} /> Corrections</button> : null}
@@ -846,7 +767,6 @@ export function AdvancedPassagePage() {
               ))}
             </aside>
           </div>
-          {isCorrectionGateOpen ? <CorrectionEligibilityPopup onClose={() => setIsCorrectionGateOpen(false)} /> : null}
         </main>
       );
     }
@@ -871,13 +791,14 @@ export function AdvancedPassagePage() {
       {toolbar}
       <section className="exam-question-document" aria-labelledby={`advanced-question-${currentQuestionId}`}>
         <div className="exam-question-passage">
-          <div className="exam-question-passage-scroll is-prose" aria-label={passageSet.passage.title}>
-            {passageSet.passage.lines.filter((line) => line.kind !== "image").map((line, index) => {
+          <div className={`exam-question-passage-scroll ${activePassage?.format === "poem" ? "is-poem" : "is-prose"}`} aria-label={activePassage?.title}>
+            {isBankSet && <h2>{activePassage?.title}</h2>}
+            {activePassage?.lines.filter((line) => line.kind !== "image").map((line, index) => {
               if (!line.text) {
                 return <p aria-hidden="true" className="exam-prose-line is-spacer" key={`spacer-${index}`} />;
               }
 
-              const isFullWidth = Boolean(line.kind) || line.align === "center";
+              const isFullWidth = isBankSet || Boolean(line.kind) || line.align === "center";
               const className = [
                 "exam-prose-line",
                 line.kind ? `is-${line.kind}` : "",
@@ -885,13 +806,13 @@ export function AdvancedPassagePage() {
               ].filter(Boolean).join(" ");
 
               return (
-                <p className={className} key={`${line.lineNumber}-${index}`}>
-                  {isFullWidth ? <span>{line.text}</span> : <><span>{line.lineNumber}</span><span>{line.text}</span></>}
+                <p className={className} style={isBankSet ? { display: "block", whiteSpace: "pre-wrap", marginBottom: activePassage?.format === "poem" ? 6 : undefined } : undefined} key={`${line.lineNumber}-${index}`}>
+                  {isFullWidth ? <span>{isBankSet ? renderFormattedText(line.text) : line.text}</span> : <><span>{line.lineNumber}</span><span>{line.text}</span></>}
                 </p>
               );
             })}
-            {passageSet.passage.sourceNote ? <p className="exam-passage-source-note">{passageSet.passage.sourceNote}</p> : null}
-            {passageSet.passage.lines
+            {activePassage?.sourceNote ? <p className="exam-passage-source-note">{activePassage.sourceNote}</p> : null}
+            {activePassage?.lines
               .filter((line) => line.kind === "image" && line.image)
               .map((line, index) =>
                 line.image ? (
@@ -905,8 +826,9 @@ export function AdvancedPassagePage() {
         </div>
 
         <form className="exam-question-panel" onSubmit={(event) => event.preventDefault()}>
-          <h1 id={`advanced-question-${currentQuestionId}`}>{renderFormattedText(activeQuestion.prompt)}</h1>
-          <div className="exam-choice-list">
+          <h1 id={`advanced-question-${currentQuestionId}`}>{libraryBook ? <ExamText text={activeQuestion.prompt} html={activeQuestion.promptHtml} /> : renderFormattedText(activeQuestion.prompt)}</h1>
+          {isBankSet && activeQuestion.image && <figure><img style={{ maxWidth: "100%" }} src={activeQuestion.image.src} alt={activeQuestion.image.alt} /></figure>}
+          {libraryBook ? <LibraryQuestionResponse question={activeQuestion} value={selectedAnswers[currentQuestionId] || ""} onChange={value => setSelectedAnswers(current => ({ ...current, [currentQuestionId]: value }))} /> : <div className="exam-choice-list">
             {activeQuestion.choices?.map((choice) => (
               <label
                 className={`exam-choice ${currentEliminatedChoices.includes(choice.id) ? "is-eliminated" : ""}`}
@@ -929,7 +851,7 @@ export function AdvancedPassagePage() {
                 ) : null}
               </label>
             ))}
-          </div>
+          </div>}
         </form>
       </section>
 

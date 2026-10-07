@@ -130,6 +130,8 @@ function createFallbackExamContent(assessment: AssessmentContentSource): ExamCon
             "Read the text and answer the related questions. Base your answers only on the content within the text.",
         },
         passage: createPlainTextPassage({
+          passageCategory: firstPassage?.passageCategory,
+          versionLabel: firstPassage?.versionLabel,
           id: firstPassage?.id || "passage-1",
           text: firstPassage?.text || "",
           title: firstPassage?.title || "Untitled Passage",

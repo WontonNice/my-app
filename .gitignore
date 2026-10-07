@@ -6,3 +6,6 @@ dist/
 **/.env
 **/.env.*
 !.env.example
+
+# Private document import review drafts (published source remains versioned).
+tools/.content-drafts/

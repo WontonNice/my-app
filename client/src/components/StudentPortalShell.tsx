@@ -8,6 +8,7 @@ import {
   Clock3,
   Home,
   Library,
+  LayoutDashboard,
   LogOut,
   Menu,
   PanelLeftClose,
@@ -22,7 +23,7 @@ import { AppLink } from "./AppLink";
 import { AccountSwitcher } from "./CorporateDashboardShell";
 
 type StudentPortalShellProps = {
-  activeId: "assessments" | "assignments" | "home" | "materials" | "results";
+  activeId: "assessments" | "assignments" | "home" | "materials" | "results" | "boards";
   children: ReactNode;
   onSignOut: () => void;
   previewContext: StudentPreviewContext;
@@ -165,6 +166,7 @@ export function StudentPortalShell({
         <nav aria-label="Student portal navigation">
           <AppLink className={activeId === "home" ? "is-active" : undefined} href={homeHref} onClick={closeMobileNavigation}><Home size={18} /><span>Home</span></AppLink>
           <AppLink className={activeId === "assignments" ? "is-active" : undefined} href={assignmentsHref} onClick={closeMobileNavigation}><ClipboardList size={18} /><span>Assignments</span><em>3</em></AppLink>
+          <AppLink className={activeId === "boards" ? "is-active" : undefined} href={appendStudentPreview("/study-hall/shsat/boards", previewContext)} onClick={closeMobileNavigation}><LayoutDashboard size={18} /><span>Boards</span></AppLink>
           <AppLink href={calendarHref} onClick={closeMobileNavigation}><CalendarDays size={18} /><span>Calendar</span></AppLink>
           <button
             aria-expanded={isMaterialsExpanded}

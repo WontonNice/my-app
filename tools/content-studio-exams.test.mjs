@@ -17,19 +17,93 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     await mkdir(join(fixture, 'server/data'), { recursive: true });
     await mkdir(join(fixture, 'tools'), { recursive: true });
     await cp(join(root, 'client/src/content'), join(fixture, 'client/src/content'), { recursive: true });
+    await cp(join(root, 'server/src/shared'), join(fixture, 'server/src/shared'), { recursive: true });
+    await mkdir(join(fixture, 'client/src/lib'), { recursive: true });
+    await cp(join(root, 'client/src/lib/studentMaterials.ts'), join(fixture, 'client/src/lib/studentMaterials.ts'));
     await cp(join(root, 'server/data/assessments.json'), join(fixture, 'server/data/assessments.json'));
+    await writeFile(join(fixture, 'server/data/question-bank.json'), JSON.stringify({ revision: 0, questions: [], sets: [] }));
     await cp(join(toolsRoot, 'practice-topics.json'), join(fixture, 'tools/practice-topics.json'));
     await cp(join(toolsRoot, 'content-topics.json'), join(fixture, 'tools/content-topics.json'));
     await cp(join(toolsRoot, 'content-studio-glossary.js'), join(fixture, 'tools/content-studio-glossary.js'));
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8'))
       .replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(fixture)};`)
-      .split('if (process.argv.includes("--validate"))')[0] + '\nexport { deletePassage, handleRequest, getState, previewPassageImport, savePassage, saveStandaloneItem, saveTest };\n';
+      .split('if (process.argv.includes("--validate"))')[0] + '\nexport { bulkPassageCategory, deletePassage, handleRequest, getState, previewPassageImport, savePassage, saveAdvancedPassage, saveStandaloneItem, saveTest };\n';
     await writeFile(modulePath, source);
     const studio = await import(pathToFileURL(modulePath).href);
     server = createServer(studio.handleRequest);
     await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
     const url = `http://127.0.0.1:${server.address().port}/api/exams`;
     const state = await studio.getState();
+    const bankUrl = `http://127.0.0.1:${server.address().port}/api/question-bank`;
+    const postBank = (path, body, token = state.editToken) => fetch(bankUrl + path, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-editor-token': token }, body: JSON.stringify(body) });
+    const captured = { subject: 'English', source: 'SHSAT Lab', sourceUrl: 'https://www.shsatlab.com/units/unit-7/practice', sourceUnit: 7, sourceTopic: 'Evidence & Support', difficulty: 'easy', prompt: 'Synthetic fixture: which evidence supports the claim?', choices: ['A','B','C','D'].map(id => ({ id, text: `Choice ${id}` })), correctChoiceId: 'A', explanation: 'A supports the claim.', passage: { title: 'Synthetic fixture', text: 'A first paragraph.\n\nA second paragraph.', format: 'prose' } };
+    const captureBody = { revision: 0, capture: { format: 'nathan-tutors-shsatlab-ela-v1', questions: [captured] } };
+    assert.equal((await postBank('/import', captureBody, 'invalid')).status, 403);
+    const imported = await postBank('/import', captureBody); assert.equal(imported.status, 201);
+    const importedBank = (await imported.json()).bank; assert.equal(importedBank.questions[0].status, 'draft');
+    assert.equal((await postBank('/import', captureBody)).status, 400); // Stale revision.
+    assert.equal((await postBank('/publish', { revision: 1, id: importedBank.questions[0].id, question: captured })).status, 400);
+    const published = await postBank('/publish', { revision: 1, id: importedBank.questions[0].id, question: captured, verified: true }); assert.equal(published.status, 201);
+    const publishedBank = (await published.json()).bank;
+    assert.equal((await postBank('/sets', { revision: 2, title: 'Fixture set', questionIds: [publishedBank.questions[0].id] })).status, 201);
+    assert.equal((await fetch(bankUrl).then(r => r.json())).sets.length, 1);
+    // Bulk publication uses a single revision, preserves published sets, and keeps
+    // incomplete / missing-visual items as drafts rather than inventing content.
+    const beforeBulk = await fetch(bankUrl).then(r => r.json());
+    const bulkCaptures = [
+      { ...captured, prompt: 'Bulk ready one' },
+      { ...captured, prompt: 'Bulk no explanation', explanation: '' },
+      { ...captured, prompt: 'Bulk unknown level', difficulty: 'unknown' },
+      { ...captured, prompt: 'Bulk missing visual file', visuals: ['Required figure'], visualImage: { src: '/exam-images/bulk-missing.png', alt: 'Required figure' } },
+      { ...captured, prompt: 'Bulk ready visual', visuals: ['Required figure'], visualImage: { src: '/exam-images/bulk-present.svg', alt: 'Required figure' } },
+    ];
+    await mkdir(join(fixture, 'client/public/exam-images'), { recursive: true });
+    await writeFile(join(fixture, 'client/public/exam-images/bulk-present.svg'), '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><circle cx="5" cy="5" r="3"/></svg>');
+    const bulkImport = await postBank('/import', { revision: beforeBulk.revision, capture: { format: 'nathan-tutors-shsatlab-ela-v1', questions: bulkCaptures } });
+    assert.equal(bulkImport.status, 201); const bulkBank = (await bulkImport.json()).bank;
+    const bulkBody = { revision: bulkBank.revision, questionIds: bulkBank.questions.filter(q => q.status === 'draft').map(q => q.id), verified: true };
+    assert.equal((await postBank('/publish-all', bulkBody, 'invalid')).status, 403);
+    assert.equal((await fetch(bankUrl + '/publish-all', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-editor-token': state.editToken, origin: 'https://untrusted.example' }, body: JSON.stringify(bulkBody) })).status, 403);
+    assert.equal((await postBank('/publish-all', { ...bulkBody, verified: false })).status, 400);
+    assert.equal((await postBank('/publish-all', { ...bulkBody, revision: bulkBank.revision - 1 })).status, 400);
+    assert.equal((await postBank('/publish-all', { ...bulkBody, questionIds: [publishedBank.questions[0].id, bulkBody.questionIds[0]] })).status, 400);
+    const bulkResponse = await postBank('/publish-all', bulkBody); assert.equal(bulkResponse.status, 201);
+    const bulkResult = await bulkResponse.json(); assert.equal(bulkResult.summary.published, 2); assert.equal(bulkResult.summary.skipped.length, 3);
+    assert.ok(bulkResult.summary.skipped.some(item => /file not found/.test(item.reason)));
+    assert.equal(bulkResult.bank.revision, bulkBank.revision + 1);
+    assert.deepEqual(bulkResult.bank.sets, beforeBulk.sets); assert.deepEqual(bulkResult.bank.questions[0], beforeBulk.questions[0]);
+    assert.equal(bulkResult.bank.questions.find(q => q.prompt === 'Bulk no explanation').status, 'draft');
+    assert.equal(bulkResult.bank.questions.find(q => q.prompt === 'Bulk ready visual').status, 'published');
+    assert.deepEqual(state.passageCategories.map(category => category.value), ['official_handbook', 'prestige', 'miscellaneous']);
+    assert.ok(state.passages.every(passage => state.passageCategories.some(category => category.value === passage.passageCategory)));
+    for (const passage of state.passages) {
+      const authored = await readFile(join(fixture, 'client/src/content/exams/passageSets', passage.fileName), 'utf8');
+      const category = authored.match(/passageCategory:\s*["']([^"']+)["']/)?.[1];
+      assert.equal(passage.passageCategory, category || 'miscellaneous');
+    }
+    const categoryTargets = state.passages.slice(0, 2);
+    const categoryItems = categoryTargets.map(passage => ({ id: passage.id, sourceHash: passage.sourceHash }));
+    const originalSources = await Promise.all(categoryTargets.map(passage => readFile(join(fixture, 'client/src/content/exams/passageSets', passage.fileName), 'utf8')));
+    await assert.rejects(studio.bulkPassageCategory({ mode: 'exam', passageCategory: 'prestige', items: [categoryItems[0], { ...categoryItems[1], sourceHash: 'stale' }] }), /changed/);
+    assert.deepEqual(await Promise.all(categoryTargets.map(passage => readFile(join(fixture, 'client/src/content/exams/passageSets', passage.fileName), 'utf8'))), originalSources);
+    const categoryUrl = `http://127.0.0.1:${server.address().port}/api/passages/category`;
+    assert.equal((await fetch(categoryUrl, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-editor-token': 'invalid' }, body: '{}' })).status, 403);
+    await studio.bulkPassageCategory({ mode: 'exam', passageCategory: 'official_handbook', items: categoryItems });
+    const afterBulk = await studio.getState();
+    for (const original of categoryTargets) {
+      const reopened = afterBulk.passages.find(passage => passage.id === original.id);
+      assert.equal(reopened.passageCategory, 'official_handbook');
+      assert.equal(reopened.text, original.text);
+      assert.deepEqual(reopened.questions, original.questions);
+    }
+    const advancedBefore = afterBulk.advancedPassages[0];
+    const advancedSaved = await studio.saveAdvancedPassage({ ...advancedBefore, passageCategory: 'prestige' });
+    assert.equal(advancedSaved.passageCategory, 'prestige');
+    const afterAdvanced = await studio.getState();
+    assert.equal(afterAdvanced.advancedPassages.find(passage => passage.id === advancedBefore.id).passageCategory, 'prestige');
+    const exportedCatalog = JSON.parse(await readFile(join(fixture, 'server/data/learning-catalog.json'), 'utf8'));
+    assert.equal(exportedCatalog.find(content => content.aliases.includes(advancedBefore.id)).passageCategory, 'prestige');
+    await assert.rejects(studio.savePassage({ ...categoryTargets[0], passageCategory: 'poetry' }), /valid Passage Category/);
     const originalPartBItem = state.standaloneItems[0];
     const partBVersionLabel = `Part B Form ${Date.now()}`;
     const savedPartBItem = await studio.saveStandaloneItem({
@@ -113,11 +187,11 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.equal(readerPreview.passage.questions[6].correctChoiceId, 'D');
     assert.equal(readerPreview.passage.questions[6].explanation, 'Reader explanation 16');
     assert.match(readerPreview.passage.teacherSource, /original questions 10, 11, 12, 13, 14, 15, 16/);
-    assert.match(readerPreview.warnings.join('\n'), /Answers were copied from the SAT Crash Course preview/);
+    assert.match(readerPreview.warnings.join('\n'), /Verify the complete source transcription/);
     assert.doesNotMatch(readerPreview.warnings.join('\n'), /ChatGPT may have solved/);
     assert.equal(passageImport.format, 'nathan-tutors-official-passage-v1');
     assert.equal(passageImport.passage.id, 'importer-fixture-passage-2020-2021-form-b');
-    assert.equal(passageImport.passage.questions[0].id, 'importer-fixture-passage-2020-2021-form-b-1');
+    assert.equal(passageImport.passage.questions[0].id, 'passage-1');
     assert.match(passageImport.passage.questions[0].explanation, /B is correct/);
     assert.doesNotMatch(passageImport.warnings.join('\n'), /no answer explanation/);
     assert.match(passageImport.warnings.join('\n'), /inferred because the PDF had no answer key/);
@@ -132,19 +206,9 @@ test('new exams are locked, registered, editable, unique, and protected by edito
         },
       }),
     });
-    assert.match(missingExplanationImport.warnings.join('\n'), /1 question has no answer explanation/);
-    await assert.rejects(
-      studio.previewPassageImport({
-        source: JSON.stringify({
-          ...passageImportDocument,
-          passage: {
-            ...passageImportDocument.passage,
-            questions: passageImportDocument.passage.questions.map(question => ({ ...question, topic: 'Invented Topic' })),
-          },
-        }),
-      }),
-      /not allowed for Reading Comprehension/,
-    );
+    assert.match(missingExplanationImport.warnings.join('\n'), /No source explanation supplied/);
+    const unknownTopic = await studio.previewPassageImport({ source: JSON.stringify({ ...passageImportDocument, passage: { ...passageImportDocument.passage, questions: passageImportDocument.passage.questions.map(q => ({ ...q, topic: "Invented Topic" })) } }) });
+    assert.match(unknownTopic.warnings.join('\n'), /Choose a supported topic/);
     const revisingImportDocument = {
       ...passageImportDocument,
       passage: {
@@ -163,33 +227,8 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     });
     assert.equal(revisingPassageImport.passage.section, 'revising_editing_a');
     assert.equal(revisingPassageImport.passage.questions[0].topic, 'Sentence Structure');
-    await assert.rejects(
-      studio.previewPassageImport({
-        source: JSON.stringify({
-          ...revisingImportDocument,
-          passage: {
-            ...revisingImportDocument.passage,
-            questions: revisingImportDocument.passage.questions.map(question => ({
-              ...question,
-              topic: 'Inference',
-            })),
-          },
-        }),
-      }),
-      /not allowed for Revising\/Editing/,
-    );
-    await assert.rejects(
-      studio.previewPassageImport({
-        source: JSON.stringify({
-          ...passageImportDocument,
-          passage: {
-            ...passageImportDocument.passage,
-            questions: passageImportDocument.passage.questions.map(question => ({ ...question, topic: 'Sentence Structure' })),
-          },
-        }),
-      }),
-      /not allowed for Reading Comprehension/,
-    );
+    const crossSection = await studio.previewPassageImport({ source: JSON.stringify({ ...revisingImportDocument, passage: { ...revisingImportDocument.passage, questions: revisingImportDocument.passage.questions.map(q => ({ ...q, topic: "Inference" })) } }) });
+    assert.match(crossSection.warnings.join('\n'), /Choose a supported topic/);
     const exported = JSON.parse(await readFile(join(fixture, 'server/data/exam-content.json'), 'utf8'));
     assert.equal(exported[payload.assessment.id].passageSets.length, 0);
     const originalPassage = refreshed.passages.find(passage => passage.title === 'A Miracle Mile') || refreshed.passages[0];
@@ -221,6 +260,7 @@ test('new exams are locked, registered, editable, unique, and protected by edito
         topic: 'Sentence Structure',
       })),
       section: 'revising_editing_a',
+      passageCategory: 'prestige',
       sourceHash: '',
       teacherSource: 'Teacher archive, practice set 4, page 18',
       versionLabel,
@@ -237,6 +277,10 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     const reopenedVersion = (await studio.getState()).passages.find(passage => passage.id === version.id);
     assert.equal(reopenedVersion.richText, glossaryHtml);
     assert.equal(reopenedVersion.text, 'First serial.\n\nSecond serial.');
+    assert.equal(reopenedVersion.passageCategory, 'prestige');
+    const editedVersion = await studio.savePassage({ ...reopenedVersion, passageCategory: 'official_handbook' });
+    assert.equal(editedVersion.passageCategory, 'official_handbook');
+    assert.equal((await studio.getState()).passages.find(passage => passage.id === version.id).passageCategory, 'official_handbook');
     assert.equal((reopenedVersion.richText.match(/data-glossary-definition/g) || []).length, 1);
     const seededWinterWheat = refreshed.passages.find(passage => passage.id === 'winter-wheat');
     assert.match(seededWinterWheat.richText, /data-glossary-definition="story published in short segments at regular intervals"/);
@@ -295,7 +339,7 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.deepEqual(saved.tests.find(item => item.assessmentId === payload.assessment.id).readingPassageIds, [version.id]);
     assert.equal(saved.assessments.find(item => item.id === payload.assessment.id).passages[0].versionLabel, versionLabel);
     await assert.rejects(
-      studio.deletePassage({ id: version.id, sourceHash: version.sourceHash }),
+      studio.deletePassage({ id: version.id, sourceHash: editedVersion.sourceHash }),
       /Remove it from that exam before deleting it/,
     );
   } finally {

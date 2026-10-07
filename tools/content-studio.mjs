@@ -1,13 +1,18 @@
 import { createHash, randomBytes } from "node:crypto";
 import { createServer } from "node:http";
-import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rename, rm, writeFile } from "node:fs/promises";
 import { dirname, extname, join, relative, resolve } from "node:path";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { gunzipSync, gzipSync } from "node:zlib";
 import ts from "typescript";
+import documentImport from "./document-import.cjs";
+import { documentDraftStore, publicationContent } from "./document-drafts.mjs";
 import examExporter from "./export-exam-content.cjs";
+import learningExporter from "./export-learning-catalog.cjs";
+import { readBank, mutateBank, importCaptures, publishQuestion, publishQuestions, createBankSet, labTopics } from "./question-bank.mjs";
 import { createGlossaryRichText } from "./content-studio-glossary.js";
+import { passageCategories, normalizePassageCategory as normalizeCategory, patchPassageCategory } from "./passage-category-editor.mjs";
 
 const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const passageSetsRoot = join(workspaceRoot, "client", "src", "content", "exams", "passageSets");
@@ -52,6 +57,9 @@ const isCodespaces = process.env.CODESPACES === "true";
 const editToken = randomBytes(24).toString("hex");
 const passageFormats = ["prose", "poem", "sentence_prose"];
 const passageTypes = ["informational", "literary", "poem", "long_reading"];
+function normalizePassageCategory(value) {
+  try { return normalizeCategory(value); } catch (error) { throw new EditorError(400, error.message); }
+}
 const examPassageSections = ["reading", "revising_editing_a"];
 const defaultTopics = [
   "Central Idea & Theme",
@@ -88,7 +96,9 @@ const mathTopics = [
 const advancedGenres = ["Fiction", "History", "Science", "Social Science"];
 const advancedTones = ["blue", "coral", "emerald", "gold"];
 const mathImportFormat = "nathan-tutors-math-question-v1";
-const passageImportFormat = "nathan-tutors-official-passage-v1";
+const passageImportFormat = documentImport.format;
+const documentDrafts = documentDraftStore(workspaceRoot, sanitizeDocumentDraft);
+const importTaxonomy = () => ({ reading: topicsForPassageSection("reading"), revising_editing_a: topicsForPassageSection("revising_editing_a"), math: mathTopics });
 const practiceDifficulties = ["easy", "medium", "hard", "elite"];
 const defaultPracticeTopics = [
   {
@@ -531,7 +541,9 @@ async function parsePassageFile(filePath) {
   }
   const formatterName = ts.isIdentifier(passageExpression.expression) ? passageExpression.expression.text : "";
   const format =
-    formatterName === "createPlainTextPassage"
+    formatterName === "createSourcePassage"
+      ? String(valueFromNode(passageExpression.arguments[0], environment)?.format || "prose")
+      : formatterName === "createPlainTextPassage"
       ? "poem"
       : formatterName === "createSentenceNumberedPassage"
         ? "sentence_prose"
@@ -587,6 +599,7 @@ async function parsePassageFile(filePath) {
         : format === "poem"
           ? "poem"
           : "informational",
+    passageCategory: normalizePassageCategory(passageInput.passageCategory),
     questions,
     richText: typeof passageInput.richText === "string" ? passageInput.richText :
       Array.isArray(passageInput.glossary) ? createGlossaryRichText(String(passageInput.text || ""), passageInput.glossary, format) : "",
@@ -594,6 +607,8 @@ async function parsePassageFile(filePath) {
     sourceNote: typeof passageInput.sourceNote === "string" ? passageInput.sourceNote : "",
     section,
     teacherSource: typeof passageInput.teacherSource === "string" ? passageInput.teacherSource : "",
+    preserveSourceLayout: passageInput.preserveSourceLayout === true,
+    images: passageInput.images || [],
     text: typeof passageInput.text === "string" ? passageInput.text : "",
     title: typeof passageInput.title === "string" ? passageInput.title : "",
     versionLabel: typeof passageInput.versionLabel === "string" ? passageInput.versionLabel : "",
@@ -708,6 +723,7 @@ async function parseAdvancedPassageFile(filePath) {
           : String(readValue(exported.initializer, "genre") ?? "") === "Fiction"
             ? "literary"
             : "informational",
+    passageCategory: normalizePassageCategory(passageInput.passageCategory),
     questions,
     richText: typeof passageInput.richText === "string" ? passageInput.richText : "",
     sourceHash: hashSource(source),
@@ -788,10 +804,10 @@ async function listMathSections() {
 }
 
 function normalizeChoice(choice, index) {
-  const id = String.fromCharCode(65 + index);
-  const text = requiredText(choice?.text, `Answer ${id}`);
+  const id = String(choice?.id || String.fromCharCode(65 + index));
+  const text = choice?.image ? String(choice?.text || "") : requiredText(choice?.text, `Answer ${id}`, { preserve: true });
   const html = sanitizeInlineRichText(choice?.html);
-  return { id, ...(html ? { html } : {}), text };
+  return { id, ...(html ? { html } : {}), ...(choice?.image ? { image: normalizePassageImage(choice.image, `Answer ${id}`) } : {}), ...(choice?.math ? { math: choice.math } : {}), text };
 }
 
 function normalizeQuestion(question, passageId, index) {
@@ -804,7 +820,7 @@ function normalizeQuestion(question, passageId, index) {
   }
   const placeholderId = /^passage-(\d+)$/.exec(id);
   if (placeholderId && passageId !== "passage") id = `${passageId}-${placeholderId[1]}`;
-  const explanation = typeof question.explanation === "string" ? question.explanation.trim() : "";
+  const explanation = typeof question.explanation === "string" ? question.explanation : "";
   const explanationHtml = sanitizeRichText(question.explanationHtml);
   const promptHtml = sanitizeInlineRichText(question.promptHtml);
   const baseQuestion = {
@@ -812,7 +828,10 @@ function normalizeQuestion(question, passageId, index) {
     ...(explanation ? { explanation } : {}),
     ...(explanationHtml ? { explanationHtml } : {}),
     points: Number.isFinite(Number(question.points)) ? Math.max(1, Number(question.points)) : 1,
-    prompt: requiredText(question.prompt, `Question ${index + 1}`),
+    prompt: requiredText(question.prompt, `Question ${index + 1}`, { preserve: true }),
+    ...(question.instructions ? { instructions: question.instructions } : {}),
+    ...(question.stimulus ? { stimulus: question.stimulus } : {}),
+    ...(question.image ? { image: normalizePassageImage(question.image, `Question ${index + 1}`) } : {}),
     ...(promptHtml ? { promptHtml } : {}),
     topic: requiredText(question.topic, `Question ${index + 1} topic`),
   };
@@ -822,20 +841,21 @@ function normalizeQuestion(question, passageId, index) {
     question.type === "multi_select" ||
     question.type === "transition_drop"
   ) {
-    const allowedChoiceCounts = question.type === "multi_select" ? [4, 5] : [4];
+    const allowedChoiceCounts = [2, 3, 4, 5, 6, 7, 8];
     if (!Array.isArray(question.choices) || !allowedChoiceCounts.includes(question.choices.length)) {
       throw new EditorError(
         400,
         question.type === "multi_select"
-          ? `Question ${index + 1} must have four or five answer choices.`
-          : `Question ${index + 1} must have exactly four answer choices.`,
+          ? `Question ${index + 1} must have two to eight answer choices.`
+          : `Question ${index + 1} must have two to eight answer choices.`,
       );
     }
     const choices = question.choices.map(normalizeChoice);
+    if (new Set(choices.map(c => c.id)).size !== choices.length) throw new EditorError(400, "Choice IDs must be unique.");
     if (question.type === "multiple_choice" || question.type === "transition_drop") {
-      const correctChoiceId = requiredText(question.correctChoiceId, `Question ${index + 1} correct answer`).toUpperCase();
-      if (!["A", "B", "C", "D"].includes(correctChoiceId)) {
-        throw new EditorError(400, `Question ${index + 1} correct answer must be A, B, C, or D.`);
+      const correctChoiceId = requiredText(question.correctChoiceId, `Question ${index + 1} correct answer`);
+      if (!choices.some(choice => choice.id === correctChoiceId)) {
+        throw new EditorError(400, `Question ${index + 1} correct answer must refer to an included choice.`);
       }
       if (question.type === "transition_drop") {
         const transitionBlankBefore =
@@ -868,7 +888,7 @@ function normalizeQuestion(question, passageId, index) {
     }
 
     const correctChoiceIds = Array.isArray(question.correctChoiceIds)
-      ? Array.from(new Set(question.correctChoiceIds.map((choiceId) => String(choiceId).toUpperCase())))
+      ? Array.from(new Set(question.correctChoiceIds.map((choiceId) => String(choiceId))))
       : [];
     const availableChoiceIds = new Set(choices.map((choice) => choice.id));
     if (
@@ -1022,7 +1042,13 @@ function normalizeQuestion(question, passageId, index) {
     };
   }
 
-  return question;
+  if (["short_response", "numeric_entry"].includes(question.type)) {
+    const correctTextAnswers = Array.isArray(question.correctTextAnswers) ? question.correctTextAnswers.filter(a => typeof a === "string" && a.trim()) : [];
+    if (!correctTextAnswers.length) throw new EditorError(400, `Question ${index + 1} needs an accepted answer.`);
+    return { ...baseQuestion, type: question.type, correctTextAnswers, ...(question.entryLayout ? { entryLayout: question.entryLayout } : {}) };
+  }
+  if (question.type === "essay") return { ...baseQuestion, type: "essay" };
+  throw new EditorError(400, `Unsupported passage response type: ${question.type}.`);
 }
 
 function normalizePassageImage(image, label) {
@@ -1127,6 +1153,7 @@ function normalizePassage(input, { requireExamSection = false } = {}) {
     image: normalizePassageImage(input.image, "Passage image"),
     label: typeof input.label === "string" ? input.label.trim() : "",
     passageSetId,
+    passageCategory: normalizePassageCategory(input.passageCategory),
     passageType,
     questions,
     richText: sanitizeRichText(input.richText),
@@ -1134,7 +1161,9 @@ function normalizePassage(input, { requireExamSection = false } = {}) {
     sourceNote: typeof input.sourceNote === "string" ? input.sourceNote.trim() : "",
     ...(requireExamSection ? { section } : {}),
     teacherSource,
-    text: requiredText(input.text, "Passage text", { preserve: true }),
+    text: input.preserveSourceLayout && input.text === "" ? "" : requiredText(input.text, "Passage text", { preserve: true }),
+    preserveSourceLayout: input.preserveSourceLayout === true,
+    images: Array.isArray(input.images) ? input.images.map(image => normalizePassageImage(image, "Source visual")) : [],
     title,
     versionLabel,
   };
@@ -1142,7 +1171,7 @@ function normalizePassage(input, { requireExamSection = false } = {}) {
 
 function buildPassageSource(passage) {
   const formatter =
-    passage.format === "poem"
+    passage.preserveSourceLayout ? "createSourcePassage" : passage.format === "poem"
       ? "createPlainTextPassage"
       : passage.format === "sentence_prose"
         ? "createSentenceNumberedPassage"
@@ -1151,12 +1180,14 @@ function buildPassageSource(passage) {
   const questionsName = identifierFrom(passage.id, "Questions");
   const passageOptions = [
     `    id: ${quote(passage.id)},`,
+    ...(passage.preserveSourceLayout ? [`    preserveSourceLayout: true,`, `    format: ${quote(passage.format)},`, `    images: ${JSON.stringify(passage.images || [])},`] : []),
     `    title: ${quote(passage.title)},`,
     ...(passage.author ? [`    author: ${quote(passage.author)},`] : []),
     ...(passage.blurb ? [`    blurb: ${quote(passage.blurb)},`] : []),
     ...(passage.coverImage ? [`    coverImage: ${JSON.stringify(passage.coverImage)},`] : []),
     ...(passage.image ? [`    image: ${JSON.stringify(passage.image)},`] : []),
     `    passageType: ${quote(passage.passageType)},`,
+    `    passageCategory: ${quote(passage.passageCategory)},`,
     ...(passage.richText ? [`    richText: ${quote(passage.richText)},`] : []),
     ...(passage.sourceNote ? [`    sourceNote: ${quote(passage.sourceNote)},`] : []),
     ...(passage.teacherSource ? [`    teacherSource: ${quote(passage.teacherSource)},`] : []),
@@ -1187,7 +1218,8 @@ function buildPassageSource(passage) {
 }
 
 async function savePassage(input) {
-  const passage = normalizePassage(input, { requireExamSection: true });
+  const imported = await verifyDocumentPublication(input, "passage");
+  const passage = normalizePassage(imported.content, { requireExamSection: true });
   const filePath = join(passageSetsRoot, passage.fileName);
   let existingSource = "";
   try {
@@ -1209,7 +1241,37 @@ async function savePassage(input) {
   await writeFile(filePath, buildPassageSource(passage), "utf8");
   const savedPassage = await parsePassageFile(filePath);
   await ensureExamPassageRegistration(savedPassage);
+  if (imported.entry) await documentDrafts.published(imported.entry.id, { ...input, ...savedPassage, teacherSource: input.teacherSource, review: input.review, visuals: input.visuals, questions: input.questions });
   return savedPassage;
+}
+
+async function bulkPassageCategory(input) {
+  const category = normalizePassageCategory(input?.passageCategory);
+  if (!["exam", "advanced"].includes(input?.mode) || !Array.isArray(input.items) || !input.items.length || input.items.length > 300) throw new EditorError(400, "Select between 1 and 300 passages.");
+  const advanced = input.mode === "advanced";
+  const available = advanced ? (await listAdvancedPassages()).advancedPassages : (await listPassages()).passages;
+  const root = advanced ? advancedPassageSetsRoot : passageSetsRoot;
+  const ids = new Set();
+  const updates = [];
+  // Validate every identity and source hash before writing any file.
+  for (const item of input.items) {
+    const passage = available.find(passage => passage.id === item.id);
+    if (!passage || ids.has(item.id)) throw new EditorError(400, "A selected passage is missing or duplicated. Reload the library.");
+    ids.add(item.id);
+    const filePath = join(root, passage.fileName);
+    const source = await readFile(filePath, "utf8");
+    if (!item.sourceHash || item.sourceHash !== hashSource(source)) throw new EditorError(409, "A selected passage changed. Reload before applying categories.");
+    try { updates.push({ filePath, source: patchPassageCategory(source, category) }); }
+    catch (error) { throw new EditorError(400, error.message); }
+  }
+  let saved = 0;
+  try { for (const update of updates) {
+    const temporary = update.filePath + `.${randomBytes(8).toString("hex")}.tmp`;
+    try { await writeFile(temporary, update.source, "utf8"); await rename(temporary, update.filePath); saved++; }
+    finally { await rm(temporary, { force: true }); }
+  } }
+  catch { throw new EditorError(500, `${saved} category changes were saved before a file write failed. Reload to inspect the results.`); }
+  return { count: saved };
 }
 
 async function ensureExamPassageRegistration(passage) {
@@ -1306,7 +1368,7 @@ function normalizeAdvancedPassage(input) {
 
 function buildAdvancedPassageSource(passage) {
   const formatter =
-    passage.format === "poem"
+    passage.preserveSourceLayout ? "createSourcePassage" : passage.format === "poem"
       ? "createPlainTextPassage"
       : passage.format === "sentence_prose"
         ? "createSentenceNumberedPassage"
@@ -1321,6 +1383,7 @@ function buildAdvancedPassageSource(passage) {
     ...(passage.coverImage ? [`      coverImage: ${JSON.stringify(passage.coverImage)},`] : []),
     ...(passage.image ? [`      image: ${JSON.stringify(passage.image)},`] : []),
     `      passageType: ${quote(passage.passageType)},`,
+    `      passageCategory: ${quote(passage.passageCategory)},`,
     ...(passage.richText ? [`      richText: ${quote(passage.richText)},`] : []),
     ...(passage.sourceNote ? [`      sourceNote: ${quote(passage.sourceNote)},`] : []),
     ...(passage.teacherSource ? [`      teacherSource: ${quote(passage.teacherSource)},`] : []),
@@ -1435,7 +1498,7 @@ function normalizePracticeQuestion(input) {
     throw new EditorError(400, "Question ID may contain only lowercase letters, numbers, and hyphens.");
   }
   const correctChoiceId = requiredText(input.correctChoiceId, "Correct answer").toUpperCase();
-  if (!["A", "B", "C", "D"].includes(correctChoiceId)) {
+  if (!choices.some(choice => choice.id === correctChoiceId)) {
     throw new EditorError(400, "Correct answer must be A, B, C, or D.");
   }
   const choices = ["A", "B", "C", "D"].map((choiceId) => ({
@@ -1807,6 +1870,7 @@ function normalizeMathQuestion(question, assessmentId, index) {
   const stimulusHtml = sanitizeRichText(question.stimulusHtml);
   const baseQuestion = {
     id,
+    ...(typeof question.explanation === "string" ? { explanation: question.explanation } : {}),
     ...(normalizeMathImage(question.image, questionNumber)
       ? { image: normalizeMathImage(question.image, questionNumber) }
       : {}),
@@ -2195,136 +2259,41 @@ async function previewMathImport(input) {
   };
 }
 
-function parsePassageImportSource(source) {
-  let raw = requiredText(source, "Imported passage", { preserve: true }).trim();
-  const fenced = raw.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
-  if (fenced) raw = fenced[1].trim();
-  let document;
-  try {
-    document = JSON.parse(raw);
-  } catch (error) {
-    const detail = error instanceof Error ? error.message : "Unknown JSON error";
-    throw new EditorError(400, `The imported passage is not valid JSON: ${detail}`);
-  }
-  if (!document || typeof document !== "object" || Array.isArray(document)) {
-    throw new EditorError(400, "The imported document must be one JSON object.");
-  }
-  const hasPassageEnvelope =
-    document.passage && typeof document.passage === "object" && !Array.isArray(document.passage);
-  if (
-    hasPassageEnvelope &&
-    typeof document.format === "string" &&
-    document.format.trim() &&
-    document.format !== passageImportFormat
-  ) {
-    throw new EditorError(
-      400,
-      `This import uses ${document.format}; the Studio expects ${passageImportFormat}.`,
-    );
-  }
-  const passage = hasPassageEnvelope ? document.passage : document;
-  const reviewNotes = Array.isArray(document.reviewNotes)
-    ? document.reviewNotes.map((note) => String(note).trim()).filter(Boolean)
-    : [];
-  const visuals = Array.isArray(document.visuals)
-    ? document.visuals.flatMap((visual) => {
-        if (typeof visual === "string" && visual.trim()) {
-          return [{ description: visual.trim(), scope: "Passage" }];
-        }
-        if (!visual || typeof visual !== "object" || Array.isArray(visual)) return [];
-        const description = typeof visual.description === "string" ? visual.description.trim() : "";
-        if (!description) return [];
-        const scope = typeof visual.scope === "string" && visual.scope.trim()
-          ? visual.scope.trim()
-          : "Passage";
-        return [{ description, scope }];
-      })
-    : [];
-  return { passage, reviewNotes, visuals, sourceKind: document.sourceKind };
+function sanitizeDocumentDraft(content) {
+  const p = JSON.parse(JSON.stringify(content));
+  p.richText = sanitizeRichText(p.richText);
+  p.questions = p.questions.map(q => {
+    for (const field of ["promptHtml", "instructionsHtml", "stimulusHtml", "explanationHtml"]) if (q[field]) q[field] = sanitizeRichText(q[field]);
+    for (const choice of q.choices || []) if (choice.html) choice.html = sanitizeInlineRichText(choice.html);
+    return q;
+  });
+  return p;
 }
 
 async function previewPassageImport(input) {
-  if (!input || typeof input !== "object" || Array.isArray(input)) {
-    throw new EditorError(400, "Official passage import data is invalid.");
-  }
-  const parsed = parsePassageImportSource(input.source);
-  const importedQuestions = Array.isArray(parsed.passage.questions)
-    ? parsed.passage.questions
-    : [];
-  const allowedQuestionTypes = new Set(["multiple_choice", "multi_select"]);
-  const unsupportedQuestion = importedQuestions.find(
-    (question) => !allowedQuestionTypes.has(question?.type),
-  );
-  if (unsupportedQuestion) {
-    throw new EditorError(
-      400,
-      "Official passage imports currently support multiple-choice and multi-select questions only.",
-    );
-  }
-  const importedSection = String(parsed.passage.section || "");
-  if (!examPassageSections.includes(importedSection)) {
-    throw new EditorError(400, "The imported passage must use section=reading or section=revising_editing_a.");
-  }
-  const allowedTopics = topicsForPassageSection(importedSection);
-  const invalidTopic = importedQuestions.find(
-    (question) => !allowedTopics.includes(String(question?.topic || "")),
-  );
-  if (invalidTopic) {
-    const sectionLabel = importedSection === "reading" ? "Reading Comprehension" : "Revising/Editing";
-    throw new EditorError(
-      400,
-      `Question topic ${String(invalidTopic.topic || "(blank)")} is not allowed for ${sectionLabel}. Copy a fresh extraction prompt and choose one of: ${allowedTopics.join(", ")}.`,
-    );
-  }
-  const passage = normalizePassage(
-    {
-      ...parsed.passage,
-      directions: undefined,
-      exportName: "",
-      fileName: "",
-      id: "",
-      image: undefined,
-      passageSetId: "",
-      questions: importedQuestions.map((question, index) => ({
-        ...question,
-        id: `passage-${index + 1}`,
-      })),
-      richText: "",
-      sourceHash: "",
-    },
-    { requireExamSection: true },
-  );
+  const entries = documentImport.parse(input.source).map(entry => ({ ...entry, content: sanitizeDocumentDraft(entry.content) }));
+  const warnings = entries.flatMap(entry => documentImport.issues(entry, importTaxonomy()).map(issue => `${issue.scope}: ${issue.message}`));
   const { passages } = await listPassages();
-  if (passages.some((candidate) => candidate.id === passage.id)) {
-    throw new EditorError(
-      409,
-      `A passage with the generated ID ${passage.id} already exists. Add or correct the official form in versionLabel, then validate again.`,
-    );
+  for (const entry of entries) {
+    if (entry.kind === "passage" && passages.some(p => p.id === entry.content.id)) throw new EditorError(409, "That passage version already exists. Open it in the library.");
   }
-  const missingExplanationCount = passage.questions.filter(
-    (question) => !question.explanation && !question.explanationHtml,
-  ).length;
-  const warnings = [
-    parsed.sourceKind === "sat-crash-course"
-      ? "Answers were copied from the SAT Crash Course preview. Verify them against the source and review each imported question before saving."
-      : "Confirm every imported answer against an official answer key when one is available. ChatGPT may have solved answers that were not printed in the PDF.",
-    ...(missingExplanationCount
-      ? [`${missingExplanationCount} question${missingExplanationCount === 1 ? " has" : "s have"} no answer explanation. Add the official rationale or a clearly identified generated explanation before saving.`]
-      : []),
-    ...parsed.reviewNotes,
-    ...parsed.visuals.map(
-      (visual) => `${visual.scope}: ${visual.description} Upload the original visual in the Studio before saving if students need it.`,
-    ),
-    ...(!passage.teacherSource
-      ? ["Add the PDF file name, printed page range, and source question range to Passage source before saving."]
-      : []),
-  ];
-  return {
-    format: passageImportFormat,
-    normalizedJson: JSON.stringify(passage, null, 2),
-    passage,
-    warnings,
-  };
+  return { format: passageImportFormat, entries, passage: entries[0].content, normalizedJson: JSON.stringify(entries, null, 2), warnings };
+}
+
+async function verifyDocumentPublication(input, kind) {
+  const state = await documentDrafts.read();
+  const entry = state.entries.find(e => e.id === input.importDraftId || (kind === "passage" && e.status === "draft" && e.content.id === input.id));
+  if (!entry) {
+    if (input.importDraftId) throw new EditorError(400, "Save this import as a draft before publishing.");
+    return { content: input };
+  }
+  const blocked = documentImport.issues({ ...entry, content: input }, importTaxonomy()).filter(issue => issue.blocking);
+  if (blocked.length) throw new EditorError(400, blocked.map(i => `${i.scope}: ${i.message}`).join("\n"));
+  for (const visual of [...(input.visuals || []), ...input.questions.flatMap(q => q.visuals || [])]) {
+    try { await readFile(join(examImagesRoot, visual.image.src.slice("/exam-images/".length))); }
+    catch { throw new EditorError(400, "A required visual file is missing. Upload it before publishing."); }
+  }
+  return { entry, content: publicationContent({ ...entry, content: input }) };
 }
 
 function normalizeMathSection(input, assessment) {
@@ -2934,6 +2903,7 @@ async function saveContentTopics(input) {
 
 async function getState() {
   examExporter.exportExamContent(workspaceRoot);
+  learningExporter.exportLearningCatalog(workspaceRoot);
   const { passageErrors, passages } = await listPassages();
   const { advancedPassageErrors, advancedPassages } = await listAdvancedPassages();
   const { mathErrors, mathSections } = await listMathSections();
@@ -2953,6 +2923,7 @@ async function getState() {
     passageErrors,
     passageFormats,
     passageTypes,
+    passageCategories,
     passages,
     practice: await getPracticeConfig(),
     standaloneItems,
@@ -3291,7 +3262,7 @@ async function handleRequest(request, response) {
       response.end(await readFile(editorHtmlPath, "utf8"));
       return;
     }
-    if (request.method === "GET" && ["/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-glossary.js"].includes(url.pathname)) {
+    if (request.method === "GET" && ["/document-import.cjs", "/content-studio-documents.js", "/content-studio-bank.css", "/content-studio-bank.js", "/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-glossary.js"].includes(url.pathname)) {
       response.writeHead(200, {
         "Cache-Control": "no-store",
         "Content-Type": url.pathname.endsWith(".css") ? "text/css; charset=utf-8" : "text/javascript; charset=utf-8",
@@ -3378,9 +3349,49 @@ async function handleRequest(request, response) {
       sendJson(response, 200, await getState());
       return;
     }
+    if (request.method === "GET" && url.pathname === "/api/question-bank") {
+      sendJson(response, 200, { ...await readBank(workspaceRoot), topics: labTopics.map(topic => topic === "Text Structure" ? "Text Structure & Purpose" : topic) }); return;
+    }
+    if (request.method === "POST" && ["/api/question-bank/import", "/api/question-bank/publish", "/api/question-bank/publish-all", "/api/question-bank/sets"].includes(url.pathname)) {
+      verifyEditRequest(request);
+      const body = await readJson(request);
+      try {
+        let summary;
+        const visualErrors = {};
+        if (url.pathname.endsWith("/publish-all")) {
+          const snapshot = await readBank(workspaceRoot);
+          if (snapshot.revision !== body.revision) throw new Error("The question bank changed in another window. Reload it before saving.");
+          for (const q of snapshot.questions.filter(q => Array.isArray(body.questionIds) && body.questionIds.includes(q.id) && q.visualImage)) {
+            const src = q.visualImage.src;
+            if (typeof src !== "string" || !/^\/exam-images\/[\w.-]+\.(png|jpe?g|webp|gif|svgz?)$/i.test(src)) { visualErrors[q.id] = "Use a previously uploaded local supporting visual."; continue; }
+            try { await readFile(join(examImagesRoot, src.slice("/exam-images/".length))); }
+            catch { visualErrors[q.id] = "Supporting visual file not found. Upload it before publishing."; }
+          }
+        }
+        if (url.pathname.endsWith("/publish") && body.question?.visualImage) {
+          const src = body.question.visualImage.src;
+          if (typeof src !== "string" || !/^\/exam-images\/[\w.-]+\.(png|jpe?g|webp|gif|svgz?)$/i.test(src)) throw new Error("Use a previously uploaded local supporting visual.");
+          try { await readFile(join(examImagesRoot, src.slice("/exam-images/".length))); } catch { throw new Error("Supporting visual file not found. Upload it before publishing."); }
+        }
+        const bank = await mutateBank(workspaceRoot, body.revision, current => {
+          if (url.pathname.endsWith("/import")) { const result = importCaptures(current, body.capture); summary = { added: result.added, enriched: result.enriched, duplicates: result.duplicates }; return result.bank; }
+          if (url.pathname.endsWith("/publish")) return publishQuestion(current, body);
+          if (url.pathname.endsWith("/publish-all")) { const result = publishQuestions(current, body, visualErrors); summary = { published: result.published, skipped: result.skipped }; return result.bank; }
+          return createBankSet(current, body);
+        });
+        // Catalog is regenerated at build/start too; bank sets are read dynamically by the server.
+        sendJson(response, 201, { bank, summary });
+      } catch (error) { throw new EditorError(400, error.message); }
+      return;
+    }
     if (request.method === "POST" && url.pathname === "/api/passages") {
       verifyEditRequest(request);
       sendJson(response, 201, { passage: await savePassage(await readJson(request)) });
+      return;
+    }
+    if (request.method === "POST" && url.pathname === "/api/passages/category") {
+      verifyEditRequest(request);
+      sendJson(response, 200, await bulkPassageCategory(await readJson(request)));
       return;
     }
     if (request.method === "DELETE" && url.pathname === "/api/passages") {
@@ -3415,6 +3426,37 @@ async function handleRequest(request, response) {
     if (request.method === "POST" && url.pathname === "/api/math/import-preview") {
       verifyEditRequest(request);
       sendJson(response, 200, await previewMathImport(await readJson(request)));
+      return;
+    }
+    if (request.method === "POST" && url.pathname === "/api/document-publish-math") {
+      verifyEditRequest(request);
+      const input = await readJson(request);
+      const drafts = await documentDrafts.read();
+      if (input.revision !== drafts.revision) throw new EditorError(409, "Drafts changed. Reopen before publishing.");
+      const entry = drafts.entries.find(e => e.id === input.entryId && e.kind === "math");
+      if (!entry) throw new EditorError(404, "Math import draft not found.");
+      const verified = await verifyDocumentPublication(entry.content, "math");
+      const state = await getState();
+      const assessment = state.assessments.find(a => a.id === input.assessmentId);
+      if (!assessment) throw new EditorError(400, "Choose a destination exam.");
+      const test = state.tests.find(t => t.assessmentId === assessment.id);
+      const existing = state.mathSections.find(m => m.fileName === test?.mathSectionFileName);
+      const questions = verified.content.questions.map(q => ({ ...q, id: q.id.startsWith(assessment.id + "-") ? q.id : `${assessment.id}-${q.id}` }));
+      if (questions.some(q => existing?.questions.some(old => old.id === q.id || old.prompt === q.prompt))) throw new EditorError(409, "A Math question already exists in this exam. Review it in Exam math.");
+      const result = await saveMath({ ...existing, assessmentId: assessment.id, questions: [...(existing?.questions || []), ...questions] });
+      await documentDrafts.published(entry.id, entry.content);
+      sendJson(response, 201, { math: result });
+      return;
+    }
+    if (url.pathname === "/api/document-drafts") {
+      verifyEditRequest(request);
+      if (request.method === "GET") sendJson(response, 200, await documentDrafts.read());
+      else if (request.method === "POST") {
+        const input = await readJson(request);
+        sendJson(response, 200, input.source !== undefined
+          ? await documentDrafts.import(input.source, input.revision, (await listPassages()).passages)
+          : await documentDrafts.save(input));
+      } else throw new EditorError(405, "Method not allowed.");
       return;
     }
     if (request.method === "POST" && url.pathname === "/api/passages/import-preview") {

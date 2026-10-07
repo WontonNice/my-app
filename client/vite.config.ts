@@ -28,6 +28,7 @@ export default defineConfig({
   server: {
     strictPort: true,
     proxy: {
+      "/api/boards/live": { target: "http://127.0.0.1:8080", ws: true },
       "/api": "http://127.0.0.1:8080",
       "/health": "http://127.0.0.1:8080",
     },

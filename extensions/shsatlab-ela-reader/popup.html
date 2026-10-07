@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>SHSATLab ELA Capture</title><link rel="stylesheet" href="popup.css"></head>
+<body><h1>SHSATLab ELA Capture</h1><p>One ELA question per click. No Math, tests, or background crawling.</p>
+<p id="page">Checking ELA page…</p><button id="capture" disabled>Capture visible ELA question</button>
+<section id="automation" hidden><label class="consent"><input id="allow-submit" type="checkbox"> Allow a temporary A answer to be submitted to reveal the key.</label><p class="warning">This changes your SHSATLab practice history, accuracy, XP, and streak. The imported key comes from the revealed correct answer—not the temporary A. Consent resets when this popup closes.</p><div class="actions"><button id="reveal" disabled>Reveal &amp; capture</button><button id="capture-next" disabled>Capture &amp; next</button></div><p>Capture &amp; next saves first, then opens one new question. Click again when ready.</p></section>
+<p id="status" role="status" aria-live="polite"></p><p id="count"></p>
+<label for="ready">Ready import JSON</label><label class="consent"><input id="all-queue" type="checkbox" checked> Include all saved questions</label><textarea id="ready" readonly spellcheck="false" placeholder="Your captured import JSON will appear here."></textarea>
+<button id="copy">Copy ready JSON</button><button id="download">Download saved queue JSON</button>
+<details><summary>Start a new queue</summary><p>Download first to keep a copy.</p><button id="clear">Clear local capture queue</button></details>
+<p>Paste the ready JSON in Content Studio → Question Bank → Import captures. Review drafts before publishing.</p>
+<script src="reader.js"></script><script src="queue.js"></script><script src="popup.js"></script></body></html>

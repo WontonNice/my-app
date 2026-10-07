@@ -1,7 +1,9 @@
 import { advancedPracticePassages } from "../content/advancedPractice";
-import { examPassageLibrary } from "../content/exams/passageLibrary";
+import { examPassageLibrary, examLibraryBooks } from "../content/exams/passageLibrary";
 import { formA2025_2026Content } from "../content/exams/tests/formA2025_2026";
-import { practiceTopics } from "../content/practice";
+import { practiceTopics, revisingEditingTopics } from "../content/practice";
+import { questionBankCatalog } from "../content/questionBank";
+import { passageCategory, type PassageCategory } from "../../../server/src/shared/passageCategories";
 
 export type MaterialSubject = "English" | "Math";
 
@@ -9,6 +11,9 @@ export type ReadingCollection = "Advanced Reading" | "SHSAT";
 export type ReadingFormat = "Informational" | "Literary" | "Long reading" | "Poem";
 
 export type StudentMaterial = {
+  contentSource?: string;
+  passageCategory?: PassageCategory;
+  passageCategories?: PassageCategory[];
   author?: string;
   category: string;
   coverAlt?: string;
@@ -24,9 +29,10 @@ export type StudentMaterial = {
   subject: MaterialSubject;
   title: string;
   tone?: "blue" | "coral" | "emerald" | "gold";
+  versionCount?: number;
 };
 
-const readingPracticeMaterials: StudentMaterial[] = practiceTopics.map((topic) => ({
+export const readingPracticeMaterials: StudentMaterial[] = practiceTopics.map((topic) => ({
   category: "Reading comprehension",
   description: topic.description,
   href: `/study-hall/shsat/topics/${topic.slug}`,
@@ -39,6 +45,7 @@ const readingPracticeMaterials: StudentMaterial[] = practiceTopics.map((topic) =
 }));
 
 const advancedPassageMaterials: StudentMaterial[] = advancedPracticePassages.map((passage) => ({
+  passageCategory: passageCategory(passage.passageSet.passage.passageCategory),
   author: getPassageAuthor(passage.passageSet.passage.lines) || "Nathan Tutors Editorial",
   category: "Reading comprehension",
   coverAlt: passage.thumbnail
@@ -79,13 +86,13 @@ const readingFormatLabels: Record<NonNullable<(typeof examPassageLibrary)[number
   poem: "Poem",
 };
 
-const shsatPassageMaterials: StudentMaterial[] = examPassageLibrary
-  .map((passageSet, index) => {
+const passageMaterial = (passageSet: (typeof examPassageLibrary)[number], index: number): StudentMaterial => {
     const coverImage = passageSet.passage.coverImage ?? getPassageCover(passageSet.passage.lines);
     const readingFormat = passageSet.passage.passageType
       ? readingFormatLabels[passageSet.passage.passageType]
       : shsatPassageFormats[passageSet.passage.id] ?? "Informational";
     return {
+      passageCategory: passageCategory(passageSet.passage.passageCategory),
       author: getPassageAuthor(passageSet.passage.lines) || "SHSAT Library",
       category: "Reading comprehension",
       coverAlt: coverImage?.alt,
@@ -102,7 +109,8 @@ const shsatPassageMaterials: StudentMaterial[] = examPassageLibrary
       title: passageSet.passage.title,
       tone: coverTones[index % coverTones.length],
     };
-  });
+  };
+const shsatPassageMaterials = examPassageLibrary.map(passageMaterial);
 
 function getPassageAuthor(lines: { kind?: string; text: string }[]) {
   return lines.find((line) => line.kind === "byline")?.text.replace(/^by\s+/i, "").trim() ?? "";
@@ -123,11 +131,16 @@ function getPassageDescription(lines: { kind?: string; text: string }[]) {
 // Add teacher-uploaded books here as they become available. They automatically
 // appear on the dedicated Long reading shelf and use coverImage when supplied.
 export const longReadingMaterials: StudentMaterial[] = [];
+export const studentLibraryBooks: StudentMaterial[] = [...examLibraryBooks.map((book, index) => ({ ...passageMaterial(book.passageSet, index), versionCount: book.versions.length, passageCategories: [...new Set(book.versions.map(version => passageCategory(version.category)))] })), ...advancedPassageMaterials, ...longReadingMaterials];
+export const editingPracticeMaterials: StudentMaterial[] = revisingEditingTopics.map(topic => ({ id: `practice-${topic.slug}`, title: topic.title, subject: "English", category: "Revising & editing", kind: "Practice set", description: topic.description, href: `/study-hall/shsat/topics/${topic.slug}`, questionCount: questionBankCatalog.filter(set => set.skills.includes(topic.key)).reduce((sum, set) => sum + set.questionCount, 0), questionType: topic.title }));
 
 export const englishLibraryMaterials: StudentMaterial[] = [
   ...shsatPassageMaterials,
   ...advancedPassageMaterials,
   ...longReadingMaterials,
+  ...questionBankCatalog.map(content => ({ id: content.id, title: content.title, href: content.href, subject: "English" as const,
+    category: "SHSAT Lab", contentSource: content.contentSource, kind: "Practice set" as const, libraryCollection: "SHSAT" as const,
+    description: "Targeted ELA practice from reviewed SHSAT Lab captures.", questionCount: content.questionCount, questionType: content.skills.join(" · ") })),
 ];
 
 export function getLibraryBookId(material: StudentMaterial) {
@@ -135,10 +148,10 @@ export function getLibraryBookId(material: StudentMaterial) {
 }
 
 export function getEnglishLibraryMaterial(bookId: string) {
-  return englishLibraryMaterials.find((material) => getLibraryBookId(material) === bookId);
+  return englishLibraryMaterials.find((material) => getLibraryBookId(material) === bookId) ?? studentLibraryBooks.find(material => getLibraryBookId(material) === bookId);
 }
 
-const revisingEditingMaterial: StudentMaterial = {
+export const revisingEditingMaterial: StudentMaterial = {
   category: "Revising & editing",
   description: "Practice grammar, sentence construction, usage, and organization in the assigned SHSAT form.",
   href: "/study-hall/shsat/assessments",
@@ -182,6 +195,7 @@ function getMathCategory(topic: string) {
 }
 
 export const studentMaterials: StudentMaterial[] = [
+  ...englishLibraryMaterials.filter(material => material.contentSource === "SHSAT Lab"),
   ...readingPracticeMaterials,
   ...shsatPassageMaterials,
   ...advancedPassageMaterials,

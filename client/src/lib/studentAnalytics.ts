@@ -1,6 +1,7 @@
 import type { ExamContent } from "../content/exams";
 import type { ExamPassageResult, ExamSubjectResult, ExamResult } from "./examResults";
 import { reviewQuestions, type ReviewQuestion } from "../../../server/src/shared/examCorrections";
+import { passageCategory, passageCategoryLabel, type PassageCategory } from "../../../server/src/shared/passageCategories";
 
 export type AnalyticsInput = {
   result: Record<string, unknown>;
@@ -59,21 +60,38 @@ export function mean(values: (number | null)[]) {
   return measured.length ? Math.round(measured.reduce((sum, value) => sum + value, 0) / measured.length) : null;
 }
 
+export type ResponseDimension = "passage" | "category" | "type" | "skill";
+export type ResponseGroup = { key: string; label: string; category?: PassageCategory; subject: string; correct: number; total: number; incorrect: number; unanswered: number; assessments: Set<string>; lastAttempt: string | null };
+export type ResponseSort = "title" | "category" | "accuracy" | "correct" | "total" | "incorrect" | "unanswered" | "assessments" | "lastAttempt";
+export function sortResponseGroups(groups: ResponseGroup[], sort: ResponseSort, direction: "asc" | "desc") {
+  const value = (group: ResponseGroup): number | string | null => sort === "title" ? group.label : sort === "category" ? passageCategoryLabel(group.category) : sort === "accuracy" ? group.correct / group.total : sort === "assessments" ? group.assessments.size : sort === "lastAttempt" ? group.lastAttempt ? Date.parse(group.lastAttempt) : null : group[sort];
+  return [...groups].sort((a, b) => {
+    const left = value(a), right = value(b);
+    // Missing dates always come last, never masquerade as the oldest attempt.
+    if (left === null || right === null) return left === right ? a.key.localeCompare(b.key) : left === null ? 1 : -1;
+    const comparison = typeof left === "number" && typeof right === "number" ? left - right : String(left).localeCompare(String(right));
+    return comparison * (direction === "asc" ? 1 : -1) || a.label.localeCompare(b.label) || a.key.localeCompare(b.key);
+  });
+}
+
 /** Aggregates only verifiable responses, never summary-only paper totals. */
-export function groupResponseEvidence(evidence: Evidence[], dimension: "passage" | "type") {
-  const groups = new Map<string, { key: string; label: string; correct: number; total: number; incorrect: number; unanswered: number; assessments: Set<string> }>();
+export function groupResponseEvidence(evidence: Evidence[], dimension: ResponseDimension) {
+  const groups = new Map<string, ResponseGroup>();
   for (const row of evidence) {
-    const key = dimension === "type" ? row.question.type : row.passage?.id ?? "";
+    const category = row.passage ? passageCategory(row.passage.passageCategory) : undefined;
+    const key = dimension === "type" ? row.question.type : dimension === "skill" ? `${row.section}:${row.question.topic}` : dimension === "category" ? category ?? "" : row.passage?.id ?? "";
     if (!key) continue;
-    const group = groups.get(key) ?? { key, label: dimension === "type" ? row.question.type.replace(/_/g, " ") : row.passage!.title, correct: 0, total: 0, incorrect: 0, unanswered: 0, assessments: new Set<string>() };
+    const group = groups.get(key) ?? { key, label: dimension === "type" ? row.question.type.replace(/_/g, " ") : dimension === "skill" ? row.question.topic : dimension === "category" ? passageCategoryLabel(category) : row.passage!.title, category: dimension === "category" || dimension === "passage" ? category : undefined, subject: row.section === "english" ? "English" : "Math", correct: 0, total: 0, incorrect: 0, unanswered: 0, assessments: new Set<string>(), lastAttempt: null };
+    if (group.subject !== (row.section === "english" ? "English" : "Math")) group.subject = "English + Math";
     group.total++;
     group.correct += row.status === "Correct" ? 1 : 0;
     group.incorrect += row.status === "Incorrect" ? 1 : 0;
     group.unanswered += row.status === "Unanswered" ? 1 : 0;
     group.assessments.add(row.examKey);
+    if (row.date && (!group.lastAttempt || Date.parse(row.date) > Date.parse(group.lastAttempt))) group.lastAttempt = row.date;
     groups.set(key, group);
   }
-  return [...groups.values()].sort((a, b) => (percentage(a.correct, a.total) ?? 0) - (percentage(b.correct, b.total) ?? 0) || b.total - a.total);
+  return sortResponseGroups([...groups.values()], "accuracy", "asc");
 }
 
 export function buildStudentAnalytics(inputs: AnalyticsInput[]) {

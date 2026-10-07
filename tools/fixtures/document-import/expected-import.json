@@ -1,0 +1,441 @@
+{
+  "format": "nathan-tutors-official-passage-v1",
+  "passages": [
+    {
+      "title": "The Seed Ledger",
+      "author": "Mira Vale",
+      "format": "prose",
+      "passageType": "literary",
+      "text": "1. Ada wrote, \"Seven seeds; no more.\"\n\n2. Her ledger said: 7 + 5 = 12.\n\n3. On Tuesday, she counted again. The unusual label read \"seed's here.\"",
+      "section": "reading",
+      "passageCategory": "miscellaneous",
+      "sourceNote": "",
+      "teacherSource": "Original QA fixture, public domain",
+      "versionLabel": "",
+      "blurb": "",
+      "label": "",
+      "questions": [
+        {
+          "id": "fixture-q1",
+          "type": "multiple_choice",
+          "topic": "Evidence & Support",
+          "points": 1,
+          "prompt": "1. Which entry supports Ada's count?",
+          "choices": [
+            {
+              "id": "E",
+              "text": "Source choice E: 1 units."
+            },
+            {
+              "id": "F",
+              "text": "Source choice F: 2 units."
+            },
+            {
+              "id": "G",
+              "text": "Source choice G: 3 units."
+            },
+            {
+              "id": "H",
+              "text": "Source choice H: 4 units."
+            }
+          ],
+          "correctChoiceId": "F",
+          "explanation": "Source explanation 1: the recorded detail is sufficient.",
+          "review": {
+            "sourceFile": "questions.pdf",
+            "sourcePages": [
+              1,
+              2
+            ],
+            "sourceQuestion": "1",
+            "topicSource": "inferred",
+            "topicConfidence": 0.93,
+            "expectedChoiceCount": 4,
+            "answerSource": {
+              "sourceFile": "answers.pdf",
+              "sourcePages": [
+                1
+              ]
+            },
+            "explanationSource": {
+              "sourceFile": "explanations.pdf",
+              "sourcePages": [
+                1
+              ]
+            }
+          },
+          "visuals": []
+        },
+        {
+          "id": "fixture-q2",
+          "type": "multiple_choice",
+          "topic": "Evidence & Support",
+          "points": 1,
+          "prompt": "2. What does the ledger contain?",
+          "choices": [
+            {
+              "id": "E",
+              "text": "Source choice E: 1 units."
+            },
+            {
+              "id": "F",
+              "text": "Source choice F: 2 units."
+            },
+            {
+              "id": "G",
+              "text": "Source choice G: 3 units."
+            },
+            {
+              "id": "H",
+              "text": "Source choice H: 4 units."
+            }
+          ],
+          "correctChoiceId": "F",
+          "explanation": "Source explanation 2: the recorded detail is sufficient.",
+          "review": {
+            "sourceFile": "questions.pdf",
+            "sourcePages": [
+              1,
+              2
+            ],
+            "sourceQuestion": "2",
+            "topicSource": "inferred",
+            "topicConfidence": 0.93,
+            "expectedChoiceCount": 4,
+            "answerSource": {
+              "sourceFile": "answers.pdf",
+              "sourcePages": [
+                1
+              ]
+            },
+            "explanationSource": {
+              "sourceFile": "explanations.pdf",
+              "sourcePages": [
+                1
+              ]
+            }
+          },
+          "visuals": []
+        },
+        {
+          "id": "fixture-q3",
+          "type": "multiple_choice",
+          "topic": "Evidence & Support",
+          "points": 1,
+          "prompt": "3. Why does Ada return?",
+          "choices": [
+            {
+              "id": "E",
+              "text": "Source choice E: 1 units."
+            },
+            {
+              "id": "F",
+              "text": "Source choice F: 2 units."
+            },
+            {
+              "id": "G",
+              "text": "Source choice G: 3 units."
+            },
+            {
+              "id": "H",
+              "text": "Source choice H: 4 units."
+            }
+          ],
+          "correctChoiceId": "F",
+          "explanation": "Source explanation 3: the recorded detail is sufficient.",
+          "review": {
+            "sourceFile": "questions.pdf",
+            "sourcePages": [
+              1,
+              2
+            ],
+            "sourceQuestion": "3",
+            "topicSource": "inferred",
+            "topicConfidence": 0.93,
+            "expectedChoiceCount": 4,
+            "answerSource": {
+              "sourceFile": "answers.pdf",
+              "sourcePages": [
+                1
+              ]
+            },
+            "explanationSource": {
+              "sourceFile": "explanations.pdf",
+              "sourcePages": [
+                1
+              ]
+            }
+          },
+          "visuals": []
+        }
+      ],
+      "review": {
+        "sourceFile": "questions.pdf",
+        "sourcePages": [
+          1,
+          2
+        ],
+        "expectedQuestionCount": 3
+      },
+      "visuals": []
+    },
+    {
+      "title": "At the Gate",
+      "author": "Jon Reed",
+      "format": "poem",
+      "passageType": "poem",
+      "text": "The gate stood still,\n  the rain came through;\n\nI kept one seed,\nand planted two.",
+      "section": "reading",
+      "passageCategory": "miscellaneous",
+      "sourceNote": "",
+      "teacherSource": "Original QA fixture, public domain",
+      "versionLabel": "",
+      "blurb": "",
+      "label": "",
+      "questions": [
+        {
+          "id": "fixture-q4",
+          "type": "multiple_choice",
+          "topic": "Evidence & Support",
+          "points": 1,
+          "prompt": "4. Which phrase creates an image?",
+          "choices": [
+            {
+              "id": "E",
+              "text": "Source choice E: 1 units."
+            },
+            {
+              "id": "F",
+              "text": "Source choice F: 2 units."
+            },
+            {
+              "id": "G",
+              "text": "Source choice G: 3 units."
+            },
+            {
+              "id": "H",
+              "text": "Source choice H: 4 units."
+            }
+          ],
+          "correctChoiceId": "F",
+          "explanation": "Source explanation 4: the recorded detail is sufficient.",
+          "review": {
+            "sourceFile": "questions.pdf",
+            "sourcePages": [
+              3
+            ],
+            "sourceQuestion": "4",
+            "topicSource": "inferred",
+            "topicConfidence": 0.93,
+            "expectedChoiceCount": 4,
+            "answerSource": {
+              "sourceFile": "answers.pdf",
+              "sourcePages": [
+                1
+              ]
+            },
+            "explanationSource": {
+              "sourceFile": "explanations.pdf",
+              "sourcePages": [
+                1
+              ]
+            }
+          },
+          "visuals": []
+        },
+        {
+          "id": "fixture-q5",
+          "type": "multiple_choice",
+          "topic": "Evidence & Support",
+          "points": 1,
+          "prompt": "5. What is the speaker's tone?",
+          "choices": [
+            {
+              "id": "E",
+              "text": "Source choice E: 1 units."
+            },
+            {
+              "id": "F",
+              "text": "Source choice F: 2 units."
+            },
+            {
+              "id": "G",
+              "text": "Source choice G: 3 units."
+            },
+            {
+              "id": "H",
+              "text": "Source choice H: 4 units."
+            }
+          ],
+          "correctChoiceId": "",
+          "explanation": "",
+          "review": {
+            "sourceFile": "questions.pdf",
+            "sourcePages": [
+              3
+            ],
+            "sourceQuestion": "5",
+            "topicSource": "inferred",
+            "topicConfidence": 0.45,
+            "expectedChoiceCount": 4,
+            "answerSource": null,
+            "explanationSource": null
+          },
+          "visuals": []
+        }
+      ],
+      "review": {
+        "sourceFile": "questions.pdf",
+        "sourcePages": [
+          3
+        ],
+        "expectedQuestionCount": 2
+      },
+      "visuals": []
+    },
+    {
+      "title": "Water Watch",
+      "author": "N. Shore",
+      "format": "prose",
+      "passageType": "informational",
+      "text": "Measuring rain\n\nThe class recorded rainfall in millimeters (mm).\n\nDay | Rain (mm)\nMon | 2\nTue | 5\n\nNote 1: Measurements were taken at noon.",
+      "section": "reading",
+      "passageCategory": "miscellaneous",
+      "sourceNote": "",
+      "teacherSource": "Original QA fixture, public domain",
+      "versionLabel": "",
+      "blurb": "",
+      "label": "",
+      "questions": [
+        {
+          "id": "fixture-q6",
+          "type": "multiple_choice",
+          "topic": "Evidence & Support",
+          "points": 1,
+          "prompt": "6. Which day had 5 mm of rain?",
+          "choices": [
+            {
+              "id": "E",
+              "text": "Source choice E: 1 units."
+            },
+            {
+              "id": "F",
+              "text": "Source choice F: 2 units."
+            },
+            {
+              "id": "G",
+              "text": "Source choice G: 3 units."
+            },
+            {
+              "id": "H",
+              "text": "Source choice H: 4 units."
+            }
+          ],
+          "correctChoiceId": "F",
+          "explanation": "Source explanation 6: the recorded detail is sufficient.",
+          "review": {
+            "sourceFile": "questions.pdf",
+            "sourcePages": [
+              4
+            ],
+            "sourceQuestion": "6",
+            "topicSource": "inferred",
+            "topicConfidence": 0.93,
+            "expectedChoiceCount": 4,
+            "answerSource": {
+              "sourceFile": "answers.pdf",
+              "sourcePages": [
+                1
+              ]
+            },
+            "explanationSource": {
+              "sourceFile": "explanations.pdf",
+              "sourcePages": [
+                1
+              ]
+            }
+          },
+          "visuals": [
+            {
+              "scope": "Question 6",
+              "questionId": "fixture-q6",
+              "sourceFile": "questions.pdf",
+              "sourcePage": 4,
+              "location": "right, above questions",
+              "description": "Rain gauge rectangle and vertical measurement line.",
+              "state": "unresolved"
+            }
+          ]
+        },
+        {
+          "id": "fixture-q7",
+          "type": "multiple_choice",
+          "topic": "Evidence & Support",
+          "points": 1,
+          "prompt": "7. What does Note 1 explain?",
+          "choices": [
+            {
+              "id": "E",
+              "text": "Source choice E: 1 units."
+            },
+            {
+              "id": "F",
+              "text": "Source choice F: 2 units."
+            },
+            {
+              "id": "G",
+              "text": "Source choice G: 3 units."
+            },
+            {
+              "id": "H",
+              "text": "Source choice H: 4 units."
+            }
+          ],
+          "correctChoiceId": "F",
+          "explanation": "Source explanation 7: the recorded detail is sufficient.",
+          "review": {
+            "sourceFile": "questions.pdf",
+            "sourcePages": [
+              4
+            ],
+            "sourceQuestion": "7",
+            "topicSource": "inferred",
+            "topicConfidence": 0.93,
+            "expectedChoiceCount": 4,
+            "answerSource": {
+              "sourceFile": "answers.pdf",
+              "sourcePages": [
+                1
+              ]
+            },
+            "explanationSource": {
+              "sourceFile": "explanations.pdf",
+              "sourcePages": [
+                1
+              ]
+            }
+          },
+          "visuals": []
+        }
+      ],
+      "review": {
+        "sourceFile": "questions.pdf",
+        "sourcePages": [
+          4
+        ],
+        "expectedQuestionCount": 2
+      },
+      "visuals": [
+        {
+          "scope": "Passage",
+          "sourceFile": "questions.pdf",
+          "sourcePage": 4,
+          "location": "below Measuring rain",
+          "description": "Two-row rainfall table: Mon 2 mm; Tue 5 mm.",
+          "state": "unresolved"
+        }
+      ]
+    }
+  ],
+  "mathQuestions": []
+}

@@ -1,0 +1,160 @@
+{
+  "format": "nathan-tutors-official-passage-v1",
+  "version": 1,
+  "extension": "Optional passages/mathQuestions batches and teacher-only review metadata; legacy passage envelopes remain accepted.",
+  "root": {
+    "format": "nathan-tutors-official-passage-v1",
+    "passage": "One passage object OR omit and use passages",
+    "passages": "Ordered passage objects (optional)",
+    "mathQuestions": "Ordered Math question objects (optional)",
+    "reviewNotes": "string[]",
+    "visuals": "Visual[]; legacy scope/description objects are accepted"
+  },
+  "passage": {
+    "title": "string; blank allowed in draft, teacher title required to publish",
+    "author": "string",
+    "blurb": "string",
+    "format": [
+      "prose",
+      "poem",
+      "sentence_prose"
+    ],
+    "passageType": [
+      "informational",
+      "literary",
+      "poem",
+      "long_reading"
+    ],
+    "passageCategory": [
+      "official_handbook",
+      "prestige",
+      "miscellaneous"
+    ],
+    "section": [
+      "reading",
+      "revising_editing_a"
+    ],
+    "label": "string",
+    "versionLabel": "string",
+    "sourceNote": "student-visible string",
+    "teacherSource": "teacher-only string",
+    "text": "complete text; empty for independent questions",
+    "richText": "optional faithful HTML: p, br, strong, em, u, sup, sub, h1-h6, ul, ol, li; text remains the plain-text copy",
+    "questions": "ordered Question[]",
+    "review": "Review",
+    "visuals": "Visual[]"
+  },
+  "question": {
+    "id": "unique lowercase letters/numbers/hyphens",
+    "type": [
+      "multiple_choice",
+      "multi_select",
+      "numeric_entry",
+      "short_response",
+      "essay"
+    ],
+    "topic": "exact section topic or empty string when uncertain/outside taxonomy",
+    "points": "positive number; default 1 (platform scoring, not source difficulty)",
+    "prompt": "exact source text",
+    "instructions": "optional exact source directions",
+    "stimulus": "optional exact supporting text",
+    "choices": "ordered {id:string,text:string,html?:string,math?:string}[]; 2–8 when present; original printed IDs retained",
+    "correctChoiceId": "multiple_choice: exact choice ID, or empty string/null if no unambiguous supplied key",
+    "correctChoiceIds": "multi_select: choice IDs from key, or [] if unknown",
+    "requiredSelections": "multi_select: source selection count, or null if unknown",
+    "correctTextAnswers": "numeric_entry/short_response: source keyed strings, or []",
+    "entryLayout": "numeric_entry: plain, fraction, x_equals",
+    "explanation": "exact supplied explanation or empty string/null",
+    "review": "Review",
+    "visuals": "Visual[]"
+  },
+  "review": {
+    "sourceFile": "string",
+    "sourcePages": "1-based PDF page number[]",
+    "printedPages": "string (optional)",
+    "sourceQuestion": "original printed number as string (question only)",
+    "answerSource": "{sourceFile,sourcePages} or null",
+    "explanationSource": "{sourceFile,sourcePages} or null",
+    "topicSource": [
+      "source",
+      "inferred",
+      "unknown",
+      "teacher"
+    ],
+    "topicConfidence": "number 0..1 or null",
+    "difficulty": "source label or empty string; not required by passage/exam model",
+    "difficultySource": [
+      "source",
+      "inferred",
+      "unknown",
+      "teacher"
+    ],
+    "difficultyConfidence": "number 0..1 or null",
+    "expectedQuestionCount": "nonnegative integer or null (passage)",
+    "expectedChoiceCount": "nonnegative integer or null (question)",
+    "warnings": "{code:one warning code,message:string,state:unresolved|acknowledged|resolved}[]",
+    "classificationReviewed": "false on extraction",
+    "completenessReviewed": "false on extraction",
+    "sourceReviewed": "false on extraction"
+  },
+  "visual": {
+    "scope": "Passage or original Question number / choice label",
+    "questionId": "exact output question id, or empty string for passage",
+    "choiceId": "exact choice id, or empty string",
+    "sourceFile": "string",
+    "sourcePage": "1-based PDF page number or null",
+    "location": "approximate page location",
+    "description": "concise faithful description of the required visual",
+    "state": "unresolved on extraction; resolved only by teacher after upload",
+    "image": "omit unless an actual existing /exam-images/ uploaded image {src,alt,caption?} was supplied; never invent URLs"
+  },
+  "warningCodes": [
+    "IMAGE_REQUIRED",
+    "ANSWER_KEY_MISSING",
+    "EXPLANATION_MISSING",
+    "LOW_CONFIDENCE_QUESTION_TYPE",
+    "UNCERTAIN_TEXT_EXTRACTION",
+    "POSSIBLE_MISSING_QUESTION",
+    "POSSIBLE_FORMATTING_LOSS",
+    "SOURCE_TYPO_SUSPECTED",
+    "TABLE_REVIEW_REQUIRED",
+    "UNRESOLVED_VISUAL",
+    "SOURCE_KEY_AMBIGUOUS",
+    "UNSUPPORTED_RESPONSE_TYPE",
+    "COUNT_MISMATCH"
+  ],
+  "taxonomy": {
+    "reading": [
+      "Central Idea & Theme",
+      "Author's Point of View",
+      "Word & Phrase Meaning",
+      "Figurative Language & Imagery",
+      "Tone & Mood",
+      "Text Structure & Purpose",
+      "Evidence & Support",
+      "Inference"
+    ],
+    "revising_editing_a": [
+      "Sentence Structure",
+      "Pronouns",
+      "Verbs",
+      "Modifiers",
+      "Punctuation",
+      "Word Choice & Precision",
+      "Topic & Transitions",
+      "Relevance & Conclusion"
+    ],
+    "math": [
+      "Arithmetic",
+      "Algebra",
+      "Geometry",
+      "Measurement",
+      "Number Sense",
+      "Percent",
+      "Probability & Statistics",
+      "Rates & Unit Conversion",
+      "Ratios & Proportions",
+      "Uncategorized"
+    ]
+  }
+}

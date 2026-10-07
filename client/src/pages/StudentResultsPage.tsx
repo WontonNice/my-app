@@ -3,7 +3,9 @@ import { BarChart3, CheckCircle2 } from "lucide-react";
 import { StudentPortalShell } from "../components/StudentPortalShell";
 import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
-import { getLearningProgress, getStudentAssessments, type StudentAssessment } from "../lib/api";
+import { getLearningProgress, getStudentAssessments, getStudentPreviewResults, type StudentAssessment } from "../lib/api";
+import { AppLink } from "../components/AppLink";
+import { examCorrectionsHref } from "../lib/correctionNavigation";
 import { getExamResults, type ExamResult } from "../lib/examResults";
 import { peekActiveSession } from "../lib/sessionCache";
 
@@ -14,19 +16,25 @@ function isExamResult(value: Record<string, unknown>): value is ExamResult & Rec
 export function StudentResultsPage() {
   const { accessToken, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
   const initialSession = peekActiveSession();
-  const [results, setResults] = useState<ExamResult[]>(() => initialSession ? getExamResults(initialSession.user.id) : []);
+  const [results, setResults] = useState<ExamResult[]>(() => initialSession && !previewContext.isPreview ? getExamResults(initialSession.user.id) : []);
   const [assessments, setAssessments] = useState<StudentAssessment[]>([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!accessToken) return;
     let isMounted = true;
+    if (previewContext.isPreview) {
+      if (!previewContext.studentId) return;
+      getStudentPreviewResults(accessToken, previewContext.studentId).then(data => { if (isMounted) { setResults(data.results); setAssessments(data.assessments); setError(""); } }).catch(reason => { if (isMounted) setError(reason instanceof Error ? reason.message : "Student results could not be loaded."); });
+      return () => { isMounted = false; };
+    }
     getStudentAssessments(accessToken).then(data => { if (isMounted) setAssessments(data); }).catch(() => undefined);
     getLearningProgress(accessToken).then((progress) => {
       const cloudResults = progress.examResults.filter(isExamResult) as ExamResult[];
-      if (isMounted && cloudResults.length > 0) setResults(cloudResults);
+      if (isMounted) setResults(cloudResults);
     }).catch(() => undefined);
     return () => { isMounted = false; };
-  }, [accessToken]);
+  }, [accessToken, previewContext.isPreview, previewContext.studentId]);
 
   const average = useMemo(() => results.length ? Math.round(results.reduce((sum, result) => sum + result.percentage, 0) / results.length) : null, [results]);
 
@@ -42,14 +50,16 @@ export function StudentResultsPage() {
     <StudentPortalShell activeId="results" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
       <div className="student-section-page">
         <header className="student-section-heading"><div><p>Performance history</p><h1>Results</h1><span>Review completed assessments and the subject scores shared with your teacher.</span></div><strong>{average === null ? "No results yet" : `${average}% average`}</strong></header>
+        {error && <p role="alert">{error}</p>}
+        {previewContext.isPreview && !previewContext.studentId && <p>Select a student to preview their results.</p>}
         {results.length > 0 ? (
           <section className="student-results-list" aria-label="Assessment results">
             {results.map((result) => (
               <article key={result.assessmentId}>
                 <div className="student-result-score"><strong>{result.percentage}%</strong><span>{result.correct} of {result.total}</span></div>
                 <div><small>{result.completionStatus === "complete" ? "Complete" : "In progress"}</small><h2>{result.title}</h2><p>{new Date(result.completedAt).toLocaleDateString()}</p></div>
-                <div className="student-result-subjects">{result.subjects.map((subject) => <span key={subject.subject}><small>{subject.subject === "Mathematics" ? "Math" : "English"}</small><strong>{subject.correct} / {subject.total}</strong></span>)}</div>
-                <div className="student-result-correction-action"><CheckCircle2 size={20} />{assessments.find(item => item.id === result.assessmentId)?.correctionsOpen ? <a href={`/results/${encodeURIComponent(result.assessmentId)}/corrections`}>Corrections →</a> : <button type="button" disabled title="Your teacher must open corrections first">Corrections locked</button>}</div>
+                <div className="student-result-subjects">{(Array.isArray(result.subjects) ? result.subjects : []).map((subject) => <span key={subject.subject}><small>{subject.subject === "Mathematics" ? "Math" : "English"}</small><strong>{subject.correct} / {subject.total}</strong></span>)}</div>
+                <div className="student-result-correction-action"><CheckCircle2 size={20} />{assessments.find(item => item.id === result.assessmentId)?.correctionsOpen ? <AppLink href={examCorrectionsHref(result.assessmentId, previewContext)}>Corrections →</AppLink> : <button type="button" disabled title="Your teacher must open corrections first">Corrections locked</button>}</div>
               </article>
             ))}
           </section>

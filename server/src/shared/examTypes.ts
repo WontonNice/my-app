@@ -1,3 +1,5 @@
+import type { PassageCategory } from "./passageCategories";
+
 export type ExamQuestionType =
   | "multiple_choice"
   | "multi_select"
@@ -30,6 +32,8 @@ export type ExamPassageLine = {
 };
 
 export type ExamPassage = {
+  passageCategory?: PassageCategory;
+  versionLabel?: string;
   coverImage?: ExamQuestionImage;
   format?: "poem" | "prose" | "sentence_prose";
   id: string;
@@ -223,6 +227,8 @@ export type AssessmentContentSource = {
   id: string;
   passageOrder?: string[];
   passages: {
+    passageCategory?: PassageCategory;
+    versionLabel?: string;
     id: string;
     text: string;
     title: string;

@@ -1,0 +1,316 @@
+{
+  "revision": 13,
+  "questions": [
+    {
+      "subject": "English",
+      "source": "SHSAT Lab",
+      "sourceUrl": "https://www.shsatlab.com/units/unit-1/practice",
+      "sourceUnit": 1,
+      "sourceTopic": "Central Idea & Theme",
+      "topic": "Central Idea & Theme",
+      "section": "reading",
+      "difficulty": "medium",
+      "prompt": "Which statement best summarizes the central idea of the passage?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The regulars at the diner shape the stories people hear, making it hard for outsiders to join in."
+        },
+        {
+          "id": "B",
+          "text": "At the rural diner, fairness depends on who speaks up, revealing who is heard and who is left out."
+        },
+        {
+          "id": "C",
+          "text": "Fairness at the diner is maintained when the waitress steps in if someone is interrupted or ignored."
+        },
+        {
+          "id": "D",
+          "text": "The diner at the crossroads is a symbol for how fairness works in all rural communities, no matter who gathers there."
+        }
+      ],
+      "correctChoiceId": "B",
+      "explanation": "Iko's Quick Read\n\nis heard and who is left out. The question asks for the central idea, or big message, in the passage about how the diner operates.\n\nStep-by-step solution\n1\nThe best way to find this is by looking at how the regulars and the waitress affect who gets to speak and who is listened to.\n2\nThe main point is that fairness at the diner depends on who is willing or able to speak up; not everyone’s voice is equally valued. - The passage explains that regulars usually control the conversation: “The regulars have a way of shaping what stories get told.\n3\nIf you speak with confidence, or simply the loudest, your story becomes the table's story.” - Outsiders and quieter guests struggle to be heard: “quieter visitors rarely get the floor” and new voices “don't carry the same weight.” - The waitress, Marta, sometimes helps others join in, but not always: “she gently interrupts when someone is talked over...not everyone appreciates this, but no one argues with Marta for long.” - These details show that being heard in the diner relies mostly on confidence or being part of the regular group, not on true fairness.\n\nConcept tip\n\nLook for the central idea by asking: 'What does the author want readers to understand about how people interact or what’s most important in the setting?'",
+      "incorrectChoiceExplanations": {
+        "A": "This describes the regulars’ influence but does not sum up the bigger idea of fairness or inclusion for all.",
+        "C": "This focuses too much on the waitress’s actions, which are occasional, not the central idea.",
+        "D": "This over-generalizes about all rural communities, which the passage does not support."
+      },
+      "passage": {
+        "title": "Central Idea & Theme",
+        "text": "The Crossroads Diner sits where Highway 6 and Highway 27 meet—two faded roads that mostly carry empty trucks and the occasional lost traveler. Inside, the air smells of coffee and fried onions. On weekday afternoons, the same handful of regulars line the cracked vinyl booths, their voices echoing off chipped walls. Outsiders drift in, scanning the room for a welcome, but mostly keep to themselves unless someone invites them to join a conversation.\n\nThe regulars have a way of shaping what stories get told. If you speak with confidence, or simply the loudest, your story becomes the table's story. Tom, for instance, tells of a fox outsmarting his chickens; others nod and add their own tales, but quieter visitors rarely get the floor. Sometimes, an outsider will try to share a story about a road closure or a missing dog, but the talk drifts back to familiar subjects. It’s not that new voices are unwelcome, exactly, but they don't carry the same weight.\n\nMarta, the waitress, moves between tables, pouring refills and listening in. Occasionally, she pauses to ask a quiet guest for their opinion, which earns a few glances from the regulars. Some afternoons, she gently interrupts when someone is talked over, her hand on a shoulder as if reminding them to let others speak. Not everyone appreciates this, but no one argues with Marta for long.\n\nOn the wall by the register, a faded map of the highways is dotted with pins for towns that have lost their schools or post offices. The diner is still here, for now. As dusk settles, the regulars drift out, voices trailing into the parking lot. A lone traveler leaves behind a half-finished slice of pie and a story that no one wrote down.",
+        "format": "prose"
+      },
+      "reviewNotes": [
+        "The displayed heading is a skill label, not necessarily an original passage title. Review title and passage format."
+      ],
+      "visuals": [],
+      "capturedAt": "2026-10-05T17:29:40.786Z",
+      "status": "published",
+      "id": "lab-q-460f83826ada0bb1ba610d57",
+      "reviewedAt": "2026-10-05T17:30:18.470Z"
+    },
+    {
+      "subject": "English",
+      "source": "SHSAT Lab",
+      "sourceUrl": "https://www.shsatlab.com/units/unit-7/practice",
+      "sourceUnit": 7,
+      "sourceTopic": "Evidence & Support",
+      "topic": "Evidence & Support",
+      "section": "reading",
+      "difficulty": "medium",
+      "prompt": "Which sentence from the passage best supports the idea that Mae Jemison faced active skepticism or doubt from peers or authorities before her success?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "More than once, her chemistry professor declared, \"Medicine is a safer bet for someone like you,\" dismissing Mae's questions about astronaut training."
+        },
+        {
+          "id": "B",
+          "text": "When her acceptance letter from NASA finally arrived, the doubts—her own and others'—felt smaller than the sky itself."
+        },
+        {
+          "id": "C",
+          "text": "There were days Mae wondered if she was fooling herself, uncertain she would ever see the stars except from her dorm window."
+        },
+        {
+          "id": "D",
+          "text": "Even at her university, Mae noticed that students of color were often overlooked in science seminars, their hands ignored when questions hung in the air."
+        }
+      ],
+      "correctChoiceId": "A",
+      "explanation": "Iko's Quick Read\n\nis a safer bet for someone like you,\" dismissing Mae's questions about astronaut training. The question is asking for the line showing that Mae Jemison faced active skepticism or doubt from peers or authorities.\n\nStep-by-step solution\n1\nThe best evidence is the sentence where her professor directly discourages her from pursuing astronaut training.\n2\nThis sentence proves she faced open doubt from an authority figure before her success. - The question wants proof of skepticism or doubt from someone else, not just Mae's own feelings. - The phrase \"her chemistry professor declared, 'Medicine is a safer bet for someone like you,' dismissing Mae's questions about astronaut training\" shows that another person discouraged her directly. - This professor is an authority at her university, and he actively dismisses her goals, which counts as direct skepticism.\n\nConcept tip\n\nFocus on the question's keywords like 'active skepticism or doubt.' Look for dialogue or actions where someone else expresses disbelief, not just the main character's feelings.",
+      "incorrectChoiceExplanations": {
+        "B": "This sentence refers to how doubts disappeared after her success; it doesn't show active skepticism beforehand.",
+        "C": "This describes Mae's own self-doubt, not skepticism from others.",
+        "D": "This details a pattern of students being overlooked, not a clear moment where someone questioned Mae directly."
+      },
+      "passage": {
+        "title": "Evidence & Support",
+        "text": "Mae Jemison adjusted her glasses and pressed her pencil to the page, her notes from the morning's organic chemistry lecture spreading like constellations across the margin. The lecture hall hummed with the energy of students absorbed in equations, but Mae's mind drifted upward—toward the stars she longed to study, not just from afar, but as an explorer. There were days Mae wondered if she was fooling herself, uncertain she would ever see the stars except from her dorm window. More than once, her chemistry professor declared, \"Medicine is a safer bet for someone like you,\" dismissing Mae's questions about astronaut training.\n\nEven at her university, Mae noticed that students of color were often overlooked in science seminars, their hands ignored when questions hung in the air. She read about other women who had pushed boundaries but wondered whether her own path would lead anywhere new. Late at night, her textbooks stacked like tiny launchpads, Mae rehearsed answers for skeptical mentors, determined to make them see the logic in her ambition.\n\nWhen her acceptance letter from NASA finally arrived, the doubts—her own and others'—felt smaller than the sky itself. The news spread quickly through the campus, turning strangers into supporters. Mae stood at the threshold of something extraordinary, ready to bring her questions into orbit.",
+        "format": "prose"
+      },
+      "reviewNotes": [
+        "The displayed heading is a skill label, not necessarily an original passage title. Review title and passage format."
+      ],
+      "visuals": [],
+      "capturedAt": "2026-10-05T18:14:12.998Z",
+      "status": "published",
+      "id": "lab-q-e949589a7f25622328d10696",
+      "reviewedAt": "2026-10-05T18:15:01.725Z"
+    },
+    {
+      "subject": "English",
+      "source": "SHSAT Lab",
+      "sourceUrl": "https://www.shsatlab.com/units/unit-7/practice",
+      "sourceUnit": 7,
+      "sourceTopic": "Evidence & Support",
+      "topic": "Evidence & Support",
+      "section": "reading",
+      "difficulty": "medium",
+      "prompt": "Which sentence from the passage best supports the idea that Chien-Shiung Wu faced systemic or institutional barriers that were not of her own making?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Even the equipment she needed for her celebrated parity experiment was difficult to calibrate, requiring countless adjustments just to get a stable reading."
+        },
+        {
+          "id": "B",
+          "text": "Wu was denied access to certain university laboratories because of her gender and ethnicity, even though she was as qualified as her peers."
+        },
+        {
+          "id": "C",
+          "text": "Some nights, Wu questioned whether she truly belonged in a world that seemed eager to remind her of her outsider status."
+        },
+        {
+          "id": "D",
+          "text": "When she encountered a setback in her research, she devised a new setup for the experiment and, after several long evenings, succeeded in obtaining a clear result."
+        }
+      ],
+      "correctChoiceId": "B",
+      "explanation": "Iko's Quick Read\n\nwas denied access to certain university laboratories because of her gender and ethnicity, even though she was as qualified as her peers. The question is asking which detail shows that Wu faced barriers created by the institution, not by her own choices.\n\nStep-by-step solution\n1\nThe answer is the sentence that directly states how Wu was blocked from university labs for reasons beyond her control—her gender and ethnicity.\n2\nThe passage says Wu was \"denied access to certain university laboratories because of her gender and ethnicity, even though she was as qualified as her peers.\" This clearly shows she faced structural barriers at the university that were not based on her performance or decisions.\n3\nBeing blocked from labs is an institutional obstacle and not a personal struggle or technical challenge.\n\nConcept tip\n\nLook for details that show actions or rules by institutions or systems, not just personal challenges or feelings.",
+      "incorrectChoiceExplanations": {
+        "A": "This focuses on technical equipment difficulties, not an institutional or systemic obstacle.",
+        "C": "This describes Wu's feelings of being an outsider, not a specific external barrier imposed by the institution.",
+        "D": "This describes how Wu overcame a research setback, not a barrier put in place by others."
+      },
+      "passage": {
+        "title": "Evidence & Support",
+        "text": "Chien-Shiung Wu arrived at the university with a suitcase full of physics texts and a restless mind. When she entered the tall stone building for the first time, she felt both excited and slightly intimidated; the halls echoed with voices, but few of them looked or sounded like hers. Wu was denied access to certain university laboratories because of her gender and ethnicity, even though she was as qualified as her peers. Instead, she was forced to find creative ways to work, borrowing time in empty classrooms or persuading sympathetic colleagues to share their bench space.\n\nSome nights, Wu questioned whether she truly belonged in a world that seemed eager to remind her of her outsider status. She sometimes wondered if her passion for unraveling the universe’s mysteries was enough to overcome the invisible walls she faced. Yet as the weeks passed, Wu refused to let these doubts dictate her path. When she encountered a setback in her research, she devised a new setup for the experiment and, after several long evenings, succeeded in obtaining a clear result.\n\nEven the equipment she needed for her celebrated parity experiment was difficult to calibrate, requiring countless adjustments just to get a stable reading. But Wu pressed on, her focus unwavering, and her hands steady even as the hours stretched late into the night.",
+        "format": "prose"
+      },
+      "reviewNotes": [
+        "The displayed heading is a skill label, not necessarily an original passage title. Review title and passage format."
+      ],
+      "visuals": [],
+      "capturedAt": "2026-10-05T18:14:17.340Z",
+      "status": "published",
+      "id": "lab-q-4d945867c8275c5bd21071b1",
+      "reviewedAt": "2026-10-05T18:15:05.024Z"
+    },
+    {
+      "subject": "English",
+      "source": "SHSAT Lab",
+      "sourceUrl": "https://www.shsatlab.com/units/unit-7/practice",
+      "sourceUnit": 7,
+      "sourceTopic": "Evidence & Support",
+      "topic": "Evidence & Support",
+      "section": "reading",
+      "difficulty": "medium",
+      "prompt": "Which sentence from the passage best supports the idea that Frederick McKinley Jones faced active skepticism or doubt from peers or authorities before his success?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Jones felt a surge of uncertainty as he looked at the unfinished prototype, wondering whether his ideas would ever be taken seriously in an industry dominated by established experts."
+        },
+        {
+          "id": "B",
+          "text": "Within months, his invention was being praised by industry leaders, and orders arrived from across the country."
+        },
+        {
+          "id": "C",
+          "text": "Many dismissed him simply because he lacked a formal engineering degree and came from a background few in the industry shared."
+        },
+        {
+          "id": "D",
+          "text": "Yet his colleagues criticized the idea as impractical, warning him that machines like his would break down and ruin precious cargo."
+        }
+      ],
+      "correctChoiceId": "D",
+      "explanation": "Iko's Quick Read\n\nThe question asks for the sentence that best shows Frederick McKinley Jones faced active skepticism or doubt from peers before his success. The strongest evidence is where his colleagues directly criticize his invention and doubt it will work.\n\nStep-by-step solution\n1\nThe correct answer clearly points out active criticism from those around him.\n2\nLook for lines where peers or authorities show direct doubt or negative feedback.\n3\nIn the passage, the sentence mentioning colleagues who 'criticized the idea as impractical' and gave reasons why it supposedly would fail shows both skepticism and direct opposition.\n\nConcept tip\n\nChoose sentences that give direct, clear evidence of what the question asks—for skepticism, look for words like 'criticize' or other negative reactions from others, not just self-doubt or general description.",
+      "incorrectChoiceExplanations": {
+        "A": "This reflects Jones's own uncertainty, not the doubt coming from others.",
+        "B": "This describes the period after his success, when his work was already being praised, not when he was facing doubt.",
+        "C": "This shows general dismissal due to his background, but not the active, specific criticism from colleagues that the question asks for."
+      },
+      "passage": {
+        "title": "Evidence & Support",
+        "text": "Frederick McKinley Jones tightened the final bolt on his prototype, the hum of machinery filling the workshop. Jones felt a surge of uncertainty as he looked at the unfinished prototype, wondering whether his ideas would ever be taken seriously in an industry dominated by established experts. Many dismissed him simply because he lacked a formal engineering degree and came from a background few in the industry shared.\n\nYet his colleagues criticized the idea as impractical, warning him that machines like his would break down and ruin precious cargo. Their words echoed in the shop long after they left, fueling a determination that burned hotter than the summer air. Despite the skepticism, Jones continued to revise his design, working through nights when most of the city slept.\n\nWithin months, his invention was being praised by industry leaders, and orders arrived from across the country. The refrigerated units, once called 'impossible,' began to change how food and medicine traveled, their steady cold silently rewriting the rules of commerce.",
+        "format": "prose"
+      },
+      "reviewNotes": [
+        "The displayed heading is a skill label, not necessarily an original passage title. Review title and passage format."
+      ],
+      "visuals": [],
+      "capturedAt": "2026-10-05T18:16:58.671Z",
+      "status": "published",
+      "id": "lab-q-e62e42db4f8185fca2391887",
+      "reviewedAt": "2026-10-05T18:17:33.080Z"
+    },
+    {
+      "subject": "English",
+      "source": "SHSAT Lab",
+      "sourceUrl": "https://www.shsatlab.com/units/unit-7/practice",
+      "sourceUnit": 7,
+      "sourceTopic": "Evidence & Support",
+      "topic": "Evidence & Support",
+      "section": "reading",
+      "difficulty": "medium",
+      "prompt": "Which sentence from the passage best supports the idea that Bayard Rustin served as a bridge between two different communities or traditions?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Though Rustin had deep roots in the labor movement, he spent just as much time in the pews of Black churches, where he was equally at home speaking with ministers about rallying their congregations."
+        },
+        {
+          "id": "B",
+          "text": "Rustin translated the needs of labor leaders into language that civil rights activists could act on."
+        },
+        {
+          "id": "C",
+          "text": "At a late-night planning meeting, Ms. Lee, a veteran organizer, reminded the group that the march would only succeed if religious groups and secular organizations worked side by side."
+        },
+        {
+          "id": "D",
+          "text": "Each night, he revised spreadsheets, sent out midnight telegrams, and left quiet encouragement on colleagues' desks—sometimes the only thing holding the effort together."
+        }
+      ],
+      "correctChoiceId": "B",
+      "explanation": "Iko's Quick Read\n\nThis question asks you to choose the sentence showing Bayard Rustin connecting two different groups. The best strategy is to find the line where Rustin bridges or links two communities or traditions.\n\nStep-by-step solution\n1\nThe answer is the sentence describing how he explained labor leaders' needs in a way civil rights activists could use. - The question is asking which sentence best supports Rustin acting as a \"bridge\" between groups. - The correct answer comes from the line that says \"Rustin translated the needs of labor leaders into language that civil rights activists could act on.\" - This directly shows Rustin helping two groups—labor leaders and civil rights activists—work together, serving as a go-between.\n\nConcept tip\n\nLook for language in the passage where a character connects, translates, or links information between different groups to identify evidence of bridging communities.",
+      "incorrectChoiceExplanations": {
+        "A": "This describes Rustin's involvement in both communities, but not how he connected them.",
+        "C": "This is Ms. Lee’s comment about how success requires groups working together, not evidence of Rustin bridging them.",
+        "D": "This details Rustin's hard work, but doesn’t show him connecting different communities."
+      },
+      "passage": {
+        "title": "Evidence & Support",
+        "text": "The sun had barely risen when Bayard Rustin stood in the drafty church basement, clipboard in hand, surrounded by boxes of flyers and a tangle of phone cords. He listened intently as a union leader explained the logistics of transporting thousands of workers to the nation's capital. Rustin nodded, jotting notes, already thinking ahead to how the route changes would affect busloads of high school volunteers scheduled to arrive from the South.\n\nThough Rustin had deep roots in the labor movement, he spent just as much time in the pews of Black churches, where he was equally at home speaking with ministers about rallying their congregations. At a late-night planning meeting, Ms. Lee, a veteran organizer, reminded the group that the march would only succeed if religious groups and secular organizations worked side by side. Rustin translated the needs of labor leaders into language that civil rights activists could act on. Each night, he revised spreadsheets, sent out midnight telegrams, and left quiet encouragement on colleagues' desks—sometimes the only thing holding the effort together.\n\nBy the time the first buses rolled in on the morning of the march, Rustin had already been awake for thirty hours, coordinating volunteers, fielding last-minute crises, and guiding an effort that would bring a quarter of a million people to the National Mall.",
+        "format": "prose"
+      },
+      "reviewNotes": [
+        "The displayed heading is a skill label, not necessarily an original passage title. Review title and passage format."
+      ],
+      "visuals": [],
+      "capturedAt": "2026-10-05T18:17:39.915Z",
+      "status": "published",
+      "id": "lab-q-54dcf4507823ec141716407b",
+      "reviewedAt": "2026-10-05T18:17:58.535Z"
+    },
+    {
+      "subject": "English",
+      "source": "SHSAT Lab",
+      "sourceUrl": "https://www.shsatlab.com/units/unit-7/practice",
+      "sourceUnit": 7,
+      "sourceTopic": "Evidence & Support",
+      "topic": "Evidence & Support",
+      "section": "reading",
+      "difficulty": "medium",
+      "prompt": "Which sentence from the passage best supports the idea that the radio host faced systemic or institutional barriers that were not of their own making?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Yet as the show ended, dozens of listeners called in to share stories in their native tongue, reminding her that every effort—no matter how small—could ripple outward, preserving a fragile inheritance."
+        },
+        {
+          "id": "B",
+          "text": "Every word she spoke required careful pronunciation, deep knowledge of grammar, and fast thinking."
+        },
+        {
+          "id": "C",
+          "text": "She sometimes worried that she would be the only one listening, but she greeted her invisible audience with warmth and a deliberate, steady rhythm."
+        },
+        {
+          "id": "D",
+          "text": "Last month, funding was denied for equipment upgrades, with the station manager citing a lack of community demand."
+        }
+      ],
+      "correctChoiceId": "D",
+      "explanation": "Iko's Quick Read\n\nwas denied for equipment upgrades, with the station manager citing a lack of community demand. The question asks which sentence best shows that Lila faced barriers created by institutions or systems, not barriers of her own making.\n\nStep-by-step solution\n1\nThe right strategy is to look for where an outside force or authority blocks her progress.\n2\nThe correct answer is the sentence about the station manager denying her funding.\n3\nThis answer works because it directly describes a decision made by the station (not Lila herself) that affects her ability to do her job.\n4\nThe phrase about funding being denied due to \"a lack of community demand\" makes it clear that this is a systemic or institutional barrier—Lila is unable to get new equipment, not because of anything she did, but because of an organizational judgment.\n\nConcept tip\n\nWhen asked about institutional or systemic barriers, look for moments when a decision, rule, or condition outside the character’s control creates a problem.",
+      "incorrectChoiceExplanations": {
+        "A": "This is about community response and encouragement, not a barrier.",
+        "B": "This sentence states the personal skill and care needed for her speech, not an external obstacle from an institution.",
+        "C": "This sentence is about Lila's feelings—her worry about listeners, not an institutional barrier."
+      },
+      "passage": {
+        "title": "Evidence & Support",
+        "text": "Rain clattered on the tin roof as Lila adjusted the battered microphone in the cramped studio. Most stations in the city played music in three dominant languages, but every Saturday morning, Lila's voice carried through the static in Gansali, a language now spoken by fewer than 3,000 people in the region. She sometimes worried that she would be the only one listening, but she greeted her invisible audience with warmth and a deliberate, steady rhythm.\n\nEvery word she spoke required careful pronunciation, deep knowledge of grammar, and fast thinking. Old dictionaries sat at her elbow, worn soft from years of reference. Sometimes a slip of tongue felt like a public error; sometimes, she invented new expressions when old words proved elusive. Last month, funding was denied for equipment upgrades, with the station manager citing a lack of community demand. Still, Lila coaxed the ancient radio into working each week, grateful for the hiss and crackle that proved it was alive.\n\nSome weeks, technical problems forced her to improvise, switching from music to stories or interviews on a moment’s notice. Once, she broadcast for three hours by candlelight during a power outage, her voice the only connection for elderly listeners in distant villages. Yet as the show ended, dozens of listeners called in to share stories in their native tongue, reminding her that every effort—no matter how small—could ripple outward, preserving a fragile inheritance.",
+        "format": "prose"
+      },
+      "reviewNotes": [
+        "The displayed heading is a skill label, not necessarily an original passage title. Review title and passage format."
+      ],
+      "visuals": [],
+      "capturedAt": "2026-10-05T18:17:46.447Z",
+      "status": "published",
+      "id": "lab-q-c07818511a6509a23c46a3bb",
+      "reviewedAt": "2026-10-05T18:18:06.113Z"
+    }
+  ],
+  "sets": [
+    {
+      "id": "lab-set-85f5d9a8845e953ba8b35d4e",
+      "title": "test",
+      "subject": "English",
+      "source": "SHSAT Lab",
+      "questionIds": [
+        "lab-q-e62e42db4f8185fca2391887",
+        "lab-q-e949589a7f25622328d10696",
+        "lab-q-c07818511a6509a23c46a3bb",
+        "lab-q-4d945867c8275c5bd21071b1",
+        "lab-q-54dcf4507823ec141716407b",
+        "lab-q-460f83826ada0bb1ba610d57"
+      ],
+      "createdAt": "2026-10-07T02:05:17.581Z"
+    }
+  ]
+}

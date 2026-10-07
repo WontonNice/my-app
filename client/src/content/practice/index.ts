@@ -67,8 +67,18 @@ export const practiceTopics: PracticeTopic[] = [
   },
 ];
 
+export const revisingEditingTopics: PracticeTopic[] = [
+  ["sentence-structure", "Sentence Structure", "Build complete sentences and correct fragments, run-ons, and sentence combinations."],
+  ["pronouns", "Pronouns", "Choose clear pronoun references and correct agreement and case."],
+  ["verbs", "Verbs", "Use consistent verb tense and correct subject–verb agreement."],
+  ["modifiers", "Modifiers", "Place descriptive words and phrases clearly and correctly."],
+  ["punctuation", "Punctuation", "Use commas, colons, semicolons, and other punctuation accurately."],
+  ["word-choice-precision", "Word Choice & Precision", "Choose precise words and remove unnecessary language."],
+  ["topic-transitions", "Topic & Transitions", "Connect sentences and paragraphs with clear topic statements and transitions."],
+  ["relevance-conclusion", "Relevance & Conclusion", "Select relevant details and effective conclusions."],
+].map(([slug, title, description]) => ({ slug, title, key: title, description, questionBank: [] }));
 export function getPracticeTopicBySlug(slug: string) {
-  return practiceTopics.find((topic) => topic.slug === slug) ?? null;
+  return [...practiceTopics, ...revisingEditingTopics].find((topic) => topic.slug === slug) ?? null;
 }
 
 export type { PracticeDifficulty, PracticeQuestion, PracticeTopic } from "./types";

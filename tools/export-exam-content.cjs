@@ -7,7 +7,7 @@ function exportExamContent(workspaceRoot = root) {
   const previous = require.extensions['.ts'];
   require.extensions['.ts'] = (module, filename) => {
     module._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), {
-      compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+      compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
     }).outputText, filename);
   };
   try {

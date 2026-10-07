@@ -127,6 +127,7 @@ function CorrectionSubmissionReview({ studentName, submission }: { studentName: 
     </article>
     <section className="exam-correction-response-panel teacher-correction-writing">
       <header><div><p>Student correction</p><h4>Explanation and self assessment</h4></div><span>Submitted</span></header>
+      {response.questionType && <div><h5>Student-selected question type</h5><p>{response.questionType}</p></div>}
       {response.whyChosenIncorrect ? <div><h5>Why the chosen answer is wrong</h5><p>{response.whyChosenIncorrect}</p></div> : null}
       <div><h5>Why the correct answer is correct</h5><p>{response.whyCorrectAnswerCorrect}</p></div>
       <strong>Understanding: {response.understanding} / 5</strong>

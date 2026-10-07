@@ -7,7 +7,7 @@ const { execFileSync } = require('node:child_process');
   const built = await esbuild.build(options);
   const original = execFileSync('git', ['show', 'HEAD:client/src/pages/TeacherDashboardPage.tsx'], { cwd: path.resolve(__dirname, '..'), encoding: 'utf8' });
   const legacy = await esbuild.build({ ...options, entryNames: 'student-analytics-legacy', plugins: [{ name: 'original-dashboard-for-qa', setup(build) {
-    build.onLoad({ filter: /TeacherDashboardPage\.tsx$/ }, args => ({ contents: original.replace('function StudentDetail(', 'export function StudentDetail('), loader: 'tsx', resolveDir: path.dirname(args.path) }));
+    build.onLoad({ filter: /TeacherDashboardPage\.tsx$/ }, args => ({ contents: original.replace(/^function StudentDetail\(/m, 'export function StudentDetail('), loader: 'tsx', resolveDir: path.dirname(args.path) }));
   } }] });
   const files = new Map([...built.outputFiles, ...legacy.outputFiles].map(file => ['/' + path.basename(file.path), file.contents]));
   const server = http.createServer((request, response) => {

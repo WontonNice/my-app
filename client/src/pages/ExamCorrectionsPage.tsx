@@ -3,11 +3,15 @@ import { ExamReviewQuestion } from "../components/ExamReviewQuestion";
 import { getExamCorrectionView, submitExamCorrections } from "../lib/api";
 import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
 import { peekActiveSession } from "../lib/sessionCache";
+import { AppLink } from "../components/AppLink";
+import { appendStudentPreview } from "../lib/studentPreview";
+import { examCorrectionId } from "../lib/correctionNavigation";
+import { correctionQuestionTypes } from "../../../server/src/shared/correctionTypes";
 import { validateCorrections, type CorrectionResponse, type ExamCorrectionView } from "../../../server/src/shared/examCorrections";
 
 export function ExamCorrectionsPage() {
-  const { accessToken, studentName } = useStudentPortalAccess();
-  const assessmentId = decodeURIComponent(window.location.pathname.split("/")[2] ?? "");
+  const { accessToken, studentName, previewContext } = useStudentPortalAccess();
+  const assessmentId = examCorrectionId(window.location.pathname);
   const [view, setView] = useState<ExamCorrectionView | null>(null);
   const [draft, setDraft] = useState<Record<string, CorrectionResponse>>({});
   const [active, setActive] = useState(0);
@@ -17,23 +21,26 @@ export function ExamCorrectionsPage() {
   const [saving, setSaving] = useState(false);
   const [draftNotice, setDraftNotice] = useState("");
   const [reload, setReload] = useState(0);
+  const readOnly = previewContext.isPreview || view?.readOnly === true;
+  const noPreviewStudent = previewContext.isPreview && !previewContext.studentId;
   const draftKey = `exam-corrections:${peekActiveSession()?.user.id}:${assessmentId}:${view?.resultVersion}`;
 
   useEffect(() => {
-    if (!accessToken) return;
+    if (!accessToken || noPreviewStudent || !assessmentId) return;
     let mounted = true;
-    getExamCorrectionView(accessToken, assessmentId).then(data => {
+    getExamCorrectionView(accessToken, assessmentId, previewContext.isPreview ? previewContext.studentId : undefined).then(data => {
       if (!mounted) return;
       let saved: Record<string, CorrectionResponse> = {};
-      try { saved = JSON.parse(localStorage.getItem(`exam-corrections:${peekActiveSession()?.user.id}:${assessmentId}:${data.resultVersion}`) ?? "{}"); } catch { /* Start with an empty draft. */ }
+      if (!previewContext.isPreview && !data.readOnly) try { saved = JSON.parse(localStorage.getItem(`exam-corrections:${peekActiveSession()?.user.id}:${assessmentId}:${data.resultVersion}`) ?? "{}"); } catch { /* Start with an empty draft. */ }
       const submitted = data.submission ? Object.fromEntries(data.submission.responses.map(item => [item.questionId, item])) : {};
       setDraft({ ...submitted, ...(saved && typeof saved === "object" ? saved : {}) });
       setView(data); setError("");
     }).catch(reason => { if (mounted) setError(reason instanceof Error ? reason.message : "Corrections could not be opened."); });
     return () => { mounted = false; };
-  }, [accessToken, assessmentId, reload]);
+  }, [accessToken, assessmentId, reload, previewContext.isPreview, previewContext.studentId, noPreviewStudent]);
 
   function update(questionId: string, change: Partial<CorrectionResponse>) {
+    if (readOnly) return;
     const current = draft[questionId] ?? { questionId, whyChosenIncorrect: "", whyCorrectAnswerCorrect: "", understanding: 0 };
     const next = { ...draft, [questionId]: { ...current, ...change } };
     setDraft(next);
@@ -44,7 +51,7 @@ export function ExamCorrectionsPage() {
 
   async function submit() {
     const item = view?.questions[active];
-    if (!view || !item || item.isCorrect || saving) return;
+    if (!view || !item || item.isCorrect || saving || readOnly) return;
     setError("");
     let responses: CorrectionResponse[];
     try { responses = validateCorrections([item], [draft[item.question.id] ?? { questionId: item.question.id, whyChosenIncorrect: "", whyCorrectAnswerCorrect: "", understanding: 0 }]); }
@@ -76,7 +83,7 @@ export function ExamCorrectionsPage() {
   return <main className="exam-corrections-page">
     <header className="exam-corrections-toolbar" aria-label="Correction controls">
       <div className="exam-corrections-toolbar-inner">
-        <a href="/study-hall/shsat/results">← Back to results</a>
+        <AppLink href={appendStudentPreview("/study-hall/shsat/results", previewContext)}>← Back to results</AppLink>
         <div className="exam-corrections-toolbar-navigation" aria-label="Previous and next question">
           <button type="button" aria-label="Previous question" disabled={!view || active === 0} onClick={() => goToQuestion(active - 1)}><span aria-hidden="true">‹</span></button>
           <button type="button" aria-label="Next question" disabled={!view || active >= view.questions.length - 1} onClick={() => goToQuestion(active + 1)}><span aria-hidden="true">›</span></button>
@@ -99,9 +106,12 @@ export function ExamCorrectionsPage() {
         <div><p>Learn from your answers</p><h1>{view?.result.title ?? "Exam corrections"}</h1></div>
         <span>{submittedCount} of {incorrect.length} corrections submitted</span>
       </header>
+      {readOnly && <p className="exam-review-success">Student preview · read only. The student can complete and submit corrections from their own account.</p>}
+      {noPreviewStudent && <p role="alert">Select a student to preview their corrections.</p>}
+      {!assessmentId && <p role="alert">Choose an assessment from Results to open its corrections.</p>}
 
       {error && <div className="exam-review-error" role="alert">{error} <button type="button" onClick={() => setReload(value => value + 1)}>Reload corrections</button></div>}
-      {!view && !error && <p className="exam-corrections-loading">Loading corrections…</p>}
+      {!view && !error && !noPreviewStudent && assessmentId && <p className="exam-corrections-loading">Loading corrections…</p>}
       {view && <div className="exam-corrections-layout">
         {isQuestionMenuOpen && <nav className="exam-corrections-question-map" aria-label="Question navigation">
           <div className="exam-corrections-question-map-heading"><h2>Questions</h2><p><span className="is-incorrect" /> Incorrect <span className="is-correct" /> Correct <strong>✓</strong> Submitted</p></div>
@@ -123,7 +133,8 @@ export function ExamCorrectionsPage() {
 
             {!question.isCorrect ? <section className="exam-correction-response-panel" aria-labelledby={`correction-response-${question.question.id}`}>
               <header><div><p>Correction response</p><h2 id={`correction-response-${question.question.id}`}>Explain your thinking</h2></div><span>{submittedQuestionIds.has(question.question.id) ? "Submitted" : "Required"}</span></header>
-              <fieldset disabled={saving}>
+              <fieldset disabled={saving || readOnly}>
+                <label>Question type <small>Select the skill or topic this question tests.</small><select required aria-label="Question type" value={response?.questionType || ""} onChange={event => update(question.question.id, { questionType: event.target.value })}><option value="">Choose a question type</option>{correctionQuestionTypes(view.questions.filter(item => item.section === question.section).map(item => item.question), question.section).map(type => <option key={type} value={type}>{type}</option>)}</select></label>
                 {question.section === "english" && <label>Why is the answer you chose wrong? <small>Required; if blank, explain why you did not answer.</small><textarea required maxLength={10000} rows={4} value={response?.whyChosenIncorrect ?? ""} onChange={event => update(question.question.id, { whyChosenIncorrect: event.target.value })} /></label>}
                 <label>Why is the correct answer correct? <small>Required{question.section === "math" ? ". Explain your reasoning or show your steps." : ". Use evidence from the text."}</small><textarea required maxLength={10000} rows={4} value={response?.whyCorrectAnswerCorrect ?? ""} onChange={event => update(question.question.id, { whyCorrectAnswerCorrect: event.target.value })} /></label>
                 <label className="exam-correction-understanding">How much do you understand the question now?<strong>{response?.understanding ? `${response.understanding} / 5` : "Choose a rating from 1–5"}</strong><input aria-label="Understanding from 1 to 5" type="range" min={1} max={5} step={1} value={response?.understanding || 1} onChange={event => update(question.question.id, { understanding: Number(event.target.value) })} onPointerUp={event => update(question.question.id, { understanding: Number(event.currentTarget.value) })} onKeyUp={event => { if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) update(question.question.id, { understanding: Number(event.currentTarget.value) }); }} /><span className="exam-slider-labels"><span>1 · Still unsure</span><span>5 · I can explain it</span></span></label>
@@ -131,7 +142,7 @@ export function ExamCorrectionsPage() {
             </section> : <p className="exam-correction-not-required">This answer was correct, so no written correction is required.</p>}
           </div>}
 
-          <footer><div className="exam-correction-pagination"><button type="button" disabled={active === 0} onClick={() => goToQuestion(active - 1)}>← Previous</button><button type="button" disabled={active >= view.questions.length - 1} onClick={() => goToQuestion(active + 1)}>Next →</button></div><span>{question && submittedQuestionIds.has(question.question.id) ? "This correction is saved. You may update and submit it again." : draftNotice || "Complete and submit each incorrect question when it is ready."}</span>{question && !question.isCorrect && <button className="exam-review-primary" type="button" disabled={saving} onClick={submit}>{saving ? "Saving…" : submittedQuestionIds.has(question.question.id) ? "Update this correction" : "Submit this correction"}</button>}</footer>
+          <footer><div className="exam-correction-pagination"><button type="button" disabled={active === 0} onClick={() => goToQuestion(active - 1)}>← Previous</button><button type="button" disabled={active >= view.questions.length - 1} onClick={() => goToQuestion(active + 1)}>Next →</button></div><span>{readOnly ? "Read-only student preview" : question && submittedQuestionIds.has(question.question.id) ? "This correction is saved. You may update and submit it again." : draftNotice || "Complete and submit each incorrect question when it is ready."}</span>{question && !question.isCorrect && !readOnly && <button className="exam-review-primary" type="button" disabled={saving} onClick={submit}>{saving ? "Saving…" : submittedQuestionIds.has(question.question.id) ? "Update this correction" : "Submit this correction"}</button>}</footer>
         </section>
       </div>}
     </div>
