@@ -7,12 +7,15 @@
     "passage": "One passage object OR omit and use passages",
     "passages": "Ordered passage objects (optional)",
     "mathQuestions": "Ordered Math question objects (optional)",
+    "review": "Optional Review for the Math batch, including expectedQuestionCount",
     "reviewNotes": "string[]",
     "visuals": "Visual[]; legacy scope/description objects are accepted"
   },
   "passage": {
     "title": "string; blank allowed in draft, teacher title required to publish",
     "author": "string",
+    "byline": "optional exact printed author/byline, including its prefix",
+    "subtitle": "optional exact subtitle displayed below title",
     "blurb": "string",
     "format": [
       "prose",
@@ -39,7 +42,7 @@
     "sourceNote": "student-visible string",
     "teacherSource": "teacher-only string",
     "text": "complete text; empty for independent questions",
-    "richText": "optional faithful HTML: p, br, strong, em, u, sup, sub, h1-h6, ul, ol, li; text remains the plain-text copy",
+    "richText": "optional faithful HTML: p, br, strong, em, u, sup, sub, h1-h6, ul, ol, li; text remains the plain-text copy; h1-h6 are unnumbered subheadings; p data-numbered=false excludes a paragraph, true explicitly numbers it",
     "questions": "ordered Question[]",
     "review": "Review",
     "visuals": "Visual[]"
@@ -58,7 +61,7 @@
     "prompt": "exact source text",
     "instructions": "optional exact source directions",
     "stimulus": "optional exact supporting text",
-    "choices": "ordered {id:string,text:string,html?:string,math?:string}[]; 2–8 when present; original printed IDs retained",
+    "choices": "ordered {id:string,text:string,html?:string,math?:string}[]; 2–8 when present; IDs normalized by position: A, B, C, D (then E, F for additional choices)",
     "correctChoiceId": "multiple_choice: exact choice ID, or empty string/null if no unambiguous supplied key",
     "correctChoiceIds": "multi_select: choice IDs from key, or [] if unknown",
     "requiredSelections": "multi_select: source selection count, or null if unknown",
@@ -73,6 +76,7 @@
     "sourcePages": "1-based PDF page number[]",
     "printedPages": "string (optional)",
     "sourceQuestion": "original printed number as string (question only)",
+    "sourceChoiceIds": "optional original printed choice IDs in order; teacher-only",
     "answerSource": "{sourceFile,sourcePages} or null",
     "explanationSource": "{sourceFile,sourcePages} or null",
     "topicSource": [

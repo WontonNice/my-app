@@ -2,20 +2,36 @@ import type { ExamPassage, ExamPassageLine, ExamPassageType, ExamQuestionImage }
 import { createGlossaryRichText } from "../../../../tools/content-studio-glossary.js";
 import { passageCategory as normalizeCategory, type PassageCategory } from "../../../../server/src/shared/passageCategories";
 
-/** Imported source numbering and line breaks are authoritative. Never renumber them. */
+/** Preserve imported wording/layout while retaining the exam's prose paragraph numbers. */
 export function createSourcePassage(input: PlainTextPassageInput & {
   format?: "prose" | "poem" | "sentence_prose";
   preserveSourceLayout?: boolean;
+  byline?: string;
+  subtitle?: string;
   images?: ExamQuestionImage[];
 }): ExamPassage {
   const escape = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const lines: ExamPassageLine[] = [];
   if (input.blurb) lines.push({ kind: "intro", text: input.blurb });
   lines.push({ kind: "title", text: input.title, align: "center" });
-  if (input.author) lines.push({ kind: "byline", text: `by ${input.author}`, align: "center" });
-  const blocks = input.richText ? (input.format === "poem" ? richTextLines(input.richText) : richTextBlocks(input.richText))
+  if (input.subtitle) lines.push({ kind: "heading", text: input.subtitle, align: "center" });
+  if (input.byline || input.author) lines.push({ kind: "byline", text: input.byline || `by ${input.author}`, align: "center" });
+  const blocks: RichTextBlock[] = input.richText ? (input.format === "poem" ? richTextLines(input.richText) : richTextBlocks(input.richText))
     : input.text.split(input.format === "poem" ? /\r?\n/ : /\r?\n\r?\n/).map(text => ({ text, html: escape(text).replace(/\n/g, "<br>").replace(/ {2}/g, " &nbsp;") }));
-  lines.push(...blocks);
+  let paragraphNumber = 1;
+  const bodyParagraphs = blocks.filter(block => !block.kind && block.numbered !== false && block.text.trim());
+  const printedLabels = bodyParagraphs.flatMap((block, index) => {
+    const match = /^\s*(\d{1,3})\s+/.exec(block.text);
+    return match && Number(match[1]) <= bodyParagraphs.length ? [{ value: Number(match[1]), expected: index + 1 }] : [];
+  });
+  const usePrintedLabels = printedLabels.length >= 2 && printedLabels.every(label => label.value === label.expected);
+  lines.push(...blocks.map(block => {
+    if ((input.format || "prose") !== "prose" || block.kind || block.numbered === false || !block.text.trim()) return block;
+    const lineNumber = String(paragraphNumber++);
+    // Printed paragraph labels move into the number badge; the source text stays intact.
+    const prefix = new RegExp(`^\\s*(?:\\(${lineNumber}\\)|${lineNumber}[.)]${usePrintedLabels ? `|${lineNumber}` : ""})\\s+`);
+    return { ...block, lineNumber, html: block.html?.replace(prefix, "") };
+  }));
   for (const image of [...(input.image ? [input.image] : []), ...(input.images || [])]) lines.push({ kind: "image", text: "", image });
   return { id: input.id, title: input.title, format: input.format || "prose", passageType: input.passageType,
     passageCategory: normalizeCategory(input.passageCategory), versionLabel: input.versionLabel,
@@ -45,6 +61,7 @@ type RichTextBlock = {
   html: string;
   kind?: "heading" | "list";
   text: string;
+  numbered?: boolean;
 };
 
 function codePointFromEntity(value: string, radix: number) {
@@ -90,14 +107,16 @@ function richTextBlocks(value: string): RichTextBlock[] {
           .replace(/^(?:(?:&nbsp;)|\s){4,}/i, "")
       : body;
     const text = plainTextFromHtml(html).trimEnd();
-    const isHeading = /^h[1-6]$/.test(tag) || (
+    const numbering = /\bdata-numbered\s*=\s*["'](true|false)["']/i.exec(attributes)?.[1];
+    const isHeading = /^h[1-6]$/.test(tag) || (numbering === undefined &&
       /^\s*<(strong|b)>[\s\S]*<\/\1>\s*$/i.test(html) && text.trim().length <= 100 && !/[.!?]$/.test(text.trim())
     );
     const isList = tag === "ul" || tag === "ol";
     blocks.push({
       ...(isIndented ? { align: "indent" as const } : {}),
-      html: isList ? match[0] : html,
+      html: isList ? match[0] : isHeading ? `<strong>${html}</strong>` : html,
       text,
+      ...(numbering ? { numbered: numbering === "true" } : {}),
       ...(isHeading ? { kind: "heading" } : isList ? { kind: "list" } : {}),
     });
     cursor = match.index + match[0].length;
@@ -331,7 +350,7 @@ export function createProsePassage({
     passageLines.push({
       html: paragraph.html || undefined,
       ...(paragraph.kind ? { kind: paragraph.kind } : {}),
-      lineNumber: paragraph.kind || !paragraph.text.trim() ? undefined : String(paragraphNumber++),
+      lineNumber: paragraph.kind || paragraph.numbered === false || !paragraph.text.trim() ? undefined : String(paragraphNumber++),
       text: paragraph.text,
     });
   });

@@ -9,7 +9,11 @@ export function documentDraftStore(root, sanitize = content => content) {
   const file = join(directory, 'document-imports.json');
   let pending = Promise.resolve();
   async function read() {
-    try { return JSON.parse(await readFile(file, 'utf8')); }
+    try {
+      const state = JSON.parse(await readFile(file, 'utf8'));
+      state.entries = state.entries.map(entry => ({ ...entry, content: contract.normalizeEntryChoices(entry.content) }));
+      return state;
+    }
     catch (error) { if (error.code === 'ENOENT') return { revision: 0, entries: [] }; throw error; }
   }
   function mutate(revision, operation) {
@@ -67,12 +71,17 @@ export function documentDraftStore(root, sanitize = content => content) {
   };
 }
 
-export function publicationContent(entry) {
+export function publicationContent(entry, { allowUnresolved = false } = {}) {
   const p = JSON.parse(JSON.stringify(entry.content));
   const allVisuals = [...(p.visuals || []), ...p.questions.flatMap(q => (q.visuals || []).map(v => ({ ...v, questionId: v.questionId || q.id })))];
   p.images = p.images || [];
   for (const v of allVisuals) {
-    if (!v.questionId) { if (!p.images.some(image => image.src === v.image.src)) p.images.push(v.image); continue; }
+    if (!v.image && allowUnresolved) continue;
+    if (!v.questionId) {
+      if (!p.image && !p.images.length) p.image = v.image;
+      else if (p.image?.src !== v.image.src && !p.images.some(image => image.src === v.image.src)) p.images.push(v.image);
+      continue;
+    }
     const q = p.questions.find(q => q.id === v.questionId);
     if (!q) throw new Error(`Visual refers to missing question ${v.questionId}.`);
     if (v.choiceId) {

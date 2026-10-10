@@ -233,6 +233,108 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string })[] = [
     ],
     "correctChoiceId": "C",
     "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-question-8",
+    "points": 1,
+    "prompt": "Which revision of the sentence uses the most precise language?",
+    "promptHtml": "Which revision of the sentence uses the most precise language?",
+    "stimulus": "The Appalachian Trail is a really long trail that a lot of people do each yea",
+    "stimulusHtml": "The Appalachian Trail is a really long trail that a lot of people do each yea",
+    "topic": "Sentence Structure",
+    "versionLabel": "2020-2021 Form A",
+    "choices": [
+      {
+        "id": "A",
+        "html": "The Appalachian Trail is an extremely long trail that millions of people do each year",
+        "text": "The Appalachian Trail is an extremely long trail that millions of people do each year"
+      },
+      {
+        "id": "B",
+        "html": "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year",
+        "text": "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year"
+      },
+      {
+        "id": "C",
+        "html": "The Appalachian Trail is a 2,200-mile trail that two million people hike each year",
+        "text": "The Appalachian Trail is a 2,200-mile trail that two million people hike each year"
+      },
+      {
+        "id": "D",
+        "html": "The Appalachian Trail is a lengthy trail that a couple million people do each year.",
+        "text": "The Appalachian Trail is a lengthy trail that a couple million people do each year."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-question-9",
+    "points": 1,
+    "prompt": "Which edit should be made to correct this sentence?",
+    "promptHtml": "Which edit should be made to correct this sentence?",
+    "stimulus": "In 1962 the agile athletic Wilt Chamberlain became the first and only professional basketball player in the United States to score 100 points in a single game.",
+    "stimulusHtml": "In 1962 the <u>agile</u> athletic Wilt Chamberlain became the <u>first</u> and <u>only</u> professional basketball player in the United <u>States</u> to score 100 points in a single game.",
+    "topic": "Sentence Structure",
+    "versionLabel": "2020-2021 Form A",
+    "choices": [
+      {
+        "id": "A",
+        "html": "Insert a comma after agile",
+        "text": "Insert a comma after agile"
+      },
+      {
+        "id": "B",
+        "html": "Insert a comma after first.",
+        "text": "Insert a comma after first."
+      },
+      {
+        "id": "C",
+        "html": "Insert a comma after only",
+        "text": "Insert a comma after only"
+      },
+      {
+        "id": "D",
+        "html": "Insert a comma after States.",
+        "text": "Insert a comma after States."
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-question-10",
+    "points": 1,
+    "prompt": "Which revision corrects the error in sentence structure in the paragraph?",
+    "promptHtml": "Which revision corrects the error in sentence structure in the paragraph?",
+    "stimulus": "In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most\npopular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. The museum features more than 30,000 objects, including\nMuhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation Proclamation, written in 1863 during the presidency of Abraham Lincoln, is\nalso on display at the museum.",
+    "stimulusHtml": "In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian <u>Institution, the</u> museum is already the Smithsonian’s third most\npopular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a <u>year. The</u> museum features more than 30,000 <u>objects, including</u>\nMuhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation <u>Proclamation, written</u> in 1863 during the presidency of Abraham Lincoln, is\nalso on display at the museum.",
+    "topic": "Sentence Structure",
+    "versionLabel": "2020-2021 Form A",
+    "choices": [
+      {
+        "id": "A",
+        "html": "Institution, and the",
+        "text": "Institution, and the"
+      },
+      {
+        "id": "B",
+        "html": "year, and the",
+        "text": "year, and the"
+      },
+      {
+        "id": "C",
+        "html": "objects, which include",
+        "text": "objects, which include"
+      },
+      {
+        "id": "D",
+        "html": "Proclamation, which was written",
+        "text": "Proclamation, which was written"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
   }
 ];
 

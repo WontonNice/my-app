@@ -46,6 +46,7 @@ async function priorActivity(student: User, catalog: PlanContent[]): Promise<Pri
   const alias = new Map(passages.flatMap(item => item.aliases.map(id => [id, item.id] as const)));
   const result: PriorContentActivity[] = [];
   for (const exam of progress.examResults) {
+    if (exam.completionStatus === "in_progress") continue;
     const at = typeof exam.completedAt === "string" && Number.isFinite(Date.parse(exam.completedAt)) ? exam.completedAt : null;
     if (exam.completionStatus !== "english_complete" && exam.completionStatus !== "math_complete" && catalog.some(item => item.kind === "exam" && item.id === exam.assessmentId)) result.push({ contentId: String(exam.assessmentId), at, source: "Existing exam result", correct: typeof exam.correct === "number" ? exam.correct : undefined, total: typeof exam.total === "number" ? exam.total : undefined });
     for (const value of Array.isArray(exam.passages) ? exam.passages : []) {
@@ -102,7 +103,7 @@ async function getOverview(student: User, isTeacher: boolean) {
   const schedule = visible.filter(item => days.includes(item.status === "planned" ? item.plannedDate ?? "" : item.dueDate ?? ""));
   if (!isTeacher) return { summary, schedule, catalog: catalog.filter(item => visible.some(task => task.kind === item.kind && task.contentId === item.id)) };
   const settingsQuery = await supabase.from("student_learning_plans").select("*").eq("student_id", student.id).maybeSingle(); checkStorage(settingsQuery.error);
-  const content = inventory(catalog, assignments, prior).map(row => ({ content: row.content, status: row.status, hasBeenAssigned: row.hasBeenAssigned, hasCompleted: row.hasCompleted, lastActivity: row.lastActivity, dueDate: row.active?.dueDate ?? null, plannedDate: row.planned?.plannedDate ?? null, assignmentCount: row.history.length, priorCount: row.evidence.length }));
+  const content = inventory(catalog, assignments, prior).map(row => ({ content: row.content, status: row.status, hasBeenAssigned: row.hasBeenAssigned, hasCompleted: row.hasCompleted, lastActivity: row.lastActivity, lastCompletedAt: row.lastCompletedAt, dueDate: row.active?.dueDate ?? null, plannedDate: row.planned?.plannedDate ?? null, assignmentCount: row.history.length, priorCount: row.evidence.length }));
   return { summary, schedule, catalog, inventory: content, settings: settingsFromRow(student.id, settingsQuery.data) };
 }
 learningPlanRouter.get("/teacher/:studentId", async (_request, response) => { response.json(await getOverview(response.locals.student, true)); });

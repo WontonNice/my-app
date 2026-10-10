@@ -44,8 +44,9 @@
         "exam-editor:validate": "npm run content-editor:validate",
         "question-editor": "npm run content-editor",
         "question-editor:validate": "npm run content-editor:validate",
-        "test:document-import": "node tools/generate-document-prompt.mjs --check && node --test tools/document-import.test.mjs",
-        "content-editor:prompt": "node tools/generate-document-prompt.mjs"
+        "test:document-import": "node tools/generate-document-prompt.mjs --check && node --test tools/document-import.test.mjs tools/document-render.test.cjs",
+        "content-editor:prompt": "node tools/generate-document-prompt.mjs",
+        "test:passage-progress": "node --test server/tests/passage-organization.test.cjs server/tests/learning-plan.test.cjs tools/passage-progress-view.test.cjs"
     },
     "devDependencies": {
         "concurrently": "^9.1.2",

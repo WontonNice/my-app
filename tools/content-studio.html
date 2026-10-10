@@ -781,6 +781,7 @@
     <button data-tab="advanced" type="button">Advanced practice</button>
     <button data-tab="practice" type="button">Regular practice</button>
     <button data-tab="question-bank" type="button">Question Bank · SHSAT Lab</button>
+    <button id="open-document-drafts" type="button" aria-haspopup="dialog" disabled>Saved import drafts</button>
   </nav>
 
   <main>
@@ -1240,7 +1241,7 @@ Why D is wrong."></textarea>
         if (tag === "li") return inline ? `${content}<br>` : `<li>${content}</li>`;
         if (tag === "ul" || tag === "ol") return inline ? content : `<${tag}>${content}</${tag}>`;
         if (/^h[1-6]$/.test(tag)) return inline ? `${content}<br>` : `<h2>${content}</h2>`;
-        if (tag === "p" || tag === "div") return inline ? `${content}<br>` : `<p>${content}</p>`;
+        if (tag === "p" || tag === "div") return inline ? `${content}<br>` : `<p${["true", "false"].includes(node.dataset.numbered) ? ` data-numbered="${node.dataset.numbered}"` : ""}>${content}</p>`;
         return content;
       }
       return Array.from(source.childNodes, serialize).join("").replace(/(?:<br>){3,}/g, "<br><br>");
@@ -1286,7 +1287,7 @@ Why D is wrong."></textarea>
         ...options,
         headers: {
           "Content-Type": "application/json",
-          ...(options.method && options.method !== "GET" ? { "x-editor-token": app.token } : {}),
+          ...(app.token ? { "x-editor-token": app.token } : {}),
           ...(options.headers || {}),
         },
       });
@@ -1294,9 +1295,7 @@ Why D is wrong."></textarea>
       if (
         retryEditorToken &&
         response.status === 403 &&
-        data.message === "Editor token is missing or invalid." &&
-        options.method &&
-        options.method !== "GET"
+        data.message === "Editor token is missing or invalid."
       ) {
         const stateResponse = await fetch("/api/state", { cache: "no-store" });
         const state = await stateResponse.json();
@@ -2325,10 +2324,12 @@ Why D is wrong."></textarea>
               <div class="rich-editor-shell">
                 ${richToolbarHtml("Passage formatting")}
                 <div class="passage-toolbar"><button class="secondary" id="edit-passage-definition" type="button">Add/edit word definition</button></div>
+                <div class="passage-toolbar" id="passage-paragraph-format"><span>Selected paragraph:</span><button class="secondary" data-passage-block-format="numbered" type="button">Number paragraph</button><button class="secondary" data-passage-block-format="unnumbered" type="button">No paragraph number</button><button class="secondary" data-passage-block-format="heading" type="button">Subheading</button></div>
                 <div class="rich-editor-content passage-content-editor" contenteditable="true" data-placeholder="Paste or type the complete passage here." data-rich-kind="passage" id="passage-rich-editor" role="textbox">${passage.richText || plainTextToRich(passage.text, passage.format)}</div>
               </div>
               <small class="field-note">Paste with Ctrl+V to retain bold, italic, underline, superscript, and other supported formatting.</small>
               <small class="field-note">Select a word or phrase, then choose Add/edit word definition. Each definition applies only to that selected occurrence.</small>
+              <small class="field-note">Click in a paragraph or select several paragraphs, then choose its numbering or mark it as a subheading. Unnumbered blocks do not consume a paragraph number.</small>
               <div class="passage-definition-list" id="passage-definition-list"></div>
             </section>
 
@@ -2535,7 +2536,48 @@ Why D is wrong."></textarea>
       setStatus(remove ? "Word definition removed from this draft." : "Word definition updated in this draft. Use Student view to try it, then save the passage.", "success");
     }
 
+    function formatPassageParagraph(mode) {
+      const editor = $("#passage-rich-editor");
+      const selection = window.getSelection();
+      if (!editor || !selection?.rangeCount || !editor.contains(selection.anchorNode)) {
+        setStatus("Click inside the paragraph you want to format first.", "error"); return;
+      }
+      let range = selection.getRangeAt(0);
+      const blockSelector = "p,div,h1,h2,h3,h4,h5,h6";
+      let blocks;
+      if (range.collapsed) {
+        let element = range.startContainer.nodeType === Node.ELEMENT_NODE ? range.startContainer : range.startContainer.parentElement;
+        let block = element.closest(blockSelector);
+        if (block === editor) {
+          document.execCommand("formatBlock", false, "p");
+          range = selection.getRangeAt(0);
+          element = range.startContainer.nodeType === Node.ELEMENT_NODE ? range.startContainer : range.startContainer.parentElement;
+          block = element.closest(blockSelector);
+        }
+        blocks = block && block !== editor && editor.contains(block) ? [block] : [];
+      } else {
+        blocks = Array.from(editor.querySelectorAll(blockSelector)).filter(block => !block.querySelector(blockSelector) && range.intersectsNode(block));
+      }
+      if (!blocks.length) { setStatus("Select a passage paragraph first.", "error"); return; }
+      let last;
+      for (const block of blocks) {
+        const replacement = document.createElement(mode === "heading" ? "h2" : "p");
+        if (mode !== "heading") replacement.dataset.numbered = mode === "numbered" ? "true" : "false";
+        while (block.firstChild) replacement.appendChild(block.firstChild);
+        block.replaceWith(replacement); last = replacement;
+      }
+      editor.focus();
+      const caret = document.createRange(); caret.selectNodeContents(last); caret.collapse(false);
+      selection.removeAllRanges(); selection.addRange(caret);
+      editor.dispatchEvent(new Event("input", { bubbles: true }));
+      setStatus(`${blocks.length} paragraph${blocks.length === 1 ? "" : "s"} set to ${mode === "heading" ? "subheading" : mode === "numbered" ? "numbered" : "unnumbered"}. Save the passage to keep this setting.`, "success");
+    }
+
     function bindRichEditors(root) {
+      root.querySelectorAll("[data-passage-block-format]").forEach(button => {
+        button.addEventListener("mousedown", event => event.preventDefault());
+        button.addEventListener("click", () => formatPassageParagraph(button.dataset.passageBlockFormat));
+      });
       $$("[contenteditable='true']", root).forEach((editor) => {
         if (editor.dataset.richKind === "passage") {
           passageEditHistory.set(editor, { entries: [editor.innerHTML], index: 0, restoring: false });
@@ -2785,27 +2827,34 @@ Why D is wrong."></textarea>
         sentence_prose: "Paragraphs are preserved and sentences are numbered for revising/editing work.",
       };
       $("#format-note").textContent = notes[app.passageDraft.format];
+      $("#passage-paragraph-format").hidden = app.passageDraft.format !== "prose";
+    }
+
+    function passagePreviewDocument(passage) {
+      const format = passage.format === "poem" ? "poem" : passage.format === "sentence_prose" ? "sentence-prose" : "prose";
+      const styles = app.studentStyles.replace(/<\/style/gi, "<\\/style");
+      return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${styles}</style><style>html,body{margin:0;min-height:0;background:#fff}.exam-session-shell{min-height:0;padding:0}.exam-question-passage{width:100%;border:0}.exam-question-passage-scroll{height:auto;max-height:none;overflow:visible}</style></head><body><main class="exam-session-shell"><div class="exam-question-passage"><div class="exam-question-passage-scroll is-${format}"><div class="exam-passage-pencil-surface">${studentPassageMarkup(passage)}</div></div></div></main></body></html>`;
     }
 
     function renderPreview() {
       const preview = $("#passage-preview");
       if (!preview) return;
-      const blurb = app.passageDraft.blurb ? `<p class="preview-blurb">${escapeHtml(app.passageDraft.blurb)}</p>` : "";
-      const title = app.passageDraft.title ? `<h3>${escapeHtml(app.passageDraft.title)}</h3>` : "";
-      const author = app.passageDraft.author ? `<p class="preview-byline">by ${escapeHtml(app.passageDraft.author)}</p>` : "";
-      const image = app.passageDraft.image
-        ? `<figure><img alt="${escapeHtml(app.passageDraft.image.alt)}" src="${escapeHtml(app.passageDraft.image.src)}">${app.passageDraft.image.caption ? `<figcaption>${escapeHtml(app.passageDraft.image.caption)}</figcaption>` : ""}</figure>`
-        : "";
-      const text = app.passageDraft.text || "Passage preview will appear here.";
-      const content = app.passageDraft.richText || (
-        app.passageDraft.format === "poem"
-          ? `<pre>${escapeHtml(text)}</pre>`
-          : text.split(/\n\s*\n/).map((paragraph) => `<p>${escapeHtml(paragraph).replaceAll("\n", "<br>")}</p>`).join("")
-      );
-      const sourceNote = app.passageDraft.sourceNote
-        ? `<p class="exam-passage-source-note">${escapeHtml(app.passageDraft.sourceNote)}</p>`
-        : "";
-      preview.innerHTML = `${blurb}${title}${author}${content}${sourceNote}${image}`;
+      let frame = preview.querySelector("iframe");
+      if (!frame) {
+        frame = document.createElement("iframe");
+        frame.title = "Student passage preview";
+        frame.style.cssText = "display:block;width:100%;height:360px;border:0";
+        preview.replaceChildren(frame);
+        preview.style.padding = "0";
+      }
+      frame.onload = () => {
+        const doc = frame.contentDocument;
+        if (!doc?.body) return;
+        const fit = () => { frame.style.height = `${Math.max(180, doc.body.scrollHeight)}px`; };
+        fit();
+        doc.querySelectorAll("img").forEach(image => image.addEventListener("load", fit, { once: true }));
+      };
+      frame.srcdoc = passagePreviewDocument(app.passageDraft);
     }
 
     function richBlocksFromPassage(passage) {
@@ -2828,10 +2877,11 @@ Why D is wrong."></textarea>
         }
         flushInline();
         const text = element.textContent.trimEnd();
-        const heading = /^H[1-6]$/.test(element.tagName) || (/^\s*<(strong|b)>[\s\S]*<\/\1>\s*$/i.test(element.innerHTML) && text.trim().length <= 100 && !/[.!?]$/.test(text.trim()));
+        const numbered = element.dataset.numbered;
+        const heading = /^H[1-6]$/.test(element.tagName) || (numbered === undefined && /^\s*<(strong|b)>[\s\S]*<\/\1>\s*$/i.test(element.innerHTML) && text.trim().length <= 100 && !/[.!?]$/.test(text.trim()));
         const list = /^(UL|OL)$/.test(element.tagName);
         const align = element.dataset.align === "indent" || element.classList.contains("poem-indent") ? "indent" : "";
-        blocks.push({ html: list ? element.outerHTML : element.innerHTML, text, align, kind: heading ? "heading" : list ? "list" : "" });
+        blocks.push({ html: list ? element.outerHTML : element.innerHTML, text, align, kind: heading ? "heading" : list ? "list" : "", ...(numbered !== undefined ? { numbered: numbered === "true" } : {}) });
       });
       flushInline();
       return blocks.length ? blocks : [{ html: wrapper.innerHTML, text: wrapper.textContent.trimEnd() }];
@@ -2883,9 +2933,28 @@ Why D is wrong."></textarea>
       const text = passage.format === "poem" ? passage.text.replace(/^\s*\n/, "").trimEnd() : passage.text.trim();
       const richBlocks = richBlocksFromPassage(passage);
       if (passage.preserveSourceLayout) {
-        const body = passage.richText || `<div style="white-space:pre-wrap">${escapeHtml(passage.text)}</div>`;
-        const extraImages = [...(passage.images || []), ...(passage.visuals || []).filter(v => !v.questionId && v.image).map(v => v.image)];
-        return `${blurb}<h2>${escapeHtml(passage.title)}</h2>${author}${body}${sourceNote}${image}${extraImages.map(image => `<figure><img style="max-width:100%" src="${location.origin}${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}">${image.caption ? `<figcaption>${escapeHtml(image.caption)}</figcaption>` : ""}</figure>`).join("")}`;
+        const lineClass = passage.format === "poem" ? "exam-poem-line" : passage.format === "sentence_prose" ? "exam-sentence-prose-line" : "exam-prose-line";
+        const title = `<p class="${lineClass}${passage.format === "poem" ? " is-centered" : ""} is-title"><span>${escapeHtml(passage.title)}</span></p>`;
+        const subtitle = passage.subtitle ? `<p class="${lineClass} is-heading"><span>${escapeHtml(passage.subtitle)}</span></p>` : "";
+        const byline = passage.byline ? `<p class="${lineClass}${passage.format === "poem" ? " is-centered" : ""} is-byline"><span>${escapeHtml(passage.byline)}</span></p>` : author;
+        const blocks = richBlocks || passage.text.split(passage.format === "poem" ? /\r?\n/ : /\r?\n\r?\n/).map(text => ({ text, html: "" }));
+        let paragraphNumber = 1;
+        const bodyParagraphs = blocks.filter(block => !block.kind && block.numbered !== false && block.text.trim());
+        const printedLabels = bodyParagraphs.flatMap((block, index) => { const match = /^\s*(\d{1,3})\s+/.exec(block.text); return match && Number(match[1]) <= bodyParagraphs.length ? [{ value: Number(match[1]), expected: index + 1 }] : []; });
+        const usePrintedLabels = printedLabels.length >= 2 && printedLabels.every(label => label.value === label.expected);
+        const body = blocks.map(block => {
+          const tag = block.kind === "list" ? "div" : "p";
+          const classes = `${lineClass}${block.kind ? ` is-${block.kind}` : ""}${block.align === "indent" ? " is-indented" : ""}${!block.text && !block.html ? " is-spacer" : ""}`;
+          let content = block.html || escapeHtml(block.text).replaceAll("\n", "<br>").replace(/ {2}/g, " &nbsp;");
+          const lineNumber = (passage.format || "prose") === "prose" && !block.kind && block.numbered !== false && block.text.trim() ? String(paragraphNumber++) : "";
+          if (lineNumber) content = content.replace(new RegExp(`^\\s*(?:\\(${lineNumber}\\)|${lineNumber}[.)]${usePrintedLabels ? `|${lineNumber}` : ""})\\s+`), "");
+          if (block.kind === "heading") content = `<strong>${content}</strong>`;
+          const number = lineNumber ? `<span class="exam-paragraph-number">${lineNumber}</span>` : passage.format === "poem" ? "<span></span>" : "";
+          return `<${tag} class="${classes}">${number}<span>${content}</span></${tag}>`;
+        }).join("");
+        const seen = new Set(passage.image ? [passage.image.src] : []);
+        const extraImages = [...(passage.images || []), ...(passage.visuals || []).filter(v => !v.questionId && v.image).map(v => v.image)].filter(image => { if (seen.has(image.src)) return false; seen.add(image.src); return true; });
+        return `${blurb}${title}${subtitle}${byline}${body}${sourceNote}${image}${extraImages.map(image => `<figure class="exam-passage-image"><img src="${location.origin}${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}">${image.caption ? `<figcaption>${escapeHtml(image.caption)}</figcaption>` : ""}</figure>`).join("")}`;
       }
 
 
@@ -2963,7 +3032,8 @@ Why D is wrong."></textarea>
       const paragraphs = sourceParagraphs.map((paragraph) => {
         if (!paragraph.text.trim()) return `<p class="exam-prose-line is-spacer"></p>`;
         const tag = paragraph.kind === "list" ? "div" : "p";
-        return `<${tag} class="exam-prose-line${paragraph.kind ? ` is-${paragraph.kind}` : ""}"${paragraph.kind === "heading" ? ' role="heading" aria-level="2"' : ""}>${paragraph.kind ? "" : `<span class="exam-paragraph-number">${paragraphNumber++}</span> `}<span>${paragraph.html || escapeHtml(paragraph.text.replace(/\s+/g, " ").trim())}</span></${tag}>`;
+        const content = paragraph.html || escapeHtml(paragraph.text.replace(/\s+/g, " ").trim());
+        return `<${tag} class="exam-prose-line${paragraph.kind ? ` is-${paragraph.kind}` : ""}"${paragraph.kind === "heading" ? ' role="heading" aria-level="2"' : ""}>${paragraph.kind || paragraph.numbered === false ? "" : `<span class="exam-paragraph-number">${paragraphNumber++}</span> `}<span>${paragraph.kind === "heading" ? `<strong>${content}</strong>` : content}</span></${tag}>`;
       });
       return [
         blurb,
@@ -4025,7 +4095,7 @@ Why D is wrong."></textarea>
       setStatus("Writing passage source…");
       try {
         const endpoint = app.passageMode === "advanced" ? "/api/advanced-passages" : "/api/passages";
-        const data = await api(endpoint, { method: "POST", body: JSON.stringify(app.passageDraft) });
+        const data = await api(endpoint, { method: "POST", body: JSON.stringify({ ...app.passageDraft, ...(app.passageDraft.importDraftId && app.passageMode === "exam" ? { publishNow: true } : {}) }) });
         await reloadState();
         const saved = data.passage;
         app.selectedPassageId = saved.id;
@@ -6956,6 +7026,7 @@ WRONG D:`;
         }
         initializePracticeEditor();
         studioUI.initialize();
+        DocumentStudio.initialize();
         if (window.location.hash === "#question-bank") switchTab("question-bank");
         setStatus(
           `Ready: ${app.state.assessments.length} exams, ${app.state.advancedPassages.length} advanced passages, and ${app.state.practice.topics.length} regular-practice banks.`,

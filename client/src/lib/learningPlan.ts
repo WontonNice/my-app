@@ -4,7 +4,7 @@ export type PlanOverview = {
   summary: ReturnType<typeof import("../../../server/src/shared/learningPlan").planSummary>;
   schedule: PlanAssignment[]; catalog: PlanContent[];
   settings?: PlanSettings;
-  inventory?: { content: PlanContent; status: InventoryStatus; hasBeenAssigned?: boolean; hasCompleted?: boolean; lastActivity: string | null; dueDate: string | null; plannedDate: string | null; assignmentCount: number; priorCount: number }[];
+  inventory?: { content: PlanContent; status: InventoryStatus; hasBeenAssigned?: boolean; hasCompleted?: boolean; lastActivity: string | null; lastCompletedAt?: string | null; dueDate: string | null; plannedDate: string | null; assignmentCount: number; priorCount: number }[];
 };
 export type AssignmentPage = { assignments: PlanAssignment[]; total: number; page: number };
 export type ContentHistory = AssignmentPage & { prior: PriorContentActivity[] };

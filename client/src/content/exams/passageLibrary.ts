@@ -31,6 +31,12 @@ import { excerptFromNiagaraFalls20202021ShsatSampleTestFormBPassageSet } from ".
 import { crossPurposesFormBPassageSet } from "./passageSets/cross-purposes-form-b";
 import { usingFireToKeepAPrairieHealthy20202021FormBPassageSet } from "./passageSets/using-fire-to-keep-a-prairie-healthy-2020-2021-form-b";
 import { excerptFromTheCallOfTheWildDigitalShsatPracticeTest1PassageSet } from "./passageSets/excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1";
+import { championOfTheChannel20202021FormAPassageSet } from "./passageSets/champion-of-the-channel-2020-2021-form-a";
+import { content5ReasonsPhysicalBooksMightBeBetterThanEBooks20202021FormAPassageSet } from "./passageSets/5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a";
+import { snowyMountainsVersion2PassageSet } from "./passageSets/snowy-mountains-version-2";
+import { excerptFromAVoiceInTheWilderness20202021FormAPassageSet } from "./passageSets/excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a";
+import { inventionOfTheTelegraph20202021FormAPassageSet } from "./passageSets/invention-of-the-telegraph-2020-2021-form-a";
+import { theBenefitsOfIndoorPlants20202021FormAPassageSet } from "./passageSets/the-benefits-of-indoor-plants-2020-2021-form-a";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -63,6 +69,12 @@ export const examPassageLibrary: ExamPassageSet[] = [
   crossPurposesFormBPassageSet,
   usingFireToKeepAPrairieHealthy20202021FormBPassageSet,
   excerptFromTheCallOfTheWildDigitalShsatPracticeTest1PassageSet,
+  championOfTheChannel20202021FormAPassageSet,
+  content5ReasonsPhysicalBooksMightBeBetterThanEBooks20202021FormAPassageSet,
+  snowyMountainsVersion2PassageSet,
+  excerptFromAVoiceInTheWilderness20202021FormAPassageSet,
+  inventionOfTheTelegraph20202021FormAPassageSet,
+  theBenefitsOfIndoorPlants20202021FormAPassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);

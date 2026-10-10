@@ -168,9 +168,16 @@ test('assigned passage access and saved native attempts complete only that stude
   const item = (await create([task({ kind: 'passage', contentId: fresh.id })])).data.assignments[0];
   assert.equal((await call(`/library/books/${fresh.id}/access`, 'student')).data.unlocked, true);
   assert.equal((await call(`/library/books/${fresh.id}/access`, 'other')).data.unlocked, false);
-  const attempt = await call(`/library/books/${fresh.id}/attempts`, 'student', 'POST', { startedAt: new Date().toISOString(), questions: [{ questionId: 'q1', selectedAnswerId: 'A', correctAnswerId: 'A', isCorrect: true, timeSpentSeconds: 20 }] });
+  const book = require('../src/lib/libraryBooks.ts').getMergedLibraryBook(fresh.id);
+  const questions = book ? book.passageSet.questions.map(question => {
+    const answer = require('../src/shared/libraryBooks.ts').libraryCorrectAnswer(question);
+    return { questionId: question.id, selectedAnswerId: typeof answer === 'string' ? answer : JSON.stringify(answer), timeSpentSeconds: 20 };
+  }) : [{ questionId: 'q1', selectedAnswerId: 'A', correctAnswerId: 'A', timeSpentSeconds: 20 }];
+  const attempt = await call(`/library/books/${fresh.id}/attempts`, 'student', 'POST', { startedAt: new Date().toISOString(), questions });
   assert.equal(attempt.status, 201);
   assert.equal((await store.assignmentDetail(studentId, item.id)).status, 'completed');
+  const row = (await call(prefix)).data.inventory.find(row => row.content.id === fresh.id);
+  assert.equal(row.lastCompletedAt, attempt.data.attempt.completedAt);
   assert.equal((await call(`/library/books/${fresh.id}/attempts`, 'other', 'POST', { startedAt: new Date().toISOString(), questions: [] })).status, 403);
 });
 test('notes, URL validation, missing content and optimistic concurrency', async () => {
@@ -192,7 +199,7 @@ test('real earlier results inform passage inventory without invented assigned da
   const fresh = catalog.filter(item => item.kind === 'passage')[2];
   progress.set(otherId, { practice: {}, examResults: [{ assessmentId: 'older-exam', completedAt: '2026-09-12T14:00:00Z', completionStatus: 'english_complete', passages: [{ id: fresh.aliases[0], correct: 7, total: 8 }] }] });
   const data = (await call(`/plan/teacher/${otherId}`)).data;
-  const row = data.inventory.find(item => item.content.id === fresh.id); assert.equal(row.status, 'Completed'); assert.equal(row.assignmentCount, 0); assert.equal(row.priorCount, 1);
+  const row = data.inventory.find(item => item.content.id === fresh.id); assert.equal(row.status, 'Completed'); assert.equal(row.assignmentCount, 0); assert.equal(row.priorCount, 1); assert.equal(row.lastCompletedAt, '2026-09-12T14:00:00Z');
   const history = (await call(`/plan/teacher/${otherId}/content/passage/${encodeURIComponent(fresh.id)}`)).data;
   assert.equal(history.total, 0); assert.equal(history.prior[0].at, '2026-09-12T14:00:00Z'); assert.equal('assignedAt' in history.prior[0], false);
 });
@@ -203,10 +210,21 @@ test('a completed combined book records prior work for every original version al
   tables.student_library_attempts.push({id:reference,user_id:otherId,book_id:id,total_questions:9,score:7,completed_at:'2026-10-07T12:00:00Z'});
   const data=(await call(`/plan/teacher/${otherId}`)).data;
   for(const version of versions){
-    const row=data.inventory.find(item=>item.content.id===version.id);assert.equal(row.hasCompleted,true);
+    const row=data.inventory.find(item=>item.content.id===version.id);assert.equal(row.hasCompleted,true);assert.equal(row.lastCompletedAt,'2026-10-07T12:00:00Z');
     const history=(await call(`/plan/teacher/${otherId}/content/passage/${encodeURIComponent(version.id)}`)).data;
     assert.ok(history.prior.some(item=>item.reference===reference));
   }
+});
+
+test('unfinished/Math-only exams do not mark passages done; undated completed passage records retain No Data dates', async () => {
+  const before = (await call(`/plan/teacher/${otherId}`)).data;
+  const fresh = before.inventory.find(row => row.content.kind === 'passage' && !row.hasCompleted).content;
+  progress.set(otherId, { practice: {}, examResults: ['in_progress', 'math_complete'].map(completionStatus => ({ assessmentId: 'unfinished-fixture', completionStatus, completedAt: '2026-10-01T12:00:00Z', passages: [{ id: fresh.id, correct: 2, total: 4 }] })) });
+  const unfinished = (await call(`/plan/teacher/${otherId}`)).data.inventory.find(row => row.content.id === fresh.id);
+  assert.equal(unfinished.hasCompleted, false); assert.equal(unfinished.lastCompletedAt, null);
+  progress.set(otherId, { practice: {}, examResults: [{ assessmentId: 'undated-fixture', completionStatus: 'english_complete', passages: [{ id: fresh.id, correct: 2, total: 4 }] }] });
+  const undated = (await call(`/plan/teacher/${otherId}`)).data.inventory.find(row => row.content.id === fresh.id);
+  assert.equal(undated.hasCompleted, true); assert.equal(undated.lastCompletedAt, null);
 });
 test('inventory has exclusive student-specific statuses for mixed, cancelled, repeated and exhausted content', () => {
   const passages = catalog.filter(item => item.kind === 'passage');

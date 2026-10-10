@@ -46,7 +46,10 @@ export function inventory(catalog: PlanContent[], assignments: PlanAssignment[],
     const issued = history.find(item => item.assignedAt);
     const status: InventoryStatus = active ? statusLabels[active.status] as InventoryStatus : planned ? "Planned" : completed || evidence.length ? "Completed" : issued ? "Previously assigned" : "Never assigned";
     const dates = [...history.flatMap(item => [item.completedAt, item.assignedAt, item.updatedAt].filter((date): date is string => Boolean(date))), ...evidence.flatMap(item => item.at ? [item.at] : [])];
-    return { content, status, history, evidence, active, planned, hasBeenAssigned: Boolean(issued || completed || evidence.length), hasCompleted: Boolean(completed || evidence.length), lastActivity: dates.sort().at(-1) ?? null };
+    const completionDates = [...history.filter(item => item.status === "completed").map(item => item.completedAt ?? item.completion?.at), ...evidence.map(item => item.at)]
+      .filter((date): date is string => typeof date === "string" && (/^\d{4}-\d{2}-\d{2}$/.test(date) ? validDate(date) : Number.isFinite(Date.parse(date))));
+    const lastCompletedAt = completionDates.sort((a, b) => Date.parse(a) - Date.parse(b)).at(-1) ?? null;
+    return { content, status, history, evidence, active, planned, hasBeenAssigned: Boolean(issued || completed || evidence.length), hasCompleted: Boolean(completed || evidence.length), lastActivity: dates.sort().at(-1) ?? null, lastCompletedAt };
   });
 }
 export function forecast(remaining: number, pace: number | null, targetDate: string | null, today = todayInNewYork()) {

@@ -2,9 +2,9 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('node:path');
 require('ts-node').register({ transpileOnly: true, project: path.resolve(__dirname, '../tsconfig.json'), compilerOptions: { module: 'CommonJS', moduleResolution: 'Node' }, moduleTypes: { '**': 'cjs' } });
-const { createPlainTextPassage, createProsePassage, createSentenceNumberedPassage } = require('../../client/src/content/exams/formatters.ts');
+const { createPlainTextPassage, createProsePassage, createSentenceNumberedPassage, createSourcePassage } = require('../../client/src/content/exams/formatters.ts');
 const { buildStudentAnalytics, groupResponseEvidence, sortResponseGroups } = require('../../client/src/lib/studentAnalytics.ts');
-const { filterContentInventory, categoryInventory } = require('../../client/src/lib/passageOrganization.ts');
+const { filterContentInventory, categoryInventory, passageCompletionDate, passageSource } = require('../../client/src/lib/passageOrganization.ts');
 const { inventory } = require('../src/shared/learningPlan.ts');
 
 test('all passage formats preserve source category and version without changing lines', () => {
@@ -73,4 +73,50 @@ test('all pattern sort fields support both directions with deterministic ties an
 test('summary-only assessments never invent passage or category response performance', () => {
   const data = buildStudentAnalytics([{ result: { source: 'manual', answers: {}, correct: 8, total: 10 }, subjects: [], passages: [] }]);
   assert.equal(groupResponseEvidence(data.evidence, 'category').length, 0);
+});
+
+test('completion filters retain earlier completed work during repeat assignments and include planned/unstarted versions as not done', () => {
+  const versions = [
+    item('source-a', 'official_handbook', 'Assigned', { hasCompleted: true }),
+    item('source-b', 'official_handbook', 'Planned', { hasCompleted: false }),
+    item('source-c', 'miscellaneous', 'Completed', { lastCompletedAt: null }),
+    item('source-d', 'miscellaneous', 'Never assigned'),
+  ];
+  assert.deepEqual(filterContentInventory(versions, { ...filters, completion: 'completed' }).map(row => row.content.id), ['source-a', 'source-c']);
+  assert.deepEqual(filterContentInventory(versions, { ...filters, completion: 'not_completed' }).map(row => row.content.id), ['source-b', 'source-d']);
+  assert.equal(passageSource({ ...versions[0].content, versionLabel: '2020-2021 Form B' }), '2020-2021 Form B');
+  assert.equal(passageSource({ ...versions[0].content, versionLabel: 'source-a' }), 'No Data');
+  for (const value of [null, undefined, '', 'broken', '2026-02-30']) assert.equal(passageCompletionDate(value), 'No Data');
+  assert.equal(passageCompletionDate('2026-10-10'), '2026-10-10');
+  assert.equal(passageCompletionDate('2026-10-10T01:00:00Z'), 'Oct 9, 2026');
+});
+
+test('completion dates use actual completed records, never assignment/update dates, and tolerate undated history', () => {
+  const passage = items[0].content;
+  const completed = { id: 'done', contentId: passage.id, kind: 'passage', status: 'completed', createdAt: '2026-09-01', completedAt: '2026-09-03T14:00:00Z' };
+  const repeat = { ...completed, id: 'repeat', status: 'assigned', completedAt: null, createdAt: '2026-10-01', assignedAt: '2026-10-01', updatedAt: '2026-10-05' };
+  const row = inventory([passage], [completed, repeat], [{ contentId: passage.id, at: '2026-09-08T14:00:00Z', source: 'Saved attempt' }])[0];
+  assert.equal(row.status, 'Assigned'); assert.equal(row.hasCompleted, true);
+  assert.equal(row.lastCompletedAt, '2026-09-08T14:00:00Z');
+  assert.equal(inventory([passage], [repeat], [])[0].lastCompletedAt, null);
+  const undated = inventory([passage], [], [{ contentId: passage.id, at: null, source: 'Legacy completion' }])[0];
+  assert.equal(undated.hasCompleted, true); assert.equal(undated.lastCompletedAt, null);
+});
+
+test('explicit numbering controls skip subheadings and unnumbered paragraphs, and can number a bold body paragraph', () => {
+  const richText = '<p>First body paragraph.</p><p data-numbered="false"><strong>Unnumbered caption.</strong></p><h2>E-books can reduce reading comprehension.</h2><p data-numbered="true"><strong>Bold body</strong></p><p>Last body paragraph.</p>';
+  for (const formatter of [createSourcePassage, createProsePassage]) {
+    const passage = formatter({ id: 'number-control', title: 'Fixture', text: 'Source text', richText, format: 'prose' });
+    assert.deepEqual(passage.lines.filter(line => line.lineNumber).map(line => [line.lineNumber, line.text]), [['1', 'First body paragraph.'], ['2', 'Bold body'], ['3', 'Last body paragraph.']]);
+    assert.equal(passage.lines.find(line => line.text === 'Unnumbered caption.').lineNumber, undefined);
+    assert.equal(passage.lines.find(line => line.text === 'E-books can reduce reading comprehension.').kind, 'heading');
+  }
+});
+
+test('source paragraph labels do not duplicate number badges, while stored text and meaningful numbers remain intact', () => {
+  const passage = createSourcePassage({ id: 'printed-labels', title: 'Fixture', format: 'prose', text: 'Source text', richText: '<p>In 1926 the story begins.</p><h2>Subheading.</h2><p>2 Second paragraph.</p><p>3 Last paragraph.</p>' });
+  assert.deepEqual(passage.lines.filter(line => line.lineNumber).map(line => line.lineNumber), ['1', '2', '3']);
+  assert.equal(passage.lines.find(line => line.lineNumber === '1').html, 'In 1926 the story begins.');
+  const second = passage.lines.find(line => line.lineNumber === '2');
+  assert.equal(second.text, '2 Second paragraph.'); assert.equal(second.html, 'Second paragraph.');
 });

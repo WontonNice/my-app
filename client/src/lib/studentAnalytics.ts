@@ -61,7 +61,7 @@ export function mean(values: (number | null)[]) {
 }
 
 export type ResponseDimension = "passage" | "category" | "type" | "skill";
-export type ResponseGroup = { key: string; label: string; category?: PassageCategory; subject: string; correct: number; total: number; incorrect: number; unanswered: number; assessments: Set<string>; lastAttempt: string | null };
+export type ResponseGroup = { key: string; label: string; versionLabel?: string; category?: PassageCategory; subject: string; correct: number; total: number; incorrect: number; unanswered: number; assessments: Set<string>; lastAttempt: string | null };
 export type ResponseSort = "title" | "category" | "accuracy" | "correct" | "total" | "incorrect" | "unanswered" | "assessments" | "lastAttempt";
 export function sortResponseGroups(groups: ResponseGroup[], sort: ResponseSort, direction: "asc" | "desc") {
   const value = (group: ResponseGroup): number | string | null => sort === "title" ? group.label : sort === "category" ? passageCategoryLabel(group.category) : sort === "accuracy" ? group.correct / group.total : sort === "assessments" ? group.assessments.size : sort === "lastAttempt" ? group.lastAttempt ? Date.parse(group.lastAttempt) : null : group[sort];
@@ -81,7 +81,7 @@ export function groupResponseEvidence(evidence: Evidence[], dimension: ResponseD
     const category = row.passage ? passageCategory(row.passage.passageCategory) : undefined;
     const key = dimension === "type" ? row.question.type : dimension === "skill" ? `${row.section}:${row.question.topic}` : dimension === "category" ? category ?? "" : row.passage?.id ?? "";
     if (!key) continue;
-    const group = groups.get(key) ?? { key, label: dimension === "type" ? row.question.type.replace(/_/g, " ") : dimension === "skill" ? row.question.topic : dimension === "category" ? passageCategoryLabel(category) : row.passage!.title, category: dimension === "category" || dimension === "passage" ? category : undefined, subject: row.section === "english" ? "English" : "Math", correct: 0, total: 0, incorrect: 0, unanswered: 0, assessments: new Set<string>(), lastAttempt: null };
+    const group = groups.get(key) ?? { key, versionLabel: dimension === "passage" ? row.passage?.versionLabel : undefined, label: dimension === "type" ? row.question.type.replace(/_/g, " ") : dimension === "skill" ? row.question.topic : dimension === "category" ? passageCategoryLabel(category) : row.passage!.title, category: dimension === "category" || dimension === "passage" ? category : undefined, subject: row.section === "english" ? "English" : "Math", correct: 0, total: 0, incorrect: 0, unanswered: 0, assessments: new Set<string>(), lastAttempt: null };
     if (group.subject !== (row.section === "english" ? "English" : "Math")) group.subject = "English + Math";
     group.total++;
     group.correct += row.status === "Correct" ? 1 : 0;

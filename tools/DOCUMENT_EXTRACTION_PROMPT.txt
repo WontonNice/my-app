@@ -10,15 +10,15 @@ Key/guide information: Use any answer key and explanation guide supplied alongsi
 Include the WHOLE passage associated with requested questions, even when it spans multiple pages. Include every requested passage, every associated question, every choice, instructions, supplied answer, supplied explanation, metadata and visual dependency. Never stop after a sample, first page or first question. Keep source order across passages and within questions and choices. Do not organize by topic or difficulty. For multiple passages use the optional passages array. For independent English questions use a passage with text="" and the source section title (or title="" if absent); do not invent a passage. Math questions use mathQuestions and the existing Math question model. Mixed documents may include both arrays.
 
 FIDELITY
-Transcribe source text faithfully. Never paraphrase, summarize, simplify, shorten, modernize, improve wording, change grammar/vocabulary/names/numbers/units, reorder information, rewrite distractors, silently fix source typos, or replace readable content with summaries, descriptions, omitted-text notices or insert-text placeholders. Preserve awkward wording, unusual punctuation and capitalization; flag suspected source errors privately. Preserve title, subtitle, author/byline, introductory blurb, headings, paragraphs, stanzas, exact poem lines, printed line/sentence/paragraph numbering, footnotes, captions, quotations, source labels, meaningful emphasis and relevant directions. Use blurb for a subtitle/introduction; keep footnotes and headings in text in their original order. Author omits only the literal leading "by " because the renderer supplies it. Never extract just the referenced sentence when the complete passage is supplied.
+Transcribe source text faithfully. Never paraphrase, summarize, simplify, shorten, modernize, improve wording, change grammar/vocabulary/names/numbers/units, reorder information, rewrite distractors, silently fix source typos, or replace readable content with summaries, descriptions, omitted-text notices or insert-text placeholders. Preserve awkward wording, unusual punctuation and capitalization; flag suspected source errors privately. Preserve title, subtitle, author/byline, introductory blurb, headings, paragraphs, stanzas, exact poem lines, printed line/sentence/paragraph numbering, footnotes, captions, quotations, source labels, meaningful emphasis and relevant directions. Use subtitle for a subtitle below the title, blurb for introductory material above it, and byline for the exact printed author line (including prefixes such as "by" or "translated by"). Put the author name separately in author. Keep footnotes and headings in text in their original order. If header ordering cannot be represented faithfully, flag POSSIBLE_FORMATTING_LOSS for teacher review rather than silently changing it. Never extract just the referenced sentence when the complete passage is supplied.
 
-Inspect all relevant PDF pages, including continuation pages and supplied key/guide pages. Preserve column reading order. Inspect rendered page images whenever OCR/text extraction is ambiguous (poetry, columns, fractions, superscripts, subscripts, symbols, choices, numbering, tables). The visible page is authoritative. Preserve paragraphs as \n\n and poem lines/stanzas as \n / \n\n. Use optional richText only for faithful meaningful formatting; keep text as its exact plain-text equivalent. Preserve printed numbers in text; imported passages suppress automatic additional numbering. Use JSON-escaped LaTeX only to represent source mathematics faithfully, e.g. \\(x^2\\). If text is technically unreadable, keep the rest, leave just that field/portion empty, and record its precise location in an UNCERTAIN_TEXT_EXTRACTION warning. Never silently omit the question.
+Inspect all relevant PDF pages, including continuation pages and supplied key/guide pages. Preserve column reading order. Inspect rendered page images whenever OCR/text extraction is ambiguous (poetry, columns, fractions, superscripts, subscripts, symbols, choices, numbering, tables). The visible page is authoritative. Preserve paragraph boundaries as actual newline characters in decoded text (two between paragraphs/stanzas; one between poem lines). Serialize these as JSON newline escapes, not literal backslash+n content. Use optional richText only for faithful meaningful formatting; keep text as its exact plain-text equivalent. Represent source subheadings with h2/h3 tags, including headings that end with punctuation. Use <p data-numbered="false"> for other blocks that must not receive paragraph numbers; use data-numbered="true" only for explicitly numbered body paragraphs. Preserve printed numbers in stored source text. The existing exam viewer supplies prose paragraph-number badges; printed paragraph labels are represented by those badges without duplicating them in the visible paragraph. Represent source mathematics faithfully with JSON-escaped LaTeX, for example the JSON string "\\(x^2\\)". If text is technically unreadable, keep the rest, leave just that field/portion empty, and record its precise location in an UNCERTAIN_TEXT_EXTRACTION warning. Never silently omit the question.
 
 MULTIPLE FILES / ANSWERS / EXPLANATIONS
 Student documents control student-visible wording. Keys control keyed answers. Explanation guides control explanations. Match original question number, passage, edition and form; record separate answerSource and explanationSource references. Never replace student wording with a teacher guide's wording. Use the supplied key even if you suspect an error; preserve it and flag SOURCE_TYPO_SUSPECTED. If no key exists, or a key cannot be matched confidently, DO NOT solve, guess or choose a likely answer. Use correctChoiceId="", correctChoiceIds=[], or correctTextAnswers=[] as appropriate. Source absence is ANSWER_KEY_MISSING; ambiguous matching is SOURCE_KEY_AMBIGUOUS. If no explanation exists, explanation="". NEVER generate an explanation. Distinguish absence (EXPLANATION_MISSING) from failure to read a visibly supplied explanation (UNCERTAIN_TEXT_EXTRACTION). Missing-answer/explanation warnings may be recorded; the editor also detects blanks automatically.
 
 VISUALS
-Every meaningful photograph, graph, chart, table, map, diagram, number line, geometry figure and visual choice must be imported or explicitly flagged. Never invent URLs, labels, coordinates, visual substitutes or missing text. Unless I supplied a real existing platform image, add a visuals entry with exact questionId/choiceId (blank for passage), source filename, 1-based PDF sourcePage, approximate page location and concise description; state="unresolved". Keep source table text/values in the source fields where legible, AND flag TABLE_REVIEW_REQUIRED plus the required visual. Keep visual-choice text empty if the source contains no words; describe it only in teacher-only visuals. The teacher will upload the source crop before publication. Multiple visual entries are supported.
+Every meaningful photograph, graph, chart, table, map, diagram, number line, geometry figure and visual choice must be imported or explicitly flagged. Never invent URLs, labels, coordinates, visual substitutes or missing text. Unless I supplied a real existing platform image, add a visuals entry with exact questionId/choiceId (blank for passage), source filename, 1-based PDF sourcePage, approximate page location and concise description; state="unresolved". Keep source table text/values in the source fields where legible, AND flag TABLE_REVIEW_REQUIRED plus the required visual. Keep visual-choice text empty if the source contains no words; describe it only in teacher-only visuals. The teacher can attach the source crop in Content Studio before publishing or while editing afterward. Never fabricate a visual to avoid a warning. Multiple visual entries are supported.
 
 CLASSIFICATION
 type is response format; topic is the academic skill. Use only the taxonomy below. Classify AFTER transcription, with review.topicSource="inferred" and review.topicConfidence=0..1. If the source explicitly labels the skill, use "source". If no category fits or confidence is below 0.7, use topic="" or the best supported category and add LOW_CONFIDENCE_QUESTION_TYPE. Never invent a taxonomy label. Difficulty is optional teacher-only metadata: preserve a provided label with difficultySource="source"; otherwise difficulty="", difficultySource="unknown", difficultyConfidence=null. Do not present inferred difficulty as source-authored.
@@ -33,12 +33,15 @@ EXACT CONTRACT
     "passage": "One passage object OR omit and use passages",
     "passages": "Ordered passage objects (optional)",
     "mathQuestions": "Ordered Math question objects (optional)",
+    "review": "Optional Review for the Math batch, including expectedQuestionCount",
     "reviewNotes": "string[]",
     "visuals": "Visual[]; legacy scope/description objects are accepted"
   },
   "passage": {
     "title": "string; blank allowed in draft, teacher title required to publish",
     "author": "string",
+    "byline": "optional exact printed author/byline, including its prefix",
+    "subtitle": "optional exact subtitle displayed below title",
     "blurb": "string",
     "format": [
       "prose",
@@ -65,7 +68,7 @@ EXACT CONTRACT
     "sourceNote": "student-visible string",
     "teacherSource": "teacher-only string",
     "text": "complete text; empty for independent questions",
-    "richText": "optional faithful HTML: p, br, strong, em, u, sup, sub, h1-h6, ul, ol, li; text remains the plain-text copy",
+    "richText": "optional faithful HTML: p, br, strong, em, u, sup, sub, h1-h6, ul, ol, li; text remains the plain-text copy; h1-h6 are unnumbered subheadings; p data-numbered=false excludes a paragraph, true explicitly numbers it",
     "questions": "ordered Question[]",
     "review": "Review",
     "visuals": "Visual[]"
@@ -84,7 +87,7 @@ EXACT CONTRACT
     "prompt": "exact source text",
     "instructions": "optional exact source directions",
     "stimulus": "optional exact supporting text",
-    "choices": "ordered {id:string,text:string,html?:string,math?:string}[]; 2–8 when present; original printed IDs retained",
+    "choices": "ordered {id:string,text:string,html?:string,math?:string}[]; 2–8 when present; IDs normalized by position: A, B, C, D (then E, F for additional choices)",
     "correctChoiceId": "multiple_choice: exact choice ID, or empty string/null if no unambiguous supplied key",
     "correctChoiceIds": "multi_select: choice IDs from key, or [] if unknown",
     "requiredSelections": "multi_select: source selection count, or null if unknown",
@@ -99,6 +102,7 @@ EXACT CONTRACT
     "sourcePages": "1-based PDF page number[]",
     "printedPages": "string (optional)",
     "sourceQuestion": "original printed number as string (question only)",
+    "sourceChoiceIds": "optional original printed choice IDs in order; teacher-only",
     "answerSource": "{sourceFile,sourcePages} or null",
     "explanationSource": "{sourceFile,sourcePages} or null",
     "topicSource": [
@@ -187,7 +191,7 @@ TOPIC TAXONOMY (exact values)
   ]
 }
 
-Use multiple_choice for one keyed choice, multi_select only when source instructions require multiple choices, numeric_entry for Math numeric responses, short_response for English short responses, essay for ungraded extended writing. Unsupported interactions must be retained with their actual type and source fields plus UNSUPPORTED_RESPONSE_TYPE; they remain drafts until manually authored. Do not transform a static diagram into an interactive graph question. Keep printed choice IDs and order, including E–H; keys must use those same IDs. There is no mandatory difficulty field. Never fabricate a key to satisfy publication checks. All extracted warnings start unresolved and all review booleans start false. Do not put teacher-only source references into prompt, text or sourceNote. Source attribution printed for students belongs in sourceNote.
+Use multiple_choice for one keyed choice, multi_select only when source instructions require multiple choices, numeric_entry for Math numeric responses, short_response for English short responses. Retain extended writing as essay with UNSUPPORTED_RESPONSE_TYPE: essays remain drafts because the existing publication/grading workflow does not support them. Other unsupported interactions must be retained with their actual type and source fields plus UNSUPPORTED_RESPONSE_TYPE; they remain drafts until manually authored. Do not transform a static diagram into an interactive graph question. Keep choice wording and order unchanged, but use the editor’s A, B, C, D labels for the first four choices. Map source E→A, F→B, G→C, H→D by position, including supplied single/multi-select answer keys and visual choiceId references. Additional choices continue E, F, and so on. Retain original labels privately in review.sourceChoiceIds. Never guess an answer during this mapping. There is no mandatory difficulty field. Never fabricate a key to satisfy publication checks. All extracted warnings start unresolved and all review booleans start false. Do not put teacher-only source references into prompt, text or sourceNote. Source attribution printed for students belongs in sourceNote.
 
 OUTPUT EXAMPLE (structure only; replace ALL sample content with the actual complete source, not a sample of it)
 {
@@ -196,6 +200,8 @@ OUTPUT EXAMPLE (structure only; replace ALL sample content with the actual compl
     {
       "title": "",
       "author": "",
+      "byline": "",
+      "subtitle": "",
       "blurb": "",
       "format": "prose",
       "passageType": "informational",
@@ -262,4 +268,4 @@ OUTPUT EXAMPLE (structure only; replace ALL sample content with the actual compl
 FINAL INTERNAL AUDIT
 Count questions in the requested source and in the output; investigate mismatches and set expectedQuestionCount to the source count. Count every choice and set expectedChoiceCount. Check original order, complete passage, title/author, headings, stanzas, paragraph divisions, footnotes, every prompt/choice/number/unit/punctuation mark, source-only answers and explanations, source-file attribution, visual coverage and classification provenance/confidence. Flag any unavoidable discrepancy specifically; never throw away successfully extracted components. Review the entire requested range, including the final question. If response limits prevent one payload, use an attached complete JSON file when available; otherwise flag POSSIBLE_MISSING_QUESTION with the exact remaining range and true expected count, never claim completeness.
 
-Return ONLY the exact importable JSON object, or its complete .json attachment when necessary. Double quotes, valid escaping, exact enums, no comments/trailing commas/undefined, no Markdown fences, no introduction/conclusion or prose outside data. Use format="nathan-tutors-official-passage-v1" (version 1); do not invent a schemaVersion field. Blank strings/arrays are valid draft values; null is accepted for unknown answer/explanation and nullable metadata, not for required arrays. Nothing is published automatically. Teacher review is final.
+Return ONLY the exact importable JSON object, or its complete .json attachment when necessary. Double quotes, valid escaping, exact enums, no comments/trailing commas/undefined, no Markdown fences, no introduction/conclusion or prose outside data. Use format="nathan-tutors-official-passage-v1" (version 1); do not invent a schemaVersion field. Blank strings/arrays are valid draft values; null is accepted for unknown answer/explanation and nullable metadata, not for required arrays. Nothing is published automatically. The teacher can explicitly publish passages with unresolved review notes and complete them in the editor afterward. Do not invent missing data or mark warnings resolved to enable publication. Teacher review is final.

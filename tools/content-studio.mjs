@@ -425,6 +425,10 @@ function sanitizeRichText(value) {
       }
       if (tag === "br") return "<br>";
       const normalizedTag = tag === "b" ? "strong" : tag === "i" ? "em" : tag === "strike" ? "s" : tag;
+      if (!isClosing && ["p", "div"].includes(tag)) {
+        const numbered = /\bdata-numbered\s*=\s*["'](true|false)["']/i.exec(match)?.[1];
+        return `<${normalizedTag}${numbered ? ` data-numbered="${numbered.toLowerCase()}"` : ""}>`;
+      }
       return `<${isClosing ? "/" : ""}${normalizedTag}>`;
     })
     .trim();
@@ -432,7 +436,7 @@ function sanitizeRichText(value) {
 
 function sanitizeInlineRichText(value) {
   return sanitizeRichText(value)
-    .replace(/<(p|div)>/gi, "<br>")
+    .replace(/<(p|div)(?:\s[^>]*)?>/gi, "<br>")
     .replace(/<\/(p|div)>/gi, "")
     .replace(/(?:<br>){2,}/gi, "<br>")
     .replace(/^(?:<br>)+|(?:<br>)+$/gi, "")
@@ -575,6 +579,8 @@ async function parsePassageFile(filePath) {
 
   return {
     author: typeof passageInput.author === "string" ? passageInput.author : "",
+    byline: typeof passageInput.byline === "string" ? passageInput.byline : "",
+    subtitle: typeof passageInput.subtitle === "string" ? passageInput.subtitle : "",
     blurb:
       typeof passageInput.blurb === "string"
         ? passageInput.blurb
@@ -803,17 +809,19 @@ async function listMathSections() {
   return { mathErrors, mathSections };
 }
 
-function normalizeChoice(choice, index) {
-  const id = String(choice?.id || String.fromCharCode(65 + index));
-  const text = choice?.image ? String(choice?.text || "") : requiredText(choice?.text, `Answer ${id}`, { preserve: true });
+function normalizeChoice(choice, index, { allowIncomplete = false } = {}) {
+  const id = String.fromCharCode(65 + index);
+  const text = choice?.image || allowIncomplete ? String(choice?.text || "") : requiredText(choice?.text, `Answer ${id}`, { preserve: true });
   const html = sanitizeInlineRichText(choice?.html);
   return { id, ...(html ? { html } : {}), ...(choice?.image ? { image: normalizePassageImage(choice.image, `Answer ${id}`) } : {}), ...(choice?.math ? { math: choice.math } : {}), text };
 }
 
-function normalizeQuestion(question, passageId, index) {
+function normalizeQuestion(question, passageId, index, { allowIncomplete = false } = {}) {
   if (!question || typeof question !== "object" || Array.isArray(question)) {
     throw new EditorError(400, `Question ${index + 1} is invalid.`);
   }
+  try { question = documentImport.normalizeChoiceLabels(question); }
+  catch (error) { throw new EditorError(400, error.message); }
   let id = requiredText(question.id, `Question ${index + 1} ID`).toLowerCase();
   if (!/^[a-z0-9][a-z0-9-]*$/.test(id)) {
     throw new EditorError(400, `Question ${index + 1} ID may use lowercase letters, numbers, and hyphens.`);
@@ -828,12 +836,12 @@ function normalizeQuestion(question, passageId, index) {
     ...(explanation ? { explanation } : {}),
     ...(explanationHtml ? { explanationHtml } : {}),
     points: Number.isFinite(Number(question.points)) ? Math.max(1, Number(question.points)) : 1,
-    prompt: requiredText(question.prompt, `Question ${index + 1}`, { preserve: true }),
+    prompt: allowIncomplete ? String(question.prompt || "") : requiredText(question.prompt, `Question ${index + 1}`, { preserve: true }),
     ...(question.instructions ? { instructions: question.instructions } : {}),
     ...(question.stimulus ? { stimulus: question.stimulus } : {}),
     ...(question.image ? { image: normalizePassageImage(question.image, `Question ${index + 1}`) } : {}),
     ...(promptHtml ? { promptHtml } : {}),
-    topic: requiredText(question.topic, `Question ${index + 1} topic`),
+    topic: allowIncomplete ? String(question.topic || "") : requiredText(question.topic, `Question ${index + 1} topic`),
   };
 
   if (
@@ -850,11 +858,11 @@ function normalizeQuestion(question, passageId, index) {
           : `Question ${index + 1} must have two to eight answer choices.`,
       );
     }
-    const choices = question.choices.map(normalizeChoice);
+    const choices = question.choices.map((choice, choiceIndex) => normalizeChoice(choice, choiceIndex, { allowIncomplete }));
     if (new Set(choices.map(c => c.id)).size !== choices.length) throw new EditorError(400, "Choice IDs must be unique.");
     if (question.type === "multiple_choice" || question.type === "transition_drop") {
-      const correctChoiceId = requiredText(question.correctChoiceId, `Question ${index + 1} correct answer`);
-      if (!choices.some(choice => choice.id === correctChoiceId)) {
+      const correctChoiceId = allowIncomplete ? String(question.correctChoiceId || "") : requiredText(question.correctChoiceId, `Question ${index + 1} correct answer`);
+      if (!allowIncomplete && !choices.some(choice => choice.id === correctChoiceId)) {
         throw new EditorError(400, `Question ${index + 1} correct answer must refer to an included choice.`);
       }
       if (question.type === "transition_drop") {
@@ -891,10 +899,10 @@ function normalizeQuestion(question, passageId, index) {
       ? Array.from(new Set(question.correctChoiceIds.map((choiceId) => String(choiceId))))
       : [];
     const availableChoiceIds = new Set(choices.map((choice) => choice.id));
-    if (
+    if (!allowIncomplete && (
       correctChoiceIds.length < 2 ||
       correctChoiceIds.some((choiceId) => !availableChoiceIds.has(choiceId))
-    ) {
+    )) {
       throw new EditorError(400, `Question ${index + 1} needs at least two correct answer bubbles.`);
     }
     return {
@@ -906,7 +914,7 @@ function normalizeQuestion(question, passageId, index) {
       !/^Select the \d+ correct answers\.$/i.test(question.instructions.trim())
         ? { instructions: question.instructions.trim() }
         : {}),
-      requiredSelections: correctChoiceIds.length,
+      requiredSelections: correctChoiceIds.length || (Number.isInteger(question.requiredSelections) ? question.requiredSelections : 2),
       type: "multi_select",
     };
   }
@@ -1044,7 +1052,7 @@ function normalizeQuestion(question, passageId, index) {
 
   if (["short_response", "numeric_entry"].includes(question.type)) {
     const correctTextAnswers = Array.isArray(question.correctTextAnswers) ? question.correctTextAnswers.filter(a => typeof a === "string" && a.trim()) : [];
-    if (!correctTextAnswers.length) throw new EditorError(400, `Question ${index + 1} needs an accepted answer.`);
+    if (!allowIncomplete && !correctTextAnswers.length) throw new EditorError(400, `Question ${index + 1} needs an accepted answer.`);
     return { ...baseQuestion, type: question.type, correctTextAnswers, ...(question.entryLayout ? { entryLayout: question.entryLayout } : {}) };
   }
   if (question.type === "essay") return { ...baseQuestion, type: "essay" };
@@ -1102,7 +1110,7 @@ function validateQuestionTopics(questions, section, contextLabel) {
   );
 }
 
-function normalizePassage(input, { requireExamSection = false } = {}) {
+function normalizePassage(input, { requireExamSection = false, allowIncomplete = false } = {}) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Passage data is invalid.");
   }
@@ -1131,15 +1139,17 @@ function normalizePassage(input, { requireExamSection = false } = {}) {
   if (!/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(exportName)) throw new EditorError(400, "The export name is invalid.");
   const passageSetId = slugify(String(input.passageSetId || `ela-${id}`));
   const questions = Array.isArray(input.questions)
-    ? input.questions.map((question, index) => normalizeQuestion(question, id, index))
+    ? input.questions.map((question, index) => normalizeQuestion(question, id, index, { allowIncomplete }))
     : [];
   if (!questions.length) throw new EditorError(400, "Add at least one question before saving.");
-  validateQuestionTopics(questions, section, "Passage");
+  if (!allowIncomplete) validateQuestionTopics(questions, section, "Passage");
   const questionIds = new Set(questions.map((question) => question.id));
   if (questionIds.size !== questions.length) throw new EditorError(400, "Every question needs a unique ID.");
 
   return {
     author: typeof input.author === "string" ? input.author.trim() : "",
+    byline: typeof input.byline === "string" ? input.byline : "",
+    subtitle: typeof input.subtitle === "string" ? input.subtitle : "",
     blurb: typeof input.blurb === "string" ? input.blurb.trim() : "",
     coverImage: normalizePassageImage(input.coverImage, "Book cover image"),
     directions:
@@ -1183,6 +1193,8 @@ function buildPassageSource(passage) {
     ...(passage.preserveSourceLayout ? [`    preserveSourceLayout: true,`, `    format: ${quote(passage.format)},`, `    images: ${JSON.stringify(passage.images || [])},`] : []),
     `    title: ${quote(passage.title)},`,
     ...(passage.author ? [`    author: ${quote(passage.author)},`] : []),
+    ...(passage.byline ? [`    byline: ${quote(passage.byline)},`] : []),
+    ...(passage.subtitle ? [`    subtitle: ${quote(passage.subtitle)},`] : []),
     ...(passage.blurb ? [`    blurb: ${quote(passage.blurb)},`] : []),
     ...(passage.coverImage ? [`    coverImage: ${JSON.stringify(passage.coverImage)},`] : []),
     ...(passage.image ? [`    image: ${JSON.stringify(passage.image)},`] : []),
@@ -1219,7 +1231,18 @@ function buildPassageSource(passage) {
 
 async function savePassage(input) {
   const imported = await verifyDocumentPublication(input, "passage");
-  const passage = normalizePassage(imported.content, { requireExamSection: true });
+  const passage = normalizePassage(imported.content, { requireExamSection: true, allowIncomplete: Boolean(imported.entry && input.publishNow === true || input.preserveSourceLayout && input.sourceHash) });
+  const seenImages = new Set();
+  const extraImages = [];
+  for (const image of [...(passage.image ? [passage.image] : []), ...passage.images]) {
+    let identity = image.src;
+    try { identity = createHash("sha256").update(await readFile(join(examImagesRoot, image.src.slice("/exam-images/".length)))).digest("hex"); }
+    catch { /* Missing visuals remain editable; their distinct source URLs are retained. */ }
+    if (seenImages.has(identity)) continue;
+    seenImages.add(identity);
+    if (image !== passage.image) extraImages.push(image);
+  }
+  passage.images = extraImages;
   const filePath = join(passageSetsRoot, passage.fileName);
   let existingSource = "";
   try {
@@ -1498,7 +1521,7 @@ function normalizePracticeQuestion(input) {
     throw new EditorError(400, "Question ID may contain only lowercase letters, numbers, and hyphens.");
   }
   const correctChoiceId = requiredText(input.correctChoiceId, "Correct answer").toUpperCase();
-  if (!choices.some(choice => choice.id === correctChoiceId)) {
+  if (!["A", "B", "C", "D"].includes(correctChoiceId)) {
     throw new EditorError(400, "Correct answer must be A, B, C, or D.");
   }
   const choices = ["A", "B", "C", "D"].map((choiceId) => ({
@@ -1858,6 +1881,8 @@ function normalizeMathDropdownOption(option, optionIndex, questionNumber, dropdo
 }
 
 function normalizeMathQuestion(question, assessmentId, index) {
+  try { question = documentImport.normalizeChoiceLabels(question); }
+  catch (error) { throw new EditorError(400, error.message); }
   const questionNumber = index + 1;
   if (!question || typeof question !== "object" || Array.isArray(question)) {
     throw new EditorError(400, `Math question ${questionNumber} is invalid.`);
@@ -2287,13 +2312,19 @@ async function verifyDocumentPublication(input, kind) {
     if (input.importDraftId) throw new EditorError(400, "Save this import as a draft before publishing.");
     return { content: input };
   }
+  const publishNow = kind === "passage" && input.publishNow === true;
   const blocked = documentImport.issues({ ...entry, content: input }, importTaxonomy()).filter(issue => issue.blocking);
-  if (blocked.length) throw new EditorError(400, blocked.map(i => `${i.scope}: ${i.message}`).join("\n"));
-  for (const visual of [...(input.visuals || []), ...input.questions.flatMap(q => q.visuals || [])]) {
-    try { await readFile(join(examImagesRoot, visual.image.src.slice("/exam-images/".length))); }
+  if (!publishNow && blocked.length) throw new EditorError(400, blocked.map(i => `${i.scope}: ${i.message}`).join("\n"));
+  const images = [input.image, ...(input.images || []),
+    ...input.questions.flatMap(q => [q.image, ...(q.choices || []).map(c => c.image)]),
+    ...[...(input.visuals || []), ...input.questions.flatMap(q => q.visuals || [])].map(v => v.image)].filter(Boolean);
+  for (const image of images) {
+    if (publishNow) continue;
+    if (!/^\/exam-images\/[a-zA-Z0-9._-]+$/.test(image.src || "") || !image.alt?.trim()) throw new EditorError(400, "Upload each source visual through the editor and provide its description.");
+    try { await readFile(join(examImagesRoot, image.src.slice("/exam-images/".length))); }
     catch { throw new EditorError(400, "A required visual file is missing. Upload it before publishing."); }
   }
-  return { entry, content: publicationContent({ ...entry, content: input }) };
+  return { entry, content: publicationContent({ ...entry, content: input }, { allowUnresolved: publishNow }) };
 }
 
 function normalizeMathSection(input, assessment) {
@@ -3453,9 +3484,14 @@ async function handleRequest(request, response) {
       if (request.method === "GET") sendJson(response, 200, await documentDrafts.read());
       else if (request.method === "POST") {
         const input = await readJson(request);
-        sendJson(response, 200, input.source !== undefined
-          ? await documentDrafts.import(input.source, input.revision, (await listPassages()).passages)
-          : await documentDrafts.save(input));
+        try {
+          sendJson(response, 200, input.source !== undefined
+            ? await documentDrafts.import(input.source, input.revision, (await listPassages()).passages)
+            : await documentDrafts.save(input));
+        } catch (error) {
+          if (error.code) throw error;
+          throw new EditorError(/changed|already|exists/i.test(error.message) ? 409 : 400, error.message);
+        }
       } else throw new EditorError(405, "Method not allowed.");
       return;
     }

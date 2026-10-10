@@ -1,11 +1,11 @@
 import { createPlainTextPassage } from "../formatters";
 import type { ExamPassageSet, ExamQuestion } from "../types";
 
-const snowyMountainsPassageText = "\nHigher and still more high,\nPalaces made for cloud,\nAbove the dingy city-roofs\nBlue-white like angels with broad wings,\nPillars of the sky at rest\nThe mountains from the great plateau\nUprise.\n\nBut the world heeds them not;\nThey have been here now for too long a time.\nThe world makes war on them,\nTunnels their granite cliffs,\nSplits down their shining sides,\nPlasters their cliffs with soap-advertisements,\nDestroys the lonely fragments of their peace.\n\nVaster and still more vast,\nPeak after peak, pile after pile,\nWilderness still untamed,\nTo which the future is as was the past,\nBarrier spread by Gods,\nSunning their shining foreheads,\nBarrier broken down by those who do not need\nThe joy of time-resisting storm-worn stone,\nThe mountains swing along\nThe south horizon of the sky;\nWelcoming with wide floors of blue-green ice\nThe mists that dance and drive before the sun.\n";
+const snowyMountainsVersion2PassageText = "\nHigher and still more high,\nPalaces made for cloud,\nAbove the dingy city-roofs\nBlue-white like angels with broad wings,\nPillars of the sky at rest\nThe mountains from the great plateau\nUprise.\n\nBut the world heeds them not;\nThey have been here now for too long a time.\nThe world makes war on them,\nTunnels their granite cliffs,\nSplits down their shining sides,\nPlasters their cliffs with soap-advertisements,\nDestroys the lonely fragments of their peace.\n\nVaster and still more vast,\nPeak after peak, pile after pile,\nWilderness still untamed,\nTo which the future is as was the past,\nBarrier spread by Gods,\nSunning their shining foreheads,\nBarrier broken down by those who do not need\nThe joy of time-resisting storm-worn stone,\nThe mountains swing along\nThe south horizon of the sky;\nWelcoming with wide floors of blue-green ice\nThe mists that dance and drive before the sun.\n";
 
-const snowyMountainsQuestions: ExamQuestion[] = [
+const snowyMountainsVersion2Questions: ExamQuestion[] = [
   {
-    "id": "snowy-mountains-1",
+    "id": "snowy-mountains-version-2-1",
     "points": 1,
     "prompt": "The description in the first stanza (lines 1–7) helps establish a central idea of the poem by",
     "topic": "Central Idea & Theme",
@@ -31,33 +31,38 @@ const snowyMountainsQuestions: ExamQuestion[] = [
     "type": "multiple_choice"
   },
   {
-    "id": "snowy-mountains-2",
+    "id": "snowy-mountains-version-2-9",
     "points": 1,
-    "prompt": "Which detail from the poem reflects the speaker’s view that people often fail to appreciate what is familiar?",
-    "topic": "Author's Point of View",
+    "prompt": "Read line 5 from the poem.\nPillars of the sky at rest\nThe line helps develop the theme of the poem by suggesting that the mountains",
+    "promptHtml": "Read line 5 from the poem.\n<strong>Pillars of the sky at rest</strong>\nThe line helps develop the theme of the poem by suggesting that the mountains",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
-        "text": "“The mountains from the great plateau” (line 6)"
+        "html": "serve a noble and supportive purpose in the world.",
+        "text": "serve a noble and supportive purpose in the world."
       },
       {
         "id": "B",
-        "text": "“They have been here now for too long a time.” (line 9)"
+        "html": "attract the clouds with their strength and permanence.",
+        "text": "attract the clouds with their strength and permanence."
       },
       {
         "id": "C",
-        "text": "“Splits down their shining sides,” (line 12)"
+        "html": "remain untamed through the ages.",
+        "text": "remain untamed through the ages."
       },
       {
         "id": "D",
-        "text": "“To which the future is as was the past,” (line 18)"
+        "html": "provide protection for the people.",
+        "text": "provide protection for the people."
       }
     ],
-    "correctChoiceId": "B",
+    "correctChoiceId": "A",
     "type": "multiple_choice"
   },
   {
-    "id": "snowy-mountains-3",
+    "id": "snowy-mountains-version-2-3",
     "points": 1,
     "prompt": "How does isolating the word “Uprise” in line 7 affect the meaning of the poem?",
     "topic": "Author's Point of View",
@@ -83,43 +88,95 @@ const snowyMountainsQuestions: ExamQuestion[] = [
     "type": "multiple_choice"
   },
   {
-    "id": "snowy-mountains-4",
+    "id": "snowy-mountains-version-2-4",
     "points": 1,
-    "prompt": "In which two ways does the poet develop the speaker’s point of view in the second stanza (lines 8–14)? \nSelect the two correct answers.",
-    "promptHtml": "In which <strong>two</strong> ways does the poet develop the speaker’s point of view in the second stanza (lines 8–14)?<br>Select the <strong>two</strong> correct answers.",
+    "prompt": "How does the poet develop the speaker’s point of view in the second stanza (lines 8–14)?",
+    "promptHtml": "How does the poet develop the speaker’s point of view in the second stanza (lines 8–14)?",
     "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
-        "text": "by describing the mountains’ awe-inspiring size and strength"
+        "html": "by describing images of the mountains’ awe-inspiring size and strength",
+        "text": "by describing images of the mountains’ awe-inspiring size and strength"
       },
       {
         "id": "B",
-        "text": "by comparing the various methods humans use to control nature"
+        "html": "by illustrating the differences among the various ways humans can affect the natural\nenvironment",
+        "text": "by illustrating the differences among the various ways humans can affect the natural\nenvironment"
       },
       {
         "id": "C",
-        "text": "by criticizing the careless actions of humans that harm the natural environment"
+        "html": "by criticizing society for taking careless, harmful courses of action against nature",
+        "text": "by criticizing society for taking careless, harmful courses of action against nature"
       },
       {
         "id": "D",
+        "html": "by demonstrating how the mountains and the people are able to benefit from each other",
         "text": "by demonstrating how the mountains and the people are able to benefit from each other"
-      },
-      {
-        "id": "E",
-        "html": "by depicting the unfortunate plight of the mountains with vivid details",
-        "text": "by depicting the unfortunate plight of the mountains with vivid details"
       }
     ],
-    "correctChoiceIds": [
-      "C",
-      "E"
-    ],
-    "requiredSelections": 2,
-    "type": "multi_select"
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
   },
   {
-    "id": "snowy-mountains-5",
+    "id": "snowy-mountains-version-2-10",
+    "points": 1,
+    "prompt": "Which line from the poem best supports the idea that people have sacrificed priceless natural beauty in order to make a profit?",
+    "promptHtml": "Which line from the poem best supports the idea that people have sacrificed priceless natural beauty in order to make a profit?",
+    "topic": "Central Idea & Theme",
+    "choices": [
+      {
+        "id": "A",
+        "html": "“Above the dingy city-roofs” (line 3",
+        "text": "“Above the dingy city-roofs” (line 3"
+      },
+      {
+        "id": "B",
+        "html": "“The world makes war on them,” (line 10)",
+        "text": "“The world makes war on them,” (line 10)"
+      },
+      {
+        "id": "C",
+        "html": "“Tunnels their granite cliffs,” (line 11)",
+        "text": "“Tunnels their granite cliffs,” (line 11)"
+      },
+      {
+        "id": "D",
+        "html": "“Plasters their cliffs with soap-advertisements,” (line 13)",
+        "text": "“Plasters their cliffs with soap-advertisements,” (line 13)"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "snowy-mountains-version-2-2",
+    "points": 1,
+    "prompt": "Which detail from the poem reflects the speaker’s view that people often fail to appreciate what is familiar?",
+    "topic": "Author's Point of View",
+    "choices": [
+      {
+        "id": "A",
+        "text": "“The mountains from the great plateau” (line 6)"
+      },
+      {
+        "id": "B",
+        "text": "“They have been here now for too long a time.” (line 9)"
+      },
+      {
+        "id": "C",
+        "text": "“Splits down their shining sides,” (line 12)"
+      },
+      {
+        "id": "D",
+        "text": "“To which the future is as was the past,” (line 18)"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "snowy-mountains-version-2-5",
     "points": 1,
     "prompt": "How do the details in the third stanza (lines 15–26) **most** contribute to the development of a theme of the poem?",
     "topic": "Author's Point of View",
@@ -145,7 +202,7 @@ const snowyMountainsQuestions: ExamQuestion[] = [
     "type": "multiple_choice"
   },
   {
-    "id": "snowy-mountains-6",
+    "id": "snowy-mountains-version-2-6",
     "points": 1,
     "prompt": "Read lines 21–22 from the poem.\n**Barrier broken down by those who do not need**\n**The joy of time-resisting storm-worn stone,**\nHow do the lines help convey the speaker’s point of view?",
     "topic": "Author's Point of View",
@@ -171,7 +228,7 @@ const snowyMountainsQuestions: ExamQuestion[] = [
     "type": "multiple_choice"
   },
   {
-    "id": "snowy-mountains-8",
+    "id": "snowy-mountains-version-2-7",
     "points": 1,
     "prompt": "Read lines 23–26 from the poem.\n\n**The mountains swing along\nThe south horizon of the sky;\nWelcoming with wide floors of blue-green ice\nThe mists that dance and drive before the sun.**\n\nThe personification in these concluding lines of the poem suggests that the mountains are",
     "topic": "Central Idea & Theme",
@@ -195,61 +252,13 @@ const snowyMountainsQuestions: ExamQuestion[] = [
     ],
     "correctChoiceId": "A",
     "type": "multiple_choice"
-  },
-  {
-    "id": "snowy-mountains-7",
-    "points": 1,
-    "prompt": "Which quotations from the poem support the theme that nature’s unspoiled beauty is splendid, and which quotations support the theme that human creations detract from natural wonder?",
-    "instructions": "Move each answer to the correct box.",
-    "topic": "Central Idea & Theme",
-    "categories": [
-      {
-        "id": "nature-persists",
-        "title": "Nature’s Unspoiled Beauty is Splendid"
-      },
-      {
-        "id": "city-hides-nature",
-        "title": "Human Creations Detract from Natural Wonder"
-      }
-    ],
-    "correctPlacements": {
-      "quote-1": "city-hides-nature",
-      "quote-2": "nature-persists",
-      "quote-3": "nature-persists",
-      "quote-4": "city-hides-nature",
-      "quote-5": "nature-persists"
-    },
-    "items": [
-      {
-        "id": "quote-1",
-        "text": "“Above the dingy city-roofs /  Blue-white like angels with broad wings,”  (lines 3-4)"
-      },
-      {
-        "id": "quote-2",
-        "text": "“Wilderness still untamed, / To which the future is as was the past,”  (lines 17-18)"
-      },
-      {
-        "id": "quote-3",
-        "text": "“Pillars of the sky at rest / The mountains from the great plateau / Uprise.” (line 5-7)"
-      },
-      {
-        "id": "quote-4",
-        "text": "“Tunnels their granite cliffs, /  Splits down their shining sides,” (lines 11-12)"
-      },
-      {
-        "id": "quote-5",
-        "text": "“The south horizon of the sky; / Welcoming with wide floors of blue-green ice” (lines 24-25)"
-      }
-    ],
-    "requiredPlacements": 5,
-    "type": "category_sort"
   }
 ];
 
-export const SnowyMountainsPassageSet: ExamPassageSet = {
-  id: "ela-passage-set-1",
+export const snowyMountainsVersion2PassageSet: ExamPassageSet = {
+  id: "ela-snowy-mountains-version-2",
   section: "reading",
-  questionCount: snowyMountainsQuestions.length,
+  questionCount: snowyMountainsVersion2Questions.length,
   directions: {
   "subject": "English Language Arts",
   "title": "READING COMPREHENSION",
@@ -257,14 +266,14 @@ export const SnowyMountainsPassageSet: ExamPassageSet = {
   "body": "Read each text and answer the related questions. As needed, you may use the online notepad tool or write on scrap paper to take notes. You should reread relevant parts of each text, while being mindful of time, before selecting the best answer for each question. Base your answers only on the content within the text."
 },
   passage: createPlainTextPassage({
-    id: "snowy-mountains",
+    id: "snowy-mountains-version-2",
     title: "Snowy Mountains",
     author: "John Gould Fletcher",
     passageType: "poem",
     passageCategory: "miscellaneous",
     sourceNote: "\"Snowy Mountains\" by John Gould Fletcher—Public Domain",
-    text: snowyMountainsPassageText,
-    versionLabel: "2025-2026 Form A",
+    text: snowyMountainsVersion2PassageText,
+    versionLabel: "2020-2021 Form A",
   }),
-  questions: snowyMountainsQuestions,
+  questions: snowyMountainsVersion2Questions,
 };

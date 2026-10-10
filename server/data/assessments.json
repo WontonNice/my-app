@@ -3176,5 +3176,820 @@
     "correctionsOpen": true,
     "allowCompletedAccess": false,
     "split": false
+  },
+  {
+    "id": "2020-2021-form-a",
+    "title": "2020-2021 Form A",
+    "classId": "shsat",
+    "description": "",
+    "durationMinutes": 180,
+    "createdAt": "2026-10-10T15:42:08.897Z",
+    "updatedAt": "2026-10-10T15:56:55.703Z",
+    "passages": [
+      {
+        "id": "champion-of-the-channel-2020-2021-form-a",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Champion of the Channel",
+        "versionLabel": "2020–2021 Form A"
+      },
+      {
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "5 Reasons Physical Books Might Be Better Than E-Books",
+        "versionLabel": "2020–2021 Form A"
+      },
+      {
+        "id": "snowy-mountains-version-2",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Snowy Mountains",
+        "versionLabel": "2020-2021 Form A"
+      },
+      {
+        "id": "excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from A Voice in the Wilderness",
+        "versionLabel": "2020–2021 Form A"
+      },
+      {
+        "id": "invention-of-the-telegraph-2020-2021-form-a",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Invention of the Telegraph",
+        "versionLabel": "2020–2021 Form A"
+      },
+      {
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "The Benefits of Indoor Plants",
+        "versionLabel": "2020–2021 Form A"
+      }
+    ],
+    "questions": [
+      {
+        "answer": "D",
+        "choices": [
+          "Regardless of her ability, being an American put Ederle at a serious disadvantage over a Londoner, who would be more familiar with the English Channel.",
+          "At the time, Ederle still needed more training in order to succeed in the daunting task of swimming the English Channel.",
+          "While Ederle could participate in athletic competition, some people were not comfortable with her attempt to swim the channel because no woman had ever attempted it before.",
+          "In spite of her previous achievements, Ederle still experienced social as well as physical obstacles in attempting to swim the channel."
+        ],
+        "id": "champion-of-the-channel-2020-2021-form-a-champion-of-the-channel-q16",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What do the newspaper editor’s comments in paragraph 1 reveal about the challenges Ederle faced in attempting her feat?",
+        "topic": "Inference",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Working with her sister, Ederle waterproofed her goggles using melted candle wax to seal the edges and designed a two-piece silk bathing suit that was lightweight and would not stretch out during the long swim.",
+          "Ederle covered her body in numerous layers of grease for insulation and focused on finding her “sphere” during her swim.",
+          "Ederle began training with her coach, who played music while she swam to help her time her strokes to the music.",
+          "Ederle focused on developing better equipment than the standard swimsuit that proved cumbersome during her first attempt to cross the channel."
+        ],
+        "id": "champion-of-the-channel-2020-2021-form-a-champion-of-the-channel-q17",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence is the best summary of the steps that Ederle took to prepare for her second attempt to swim across the English Channel?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "how the bathing suit made it impossible for Ederle to make it across the channel.",
+          "how Ederle and her sister decided to improve Ederle’s swimming equipment in a creative way.",
+          "that the flaws in Ederle’s bathing suit made a difficult task even more complicated.",
+          "that the swimming equipment Ederle used needed to be custom made for her attempt."
+        ],
+        "id": "champion-of-the-channel-2020-2021-form-a-champion-of-the-channel-q18",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The word “insurmountable” is used to highlight",
+        "topic": "Word & Phrase Meaning",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Detailing the challenges presented by the cold channel waters highlights the effectiveness of Ederle’s training.",
+          "Describing Ederle’s physical difficulties during her swim provides evidence of the team effort required to ensure her safety.",
+          "Explaining the difficulties that arose early in the effort helps predict the additional obstacles that occurred during Ederle’s attempt.",
+          "Illustrating Ederle’s process of blocking out her discomfort shows that swimming the channel was both a mental and a physical challenge."
+        ],
+        "id": "champion-of-the-channel-2020-2021-form-a-champion-of-the-channel-q19",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement describes how the author’s use of a problem-and-solution structure in paragraph 5 contributes to the development of ideas in the passage?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "“Yet, at only nineteen years old, Ederle not only became the first woman to accomplish this feat, she also broke the men’s record by two hours.” (paragraph 1)",
+          "“At first she shivered in the bone-chilling water even though she had covered her body in eight layers of grease for insulation.” (paragraph 5)",
+          "“Using a new overhand stroke called the American crawl, Ederle eventually settled into a steady pace, briskly breaking through waves.” (paragraph 5)",
+          "“No longer fighting against her, the sea pushed her toward the shore and victory.” (paragraph 7)"
+        ],
+        "id": "champion-of-the-channel-2020-2021-form-a-champion-of-the-channel-q20",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence best supports the idea that Ederle succeeded in swimming across the channel because of her innovative approach to the challenge?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "illustrating that Ederle’s physical strength and mental fortitude allowed her to stay focused on her goal.",
+          "conveying that Ederle pushed herself to the edge of her physical capabilities in order to complete the swim.",
+          "highlighting the impact the severe weather had on Ederle’s emotions during her swim.",
+          "emphasizing the surge of emotions Ederle felt as she came closer to achieving a personal goal."
+        ],
+        "id": "champion-of-the-channel-2020-2021-form-a-champion-of-the-channel-q21",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Paragraph 7 contributes to the development of a central idea of the passage by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "information about Ederle’s competition with another female swimmer who was also attempting to cross the channel.",
+          "details about the reports of Ederle’s progress during the swim and the celebration of her successful completion of the swim.",
+          "details about how Ederle’s historic swim contributed to an increase in the number of people learning how to swim.",
+          "information about the resources Ederle used throughout her swim to maintain her motivation and stamina."
+        ],
+        "id": "champion-of-the-channel-2020-2021-form-a-champion-of-the-channel-q22",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The idea that many people were interested in Ederle’s attempt to swim the channel is illustrated in the passage mainly through the",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“Undeterred, Ederle decided to try again.” (paragraph 3)",
+          "“For hours Ederle swam, dodging debris with an amused smile.” (paragraph 7)",
+          "“Yet Ederle felt indescribably happy as she churned through the sea.” (paragraph 7)",
+          "“Ederle had swum into history.” (paragraph 8)"
+        ],
+        "id": "champion-of-the-channel-2020-2021-form-a-champion-of-the-channel-q23",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage best conveys the author’s perspective regarding the impact of Ederle’s accomplishment?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "emphasizing that people have continued to swim across the channel and have significantly reduced the speed record.",
+          "suggesting that Ederle inspired women to swim across the channel in an attempt to break the current speed record.",
+          "revealing that other women competed with Ederle to set a record time for swimming across the English Channel.",
+          "providing a comparison between the earliest channel-swimming records and the current record times."
+        ],
+        "id": "champion-of-the-channel-2020-2021-form-a-champion-of-the-channel-q24",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The table supports the information in paragraph 9 mainly by",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "fewer people are buying e-books than printed books.",
+          "printed books have some advantages over e-books.",
+          "printed books rely on natural materials more than e-books.",
+          "some people recommend buying printed books over e-books."
+        ],
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-25",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The details in paragraph 1 convey a central idea of the passage by noting that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Most college students prefer using paper books to using e-books.",
+          "Scientists are still studying the effects of reading on a screen.",
+          "Paper books are less disruptive to sleep patterns than e-books are.",
+          "Reading on a screen can affect both the eyes and the brain."
+        ],
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-26",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which evidence from the passage best supports the claim that “print definitely isn’t dead” (paragraph 1)?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "show that the author has personal opinions to share beyond the ideas included in the studies.",
+          "give the author the opportunity to reach practical conclusions about reading that are based on scientific evidence.",
+          "highlight the author’s statement that digital reading experiences vary based on the individual and the device.",
+          "support the author’s inference that more studies on more types of devices are needed."
+        ],
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-27",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The studies described in paragraph 6 are important to the author’s observations in paragraphs 7 and 8 because the findings",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "E-books are disliked by college students and preferred by kids, and their interactive features are distracting.",
+          "Some e-books can aid comprehension, but most e-book readers remember few details.",
+          "E-books reduce reading comprehension and increase distraction, and they are tiring for the eyes and brain.",
+          "Enhanced e-books engage children, but offer too many opportunities to be distracted by non-reading activities."
+        ],
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-28",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the best summary of the research into the effects of e-book reading?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“They discovered that the kids sometimes skipped text in favor of interactive features in the e-books, suggesting that certain multimedia in children’s e-books can be detrimental to the practice of reading itself.” (paragraph 2)",
+          "“However, the researchers noted that some interactive features in e-books are designed to enhance comprehension, and that those might be more helpful than game-type interactive graphics.” (paragraph 2)",
+          "“Kids who read enhanced e-books—ones with interactive, multimedia experiences—were more engaged with them physically, but in the end they remembered fewer narrative details than those who read print books or basic e-books.” (paragraph 3)",
+          "“However, a 2012 study from the UK’s National Literacy Trust of kids ages 8 to 16 found that more than 50 percent of children reported preferring screen reading.” (paragraph 5)"
+        ],
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-29",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage suggests that people in the future will likely choose e-books over print books?",
+        "topic": "Inference",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Studies found that students used their study time less productively with e-books than with print books.",
+          "A study found that e-books enhanced with multimedia engaged children to interact physically.",
+          "Adult readers recalled more details from a story read in a print book than in an e-book.",
+          "One study found that people who read e-books had poor recall of chronological events."
+        ],
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-30",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which evidence in the passage is most relevant to the author’s claim that “our expectations of e-book reading . . . might affect how we approach the text” (paragraph 9)?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "“While scientists are still trying to tease out exactly how digital reading affects us differently, here are five ways e-books might be inferior to their dead-tree cousins.” (paragraph 1)",
+          "“While e-book textbooks are often cheaper (and easier to carry) than traditional door-stop textbooks, college students often don’t prefer them.” (paragraph 5)",
+          "“For instance, reading an e-book on a computer is a much different experience than reading on a Kindle, which is specifically designed for consuming books.” (paragraph 8)",
+          "“So, too, is playing with an interactive e-book on an iPad, compared to using a simpler e-book device that only presents the text, with no opportunities to click away into digital distractions.” (paragraph 8)"
+        ],
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-31",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage best reveals the author’s point of view about e-books?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "comparing the length of time the mountains have existed with the length of time the city has existed.",
+          "contrasting the grandeur of the mountains with the structures in the city below them.",
+          "implying that the mountains are a source of inspiration to the people in the city below.",
+          "suggesting that the mountains are larger than the people in the city realize."
+        ],
+        "id": "snowy-mountains-version-2-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The description in the first stanza (lines 1–7) helps establish a central idea of the poem by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "serve a noble and supportive purpose in the world.",
+          "attract the clouds with their strength and permanence.",
+          "remain untamed through the ages.",
+          "provide protection for the people."
+        ],
+        "id": "snowy-mountains-version-2-9",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read line 5 from the poem.\nPillars of the sky at rest\nThe line helps develop the theme of the poem by suggesting that the mountains",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It creates a contrast between the great plateau and the city buildings.",
+          "It reveals the similarity between the tall buildings in the city and the tall mountains on the horizon.",
+          "It creates a vision of the region before people developed the land.",
+          "It emphasizes that the mountains dominate the landscape."
+        ],
+        "id": "snowy-mountains-version-2-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does isolating the word “Uprise” in line 7 affect the meaning of the poem?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "by describing images of the mountains’ awe-inspiring size and strength",
+          "by illustrating the differences among the various ways humans can affect the natural\nenvironment",
+          "by criticizing society for taking careless, harmful courses of action against nature",
+          "by demonstrating how the mountains and the people are able to benefit from each other"
+        ],
+        "id": "snowy-mountains-version-2-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the poet develop the speaker’s point of view in the second stanza (lines 8–14)?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“Above the dingy city-roofs” (line 3",
+          "“The world makes war on them,” (line 10)",
+          "“Tunnels their granite cliffs,” (line 11)",
+          "“Plasters their cliffs with soap-advertisements,” (line 13)"
+        ],
+        "id": "snowy-mountains-version-2-10",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which line from the poem best supports the idea that people have sacrificed priceless natural beauty in order to make a profit?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "“The mountains from the great plateau” (line 6)",
+          "“They have been here now for too long a time.” (line 9)",
+          "“Splits down their shining sides,” (line 12)",
+          "“To which the future is as was the past,” (line 18)"
+        ],
+        "id": "snowy-mountains-version-2-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which detail from the poem reflects the speaker’s view that people often fail to appreciate what is familiar?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "by reflecting nature’s capacity to resist change",
+          "by showing that nature is capable of influencing human will",
+          "by exposing how a lack of awareness leads to nature’s ruin",
+          "by explaining why people must respect nature"
+        ],
+        "id": "snowy-mountains-version-2-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How do the details in the third stanza (lines 15–26) **most** contribute to the development of a theme of the poem?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "They suggest that the speaker wants to remove the obstacles that prevent others from experiencing the wonders of nature.",
+          "They reveal the speaker’s opinion that some people are too busy to appreciate natural beauty.",
+          "They reflect the speaker’s dismay that people destroy the natural landscape without understanding the ramifications of their actions.",
+          "They explain that the speaker is confident that nature will never be fully destroyed by people."
+        ],
+        "id": "snowy-mountains-version-2-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 21–22 from the poem.\n**Barrier broken down by those who do not need**\n**The joy of time-resisting storm-worn stone,**\nHow do the lines help convey the speaker’s point of view?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "gracious hosts who are untroubled by the actions of people.",
+          "unaware of their coming destruction.",
+          "lively entertainers who are amused by the everyday concerns of people.",
+          "too proud to reveal their pain."
+        ],
+        "id": "snowy-mountains-version-2-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 23–26 from the poem.\n\n**The mountains swing along\nThe south horizon of the sky;\nWelcoming with wide floors of blue-green ice\nThe mists that dance and drive before the sun.**\n\nThe personification in these concluding lines of the poem suggests that the mountains are",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It creates an accusatory tone by suggesting that Margaret believes that others are responsible for her problem.",
+          "It introduces a defiant tone by suggesting that Margaret left the train early to prove a point.",
+          "It suggests a frustrated tone by showing that Margaret feels confused by the inconsistent help offered by the railroad employees.",
+          "It establishes an appreciative tone by showing that Margaret feels cared for by the railroad employees."
+        ],
+        "id": "excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a-voice-in-the-wilderness-41",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In paragraph 2, how does the phrase “when all three had taken the trouble to tell her” affect the tone in the first part of the excerpt?",
+        "topic": "Tone & Mood",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "“With a lurch the train came to a dead stop and Margaret Earle, hastily gathering up her belongings, hurried down the aisle and got out into the night.” (paragraph 1)",
+          "“Perhaps something was the matter with the engine that detained them and they had forgotten her for the moment.” (paragraph 2)",
+          "“Did they not have platforms in this wild Western land, or was the train so long that her car had stopped before reaching it?” (paragraph 3)",
+          "“She could dimly see moving figures away up near the engine, and each one evidently carried a lantern.” (paragraph 4)"
+        ],
+        "id": "excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a-voice-in-the-wilderness-42",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt best supports the idea that Margaret is unaccustomed to traveling to new places by train?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "feeling of comfort as Margaret connects her unfamiliar surroundings with familiar images.",
+          "sense of lonesomeness as Margaret realizes that she is on her own in the wilderness.",
+          "sense of tranquility as Margaret is distracted from the urgency of her situation by the beauty of the night.",
+          "feeling of dread as Margaret regards the desolation of the land that surrounds her."
+        ],
+        "id": "excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a-voice-in-the-wilderness-43",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 4.\n\nShe strained her eyes into the darkness, and tried to make out things from the two or three specks of light that danced about like fireflies in the distance.\n\nThe simile used in the sentence affects the tone of the paragraph by emphasizing a",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "They prompt Margaret to get off the train without further assistance.",
+          "They cause Margaret to think that she knows what to do once she gets off the train.",
+          "They compel Margaret to wonder whether the train has not pulled all the way into the station.",
+          "They lead Margaret to believe that train stations in rural areas lack platforms."
+        ],
+        "id": "excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a-voice-in-the-wilderness-44",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How do Margaret’s earlier interactions with the conductor, brakeman, and porter affect the plot?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "growing irritation Margaret feels as she is ignored by people on the train.",
+          "effort Margaret is making despite being physically unable to keep up with the train.",
+          "anger that Margaret is experiencing as she watches the train leave without her.",
+          "vulnerability Margaret feels as the train leaves her behind."
+        ],
+        "id": "excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a-voice-in-the-wilderness-45",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read paragraph 9 from the excerpt.\n\nA moment of useless screaming, running, trying to attract some one’s attention, a sickening sense of terror and failure, and the last car slatted itself past with a mocking clatter, as if it enjoyed her discomfort.\n\nThe imagery in this sentence conveys the",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It confirms Margaret’s understanding that she cannot rely on help from anyone else.",
+          "It leads Margaret to realize that her desire to change her situation is impractical.",
+          "It causes Margaret to believe that her own actions led to an unfavorable outcome.",
+          "It reinforces Margaret’s frustration about her lack of control over her surroundings."
+        ],
+        "id": "excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a-voice-in-the-wilderness-46",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does Margaret’s experience in paragraph 9 emphasize a theme of the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "the sense of doubt that Margaret experiences when she is deciding what to do next",
+          "the anger that Margaret feels toward the people on the train who she expected to help her",
+          "the embarrassment that Margaret feels when she imagines what others will think of her",
+          "the hopelessness that Margaret feels when she accepts that the train is continuing on"
+        ],
+        "id": "excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a-voice-in-the-wilderness-47",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read paragraph 10 from the excerpt.\n\nMargaret stood dazed, reaching out helpless hands, then dropped them at her sides and gazed after the fast-retreating train, the light on its last car swinging tauntingly, blinking now and then with a leer in its eye, rapidly vanishing from her sight into the depth of the night.\n\nWhat does the figurative language in this sentence emphasize?",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It reveals that the reality of the situation is different from Margaret’s assumptions.",
+          "It illustrates that Margaret’s main problem is her own imagination.",
+          "It shows that Margaret is surprised by the unexpected adventure she is about to undertake.",
+          "It provides insight into how Margaret reacts to stressful situations."
+        ],
+        "id": "excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a-voice-in-the-wilderness-48",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does paragraph 11 contribute to the plot of the excerpt?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Morse’s discussion on a ship about Faraday’s electromagnet reminded him of the Yale College lectures on electricity, which he had enjoyed but had not fully understood, inspiring him to learn more about electricity from his colleague Gale.",
+          "Morse’s discouragement over his lack of knowledge of electricity prompted him to experiment with batteries, magnets, and wires, which led to the development of a new long-distance communication system.",
+          "Morse’s difficulty in understanding how Faraday’s electromagnet worked was frustrating, and it pushed him to create a system for sending signals over wires.",
+          "Morse’s longtime fascination was not enough to make up for his lack of knowledge about electricity, so he eventually sought help from Gale."
+        ],
+        "id": "invention-of-the-telegraph-2020-2021-form-a-invention-of-the-telegraph-49",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement describes how the author’s use of problem-solution in paragraph 2 contributes to the development of ideas in the passage?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It shows that several people were simultaneously attempting to create an electric telegraph.",
+          "It shows how the invention of the electric telegraph depended on information and techniques discovered by others.",
+          "It shows that multiple means of long-distance communication were being used at the same time.",
+          "It shows how quickly long-distance communication changed from visual signals to electrical signals."
+        ],
+        "id": "invention-of-the-telegraph-2020-2021-form-a-invention-of-the-telegraph-50",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement describes how the author’s use of sequencing in paragraph 3 contributes to the overall structure of the passage?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "the collaborative efforts of colleagues resulted in successful communication over a wire.",
+          "a great deal of interest and work was devoted to understanding how to use electricity to send signals.",
+          "Faraday’s invention of the electromagnet inspired the invention of the telegraph.",
+          "colleges like Yale played a great role in making new discoveries about electricity and its applications."
+        ],
+        "id": "invention-of-the-telegraph-2020-2021-form-a-invention-of-the-telegraph-51",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The details of the section “The Growth of an Idea” convey a central idea of the passage by suggesting that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "sense of relief and fulfillment that the line was finished.",
+          "sense of wonder and of celebration that the telegraph line was accomplished.",
+          "feeling of excitement about the future possibilities of the telegraph.",
+          "feeling of confidence about being able to continue the work."
+        ],
+        "id": "invention-of-the-telegraph-2020-2021-form-a-invention-of-the-telegraph-52",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 7.\n\nThe desperate Morse gave the go-ahead, and the line was completed in time for the dramatic and spectacularly successful link between the Supreme Court chamber of the Capitol building and the railroad station in Baltimore.\n\nThe words “dramatic” and “spectacularly” in the sentence convey a",
+        "topic": "Tone & Mood",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Morse’s application for a federal grant was delayed until 1843, so he spent time traveling in Europe, where he concentrated on obtaining a patent for his system.",
+          "Morse applied for a government grant that required both houses of Congress and the president to pass a bill awarding him $30,000 for his telegraph project.",
+          "Morse applied for a government appropriation and conducted telegraph demonstrations to show that his system could work, and after a delay caused by a financial depression, Congress approved the $30,000 appropriation in 1843.",
+          "Working with Gale and Vail allowed Morse to find flaws in Henry’s work and to develop his own ideas before applying for the federal government appropriation."
+        ],
+        "id": "invention-of-the-telegraph-2020-2021-form-a-invention-of-the-telegraph-53",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence is the best summary of how Morse obtained the funding necessary to build his telegraph system?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "description of the government’s initial desire to expand a semaphore signaling system that used either flags or lights along the Atlantic Coast.",
+          "delay by the House of Representatives to pass the bill funding Morse’s telegraph line six years after he first applied for the appropriation.",
+          "discussions of the newly invented electromagnet that sparked the idea of sending codes through wires.",
+          "description of how an electric circuit could be closed to ring a bell at a distance."
+        ],
+        "id": "invention-of-the-telegraph-2020-2021-form-a-invention-of-the-telegraph-54",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The idea that, in the mid-nineteenth century, the United States was mostly unaware of the possibilities of electricity is illustrated in the passage mainly through the",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Morse’s telegraph was successful because the wires were strung above ground rather than underground as originally planned.",
+          "Understanding the importance of Morse’s telegraph requires detailed knowledge of electrical systems.",
+          "The implementation of Morse’s telegraph system was overly influenced by economic factors.",
+          "Morse’s invention of the telegraph made a great stride toward better connecting people across the United States and across the world."
+        ],
+        "id": "invention-of-the-telegraph-2020-2021-form-a-invention-of-the-telegraph-55",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "With which statement would the author most likely agree?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "by demonstrating that Morse’s telegraph system greatly exceeded the limitations of previous long-distance communication systems",
+          "by indicating that Morse was lacking foresight by seeking a patent only in North America",
+          "by proving that Gale’s advice helped Morse extend the telegraph’s range much farther than first thought possible",
+          "by showing that the Morse telegraph had a surprisingly immense influence across the world"
+        ],
+        "id": "invention-of-the-telegraph-2020-2021-form-a-invention-of-the-telegraph-56",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the map provide additional support for a central idea of the passage?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It indicates how welcome the improvement of long-distance communication was in the United States.",
+          "It provides evidence of the dramatic increase in the number of telegraph messages as Morse’s system expanded across the United States.",
+          "It reveals that by the twentieth century millions of people had used the telegraph despite earlier hesitations about the system.",
+          "It shows how improvements that allowed Morse code to be read in real time made relaying telegraph messages faster and increased the system’s usage."
+        ],
+        "id": "invention-of-the-telegraph-2020-2021-form-a-invention-of-the-telegraph-57",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the graph support the ideas in paragraph 8?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Placing plants in homes and offices can provide a healthy bridge between nature and the indoors.",
+          "It is important for people to realize that they need to spend more time near plants, whether indoors or out in nature.",
+          "For their personal health and well-being, people need to spend more time outdoors or bring the outdoors in.",
+          "Individuals with little connection to nature can experience illness, depression, and higher levels of stress."
+        ],
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-11",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence should follow sentence 3 to best introduce the topic of the passage?",
+        "topic": "Topic & Transitions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "As a result,",
+          "Primarily,",
+          "In contrast,",
+          "Unfortunately,"
+        ],
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-12",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which transition word or phrase should be added to the beginning of sentence 5?",
+        "topic": "Topic & Transitions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "A global study of 7,600 workers from sixteen countries revealed that employees who worked in spaces with natural elements, such as indoor plants, were more creative and productive than employees who worked in spaces without natural elements.",
+          "Specifically, a study suggests that one well-known hotel is popular among guests because its owners have made a significant investment in landscaping and indoor plants known to have a relaxing effect.",
+          "In fact, one recent study suggested that people who are routinely exposed to natural elements seem to increase their compassion for others, perhaps because that exposure generates compassion for the environment in which they live.",
+          "According to a study that was conducted in 2003, plants can reduce the amount of noise that people perceive in indoor spaces with hard surfaces, just as adding carpet can make a room seem quieter."
+        ],
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-13",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence could best follow sentence 13 to support the ideas in the third paragraph (sentences 11–14)?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "sentence 11",
+          "sentence 14",
+          "sentence 15",
+          "sentence 16"
+        ],
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-14",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence presents ideas irrelevant to the topic of the passage and should be deleted?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Because indoor plants absorb the carbon dioxide in our air and release the oxygen we need to breathe, they are vital to our wholeness and wellness.",
+          "Experts say that adding a Boston fern, a spider plant, or an aloe vera plant is a good place to start if you want to begin to incorporate nature into your home or office.",
+          "More people should consider bringing natural elements inside to improve general wellness and reverse some of the negative effects of an indoor-centered society.",
+          "As one study has confirmed, houseplants are a wise investment because they can remove almost 90 percent of the toxins in the air within the span of 24 hours."
+        ],
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-15",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which concluding sentence should follow sentence 17 to best support the information presented in the passage?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The Appalachian Trail is an extremely long trail that millions of people do each year",
+          "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year",
+          "The Appalachian Trail is a 2,200-mile trail that two million people hike each year",
+          "The Appalachian Trail is a lengthy trail that a couple million people do each year."
+        ],
+        "id": "part-b-question-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision of the sentence uses the most precise language?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Insert a comma after agile",
+          "Insert a comma after first.",
+          "Insert a comma after only",
+          "Insert a comma after States."
+        ],
+        "id": "part-b-question-9",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which edit should be made to correct this sentence?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Institution, and the",
+          "year, and the",
+          "objects, which include",
+          "Proclamation, which was written"
+        ],
+        "id": "part-b-question-10",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision corrects the error in sentence structure in the paragraph?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      }
+    ],
+    "forms": [],
+    "formAssignments": {},
+    "status": "open",
+    "sectionAccess": {
+      "english": true,
+      "math": true
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false
   }
 ]

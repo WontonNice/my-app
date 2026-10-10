@@ -14227,6 +14227,9 @@ button {
 .exam-prose-line.is-heading, .exam-sentence-prose-line.is-heading { display: block; font-weight: 700; margin: 16px 0 10px; }
 .exam-question-passage-scroll.is-prose .exam-prose-line.is-heading > span, .exam-question-passage-scroll.is-prose .exam-prose-line.is-list > span, .exam-question-passage-scroll.is-prose .exam-prose-line > span:only-child { display: inline; width: auto; height: auto; border-radius: 0; margin: 0; padding: 0; background: transparent; color: inherit; font-size: inherit; font-weight: inherit; line-height: inherit; }
 .exam-question-passage-scroll.is-prose .exam-prose-line.is-heading { margin-top: 16px; font-weight: 700; }
+.exam-question-passage-scroll.is-prose .exam-prose-line.is-heading > span,
+.exam-question-passage-scroll.is-sentence-prose .exam-sentence-prose-line.is-heading > span,
+.teacher-book-preview-passage p.is-heading { font-weight: 700; }
 .exam-prose-line.is-list ul, .exam-prose-line.is-list ol { padding-left: 26px; margin: 8px 0; }
 .exam-question-passage-scroll.is-poem .exam-poem-line { width: 100%; grid-template-columns: 26px minmax(0, 1fr); gap: 24px; margin: 0 auto; font-size: 16px; line-height: 24px; }
 .exam-question-passage-scroll.is-poem .exam-poem-line > span:last-child { text-align: left; white-space: break-spaces; padding-left: 20px; text-indent: -20px; }

@@ -1,6 +1,12 @@
 /* Review UI around the existing passage and Math editors and publication endpoints. */
 const DocumentStudio = {
   state: { revision: 0, entries: [] }, entry: null, index: 0,
+  initialize() {
+    const button = document.querySelector('#open-document-drafts');
+    button.disabled = false;
+    button.onclick = () => this.library();
+    if (window.location.hash === '#document-drafts') this.library();
+  },
   taxonomy() { return { reading: app.state.readingTopics, revising_editing_a: app.state.revisingEditingTopics, math: app.state.mathTopics }; },
   async library() {
     try {
@@ -43,6 +49,14 @@ const DocumentStudio = {
       setStatus('Review draft saved. Students cannot see it until you publish.', 'success');
     } catch (error) { setStatus(error.message, 'error'); }
   },
+  openPublishedPassage(passage) {
+    if (app.passageDirty) return false;
+    app.passageMode = 'exam'; app.selectedPassageId = passage.id; app.passageDraft = clone(passage);
+    studioUI.passageContext = ''; updatePassageWorkspaceLabels(); renderPassageList(); renderPassageEditor();
+    switchTab('passages');
+    document.querySelector('#document-review-dialog')?.close();
+    return true;
+  },
   async upload(visual, file) {
     if (!file) return;
     const dataUrl = await new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.onerror = reject; reader.readAsDataURL(file); });
@@ -60,10 +74,10 @@ const DocumentStudio = {
     const vs = p ? [...(p.visuals || []), ...(q?.visuals || [])] : [];
     const issues = e ? DocumentImport.issues(e, this.taxonomy()) : [];
     dialog.innerHTML = `<section class="panel"><div class="panel-head"><h2>${e ? 'Document review' : 'Saved document drafts'}</h2><button type="button" id="doc-close">Close</button></div><div id="doc-message" role="status"></div>
-      ${!e ? `<p>Drafts are private to this Content Studio checkout. Publish uses the existing content files and student renderers.</p>${this.state.entries.map(entry => `<p><button data-doc-open="${entry.id}">${escapeHtml(entry.content.title || 'Untitled')} · ${entry.kind} · ${entry.content.questions.length} questions · ${entry.status}</button></p>`).join('') || '<p>No imported drafts yet.</p>'}` : `
-      <div class="math-import-actions"><button id="doc-library">Back to drafts</button><button id="doc-save">Save review draft</button>${e.kind === 'passage' ? '<button id="doc-editor">Open passage editor / Student view</button>' : `<label>Destination exam <select id="doc-assessment"><option value="">Choose an exam</option>${app.state.assessments.map(a => `<option value="${escapeHtml(a.id)}">${escapeHtml(a.title)}</option>`).join('')}</select></label>`}<button class="primary" id="doc-publish">Publish reviewed ${e.kind === 'passage' ? 'passage' : 'Math questions'}</button></div>
-      <div class="math-import-warnings"><strong>${issues.filter(i => i.blocking).length} publication checks remaining</strong><ul>${issues.map(i => `<li>${i.blocking ? '⚠ ' : ''}${escapeHtml(i.scope)}: ${escapeHtml(i.message)}</li>`).join('')}</ul></div>
-      ${field('Title', 'title', p.title)}${e.kind === 'passage' ? `${field('Author', 'author', p.author)}${field('Blurb / subtitle', 'blurb', p.blurb, true)}${field('Complete passage text', 'text', p.text, true)}` : ''}
+      ${!e ? `<p>Drafts are private to this Content Studio checkout. Publish uses the existing content files and student renderers.</p>${this.state.entries.map(entry => `<p><button data-doc-open="${entry.id}">${escapeHtml(entry.content.title || 'Untitled')} · ${entry.kind} · ${entry.content.questions.length} questions · ${entry.status}</button></p>`).join('') || '<p>No saved document import drafts yet. In Exam passages, choose Import documents, paste the JSON returned by ChatGPT, then Validate and review → Save all as review drafts.</p>'}` : `
+      <div class="math-import-actions"><button id="doc-library">Back to drafts</button><button id="doc-save">Save review draft</button>${e.kind === 'passage' ? '<button id="doc-editor">Open passage editor / Student view</button>' : `<label>Destination exam <select id="doc-assessment"><option value="">Choose an exam</option>${app.state.assessments.map(a => `<option value="${escapeHtml(a.id)}">${escapeHtml(a.title)}</option>`).join('')}</select></label>`}<button class="primary" id="doc-publish">${e.kind === 'passage' ? 'Publish passage' : 'Publish reviewed Math questions'}</button></div>
+      <div class="math-import-warnings"><strong>${issues.filter(i => i.blocking).length} ${e.kind === 'passage' ? 'items to review — you can publish now and edit afterward' : 'publication checks remaining'}</strong><ul>${issues.map(i => `<li>${i.blocking ? '⚠ ' : ''}${escapeHtml(i.scope)}: ${escapeHtml(i.message)}</li>`).join('')}</ul></div>
+      ${field('Title', 'title', p.title)}${e.kind === 'passage' ? `${field('Author name', 'author', p.author)}${field('Exact printed byline', 'byline', p.byline)}${field('Subtitle', 'subtitle', p.subtitle)}${field('Introductory blurb', 'blurb', p.blurb, true)}${field('Complete passage text', 'text', p.text, true)}` : ''}
       ${reviewMarkup(p.review, 'passage')}
       <label><input type="checkbox" data-review="sourceReviewed" ${p.review?.sourceReviewed ? 'checked' : ''}> I checked source wording, key and explanations against the supplied files.</label><br>
       <label><input type="checkbox" data-review="completenessReviewed" ${p.review?.completenessReviewed ? 'checked' : ''}> I verified all requested pages, questions and choices are included.</label>
@@ -102,19 +116,22 @@ const DocumentStudio = {
     dialog.querySelector('#doc-apply').onclick = handle(() => { const content = JSON.parse(dialog.querySelector('#doc-json').value); if (!Array.isArray(content.questions)) throw new Error('questions must remain an array.'); this.entry.content = content; this.index = 0; this.render(); });
     if (e.kind === 'passage') dialog.querySelector('#doc-editor').onclick = handle(async () => {
       if (!confirmDiscard()) return;
+      if (this.entry.status === 'published') {
+        const saved = app.state.passages.find(passage => passage.id === p.id);
+        if (saved) { app.passageDirty = false; this.openPublishedPassage(saved); return; }
+      }
       await this.save(); app.passageMode = 'exam'; app.selectedPassageId = ''; app.passageDraft = clone(this.entry.content); app.passageDraft.preserveSourceLayout = true; app.passageDirty = false;
       studioUI.passageContext = ''; updatePassageWorkspaceLabels(); renderPassageList(); renderPassageEditor(); dialog.close();
     });
     dialog.querySelector('#doc-publish').onclick = handle(async () => {
       const target = dialog.querySelector('#doc-assessment')?.value;
       await this.save();
-      if (e.kind === 'passage') await api('/api/passages', { method: 'POST', body: JSON.stringify(this.entry.content) });
-      else await api('/api/document-publish-math', { method: 'POST', body: JSON.stringify({ entryId: e.id, assessmentId: target, revision: this.state.revision }) });
+      if (e.kind === 'passage') {
+        const result = await api('/api/passages', { method: 'POST', body: JSON.stringify({ ...this.entry.content, publishNow: true }) });
+        await reloadState();
+        if (this.openPublishedPassage(result.passage)) { setStatus(`${result.passage.title} published. Make further changes in the passage editor.`, 'success'); return; }
+      } else await api('/api/document-publish-math', { method: 'POST', body: JSON.stringify({ entryId: e.id, assessmentId: target, revision: this.state.revision }) });
       await reloadState(); await this.library(); setStatus('Reviewed content published through the existing content editor.', 'success');
     });
   },
 };
-document.addEventListener('DOMContentLoaded', () => {
-  const button = document.createElement('button'); button.type = 'button'; button.className = 'secondary'; button.textContent = 'Saved import drafts'; button.onclick = () => DocumentStudio.library();
-  document.querySelector('#open-passage-import').after(button);
-});

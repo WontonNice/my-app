@@ -35,3 +35,27 @@ Category accuracy summaries require at least five verified question responses ac
 `npm run test:passage-organization`, `npm run content-editor:test`, `npm run content-editor:validate`, `npm run test:learning-plan`, `npm run test:exam-review`, `npm run test:exam-presentation`, `npm run typecheck`, `npm run lint`, and `npm run build`.
 
 The local analytics/learning-plan preview tools use explicitly fictional student data and illustrative categories. Those fixture classifications are not changes to the real library.
+
+## Student progress: source and completion history
+
+The teacher student-progress record includes a **Passage progress** analytics tab.
+Each original source version has its own row, even when two versions share a title.
+The table shows the source/version label, historical completion state, and latest
+recorded completion date. **All passages**, **Completed passages**, and **Not yet
+completed** filters combine with title/source search. A repeated assignment does
+not erase earlier completion. Planned, assigned and in-progress work without a
+completed result remains not yet completed.
+
+Available content and passage response patterns also display source/version and
+last-completed columns. The Available content completion filter clears the default
+Never assigned status filter so completed work is visible. Completion dates come
+from completed assignment records or saved passage attempts/results, never an
+assignment/update timestamp. Missing or invalid dates display **No Data**; timestamps
+use America/New_York, while explicit date-only records retain their calendar date.
+In-progress and Math-only exam records do not establish English passage completion.
+No Data is also used when no actual source/version label is recorded.
+
+The teacher overview adds optional `lastCompletedAt` to each inventory row; no
+database migration is required. `npm run test:passage-progress` verifies actual
+completion dates, historical repeats, source versions, student isolation, missing
+dates, incomplete exams, filtering and the rendered progress table.
