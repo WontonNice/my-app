@@ -12,6 +12,8 @@ test('bulk metadata patch retains poems, quotations, questions, comments and whi
   assert.equal(patched.replace('  passageCategory: "official_handbook",\r\n', ''), original);
   const edited = patchPassageCategory(patched, 'prestige');
   assert.equal(edited.replace('"prestige"', '"official_handbook"'), patched);
+  const sourceLayout = original.replace('createPlainTextPassage', 'createSourcePassage');
+  assert.equal(patchPassageCategory(sourceLayout, 'prestige').replace('  passageCategory: "prestige",\r\n', ''), sourceLayout);
   assert.throws(() => patchPassageCategory('const input = {};', 'prestige'), /single passage/);
   assert.throws(() => patchPassageCategory(original + original, 'prestige'), /single passage/);
 });

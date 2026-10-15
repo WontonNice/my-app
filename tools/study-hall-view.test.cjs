@@ -12,6 +12,7 @@ test('English Study Hall renders eight reading topics, separate editing topics, 
  const reading=html.match(/<section class="study-hall-topic-catalog" aria-labelledby="study-hall-topic-title">([\s\S]*?)<\/section>/)?.[1];
  const editing=html.match(/<section class="study-hall-topic-catalog" aria-labelledby="editing-topic-title">([\s\S]*?)<\/section>/)?.[1];
  const library=html.match(/<section class="study-hall-library"([\s\S]*?)<\/section>/)?.[1];
+ const advanced=html.match(/<section class="study-hall-library study-hall-advanced-readings"([\s\S]*?)<\/section>/)?.[1];
  assert.ok(reading&&editing&&library,'All three sections must render');
  assert.equal((reading.match(/class="study-hall-topic-card"/g)||[]).length,8);
  assert.equal((editing.match(/class="study-hall-topic-card"/g)||[]).length,8);
@@ -19,4 +20,11 @@ test('English Study Hall renders eight reading topics, separate editing topics, 
  assert.match(library,/Passage category/);assert.match(library,/Sort passages/);assert.match(library,/library-passage-filters/);
  assert.equal((library.match(/href="[^"]*\/library\/book-a-miracle-mile(?:\?|"|&)/g)||[]).length,1);
  assert.doesNotMatch(library,/href="[^"]*\/library\/a-miracle-mile-version-2/);
+ assert.ok(advanced, 'Advanced readings has its own English shelf');
+ assert.match(advanced, /Advanced readings/); assert.match(advanced, /Reading genre/); assert.match(advanced, /Sort advanced readings/);
+ assert.equal((advanced.match(/href="[^"]*\/advanced-practice\//g)||[]).length,4);
+ assert.match(advanced,/\/advanced-practice\/[^" ]+\?preview=student/);
+ assert.doesNotMatch(library,/\/advanced-practice\//);
+ assert.match(html,/aria-label="English Study Hall sections"/);
+ assert.match(html,/href="#advanced-readings"/);
 });

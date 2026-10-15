@@ -44,7 +44,7 @@ export const readingPracticeMaterials: StudentMaterial[] = practiceTopics.map((t
   title: topic.title,
 }));
 
-const advancedPassageMaterials: StudentMaterial[] = advancedPracticePassages.map((passage) => ({
+export const advancedPassageMaterials: StudentMaterial[] = advancedPracticePassages.map((passage) => ({
   passageCategory: passageCategory(passage.passageSet.passage.passageCategory),
   author: getPassageAuthor(passage.passageSet.passage.lines) || "Nathan Tutors Editorial",
   category: "Reading comprehension",
@@ -59,7 +59,7 @@ const advancedPassageMaterials: StudentMaterial[] = advancedPracticePassages.map
   libraryCollection: "Advanced Reading",
   questionCount: passage.passageSet.questionCount,
   questionType: passage.genre,
-  readingFormat: passage.genre === "Fiction" ? "Literary" : "Informational",
+  readingFormat: passage.passageSet.passage.format === "poem" ? "Poem" : passage.genre === "Fiction" ? "Literary" : "Informational",
   subject: "English",
   title: passage.passageSet.passage.title,
   tone: passage.tone,

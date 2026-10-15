@@ -768,7 +768,7 @@
   <header class="app-header">
     <div class="brand">
       <span class="brand-mark">NT</span>
-      <div><strong>Nathan Tutors Content Studio</strong><small>One workspace for exams, advanced practice, and regular practice</small></div>
+      <div><strong>Nathan Tutors Content Studio</strong><small>One workspace for exams, SAT passages, and regular practice</small></div>
     </div>
     <div class="save-status" id="status" role="status" aria-live="polite">Loading repository content…</div>
   </header>
@@ -778,7 +778,7 @@
     <button data-tab="standalone" type="button">Exam Part B</button>
     <button data-tab="tests" type="button">Exam builder</button>
     <button data-tab="math" type="button">Exam math</button>
-    <button data-tab="advanced" type="button">Advanced practice</button>
+    <button data-tab="advanced" type="button">SAT passages</button>
     <button data-tab="practice" type="button">Regular practice</button>
     <button data-tab="question-bank" type="button">Question Bank · SHSAT Lab</button>
     <button id="open-document-drafts" type="button" aria-haspopup="dialog" disabled>Saved import drafts</button>
@@ -1734,7 +1734,7 @@ Why D is wrong."></textarea>
     }
 
     function confirmDiscard() {
-      const label = app.passageMode === "advanced" ? "advanced-practice passage" : "exam passage";
+      const label = app.passageMode === "advanced" ? "SAT passage" : "exam passage";
       return !app.passageDirty || window.confirm(`Discard the unsaved ${label} changes?`);
     }
 
@@ -1951,7 +1951,7 @@ Why D is wrong."></textarea>
       renderPassageList();
       renderPassageEditor();
       setStatus(
-        `New ${app.passageMode === "advanced" ? "advanced-practice" : "exam"} passage draft. Nothing has been written yet.`,
+        `New ${app.passageMode === "advanced" ? "SAT" : "exam"} passage draft. Nothing has been written yet.`,
       );
       $(`[data-field='${app.passageMode === "advanced" ? "title" : "section"}']`)?.focus();
     }
@@ -1994,15 +1994,17 @@ Why D is wrong."></textarea>
 
     function updatePassageWorkspaceLabels() {
       const advanced = app.passageMode === "advanced";
-      $("#passage-library-title").textContent = advanced ? "Advanced passages" : "Exam passages";
-      $("#passage-search").placeholder = advanced ? "Search advanced practice" : "Search exam passages";
-      $("#new-passage").textContent = advanced ? "+ New advanced passage" : "+ New exam passage";
-      $("#open-passage-import").hidden = advanced;
-      $("#open-sat-passage-import").hidden = advanced;
+      $("#passage-library-title").textContent = advanced ? "SAT passages" : "Exam passages";
+      $("#passage-search").placeholder = advanced ? "Search SAT passages" : "Search exam passages";
+      $("#new-passage").textContent = advanced ? "+ New SAT passage" : "+ New exam passage";
+      $("#open-passage-import").hidden = false;
+      $("#open-sat-passage-import").hidden = false;
     }
 
     function openOfficialPassageImport() {
+      app.passageImportDestination = app.passageMode;
       app.passageImportKind = "official";
+      $("#official-passage-dialog-title").textContent = app.passageMode === "advanced" ? "SAT passage importer" : "Document Importer";
       $("#sat-passage-import-review").innerHTML = "";
       app.passageImportReview = null;
       $("#official-passage-import-review").hidden = true;
@@ -2102,6 +2104,7 @@ Why D is wrong."></textarea>
     }
 
     function openSatPassageImport() {
+      app.passageImportDestination = app.passageMode;
       app.passageImportKind = "sat";
       app.passageImportReview = null;
       $("#official-passage-import-review").innerHTML = "";
@@ -2128,6 +2131,7 @@ Why D is wrong."></textarea>
           section: $("#sat-passage-section").value, topic: $("#sat-passage-topic").value,
           format: $("#sat-passage-format").value, passageType: $("#sat-passage-type").value,
         });
+        app.passageImportSource = JSON.stringify(converted);
         app.passageImportReview = await api("/api/passages/import-preview", {
           method: "POST", body: JSON.stringify({ source: JSON.stringify(converted) }),
         });
@@ -2219,7 +2223,7 @@ Why D is wrong."></textarea>
         ? `
             <label class="field"><span>Practice card ID</span><input data-advanced-field="advancedId" value="${escapeHtml(passage.advancedId || "")}" placeholder="lowercase-card-id"></label>
             <label class="field"><span>Genre</span><select data-advanced-field="genre">${app.state.advancedGenres.map((genre) => `<option ${genre === passage.genre ? "selected" : ""} value="${escapeHtml(genre)}">${escapeHtml(genre)}</option>`).join("")}</select></label>
-            <label class="field wide"><span>Card excerpt</span><textarea data-advanced-field="excerpt" placeholder="A short hook shown in the advanced-practice library">${escapeHtml(passage.excerpt || "")}</textarea></label>
+            <label class="field wide"><span>Card excerpt</span><textarea data-advanced-field="excerpt" placeholder="A short hook shown in Advanced readings">${escapeHtml(passage.excerpt || "")}</textarea></label>
             <label class="field"><span>Card color</span><select data-advanced-field="tone">${app.state.advancedTones.map((tone) => `<option ${tone === passage.tone ? "selected" : ""} value="${tone}">${tone[0].toUpperCase() + tone.slice(1)}</option>`).join("")}</select></label>
             <label class="field"><span>Thumbnail URL <small>Optional</small></span><input data-advanced-field="thumbnail" value="${escapeHtml(passage.thumbnail || "")}" placeholder="/images/passage-cover.webp"></label>
             <label class="field wide"><span>Thumbnail description</span><input data-advanced-field="thumbnailAlt" value="${escapeHtml(passage.thumbnailAlt || "")}" placeholder="Describe the card artwork for accessibility"></label>
@@ -2235,7 +2239,7 @@ Why D is wrong."></textarea>
       $("#passage-editor").innerHTML = `
         <div class="editor-head content-editor-heading">
           <div>
-            <h1>${passage.sourceHash ? "Edit" : "Create"} ${advanced ? "advanced-practice" : "exam"} passage</h1>
+            <h1>${passage.sourceHash ? "Edit" : "Create"} ${advanced ? "SAT" : "exam"} passage</h1>
             <p>${advanced ? "Create the library card, passage, and complete question set in one place." : "Paste clean text, preserve the intended layout, and add every answer choice and correct answer before saving."}</p>
           </div>
           <div class="content-editor-heading-meta">
@@ -2256,7 +2260,7 @@ Why D is wrong."></textarea>
             <button class="secondary" id="open-student-preview" type="button">Student view</button>
             ${!advanced && passage.sourceHash ? `<button class="secondary" id="create-passage-version" type="button">Create another version</button>` : ""}
             <button class="secondary" id="add-question" type="button">+ Add question</button>
-            ${!advanced && passage.sourceHash ? `<button class="danger" id="delete-passage" type="button">Delete passage</button>` : ""}
+            ${passage.sourceHash ? `<button class="danger" id="delete-passage" type="button">Delete passage</button>` : ""}
             <button class="primary" id="save-passage" type="button">${app.saving ? "Saving…" : passage.importDraftId ? "Publish reviewed passage" : "Save to code"}</button>
             ${passage.importDraftId ? `<button class="secondary" id="save-document-draft">Save review draft</button><button class="secondary" id="review-document-draft">Review warnings / images</button>` : ""}
           </div>
@@ -2274,7 +2278,7 @@ Why D is wrong."></textarea>
             </section>
 
             <details class="panel content-editor-details" open>
-              <summary><span><span class="studio-eyebrow">Categorization &amp; settings</span><strong>Library and source metadata</strong><small>Format, placement, source information${advanced ? ", and advanced-practice card settings" : ""}.</small></span><b>⌄</b></summary>
+              <summary><span><span class="studio-eyebrow">Categorization &amp; settings</span><strong>Library and source metadata</strong><small>Format, placement, source information${advanced ? ", and SAT passage card settings" : ""}.</small></span><b>⌄</b></summary>
               <div class="field-grid content-editor-settings-grid">
                 ${advancedFields}
                 ${teacherMetadataFields}
@@ -4095,7 +4099,7 @@ Why D is wrong."></textarea>
       setStatus("Writing passage source…");
       try {
         const endpoint = app.passageMode === "advanced" ? "/api/advanced-passages" : "/api/passages";
-        const data = await api(endpoint, { method: "POST", body: JSON.stringify({ ...app.passageDraft, ...(app.passageDraft.importDraftId && app.passageMode === "exam" ? { publishNow: true } : {}) }) });
+        const data = await api(endpoint, { method: "POST", body: JSON.stringify({ ...app.passageDraft, ...(app.passageDraft.importDraftId ? { publishNow: true } : {}) }) });
         await reloadState();
         const saved = data.passage;
         app.selectedPassageId = saved.id;
@@ -4117,10 +4121,11 @@ Why D is wrong."></textarea>
     }
 
     async function deletePassage() {
-      if (app.saving || app.passageMode !== "exam" || !app.passageDraft?.sourceHash) return;
+      if (app.saving || !app.passageDraft?.sourceHash) return;
+      const advanced = app.passageMode === "advanced";
       const passage = app.passageDraft;
       const confirmed = window.confirm(
-        `Delete “${passage.title}”?\n\nThis permanently removes its saved passage source file. Passages assigned to an exam cannot be deleted until they are removed from that exam.`,
+        `Delete “${passage.title}”?\n\nThis permanently removes its saved passage and question set.${advanced ? " It will also disappear from Advanced readings in English Study Hall." : " Passages assigned to an exam cannot be deleted until they are removed from that exam."}`,
       );
       if (!confirmed) return;
       app.saving = true;
@@ -4130,14 +4135,14 @@ Why D is wrong."></textarea>
       if (saveButton) saveButton.disabled = true;
       setStatus(`Deleting ${passage.title}…`);
       try {
-        const data = await api("/api/passages", {
+        const data = await api(advanced ? "/api/advanced-passages" : "/api/passages", {
           method: "DELETE",
           body: JSON.stringify({ id: passage.id, sourceHash: passage.sourceHash }),
         });
         await reloadState();
-        const nextPassage = app.state.passages[0];
+        const nextPassage = (advanced ? app.state.advancedPassages : app.state.passages)[0];
         app.selectedPassageId = nextPassage?.id || "";
-        app.passageDraft = nextPassage ? clone(nextPassage) : defaultPassage();
+        app.passageDraft = nextPassage ? clone(nextPassage) : advanced ? defaultAdvancedPassage() : defaultPassage();
         app.passageDirty = false;
         renderPassageList();
         renderPassageEditor();
@@ -7029,7 +7034,7 @@ WRONG D:`;
         DocumentStudio.initialize();
         if (window.location.hash === "#question-bank") switchTab("question-bank");
         setStatus(
-          `Ready: ${app.state.assessments.length} exams, ${app.state.advancedPassages.length} advanced passages, and ${app.state.practice.topics.length} regular-practice banks.`,
+          `Ready: ${app.state.assessments.length} exams, ${app.state.advancedPassages.length} SAT passages, and ${app.state.practice.topics.length} regular-practice banks.`,
           "success",
         );
       } catch (error) {

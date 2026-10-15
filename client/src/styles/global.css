@@ -13189,6 +13189,9 @@ button {
 .study-hall-library-toolbar { grid-column: 1 / -1; display: flex; align-items: end; gap: 14px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid var(--student-line); }
 .study-hall-library-toolbar label { display: grid; gap: 6px; color: var(--student-muted); font-size: .65rem; }
 .study-hall-library-toolbar select { border: 1px solid #c9cfc5; border-radius: 8px; background: var(--student-paper); color: var(--student-ink); padding: 8px 12px; }
+.study-hall-library-toolbar button { border: 1px solid #c9cfc5; border-radius: 8px; background: var(--student-paper); color: var(--student-green); padding: 8px 12px; }
+.study-hall-advanced-readings, .study-hall-section-heading h2 { scroll-margin-top: 100px; }
+.study-hall-advanced-readings .study-hall-library-toolbar { margin-bottom: 24px; }
 .study-hall-editing-assessment { display: flex; align-items: center; gap: 14px; margin-top: 20px; border: 1px solid var(--student-line); border-radius: 12px; padding: 18px; color: var(--student-green); text-decoration: none; }
 .study-hall-editing-assessment > span { flex: 1; display: grid; gap: 6px; }.study-hall-editing-assessment small { color: var(--student-muted); }
 .library-response { display: grid; gap: 14px; }.library-response > label { display: grid; gap: 7px; }.library-response > .exam-choice { display: flex; }.library-response select, .library-response input:not([type=radio]):not([type=checkbox]) { max-width: 100%; border: 1px solid #c9cfc5; border-radius: 6px; padding: 8px; }.library-response img { max-width: 100%; }

@@ -358,7 +358,7 @@ const studioUI = {
     if (tab === "math" && !app.mathDraft && app.state.assessments[0]) selectMathAssessment(app.state.assessments[0].id);
     const messages = {
       passages: app.passageDirty ? "Unsaved passage changes." : "Exam passages · edit text, questions, settings, or media.",
-      advanced: app.passageDirty ? "Unsaved advanced-practice changes." : "Advanced practice · passage, library card, and questions.",
+      advanced: app.passageDirty ? "Unsaved SAT passage changes." : "SAT passages · passage, library card, and questions.",
       standalone: app.standaloneDirty ? "Unsaved Part B changes." : "Part B · reusable stand-alone questions.",
       tests: "Exam builder · arrange Reading, Part A, and Part B.",
       math: app.mathDirty ? "Unsaved math changes." : "Exam math · questions, answer keys, and student preview.",
@@ -534,7 +534,7 @@ const studioUI = {
     const heading = document.querySelector("#passage-editor .editor-head h1");
     if (heading) heading.textContent = draft.title || "Untitled passage";
     const summary = document.querySelector(".studio-record-summary");
-    if (summary) summary.textContent = `${app.passageMode === "advanced" ? "Advanced practice" : "Exam passage"} · ${draft.questions.length} question${draft.questions.length === 1 ? "" : "s"} · ${draft.text.trim() ? draft.text.trim().split(/\s+/).length : 0} words · ${app.passageDirty ? "Unsaved changes" : draft.sourceHash ? "Saved in repository" : "New draft"}`;
+    if (summary) summary.textContent = `${app.passageMode === "advanced" ? "SAT passage" : "Exam passage"} · ${draft.questions.length} question${draft.questions.length === 1 ? "" : "s"} · ${draft.text.trim() ? draft.text.trim().split(/\s+/).length : 0} words · ${app.passageDirty ? "Unsaved changes" : draft.sourceHash ? "Saved in repository" : "New draft"}`;
     document.querySelectorAll("[data-question-count]").forEach((node) => { node.textContent = draft.questions.length; });
     // Update only the affected outline text; typing never rebuilds an active editor.
     const question = draft.questions.find((q) => q.id === this.selectedQuestionId);

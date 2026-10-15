@@ -18,7 +18,7 @@ const DocumentStudio = {
   },
   async accept(source) {
     try {
-      this.state = await api('/api/document-drafts', { method: 'POST', body: JSON.stringify({ source }) });
+      this.state = await api('/api/document-drafts', { method: 'POST', body: JSON.stringify({ source, destination: app.passageImportDestination || 'exam' }) });
       document.querySelector('#official-passage-dialog').close();
       document.querySelector('#sat-passage-dialog').close();
       await this.library();
@@ -49,11 +49,11 @@ const DocumentStudio = {
       setStatus('Review draft saved. Students cannot see it until you publish.', 'success');
     } catch (error) { setStatus(error.message, 'error'); }
   },
-  openPublishedPassage(passage) {
+  openPublishedPassage(passage, destination = 'exam') {
     if (app.passageDirty) return false;
-    app.passageMode = 'exam'; app.selectedPassageId = passage.id; app.passageDraft = clone(passage);
+    app.passageMode = destination; app.selectedPassageId = passage.id; app.passageDraft = clone(passage);
     studioUI.passageContext = ''; updatePassageWorkspaceLabels(); renderPassageList(); renderPassageEditor();
-    switchTab('passages');
+    switchTab(destination === 'advanced' ? 'advanced' : 'passages');
     document.querySelector('#document-review-dialog')?.close();
     return true;
   },
@@ -68,16 +68,20 @@ const DocumentStudio = {
     let dialog = document.querySelector('#document-review-dialog');
     if (!dialog) { dialog = document.createElement('dialog'); dialog.id = 'document-review-dialog'; dialog.className = 'studio-import-dialog'; document.body.append(dialog); }
     const e = this.entry, p = e?.content, q = p?.questions[this.index];
+    const destination = e?.destination || 'exam';
+    const destinationLabel = destination === 'advanced' ? 'SAT passages' : 'Exam passages';
     const field = (label, key, value, multiline = false) => `<label class="field"><span>${label}</span>${multiline ? `<textarea data-doc-field="${key}" rows="5">${escapeHtml(value || '')}</textarea>` : `<input data-doc-field="${key}" value="${escapeHtml(value || '')}">`}</label>`;
     const reviewMarkup = (r, path) => `<small>Source: ${escapeHtml(r?.sourceFile || 'Not recorded')} · PDF pages ${escapeHtml((r?.sourcePages || []).join(', '))} ${escapeHtml(r?.printedPages || '')}</small>
       ${(r?.warnings || []).map((w, i) => `<label class="field"><span>${escapeHtml(w.code)}: ${escapeHtml(w.message)}</span><select data-warning="${path}:${i}"><option value="unresolved" ${w.state === 'unresolved' ? 'selected' : ''}>Unresolved</option><option value="acknowledged" ${w.state === 'acknowledged' ? 'selected' : ''}>Reviewed / acknowledged</option><option value="resolved" ${w.state === 'resolved' ? 'selected' : ''}>Resolved</option></select></label>`).join('')}`;
     const vs = p ? [...(p.visuals || []), ...(q?.visuals || [])] : [];
     const issues = e ? DocumentImport.issues(e, this.taxonomy()) : [];
     dialog.innerHTML = `<section class="panel"><div class="panel-head"><h2>${e ? 'Document review' : 'Saved document drafts'}</h2><button type="button" id="doc-close">Close</button></div><div id="doc-message" role="status"></div>
-      ${!e ? `<p>Drafts are private to this Content Studio checkout. Publish uses the existing content files and student renderers.</p>${this.state.entries.map(entry => `<p><button data-doc-open="${entry.id}">${escapeHtml(entry.content.title || 'Untitled')} · ${entry.kind} · ${entry.content.questions.length} questions · ${entry.status}</button></p>`).join('') || '<p>No saved document import drafts yet. In Exam passages, choose Import documents, paste the JSON returned by ChatGPT, then Validate and review → Save all as review drafts.</p>'}` : `
+      ${!e ? `<p>Drafts are private to this Content Studio checkout. Publish uses the existing content files and student renderers.</p>${this.state.entries.map(entry => `<p><button data-doc-open="${entry.id}">${escapeHtml(entry.content.title || 'Untitled')} · ${entry.kind === 'math' ? 'Math' : entry.destination === 'advanced' ? 'SAT passages' : 'Exam passages'} · ${entry.content.questions.length} questions · ${entry.status}</button></p>`).join('') || '<p>No saved document import drafts yet. In Exam passages or SAT passages, choose Import documents, paste the JSON returned by ChatGPT, then Validate and review → Save all as review drafts.</p>'}` : `
+      ${e.kind === 'passage' ? `<p>Publish to <strong>${destinationLabel}</strong>${destination === 'advanced' ? ' · Students will find it under Advanced readings in English Study Hall.' : ''}</p>` : ''}
       <div class="math-import-actions"><button id="doc-library">Back to drafts</button><button id="doc-save">Save review draft</button>${e.kind === 'passage' ? '<button id="doc-editor">Open passage editor / Student view</button>' : `<label>Destination exam <select id="doc-assessment"><option value="">Choose an exam</option>${app.state.assessments.map(a => `<option value="${escapeHtml(a.id)}">${escapeHtml(a.title)}</option>`).join('')}</select></label>`}<button class="primary" id="doc-publish">${e.kind === 'passage' ? 'Publish passage' : 'Publish reviewed Math questions'}</button></div>
       <div class="math-import-warnings"><strong>${issues.filter(i => i.blocking).length} ${e.kind === 'passage' ? 'items to review — you can publish now and edit afterward' : 'publication checks remaining'}</strong><ul>${issues.map(i => `<li>${i.blocking ? '⚠ ' : ''}${escapeHtml(i.scope)}: ${escapeHtml(i.message)}</li>`).join('')}</ul></div>
       ${field('Title', 'title', p.title)}${e.kind === 'passage' ? `${field('Author name', 'author', p.author)}${field('Exact printed byline', 'byline', p.byline)}${field('Subtitle', 'subtitle', p.subtitle)}${field('Introductory blurb', 'blurb', p.blurb, true)}${field('Complete passage text', 'text', p.text, true)}` : ''}
+      ${e.kind === 'passage' && destination === 'advanced' ? `<label class="field"><span>Reading genre</span><select data-doc-field="genre">${app.state.advancedGenres.map(genre => `<option ${genre === p.genre ? 'selected' : ''}>${escapeHtml(genre)}</option>`).join('')}</select></label>${field('Library card excerpt', 'excerpt', p.excerpt, true)}` : ''}
       ${reviewMarkup(p.review, 'passage')}
       <label><input type="checkbox" data-review="sourceReviewed" ${p.review?.sourceReviewed ? 'checked' : ''}> I checked source wording, key and explanations against the supplied files.</label><br>
       <label><input type="checkbox" data-review="completenessReviewed" ${p.review?.completenessReviewed ? 'checked' : ''}> I verified all requested pages, questions and choices are included.</label>
@@ -117,19 +121,19 @@ const DocumentStudio = {
     if (e.kind === 'passage') dialog.querySelector('#doc-editor').onclick = handle(async () => {
       if (!confirmDiscard()) return;
       if (this.entry.status === 'published') {
-        const saved = app.state.passages.find(passage => passage.id === p.id);
-        if (saved) { app.passageDirty = false; this.openPublishedPassage(saved); return; }
+        const saved = (destination === 'advanced' ? app.state.advancedPassages : app.state.passages).find(passage => passage.id === p.id);
+        if (saved) { app.passageDirty = false; this.openPublishedPassage(saved, destination); return; }
       }
-      await this.save(); app.passageMode = 'exam'; app.selectedPassageId = ''; app.passageDraft = clone(this.entry.content); app.passageDraft.preserveSourceLayout = true; app.passageDirty = false;
-      studioUI.passageContext = ''; updatePassageWorkspaceLabels(); renderPassageList(); renderPassageEditor(); dialog.close();
+      await this.save(); app.passageMode = destination; app.selectedPassageId = ''; app.passageDraft = clone(this.entry.content); app.passageDraft.preserveSourceLayout = true; app.passageDirty = false;
+      studioUI.passageContext = ''; updatePassageWorkspaceLabels(); renderPassageList(); renderPassageEditor(); switchTab(destination === 'advanced' ? 'advanced' : 'passages'); dialog.close();
     });
     dialog.querySelector('#doc-publish').onclick = handle(async () => {
       const target = dialog.querySelector('#doc-assessment')?.value;
       await this.save();
       if (e.kind === 'passage') {
-        const result = await api('/api/passages', { method: 'POST', body: JSON.stringify({ ...this.entry.content, publishNow: true }) });
+        const result = await api(destination === 'advanced' ? '/api/advanced-passages' : '/api/passages', { method: 'POST', body: JSON.stringify({ ...this.entry.content, publishNow: true }) });
         await reloadState();
-        if (this.openPublishedPassage(result.passage)) { setStatus(`${result.passage.title} published. Make further changes in the passage editor.`, 'success'); return; }
+        if (this.openPublishedPassage(result.passage, destination)) { setStatus(`${result.passage.title} published to ${destinationLabel}. Make further changes in the passage editor.`, 'success'); return; }
       } else await api('/api/document-publish-math', { method: 'POST', body: JSON.stringify({ entryId: e.id, assessmentId: target, revision: this.state.revision }) });
       await reloadState(); await this.library(); setStatus('Reviewed content published through the existing content editor.', 'success');
     });

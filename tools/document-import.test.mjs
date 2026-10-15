@@ -248,6 +248,51 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     const result = await call('/api/document-publish-math', { entryId: math.id, assessmentId: state.assessments[0].id, revision: maths.revision });
     assert.equal(result.status, 201, JSON.stringify(result.data));
     assert.ok((await studio.getState()).mathSections.some(m => m.questions.some(q => q.explanation === math.content.questions[0].explanation)));
+    // SAT imports use the same extraction contract, retain every passage/question,
+    // and remain in their destination after draft reload and publication.
+    const satPayload = structuredClone(fixture);
+    satPayload.passages = satPayload.passages.slice(0, 2);
+    satPayload.passages[0].title = 'SAT import roundtrip';
+    satPayload.passages[0].byline = 'translated by Mira Vale';
+    satPayload.passages[0].subtitle = 'Original subtitle';
+    satPayload.passages[0].images = [{ src: '/exam-images/missing.png', alt: 'Original supporting table' }];
+    satPayload.passages[1].title = 'SAT poetry roundtrip';
+    const satDrafts = (await call('/api/document-drafts', { source: JSON.stringify(satPayload), destination: 'advanced' })).data;
+    const satEntries = satDrafts.entries.filter(entry => entry.destination === 'advanced');
+    assert.equal(satEntries.length, 2);
+    assert.equal((await call('/api/document-drafts', { source: JSON.stringify(satPayload), destination: 'advanced' })).data.entries.length, satDrafts.entries.length);
+    assert.equal((await call('/api/passages', { ...satEntries[0].content, publishNow: true })).status, 400);
+    const satSaved = [];
+    for (const entry of satEntries) {
+      const response = await call('/api/advanced-passages', { ...entry.content, publishNow: true });
+      assert.equal(response.status, 201, JSON.stringify(response.data));
+      const saved = response.data.passage;
+      assert.equal(saved.text, entry.content.text);
+      assert.equal(saved.questions.length, entry.content.questions.length);
+      assert.equal(saved.format, entry.content.format);
+      assert.equal(saved.richText, entry.content.richText);
+      assert.equal(saved.preserveSourceLayout, true);
+      satSaved.push(saved);
+    }
+    assert.equal(satSaved[0].byline, 'translated by Mira Vale');
+    assert.equal(satSaved[0].subtitle, 'Original subtitle');
+    assert.equal(satSaved[0].images.length, 1);
+    const savedDrafts = (await call('/api/document-drafts')).data;
+    assert.ok(savedDrafts.entries.filter(e => e.destination === 'advanced').every(e => e.status === 'published'));
+    const satState = await studio.getState();
+    assert.ok(satSaved.every(saved => satState.advancedPassages.some(p => p.id === saved.id)));
+    assert.ok(satSaved.every(saved => !satState.passages.some(p => p.id === saved.id)));
+    const satSource = await readFile(join(dir, 'client/src/content/advancedPractice/passageSets', satSaved[0].fileName), 'utf8');
+    assert.doesNotMatch(satSource, /topicConfidence|sourceReviewed|questions\.pdf/);
+    const removeSat = (body, token = state.editToken) => fetch(base + '/api/advanced-passages', { method: 'DELETE', headers: { 'Content-Type': 'application/json', 'x-editor-token': token }, body: JSON.stringify(body) });
+    assert.equal((await removeSat(satSaved[0], 'invalid')).status, 403);
+    assert.equal((await removeSat({ id: satSaved[0].id, sourceHash: 'stale' })).status, 409);
+    assert.equal(await readFile(join(dir, 'client/src/content/advancedPractice/passageSets', satSaved[0].fileName), 'utf8'), satSource);
+    assert.equal((await removeSat(satSaved[0])).status, 200);
+    assert.equal((await removeSat(satSaved[0])).status, 404);
+    assert.ok(!(await studio.getState()).advancedPassages.some(p => p.id === satSaved[0].id));
+    assert.doesNotMatch(await readFile(join(dir, 'client/src/content/advancedPractice/index.ts'), 'utf8'), new RegExp(`\\b${satSaved[0].exportName}\\b`));
+    await assert.rejects(readFile(join(dir, 'client/src/content/advancedPractice/passageSets', satSaved[0].fileName)), error => error.code === 'ENOENT');
   } finally {
     if (server) await new Promise(done => server.close(done));
     await rm(modulePath, { force: true });

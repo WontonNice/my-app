@@ -715,7 +715,11 @@ async function parseAdvancedPassageFile(filePath) {
     excerpt: String(readValue(exported.initializer, "excerpt") ?? ""),
     exportName: exported.exportName,
     fileName: filePath.slice(advancedPassageSetsRoot.length + 1),
-    format,
+    format: passageInput.format || format,
+    preserveSourceLayout: passageInput.preserveSourceLayout === true,
+    byline: typeof passageInput.byline === "string" ? passageInput.byline : "",
+    subtitle: typeof passageInput.subtitle === "string" ? passageInput.subtitle : "",
+    images: Array.isArray(passageInput.images) ? passageInput.images : [],
     genre: String(readValue(exported.initializer, "genre") ?? ""),
     id: String(passageInput.id ?? ""),
     image: passageInput.image && typeof passageInput.image === "object" ? passageInput.image : undefined,
@@ -1362,7 +1366,28 @@ async function deletePassage(input) {
   return { id: passage.id, target: relativePath(filePath), title: passage.title };
 }
 
-function normalizeAdvancedPassage(input) {
+async function deleteAdvancedPassage(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) throw new EditorError(400, "SAT passage deletion data is invalid.");
+  const id = requiredText(input.id, "Passage ID");
+  const { advancedPassages } = await listAdvancedPassages();
+  const passage = advancedPassages.find(candidate => candidate.id === id);
+  if (!passage) throw new EditorError(404, "The SAT passage to delete was not found.");
+  const filePath = join(advancedPassageSetsRoot, passage.fileName);
+  const source = await readFile(filePath, "utf8");
+  if (!input.sourceHash || input.sourceHash !== hashSource(source)) throw new EditorError(409, "This SAT passage changed after it was loaded. Refresh the editor before deleting it.");
+  const registry = await readFile(advancedPracticeIndexPath, "utf8");
+  const exportPattern = escapeRegularExpression(passage.exportName);
+  const importPathPattern = escapeRegularExpression(`./passageSets/${passage.fileName.replace(/\.ts$/, "")}`);
+  const updated = registry
+    .replace(new RegExp(`^import\\s*\\{\\s*${exportPattern}\\s*\\}\\s*from\\s*["']${importPathPattern}["'];\\r?\\n?`, "m"), "")
+    .replace(new RegExp(`^[ \\t]*${exportPattern},\\r?\\n`, "m"), "");
+  if (new RegExp(`\\b${exportPattern}\\b`).test(updated)) throw new EditorError(409, "The SAT passage registry contains another reference to this passage. Remove that reference before deleting it.");
+  await writeFile(advancedPracticeIndexPath, updated, "utf8");
+  await rm(filePath);
+  return { id, title: passage.title, target: relativePath(filePath) };
+}
+
+function normalizeAdvancedPassage(input, options = {}) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Advanced-practice passage data is invalid.");
   }
@@ -1377,7 +1402,7 @@ function normalizeAdvancedPassage(input) {
     exportName: input.exportName || identifierFrom(advancedId),
     fileName: input.fileName || `${advancedId}.ts`,
     passageSetId: input.passageSetId || `advanced-${input.id || advancedId}`,
-  });
+  }, options);
   return {
     ...passage,
     advancedId,
@@ -1400,8 +1425,11 @@ function buildAdvancedPassageSource(passage) {
   const questionsName = identifierFrom(passage.id, "Questions");
   const passageOptions = [
     `      id: ${quote(passage.id)},`,
+    ...(passage.preserveSourceLayout ? [`      preserveSourceLayout: true,`, `      format: ${quote(passage.format)},`, `      images: ${JSON.stringify(passage.images || [])},`] : []),
     `      title: ${quote(passage.title)},`,
     ...(passage.author ? [`      author: ${quote(passage.author)},`] : []),
+    ...(passage.byline ? [`      byline: ${quote(passage.byline)},`] : []),
+    ...(passage.subtitle ? [`      subtitle: ${quote(passage.subtitle)},`] : []),
     ...(passage.blurb ? [`      blurb: ${quote(passage.blurb)},`] : []),
     ...(passage.coverImage ? [`      coverImage: ${JSON.stringify(passage.coverImage)},`] : []),
     ...(passage.image ? [`      image: ${JSON.stringify(passage.image)},`] : []),
@@ -1465,7 +1493,8 @@ async function ensureAdvancedPassageRegistration(passage) {
 }
 
 async function saveAdvancedPassage(input) {
-  const passage = normalizeAdvancedPassage(input);
+  const imported = await verifyDocumentPublication(input, "passage", "advanced");
+  const passage = normalizeAdvancedPassage(imported.content, { allowIncomplete: Boolean(imported.entry && input.publishNow === true || input.preserveSourceLayout && input.sourceHash) });
   const filePath = join(advancedPassageSetsRoot, passage.fileName);
   let existingSource = "";
   try {
@@ -1495,7 +1524,9 @@ async function saveAdvancedPassage(input) {
   }
   await writeFile(filePath, buildAdvancedPassageSource(passage), "utf8");
   await ensureAdvancedPassageRegistration(passage);
-  return parseAdvancedPassageFile(filePath);
+  const savedPassage = await parseAdvancedPassageFile(filePath);
+  if (imported.entry) await documentDrafts.published(imported.entry.id, { ...input, ...savedPassage, teacherSource: input.teacherSource, review: input.review, visuals: input.visuals, questions: input.questions });
+  return savedPassage;
 }
 
 function getPracticeTarget(topicSlug, difficulty) {
@@ -2305,13 +2336,14 @@ async function previewPassageImport(input) {
   return { format: passageImportFormat, entries, passage: entries[0].content, normalizedJson: JSON.stringify(entries, null, 2), warnings };
 }
 
-async function verifyDocumentPublication(input, kind) {
+async function verifyDocumentPublication(input, kind, destination = "exam") {
   const state = await documentDrafts.read();
-  const entry = state.entries.find(e => e.id === input.importDraftId || (kind === "passage" && e.status === "draft" && e.content.id === input.id));
+  const entry = state.entries.find(e => e.id === input.importDraftId || (kind === "passage" && e.status === "draft" && (e.destination || "exam") === destination && e.content.id === input.id));
   if (!entry) {
     if (input.importDraftId) throw new EditorError(400, "Save this import as a draft before publishing.");
     return { content: input };
   }
+  if (entry.kind !== kind || (kind === "passage" && (entry.destination || "exam") !== destination)) throw new EditorError(400, "Publish this draft to its selected passage collection.");
   const publishNow = kind === "passage" && input.publishNow === true;
   const blocked = documentImport.issues({ ...entry, content: input }, importTaxonomy()).filter(issue => issue.blocking);
   if (!publishNow && blocked.length) throw new EditorError(400, blocked.map(i => `${i.scope}: ${i.message}`).join("\n"));
@@ -3435,6 +3467,11 @@ async function handleRequest(request, response) {
       sendJson(response, 201, { passage: await saveAdvancedPassage(await readJson(request)) });
       return;
     }
+    if (request.method === "DELETE" && url.pathname === "/api/advanced-passages") {
+      verifyEditRequest(request);
+      sendJson(response, 200, { deleted: await deleteAdvancedPassage(await readJson(request)) });
+      return;
+    }
     if (request.method === "POST" && url.pathname === "/api/images") {
       verifyEditRequest(request);
       sendJson(response, 201, { image: await savePassageImage(await readJson(request)) });
@@ -3486,7 +3523,7 @@ async function handleRequest(request, response) {
         const input = await readJson(request);
         try {
           sendJson(response, 200, input.source !== undefined
-            ? await documentDrafts.import(input.source, input.revision, (await listPassages()).passages)
+            ? await documentDrafts.import(input.source, input.revision, input.destination === "advanced" ? (await listAdvancedPassages()).advancedPassages : (await listPassages()).passages, input.destination || "exam")
             : await documentDrafts.save(input));
         } catch (error) {
           if (error.code) throw error;

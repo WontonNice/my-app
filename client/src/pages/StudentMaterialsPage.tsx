@@ -10,8 +10,8 @@ import {
   editingPracticeMaterials,
   revisingEditingMaterial,
   studentLibraryBooks,
+  advancedPassageMaterials,
   type MaterialSubject,
-  type ReadingCollection,
   type ReadingFormat,
   type StudentMaterial,
 } from "../lib/studentMaterials";
@@ -19,10 +19,8 @@ import { appendStudentPreview, type StudentPreviewContext } from "../lib/student
 import { PASSAGE_CATEGORIES, passageCategory, passageCategoryLabel } from "../../../server/src/shared/passageCategories";
 import "../styles/learning-plan.css";
 
-type CollectionFilter = ReadingCollection | "All collections";
 type PassageFilter = Exclude<ReadingFormat, "Long reading"> | "All passage types";
 
-const collectionFilters: CollectionFilter[] = ["All collections", "SHSAT", "Advanced Reading"];
 const passageFilters: PassageFilter[] = ["All passage types", "Poem", "Literary", "Informational"];
 
 function getInitialSubject(): MaterialSubject {
@@ -49,12 +47,13 @@ function materialMatchesQuery(material: StudentMaterial, query: string) {
 export function StudentMaterialsPage() {
   const { isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
   const [activeSubject, setActiveSubject] = useState<MaterialSubject>(getInitialSubject);
-  const [activeCollection, setActiveCollection] = useState<CollectionFilter>("All collections");
   const [activePassageType, setActivePassageType] = useState<PassageFilter>("All passage types");
   const [isFiltersOpen, setIsFiltersOpen] = useState(true);
   const [query, setQuery] = useState(getInitialQuery);
   const [sourceCategory, setSourceCategory] = useState("");
   const [passageSort, setPassageSort] = useState("title");
+  const [advancedGenre, setAdvancedGenre] = useState("");
+  const [advancedSort, setAdvancedSort] = useState("title");
   const normalizedQuery = query.trim().toLowerCase();
 
   const topicMaterials = useMemo(
@@ -69,25 +68,28 @@ export function StudentMaterialsPage() {
 
   const passageMaterials = useMemo(
     () => studentLibraryBooks.filter((material) => {
-      if (material.subject !== "English" || material.kind !== "Passage practice") return false;
-      if (activeCollection !== "All collections" && material.libraryCollection !== activeCollection) return false;
+      if (material.subject !== "English" || material.kind !== "Passage practice" || material.libraryCollection === "Advanced Reading") return false;
       if (activePassageType !== "All passage types" && material.readingFormat !== activePassageType) return false;
       if (sourceCategory && !(material.passageCategories ?? [passageCategory(material.passageCategory)]).includes(passageCategory(sourceCategory))) return false;
       return materialMatchesQuery(material, normalizedQuery);
     }).sort((a, b) => passageSort === "category" ? passageCategoryLabel(a.passageCategory).localeCompare(passageCategoryLabel(b.passageCategory)) || a.title.localeCompare(b.title) : (passageSort === "title-desc" ? -1 : 1) * a.title.localeCompare(b.title)),
-    [activeCollection, activePassageType, normalizedQuery, sourceCategory, passageSort],
+    [activePassageType, normalizedQuery, sourceCategory, passageSort],
   );
 
   const longReadingMaterials = useMemo(
     () => studentLibraryBooks.filter((material) => (
       material.subject === "English" &&
       material.kind === "Long reading" &&
-      (activeCollection === "All collections" || material.libraryCollection === activeCollection) &&
       (!sourceCategory || passageCategory(material.passageCategory) === sourceCategory) &&
       materialMatchesQuery(material, normalizedQuery)
     )),
-    [activeCollection, normalizedQuery, sourceCategory],
+    [normalizedQuery, sourceCategory],
   );
+
+  const advancedMaterials = useMemo(() => advancedPassageMaterials
+    .filter(material => (!advancedGenre || material.questionType === advancedGenre) && materialMatchesQuery(material, normalizedQuery))
+    .sort((a, b) => (advancedSort === "title-desc" ? -1 : 1) * a.title.localeCompare(b.title)),
+  [advancedGenre, advancedSort, normalizedQuery]);
 
   async function handleSignOut() {
     if (isSupabaseConfigured) await signOutCurrentAccount();
@@ -99,11 +101,10 @@ export function StudentMaterialsPage() {
 
   function selectSubject(subject: MaterialSubject) {
     setActiveSubject(subject);
-    setActiveCollection("All collections");
     setActivePassageType("All passage types");
   }
 
-  const activeFilterCount = Number(activeCollection !== "All collections") + Number(activePassageType !== "All passage types") + Number(Boolean(sourceCategory));
+  const activeFilterCount = Number(activePassageType !== "All passage types") + Number(Boolean(sourceCategory));
 
   return (
     <StudentPortalShell activeId="materials" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
@@ -126,17 +127,31 @@ export function StudentMaterialsPage() {
           {(["English", "Math"] as MaterialSubject[]).map((subject) => <button aria-pressed={activeSubject === subject} key={subject} onClick={() => selectSubject(subject)} type="button">{subject}</button>)}
         </div>
 
+        {activeSubject === "English" && <nav className="student-topic-jump-nav" aria-label="English Study Hall sections">
+          <a href="#study-hall-topic-title"><BookOpen size={16} />Reading skills</a>
+          <a href="#editing-topic-title"><FileText size={16} />Revising &amp; Editing</a>
+          <a href="#advanced-readings"><BookMarked size={16} />Advanced readings</a>
+          <a href="#study-hall-library-title"><Library size={16} />Library</a>
+        </nav>}
+
         <TopicCatalog materials={topicMaterials} previewContext={previewContext} subject={activeSubject} />
 
         {activeSubject === "English" && <section aria-label="Revising & Editing"><TopicCatalog materials={editingPracticeMaterials.filter(material => materialMatchesQuery(material, normalizedQuery))} previewContext={previewContext} subject="English" title="Revising & Editing" headingId="editing-topic-title" description="Practice grammar, sentence structure, usage, and organization by topic." /><AppLink className="study-hall-editing-assessment" href={appendStudentPreview(revisingEditingMaterial.href, previewContext)}><FileText size={18} /><span><strong>{revisingEditingMaterial.title}</strong><small>Open assigned assessments for revising and editing practice.</small></span><ArrowRight size={18} /></AppLink></section>}
+        {activeSubject === "English" && <section className="study-hall-library study-hall-advanced-readings" id="advanced-readings" aria-labelledby="advanced-readings-title">
+          <header className="study-hall-section-heading"><div><p>SAT passages</p><h2 id="advanced-readings-title">Advanced readings</h2><span>Explore more challenging passages and complete question sets selected by your teacher.</span></div><strong>{advancedMaterials.length} {advancedMaterials.length === 1 ? "passage" : "passages"}</strong></header>
+          <div className="study-hall-library-toolbar">
+            <label>Reading genre<select value={advancedGenre} onChange={event => setAdvancedGenre(event.target.value)}><option value="">All genres</option>{[...new Set(advancedPassageMaterials.map(material => material.questionType))].sort().map(genre => <option key={genre}>{genre}</option>)}</select></label>
+            <label>Sort advanced readings<select value={advancedSort} onChange={event => setAdvancedSort(event.target.value)}><option value="title">Title A–Z</option><option value="title-desc">Title Z–A</option></select></label>
+            <button onClick={() => { setAdvancedGenre(""); setAdvancedSort("title"); }} type="button">Clear filters</button>
+          </div>
+          {advancedMaterials.length ? <div className="study-hall-book-scroll">{advancedMaterials.map(material => <LibraryBook key={material.id} material={material} previewContext={previewContext} />)}</div> : <EmptyState label={normalizedQuery ? "No advanced readings match that search" : advancedGenre ? "No advanced readings match that genre" : "Your teacher's SAT passages will appear here"} />}
+        </section>}
         {activeSubject === "English" ? (
           <EnglishLibrary
-            activeCollection={activeCollection}
             activePassageType={activePassageType}
             isFiltersOpen={isFiltersOpen}
             longReadingMaterials={longReadingMaterials}
             materials={passageMaterials}
-            onCollectionChange={setActiveCollection}
             onPassageTypeChange={setActivePassageType}
             previewContext={previewContext}
             query={normalizedQuery}
@@ -144,7 +159,7 @@ export function StudentMaterialsPage() {
             passageSort={passageSort}
             onCategoryChange={setSourceCategory}
             onSortChange={setPassageSort}
-            onClearFilters={() => { setSourceCategory(""); setActiveCollection("All collections"); setActivePassageType("All passage types"); setPassageSort("title"); }}
+            onClearFilters={() => { setSourceCategory(""); setActivePassageType("All passage types"); setPassageSort("title"); }}
             activeFilterCount={activeFilterCount}
             onToggleFilters={() => setIsFiltersOpen(current => !current)}
           />
@@ -185,12 +200,10 @@ function TopicCard({ index, material, previewContext }: { index: number; materia
 }
 
 type EnglishLibraryProps = {
-  activeCollection: CollectionFilter;
   activePassageType: PassageFilter;
   isFiltersOpen: boolean;
   longReadingMaterials: StudentMaterial[];
   materials: StudentMaterial[];
-  onCollectionChange: (collection: CollectionFilter) => void;
   onPassageTypeChange: (format: PassageFilter) => void;
   previewContext: StudentPreviewContext;
   query: string;
@@ -199,16 +212,15 @@ type EnglishLibraryProps = {
   onClearFilters: () => void; onToggleFilters: () => void;
 };
 
-function EnglishLibrary({ activeCollection, activePassageType, isFiltersOpen, longReadingMaterials, materials, onCollectionChange, onPassageTypeChange, previewContext, query, sourceCategory, passageSort, onCategoryChange, onSortChange, onClearFilters, activeFilterCount, onToggleFilters }: EnglishLibraryProps) {
+function EnglishLibrary({ activePassageType, isFiltersOpen, longReadingMaterials, materials, onPassageTypeChange, previewContext, query, sourceCategory, passageSort, onCategoryChange, onSortChange, onClearFilters, activeFilterCount, onToggleFilters }: EnglishLibraryProps) {
   return (
     <section className="study-hall-library" aria-labelledby="study-hall-library-title">
       <header className="study-hall-section-heading">
-        <div><p>Digital library</p><h2 id="study-hall-library-title">Library</h2><span>Browse teacher-selected passages by collection and reading type.</span></div>
+        <div><p>SHSAT library</p><h2 id="study-hall-library-title">Library</h2><span>Browse teacher-selected SHSAT passages by category and reading type.</span></div>
         <div className="study-hall-library-header-actions"><strong>{materials.length} {materials.length === 1 ? "passage" : "passages"}</strong><button aria-expanded={isFiltersOpen} aria-controls="library-passage-filters" onClick={onToggleFilters} type="button"><Filter size={16} /> Filters{activeFilterCount ? ` · ${activeFilterCount}` : ""}</button></div>
       </header>
 
       <div id="library-passage-filters" className={`study-hall-library-filters${isFiltersOpen ? " is-open" : ""}`}>
-        <fieldset><legend>Collection</legend><div>{collectionFilters.map((collection) => <button aria-pressed={activeCollection === collection} key={collection} onClick={() => onCollectionChange(collection)} type="button">{collection}</button>)}</div></fieldset>
         <fieldset><legend>Passage type</legend><div>{passageFilters.map((format) => <button aria-pressed={activePassageType === format} key={format} onClick={() => onPassageTypeChange(format)} type="button">{format}</button>)}</div></fieldset>
         <div className="study-hall-library-toolbar"><label>Passage category<select value={sourceCategory} onChange={event => onCategoryChange(event.target.value)}><option value="">All categories</option>{PASSAGE_CATEGORIES.map(category => <option key={category.value} value={category.value}>{category.label}</option>)}</select></label><label>Sort passages<select value={passageSort} onChange={event => onSortChange(event.target.value)}><option value="title">Title A–Z</option><option value="title-desc">Title Z–A</option><option value="category">Passage category</option></select></label><button onClick={onClearFilters} type="button">Clear filters</button></div>
       </div>

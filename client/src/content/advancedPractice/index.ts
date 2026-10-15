@@ -1,15 +1,9 @@
-import { clockmakersWindow } from "./passageSets/clockmakersWindow";
-import { groupsChangeTheirMinds } from "./passageSets/groupsChangeTheirMinds";
-import { mapsBeneathTheCity } from "./passageSets/mapsBeneathTheCity";
-import { signalsInTheFog } from "./passageSets/signalsInTheFog";
 
+import { theCatSTable } from "./passageSets/the-cat-s-table";
 export type { AdvancedPracticePassage } from "./types";
 
 export const advancedPracticePassages = [
-  signalsInTheFog,
-  clockmakersWindow,
-  mapsBeneathTheCity,
-  groupsChangeTheirMinds,
+  theCatSTable,
 ];
 
 export function getAdvancedPracticePassage(passageId: string) {

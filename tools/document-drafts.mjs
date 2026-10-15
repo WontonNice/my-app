@@ -33,14 +33,24 @@ export function documentDraftStore(root, sanitize = content => content) {
   }
   return {
     read,
-    async import(source, revision, published = []) {
+    async import(source, revision, published = [], destination = 'exam') {
+      if (!['exam', 'advanced'].includes(destination)) throw new Error('Choose Exam passages or SAT passages as the import destination.');
       const entries = contract.parse(source);
       return mutate(revision, state => {
         for (const entry of entries) {
-          const fingerprint = createHash('sha256').update(contract.fingerprint(entry)).digest('hex');
+          entry.destination = entry.kind === 'passage' ? destination : 'exam';
+          const fingerprint = createHash('sha256').update((entry.destination === 'advanced' ? 'advanced:' : '') + contract.fingerprint(entry)).digest('hex');
           if (state.entries.some(e => e.fingerprint === fingerprint)) continue;
           if (published.some(p => contract.fingerprint({ kind: 'passage', content: p }) === contract.fingerprint(entry))) throw new Error('This content is already published. Open the existing passage instead.');
-          if (entry.kind === 'passage' && [...state.entries.filter(e => e.kind === 'passage').map(e => e.content), ...published].some(p => p.id === entry.content.id)) throw new Error('A passage with this title/version already exists. Review the existing content or supply its distinct source version.');
+          if (entry.kind === 'passage' && [...state.entries.filter(e => e.kind === 'passage' && (e.destination || 'exam') === destination).map(e => e.content), ...published].some(p => p.id === entry.content.id)) throw new Error('A passage with this title/version already exists. Review the existing content or supply its distinct source version.');
+          if (entry.destination === 'advanced') {
+            const p = entry.content;
+            p.advancedId ||= p.id;
+            p.genre ||= p.passageType === 'literary' || p.format === 'poem' ? 'Fiction' : 'Science';
+            p.excerpt ||= String(p.text || '').replace(/\s+/g, ' ').trim().slice(0, 180) || p.title;
+            p.tone ||= 'blue';
+            p.thumbnailAlt ||= p.title;
+          }
           entry.content = sanitize(entry.content);
           entry.id = `import-${fingerprint.slice(0, 20)}`;
           entry.fingerprint = fingerprint;

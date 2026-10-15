@@ -14,7 +14,7 @@ export function patchPassageCategory(source, value) {
   const file = ts.createSourceFile("passage.ts", source, ts.ScriptTarget.Latest, true);
   const inputs = [];
   function visit(node) {
-    if (ts.isCallExpression(node) && /^(createPlainTextPassage|createProsePassage|createSentenceNumberedPassage)$/.test(node.expression.getText(file)) && node.arguments[0] && ts.isObjectLiteralExpression(node.arguments[0])) inputs.push(node.arguments[0]);
+    if (ts.isCallExpression(node) && /^(createSourcePassage|createPlainTextPassage|createProsePassage|createSentenceNumberedPassage)$/.test(node.expression.getText(file)) && node.arguments[0] && ts.isObjectLiteralExpression(node.arguments[0])) inputs.push(node.arguments[0]);
     ts.forEachChild(node, visit);
   }
   visit(file);
