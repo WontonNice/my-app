@@ -4,7 +4,7 @@ const path=require('node:path');
 require('ts-node').register({transpileOnly:true,project:path.resolve(__dirname,'../tsconfig.json'),compilerOptions:{module:'CommonJS',moduleResolution:'Node'},moduleTypes:{'**':'cjs'}});
 const {groupPassageBooks,libraryQuestionKey,gradeLibraryBook,libraryQuestionAnswered}=require('../src/shared/libraryBooks.ts');
 const {examPassageLibrary,examLibraryBooks,getExamLibraryPassage}=require('../../client/src/content/exams/passageLibrary.ts');
-const {readingPracticeMaterials,editingPracticeMaterials,studentLibraryBooks}=require('../../client/src/lib/studentMaterials.ts');
+const {readingPracticeMaterials,editingPracticeMaterials,studentLibraryBooks,englishLibraryMaterials,getEnglishLibraryMaterial,getLibraryBookId}=require('../../client/src/lib/studentMaterials.ts');
 const question=(id,prompt='Which detail?')=>({id,type:'multiple_choice',topic:'Inference',prompt,choices:[{id:'A',text:'First'},{id:'B',text:'Second'}],correctChoiceId:'A'});
 const set=(id,questions,author='Same author')=>({id,passage:{id,title:'Same book',versionLabel:id,lines:[{kind:'byline',text:author},{text:`Text for ${id}`}],passageCategory:id==='one'?'official_handbook':'prestige'},questions,questionCount:questions.length,directions:{body:'Read',title:'Read',subject:'English'}});
 test('versions combine without mutating assessment content; duplicate questions ignore formatting, IDs and choice order',()=>{
@@ -45,4 +45,12 @@ test('combined-book grading uses canonical keys, requires a full unique attempt,
  assert.throws(()=>gradeLibraryBook(book,rows.slice(0,1)),/every/);assert.throws(()=>gradeLibraryBook(book,[rows[0],rows[0]]),/every/);
  assert.throws(()=>gradeLibraryBook(book,[{...rows[0],selectedAnswerId:'Z'},rows[1]]),/included/);
  assert.equal(libraryQuestionAnswered(tei,'{}'),false);assert.equal(libraryQuestionAnswered(tei,'{"item":"box"}'),true);
+});
+
+test('teacher and student shelves combine the same book versions and resolve old teacher links',()=>{
+ for(const book of examLibraryBooks){
+   const teacher=englishLibraryMaterials.filter(material=>getLibraryBookId(material)===book.id);
+   assert.equal(teacher.length,1); assert.equal(teacher[0].questionCount,book.passageSet.questionCount);
+   for(const version of book.versions) assert.equal(getLibraryBookId(getEnglishLibraryMaterial(version.id)),book.id);
+ }
 });

@@ -234,6 +234,7 @@ export const atDusk20242025FormAPassageSet: ExamPassageSet = {
   "body": "Read each text and answer the related questions. Base your answers only on the content within the text."
 },
   passage: createPlainTextPassage({
+    passageCategory: "official_handbook",
     id: "at-dusk-2024-2025-form-a",
     title: "At Dusk",
     author: "Natasha Trethewey",

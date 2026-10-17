@@ -2,7 +2,7 @@ import { Router, raw, type ErrorRequestHandler } from "express";
 import { randomUUID } from "node:crypto";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "../lib/supabase";
-import { boardUser, boardTeacher, boardStudent, boardName, boardSummary, boardAccess, boardStorage, boardUuid, boardFail, createBoard, encodeBoard, decodeBoard } from "../lib/boardStore";
+import { boardUser, boardTeacher, boardStudent, boardEligibleStudent, boardName, boardSummary, boardAccess, boardStorage, boardUuid, boardFail, createBoard, encodeBoard, decodeBoard } from "../lib/boardStore";
 import { notifyBoardChanged } from "../lib/boardRealtime";
 import { readBoard, seedBoard } from "../shared/boards";
 import { boardContentCatalog, referenceKey } from "../lib/boardContent";
@@ -23,7 +23,11 @@ boardsRouter.get("/", async (request, response) => {
   const membership = await supabase.from("board_participants").select("board_id").eq("user_id", user.id); boardStorage(membership.error);
   const ids = (membership.data ?? []).map(row => row.board_id);
   let query = supabase.from("student_boards").select("*").is("deleted_at", null).or(`owner_id.eq.${user.id}${ids.length ? `,id.in.(${ids.join(",")})` : ""}`);
-  if (!allTeacherBoards) query = query.eq("student_id", studentId);
+  if (!allTeacherBoards && (boardTeacher(user) || studentId !== user.id)) {
+    const studentMembership = await supabase.from("board_participants").select("board_id").eq("user_id", studentId); boardStorage(studentMembership.error);
+    const sharedIds = (studentMembership.data ?? []).map(row => row.board_id);
+    query = query.or(`student_id.eq.${studentId}${sharedIds.length ? `,id.in.(${sharedIds.join(",")})` : ""}`);
+  }
   const result = await query.order("updated_at", { ascending: false }).limit(500);
   boardStorage(result.error);
   const boards = await Promise.all((result.data ?? []).map(row => boardSummary(row, user)));
@@ -66,7 +70,7 @@ boardsRouter.post("/:id/duplicate", async (request, response) => {
   const user = response.locals.user as User;
   const access = await boardAccess(request.params.id, user, true);
   const original = decodeBoard(access.board.state), data = readBoard(original); original.destroy();
-  const board = await createBoard(access.board.student_id, user, `${access.board.title.slice(0, 190)} (copy)`);
+  const board = await createBoard(boardTeacher(user) ? access.board.student_id : user.id, user, `${access.board.title.slice(0, 190)} (copy)`);
   try {
     const mapping = new Map<string, string>();
     for (const node of data.nodes) if (node.assetId) {
@@ -102,6 +106,22 @@ boardsRouter.get("/:id/teachers", async (request, response) => {
   }
   response.json({ teachers });
 });
+boardsRouter.get("/:id/collaborators", async (request, response) => {
+  const access = await boardAccess(request.params.id, response.locals.user);
+  if (access.role !== "owner") throw boardFail("Owner access is required.", 403);
+  const people: { id: string; name: string; kind: "teacher" | "student" }[] = [];
+  for (let page = 1; page <= 100; page++) {
+    const result = await supabase.auth.admin.listUsers({ page, perPage: 100 });
+    if (result.error) throw boardFail("The collaborator directory is unavailable.", 503);
+    for (const person of result.data.users) {
+      if (person.is_anonymous || person.app_metadata.student_archived_at) continue;
+      if (boardTeacher(person)) people.push({ id: person.id, name: boardName(person), kind: "teacher" });
+      else if (boardEligibleStudent(person)) people.push({ id: person.id, name: boardName(person), kind: "student" });
+    }
+    if (result.data.users.length < 100) break;
+  }
+  response.json({ people: people.sort((a, b) => a.name.localeCompare(b.name)) });
+});
 boardsRouter.put("/:id/participants/:userId", async (request, response) => {
   revisionValue(request.body?.revision);
   const access = await boardAccess(request.params.id, response.locals.user);
@@ -110,7 +130,12 @@ boardsRouter.put("/:id/participants/:userId", async (request, response) => {
   if (request.params.userId === access.board.owner_id) throw boardFail("The board owner cannot be changed.");
   if (request.params.userId === access.board.student_id && request.body.role === "remove") throw boardFail("Keep the student on their own board.");
   const lookup = await supabase.auth.admin.getUserById(request.params.userId);
-  if (!lookup.data.user || lookup.data.user.id !== access.board.student_id && !boardTeacher(lookup.data.user)) throw boardFail("Share only with this student or a verified teacher.", 403);
+  if (lookup.error) throw boardFail("The participant directory is unavailable.", 503);
+  // Removal remains possible after an invitee is archived or deleted.
+  if (request.body.role !== "remove") {
+    if (!lookup.data.user || lookup.data.user.is_anonymous || lookup.data.user.app_metadata.student_archived_at) throw boardFail("Choose an active student or verified teacher.", 403);
+    if (!boardTeacher(lookup.data.user)) await boardStudent(request.params.userId);
+  }
   const result = await supabase.rpc("manage_student_board", { p_id: access.board.id, p_actor: response.locals.user.id, p_revision: request.body.revision, p_action: "participant", p_value: { id: request.params.userId, role: request.body.role } }); boardStorage(result.error);
   if (!result.data) throw boardFail("Participants changed. Refresh and try again.", 409);
   await notify(result.data); response.json({ board: await boardSummary(result.data, response.locals.user) });
@@ -118,7 +143,8 @@ boardsRouter.put("/:id/participants/:userId", async (request, response) => {
 boardsRouter.get("/:id/content", async (request, response) => {
   const access = await boardAccess(request.params.id, response.locals.user);
   const q = String(request.query.q ?? "").toLowerCase().slice(0, 150);
-  const all = await boardContentCatalog(access.student, true);
+  const user = response.locals.user as User;
+  const all = await boardContentCatalog(boardTeacher(user) ? access.student : user, true);
   response.json({ items: all.filter(item => item.reference.kind === "passage" && item.viewer?.passage && item.viewer.questions.length && item.title.toLowerCase().includes(q)).slice(0, 100) });
 });
 boardsRouter.get("/:id/content/:nodeId", async (request, response) => {
@@ -126,7 +152,8 @@ boardsRouter.get("/:id/content/:nodeId", async (request, response) => {
   const doc = decodeBoard(access.board.state), node = readBoard(doc).nodes.find(node => node.id === request.params.nodeId); doc.destroy();
   if (!node?.reference) throw boardFail("Content card not found.", 404);
   const { questionId, ...baseReference } = node.reference!;
-  let item = (await boardContentCatalog(access.student)).find(item => referenceKey(item.reference) === referenceKey(baseReference));
+  const user = response.locals.user as User;
+  let item = (await boardContentCatalog(boardTeacher(user) ? access.student : user)).find(item => referenceKey(item.reference) === referenceKey(baseReference));
   if (item && questionId) {
     const index = item.viewer?.questions.findIndex(question => question.id === questionId) ?? -1;
     const question = item.viewer?.questions[index];

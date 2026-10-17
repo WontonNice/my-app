@@ -9,6 +9,7 @@ export type ExamTopicResult = {
   topic: string;
   total: number;
 };
+export type ExamMathTopicResult = ExamTopicResult & { subtopic: string };
 
 export type ExamSubjectResult = {
   correct: number;
@@ -32,6 +33,7 @@ export type ExamQuestionTypeResult = {
 };
 
 export type ExamResult = {
+  mathTopics?: ExamMathTopicResult[];
   answers: SelectedAnswers;
   assessmentId: string;
   completedSections: ("english" | "math")[];
@@ -42,7 +44,7 @@ export type ExamResult = {
   percentage: number;
   questionTypes: ExamQuestionTypeResult[];
   questionTimes?: Record<string, number>;
-  source?: "digital" | "manual";
+  source?: "digital" | "manual" | "answer_sheet";
   subjects: ExamSubjectResult[];
   title: string;
   topics: ExamTopicResult[];
@@ -143,7 +145,7 @@ export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAn
 
     return (
       typeof answer === "string" &&
-      acceptedAnswers.some((acceptedAnswer) => normalizeText(answer) === normalizeText(acceptedAnswer) ||
+      acceptedAnswers.some((acceptedAnswer) => question.textMatchMode === "exact" ? answer === acceptedAnswer : question.textMatchMode === "normalized" ? normalizeText(answer) === normalizeText(acceptedAnswer) : normalizeText(answer) === normalizeText(acceptedAnswer) ||
         (question.type !== "short_response" && isMathAnswerComplete(answer) && normalizeMathAnswer(answer) === normalizeMathAnswer(acceptedAnswer)))
     );
   }
@@ -174,6 +176,17 @@ function scoreQuestions(questions: ExamQuestion[], answers: SelectedAnswers) {
     topics: Array.from(topics.values()).sort((left, right) => left.topic.localeCompare(right.topic)),
     total: questions.length,
   };
+}
+
+export function scoreMathTopics(questions: ExamQuestion[], answers: SelectedAnswers): ExamMathTopicResult[] {
+  const groups = new Map<string, ExamMathTopicResult>();
+  for (const question of questions) {
+    const subtopic = question.subtopic?.trim() || "Unclassified", key = JSON.stringify([question.topic, subtopic]);
+    const group = groups.get(key) ?? { topic: question.topic, subtopic, correct: 0, total: 0 };
+    group.total++; group.correct += isExamQuestionCorrect(question, answers[question.id]) ? 1 : 0;
+    groups.set(key, group);
+  }
+  return [...groups.values()].sort((a, b) => a.topic.localeCompare(b.topic) || a.subtopic.localeCompare(b.subtopic));
 }
 
 function scoreQuestionTypes(questions: ExamQuestion[], answers: SelectedAnswers) {
@@ -250,6 +263,7 @@ export function createExamResult(
     subjects,
     title: examContent.title,
     topics: overallScore.topics,
+    ...(completedSections.includes("math") ? { mathTopics: scoreMathTopics(mathQuestions, answers) } : {}),
     total: overallScore.total,
   };
 }

@@ -7,7 +7,7 @@ const teacherId = '33333333-3333-4333-8333-333333333333';
 const users = {
   teacher: { id: teacherId, app_metadata: { role: 'teacher' }, user_metadata: { full_name: 'QA Teacher' }, email: 'teacher@example.test' },
   student: { id: studentId, app_metadata: { role: 'student', class_ids: ['shsat'] }, user_metadata: { full_name: 'QA Student' }, email: 'student@example.test' },
-  other: { id: '22222222-2222-4222-8222-222222222222', app_metadata: { role: 'student', class_ids: ['shsat'] }, user_metadata: {} },
+  other: { id: '22222222-2222-4222-8222-222222222222', app_metadata: { role: 'student', class_ids: ['shsat'] }, user_metadata: { full_name: 'QA Classmate' } },
   viewer: { id: '44444444-4444-4444-8444-444444444444', app_metadata: { role: 'teacher' }, user_metadata: { full_name: 'QA Viewer' } },
   forged: { id: '55555555-5555-4555-8555-555555555555', app_metadata: { class_ids: ['shsat'] }, user_metadata: { role: 'teacher' } },
 };
@@ -27,7 +27,7 @@ const db = {
       neq(key, value) { filters.push(row => row[key] !== value); return this; }, is(key, value) { filters.push(row => value === null ? row[key] == null : row[key] === value); return this; },
       not(key, _op, value) { filters.push(row => row[key] !== value); return this; }, in(key, values) { filters.push(row => values.includes(row[key])); return this; },
       like(key, value) { filters.push(row => String(row[key]).startsWith(value.replace('%', ''))); return this; },
-      or(value) { const owner = value.match(/owner_id\.eq\.([^,]+)/)?.[1], ids = value.match(/id\.in\.\(([^)]+)\)/)?.[1].split(',') ?? []; filters.push(row => row.owner_id === owner || ids.includes(row.id)); return this; },
+      or(value) { const owner = value.match(/owner_id\.eq\.([^,]+)/)?.[1], student = value.match(/student_id\.eq\.([^,]+)/)?.[1], ids = value.match(/id\.in\.\(([^)]+)\)/)?.[1].split(',') ?? []; filters.push(row => owner && row.owner_id === owner || student && row.student_id === student || ids.includes(row.id)); return this; },
       order(key, options = {}) { sorts.push([key, options]); return this; }, range(a, b) { start = a; end = b + 1; return this; }, limit(n) { end = n; return this; },
       single() { single = true; return this; }, maybeSingle() { single = true; return this; }, insert(value) { additions = Array.isArray(value) ? value : [value]; return this; }, update(value) { changes = value; return this; },
       then(resolve, reject) {

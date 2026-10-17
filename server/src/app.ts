@@ -12,6 +12,7 @@ import { progressRouter } from "./routes/progress";
 import { examReviewRouter } from "./routes/examReview";
 import { staffRouter } from "./routes/staff";
 import { learningPlanRouter } from "./routes/learningPlan";
+import { answerSheetsRouter } from "./routes/answerSheets";
 import { boardsRouter } from "./routes/boards";
 
 type CreateAppOptions = {
@@ -61,6 +62,7 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
     app.use("/api/staff", staffRouter);
     app.use("/api/learning-plan", learningPlanRouter);
     app.use("/api/boards", boardsRouter);
+    app.use("/api/answer-sheets", answerSheetsRouter);
 
     app.use("/api", (_request, response) => {
         response.status(404).json({ message: "API endpoint not found.", requestId: response.locals.requestId });

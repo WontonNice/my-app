@@ -13,6 +13,7 @@ export function boardApi(token: string) {
     duplicate: async (id: string) => (await call<{ board: BoardSummary }>(`/${id}/duplicate`, "POST")).board,
     history: (id: string, page: number) => call<{ revisions: BoardVersion[]; total: number }>(`/${id}/history?page=${page}`),
     teachers: async (id: string) => (await call<{ teachers: { id: string; name: string }[] }>(`/${id}/teachers`)).teachers,
+    collaborators: async (id: string) => (await call<{ people: { id: string; name: string; kind: "student" | "teacher" }[] }>(`/${id}/collaborators`)).people,
     participant: async (board: BoardSummary, id: string, role: string) => (await call<{ board: BoardSummary }>(`/${board.id}/participants/${id}`, "PUT", { role, revision: board.revision })).board,
     content: async (id: string, q: string) => (await call<{ items: BoardContent[] }>(`/${id}/content?${new URLSearchParams({ q })}`)).items,
     source: async (id: string, nodeId: string) => (await call<{ item: BoardContent }>(`/${id}/content/${nodeId}`)).item,

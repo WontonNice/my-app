@@ -3,6 +3,7 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { StudentLearningPlan } from "../components/StudentLearningPlan";
 import { StudentPortalShell } from "../components/StudentPortalShell";
+import { ShsatCountdown } from "../components/ShsatCountdown";
 import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { getStudentAssessments, type StudentAssessment } from "../lib/api";
@@ -28,6 +29,7 @@ export function StudentDashboardPage() {
   return <StudentPortalShell activeId="home" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
     <div className="student-course-home">
       <header className="student-course-heading"><div><p>Study Hall</p><h1>Your next steps</h1><span>Your teacher's personalized homework, followed by resources you can explore.</span></div><AppLink href={link("/study-hall/shsat/assignments")}>All assignments <ArrowRight size={15} /></AppLink></header>
+      <ShsatCountdown />
       <StudentLearningPlan accessToken={accessToken} previewContext={previewContext} compact />
       <section className="student-upcoming" aria-label="Available assessments"><header><h2>Available assessments</h2><AppLink href={link("/study-hall/shsat/assessments")}>Assessment library</AppLink></header><p>Availability does not mean homework was assigned. Your personalized tasks are listed above.</p>
         {openAssessments?.slice(0, 3).map(item => <article key={item.id}><div><strong>{item.title}</strong><small>{item.questionCount} questions · {item.durationMinutes} minutes</small></div><AppLink href={link(`/exam/${item.id}`)}>Open</AppLink></article>)}

@@ -5,7 +5,7 @@ The feature is implemented in the existing React/Express application. On October
 ## Entry points
 
 - Teacher: **Boards** in the dashboard sidebar or overview opens `/teacher/boards`, listing their owned and invited boards across students. **New board** asks for a title and a student from the existing roster; creation adds the teacher as owner and that student as editor. The per-student **Boards** workspace remains available in Student Insights.
-- Student: **Boards** in the existing student portal. Student-created boards start private; the owner can invite a verified teacher as editor or viewer.
+- Student: **Boards** in the existing student portal includes owned boards and every board shared with that student. Student-created boards start private; owners can invite active SHSAT students and verified teachers as editors or viewers from **People & access**. Find a person by name, choose a permission, and **Add to board**; repeat to form a study group. Only owners can change membership.
 - `/boards/:id` opens the canvas with a return link to the same student's workspace. Browser identity comes from the existing Supabase session; query parameters never authorize access.
 
 ## Canvas behavior
@@ -29,7 +29,11 @@ Ctrl/Cmd+C/V/D/A/Z/Shift+Z, Delete/Backspace, Enter, Escape, Ctrl/Cmd+F, Shift+1
 - Automatic checkpoints are batched every five minutes of active changes. Named checkpoints and paginated history are available. Cursor movements never enter history. Viewport preference stays local to the browser.
 - Student images/files use a private bucket, membership-checked uploads and 60-second signed URLs. Images have signature/type checks; other files download rather than execute. Board documents contain attachment IDs, not binary blobs.
 
-Linked source cards resolve canonical passages, published question-bank questions, published assignments and accessible exam questions using the **board student's** access. Drafts, answer keys and explanations are excluded. Passage text is exported from the existing library at build time into `server/data/board-content.json`; board state retains stable references, not copies of the content database.
+Linked source cards resolve canonical passages, published question-bank questions, published assignments and accessible exam questions using the **viewing student's** access; teachers use the original workspace student's access. Inviting another student does not expose the first student's assignment history or unlock restricted exam content. Drafts, answer keys and explanations are excluded. Passage text is exported from the existing library at build time into `server/data/board-content.json`; board state retains stable references, not copies of the content database.
+
+Multiple students use the existing Yjs/WebSocket session for simultaneous notes, movement, cursors, highlights and recovery. Membership changes refresh connected clients immediately; removed students lose access, and viewers cannot mutate cards. Additional student editors cannot unlock teacher source cards or manage membership. Shared boards appear in each participant's library and in the teacher's per-student view. Duplicating a shared board creates a private copy in the duplicating student's own workspace. This uses the existing participant table and transactional membership function; no new database migration is required.
+
+The isolated suite now includes 17 board tests, including two students and a teacher typing concurrently, viewer downgrade, removal, archived accounts, per-student source access and shared-library discovery. Browser verification used fictional accounts in the isolated preview; deployment and real-account acceptance remain separate.
 
 ## Passage screens, annotations and layers
 

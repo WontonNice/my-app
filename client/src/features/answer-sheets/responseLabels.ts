@@ -1,0 +1,4 @@
+import type { SelectedAnswer } from "../../../../server/src/shared/examGrading";
+import type { SheetItem } from "../../../../server/src/shared/answerSheets";
+export function selectionLabel(item: SheetItem) { return item.type === "short_response" ? "Short answer" : item.type === "multiple_choice" ? "Select one" : item.minSelections === item.maxSelections ? `Select exactly ${item.minSelections}` : item.minSelections === 1 && item.maxSelections === item.options.length ? "Select all that apply" : `Select ${item.minSelections}–${item.maxSelections}`; }
+export function rawAnswer(item: SheetItem, answer?: SelectedAnswer) { return typeof answer === "string" ? item.type === "short_response" ? answer : item.options.find(option => option.id === answer)?.label ?? answer : Array.isArray(answer) ? answer.map(id => item.options.find(option => option.id === id)?.label ?? id).join(", ") : ""; }

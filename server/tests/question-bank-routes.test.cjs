@@ -12,29 +12,29 @@ const bank = { revision: 1, questions: [question], sets: [set] };
 stub('../src/lib/questionBank.ts', { readQuestionBank: () => bank, libraryContentKind: id => id === set.id ? 'practice' : 'passage' });
 const completions = [];
 let mergedAssigned = false;
-stub('../src/lib/learningPlanStore.ts', { hasAssignedContent: async (student, kind, id) => student === studentId && (kind === 'practice' && id === set.id || mergedAssigned && kind === 'passage' && id === 'source-a'), recordPlanCompletion: async (...args) => completions.push(args) });
+stub('../src/lib/learningPlanStore.ts', { hasAssignedContent: async (student, kind, id) => student === studentId && (kind === 'practice' && id === set.id || mergedAssigned && kind === 'passage' && id === 'source-a'), learningCatalog: () => [{id:'book-fixture',title:'Merged fixture',subject:'English',href:'/study-hall/shsat/library/book-fixture'}, {id:set.id,title:set.title,subject:'English',href:'/study-hall/shsat/library/'+set.id}], recordPlanCompletion: async (...args) => completions.push(args) });
 const mergedBook = { id: 'book-fixture', versions: [{id:'source-a',label:'A'},{id:'source-b',label:'B'}], passageSet: { passage:{title:'Merged fixture'}, questions: [{...question,type:'multiple_choice'},{...question,type:'multiple_choice',id:'merged-q-2'}] } };
-stub('../src/lib/libraryBooks.ts', { getMergedLibraryBook: id => id === mergedBook.id ? mergedBook : undefined, libraryBookAccessIds: id => id === mergedBook.id ? [id,'source-a','source-b'] : [id] });
-const tables = { teacher_library_books: [], student_practice_progress: [], student_library_attempts: [], student_library_corrections: [] };
-let compatibility = false;
-const db = { auth: { admin: { getUserById: async id => ({ data: { user: Object.values(users).find(user => user.id === id) }, error: null }) } }, from(table) {
+stub('../src/lib/libraryBooks.ts', { getMergedLibraryBook: id => id === mergedBook.id ? mergedBook : undefined, canonicalLibraryBookId: id => ['book-fixture','source-a','source-b'].includes(id) ? 'book-fixture' : id, libraryBookAccessIds: id => ['book-fixture','source-a','source-b'].includes(id) ? ['book-fixture','source-a','source-b'] : [id] });
+const tables = { student_assignments: [], teacher_library_books: [], student_practice_progress: [], student_library_attempts: [], student_library_corrections: [] };
+let compatibility = false, accessFailure = false;
+const db = { auth: { admin: { listUsers: async () => ({ data: { users: Object.values(users) }, error: null }), getUserById: async id => ({ data: { user: Object.values(users).find(user => user.id === id) }, error: null }) } }, from(table) {
   const filters = []; let rows; let one = false; let limit = Infinity; let offset = 0;
   const query = {
-    select() { return query; }, eq(key, value) { filters.push(row => row[key] === value); return query; },
+    select() { return query; }, in(key, values) { filters.push(row => values.includes(row[key])); return query; }, eq(key, value) { filters.push(row => row[key] === value); return query; },
     like(key, value) { filters.push(row => String(row[key] ?? '').startsWith(value.replace(/%$/, ''))); return query; },
     order() { return query; }, limit(value) { limit = value; return query; }, range(start, end) { offset = start; limit = end - start + 1; return query; },
     maybeSingle() { one = true; return query; }, single() { one = true; return query; },
     insert(row) { tables[table].push(row); rows = [row]; return query; },
-    upsert(row) { const old = tables[table].find(q => q.user_id === row.user_id && q.topic_slug === row.topic_slug); if (old) Object.assign(old, row); else tables[table].push(row); rows = [row]; return query; },
-    then(resolve, reject) { if (compatibility && table === 'student_library_attempts') return Promise.resolve({ data: null, error: { code: 'PGRST205', message: 'missing library table' } }).then(resolve, reject); const result = (rows ?? tables[table] ?? []).filter(row => filters.every(filter => filter(row))).slice(offset, offset + limit); return Promise.resolve({ data: one ? result[0] ?? null : result, error: null }).then(resolve, reject); },
+    upsert(row, options = {}) { const old = tables[table].find(q => table === "teacher_library_books" ? q.book_id === row.book_id : q.user_id === row.user_id && q.topic_slug === row.topic_slug); if (old) { if (!options.ignoreDuplicates) Object.assign(old, row); } else tables[table].push(row); rows = [row]; return query; },
+    then(resolve, reject) { if (accessFailure && table === "student_practice_progress") return Promise.resolve({ data:null, error:{message:"storage unavailable"} }).then(resolve,reject); if (compatibility && table === 'student_library_attempts') return Promise.resolve({ data: null, error: { code: 'PGRST205', message: 'missing library table' } }).then(resolve, reject); const result = (rows ?? tables[table] ?? []).filter(row => filters.every(filter => filter(row))).slice(offset, offset + limit); return Promise.resolve({ data: one ? result[0] ?? null : result, error: null }).then(resolve, reject); },
   }; return query;
 } };
 stub('../src/lib/supabase.ts', { supabase: db });
 const express = require('express'); const { libraryRouter } = require('../src/routes/library.ts');
 let server, base;
-before(async () => { const app = express(); app.use(express.json()); app.use('/library', libraryRouter); server = app.listen(0, '127.0.0.1'); await new Promise(resolve => server.once('listening', resolve)); base = `http://127.0.0.1:${server.address().port}`; });
+before(async () => { const app = express(); app.use(express.json()); app.use('/library', libraryRouter); app.use('/progress', require('../src/routes/progress.ts').progressRouter); server = app.listen(0, '127.0.0.1'); await new Promise(resolve => server.once('listening', resolve)); base = `http://127.0.0.1:${server.address().port}`; });
 after(() => new Promise(resolve => server.close(resolve)));
-async function call(path, role = 'teacher', body) { const result = await fetch(base + path, { method: body ? 'POST' : 'GET', headers: { Authorization: `Bearer ${role}`, 'Content-Type': 'application/json' }, ...(body ? { body: JSON.stringify(body) } : {}) }); return { status: result.status, data: await result.json() }; }
+async function call(path, role = 'teacher', body, method) { const result = await fetch(base + path, { method: method ?? (body ? 'POST' : 'GET'), headers: { Authorization: `Bearer ${role}`, 'Content-Type': 'application/json' }, ...(body ? { body: JSON.stringify(body) } : {}) }); return { status: result.status, data: await result.json() }; }
 const attempt = (extra = {}) => ({ startedAt: '2026-10-05T12:00:00Z', totalTimeSeconds: 40, questions: [{ questionId: question.id, selectedAnswerId: 'C', correctAnswerId: 'C', timeSpentSeconds: 40 }], ...extra });
 
 test('assigned bank set access is student-specific; Math/foreign sets are not opened', async () => {
@@ -60,15 +60,21 @@ test('compatibility attempt storage keeps server grading and does not duplicate 
   compatibility = false;
   const insights = await call(`/library/teacher/bank-attempts/${studentId}`); assert.equal(insights.data.attempts.length, 2); assert.equal(completions.at(-1)[1], 'practice');
 });
-test('combined books accept either legacy assignment or code, keep old attempts intact, and grade new attempts on the server', async () => {
+test('combined books use individual grants, preserve legacy access/history, reject codes, and grade on the server', async () => {
   tables.teacher_library_books.push({book_id:'source-b',title:'Old version',access_code:'ABC123'});
   const legacy = { id:'legacy-attempt',user_id:studentId,book_id:'source-a',attempt_number:1,completed_at:'2026-10-01T12:00:00Z',started_at:'2026-10-01T11:50:00Z',score:1,total_questions:1,total_time_seconds:30,question_stats:[] };
   tables.student_library_attempts.push(legacy); const original = structuredClone(legacy);
   assert.equal((await call('/library/books/book-fixture/access','other')).data.unlocked,false);
   mergedAssigned = true;
   assert.equal((await call('/library/books/book-fixture/access','student')).data.unlocked,true);
-  assert.equal((await call('/library/books/book-fixture/unlock','other',{code:'WRONG1'})).status,403);
-  assert.equal((await call('/library/books/book-fixture/unlock','other',{code:'ABC123'})).status,200);
+  assert.equal((await call('/library/books/book-fixture/unlock','other',{code:'WRONG1'})).status,410);
+  assert.equal((await call('/library/books/book-fixture/unlock','other',{code:'ABC123'})).status,410);
+  assert.equal((await call('/library/teacher/books/source-a/code','teacher',{title:'Old version'})).status,410);
+  assert.equal((await call('/library/books/book-fixture/attempts','other',attempt({code:'ABC123'}))).status,403);
+  const grantPath = `/library/teacher/books/source-b/students/${otherId}/access`;
+  assert.equal((await call(grantPath,'student',{granted:true},'PUT')).status,403);
+  assert.equal((await call(grantPath,'teacher',{granted:true},'PUT')).status,200);
+  assert.equal((await call('/library/books/source-a/access','other')).data.unlocked,true);
   const responses = mergedBook.passageSet.questions.map(q => ({questionId:q.id,selectedAnswerId:'C',correctAnswerId:'C',timeSpentSeconds:10}));
   const saved = await call('/library/books/book-fixture/attempts','other',attempt({questions:responses}));
   assert.equal(saved.status,201);assert.equal(saved.data.attempt.score,0);
@@ -94,4 +100,37 @@ test('library correction classification persists, previews are student-isolated,
   assert.equal((await call(`/library/books/${set.id}/corrections`,'teacher',{responses:[response]})).status,403);
   delete tables.student_library_corrections.at(-1).responses[0].questionType;
   assert.equal((await call(`/library/books/${set.id}/corrections`,'student')).status,200);
+});
+
+test('teacher dashboard combines version histories; revocation overrides assignments and past attempts', async () => {
+ const detail = await call('/library/teacher/books/source-a');
+ assert.equal(detail.status,200); assert.equal(detail.data.book.bookId,'book-fixture'); assert.equal('accessCode' in detail.data.book,false);
+ assert.equal(detail.data.students.find(s=>s.id===studentId).attempts[0].id,'legacy-attempt');
+ assert.equal(detail.data.students.find(s=>s.id===otherId).access.unlocked,true);
+ const path=`/library/teacher/books/book-fixture/students/${studentId}/access`;
+ assert.equal((await call(path,'teacher',{granted:'true'},'PUT')).status,400);
+ assert.equal((await call(path,'teacher',{granted:false},'PUT')).status,200);
+ assert.equal((await call('/library/books/source-a/access','student')).data.unlocked,false);
+ assert.equal((await call('/library/books/book-fixture/attempts','student',attempt())).status,403);
+ assert.equal((await call('/library/books/book-fixture/access','other')).data.unlocked,true);
+ assert.equal((await call('/library/books/source-a/attempts','student')).data.attempts[0].id,'legacy-attempt');
+ assert.equal((await call('/library/teacher/books/unknown/students/'+studentId+'/access','teacher',{granted:true},'PUT')).status,404);
+ assert.equal((await call(path.replace(studentId,users.teacher.id),'teacher',{granted:true},'PUT')).status,404);
+ accessFailure=true;
+ assert.equal((await call(path,'teacher',{granted:true},'PUT')).status,503);
+ assert.equal((await call('/library/books/book-fixture/access','student')).status,503);
+ accessFailure=false;
+});
+
+test('students cannot forge library access through practice progress or profile metadata',async()=>{
+ const progress=await call('/progress/practice/'+encodeURIComponent('english-library:access:book-fixture'),'student',{progress:{granted:true}},'PUT');
+ assert.equal(progress.status,403);
+ users.forged={id:studentId,app_metadata:{},user_metadata:{role:'teacher'}};
+ assert.equal((await call(`/library/teacher/books/book-fixture/students/${studentId}/access`,'forged',{granted:true},'PUT')).status,403);
+ users.archived={id:'44444444-4444-4444-4444-444444444444',app_metadata:{role:'student',class_ids:['shsat'],student_archived_at:'2026-10-17'}};
+ users.unenrolled={id:'55555555-5555-5555-5555-555555555555',app_metadata:{role:'student',class_ids:[]}};
+ for(const role of ['archived','unenrolled']) {
+  assert.equal((await call(`/library/teacher/books/book-fixture/students/${users[role].id}/access`,'teacher',{granted:true},'PUT')).status,404);
+  assert.equal((await call('/library/books/book-fixture/access',role)).data.unlocked,false);
+ }
 });

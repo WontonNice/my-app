@@ -54,9 +54,19 @@
       "multi_select",
       "numeric_entry",
       "short_response",
+      "grid_in",
+      "inline_dropdown",
+      "math_drag_drop",
+      "graph_point_select",
+      "number_line_response",
+      "category_sort",
+      "matrix_choice",
+      "table_match",
+      "transition_drop",
       "essay"
     ],
-    "topic": "exact section topic or empty string when uncertain/outside taxonomy",
+    "topic": "exact section topic; for math, the main sorting category; empty when uncertain",
+    "subtopic": "math only: exact specific topic under topic in mathSpecificTopics; empty when uncertain",
     "points": "positive number; default 1 (platform scoring, not source difficulty)",
     "prompt": "exact source text",
     "instructions": "optional exact source directions",
@@ -70,6 +80,87 @@
     "explanation": "exact supplied explanation or empty string/null",
     "review": "Review",
     "visuals": "Visual[]"
+  },
+  "mathInteractions": {
+    "inline_dropdown": {
+      "dropdownContent": [
+        "Text before {{answer-1}} and after. Multiple {{ids}} can share a line."
+      ],
+      "dropdowns": [
+        {
+          "id": "answer-1",
+          "options": [
+            {
+              "id": "option-1",
+              "text": "exact label",
+              "math": "optional LaTeX"
+            },
+            {
+              "id": "option-2",
+              "text": "exact label"
+            }
+          ],
+          "correctChoiceId": "verified option ID or blank"
+        }
+      ]
+    },
+    "math_drag_drop": {
+      "items": [
+        {
+          "id": "item-1",
+          "text": "exact text with optional LaTeX delimiters"
+        },
+        {
+          "id": "item-2",
+          "text": "exact text"
+        }
+      ],
+      "dragDropContent": [
+        "Expression {{slot-1}}"
+      ],
+      "dragDropSlots": [
+        {
+          "id": "slot-1",
+          "correctItemId": "verified item ID or blank"
+        }
+      ],
+      "allowReuse": "boolean from source; default false"
+    },
+    "graph_point_select": {
+      "graph": {
+        "xMin": "number",
+        "xMax": "number greater than xMin",
+        "xStep": "positive number",
+        "yMin": "number",
+        "yMax": "number greater than yMin",
+        "yStep": "positive number",
+        "xLabel": "string",
+        "yLabel": "string",
+        "points": [
+          {
+            "id": "point-1",
+            "x": "number",
+            "y": "number"
+          }
+        ]
+      },
+      "correctPointIds": [
+        "verified point IDs"
+      ],
+      "requiredSelections": "source selection count"
+    },
+    "number_line_response": {
+      "numberLineResponse": {
+        "min": "number",
+        "max": "number",
+        "tickStep": "positive number",
+        "labelStep": "positive number",
+        "correctValue": "verified number or null",
+        "correctEndpoint": "open or closed",
+        "correctDirection": "left or right"
+      }
+    },
+    "richText": "promptHtml, stimulusHtml, instructionsHtml are optional faithful rich HTML with LaTeX delimiters. Uploaded images may appear between paragraphs as img with src=/exam-images/existing-file, alt, and optional width. Never invent asset references."
   },
   "review": {
     "sourceFile": "string",
@@ -149,16 +240,51 @@
       "Relevance & Conclusion"
     ],
     "math": [
-      "Arithmetic",
-      "Algebra",
+      "Expressions, Equations, and Inequalities",
       "Geometry",
-      "Measurement",
-      "Number Sense",
-      "Percent",
-      "Probability & Statistics",
-      "Rates & Unit Conversion",
-      "Ratios & Proportions",
-      "Uncategorized"
-    ]
+      "Statistics and Probability",
+      "Ratios and Proportional Relationships",
+      "The Number System"
+    ],
+    "mathSpecificTopics": {
+      "Expressions, Equations, and Inequalities": [
+        "Evaluating expressions",
+        "Equivalent expressions",
+        "Linear equations",
+        "Linear inequalities",
+        "Systems of equations",
+        "Algebraic word problems",
+        "Sequences and patterns",
+        "Absolute value"
+      ],
+      "Geometry": [
+        "Lines and Angle Relationships",
+        "Area and Perimeter of Composite Figures",
+        "Triangles and the Pythagorean Theorem",
+        "Circles",
+        "Polygons and Quadrilaterals",
+        "Surface Area and Volume",
+        "Similarity, Congruence, and Scale",
+        "Transformations and Symmetry"
+      ],
+      "Statistics and Probability": [
+        "Simple probability",
+        "Compound probability",
+        "Counting and combinations",
+        "Sets and Venn diagrams",
+        "Mean, median, mode and range",
+        "Data interpretation"
+      ],
+      "Ratios and Proportional Relationships": [
+        "Equivalent ratios",
+        "Proportional relationships",
+        "Part-to-whole ratios",
+        "Scale drawings",
+        "Ratio word problems"
+      ],
+      "The Number System": [
+        "test"
+      ]
+    }
   }
 }

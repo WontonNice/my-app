@@ -139,10 +139,8 @@ export type TeacherAssessment = {
 };
 
 export type LibraryBookAccess = {
-  accessCode: string;
   bookId: string;
   title: string;
-  updatedAt: string;
 };
 
 export type StudentLibraryQuestionStat = {
@@ -197,6 +195,7 @@ export type StudentLibraryCorrectionView = {
 };
 
 export type TeacherLibraryStudent = {
+  access: { unlocked: boolean; unlockedAt: string | null };
   attempts: TeacherLibraryAttempt[];
   email: string;
   id: string;
@@ -687,7 +686,7 @@ export async function requestApi<TResponse>(path: string, init: RequestInit = {}
     }
   }
 
-  if (!response.ok) throw new Error(await readErrorMessage(response));
+  if (!response.ok) throw Object.assign(new Error(await readErrorMessage(response)), { status: response.status });
 
   if (response.status === 204) {
     return undefined as TResponse;
@@ -785,46 +784,23 @@ export async function getLearningProgress(accessToken: string) {
   return data.progress;
 }
 
-export async function getTeacherLibraryBooks(accessToken: string) {
-  const data = await requestApi<{ books: LibraryBookAccess[] }>("/api/library/teacher/books", {
-    headers: createAuthHeaders(accessToken),
-  });
-  return data.books;
-}
-
 export type BankPracticeAttempt = { id: string; bookId: string; title: string; completedAt: string; score: number; totalQuestions: number;
   questions: { questionId: string; topic: string; difficulty: string; isCorrect: boolean; selectedAnswerId: string; correctAnswerId: string; timeSpentSeconds: number }[] };
 export async function getBankPracticeAttempts(accessToken: string, studentId: string) {
   return requestApi<{ attempts: BankPracticeAttempt[]; unverified?: number }>(`/api/library/teacher/bank-attempts/${encodeURIComponent(studentId)}`, { headers: createAuthHeaders(accessToken) });
 }
 
-export async function generateTeacherLibraryBookCode(accessToken: string, bookId: string, title: string) {
-  const data = await requestApi<{ book: LibraryBookAccess }>(
-    `/api/library/teacher/books/${encodeURIComponent(bookId)}/code`,
-    {
-      body: JSON.stringify({ title }),
-      headers: createAuthHeaders(accessToken),
-      method: "POST",
-    },
+export async function setTeacherLibraryStudentAccess(accessToken: string, bookId: string, studentId: string, granted: boolean) {
+  return requestApi<{ bookId: string; studentId: string; access: TeacherLibraryStudent["access"] }>(
+    `/api/library/teacher/books/${encodeURIComponent(bookId)}/students/${encodeURIComponent(studentId)}/access`,
+    { method: "PUT", body: JSON.stringify({ granted }), headers: createAuthHeaders(accessToken) },
   );
-  return data.book;
 }
 
 export async function getTeacherLibraryBook(accessToken: string, bookId: string) {
   return requestApi<{ book: LibraryBookAccess | null; students: TeacherLibraryStudent[] }>(
     `/api/library/teacher/books/${encodeURIComponent(bookId)}`,
     { headers: createAuthHeaders(accessToken) },
-  );
-}
-
-export async function unlockLibraryBook(accessToken: string, bookId: string, code: string) {
-  return requestApi<{ bookId: string; title: string; unlocked: boolean; unlockedAt: string | null }>(
-    `/api/library/books/${encodeURIComponent(bookId)}/unlock`,
-    {
-      body: JSON.stringify({ code }),
-      headers: createAuthHeaders(accessToken),
-      method: "POST",
-    },
   );
 }
 
@@ -870,7 +846,6 @@ export async function saveStudentLibraryAttempt(
   accessToken: string,
   bookId: string,
   input: {
-    code: string;
     questions: {
       correctAnswerId: string;
       questionId: string;

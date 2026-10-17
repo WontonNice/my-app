@@ -135,9 +135,7 @@ export const studentLibraryBooks: StudentMaterial[] = [...examLibraryBooks.map((
 export const editingPracticeMaterials: StudentMaterial[] = revisingEditingTopics.map(topic => ({ id: `practice-${topic.slug}`, title: topic.title, subject: "English", category: "Revising & editing", kind: "Practice set", description: topic.description, href: `/study-hall/shsat/topics/${topic.slug}`, questionCount: questionBankCatalog.filter(set => set.skills.includes(topic.key)).reduce((sum, set) => sum + set.questionCount, 0), questionType: topic.title }));
 
 export const englishLibraryMaterials: StudentMaterial[] = [
-  ...shsatPassageMaterials,
-  ...advancedPassageMaterials,
-  ...longReadingMaterials,
+  ...studentLibraryBooks,
   ...questionBankCatalog.map(content => ({ id: content.id, title: content.title, href: content.href, subject: "English" as const,
     category: "SHSAT Lab", contentSource: content.contentSource, kind: "Practice set" as const, libraryCollection: "SHSAT" as const,
     description: "Targeted ELA practice from reviewed SHSAT Lab captures.", questionCount: content.questionCount, questionType: content.skills.join(" · ") })),
@@ -148,7 +146,8 @@ export function getLibraryBookId(material: StudentMaterial) {
 }
 
 export function getEnglishLibraryMaterial(bookId: string) {
-  return englishLibraryMaterials.find((material) => getLibraryBookId(material) === bookId) ?? studentLibraryBooks.find(material => getLibraryBookId(material) === bookId);
+  const canonical = examLibraryBooks.find(book => book.id === bookId || book.versions.some(version => version.id === bookId))?.id ?? bookId;
+  return englishLibraryMaterials.find(material => getLibraryBookId(material) === canonical);
 }
 
 export const revisingEditingMaterial: StudentMaterial = {

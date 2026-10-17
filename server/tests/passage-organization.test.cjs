@@ -7,6 +7,20 @@ const { buildStudentAnalytics, groupResponseEvidence, sortResponseGroups } = req
 const { filterContentInventory, categoryInventory, passageCompletionDate, passageSource } = require('../../client/src/lib/passageOrganization.ts');
 const { inventory } = require('../src/shared/learningPlan.ts');
 
+test('specific math topic evidence keeps parent categories separate and preserves wrong versus blank answers', () => {
+  const row = (topic, subtopic, status, section = 'math') => ({ question: { topic, subtopic }, section, status, examKey: 'one', date: '2026-10-17T00:00:00Z' });
+  const groups = groupResponseEvidence([
+    row('Algebra', 'Word problems', 'Correct'), row('Algebra', 'Word problems', 'Unanswered'),
+    row('Geometry', 'Word problems', 'Incorrect'), row('Algebra', undefined, 'Correct'),
+    row('Inference', 'Word problems', 'Correct', 'english'),
+  ], 'subtopic');
+  assert.equal(groups.length, 3);
+  const algebra = groups.find(group => group.key === JSON.stringify(['Algebra', 'Word problems']));
+  assert.deepEqual([algebra.correct, algebra.total, algebra.incorrect, algebra.unanswered], [1, 2, 0, 1]);
+  assert.equal(groups.some(group => group.label === 'Algebra › Unclassified'), true);
+  assert.equal(groups.some(group => group.label.startsWith('Inference')), false);
+});
+
 test('all passage formats preserve source category and version without changing lines', () => {
   for (const formatter of [createPlainTextPassage, createProsePassage, createSentenceNumberedPassage]) {
     const input = { id: 'fixture', title: 'Fixture', text: 'First line.\n    Indented line.\n\nLast paragraph.', passageType: 'poem' };

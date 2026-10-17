@@ -119,9 +119,9 @@ function getMetadataProgress(user: User): LearningProgress {
     if (!stored || typeof stored !== "object" || Array.isArray(stored)) return { examResults: [], practice: {} };
     const candidate = stored as Partial<LearningProgress>;
     return {
-        examResults: Array.isArray(candidate.examResults) ? candidate.examResults : [],
+        examResults: Array.isArray(candidate.examResults) ? candidate.examResults.filter(result => result && typeof result === "object" && !Array.isArray(result) && result.source !== "answer_sheet" && !String(result.assessmentId ?? "").startsWith("answer-sheet:")) : [],
         practice: candidate.practice && typeof candidate.practice === "object" && !Array.isArray(candidate.practice)
-            ? candidate.practice as Record<string, JsonRecord>
+            ? Object.fromEntries(Object.entries(candidate.practice).filter(([key]) => !key.startsWith("answer-sheet:"))) as Record<string, JsonRecord>
             : {},
     };
 }
@@ -148,7 +148,7 @@ export async function getDatabaseProgress(user: User): Promise<LearningProgress>
     const practice = {
         ...metadataProgress.practice,
         ...Object.fromEntries((practiceQuery.data ?? [])
-            .filter((row) => !String(row.topic_slug).startsWith(libraryProgressPrefix))
+            .filter((row) => !String(row.topic_slug).startsWith(libraryProgressPrefix) && !String(row.topic_slug).startsWith("answer-sheet:"))
             .map((row) => [row.topic_slug, row.progress as JsonRecord])),
     };
     return { examResults: [...examResults, ...fallbackExamResults], practice };
@@ -492,7 +492,7 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
         return;
     }
     const assessmentId = request.params.assessmentId;
-    if (assessmentId.startsWith("__")) {
+    if (assessmentId.startsWith("__") || assessmentId.startsWith("answer-sheet:") || result.source === "answer_sheet") {
         response.status(400).json({ message: "Invalid assessment ID." });
         return;
     }
@@ -526,6 +526,9 @@ progressRouter.put("/practice/:topicSlug", async (request, response) => {
     if (error || !user) {
         response.status(401).json({ message: error });
         return;
+    }
+    if ((request.params.topicSlug.startsWith(libraryProgressPrefix) || request.params.topicSlug.startsWith("answer-sheet:"))) {
+        response.status(403).json({ message: "Protected library and answer-sheet records must be managed through their own workflows." }); return;
     }
     const topicProgress = request.body?.progress;
     if (!topicProgress || typeof topicProgress !== "object" || Array.isArray(topicProgress)) {

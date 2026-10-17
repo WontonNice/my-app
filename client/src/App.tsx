@@ -13,6 +13,8 @@ import { StudentResultsPage } from "./pages/StudentResultsPage";
 import { StudentTopicHubPage } from "./pages/StudentTopicHubPage";
 import { studentCorrectionRoute } from "./lib/correctionNavigation";
 
+const AnswerSheetsPage = lazy(() => import("./pages/AnswerSheetsPage").then(module => ({ default: module.AnswerSheetsPage })));
+
 const AdminDashboardPage = lazy(() =>
   import("./pages/AdminDashboardPage").then((module) => ({ default: module.AdminDashboardPage })),
 );
@@ -105,6 +107,8 @@ function LegacyStudentHomeRedirect() {
 
 function CurrentPage() {
   const path = window.location.pathname;
+  if (path.startsWith("/teacher/answer-sheets")) return <AnswerSheetsPage />;
+  if (path.startsWith("/answer-sheets/")) return withClassAccess(<AnswerSheetsPage />);
   const correctionRoute = studentCorrectionRoute(path);
   if (correctionRoute === "exam") return withClassAccess(<ExamCorrectionsPage />);
   if (correctionRoute === "library") return withClassAccess(<LibraryCorrectionsPage />);

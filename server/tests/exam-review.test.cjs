@@ -14,6 +14,25 @@ const completeResponses = [
   { questionId: 'math-1', whyChosenIncorrect: '', whyCorrectAnswerCorrect: 'Adding three to two gives five.', understanding: 5, questionType: 'Algebra' },
 ];
 
+test('math results retain separate main and specific topic totals without merging identically named skills', () => {
+  const questions = [
+    { ...math, id: 'a', topic: 'Algebra', subtopic: 'Word problems' },
+    { ...math, id: 'b', topic: 'Algebra', subtopic: 'Word problems' },
+    { ...math, id: 'c', topic: 'Geometry', subtopic: 'Word problems' },
+    { ...math, id: 'legacy', topic: 'Algebra' },
+  ];
+  const exam = { ...content, mathSection: { questions } };
+  const scored = createExamResult(exam, { a: '5', b: '4', c: '5' });
+  assert.equal(scored.total, 5);
+  assert.deepEqual(scored.mathTopics, [
+    { topic: 'Algebra', subtopic: 'Unclassified', correct: 0, total: 1 },
+    { topic: 'Algebra', subtopic: 'Word problems', correct: 1, total: 2 },
+    { topic: 'Geometry', subtopic: 'Word problems', correct: 1, total: 1 },
+  ]);
+  assert.equal(scored.topics.find(item => item.topic === 'Algebra').total, 3);
+  assert.equal(createExamResult(exam, {}, ['english']).mathTopics, undefined);
+});
+
 test('English requires both explanations, Math requires only correct reasoning, all require integer ratings', () => {
   const questions = reviewQuestions(content, result);
   assert.equal(validateCorrections(questions, completeResponses).length, 2);

@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction, type DragEvent, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import katex from "katex";
-import { MathEntryResponse } from "../components/MathEntryResponse";
+import { getBoldFormattedText, renderMathAuthoredText, ExamMathQuestion, renderMathRichText, renderKatexExpression, renderInlineMathText, MatrixChoiceResponse } from "../components/ExamMathQuestion";
 import { PassageGlossary } from "../components/PassageGlossary";
 import { isMathAnswerComplete } from "../../../server/src/shared/mathAnswer";
 import "katex/dist/katex.min.css";
@@ -63,7 +63,6 @@ import {
 } from "lucide-react";
 import {
   resolveExamContent,
-  type ExamNumberLine,
   type ExamQuestion,
 } from "../content/exams";
 import { getExamSessionProgress, getLearningProgress, getStudentAssessment, getTeacherStudentProgress, saveCloudExamResult, saveExamSessionProgress, type TeacherAssessment } from "../lib/api";
@@ -154,10 +153,7 @@ type ChoiceLimitWarning = {
   id: string;
   maxChoices: number;
 };
-type BoldTextRange = {
-  end: number;
-  start: number;
-};
+
 
 type PencilPoint = {
   x: number;
@@ -228,74 +224,6 @@ function isInlineDropdownQuestion(question: ExamQuestion) {
   return question.type === "inline_dropdown";
 }
 
-function getBoldFormattedText(text: string) {
-  const boldRanges: BoldTextRange[] = [];
-  const italicRanges: BoldTextRange[] = [];
-  const mathRanges: BoldTextRange[] = [];
-  let displayText = "";
-  let cursor = 0;
-
-  while (cursor < text.length) {
-    if (text.startsWith("\\(", cursor)) {
-      const closingIndex = text.indexOf("\\)", cursor + 2);
-
-      if (closingIndex !== -1) {
-        const content = text.slice(cursor + 2, closingIndex);
-        const mathStart = displayText.length;
-        displayText += content;
-        mathRanges.push({
-          end: displayText.length,
-          start: mathStart,
-        });
-        cursor = closingIndex + 2;
-        continue;
-      }
-    }
-
-    if (text.startsWith("**", cursor)) {
-      const closingIndex = text.indexOf("**", cursor + 2);
-
-      if (closingIndex !== -1) {
-        const content = text.slice(cursor + 2, closingIndex);
-        const boldStart = displayText.length;
-        displayText += content;
-        boldRanges.push({
-          end: displayText.length,
-          start: boldStart,
-        });
-        cursor = closingIndex + 2;
-        continue;
-      }
-    }
-
-    if (text[cursor] === "*" && !text.startsWith("**", cursor)) {
-      const closingIndex = text.indexOf("*", cursor + 1);
-
-      if (closingIndex !== -1) {
-        const content = text.slice(cursor + 1, closingIndex);
-        const italicStart = displayText.length;
-        displayText += content;
-        italicRanges.push({
-          end: displayText.length,
-          start: italicStart,
-        });
-        cursor = closingIndex + 1;
-        continue;
-      }
-    }
-
-    displayText += text[cursor];
-    cursor += 1;
-  }
-
-  return {
-    boldRanges,
-    displayText,
-    italicRanges,
-    mathRanges,
-  };
-}
-
 function getRequiredSelectionCount(question: ExamQuestion) {
   return question.requiredSelections ?? question.correctPointIds?.length ?? question.correctChoiceIds?.length ?? 2;
 }
@@ -310,534 +238,6 @@ function getSelectedChoiceIds(answer: SelectedAnswer | undefined) {
 
 function getTextEntryValue(answer: SelectedAnswer | undefined) {
   return typeof answer === "string" ? answer : "";
-}
-
-function renderKatexExpression(expression: string, displayMode = false) {
-  const markup = katex.renderToString(expression, {
-    displayMode,
-    output: "htmlAndMathml",
-    strict: false,
-    throwOnError: false,
-    trust: false,
-  });
-  return (
-    <span
-      className={displayMode ? "exam-katex-display" : "exam-katex-inline"}
-      dangerouslySetInnerHTML={{ __html: markup }}
-    />
-  );
-}
-
-function renderMathExpression(expression: string) {
-  return (
-    <span className="exam-math-expression" aria-label={expression}>
-      {renderKatexExpression(expression)}
-    </span>
-  );
-}
-
-function ExamNumberLineGraphic({
-  description,
-  numberLine,
-}: {
-  description: string;
-  numberLine: ExamNumberLine;
-}) {
-  const min = Number.isFinite(numberLine.min) ? numberLine.min : -10;
-  const max = Number.isFinite(numberLine.max) && numberLine.max > min ? numberLine.max : min + 20;
-  const tickStep =
-    Number.isFinite(numberLine.tickStep) && numberLine.tickStep > 0
-      ? numberLine.tickStep
-      : 1;
-  const labelStep =
-    Number.isFinite(numberLine.labelStep) && numberLine.labelStep > 0
-      ? numberLine.labelStep
-      : 5;
-  const solutionStart = Math.max(min, Math.min(max, numberLine.solutionStart));
-  const solutionEnd = Math.max(
-    solutionStart,
-    Math.min(max, numberLine.solutionEnd),
-  );
-  const axisStart = 18;
-  const axisEnd = 312;
-  const axisY = 25;
-  const xFor = (value: number) =>
-    axisStart + ((value - min) / (max - min)) * (axisEnd - axisStart);
-  const formatValue = (value: number) =>
-    String(Number(value.toFixed(6))).replace("-", "−");
-  const tickCount = Math.min(
-    100,
-    Math.floor((max - min) / tickStep + 0.000001),
-  );
-  const ticks = Array.from({ length: tickCount + 1 }, (_, index) => {
-    const value = min + index * tickStep;
-    const labelRatio = (value - min) / labelStep;
-    return {
-      showLabel:
-        Math.abs(labelRatio - Math.round(labelRatio)) < 0.000001,
-      value,
-      x: xFor(value),
-    };
-  }).filter((tick) => tick.value <= max + tickStep / 1000);
-  const lastTick = ticks.at(-1);
-  if (!lastTick || Math.abs(lastTick.value - max) > 0.000001) {
-    ticks.push({ showLabel: true, value: max, x: xFor(max) });
-  }
-  const solutionX1 = numberLine.extendLeft
-    ? axisStart + 4
-    : xFor(solutionStart);
-  const solutionX2 = numberLine.extendRight
-    ? axisEnd - 4
-    : xFor(solutionEnd);
-
-  return (
-    <svg
-      aria-label={description}
-      className="exam-number-line"
-      role="img"
-      viewBox="0 0 330 58"
-    >
-      <title>{description}</title>
-      <line
-        stroke="currentColor"
-        strokeWidth="1.4"
-        x1={axisStart}
-        x2={axisEnd}
-        y1={axisY}
-        y2={axisY}
-      />
-      <path
-        d={`M ${axisStart} ${axisY} l 7 -4 v 8 z`}
-        fill="currentColor"
-      />
-      <path
-        d={`M ${axisEnd} ${axisY} l -7 -4 v 8 z`}
-        fill="currentColor"
-      />
-      {ticks.map((tick, index) => (
-        <g key={`${tick.value}-${index}`}>
-          <line
-            stroke="currentColor"
-            strokeWidth={tick.showLabel ? 1.4 : 1}
-            x1={tick.x}
-            x2={tick.x}
-            y1={tick.showLabel ? 17 : 19}
-            y2={33}
-          />
-          {tick.showLabel ? (
-            <text
-              fill="currentColor"
-              fontFamily="Arial, sans-serif"
-              fontSize="11"
-              textAnchor="middle"
-              x={tick.x}
-              y="49"
-            >
-              {formatValue(tick.value)}
-            </text>
-          ) : null}
-        </g>
-      ))}
-      <line
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="3"
-        x1={solutionX1}
-        x2={solutionX2}
-        y1={axisY}
-        y2={axisY}
-      />
-      {numberLine.extendLeft ? (
-        <path
-          d={`M ${axisStart + 2} ${axisY} l 8 -5 v 10 z`}
-          fill="currentColor"
-        />
-      ) : (
-        <circle
-          cx={solutionX1}
-          cy={axisY}
-          fill={numberLine.startClosed ? "currentColor" : "#fff"}
-          r="4"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-      )}
-      {numberLine.extendRight ? (
-        <path
-          d={`M ${axisEnd - 2} ${axisY} l -8 -5 v 10 z`}
-          fill="currentColor"
-        />
-      ) : (
-        <circle
-          cx={solutionX2}
-          cy={axisY}
-          fill={numberLine.endClosed ? "currentColor" : "#fff"}
-          r="4"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-      )}
-    </svg>
-  );
-}
-
-function renderInlineMathText(expression: string) {
-  return renderKatexExpression(expression);
-}
-
-function renderInteractionMath(text: string, keyPrefix: string) {
-  return text
-    .split(/(\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\))/g)
-    .filter(Boolean)
-    .map((part, index) => {
-      if (part.startsWith("\\[") && part.endsWith("\\]")) {
-        return (
-          <span className="exam-katex-template-display" key={`${keyPrefix}-display-${index}`}>
-            {renderKatexExpression(part.slice(2, -2), true)}
-          </span>
-        );
-      }
-      if (part.startsWith("\\(") && part.endsWith("\\)")) {
-        return (
-          <span className="exam-inline-math" key={`${keyPrefix}-inline-${index}`}>
-            {renderKatexExpression(part.slice(2, -2))}
-          </span>
-        );
-      }
-      return part.split("\n").map((line, lineIndex, lines) => (
-        <span key={`${keyPrefix}-text-${index}-${lineIndex}`}>
-          {line}
-          {lineIndex < lines.length - 1 ? <br /> : null}
-        </span>
-      ));
-    });
-}
-
-function MathDragDropResponse({
-  answer,
-  onChange,
-  question,
-}: {
-  answer: CategoryPlacements;
-  onChange: (answer: CategoryPlacements) => void;
-  question: ExamQuestion;
-}) {
-  const [selectedItemId, setSelectedItemId] = useState("");
-  const items = question.items ?? [];
-  const slots = question.dragDropSlots ?? [];
-  const placedItemIds = Object.values(answer);
-  const availableItems = question.allowReuse
-    ? items
-    : items.filter((item) => !placedItemIds.includes(item.id));
-
-  function place(itemId: string, slotId: string) {
-    if (!itemId || !slots.some((slot) => slot.id === slotId)) return;
-    const next = { ...answer };
-    if (!question.allowReuse) {
-      Object.entries(next).forEach(([existingSlotId, existingItemId]) => {
-        if (existingItemId === itemId) delete next[existingSlotId];
-      });
-    }
-    next[slotId] = itemId;
-    onChange(next);
-    setSelectedItemId("");
-  }
-
-  function renderSlot(slotId: string, key: string) {
-    const placedItem = items.find((item) => item.id === answer[slotId]);
-    return (
-      <button
-        aria-label={placedItem ? `Answer ${placedItem.text}. Click to remove.` : "Empty answer box"}
-        className={`exam-math-drag-slot ${placedItem ? "is-filled" : ""}`}
-        key={key}
-        onClick={() => {
-          if (selectedItemId) place(selectedItemId, slotId);
-          else if (placedItem) {
-            const next = { ...answer };
-            delete next[slotId];
-            onChange(next);
-          }
-        }}
-        onDragOver={(event) => event.preventDefault()}
-        onDrop={(event) => {
-          event.preventDefault();
-          place(event.dataTransfer.getData("text/plain"), slotId);
-        }}
-        type="button"
-      >
-        {placedItem ? renderInteractionMath(placedItem.text, `${key}-placed`) : "\u00a0"}
-      </button>
-    );
-  }
-
-  function renderLine(template: string, lineIndex: number) {
-    return template
-      .split(/(\{\{[\w-]+\}\})/g)
-      .filter(Boolean)
-      .map((part, partIndex) => {
-        if (part.startsWith("{{") && part.endsWith("}}")) {
-          return renderSlot(part.slice(2, -2), `drag-slot-${lineIndex}-${partIndex}`);
-        }
-        return renderInteractionMath(part, `drag-text-${lineIndex}-${partIndex}`);
-      });
-  }
-
-  return (
-    <div className={`exam-math-drag-response ${(question.dragDropContent?.length ?? 0) === 1 ? "is-single-line" : ""}`}>
-      <div
-        aria-label="Answer bank"
-        className="exam-math-drag-bank"
-        onDragOver={(event) => event.preventDefault()}
-        onDrop={(event) => {
-          event.preventDefault();
-          const itemId = event.dataTransfer.getData("text/plain");
-          const slotId = Object.keys(answer).find((candidate) => answer[candidate] === itemId);
-          if (slotId) {
-            const next = { ...answer };
-            delete next[slotId];
-            onChange(next);
-          }
-        }}
-      >
-        {availableItems.map((item) => (
-          <button
-            className={selectedItemId === item.id ? "is-selected" : ""}
-            draggable
-            key={item.id}
-            onClick={() => setSelectedItemId((current) => current === item.id ? "" : item.id)}
-            onDragStart={(event) => {
-              event.dataTransfer.setData("text/plain", item.id);
-              setSelectedItemId(item.id);
-            }}
-            type="button"
-          >
-            {renderInteractionMath(item.text, `drag-bank-${item.id}`)}
-          </button>
-        ))}
-      </div>
-      <div className="exam-math-drag-lines">
-        {(question.dragDropContent ?? []).map((line, lineIndex) => (
-          <div className="exam-math-drag-line" key={`drag-line-${lineIndex}`}>
-            {renderLine(line, lineIndex)}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function MatrixChoiceResponse({
-  answer,
-  onChange,
-  question,
-}: {
-  answer: CategoryPlacements;
-  onChange: (answer: CategoryPlacements) => void;
-  question: ExamQuestion;
-}) {
-  const categories = question.categories ?? [];
-  const items = question.items ?? [];
-
-  return (
-    <div className="exam-matrix-choice-wrap">
-      <table className="exam-matrix-choice-table">
-        <thead>
-          <tr>
-            <th scope="col">{question.tableHeaders?.row ?? "Sentence"}</th>
-            {categories.map((category) => <th key={category.id} scope="col">{category.title}</th>)}
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((item) => (
-            <tr key={item.id}>
-              <th scope="row">{item.html ? <span className="exam-rich-text" dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}</th>
-              {categories.map((category) => (
-                <td key={category.id}>
-                  <label className="exam-matrix-choice-option">
-                    <input
-                      aria-label={`${item.text}: ${category.title}`}
-                      checked={answer[item.id] === category.id}
-                      name={`matrix-${question.id}-${item.id}`}
-                      onChange={() => onChange({ ...answer, [item.id]: category.id })}
-                      type="radio"
-                      value={category.id}
-                    />
-                    <span aria-hidden="true" />
-                  </label>
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function GraphPointResponse({
-  onToggle,
-  question,
-  selectedIds,
-}: {
-  onToggle: (pointId: string) => void;
-  question: ExamQuestion;
-  selectedIds: string[];
-}) {
-  const graph = question.graph;
-  if (!graph) return null;
-  const axisLeft = 64;
-  const axisRight = 404;
-  const axisTop = 38;
-  const axisBottom = 378;
-  const xFor = (value: number) => axisLeft + ((value - graph.xMin) / (graph.xMax - graph.xMin)) * (axisRight - axisLeft);
-  const yFor = (value: number) => axisBottom - ((value - graph.yMin) / (graph.yMax - graph.yMin)) * (axisBottom - axisTop);
-  const xTicks = Array.from(
-    { length: Math.floor((graph.xMax - graph.xMin) / graph.xStep) + 1 },
-    (_, index) => graph.xMin + index * graph.xStep,
-  );
-  const yTicks = Array.from(
-    { length: Math.floor((graph.yMax - graph.yMin) / graph.yStep) + 1 },
-    (_, index) => graph.yMin + index * graph.yStep,
-  );
-
-  return (
-    <div className="exam-graph-point-response">
-      {graph.title ? <h2>{graph.title}</h2> : null}
-      <svg aria-label="Selectable coordinate graph" role="group" viewBox="0 0 470 440">
-        {xTicks.map((value) => (
-          <g key={`x-${value}`}>
-            <line className="exam-graph-grid-line" x1={xFor(value)} x2={xFor(value)} y1={axisTop} y2={axisBottom} />
-            <text x={xFor(value)} y={axisBottom + 22}>{value}</text>
-          </g>
-        ))}
-        {yTicks.map((value) => (
-          <g key={`y-${value}`}>
-            <line className="exam-graph-grid-line" x1={axisLeft} x2={axisRight} y1={yFor(value)} y2={yFor(value)} />
-            <text textAnchor="end" x={axisLeft - 10} y={yFor(value) + 5}>{value}</text>
-          </g>
-        ))}
-        <line className="exam-graph-axis" x1={axisLeft} x2={axisRight + 20} y1={axisBottom} y2={axisBottom} />
-        <line className="exam-graph-axis" x1={axisLeft} x2={axisLeft} y1={axisBottom + 4} y2={axisTop - 20} />
-        <text className="exam-graph-x-label" textAnchor="middle" x={(axisLeft + axisRight) / 2} y="432">{graph.xLabel}</text>
-        <text className="exam-graph-y-label" textAnchor="middle" transform="rotate(-90 18 208)" x="18" y="208">{graph.yLabel}</text>
-        {graph.points.map((point) => {
-          const selected = selectedIds.includes(point.id);
-          return (
-            <g
-              aria-label={`Point ${point.x}, ${point.y}${selected ? ", selected" : ""}`}
-              className={`exam-graph-point ${selected ? "is-selected" : ""}`}
-              key={point.id}
-              onClick={() => onToggle(point.id)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  onToggle(point.id);
-                }
-              }}
-              role="button"
-              tabIndex={0}
-            >
-              <circle cx={xFor(point.x)} cy={yFor(point.y)} r="11" />
-              {selected ? <path d={`M ${xFor(point.x) - 5} ${yFor(point.y)} l 4 4 l 7 -8`} /> : null}
-            </g>
-          );
-        })}
-      </svg>
-    </div>
-  );
-}
-
-function NumberLineResponse({
-  answer,
-  onChange,
-  question,
-}: {
-  answer: CategoryPlacements;
-  onChange: (answer: CategoryPlacements) => void;
-  question: ExamQuestion;
-}) {
-  const config = question.numberLineResponse;
-  if (!config) return null;
-  const axisLeft = 48;
-  const axisRight = 572;
-  const axisY = 78;
-  const xFor = (value: number) => axisLeft + ((value - config.min) / (config.max - config.min)) * (axisRight - axisLeft);
-  const ticks = Array.from(
-    { length: Math.floor((config.max - config.min) / config.tickStep) + 1 },
-    (_, index) => config.min + index * config.tickStep,
-  );
-  const selectedValue = Number(answer.value);
-  const hasValue = answer.value !== undefined && Number.isFinite(selectedValue);
-  const direction = answer.direction as "left" | "right" | undefined;
-  const endpoint = answer.endpoint as "closed" | "open" | undefined;
-
-  function chooseRay(nextDirection: "left" | "right", nextEndpoint: "closed" | "open") {
-    onChange({ ...answer, direction: nextDirection, endpoint: nextEndpoint });
-  }
-
-  return (
-    <div className="exam-number-line-response">
-      <svg
-        aria-label="Interactive number line"
-        onClick={(event) => {
-          const bounds = event.currentTarget.getBoundingClientRect();
-          const svgX = ((event.clientX - bounds.left) / bounds.width) * 620;
-          const rawValue = config.min + ((svgX - axisLeft) / (axisRight - axisLeft)) * (config.max - config.min);
-          const snapped = Math.max(config.min, Math.min(config.max, Math.round(rawValue / config.tickStep) * config.tickStep));
-          onChange({ ...answer, value: String(Number(snapped.toFixed(6))) });
-        }}
-        role="application"
-        viewBox="0 0 620 130"
-      >
-        <line className="exam-number-line-axis" x1={axisLeft} x2={axisRight} y1={axisY} y2={axisY} />
-        <path className="exam-number-line-axis" d={`M ${axisLeft} ${axisY} l 18 -24 M ${axisLeft} ${axisY} l 18 24`} />
-        <path className="exam-number-line-axis" d={`M ${axisRight} ${axisY} l -18 -24 M ${axisRight} ${axisY} l -18 24`} />
-        {ticks.map((tick) => (
-          <g key={tick}>
-            <line className="exam-number-line-tick" x1={xFor(tick)} x2={xFor(tick)} y1={axisY - 28} y2={axisY + 28} />
-            <text textAnchor="middle" x={xFor(tick)} y={axisY - 38}>{tick}</text>
-          </g>
-        ))}
-        {hasValue && direction && endpoint ? (
-          <g className="exam-number-line-selected-ray">
-            <line
-              x1={direction === "left" ? axisLeft + 8 : xFor(selectedValue)}
-              x2={direction === "right" ? axisRight - 8 : xFor(selectedValue)}
-              y1={axisY}
-              y2={axisY}
-            />
-            <circle
-              cx={xFor(selectedValue)}
-              cy={axisY}
-              fill={endpoint === "closed" ? "currentColor" : "#fff"}
-              r="10"
-            />
-          </g>
-        ) : null}
-      </svg>
-      <p className="exam-number-line-help">
-        {hasValue ? `Endpoint: ${selectedValue}.` : "Click the number line to place the endpoint."}
-      </p>
-      <div aria-label="Choose a ray" className="exam-number-line-ray-picker">
-        {[
-          ["left", "closed", "←●", "Left ray with a closed endpoint"],
-          ["left", "open", "←○", "Left ray with an open endpoint"],
-          ["right", "open", "○→", "Right ray with an open endpoint"],
-          ["right", "closed", "●→", "Right ray with a closed endpoint"],
-        ].map(([rayDirection, rayEndpoint, symbol, label]) => (
-          <button
-            aria-label={label}
-            className={direction === rayDirection && endpoint === rayEndpoint ? "is-selected" : ""}
-            key={`${rayDirection}-${rayEndpoint}`}
-            onClick={() => chooseRay(rayDirection as "left" | "right", rayEndpoint as "closed" | "open")}
-            type="button"
-          >
-            {symbol}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
 }
 
 function getPassageSetLabel(index: number, total: number) {
@@ -1260,7 +660,7 @@ function PencilWorkspace({
   );
 }
 
-function ExamToolbar({
+export function ExamToolbar({
   assessmentLabel,
   breadcrumbMiddle,
   breadcrumbCurrent,
@@ -1297,6 +697,7 @@ function ExamToolbar({
   showStatusIcon = true,
   showTimer = true,
   showWorkTools = true,
+  canEliminate = true,
   isTimerOvertime = false,
   isTimerVisible = false,
   isUserMenuOpen = false,
@@ -1343,6 +744,7 @@ function ExamToolbar({
   showStatusIcon?: boolean;
   showTimer?: boolean;
   showWorkTools?: boolean;
+  canEliminate?: boolean;
   timerText?: string;
   unansweredCount?: number;
   studentName: string;
@@ -1504,6 +906,7 @@ function ExamToolbar({
                 </button>
                 <button
                   aria-label="Eliminate answer tool"
+                  disabled={!canEliminate}
                   className={`exam-session-tool-button ${activeTool === "eliminator" ? "is-active" : ""}`}
                   data-tooltip="Answer Eliminator"
                   onClick={() => onSelectTool?.("eliminator")}
@@ -1930,13 +1333,9 @@ export function ExamSessionPage() {
   };
   const mathQuestions = mathSection.questions;
   const activeMathQuestion = mathQuestions[activeMathQuestionIndex] ?? mathQuestions[0];
-  const activeMathQuestionChoices = activeMathQuestion?.choices ?? [];
   const activeMathQuestionEliminatedChoiceIds = activeMathQuestion
     ? (eliminatedChoices[activeMathQuestion.id] ?? [])
     : [];
-  const activeMathQuestionSelectedChoiceIds = getSelectedChoiceIds(
-    activeMathQuestion ? selectedAnswers[activeMathQuestion.id] : undefined,
-  );
   const standaloneSection = examContent.standaloneSection;
   const activePassageSet = examContent.passageSets[activePassageSetIndex] ?? examContent.passageSets[0];
   const activeQuestion = activePassageSet.questions[activeQuestionIndex] ?? activePassageSet.questions[0];
@@ -2725,139 +2124,6 @@ export function ExamSessionPage() {
     return html ? <AuthoredRichText html={html} highlights={textHighlights[highlightKey]} /> : renderHighlightedText(text, highlightKey);
   }
 
-  function renderMathAuthoredText(text: string, highlightKey: string) {
-    return text
-      .split(/(\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\))/g)
-      .filter(Boolean)
-      .map((part, index) => {
-        if (part.startsWith("\\[") && part.endsWith("\\]")) {
-          return (
-            <span key={`${highlightKey}-display-math-${index}`}>
-              {renderKatexExpression(part.slice(2, -2), true)}
-            </span>
-          );
-        }
-        if (part.startsWith("\\(") && part.endsWith("\\)")) {
-          return (
-            <span key={`${highlightKey}-inline-math-${index}`}>
-              {renderKatexExpression(part.slice(2, -2))}
-            </span>
-          );
-        }
-        return (
-          <span key={`${highlightKey}-text-${index}`}>
-            {renderHighlightedText(part, `${highlightKey}:text:${index}`)}
-          </span>
-        );
-      });
-  }
-
-  function renderMathRichText(html: string | undefined, text: string, highlightKey: string) {
-    if (!html) {
-      return renderMathAuthoredText(text, highlightKey);
-    }
-
-    const container = document.createElement("span");
-    container.innerHTML = html;
-    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
-    const textNodes: Text[] = [];
-    while (walker.nextNode()) {
-      textNodes.push(walker.currentNode as Text);
-    }
-    textNodes.forEach((textNode) => {
-      const parts = (textNode.nodeValue ?? "")
-        .split(/(\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\))/g)
-        .filter(Boolean);
-      const hasMath = parts.some(
-        (part) =>
-          (part.startsWith("\\[") && part.endsWith("\\]")) ||
-          (part.startsWith("\\(") && part.endsWith("\\)")),
-      );
-      if (!hasMath) return;
-      const fragment = document.createDocumentFragment();
-      parts.forEach((part) => {
-        const isDisplayMath = part.startsWith("\\[") && part.endsWith("\\]");
-        const isInlineMath = part.startsWith("\\(") && part.endsWith("\\)");
-        if (!isDisplayMath && !isInlineMath) {
-          fragment.appendChild(document.createTextNode(part));
-          return;
-        }
-        const span = document.createElement("span");
-        span.className = isDisplayMath ? "exam-katex-display" : "exam-katex-inline";
-        span.innerHTML = katex.renderToString(part.slice(2, -2), {
-          displayMode: isDisplayMath,
-          output: "htmlAndMathml",
-          strict: false,
-          throwOnError: false,
-          trust: false,
-        });
-        fragment.appendChild(span);
-      });
-      textNode.replaceWith(fragment);
-    });
-
-    return <span className="exam-rich-text" dangerouslySetInnerHTML={{ __html: container.innerHTML }} />;
-  }
-
-  function renderInlineDropdownText(question: ExamQuestion, template: string, templateIndex: number) {
-    const dropdownAnswers = getCategoryPlacements(selectedAnswers[question.id]);
-
-    return template
-      .split(/(\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)|\{\{[\w-]+\}\})/g)
-      .filter(Boolean)
-      .map((part, partIndex) => {
-        if (part.startsWith("\\[") && part.endsWith("\\]")) {
-          return (
-            <span className="exam-katex-template-display" key={`display-math-${templateIndex}-${partIndex}`}>
-              {renderKatexExpression(part.slice(2, -2), true)}
-            </span>
-          );
-        }
-        if (part.startsWith("\\(") && part.endsWith("\\)")) {
-          return (
-            <span className="exam-inline-math" key={`math-${templateIndex}-${partIndex}`}>
-              {renderInlineMathText(part.slice(2, -2))}
-            </span>
-          );
-        }
-
-        if (part.startsWith("{{") && part.endsWith("}}")) {
-          const dropdownId = part.slice(2, -2);
-          const dropdown = question.dropdowns?.find((candidate) => candidate.id === dropdownId);
-
-          if (!dropdown) {
-            return null;
-          }
-
-          return (
-            <select
-              aria-label="Choose answer"
-              className="exam-inline-dropdown-select"
-              key={`dropdown-${templateIndex}-${partIndex}`}
-              onChange={(event) =>
-                handleChangeInlineDropdownAnswer(question.id, dropdown.id, event.target.value)
-              }
-              value={dropdownAnswers[dropdown.id] ?? ""}
-            >
-              <option value="">Choose...</option>
-              {dropdown.options.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.text}
-                </option>
-              ))}
-            </select>
-          );
-        }
-
-        return part.split("\n").map((line, lineIndex, lines) => (
-          <span key={`text-${templateIndex}-${partIndex}-${lineIndex}`}>
-            {line}
-            {lineIndex < lines.length - 1 ? <br /> : null}
-          </span>
-        ));
-      });
-  }
-
   function handlePlaceCategoryItem(question: ExamQuestion, itemId: string, categoryId: string) {
     setSelectedAnswers((currentAnswers) => {
       const currentPlacements = getCategoryPlacements(currentAnswers[question.id]);
@@ -3184,6 +2450,7 @@ export function ExamSessionPage() {
   }
 
   function handleMathPrevious() {
+    if (!isTeacherPreviewSession && !isFastForwardEnabled) return;
     clearTransientExamUi();
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
@@ -3330,201 +2597,35 @@ export function ExamSessionPage() {
     const mathNoteKey = mathSection.id;
 
     return (
-      <main className="exam-session-shell">
+      <main className="exam-session-shell is-math-session">
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={`${activeMathQuestionIndex + 1} OF ${mathQuestions.length}`}
           breadcrumbMiddle={mathSection.label.toUpperCase()}
           {...reviewToolbarProps}
           isNotepadOpen={isNotepadOpen}
-          isPreviousActive
+          isPreviousActive={isTeacherPreviewSession || isFastForwardEnabled}
+          showReviewTools={isTeacherPreviewSession || isFastForwardEnabled}
           onNext={handleMathNext}
           onPrevious={handleMathPrevious}
           onSelectTool={handleSelectTool}
           showExhibits
+          canEliminate={['multiple_choice', 'multi_select'].includes(activeMathQuestion.type)}
           studentName={studentName}
         />
 
-        <section
-          aria-labelledby={`math-title-${activeMathQuestion.id}`}
-          className={`exam-standalone-document exam-math-document ${
-            isTextEntryQuestion(activeMathQuestion) ? "is-text-entry" : ""
-          } ${isInlineDropdownQuestion(activeMathQuestion) ? "is-inline-dropdown" : ""} ${
-            activeMathQuestion.image ? "is-image-question" : ""
-          } ${activeMathQuestion.type === "math_drag_drop" ? "is-math-drag" : ""
-          }`}
-          onMouseUp={handleExamTextSelection}
-        >
-          <form key={activeMathQuestion.id} className="exam-standalone-panel exam-math-panel" onSubmit={event => event.preventDefault()}>
-            <QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeMathQuestion.id} />
-            {activeMathQuestion.image ? (
-              <figure className="exam-question-image">
-                <img alt={activeMathQuestion.image.alt} src={activeMathQuestion.image.src} />
-                {activeMathQuestion.image.caption ? (
-                  <figcaption>{activeMathQuestion.image.caption}</figcaption>
-                ) : null}
-              </figure>
-            ) : null}
-
-            <h1
-              className="exam-highlightable"
-              data-highlight-key={`prompt:${activeMathQuestion.id}`}
-              id={`math-title-${activeMathQuestion.id}`}
-            >
-              {renderMathRichText(
-                activeMathQuestion.promptHtml,
-                activeMathQuestion.prompt,
-                `prompt:${activeMathQuestion.id}`,
-              )}
-            </h1>
-
-            {activeMathQuestion.stimulus ? (
-              <div
-                className="exam-standalone-stimulus exam-highlightable"
-                data-highlight-key={`stimulus:${activeMathQuestion.id}`}
-              >
-                {renderMathRichText(
-                  activeMathQuestion.stimulusHtml,
-                  activeMathQuestion.stimulus,
-                  `stimulus:${activeMathQuestion.id}`,
-                )}
-              </div>
-            ) : null}
-
-            {activeMathQuestion.instructions ? (
-              <p
-                className="exam-standalone-instructions exam-highlightable"
-                data-highlight-key={`instructions:${activeMathQuestion.id}`}
-              >
-                {renderMathRichText(
-                  activeMathQuestion.instructionsHtml,
-                  activeMathQuestion.instructions,
-                  `instructions:${activeMathQuestion.id}`,
-                )}
-              </p>
-            ) : null}
-
-            {activeMathQuestion.type === "short_response" ? (
-              <label className="exam-math-text-entry is-short-response">
-                <span className="sr-only">Answer</span>
-                <input
-                  aria-label="Answer"
-                  onChange={(event) =>
-                    handleChangeTextEntry(activeMathQuestion.id, event.target.value)
-                  }
-                  type="text"
-                  value={getTextEntryValue(selectedAnswers[activeMathQuestion.id])}
-                />
-              </label>
-            ) : usesMathEntryKeypad(activeMathQuestion) ? (
-              <MathEntryResponse
-                key={activeMathQuestion.id}
-                layout={activeMathQuestion.entryLayout ?? "plain"}
-                onChange={(value) => handleChangeTextEntry(activeMathQuestion.id, value)}
-                value={getTextEntryValue(selectedAnswers[activeMathQuestion.id])}
-              />
-            ) : activeMathQuestion.type === "math_drag_drop" ? (
-              <MathDragDropResponse
-                answer={getCategoryPlacements(selectedAnswers[activeMathQuestion.id])}
-                onChange={(value) => handleChangeStructuredAnswer(activeMathQuestion.id, value)}
-                question={activeMathQuestion}
-              />
-            ) : activeMathQuestion.type === "graph_point_select" ? (
-              <GraphPointResponse
-                onToggle={(pointId) => handleToggleMultiSelectAnswer(activeMathQuestion, pointId)}
-                question={activeMathQuestion}
-                selectedIds={getSelectedChoiceIds(selectedAnswers[activeMathQuestion.id])}
-              />
-            ) : activeMathQuestion.type === "number_line_response" ? (
-              <NumberLineResponse
-                answer={getCategoryPlacements(selectedAnswers[activeMathQuestion.id])}
-                onChange={(value) => handleChangeStructuredAnswer(activeMathQuestion.id, value)}
-                question={activeMathQuestion}
-              />
-            ) : isInlineDropdownQuestion(activeMathQuestion) && activeMathQuestion.dropdownContent ? (
-              <div className="exam-inline-dropdown-content">
-                {activeMathQuestion.dropdownContent.map((line, index) => (
-                  <p key={`${activeMathQuestion.id}-dropdown-line-${index}`}>
-                    {renderInlineDropdownText(activeMathQuestion, line, index)}
-                  </p>
-                ))}
-              </div>
-            ) : activeMathQuestionChoices.length > 0 ? (
-              <div className="exam-choice-list exam-standalone-choice-list">
-                {activeMathQuestionChoices.map((choice) => (
-                  <label
-                    className={`exam-choice ${
-                      activeMathQuestionEliminatedChoiceIds.includes(choice.id) ? "is-eliminated" : ""
-                    }`}
-                    key={choice.id}
-                    onClick={(event) => handleChoiceLabelClick(event, activeMathQuestion, choice.id)}
-                  >
-                    <input
-                      checked={
-                        activeMathQuestion.type === "multi_select"
-                          ? activeMathQuestionSelectedChoiceIds.includes(choice.id)
-                          : selectedAnswers[activeMathQuestion.id] === choice.id
-                      }
-                      name={activeMathQuestion.id}
-                      onChange={() => handleChoiceClick(activeMathQuestion, choice.id)}
-                      type={activeMathQuestion.type === "multi_select" ? "checkbox" : "radio"}
-                    />
-                    <span>{choice.id}.</span>
-                    <span
-                      aria-label={choice.math ? choice.text : undefined}
-                      className={
-                        choice.math
-                          ? "exam-choice-math"
-                          : choice.image?.src || choice.numberLine
-                            ? "exam-choice-visual"
-                            : "exam-highlightable"
-                      }
-                      data-highlight-key={
-                        choice.math || choice.image?.src || choice.numberLine
-                          ? undefined
-                          : `choice:${activeMathQuestion.id}:${choice.id}`
-                      }
-                    >
-                      {choice.image?.src ? (
-                        <img
-                          alt={choice.image.alt || choice.text}
-                          src={choice.image.src}
-                        />
-                      ) : choice.numberLine ? (
-                        <ExamNumberLineGraphic
-                          description={choice.text}
-                          numberLine={choice.numberLine}
-                        />
-                      ) : choice.math ? (
-                        renderMathExpression(choice.math)
-                      ) : (
-                        renderMathRichText(
-                          choice.html,
-                          choice.text,
-                          `choice:${activeMathQuestion.id}:${choice.id}`,
-                        )
-                      )}
-                    </span>
-                    {activeMathQuestionEliminatedChoiceIds.includes(choice.id) ? (
-                      <svg
-                        aria-hidden="true"
-                        className="exam-choice-eliminator-x"
-                        focusable="false"
-                        preserveAspectRatio="none"
-                        viewBox="0 0 100 100"
-                      >
-                        <line vectorEffect="non-scaling-stroke" x1="0" x2="100" y1="0" y2="100" />
-                        <line vectorEffect="non-scaling-stroke" x1="0" x2="100" y1="100" y2="0" />
-                      </svg>
-                    ) : null}
-                  </label>
-                ))}
-              </div>
-            ) : (
-              <p className="exam-question-placeholder">This math question type is not ready in the player yet.</p>
-            )}
-          </form>
-        </section>
+        <ExamMathQuestion
+          key={activeMathQuestion.id} question={activeMathQuestion}
+          answer={selectedAnswers[activeMathQuestion.id]}
+          allowExtraSelections={isFastForwardEnabled}
+          onChange={value => setSelectedAnswers(current => ({ ...current, [activeMathQuestion.id]: value }))}
+          eliminatedIds={activeMathQuestionEliminatedChoiceIds}
+          onSelectChoice={id => handleChoiceClick(activeMathQuestion, id)}
+          onTogglePoint={id => handleToggleMultiSelectAnswer(activeMathQuestion, id)}
+          onChoiceLabelClick={(event, id) => handleChoiceLabelClick(event, activeMathQuestion, id)}
+          onTextSelection={handleExamTextSelection}
+          renderText={(html, text, key) => renderMathRichText(html, text, key, (value, id) => renderMathAuthoredText(value, id, renderHighlightedText))}
+        ><QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeMathQuestion.id} /></ExamMathQuestion>
 
         {highlightToolbar ? (
           <div

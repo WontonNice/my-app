@@ -19,6 +19,20 @@ test("category filter counts include empty categories and default legacy content
   assert.deepEqual(Array.from(ui.passageCategoryCounts([]), category => category.count), [0, 0, 0]);
 });
 
+test("catalog search matches separate terms across source fields, ignores accents and ranks titles first", () => {
+  const { ui } = setup();
+  const passages = [
+    { id: 'body', title: 'History', questions: [{ topic: 'Evidence', prompt: 'At dusk we read a poem.' }] },
+    { id: 'title', title: 'At Dusk', versionLabel: 'Form B', questions: [{ topic: 'Evidence', prompt: 'Explain the image.' }] },
+    { id: 'accent', title: 'Café reading', questions: [] },
+  ];
+  assert.deepEqual(Array.from(ui.searchPassages(passages, 'dusk evidence'), item => item.id), ['title', 'body']);
+  assert.deepEqual(Array.from(ui.searchPassages(passages, 'form dusk'), item => item.id), ['title']);
+  assert.deepEqual(Array.from(ui.searchPassages(passages, 'cafe'), item => item.id), ['accent']);
+  assert.equal(ui.searchPassages(passages, 'missing dusk').length, 0);
+  assert.deepEqual(passages.map(item => item.id), ['body', 'title', 'accent']);
+});
+
 test("passage library category and question-count sorting compose with format filtering and paging", () => {
   const { app, ui } = setup();
   app.state = { passageCategories: [{ value: 'official_handbook', label: 'Official Handbook' }, { value: 'prestige', label: 'Prestige' }, { value: 'miscellaneous', label: 'Miscellaneous' }] };
@@ -262,4 +276,95 @@ test("universal prompt is the shared contract with source-only answers and compl
   for (const text of ["Entire packet", "Fixture.pdf", "Key.pdf", "nathan-tutors-official-passage-v1", "DO NOT solve", "NEVER generate an explanation", "WHOLE passage", "sourceQuestion", "topicConfidence", "mathQuestions", "public-domain", "Return ONLY"]) assert.ok(prompt.includes(text), text);
   assert.ok(prompt.includes('"Algebra"'));
   assert.doesNotMatch(prompt, /Solve each question carefully|generated from an official keyed answer/);
+});
+
+test('item task and question state are associated with stable IDs when returning to a passage', () => {
+  const { app, ui } = setup([{ id: 'q-stable' }]);
+  ui.preparePassage(); ui.passageSection = 'questions'; ui.selectedQuestionId = 'q-stable';
+  app.selectedPassageId = 'passage-b'; ui.preparePassage();
+  assert.equal(ui.passageSection, 'content');
+  app.selectedPassageId = 'passage-a'; app.passageDraft.title = 'Renamed title'; ui.preparePassage();
+  assert.equal(ui.passageSection, 'questions'); assert.equal(ui.selectedQuestionId, 'q-stable');
+});
+
+test('review identifies absent keys and explanations without supplying either or reordering questions', () => {
+  const questions = [{ id: 'q-2', type: 'multiple_choice', prompt: 'First source question', choices: [{ id: 'A', text: 'One' }, { id: 'B', text: 'Two' }], correctChoiceId: '', explanation: '' }, { id: 'q-1', type: 'multiple_choice', prompt: 'Second source question', choices: [], correctChoiceId: 'B', explanation: 'Source explanation' }];
+  const { app, ui } = setup(questions);
+  Object.assign(app.passageDraft, { title: 'Fixture', text: 'Exact text', passageType: 'literary', visuals: [{ state: 'unresolved', description: 'Original chart' }] });
+  const before = structuredClone(app.passageDraft);
+  const issues = ui.passageIssues(app.passageDraft);
+  assert.ok(issues.some(issue => issue.questionId === 'q-2' && /missing answer/.test(issue.message)));
+  assert.ok(issues.some(issue => issue.questionId === 'q-2' && /explanation/.test(issue.message)));
+  assert.ok(issues.some(issue => issue.panel === 'media' && /Original chart/.test(issue.message)));
+  assert.deepEqual(app.passageDraft, before);
+});
+
+test('failed-save feedback survives request cleanup and dirty work remains dirty', () => {
+  const app = { passageDirty: true, saving: true, passageDraft: { sourceHash: 'saved-source' } };
+  const badge = { textContent: '', dataset: {} };
+  const document = { body: { dataset: { workspace: 'passages' } }, querySelectorAll: () => [badge] };
+  const ui = vm.runInNewContext(`${source}\nstudioUI;`, { app, document, URL, DocumentImport });
+  ui.syncSaveState('error'); app.saving = false; ui.syncSaveState();
+  assert.equal(badge.textContent, 'Save failed · changes retained'); assert.equal(app.passageDirty, true);
+  app.saving = true; ui.syncSaveState(''); assert.equal(badge.textContent, 'Saving…');
+  app.saving = false; app.passageDirty = false; ui.syncSaveState(); assert.equal(badge.textContent, 'Saved');
+});
+
+test('layout preferences fail safely when browser storage is unavailable', () => {
+  const { ui } = setup();
+  assert.equal(ui.readPreference('library-hidden', false), false);
+  assert.doesNotThrow(() => ui.remember('support-width', 40));
+});
+
+test('private question properties do not rebuild an active exam canvas, while visible edits and keys do', () => {
+  const { app, ui } = setup([{ id: 'stable-question', type: 'multiple_choice', prompt: 'Source prompt', choices: [{ id: 'A', text: 'Original choice' }], correctChoiceId: 'A', topic: 'Inference', points: 1, explanation: 'Source explanation' }]);
+  Object.assign(app.passageDraft, { title: 'Source title', text: 'Paragraph one.\n\nParagraph two.', richText: '<p>Paragraph one.</p><p>Paragraph two.</p>' });
+  const original = ui.examRenderKey();
+  const q = app.passageDraft.questions[0];
+  q.topic = 'Tone & Mood'; q.explanation = 'Long private rationale'; q.explanationHtml = '<p>Long private rationale</p>'; q.points = 2; q.review = { sourceReviewed: true };
+  assert.equal(ui.examRenderKey(), original, 'inspector-only edits must not replace the iframe or its selection');
+  q.choices[0].text = 'Edited source choice'; assert.notEqual(ui.examRenderKey(), original);
+  q.choices[0].text = 'Original choice'; q.correctChoiceId = ''; assert.notEqual(ui.examRenderKey(), original);
+  q.correctChoiceId = 'A'; app.passageDraft.title = 'Renamed inline'; assert.notEqual(ui.examRenderKey(), original);
+});
+
+test('direct block commits preserve legacy poem separators, indentation, repeated words and untouched characters', () => {
+  const { ui } = setup();
+  const text = 'First line,\n\n        Second line with wheedling in it.\n\nThird line.\n';
+  const previous = ['First line,', 'Second line with\u00a0wheedling\u00a0in it.', 'Third line.', ''];
+  const next = [...previous]; next[0] += ' edited';
+  assert.equal(ui.reconcileExamText(text, previous, next, 'poem'), text.replace('First line,', 'First line, edited'));
+  assert.equal(ui.reconcileExamText(text, previous, previous, 'poem'), text);
+  assert.equal(ui.reconcileExamText('Word.\n\nWord.', ['Word.', 'Word.'], ['Word.', 'Second word.'], 'prose'), 'Word.\n\nSecond word.');
+  assert.equal(ui.reconcileExamText('', [''], ['New content.'], 'prose'), 'New content.');
+  assert.equal(ui.reconcileExamText('One.\n\nTwo.', ['One.', 'Two.'], ['One.\n\nNew paragraph.', 'Two.'], 'prose'), 'One.\n\nNew paragraph.\n\nTwo.');
+  assert.equal(ui.reconcileExamText('One.\n\nTwo.', ['One.', 'Two.'], ['One.\n\n', 'Two.'], 'prose', true), 'One.\n\n\n\nTwo.');
+  assert.equal(ui.reconcileExamText('One.\n\n\n\nTwo.', ['One.', '', 'Two.'], ['One.', 'New.', 'Two.'], 'prose'), 'One.\n\nNew.\n\nTwo.');
+});
+
+test('direct authoring adds stable source-block markers without changing student passage markup', async () => {
+  const html = await readFile(new URL('./content-studio.html', import.meta.url), 'utf8');
+  const start = html.indexOf('    function studentPassageMarkup(');
+  const end = html.indexOf('    function studentQuestionMarkup(', start);
+  const markup = vm.runInNewContext(`${html.slice(start, end)}\nstudentPassageMarkup;`, {
+    escapeHtml: text => String(text).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;'),
+    richBlocksFromPassage: passage => passage.blocks || null,
+    location: { origin: 'http://127.0.0.1:4320' },
+    numberRichSentences: vm.runInNewContext(`${html.slice(html.indexOf('    function numberRichSentences('), start)}\nnumberRichSentences;`),
+  });
+  for (const format of ['prose', 'poem', 'sentence_prose']) {
+    const passage = { title: 'Exact title', text: 'First paragraph.\n\nSecond paragraph.', format };
+    const student = markup(passage);
+    const editing = markup(passage, true);
+    assert.equal(editing.replace(/ data-author-block="\d+" data-author-line="\d+"/g, '').replace(/<span data-generated-number contenteditable="false">([^<]*)<\/span>/g, '$1'), student);
+    assert.match(editing, /data-author-block="0"/);
+    assert.doesNotMatch(student, /data-author-|contenteditable/);
+  }
+  const rich = { title: 'Source layout', text: 'First.\n\nHeading\n\nSecond.', format: 'prose', preserveSourceLayout: true, blocks: [{ text: 'First.', html: '<em>First.</em>' }, { text: 'Heading', html: 'Heading', kind: 'heading' }, { text: 'Second.', html: 'Second.', numbered: false }] };
+  assert.equal(markup(rich, true).replace(/ data-author-block="\d+" data-author-line="\d+"/g, ''), markup(rich));
+  assert.match(markup({ title: '', text: '', format: 'prose' }, true), /data-author-block="0"/);
+  assert.doesNotMatch(markup({ title: '', text: '', format: 'prose' }, true), /content has not been added|Untitled Passage/);
+  const numbered = markup({ title: 'Labels', text: 'The source says (1) as a label. Next sentence.', format: 'sentence_prose' }, true);
+  assert.match(numbered, /data-generated-number/);
+  assert.match(numbered.replace(/<span data-generated-number contenteditable="false">[^<]*<\/span>/g, ''), /The source says \(1\) as a label\. Next sentence\./);
 });

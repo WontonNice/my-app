@@ -5,10 +5,10 @@ import { BoardLibrary } from "../client/src/features/boards/BoardLibrary";
 import { BoardSession } from "../client/src/features/boards/session";
 import { boardApi } from "../client/src/features/boards/api";
 import "../client/src/styles/global.css";
-const params = new URLSearchParams(location.search), token = (params.get("as") || sessionStorage.getItem("board-qa-role")) === "student" ? "student" : "teacher";
+const params = new URLSearchParams(location.search), requested = params.get("as") || sessionStorage.getItem("board-qa-role"), token = requested === "student" || requested === "other" ? requested : "teacher";
 function PreviewBoard({ boardId }: { boardId: string }) {
   const [session, setSession] = useState<BoardSession | null>(null), [error, setError] = useState("");
-  useEffect(() => { let active = true; let current: BoardSession | undefined; void boardApi(token).get(boardId).then(async access => { if (!active) return; current = new BoardSession(access.board, access.canManage, token === "teacher" ? "33333333-3333-4333-8333-333333333333" : "11111111-1111-4111-8111-111111111111"); setSession(current); await current.start(); }).catch(error => { if (active) setError(String(error)); }); return () => { active = false; current?.stop(); }; }, [boardId]);
+  useEffect(() => { let active = true; let current: BoardSession | undefined; void boardApi(token).get(boardId).then(async access => { if (!active) return; current = new BoardSession(access.board, access.canManage, token === "teacher" ? "33333333-3333-4333-8333-333333333333" : token === "other" ? "22222222-2222-4222-8222-222222222222" : "11111111-1111-4111-8111-111111111111"); setSession(current); await current.start(); }).catch(error => { if (active) setError(String(error)); }); return () => { active = false; current?.stop(); }; }, [boardId]);
   if (error) return <p role="alert">{error}</p>;
   return session ? <BoardCanvas session={session} token={token} returnHref={`/?library=1&as=${token}`} /> : <p>Loading isolated board QA…</p>;
 }

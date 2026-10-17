@@ -1,16 +1,55 @@
 # Nathan Tutors Content Studio
 
+To move a math diagram into the prompt, use **Move question image between text
+lines** below the question prompt, or **Move between text lines** in Question
+image. Choose an entry in **Image position**, then click **Place image here**.
+For a precise position within a sentence, click that spot in the prompt while
+the placement panel is open. Click an image already in the prompt to resize,
+describe, remove, or move it again. Save the Math section to keep the placement.
+
 Run the centralized local editor from the repository root:
 
 ```powershell
 npm run content-editor
 ```
 
-The Studio opens at `http://127.0.0.1:4319` and provides six connected
+The Studio opens at `http://127.0.0.1:4319` and provides seven connected
 workspaces:
 
-- **Exam passages** opens the first passage immediately in a compact,
-  sectioned editor with persistent actions and a sticky student preview. It
+The same navigation bar stays at the top of all seven workspaces. Direct links
+switch editors on desktop; a workspace selector serves smaller screens. Library,
+saved import drafts and Help keep the same position. The passage catalog puts
+search first, with Reading/Revising shortcuts and on-demand Filters and Select
+menus. Search matches separate words across titles, IDs, versions, sources and
+questions, prioritizing title matches and ignoring accents.
+
+Math questions use **Main category** (`topic`) for sorting and **Specific topic**
+(`subtopic`) for detailed analysis. Choose both for every new question. Specific
+topics belong to their main category; changing the main category clears the
+specific choice. Existing unclassified questions stay editable and are marked
+**Unclassified** until reviewed. Their original main categories are preserved.
+
+In **Math → Manage categories**, add, rename or remove unused main categories
+and specific topics. Renaming updates existing math source labels, the matching
+assessment registry and generated extraction prompts. Used labels must be
+reassigned before removal. Save the current question draft before managing this
+shared taxonomy. The lists live in `tools/math-topics.json`.
+
+The math question outline supports search, question-number jumps and filters for
+both categories or **Needs classification**. Question type and points live in
+**Question settings**; MathLive, formulas, images, answer keys, structured
+responses, reordering and Student view retain their existing editors. Analytics
+offers **Group by → Math specific topic** and an evidence filter that opens the
+matching responses. Main skill summaries remain compatible with older results.
+
+- **Exam passages** opens the first passage in the editable exam presentation,
+  using the same document, content dimensions, and stylesheet as Student view.
+  A compact item bar retains version, mode, save
+  state, and saving. **Focus** hides secondary tools. **Tools** opens one
+  overlay inspector for settings, definitions, media, or review; **Question
+  details** exposes the selected question's topic, points, and explanation.
+  Inspectors never squeeze the exam columns. **Bulk editing** retains the
+  complete rich editor, question structures, ordering, and batch explanations. It
   creates and edits passage sets in `client/src/content/exams/passageSets`.
   Each passage has a Study Hall type (Informational, Literary, Poem, or Long
   reading); saving a new passage automatically registers it in the student
@@ -45,6 +84,12 @@ workspaces:
   bank in `client/src/content/practice/questionBanks`. Its in-editor topic
   manager can add, rename, describe, reorder, and safely remove empty topics;
   the ordered topic registry is stored in `tools/practice-topics.json`.
+- **Question Bank · SHSAT Lab** retains capture imports, draft review, publication,
+  filters, bulk publication and fixed practice sets for learning-plan assignments.
+
+Choose a section from the header's **Workspace** selector. **Saved import drafts**
+stays in the header. See [the capability map and validation notes](CONTENT_STUDIO_REDESIGN.md)
+for the complete workspace inventory and remaining manual checks.
 
 The existing `npm run exam-editor` and `npm run question-editor` commands are
 compatibility aliases that open this same centralized Studio.
@@ -80,17 +125,25 @@ serve the workspace assets, then refresh the browser.
 
 ## Editing workflow
 
-- **Passage / Questions / Settings / Media** switches the active editing panel
-  while retaining the entire draft. Passage text opens first; Settings contains
-  introductory text, formatting, categorization, and advanced card fields.
+- **Passage / Questions** switches the main editing task while retaining the
+  entire draft. Settings, Media, Definitions and Review open one supporting panel
+  at a time. Settings retains introductory text, formatting type, categorization,
+  source information and advanced card fields. Definitions has Locate, Edit and
+  Remove controls for each annotated occurrence.
 - **Questions** opens one complete question editor at a time. Use Previous / Next,
   the question dropdown, or the expandable outline to navigate. **All questions**
   restores editing of the whole set. Reordering keeps the selected question in
   focus; adding a question opens it immediately. Student view opens the selected
   question when launched from this panel.
-- **Library** and **Hide preview** free up writing space. On desktop, the library,
-  editor, and preview scroll independently while primary actions stay visible.
-  Narrow screens stack the panels and keep save controls accessible.
+- **Edit / Split preview / Student view** control draft preview. The supporting
+  panel is resizable with pointer or keyboard; its width and library visibility
+  are remembered. Below 1180 CSS pixels, Preview shows one panel at a time.
+  Library, writing surface and student preview own their respective scrolling.
+- Answer explanations are inside **Questions**. **Batch explanations** opens
+  every explanation together without changing their question associations.
+- Existing versions are selected in the item header. **More** holds creation of
+  another version and confirmed passage deletion. The library's **Import** menu
+  holds document import and SAT Crash Course import.
 - Passage and Part B libraries have search, type filters, source/alphabetical
   sorting, result counts, and pages of 50 records. Passage search also finds
   question prompts and topics. Exam lists and assembly libraries have search.
@@ -109,6 +162,19 @@ serve the workspace assets, then refresh the browser.
 - **Ctrl+S / Cmd+S** invokes the active workspace's save action. In Regular
   practice it validates first when no publishable preview is available. Existing
   confirmation and validation behavior still applies.
+  In an imported review draft, the shortcut saves the private draft. Publication
+  remains an explicit separate action. Failed saves retain dirty work; saving
+  prevents duplicate requests and edits being overwritten by a response.
+
+For browser QA with disposable content and the real writers/renderers:
+
+```powershell
+node tools/preview-content-studio.mjs
+```
+
+This uses port 4320 and an isolated copy under ignored `tools/.content-drafts/qa-*`.
+It never edits the authored source records. `--baseline --port=4322` opens the Git
+HEAD UI against another disposable copy for before/after comparisons.
 
 ## Visual math authoring
 

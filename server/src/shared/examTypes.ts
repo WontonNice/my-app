@@ -134,6 +134,8 @@ export type ExamQuestionImage = {
 };
 
 export type ExamQuestion = {
+  /** Explicit text matching for captured answer sheets; legacy exams keep their existing defaults. */
+  textMatchMode?: "exact" | "normalized";
   allowReuse?: boolean;
   categories?: ExamCategoryTarget[];
   categoryCapacity?: 1;
@@ -166,6 +168,8 @@ export type ExamQuestion = {
   stimulusHtml?: string;
   tableHeaders?: ExamTableHeaders;
   topic: string;
+  /** Detailed math skill within the main topic; absent on legacy and English questions. */
+  subtopic?: string;
   transitionBlankAfter?: string;
   transitionBlankBefore?: string;
   transitionSentenceNumber?: string;

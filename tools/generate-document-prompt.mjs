@@ -1,9 +1,8 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import contract from './document-import.cjs';
 const topics = JSON.parse(await readFile(new URL('./content-topics.json', import.meta.url), 'utf8'));
-const server = await readFile(new URL('./content-studio.mjs', import.meta.url), 'utf8');
-const math = JSON.parse(server.match(/const mathTopics = (\[[\s\S]*?\]);/)[1].replace(/,\s*]/g, ']'));
-const taxonomy = { reading: topics.slice(0, 8), revising_editing_a: topics.slice(8), math };
+const mathCategories = JSON.parse(await readFile(new URL('./math-topics.json', import.meta.url), 'utf8')).categories;
+const taxonomy = { reading: topics.slice(0, 8), revising_editing_a: topics.slice(8), math: mathCategories.map(category => category.label), mathSpecificTopics: Object.fromEntries(mathCategories.map(category => [category.label, category.topics])) };
 const artifacts = {
   'DOCUMENT_EXTRACTION_PROMPT.txt': contract.prompt(taxonomy) + '\n',
   'document-import-contract.json': JSON.stringify({ ...contract.schema, taxonomy }, null, 2) + '\n',

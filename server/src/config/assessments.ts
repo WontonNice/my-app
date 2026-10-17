@@ -35,6 +35,7 @@ export type AssessmentQuestion = {
     points: number;
     prompt: string;
     topic: string;
+    subtopic?: string;
     type: QuestionType;
 };
 

@@ -1,11 +1,12 @@
-import { randomInt, randomUUID } from "node:crypto";
-import { Router } from "express";
+import { randomUUID } from "node:crypto";
+import { Router, type ErrorRequestHandler } from "express";
+import type { User } from "@supabase/supabase-js";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { supabase } from "../lib/supabase";
-import { hasAssignedContent, recordPlanCompletion } from "../lib/learningPlanStore";
+import { hasAssignedContent, learningCatalog, recordPlanCompletion } from "../lib/learningPlanStore";
 import { libraryContentKind, readQuestionBank } from "../lib/questionBank";
 import { gradeBankSet } from "../shared/questionBank";
-import { getMergedLibraryBook, libraryBookAccessIds } from "../lib/libraryBooks";
+import { canonicalLibraryBookId, getMergedLibraryBook, libraryBookAccessIds } from "../lib/libraryBooks";
 import { gradeLibraryBook } from "../shared/libraryBooks";
 
 type QuestionStat = {
@@ -47,22 +48,12 @@ type LibraryCorrectionRow = {
     user_id: string;
 };
 
-type LibraryBookRow = {
-    access_code: string;
-    book_id: string;
-    created_at: string;
-    created_by: string;
-    title: string;
-    updated_at: string;
-};
-
 type FallbackLibraryProgress = {
     attempts: LibraryAttemptRow[];
     correction: LibraryCorrectionRow | null;
     unlockedAt: string | null;
 };
 
-const accessCodeAlphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
 const bookIdPattern = /^[a-zA-Z0-9][a-zA-Z0-9._-]{0,199}$/;
 const fallbackProgressPrefix = "english-library:";
 
@@ -72,14 +63,6 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function isMissingLibraryTable(error: { code?: string; message?: string } | null | undefined) {
     return error?.code === "PGRST205" || Boolean(error?.message?.includes("schema cache") && error.message.includes("library_"));
-}
-
-function normalizeAccessCode(value: unknown) {
-    return typeof value === "string" ? value.replace(/[^a-zA-Z0-9]/g, "").toUpperCase() : "";
-}
-
-function createAccessCode() {
-    return Array.from({ length: 6 }, () => accessCodeAlphabet[randomInt(0, accessCodeAlphabet.length)]).join("");
 }
 
 function isIsoDate(value: unknown): value is string {
@@ -179,64 +162,9 @@ function teacherAttempt(row: LibraryAttemptRow, correction?: LibraryCorrectionRo
 async function requireTeacher(authorizationHeader: string | undefined) {
     const authenticated = await getAuthenticatedUser(authorizationHeader);
     if (authenticated.error || !authenticated.user) return { error: authenticated.error, user: null };
-    const role = getUserRole(authenticated.user);
+    const role = authenticated.user.app_metadata.role;
     if (role !== "teacher" && role !== "admin") return { error: "Teacher access is required.", user: null };
     return { error: null, user: authenticated.user };
-}
-
-function readFallbackBookRows(value: unknown): LibraryBookRow[] {
-    if (!isRecord(value) || !isRecord(value.englishLibraryBooks)) return [];
-    return Object.values(value.englishLibraryBooks).flatMap((entry) => {
-        if (!isRecord(entry)) return [];
-        const bookId = typeof entry.bookId === "string" ? entry.bookId : "";
-        const accessCode = typeof entry.accessCode === "string" ? entry.accessCode : "";
-        const title = typeof entry.title === "string" ? entry.title : "";
-        const createdBy = typeof entry.createdBy === "string" ? entry.createdBy : "";
-        const createdAt = typeof entry.createdAt === "string" ? entry.createdAt : new Date(0).toISOString();
-        const updatedAt = typeof entry.updatedAt === "string" ? entry.updatedAt : createdAt;
-        if (!bookId || !accessCode || !title || !createdBy) return [];
-        return [{ access_code: accessCode, book_id: bookId, created_at: createdAt, created_by: createdBy, title, updated_at: updatedAt }];
-    });
-}
-
-async function getFallbackBooks() {
-    const result = await supabase.from("staff_dashboard_data").select("staff_user_id,dashboard_data");
-    if (result.error) return { data: [] as LibraryBookRow[], error: result.error };
-    const latestByBook = new Map<string, LibraryBookRow>();
-    (result.data ?? []).forEach((row) => {
-        readFallbackBookRows(row.dashboard_data).forEach((book) => {
-            const current = latestByBook.get(book.book_id);
-            if (!current || Date.parse(book.updated_at) > Date.parse(current.updated_at)) latestByBook.set(book.book_id, book);
-        });
-    });
-    return { data: [...latestByBook.values()], error: null };
-}
-
-async function saveFallbackBook(user: { id: string; user_metadata: Record<string, unknown> }, book: LibraryBookRow) {
-    const stored = await supabase.from("staff_dashboard_data").select("dashboard_data").eq("staff_user_id", user.id).maybeSingle();
-    if (stored.error) return { error: stored.error };
-    const legacy = isRecord(user.user_metadata.dashboard_data) ? user.user_metadata.dashboard_data : {};
-    const dashboardData = isRecord(stored.data?.dashboard_data) ? stored.data.dashboard_data : legacy;
-    const currentBooks = isRecord(dashboardData.englishLibraryBooks) ? dashboardData.englishLibraryBooks : {};
-    const saved = await supabase.from("staff_dashboard_data").upsert({
-        dashboard_data: {
-            ...dashboardData,
-            englishLibraryBooks: {
-                ...currentBooks,
-                [book.book_id]: {
-                    accessCode: book.access_code,
-                    bookId: book.book_id,
-                    createdAt: book.created_at,
-                    createdBy: book.created_by,
-                    title: book.title,
-                    updatedAt: book.updated_at,
-                },
-            },
-        },
-        staff_user_id: user.id,
-        updated_at: book.updated_at,
-    }, { onConflict: "staff_user_id" });
-    return { error: saved.error };
 }
 
 function fallbackTopicSlug(bookId: string) {
@@ -271,17 +199,25 @@ async function saveFallbackProgress(userId: string, bookId: string, progress: Fa
     }, { onConflict: "user_id,topic_slug" });
 }
 
+async function libraryRows<T>(query: (offset: number) => PromiseLike<{ data: T[] | null; error: { code?: string; message: string } | null }>, optional = false): Promise<T[]> {
+    const rows: T[] = [];
+    for (let offset = 0; ; offset += 1000) {
+        const result = await query(offset);
+        if (result.error) {
+            if (optional && isMissingLibraryTable(result.error)) return [];
+            throw Object.assign(new Error("Library storage is unavailable. Please try again."), { status: 503 });
+        }
+        rows.push(...result.data ?? []);
+        if ((result.data?.length ?? 0) < 1000) return rows;
+    }
+}
 async function getFallbackAttemptsForBook(bookId: string) {
-    const result = await supabase
-        .from("student_practice_progress")
-        .select("user_id,progress")
-        .eq("topic_slug", fallbackTopicSlug(bookId));
-    if (result.error) return { attempts: [] as LibraryAttemptRow[], corrections: [] as LibraryCorrectionRow[], error: result.error };
-    const progressRows = (result.data ?? []).map((row) => ({ userId: row.user_id as string, progress: readFallbackProgress(row.progress) }));
+    const rows = await libraryRows<{ user_id: string; progress: unknown }>(offset => supabase.from("student_practice_progress").select("user_id,progress").eq("topic_slug", fallbackTopicSlug(bookId)).order("user_id").range(offset, offset + 999));
+    const progressRows = rows.map(row => ({ userId: row.user_id, progress: readFallbackProgress(row.progress) }));
     return {
-        attempts: progressRows.flatMap((row) => row.progress.attempts.map((attempt) => ({ ...attempt, user_id: row.userId }))),
-        corrections: progressRows.flatMap((row) => row.progress.correction ? [{ ...row.progress.correction, user_id: row.userId }] : []),
-        error: null,
+        attempts: progressRows.flatMap(row => row.progress.attempts.map(attempt => ({ ...attempt, user_id: row.userId }))),
+        corrections: progressRows.flatMap(row => row.progress.correction ? [{ ...row.progress.correction, user_id: row.userId }] : []),
+        unlocked: progressRows.flatMap(row => row.progress.unlockedAt ? [{ userId: row.userId, at: row.progress.unlockedAt }] : []),
     };
 }
 
@@ -306,28 +242,15 @@ async function getStudentLibraryAttemptRows(userId: string, bookId: string) {
     return { attempts: (result.data ?? []) as LibraryAttemptRow[], error: null, fallbackProgress: null };
 }
 
-async function getBook(bookId: string): Promise<{ data: LibraryBookRow | null; error: { code?: string; message: string } | null }> {
-    const result = await supabase
-        .from("teacher_library_books")
-        .select("book_id,title,access_code,created_by,created_at,updated_at")
-        .eq("book_id", bookId)
-        .maybeSingle();
-    if (!isMissingLibraryTable(result.error)) return result as typeof result & { data: LibraryBookRow | null };
-    const fallback = await getFallbackBooks();
-    return { data: fallback.data.find((book) => book.book_id === bookId) ?? null, error: fallback.error };
+function accessTopicSlug(bookId: string) { return `${fallbackProgressPrefix}access:${canonicalLibraryBookId(bookId)}`; }
+function libraryMaterial(bookId: string) {
+    const canonical = canonicalLibraryBookId(bookId);
+    const merged = getMergedLibraryBook(canonical);
+    if (merged) return { id: canonical, title: merged.passageSet.passage.title };
+    return learningCatalog().find(item => item.id === canonical && item.subject === "English" && (item.href.includes("/library/") || item.href.startsWith("/advanced-practice/")));
 }
-
-async function accessCodeExists(accessCode: string) {
-    const result = await supabase
-        .from("teacher_library_books")
-        .select("book_id")
-        .eq("access_code", accessCode)
-        .limit(1);
-    if (isMissingLibraryTable(result.error)) {
-        const fallback = await getFallbackBooks();
-        return fallback.data.some((book) => book.access_code === accessCode);
-    }
-    return Boolean(result.data?.length);
+function activeLibraryStudent(user: Parameters<typeof getUserRole>[0]) {
+    return getUserRole(user) === "student" && !isStudentArchived(user) && getEnrolledClassIds(user.app_metadata).includes("shsat");
 }
 
 export const libraryRouter = Router();
@@ -365,167 +288,89 @@ libraryRouter.get("/teacher/bank-attempts/:studentId", async (request, response)
     response.json({ attempts, unverified });
 });
 
-libraryRouter.get("/teacher/books", async (request, response) => {
-    const authenticated = await requireTeacher(request.headers.authorization);
-    if (authenticated.error || !authenticated.user) {
-        response.status(authenticated.user ? 403 : 401).json({ message: authenticated.error });
-        return;
-    }
-    const books = await supabase
-        .from("teacher_library_books")
-        .select("book_id,title,access_code,updated_at")
-        .order("title");
-    if (books.error && !isMissingLibraryTable(books.error)) {
-        response.status(400).json({ message: books.error.message });
-        return;
-    }
-    const fallback = books.error ? await getFallbackBooks() : null;
-    if (fallback?.error) {
-        response.status(400).json({ message: fallback.error.message });
-        return;
-    }
-    response.json({
-        books: ((books.data ?? fallback?.data ?? []) as Array<{ access_code: string; book_id: string; title: string; updated_at: string }>).map((book) => ({
-            accessCode: book.access_code,
-            bookId: book.book_id,
-            title: book.title,
-            updatedAt: book.updated_at,
-        })),
-    });
-});
-
+// Codes are retired, including requests from old clients.
 libraryRouter.post("/teacher/books/:bookId/code", async (request, response) => {
     const authenticated = await requireTeacher(request.headers.authorization);
-    if (authenticated.error || !authenticated.user) {
-        response.status(authenticated.user ? 403 : 401).json({ message: authenticated.error });
-        return;
-    }
-    const bookId = request.params.bookId;
-    const title = typeof request.body?.title === "string" ? request.body.title.trim().slice(0, 300) : "";
-    if (!bookIdPattern.test(bookId) || !title) {
-        response.status(400).json({ message: "A valid library book and title are required." });
-        return;
-    }
-
-    let accessCode = createAccessCode();
-    for (let attempt = 0; attempt < 12 && await accessCodeExists(accessCode); attempt += 1) {
-        accessCode = createAccessCode();
-    }
-    const updatedAt = new Date().toISOString();
-    const bookRow: LibraryBookRow = {
-        access_code: accessCode,
-        book_id: bookId,
-        created_at: updatedAt,
-        created_by: authenticated.user.id,
-        title,
-        updated_at: updatedAt,
-    };
-    const saved = await supabase.from("teacher_library_books").upsert(bookRow, { onConflict: "book_id" }).select("book_id,title,access_code,updated_at").single();
-    if (isMissingLibraryTable(saved.error)) {
-        const fallback = await saveFallbackBook(authenticated.user, bookRow);
-        if (fallback.error) {
-            response.status(400).json({ message: fallback.error.message });
-            return;
-        }
-        response.json({
-            book: { accessCode, bookId, title, updatedAt },
-            storage: "compatibility",
-        });
-        return;
-    }
-    if (saved.error || !saved.data) {
-        response.status(400).json({ message: saved.error?.message ?? "Could not generate the book code." });
-        return;
-    }
-    response.json({
-        book: {
-            accessCode: saved.data.access_code,
-            bookId: saved.data.book_id,
-            title: saved.data.title,
-            updatedAt: saved.data.updated_at,
-        },
-    });
+    if (!authenticated.user) { response.status(403).json({ message: "Teacher access is required." }); return; }
+    response.status(410).json({ message: "Book codes have been replaced by individual student access in the English library dashboard." });
 });
 
+libraryRouter.put("/teacher/books/:bookId/students/:studentId/access", async (request, response) => {
+    const authenticated = await requireTeacher(request.headers.authorization);
+    if (!authenticated.user) { response.status(403).json({ message: "Teacher access is required." }); return; }
+    if (!bookIdPattern.test(request.params.bookId) || !/^[\da-f-]{36}$/i.test(request.params.studentId) || typeof request.body?.granted !== "boolean") {
+        response.status(400).json({ message: "A valid book, student, and access setting are required." }); return;
+    }
+    const material = libraryMaterial(request.params.bookId);
+    if (!material) { response.status(404).json({ message: "English library book not found." }); return; }
+    const target = await supabase.auth.admin.getUserById(request.params.studentId);
+    if (target.error || !target.data.user || !activeLibraryStudent(target.data.user)) { response.status(404).json({ message: "Active SHSAT student not found." }); return; }
+    const updatedAt = new Date().toISOString();
+    // Maintain the existing attempt foreign key. This opaque value cannot unlock books.
+    const catalog = await supabase.from("teacher_library_books").upsert({ book_id: material.id, title: material.title, access_code: randomUUID(), created_by: authenticated.user.id }, { onConflict: "book_id", ignoreDuplicates: true });
+    if (catalog.error && !isMissingLibraryTable(catalog.error)) { response.status(503).json({ message: "Could not save book access. Please try again." }); return; }
+    const saved = await supabase.from("student_practice_progress").upsert({ user_id: target.data.user.id, topic_slug: accessTopicSlug(material.id), progress: { granted: request.body.granted, updatedAt, updatedBy: authenticated.user.id }, updated_at: updatedAt }, { onConflict: "user_id,topic_slug" });
+    if (saved.error) { response.status(503).json({ message: "Could not save student access. Please try again." }); return; }
+    response.json({ bookId: material.id, studentId: target.data.user.id, access: { unlocked: request.body.granted, unlockedAt: request.body.granted ? updatedAt : null } });
+});
+
+async function bookHistory(bookId: string) {
+    const [attempts, corrections, fallback] = await Promise.all([
+        libraryRows<LibraryAttemptRow>(offset => supabase.from("student_library_attempts").select("*").eq("book_id", bookId).order("id").range(offset, offset + 999), true),
+        libraryRows<LibraryCorrectionRow>(offset => supabase.from("student_library_corrections").select("*").eq("book_id", bookId).order("id").range(offset, offset + 999), true),
+        getFallbackAttemptsForBook(bookId),
+    ]);
+    return { attempts: [...attempts, ...fallback.attempts], corrections: [...corrections, ...fallback.corrections], unlocked: fallback.unlocked };
+}
 libraryRouter.get("/teacher/books/:bookId", async (request, response) => {
     const authenticated = await requireTeacher(request.headers.authorization);
-    if (authenticated.error || !authenticated.user) {
-        response.status(authenticated.user ? 403 : 401).json({ message: authenticated.error });
-        return;
-    }
-    if (!bookIdPattern.test(request.params.bookId)) {
-        response.status(400).json({ message: "That library book is not valid." });
-        return;
-    }
-    const [book, attempts, corrections, listed] = await Promise.all([
-        getBook(request.params.bookId),
-        supabase
-            .from("student_library_attempts")
-            .select("id,user_id,book_id,attempt_number,score,total_questions,total_time_seconds,question_stats,started_at,completed_at")
-            .eq("book_id", request.params.bookId)
-            .order("completed_at", { ascending: false }),
-        supabase
-            .from("student_library_corrections")
-            .select("id,user_id,book_id,attempt_id,responses,submitted_at,updated_at")
-            .eq("book_id", request.params.bookId),
-        supabase.auth.admin.listUsers({ page: 1, perPage: 1000 }),
+    if (!authenticated.user) { response.status(403).json({ message: "Teacher access is required." }); return; }
+    const material = libraryMaterial(request.params.bookId);
+    if (!bookIdPattern.test(request.params.bookId) || !material) { response.status(404).json({ message: "English library book not found." }); return; }
+    const ids = libraryBookAccessIds(material.id);
+    const [histories, grants, assignments] = await Promise.all([
+        Promise.all(ids.map(bookHistory)),
+        libraryRows<{ user_id: string; progress: unknown }>(offset => supabase.from("student_practice_progress").select("user_id,progress").eq("topic_slug", accessTopicSlug(material.id)).order("user_id").range(offset, offset + 999)),
+        libraryRows<{ student_id: string; content_id: string; kind: string }>(offset => supabase.from("student_assignments").select("student_id,content_id,kind").in("content_id", ids).in("status", ["assigned", "in_progress", "review", "completed"]).order("id").range(offset, offset + 999), true),
     ]);
-    const attemptsMissing = isMissingLibraryTable(attempts.error);
-    const correctionsMissing = isMissingLibraryTable(corrections.error);
-    if (book.error || (attempts.error && !attemptsMissing) || (corrections.error && !correctionsMissing) || listed.error) {
-        response.status(400).json({ message: book.error?.message ?? attempts.error?.message ?? corrections.error?.message ?? listed.error?.message });
-        return;
+    const listedUsers: User[] = [];
+    for (let page = 1; ; page++) {
+        const listed = await supabase.auth.admin.listUsers({ page, perPage: 1000 });
+        if (listed.error) { response.status(503).json({ message: "Could not load students." }); return; }
+        listedUsers.push(...listed.data.users);
+        if (listed.data.users.length < 1000) break;
     }
-    const fallbackProgress = attemptsMissing || correctionsMissing ? await getFallbackAttemptsForBook(request.params.bookId) : null;
-    if (fallbackProgress?.error) {
-        response.status(400).json({ message: fallbackProgress.error.message });
-        return;
-    }
-    const rows = (attemptsMissing ? fallbackProgress?.attempts ?? [] : attempts.data ?? []) as LibraryAttemptRow[];
-    const correctionsByAttempt = new Map(
-        ((correctionsMissing ? fallbackProgress?.corrections ?? [] : corrections.data ?? []) as LibraryCorrectionRow[]).map((correction) => [correction.attempt_id, correction]),
-    );
-    const rowsByStudent = new Map<string, LibraryAttemptRow[]>();
-    rows.forEach((row) => rowsByStudent.set(row.user_id, [...(rowsByStudent.get(row.user_id) ?? []), row]));
-    const students = listed.data.users
-        .filter((user) => getUserRole(user) === "student" && getEnrolledClassIds(user.app_metadata).includes("shsat"))
-        .map((user) => ({
-            attempts: (rowsByStudent.get(user.id) ?? []).map((attempt) => teacherAttempt(attempt, correctionsByAttempt.get(attempt.id))),
-            email: user.email ?? "",
-            id: user.id,
-            name: typeof user.user_metadata.full_name === "string"
-                ? user.user_metadata.full_name
-                : user.email?.split("@")[0] ?? "Student",
-            username: typeof user.user_metadata.username === "string"
-                ? user.user_metadata.username
-                : user.email?.split("@")[0] ?? "student",
-        }))
-        .sort((left, right) => left.name.localeCompare(right.name));
-    response.json({
-        book: book.data ? {
-            accessCode: book.data.access_code,
-            bookId: book.data.book_id,
-            title: book.data.title,
-            updatedAt: book.data.updated_at,
-        } : null,
-        students,
+    const rows = [...new Map(histories.flatMap(history => history.attempts).map(row => [row.id, row])).values()].sort((a,b) => b.completed_at.localeCompare(a.completed_at));
+    const corrections = new Map(histories.flatMap(history => history.corrections).map(row => [row.attempt_id, row]));
+    const grantsByStudent = new Map(grants.map(row => [row.user_id, row.progress]));
+    const assignedStudents = new Set(assignments.filter(row => row.kind === libraryContentKind(row.content_id)).map(row => row.student_id));
+    const legacyUnlocks = new Map([...histories.flatMap(history => history.unlocked).map(row => [row.userId, row.at] as const), ...rows.map(row => [row.user_id, row.completed_at] as const)]);
+    const students = listedUsers.filter(activeLibraryStudent).map(user => {
+        const grant = grantsByStudent.get(user.id);
+        const access = isRecord(grant) && typeof grant.granted === "boolean"
+            ? { unlocked: grant.granted, unlockedAt: grant.granted && typeof grant.updatedAt === "string" ? grant.updatedAt : null }
+            : { unlocked: legacyUnlocks.has(user.id) || assignedStudents.has(user.id), unlockedAt: legacyUnlocks.get(user.id) ?? null };
+        return { access, attempts: rows.filter(row => row.user_id === user.id).map(row => teacherAttempt(row, corrections.get(row.id))),
+            email: user.email ?? "", id: user.id,
+            name: typeof user.user_metadata?.full_name === "string" ? user.user_metadata.full_name : user.email?.split("@")[0] ?? "Student",
+            username: typeof user.user_metadata?.username === "string" ? user.user_metadata.username : user.email?.split("@")[0] ?? "student",
+        };
     });
+    response.json({ book: { bookId: material.id, title: material.title }, students: students.sort((a,b) => a.name.localeCompare(b.name)) });
 });
 
 async function completedBookAccess(userId: string, bookId: string) {
-    const ids = libraryBookAccessIds(bookId);
-    const values = await Promise.all(ids.map(async id => {
-        const progress = await getFallbackProgress(userId, id);
-        if (progress.error) throw Object.assign(new Error("Could not load book access."), { status: 503 });
-        return { unlockedAt: progress.data.unlockedAt ?? progress.data.attempts[0]?.completed_at ?? null, assigned: await hasAssignedContent(userId, libraryContentKind(id), id, true) };
+    const access = await supabase.from("student_practice_progress").select("progress").eq("user_id", userId).eq("topic_slug", accessTopicSlug(bookId)).maybeSingle();
+    if (access.error) throw Object.assign(new Error("Could not load book access."), { status: 503 });
+    if (isRecord(access.data?.progress) && typeof access.data.progress.granted === "boolean") {
+        return { unlocked: access.data.progress.granted, unlockedAt: access.data.progress.granted && typeof access.data.progress.updatedAt === "string" ? access.data.progress.updatedAt : null };
+    }
+    const values = await Promise.all(libraryBookAccessIds(bookId).map(async id => {
+        const [progress, attempts] = await Promise.all([getFallbackProgress(userId, id), getStudentLibraryAttemptRows(userId, id)]);
+        if (progress.error || attempts.error) throw Object.assign(new Error("Could not load book access."), { status: 503 });
+        return { unlockedAt: progress.data.unlockedAt ?? progress.data.attempts[0]?.completed_at ?? attempts.attempts[0]?.completed_at ?? null, assigned: await hasAssignedContent(userId, libraryContentKind(id), id, true) };
     }));
     return { unlockedAt: values.find(value => value.unlockedAt)?.unlockedAt ?? null, unlocked: values.some(value => value.unlockedAt || value.assigned) };
-}
-async function matchingBookCode(bookId: string, code: unknown) {
-    const normalized = normalizeAccessCode(code);
-    if (!normalized) return false;
-    const books = await Promise.all(libraryBookAccessIds(bookId).map(getBook));
-    return books.some(book => !book.error && book.data && normalizeAccessCode(book.data.access_code) === normalized);
 }
 async function recordBookCompletion(userId: string, bookId: string, at: string, reference: string, correct: number, total: number) {
     for (const id of libraryBookAccessIds(bookId)) await recordPlanCompletion(userId, libraryContentKind(id), id, { source: "library", at, reference, correct, total });
@@ -536,7 +381,7 @@ libraryRouter.get("/books/:bookId/access", async (request, response) => {
         response.status(401).json({ message: authenticated.error });
         return;
     }
-    if (getUserRole(authenticated.user) !== "student") {
+    if (!activeLibraryStudent(authenticated.user)) {
         response.json({ unlocked: false, unlockedAt: null });
         return;
     }
@@ -549,33 +394,7 @@ libraryRouter.post("/books/:bookId/unlock", async (request, response) => {
         response.status(401).json({ message: authenticated.error });
         return;
     }
-    const book = await getBook(request.params.bookId);
-    if (book.error) {
-        response.status(400).json({ message: book.error.message });
-        return;
-    }
-    if (!await matchingBookCode(request.params.bookId, request.body?.code)) {
-        response.status(403).json({ message: "That code does not unlock this book. Check the code and try again." });
-        return;
-    }
-    if (getUserRole(authenticated.user) === "student") {
-        const progress = await getFallbackProgress(authenticated.user.id, request.params.bookId);
-        if (progress.error) {
-            response.status(400).json({ message: progress.error.message });
-            return;
-        }
-        const unlockedAt = progress.data.unlockedAt ?? new Date().toISOString();
-        if (!progress.data.unlockedAt) {
-            const saved = await saveFallbackProgress(authenticated.user.id, request.params.bookId, { ...progress.data, unlockedAt });
-            if (saved.error) {
-                response.status(400).json({ message: saved.error.message });
-                return;
-            }
-        }
-        response.json({ bookId: request.params.bookId, title: book.data?.title ?? getMergedLibraryBook(request.params.bookId)?.passageSet.passage.title, unlocked: true, unlockedAt });
-        return;
-    }
-    response.json({ bookId: request.params.bookId, title: book.data?.title ?? getMergedLibraryBook(request.params.bookId)?.passageSet.passage.title, unlocked: true, unlockedAt: null });
+    response.status(410).json({ message: "Book codes have been replaced by individual access. Ask your teacher to enable this book for your account." });
 });
 
 libraryRouter.get("/books/:bookId/attempts", async (request, response) => {
@@ -788,23 +607,14 @@ libraryRouter.post("/books/:bookId/attempts", async (request, response) => {
         response.status(403).json({ message: "Only a student can submit a library attempt." });
         return;
     }
-    const book = await getBook(request.params.bookId);
-    if (book.error) {
-        response.status(400).json({ message: book.error.message });
-        return;
-    }
     const accessProgress = await getFallbackProgress(authenticated.user.id, request.params.bookId);
     if (accessProgress.error) {
         response.status(400).json({ message: accessProgress.error.message });
         return;
     }
     const mergedBook = getMergedLibraryBook(request.params.bookId);
-    const assignedAccess = await hasAssignedContent(authenticated.user.id, libraryContentKind(request.params.bookId), request.params.bookId, true);
-    const permanentAccess = Boolean(accessProgress.data.unlockedAt || accessProgress.data.attempts.length);
-    const allowed = mergedBook ? (await completedBookAccess(authenticated.user.id, request.params.bookId)).unlocked || await matchingBookCode(request.params.bookId, request.body?.code) : assignedAccess || Boolean(book.data && (permanentAccess || normalizeAccessCode(request.body?.code) === normalizeAccessCode(book.data.access_code)));
-    if (!allowed) {
-        response.status(403).json({ message: "Your book code is no longer valid. Enter the current code and try again." });
-        return;
+    if (!activeLibraryStudent(authenticated.user) || !(await completedBookAccess(authenticated.user.id, request.params.bookId)).unlocked) {
+        response.status(403).json({ message: "Your teacher needs to enable this book for your account." }); return;
     }
     let questionStats: QuestionStat[] | null;
     if (mergedBook) {
@@ -879,3 +689,9 @@ libraryRouter.post("/books/:bookId/attempts", async (request, response) => {
     await recordBookCompletion(authenticated.user.id, request.params.bookId, completedAt, attemptRow.id, score, questionStats.length);
     response.status(201).json({ attempt: studentAttempt(saved.data as LibraryAttemptRow) });
 });
+
+const handleLibraryError: ErrorRequestHandler = (error, _request, response, next) => {
+    if (response.headersSent) { next(error); return; }
+    response.status(error?.status === 503 ? 503 : 500).json({ message: error?.status === 503 ? error.message : "The library could not complete this request. Please try again." });
+};
+libraryRouter.use(handleLibraryError);

@@ -20,7 +20,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
     "promptHtml": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -46,7 +47,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "2025-2026-form-a-math-3",
     "points": 1,
     "prompt": "A car is traveling 55 miles per hour, and 1 mile = 5,280 feet. Which of the following calculations would give the car's speed in feet per second?",
-    "topic": "Rates & Unit Conversion",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -77,7 +79,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "instructions": "Enter your answer in the space.",
     "points": 1,
     "prompt": "For what value of \\(w\\) is \\(4w = 2w - 8\\)?",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "correctTextAnswers": [
       "-4"
     ],
@@ -89,7 +92,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true:\n\n. 20 students have cats.\n. 23 students have dogs.\n. 3 students have both dogs and cats.\n. 5 students have no dogs or cats.\n\nHow many students were surveyed?",
     "promptHtml": "A survey asked students what pets they have. Based on the results, the following statements are all true:<ul><li>20 students have cats.</li><li>23 students have dogs.</li><li>3 students have both dogs and cats.</li><li>5 students have no dogs or cats.</li></ul><div>How many students were surveyed?</div>",
-    "topic": "Probability & Statistics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Unclassified",
     "correctTextAnswers": [
       "45"
     ],
@@ -99,7 +103,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "2025-2026-form-a-math-6",
     "points": 1,
     "prompt": "The sum of the numbers \\(x\\), \\(y\\), and \\(z\\) is 50. The ratio of \\(x\\) to \\(y\\) is 1:4, and the ratio of \\(y\\) to \\(z\\) is 4:5. What is the value of \\(y\\)?",
-    "topic": "Ratios & Proportions",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -125,7 +130,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "2025-2026-form-a-math-7",
     "points": 1,
     "prompt": "The set of possible values of \\(m\\) is \\(\\{5, 7, 9\\}\\). What is the set of possible values of \\(k\\) if \\(2k = m + 3\\)?",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -155,7 +161,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "simplify-linear-expression",
     "points": 1,
     "prompt": "\\(7+(3n+6)-(4n+8)=\\)",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -185,7 +192,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "same-sum-course-grades",
     "points": 1,
     "prompt": "In a certain school, course grades range from 0 to 100. Adrianna took 4 courses and her mean course grade was 90. Roberto took 5 courses. If both students have the same sum of course grades, what was Roberto's mean?",
-    "topic": "Arithmetic",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -217,7 +225,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives \n8\n8\n of his stamps to Kevin. Liam now has \n12\n12\n more stamps than Kevin.\n\n\nHow many stamps did Liam start with?",
     "promptHtml": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives&nbsp;<strong>8</strong>&nbsp;of his stamps to Kevin. Liam now has&nbsp;<strong>12</strong>&nbsp;more stamps than Kevin.<div><br><div>How many stamps did Liam start with?</div></div><div><br></div>",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "dropdownContent": [
       "An equation that relates the number of stamps originally in Liam's and Kevin's collections is L ={{answer-1}}K.",
       "After Liam gives 8 stamps to Kevin, the equation becomes L − 8 ={{answer-2}}.",
@@ -290,7 +299,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In the figure above, PQRS is a parallelogram. What is the value of x?\n\nEnter your answer in the space.",
     "promptHtml": "<div><p>In the figure above,&nbsp;\\(PQRS\\)&nbsp;is a parallelogram. What is the value of&nbsp;\\(x\\)?</p></div><div><p>Enter your answer in the space.</p></div>",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "correctTextAnswers": [
       "162"
     ],
@@ -300,7 +310,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "2025-2026-form-a-math-2",
     "points": 1,
     "prompt": "Three expressions are given:\n\n\\[-2(2.5n + 4)\\]\n\\[5 - n\\]\n\\[3(2n + 7)\\]\n\nWhich of these are equivalent to the sum of these three expressions?\n\nSelect the **two** correct answers.",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -350,6 +361,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "In the pyramid above, each triangular face has the same area, and the base \\(MNPQ\\) is a square that measures 8 centimeters on each side. If the length of \\(\\overline{RS}\\) = 6 centimeters, what is the surface area of the pyramid excluding the base?",
     "promptHtml": "In the pyramid above, each triangular face has the same area, and the base \\(MNPQ\\) is a square that measures 8 centimeters on each side. If the length of \\(\\overline{RS}\\) = 6 centimeters, what is the surface area of the pyramid <strong>excluding</strong> the base?",
     "topic": "Geometry",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -375,7 +387,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "rectangle-dimensions-ratio-perimeter",
     "points": 1,
     "prompt": "The perimeter of a rectangle is 510 centimeters. The ratio of the length to the width is 3:2. What are the dimensions of this rectangle?",
-    "topic": "Ratios & Proportions",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -402,7 +415,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which number line below shows the solution to the inequality \\(-4\\) \\(\\lt\\) \\(\\frac{x}{2 }\\) \\(\\lt\\) \\(2\\)?",
     "promptHtml": "Which number line below shows the solution to the inequality&nbsp;\\(-4\\) \\(\\lt\\) \\(\\frac{x}{2 }\\) \\(\\lt\\) \\(2\\)?",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -449,7 +463,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The sum of two consecutive integers is \\(-15\\). If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?\n\nEnter your answer in the space.",
     "promptHtml": "<p>The&nbsp;sum&nbsp;of&nbsp;two&nbsp;consecutive&nbsp;integers&nbsp;is&nbsp;\\(-15\\).&nbsp;If&nbsp;1&nbsp;is&nbsp;added&nbsp;to&nbsp;the&nbsp;smaller&nbsp;integer&nbsp;and&nbsp;2&nbsp;is&nbsp;subtracted&nbsp;from&nbsp;the&nbsp;larger&nbsp;integer,&nbsp;what&nbsp;is&nbsp;the&nbsp;<strong>product</strong>&nbsp;of&nbsp;the&nbsp;two&nbsp;resulting&nbsp;integers?</p><p></p><p></p><p>Enter&nbsp;your&nbsp;answer&nbsp;in&nbsp;the&nbsp;space.<br></p>",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "correctTextAnswers": [
       "63"
     ],
@@ -460,7 +475,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
     "promptHtml": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are <strong>not </strong>red?",
-    "topic": "Probability & Statistics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -490,7 +506,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "lorgs-dalts-dollar-exchange",
     "points": 1,
     "prompt": "1 dollar = 7 lorgs\n\n1 dollar = 0.5 dalt\n\nKevin has 140 lorgs and 16 dalts. If he exchanges the lorgs and dalts for dollars according to the rates above, how many dollars will he receive?",
-    "topic": "Rates & Unit Conversion",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -525,6 +542,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the area of the shaded region in the graph above?",
     "topic": "Geometry",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -556,7 +574,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Consider this expression:",
     "stimulus": "\\[\\left|(-8)-(-3)+6\\right|-\\left|6-11\\right|\\]",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "allowReuse": false,
     "dragDropContent": [
       "\\(\\lvert\\){{left-value}}\\(\\rvert-\\lvert\\){{right-value}}\\(\\rvert\\)"
@@ -600,7 +619,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, not including tax. What was the price per pound of the meat?",
     "promptHtml": "Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, <strong>not</strong> including tax. What was the price per pound of the meat?",
-    "topic": "Rates & Unit Conversion",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -627,7 +647,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
     "promptHtml": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are <strong>not</strong> blue?",
-    "topic": "Probability & Statistics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -657,7 +678,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "most-valuable-coin",
     "points": 1,
     "prompt": "1 sind = 4 lorgs\n\n2 plunks = 5 dalts\n\n5 sinds = 2 harps\n\n1 plunk = 3 harps\n\nA nation has five types of coins: sinds, dalts, lorgs, harps, and plunks. The relationship between the coins is shown above. Which coin is most valuable?",
-    "topic": "Rates & Unit Conversion",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -683,7 +705,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "college-student-faculty-ratio",
     "points": 1,
     "prompt": "The faculty of a certain four-year college consists of 179 teachers. There are 663 first-year students. The student-to-faculty ratio for the entire college is 15 to 1. What is the total number of second-, third-, and fourth-year students?",
-    "topic": "Ratios & Proportions",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -717,7 +740,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     },
     "points": 1,
     "prompt": "How many more people in Center City walk to work than ride their bicycle to work?",
-    "topic": "Percent",
+    "topic": "Geometry",
+    "subtopic": "Triangles and the Pythagorean Theorem",
     "choices": [
       {
         "id": "A",
@@ -747,7 +771,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "smallest-factor-of-91",
     "points": 1,
     "prompt": "Which of the following numbers has factors that include the smallest factor (other than 1) of 91?",
-    "topic": "Number Sense",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -777,7 +802,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "triangular-banner-scale-drawing",
     "points": 1,
     "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
-    "topic": "Ratios & Proportions",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -803,7 +829,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "average-of-consecutive-integers",
     "points": 1,
     "prompt": "The least of 5 consecutive integers is \\(l\\), and the greatest is \\(g\\). What is the value of \\(\\frac{l+g}{2}\\) in terms of \\(l\\)?",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -836,7 +863,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The owner of a tree farm plants pine trees and oak trees in a ratio of 8:3. How many oak trees are planted if 264 pine trees are planted?",
     "promptHtml": "The owner of a tree farm plants pine trees and oak trees in a ratio of 8:3. How many oak trees are planted if 264 pine trees are planted?",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "correctTextAnswers": [
       "99"
     ],
@@ -846,7 +874,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "tien-jordan-age-ratio",
     "points": 1,
     "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -873,7 +902,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "instructions": "Move the correct answer to each box. Each answer may be used more than once. Not all answers will be used.",
     "points": 1,
     "prompt": "Complete the steps to show one way to solve the equation \\(24=-0.5(x+8)\\) for \\(x\\).",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "allowReuse": true,
     "dragDropContent": [
       "\\(24=-0.5(x+8)\\)",
@@ -935,7 +965,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "sum-of-mixed-numbers",
     "points": 1,
     "prompt": "What is the value of the expression shown above?\n\n\\(2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\)",
-    "topic": "Arithmetic",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -965,7 +996,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "longest-stick-common-factor",
     "points": 1,
     "prompt": "An unmarked straight stick will be laid end over end to measure a distance of exactly 72 feet. The same stick will be used in the same way to measure a distance of exactly 30 feet. What is the length of the longest possible stick that can be used for both measurements?",
-    "topic": "Number Sense",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -991,7 +1023,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "choose-pairs-of-cookies",
     "points": 1,
     "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
-    "topic": "Probability & Statistics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Unclassified",
     "choices": [
       {
         "id": "A",
@@ -1021,7 +1054,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "combined-slide-creation-rate",
     "points": 1,
     "prompt": "For a presentation, Deion can create 5 slides in 20 minutes, working at a constant rate. Kyra can create 3 slides in 10 minutes, working at her own constant rate. What is the total number of slides the two of them can create in one hour?",
-    "topic": "Rates & Unit Conversion",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -1055,7 +1089,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     },
     "points": 1,
     "prompt": "On the number line above, \\(LN=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
-    "topic": "Number Sense",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -1086,7 +1121,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "instructions": "Enter your answer in the space provided. Enter only your answer.",
     "points": 1,
     "prompt": "What is the value of \\(x\\) in the equation \\(6x=9x+13\\)?",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "correctTextAnswers": [
       "-13/3",
       "-4 1/3"
@@ -1098,7 +1134,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "reading-additional-time",
     "points": 1,
     "prompt": "Ryan must read 150 pages for school this weekend. It took him 30 minutes to read the first 20 pages. At this rate, how much additional time will it take him to finish the reading?",
-    "topic": "Rates & Unit Conversion",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -1129,7 +1166,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "instructions": "Select all the correct answers.",
     "points": 1,
     "prompt": "When a student buys 4 notebooks, the total cost is $12. Each notebook costs the same amount. Select each point on the graph that best represents \\(y\\), the total cost of \\(x\\) notebooks.",
-    "topic": "Rates & Unit Conversion",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "correctPointIds": [
       "point-1-3",
       "point-3-9",
@@ -1191,7 +1229,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "instructions": "Select a ray. Then move the endpoint of the ray to the correct position on the number line.",
     "points": 1,
     "prompt": "Graph the solution set for the inequality \\(-3 \\le 2x-5\\).",
-    "topic": "Algebra",
+    "topic": "Expressions, Equations, and Inequalities",
+    "subtopic": "Unclassified",
     "numberLineResponse": {
       "correctDirection": "right",
       "correctEndpoint": "closed",
@@ -1209,7 +1248,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Let \\(b=3\\), \\(c=4\\), and \\(d=5\\). Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\).",
     "promptHtml": "Let \\(b=3\\), \\(c=4\\), and \\(d=5\\). Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\).",
-    "topic": "Arithmetic",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of Composite Figures",
     "correctTextAnswers": [
       "16/15"
     ],

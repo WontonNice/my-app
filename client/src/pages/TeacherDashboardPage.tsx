@@ -4,6 +4,7 @@ import { Activity, Archive, ArchiveRestore, ArrowLeft, ArrowUpRight, BarChart3, 
 import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { TeacherExamTools } from "../components/TeacherExamTools";
+import { StudentSheetSummary } from "../features/answer-sheets/StudentSheetSummary";
 import { StudentAnalyticsWorkstation } from "../components/StudentAnalyticsWorkstation";
 import { BoardLibrary } from "../features/boards/BoardLibrary";
 import { TeacherLearningPlan, type PlanView } from "../components/TeacherLearningPlan";
@@ -128,7 +129,7 @@ function studentExamResultsForAssessments(
   const assessmentIds = new Set(assessments.map((assessment) => assessment.id));
   return student.progress.examResults.filter(
     (result) =>
-      result.source === "manual" ||
+      (result.source === "manual" || result.source === "answer_sheet") ||
       (typeof result.assessmentId === "string" && assessmentIds.has(result.assessmentId)),
   );
 }
@@ -929,6 +930,7 @@ export function StudentDetail({
       <div className="teacher-panel-header"><div><span>Student record</span><h2>{student.fullName}</h2></div><p>{student.email} · Last login: {formatDate(student.lastLoginAt)}</p></div>
       {accessToken && <><nav className="lp-record-tabs" aria-label="Student record workspaces">{([["progress", "Progress & insights"], ["plan", "Learning plan"], ["content", "Available content"], ["schedule", "Weekly schedule"], ["history", "Homework history"], ["boards", "Boards"]] as const).map(([value, label]) => <button key={value} aria-pressed={workspaceView === value} onClick={() => { setWorkspaceView(value); setPlanSkill(""); }} type="button">{label}</button>)}</nav>{workspaceView === "boards" ? <BoardLibrary accessToken={accessToken} studentId={student.id} studentName={student.fullName} teacher /> : <TeacherLearningPlan client={planClient} key={planFocus} sourceCategory={planCategory} onSourceCategory={setPlanCategory} onInventory={setPassageInventory} accessToken={accessToken} studentId={student.id} studentName={student.fullName} view={workspaceView === "progress" ? "summary" : workspaceView} onView={setWorkspaceView} skillFilter={planSkill} onSkillFilter={setPlanSkill} />}</>}
       <div hidden={workspaceView !== "progress"}>
+      {accessToken && <StudentSheetSummary token={accessToken} studentId={student.id} />}
       <details className="teacher-paper-score-entry">
         <summary>
           <span><PlusCircle size={17} /><span><strong>Add paper exam score</strong><small>Record English and Math points for an offline test.</small></span></span>
@@ -1108,7 +1110,7 @@ export function TeacherDashboardPage() {
     const values = students.flatMap((student) =>
       student.progress.examResults.flatMap((result) =>
         typeof result.assessmentId === "string" &&
-        (assessmentIds.has(result.assessmentId) || result.source === "manual") &&
+        (assessmentIds.has(result.assessmentId) || result.source === "manual" || result.source === "answer_sheet") &&
         isCompleteExamResult(result) &&
         typeof result.percentage === "number"
           ? [result.percentage]
@@ -1551,8 +1553,9 @@ export function TeacherDashboardPage() {
               <AppLink href="/teacher/students"><Activity size={20} /><span><strong>Student progress</strong><small>{shsatStudents.length} SHSAT student{shsatStudents.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/enrollment"><UserRoundCheck size={20} /><span><strong>Class requests</strong><small>{classJoinRequests.length} awaiting approval</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/accounts"><UserRoundPlus size={20} /><span><strong>Student accounts</strong><small>Edit access or preview an account</small></span><ArrowUpRight size={17} /></AppLink>
-              <AppLink href="/teacher/library"><BookOpen size={20} /><span><strong>English library</strong><small>Book codes, previews, and attempt results</small></span><ArrowUpRight size={17} /></AppLink>
+              <AppLink href="/teacher/library"><BookOpen size={20} /><span><strong>English library</strong><small>Individual book access, previews, and results</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/assessments"><ClipboardList size={20} /><span><strong>Assessments & insights</strong><small>{assessments.length} exam{assessments.length === 1 ? "" : "s"} · {classAssessmentInsights.length} performance dashboard{classAssessmentInsights.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
+              <AppLink href="/teacher/answer-sheets"><ClipboardList size={20} /><span><strong>Digital answer sheets</strong><small>Paper/PDF tests · saved responses · grade later</small></span><ArrowUpRight size={17} /></AppLink>
               <a href={contentStudioCodespaceUrl} rel="noreferrer" target="_blank"><Cloud size={20} /><span><strong>Content Studio</strong><small>Author exams and practice content from any computer</small></span><ArrowUpRight size={17} /></a>
             </div>
           </section>
@@ -1673,6 +1676,7 @@ export function TeacherDashboardPage() {
 
       {activeWorkspace === "assessments" && !insightAssessmentId ? (
       <section className="teacher-assessments-hub" id="assessments">
+      <AppLink className="corporate-heading-action" href="/teacher/answer-sheets"><ClipboardList size={18} /> Digital answer sheets · Create Answer Sheet</AppLink>
         <div className="teacher-assessment-command-bar">
           <div><span>Live assessment operations</span><h2>One exam. One control center.</h2><p>Manage student access and see class performance without switching workspaces.</p></div>
           <div>

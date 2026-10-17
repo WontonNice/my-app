@@ -1,0 +1,57 @@
+{
+  "categories": [
+    {
+      "label": "Expressions, Equations, and Inequalities",
+      "topics": [
+        "Evaluating expressions",
+        "Equivalent expressions",
+        "Linear equations",
+        "Linear inequalities",
+        "Systems of equations",
+        "Algebraic word problems",
+        "Sequences and patterns",
+        "Absolute value"
+      ]
+    },
+    {
+      "label": "Geometry",
+      "topics": [
+        "Lines and Angle Relationships",
+        "Area and Perimeter of Composite Figures",
+        "Triangles and the Pythagorean Theorem",
+        "Circles",
+        "Polygons and Quadrilaterals",
+        "Surface Area and Volume",
+        "Similarity, Congruence, and Scale",
+        "Transformations and Symmetry"
+      ]
+    },
+    {
+      "label": "Statistics and Probability",
+      "topics": [
+        "Simple probability",
+        "Compound probability",
+        "Counting and combinations",
+        "Sets and Venn diagrams",
+        "Mean, median, mode and range",
+        "Data interpretation"
+      ]
+    },
+    {
+      "label": "Ratios and Proportional Relationships",
+      "topics": [
+        "Equivalent ratios",
+        "Proportional relationships",
+        "Part-to-whole ratios",
+        "Scale drawings",
+        "Ratio word problems"
+      ]
+    },
+    {
+      "label": "The Number System",
+      "topics": [
+        "test"
+      ]
+    }
+  ]
+}

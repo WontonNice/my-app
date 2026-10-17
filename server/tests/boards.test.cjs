@@ -165,6 +165,67 @@ test('student-created boards appear for a teacher only after explicit sharing', 
   const listed = (await call(`/?studentId=${studentId}`, 'teacher')).data.boards.find(item => item.id === board.id);
   assert.equal(listed.role, 'editor');
 });
+
+test('multiple student memberships appear in every library and retain owner-only sharing and individual source access', async () => {
+  let board = await newBoard();
+  const directory = await call(`/${board.id}/collaborators`, 'teacher');
+  assert.equal(directory.status, 200);
+  assert.deepEqual(directory.data.people.find(person => person.id === users.other.id), { id: users.other.id, name: 'QA Classmate', kind: 'student' });
+  assert.equal((await call(`/${board.id}/collaborators`, 'student')).status, 403);
+  let result = await call(`/${board.id}/participants/${users.other.id}`, 'teacher', 'PUT', { role: 'editor', revision: board.revision });
+  assert.equal(result.status, 200); board = result.data.board;
+  assert.equal((await call(`/${board.id}`, 'other')).data.board.role, 'editor');
+  assert.equal((await call('/', 'other')).data.boards.some(item => item.id === board.id), true);
+  assert.equal((await call(`/?studentId=${users.other.id}`, 'teacher')).data.boards.some(item => item.id === board.id), true);
+  assert.equal((await call(`/${board.id}/participants/${users.viewer.id}`, 'other', 'PUT', { role: 'editor', revision: board.revision })).status, 403);
+  const nodeId = randomUUID();
+  await commit(board, users.teacher, doc => shared.addBoardNode(doc, { ...shared.makeBoardNode(nodeId, 'passage', 0, 0), reference: { kind: 'passage', id: 'qa-passage' } }));
+  assert.equal((await call(`/${board.id}/content/${nodeId}`, 'other')).status, 403);
+  const copy = await call(`/${board.id}/duplicate`, 'other', 'POST');
+  assert.equal(copy.status, 201); assert.equal(copy.data.board.studentId, users.other.id);
+  assert.equal(copy.data.board.ownerId, users.other.id);
+  const privateBoard = (await call('/', 'student', 'POST', { title: 'Study group' })).data.board;
+  result = await call(`/${privateBoard.id}/participants/${users.other.id}`, 'student', 'PUT', { role: 'editor', revision: privateBoard.revision });
+  assert.equal(result.status, 200);
+  assert.equal((await call('/', 'other')).data.boards.some(item => item.id === privateBoard.id), true);
+});
+
+test('two students and a teacher converge live; downgrades, removal and archival revoke edits', async () => {
+  let board = await newBoard();
+  board = (await call(`/${board.id}/participants/${users.other.id}`, 'teacher', 'PUT', { role: 'editor', revision: board.revision })).data.board;
+  const teacher = live(board, 'teacher'), student = live(board, 'student'), classmate = live(board, 'other');
+  const peers = [teacher, student, classmate];
+  try {
+    await Promise.all(peers.map(peer => peer.wait(message => message.type === 'ready')));
+    const id = randomUUID();
+    await teacher.update(doc => shared.addBoardNode(doc, shared.makeBoardNode(id, 'note', 0, 0, 'Claim')));
+    await Promise.all([student, classmate].map(peer => peer.wait(() => shared.readBoard(peer.doc).nodes.some(node => node.id === id))));
+    const sendEdit = (peer, word, sequence) => {
+      const vector = Y.encodeStateVector(peer.doc); peer.doc.getMap('nodes').get(id).get('text').insert(5, word);
+      peer.send({ type: 'update', epoch: board.epoch, sequence, state: Buffer.from(Y.encodeStateAsUpdate(peer.doc, vector)).toString('base64') });
+      return peer.wait(message => message.type === 'ack' && message.sequence === sequence, false);
+    };
+    await Promise.all([sendEdit(student, ' evidence', 30), sendEdit(classmate, ' reasoning', 31)]);
+    await teacher.wait(() => { const text = shared.readBoard(teacher.doc).nodes[0].text; return text.includes('evidence') && text.includes('reasoning'); });
+    const saved = docFor(board); assert.match(shared.readBoard(saved).nodes[0].text, /reasoning/); saved.destroy();
+    board = (await call(`/${board.id}`, 'teacher')).data.board;
+    board = (await call(`/${board.id}/participants/${users.other.id}`, 'teacher', 'PUT', { role: 'viewer', revision: board.revision })).data.board;
+    await classmate.wait(message => message.board?.role === 'viewer');
+    await assert.rejects(commit(board, users.other, doc => doc.getMap('nodes').get(id).set('x', 400)), /view only/);
+    assert.equal((await call(`/${board.id}`, 'other')).data.board.role, 'viewer');
+    const closed = new Promise(resolve => classmate.ws.once('close', code => resolve(code)));
+    board = (await call(`/${board.id}/participants/${users.other.id}`, 'teacher', 'PUT', { role: 'remove', revision: board.revision })).data.board;
+    assert.equal(await closed, 4003);
+    assert.equal((await call(`/${board.id}`, 'other')).status, 403);
+    assert.equal((await call('/', 'other')).data.boards.some(item => item.id === board.id), false);
+    board = (await call(`/${board.id}/participants/${users.other.id}`, 'teacher', 'PUT', { role: 'editor', revision: board.revision })).data.board;
+    users.other.app_metadata.student_archived_at = new Date().toISOString();
+    assert.equal((await call(`/${board.id}`, 'other')).status, 403);
+  } finally {
+    delete users.other.app_metadata.student_archived_at;
+    peers.forEach(peer => { peer.ws.close(); peer.doc.destroy(); });
+  }
+});
 test('teacher-wide library includes owned and invited boards without exposing private student boards', async () => {
   const owned = await newBoard();
   const privateBoard = (await call('/', 'student', 'POST', { title: 'Private planning' })).data.board;

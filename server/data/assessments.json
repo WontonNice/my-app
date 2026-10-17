@@ -892,7 +892,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -907,7 +908,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "A car is traveling 55 miles per hour, and 1 mile = 5,280 feet. Which of the following calculations would give the car's speed in feet per second?",
-        "topic": "Rates & Unit Conversion",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "multiple_choice"
       },
       {
@@ -917,7 +919,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "For what value of \\(w\\) is \\(4w = 2w - 8\\)?",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "short_response"
       },
       {
@@ -927,7 +930,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true:\n\n. 20 students have cats.\n. 23 students have dogs.\n. 3 students have both dogs and cats.\n. 5 students have no dogs or cats.\n\nHow many students were surveyed?",
-        "topic": "Probability & Statistics",
+        "topic": "Statistics and Probability",
+        "subtopic": "Unclassified",
         "type": "short_response"
       },
       {
@@ -942,7 +946,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The sum of the numbers \\(x\\), \\(y\\), and \\(z\\) is 50. The ratio of \\(x\\) to \\(y\\) is 1:4, and the ratio of \\(y\\) to \\(z\\) is 4:5. What is the value of \\(y\\)?",
-        "topic": "Ratios & Proportions",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -957,7 +962,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The set of possible values of \\(m\\) is \\(\\{5, 7, 9\\}\\). What is the set of possible values of \\(k\\) if \\(2k = m + 3\\)?",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -972,7 +978,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "\\(7+(3n+6)-(4n+8)=\\)",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -987,7 +994,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "In a certain school, course grades range from 0 to 100. Adrianna took 4 courses and her mean course grade was 90. Roberto took 5 courses. If both students have the same sum of course grades, what was Roberto's mean?",
-        "topic": "Arithmetic",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "multiple_choice"
       },
       {
@@ -997,7 +1005,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives \n8\n8\n of his stamps to Kevin. Liam now has \n12\n12\n more stamps than Kevin.\n\n\nHow many stamps did Liam start with?",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "inline_dropdown"
       },
       {
@@ -1007,7 +1016,8 @@
         "imageUrl": "/exam-images/2025-2026-form-a-2025-2026-form-a-math-11-math.png",
         "points": 1,
         "prompt": "In the figure above, PQRS is a parallelogram. What is the value of x?\n\nEnter your answer in the space.",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "short_response"
       },
       {
@@ -1024,7 +1034,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Three expressions are given:\n\n\\[-2(2.5n + 4)\\]\n\\[5 - n\\]\n\\[3(2n + 7)\\]\n\nWhich of these are equivalent to the sum of these three expressions?\n\nSelect the **two** correct answers.",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "multi_select"
       },
       {
@@ -1040,6 +1051,7 @@
         "points": 1,
         "prompt": "In the pyramid above, each triangular face has the same area, and the base \\(MNPQ\\) is a square that measures 8 centimeters on each side. If the length of \\(\\overline{RS}\\) = 6 centimeters, what is the surface area of the pyramid excluding the base?",
         "topic": "Geometry",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -1054,7 +1066,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The perimeter of a rectangle is 510 centimeters. The ratio of the length to the width is 3:2. What are the dimensions of this rectangle?",
-        "topic": "Ratios & Proportions",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -1069,7 +1082,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Which number line below shows the solution to the inequality \\(-4\\) \\(\\lt\\) \\(\\frac{x}{2 }\\) \\(\\lt\\) \\(2\\)?",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -1079,7 +1093,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The sum of two consecutive integers is \\(-15\\). If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?\n\nEnter your answer in the space.",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "short_response"
       },
       {
@@ -1094,7 +1109,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
-        "topic": "Probability & Statistics",
+        "topic": "Statistics and Probability",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -1109,7 +1125,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "1 dollar = 7 lorgs\n\n1 dollar = 0.5 dalt\n\nKevin has 140 lorgs and 16 dalts. If he exchanges the lorgs and dalts for dollars according to the rates above, how many dollars will he receive?",
-        "topic": "Rates & Unit Conversion",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "multiple_choice"
       },
       {
@@ -1125,6 +1142,7 @@
         "points": 1,
         "prompt": "What is the area of the shaded region in the graph above?",
         "topic": "Geometry",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -1134,7 +1152,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Consider this expression:",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "math_drag_drop"
       },
       {
@@ -1149,7 +1168,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, not including tax. What was the price per pound of the meat?",
-        "topic": "Rates & Unit Conversion",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "multiple_choice"
       },
       {
@@ -1164,7 +1184,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
-        "topic": "Probability & Statistics",
+        "topic": "Statistics and Probability",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -1179,7 +1200,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "1 sind = 4 lorgs\n\n2 plunks = 5 dalts\n\n5 sinds = 2 harps\n\n1 plunk = 3 harps\n\nA nation has five types of coins: sinds, dalts, lorgs, harps, and plunks. The relationship between the coins is shown above. Which coin is most valuable?",
-        "topic": "Rates & Unit Conversion",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "multiple_choice"
       },
       {
@@ -1194,7 +1216,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The faculty of a certain four-year college consists of 179 teachers. There are 663 first-year students. The student-to-faculty ratio for the entire college is 15 to 1. What is the total number of second-, third-, and fourth-year students?",
-        "topic": "Ratios & Proportions",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -1209,7 +1232,8 @@
         "imageUrl": "/exam-images/2025-2026-form-a-center-city-walk-vs-bicycle-math.svgz",
         "points": 1,
         "prompt": "How many more people in Center City walk to work than ride their bicycle to work?",
-        "topic": "Percent",
+        "topic": "Geometry",
+        "subtopic": "Triangles and the Pythagorean Theorem",
         "type": "multiple_choice"
       },
       {
@@ -1224,7 +1248,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Which of the following numbers has factors that include the smallest factor (other than 1) of 91?",
-        "topic": "Number Sense",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "multiple_choice"
       },
       {
@@ -1239,7 +1264,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
-        "topic": "Ratios & Proportions",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -1254,7 +1280,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The least of 5 consecutive integers is \\(l\\), and the greatest is \\(g\\). What is the value of \\(\\frac{l+g}{2}\\) in terms of \\(l\\)?",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -1264,7 +1291,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The owner of a tree farm plants pine trees and oak trees in a ratio of 8:3. How many oak trees are planted if 264 pine trees are planted?",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "short_response"
       },
       {
@@ -1279,7 +1307,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -1289,7 +1318,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Complete the steps to show one way to solve the equation \\(24=-0.5(x+8)\\) for \\(x\\).",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "math_drag_drop"
       },
       {
@@ -1304,7 +1334,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "What is the value of the expression shown above?\n\n\\(2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\)",
-        "topic": "Arithmetic",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "multiple_choice"
       },
       {
@@ -1319,7 +1350,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "An unmarked straight stick will be laid end over end to measure a distance of exactly 72 feet. The same stick will be used in the same way to measure a distance of exactly 30 feet. What is the length of the longest possible stick that can be used for both measurements?",
-        "topic": "Number Sense",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "multiple_choice"
       },
       {
@@ -1334,7 +1366,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
-        "topic": "Probability & Statistics",
+        "topic": "Statistics and Probability",
+        "subtopic": "Unclassified",
         "type": "multiple_choice"
       },
       {
@@ -1349,7 +1382,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "For a presentation, Deion can create 5 slides in 20 minutes, working at a constant rate. Kyra can create 3 slides in 10 minutes, working at her own constant rate. What is the total number of slides the two of them can create in one hour?",
-        "topic": "Rates & Unit Conversion",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "multiple_choice"
       },
       {
@@ -1364,7 +1398,8 @@
         "imageUrl": "/exam-images/2025-2026-form-a-point-between-fraction-number-line-math.svgz",
         "points": 1,
         "prompt": "On the number line above, \\(LN=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
-        "topic": "Number Sense",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "multiple_choice"
       },
       {
@@ -1374,7 +1409,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "What is the value of \\(x\\) in the equation \\(6x=9x+13\\)?",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "numeric_entry"
       },
       {
@@ -1389,7 +1425,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Ryan must read 150 pages for school this weekend. It took him 30 minutes to read the first 20 pages. At this rate, how much additional time will it take him to finish the reading?",
-        "topic": "Rates & Unit Conversion",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "multiple_choice"
       },
       {
@@ -1399,7 +1436,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "When a student buys 4 notebooks, the total cost is $12. Each notebook costs the same amount. Select each point on the graph that best represents \\(y\\), the total cost of \\(x\\) notebooks.",
-        "topic": "Rates & Unit Conversion",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "graph_point_select"
       },
       {
@@ -1409,7 +1447,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Graph the solution set for the inequality \\(-3 \\le 2x-5\\).",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Unclassified",
         "type": "number_line_response"
       },
       {
@@ -1419,13 +1458,14 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Let \\(b=3\\), \\(c=4\\), and \\(d=5\\). Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\).",
-        "topic": "Arithmetic",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
         "type": "numeric_entry"
       }
     ],
     "status": "locked",
     "title": "2025-2026 Form A",
-    "updatedAt": "2026-09-15T05:16:00.837Z",
+    "updatedAt": "2026-10-17T13:07:11.467Z",
     "split": false,
     "allowCompletedAccess": true,
     "sectionAccess": {
@@ -2326,7 +2366,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "If \\(x = 9\\)  and \\(y=−7\\) , what is the value of \\(x(x − 2y)?\\)",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
         "type": "multiple_choice"
       },
       {
@@ -2341,7 +2381,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The decimal 0.06 can be written as the fraction \\(\\frac{x}{50}\\) . What is the value of \\(x\\) ?",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
         "type": "multiple_choice"
       },
       {
@@ -2357,7 +2397,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "At a diner, 18 dozen buns were used yesterday for 150 lunch customers. Today, there were 250 lunch customers. Assuming that the bun usage rate is the same for both days, which proportions can be used to determine how many dozen buns are needed for 250 lunch customers?\n\nSelect the three correct answers.",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
         "type": "multi_select"
       },
       {
@@ -2367,7 +2407,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Maria is playing a game in which players earn points called minks, zogs, and barts.\n\\(1\\)  mink = \\(3\\)  zogs\n\\(1\\)  mink =\\(\\frac14\\)  bart\nMaria has 60 zogs and 24 barts. She wants to exchange her zogs and barts for minks.\nHow many minks will Maria receive from the exchange?\n\nEnter your answer in the space.",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
         "type": "short_response"
       }
     ],
@@ -2389,7 +2429,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-09-19T14:37:43.255Z",
-    "updatedAt": "2026-09-28T15:55:57.848Z",
+    "updatedAt": "2026-10-17T14:26:25.851Z",
     "passages": [
       {
         "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b",
@@ -3162,8 +3202,229 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "\\[\\frac{3}{5}(2x+5)-2x\\]\n\nAfter the expression above is simplified, what is the coefficient of \\(x\\) expressed as a decimal?",
-        "topic": "Algebra",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Evaluating expressions",
+        "type": "numeric_entry"
+      },
+      {
+        "answer": "5",
+        "choices": [],
+        "id": "2020-2021-form-b-math-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Two number cubes have sides labeled 1\nthrough 6. Both number cubes are rolled.\nHow many different outcomes will have a\nsum of 6?",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Evaluating expressions",
         "type": "short_response"
+      },
+      {
+        "answer": "95",
+        "choices": [],
+        "id": "2020-2021-form-b-math-3",
+        "imageUrl": "/exam-images/2020-2021-form-b-2020-2021-form-b-math-3-math.png",
+        "points": 1,
+        "prompt": "The figure above shows a scale drawing of\na garden, where 1 centimeter represents\n2.5 meters. What is the perimeter of the\nactual garden in meters?",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Evaluating expressions",
+        "type": "short_response"
+      },
+      {
+        "answer": "21",
+        "choices": [],
+        "id": "2020-2021-form-b-q61",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "At one location, the temperature increased from \\(-7^\\circ\\text{ F}\\) to \\(4^\\circ\\text{ F}\\) between 5:00 a.m. and 9:00 a.m. By 11:00 a.m., the temperature was \\(3.5\\) times greater than the 9:00 a.m. temperature. What was the total increase in temperature between 5:00 a.m. and 11:00 a.m., in degrees Fahrenheit?",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Evaluating expressions",
+        "type": "short_response"
+      },
+      {
+        "answer": "32",
+        "choices": [],
+        "id": "2020-2021-form-b-q62",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The figure below is a triangular prism. The lateral sides are rectangles. What is the volume of the figure, in cubic inches?",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Evaluating expressions",
+        "type": "short_response"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "The unit rate is 4 ounces per foot.",
+          "The y-intercept is 4.",
+          "A pole 4 feet long weighs 1 ounce.",
+          "The length increases 4 feet for each 1 ounce of weight."
+        ],
+        "id": "2020-2021-form-b-q63",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "This graph shows \\(y\\), the weight of a pole of length \\(x\\).\nWhat is represented by the point with coordinates \\((1, 4)\\)?",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "point E",
+          "point F",
+          "point G",
+          "point H"
+        ],
+        "id": "2020-2021-form-b-q64",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The number line shows points E, F, G, and H.\nWhich point represents the sum of \\(2.5+(-4.5)\\)?",
+        "topic": "Geometry",
+        "subtopic": "Triangles and the Pythagorean Theorem",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "4",
+          "6",
+          "12",
+          "16"
+        ],
+        "id": "2020-2021-form-b-q65",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(\\frac{9}{2x}=\\frac{3y}{8}\\), where \\(x\\ne 0\\) and \\(y\\ne 0\\), what is the product of \\(x\\) and \\(y\\)?",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Evaluating expressions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "$13,728",
+          "$14,300",
+          "$14,400",
+          "$15,588"
+        ],
+        "id": "2020-2021-form-b-q66",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A car dealership is having a sale where all cars have a 12% discount. What is the discounted price of a car that originally cost $15,600?",
+        "topic": "Geometry",
+        "subtopic": "Triangles and the Pythagorean Theorem",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "fifteen twenty-eighths",
+          "one and thirteen fifteenths",
+          "two and one-third",
+          "three and one-third"
+        ],
+        "id": "2020-2021-form-b-q67",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[4\\frac{2}{3}\\div 2\\frac{1}{2}=\\]",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Equivalent expressions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "one-fourth",
+          "one-half",
+          "two-thirds",
+          "five-sixths"
+        ],
+        "id": "2020-2021-form-b-q68",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a sports league each team has 36 players and 3 coaches. There are also a number of team assistants. The ratio of team assistants to players is \\(\\frac{1}{6}\\). What is the ratio of coaches to assistants?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Compound probability",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "six and two-thirds feet",
+          "seven and one-third feet",
+          "10 feet",
+          "thirteen and one-third feet"
+        ],
+        "id": "2020-2021-form-b-q69",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Lena is building a fence. She will need to dig holes to help support the posts that hold up the fence. The holes need to have a depth of \\(3\\frac{1}{3}\\) feet below the ground. Each post is 10 feet long. What is the height of the part of the post that is above the ground?",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Evaluating expressions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "id": "2020-2021-form-b-q70",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[p+2r=r(p+1)+1\\]\n\nIn the equation above, if \\(r=2\\), what is the value of \\(p\\)?",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "4",
+          "5",
+          "7",
+          "15"
+        ],
+        "id": "2020-2021-form-b-q71",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Karen reads at the rate of 60 pages per day. Martina reads 25 percent more pages per day than Karen. If the two students begin 1,500-page reading assignments on the same day, how many days sooner will Martina complete the assignment than Karen?",
+        "topic": "Geometry",
+        "subtopic": "Polygons and Quadrilaterals",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "5",
+          "6",
+          "15",
+          "16"
+        ],
+        "id": "2020-2021-form-b-q72",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Claire is running on a circular track. She has already run 650 meters. Each lap around the track is a distance of 120 meters. Her goal is to run at least 2,500 meters in all. How many more laps does she need to complete in order to reach her goal?",
+        "topic": "Expressions, Equations, and Inequalities",
+        "subtopic": "Equivalent expressions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "235",
+          "260",
+          "270",
+          "275"
+        ],
+        "id": "2020-2021-form-b-q73",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A company with 200 employees grew in size by 25% between 2005 and 2010. The company grew again by 10% between 2010 and 2015. What was the total number of employees in 2015?",
+        "topic": "Geometry",
+        "subtopic": "Area and Perimeter of Composite Figures",
+        "type": "multiple_choice"
       }
     ],
     "forms": [],

@@ -14,7 +14,7 @@ export type Evidence = ReviewQuestion & {
   examKey: string;
   examTitle: string;
   date: string | null;
-  source: "Paper" | "Digital";
+  source: "Paper" | "Digital" | "Answer sheet";
   status: "Correct" | "Incorrect" | "Unanswered";
   seconds?: number;
 };
@@ -22,7 +22,7 @@ export type AnalyticsExam = AnalyticsInput & {
   key: string;
   title: string;
   date: string | null;
-  source: "Paper" | "Digital";
+  source: "Paper" | "Digital" | "Answer sheet";
   complete: boolean;
   overall: number | null;
   english: number | null;
@@ -60,7 +60,7 @@ export function mean(values: (number | null)[]) {
   return measured.length ? Math.round(measured.reduce((sum, value) => sum + value, 0) / measured.length) : null;
 }
 
-export type ResponseDimension = "passage" | "category" | "type" | "skill";
+export type ResponseDimension = "passage" | "category" | "type" | "skill" | "subtopic";
 export type ResponseGroup = { key: string; label: string; versionLabel?: string; category?: PassageCategory; subject: string; correct: number; total: number; incorrect: number; unanswered: number; assessments: Set<string>; lastAttempt: string | null };
 export type ResponseSort = "title" | "category" | "accuracy" | "correct" | "total" | "incorrect" | "unanswered" | "assessments" | "lastAttempt";
 export function sortResponseGroups(groups: ResponseGroup[], sort: ResponseSort, direction: "asc" | "desc") {
@@ -78,10 +78,11 @@ export function sortResponseGroups(groups: ResponseGroup[], sort: ResponseSort, 
 export function groupResponseEvidence(evidence: Evidence[], dimension: ResponseDimension) {
   const groups = new Map<string, ResponseGroup>();
   for (const row of evidence) {
+    if (dimension === "subtopic" && row.section !== "math") continue;
     const category = row.passage ? passageCategory(row.passage.passageCategory) : undefined;
-    const key = dimension === "type" ? row.question.type : dimension === "skill" ? `${row.section}:${row.question.topic}` : dimension === "category" ? category ?? "" : row.passage?.id ?? "";
+    const key = dimension === "subtopic" ? JSON.stringify([row.question.topic, row.question.subtopic || "Unclassified"]) : dimension === "type" ? row.question.type : dimension === "skill" ? `${row.section}:${row.question.topic}` : dimension === "category" ? category ?? "" : row.passage?.id ?? "";
     if (!key) continue;
-    const group = groups.get(key) ?? { key, versionLabel: dimension === "passage" ? row.passage?.versionLabel : undefined, label: dimension === "type" ? row.question.type.replace(/_/g, " ") : dimension === "skill" ? row.question.topic : dimension === "category" ? passageCategoryLabel(category) : row.passage!.title, category: dimension === "category" || dimension === "passage" ? category : undefined, subject: row.section === "english" ? "English" : "Math", correct: 0, total: 0, incorrect: 0, unanswered: 0, assessments: new Set<string>(), lastAttempt: null };
+    const group = groups.get(key) ?? { key, versionLabel: dimension === "passage" ? row.passage?.versionLabel : undefined, label: dimension === "subtopic" ? `${row.question.topic} › ${row.question.subtopic || "Unclassified"}` : dimension === "type" ? row.question.type.replace(/_/g, " ") : dimension === "skill" ? row.question.topic : dimension === "category" ? passageCategoryLabel(category) : row.passage!.title, category: dimension === "category" || dimension === "passage" ? category : undefined, subject: row.section === "english" ? "English" : "Math", correct: 0, total: 0, incorrect: 0, unanswered: 0, assessments: new Set<string>(), lastAttempt: null };
     if (group.subject !== (row.section === "english" ? "English" : "Math")) group.subject = "English + Math";
     group.total++;
     group.correct += row.status === "Correct" ? 1 : 0;
@@ -96,11 +97,13 @@ export function groupResponseEvidence(evidence: Evidence[], dimension: ResponseD
 
 export function buildStudentAnalytics(inputs: AnalyticsInput[]) {
   const exams: AnalyticsExam[] = inputs.map((input, index) => {
-    const { result, content, subjects } = input;
+    const { result, subjects } = input;
+    const sheetResult = result.source === "answer_sheet" && result.answerSheet && typeof result.answerSheet === "object" ? result.answerSheet as { analysisContent?: ExamContent } : undefined;
+    const content = sheetResult?.analysisContent ?? input.content;
     const date = typeof result.completedAt === "string" && Number.isFinite(Date.parse(result.completedAt)) ? result.completedAt : null;
     const key = `${String(result.assessmentId ?? "exam")}:${date ?? "undated"}:${index}`;
     const title = String(result.title ?? content?.title ?? "Assessment");
-    const source = result.source === "manual" ? "Paper" as const : "Digital" as const;
+    const source = result.source === "manual" ? "Paper" as const : result.source === "answer_sheet" ? "Answer sheet" as const : "Digital" as const;
     const complete = result.completionStatus !== "english_complete" && result.completionStatus !== "math_complete"
       && (!Array.isArray(result.completedSections) || (result.completedSections.includes("english") && result.completedSections.includes("math")));
     const english = subjects.find(item => item.subject === "English Language Arts" && item.total > 0);

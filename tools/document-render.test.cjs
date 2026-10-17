@@ -3,6 +3,30 @@ const assert = require('node:assert/strict');
 const { resolve } = require('node:path');
 const { build } = require('esbuild');
 const fixture = require('./fixtures/document-import/expected-import.json');
+
+test('shared math renderer preserves emphasis, formulas, short answers and interaction state', async () => {
+  const result = await build({ stdin: { contents: `
+    import React from 'react'; import {renderToStaticMarkup} from 'react-dom/server';
+    import {ExamMathQuestion} from './client/src/components/ExamMathQuestion';
+    const base = {id:'qa',topic:'Algebra',prompt:'First line\\nSelect **two** and *only* two.',points:1,explanation:''};
+    console.log(renderToStaticMarkup(<ExamMathQuestion question={{...base,type:'short_response',correctTextAnswers:['-4'],stimulus:'\\\\(4w=2w-8\\\\)'}} answer="-4" onChange={()=>{}}/>));
+    console.log(renderToStaticMarkup(<ExamMathQuestion question={{...base,type:'inline_dropdown',dropdownContent:['Choose {{a}} then {{b}}.'],dropdowns:[{id:'a',options:[{id:'one',text:'One'}]},{id:'b',options:[{id:'two',text:'Two'}]}]}} answer={{a:'one',b:'two'}} onChange={()=>{}}/>));
+    console.log(renderToStaticMarkup(<ExamMathQuestion question={{...base,type:'number_line_response',numberLineResponse:{min:0,max:5,tickStep:0}}} onChange={()=>{}}/>));
+  `, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic', loader: {'.css':'empty'}, plugins: [{name:'non-keypad-ssr',setup(build) {
+    // These cases never mount a keypad. MathLive exposes its browser-only custom
+    // element separately from its Node SSR API; keypad behavior is tested in Chrome.
+    build.onResolve({filter:/^mathlive$/}, () => ({path:'mathlive',namespace:'non-keypad'}));
+    build.onLoad({filter:/.*/,namespace:'non-keypad'}, () => ({contents:'export class MathfieldElement {}'}));
+  }}] });
+  const output = [];
+  require('node:vm').runInNewContext(result.outputFiles[0].text, { require, console: { log: text => output.push(text) }, process, TextEncoder, TextDecoder, Buffer, setTimeout, clearTimeout, queueMicrotask, setImmediate, clearImmediate, AbortController, ReadableStream, WritableStream, TransformStream });
+  assert.match(output[0], /<strong>two<\/strong>/); assert.match(output[0], /<em>only<\/em>/);
+  assert.match(output[0], /First line\n/); assert.match(output[0], /class="katex"/);
+  assert.match(output[0], /value="-4"/); assert.doesNotMatch(output[0], /math-field|\*\*two\*\*/);
+  assert.equal((output[1].match(/<select/g) || []).length, 2);
+  assert.match(output[1], /value="one" selected=""/); assert.match(output[1], /value="two" selected=""/);
+  assert.match(output[2], /Set valid number-line bounds/);
+});
 // This fixture contains only plain source text and <br>/entities. Supply the DOM
 // surface needed by ExamText for Node SSR; browser sanitization is not mocked as tested.
 class FixtureDOMParser {

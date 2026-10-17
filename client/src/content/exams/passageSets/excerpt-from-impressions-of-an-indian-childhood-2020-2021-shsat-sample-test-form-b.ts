@@ -253,6 +253,7 @@ export const excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFor
   "title": "READING COMPREHENSION"
 },
   passage: createProsePassage({
+    passageCategory: "official_handbook",
     id: "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b",
     title: "Excerpt from “Impressions of an Indian Childhood”",
     author: "Zitkala-Sa",

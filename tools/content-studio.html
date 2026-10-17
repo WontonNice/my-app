@@ -244,6 +244,7 @@
     .save-row small { margin-right: auto; color: var(--muted); }
     .student-preview-modal {
       position: fixed; inset: 0; z-index: 100;
+      width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
       display: grid; grid-template-rows: auto minmax(0, 1fr);
       background: #dfe4e9;
     }
@@ -764,7 +765,7 @@
   <link rel="stylesheet" href="/content-studio-workspace.css">
   <link rel="stylesheet" href="/content-studio-math.css">
 </head>
-<body>
+<body class="studio-authoring">
   <header class="app-header">
     <div class="brand">
       <span class="brand-mark">NT</span>
@@ -781,6 +782,7 @@
     <button data-tab="advanced" type="button">SAT passages</button>
     <button data-tab="practice" type="button">Regular practice</button>
     <button data-tab="question-bank" type="button">Question Bank · SHSAT Lab</button>
+    <a class="content-studio-answer-sheets" href="http://localhost:5173/teacher/answer-sheets" target="_blank" rel="noreferrer" title="Create paper/PDF answer sheets, assign students, and enter keys later">Answer sheets ↗</a>
     <button id="open-document-drafts" type="button" aria-haspopup="dialog" disabled>Saved import drafts</button>
   </nav>
 
@@ -1089,7 +1091,7 @@ Why D is wrong."></textarea>
     </div>
   </dialog>
 
-  <section aria-label="Student exam preview" aria-modal="true" class="student-preview-modal" id="student-preview-modal" role="dialog" hidden>
+  <dialog aria-label="Student exam preview" class="student-preview-modal" id="student-preview-modal" hidden>
     <header>
       <div><strong>Student exam preview</strong><small id="student-preview-subtitle">Live preview of the current unsaved passage and questions</small></div>
       <div class="student-preview-controls">
@@ -1098,10 +1100,11 @@ Why D is wrong."></textarea>
       </div>
     </header>
     <iframe class="student-preview-frame" id="student-preview-frame" title="Student view of the current passage"></iframe>
-  </section>
+  </dialog>
 
   <script src="/vendor/katex.min.js"></script>
   <script src="/vendor/mathlive/mathlive.min.js"></script>
+  <script src="/content-studio-images.js"></script>
   <script src="/content-studio-math.js"></script>
   <script src="/document-import.cjs"></script>
   <script src="/content-studio-workspace.js"></script>
@@ -1124,6 +1127,7 @@ Why D is wrong."></textarea>
       selectedPassageId: "",
       selectedAssessmentId: "",
       testDraft: null,
+      testDirty: false,
       selectedMathAssessmentId: "",
       selectedMathQuestionIndex: 0,
       mathDraft: null,
@@ -1217,6 +1221,12 @@ Why D is wrong."></textarea>
         if (!(node instanceof HTMLElement)) return "";
         const tag = node.tagName.toLowerCase();
         if (["script", "style", "iframe", "object", "embed", "svg", "math"].includes(tag)) return "";
+        if (tag === 'img') {
+          const src = node.getAttribute('src') || '';
+          if (!/^\/exam-images\/[a-zA-Z0-9._-]+$/.test(src)) return '';
+          const width = Math.round(Number(node.getAttribute('width')));
+          return '<img src="' + escapeHtml(src) + '" alt="' + escapeHtml(node.alt || '') + '"' + (width >= 40 && width <= 1200 ? ' width="' + width + '"' : '') + '>';
+        }
         let content = Array.from(node.childNodes, serialize).join("");
         const weight = node.style.fontWeight;
         const numericWeight = Number(weight);
@@ -1265,12 +1275,14 @@ Why D is wrong."></textarea>
           <button aria-label="Bold" data-rich-command="bold" title="Bold" type="button">B</button>
           <button aria-label="Italic" class="is-italic" data-rich-command="italic" title="Italic" type="button">I</button>
           <button aria-label="Underline" class="is-underline" data-rich-command="underline" title="Underline" type="button">U</button>
-          <button aria-label="Strikethrough" class="is-strike" data-rich-command="strikeThrough" title="Strikethrough" type="button">S</button>
-          <button aria-label="Superscript" data-rich-command="superscript" title="Superscript" type="button">x²</button>
-          <button aria-label="Subscript" data-rich-command="subscript" title="Subscript" type="button">x₂</button>
-          <button aria-label="Clear formatting" data-rich-command="removeFormat" title="Clear formatting" type="button">Tx</button>
           <button aria-label="Undo" data-rich-command="undo" title="Undo" type="button">↶</button>
           <button aria-label="Redo" data-rich-command="redo" title="Redo" type="button">↷</button>
+          <details class="studio-format-more"><summary title="Additional formatting">More formatting</summary><div>
+            <button aria-label="Strikethrough" data-rich-command="strikeThrough" title="Strikethrough" type="button">Strikethrough</button>
+            <button aria-label="Superscript" data-rich-command="superscript" title="Superscript" type="button">Superscript x²</button>
+            <button aria-label="Subscript" data-rich-command="subscript" title="Subscript" type="button">Subscript x₂</button>
+            <button aria-label="Clear formatting" data-rich-command="removeFormat" title="Clear formatting" type="button">Clear formatting</button>
+          </div></details>
         </div>
       `;
     }
@@ -1280,6 +1292,7 @@ Why D is wrong."></textarea>
       element.textContent = message;
       element.className = `save-status${tone ? ` is-${tone}` : ""}`;
       studioUI.updateDialogStatus(message, tone);
+      studioUI.syncSaveState(tone);
     }
 
     async function api(path, options = {}, retryEditorToken = true) {
@@ -1504,7 +1517,8 @@ Why D is wrong."></textarea>
         instructions: "",
         points: 1,
         prompt: "",
-        topic: "Algebra",
+        topic: "",
+        subtopic: "",
         type,
       };
       if (type === "inline_dropdown") {
@@ -1635,6 +1649,12 @@ Why D is wrong."></textarea>
         .join("");
     }
 
+    function renderKatexExpression(expression, displayMode = false) {
+      return window.katex.renderToString(studioMath.previewLatex(String(expression || '')), {
+        displayMode, throwOnError: false, trust: false, strict: 'ignore',
+      });
+    }
+
     function renderMathRichTextHtml(html, fallbackText) {
       if (!html) return renderMathTextHtml(fallbackText);
       const container = document.createElement("div");
@@ -1715,6 +1735,7 @@ Why D is wrong."></textarea>
 
     function serializeMathPromptEditor(editor, { trim = true } = {}) {
       const cloneEditor = editor.cloneNode(true);
+      cloneEditor.querySelectorAll(".studio-image-upload").forEach(node => node.remove());
       $$(".math-visual-token", cloneEditor).forEach((token) => {
         const expression = token.dataset.mathExpression || "";
         const delimiter = token.dataset.mathDisplay === "true"
@@ -1734,21 +1755,27 @@ Why D is wrong."></textarea>
     }
 
     function confirmDiscard() {
+      if (app.saving) return false;
       const label = app.passageMode === "advanced" ? "SAT passage" : "exam passage";
       return !app.passageDirty || window.confirm(`Discard the unsaved ${label} changes?`);
     }
 
     function switchTab(tab) {
+      if (app.saving) return;
+      if (!app.state) { setStatus('Loading the content library…'); return; }
       const requestedPassageMode = tab === "advanced" ? "advanced" : tab === "passages" ? "exam" : "";
       if (requestedPassageMode && requestedPassageMode !== app.passageMode) {
         if (!confirmDiscard()) return;
+        studioUI.capturePassageLibrary();
         app.passageMode = requestedPassageMode;
         const sourcePassages = requestedPassageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
-        const firstPassage = sourcePassages[0];
+        const previousId = studioUI.readPreference(`selected-passage:${requestedPassageMode}`, '');
+        const firstPassage = sourcePassages.find(passage => passage.id === previousId) || sourcePassages[0];
         app.selectedPassageId = firstPassage?.id || "";
         app.passageDraft = firstPassage ? clone(firstPassage) : null;
         app.passageDirty = false;
         updatePassageWorkspaceLabels();
+        studioUI.restorePassageLibrary();
         renderPassageList();
         renderPassageEditor();
       }
@@ -1779,9 +1806,7 @@ Why D is wrong."></textarea>
         <div class="studio-category-row"><input type="checkbox" aria-label="Select ${escapeHtml(teacherPassageTitle(passage))} for categorization" data-category-select="${escapeHtml(passage.id)}" ${categorySelection.has(app.passageMode + ":" + passage.id) ? "checked" : ""}>
         <button style="flex:1;min-width:0" aria-current="${passage.id === app.selectedPassageId}" title="${escapeHtml(teacherPassageTitle(passage))} · ${escapeHtml(passage.id)}" class="${passage.id === app.selectedPassageId ? "is-active" : ""}" data-passage-id="${escapeHtml(passage.id)}" type="button">
           <strong>${escapeHtml(nested ? passageVersionText(passage) : passage.title)}</strong>
-          ${nested || app.passageMode === "advanced" ? "" : `<span class="passage-version-tag">${escapeHtml(passageVersionText(passage))}</span>`}
-          <small>${escapeHtml(passage.format.replace("_", " "))} · ${passage.questions.length} question${passage.questions.length === 1 ? "" : "s"}</small>
-          <small>English · ${escapeHtml(categoryLabel(passage.passageCategory))}</small>
+          <small class="studio-catalog-meta">${nested ? escapeHtml(categoryLabel(passage.passageCategory)) : escapeHtml(passageVersionText(passage))}<span>· ${passage.questions.length} Q</span></small>
         </button>
         </div>
       `;
@@ -1830,35 +1855,7 @@ Why D is wrong."></textarea>
     }
 
     function passageLibraryMarkup(passages, query) {
-      if (app.passageMode === "advanced") {
-        return passages.map((passage) => passageLibraryButtonMarkup(passage)).join("");
-      }
-      if (!passages.length) return "";
-
-      const sections = [
-        { id: "reading", title: "Reading passages" },
-        { id: "revising-editing", title: "Revising/Editing passages" },
-      ];
-      return sections.map((section) => {
-        const sectionPassages = passages.filter((passage) => examPassageSection(passage) === section.id);
-        if (!sectionPassages.length) return "";
-        const passageTitleCount = new Set(sectionPassages.map((passage) => passage.title.trim().toLowerCase())).size;
-        const countLabel = sectionPassages.length === passageTitleCount
-          ? `${passageTitleCount} passage${passageTitleCount === 1 ? "" : "s"}`
-          : `${passageTitleCount} passages · ${sectionPassages.length} versions`;
-        const isOpen = Boolean(query) || sectionPassages.some((passage) => passage.id === app.selectedPassageId);
-        return `
-          <details class="passage-library-section" data-passage-section="${section.id}" ${isOpen ? "open" : ""}>
-            <summary>
-              <strong>${section.title}</strong>
-              <span>${countLabel}</span>
-            </summary>
-            <div class="passage-library-section-list">
-              ${passageVersionGroupsMarkup(sectionPassages, query)}
-            </div>
-          </details>
-        `;
-      }).join("");
+      return passageVersionGroupsMarkup(passages, query);
     }
 
     const categorySelection = new Set();
@@ -1867,20 +1864,19 @@ Why D is wrong."></textarea>
       return app.state.passageCategories.map(category => `<option value="${category.value}" ${category.value === value ? "selected" : ""}>${escapeHtml(category.label)}</option>`).join("");
     }
     function renderPassageList() {
+      const previousScroll = $("#passage-list").scrollTop;
       const query = $("#passage-search").value.trim().toLowerCase();
       const sourcePassages = app.passageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
       const categoryFilter = $("#passage-category-filter");
       const category = categoryFilter.value;
       categoryFilter.innerHTML = `<option value="">All categories (${sourcePassages.length})</option>` + studioUI.passageCategoryCounts(sourcePassages).map(item => `<option value="${item.value}">${escapeHtml(item.label)} (${item.count})</option>`).join("");
       categoryFilter.value = category;
-      const matches = sourcePassages.filter((passage) => (!category || (passage.passageCategory || "miscellaneous") === category) &&
-        `${passage.title} ${passage.versionLabel || ""} ${passage.teacherSource || ""} ${passage.id} ${passage.advancedId || ""} ${passage.genre || ""} ${passage.fileName} ${passage.questions.map((q) => `${q.topic} ${q.prompt}`).join(" ")}`.toLowerCase().includes(query),
-      );
-      const passages = studioUI.libraryPage(matches, "passages", query + app.passageMode + category, renderPassageList);
+      const matches = studioUI.searchPassages(sourcePassages.filter(passage => (!category || (passage.passageCategory || "miscellaneous") === category) && (!studioUI.catalogSection || app.passageMode === "advanced" || examPassageSection(passage) === studioUI.catalogSection)), query);
+      const passages = studioUI.libraryPage(matches, "passages", query + app.passageMode + category + (studioUI.catalogSection || ''), renderPassageList);
       $("#passage-count").textContent = category || query ? `${matches.length}/${sourcePassages.length}` : sourcePassages.length;
       const passageList = $("#passage-list");
       passageList.innerHTML = passageLibraryMarkup(passages, query) || `<p class="field-note">No English passages match ${category ? escapeHtml(categoryLabel(category)) + " and " : ""}these filters. <button id="clear-passage-filters" type="button">Clear filters</button></p>`;
-      $("#clear-passage-filters")?.addEventListener("click", () => { $("#passage-search").value = ""; $("#passage-category-filter").value = ""; const format = $("#passages-filters select[aria-label='Filter passage format']"); if (format) format.value = ""; renderPassageList(); });
+      $("#clear-passage-filters")?.addEventListener("click", () => { $("#passage-search").value = ""; $("#passage-category-filter").value = ""; studioUI.catalogSection = ""; const format = $("#passages-filters select[aria-label='Filter passage format']"); if (format) format.value = ""; renderPassageList(); });
       const passageButtons = $$("[data-passage-id]", passageList);
       passageButtons.forEach((button) => {
         button.addEventListener("click", () => selectPassage(button.dataset.passageId));
@@ -1891,8 +1887,8 @@ Why D is wrong."></textarea>
         updateCategorySelection();
       }));
       updateCategorySelection();
-      const selectedButton = passageButtons.find((button) => button.dataset.passageId === app.selectedPassageId);
-      if (selectedButton) requestAnimationFrame(() => selectedButton.scrollIntoView({ block: "nearest" }));
+      passageList.scrollTop = previousScroll;
+      if (studioUI.shellReady) studioUI.capturePassageLibrary();
       renderErrors(
         "#passage-errors",
         app.passageMode === "advanced" ? app.state.advancedPassageErrors : app.state.passageErrors,
@@ -1903,6 +1899,10 @@ Why D is wrong."></textarea>
       const count = [...categorySelection].filter(key => key.startsWith(app.passageMode + ":")).length;
       $("#passage-apply-category").textContent = `Apply category (${count})`;
       $("#passage-apply-category").disabled = count === 0;
+      const bulk = document.querySelector('.passage-bulk');
+      bulk.dataset.hasSelection = String(count > 0);
+      bulk.querySelector('summary').textContent = count ? `Select · ${count}` : 'Select';
+      if (count) bulk.open = true;
     }
 
     async function applyPassageCategory() {
@@ -1926,6 +1926,7 @@ Why D is wrong."></textarea>
     }
 
     function selectPassage(id) {
+      if (app.selectedPassageId === id && app.passageDraft) return;
       if (!confirmDiscard()) return;
       const passages = app.passageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
       const passage = passages.find((candidate) => candidate.id === id);
@@ -1935,6 +1936,7 @@ Why D is wrong."></textarea>
       app.passageDirty = false;
       renderPassageList();
       renderPassageEditor();
+      studioUI.remember(`selected-passage:${app.passageMode}`, id);
       setStatus(
         `Editing ${passage.title}. Changes write to ${
           app.passageMode === "advanced" ? "advancedPractice/passageSets" : "exams/passageSets"
@@ -2163,6 +2165,22 @@ Why D is wrong."></textarea>
       return topics.map((topic) => `<option ${topic === selected ? "selected" : ""} value="${escapeHtml(topic)}">${escapeHtml(topic)}</option>`).join("");
     }
 
+    function mathTopicOptions(selected) {
+      const topics = [...app.state.mathTopics];
+      if (selected && !topics.includes(selected)) topics.unshift(selected);
+      return '<option value="">Choose main category</option>' + topics.map(topic => `<option value="${escapeHtml(topic)}" ${topic === selected ? 'selected' : ''}>${escapeHtml(topic)}</option>`).join('');
+    }
+
+    function mathSubtopicOptions(topic, selected = '') {
+      const topics = (app.state.mathTopicConfiguration?.categories.find(category => category.label === topic)?.topics || []).map(item => item.label);
+      if (selected && !topics.includes(selected)) topics.unshift(selected);
+      return '<option value="">Choose specific topic</option>' + topics.map(label => `<option value="${escapeHtml(label)}" ${label === selected ? 'selected' : ''}>${escapeHtml(label)}</option>`).join('');
+    }
+
+    function mathFormulaToolbarHtml(target, compact = false, raw = false) {
+      return studioMath.toolbar(target, compact, raw);
+    }
+
     function resetInvalidPassageTopics(section) {
       const allowedTopics = questionTopicsForSection(section);
       const fallbackTopic = allowedTopics[0];
@@ -2209,6 +2227,7 @@ Why D is wrong."></textarea>
     }
 
     function renderPassageEditor() {
+      studioUI.parkExamNavigation?.();
       const passage = app.passageDraft;
       if (!passage) {
         $("#passage-editor").innerHTML = `<div class="editor-empty">Choose a passage or create a new one.</div>`;
@@ -2372,7 +2391,7 @@ Why D is wrong."></textarea>
       $("#delete-passage")?.addEventListener("click", deletePassage);
       $("#save-passage").addEventListener("click", savePassage);
       $("#save-document-draft")?.addEventListener("click", () => DocumentStudio.saveCurrentPassage());
-      $("#review-document-draft")?.addEventListener("click", async () => { await DocumentStudio.saveCurrentPassage(); await DocumentStudio.library(); DocumentStudio.open(app.passageDraft.importDraftId); });
+      $("#review-document-draft")?.addEventListener("click", async () => { if (!await DocumentStudio.saveCurrentPassage()) return; await DocumentStudio.library(); DocumentStudio.open(app.passageDraft.importDraftId); });
       $("#manage-content-topics").addEventListener("click", openContentTopicManager);
       studioUI.mountPassage();
     }
@@ -2431,12 +2450,39 @@ Why D is wrong."></textarea>
     let passageDefinitionSelection = null;
     const passageEditHistory = new WeakMap();
 
+    function capturePassageSelection(editor) {
+      const selection = editor.ownerDocument.getSelection();
+      if (!selection?.rangeCount || !editor.contains(selection.getRangeAt(0).commonAncestorContainer)) return null;
+      const range = selection.getRangeAt(0), prefix = editor.ownerDocument.createRange();
+      prefix.selectNodeContents(editor); prefix.setEnd(range.startContainer, range.startOffset);
+      const start = prefix.toString().length;
+      prefix.setEnd(range.endContainer, range.endOffset);
+      return { start, end: prefix.toString().length };
+    }
+
+    function restorePassageSelection(editor, bookmark) {
+      if (!bookmark) return;
+      const walker = editor.ownerDocument.createTreeWalker(editor, NodeFilter.SHOW_TEXT);
+      const nodes = []; let total = 0;
+      while (walker.nextNode()) { nodes.push({ node: walker.currentNode, start: total }); total += walker.currentNode.length; }
+      if (!nodes.length) return;
+      const at = offset => {
+        const value = Math.min(offset, total);
+        const entry = nodes.find(item => item.start + item.node.length >= value) || nodes[nodes.length - 1];
+        return [entry.node, Math.max(0, value - entry.start)];
+      };
+      const range = editor.ownerDocument.createRange(); range.setStart(...at(bookmark.start)); range.setEnd(...at(bookmark.end));
+      const selection = editor.ownerDocument.getSelection(); selection.removeAllRanges(); selection.addRange(range);
+    }
+
     function recordPassageEdit(editor) {
       const history = passageEditHistory.get(editor);
       if (!history || history.restoring || history.entries[history.index] === editor.innerHTML) return;
       history.entries.splice(history.index + 1);
+      history.selections.splice(history.index + 1);
       history.entries.push(editor.innerHTML);
-      if (history.entries.length > 100) history.entries.shift();
+      history.selections.push(capturePassageSelection(editor));
+      if (history.entries.length > 100) { history.entries.shift(); history.selections.shift(); }
       history.index = history.entries.length - 1;
     }
 
@@ -2449,17 +2495,14 @@ Why D is wrong."></textarea>
       history.restoring = true;
       editor.innerHTML = history.entries[next];
       editor.focus({ preventScroll: true });
-      const range = document.createRange();
-      range.selectNodeContents(editor);
-      range.collapse(false);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
+      restorePassageSelection(editor, history.selections[next] || { start: 0, end: 0 });
       editor.dispatchEvent(new Event("input", { bubbles: true }));
       history.restoring = false;
       return true;
     }
 
     function renderPassageDefinitionList() {
+      if (document.getElementById('studio-support-tools')) { studioUI.renderDefinitions(); return; }
       const list = $("#passage-definition-list"), editor = $("#passage-rich-editor");
       if (!list || !editor) return;
       list.replaceChildren();
@@ -2474,8 +2517,8 @@ Why D is wrong."></textarea>
       });
     }
 
-    function openPassageDefinition(existingTerm = null) {
-      const editor = $("#passage-rich-editor"), selection = window.getSelection();
+    function openPassageDefinition(existingTerm = null, editorOverride = null) {
+      const editor = editorOverride || $("#passage-rich-editor"), selection = editor?.ownerDocument.getSelection();
       if (!editor) return;
       let range = selection?.rangeCount ? selection.getRangeAt(0).cloneRange() : null;
       if (!existingTerm && range && editor.contains(range.commonAncestorContainer)) {
@@ -2487,7 +2530,7 @@ Why D is wrong."></textarea>
             elementAt(range.startContainer)?.closest("p,div,h2,li") !== elementAt(range.endContainer)?.closest("p,div,h2,li") ||
             range.cloneContents().querySelector("[data-glossary-definition]"))) range = null;
       } else if (!existingTerm) range = null;
-      if (existingTerm) { range = document.createRange(); range.selectNode(existingTerm); }
+      if (existingTerm) { range = editor.ownerDocument.createRange(); range.selectNode(existingTerm); }
       if (!range || !range.toString().trim() || range.toString().length > 200) {
         setStatus("Select up to 200 characters within one paragraph or poem line, or choose an existing word definition.", "error");
         return;
@@ -2506,7 +2549,7 @@ Why D is wrong."></textarea>
       const context = passageDefinitionSelection;
       if (!context?.editor.isConnected || !context.editor.contains(context.range.commonAncestorContainer)) return false;
       context.editor.focus({ preventScroll: true });
-      const selection = window.getSelection();
+      const selection = context.editor.ownerDocument.getSelection();
       selection.removeAllRanges();
       selection.addRange(context.range);
       return true;
@@ -2531,8 +2574,9 @@ Why D is wrong."></textarea>
       range.insertNode(fragment);
       if (last) range.setStartAfter(last);
       range.collapse(true);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
+      const selection = passageDefinitionSelection.editor.ownerDocument.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
       passageDefinitionSelection.editor.dispatchEvent(new Event("input", { bubbles: true }));
       $("#passage-definition-dialog").close();
       passageDefinitionSelection = null;
@@ -2547,6 +2591,9 @@ Why D is wrong."></textarea>
         setStatus("Click inside the paragraph you want to format first.", "error"); return;
       }
       let range = selection.getRangeAt(0);
+      const bookmark = capturePassageSelection(editor);
+      const history = passageEditHistory.get(editor);
+      if (history) history.selections[history.index] = bookmark;
       const blockSelector = "p,div,h1,h2,h3,h4,h5,h6";
       let blocks;
       if (range.collapsed) {
@@ -2566,25 +2613,44 @@ Why D is wrong."></textarea>
       let last;
       for (const block of blocks) {
         const replacement = document.createElement(mode === "heading" ? "h2" : "p");
+        for (const attribute of block.attributes) if (attribute.name !== 'data-numbered') replacement.setAttribute(attribute.name, attribute.value);
         if (mode !== "heading") replacement.dataset.numbered = mode === "numbered" ? "true" : "false";
         while (block.firstChild) replacement.appendChild(block.firstChild);
         block.replaceWith(replacement); last = replacement;
       }
-      editor.focus();
-      const caret = document.createRange(); caret.selectNodeContents(last); caret.collapse(false);
-      selection.removeAllRanges(); selection.addRange(caret);
+      editor.focus({ preventScroll: true });
+      restorePassageSelection(editor, bookmark);
       editor.dispatchEvent(new Event("input", { bubbles: true }));
       setStatus(`${blocks.length} paragraph${blocks.length === 1 ? "" : "s"} set to ${mode === "heading" ? "subheading" : mode === "numbered" ? "numbered" : "unnumbered"}. Save the passage to keep this setting.`, "success");
     }
 
     function bindRichEditors(root) {
+      root.querySelectorAll('.studio-format-more summary').forEach(summary => summary.addEventListener('mousedown', event => event.preventDefault()));
       root.querySelectorAll("[data-passage-block-format]").forEach(button => {
         button.addEventListener("mousedown", event => event.preventDefault());
         button.addEventListener("click", () => formatPassageParagraph(button.dataset.passageBlockFormat));
       });
       $$("[contenteditable='true']", root).forEach((editor) => {
         if (editor.dataset.richKind === "passage") {
-          passageEditHistory.set(editor, { entries: [editor.innerHTML], index: 0, restoring: false });
+          passageEditHistory.set(editor, { entries: [editor.innerHTML], selections: [capturePassageSelection(editor)], index: 0, restoring: false });
+          editor.addEventListener('beforeinput', event => {
+            const history = passageEditHistory.get(editor);
+            if (history && !history.restoring) history.selections[history.index] = capturePassageSelection(editor);
+            // Text inserted immediately before/after a definition belongs outside
+            // that occurrence. Native contenteditable otherwise grows the span.
+            if (event.inputType !== 'insertText' || event.isComposing || !event.data) return;
+            const selection = window.getSelection(); if (!selection?.rangeCount || !selection.isCollapsed) return;
+            const range = selection.getRangeAt(0);
+            const element = range.startContainer.nodeType === Node.ELEMENT_NODE ? range.startContainer : range.startContainer.parentElement;
+            const term = element.closest('[data-glossary-definition]'); if (!term || !editor.contains(term)) return;
+            const prefix = document.createRange(); prefix.selectNodeContents(term); prefix.setEnd(range.startContainer, range.startOffset);
+            const atStart = prefix.toString().length === 0, atEnd = prefix.toString().length === term.textContent.length;
+            if (!atStart && !atEnd) return;
+            event.preventDefault();
+            const text = document.createTextNode(event.data); if (atStart) term.before(text); else term.after(text);
+            range.setStart(text, text.length); range.collapse(true); selection.removeAllRanges(); selection.addRange(range);
+            editor.dispatchEvent(new Event('input', { bubbles: true }));
+          });
           editor.addEventListener("keydown", (event) => {
             if (!(event.ctrlKey || event.metaKey) || event.altKey) return;
             if (event.key.toLowerCase() !== "z" && event.key.toLowerCase() !== "y") return;
@@ -2593,9 +2659,18 @@ Why D is wrong."></textarea>
           });
         }
         editor.addEventListener("focus", () => { app.activeRichEditor = editor; });
+        const rememberRange = () => {
+          const selection = window.getSelection();
+          if (selection?.rangeCount && editor.contains(selection.getRangeAt(0).commonAncestorContainer)) editor.studioSelection = selection.getRangeAt(0).cloneRange();
+        };
+        editor.addEventListener('keyup', rememberRange);
+        editor.addEventListener('mouseup', rememberRange);
+        editor.addEventListener('blur', rememberRange);
         editor.addEventListener("paste", (event) => {
           if (event.target.closest("math-field")) return;
           event.preventDefault();
+          const pastedImage = studioImages.fileFromPaste(event);
+          if (pastedImage && editor.dataset.richKind?.startsWith('math-')) { studioImages.insert(editor, pastedImage); return; }
           const richHtml = event.clipboardData?.getData("text/html");
           const plainText = event.clipboardData?.getData("text/plain") || "";
           const blockRichKinds = new Set([
@@ -2614,7 +2689,7 @@ Why D is wrong."></textarea>
                   editor.dataset.richKind === "math-prompt" ||
                   editor.dataset.richKind === "math-instructions"
                 ? escapeHtml(plainText).replaceAll("\n", "<br>")
-                : plainTextToRich(plainText, app.passageDraft.format);
+                : plainTextToRich(plainText, app.passageDraft?.format || "prose");
           document.execCommand("insertHTML", false, content);
           if (editor.dataset.richKind === "math-prompt") hydrateMathPromptEditor(editor);
           editor.dispatchEvent(new Event("input", { bubbles: true }));
@@ -2627,6 +2702,13 @@ Why D is wrong."></textarea>
           });
         }
         editor.addEventListener("input", () => {
+          if (editor.dataset.richKind === 'passage') {
+            // Cutting/deleting defined text can leave an empty annotated span in
+            // contenteditable. Keep no detached, invisible definition records.
+            editor.querySelectorAll('[data-glossary-definition]').forEach(term => {
+              if (!term.textContent.trim()) term.replaceWith(...term.childNodes);
+            });
+          }
           if (editor.dataset.richKind?.startsWith("math-")) studioMath.hydrate(editor);
           const visualMathValue =
             editor.dataset.richKind?.startsWith("math-")
@@ -2712,7 +2794,7 @@ Why D is wrong."></textarea>
       });
 
       $$("[data-rich-command]", root).forEach((button) => {
-        button.addEventListener("mousedown", (event) => {
+        const apply = (event) => {
           event.preventDefault();
           const mathContext = studioMath.active;
           if (mathContext?.editor.isConnected && button.closest("#math-builder") && ["undo", "redo"].includes(button.dataset.richCommand)) {
@@ -2729,7 +2811,7 @@ Why D is wrong."></textarea>
           const savedRange =
             selection?.rangeCount && activeEditor.contains(selection.getRangeAt(0).commonAncestorContainer)
               ? selection.getRangeAt(0).cloneRange()
-              : null;
+              : activeEditor.studioSelection;
           activeEditor.focus({ preventScroll: true });
           if (savedRange) {
             selection.removeAllRanges();
@@ -2738,7 +2820,10 @@ Why D is wrong."></textarea>
           if (["undo", "redo"].includes(button.dataset.richCommand) && restorePassageEdit(activeEditor, button.dataset.richCommand === "redo")) return;
           document.execCommand(button.dataset.richCommand, false);
           activeEditor.dispatchEvent(new Event("input", { bubbles: true }));
-        });
+          const menu = button.closest('details'); if (menu) menu.open = false;
+        };
+        button.addEventListener('mousedown', apply);
+        button.addEventListener('click', event => { if (event.detail === 0) apply(event); });
       });
     }
 
@@ -2832,6 +2917,8 @@ Why D is wrong."></textarea>
       };
       $("#format-note").textContent = notes[app.passageDraft.format];
       $("#passage-paragraph-format").hidden = app.passageDraft.format !== "prose";
+      if (document.getElementById('studio-support-tools')) $("#passage-paragraph-format").hidden = true;
+      studioUI.updateParagraphStyle();
     }
 
     function passagePreviewDocument(passage) {
@@ -2851,12 +2938,22 @@ Why D is wrong."></textarea>
         preview.replaceChildren(frame);
         preview.style.padding = "0";
       }
+      if (frame.contentDocument?.querySelector('.exam-passage-pencil-surface')) {
+        const doc = frame.contentDocument;
+        doc.querySelector('.exam-passage-pencil-surface').innerHTML = studentPassageMarkup(app.passageDraft);
+        doc.querySelector('.exam-question-passage-scroll').className = `exam-question-passage-scroll is-${app.passageDraft.format}`;
+        frame.studioFit?.();
+        return;
+      }
       frame.onload = () => {
         const doc = frame.contentDocument;
         if (!doc?.body) return;
-        const fit = () => { frame.style.height = `${Math.max(180, doc.body.scrollHeight)}px`; };
+        doc.documentElement.style.overflow = 'hidden';
+        const fit = () => { frame.style.height = `${Math.ceil(Math.max(180, doc.querySelector('main').getBoundingClientRect().height))}px`; };
+        frame.studioFit = fit;
         fit();
         doc.querySelectorAll("img").forEach(image => image.addEventListener("load", fit, { once: true }));
+        new ResizeObserver(fit).observe(doc.querySelector('main'));
       };
       frame.srcdoc = passagePreviewDocument(app.passageDraft);
     }
@@ -2891,8 +2988,9 @@ Why D is wrong."></textarea>
       return blocks.length ? blocks : [{ html: wrapper.innerHTML, text: wrapper.textContent.trimEnd() }];
     }
 
-    function numberRichSentences(html, firstSentenceNumber) {
+    function numberRichSentences(html, firstSentenceNumber, authoring = false) {
       let nextSentenceNumber = firstSentenceNumber;
+      const number = () => authoring ? `<span data-generated-number contenteditable="false">(${nextSentenceNumber}) </span>` : `(${nextSentenceNumber}) `;
       let needsNumber = true;
       let afterSentenceTerminator = false;
       return html.split(/(<[^>]+>)/g).map((token) => {
@@ -2900,11 +2998,11 @@ Why D is wrong."></textarea>
         let output = "";
         for (const character of token) {
           if (needsNumber && !/\s/.test(character)) {
-            output += `(${nextSentenceNumber}) `;
+            output += number();
             nextSentenceNumber += 1;
             needsNumber = false;
           } else if (afterSentenceTerminator && !/[.!?\s]/.test(character)) {
-            output += `(${nextSentenceNumber}) `;
+            output += number();
             nextSentenceNumber += 1;
             afterSentenceTerminator = false;
           }
@@ -2915,7 +3013,8 @@ Why D is wrong."></textarea>
       }).join("");
     }
 
-    function studentPassageMarkup(passage) {
+    function studentPassageMarkup(passage, authoring = false) {
+      const editBlock = (index, line = 0) => authoring ? ` data-author-block="${index}" data-author-line="${line}"` : "";
       const sourceNote = passage.sourceNote
         ? `<p class="exam-passage-source-note">${escapeHtml(passage.sourceNote)}</p>`
         : "";
@@ -2946,7 +3045,7 @@ Why D is wrong."></textarea>
         const bodyParagraphs = blocks.filter(block => !block.kind && block.numbered !== false && block.text.trim());
         const printedLabels = bodyParagraphs.flatMap((block, index) => { const match = /^\s*(\d{1,3})\s+/.exec(block.text); return match && Number(match[1]) <= bodyParagraphs.length ? [{ value: Number(match[1]), expected: index + 1 }] : []; });
         const usePrintedLabels = printedLabels.length >= 2 && printedLabels.every(label => label.value === label.expected);
-        const body = blocks.map(block => {
+        const body = blocks.map((block, index) => {
           const tag = block.kind === "list" ? "div" : "p";
           const classes = `${lineClass}${block.kind ? ` is-${block.kind}` : ""}${block.align === "indent" ? " is-indented" : ""}${!block.text && !block.html ? " is-spacer" : ""}`;
           let content = block.html || escapeHtml(block.text).replaceAll("\n", "<br>").replace(/ {2}/g, " &nbsp;");
@@ -2954,7 +3053,7 @@ Why D is wrong."></textarea>
           if (lineNumber) content = content.replace(new RegExp(`^\\s*(?:\\(${lineNumber}\\)|${lineNumber}[.)]${usePrintedLabels ? `|${lineNumber}` : ""})\\s+`), "");
           if (block.kind === "heading") content = `<strong>${content}</strong>`;
           const number = lineNumber ? `<span class="exam-paragraph-number">${lineNumber}</span>` : passage.format === "poem" ? "<span></span>" : "";
-          return `<${tag} class="${classes}">${number}<span>${content}</span></${tag}>`;
+          return `<${tag} class="${classes}"${editBlock(index)}>${number}<span>${content}</span></${tag}>`;
         }).join("");
         const seen = new Set(passage.image ? [passage.image.src] : []);
         const extraImages = [...(passage.images || []), ...(passage.visuals || []).filter(v => !v.questionId && v.image).map(v => v.image)].filter(image => { if (seen.has(image.src)) return false; seen.add(image.src); return true; });
@@ -2965,10 +3064,10 @@ Why D is wrong."></textarea>
       if (passage.format === "poem") {
         let contentLine = 1;
         const sourceLines = richBlocks
-          ? richBlocks.flatMap((block) => {
+          ? richBlocks.flatMap((block, blockIndex) => {
               const lines = block.html.split(/<br\s*\/?>/gi);
               if (lines.length > 1 && !lines.at(-1)) lines.pop();
-              return lines.map((html) => {
+              return lines.map((html, lineIndex) => {
                 const wrapper = document.createElement("div");
                 wrapper.innerHTML = html;
                 const isIndented = block.align === "indent" || /^\s{8,}\S/.test(wrapper.textContent);
@@ -2976,21 +3075,21 @@ Why D is wrong."></textarea>
                   ? html.replace(/^(\s*<(?:em|i)>)(?:(?:&nbsp;)|\s){4,}/i, "$1").replace(/^(?:(?:&nbsp;)|\s){4,}/i, "")
                   : html;
                 wrapper.innerHTML = normalizedHtml;
-                return { html: normalizedHtml, text: wrapper.textContent.trimEnd(), align: isIndented ? "indent" : "" };
+                return { html: normalizedHtml, text: wrapper.textContent.trimEnd(), align: isIndented ? "indent" : "", blockIndex, lineIndex };
               });
             })
-          : (text || "Passage content has not been added for this assessment yet.")
+          : (text || (authoring ? "" : "Passage content has not been added for this assessment yet."))
               .split(/\r?\n/)
-              .map((line) => ({ html: "", text: line }));
+              .map((line, blockIndex) => ({ html: "", text: line, blockIndex }));
         const contentLines = sourceLines.map((line) => {
-            if (!line.text.trim()) return `<p class="exam-poem-line is-spacer"><span></span><span></span></p>`;
+            if (!line.text.trim()) return `<p class="exam-poem-line is-spacer"${editBlock(line.blockIndex, line.lineIndex)}><span></span><span></span></p>`;
             const lineNumber = contentLine % Math.max(1, passage.lineNumberInterval || 5) === 0 ? String(contentLine) : "";
             contentLine += 1;
-            return `<p class="exam-poem-line${line.align === "indent" ? " is-indented" : ""}"><span>${lineNumber}</span><span>${line.html || escapeHtml(line.text.replace(/\s+$/, ""))}</span></p>`;
+            return `<p class="exam-poem-line${line.align === "indent" ? " is-indented" : ""}"${editBlock(line.blockIndex, line.lineIndex)}><span>${lineNumber}</span><span>${line.html || escapeHtml(line.text.replace(/\s+$/, ""))}</span></p>`;
           });
         return [
           blurb,
-          `<p class="exam-poem-line is-centered is-title"><span>${escapeHtml(passage.title || "Untitled Passage")}</span></p>`,
+          `<p class="exam-poem-line is-centered is-title"><span>${escapeHtml(passage.title || (authoring ? "" : "Untitled Passage"))}</span></p>`,
           author,
           `<p class="exam-poem-line is-spacer"><span></span><span></span></p>`,
           ...contentLines,
@@ -3001,10 +3100,10 @@ Why D is wrong."></textarea>
 
       if (passage.format === "sentence_prose") {
         let sentenceNumber = 1;
-        const sourceParagraphs = richBlocks ?? (text || "Passage content has not been added for this assessment yet.")
+        const sourceParagraphs = richBlocks ?? (text || (authoring ? "" : "Passage content has not been added for this assessment yet."))
           .split(/\r?\n\s*\r?\n/)
           .map((paragraph) => ({ html: "", text: paragraph }));
-        const paragraphs = sourceParagraphs.map((paragraph) => {
+        const paragraphs = sourceParagraphs.map((paragraph, index) => {
             const startNumber = sentenceNumber;
             const numbered = (paragraph.text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [paragraph.text])
               .map((sentence) => {
@@ -3016,11 +3115,11 @@ Why D is wrong."></textarea>
               })
               .filter(Boolean)
               .join(" ");
-            return `<p class="exam-sentence-prose-line"><span>${paragraph.html ? numberRichSentences(paragraph.html, startNumber) : escapeHtml(numbered)}</span></p>`;
+            return `<p class="exam-sentence-prose-line"${editBlock(index)}><span>${paragraph.html ? numberRichSentences(paragraph.html, startNumber, authoring) : authoring ? numberRichSentences(escapeHtml(paragraph.text.replace(/\s+/g, ' ').trim()), startNumber, true) : escapeHtml(numbered)}</span></p>`;
           });
         return [
           blurb,
-          `<p class="exam-sentence-prose-line is-title"><span>${escapeHtml(passage.title || "Untitled Passage")}</span></p>`,
+          `<p class="exam-sentence-prose-line is-title"><span>${escapeHtml(passage.title || (authoring ? "" : "Untitled Passage"))}</span></p>`,
           author,
           `<p class="exam-sentence-prose-line is-spacer"></p>`,
           ...paragraphs,
@@ -3029,19 +3128,19 @@ Why D is wrong."></textarea>
         ].join("");
       }
 
-      const sourceParagraphs = richBlocks ?? (text || "Passage content has not been added for this assessment yet.")
+      const sourceParagraphs = richBlocks ?? (text || (authoring ? "" : "Passage content has not been added for this assessment yet."))
         .split(/\r?\n\s*\r?\n/)
         .map((paragraph) => ({ html: "", text: paragraph }));
       let paragraphNumber = 1;
-      const paragraphs = sourceParagraphs.map((paragraph) => {
-        if (!paragraph.text.trim()) return `<p class="exam-prose-line is-spacer"></p>`;
+      const paragraphs = sourceParagraphs.map((paragraph, index) => {
+        if (!paragraph.text.trim()) return `<p class="exam-prose-line is-spacer"${editBlock(index)}><span></span></p>`;
         const tag = paragraph.kind === "list" ? "div" : "p";
         const content = paragraph.html || escapeHtml(paragraph.text.replace(/\s+/g, " ").trim());
-        return `<${tag} class="exam-prose-line${paragraph.kind ? ` is-${paragraph.kind}` : ""}"${paragraph.kind === "heading" ? ' role="heading" aria-level="2"' : ""}>${paragraph.kind || paragraph.numbered === false ? "" : `<span class="exam-paragraph-number">${paragraphNumber++}</span> `}<span>${paragraph.kind === "heading" ? `<strong>${content}</strong>` : content}</span></${tag}>`;
+        return `<${tag} class="exam-prose-line${paragraph.kind ? ` is-${paragraph.kind}` : ""}"${editBlock(index)}${paragraph.kind === "heading" ? ' role="heading" aria-level="2"' : ""}>${paragraph.kind || paragraph.numbered === false ? "" : `<span class="exam-paragraph-number">${paragraphNumber++}</span> `}<span>${paragraph.kind === "heading" ? `<strong>${content}</strong>` : content}</span></${tag}>`;
       });
       return [
         blurb,
-        `<p class="exam-prose-line is-title"><span>${escapeHtml(passage.title || "Untitled Passage")}</span></p>`,
+        `<p class="exam-prose-line is-title"><span>${escapeHtml(passage.title || (authoring ? "" : "Untitled Passage"))}</span></p>`,
         author,
         `<p class="exam-prose-line is-spacer"></p>`,
         ...paragraphs,
@@ -3152,115 +3251,25 @@ Why D is wrong."></textarea>
     function renderMathStudentPreview() {
       const questions = app.mathDraft?.questions || [];
       app.previewQuestionIndex = Math.max(0, Math.min(app.previewQuestionIndex, Math.max(questions.length - 1, 0)));
-      const question = questions[app.previewQuestionIndex];
-      const selector = $("#student-preview-question");
-      selector.innerHTML = questions.length
-        ? questions.map((item, index) => `<option ${index === app.previewQuestionIndex ? "selected" : ""} value="${index}">Question ${index + 1}: ${escapeHtml(String(item.prompt || item.id).slice(0, 55))}</option>`).join("")
-        : `<option value="0">No questions yet</option>`;
-      $("#student-preview-subtitle").textContent = "Live student view of the current unsaved Math question";
-      const choices = question?.choices || [];
-      const answerMarkup =
-        question?.type === "short_response"
-          ? renderShortResponsePreviewMarkup()
-          : question?.type === "numeric_entry"
-            ? renderMathEntryPreviewMarkup(question)
-          : question?.type === "inline_dropdown"
-            ? renderMathInlineDropdownMarkup(question, "math-student-preview")
-            : question?.type === "math_drag_drop"
-              ? renderMathDragDropPreviewMarkup(question)
-              : question?.type === "graph_point_select"
-                ? renderMathGraphPreviewMarkup(question)
-                : question?.type === "number_line_response"
-                  ? renderMathNumberLineResponsePreviewMarkup(question)
-            : choices.length
-              ? `<div class="exam-choice-list exam-standalone-choice-list">
-                  ${choices.map((choice) => `
-                    <label class="exam-choice">
-                      <input name="math-student-preview-answer" type="${question.type === "multi_select" ? "checkbox" : "radio"}">
-                      <span>${escapeHtml(choice.id)}.</span>
-                      <span class="${choice.math ? "exam-choice-math" : choice.image || choice.numberLine ? "" : "exam-rich-text"}">${mathChoiceVisualMarkup(choice)}</span>
-                    </label>
-                  `).join("")}
-                </div>`
-              : `<p class="exam-question-placeholder">This TEI interaction is preserved and will be added to the friendly preview when its editor is specified.</p>`;
-      const embeddedStudentStyles = app.studentStyles.replace(/<\/style/gi, "<\\/style");
-      const previousClass = app.previewQuestionIndex === 0 ? "is-muted" : "is-next";
-      const nextClass = app.previewQuestionIndex >= questions.length - 1 ? "is-muted" : "is-next";
-      $("#student-preview-frame").srcdoc = `
-        <!doctype html>
-        <html lang="en">
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="stylesheet" href="/vendor/katex.min.css">
-          <style>${embeddedStudentStyles}</style>
-          <style>
-            html, body { margin: 0; min-width: 320px; min-height: 100%; }
-            .preview-tool-glyph { font-size: 12px; font-weight: 800; line-height: 1; }
-          </style>
-        </head>
-        <body>
-          <main class="exam-session-shell">
-            <header class="exam-session-toolbar" aria-label="Exam controls">
-              <div class="exam-session-toolbar-inner">
-                <div class="exam-session-toolbar-cluster">
-                  <div class="exam-session-toolbar-group exam-session-question-nav">
-                    <button class="exam-session-toolbar-button ${previousClass}" data-preview-delta="-1" ${app.previewQuestionIndex === 0 ? "disabled" : ""} type="button"><span class="exam-session-arrow-glyph is-left"></span></button>
-                    <button class="exam-session-toolbar-button ${nextClass}" data-preview-delta="1" ${app.previewQuestionIndex >= questions.length - 1 ? "disabled" : ""} type="button"><span class="exam-session-arrow-glyph is-right"></span></button>
-                  </div>
-                  <div class="exam-session-toolbar-group exam-session-work-tools">
-                    <button class="exam-session-tool-button is-active" type="button"><span class="preview-tool-glyph">Pointer</span></button>
-                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">X</span></button>
-                  </div>
-                </div>
-                <div class="exam-session-user-tools"><span class="exam-session-user-name">Student Preview</span></div>
-              </div>
-            </header>
-            <div class="exam-session-bluebar"></div>
-            <nav class="exam-session-breadcrumb" aria-label="Exam location">
-              <div class="exam-session-breadcrumb-inner">
-                <div class="exam-session-breadcrumb-text">
-                  <span>CONTENT STUDIO PREVIEW</span><span>/</span><span>MATH</span><span>/</span>
-                  <span>${app.previewQuestionIndex + 1} OF ${Math.max(questions.length, 1)}</span>
-                </div>
-                <span class="exam-session-status-icon" aria-hidden="true"></span>
-              </div>
-            </nav>
-            <section class="exam-standalone-document exam-math-document ${
-              question?.type === "short_response" || question?.type === "numeric_entry" ? "is-text-entry" : ""
-            } ${question?.type === "inline_dropdown" ? "is-inline-dropdown" : ""} ${question?.image ? "is-image-question" : ""}">
-              <form class="exam-standalone-panel exam-math-panel">
-                ${question?.image ? `<figure class="exam-question-image"><img alt="${escapeHtml(question.image.alt || "")}" src="${escapeHtml(question.image.src)}">${question.image.caption ? `<figcaption>${escapeHtml(question.image.caption)}</figcaption>` : ""}</figure>` : ""}
-                <h1 class="exam-rich-text">${renderMathRichTextHtml(question?.promptHtml, question?.prompt || "Add a math question prompt to preview it.")}</h1>
-                ${question?.instructions ? `<div class="exam-standalone-instructions exam-rich-text">${renderMathRichTextHtml(question.instructionsHtml, question.instructions)}</div>` : ""}
-                ${answerMarkup}
-              </form>
-            </section>
-          </main>
-          <script type="module">
-            import { mountPassageGlossary } from '/content-studio-glossary.js';
-            mountPassageGlossary(document.body);
-          <\/script>
-          <script>
-            document.querySelectorAll("[data-preview-delta]").forEach(function (button) {
-              button.addEventListener("click", function () {
-                parent.postMessage({ type: "exam-content-preview-navigation", delta: Number(button.dataset.previewDelta) }, "*");
-              });
-            });
-          <\/script>
-        </body>
-        </html>
-      `;
+      $('#student-preview-question').innerHTML = questions.map((item,index) => '<option value="'+index+'" '+(index === app.previewQuestionIndex ? 'selected' : '')+'>Question '+(index+1)+': '+escapeHtml(String(item.prompt || item.id).slice(0,55))+'</option>').join('');
+      $('#student-preview-subtitle').textContent = 'Student player · current unsaved Math draft';
+      const frame = $('#student-preview-frame');
+      const needsBoot = frame.dataset.mathStudentPreview !== 'math-modal' || !frame.dataset.mathPreviewBoot;
+      frame.title = 'Interactive student math preview'; frame.dataset.mathStudentPreview = 'math-modal';
+      if (needsBoot) bootMathPreviewFrame(frame);
+      sendMathPreview(frame);
     }
 
     function renderMathExpressionPreview(expression) {
       return renderKatexExpression(expression);
     }
 
-    function renderStudentPreview() {
+    function renderStudentPreview(authoringFrame = null) {
+      // Timers invoke this with no argument; only an iframe selects authoring.
+      const authoring = authoringFrame?.tagName === 'IFRAME';
       const modal = $("#student-preview-modal");
-      if (modal.hidden) return;
-      if (app.previewMode === "math") {
+      if (modal.hidden && !authoring) return;
+      if (app.previewMode === "math" && !authoring) {
         if (!app.mathDraft) return;
         renderMathStudentPreview();
         return;
@@ -3269,7 +3278,8 @@ Why D is wrong."></textarea>
       $("#student-preview-subtitle").textContent = "Live preview of the current unsaved passage and questions";
       const questions = app.passageDraft.questions || [];
       app.previewQuestionIndex = Math.max(0, Math.min(app.previewQuestionIndex, Math.max(questions.length - 1, 0)));
-      const question = questions[app.previewQuestionIndex];
+      const questionIndex = authoring ? studioUI.selectedQuestionIndex : app.previewQuestionIndex;
+      const question = questions[questionIndex];
       const questionCount = Math.max(questions.length, 1);
       const longContent = question && (
         String(question.prompt || "").length > 190 ||
@@ -3345,11 +3355,11 @@ Why D is wrong."></textarea>
             <section class="exam-question-document ${longContent ? "is-expanded-layout" : ""}">
               <div class="exam-question-passage">
                 <div class="exam-question-passage-scroll is-${app.passageDraft.format === "sentence_prose" ? "sentence-prose" : app.passageDraft.format}">
-                  <div class="exam-passage-pencil-surface">${studentPassageMarkup(app.passageDraft)}</div>
+                  <div class="exam-passage-pencil-surface">${studentPassageMarkup(app.passageDraft, authoring)}</div>
                 </div>
               </div>
               <form class="exam-question-panel">
-                <h1><span class="exam-rich-text">${question?.promptHtml || escapeHtml(question?.prompt || "Add a question prompt to preview it.")}</span></h1>
+                <h1><span class="exam-rich-text">${question?.promptHtml || escapeHtml(question?.prompt || (authoring ? "" : "Add a question prompt to preview it."))}</span></h1>
                 ${question?.instructions ? `<p class="exam-question-instructions">${escapeHtml(question.instructions)}</p>` : ""}
                 ${studentQuestionMarkup(question)}
               </form>
@@ -3463,7 +3473,20 @@ Why D is wrong."></textarea>
         </body>
         </html>
       `;
-      $("#student-preview-frame").srcdoc = frameDocument;
+      if (authoring) {
+        // Use the same document, markup and stylesheet as Student view. Only
+        // teacher chrome is removed; the exam's content geometry is unchanged.
+        authoringFrame.srcdoc = frameDocument.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace('</head>', `<style>
+          .exam-session-toolbar,.exam-session-bluebar,.exam-session-breadcrumb{display:none}
+          .exam-session-shell{display:flow-root}
+          [contenteditable=true]:focus{outline:2px solid #236b61;outline-offset:3px}
+          [contenteditable=true]:empty::before{content:attr(data-placeholder);color:#7b8790}
+          [data-author-block] > span:last-child:empty{display:inline-block;min-width:12px;min-height:1em}
+          .exam-session-shell [contenteditable=true][data-exam-edit]:is(:empty,:has(>br:only-child)){display:inline-block!important;min-width:180px;min-height:1em}
+          [data-exam-edit]:has(>br:only-child)::before{content:attr(data-placeholder);color:#7b8790}
+          .exam-choice:has([contenteditable=true]){cursor:text}
+        </style></head>`);
+      } else $("#student-preview-frame").srcdoc = frameDocument;
     }
 
     function scheduleStudentPreview() {
@@ -3473,10 +3496,11 @@ Why D is wrong."></textarea>
 
     function openStudentPreview() {
       app.previewMode = "passage";
-      app.previewQuestionIndex = studioUI.passageSection === "questions" ? studioUI.selectedQuestionIndex : 0;
+      app.previewQuestionIndex = studioUI.selectedQuestionIndex;
       $("#student-preview-modal").hidden = false;
       document.body.style.overflow = "hidden";
       renderStudentPreview();
+      studioUI.openStudentDialog();
     }
 
     function openMathStudentPreview() {
@@ -3485,12 +3509,17 @@ Why D is wrong."></textarea>
       $("#student-preview-modal").hidden = false;
       document.body.style.overflow = "hidden";
       renderStudentPreview();
+      studioUI.openStudentDialog();
     }
 
     function closeStudentPreview() {
       $("#student-preview-modal").hidden = true;
       $("#student-preview-frame").srcdoc = "";
+      $("#student-preview-frame").removeAttribute("src");
+      delete $("#student-preview-frame").dataset.mathStudentPreview;
+      delete $("#student-preview-frame").dataset.mathPreviewBoot;
       document.body.style.overflow = "";
+      studioUI.closeStudentDialog();
     }
 
     async function pasteFromClipboard() {
@@ -4436,8 +4465,8 @@ Why D is wrong."></textarea>
           }),
           method: "POST",
         });
-        app.standaloneDirty = false;
         await reloadState();
+        app.standaloneDirty = false;
         selectStandaloneItem(data.standalone.item.id);
         setStatus(`${data.standalone.item.id} was written to the Part B question bank.`, "success");
       } catch (error) {
@@ -4470,6 +4499,7 @@ Why D is wrong."></textarea>
     }
 
     function selectAssessment(id) {
+      if (app.testDirty && !window.confirm('Discard the unsaved exam-builder changes?')) return;
       const assessment = app.state.assessments.find((candidate) => candidate.id === id);
       const test = app.state.tests.find((candidate) => candidate.assessmentId === id);
       if (!assessment) {
@@ -4481,6 +4511,7 @@ Why D is wrong."></textarea>
         return;
       }
       app.selectedAssessmentId = id;
+      app.testDirty = false;
       app.testDraft = {
         assessmentId: id,
         readingPassageIds: test
@@ -4677,6 +4708,7 @@ Why D is wrong."></textarea>
             });
           }
           app.testDraft[button.dataset.sectionField].push(button.dataset.addPassage);
+          app.testDirty = true; setStatus('Unsaved exam-builder changes.');
           renderTestBuilder();
         });
       });
@@ -4692,6 +4724,7 @@ Why D is wrong."></textarea>
       $$("[data-add-standalone]", $("#test-builder")).forEach((button) => {
         button.addEventListener("click", () => {
           app.testDraft.standaloneItemIds.push(button.dataset.addStandalone);
+          app.testDirty = true; setStatus('Unsaved exam-builder changes.');
           renderTestBuilder();
         });
       });
@@ -4790,6 +4823,7 @@ Why D is wrong."></textarea>
     }
 
     function testOrderAction(sectionField, index, action) {
+      app.testDirty = true; setStatus('Unsaved exam-builder changes.');
       const passageIds = app.testDraft[sectionField];
       if (!passageIds) return;
       if (action === "remove") passageIds.splice(index, 1);
@@ -4802,6 +4836,7 @@ Why D is wrong."></textarea>
     }
 
     function testStandaloneOrderAction(index, action) {
+      app.testDirty = true; setStatus('Unsaved exam-builder changes.');
       const itemIds = app.testDraft.standaloneItemIds;
       if (action === "remove") itemIds.splice(index, 1);
       else {
@@ -4821,6 +4856,7 @@ Why D is wrong."></textarea>
       try {
         const data = await api("/api/tests", { method: "POST", body: JSON.stringify(app.testDraft) });
         await reloadState();
+        app.testDirty = false;
         selectAssessment(data.test.assessmentId);
         setStatus(
           `${data.test.passageCount} English passages and ${data.test.standaloneQuestionCount} Part B questions were written to ${data.test.target}.`,
@@ -5078,10 +5114,11 @@ Why D is wrong."></textarea>
           ${mode === "image" ? `
             <div class="math-choice-visual-editor">
               <div class="math-choice-image-preview">
-                ${choice.image?.src ? `<img alt="${escapeHtml(choice.image.alt || choice.text || "")}" src="${escapeHtml(choice.image.src)}">` : `<span class="field-note">Upload a PNG or SVGZ answer choice.</span>`}
+                ${choice.image?.src ? `<img alt="${escapeHtml(choice.image.alt || choice.text || "")}" src="${escapeHtml(choice.image.src)}">` : `<span class="field-note">Paste or upload an answer-choice image.</span>`}
               </div>
-              <input accept=".svgz,image/png,image/svg+xml" data-math-choice-image-file id="${imageFileId}" type="file">
+              <input accept=".svgz,image/png,image/jpeg,image/webp,image/gif,image/svg+xml" data-math-choice-image-file id="${imageFileId}" type="file">
               <div class="math-choice-image-actions">
+                <button class="secondary" type="button" data-paste-choice-image="${choiceIndex}">Paste image</button>
                 <button class="secondary" data-math-choice-image-choose type="button">${choice.image?.src ? "Replace image" : "Upload image"}</button>
                 ${choice.image?.src ? `<button class="danger" data-math-choice-image-remove type="button">Remove image</button>` : ""}
               </div>
@@ -5131,7 +5168,15 @@ Why D is wrong."></textarea>
       question.dropdownContent[dropdownIndex] = `${before}{{${dropdown.id}}}${after}`;
     }
 
+    function simpleMathDropdownLayout(question) {
+      return question.dropdownContent?.length === question.dropdowns?.length && question.dropdownContent.every((line,index) => {
+        const ids = Array.from(line.matchAll(/\{\{([\w-]+)\}\}/g), match => match[1]);
+        return ids.length === 1 && ids[0] === question.dropdowns[index].id;
+      });
+    }
+
     function mathDropdownEditorMarkup(question) {
+      const simpleLayout = simpleMathDropdownLayout(question);
       return `
         <section class="math-answer-editor math-dropdown-editor">
           <div class="panel-head">
@@ -5140,6 +5185,7 @@ Why D is wrong."></textarea>
               <small>Build each line around its answer menu. Formula buttons work on both sides of the menu.</small>
             </div>
           </div>
+          ${!simpleLayout ? `<label class="field"><span>Response layout</span><textarea id="math-dropdown-layout">${escapeHtml((question.dropdownContent || []).join('\n'))}</textarea><small>Place each {{menu-id}} exactly where its answer menu belongs. Multiple menus can share a line.</small></label>` : ''}
           <div class="math-dropdown-list">
             ${(question.dropdowns || []).map((dropdown, dropdownIndex) => {
               const parts = mathDropdownSentenceParts(question, dropdownIndex);
@@ -5149,8 +5195,8 @@ Why D is wrong."></textarea>
                 <article class="math-dropdown-card" data-math-dropdown-index="${dropdownIndex}">
                   <header>
                     <div>
-                      <strong>Sentence ${dropdownIndex + 1}</strong>
-                      <small>The answer menu appears between these two fields.</small>
+                      <strong>${simpleLayout ? 'Sentence ' + (dropdownIndex + 1) : 'Menu {{' + escapeHtml(dropdown.id) + '}}'}</strong>
+                      <small>${simpleLayout ? 'The answer menu appears between these two fields.' : 'Position this menu in Response layout above.'}</small>
                     </div>
                     <div class="math-dropdown-actions">
                       <button class="icon-button" data-math-dropdown-action="up" ${dropdownIndex === 0 ? "disabled" : ""} type="button">Up</button>
@@ -5158,7 +5204,7 @@ Why D is wrong."></textarea>
                       <button class="danger" data-math-dropdown-action="remove" ${question.dropdowns.length <= 1 ? "disabled" : ""} type="button">Remove</button>
                     </div>
                   </header>
-                  <div class="math-dropdown-sentence-grid">
+                  <div class="math-dropdown-sentence-grid" ${simpleLayout ? '' : 'hidden'}>
                     <div>
                       <label class="field"><span>Text before the menu</span>
                         <textarea data-math-dropdown-before id="${beforeId}" placeholder="Write the beginning of the sentence.">${escapeHtml(parts.before)}</textarea>
@@ -5339,7 +5385,8 @@ Why D is wrong."></textarea>
               </select>
             </label>
             <div class="question-code-id">Code ID: ${escapeHtml(question.id)}</div>
-            <label class="field"><span>Topic</span><select data-math-field="topic">${mathTopicOptions(question.topic)}</select></label>
+            <label class="field"><span>Main category <small>Sorting</small></span><select data-math-field="topic" aria-label="Math main category">${mathTopicOptions(question.topic)}</select></label>
+            <label class="field"><span>Specific topic <small>Detailed analysis</small></span><select data-math-field="subtopic" aria-label="Math specific topic">${mathSubtopicOptions(question.topic, question.subtopic)}</select></label>
             <label class="field"><span>Points</span><input data-math-field="points" min="1" type="number" value="${escapeHtml(question.points || 1)}"></label>
             <div class="wide">
               <label class="field"><span>Question prompt <small class="field-note">This is how students will see it</small></span></label>
@@ -5367,7 +5414,9 @@ Why D is wrong."></textarea>
             <div class="image-editor-fields">
               <div class="image-editor-actions">
                 <input accept=".svgz,image/png,image/jpeg,image/gif,image/svg+xml,image/webp" id="math-image-file" type="file">
+                <button class="secondary" id="paste-math-image" type="button">Paste image</button>
                 <button class="secondary" id="choose-math-image" type="button">${image?.src ? "Replace image" : "Upload image"}</button>
+                ${image?.src ? `<button class="secondary" id="move-math-image-into-text" type="button">Move between text lines</button>` : ""}
                 ${image?.src ? `<button class="danger" id="remove-math-image" type="button">Remove image</button>` : ""}
               </div>
               <label class="field"><span>Image description</span><input data-math-image-field="alt" ${image?.src ? "" : "disabled"} value="${escapeHtml(image?.alt || "")}" placeholder="Describe the diagram for accessibility"></label>
@@ -5381,7 +5430,7 @@ Why D is wrong."></textarea>
 
           ${isChoice ? `
             <section class="math-answer-editor">
-              <div class="panel-head"><div><h2>Answer choices</h2><small>Show each answer as text, a formula, an uploaded PNG or SVGZ, or an editable generated number line. Always include a readable description for accessibility.</small></div></div>
+              <div class="panel-head"><div><h2>Answer choices</h2><small>Show each answer as text, a formula, a pasted or uploaded image, or an editable generated number line. Always include a readable description for accessibility.</small></div></div>
               <div class="math-choice-list">
                 ${(question.choices || []).map((choice, choiceIndex) => mathChoiceMarkup(question, choice, choiceIndex)).join("")}
               </div>
@@ -5511,7 +5560,7 @@ Why D is wrong."></textarea>
               ${questions.map((item, index) => `
                 <button aria-label="Question ${index + 1}: ${escapeHtml(item.prompt || "Untitled question")}. Click and drag to reorder." class="${index === app.selectedMathQuestionIndex ? "is-active" : ""}" data-math-question-id="${escapeHtml(item.id)}" data-math-question-index="${index}" type="button">
                   <span>${index + 1}</span>
-                  <span class="math-question-nav-copy"><strong>${escapeHtml(item.prompt || `Question ${index + 1}`)}</strong><small>${escapeHtml(item.type.replaceAll("_", " "))}</small></span>
+                  <span class="math-question-nav-copy"><strong>${escapeHtml(item.prompt || `Question ${index + 1}`)}</strong><small>${escapeHtml(item.topic || 'Choose category')} · ${escapeHtml(item.subtopic || 'Unclassified')}</small></span>
                 </button>
               `).join("") || `<p class="field-note">No questions yet.</p>`}
             </div>
@@ -5525,165 +5574,70 @@ Why D is wrong."></textarea>
         </div>
       `;
       bindMathBuilder();
-      renderMathPreview();
       studioUI.mountMath();
       studioMath.mount($("#math-builder"));
+      renderMathPreview();
+      startMathPreviewFrames();
     }
 
-    function renderMathInlineDropdownMarkup(question, namePrefix = "math-preview") {
-      const dropdowns = question.dropdowns || [];
-      return `
-        <div class="exam-inline-dropdown-content">
-          ${(question.dropdownContent || []).map((template, templateIndex) => `
-            <p>${String(template || "")
-              .split(/(\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)|\{\{[\w-]+\}\})/g)
-              .filter(Boolean)
-              .map((part, partIndex) => {
-                if (part.startsWith("{{") && part.endsWith("}}")) {
-                  const dropdownId = part.slice(2, -2);
-                  const dropdown = dropdowns.find((candidate) => candidate.id === dropdownId);
-                  if (!dropdown) return "";
-                  return `
-                    <select aria-label="Choose answer" class="exam-inline-dropdown-select" name="${escapeHtml(`${namePrefix}-${templateIndex}-${partIndex}`)}">
-                      <option value="">Choose...</option>
-                      ${(dropdown.options || []).map((option) => `<option value="${escapeHtml(option.id)}">${escapeHtml(option.text || "Option")}</option>`).join("")}
-                    </select>
-                  `;
-                }
-                return renderMathTextHtml(part);
-              })
-              .join("")}</p>
-          `).join("")}
-        </div>
-      `;
+    function mathQuestionPreviewMarkup(question, namePrefix = 'math-preview') {
+      return '<iframe class="studio-math-student-frame" title="Interactive student math preview" data-math-student-preview="' + namePrefix + '"></iframe>';
     }
-
-    function renderMathEntryPreviewMarkup(question) {
-      const layout = question.entryLayout || "plain";
-      const entry = layout === "fraction"
-        ? `<span class="studio-fraction-entry"><input aria-label="Numerator"><span></span><input aria-label="Denominator"></span>`
-        : `${layout === "x_equals" ? `<span class="studio-entry-prefix">${renderKatexExpression("x =")}</span>` : ""}<input aria-label="Student answer" class="short-answer-preview" type="text">`;
-      return `
-        <div class="studio-math-entry-preview">
-          <div class="studio-math-entry-display">${entry}</div>
-          <div class="studio-math-keypad-preview">
-            ${["←", "→", "↶", "↷", "⌫", "⌧", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "%", "−", ".", "a⁄b", "1 a⁄b"].map((key) => `<button type="button">${key}</button>`).join("")}
-          </div>
-        </div>
-      `;
-    }
-
-    function renderShortResponsePreviewMarkup() {
-      return `
-        <label class="exam-math-text-entry is-short-response">
-          <span class="sr-only">Answer</span>
-          <input aria-label="Answer" type="text">
-        </label>
-      `;
-    }
-
-    function renderMathDragDropPreviewMarkup(question) {
-      const boxes = new Map((question.dragDropSlots || []).map((slot) => [slot.id, slot]));
-      const lines = (question.dragDropContent || []).map((line) => `
-        <div class="studio-math-drag-line">
-          ${line.split(/(\{\{[\w-]+\}\})/g).filter(Boolean).map((part) => {
-            if (part.startsWith("{{") && part.endsWith("}}")) {
-              const slotId = part.slice(2, -2);
-              return boxes.has(slotId) ? `<button aria-label="Empty answer box" type="button">&nbsp;</button>` : "";
-            }
-            return renderMathTextHtml(part);
-          }).join("")}
-        </div>
-      `).join("");
-      return `
-        <div class="studio-math-drag-preview">
-          <div class="studio-math-drag-bank">${(question.items || []).map((item) => `<button type="button">${renderMathTextHtml(item.text)}</button>`).join("")}</div>
-          <div>${lines}</div>
-        </div>
-      `;
-    }
-
-    function renderMathGraphPreviewMarkup(question) {
-      const graph = question.graph;
-      if (!graph) return "";
-      const left = 46;
-      const right = 306;
-      const top = 25;
-      const bottom = 285;
-      const xFor = (value) => left + ((value - graph.xMin) / (graph.xMax - graph.xMin)) * (right - left);
-      const yFor = (value) => bottom - ((value - graph.yMin) / (graph.yMax - graph.yMin)) * (bottom - top);
-      const xTicks = Array.from({ length: Math.floor((graph.xMax - graph.xMin) / graph.xStep) + 1 }, (_, index) => graph.xMin + index * graph.xStep);
-      const yTicks = Array.from({ length: Math.floor((graph.yMax - graph.yMin) / graph.yStep) + 1 }, (_, index) => graph.yMin + index * graph.yStep);
-      return `
-        <div class="studio-graph-preview">
-          ${graph.title ? `<strong>${escapeHtml(graph.title)}</strong>` : ""}
-          <svg aria-label="Selectable coordinate graph" viewBox="0 0 350 335">
-            ${xTicks.map((value) => `<line x1="${xFor(value)}" x2="${xFor(value)}" y1="${top}" y2="${bottom}"></line><text x="${xFor(value)}" y="${bottom + 18}">${escapeHtml(value)}</text>`).join("")}
-            ${yTicks.map((value) => `<line x1="${left}" x2="${right}" y1="${yFor(value)}" y2="${yFor(value)}"></line><text x="${left - 8}" y="${yFor(value) + 4}">${escapeHtml(value)}</text>`).join("")}
-            ${(graph.points || []).map((point) => `<circle cx="${xFor(point.x)}" cy="${yFor(point.y)}" r="7"></circle>`).join("")}
-          </svg>
-        </div>
-      `;
-    }
-
-    function renderMathNumberLineResponsePreviewMarkup(question) {
-      const config = question.numberLineResponse;
-      if (!config) return "";
-      const ticks = Array.from({ length: Math.floor((config.max - config.min) / config.tickStep) + 1 }, (_, index) => config.min + index * config.tickStep);
-      return `
-        <div class="studio-number-line-response-preview">
-          <div class="studio-number-line-axis">${ticks.map((tick) => `<span><strong>${escapeHtml(tick)}</strong><i></i></span>`).join("")}</div>
-          <div class="studio-ray-picker">${["←●", "←○", "○→", "●→"].map((ray) => `<button type="button">${ray}</button>`).join("")}</div>
-        </div>
-      `;
-    }
-
-    function mathQuestionPreviewMarkup(question, namePrefix = "math-preview") {
-      const image = question.image?.src
-        ? `<figure><img alt="${escapeHtml(question.image.alt || "")}" src="${escapeHtml(question.image.src)}">${question.image.caption ? `<figcaption>${escapeHtml(question.image.caption)}</figcaption>` : ""}</figure>`
-        : "";
-      let answerMarkup = "";
-      if (question.type === "multiple_choice" || question.type === "multi_select") {
-        answerMarkup = `
-          <div class="exam-choice-list">
-            ${(question.choices || []).map((choice) => `
-              <label class="exam-choice">
-                <input name="${escapeHtml(`${namePrefix}-answer`)}" type="${question.type === "multi_select" ? "checkbox" : "radio"}">
-                <span>${escapeHtml(choice.id)}.</span>
-                <span class="${choice.math ? "exam-choice-math" : choice.image || choice.numberLine ? "" : "exam-rich-text"}">${mathChoiceVisualMarkup(choice)}</span>
-              </label>
-            `).join("")}
-          </div>
-        `;
-      } else if (question.type === "short_response") {
-        answerMarkup = renderShortResponsePreviewMarkup();
-      } else if (question.type === "numeric_entry") {
-        answerMarkup = renderMathEntryPreviewMarkup(question);
-      } else if (question.type === "inline_dropdown") {
-        answerMarkup = renderMathInlineDropdownMarkup(question, namePrefix);
-      } else if (question.type === "math_drag_drop") {
-        answerMarkup = renderMathDragDropPreviewMarkup(question);
-      } else if (question.type === "graph_point_select") {
-        answerMarkup = renderMathGraphPreviewMarkup(question);
-      } else if (question.type === "number_line_response") {
-        answerMarkup = renderMathNumberLineResponsePreviewMarkup(question);
-      } else {
-        answerMarkup = `<p class="field-note">The existing ${escapeHtml(question.type)} interaction is preserved in code.</p>`;
+    let mathPreviewDocumentPromise;
+    let mathPreviewBootSequence = 0;
+    async function bootMathPreviewFrame(frame) {
+      const boot = String(++mathPreviewBootSequence);
+      frame.dataset.mathPreviewBoot = boot;
+      frame.removeAttribute('src');
+      frame.onload = () => sendMathPreview(frame);
+      frame.srcdoc = '<!doctype html><html><body style="font:14px Arial,sans-serif;padding:16px"><p role="status">Loading student player…</p></body></html>';
+      try {
+        mathPreviewDocumentPromise ||= fetch('/math-student-preview/', { cache: 'no-store' }).then(response => {
+          if (!response.ok) throw new Error('The student player could not be loaded. Reopen the preview to retry.');
+          return response.text();
+        }).catch(error => { mathPreviewDocumentPromise = undefined; throw error; });
+        const documentHtml = await mathPreviewDocumentPromise;
+        if (frame.isConnected && frame.dataset.mathPreviewBoot === boot) frame.srcdoc = documentHtml;
+      } catch (error) {
+        if (!frame.isConnected || frame.dataset.mathPreviewBoot !== boot) return;
+        delete frame.dataset.mathPreviewBoot;
+        frame.srcdoc = '<!doctype html><html><body><p role="status">' + escapeHtml(error.message) + '</p></body></html>';
+        setStatus(error.message, 'error');
       }
-      return `
-        ${image}
-        <h3 class="exam-rich-text">${renderMathRichTextHtml(question.promptHtml, question.prompt || "Add the question prompt to preview it.")}</h3>
-        ${question.stimulus ? `<div class="exam-rich-text">${renderMathRichTextHtml(question.stimulusHtml, question.stimulus)}</div>` : ""}
-        ${question.instructions ? `<div class="exam-rich-text">${renderMathRichTextHtml(question.instructionsHtml, question.instructions)}</div>` : ""}
-        ${answerMarkup}
-      `;
     }
-
+    function startMathPreviewFrames() {
+      document.querySelectorAll('.studio-math-student-frame:not([data-math-preview-boot])').forEach(frame => {
+        // Reuse the actual student bootstrap document after layout adapters finish
+        // moving panels. Loading it here also keeps first-load failures visible.
+        bootMathPreviewFrame(frame);
+      });
+    }
+    function sendMathPreview(frame) {
+      const imported = frame.dataset.mathStudentPreview === 'math-import-review';
+      const index = frame.dataset.mathStudentPreview === 'math-modal' ? app.previewQuestionIndex : app.selectedMathQuestionIndex;
+      const question = imported ? app.mathImportReview?.question : app.mathDraft?.questions?.[index];
+      if (!question) return;
+      frame.contentWindow?.postMessage({ type: 'studio:math-preview', preview: { question: clone(question), index: imported ? 0 : index, count: imported ? 1 : app.mathDraft.questions.length, title: app.state.assessments.find(item => item.id === app.selectedMathAssessmentId)?.title || 'Math' } }, location.origin);
+    }
+    window.addEventListener('message', event => {
+      if (event.origin !== location.origin) return;
+      const frame = Array.from(document.querySelectorAll('[data-math-student-preview]')).find(frame => frame.contentWindow === event.source);
+      if (!frame) return;
+      if (event.data?.type === 'studio:math-preview-ready') sendMathPreview(frame);
+      if (event.data?.type === 'studio:math-preview-navigate' && frame.dataset.mathStudentPreview !== 'math-import-review') {
+        const delta = event.data.delta; if (delta !== 1 && delta !== -1) return;
+        if (frame.dataset.mathStudentPreview === 'math-modal') { app.previewQuestionIndex = Math.max(0,Math.min(app.mathDraft.questions.length - 1, app.previewQuestionIndex + delta)); renderMathStudentPreview(); return; }
+        app.selectedMathQuestionIndex = Math.max(0,Math.min(app.mathDraft.questions.length - 1, app.selectedMathQuestionIndex + delta)); renderMathBuilder();
+      }
+    });
     function renderMathPreview() {
-      const preview = $("#math-live-preview");
+      const preview = $('#math-live-preview');
       const question = app.mathDraft?.questions?.[app.selectedMathQuestionIndex];
       if (!preview || !question) return;
-      preview.innerHTML = mathQuestionPreviewMarkup(question);
+      let frame = preview.querySelector('[data-math-student-preview]');
+      if (!frame) { preview.innerHTML = mathQuestionPreviewMarkup(question); frame = preview.querySelector('iframe'); }
+      startMathPreviewFrames();
+      sendMathPreview(frame);
     }
 
     function changeMathQuestionType(type) {
@@ -5697,8 +5651,11 @@ Why D is wrong."></textarea>
       next.promptHtml = current.promptHtml || "";
       next.stimulus = current.stimulus || "";
       next.stimulusHtml = current.stimulusHtml || "";
-      next.topic = current.topic || "Algebra";
+      next.topic = current.topic || "";
+      next.subtopic = current.subtopic || "";
       next.image = current.image;
+      next.explanation = current.explanation;
+      next.explanationHtml = current.explanationHtml;
       if (type === "multiple_choice" || type === "multi_select") {
         next.choices = Array.isArray(current.choices) && current.choices.length >= 2
           ? current.choices.map((choice, index) => ({ ...choice, id: String.fromCharCode(65 + index) }))
@@ -5740,16 +5697,19 @@ Why D is wrong."></textarea>
     function mathDropdownAction(dropdownIndex, action) {
       const question = app.mathDraft.questions[app.selectedMathQuestionIndex];
       if (!question.dropdowns || !question.dropdownContent) return;
+      const simpleLayout = simpleMathDropdownLayout(question);
       if (action === "remove") {
         if (question.dropdowns.length <= 1) return;
+        const token = `{{${question.dropdowns[dropdownIndex].id}}}`;
         question.dropdowns.splice(dropdownIndex, 1);
-        question.dropdownContent.splice(dropdownIndex, 1);
+        if (simpleLayout) question.dropdownContent.splice(dropdownIndex, 1);
+        else question.dropdownContent = question.dropdownContent.map(line => line.replaceAll(token, ''));
       } else {
         const target = action === "up" ? dropdownIndex - 1 : dropdownIndex + 1;
         if (target < 0 || target >= question.dropdowns.length) return;
         [question.dropdowns[dropdownIndex], question.dropdowns[target]] =
           [question.dropdowns[target], question.dropdowns[dropdownIndex]];
-        [question.dropdownContent[dropdownIndex], question.dropdownContent[target]] =
+        if (simpleLayout) [question.dropdownContent[dropdownIndex], question.dropdownContent[target]] =
           [question.dropdownContent[target], question.dropdownContent[dropdownIndex]];
       }
       markMathDirty();
@@ -5902,10 +5862,6 @@ Why D is wrong."></textarea>
 
     async function uploadMathChoiceImage(choiceIndex, file) {
       if (!file) return;
-      if (file.type !== "image/png" && !isSvgzFile(file)) {
-        setStatus("Answer-choice images must be PNG or SVGZ files.", "error");
-        return;
-      }
       const question = app.mathDraft.questions[app.selectedMathQuestionIndex];
       const choice = question.choices?.[choiceIndex];
       if (!choice) return;
@@ -5992,7 +5948,6 @@ Why D is wrong."></textarea>
         !String(starterQuestion.prompt || "").trim();
       if (replaceStarterQuestion) app.mathDraft.questions[0] = clone(imported);
       else app.mathDraft.questions.push(clone(imported));
-      studioUI.mathSection = "question";
       app.selectedMathQuestionIndex = replaceStarterQuestion ? 0 : app.mathDraft.questions.length - 1;
       app.mathImportOpen = false;
       app.mathImportReview = null;
@@ -6089,6 +6044,7 @@ Why D is wrong."></textarea>
             return;
           }
           const view = captureMathBuilderView();
+          if (app.selectedMathQuestionIndex !== Number(button.dataset.mathQuestionIndex)) view.editorScrollTop = 0;
           app.selectedMathQuestionIndex = Number(button.dataset.mathQuestionIndex);
           renderMathBuilder();
           restoreMathBuilderView(view, true);
@@ -6160,7 +6116,6 @@ Why D is wrong."></textarea>
         let number = app.mathDraft.questions.length + 1;
         while (app.mathDraft.questions.some((item) => item.id === `${app.selectedMathAssessmentId}-math-${number}`)) number += 1;
         app.mathDraft.questions.push(defaultMathQuestion(app.selectedMathAssessmentId, number));
-        studioUI.mathSection = "question";
         view.editorScrollTop = 0;
         app.selectedMathQuestionIndex = app.mathDraft.questions.length - 1;
         markMathDirty(`Question ${app.selectedMathQuestionIndex + 1} was added and selected.`);
@@ -6180,11 +6135,18 @@ Why D is wrong."></textarea>
             return;
           }
           question[field] = field === "points" ? Number(element.value) : element.value;
+          if (field === 'topic') {
+            question.subtopic = '';
+            document.querySelector('[data-math-field="subtopic"]').innerHTML = mathSubtopicOptions(question.topic);
+          }
+          if (field === 'topic' || field === 'subtopic') studioUI.updateMathClassification();
           markMathDirty();
           renderMathPreview();
         });
       });
       bindRichEditors($("#math-builder"));
+      studioImages.bind($("#math-builder"));
+      $('#math-dropdown-layout')?.addEventListener('input', event => { question.dropdownContent = event.target.value.split('\n'); markMathDirty(); renderMathPreview(); });
       $$("[data-math-question-action]", $("#math-builder")).forEach((button) => {
         button.addEventListener("click", () => mathQuestionAction(button.dataset.mathQuestionAction));
       });
@@ -6481,7 +6443,21 @@ Why D is wrong."></textarea>
     }
 
     async function saveMath() {
+      if (document.querySelector(".studio-image-upload")) { setStatus("Wait for the image upload to finish before saving.", "error"); return; }
       if (app.saving || !app.mathDraft) return;
+      if (!app.state.mathTopicConfiguration) { setStatus('Restart Content Studio to load math category support before saving.', 'error'); return; }
+      const originals = new Map((linkedMathSection(app.selectedMathAssessmentId)?.questions || []).map(question => [question.id, question]));
+      const invalid = app.mathDraft.questions.findIndex(question => {
+        const original = originals.get(question.id), category = app.state.mathTopicConfiguration.categories.find(item => item.label === question.topic);
+        const legacy = original && original.topic === question.topic && (!original.subtopic || original.subtopic === 'Unclassified');
+        return !category || !(legacy && (!question.subtopic || question.subtopic === 'Unclassified')) && !category.topics.some(item => item.label === question.subtopic);
+      });
+      if (invalid >= 0) {
+        app.selectedMathQuestionIndex = invalid; renderMathBuilder();
+        const question = app.mathDraft.questions[invalid];
+        document.querySelector(`[data-math-field="${question.topic ? 'subtopic' : 'topic'}"]`)?.focus();
+        setStatus(`Question ${invalid + 1} needs a main category and its specific topic before saving.`, 'error'); return;
+      }
       const selectedQuestion = app.mathDraft.questions[app.selectedMathQuestionIndex];
       const selectedQuestionId = selectedQuestion?.id || "";
       const selectedQuestionIndex = app.selectedMathQuestionIndex;
@@ -6496,8 +6472,8 @@ Why D is wrong."></textarea>
       try {
         const data = await api("/api/math", { method: "POST", body: JSON.stringify(app.mathDraft) });
         const assessmentId = data.math.assessmentId;
-        app.mathDirty = false;
         await reloadState();
+        app.mathDirty = false;
         selectMathAssessment(assessmentId, {
           revealSelected: true,
           selectedQuestionId,
@@ -7021,7 +6997,9 @@ WRONG D:`;
       try {
         await reloadState();
         updatePassageWorkspaceLabels();
-        const firstPassage = app.state.passages[0];
+        const previousId = studioUI.readPreference('selected-passage:exam', '');
+        const firstPassage = app.state.passages.find(passage => passage.id === previousId) || app.state.passages[0];
+        studioUI.restorePassageLibrary();
         if (!app.passageDraft && firstPassage) {
           app.selectedPassageId = firstPassage.id;
           app.passageDraft = clone(firstPassage);
@@ -7215,6 +7193,7 @@ WRONG D:`;
     });
     $("#practice-quick-paste").addEventListener("input", savePracticeDraft);
     $("#close-student-preview").addEventListener("click", closeStudentPreview);
+    $("#student-preview-modal").addEventListener('cancel', event => { event.preventDefault(); closeStudentPreview(); });
     $("#student-preview-question").addEventListener("change", (event) => {
       app.previewQuestionIndex = Number(event.target.value);
       renderStudentPreview();
@@ -7228,7 +7207,7 @@ WRONG D:`;
       if (event.key === "Escape" && !$("#student-preview-modal").hidden) closeStudentPreview();
     });
     window.addEventListener("beforeunload", (event) => {
-      if (!app.passageDirty && !app.standaloneDirty && !app.mathDirty) return;
+      if (!app.passageDirty && !app.standaloneDirty && !app.mathDirty && !app.testDirty) return;
       event.preventDefault();
       event.returnValue = "";
     });

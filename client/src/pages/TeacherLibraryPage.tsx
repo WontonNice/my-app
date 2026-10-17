@@ -8,13 +8,10 @@ import {
   Check,
   ClipboardList,
   Clock3,
-  Copy,
   Eye,
   EyeOff,
-  KeyRound,
   LayoutDashboard,
   MessageSquareText,
-  RefreshCw,
   ShieldCheck,
   UserRoundCheck,
   UserRoundPlus,
@@ -26,10 +23,8 @@ import { getAdvancedPracticePassage } from "../content/advancedPractice";
 import { getExamLibraryPassage } from "../content/exams/passageLibrary";
 import type { ExamPassageSet } from "../content/exams/types";
 import {
-  generateTeacherLibraryBookCode,
+  setTeacherLibraryStudentAccess,
   getTeacherLibraryBook,
-  getTeacherLibraryBooks,
-  type LibraryBookAccess,
   type TeacherLibraryAttempt,
   type TeacherLibraryStudent,
 } from "../lib/api";
@@ -99,16 +94,15 @@ function getChoiceText(passageSet: ExamPassageSet, questionId: string, choiceId:
 export function TeacherLibraryPage() {
   const initialSession = peekActiveSession();
   const initialMetadata = initialSession?.user.user_metadata as { full_name?: string; name?: string } | undefined;
-  const bookId = getBookIdFromPath();
+  const routeBookId = getBookIdFromPath();
+  const bookId = getEnglishLibraryMaterial(routeBookId) ? getLibraryBookId(getEnglishLibraryMaterial(routeBookId)!) : routeBookId;
   const selectedMaterial = bookId ? getEnglishLibraryMaterial(bookId) : undefined;
   const passageSet = bookId ? getPassageSet(bookId) : undefined;
   const [accessToken, setAccessToken] = useState(initialSession?.access_token ?? "");
-  const [bookAccess, setBookAccess] = useState<LibraryBookAccess[]>([]);
-  const [detailBook, setDetailBook] = useState<LibraryBookAccess | null>(null);
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured && !initialSession);
   const [isLoadingDetail, setIsLoadingDetail] = useState(Boolean(bookId));
   const [message, setMessage] = useState("");
-  const [savingBookId, setSavingBookId] = useState("");
+  const [savingStudentId, setSavingStudentId] = useState("");
   const [selectedAttemptId, setSelectedAttemptId] = useState("");
   const [selectedStudentId, setSelectedStudentId] = useState("");
   const [showAnswers, setShowAnswers] = useState(false);
@@ -127,6 +121,9 @@ export function TeacherLibraryPage() {
     if (!isSupabaseConfigured) return;
     let isMounted = true;
     async function load() {
+      setIsLoadingDetail(Boolean(bookId));
+      setStudents([]);
+      setMessage("");
       const session = await getActiveSession();
       if (!session) {
         window.location.assign("/login");
@@ -145,14 +142,10 @@ export function TeacherLibraryPage() {
         if (bookId) {
           const detail = await getTeacherLibraryBook(session.access_token, bookId);
           if (!isMounted) return;
-          setDetailBook(detail.book);
           setStudents(detail.students);
           const firstStudent = detail.students.find((student) => student.attempts.length) ?? detail.students[0];
           setSelectedStudentId(firstStudent?.id ?? "");
           setSelectedAttemptId(firstStudent?.attempts[0]?.id ?? "");
-        } else {
-          const books = await getTeacherLibraryBooks(session.access_token);
-          if (isMounted) setBookAccess(books);
         }
       } catch (error) {
         if (isMounted) setMessage(error instanceof Error ? error.message : "The English library could not be loaded.");
@@ -167,25 +160,18 @@ export function TeacherLibraryPage() {
     return () => { isMounted = false; };
   }, [bookId]);
 
-  const accessByBookId = useMemo(() => new Map(bookAccess.map((book) => [book.bookId, book])), [bookAccess]);
-  const visibleMaterials = useMemo(() => englishLibraryMaterials.filter(material => (!sourceFilter || material.contentSource === sourceFilter) && (!categoryFilter || !material.contentSource && passageCategory(material.passageCategory) === categoryFilter) && (!genreFilter || material.readingFormat === genreFilter) && (!librarySearch.trim() || `${material.title} ${material.author ?? ""}`.toLowerCase().includes(librarySearch.trim().toLowerCase()))).sort((a, b) => ((librarySort === "category" ? passageCategoryLabel(a.passageCategory).localeCompare(passageCategoryLabel(b.passageCategory)) : librarySort === "questions" ? a.questionCount - b.questionCount : a.title.localeCompare(b.title)) * (libraryDirection === "asc" ? 1 : -1)) || a.id.localeCompare(b.id)), [sourceFilter, categoryFilter, genreFilter, librarySearch, librarySort, libraryDirection]);
+  const visibleMaterials = useMemo(() => englishLibraryMaterials.filter(material => (!sourceFilter || material.contentSource === sourceFilter) && (!categoryFilter || !material.contentSource && (material.passageCategories ?? [passageCategory(material.passageCategory)]).some(category => category === categoryFilter)) && (!genreFilter || material.readingFormat === genreFilter) && (!librarySearch.trim() || `${material.title} ${material.author ?? ""}`.toLowerCase().includes(librarySearch.trim().toLowerCase()))).sort((a, b) => ((librarySort === "category" ? passageCategoryLabel(a.passageCategory).localeCompare(passageCategoryLabel(b.passageCategory)) : librarySort === "questions" ? a.questionCount - b.questionCount : a.title.localeCompare(b.title)) * (libraryDirection === "asc" ? 1 : -1)) || a.id.localeCompare(b.id)), [sourceFilter, categoryFilter, genreFilter, librarySearch, librarySort, libraryDirection]);
   const selectedStudent = students.find((student) => student.id === selectedStudentId);
   const selectedAttempt = selectedStudent?.attempts.find((attempt) => attempt.id === selectedAttemptId) ?? selectedStudent?.attempts[0];
-  async function handleGenerateCode(material: StudentMaterial) {
-    if (!accessToken) return;
-    const nextBookId = getLibraryBookId(material);
-    setSavingBookId(nextBookId);
-    setMessage("");
+  async function handleSetAccess(student: TeacherLibraryStudent, granted: boolean) {
+    if (!accessToken || savingStudentId) return;
+    setSavingStudentId(student.id); setMessage("");
     try {
-      const updated = await generateTeacherLibraryBookCode(accessToken, nextBookId, material.title);
-      if (bookId === nextBookId) setDetailBook(updated);
-      else setBookAccess((current) => [updated, ...current.filter((book) => book.bookId !== updated.bookId)]);
-      setMessage(`A new access code is ready for ${material.title}.`);
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "The access code could not be generated.");
-    } finally {
-      setSavingBookId("");
-    }
+      const result = await setTeacherLibraryStudentAccess(accessToken, bookId, student.id, granted);
+      setStudents(current => current.map(item => item.id === result.studentId ? { ...item, access: result.access } : item));
+      setMessage(`${granted ? "Access granted to" : "Access removed for"} ${student.name} for this book and all its versions.`);
+    } catch (error) { setMessage(error instanceof Error ? error.message : "Student access could not be saved."); }
+    finally { setSavingStudentId(""); }
   }
 
   async function handleSignOut() {
@@ -208,19 +194,19 @@ export function TeacherLibraryPage() {
     >
       {bookId ? (
         <TeacherLibraryBookDetail
-          access={detailBook}
+          key={bookId}
           attempt={selectedAttempt}
           isLoading={isLoadingDetail}
           material={selectedMaterial}
           message={message}
-          onGenerateCode={handleGenerateCode}
+          onSetAccess={handleSetAccess}
           onSelectAttempt={setSelectedAttemptId}
           onSelectStudent={(student) => {
             setSelectedStudentId(student.id);
             setSelectedAttemptId(student.attempts[0]?.id ?? "");
           }}
           passageSet={passageSet}
-          savingBookId={savingBookId}
+          savingStudentId={savingStudentId}
           selectedStudent={selectedStudent}
           showAnswers={showAnswers}
           students={students}
@@ -229,10 +215,10 @@ export function TeacherLibraryPage() {
       ) : (
         <>
           <header className="teacher-library-heading">
-            <div><p><BookOpen size={15} /> English library</p><h1>Books & reading</h1><span>Generate a unique student code for every book, preview the experience, and open attempt-level results.</span></div>
-            <div><span><small>Books</small><strong>{englishLibraryMaterials.length}</strong></span><span><small>Codes live</small><strong>{bookAccess.length}</strong></span></div>
+            <div><p><BookOpen size={15} /> English library</p><h1>Books & reading</h1><span>All versions, one book. Manage individual student access and review their results.</span></div>
+            <div><span><small>Books</small><strong>{englishLibraryMaterials.length}</strong></span><span><small>Combined books</small><strong>{englishLibraryMaterials.filter(material => (material.versionCount ?? 1) > 1).length}</strong></span></div>
           </header>
-          {message ? <p className="teacher-message corporate-message">{message}</p> : null}
+          {message ? <p role="status" className="teacher-message corporate-message">{message}</p> : null}
           <div className="lp-toolbar">
             <label>Content source<select value={sourceFilter} onChange={event => { setSourceFilter(event.target.value); setCategoryFilter(""); }}><option value="">All sources</option><option>SHSAT Lab</option></select></label>
             <label>Passage category<select value={categoryFilter} onChange={event => setCategoryFilter(event.target.value)}><option value="">All categories</option>{PASSAGE_CATEGORIES.map(category => <option key={category.value} value={category.value}>{category.label}</option>)}</select></label>
@@ -246,7 +232,6 @@ export function TeacherLibraryPage() {
           <section className="teacher-library-grid" aria-label="English library books">
             {visibleMaterials.map((material) => {
               const nextBookId = getLibraryBookId(material);
-              const access = accessByBookId.get(nextBookId);
               return (
                 <article key={material.id}>
                   <AppLink className="teacher-library-cover-link" href={`/teacher/library/${encodeURIComponent(nextBookId)}`}>
@@ -259,13 +244,8 @@ export function TeacherLibraryPage() {
                   <div className="teacher-library-card-body">
                     <span><small>English · {material.contentSource || passageCategoryLabel(material.passageCategory)}</small><small>{material.contentSource ? "ELA practice set" : material.readingFormat}</small></span>
                     <AppLink href={`/teacher/library/${encodeURIComponent(nextBookId)}`}><strong>{material.title}</strong><ArrowRight size={15} /></AppLink>
-                    <p>{material.questionCount} questions</p>
-                    <div className={access ? "is-code-ready" : ""}>
-                      <span><KeyRound size={15} /><small>{access ? "Student code" : "No code generated"}</small><strong>{access?.accessCode ?? "—— ——"}</strong></span>
-                      <button disabled={savingBookId === nextBookId} onClick={() => handleGenerateCode(material)} type="button">
-                        <RefreshCw size={14} /> {access ? "Regenerate" : "Generate code"}
-                      </button>
-                    </div>
+                    <p>{material.questionCount} questions{(material.versionCount ?? 1) > 1 ? ` · ${material.versionCount} versions combined` : ""}</p>
+                    <AppLink className="teacher-library-manage-link" href={`/teacher/library/${encodeURIComponent(nextBookId)}`}><Users size={15} /> Manage student access</AppLink>
                   </div>
                 </article>
               );
@@ -278,42 +258,44 @@ export function TeacherLibraryPage() {
 }
 
 type TeacherLibraryBookDetailProps = {
-  access: LibraryBookAccess | null;
   attempt?: TeacherLibraryAttempt;
   isLoading: boolean;
   material?: StudentMaterial;
   message: string;
-  onGenerateCode: (material: StudentMaterial) => void;
+  onSetAccess: (student: TeacherLibraryStudent, granted: boolean) => void;
   onSelectAttempt: (attemptId: string) => void;
   onSelectStudent: (student: TeacherLibraryStudent) => void;
   passageSet?: ExamPassageSet;
-  savingBookId: string;
+  savingStudentId: string;
   selectedStudent?: TeacherLibraryStudent;
   showAnswers: boolean;
   students: TeacherLibraryStudent[];
   toggleAnswers: () => void;
 };
 
-function TeacherLibraryBookDetail({ access, attempt, isLoading, material, message, onGenerateCode, onSelectAttempt, onSelectStudent, passageSet, savingBookId, selectedStudent, showAnswers, students, toggleAnswers }: TeacherLibraryBookDetailProps) {
+function TeacherLibraryBookDetail({ attempt, isLoading, material, message, onSetAccess, onSelectAttempt, onSelectStudent, passageSet, savingStudentId, selectedStudent, showAnswers, students, toggleAnswers }: TeacherLibraryBookDetailProps) {
+  const [studentSearch, setStudentSearch] = useState("");
+  const [accessFilter, setAccessFilter] = useState("");
+  const [previewVersion, setPreviewVersion] = useState("");
+  const visibleStudents = students.filter(student => `${student.name} ${student.username} ${student.email}`.toLowerCase().includes(studentSearch.toLowerCase()) && (!accessFilter || student.access.unlocked === (accessFilter === "enabled")));
   if (isLoading) return <section className="teacher-library-loading">Loading book dashboard…</section>;
   if (!material || !passageSet) return <section className="teacher-panel"><h1>Book not found</h1><AppLink href="/teacher/library"><ArrowLeft size={15} /> Return to English library</AppLink></section>;
 
+  const versions = getExamLibraryPassage(getLibraryBookId(material))?.versions ?? [];
+  const previewPassage = getPassageSet(previewVersion)?.passage ?? passageSet.passage;
   return (
     <>
       <header className="teacher-library-detail-heading">
-        <div><AppLink href="/teacher/library"><ArrowLeft size={15} /> English library</AppLink><p>English · {material.contentSource || passageCategoryLabel(material.passageCategory)} · {material.contentSource ? "ELA practice set" : material.readingFormat}</p><h1>{material.title}</h1><span>{material.author || "Teacher selection"} · {material.questionCount} questions</span></div>
-        <div className={access ? "is-code-ready" : ""}>
-          <span><KeyRound size={17} /><small>Student access code</small><strong>{access?.accessCode ?? "Not generated"}</strong></span>
-          {access ? <button aria-label="Copy student access code" onClick={() => navigator.clipboard.writeText(access.accessCode)} type="button"><Copy size={14} /> Copy</button> : null}
-          <button disabled={savingBookId === getLibraryBookId(material)} onClick={() => onGenerateCode(material)} type="button"><RefreshCw size={14} /> {access ? "New code" : "Generate code"}</button>
-        </div>
+        <div><AppLink href="/teacher/library"><ArrowLeft size={15} /> English library</AppLink><p>English · {material.contentSource || passageCategoryLabel(material.passageCategory)} · {material.contentSource ? "ELA practice set" : material.readingFormat}</p><h1>{material.title}</h1><span>{material.author || "Teacher selection"} · {material.questionCount} questions{(material.versionCount ?? 1) > 1 ? ` · ${material.versionCount} versions combined` : ""}</span></div>
+        <div className="teacher-library-access-summary"><Users size={21} /><span><small>Individual student access</small><strong>{students.filter(student => student.access.unlocked).length} of {students.length} enabled</strong></span></div>
       </header>
-      {message ? <p className="teacher-message corporate-message">{message}</p> : null}
+      {message ? <p role="status" className="teacher-message corporate-message">{message}</p> : null}
       <div className="teacher-library-detail-layout">
         <section className="teacher-book-preview" aria-label="Student book preview">
           <header><div><Eye size={18} /><span><small>Student preview</small><h2>Reading experience</h2></span></div><button aria-pressed={showAnswers} onClick={toggleAnswers} type="button">{showAnswers ? <EyeOff size={15} /> : <Eye size={15} />}{showAnswers ? "Hide answers" : "Show answers"}</button></header>
+          {versions.length > 1 && <label className="teacher-book-version-picker">Passage version<select value={previewVersion || versions[0].id} onChange={event => setPreviewVersion(event.target.value)}>{versions.map(version => <option key={version.id} value={version.id}>{version.label}</option>)}</select></label>}
           <article className="teacher-book-preview-passage">
-            {passageSet.passage.lines.filter((line) => line.kind !== "image").map((line, index) => line.text ? <p className={line.kind ? `is-${line.kind}` : ""} key={`${line.lineNumber}-${index}`}>{line.text}</p> : null)}
+            {previewPassage.lines.filter((line) => line.kind !== "image").map((line, index) => line.text ? <p className={line.kind ? `is-${line.kind}` : ""} key={`${line.lineNumber}-${index}`}>{line.text}</p> : null)}
           </article>
           <div className="teacher-book-preview-questions">
             {passageSet.questions.map((question, index) => (
@@ -326,17 +308,26 @@ function TeacherLibraryBookDetail({ access, attempt, isLoading, material, messag
         </section>
 
         <aside className="teacher-book-results">
-          <header><div><Users size={18} /><span><small>Student results</small><h2>{students.length} students</h2></span></div><strong>{students.reduce((sum, student) => sum + student.attempts.length, 0)} attempts</strong></header>
+          <header><div><Users size={18} /><span><small>Access & results</small><h2>{students.length} students</h2></span></div><strong>{students.reduce((sum, student) => sum + student.attempts.length, 0)} attempts</strong></header>
+          <div className="teacher-library-roster-tools">
+            <label>Find student<input value={studentSearch} onChange={event => setStudentSearch(event.target.value)} placeholder="Name, username, or email" /></label>
+            <label>Access<select value={accessFilter} onChange={event => setAccessFilter(event.target.value)}><option value="">All students</option><option value="enabled">Enabled</option><option value="disabled">Not enabled</option></select></label>
+            <p>Enable this book once to include every version. Select a student to review their attempts.</p>
+          </div>
           <div className="teacher-book-student-list">
-            {students.map((student) => {
+            {!visibleStudents.length && <p className="teacher-library-roster-empty">{students.length ? "No students match these filters." : "No active SHSAT students are enrolled yet."}</p>}
+            {visibleStudents.map(student => {
               const best = bestScore(student);
-              return <button className={student.id === selectedStudent?.id ? "is-active" : ""} key={student.id} onClick={() => onSelectStudent(student)} type="button"><span>{student.name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span><span><strong>{student.name}</strong><small>{student.attempts.length ? `${student.attempts.length} ${student.attempts.length === 1 ? "attempt" : "attempts"}` : "Not attempted"}</small></span><em>{best === null ? "—" : `${best}%`}<small>best</small></em></button>;
+              return <div className={`teacher-library-student-row${student.id === selectedStudent?.id ? " is-active" : ""}`} key={student.id}>
+                <button className="teacher-library-student-select" aria-pressed={student.id === selectedStudent?.id} onClick={() => onSelectStudent(student)} type="button"><span>{student.name.split(" ").map(part => part[0]).join("").slice(0, 2)}</span><span><strong>{student.name}</strong><small>{student.username} · {student.attempts.length} attempts{best === null ? "" : ` · ${best}% best`}</small></span></button>
+                <button className={`teacher-library-access-toggle${student.access.unlocked ? " is-enabled" : ""}`} disabled={Boolean(savingStudentId)} aria-label={`${student.access.unlocked ? "Revoke access for" : "Grant access to"} ${student.name}`} onClick={() => onSetAccess(student, !student.access.unlocked)} type="button">{savingStudentId === student.id ? "Saving…" : student.access.unlocked ? <><Check size={14} /> Enabled · Revoke</> : <><UserRoundPlus size={14} /> Grant access</>}</button>
+              </div>;
             })}
           </div>
           {selectedStudent ? (
             <section className="teacher-book-attempt-panel">
-              <header><div><small>Attempt history</small><h3>{selectedStudent.name}</h3></div>{selectedStudent.attempts.length ? <select aria-label={`Attempt for ${selectedStudent.name}`} onChange={(event) => onSelectAttempt(event.target.value)} value={attempt?.id ?? ""}>{selectedStudent.attempts.map((item) => <option key={item.id} value={item.id}>Attempt {item.attemptNumber} · {formatDate(item.completedAt)}</option>)}</select> : null}</header>
-              {attempt ? <TeacherAttemptDetail attempt={attempt} passageSet={passageSet} /> : <div className="teacher-book-no-attempt"><Clock3 size={23} /><strong>No attempts yet</strong><p>This student&apos;s score, total time, and question-level details will appear after they finish the book.</p></div>}
+              <header><div><small>Attempt history</small><h3>{selectedStudent.name}</h3></div>{selectedStudent.attempts.length ? <select aria-label={`Attempt for ${selectedStudent.name}`} onChange={(event) => onSelectAttempt(event.target.value)} value={attempt?.id ?? ""}>{selectedStudent.attempts.map((item) => <option key={item.id} value={item.id}>{item.bookId === getLibraryBookId(material) ? "Combined book" : "Earlier version"} · Attempt {item.attemptNumber} · {formatDate(item.completedAt)}</option>)}</select> : null}</header>
+              {attempt ? <TeacherAttemptDetail attempt={attempt} passageSet={getPassageSet(attempt.bookId) ?? passageSet} /> : <div className="teacher-book-no-attempt"><Clock3 size={23} /><strong>No attempts yet</strong><p>This student&apos;s score, total time, and question-level details will appear after they finish the book.</p></div>}
             </section>
           ) : null}
         </aside>

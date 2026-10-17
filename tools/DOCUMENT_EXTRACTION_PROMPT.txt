@@ -21,7 +21,7 @@ VISUALS
 Every meaningful photograph, graph, chart, table, map, diagram, number line, geometry figure and visual choice must be imported or explicitly flagged. Never invent URLs, labels, coordinates, visual substitutes or missing text. Unless I supplied a real existing platform image, add a visuals entry with exact questionId/choiceId (blank for passage), source filename, 1-based PDF sourcePage, approximate page location and concise description; state="unresolved". Keep source table text/values in the source fields where legible, AND flag TABLE_REVIEW_REQUIRED plus the required visual. Keep visual-choice text empty if the source contains no words; describe it only in teacher-only visuals. The teacher can attach the source crop in Content Studio before publishing or while editing afterward. Never fabricate a visual to avoid a warning. Multiple visual entries are supported.
 
 CLASSIFICATION
-type is response format; topic is the academic skill. Use only the taxonomy below. Classify AFTER transcription, with review.topicSource="inferred" and review.topicConfidence=0..1. If the source explicitly labels the skill, use "source". If no category fits or confidence is below 0.7, use topic="" or the best supported category and add LOW_CONFIDENCE_QUESTION_TYPE. Never invent a taxonomy label. Difficulty is optional teacher-only metadata: preserve a provided label with difficultySource="source"; otherwise difficulty="", difficultySource="unknown", difficultyConfidence=null. Do not present inferred difficulty as source-authored.
+type is response format; topic is the academic skill. For Math, topic is the main sorting category and subtopic is its specific skill from mathSpecificTopics[topic]. Keep both labels separate. If the specific skill is uncertain, leave subtopic empty and flag classification for teacher review. Use only the taxonomy below. Classify AFTER transcription, with review.topicSource="inferred" and review.topicConfidence=0..1. If the source explicitly labels the skill, use "source". If no category fits or confidence is below 0.7, use topic="" or the best supported category and add LOW_CONFIDENCE_QUESTION_TYPE. Never invent a taxonomy label. Difficulty is optional teacher-only metadata: preserve a provided label with difficultySource="source"; otherwise difficulty="", difficultySource="unknown", difficultyConfidence=null. Do not present inferred difficulty as source-authored.
 
 EXACT CONTRACT
 {
@@ -80,9 +80,19 @@ EXACT CONTRACT
       "multi_select",
       "numeric_entry",
       "short_response",
+      "grid_in",
+      "inline_dropdown",
+      "math_drag_drop",
+      "graph_point_select",
+      "number_line_response",
+      "category_sort",
+      "matrix_choice",
+      "table_match",
+      "transition_drop",
       "essay"
     ],
-    "topic": "exact section topic or empty string when uncertain/outside taxonomy",
+    "topic": "exact section topic; for math, the main sorting category; empty when uncertain",
+    "subtopic": "math only: exact specific topic under topic in mathSpecificTopics; empty when uncertain",
     "points": "positive number; default 1 (platform scoring, not source difficulty)",
     "prompt": "exact source text",
     "instructions": "optional exact source directions",
@@ -96,6 +106,87 @@ EXACT CONTRACT
     "explanation": "exact supplied explanation or empty string/null",
     "review": "Review",
     "visuals": "Visual[]"
+  },
+  "mathInteractions": {
+    "inline_dropdown": {
+      "dropdownContent": [
+        "Text before {{answer-1}} and after. Multiple {{ids}} can share a line."
+      ],
+      "dropdowns": [
+        {
+          "id": "answer-1",
+          "options": [
+            {
+              "id": "option-1",
+              "text": "exact label",
+              "math": "optional LaTeX"
+            },
+            {
+              "id": "option-2",
+              "text": "exact label"
+            }
+          ],
+          "correctChoiceId": "verified option ID or blank"
+        }
+      ]
+    },
+    "math_drag_drop": {
+      "items": [
+        {
+          "id": "item-1",
+          "text": "exact text with optional LaTeX delimiters"
+        },
+        {
+          "id": "item-2",
+          "text": "exact text"
+        }
+      ],
+      "dragDropContent": [
+        "Expression {{slot-1}}"
+      ],
+      "dragDropSlots": [
+        {
+          "id": "slot-1",
+          "correctItemId": "verified item ID or blank"
+        }
+      ],
+      "allowReuse": "boolean from source; default false"
+    },
+    "graph_point_select": {
+      "graph": {
+        "xMin": "number",
+        "xMax": "number greater than xMin",
+        "xStep": "positive number",
+        "yMin": "number",
+        "yMax": "number greater than yMin",
+        "yStep": "positive number",
+        "xLabel": "string",
+        "yLabel": "string",
+        "points": [
+          {
+            "id": "point-1",
+            "x": "number",
+            "y": "number"
+          }
+        ]
+      },
+      "correctPointIds": [
+        "verified point IDs"
+      ],
+      "requiredSelections": "source selection count"
+    },
+    "number_line_response": {
+      "numberLineResponse": {
+        "min": "number",
+        "max": "number",
+        "tickStep": "positive number",
+        "labelStep": "positive number",
+        "correctValue": "verified number or null",
+        "correctEndpoint": "open or closed",
+        "correctDirection": "left or right"
+      }
+    },
+    "richText": "promptHtml, stimulusHtml, instructionsHtml are optional faithful rich HTML with LaTeX delimiters. Uploaded images may appear between paragraphs as img with src=/exam-images/existing-file, alt, and optional width. Never invent asset references."
   },
   "review": {
     "sourceFile": "string",
@@ -178,20 +269,55 @@ TOPIC TAXONOMY (exact values)
     "Relevance & Conclusion"
   ],
   "math": [
-    "Arithmetic",
-    "Algebra",
+    "Expressions, Equations, and Inequalities",
     "Geometry",
-    "Measurement",
-    "Number Sense",
-    "Percent",
-    "Probability & Statistics",
-    "Rates & Unit Conversion",
-    "Ratios & Proportions",
-    "Uncategorized"
-  ]
+    "Statistics and Probability",
+    "Ratios and Proportional Relationships",
+    "The Number System"
+  ],
+  "mathSpecificTopics": {
+    "Expressions, Equations, and Inequalities": [
+      "Evaluating expressions",
+      "Equivalent expressions",
+      "Linear equations",
+      "Linear inequalities",
+      "Systems of equations",
+      "Algebraic word problems",
+      "Sequences and patterns",
+      "Absolute value"
+    ],
+    "Geometry": [
+      "Lines and Angle Relationships",
+      "Area and Perimeter of Composite Figures",
+      "Triangles and the Pythagorean Theorem",
+      "Circles",
+      "Polygons and Quadrilaterals",
+      "Surface Area and Volume",
+      "Similarity, Congruence, and Scale",
+      "Transformations and Symmetry"
+    ],
+    "Statistics and Probability": [
+      "Simple probability",
+      "Compound probability",
+      "Counting and combinations",
+      "Sets and Venn diagrams",
+      "Mean, median, mode and range",
+      "Data interpretation"
+    ],
+    "Ratios and Proportional Relationships": [
+      "Equivalent ratios",
+      "Proportional relationships",
+      "Part-to-whole ratios",
+      "Scale drawings",
+      "Ratio word problems"
+    ],
+    "The Number System": [
+      "test"
+    ]
+  }
 }
 
-Use multiple_choice for one keyed choice, multi_select only when source instructions require multiple choices, numeric_entry for Math numeric responses, short_response for English short responses. Retain extended writing as essay with UNSUPPORTED_RESPONSE_TYPE: essays remain drafts because the existing publication/grading workflow does not support them. Other unsupported interactions must be retained with their actual type and source fields plus UNSUPPORTED_RESPONSE_TYPE; they remain drafts until manually authored. Do not transform a static diagram into an interactive graph question. Keep choice wording and order unchanged, but use the editor’s A, B, C, D labels for the first four choices. Map source E→A, F→B, G→C, H→D by position, including supplied single/multi-select answer keys and visual choiceId references. Additional choices continue E, F, and so on. Retain original labels privately in review.sourceChoiceIds. Never guess an answer during this mapping. There is no mandatory difficulty field. Never fabricate a key to satisfy publication checks. All extracted warnings start unresolved and all review booleans start false. Do not put teacher-only source references into prompt, text or sourceNote. Source attribution printed for students belongs in sourceNote.
+Use multiple_choice for one keyed choice, multi_select only when source instructions require multiple choices, numeric_entry for Math numeric responses, short_response for a plain typed short answer in either Math or English. short_answer is accepted as an alias, but emit short_response. To change numeric_entry to short_response keep correctTextAnswers, prompt, classification, and explanation; omit entryLayout. Retain extended writing as essay with UNSUPPORTED_RESPONSE_TYPE: essays remain drafts because the existing publication/grading workflow does not support them. For Math also support inline_dropdown, math_drag_drop, graph_point_select, and number_line_response using the exact fields below. These types publish and run in the student player. Other unsupported interactions must be retained with their actual type and source fields plus UNSUPPORTED_RESPONSE_TYPE; they remain drafts until manually authored. Do not transform a static diagram into an interactive graph question. Keep choice wording and order unchanged, but use the editor’s A, B, C, D labels for the first four choices. Map source E→A, F→B, G→C, H→D by position, including supplied single/multi-select answer keys and visual choiceId references. Additional choices continue E, F, and so on. Retain original labels privately in review.sourceChoiceIds. Never guess an answer during this mapping. There is no mandatory difficulty field. Never fabricate a key to satisfy publication checks. All extracted warnings start unresolved and all review booleans start false. Do not put teacher-only source references into prompt, text or sourceNote. Source attribution printed for students belongs in sourceNote.
 
 OUTPUT EXAMPLE (structure only; replace ALL sample content with the actual complete source, not a sample of it)
 {

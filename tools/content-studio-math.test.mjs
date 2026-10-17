@@ -9,6 +9,55 @@ import ts from "typescript";
 const source = await readFile(new URL("./content-studio-math.js", import.meta.url), "utf8");
 const math = vm.runInNewContext(`${source}\nstudioMath;`, { window: { katex } });
 
+test('captioned math images preserve their position and safe metadata when saved', async () => {
+  const server = await readFile(new URL('./content-studio.mjs', import.meta.url), 'utf8');
+  const sanitize = vm.runInNewContext(server.slice(server.indexOf('const allowedRichTags ='), server.indexOf('function sanitizeInlineRichText(')) + '\nsanitizeRichText;');
+  assert.equal(sanitize('<p>Before the diagram.</p><figure onclick="unsafe()"><img src="/exam-images/diagram.png" alt="Triangle" width="360" onerror="unsafe()"><figcaption>A measured triangle.</figcaption></figure><p>After the diagram.</p>'), '<p>Before the diagram.</p><figure><img src="/exam-images/diagram.png" alt="Triangle" width="360"><figcaption>A measured triangle.</figcaption></figure><p>After the diagram.</p>');
+  assert.doesNotMatch(sanitize('<figure><img src="javascript:unsafe()"><figcaption><script>unsafe()</script>Caption</figcaption></figure>'), /javascript|script|unsafe/);
+});
+
+async function previewBootHarness(fetch) {
+  const html = await readFile(new URL('./content-studio.html', import.meta.url), 'utf8');
+  const start = html.indexOf('async function bootMathPreviewFrame(');
+  const end = html.indexOf('function startMathPreviewFrames(', start);
+  const statuses = [];
+  const boot = vm.runInNewContext(`let mathPreviewDocumentPromise; let mathPreviewBootSequence = 0; ${html.slice(start,end)}; bootMathPreviewFrame;`, {
+    fetch, sendMathPreview: () => {}, escapeHtml: value => String(value).replaceAll('<','&lt;'), setStatus: (...args) => statuses.push(args),
+  });
+  const frame = () => ({dataset: {}, isConnected: true, removeAttribute() {}, srcdoc: ''});
+  return {boot, frame, statuses};
+}
+
+test('preview boot ignores detached and superseded frames while sharing the player document request', async () => {
+  let resolveDocument;
+  let requests = 0;
+  const harness = await previewBootHarness(() => { requests++; return new Promise(resolve => { resolveDocument = resolve; }); });
+  const detached = harness.frame(), active = harness.frame();
+  const pending = [harness.boot(detached), harness.boot(active), harness.boot(active)];
+  detached.isConnected = false;
+  const documentHtml = '<!doctype html><html><body>Shared student player</body></html>';
+  resolveDocument({ok:true,text:async()=>documentHtml});
+  await Promise.all(pending);
+  assert.equal(requests,1);
+  assert.match(detached.srcdoc,/Loading student player/);
+  assert.equal(active.srcdoc,documentHtml);
+  assert.equal(active.dataset.mathPreviewBoot,'3');
+  assert.deepEqual(harness.statuses,[]);
+});
+
+test('a failed preview load is visible and can be retried', async () => {
+  let requests = 0;
+  const harness = await previewBootHarness(async () => ++requests === 1 ? {ok:false} : {ok:true,text:async()=>'<html>Shared player</html>'});
+  const frame = harness.frame();
+  await harness.boot(frame);
+  assert.match(frame.srcdoc,/could not be loaded/);
+  assert.equal(frame.dataset.mathPreviewBoot,undefined);
+  assert.equal(harness.statuses[0][1],'error');
+  await harness.boot(frame);
+  assert.equal(requests,2);
+  assert.equal(frame.srcdoc,'<html>Shared player</html>');
+});
+
 test("every symbol and template renders in both the equation editor and the student renderer", () => {
   const ids = new Set();
   for (const [id] of math.entries()) {
@@ -95,19 +144,19 @@ test("the virtual keyboard has a visible close control that hides it without edi
 });
 
 test("student dropdown sentences render display math while preserving answer values and plain menu labels", async () => {
-  const page = await readFile(new URL("../client/src/pages/ExamSessionPage.tsx", import.meta.url), "utf8");
-  const start = page.indexOf("  function renderInlineDropdownText(");
-  const finish = page.indexOf("  function handlePlaceCategoryItem(", start);
+  const page = await readFile(new URL("../client/src/components/ExamMathQuestion.tsx", import.meta.url), "utf8");
+  const start = page.indexOf("function renderInlineDropdownText(");
+  const finish = page.indexOf("type Props =", start);
   const js = ts.transpileModule(page.slice(start, finish), { compilerOptions: { jsx: ts.JsxEmit.React, target: ts.ScriptTarget.ES2022 } }).outputText;
   const render = vm.runInNewContext(`${js}\nrenderInlineDropdownText;`, {
     React: { createElement: (tag, props, ...children) => ({ tag, props, children }) },
     selectedAnswers: { q1: { answer: "b" } },
-    getCategoryPlacements: (value) => value,
+    placements: (value) => value,
     handleChangeInlineDropdownAnswer: () => {},
     renderKatexExpression: (value, displayMode) => ({ value, displayMode, markup: katex.renderToString(value, { displayMode }) }),
     renderInlineMathText: (value) => ({ value, displayMode: false }),
   });
-  const result = render({ id: "q1", dropdowns: [{ id: "answer", options: [{ id: "a", text: "2" }, { id: "b", text: "4" }] }] }, String.raw`Given \[f(x)=\frac{x^2-4}{x-2}\], the limit \(x\to2\) is {{answer}}.`, 0);
+  const result = render({ id: "q1", dropdowns: [{ id: "answer", options: [{ id: "a", text: "2" }, { id: "b", text: "4" }] }] }, String.raw`Given \[f(x)=\frac{x^2-4}{x-2}\], the limit \(x\to2\) is {{answer}}.`, 0, { answer: "b" }, () => {});
   const display = result.find((item) => item.tag === "span" && item.props.className === "exam-katex-template-display");
   assert.equal(display.children[0].displayMode, true);
   assert.equal(display.children[0].value, String.raw`f(x)=\frac{x^2-4}{x-2}`);
@@ -122,4 +171,21 @@ test("Math copy action uses the shared universal prompt and keeps legacy JSON im
   assert.match(studio, /return studioUI.buildOfficialPassagePrompt/);
   assert.match(studio, /payload.format === DocumentImport.format/);
   assert.match(studio, /api\/math\/import-preview/);
+});
+
+test('math workspace adapters retain legacy topics and use the existing visual toolbar and KaTeX', async () => {
+  const html = await readFile(new URL('./content-studio.html', import.meta.url), 'utf8');
+  const script = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(match => match[1]).sort((a, b) => b.length - a.length)[0];
+  const tree = ts.createSourceFile('studio.js', script, ts.ScriptTarget.Latest, true, ts.ScriptKind.JS);
+  const names = ['mathTopicOptions', 'mathFormulaToolbarHtml', 'renderKatexExpression'];
+  const functions = tree.statements.filter(node => ts.isFunctionDeclaration(node) && names.includes(node.name?.text));
+  assert.equal(functions.length, names.length);
+  const adapters = vm.runInNewContext(functions.map(node => node.getText(tree)).join('\n') + '\n({mathTopicOptions, mathFormulaToolbarHtml, renderKatexExpression});', {
+    window: { katex }, studioMath: math, app: { state: { mathTopics: ['Algebra', 'Geometry'] } }, escapeHtml: value => String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;'),
+  });
+  assert.match(adapters.mathTopicOptions('Legacy topic'), /value="Legacy topic" selected/);
+  assert.match(adapters.mathFormulaToolbarHtml('prompt'), /data-equation-target="prompt"/);
+  const fraction = adapters.renderKatexExpression(String.raw`\frac{1}{2}`, true);
+  assert.match(fraction, /katex-display/); assert.match(fraction, /mfrac/);
+  assert.doesNotThrow(() => adapters.renderKatexExpression(String.raw`\placeholder{}`));
 });

@@ -198,6 +198,7 @@ learningPlanRouter.patch("/student/assignments/:id", async (request, response) =
   const old = await assignmentDetail(response.locals.student.id, request.params.id);
   if (!old || !old.assignedAt || !activeStatuses.includes(old.status)) throw fail("Active assignment not found.", 404);
   if (request.body?.revision !== old.revision) throw fail("This assignment changed. Reload before updating.", 409);
+  if (old.contentId?.startsWith("answer-sheet-")) throw fail("Open the answer sheet to save and submit its responses.");
   const action = request.body?.action;
   if (action !== "start" && action !== "submit") throw fail("Choose Start or Submit for teacher review.");
   if (old.status === "review") throw fail("Your teacher is reviewing this task.");

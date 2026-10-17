@@ -1,7 +1,7 @@
 export type AssignmentKind = "passage" | "practice" | "exam" | "external" | "offline";
 export type AssignmentStatus = "planned" | "assigned" | "in_progress" | "review" | "completed" | "skipped" | "cancelled";
 export type PlanEvent = { at: string; actor: string; action: string; changes: Record<string, unknown> };
-export type CompletionEvidence = { source: "library" | "exam" | "practice" | "teacher"; at: string; reference?: string; correct?: number; total?: number };
+export type CompletionEvidence = { source: "library" | "exam" | "practice" | "teacher" | "answer_sheet"; at: string; reference?: string; correct?: number; total?: number };
 export type PlanAssignment = {
   id: string; studentId: string; kind: AssignmentKind; contentId: string | null;
   title: string; instructions: string; url: string | null; status: AssignmentStatus;
@@ -94,10 +94,12 @@ export function validateDraft(input: unknown, catalog: PlanContent[]): Assignmen
   const estimatedMinutes = optionalNumber(row.estimatedMinutes, 10080);
   if (content?.practiceMode === "bank_set" && row.questionTarget != null && row.questionTarget !== "") throw new Error("Saved question-bank sets require all their questions; do not set an aggregate practice target.");
   const questionTarget = kind === "practice" && content?.practiceMode !== "bank_set" ? optionalNumber(row.questionTarget, 10000) : null;
+  const isAnswerSheet = kind === "offline" && typeof row.contentId === "string" && /^answer-sheet-[a-f0-9-]{36}$/.test(row.contentId);
   let url: string | null = null;
   if (row.url) {
     if (!["external", "offline"].includes(kind) || typeof row.url !== "string" || row.url.length > 2000) throw new Error("Use a valid external URL.");
-    try { const parsed = new URL(row.url); if (!["http:", "https:"].includes(parsed.protocol) || parsed.username || parsed.password) throw new Error(); url = parsed.href; } catch { throw new Error("External links must use http or https without embedded credentials."); }
+    if (isAnswerSheet && /^\/answer-sheets\/[a-f0-9-]{36}$/.test(row.url)) url = row.url;
+    else try { const parsed = new URL(row.url); if (!["http:", "https:"].includes(parsed.protocol) || parsed.username || parsed.password) throw new Error(); url = parsed.href; } catch { throw new Error("External links must use http or https without embedded credentials."); }
   }
-  return { kind, status: row.status as "planned" | "assigned", contentId: content?.id ?? null, title, instructions, url, dueDate, plannedDate, estimatedMinutes, questionTarget };
+  return { kind, status: row.status as "planned" | "assigned", contentId: content?.id ?? (isAnswerSheet ? row.contentId as string : null), title, instructions, url, dueDate, plannedDate, estimatedMinutes, questionTarget };
 }

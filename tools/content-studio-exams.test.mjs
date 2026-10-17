@@ -9,7 +9,11 @@ import vm from 'node:vm';
 test('new exams are locked, registered, editable, unique, and protected by editor authorization', async () => {
   const toolsRoot = dirname(fileURLToPath(import.meta.url));
   const root = resolve(toolsRoot, '..');
-  const fixture = await mkdtemp(join(toolsRoot, '.exam-create-test-'));
+  // Keep generated copies out of watched content folders while the real editor
+  // and development servers are running in the same working tree.
+  const fixtureRoot = join(toolsRoot, '.content-drafts');
+  await mkdir(fixtureRoot, { recursive: true });
+  const fixture = await mkdtemp(join(fixtureRoot, 'exam-test-'));
   const modulePath = join(toolsRoot, `.exam-create-test-${Date.now()}.mjs`);
   let server;
   try {
@@ -24,6 +28,7 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     await writeFile(join(fixture, 'server/data/question-bank.json'), JSON.stringify({ revision: 0, questions: [], sets: [] }));
     await cp(join(toolsRoot, 'practice-topics.json'), join(fixture, 'tools/practice-topics.json'));
     await cp(join(toolsRoot, 'content-topics.json'), join(fixture, 'tools/content-topics.json'));
+    await cp(join(toolsRoot, 'math-topics.json'), join(fixture, 'tools/math-topics.json'));
     await cp(join(toolsRoot, 'content-studio-glossary.js'), join(fixture, 'tools/content-studio-glossary.js'));
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8'))
       .replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(fixture)};`)
@@ -34,6 +39,10 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
     const url = `http://127.0.0.1:${server.address().port}/api/exams`;
     const state = await studio.getState();
+    // A missing workspace asset reports failure without crashing the local server.
+    const missingAsset = await fetch(`http://127.0.0.1:${server.address().port}/content-studio-workspace.css`);
+    assert.equal(missingAsset.status, 500);
+    assert.equal((await fetch(`http://127.0.0.1:${server.address().port}/api/state`)).status, 200);
     const bankUrl = `http://127.0.0.1:${server.address().port}/api/question-bank`;
     const postBank = (path, body, token = state.editToken) => fetch(bankUrl + path, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-editor-token': token }, body: JSON.stringify(body) });
     const captured = { subject: 'English', source: 'SHSAT Lab', sourceUrl: 'https://www.shsatlab.com/units/unit-7/practice', sourceUnit: 7, sourceTopic: 'Evidence & Support', difficulty: 'easy', prompt: 'Synthetic fixture: which evidence supports the claim?', choices: ['A','B','C','D'].map(id => ({ id, text: `Choice ${id}` })), correctChoiceId: 'A', explanation: 'A supports the claim.', passage: { title: 'Synthetic fixture', text: 'A first paragraph.\n\nA second paragraph.', format: 'prose' } };
@@ -342,11 +351,48 @@ test('new exams are locked, registered, editable, unique, and protected by edito
       studio.deletePassage({ id: version.id, sourceHash: editedVersion.sourceHash }),
       /Remove it from that exam before deleting it/,
     );
+
+    const mathUrl = url.replace('/exams', '/math'), taxonomyUrl = url.replace('/exams', '/math-topics');
+    const taxonomy = await (await fetch(taxonomyUrl)).json();
+    const taxonomyDraft = { revision: taxonomy.revision, categories: taxonomy.categories.map(category => ({ ...category, original: category.label, topics: category.topics.map(topic => ({ ...topic, original: topic.label })) })) };
+    const mathQuestion = { id: 'qa-two-topic-math', type: 'short_response', prompt: 'Solve x + 1 = 3.', topic: taxonomy.categories.find(category => category.topics.some(topic => topic.label === 'Linear equations')).label, subtopic: 'Linear equations', correctTextAnswers: ['2'] };
+    const mathRequest = { assessmentId: payload.assessment.id, questions: [mathQuestion] };
+    const putTaxonomy = (body, token = state.editToken) => fetch(taxonomyUrl, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'x-editor-token': token }, body: JSON.stringify(body) });
+    const postMath = body => fetch(mathUrl, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-editor-token': state.editToken }, body: JSON.stringify(body) });
+    assert.equal((await putTaxonomy(taxonomyDraft, 'wrong')).status, 403);
+    assert.equal((await postMath({ ...mathRequest, questions: [{ ...mathQuestion, subtopic: '' }] })).status, 400);
+    assert.equal((await postMath({ ...mathRequest, questions: [{ ...mathQuestion, subtopic: 'Triangles' }] })).status, 400);
+    assert.equal((await postMath(mathRequest)).status, 201);
+    const withMath = await studio.getState();
+    assert.equal(withMath.assessments.find(item => item.id === payload.assessment.id).questions.find(item => item.id === mathQuestion.id).subtopic, 'Linear equations');
+    assert.equal((await putTaxonomy(taxonomyDraft)).status, 409);
+    const currentTaxonomy = await (await fetch(taxonomyUrl)).json();
+    const renameDraft = { revision: currentTaxonomy.revision, categories: currentTaxonomy.categories.map(category => ({ ...category, original: category.label, topics: category.topics.map(topic => ({ ...topic, original: topic.label, label: topic.label === 'Linear equations' ? 'One-variable equations' : topic.label })) })) };
+    assert.equal((await putTaxonomy(renameDraft)).status, 200);
+    const renamedMath = await studio.getState();
+    assert.equal(renamedMath.assessments.find(item => item.id === payload.assessment.id).questions.find(item => item.id === mathQuestion.id).subtopic, 'One-variable equations');
+    { const post = async (path, body) => {
+      const response = await fetch(url.replace('/api/exams', path), {method:'POST',headers:{'Content-Type':'application/json','x-editor-token':state.editToken},body:JSON.stringify(body)});
+      const data = await response.json(); return {status:response.status,data};
+    };
+    const image = await post('/api/math-images',{assessmentId:payload.assessment.id,questionId:mathQuestion.id,inline:true,mimeType:'image/png',fileName:'clipboard.png',dataUrl:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aN7sAAAAASUVORK5CYII='});
+    assert.equal(image.status,201,JSON.stringify(image.data));
+    const inline = `<p>Before.</p><img src="${image.data.image.src}" alt="Triangle" width="280" onerror="alert(1)"><p>After.</p><img src="https://example.invalid/tracker.png"><script>alert(1)</script>`;
+    const updated = {...renamedMath.mathSections.find(section=>section.questions.some(question=>question.id===mathQuestion.id)),assessmentId:payload.assessment.id};
+    updated.questions=[{...mathQuestion,subtopic:'One-variable equations',type:'short_answer',prompt:'Before. After.',promptHtml:inline,entryLayout:'fraction'}];
+    const saved = await post('/api/math',updated); assert.equal(saved.status,201,JSON.stringify(saved.data));
+    const roundtrip=(await studio.getState()).mathSections.find(section=>section.questions.some(question=>question.id===mathQuestion.id)).questions[0];
+    assert.equal(roundtrip.type,'short_response'); assert.equal(roundtrip.entryLayout,undefined);
+    assert.deepEqual(roundtrip.correctTextAnswers,['2']);
+    assert.equal(roundtrip.promptHtml,`<p>Before.</p><img src="${image.data.image.src}" alt="Triangle" width="280"><p>After.</p>`);
+    const imported = await post('/api/math/import-preview',{assessmentId:payload.assessment.id,source:JSON.stringify({format:'nathan-tutors-math-question-v1',question:{...mathQuestion,id:'qa-dropdown-import',type:'inline_dropdown',dropdownContent:['{{a}} + {{b}}'],dropdowns:['a','b'].map(id=>({id,options:[{id:'one',text:'1'},{id:'two',text:'2'}],correctChoiceId:'two'}))}})});
+    assert.equal(imported.status,200,JSON.stringify(imported.data)); assert.deepEqual(imported.data.question.dropdownContent,['{{a}} + {{b}}']);
+    }
   } finally {
     if (server) await new Promise(resolve => server.close(resolve));
     await rm(modulePath, { force: true });
-    if (resolve(fixture).startsWith(resolve(toolsRoot) + '\\') || resolve(fixture).startsWith(resolve(toolsRoot) + '/')) {
+    if (dirname(resolve(fixture)) === resolve(fixtureRoot) && fixture.startsWith(join(fixtureRoot, 'exam-test-'))) {
       await rm(fixture, { recursive: true, force: true });
-    } else throw new Error('Test cleanup path was outside tools.');
+    } else throw new Error('Test cleanup path was outside the isolated fixture directory.');
   }
 });

@@ -13,6 +13,28 @@ const fixture = JSON.parse(await readFile(new URL('./fixtures/document-import/ex
 const observed = JSON.parse(await readFile(new URL('./fixtures/document-import/observed-source.json', import.meta.url), 'utf8'));
 const topics = JSON.parse(await readFile(new URL('./content-topics.json', import.meta.url), 'utf8'));
 const taxonomy = { reading: topics.slice(0, 8), revising_editing_a: topics.slice(8), math: ['Algebra'] };
+
+test('all math response types retain their interactions and verified keys through prompt import, including short-answer aliases', () => {
+  const questions = [
+    { type:'multiple_choice', choices:[{id:'A',text:'1'},{id:'B',text:'2'}], correctChoiceId:'B' },
+    { type:'multi_select', choices:[{id:'A',text:'1'},{id:'B',text:'2'}], correctChoiceIds:['A','B'], requiredSelections:2 },
+    ...['numeric_entry','short_response','short_answer','short answer','short-answer','grid_in'].map(type => ({type,correctTextAnswers:['-4']})),
+    { type:'inline_dropdown', dropdownContent:['{{a}} + {{b}}'], dropdowns:['a','b'].map(id=>({id,options:[{id:'one',text:'1'},{id:'two',text:'2'}],correctChoiceId:'two'})) },
+    { type:'math_drag_drop', items:[{id:'one',text:'1'},{id:'two',text:'2'}], dragDropContent:['x = {{a}}'], dragDropSlots:[{id:'a',correctItemId:'two'}], allowReuse:false },
+    { type:'graph_point_select', graph:{xMin:0,xMax:4,xStep:1,yMin:0,yMax:4,yStep:1,xLabel:'x',yLabel:'y',points:[{id:'a',x:1,y:1},{id:'b',x:2,y:2}]},correctPointIds:['a'] },
+    { type:'number_line_response', numberLineResponse:{min:-2,max:4,tickStep:1,labelStep:1,correctValue:1,correctEndpoint:'closed',correctDirection:'right'} },
+  ].map((question,index) => ({id:`math-type-${index}`,prompt:'Source question',topic:'Algebra',subtopic:'Equations',explanation:'Source explanation',...question}));
+  const [entry] = contract.parse({format:contract.format,mathQuestions:questions});
+  entry.content.review={sourceReviewed:true,completenessReviewed:true};
+  entry.content.questions.forEach(question=>{question.review.classificationReviewed=true;});
+  assert.deepEqual(contract.issues(entry,{...taxonomy,mathSpecificTopics:{Algebra:['Equations']}}),[]);
+  const published=publicationContent(entry);
+  for (const [index,question] of questions.entries()) {
+    for (const key of Object.keys(question)) assert.deepEqual(published.questions[index][key], key==='type' ? contract.normalizeResponseType(question[key]) : question[key], `${question.type}: ${key}`);
+  }
+  entry.content.questions.find(question=>question.type==='inline_dropdown').dropdowns[0].correctChoiceId='';
+  assert.ok(contract.issues(entry,taxonomy).some(issue=>issue.code==='ANSWER_KEY_MISSING'));
+});
 const approve = entry => {
   entry.content.review.sourceReviewed = true;
   entry.content.review.completenessReviewed = true;
@@ -112,13 +134,15 @@ test('draft persistence, stale-write protection and fingerprint duplicates survi
 });
 
 test('real Content Studio endpoints: import/edit/save/reload/publish/student formatter, metadata privacy, visual gate and Math reuse', async () => {
-  const dir = await mkdtemp(join(toolsRoot, '.document-roundtrip-'));
+  const fixtureRoot = join(toolsRoot, '.content-drafts');
+  await mkdir(fixtureRoot, { recursive: true });
+  const dir = await mkdtemp(join(fixtureRoot, 'document-roundtrip-'));
   const modulePath = join(toolsRoot, `.document-roundtrip-${Date.now()}.mjs`);
   let server;
   try {
     for (const path of ['client/src', 'client/src/lib', 'server/data', 'tools']) await mkdir(join(dir, path), { recursive: true });
     for (const path of ['client/src/content', 'server/src/shared']) await cp(join(root, path), join(dir, path), { recursive: true });
-    for (const path of ['client/src/lib/studentMaterials.ts', 'server/data/assessments.json', 'tools/content-topics.json', 'tools/practice-topics.json', 'tools/content-studio-glossary.js']) await cp(join(root, path), join(dir, path));
+    for (const path of ['client/src/lib/studentMaterials.ts', 'server/data/assessments.json', 'tools/content-topics.json', 'tools/math-topics.json', 'tools/practice-topics.json', 'tools/content-studio-glossary.js']) await cp(join(root, path), join(dir, path));
     await writeFile(join(dir, 'server/data/question-bank.json'), '{"revision":0,"questions":[],"sets":[]}');
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8')).replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(dir)};`).split('if (process.argv.includes("--validate"))')[0] + '\nexport {handleRequest, getState, savePassage};';
     await writeFile(modulePath, source);
@@ -239,7 +263,7 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.equal(numberingReloaded.richText, numberedSaved.data.passage.richText);
     const numberingBook = JSON.parse(await readFile(join(dir, 'server/data/library-books.json'), 'utf8')).find(b => b.id === numberedSettings.id);
     assert.deepEqual(numberingBook.passageSet.passage.lines.filter(l => l.lineNumber).map(l => [l.lineNumber, l.text]), [['1', 'First body.'], ['2', 'Bold body'], ['3', 'Last body.']]);
-    const mathPayload = { format: contract.format, mathQuestions: [{ id: 'fixture-math-1', type: 'numeric_entry', topic: 'Algebra', prompt: 'What number appears in the supplied table?', correctTextAnswers: [], explanation: '', entryLayout: 'plain' }] };
+    const mathPayload = { format: contract.format, mathQuestions: [{ id: 'fixture-math-1', type: 'numeric_entry', topic: state.mathTopicConfiguration.categories.find(category => category.topics.some(topic => topic.label === 'Evaluating expressions')).label, subtopic: 'Evaluating expressions', prompt: 'What number appears in the supplied table?', correctTextAnswers: [], explanation: '', entryLayout: 'plain' }] };
     let maths = (await call('/api/document-drafts', { source: JSON.stringify(mathPayload) })).data;
     const math = approve(maths.entries.find(e => e.kind === 'math'));
     assert.ok(contract.issues(math, taxonomy).some(i => i.code === 'ANSWER_KEY_MISSING'));
@@ -296,7 +320,7 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
   } finally {
     if (server) await new Promise(done => server.close(done));
     await rm(modulePath, { force: true });
-    assert.ok(resolve(dir).startsWith(resolve(toolsRoot))); await rm(dir, { recursive: true, force: true });
+    assert.equal(dirname(resolve(dir)), resolve(fixtureRoot)); assert.ok(dir.startsWith(join(fixtureRoot, 'document-roundtrip-'))); await rm(dir, { recursive: true, force: true });
   }
 });
 

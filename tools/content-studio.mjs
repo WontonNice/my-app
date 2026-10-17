@@ -13,6 +13,8 @@ import learningExporter from "./export-learning-catalog.cjs";
 import { readBank, mutateBank, importCaptures, publishQuestion, publishQuestions, createBankSet, labTopics } from "./question-bank.mjs";
 import { createGlossaryRichText } from "./content-studio-glossary.js";
 import { passageCategories, normalizePassageCategory as normalizeCategory, patchPassageCategory } from "./passage-category-editor.mjs";
+import { readMathTopicConfiguration, saveMathTopicConfiguration, validateMathClassification } from "./math-topic-editor.mjs";
+import { mathPreviewAsset } from "./math-preview-bundle.mjs";
 
 const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const passageSetsRoot = join(workspaceRoot, "client", "src", "content", "exams", "passageSets");
@@ -81,24 +83,16 @@ const defaultTopics = [
 ];
 const readingTopicCount = 8;
 let topics = await readContentTopics();
-const mathTopics = [
-  "Arithmetic",
-  "Algebra",
-  "Geometry",
-  "Measurement",
-  "Number Sense",
-  "Percent",
-  "Probability & Statistics",
-  "Rates & Unit Conversion",
-  "Ratios & Proportions",
-  "Uncategorized",
-];
+let mathTopicConfiguration = await readMathTopicConfiguration(workspaceRoot);
+let mathTopics = mathTopicConfiguration.categories.map(category => category.label);
+let mathMutation = Promise.resolve();
+const mutateMath = action => { const next = mathMutation.then(action); mathMutation = next.catch(() => {}); return next; };
 const advancedGenres = ["Fiction", "History", "Science", "Social Science"];
 const advancedTones = ["blue", "coral", "emerald", "gold"];
 const mathImportFormat = "nathan-tutors-math-question-v1";
 const passageImportFormat = documentImport.format;
 const documentDrafts = documentDraftStore(workspaceRoot, sanitizeDocumentDraft);
-const importTaxonomy = () => ({ reading: topicsForPassageSection("reading"), revising_editing_a: topicsForPassageSection("revising_editing_a"), math: mathTopics });
+const importTaxonomy = () => ({ reading: topicsForPassageSection("reading"), revising_editing_a: topicsForPassageSection("revising_editing_a"), math: mathTopics, mathSpecificTopics: Object.fromEntries(mathTopicConfiguration.categories.map(category => [category.label, category.topics.map(topic => topic.label)])) });
 const practiceDifficulties = ["easy", "medium", "hard", "elite"];
 const defaultPracticeTopics = [
   {
@@ -385,6 +379,8 @@ function requiredText(value, label, { preserve = false } = {}) {
 }
 
 const allowedRichTags = new Set([
+  "figure",
+  "figcaption",
   "span",
   "h2",
   "h3",
@@ -412,6 +408,14 @@ function sanitizeRichText(value) {
     .replace(/<(script|style|iframe|object|embed|svg|math)[^>]*>[\s\S]*?<\/\1>/gi, "")
     .replace(/<\/?([a-z0-9-]+)(?:\s[^>]*)?>/gi, (match, rawTag) => {
       const tag = rawTag.toLowerCase();
+      if (tag === 'img' && !match.startsWith('</')) {
+        const attribute = name => new RegExp(`\\b${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, 'i').exec(match);
+        const source = attribute('src'), src = source?.[1] ?? source?.[2] ?? '';
+        if (!/^\/exam-images\/[a-zA-Z0-9._-]+$/.test(src)) return '';
+        const description = attribute('alt'), alt = (description?.[1] ?? description?.[2] ?? '').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const size = attribute('width'), width = Math.round(Number(size?.[1] ?? size?.[2]));
+        return `<img src="${src}" alt="${alt}"${width >= 40 && width <= 1200 ? ` width="${width}"` : ''}>`;
+      }
       if (!allowedRichTags.has(tag)) return "";
       const isClosing = match.startsWith("</");
       if (tag === "span") {
@@ -1942,6 +1946,7 @@ function normalizeMathQuestion(question, assessmentId, index) {
       : {}),
     ...(stimulusHtml ? { stimulusHtml } : {}),
     topic: requiredText(question.topic || "Uncategorized", `Math question ${questionNumber} topic`),
+    ...(typeof question.subtopic === "string" && question.subtopic.trim() ? { subtopic: question.subtopic.trim() } : {}),
   };
 
   if (type === "multiple_choice" || type === "multi_select") {
@@ -2067,6 +2072,10 @@ function normalizeMathQuestion(question, assessmentId, index) {
     if (!graph || typeof graph !== "object" || !Array.isArray(graph.points) || graph.points.length < 2) {
       throw new EditorError(400, `Math question ${questionNumber} needs a graph with at least two selectable points.`);
     }
+    for (const axis of ['x', 'y']) {
+      const min = Number(graph[axis + 'Min']), max = Number(graph[axis + 'Max']), step = Number(graph[axis + 'Step']);
+      if (![min, max, step].every(Number.isFinite) || max <= min || step <= 0 || (max - min) / step > 1000) throw new EditorError(400, `Math question ${questionNumber} needs valid ${axis}-axis bounds and positive tick spacing (at most 1,000 intervals).`);
+    }
     const numberValue = (value, fallback) => Number.isFinite(Number(value)) ? Number(value) : fallback;
     const points = graph.points.map((point, pointIndex) => ({
       id: requiredText(point?.id, `Math question ${questionNumber} point ${pointIndex + 1} ID`),
@@ -2113,6 +2122,7 @@ function normalizeMathQuestion(question, assessmentId, index) {
     if (![min, max, correctValue].every(Number.isFinite) || max <= min || correctValue < min || correctValue > max) {
       throw new EditorError(400, `Math question ${questionNumber} has invalid number-line values.`);
     }
+    if (!Number.isFinite(Number(response.tickStep)) || Number(response.tickStep) <= 0 || (max - min) / Number(response.tickStep) > 1000) throw new EditorError(400, `Math question ${questionNumber} needs positive number-line tick spacing (at most 1,000 intervals).`);
     const correctDirection = response.correctDirection === "left" ? "left" : "right";
     const correctEndpoint = response.correctEndpoint === "open" ? "open" : "closed";
     return {
@@ -2145,12 +2155,6 @@ function normalizeMathQuestion(question, assessmentId, index) {
     }
     if (!Array.isArray(question.dropdowns) || !question.dropdowns.length) {
       throw new EditorError(400, `Math question ${questionNumber} needs at least one dropdown menu.`);
-    }
-    if (dropdownContent.length !== question.dropdowns.length) {
-      throw new EditorError(
-        400,
-        `Math question ${questionNumber} needs one dropdown sentence for each answer menu.`,
-      );
     }
     const dropdowns = question.dropdowns.map((dropdown, dropdownIndex) => {
       const dropdownNumber = dropdownIndex + 1;
@@ -2194,15 +2198,6 @@ function normalizeMathQuestion(question, assessmentId, index) {
     if (new Set(dropdowns.map((dropdown) => dropdown.id)).size !== dropdowns.length) {
       throw new EditorError(400, `Math question ${questionNumber} dropdown IDs must be unique.`);
     }
-    dropdownContent.forEach((line, lineIndex) => {
-      const placeholders = Array.from(line.matchAll(/\{\{([\w-]+)\}\}/g), (match) => match[1]);
-      if (placeholders.length !== 1 || placeholders[0] !== dropdowns[lineIndex].id) {
-        throw new EditorError(
-          400,
-          `Math question ${questionNumber} dropdown sentence ${lineIndex + 1} must contain its one answer menu.`,
-        );
-      }
-    });
     const dropdownIds = new Set(dropdowns.map((dropdown) => dropdown.id));
     const referencedIds = dropdownContent.flatMap((line) =>
       Array.from(line.matchAll(/\{\{([\w-]+)\}\}/g), (match) => match[1]),
@@ -2462,9 +2457,6 @@ async function saveMathImage(input) {
     throw new EditorError(400, "Answer choice ID must contain letters or numbers.");
   }
   const extension = uploadedImageExtension(input);
-  if (choiceId && extension !== "png" && extension !== "svgz") {
-    throw new EditorError(400, "Answer-choice images must be PNG or SVGZ files.");
-  }
   const dataUrl = requiredText(input.dataUrl, "Image file", { preserve: true });
   const match = dataUrl.match(/^data:[^;]+;base64,([a-zA-Z0-9+/=\s]+)$/);
   if (!match) throw new EditorError(400, "The uploaded image could not be read.");
@@ -2473,7 +2465,9 @@ async function saveMathImage(input) {
     throw new EditorError(413, "Math question images must be smaller than 5 MB.");
   }
   if (extension === "svgz") bytes = normalizeSvgz(bytes);
-  const fileName = choiceId
+  const fileName = input.inline
+    ? `${assessmentId}-${questionId}-${createHash('sha256').update(bytes).digest('hex').slice(0, 16)}.${extension}`
+    : choiceId
     ? `${assessmentId}-${questionId}-choice-${choiceId}.${extension}`
     : `${assessmentId}-${questionId}-math.${extension}`;
   await mkdir(examImagesRoot, { recursive: true });
@@ -2496,6 +2490,9 @@ async function saveMath(input) {
   const existingSection = existingTest?.mathSectionFileName
     ? state.mathSections.find((candidate) => candidate.fileName === existingTest.mathSectionFileName)
     : undefined;
+  const configuration = await readMathTopicConfiguration(workspaceRoot);
+  const previousQuestions = new Map((existingSection?.questions || []).map(question => [question.id, question]));
+  if (Array.isArray(input.questions)) input = { ...input, questions: input.questions.map(question => ({ ...question, ...validateMathClassification(question, configuration, previousQuestions.get(question.id)) })) };
   const section = normalizeMathSection(
     {
       ...input,
@@ -2965,6 +2962,8 @@ async function saveContentTopics(input) {
 }
 
 async function getState() {
+  mathTopicConfiguration = await readMathTopicConfiguration(workspaceRoot);
+  mathTopics = mathTopicConfiguration.categories.map(category => category.label);
   examExporter.exportExamContent(workspaceRoot);
   learningExporter.exportLearningCatalog(workspaceRoot);
   const { passageErrors, passages } = await listPassages();
@@ -2983,6 +2982,7 @@ async function getState() {
     mathErrors,
     mathSections,
     mathTopics,
+    mathTopicConfiguration,
     passageErrors,
     passageFormats,
     passageTypes,
@@ -3051,6 +3051,7 @@ function assessmentQuestionFrom(question) {
     points: Number.isFinite(Number(question.points)) ? Number(question.points) : 1,
     prompt: String(question.prompt ?? ""),
     topic: String(question.topic ?? "Uncategorized"),
+    ...(question.subtopic ? { subtopic: String(question.subtopic) } : {}),
     type: String(question.type ?? "multiple_choice"),
   };
 }
@@ -3317,20 +3318,28 @@ function verifyEditRequest(request) {
 async function handleRequest(request, response) {
   try {
     const url = new URL(request.url ?? "/", "http://127.0.0.1");
+    if (request.method === 'GET' && url.pathname.startsWith('/math-student-preview/')) {
+      const asset = await mathPreviewAsset(workspaceRoot, url.pathname);
+      if (!asset) throw new EditorError(404, 'Preview asset not found.');
+      response.writeHead(200, { 'Cache-Control': 'no-store', 'Content-Type': asset.type });
+      response.end(asset.body); return;
+    }
     if (request.method === "GET" && url.pathname === "/") {
+      const html = await readFile(editorHtmlPath, "utf8");
       response.writeHead(200, {
         "Cache-Control": "no-store",
         "Content-Type": "text/html; charset=utf-8",
       });
-      response.end(await readFile(editorHtmlPath, "utf8"));
+      response.end(html);
       return;
     }
-    if (request.method === "GET" && ["/document-import.cjs", "/content-studio-documents.js", "/content-studio-bank.css", "/content-studio-bank.js", "/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-glossary.js"].includes(url.pathname)) {
+    if (request.method === "GET" && ["/document-import.cjs", "/content-studio-documents.js", "/content-studio-bank.css", "/content-studio-bank.js", "/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-images.js", "/content-studio-glossary.js"].includes(url.pathname)) {
+      const asset = await readFile(join(workspaceRoot, "tools", url.pathname.slice(1)), "utf8");
       response.writeHead(200, {
         "Cache-Control": "no-store",
         "Content-Type": url.pathname.endsWith(".css") ? "text/css; charset=utf-8" : "text/javascript; charset=utf-8",
       });
-      response.end(await readFile(join(workspaceRoot, "tools", url.pathname.slice(1)), "utf8"));
+      response.end(asset);
       return;
     }
     if (request.method === "GET" && url.pathname === "/app-styles.css") {
@@ -3511,7 +3520,7 @@ async function handleRequest(request, response) {
       const existing = state.mathSections.find(m => m.fileName === test?.mathSectionFileName);
       const questions = verified.content.questions.map(q => ({ ...q, id: q.id.startsWith(assessment.id + "-") ? q.id : `${assessment.id}-${q.id}` }));
       if (questions.some(q => existing?.questions.some(old => old.id === q.id || old.prompt === q.prompt))) throw new EditorError(409, "A Math question already exists in this exam. Review it in Exam math.");
-      const result = await saveMath({ ...existing, assessmentId: assessment.id, questions: [...(existing?.questions || []), ...questions] });
+      const result = await mutateMath(() => saveMath({ ...existing, assessmentId: assessment.id, questions: [...(existing?.questions || []), ...questions] }));
       await documentDrafts.published(entry.id, entry.content);
       sendJson(response, 201, { math: result });
       return;
@@ -3539,8 +3548,19 @@ async function handleRequest(request, response) {
     }
     if (request.method === "POST" && url.pathname === "/api/math") {
       verifyEditRequest(request);
-      sendJson(response, 201, { math: await saveMath(await readJson(request)) });
+      const body = await readJson(request);
+      sendJson(response, 201, { math: await mutateMath(() => saveMath(body)) });
       return;
+    }
+    if (url.pathname === "/api/math-topics" && request.method === "GET") {
+      sendJson(response, 200, await readMathTopicConfiguration(workspaceRoot)); return;
+    }
+    if (url.pathname === "/api/math-topics" && request.method === "PUT") {
+      verifyEditRequest(request);
+      const body = await readJson(request);
+      const result = await mutateMath(() => saveMathTopicConfiguration(workspaceRoot, body));
+      mathTopicConfiguration = result; mathTopics = result.categories.map(category => category.label);
+      sendJson(response, 200, result); return;
     }
     if (request.method === "POST" && url.pathname === "/api/tests") {
       verifyEditRequest(request);
@@ -3580,7 +3600,8 @@ async function handleRequest(request, response) {
     }
     sendJson(response, 404, { message: "Not found." });
   } catch (error) {
-    const status = error instanceof EditorError ? error.status : 500;
+    if (response.headersSent) { response.destroy(); return; }
+    const status = error instanceof EditorError || [400, 409].includes(error.status) ? error.status : 500;
     sendJson(response, status, {
       message: error instanceof Error ? error.message : "Unexpected Content Studio error.",
     });

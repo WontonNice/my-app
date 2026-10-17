@@ -9,6 +9,7 @@ export type BoardRow = { id: string; student_id: string; owner_id: string; title
 export const boardFail = (message: string, status = 400) => Object.assign(new Error(message), { status });
 export const boardUuid = (id: unknown): id is string => typeof id === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
 export const boardTeacher = (user: User) => ["teacher", "admin"].includes(String(user.app_metadata.role));
+export const boardEligibleStudent = (user: User) => !user.is_anonymous && !boardTeacher(user) && !["staff", "admin"].includes(String(user.app_metadata.role)) && !isStudentArchived(user) && getEnrolledClassIds(user.app_metadata).includes("shsat");
 export const boardName = (user: User) => String(user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "Participant").slice(0, 80);
 export function boardStorage(error: { message: string } | null) {
   if (error) throw boardFail("Board storage is unavailable. Apply migration 202610060001_collaborative_student_boards.sql and check the database connection.", 503);
@@ -27,7 +28,7 @@ export async function boardStudent(id: string) {
   if (!boardUuid(id)) throw boardFail("Choose a valid student.");
   const lookup = await supabase.auth.admin.getUserById(id);
   const user = lookup.data.user;
-  if (lookup.error || !user || boardTeacher(user) || ["staff", "admin"].includes(String(user.app_metadata.role)) || isStudentArchived(user) || !getEnrolledClassIds(user.app_metadata).includes("shsat")) throw boardFail("Choose an active SHSAT student.", 404);
+  if (lookup.error || !user || !boardEligibleStudent(user)) throw boardFail("Choose an active SHSAT student.", 404);
   return user;
 }
 export async function fetchBoard(id: string) {
@@ -40,7 +41,9 @@ export async function fetchBoard(id: string) {
 export async function boardAccess(id: string, user: User, edit = false) {
   const board = await fetchBoard(id);
   const student = await boardStudent(board.student_id);
-  if (user.id !== board.student_id && !boardTeacher(user)) throw boardFail("Access requires this student or a verified teacher participant.", 403);
+  // Membership, not the board's original workspace student, grants access.
+  // Recheck enrollment on every join/update so archived invitees lose access.
+  if (!boardTeacher(user) && !boardEligibleStudent(user)) throw boardFail("Access requires an active student or verified teacher participant.", 403);
   let role: BoardRole = "viewer";
   if (board.owner_id === user.id) role = "owner";
   else {

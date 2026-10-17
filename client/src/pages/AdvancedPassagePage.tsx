@@ -27,7 +27,6 @@ import {
   getStudentLibraryBookAccess,
   getStudentLibraryAttempts,
   saveStudentLibraryAttempt,
-  unlockLibraryBook,
   type StudentLibraryCorrectionView,
   type StudentLibraryAttempt,
 } from "../lib/api";
@@ -442,7 +441,6 @@ export function AdvancedPassagePage() {
     : getAdvancedPracticePassage(bookId);
   const passageSet = passageEntry?.passageSet;
   const [activeTool, setActiveTool] = useState<AdvancedTool>("pointer");
-  const [accessCode, setAccessCode] = useState("");
   const [attempts, setAttempts] = useState<StudentLibraryAttempt[]>([]);
   const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<string[]>([]);
   const [eliminatedChoices, setEliminatedChoices] = useState<Record<string, string[]>>({});
@@ -452,7 +450,7 @@ export function AdvancedPassagePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUnansweredModalOpen, setIsUnansweredModalOpen] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(previewContext.isPreview);
-  const [isUnlocking, setIsUnlocking] = useState(false);
+  const [isUnlocking, setIsUnlocking] = useState(!previewContext.isPreview);
   const [maxVisitedIndex, setMaxVisitedIndex] = useState(0);
   const [note, setNote] = useState("");
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -481,7 +479,8 @@ export function AdvancedPassagePage() {
           setIsUnlocked(true);
         }
       })
-      .catch(() => undefined);
+      .catch(error => { if (isMounted) setUnlockError(error instanceof Error ? error.message : "Book access could not be checked."); })
+      .finally(() => { if (isMounted) setIsUnlocking(false); });
     return () => { isMounted = false; };
   }, [accessToken, bookId, passageSet, previewContext.isPreview]);
 
@@ -537,7 +536,6 @@ export function AdvancedPassagePage() {
       try {
         const completedAt = Date.now();
         const nextAttempt = await saveStudentLibraryAttempt(accessToken, bookId, {
-          code: accessCode,
           questions: questions.map((question) => ({
             correctAnswerId: question.correctChoiceId ?? "",
             questionId: question.id,
@@ -574,21 +572,16 @@ export function AdvancedPassagePage() {
     moveToQuestion(Math.max(0, questionIndex - 1));
   }
 
-  async function handleUnlock(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!accessToken || !accessCode.trim()) return;
-    setIsUnlocking(true);
-    setUnlockError("");
+  async function handleCheckAccess() {
+    if (!accessToken) return;
+    setIsUnlocking(true); setUnlockError("");
     try {
-      await unlockLibraryBook(accessToken, bookId, accessCode);
-      attemptStartedAtRef.current = new Date().toISOString();
-      questionStartedAtRef.current = Date.now();
-      setIsUnlocked(true);
-    } catch (error) {
-      setUnlockError(error instanceof Error ? error.message : "That code could not be verified.");
-    } finally {
-      setIsUnlocking(false);
-    }
+      const result = await getStudentLibraryBookAccess(accessToken, bookId);
+      if (result.unlocked) {
+        attemptStartedAtRef.current = new Date().toISOString(); questionStartedAtRef.current = Date.now(); setIsUnlocked(true);
+      } else setUnlockError("Your teacher hasn't enabled this book for your account yet.");
+    } catch (error) { setUnlockError(error instanceof Error ? error.message : "Book access could not be checked."); }
+    finally { setIsUnlocking(false); }
   }
 
   function openCorrections() { navigateTo(libraryCorrectionsHref(window.location.pathname, previewContext)); }
@@ -666,25 +659,11 @@ export function AdvancedPassagePage() {
             <span className="library-access-icon"><KeyRound size={26} /></span>
             <p>{collectionLabel}</p>
             <h1>{passageSet.passage.title}</h1>
-            <span>This book is protected by a unique class code. Ask your teacher for the code created in their library dashboard.</span>
-            <form onSubmit={handleUnlock}>
-              <label htmlFor="library-book-code">Book access code</label>
-              <input
-                autoCapitalize="characters"
-                autoComplete="off"
-                autoFocus
-                id="library-book-code"
-                maxLength={12}
-                onChange={(event) => setAccessCode(event.target.value.toUpperCase())}
-                placeholder="Enter 6-character code"
-                spellCheck={false}
-                value={accessCode}
-              />
-              {unlockError ? <p role="alert">{unlockError}</p> : null}
-              <button disabled={isUnlocking || accessCode.replace(/[^a-zA-Z0-9]/g, "").length < 6} type="submit">
-                {isUnlocking ? "Checking code…" : "Unlock book"}
-              </button>
-            </form>
+            <span>Your teacher manages access to this book for your account. Once enabled, all versions are included.</span>
+            <div className="library-individual-access">
+              {unlockError ? <p role="alert">{unlockError}</p> : <p>Ask your teacher to enable this book in their English library dashboard.</p>}
+              <button disabled={isUnlocking} onClick={handleCheckAccess} type="button">{isUnlocking ? "Checking access..." : "Check access"}</button>
+            </div>
             {libraryBook?.isCombined && <nav className="library-version-history" aria-label="Earlier version history"><h2>Earlier version work</h2>{libraryBook.versions.map(version => <a key={version.id} href={appendStudentPreview(`/study-hall/shsat/library/${version.id}`, previewContext)}>{version.label} · original version</a>)}</nav>}
           </div>
           <aside className="library-access-history">
