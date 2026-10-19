@@ -49,6 +49,7 @@ export type AssessmentSection = "english" | "math";
 export type AssessmentSectionAccess = Record<AssessmentSection, boolean>;
 
 export type Assessment = {
+    examLabel?: string;
     correctionsOpen?: boolean;
     allowCompletedAccess: boolean;
     classId: string;

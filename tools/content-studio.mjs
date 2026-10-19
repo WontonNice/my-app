@@ -53,6 +53,7 @@ const examImagesRoot = join(workspaceRoot, "client", "public", "exam-images");
 const katexDistRoot = join(workspaceRoot, "node_modules", "katex", "dist");
 const mathliveRoot = join(workspaceRoot, "node_modules", "mathlive");
 const assessmentsPath = join(workspaceRoot, "server", "data", "assessments.json");
+const examLabelsPath = join(workspaceRoot, "tools", "exam-labels.json");
 const editorHtmlPath = join(workspaceRoot, "tools", "content-studio.html");
 const appStylesPath = join(workspaceRoot, "client", "src", "styles", "global.css");
 const isCodespaces = process.env.CODESPACES === "true";
@@ -2978,6 +2979,7 @@ async function getState() {
     advancedPassages,
     advancedTones,
     assessments: await readAssessments(),
+    examLabels: await readExamLabels(),
     editToken,
     mathErrors,
     mathSections,
@@ -3226,6 +3228,41 @@ async function saveTest(input) {
   };
 }
 
+function examLabel(value) {
+  if (value !== undefined && typeof value !== "string") throw new EditorError(400, "Enter an exam label.");
+  const label = (value || "Other exams").trim();
+  if (!label || label.length > 60) throw new EditorError(400, "Use an exam label of 1–60 characters.");
+  return label;
+}
+async function readExamLabels() {
+  try { return JSON.parse(await readFile(examLabelsPath, "utf8")); }
+  catch (error) { if (error.code === "ENOENT") return ["Official practice", "Other exams"]; throw error; }
+}
+let examLabelMutation = Promise.resolve();
+function createExamLabel(input) {
+  const action = examLabelMutation.then(async () => {
+    const label = examLabel(requiredText(input?.label, "Label name"));
+    const labels = await readExamLabels();
+    const assessments = await readAssessments();
+    if ([...labels, ...assessments.map(item => item.examLabel || "")].some(item => item.toLowerCase() === label.toLowerCase())) {
+      throw new EditorError(409, "This label already exists.");
+    }
+    labels.push(label);
+    await writeFile(examLabelsPath, `${JSON.stringify(labels, null, 2)}\n`, "utf8");
+    return labels;
+  });
+  examLabelMutation = action.catch(() => {});
+  return action;
+}
+async function saveExamLabel(id, input) {
+  const label = examLabel(input?.examLabel), assessments = await readAssessments();
+  const assessment = assessments.find(item => item.id === id);
+  if (!assessment) throw new EditorError(404, "Exam not found.");
+  assessment.examLabel = label; assessment.updatedAt = new Date().toISOString();
+  await writeFile(assessmentsPath, `${JSON.stringify(assessments, null, 2)}\n`, "utf8");
+  return assessment;
+}
+
 async function createExam(input) {
   const title = requiredText(input?.title, "Exam title");
   const durationMinutes = Number(input.durationMinutes ?? 180);
@@ -3240,7 +3277,7 @@ async function createExam(input) {
   }
   const timestamp = new Date().toISOString();
   const assessment = {
-    id, title, classId: "shsat", description: String(input.description ?? "").trim(), durationMinutes,
+    id, title, examLabel: examLabel(input?.examLabel), classId: "shsat", description: String(input.description ?? "").trim(), durationMinutes,
     createdAt: timestamp, updatedAt: timestamp, passages: [], questions: [], forms: [], formAssignments: {},
     status: "locked", sectionAccess: { english: false, math: false }, correctionsOpen: false,
     allowCompletedAccess: false, split: false,
@@ -3565,6 +3602,17 @@ async function handleRequest(request, response) {
     if (request.method === "POST" && url.pathname === "/api/tests") {
       verifyEditRequest(request);
       sendJson(response, 201, { test: await saveTest(await readJson(request)) });
+      return;
+    }
+    if (request.method === "POST" && url.pathname === "/api/exam-labels") {
+      verifyEditRequest(request);
+      sendJson(response, 201, { examLabels: await createExamLabel(await readJson(request)) });
+      return;
+    }
+    const examLabelRoute = /^\/api\/exams\/([^/]+)\/label$/.exec(url.pathname);
+    if (request.method === "PUT" && examLabelRoute) {
+      verifyEditRequest(request);
+      sendJson(response, 200, { assessment: await saveExamLabel(decodeURIComponent(examLabelRoute[1]), await readJson(request)) });
       return;
     }
     if (request.method === "POST" && url.pathname === "/api/exams") {

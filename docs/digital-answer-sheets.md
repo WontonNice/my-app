@@ -1,18 +1,22 @@
 # Digital answer sheets
 
+Students find **Answer sheets** in the student sidebar and directly on Home. The dedicated list shows Start, Continue, and View actions for their own assigned sheets.
+
 Open **Teacher dashboard → Assessments → Digital answer sheets → Create Answer Sheet**. The teacher overview and each student's record also link here. The Content Studio navigation links to the same authenticated workflow.
 
 ## Teacher workflow
 
 1. Enter a title, optional source/year/form, instructions, and optional existing PDF/source URL. A printed booklet alone works.
-2. Add sections and ranges. Choose single choice, multiple selection, or short answer. Labels can be A–D, E–H, A–E, or custom. For multiple selection, set equal minimum/maximum values for “exactly N,” or allow a range. Each section has independent displayed numbering.
-3. To override rows before issue, select one or several rows and apply the range defaults. Displayed numbers can also be edited individually. Preview the configured sheet.
+2. New sheets start with 20 single-choice rows. Edit question numbers, response types, labels, and selection limits directly in the table. Add more rows in batches or add sections. Labels can be A–D, E–H, A–E, or custom. Set equal minimum/maximum values for “exactly N.” Each section has independent numbering.
+3. To change several rows before issue, select them and apply the row defaults, or remove them together. Preview the configured sheet. Instructions, a PDF link, and submission settings are optional and grouped together.
 4. Save, select individual students, optionally set a due date, and assign. Existing homework views open the sheet in the platform. Assign again explicitly creates a distinct assignment/attempt while retaining earlier work.
-5. Use **Student responses** to inspect saved activity and exact responses. Add keys later in **Answer key**, grade/regrade the existing submission, enter manual points where necessary, then explicitly release results.
+5. Use **Student work** to inspect saved activity and exact responses. Add keys later in **Answer key**, grade/regrade the existing submission, enter manual points where necessary, then explicitly release results.
 
 Issued structure is frozen, including source version, stable item IDs, response types, and option IDs. **Create revised copy** creates a new draft without changing existing assignments. Keys and grading can change with audit history. The UI supports 500 items across up to 20 named sections, 2–12 option labels, and 10,000 characters per short response. Input exceeding a limit is retained on the device and shown as unsaved until corrected; it is never silently truncated.
 
 Keys are optional. Choice keys use the existing exam grading helper; multi-select uses exact-set matching, independent of selection order. Text keys explicitly choose exact text or existing case/whitespace normalization. Manual responses and missing keys remain pending; no final score is published while pending items remain. There is no AI grading and no inferred partial-credit policy. Teachers can explicitly assign manual points within the configured range.
+
+Students enter responses in a compact table with section tabs below it. Single-choice cells are keyboard-friendly dropdowns, multi-select cells use checkboxes, and short answers remain text fields. **Paste answer column** previews one-column spreadsheet text before applying it. It validates configured labels, rejects extra columns or shifted rows, decodes quoted multiline TSV cells, and sends changes through the same autosave queue. Blank pasted rows clear responses. Ordinary paste into a short-answer field preserves line breaks. Alt + Up/Down moves between rows; Tab moves between controls.
 
 ## Persistence and concurrency
 
@@ -36,7 +40,7 @@ Submission first drains saves, validates selection requirements and the unanswer
 
 Submitted attempts can remain ungraded indefinitely. Teacher-only grading records retain each scoring revision and key version. Release writes a provenance-labeled result into existing student results and Student Insights. Existing totals-only paper scores are unchanged. Unmapped answer sheets contribute honest released totals, without invented skills, passages, question metadata, or solving times.
 
-**Link digitized content** maps every stable source item to a specific digitized question ID, plus explicit option-ID mappings. Preview reports missing/duplicate questions, wrong source version, section/type mismatches, and incompatible options. Changed labels/order and unverifiable source titles require review and explicit acknowledgment. Applying the mapping stores a content snapshot and mapping audit entry. It does not mutate responses, create another attempt, import a key, or silently regrade.
+**Link questions** maps every stable source item to a specific digitized question ID, plus explicit option-ID mappings. Preview reports missing/duplicate questions, wrong source version, section/type mismatches, and incompatible options. Changed labels/order and unverifiable source titles require review and explicit acknowledgment. Applying the mapping stores a content snapshot and mapping audit entry. It does not mutate responses, create another attempt, import a key, or silently regrade.
 
 After explicit grading/release, compatible automatically graded mapped items can provide verified question/skill evidence through the existing analytics engine. Manual points remain honest summary evidence. The mapped content snapshot and source key policy are preserved so later Content Studio edits cannot reinterpret earlier letters or text.
 
@@ -66,3 +70,8 @@ Browser testing used Chrome with fictional teacher/student sessions, the real ro
 The configured real Supabase project accepted the JSON revision filter in a read-only query for a deliberately nonexistent record. No real student records, keys, grants, or results were created during testing. Real-project write/resume tests, a physical second device, and a real sign-out/sign-in cycle were **not** exercised; independent fixture sessions and recovery tests cover the application contract, not those external environments.
 
 Run `npm run preview:answer-sheets` for the isolated preview on port 4336. Its fictional database is process-local and intentionally discarded when the preview stops. Production uses durable Supabase storage; the preview is not a storage fallback.
+
+
+### October 19 interface checks
+
+The simplified editor was browser-tested with fictional users: create the default table, change a row to exactly-two selection and another to multiline text, save and assign, find it on student Home and the dedicated sidebar page, paste choices, edit multiline text, refresh, edit offline, reconnect, review, and submit before a key exists. Keyboard row movement worked; the 480px layout had no document horizontal overflow. Production student records were not changed. Column-paste tests also cover quoted multiline cells, raw zero/symbols/whitespace, partial selections, and rejecting extra columns or invalid labels.

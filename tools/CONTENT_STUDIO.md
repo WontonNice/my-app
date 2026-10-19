@@ -1,5 +1,29 @@
 # Nathan Tutors Content Studio
 
+Passage editing opens directly in the shared student presentation. Click passage
+text, the question prompt, or a choice to edit it in place. Answer bubbles are
+read-only while authoring. **Answer summary** shows every question
+key in one panel. Choose **Change answer**, select the key, then **Apply key**;
+Cancel leaves the current draft key unchanged. Complex interaction keys open the
+question options. The correct row stays highlighted in the preview.
+**Question options** keeps type, topic, points, interaction configuration,
+and explanation together beside the preview. **Passage options** groups details,
+formatting, images, definitions, and review in one panel. There is no separate
+bulk-editing mode. **Student view** opens the read-only player in the same window.
+The library docks beside the canvas on desktop, and its controls wrap within the
+sidebar rather than clipping or covering passage text.
+
+The exam builder library separates **Official practice** from **Other exams**
+and custom labels. Year/form exams retain their existing official grouping;
+custom exams default to Other exams. Set an **Exam section / label** when creating
+an exam, or change the selected exam's label with **Save label**. Labels persist
+with the assessment and do not change its questions, access, or source identity.
+**+ Label** creates a named section immediately, including an empty section
+before any exams are assigned. The catalog persists in `tools/exam-labels.json`;
+labels also appear in the new-exam and existing-exam label fields. Library search
+also matches labels.
+
+
 To move a math diagram into the prompt, use **Move question image between text
 lines** below the question prompt, or **Move between text lines** in Question
 image. Choose an entry in **Image position**, then click **Place image here**.
@@ -44,13 +68,11 @@ matching responses. Main skill summaries remain compatible with older results.
 
 - **Exam passages** opens the first passage in the editable exam presentation,
   using the same document, content dimensions, and stylesheet as Student view.
-  A compact item bar retains version, mode, save
-  state, and saving. **Focus** hides secondary tools. **Tools** opens one
-  overlay inspector for settings, definitions, media, or review; **Question
-  details** exposes the selected question's topic, points, and explanation.
-  Inspectors never squeeze the exam columns. **Bulk editing** retains the
-  complete rich editor, question structures, ordering, and batch explanations. It
-  creates and edits passage sets in `client/src/content/exams/passageSets`.
+  The item bar retains version, save state, and saving. **Passage options**
+  groups passage details, formatting, definitions, images, and review.
+  **Question options** keeps the selected question's type, topic, points,
+  interaction settings, ordering, and explanation beside the live canvas.
+  Passage sets are saved in `client/src/content/exams/passageSets`.
   Each passage has a Study Hall type (Informational, Literary, Poem, or Long
   reading); saving a new passage automatically registers it in the student
   library, where its cover opens the matching passage and questions. A separate
@@ -130,17 +152,15 @@ serve the workspace assets, then refresh the browser.
   at a time. Settings retains introductory text, formatting type, categorization,
   source information and advanced card fields. Definitions has Locate, Edit and
   Remove controls for each annotated occurrence.
-- **Questions** opens one complete question editor at a time. Use Previous / Next,
-  the question dropdown, or the expandable outline to navigate. **All questions**
-  restores editing of the whole set. Reordering keeps the selected question in
-  focus; adding a question opens it immediately. Student view opens the selected
-  question when launched from this panel.
-- **Edit / Split preview / Student view** control draft preview. The supporting
-  panel is resizable with pointer or keyboard; its width and library visibility
-  are remembered. Below 1180 CSS pixels, Preview shows one panel at a time.
-  Library, writing surface and student preview own their respective scrolling.
-- Answer explanations are inside **Questions**. **Batch explanations** opens
-  every explanation together without changing their question associations.
+- The question dropdown and Previous / Next controls switch the question in the
+  editable student canvas. Reordering follows the selected question; adding a
+  question opens it immediately. **Question options** also provides topic
+  management and copying questions for ChatGPT classification.
+- **Student view** opens a read-only player in the same window. The authoring
+  canvas remains the default editing surface. Supporting panels resize with
+  pointer or keyboard and dock beside the preview on desktop. Small screens
+  use an overlay. Library, preview, and options scroll independently.
+- Answer explanations are inside **Question options**, beside the question.
 - Existing versions are selected in the item header. **More** holds creation of
   another version and confirmed passage deletion. The library's **Import** menu
   holds document import and SAT Crash Course import.
@@ -286,3 +306,23 @@ In prose passage text, click inside a paragraph (or select several) and choose
 formatting toolbar. Subheadings and excluded paragraphs stay unnumbered and do
 not consume a number. The setting survives save/reload and appears consistently
 in live preview, full Student view, and student exam content.
+
+## Math Study Hall hierarchy
+
+Student Math Study Hall uses the same `tools/math-topics.json` category source
+as Manage categories. Main category cards lead to specific topics. Topic URLs
+retain both category and topic and preserve teacher preview context; breadcrumbs
+and browser Back/Forward support returning through the hierarchy. Empty topics
+remain visible. Removed categories/topics show a return to the current catalog.
+
+Each topic reserves separate **Worksheets** and **Infinite practice** sections.
+They currently show honest empty states. Worksheet publishing, template schema,
+question generation, scoring, and the final module layout await the user's next
+instructions; no generated question content or live practice engine is supplied.
+
+Math also has a section-wide **Answer summary**. Math key fields are locked
+while editing question content. Choice keys use the same staged **Change answer**
+and **Apply key** workflow. Other math interactions open explicit key editing;
+**Finish key editing** locks those controls again. **Save math section** persists
+the draft using the existing writer. Student-player response controls remain
+interactive and independent of teacher answer keys.

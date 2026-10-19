@@ -354,6 +354,10 @@ const studioUI = {
   activateWorkspace(tab) {
     document.querySelectorAll("[data-tab]").forEach((button) => button.setAttribute("aria-current", button.dataset.tab === tab ? "page" : "false"));
     document.body.dataset.workspace = tab;
+    if (tab === "tests") {
+      document.body.classList.remove("studio-library-hidden");
+      document.getElementById("studio-library-toggle")?.setAttribute("aria-expanded", "true");
+    }
     if (this.shellReady) this.remember('section', tab);
     const sectionPicker = document.getElementById("studio-section-picker");
     if (sectionPicker) sectionPicker.value = tab;
@@ -457,14 +461,72 @@ const studioUI = {
     list.before(search);
   },
 
+  assessmentLabel(assessment) {
+    return assessment.examLabel?.trim() || (/^\d{4}-\d{4}-form-[a-z]$/i.test(assessment.id) ? "Official practice" : "Other exams");
+  },
+  assessmentGroups(assessments) {
+    const groups = new Map([["official practice", { label: "Official practice", items: [] }]]);
+    for (const label of app.state?.examLabels || []) {
+      if (!groups.has(label.toLowerCase())) groups.set(label.toLowerCase(), { label, items: [] });
+    }
+    for (const assessment of assessments) {
+      const label = this.assessmentLabel(assessment), key = label.toLowerCase();
+      if (!groups.has(key)) groups.set(key, { label, items: [] });
+      groups.get(key).items.push(assessment);
+    }
+    if (!groups.has("other exams")) groups.set("other exams", { label: "Other exams", items: [] });
+    return [...groups.values()];
+  },
+  groupAssessmentList() {
+    const list = document.getElementById("assessment-list");
+    this.mountExamLabels();
+    for (const group of this.assessmentGroups(app.state.assessments)) {
+      const section = this.element("section", "studio-exam-group");
+      section.setAttribute("aria-label", group.label);
+      const heading = this.element("h3", ""); heading.textContent = group.label;
+      heading.append(this.element("span", "", String(group.items.length))); section.append(heading);
+      for (const assessment of group.items) { const button = [...list.querySelectorAll("[data-assessment-id]")].find(button => button.dataset.assessmentId === assessment.id); if (button) section.append(button); }
+      if (!group.items.length) section.append(this.element("small", "field-note", "No exams in this section yet."));
+      list.append(section);
+    }
+  },
+  mountExamLabels() {
+    const list = document.getElementById('assessment-list');
+    if (!document.getElementById('create-exam-label')) {
+      const button = this.element('button', 'secondary', '+ Label'); button.id = 'create-exam-label'; button.type = 'button';
+      button.setAttribute('aria-expanded', 'false'); button.setAttribute('aria-controls', 'create-exam-label-form');
+      document.getElementById('new-exam').before(button);
+      const form = this.element('form', 'studio-create-label'); form.id = 'create-exam-label-form'; form.hidden = true;
+      form.innerHTML = '<label>New exam label<input name="label" required maxlength="60" placeholder="e.g. Weekly quizzes" autocomplete="off"></label><div><button type="submit" class="primary">Create label</button><button type="button" class="secondary">Cancel</button></div><p role="alert" hidden></p>';
+      list.before(form);
+      const close = () => { form.hidden = true; button.setAttribute('aria-expanded', 'false'); button.focus(); };
+      button.onclick = () => { form.hidden = !form.hidden; button.setAttribute('aria-expanded', String(!form.hidden)); if (!form.hidden) form.querySelector('input').focus(); };
+      form.querySelector('[type="button"]').onclick = close;
+      form.onsubmit = async event => {
+        event.preventDefault(); const submit = form.querySelector('[type="submit"]'), error = form.querySelector('[role="alert"]');
+        submit.disabled = true; error.hidden = true;
+        try {
+          const result = await api('/api/exam-labels', { method: 'POST', body: JSON.stringify({ label: form.elements.label.value }) });
+          app.state.examLabels = result.examLabels; form.reset(); close(); renderAssessmentList();
+          const input = document.querySelector('.studio-exam-label input');
+          if (input) input.list.innerHTML = this.assessmentGroups(app.state.assessments).map(group => `<option value="${escapeHtml(group.label)}"></option>`).join('');
+          setStatus('Label created. Choose it when creating or organizing an exam.', 'success');
+        } catch (failure) { error.textContent = failure.message; error.hidden = false; }
+        finally { submit.disabled = false; }
+      };
+    }
+    document.getElementById('new-exam-labels').innerHTML = this.assessmentGroups(app.state.assessments).map(group => `<option value="${escapeHtml(group.label)}"></option>`).join('');
+  },
+
   filterAssessmentList(id) {
     const query = document.getElementById(`${id}-search`)?.value.trim().toLowerCase() || "";
     const list = document.getElementById(id);
     let count = 0;
     list.querySelectorAll("button").forEach((button) => {
-      button.hidden = !`${button.textContent} ${button.dataset.assessmentId || button.dataset.mathAssessmentId}`.toLowerCase().includes(query);
+      button.hidden = !`${button.textContent} ${button.dataset.assessmentId || button.dataset.mathAssessmentId} ${button.closest(".studio-exam-group")?.getAttribute("aria-label") || ""}`.toLowerCase().includes(query);
       if (!button.hidden) count++;
     });
+    list.querySelectorAll(".studio-exam-group").forEach(section => { section.hidden = Boolean(query) && ![...section.querySelectorAll("button")].some(button => !button.hidden); });
     let empty = list.querySelector(".studio-search-empty");
     if (!empty) { empty = this.element("p", "field-note studio-search-empty", "No exams match this search."); list.append(empty); }
     empty.hidden = count > 0;
@@ -645,64 +707,46 @@ const studioUI = {
   },
 
   mountQuestions() {
-    const panel = document.getElementById("passage-questions");
-    if (!panel) return;
-    let navigation = panel.querySelector(".studio-question-navigation");
-    if (!navigation) { navigation = this.element("div", "studio-question-navigation"); panel.querySelector(".panel-head").after(navigation); }
-    const heading = panel.querySelector(".panel-head > div");
-    heading.innerHTML = '<h2>Question editor</h2>';
+    const panel = document.getElementById("passage-questions"); if (!panel) return;
     const questions = app.passageDraft.questions;
-    navigation.innerHTML = `<div class="studio-question-tools">
-      <button class="icon-button" data-question-step="-1" type="button" aria-label="Previous question" ${this.selectedQuestionIndex === 0 ? "disabled" : ""}>‹</button>
-      <label class="studio-question-jump">Question <select aria-label="Jump to question">${questions.map((q, i) => `<option value="${i}" ${q.id === this.selectedQuestionId ? "selected" : ""}>${i + 1} of ${questions.length}</option>`).join("")}</select></label>
-      <button class="icon-button" data-question-step="1" type="button" aria-label="Next question" ${!questions.length || this.selectedQuestionIndex >= questions.length - 1 ? "disabled" : ""}>›</button>
-      <button class="secondary studio-all-questions" aria-pressed="${this.showAllQuestions}" type="button">${this.showAllQuestions ? "Focus one question" : "All questions"}</button>
-      <button class="secondary studio-batch-explanations" aria-pressed="${Boolean(this.allExplanations)}" type="button">${this.allExplanations ? 'Focus explanation' : 'Batch explanations'}</button>
-      <button class="secondary studio-copy-questions" type="button" title="Copy every question, answer, answer key, and a classification prompt" ${!questions.length ? "disabled" : ""}>Copy for ChatGPT</button>
-    </div>
-    <details class="studio-question-outline" ${this.folds.get("outline") ? "open" : ""}><summary>Question outline <span>${questions.length} items · prompts, topics & answers</span></summary><div class="studio-outline-list">${questions.map((q, i) => `<button type="button" data-select-question="${i}" aria-current="${q.id === this.selectedQuestionId}" title="${escapeHtml(q.prompt || q.id)}"><b>${i + 1}</b><span><strong>${escapeHtml(q.prompt || "Untitled question")}</strong><small>${escapeHtml(q.topic)} · ${escapeHtml(studioCorrectAnswer(q) || "No answer key")}</small></span></button>`).join("") || '<p class="field-note">Add a question to start this set.</p>'}</div></details>`;
-    const select = (index) => {
-      if (!questions[index]) return;
-      this.selectedQuestionId = questions[index].id;
-      this.selectedQuestionIndex = index;
-      this.showAllQuestions = false;
-      renderQuestionsV2();
-      panel.closest(".content-editor-main")?.scrollTo({ top: 0 });
+    let nav = panel.querySelector(".studio-question-navigation");
+    if (!nav) { nav = this.element("div", "studio-question-navigation"); panel.querySelector(".panel-head").after(nav); }
+    panel.querySelector(".panel-head h2").textContent = "Questions & answers";
+    nav.innerHTML = `<label>Jump to question <select aria-label="Jump to question">${questions.map((q, i) => `<option value="${i}" ${q.id === this.selectedQuestionId ? "selected" : ""}>Question ${i + 1}</option>`).join("")}</select></label><button class="secondary" type="button">Copy questions for ChatGPT</button>`;
+    nav.querySelector("select").onchange = event => {
+      this.selectedQuestionIndex = Number(event.target.value); this.selectedQuestionId = questions[this.selectedQuestionIndex]?.id || "";
+      panel.querySelector(`[data-question-index="${this.selectedQuestionIndex}"]`)?.scrollIntoView({ block: "start", behavior: "instant" });
     };
-    navigation.querySelector("select").addEventListener("change", (event) => select(Number(event.target.value)));
-    navigation.querySelectorAll("[data-question-step]").forEach((button) => button.addEventListener("click", () => select(this.selectedQuestionIndex + Number(button.dataset.questionStep))));
-    navigation.querySelectorAll("[data-select-question]").forEach((button) => button.addEventListener("click", () => select(Number(button.dataset.selectQuestion))));
-    navigation.querySelector(".studio-all-questions").addEventListener("click", () => { this.showAllQuestions = !this.showAllQuestions; renderQuestionsV2(); });
-    navigation.querySelector('.studio-batch-explanations').addEventListener('click', () => { this.allExplanations = !this.allExplanations; renderQuestionsV2(); document.getElementById('studio-passage-explanations').scrollIntoView({ block: 'start' }); });
-    navigation.querySelector(".studio-copy-questions").addEventListener("click", async () => {
-      try {
-        await this.copyText(this.buildQuestionClassificationExport());
-        setStatus(`Copied the classification prompt, ${questions.length} question${questions.length === 1 ? "" : "s"}, and the complete answer key. Paste it into ChatGPT.`, "success");
-      } catch {
-        setStatus("The browser could not copy the ChatGPT export. Allow clipboard access, then try again.", "error");
-      }
-    });
-    navigation.querySelector("details").addEventListener("toggle", (event) => this.folds.set("outline", event.target.open));
-    document.querySelectorAll("[data-question-count]").forEach((node) => { node.textContent = questions.length; });
-    if (!questions.length) document.getElementById("question-list").innerHTML = '<div class="studio-empty"><strong>No questions yet</strong><p>Use + Add question to build the first question in this set.</p></div>';
-    // Bring type, topic, and points together; keep text formatting adjacent to the prompt.
-    panel.querySelectorAll(".question-card[data-question-index]").forEach((card) => {
-      card.querySelectorAll("[contenteditable='true']").forEach((editor) => {
-        if (editor.hasAttribute("aria-label")) return;
-        const kind = editor.dataset.richKind;
-        editor.setAttribute("aria-label", kind === "prompt" ? `Question ${Number(card.dataset.questionIndex) + 1} prompt` : `Answer choice ${Number(editor.dataset.choiceIndex) + 1}`);
-      });
+    nav.querySelector("button").onclick = async () => {
+      try { await this.copyText(this.buildQuestionClassificationExport()); setStatus("Questions, answers, and classification prompt copied.", "success"); }
+      catch { setStatus("The browser could not copy the questions. Allow clipboard access and try again.", "error"); }
+    };
+    panel.querySelectorAll(".question-card[data-question-index]").forEach(card => {
+      const index = Number(card.dataset.questionIndex), question = questions[index];
       const row = card.querySelector(".question-type-row");
-      const topic = card.querySelector("[data-question-field='topic']");
-      const points = card.querySelector("[data-question-field='points']");
-      if (!row || !topic || !points) return;
-      const id = card.querySelector(".question-code-id");
-      card.querySelector("header").title = id.textContent;
-      row.append(topic.closest("label"), points.closest("label"));
-      card.append(id);
+      for (const name of ["topic", "points"]) { const field = card.querySelector(`[data-question-field="${name}"]`); if (field) row.append(field.closest("label")); }
+      const id = card.querySelector(".question-code-id"); if (id) id.hidden = true;
+      const answer = this.element("strong", "studio-answer-summary"); answer.setAttribute("role", "status"); card.querySelector("header > div").append(answer);
+      const choices = [...card.querySelectorAll(".choices > .choice")];
+      choices.forEach((choice, i) => {
+        const option = question.choices[i], radio = card.querySelector(`[data-correct-choice="${option.id}"]`);
+        if (!radio) return;
+        radio.setAttribute("aria-label", `Mark ${option.id} as correct for question ${index + 1}`);
+        const key = this.element("label", "studio-choice-key"); key.append(radio, this.element("span", "", "Correct answer")); choice.append(key);
+      });
+      if (choices.length) card.querySelector(".scantron-field")?.remove();
+      const updateKey = () => {
+        answer.textContent = question.type === "multi_select" ? `Correct answers: ${(question.correctChoiceIds || []).join(", ") || "Not set"}` : question.correctChoiceId ? `Correct answer: ${question.correctChoiceId}` : ["category_sort", "table_match", "matrix_choice"].includes(question.type) ? "Answer key: set beside each item below" : "Correct answer: Not set";
+        card.querySelectorAll(".choices > .choice").forEach(choice => choice.classList.toggle("is-correct", Boolean(choice.querySelector("[data-correct-choice]:checked"))));
+        card.querySelectorAll(".studio-choice-key span").forEach(label => label.textContent = label.parentElement.querySelector("input").checked ? "✓ Correct answer" : "Set as correct");
+      };
+      updateKey(); card.querySelectorAll("[data-correct-choice]").forEach(input => input.addEventListener("change", updateKey));
+      const explanation = this.element("section", "studio-inline-explanation");
+      explanation.innerHTML = `<h3>Answer explanation</h3><div class="rich-editor-shell">${richToolbarHtml("Explanation formatting")}<div class="rich-editor-content is-compact" role="textbox" aria-label="Explanation for question ${index + 1}" contenteditable="true" data-rich-kind="explanation" data-question-index="${index}" data-placeholder="Explain why the answer is correct.">${inlineRichValue(question.explanationHtml, question.explanation)}</div></div>`;
+      card.append(explanation); bindRichEditors(explanation);
+      card.querySelectorAll("[contenteditable=true]").forEach(editor => { if (!editor.hasAttribute("aria-label")) editor.setAttribute("aria-label", editor.dataset.richKind === "prompt" ? `Question ${index + 1} prompt` : `Question ${index + 1} choice ${question.choices?.[Number(editor.dataset.choiceIndex)]?.id || ""}`); });
     });
-    this.renderExplanations();
-    if (app.selectedPassageId) this.remember(`item-view:${app.passageMode}:${app.selectedPassageId}`, { section: this.passageSection, question: this.selectedQuestionId, index: this.selectedQuestionIndex });
+    if (!questions.length) document.getElementById("question-list").innerHTML = '<p class="studio-empty">No questions yet. Choose + Add question to begin.</p>';
   },
 
   moveSaveBar(root, label) {
@@ -764,6 +808,20 @@ const studioUI = {
   mountTestBuilder() {
     this.remember('builder-exam', app.selectedAssessmentId);
     const root = document.getElementById("test-builder");
+    const assessment = app.state.assessments.find(item => item.id === app.selectedAssessmentId);
+    const label = this.element("div", "studio-exam-label");
+    label.innerHTML = '<label>Exam section / label<input maxlength="60" list="studio-exam-labels" aria-label="Exam section label"></label><datalist id="studio-exam-labels"></datalist><button class="secondary" type="button">Save label</button>';
+    label.querySelector("input").value = this.assessmentLabel(assessment);
+    label.querySelector("datalist").innerHTML = this.assessmentGroups(app.state.assessments).map(group => `<option value="${escapeHtml(group.label)}"></option>`).join("");
+    label.querySelector("button").onclick = async () => {
+      const button = label.querySelector("button"); button.disabled = true;
+      try {
+        const value = await api(`/api/exams/${encodeURIComponent(assessment.id)}/label`, { method: "PUT", body: JSON.stringify({ examLabel: label.querySelector("input").value }) });
+        assessment.examLabel = value.assessment.examLabel; renderAssessmentList(); setStatus("Exam label saved.", "success");
+      } catch (error) { setStatus(error.message, "error"); } finally { button.disabled = false; }
+    };
+    root.querySelector(".panel-head").after(label);
+
     this.moveSaveBar(root, "Save English test");
     const sections = root.querySelector(".english-section-stack");
     const library = root.querySelector(".passage-version-groups");
@@ -817,6 +875,9 @@ const studioUI = {
     const manage = this.element('button', 'secondary', 'Manage categories'); manage.type = 'button'; manage.id = 'studio-manage-math-topics';
     manage.onclick = () => this.openMathTopicManager();
     root.querySelector('.studio-save-bar').prepend(manage);
+    const answers = this.element('button', 'secondary', 'Answer summary'); answers.type = 'button';
+    answers.onclick = () => this.openMathAnswerSummary();
+    root.querySelector('.studio-save-bar').prepend(answers);
     const libraryHead = document.querySelector('#math-view .test-grid > .panel:first-child .panel-head');
     if (libraryHead && !libraryHead.querySelector('.studio-catalog-close')) {
       const close = this.element('button', 'studio-catalog-close', '×'); close.type = 'button'; close.setAttribute('aria-label', 'Close math exam library');
@@ -870,6 +931,7 @@ const studioUI = {
       layout.append(editPane, preview);
       [grid, ...stack.querySelectorAll(':scope > .studio-math-image, :scope > .math-answer-editor, :scope > .unsupported')].forEach(panel => editPane.append(panel));
     }
+    this.lockMathAnswerKey(root);
     const questionNav = root.querySelector(".math-question-nav");
     if (questionNav) {
       const search = this.element("input", "search studio-math-search");
@@ -937,6 +999,34 @@ const studioUI = {
     this.filterMathQuestions?.();
   },
 
+  openMathAnswerSummary() {
+    this.mathKeyEditingId = null; this.answerKeyEdit = null; this.lockMathAnswerKey(document.getElementById('math-builder'));
+    if (!this.mathAnswerDialog) {
+      this.mathAnswerDialog = this.element('dialog', 'studio-math-answer-dialog');
+      this.mathAnswerDialog.setAttribute('aria-label', 'Math answer summary');
+      this.mathAnswerDialog.innerHTML = '<header><h2>Math answer summary</h2><button type="button" class="secondary">Close summary</button></header><section class="studio-answer-catalog"></section>';
+      document.body.append(this.mathAnswerDialog);
+      this.mathAnswerDialog.querySelector('header button').onclick = () => this.mathAnswerDialog.close();
+      this.mathAnswerDialog.addEventListener('close', () => { this.answerKeyEdit = null; });
+    }
+    this.renderAnswerSummary('math'); this.mathAnswerDialog.showModal();
+  },
+  lockMathAnswerKey(root) {
+    const q = app.mathDraft?.questions[app.selectedMathQuestionIndex]; if (!q) return;
+    if (this.mathKeyEditingId !== q.id) this.mathKeyEditingId = null;
+    const inputs = [...root.querySelectorAll('[data-math-correct-choice], #math-accepted-answers, [data-math-dropdown-correct], [data-math-graph-correct-index], [data-math-drag-correct-index], [data-math-number-line-response-field^="correct"]')];
+    if (!inputs.length) return;
+    const editing = this.mathKeyEditingId === q.id;
+    inputs.forEach(input => input.disabled = !editing);
+    root.querySelector('.studio-math-key-lock')?.remove();
+    const bar = this.element('div', 'studio-question-key-lock studio-math-key-lock');
+    const value = this.element('p', 'field-note');
+    value.innerHTML = renderMathTextHtml(`${editing ? 'Key editing enabled' : 'Answer key locked'} · ${this.mathAnswerSummaryText(q)}`);
+    const button = this.element('button', 'secondary', editing ? 'Finish key editing' : 'Edit answer key'); button.type = 'button';
+    button.onclick = () => { if (editing) { this.mathKeyEditingId = null; this.lockMathAnswerKey(root); } else this.openMathAnswerSummary(); };
+    bar.append(value, button);
+    inputs[0].closest('.math-answer-editor')?.prepend(bar);
+  },
   async openMathTopicManager() {
     if (app.mathDirty) { setStatus('Save or discard the math draft before changing shared categories.', 'error'); return; }
     try {
@@ -1090,7 +1180,7 @@ Object.assign(studioUI, {
     const mode = this.element('select', 'studio-edit-mode');
     mode.setAttribute('aria-label', 'Editing mode');
     mode.innerHTML = '<option value="exam">Edit exam</option><option value="bulk">Bulk editing</option>';
-    head.prepend(mode);
+    mode.hidden = true; head.prepend(mode);
     head.querySelector('h1').title = app.passageDraft.title;
     const context = root.querySelector('.studio-item-context');
     head.insertBefore(context, actions);
@@ -1183,7 +1273,7 @@ Object.assign(studioUI, {
       if (mode.value === 'exam') { this.refreshExamCanvas(); this.restoreExamPosition(); }
       else { renderQuestionsV2(); this.renderExplanations(); this.renderDefinitions(); }
     };
-    mode.value = this.examModes?.get(this.passageContext) || 'exam'; root.dataset.editMode = mode.value;
+    mode.value = 'exam'; root.dataset.editMode = 'exam';
     const libraryButton = document.getElementById('studio-library-toggle');
     const resize = root.querySelector('.studio-panel-resize');
     const setInspectorWidth = size => {
@@ -1195,12 +1285,12 @@ Object.assign(studioUI, {
     setInspectorWidth(this.readPreference('inspector-width', 400));
     resize.onkeydown = event => {
       if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-      const growing = this.supportPanel === 'question' ? event.key === 'ArrowRight' : event.key === 'ArrowLeft';
+      const growing = event.key === 'ArrowLeft';
       event.preventDefault(); setInspectorWidth(event.key === 'Home' ? 320 : event.key === 'End' ? 560 : Number(resize.getAttribute('aria-valuenow')) + (growing ? 20 : -20));
     };
     resize.onpointerdown = event => {
       event.preventDefault(); resize.setPointerCapture(event.pointerId);
-      resize.onpointermove = move => setInspectorWidth(this.supportPanel === 'question' ? move.clientX - root.getBoundingClientRect().left : root.getBoundingClientRect().right - move.clientX);
+      resize.onpointermove = move => setInspectorWidth(root.getBoundingClientRect().right - move.clientX);
       resize.onpointerup = resize.onlostpointercapture = () => { resize.onpointermove = null; };
     };
     if (!this.readPreference('exam-canvas-seen', false)) {
@@ -1220,7 +1310,8 @@ Object.assign(studioUI, {
     frame.onload = () => this.bindExamCanvas(frame);
     this.updateExamNavigation();
     this.refreshExamCanvas(true);
-    this.setFocusMode(this.readPreference('focus-mode', false));
+    this.setFocusMode(false);
+    this.simplifyPreviewWorkspace(root);
     this.showSupportPanel(this.supportPanel);
   },
   setFocusMode(enabled) {
@@ -1418,14 +1509,10 @@ Object.assign(studioUI, {
       editable(text, `Exam choice ${choice.id}`, () => { choice.html = text.innerHTML; choice.text = text.innerText; markDirty(); });
       const input = row.querySelector('input');
       input.checked = q.type === 'multi_select' ? q.correctChoiceIds?.includes(choice.id) : q.correctChoiceId === choice.id;
-      input.setAttribute('aria-label', `Set ${choice.id} as correct answer`);
-      input.title = `Set ${choice.id} as correct answer`;
-      input.onchange = () => {
-        if (q.type === 'multi_select') q.correctChoiceIds = [...doc.querySelectorAll('.exam-choice input')].flatMap((input, j) => input.checked ? [q.choices[j].id] : []);
-        else q.correctChoiceId = choice.id;
-        markDirty(); this.examSignature = this.examRenderKey();
-        if (this.supportPanel === 'question') this.renderQuestionInspector();
-      };
+      input.disabled = true;
+      input.setAttribute('aria-label', `Preview choice ${choice.id}`);
+      input.title = 'Answer keys are changed in Answer summary.';
+
     });
     doc.querySelectorAll('.exam-passage-image').forEach(figure => {
       figure.tabIndex = 0; figure.setAttribute('role', 'button'); figure.setAttribute('aria-label', 'Edit passage image');
@@ -1443,6 +1530,15 @@ Object.assign(studioUI, {
     if (this.pendingExamPosition) this.examPositions.set(this.passageContext, this.pendingExamPosition);
     this.pendingExamPosition = null; this.examRendering = false;
     this.restoreExamPosition();
+    const authorStyle = doc.createElement('style'); authorStyle.textContent = `
+      [contenteditable=true]:hover { outline: 1px dashed #91b3ac; outline-offset: 3px; }
+      [contenteditable=true]:focus { outline: 2px solid #247b6c; outline-offset: 3px; }
+      .exam-choice { position: relative; }
+      .exam-choice.studio-key-correct { box-shadow: inset 3px 0 #27805a; background: #edf8f0; }
+      .studio-key-badge { position: absolute; right: 4px; bottom: -14px; color: #246541; font: 600 11px/1.4 system-ui; white-space: nowrap; }
+    `; doc.head.append(authorStyle);
+    this.updateCanvasAnswerKey();
+    if (this.supportPanel === 'answers' && !this.answerKeyEdit) this.renderAnswerSummary();
     this.renderDefinitions();
   },
   undoExamPassage(redo) {
@@ -1514,17 +1610,197 @@ Object.assign(studioUI, {
       this.refreshExamCanvas(true);
     }
   },
-  renderQuestionInspector() {
+  // The student renderer is the only visible text editor. Options reuse the
+  // existing bound controls, so every question type keeps its original writer.
+  renderQuestionInspector(rebuild = true) {
     const panel = document.querySelector('.studio-question-inspector'); if (!panel) return;
+    if (rebuild) {
+      this.inspectingQuestion = true;
+      try { renderQuestionsV2(); } finally { this.inspectingQuestion = false; }
+    }
     this.ensureQuestionSelection(); const q = app.passageDraft.questions[this.selectedQuestionIndex];
-    if (!q) { panel.innerHTML = '<p>Add a question to edit its properties.</p>'; return; }
-    panel.innerHTML = `<p class="field-note">Question ${this.selectedQuestionIndex + 1} · ${escapeHtml(q.type)} · Correct answer: ${escapeHtml(studioCorrectAnswer(q) || 'Not set')}</p><div class="field-grid"><label class="field"><span>Topic</span><select data-inspect-field="topic">${topicOptions(q.topic, currentPassageQuestionSection())}</select></label><label class="field"><span>Points</span><input data-inspect-field="points" type="number" min="1" value="${escapeHtml(q.points || 1)}"></label></div><h3>Explanation</h3><div class="rich-editor-shell">${richToolbarHtml('Explanation formatting')}<div contenteditable="true" role="textbox" aria-label="Question explanation" class="rich-editor-content" data-rich-kind="explanation" data-question-index="${this.selectedQuestionIndex}">${inlineRichValue(q.explanationHtml, q.explanation)}</div></div><button type="button" class="secondary studio-open-bulk">Edit structure / all fields</button>`;
-    panel.querySelectorAll('[data-inspect-field]').forEach(input => input.oninput = () => { q[input.dataset.inspectField] = input.type === 'number' ? Number(input.value) : input.value; markDirty(); });
-    panel.querySelector('.studio-open-bulk').onclick = () => {
-      const mode = document.querySelector('.studio-edit-mode'); mode.value = 'bulk'; mode.dispatchEvent(new Event('change'));
-      this.showSupportPanel(''); this.showPassageSection('questions'); renderQuestionsV2(); this.renderExplanations();
+    if (this.interactionKeyEditingId !== q?.id) this.interactionKeyEditingId = null;
+    const topics = document.getElementById('manage-content-topics');
+    const copy = document.querySelector('.studio-question-navigation > button');
+    panel.replaceChildren();
+    if (!q) { panel.append(this.element('p', '', 'Add a question to begin.')); if (topics) panel.append(topics); if (copy) panel.append(copy); return; }
+    const card = document.querySelector(`#question-list .question-card[data-question-index="${this.selectedQuestionIndex}"]`);
+    if (!card) return;
+    card.querySelector('.question-rich-toolbar')?.remove();
+    card.querySelector('[data-rich-kind="prompt"]')?.closest('label')?.remove();
+    card.querySelector('.choices')?.remove();
+    card.querySelector('.question-code-id')?.remove();
+    card.querySelector('.question-number')?.remove();
+    card.querySelector('.studio-answer-summary')?.remove();
+    card.querySelector('header strong').textContent = `Question ${this.selectedQuestionIndex + 1}`;
+    const hint = this.element('p', 'field-note', 'Edit the prompt and answer choices in the preview. Open Answer summary to change the key.');
+    if (!['multiple_choice', 'multi_select'].includes(q.type)) hint.textContent = 'Edit the prompt in the preview. Configure the answer interaction and key below.';
+    panel.append(hint, card);
+    const keyInputs = [...card.querySelectorAll('[data-item-placement], [data-correct-choice]')];
+    if (keyInputs.length) {
+      const editing = this.interactionKeyEditingId === q.id;
+      keyInputs.forEach(input => input.disabled = !editing);
+      const controls = this.element('div', 'studio-question-key-lock');
+      controls.append(this.element('p', 'field-note', editing ? 'Answer-key editing is enabled for this question.' : 'Answer-key controls are locked while editing question content.'));
+      const button = this.element('button', 'secondary', editing ? 'Finish key editing' : 'Open answer summary'); button.type = 'button';
+      button.onclick = () => {
+        if (editing) { this.interactionKeyEditingId = null; this.renderQuestionInspector(); }
+        else this.showSupportPanel('answers');
+      };
+      controls.append(button); card.querySelector('.question-type-row').after(controls);
+    }
+    const tools = this.element('div', 'studio-question-tools');
+    if (topics) tools.append(topics);
+    if (copy) tools.append(copy);
+    panel.append(tools);
+    this.updateCanvasAnswerKey();
+  },
+  choiceAnswerKey(question, selection) {
+    const ids = [...new Set(selection)];
+    if (ids.some(id => !question.choices?.some(choice => choice.id === id))) throw new Error('Choose an answer from this question.');
+    if (question.type === 'multi_select') {
+      if (ids.length < 2) throw new Error('Select at least two correct answers.');
+      return { correctChoiceIds: ids, requiredSelections: ids.length };
+    }
+    if (!['multiple_choice', 'transition_drop'].includes(question.type) || ids.length !== 1) throw new Error('Choose one correct answer.');
+    return { correctChoiceId: ids[0] };
+  },
+  selectAnswerQuestion(id, mode = 'passage') {
+    if (mode === 'math') {
+      const index = app.mathDraft.questions.findIndex(question => question.id === id); if (index < 0) return;
+      app.selectedMathQuestionIndex = index; renderMathBuilder(); return;
+    }
+    const index = app.passageDraft.questions.findIndex(question => question.id === id); if (index < 0) return;
+    this.captureExamPosition(); this.selectedQuestionIndex = index; this.selectedQuestionId = id;
+    renderQuestionsV2(); this.updateExamNavigation(); this.refreshExamCanvas(true);
+  },
+  mathAnswerSummaryText(q) {
+    if (!['multiple_choice', 'multi_select'].includes(q.type)) return this.exportCorrectAnswer(q);
+    const ids = q.type === 'multi_select' ? q.correctChoiceIds || [] : q.correctChoiceId ? [q.correctChoiceId] : [];
+    return ids.map(id => {
+      const choice = q.choices?.find(choice => choice.id === id);
+      const text = choice?.text || (choice?.math ? `\\(${choice.math}\\)` : this.plainExportText(choice?.html || '') || choice?.image?.alt || '');
+      return `${id}${text ? ` — ${text}` : ''}`;
+    }).join('; ') || 'Not set';
+  },
+  renderAnswerSummary(mode = 'passage') {
+    const math = mode === 'math';
+    const panel = math ? this.mathAnswerDialog?.querySelector('.studio-answer-catalog') : document.querySelector('#passage-preview-panel .studio-answer-catalog'); if (!panel) return;
+    panel.replaceChildren(this.element('p', 'field-note', `All answers for this ${math ? 'math section' : 'passage'}. Keys are locked while editing content. Choose Change answer, then Apply key to update a choice answer.`));
+    const questions = math ? app.mathDraft.questions : app.passageDraft.questions;
+    if (!questions.length) { panel.append(this.element('p', '', 'No questions yet.')); return; }
+    const list = this.element('div', 'studio-answer-list'); panel.append(list);
+    questions.forEach((q, index) => {
+      const row = this.element('section', 'studio-answer-row'); row.setAttribute('aria-label', `Answer for question ${index + 1}`);
+      row.classList.toggle('is-current', q.id === (math ? app.mathDraft.questions[app.selectedMathQuestionIndex]?.id : this.selectedQuestionId));
+      const jump = this.element('button', 'studio-answer-jump'); jump.type = 'button';
+      jump.append(this.element('strong', '', `Question ${index + 1}`), this.element('span', '', this.plainExportText(q.prompt || q.promptHtml || 'Untitled question')));
+      jump.title = this.plainExportText(q.prompt || q.promptHtml || 'Untitled question');
+      jump.setAttribute('aria-label', `Open question ${index + 1}`);
+      jump.onclick = () => { this.selectAnswerQuestion(q.id, mode); if (math) this.mathAnswerDialog.close(); else this.renderAnswerSummary(mode); };
+      const answerText = math ? this.mathAnswerSummaryText(q) : this.exportCorrectAnswer(q);
+      const answer = this.element('p', 'studio-answer-value', answerText);
+      answer.title = answer.textContent;
+      if (math) answer.innerHTML = renderMathTextHtml(answerText);
+      row.append(jump, answer);
+      const editable = ['multiple_choice', 'multi_select', 'transition_drop'].includes(q.type);
+      const change = this.element('button', 'secondary', editable ? 'Change answer' : 'Edit answer key'); change.type = 'button';
+      change.onclick = () => {
+        if (!editable && math) {
+          this.mathKeyEditingId = q.id; this.selectAnswerQuestion(q.id, mode); this.mathAnswerDialog.close();
+          document.querySelector('.studio-math-key-lock')?.scrollIntoView({ block: 'center' }); return;
+        }
+        this.selectAnswerQuestion(q.id, mode);
+        if (!editable) { this.interactionKeyEditingId = q.id; this.showSupportPanel('question'); return; }
+        this.answerKeyEdit = { id: q.id, selected: q.type === 'multi_select' ? [...(q.correctChoiceIds || [])] : q.correctChoiceId ? [q.correctChoiceId] : [] };
+        this.renderAnswerSummary(mode); panel.querySelector('[data-answer-edit] input')?.focus();
+      };
+      row.append(change); list.append(row);
+      if (this.answerKeyEdit?.id !== q.id) return;
+      change.hidden = true;
+      const form = this.element('form', 'studio-answer-edit'); form.dataset.answerEdit = q.id;
+      const fieldset = this.element('fieldset'); fieldset.append(this.element('legend', '', q.type === 'multi_select' ? 'Select every correct answer' : 'Choose the correct answer'));
+      for (const choice of q.choices || []) {
+        const label = this.element('label'); const input = document.createElement('input');
+        input.type = q.type === 'multi_select' ? 'checkbox' : 'radio'; input.name = `key-${q.id}`; input.value = choice.id;
+        input.checked = this.answerKeyEdit.selected.includes(choice.id);
+        input.onchange = () => { this.answerKeyEdit.selected = [...fieldset.querySelectorAll('input:checked')].map(input => input.value); };
+        const labelText = this.element('span', '', `${choice.id}. ${this.exportItemText(choice)}`);
+        if (math) labelText.innerHTML = renderMathTextHtml(`${choice.id}. ${choice.text || (choice.math ? `\\(${choice.math}\\)` : this.plainExportText(choice.html || '') || choice.image?.alt || '')}`);
+        label.append(input, labelText); fieldset.append(label);
+      }
+      const actions = this.element('div', 'studio-answer-edit-actions');
+      const apply = this.element('button', 'primary', 'Apply key'); apply.type = 'submit';
+      const cancel = this.element('button', 'secondary', 'Cancel'); cancel.type = 'button';
+      cancel.onclick = () => { this.answerKeyEdit = null; this.renderAnswerSummary(mode); };
+      const error = this.element('p', 'studio-answer-error'); error.setAttribute('role', 'alert'); error.hidden = true;
+      actions.append(apply, cancel); form.append(fieldset, actions, error); row.append(form);
+      form.onsubmit = event => {
+        event.preventDefault();
+        try {
+          Object.assign(q, this.choiceAnswerKey(q, this.answerKeyEdit.selected));
+          if (q.type === 'multi_select' && /^Select the \d+ correct answers\.$/i.test(q.instructions || '')) delete q.instructions;
+          this.answerKeyEdit = null;
+          if (math) { markMathDirty(); renderMathBuilder(); }
+          else { markDirty(); this.updateCanvasAnswerKey(); this.refreshExamCanvas(true); }
+          this.renderAnswerSummary(mode);
+        } catch (failure) { error.textContent = failure.message; error.hidden = false; }
+      };
+    });
+  },
+  updateCanvasAnswerKey() {
+    const q = app.passageDraft?.questions[this.selectedQuestionIndex];
+    const summary = document.getElementById('studio-preview-answer-key');
+    if (summary) { const answer = q?.type === 'multi_select' ? q.correctChoiceIds?.join(', ') : q?.correctChoiceId; const placement = q?.items ? `${q.items.filter(item => q.correctPlacements?.[item.id]).length} of ${q.items.length} assigned` : ''; summary.textContent = `Answer summary · ${answer || placement || 'Not set'}`; summary.title = 'View all question answers and deliberately edit a key.'; }
+    const doc = document.getElementById('studio-exam-canvas')?.contentDocument;
+    doc?.querySelectorAll('.exam-choice').forEach(row => {
+      row.classList.toggle('studio-key-correct', Boolean(row.querySelector('input:checked')));
+      row.querySelector('.studio-key-badge')?.remove();
+      if (row.classList.contains('studio-key-correct')) row.append(Object.assign(doc.createElement('span'), { className: 'studio-key-badge', textContent: '✓ Correct answer' }));
+    });
+  },
+  simplifyPreviewWorkspace(root) {
+    root.classList.add('studio-preview-first');
+    root.querySelectorAll('.studio-focus-tools, #studio-focus-mode, .studio-focus-question-nav, .studio-inline-navigation').forEach(node => node.hidden = true);
+    const actions = root.querySelector('.studio-item-actions');
+    const tools = root.querySelector('.studio-tools-menu');
+    // Saved import drafts remain reachable from the universal navigation.
+    const drafts = tools.querySelector('#open-document-drafts');
+    if (drafts) root.querySelector('.studio-more:not(.studio-tools-menu) > div')?.append(drafts);
+    const passage = this.element('button', 'secondary', 'Passage options'); passage.type = 'button';
+    passage.dataset.supportTool = 'passage'; passage.onclick = () => this.showSupportPanel(this.supportPanel === 'passage' ? '' : 'passage');
+    tools.replaceWith(passage); root.querySelector('#studio-support-tools').hidden = true;
+    const combined = this.element('section', 'studio-passage-inspector'); combined.dataset.supportPanel = 'passage';
+    for (const [key, title] of [['settings', 'Details & formatting'], ['media', 'Images & placement'], ['definitions', 'Word definitions'], ['review', 'Review & validation']]) {
+      const section = root.querySelector(`[data-support-panel="${key}"]`);
+      const fold = this.element('details', 'studio-option-group'); fold.dataset.optionGroup = key;
+      fold.append(this.element('summary', '', title)); section.hidden = false;
+      section.removeAttribute('data-support-panel'); fold.append(section); combined.append(fold);
+      if (key === 'settings') fold.open = true;
+    }
+    root.querySelector('#passage-preview-panel').append(combined);
+    document.getElementById('refresh-preview').hidden = true;
+    document.getElementById('open-student-preview').textContent = 'Student view';
+    const key = this.element('button', 'secondary studio-answer-summary'); key.id = 'studio-preview-answer-key'; key.type = 'button';
+    key.dataset.supportTool = 'answers'; key.setAttribute('aria-label', 'Answer summary');
+    key.onclick = () => this.showSupportPanel(this.supportPanel === 'answers' ? '' : 'answers');
+    const answers = this.element('section', 'studio-answer-catalog'); answers.dataset.supportPanel = 'answers';
+    root.querySelector('#passage-preview-panel').append(answers);
+    root.querySelector('.studio-direct-question').prepend(key);
+    document.getElementById('studio-question-properties').textContent = 'Question options';
+    const hint = this.element('span', 'studio-preview-hint', 'Click text to edit · Manage answer keys in Answer summary');
+    root.querySelector('.studio-direct-controls').before(hint);
+    const formats = this.element('select', 'studio-extra-format');
+    formats.setAttribute('aria-label', 'More text formatting');
+    formats.innerHTML = '<option value="">More formatting…</option><option value="superscript">Superscript</option><option value="subscript">Subscript</option><option value="strikeThrough">Strikethrough</option><option value="removeFormat">Clear formatting</option>';
+    formats.onchange = () => {
+      if (!formats.value) return;
+      this.restoreExamPosition(); this.examActive?.focus({ preventScroll: true });
+      document.getElementById('studio-exam-canvas').contentDocument.execCommand(formats.value, false);
+      this.examActive?.dispatchEvent(new Event('input', { bubbles: true })); formats.value = '';
     };
-    bindRichEditors(panel);
+    root.querySelector('.studio-direct-format').append(formats);
+    this.updateCanvasAnswerKey();
   },
 });
 
@@ -1558,7 +1834,7 @@ Object.assign(studioUI, {
     nav.querySelectorAll('[data-tab]').forEach(button => { button.title = button.textContent; button.setAttribute('aria-label', button.textContent); button.textContent = names[button.dataset.tab]; });
     picker.after(nav);
     header.append(document.getElementById('studio-library-toggle'), document.getElementById('open-document-drafts'));
-    const help = this.element('details', 'studio-help', '<summary>Help</summary><div><strong>Content Editor</strong><p>Choose a workspace to browse its library. Passage and Questions are your editing tasks; the tools on the right open one supporting panel at a time.</p><p><kbd>Ctrl / ⌘ + S</kbd> saves the current workspace. Saving updates repository content. Import review drafts stay teacher-only until published.</p><p>Select text to format or define it. Paragraph style applies to the current paragraph or selected paragraphs. Formatting and definitions are included in Undo.</p></div>');
+    const help = this.element('details', 'studio-help', '<summary>Help</summary><div><strong>Content Editor</strong><p>Choose a workspace to browse its library. Edit the passage, questions, answer keys, and explanations together. Click text in the preview to edit it. Passage options contains details, formatting, images, definitions, and review. Question options contains type, topic, points, and explanation.</p><p><kbd>Ctrl / ⌘ + S</kbd> saves the current workspace. Saving updates repository content. Import review drafts stay teacher-only until published.</p><p>Select text to format or define it. Paragraph style applies to the current paragraph or selected paragraphs. Formatting and definitions are included in Undo.</p></div>');
     header.append(help);
     const toggle = document.getElementById('studio-library-toggle');
     const hidden = this.readPreference('library-hidden', false);
@@ -1841,8 +2117,12 @@ Object.assign(studioUI, {
     select.value = styles.size === 1 ? [...styles][0] : 'mixed';
   },
   showSupportPanel(key) {
-    if (!['', 'preview', 'settings', 'media', 'definitions', 'review', 'question'].includes(key)) key = '';
+    const requested = key;
+    if (document.querySelector('.studio-preview-first') && ['settings', 'media', 'definitions', 'review'].includes(key)) key = 'passage';
+    if (!['', 'preview', 'settings', 'media', 'definitions', 'review', 'question', 'passage', 'answers'].includes(key)) key = '';
     if (key) this.captureExamPosition?.();
+    if (key !== 'answers') this.answerKeyEdit = null;
+    if (key !== 'question') this.interactionKeyEditingId = null;
     this.supportPanel = key;
     this.remember('support-panel', key);
     this.previewVisible = key === 'preview';
@@ -1863,10 +2143,14 @@ Object.assign(studioUI, {
     support.querySelectorAll('[data-support-panel]').forEach(panel => { panel.hidden = panel.dataset.supportPanel !== key; });
     root.querySelectorAll('[data-support-tool]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.supportTool === key)));
     root.querySelectorAll('[data-view-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.viewMode === (key === 'preview' ? 'preview' : 'edit'))));
-    document.getElementById('studio-support-title').textContent = ({ preview: 'Draft student preview', settings: 'Passage settings', media: 'Media', definitions: 'Word definitions', review: 'Review', question: 'Question properties & explanation' })[key] || '';
+    document.getElementById('studio-support-title').textContent = ({ preview: 'Draft student preview', settings: 'Passage settings', media: 'Media', definitions: 'Word definitions', review: 'Review', question: 'Question options & explanation', passage: 'Passage options', answers: 'Answer summary' })[key] || '';
     if (key === 'question') this.renderQuestionInspector();
+    if (key === 'answers') this.renderAnswerSummary();
     if (!key) this.restoreExamPosition?.();
-    if (key === 'review') this.renderReview();
+    if (key === 'review' || key === 'passage') this.renderReview();
+    if (key === 'passage') {
+      const fold = support.querySelector(`[data-option-group="${requested}"]`); if (fold) { fold.open = true; fold.scrollIntoView({ block: 'nearest' }); }
+    }
     if (key === 'preview') this.schedulePassagePreview();
   },
   renderDefinitions() {
@@ -1929,7 +2213,7 @@ Object.assign(studioUI, {
     if (typeof document === 'undefined') return;
     const issues = this.passageIssues(app.passageDraft);
     document.querySelectorAll('[data-review-count]').forEach(node => node.textContent = issues.length);
-    if (this.supportPanel === 'review') this.renderReview(issues);
+    if (['review', 'passage'].includes(this.supportPanel)) this.renderReview(issues);
   },
   renderReview(issues = this.passageIssues(app.passageDraft)) {
     const panel = document.querySelector('.studio-review-panel'); if (!panel) return;

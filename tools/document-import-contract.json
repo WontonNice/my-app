@@ -240,50 +240,45 @@
       "Relevance & Conclusion"
     ],
     "math": [
-      "Expressions, Equations, and Inequalities",
+      "Algebra",
       "Geometry",
       "Statistics and Probability",
       "Ratios and Proportional Relationships",
-      "The Number System"
+      "Arithmetic & Number Sense"
     ],
     "mathSpecificTopics": {
-      "Expressions, Equations, and Inequalities": [
-        "Evaluating expressions",
-        "Equivalent expressions",
-        "Linear equations",
-        "Linear inequalities",
-        "Systems of equations",
-        "Algebraic word problems",
-        "Sequences and patterns",
-        "Absolute value"
+      "Algebra": [
+        "Algebraic Expressions",
+        "Equations & Systems",
+        "Inequalities",
+        "Functions & Graphs",
+        "Patterns & Sequences"
       ],
       "Geometry": [
-        "Lines and Angle Relationships",
-        "Area and Perimeter of Composite Figures",
-        "Triangles and the Pythagorean Theorem",
-        "Circles",
-        "Polygons and Quadrilaterals",
-        "Surface Area and Volume",
-        "Similarity, Congruence, and Scale",
-        "Transformations and Symmetry"
+        "Shapes & Angles",
+        "Area & Perimeter",
+        "Surface Area & Volume",
+        "Coordinate Geometry",
+        "Pythagorean Theorem",
+        "Scale & Transformations"
       ],
       "Statistics and Probability": [
-        "Simple probability",
-        "Compound probability",
-        "Counting and combinations",
-        "Sets and Venn diagrams",
-        "Mean, median, mode and range",
-        "Data interpretation"
+        "Data Displays",
+        "Probability",
+        "Averages & Spread"
       ],
       "Ratios and Proportional Relationships": [
-        "Equivalent ratios",
-        "Proportional relationships",
-        "Part-to-whole ratios",
-        "Scale drawings",
-        "Ratio word problems"
+        "Ratios & Proportions",
+        "Rates & Unit Rates",
+        "Percentages"
       ],
-      "The Number System": [
-        "test"
+      "Arithmetic & Number Sense": [
+        "Number Properties",
+        "Fractions & Decimals",
+        "Number Operations",
+        "Exponents, Roots & Scientific Notation",
+        "Units & Conversions",
+        "Counting & Sets"
       ]
     }
   }

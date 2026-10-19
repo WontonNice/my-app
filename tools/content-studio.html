@@ -838,6 +838,7 @@
             <div class="panel-head"><div><h2>Exams</h2><small>Create an exam or select one to assemble.</small></div><button class="primary" id="new-exam" type="button">+ New exam</button></div>
             <form id="new-exam-form" hidden style="padding:16px;display:none">
               <label>Exam title<input name="title" required maxlength="160" placeholder="2026 Fall Practice Test"></label>
+              <label>Exam section / label<input name="examLabel" list="new-exam-labels" maxlength="60" value="Other exams" placeholder="Official practice, mock exams, publisher…"><datalist id="new-exam-labels"><option>Official practice</option><option>Other exams</option></datalist></label>
               <label>Duration (minutes)<input name="durationMinutes" type="number" min="1" max="600" value="180" required></label>
               <label>Description<textarea name="description" rows="2"></textarea></label>
               <p class="field-note">New exams start locked. Add English and Math questions, then open access from the teacher dashboard.</p>
@@ -2375,6 +2376,7 @@ Why D is wrong."></textarea>
       `;
       bindPassageFields();
       bindAdvancedPassageFields();
+      studioUI.showAllQuestions = false;
       renderQuestionsV2();
       bindRichEditors($("#passage-rich-editor").closest(".rich-editor-shell"));
       $("#edit-passage-definition").addEventListener("mousedown", (event) => event.preventDefault());
@@ -3822,7 +3824,11 @@ Why D is wrong."></textarea>
         });
         $$("input[data-category-index]", card).forEach((element) => {
           element.addEventListener("input", () => {
-            app.passageDraft.questions[index].categories[Number(element.dataset.categoryIndex)].title = element.value;
+            const category = app.passageDraft.questions[index].categories[Number(element.dataset.categoryIndex)];
+            category.title = element.value;
+            card.querySelectorAll('[data-item-placement]').forEach(input => {
+              if (input.value === category.id) input.closest('label').querySelector('span').textContent = category.title;
+            });
             markDirty();
           });
           element.addEventListener("change", renderQuestionsV2);
@@ -3889,6 +3895,7 @@ Why D is wrong."></textarea>
       });
       bindRichEditors(container);
       studioUI.mountQuestions();
+      if (studioUI.supportPanel === 'question' && !studioUI.inspectingQuestion) studioUI.renderQuestionInspector(false);
     }
 
     function choiceArrayFromQuestion(question, count) {
@@ -4494,6 +4501,7 @@ Why D is wrong."></textarea>
       $$("[data-assessment-id]", $("#assessment-list")).forEach((button) => {
         button.addEventListener("click", () => selectAssessment(button.dataset.assessmentId));
       });
+      studioUI.groupAssessmentList();
       renderErrors("#test-errors", app.state.testErrors);
       studioUI.filterAssessmentList("assessment-list");
     }
@@ -7121,7 +7129,7 @@ WRONG D:`;
       $("#new-exam-error").textContent = "";
       try {
         const data = await api("/api/exams", { method: "POST", body: JSON.stringify({
-          title: form.elements.title.value, durationMinutes: Number(form.elements.durationMinutes.value), description: form.elements.description.value,
+          title: form.elements.title.value, examLabel: form.elements.examLabel.value, durationMinutes: Number(form.elements.durationMinutes.value), description: form.elements.description.value,
         }) });
         await reloadState();
         selectAssessment(data.assessment.id);

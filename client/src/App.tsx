@@ -14,6 +14,7 @@ import { StudentTopicHubPage } from "./pages/StudentTopicHubPage";
 import { studentCorrectionRoute } from "./lib/correctionNavigation";
 
 const AnswerSheetsPage = lazy(() => import("./pages/AnswerSheetsPage").then(module => ({ default: module.AnswerSheetsPage })));
+const StudentAnswerSheetsPage = lazy(() => import("./pages/StudentAnswerSheetsPage").then(module => ({ default: module.StudentAnswerSheetsPage })));
 
 const AdminDashboardPage = lazy(() =>
   import("./pages/AdminDashboardPage").then((module) => ({ default: module.AdminDashboardPage })),
@@ -123,6 +124,7 @@ function CurrentPage() {
     if (path === "/study-hall/classroom") {
       return <StudentClassroomPage />;
     }
+    if (path === "/study-hall/shsat/answer-sheets") return withClassAccess(<StudentAnswerSheetsPage />);
     if (path === "/study-hall/shsat/assignments") {
       return withClassAccess(<StudentAssignmentsPage />);
     }

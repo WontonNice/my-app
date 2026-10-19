@@ -1,0 +1,41 @@
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const { resolve } = require('node:path');
+const { build } = require('esbuild');
+const vm = require('node:vm');
+const taxonomy = require('./math-topics.json');
+
+test('Math Study Hall follows the managed hierarchy and reserves topic resource sections', async () => {
+  const entry = resolve(__dirname, '../client/src/components/MathStudyHall.tsx');
+  const catalog = resolve(__dirname, '../client/src/lib/mathStudyHall.ts');
+  const result = await build({ stdin: { contents: `
+    import React from 'react'; import {renderToStaticMarkup} from 'react-dom/server';
+    import {MathStudyHall} from ${JSON.stringify(entry)};
+    import {mathStudyHref,mathStudyCategories} from ${JSON.stringify(catalog)};
+    const previewContext={isPreview:true,mode:'student',query:'?preview=student&teacherTools=1',studentId:'',studentName:'QA Student',returnHref:'/teacher'};
+    const render=(path,query='')=>{globalThis.window={location:{search:new URL(path,'https://qa.test').search,origin:'https://qa.test'}};return renderToStaticMarkup(<MathStudyHall query={query} previewContext={previewContext}/>)};
+    const category=mathStudyCategories[0], topic=category.topics[0];
+    console.log(JSON.stringify({root:render(mathStudyHref()),category:render(mathStudyHref(category.label)),topic:render(mathStudyHref(category.label,topic)),unknown:render(mathStudyHref('Removed category')),unknownTopic:render(mathStudyHref(category.label,'Removed topic')),search:render(mathStudyHref(),topic),empty:render(mathStudyHref(),'NO MATCH EXISTS'),href:mathStudyHref('Ratios & rates','Percentages & proportions')}));
+  `, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic', loader: { '.css': 'empty' } });
+  let output;
+  vm.runInNewContext(result.outputFiles[0].text, { require, console: { log: value => { output = JSON.parse(value); } }, process, URL, URLSearchParams, TextEncoder, TextDecoder, Buffer, setTimeout, clearTimeout, setImmediate, clearImmediate, queueMicrotask, AbortController, ReadableStream, WritableStream, TransformStream });
+  const escape = text => text.replaceAll('&', '&amp;').replaceAll("'", '&#x27;').replaceAll('"', '&quot;').replaceAll('>', '&gt;').replaceAll('<', '&lt;');
+  assert.equal((output.root.match(/class="math-study-category"/g) || []).length, taxonomy.categories.length);
+  for (const category of taxonomy.categories) assert.ok(output.root.includes(escape(category.label)));
+  assert.doesNotMatch(output.root, /\/assessments|No worksheets yet/);
+  for (const topic of taxonomy.categories[0].topics) assert.ok(output.category.includes(escape(topic)));
+  assert.equal((output.category.match(/class="math-study-topic"/g) || []).length, taxonomy.categories[0].topics.length);
+  assert.match(output.category, /category=.*&amp;topic=/);
+  assert.match(output.category, /preview=student/);
+  assert.match(output.topic, /aria-labelledby="math-worksheets-title"/);
+  assert.match(output.topic, /aria-labelledby="math-infinite-title"/);
+  assert.match(output.topic, /Coming soon/);
+  assert.doesNotMatch(output.topic, /Start practice|<button/);
+  assert.match(output.unknown, /This topic is no longer available/);
+  assert.match(output.unknownTopic, /This topic is no longer available/);
+  assert.match(output.search, new RegExp(escape(taxonomy.categories[0].label)));
+  assert.match(output.empty, /No math categories match your search/);
+  const params = new URL(output.href, 'https://qa.test').searchParams;
+  assert.equal(params.get('category'), 'Ratios & rates');
+  assert.equal(params.get('topic'), 'Percentages & proportions');
+});

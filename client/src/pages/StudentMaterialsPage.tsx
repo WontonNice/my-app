@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { ArrowRight, BookMarked, BookOpen, FileText, Filter, KeyRound, Library, Search } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { StudentPortalShell } from "../components/StudentPortalShell";
+import { MathStudyHall } from "../components/MathStudyHall";
 import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import {
@@ -112,7 +113,7 @@ export function StudentMaterialsPage() {
         <header className="student-materials-heading">
           <p>Study Hall / {activeSubject}</p>
           <h1>{activeSubject} Study Hall</h1>
-          <span>{activeSubject === "English" ? "Practice individual skills, then explore passages and books from your teacher's library." : "Browse focused math practice by topic and question type."}</span>
+          <span>{activeSubject === "English" ? "Practice individual skills, then explore passages and books from your teacher's library." : "Explore math categories and skills, with worksheets and practice organized by topic."}</span>
         </header>
 
         <div className="student-materials-tools">
@@ -134,7 +135,7 @@ export function StudentMaterialsPage() {
           <a href="#study-hall-library-title"><Library size={16} />Library</a>
         </nav>}
 
-        <TopicCatalog materials={topicMaterials} previewContext={previewContext} subject={activeSubject} />
+        {activeSubject === "Math" ? <MathStudyHall query={normalizedQuery} previewContext={previewContext} /> : <TopicCatalog materials={topicMaterials} previewContext={previewContext} subject={activeSubject} />}
 
         {activeSubject === "English" && <section aria-label="Revising & Editing"><TopicCatalog materials={editingPracticeMaterials.filter(material => materialMatchesQuery(material, normalizedQuery))} previewContext={previewContext} subject="English" title="Revising & Editing" headingId="editing-topic-title" description="Practice grammar, sentence structure, usage, and organization by topic." /><AppLink className="study-hall-editing-assessment" href={appendStudentPreview(revisingEditingMaterial.href, previewContext)}><FileText size={18} /><span><strong>{revisingEditingMaterial.title}</strong><small>Open assigned assessments for revising and editing practice.</small></span><ArrowRight size={18} /></AppLink></section>}
         {activeSubject === "English" && <section className="study-hall-library study-hall-advanced-readings" id="advanced-readings" aria-labelledby="advanced-readings-title">

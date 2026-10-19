@@ -368,3 +368,45 @@ test('direct authoring adds stable source-block markers without changing student
   assert.match(numbered, /data-generated-number/);
   assert.match(numbered.replace(/<span data-generated-number contenteditable="false">[^<]*<\/span>/g, ''), /The source says \(1\) as a label\. Next sentence\./);
 });
+
+
+test("exam groups separate official forms from custom labels without moving source data", () => {
+  const { ui } = setup();
+  const assessments = [{ id: "2025-2026-form-a" }, { id: "fall-mock", examLabel: "Mock exams" }, { id: "publisher-1", examLabel: "Prestige" }, { id: "custom" }, { id: "other-mock", examLabel: "mock exams" }];
+  const before = JSON.stringify(assessments);
+  const groups = Array.from(ui.assessmentGroups(assessments), group => ({ label: group.label, ids: Array.from(group.items, item => item.id) }));
+  assert.deepEqual(groups, [{ label: "Official practice", ids: ["2025-2026-form-a"] }, { label: "Mock exams", ids: ["fall-mock", "other-mock"] }, { label: "Prestige", ids: ["publisher-1"] }, { label: "Other exams", ids: ["custom"] }]);
+  assert.equal(JSON.stringify(assessments), before);
+  assert.equal(ui.assessmentLabel({ id: "2025-2026-form-a", examLabel: "Teacher selection" }), "Teacher selection");
+});
+
+test('created labels remain visible before any exams are assigned', () => {
+  const { app, ui } = setup();
+  app.state = { examLabels: ['Official practice', 'Other exams', 'Weekly quizzes'] };
+  const groups = Array.from(ui.assessmentGroups([{ id: '2025-2026-form-a' }]), group => ({ label: group.label, count: group.items.length }));
+  assert.deepEqual(groups, [{ label: 'Official practice', count: 1 }, { label: 'Other exams', count: 0 }, { label: 'Weekly quizzes', count: 0 }]);
+});
+
+test('answer key changes validate a separate selection without mutating the question', () => {
+  const { ui } = setup();
+  const question = { id: 'q1', type: 'multiple_choice', choices: [{ id: 'A' }, { id: 'B' }], correctChoiceId: 'A' };
+  assert.equal(ui.choiceAnswerKey(question, ['B']).correctChoiceId, 'B');
+  assert.equal(question.correctChoiceId, 'A', 'Preparing a new selection must not apply it');
+  assert.throws(() => ui.choiceAnswerKey(question, []), /one correct/);
+  assert.throws(() => ui.choiceAnswerKey(question, ['A', 'B']), /one correct/);
+  assert.throws(() => ui.choiceAnswerKey(question, ['missing']), /from this question/);
+  const multi = { ...question, type: 'multi_select', correctChoiceIds: ['A', 'B'], requiredSelections: 2 };
+  const update = ui.choiceAnswerKey(multi, ['B', 'A', 'B']);
+  assert.deepEqual(Array.from(update.correctChoiceIds), ['B', 'A']);
+  assert.equal(update.requiredSelections, 2);
+  assert.throws(() => ui.choiceAnswerKey(multi, ['B']), /at least two/);
+  assert.deepEqual(multi.correctChoiceIds, ['A', 'B']);
+});
+
+test('math answer summaries preserve numeric keys and readable formula choices', () => {
+  const { ui } = setup();
+  assert.equal(ui.mathAnswerSummaryText({ type: 'numeric_entry', correctTextAnswers: ['-0.8', '-4/5'] }), '-0.8 or -4/5');
+  assert.equal(ui.mathAnswerSummaryText({ type: 'multiple_choice', correctChoiceId: 'B', choices: [{ id: 'B', math: '\\frac{1}{2}' }] }), 'B — \\(\\frac{1}{2}\\)');
+  assert.equal(ui.mathAnswerSummaryText({ type: 'multiple_choice', correctChoiceId: 'B', choices: [{ id: 'B', text: 'one-half', math: '\\frac{1}{2}' }] }), 'B — one-half');
+  assert.equal(ui.mathAnswerSummaryText({ type: 'multi_select', correctChoiceIds: [] }), 'Not set');
+});

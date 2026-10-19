@@ -1,56 +1,51 @@
 {
   "categories": [
     {
-      "label": "Expressions, Equations, and Inequalities",
+      "label": "Algebra",
       "topics": [
-        "Evaluating expressions",
-        "Equivalent expressions",
-        "Linear equations",
-        "Linear inequalities",
-        "Systems of equations",
-        "Algebraic word problems",
-        "Sequences and patterns",
-        "Absolute value"
+        "Algebraic Expressions",
+        "Equations & Systems",
+        "Inequalities",
+        "Functions & Graphs",
+        "Patterns & Sequences"
       ]
     },
     {
       "label": "Geometry",
       "topics": [
-        "Lines and Angle Relationships",
-        "Area and Perimeter of Composite Figures",
-        "Triangles and the Pythagorean Theorem",
-        "Circles",
-        "Polygons and Quadrilaterals",
-        "Surface Area and Volume",
-        "Similarity, Congruence, and Scale",
-        "Transformations and Symmetry"
+        "Shapes & Angles",
+        "Area & Perimeter",
+        "Surface Area & Volume",
+        "Coordinate Geometry",
+        "Pythagorean Theorem",
+        "Scale & Transformations"
       ]
     },
     {
       "label": "Statistics and Probability",
       "topics": [
-        "Simple probability",
-        "Compound probability",
-        "Counting and combinations",
-        "Sets and Venn diagrams",
-        "Mean, median, mode and range",
-        "Data interpretation"
+        "Data Displays",
+        "Probability",
+        "Averages & Spread"
       ]
     },
     {
       "label": "Ratios and Proportional Relationships",
       "topics": [
-        "Equivalent ratios",
-        "Proportional relationships",
-        "Part-to-whole ratios",
-        "Scale drawings",
-        "Ratio word problems"
+        "Ratios & Proportions",
+        "Rates & Unit Rates",
+        "Percentages"
       ]
     },
     {
-      "label": "The Number System",
+      "label": "Arithmetic & Number Sense",
       "topics": [
-        "test"
+        "Number Properties",
+        "Fractions & Decimals",
+        "Number Operations",
+        "Exponents, Roots & Scientific Notation",
+        "Units & Conversions",
+        "Counting & Sets"
       ]
     }
   ]

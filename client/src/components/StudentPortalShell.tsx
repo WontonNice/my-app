@@ -23,7 +23,7 @@ import { AppLink } from "./AppLink";
 import { AccountSwitcher } from "./CorporateDashboardShell";
 
 type StudentPortalShellProps = {
-  activeId: "assessments" | "assignments" | "home" | "materials" | "results" | "boards";
+  activeId: "assessments" | "assignments" | "home" | "materials" | "results" | "boards" | "answer-sheets";
   children: ReactNode;
   onSignOut: () => void;
   previewContext: StudentPreviewContext;
@@ -182,6 +182,7 @@ export function StudentPortalShell({
               <AppLink href={mathHref} onClick={closeMobileNavigation}>Math</AppLink>
             </div>
           ) : null}
+          <AppLink className={activeId === "answer-sheets" ? "is-active" : undefined} href={appendStudentPreview("/study-hall/shsat/answer-sheets", previewContext)} onClick={closeMobileNavigation}><ClipboardList size={18} /><span>Answer sheets</span></AppLink>
           <AppLink className={activeId === "assessments" ? "is-active" : undefined} href={assessmentsHref} onClick={closeMobileNavigation}><Library size={18} /><span>Assessments</span></AppLink>
           <AppLink className={activeId === "results" ? "is-active" : undefined} href={resultsHref} onClick={closeMobileNavigation}><BarChart3 size={18} /><span>Results</span></AppLink>
         </nav>

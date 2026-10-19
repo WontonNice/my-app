@@ -62,3 +62,16 @@ test('J: another session submitting cannot silently hide a device recovery draft
  const sealed=e.make();assert.equal(sealed.status,'Submitted');assert.equal(sealed.visible.answers.short,'submitted elsewhere');assert.equal(sealed.recoveredUnsubmitted[0].answer,'unsynced device text');assert.ok(e.data.size);sealed.stop();
  e.server={...e.server,status:'in_progress',revision:4};const reopened=e.make();assert.equal(reopened.recoveryConflict,true);reopened.chooseRecovery(true);await reopened.flush();assert.equal(e.server.answers.short,'unsynced device text');assert.equal(e.server.submissions[0].answers.short,'submitted elsewhere');
 });
+
+
+test('column paste preserves text and stable option IDs, and rejects shifted or invalid columns before applying',()=>{
+ const {parseAnswerColumn}=require('../../client/src/features/answer-sheets/pasteAnswers.ts');
+ const items=[{id:'one',number:'1',type:'multiple_choice',options:[{id:'stable-a',label:'A'},{id:'stable-b',label:'B'}]},{id:'many',number:'2',type:'multi_select',options:[{id:'many-a',label:'A'},{id:'many-c',label:'C'}],minSelections:2,maxSelections:2},{id:'text',number:'3',type:'short_response',options:[]}];
+ const parsed=parseAnswerColumn(items,'b\r\nA, C\r\n  0 + x²  \r\n');assert.deepEqual(parsed.errors,[]);assert.deepEqual(parsed.changes,[{itemId:'one',answer:'stable-b'},{itemId:'many',answer:['many-a','many-c']},{itemId:'text',answer:'  0 + x²  '}]);
+ const multiline=parseAnswerColumn(items, 'A\nA, C\n"line one\n  line two ""quoted"""');
+ assert.deepEqual(multiline.errors,[]);assert.equal(multiline.changes[2].answer,'line one\n  line two "quoted"');
+ assert.ok(parseAnswerColumn(items,'A\nA, C\n"unfinished').errors.length);
+ assert.ok(parseAnswerColumn(items,'A\tB').errors.length);assert.ok(parseAnswerColumn(items,'D').errors.length);assert.ok(parseAnswerColumn(items,'A\nC\ntext\nextra').errors.length);
+ assert.deepEqual(parseAnswerColumn(items,'\n\n0').changes.map(change=>change.answer),['',[],'0']);
+ assert.deepEqual(parseAnswerColumn(items,'A\nA').errors,[]); // Partial multi-select is a valid saved draft.
+});
