@@ -5,10 +5,11 @@ import { LOCAL_BOARD_ORIGIN, REMOTE_BOARD_ORIGIN, readBoard, type BoardSummary, 
 
 const fromBase64 = (value: string) => Uint8Array.from(atob(value), char => char.charCodeAt(0));
 const toBase64 = (value: Uint8Array) => { let result = ""; for (let i = 0; i < value.length; i += 8192) result += String.fromCharCode(...value.subarray(i, i + 8192)); return btoa(result); };
-type SessionState = { docVersion: number; board: BoardSummary; peers: BoardPresence[]; peerId: string; canManage: boolean; status: "Connecting" | "Saved" | "Saving…" | "Reconnecting" | "Recovery needed"; error: string; canUndo: boolean; canRedo: boolean; ready: boolean };
+type SessionState = { docVersion: number; board: BoardSummary; peers: BoardPresence[]; peerId: string; canManage: boolean; status: "Connecting" | "Saved" | "Saving…" | "Reconnecting" | "Recovery needed"; error: string; canUndo: boolean; canRedo: boolean; canUndoDrawing: boolean; canRedoDrawing: boolean; ready: boolean };
 export class BoardSession {
   readonly doc = new Y.Doc();
   readonly undo = new Y.UndoManager([this.doc.getMap("nodes"), this.doc.getMap("edges")], { trackedOrigins: new Set([LOCAL_BOARD_ORIGIN]), captureTimeout: 650 });
+  readonly drawingUndo = new Y.UndoManager(this.doc.getMap("drawings"), { trackedOrigins: new Set([LOCAL_BOARD_ORIGIN]), captureTimeout: 0 });
   private state: SessionState;
   private listeners = new Set<() => void>();
   private socket: WebSocket | null = null;
@@ -30,13 +31,16 @@ export class BoardSession {
 
   constructor(board: BoardSummary, canManage: boolean, private readonly userId: string) {
     this.generation = board.epoch;
-    this.state = { docVersion: 0, board, peers: [], peerId: "", canManage, status: "Connecting", error: "", canUndo: false, canRedo: false, ready: false };
+    this.state = { docVersion: 0, board, peers: [], peerId: "", canManage, status: "Connecting", error: "", canUndo: false, canRedo: false, canUndoDrawing: false, canRedoDrawing: false, ready: false };
     this.doc.on("update", (_update: Uint8Array, origin: unknown) => {
       if (origin !== REMOTE_BOARD_ORIGIN) { this.dirty = true; if (this.state.status !== "Recovery needed") this.patch({ status: this.readySocket ? "Saving…" : "Reconnecting" }); this.scheduleFlush(); }
       this.patch({ docVersion: this.state.docVersion + 1, canUndo: this.undo.canUndo(), canRedo: this.undo.canRedo() });
     });
     this.undo.on("stack-item-added", () => this.patch({ canUndo: this.undo.canUndo(), canRedo: this.undo.canRedo() }));
     this.undo.on("stack-item-popped", () => this.patch({ canUndo: this.undo.canUndo(), canRedo: this.undo.canRedo() }));
+    const drawingHistory = () => this.patch({ canUndoDrawing: this.drawingUndo.canUndo(), canRedoDrawing: this.drawingUndo.canRedo() });
+    this.drawingUndo.on("stack-item-added", drawingHistory);
+    this.drawingUndo.on("stack-item-popped", drawingHistory);
   }
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
   snapshot = () => this.state;
@@ -113,5 +117,5 @@ export class BoardSession {
   transaction(action: () => void) { this.undo.stopCapturing(); this.doc.transact(action, LOCAL_BOARD_ORIGIN); this.undo.stopCapturing(); }
   recovery() { return JSON.stringify({ format: "student-board-recovery-v1", title: this.state.board.title, epoch: this.state.board.epoch, recoveredAt: new Date().toISOString(), ...readBoard(this.doc) }, null, 2); }
   updateBoard(board: BoardSummary) { if (board.epoch !== this.generation) { this.recover("The board has a restored version. Download unsaved work and reopen it."); return; } if (board.revision >= this.state.board.revision) this.patch({ board }); }
-  stop() { this.flush(); this.stopped = true; window.clearTimeout(this.reconnectTimer); window.clearTimeout(this.flushTimer); this.authSubscription?.unsubscribe(); this.socket?.close(); void this.persistence?.destroy(); this.undo.destroy(); this.doc.destroy(); this.listeners.clear(); }
+  stop() { this.flush(); this.stopped = true; window.clearTimeout(this.reconnectTimer); window.clearTimeout(this.flushTimer); this.authSubscription?.unsubscribe(); this.socket?.close(); void this.persistence?.destroy(); this.undo.destroy(); this.drawingUndo.destroy(); this.doc.destroy(); this.listeners.clear(); }
 }

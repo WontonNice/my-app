@@ -1107,6 +1107,7 @@ export function ExamSessionPage() {
       setStudentName(getStoredExamName(assessmentId, fallbackName));
       const isTeacherPreview = previewContext.isPreview && getUserRole(data.session.user) === "teacher";
       setIsTeacherPreviewSession(isTeacherPreview);
+      setIsFastForwardEnabled(isTeacherPreview && previewContext.mode === "teacher");
 
       try {
         const nextAssessment = await getStudentAssessment(data.session.access_token, assessmentId);
@@ -1398,6 +1399,7 @@ export function ExamSessionPage() {
   const hasNextPassageSet = activePassageSetIndex < examContent.passageSets.length - 1;
   const shouldShowPassageDirections = activePassageSetIndex === 0 || Boolean(activePassageSet.showDirectionsBefore);
   const reviewItems: ReviewItem[] = [];
+  const isTeacherTestView = isTeacherPreviewSession && getStudentPreviewContext().mode === "teacher";
   const accessibleQuestions: ExamQuestion[] = [];
   const addReviewQuestion = (
     id: ReviewItemId,
@@ -1416,7 +1418,24 @@ export function ExamSessionPage() {
     });
   };
 
-  if (sessionScreen === "directions") {
+  if (isTeacherTestView) {
+    let englishNumber = 0;
+    examContent.passageSets.forEach((set, passageSetIndex) => {
+      set.questions.forEach((question, questionIndex) => {
+        addReviewQuestion(`review:passage:${passageSetIndex}:${questionIndex}`, question,
+          `English ${++englishNumber} · ${set.passage.title}`,
+          { kind: "passage", passageSetIndex, questionIndex });
+      });
+    });
+    standaloneSection?.questions.forEach((question, questionIndex) => {
+      addReviewQuestion(`review:standalone:${questionIndex}`, question,
+        `English ${++englishNumber} · Revising / editing`, { kind: "standalone", questionIndex });
+    });
+    mathQuestions.forEach((question, questionIndex) => {
+      addReviewQuestion(`review:math:${questionIndex}`, question, `Math ${questionIndex + 1}`,
+        { kind: "math", questionIndex });
+    });
+  } else if (sessionScreen === "directions") {
     reviewItems.push({
       id: "review:directions:general",
       kind: "directions",
@@ -2533,7 +2552,7 @@ export function ExamSessionPage() {
   if (sessionScreen === "mathIntro") {
     return (
       <main className="exam-module-shell">
-        <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />
+        {isTeacherTestView ? <ExamToolbar assessmentLabel={assessmentLabel} breadcrumbMiddle="TEACHER TEST VIEW" breadcrumbCurrent="" {...reviewToolbarProps} isNextActive={false} showTimer={false} showWorkTools={false} studentName={studentName} /> : <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />}
 
         <section className="exam-passage-intro-card" aria-labelledby="math-intro-title">
           <div className="exam-passage-intro-panel">
@@ -2729,7 +2748,7 @@ export function ExamSessionPage() {
   if (sessionScreen === "standaloneIntro" && standaloneSection) {
     return (
       <main className="exam-module-shell">
-        <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />
+        {isTeacherTestView ? <ExamToolbar assessmentLabel={assessmentLabel} breadcrumbMiddle="TEACHER TEST VIEW" breadcrumbCurrent="" {...reviewToolbarProps} isNextActive={false} showTimer={false} showWorkTools={false} studentName={studentName} /> : <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />}
 
         <section className="exam-passage-intro-card" aria-labelledby="standalone-intro-title">
           <div className="exam-passage-intro-panel">
@@ -3110,8 +3129,9 @@ export function ExamSessionPage() {
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent=""
           breadcrumbMiddle="END SECTION"
+          {...(isTeacherTestView ? reviewToolbarProps : {})}
           isNextActive={false}
-          showReviewTools={false}
+          showReviewTools={isTeacherTestView}
           showStatusIcon={false}
           showTimer={false}
           showWorkTools={false}
@@ -3143,8 +3163,9 @@ export function ExamSessionPage() {
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent=""
           breadcrumbMiddle="TEST OVER"
+          {...(isTeacherTestView ? reviewToolbarProps : {})}
           isNextActive={false}
-          showReviewTools={false}
+          showReviewTools={isTeacherTestView}
           showStatusIcon={false}
           showTimer={false}
           showWorkTools={false}
@@ -3175,7 +3196,7 @@ export function ExamSessionPage() {
   if (sessionScreen === "passageIntro") {
     return (
       <main className="exam-module-shell">
-        <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />
+        {isTeacherTestView ? <ExamToolbar assessmentLabel={assessmentLabel} breadcrumbMiddle="TEACHER TEST VIEW" breadcrumbCurrent="" {...reviewToolbarProps} isNextActive={false} showTimer={false} showWorkTools={false} studentName={studentName} /> : <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />}
 
         <section className="exam-passage-intro-card" aria-labelledby="passage-intro-title">
           <div className="exam-passage-intro-panel">

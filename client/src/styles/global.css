@@ -5110,7 +5110,7 @@ button {
 .exam-choice-math {
   display: inline-flex;
   align-items: center;
-  min-height: 36px;
+  min-height: 24px;
 }
 
 .exam-choice-visual {
@@ -5138,16 +5138,16 @@ button {
   align-items: center;
   color: #111820;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 1em;
+  font-weight: 400;
   letter-spacing: 0;
-  line-height: 1.06;
+  line-height: 1.2;
 }
 
 .exam-katex-inline {
   display: inline-block;
   max-width: 100%;
-  vertical-align: middle;
+  vertical-align: baseline;
 }
 
 .exam-katex-display {
@@ -8794,7 +8794,7 @@ button {
   font-size: 0.65rem;
 }
 
-.staff-topbar:has(.staff-account-switch) {
+.staff-topbar:has(> .staff-account-switcher) {
   grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 12px;
 }
@@ -8829,6 +8829,19 @@ button {
 .staff-account-switcher {
   position: relative;
 }
+
+.staff-profile-menu { position: relative; justify-self: end; }
+.staff-profile-trigger { background: transparent; border-top: 0; border-right: 0; border-bottom: 0; font: inherit; text-align: left; cursor: pointer; }
+.staff-profile-trigger > div { display: grid; }
+.staff-profile-trigger > svg { color: #758195; }
+.staff-profile-popover { position: absolute; top: calc(100% + 12px); right: 0; z-index: 50; width: min(280px, calc(100vw - 28px)); overflow: hidden; border: 1px solid #d9e1e8; border-radius: 10px; background: #fff; color: #22364c; box-shadow: 0 18px 45px rgb(24 42 62 / 18%); }
+.staff-profile-popover > button, .staff-profile-popover > a { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 10px 14px; border: 0; border-top: 1px solid #e7ebef; background: transparent; color: inherit; font: inherit; font-size: .72rem; text-align: left; text-decoration: none; cursor: pointer; }
+.staff-profile-popover > button:hover, .staff-profile-popover > a:hover { background: #edf7f4; }
+.staff-profile-popover:has(.staff-account-menu), .student-portal-profile-popover:has(.staff-account-menu) { width: min(360px, calc(100vw - 28px)); max-height: calc(100dvh - 110px); overflow-y: auto; }
+.staff-account-switcher.is-menu-item { display: block; padding: 0; border-top: 1px solid #e7ebef; color: #22364c; }
+.staff-account-switcher.is-menu-item > .staff-account-switch { justify-content: flex-start; width: 100%; min-height: 44px; border: 0; border-radius: 0; padding: 10px 14px; background: transparent; color: inherit; font: inherit; font-size: .72rem; font-weight: 500; }
+.staff-account-switcher.is-menu-item > .staff-account-switch:hover { background: #edf7f4; color: #21675e; }
+.staff-account-switcher.is-menu-item > .staff-account-menu { position: static; width: 100%; border: 0; border-radius: 0; box-shadow: none; }
 
 .staff-account-menu {
   position: absolute;
@@ -9552,7 +9565,7 @@ button {
     padding: 0 16px;
   }
 
-  .staff-topbar:has(.staff-account-switch) {
+  .staff-topbar:has(> .staff-account-switcher) {
     grid-template-columns: auto minmax(0, 1fr) auto auto;
   }
 
@@ -11902,7 +11915,7 @@ button {
   z-index: 30;
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: minmax(230px, 1fr) minmax(280px, 440px) auto minmax(180px, 1fr);
+  grid-template-columns: minmax(230px, 1fr) minmax(280px, 440px) minmax(180px, 1fr);
   align-items: center;
   gap: 24px;
   min-height: 78px;
@@ -12597,7 +12610,7 @@ button {
 @media (max-width: 900px) {
   .student-portal-shell,
   .student-portal-shell.is-collapsed { grid-template-columns: 1fr; grid-template-rows: 66px auto; }
-  .student-portal-topbar { grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 12px; min-height: 66px; padding-inline: 16px; }
+  .student-portal-topbar { grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; min-height: 66px; padding-inline: 16px; }
   .student-portal-brand small,
   .student-portal-global-search,
   .student-portal-profile-trigger > strong,
@@ -14315,6 +14328,13 @@ button {
 .exam-math-panel .exam-rich-text figure img { margin: 0; }
 .exam-math-panel .exam-rich-text figcaption { margin-top: 6px; font: 12px/1.5 Arial, sans-serif; color: #555; }
 .exam-math-panel .exam-rich-text { white-space: normal; overflow-wrap: break-word; }
+/* Choice diagrams share a row with their bubble and letter, without prompt-image spacing. */
+.exam-math-panel .exam-choice:has(.exam-choice-visual, .exam-rich-text img) { align-items: center; }
+.exam-math-panel .exam-choice:has(.exam-choice-visual, .exam-rich-text img) > input { margin-top: 0; }
+.exam-math-panel .exam-choice .exam-rich-text > :is(img, figure, p):first-child,
+.exam-math-panel .exam-choice .exam-rich-text > :is(figure, p):first-child > img:first-child { margin-top: 0; }
+.exam-math-panel .exam-choice .exam-rich-text > :is(img, figure, p):last-child,
+.exam-math-panel .exam-choice .exam-rich-text > :is(figure, p):last-child > img:last-child { margin-bottom: 0; }
 .exam-session-shell .exam-math-document.is-math-drag .exam-standalone-stimulus { border: 0; padding: 0; margin-bottom: 10px; }
 .exam-session-shell .exam-math-document.is-math-drag .exam-standalone-stimulus .katex-display { margin: 0; text-align: left; }
 .exam-session-shell .exam-math-document.is-math-drag .exam-standalone-instructions { white-space: pre-line; margin-bottom: 28px; }

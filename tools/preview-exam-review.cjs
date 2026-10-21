@@ -11,5 +11,6 @@ const esbuild = require('esbuild');
     response.setHeader('Content-Type', file ? url.endsWith('.js') ? 'text/javascript' : url.endsWith('.css') ? 'text/css' : 'application/octet-stream' : 'text/html');
     response.end(file || '<!doctype html><html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Exam review · isolated QA</title><link rel="stylesheet" href="/exam-review-preview.css"><style>body{margin:0;font-family:system-ui}*{box-sizing:border-box}</style><div id="root"></div><script type="module" src="/exam-review-preview.js"></script></html>');
   });
-  server.listen(4321, '127.0.0.1', () => console.log('Isolated visual QA at http://127.0.0.1:4321/results/test-exam/corrections and /teacher'));
+  const port = Number(process.argv.find(arg => arg.startsWith('--port='))?.slice(7)) || 4321;
+  server.listen(port, '127.0.0.1', () => console.log(`Isolated visual QA at http://127.0.0.1:${port}/results/2025-2026-form-b/corrections and /teacher`));
 })();

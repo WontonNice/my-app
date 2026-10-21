@@ -1,0 +1,7 @@
+.math-batch-dialog{width:min(800px,96vw);max-width:96vw;max-height:92vh;overflow:auto}
+.math-batch-dialog .panel{min-width:0}.math-batch-dialog label{display:block;margin:16px 0}.math-batch-dialog textarea,.math-batch-dialog select{width:100%;box-sizing:border-box}.math-batch-dialog #batch-message{white-space:pre-wrap;color:#a22727}
+#math-builder .math-question-nav-list button.math-import-needs-editing{background:#fff0f0;border-color:#e6a4a4;border-left:4px solid #b42323;color:#7c2020}
+#math-builder .math-question-nav-list button.math-import-needs-editing.is-active{background:#ffe0e0;border-color:#b42323;box-shadow:0 0 0 1px #b42323}
+#math-builder .math-import-badge{font-weight:700;color:#a51d1d}
+.math-import-editing-banner{padding:12px 16px;border:1px solid #e6a4a4;border-left:4px solid #b42323;border-radius:8px;background:#fff0f0;color:#7c2020;margin-bottom:16px}
+.math-import-editing-banner>div{display:flex;align-items:center;justify-content:space-between;gap:12px}.math-import-editing-banner p{margin:8px 0;font-size:13px}.math-import-editing-banner details{font-size:13px}.math-import-editing-banner ul{padding-left:20px}

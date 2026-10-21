@@ -6,10 +6,26 @@
     "format": "nathan-tutors-official-passage-v1",
     "passage": "One passage object OR omit and use passages",
     "passages": "Ordered passage objects (optional)",
-    "mathQuestions": "Ordered Math question objects (optional)",
-    "review": "Optional Review for the Math batch, including expectedQuestionCount",
+    "question": "Optional single Math question instead of mathQuestions; no batch metadata required. The Content Editor also accepts a bare Math question object and assigns a stable ID if omitted for a single question.",
+    "mathQuestions": "Ordered Math question objects (optional); imported directly into the selected Math test and marked red for editing",
+    "batch": "Optional MathBatch metadata for matching source questions across chunks and retries",
+    "review": "Optional Review for this complete chunk; expectedQuestionCount counts only this payload",
     "reviewNotes": "string[]",
     "visuals": "Visual[]; legacy scope/description objects are accepted"
+  },
+  "mathBatch": {
+    "sourceId": "stable source identity including exam/form/version, supplied by teacher; never a question number alone",
+    "jobId": "stable job identifier within this source; use the same value on continuation chunks; requires sourceId",
+    "sourceLabel": "source exam/form/version display label",
+    "section": "math",
+    "requestedScope": "teacher request: selected question numbers, range, 1-based PDF pages, or full section",
+    "expectedQuestions": "unique original source question strings in source order; known inventory, not just this chunk",
+    "expectedTotal": "nonnegative integer or null if unknown; job-wide total",
+    "inventoryConfirmed": "boolean; true only if the complete inventory was established from source",
+    "chunkId": "distinct identifier for this complete chunk; repeat unchanged on exact retry",
+    "completedQuestions": "source question strings captured in complete chunks so far",
+    "unresolvedQuestions": "source question strings still requiring extraction or correction",
+    "nextScope": "exact next source question/page scope; blank only if none remains"
   },
   "passage": {
     "title": "string; blank allowed in draft, teacher title required to publish",

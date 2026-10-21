@@ -1,46 +1,100 @@
 # Math document import
 
-Use the same [universal extraction prompt](DOCUMENT_EXTRACTION_PROMPT.txt) for
-Math and English documents. In **Exam math**, the copy action uses this shared
-prompt. Returned `nathan-tutors-official-passage-v1` payloads are saved as review
-drafts; select the destination exam in review before publishing Math questions.
-Existing `nathan-tutors-math-question-v1` single-question JSON is still accepted
-by the legacy Math import review endpoint.
+In **Math**, choose the test you want to fill, then click **Import Math questions**.
+Upload one or more complete JSON files or paste the returned JSON, check the
+**Destination test**, and click **Import into Math test**. Questions are appended
+to that test immediately, in source order. The normal Math Content Editor opens
+on the first imported question. There is no separate Math review queue or publish
+step.
 
-See [Document import](DOCUMENT_IMPORT.md) for the exact contract, topic taxonomy,
-review gates, source-only answer/explanation rules, and fixture verification.
+Every new imported question has a red **Needs editing** label in the question
+list and a red banner in its editor. Edit the prompt, choices, answer, category,
+explanation and images with the existing controls, including MathLive and the
+live student preview. **Save math section** keeps the red labels. **Mark finished**
+saves your changes and clears the selected question's red label; other imported
+questions remain red. The outline's **Filter questions → Needs editing (red)**
+checkbox helps you find unfinished imports. Labels survive refreshes and restarts.
 
-Math uses `topic` for the main sorting category and `subtopic` for its specific
-skill. Both must be configured under **Math → Manage categories** before a new
-question can be saved or published. The editable taxonomy lives in
-`tools/math-topics.json`; the extraction contract includes `mathSpecificTopics`
-grouped under each main category. Leave uncertain classifications blank for
-teacher review. Existing questions without a detail are marked Unclassified.
+Missing answers stay empty. Missing classifications and source figures can be
+fixed in the same editor; unfinished imported questions can be saved while these
+are incomplete. Mark finished uses the normal Math question and category checks.
+Nothing solves questions, generates explanations or invents missing images.
+Source question numbers, PDF page references and unresolved figure descriptions
+appear in the red banner's source notes. These are teacher-only records in
+`tools/.content-drafts/math-import-status.json`; they are not written into exam
+source questions or student exports.
 
-Math uses the question fields: `type`, `topic`, `subtopic`, `prompt`, `instructions`,
-`choices`, `correctChoiceId`, `correctChoiceIds`, `requiredSelections`,
-`correctTextAnswers`, `entryLayout`, `explanation`, and optional visual/math
-presentation. Choice order is preserved; editor IDs and supplied answer keys are mapped to A-D by position. Numeric answer grading performs
-format normalization, not algebraic evaluation; only supplied accepted answers
-belong in `correctTextAnswers`. Unknown keys remain empty arrays/strings in drafts.
+Use **Copy extraction prompt** with your source document in ChatGPT. The shared
+[extraction prompt](DOCUMENT_EXTRACTION_PROMPT.txt) uses
+`nathan-tutors-official-passage-v1` with `mathQuestions` for batches. For one
+question, paste the question object directly or use `{"question": {...}}`.
+The `format` field may be omitted or use either
+`nathan-tutors-official-passage-v1` or `nathan-tutors-math-question-v1`.
+No batch metadata is needed. A single question without an ID gets a stable ID,
+so exact retries preserve the existing question and any teacher edits. Supplied
+IDs are retained. Multiple-question batches still require stable question IDs.
+Do not combine `question` with `mathQuestions` or passage fields.
+The importer does not directly extract PDFs; it accepts complete JSON from the
+existing external extraction workflow.
 
-Static source diagrams and tables remain source images; they must not be turned
-into interactive graph responses. Upload the supplied image or prepared crop in
-review, including visual choices. In the math editor, paste images directly at
-the text cursor with Ctrl+V / Command+V, or use Insert image / Paste image. Inline
-images can sit between paragraphs in prompts, supporting text and choices; click
-an image to change its description, width or remove it. The separate question
-image and choice image controls remain available.
+## Source fidelity and continuation
 
-Supported math responses are `multiple_choice`, `multi_select`, `numeric_entry`,
+Keep wording, choices and source order unchanged. Answers and explanations must
+come from supplied keys/guides, with blanks when absent or uncertain. `topic` is
+the main category and `subtopic` is its specific skill from
+`mathSpecificTopics[topic]`. Use **Manage categories** to maintain those values.
+
+For large imports, provide independently valid complete chunks with the same
+`batch.sourceId` (exam/form/version) and `batch.jobId`. Keep each original printed
+question number in `review.sourceQuestion`, and use `review.sourcePages` for
+1-based PDF page positions. Optional `expectedQuestions`, `expectedTotal`,
+`inventoryConfirmed`, `completedQuestions`, `unresolvedQuestions` and `nextScope`
+track the source inventory. Root `review.expectedQuestionCount` describes only
+that complete chunk. No inventory or human-review checkbox blocks insertion.
+
+Exact retries and overlapping chunks do not duplicate questions already in the
+test. Teacher edits and cleared red labels are preserved on retries. A changed
+copy of an already imported question does not overwrite it; edit its existing
+question in the Content Editor. Structurally unusable JSON records are reported
+individually while editable neighbors are inserted. The original input is kept
+in **Saved import drafts**. Correct an unusable record's JSON and import again;
+unpublished unusable records can be repaired by that retry. Saved Math imports
+also open the direct destination-test import form.
+
+## Images and supported interactions
+
+Paste a source image at the text cursor, use **Insert image**, or use the existing
+question/choice image controls. Preserve static figures as source images rather
+than inventing interactive graphs. An unattached figure is listed in source notes
+so you can attach its actual crop while editing. SVG and SVGZ source crops are
+supported alongside the existing image formats.
+
+Supported Math responses: `multiple_choice`, `multi_select`, `numeric_entry`,
 `short_response`, `grid_in`, `inline_dropdown`, `math_drag_drop`,
-`graph_point_select`, and `number_line_response`. The import accepts
-`short_answer` / `short answer` / `short-answer` as aliases for `short_response`.
-When changing numeric entry to short response, keep `correctTextAnswers`; the
-obsolete `entryLayout` is removed. The generated extraction prompt describes the
-keyed fields for every structured interaction. Dropdown templates may contain
-multiple menus on a line and math between them.
+`graph_point_select` and `number_line_response`. Short-answer spelling aliases
+normalize to `short_response`; this type omits `entryLayout`. Choice labels and
+supplied keys map to A, B, C, D by position while retaining original source labels
+privately. Unsupported response types remain in the retained input for manual
+authoring rather than being silently converted.
 
-Manage categories can remove used main categories and specific topics after you
-choose a replacement main category and specific topic. Save categories applies
-the reassignment; closing the manager discards pending changes.
+The direct endpoint is `POST /api/math/import` with `assessmentId` and `source`
+(or a saved `entryId`). It reuses the existing Math source writer, test registration
+and assessment registry. Existing source-hash checks still protect normal edits.
+Legacy private-draft/publication endpoints remain compatible for older clients;
+the Math import button no longer uses that workflow. English passage import is
+unchanged; see [Document import](DOCUMENT_IMPORT.md).
+
+## Verification
+
+Run `npm run test:document-import`, `npm run content-editor:test`,
+`npm run content-editor:validate`, `npm run test:exam-review` and
+`npm run typecheck`. Integration tests use isolated copies of exam sources and
+check direct insertion, missing keys across supported interactions, red-label
+persistence and clearing, corrected retries, partial failures, destination
+isolation, private metadata and protection of teacher edits.
+
+For browser QA, run `node tools/preview-content-studio.mjs --port=4320`.
+It creates a disposable content copy under `tools/.content-drafts/qa-*` while
+serving the repository's UI. `--keep` retains it and `--resume=<absolute path>`
+reopens it. `POST /__qa/fail-next-save` makes its next content save fail. This
+harness never writes authored exam content.

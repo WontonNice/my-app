@@ -410,3 +410,26 @@ test('math answer summaries preserve numeric keys and readable formula choices',
   assert.equal(ui.mathAnswerSummaryText({ type: 'multiple_choice', correctChoiceId: 'B', choices: [{ id: 'B', text: 'one-half', math: '\\frac{1}{2}' }] }), 'B — one-half');
   assert.equal(ui.mathAnswerSummaryText({ type: 'multi_select', correctChoiceIds: [] }), 'Not set');
 });
+
+test('imported Math drafts enable answer controls directly, and saved questions unlock in place', () => {
+  const question = { id: 'imported-q1', type: 'multiple_choice', correctChoiceId: '', importNeedsEditing: true };
+  const app = { mathDraft: { questions: [question] }, selectedMathQuestionIndex: 0 };
+  const ui = vm.runInNewContext(`${source}\nstudioUI;`, { app, URL, DocumentImport, renderMathTextHtml: value => value });
+  const bars = [];
+  const panel = { prepend: bar => bars.push(bar) };
+  const inputs = Array.from({ length: 5 }, () => ({ disabled: true, focused: false, closest: () => panel, focus() { this.focused = true; } }));
+  const root = { querySelectorAll: () => inputs, querySelector: () => ({ remove() {} }) };
+  ui.element = (tag, className, text = '') => ({ tag, className, text, children: [], append(...children) { this.children.push(...children); } });
+  ui.lockMathAnswerKey(root);
+  assert.ok(inputs.every(input => !input.disabled), 'draft keys must be directly selectable for every supported response control');
+  assert.equal(bars.at(-1).children.length, 1, 'drafts do not require an unlock action');
+  delete question.importNeedsEditing;
+  ui.lockMathAnswerKey(root);
+  assert.ok(inputs.every(input => input.disabled));
+  bars.at(-1).children[1].onclick();
+  assert.ok(inputs.every(input => !input.disabled), 'Edit answer key must unlock the current question without a summary dialog');
+  assert.equal(inputs[0].focused, true);
+  question.id = 'different-question';
+  ui.lockMathAnswerKey(root);
+  assert.ok(inputs.every(input => input.disabled), 'unlocking a saved question does not unlock other saved questions');
+});

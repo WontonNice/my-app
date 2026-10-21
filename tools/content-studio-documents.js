@@ -35,7 +35,7 @@ const DocumentStudio = {
       <button type="button" class="primary" id="document-accept">Save all as review drafts</button>`;
     container.querySelector('#document-accept').onclick = () => this.accept(app.passageImportSource || document.querySelector('#official-passage-import-source').value);
   },
-  open(id) { this.entry = clone(this.state.entries.find(e => e.id === id)); this.index = 0; this.render(); },
+  open(id) { if (this.state.entries.find(e=>e.id===id)?.batch) { MathBatchStudio.open(id); return; } this.entry = clone(this.state.entries.find(e => e.id === id)); this.index = 0; this.render(); },
   async save() {
     this.state = await api('/api/document-drafts', { method: 'POST', body: JSON.stringify({ revision: this.state.revision, entry: this.entry }) });
     this.entry = clone(this.state.entries.find(e => e.id === this.entry.id));

@@ -14,6 +14,19 @@ const completeResponses = [
   { questionId: 'math-1', whyChosenIncorrect: '', whyCorrectAnswerCorrect: 'Adding three to two gives five.', understanding: 5, questionType: 'Algebra' },
 ];
 
+test('imported questions with missing answer keys never score an empty response as correct', () => {
+  const cases = [
+    [{ ...math, type: 'multiple_choice', correctChoiceId: '' }, ''],
+    [{ ...math, type: 'multi_select', correctChoiceIds: [] }, []],
+    [{ ...math, type: 'graph_point_select', correctPointIds: [] }, []],
+    [{ ...math, type: 'math_drag_drop', dragDropSlots: [{ id: 'box', correctItemId: '' }] }, { box: '' }],
+    [{ ...math, type: 'inline_dropdown', dropdowns: [{ id: 'menu', correctChoiceId: '' }] }, { menu: '' }],
+    [{ ...math, type: 'number_line_response', numberLineResponse: { correctValue: null, correctDirection: 'right', correctEndpoint: 'closed' } }, { value: '0', direction: 'right', endpoint: 'closed' }],
+    [{ ...math, correctTextAnswers: [] }, ''],
+  ];
+  for (const [question, answer] of cases) assert.equal(isExamQuestionCorrect(question, answer), false, question.type);
+});
+
 test('math results retain separate main and specific topic totals without merging identically named skills', () => {
   const questions = [
     { ...math, id: 'a', topic: 'Algebra', subtopic: 'Word problems' },
@@ -52,6 +65,18 @@ test('corrections include only completed sections; unanswered questions count as
   assert.deepEqual(reviewQuestions(content, partial).map(item => [item.section, item.number, item.isCorrect]), [['math', 1, false]]);
   const correct = createExamResult(content, { 'ela-1': 'B', 'math-1': '5' });
   assert.deepEqual(validateCorrections(reviewQuestions(content, correct), []), []);
+});
+
+test('Math corrections retain bounded vector drawings and accept handwritten reasoning without dummy text', () => {
+  const drawing = [{ color: '#173747', width: 4, points: [[20, 30], [40.12, 50.18]] }];
+  const response = { ...completeResponses[1], whyCorrectAnswerCorrect: '', drawing };
+  const validated = validateCorrections(reviewQuestions(content, result), [completeResponses[0], response]);
+  assert.equal(validated[1].whyCorrectAnswerCorrect, '');
+  assert.deepEqual(validated[1].drawing[0].points, [[20, 30], [40.1, 50.2]]);
+  for (const bad of [null, 'svg', [{...drawing[0],color:'url(unsafe)'}], [{...drawing[0],width:999}], [{...drawing[0],points:[[NaN,0]]}], [{...drawing[0],points:[[-1,10]]}], [{...drawing[0],points:[[0,361]]}], [{...drawing[0],points:[]}], Array(151).fill(drawing[0]), [{...drawing[0],points:Array(6001).fill([1,1])}]]) {
+    assert.throws(() => validateCorrections(reviewQuestions(content, result), [completeResponses[0], { ...response, drawing: bad }]));
+  }
+  assert.throws(() => validateCorrections(reviewQuestions(content, result), [{ ...completeResponses[0], whyCorrectAnswerCorrect: '', drawing }, completeResponses[1]]));
 });
 
 test('digital results retain valid per-question timing for teacher analytics', () => {
@@ -182,6 +207,11 @@ test('API enforces access and lets students submit or update one completed corre
   assert.equal(submissions.data.submissions[0].responses[0].understanding, 3);
   assert.equal(submissions.data.submissions[0].responses[0].questionType, 'Inference');
   assert.equal(submissions.data.submissions[0].questions[0].question.id, 'ela-1');
+  const drawing = [{color:'#2563eb',width:2,points:[[20,30],[60,80]]}];
+  const drawn = await request('student', '/student/test-exam', 'POST', {resultVersion:view.data.resultVersion,responses:[{...completeResponses[1],whyCorrectAnswerCorrect:'',drawing}]});
+  assert.equal(drawn.status,200);
+  assert.deepEqual((await request('student','/student/test-exam')).data.submission.responses[1].drawing,drawing);
+  assert.deepEqual((await request('teacher','/teacher/test-exam/submissions')).data.submissions[0].responses[1].drawing,drawing);
   await request('teacher', '/teacher/test-exam/access', 'PATCH', { open: false });
   assert.equal((await request('student', '/student/test-exam')).status, 403);
   assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: completeResponses })).status, 403);

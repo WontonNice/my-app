@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import { gunzipSync, gzipSync } from "node:zlib";
 import ts from "typescript";
 import documentImport from "./document-import.cjs";
+import mathBatches from "./math-import-batch.cjs";
 import { documentDraftStore, publicationContent } from "./document-drafts.mjs";
 import examExporter from "./export-exam-content.cjs";
 import learningExporter from "./export-learning-catalog.cjs";
@@ -15,6 +16,7 @@ import { createGlossaryRichText } from "./content-studio-glossary.js";
 import { passageCategories, normalizePassageCategory as normalizeCategory, patchPassageCategory } from "./passage-category-editor.mjs";
 import { readMathTopicConfiguration, saveMathTopicConfiguration, validateMathClassification } from "./math-topic-editor.mjs";
 import { mathPreviewAsset } from "./math-preview-bundle.mjs";
+import { compareExamState } from "./exam-duplicates.mjs";
 
 const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const passageSetsRoot = join(workspaceRoot, "client", "src", "content", "exams", "passageSets");
@@ -93,6 +95,17 @@ const advancedTones = ["blue", "coral", "emerald", "gold"];
 const mathImportFormat = "nathan-tutors-math-question-v1";
 const passageImportFormat = documentImport.format;
 const documentDrafts = documentDraftStore(workspaceRoot, sanitizeDocumentDraft);
+const mathImportStatusPath = join(workspaceRoot, "tools", ".content-drafts", "math-import-status.json");
+async function readMathImportStatus() {
+  try { return JSON.parse(await readFile(mathImportStatusPath, "utf8")); }
+  catch (error) { if (error.code === "ENOENT") return {}; throw error; }
+}
+async function writeMathImportStatus(status) {
+  await mkdir(dirname(mathImportStatusPath), { recursive: true });
+  await writeFile(mathImportStatusPath + ".tmp", JSON.stringify(status, null, 2), "utf8");
+  await rename(mathImportStatusPath + ".tmp", mathImportStatusPath);
+}
+const mathImportStatusKey = (assessmentId, questionId) => JSON.stringify([assessmentId, questionId]);
 const importTaxonomy = () => ({ reading: topicsForPassageSection("reading"), revising_editing_a: topicsForPassageSection("revising_editing_a"), math: mathTopics, mathSpecificTopics: Object.fromEntries(mathTopicConfiguration.categories.map(category => [category.label, category.topics.map(topic => topic.label)])) });
 const practiceDifficulties = ["easy", "medium", "hard", "elite"];
 const defaultPracticeTopics = [
@@ -1870,7 +1883,7 @@ function normalizeMathNumberLine(numberLine, questionNumber, choiceId) {
   };
 }
 
-function normalizeMathChoice(choice, index, questionNumber) {
+function normalizeMathChoice(choice, index, questionNumber, { allowIncomplete = false } = {}) {
   const fallbackId = String.fromCharCode(65 + index);
   const id = String(choice?.id || fallbackId).trim().toUpperCase();
   if (!/^[A-Z]$/.test(id)) {
@@ -1885,8 +1898,11 @@ function normalizeMathChoice(choice, index, questionNumber) {
       `Math question ${questionNumber} answer ${id} must use only one of formula, image, or number-line formatting.`,
     );
   }
-  const text = requiredText(choice?.text || math, `Math question ${questionNumber} answer ${id}`);
   const html = sanitizeInlineRichText(choice?.html);
+  const hasInlineImage = /<img src="\/exam-images\/[a-zA-Z0-9._-]+"[^>]*>/.test(html);
+  const text = allowIncomplete || image || numberLine || hasInlineImage
+    ? String(choice?.text || math || "")
+    : requiredText(choice?.text || math, `Math question ${questionNumber} answer ${id}`);
   return {
     id,
     ...(html ? { html } : {}),
@@ -1916,7 +1932,7 @@ function normalizeMathDropdownOption(option, optionIndex, questionNumber, dropdo
   return { id, ...(math ? { math } : {}), text };
 }
 
-function normalizeMathQuestion(question, assessmentId, index) {
+function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete = false } = {}) {
   try { question = documentImport.normalizeChoiceLabels(question); }
   catch (error) { throw new EditorError(400, error.message); }
   const questionNumber = index + 1;
@@ -1940,7 +1956,7 @@ function normalizeMathQuestion(question, assessmentId, index) {
       : {}),
     ...(instructionsHtml ? { instructionsHtml } : {}),
     points: Number.isFinite(Number(question.points)) ? Math.max(1, Number(question.points)) : 1,
-    prompt: requiredText(question.prompt, `Math question ${questionNumber}`, { preserve: true }),
+    prompt: allowIncomplete ? String(question.prompt || "") : requiredText(question.prompt, `Math question ${questionNumber}`, { preserve: true }),
     ...(promptHtml ? { promptHtml } : {}),
     ...(typeof question.stimulus === "string" && question.stimulus.trim()
       ? { stimulus: question.stimulus.trim() }
@@ -1951,22 +1967,23 @@ function normalizeMathQuestion(question, assessmentId, index) {
   };
 
   if (type === "multiple_choice" || type === "multi_select") {
-    if (!Array.isArray(question.choices) || question.choices.length < 2 || question.choices.length > 8) {
+    const sourceChoices = Array.isArray(question.choices) ? question.choices : [];
+    if (!allowIncomplete && sourceChoices.length < 2 || sourceChoices.length > 8) {
       throw new EditorError(400, `Math question ${questionNumber} needs between two and eight answer choices.`);
     }
-    const choices = question.choices.map((choice, choiceIndex) =>
-      normalizeMathChoice(choice, choiceIndex, questionNumber),
+    const choices = sourceChoices.map((choice, choiceIndex) =>
+      normalizeMathChoice(choice, choiceIndex, questionNumber, { allowIncomplete }),
     );
     if (new Set(choices.map((choice) => choice.id)).size !== choices.length) {
       throw new EditorError(400, `Math question ${questionNumber} answer IDs must be unique.`);
     }
     const availableChoiceIds = new Set(choices.map((choice) => choice.id));
     if (type === "multiple_choice") {
-      const correctChoiceId = requiredText(
+      const correctChoiceId = (allowIncomplete ? String(question.correctChoiceId || "") : requiredText(
         question.correctChoiceId,
         `Math question ${questionNumber} correct answer`,
-      ).toUpperCase();
-      if (!availableChoiceIds.has(correctChoiceId)) {
+      )).toUpperCase();
+      if (correctChoiceId && !availableChoiceIds.has(correctChoiceId) || !allowIncomplete && !correctChoiceId) {
         throw new EditorError(400, `Choose a valid correct answer for math question ${questionNumber}.`);
       }
       return { ...baseQuestion, choices, correctChoiceId, type };
@@ -1975,7 +1992,7 @@ function normalizeMathQuestion(question, assessmentId, index) {
       ? Array.from(new Set(question.correctChoiceIds.map((choiceId) => String(choiceId).toUpperCase())))
       : [];
     if (
-      correctChoiceIds.length < 2 ||
+      !allowIncomplete && correctChoiceIds.length < 2 ||
       correctChoiceIds.some((choiceId) => !availableChoiceIds.has(choiceId))
     ) {
       throw new EditorError(400, `Math question ${questionNumber} needs at least two correct answer bubbles.`);
@@ -1984,7 +2001,7 @@ function normalizeMathQuestion(question, assessmentId, index) {
       ...baseQuestion,
       choices,
       correctChoiceIds,
-      requiredSelections: correctChoiceIds.length,
+      requiredSelections: correctChoiceIds.length || (Number.isInteger(question.requiredSelections) ? question.requiredSelections : undefined),
       type,
     };
   }
@@ -1999,7 +2016,7 @@ function normalizeMathQuestion(question, assessmentId, index) {
           ),
         )
       : [];
-    if (!correctTextAnswers.length) {
+    if (!allowIncomplete && !correctTextAnswers.length) {
       throw new EditorError(400, `Math question ${questionNumber} needs at least one accepted answer.`);
     }
     if (type === "short_response") {
@@ -2027,11 +2044,11 @@ function normalizeMathQuestion(question, assessmentId, index) {
     const dragDropSlots = Array.isArray(question.dragDropSlots)
       ? question.dragDropSlots.map((slot, slotIndex) => {
           const slotId = requiredText(slot?.id, `Math question ${questionNumber} box ${slotIndex + 1} ID`);
-          const correctItemId = requiredText(
+          const correctItemId = allowIncomplete ? String(slot?.correctItemId || "") : requiredText(
             slot?.correctItemId,
             `Math question ${questionNumber} box ${slotIndex + 1} correct answer`,
           );
-          if (!itemIds.has(correctItemId)) {
+          if (correctItemId && !itemIds.has(correctItemId) || !allowIncomplete && !correctItemId) {
             throw new EditorError(400, `Math question ${questionNumber} box ${slotIndex + 1} needs a valid answer.`);
           }
           return { correctItemId, id: slotId };
@@ -2089,7 +2106,7 @@ function normalizeMathQuestion(question, assessmentId, index) {
     const correctPointIds = Array.isArray(question.correctPointIds)
       ? Array.from(new Set(question.correctPointIds.map(String)))
       : [];
-    if (!correctPointIds.length || correctPointIds.some((pointId) => !points.some((point) => point.id === pointId))) {
+    if (!allowIncomplete && !correctPointIds.length || correctPointIds.some((pointId) => !points.some((point) => point.id === pointId))) {
       throw new EditorError(400, `Math question ${questionNumber} needs at least one valid correct graph point.`);
     }
     return {
@@ -2107,7 +2124,7 @@ function normalizeMathQuestion(question, assessmentId, index) {
         yMin: numberValue(graph.yMin, 0),
         yStep: Math.max(0.1, numberValue(graph.yStep, 1)),
       },
-      requiredSelections: correctPointIds.length,
+      requiredSelections: correctPointIds.length || (Number.isInteger(question.requiredSelections) ? question.requiredSelections : undefined),
       type,
     };
   }
@@ -2119,8 +2136,9 @@ function normalizeMathQuestion(question, assessmentId, index) {
     }
     const min = Number(response.min);
     const max = Number(response.max);
-    const correctValue = Number(response.correctValue);
-    if (![min, max, correctValue].every(Number.isFinite) || max <= min || correctValue < min || correctValue > max) {
+    const missingValue = response.correctValue === null || response.correctValue === undefined || response.correctValue === "";
+    const correctValue = missingValue ? null : Number(response.correctValue);
+    if (![min, max].every(Number.isFinite) || max <= min || (!allowIncomplete || !missingValue) && (!Number.isFinite(correctValue) || correctValue < min || correctValue > max)) {
       throw new EditorError(400, `Math question ${questionNumber} has invalid number-line values.`);
     }
     if (!Number.isFinite(Number(response.tickStep)) || Number(response.tickStep) <= 0 || (max - min) / Number(response.tickStep) > 1000) throw new EditorError(400, `Math question ${questionNumber} needs positive number-line tick spacing (at most 1,000 intervals).`);
@@ -2184,11 +2202,11 @@ function normalizeMathQuestion(question, assessmentId, index) {
           `Math question ${questionNumber} dropdown ${dropdownNumber} option IDs must be unique.`,
         );
       }
-      const correctChoiceId = requiredText(
+      const correctChoiceId = allowIncomplete ? String(dropdown.correctChoiceId || "") : requiredText(
         dropdown.correctChoiceId,
         `Math question ${questionNumber} dropdown ${dropdownNumber} correct answer`,
       );
-      if (!options.some((option) => option.id === correctChoiceId)) {
+      if (correctChoiceId && !options.some((option) => option.id === correctChoiceId) || !allowIncomplete && !correctChoiceId) {
         throw new EditorError(
           400,
           `Choose a valid correct answer for math question ${questionNumber} dropdown ${dropdownNumber}.`,
@@ -2323,7 +2341,7 @@ function sanitizeDocumentDraft(content) {
 }
 
 async function previewPassageImport(input) {
-  const entries = documentImport.parse(input.source).map(entry => ({ ...entry, content: sanitizeDocumentDraft(entry.content) }));
+  const entries = mathBatches.parse(input.source).map(entry => ({ ...entry, content: sanitizeDocumentDraft(entry.content) }));
   const warnings = entries.flatMap(entry => documentImport.issues(entry, importTaxonomy()).map(issue => `${issue.scope}: ${issue.message}`));
   const { passages } = await listPassages();
   for (const entry of entries) {
@@ -2355,12 +2373,12 @@ async function verifyDocumentPublication(input, kind, destination = "exam") {
   return { entry, content: publicationContent({ ...entry, content: input }, { allowUnresolved: publishNow }) };
 }
 
-function normalizeMathSection(input, assessment) {
+function normalizeMathSection(input, assessment, incompleteQuestionIds = new Set()) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Math section data is invalid.");
   }
   const questions = Array.isArray(input.questions)
-    ? input.questions.map((question, index) => normalizeMathQuestion(question, assessment.id, index))
+    ? input.questions.map((question, index) => normalizeMathQuestion(question, assessment.id, index, { allowIncomplete: incompleteQuestionIds.has(question.id) }))
     : [];
   if (!questions.length) throw new EditorError(400, "Add at least one math question before saving.");
   if (new Set(questions.map((question) => question.id)).size !== questions.length) {
@@ -2479,7 +2497,7 @@ async function saveMathImage(input) {
   };
 }
 
-async function saveMath(input) {
+async function saveMath(input, { importedStatuses = {} } = {}) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Math section data is invalid.");
   }
@@ -2492,8 +2510,12 @@ async function saveMath(input) {
     ? state.mathSections.find((candidate) => candidate.fileName === existingTest.mathSectionFileName)
     : undefined;
   const configuration = await readMathTopicConfiguration(workspaceRoot);
+  const importStatus = await readMathImportStatus();
+  const incompleteQuestionIds = new Set((Array.isArray(input.questions) ? input.questions : []).filter(question =>
+    importedStatuses[question.id] || importStatus[mathImportStatusKey(assessmentId, question.id)]?.needsEditing && question.importNeedsEditing !== false,
+  ).map(question => question.id));
   const previousQuestions = new Map((existingSection?.questions || []).map(question => [question.id, question]));
-  if (Array.isArray(input.questions)) input = { ...input, questions: input.questions.map(question => ({ ...question, ...validateMathClassification(question, configuration, previousQuestions.get(question.id)) })) };
+  if (Array.isArray(input.questions)) input = { ...input, questions: input.questions.map(question => incompleteQuestionIds.has(question.id) ? question : ({ ...question, ...validateMathClassification(question, configuration, previousQuestions.get(question.id)) })) };
   const section = normalizeMathSection(
     {
       ...input,
@@ -2501,7 +2523,7 @@ async function saveMath(input) {
       fileName: existingSection?.fileName || input.fileName,
       id: existingSection?.id || input.id,
     },
-    assessment,
+    assessment, incompleteQuestionIds,
   );
   const mathFilePath = join(mathSetsRoot, section.fileName);
   if (existingSection) {
@@ -2510,6 +2532,10 @@ async function saveMath(input) {
       throw new EditorError(409, "This math file changed after it was loaded. Refresh the studio before saving.");
     }
   }
+  // Record the red label before the source write, so an interrupted import can
+  // never leave a newly inserted question without its editing status.
+  for (const [id, status] of Object.entries(importedStatuses)) importStatus[mathImportStatusKey(assessmentId, id)] = { ...status, needsEditing: true };
+  if (Object.keys(importedStatuses).length) await writeMathImportStatus(importStatus);
   await mkdir(mathSetsRoot, { recursive: true });
   await writeFile(mathFilePath, buildMathSource(section), "utf8");
 
@@ -2563,11 +2589,88 @@ async function saveMath(input) {
     )}\n`,
     "utf8",
   );
+  for (const question of input.questions) {
+    const status = importStatus[mathImportStatusKey(assessmentId, question.id)];
+    if (status && question.importNeedsEditing === false) status.needsEditing = false;
+  }
+  if (Object.keys(importStatus).length) await writeMathImportStatus(importStatus);
   return {
     assessmentId,
     questionCount: section.questions.length,
     target: relativePath(mathFilePath),
   };
+}
+
+async function importMathIntoTest(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) throw new EditorError(400, "Math import data is invalid.");
+  const initial = await getState();
+  if (!initial.assessments.some(assessment => assessment.id === input.assessmentId)) throw new EditorError(400, "Choose a destination Math test.");
+  let drafts;
+  try {
+    drafts = input.source !== undefined
+      ? await documentDrafts.import(input.source, undefined, [], "exam", { batch: input.batch, captureFailures: true, directImport: true })
+      : await documentDrafts.read();
+  } catch (error) { throw new EditorError(400, error.message); }
+  const result = { assessmentId: input.assessmentId, added: [], existing: [], errors: [] };
+  if (input.source !== undefined && drafts.lastImport?.error) {
+    result.errors.push(drafts.lastImport.error);
+    return result;
+  }
+  const entryIds = input.entryId ? [input.entryId] : drafts.lastImport?.entryIds || [];
+  for (const entryId of entryIds) {
+    const entry = drafts.entries.find(entry => entry.id === entryId && entry.kind === "math" && entry.batch);
+    if (!entry) continue;
+    if (!entry.batch.items.length) continue;
+    drafts = await documentDrafts.publishBatch({ revision: drafts.revision, entryId, itemIds: entry.batch.items.map(item => item.id) }, async (entry, items) => mutateMath(async () => {
+      const state = await getState(), assessment = state.assessments.find(assessment => assessment.id === input.assessmentId);
+      const test = state.tests.find(test => test.assessmentId === assessment.id);
+      const existing = state.mathSections.find(section => section.fileName === test?.mathSectionFileName);
+      const questions = [...(existing?.questions || [])], importedStatuses = {}, successes = [];
+      const statuses = await readMathImportStatus();
+      for (const item of items) {
+        try {
+          if (item.error) throw new Error(item.error);
+          if (item.conflicts?.length) throw new Error("A changed copy of this source question was received. The existing question was preserved.");
+          const q = mathBatches.question(entry, item);
+          if (!q) throw new Error("No editable question was found in this record.");
+          const id = q.id.startsWith(assessment.id + "-") ? q.id : `${assessment.id}-${q.id}`;
+          const old = questions.find(question => question.id === id);
+          const status = statuses[mathImportStatusKey(assessment.id, id)];
+          if (old && (item.publications?.[assessment.id]?.questionId === id || status?.entryId === entry.id && status?.itemId === item.id)) {
+            result.existing.push(id); successes.push({ item, id }); continue;
+          }
+          const content = publicationContent({ kind: "math", content: { ...entry.content, questions: [q] } }, { allowUnresolved: true });
+          const normalized = normalizeMathQuestion({ ...content.questions[0], id }, assessment.id, questions.length, { allowIncomplete: true });
+          if (old) throw new Error("This question ID already exists in the test. Its content was preserved.");
+          // Source IDs/receipts handle retries. Repeated wording is legitimate
+          // (especially figure-based questions), so never deduplicate by prompt.
+          questions.push(normalized);
+          importedStatuses[id] = {
+            entryId: entry.id, itemId: item.id,
+            source: [entry.batch.sourceLabel || q.review?.sourceFile, item.sourceQuestion ? `Question ${item.sourceQuestion}` : "", q.review?.sourcePages?.length ? `PDF pages ${q.review.sourcePages.join(", ")}` : ""].filter(Boolean).join(" · "),
+            notes: [...new Set([
+              ...(entry.content.review?.warnings || []).map(warning => warning.message),
+              ...(q.review?.warnings || []).map(warning => warning.message),
+              ...(q.visuals || []).filter(visual => !visual.image).map(visual => `Attach source visual: ${visual.description || "Source figure"}${visual.sourcePage ? ` (PDF page ${visual.sourcePage})` : ""}.`),
+              ...mathBatches.itemIssues(entry, item, importTaxonomy()).filter(issue => ["ANSWER_KEY_MISSING", "SOURCE_KEY_AMBIGUOUS", "POSSIBLE_FORMATTING_LOSS", "COUNT_MISMATCH"].includes(issue.code)).map(issue => issue.message),
+            ])],
+          };
+          result.added.push(id); successes.push({ item, id });
+        } catch (error) {
+          const message = `Source question ${item.sourceQuestion || item.questionId || item.position + 1}: ${error.message}`;
+          result.errors.push(message);
+          item.publicationErrors ||= {}; item.publicationErrors[assessment.id] = error.message;
+        }
+      }
+      if (Object.keys(importedStatuses).length) await saveMath({ ...existing, assessmentId: assessment.id, questions }, { importedStatuses });
+      for (const { item, id } of successes) {
+        item.publications ||= {}; item.publications[assessment.id] = { questionId: id, publishedAt: new Date().toISOString() };
+        delete item.publicationErrors?.[assessment.id];
+      }
+    }));
+  }
+  if (!entryIds.some(id => drafts.entries.some(entry => entry.id === id && entry.kind === "math"))) result.errors.push("This import does not contain Math questions.");
+  return result;
 }
 
 function parseTestFile(filePath, passages, mathSections) {
@@ -2971,6 +3074,14 @@ async function getState() {
   const { advancedPassageErrors, advancedPassages } = await listAdvancedPassages();
   const { mathErrors, mathSections } = await listMathSections();
   const { testErrors, tests } = await listTests(passages, mathSections);
+  const importStatus = await readMathImportStatus();
+  for (const section of mathSections) {
+    const assessmentId = tests.find(test => test.mathSectionFileName === section.fileName)?.assessmentId;
+    section.questions = section.questions.map(question => {
+      const status = importStatus[mathImportStatusKey(assessmentId, question.id)];
+      return status ? { ...question, importNeedsEditing: status.needsEditing, importSource: status.source, importNotes: status.notes || [] } : question;
+    });
+  }
   const standaloneSource = await readFile(standaloneItemsPath, "utf8");
   const standaloneItems = await listStandaloneItems();
   return {
@@ -3370,7 +3481,7 @@ async function handleRequest(request, response) {
       response.end(html);
       return;
     }
-    if (request.method === "GET" && ["/document-import.cjs", "/content-studio-documents.js", "/content-studio-bank.css", "/content-studio-bank.js", "/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-images.js", "/content-studio-glossary.js"].includes(url.pathname)) {
+    if (request.method === "GET" && ["/content-studio-compare.js", "/content-studio-compare.css", "/math-import-batch.cjs", "/content-studio-batches.js", "/content-studio-batches.css", "/document-import.cjs", "/content-studio-documents.js", "/content-studio-bank.css", "/content-studio-bank.js", "/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-images.js", "/content-studio-glossary.js"].includes(url.pathname)) {
       const asset = await readFile(join(workspaceRoot, "tools", url.pathname.slice(1)), "utf8");
       response.writeHead(200, {
         "Cache-Control": "no-store",
@@ -3452,6 +3563,19 @@ async function handleRequest(request, response) {
         "Content-Type": contentType,
       });
       response.end(await readFile(join(examImagesRoot, fileName)));
+      return;
+    }
+    if (request.method === "GET" && url.pathname === "/api/tests/compare") {
+      try {
+        const report = await compareExamState(await getState(), url.searchParams.get("left"), url.searchParams.get("right"), {
+          imageFingerprint: async src => {
+            if (!/^\/exam-images\/[a-zA-Z0-9._-]+$/.test(src || "")) return null;
+            try { const data = await readFile(join(examImagesRoot, src.slice("/exam-images/".length))); return createHash("sha256").update(src.endsWith(".svgz") ? gunzipSync(data) : data).digest("hex"); }
+            catch { return null; }
+          },
+        });
+        sendJson(response, 200, report);
+      } catch (error) { throw new EditorError(400, error.message); }
       return;
     }
     if (request.method === "GET" && url.pathname === "/api/state") {
@@ -3542,13 +3666,60 @@ async function handleRequest(request, response) {
       sendJson(response, 200, await previewMathImport(await readJson(request)));
       return;
     }
+    if (request.method === "POST" && url.pathname === "/api/math/import") {
+      verifyEditRequest(request);
+      sendJson(response, 201, await importMathIntoTest(await readJson(request)));
+      return;
+    }
     if (request.method === "POST" && url.pathname === "/api/document-publish-math") {
       verifyEditRequest(request);
       const input = await readJson(request);
+      if (Array.isArray(input.itemIds)) {
+        const result=await documentDrafts.publishBatch(input,async (entry,items)=>mutateMath(async ()=>{
+          const state=await getState(), assessment=state.assessments.find(a=>a.id===input.assessmentId);
+          if (!assessment) throw new EditorError(400,'Choose a destination exam.');
+          const test=state.tests.find(t=>t.assessmentId===assessment.id);
+          const existing=state.mathSections.find(m=>m.fileName===test?.mathSectionFileName);
+          const questions=[...(existing?.questions || [])], successes=[];
+          for (const item of items) {
+            try {
+              if (item.skipped || item.conflicts?.length || item.possibleDuplicate && !item.distinctConfirmed) throw new Error('Resolve skipped/duplicate/conflicting status before publication.');
+              const blocked=mathBatches.itemIssues(entry,item,importTaxonomy()).filter(i=>i.blocking);
+              if (blocked.length) throw new Error(blocked.map(i=>i.message).join('\n'));
+              const q=mathBatches.question(entry,item);
+              const content={...entry.content,questions:[q],review:{...entry.content.review,expectedQuestionCount:1,sourceReviewed:q.review.sourceReviewed,completenessReviewed:q.review.completenessReviewed}};
+              const verified=await verifyDocumentPublication(content,'math');
+              const id=q.id.startsWith(assessment.id+'-') ? q.id : `${assessment.id}-${q.id}`;
+              const normalized=normalizeMathQuestion({...verified.content.questions[0],id},assessment.id,0);
+              const old=questions.find(q=>q.id===id);
+              if (old && JSON.stringify(mathBatches.canonical(normalizeMathQuestion(old,assessment.id,0)))!==JSON.stringify(mathBatches.canonical(normalized))) throw new Error('This source ID already exists with different content. Teacher edits were preserved.');
+              if (!old && questions.some(q=>q.prompt===normalized.prompt)) throw new Error('Possible duplicate prompt in this exam. Review it in Exam math before publishing.');
+              if (!old) questions.push(normalized);
+              successes.push({item,id,snapshotFingerprint:mathBatches.contentFingerprint(q)});
+            } catch(error) { item.publicationErrors ||= {}; item.publicationErrors[assessment.id]=error.message; }
+          }
+          if (questions.length!==(existing?.questions.length || 0)) await saveMath({...existing,assessmentId:assessment.id,questions});
+          // Persisting this ledger is a separate step. Deterministic IDs and the full
+          // normalized content comparison above reconcile a source-write/ledger gap.
+          for (const {item,id,snapshotFingerprint} of successes) {
+            item.publications ||= {}; item.publications[assessment.id]={questionId:id,publishedAt:new Date().toISOString(),snapshotFingerprint};
+            delete item.publicationErrors?.[assessment.id];
+          }
+        }));
+        sendJson(response,201,result); return;
+      }
       const drafts = await documentDrafts.read();
       if (input.revision !== drafts.revision) throw new EditorError(409, "Drafts changed. Reopen before publishing.");
       const entry = drafts.entries.find(e => e.id === input.entryId && e.kind === "math");
       if (!entry) throw new EditorError(404, "Math import draft not found.");
+      if(entry.batch) {
+        if(entry.batch.items.some(item=>item.skipped || item.error || item.conflicts?.length || item.possibleDuplicate && !item.distinctConfirmed))throw new EditorError(400,'Use the batch review queue to select resolved, non-skipped questions for publication.');
+        // Older clients explicitly confirm the entire document. Preserve that
+        // approval contract while enforcing the same item checks and outcomes.
+        const reviewed={...entry,content:{...entry.content,questions:entry.content.questions.map(q=>({...q,review:{...q.review,sourceReviewed:entry.content.review.sourceReviewed,completenessReviewed:entry.content.review.completenessReviewed}}))}};
+        const blocked=entry.batch.items.flatMap(item=>mathBatches.itemIssues(reviewed,item,importTaxonomy())).filter(issue=>issue.blocking);
+        if(blocked.length)throw new EditorError(400,blocked.map(issue=>issue.message).join('\n'));
+      }
       const verified = await verifyDocumentPublication(entry.content, "math");
       const state = await getState();
       const assessment = state.assessments.find(a => a.id === input.assessmentId);
@@ -3558,7 +3729,7 @@ async function handleRequest(request, response) {
       const questions = verified.content.questions.map(q => ({ ...q, id: q.id.startsWith(assessment.id + "-") ? q.id : `${assessment.id}-${q.id}` }));
       if (questions.some(q => existing?.questions.some(old => old.id === q.id || old.prompt === q.prompt))) throw new EditorError(409, "A Math question already exists in this exam. Review it in Exam math.");
       const result = await mutateMath(() => saveMath({ ...existing, assessmentId: assessment.id, questions: [...(existing?.questions || []), ...questions] }));
-      await documentDrafts.published(entry.id, entry.content);
+      await documentDrafts.published(entry.id, entry.content, assessment.id);
       sendJson(response, 201, { math: result });
       return;
     }
@@ -3568,9 +3739,11 @@ async function handleRequest(request, response) {
       else if (request.method === "POST") {
         const input = await readJson(request);
         try {
-          sendJson(response, 200, input.source !== undefined
-            ? await documentDrafts.import(input.source, input.revision, input.destination === "advanced" ? (await listAdvancedPassages()).advancedPassages : (await listPassages()).passages, input.destination || "exam")
-            : await documentDrafts.save(input));
+          sendJson(response, 200, input.operation
+            ? await documentDrafts.batchAction(input)
+            : input.source !== undefined
+              ? await documentDrafts.import(input.source, input.revision, input.destination === "advanced" ? (await listAdvancedPassages()).advancedPassages : (await listPassages()).passages, input.destination || "exam", {batch:input.batch,captureFailures:input.captureFailures===true,publishedMath:(await getState()).mathSections.flatMap(s=>s.questions.map(q=>({...q,assessmentId:s.assessmentId})))})
+              : await documentDrafts.save(input));
         } catch (error) {
           if (error.code) throw error;
           throw new EditorError(/changed|already|exists/i.test(error.message) ? 409 : 400, error.message);

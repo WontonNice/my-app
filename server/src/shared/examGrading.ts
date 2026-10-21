@@ -81,7 +81,7 @@ function hasExactIds(actualIds: string[], expectedIds: string[]) {
 
 export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAnswer | undefined) {
   if (question.type === "multiple_choice" || question.type === "transition_drop") {
-    return typeof answer === "string" && answer === question.correctChoiceId;
+    return Boolean(question.correctChoiceId) && typeof answer === "string" && answer === question.correctChoiceId;
   }
 
   if (question.type === "multi_select" || question.type === "graph_point_select") {
@@ -89,7 +89,7 @@ export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAn
       question.type === "graph_point_select"
         ? question.correctPointIds ?? []
         : question.correctChoiceIds ?? [];
-    return Array.isArray(answer) && hasExactIds(answer, expectedIds);
+    return expectedIds.length > 0 && Array.isArray(answer) && hasExactIds(answer, expectedIds);
   }
 
   if (question.type === "math_drag_drop") {
@@ -98,7 +98,7 @@ export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAn
     return (
       slots.length > 0 &&
       Object.keys(placements).length === slots.length &&
-      slots.every((slot) => placements[slot.id] === slot.correctItemId)
+      slots.every((slot) => Boolean(slot.correctItemId) && placements[slot.id] === slot.correctItemId)
     );
   }
 

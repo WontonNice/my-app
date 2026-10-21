@@ -59,7 +59,7 @@ export type ExamNumberLine = {
 export type ExamNumberLineResponse = {
   correctDirection: "left" | "right";
   correctEndpoint: "closed" | "open";
-  correctValue: number;
+  correctValue: number | null;
   labelStep: number;
   max: number;
   min: number;

@@ -32,6 +32,7 @@ const ExamResultsPage = lazy(() =>
   import("./pages/ExamResultsPage").then((module) => ({ default: module.ExamResultsPage })),
 );
 const ExamCorrectionsPage = lazy(() => import("./pages/ExamCorrectionsPage").then(module => ({ default: module.ExamCorrectionsPage })));
+const TeacherCorrectionsPage = lazy(() => import("./pages/TeacherCorrectionsPage").then(module => ({ default: module.TeacherCorrectionsPage })));
 const LibraryCorrectionsPage = lazy(() => import("./pages/LibraryCorrectionsPage").then(module => ({ default: module.LibraryCorrectionsPage })));
 const ExamSessionPage = lazy(() =>
   import("./pages/ExamSessionPage").then((module) => ({ default: module.ExamSessionPage })),
@@ -108,6 +109,7 @@ function LegacyStudentHomeRedirect() {
 
 function CurrentPage() {
   const path = window.location.pathname;
+  if (/^\/teacher\/corrections\/[^/]+\/?$/.test(path)) return <TeacherCorrectionsPage />;
   if (path.startsWith("/teacher/answer-sheets")) return <AnswerSheetsPage />;
   if (path.startsWith("/answer-sheets/")) return withClassAccess(<AnswerSheetsPage />);
   const correctionRoute = studentCorrectionRoute(path);

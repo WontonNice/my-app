@@ -66,7 +66,7 @@ export async function boardSummary(board: BoardRow, user: User): Promise<BoardSu
     const lookup = await supabase.auth.admin.getUserById(member.user_id);
     participants.push({ id: member.user_id, name: lookup.data.user ? boardName(lookup.data.user) : "Participant", role: member.role });
   }
-  return { id: board.id, title: board.title, studentId: board.student_id, studentName: boardName(access.student), ownerId: board.owner_id, role: access.role, archivedAt: board.archived_at, updatedAt: board.updated_at, revision: board.revision, epoch: board.epoch, participants };
+  return { id: board.id, title: board.title, studentId: board.student_id, studentName: boardName(access.student), ownerId: board.owner_id, role: access.role, canControlDrawing: boardTeacher(user) && access.role !== "viewer", archivedAt: board.archived_at, updatedAt: board.updated_at, revision: board.revision, epoch: board.epoch, participants };
 }
 export function decodeBoard(state: string) {
   const doc = new Y.Doc();
@@ -89,7 +89,7 @@ export async function commitBoardUpdate(id: string, user: User, epoch: string, u
       if (doc.store.pendingStructs || doc.store.pendingDs) throw boardFail("The board needs to resynchronize before this change can be saved.", 409);
       validateBoard(doc);
       const after = readBoard(doc);
-      checkBoardMutation(before, after, access.role, access.canManage);
+      checkBoardMutation(before, after, access.role, access.canManage, boardTeacher(user));
       if (!access.canManage) for (const [nodeId, previous] of protectedTypes) {
         const map = doc.getMap<Y.Map<unknown>>("nodes").get(nodeId);
         if (map !== previous.map || map.get("text") !== previous.text) throw boardFail("A teacher or owner has locked this source card.", 403);

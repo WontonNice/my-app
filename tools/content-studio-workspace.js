@@ -363,7 +363,7 @@ const studioUI = {
     if (sectionPicker) sectionPicker.value = tab;
     this.syncSaveState?.();
     const toggle = document.getElementById("studio-library-toggle");
-    if (toggle) { toggle.hidden = false; toggle.disabled = tab === "practice" || tab === "question-bank"; }
+    if (toggle) { toggle.hidden = false; toggle.disabled = tab === "practice" || tab === "question-bank" || tab === "compare"; }
     // Open the first item only on initial entry; switching workspaces keeps drafts intact.
     if (tab === "standalone" && !app.standaloneDraft && app.state.standaloneItems[0]) selectStandaloneItem(app.state.standaloneItems.find(item => item.id === this.readPreference('part-b-item', ''))?.id || app.state.standaloneItems[0].id);
     if (tab === "tests" && !app.testDraft && app.state.assessments[0]) selectAssessment(app.state.assessments.find(item => item.id === this.readPreference('builder-exam', ''))?.id || app.state.assessments[0].id);
@@ -374,6 +374,7 @@ const studioUI = {
       standalone: app.standaloneDirty ? "Unsaved Part B changes." : "Part B · reusable stand-alone questions.",
       tests: "Exam builder · arrange Reading, Part A, and Part B.",
       math: app.mathDirty ? "Unsaved math changes." : "Exam math · questions, answer keys, and student preview.",
+      compare: "Compare tests · find repeated questions and passages in saved content.",
       practice: "Practice drafts save on this device. Preview to validate before publishing.",
     };
     setStatus(messages[tab] || "Ready.");
@@ -869,7 +870,7 @@ const studioUI = {
     const root = document.getElementById("math-builder");
     this.moveSaveBar(root, "Save math section");
     const importButton = document.getElementById("open-math-import");
-    importButton.textContent = 'Import question';
+    importButton.textContent = 'Import Math questions';
     document.getElementById('add-math-question').textContent = '+ Question';
     root.querySelector(".studio-save-bar")?.prepend(importButton);
     const manage = this.element('button', 'secondary', 'Manage categories'); manage.type = 'button'; manage.id = 'studio-manage-math-topics';
@@ -953,6 +954,9 @@ const studioUI = {
       };
       detailOptions();
       const filters = this.element('details', 'studio-math-outline-filters', '<summary>Filter questions</summary><div></div>'); filters.querySelector('div').append(category, specific);
+      const editingLabel = this.element('label', '', '<input type="checkbox"> Needs editing (red)');
+      const needsEditing = editingLabel.querySelector('input'); needsEditing.checked = Boolean(this.filters.get('math-needs-editing'));
+      filters.querySelector('div').append(editingLabel);
       questionNav.prepend(heading, search, filters);
       const filter = () => {
         this.filters.set("math-questions", search.value);
@@ -962,7 +966,7 @@ const studioUI = {
           const searchMatch = /^\d+$/.test(query)
             ? query !== String(Number(button.dataset.mathQuestionIndex) + 1)
             : !`${item.prompt} ${item.type} ${item.topic} ${item.subtopic || 'unclassified'}`.toLowerCase().includes(query);
-          button.hidden = searchMatch || Boolean(category.value && item.topic !== category.value) || Boolean(specific.value && (specific.value === '__unclassified__' ? item.subtopic && item.subtopic !== 'Unclassified' : item.subtopic !== specific.value));
+          button.hidden = searchMatch || needsEditing.checked && !item.importNeedsEditing || Boolean(category.value && item.topic !== category.value) || Boolean(specific.value && (specific.value === '__unclassified__' ? item.subtopic && item.subtopic !== 'Unclassified' : item.subtopic !== specific.value));
         });
         let empty = questionNav.querySelector(".studio-search-empty");
         if (!empty) { empty = this.element("p", "field-note studio-search-empty", "No questions match. Clear the search to see all questions."); questionNav.append(empty); }
@@ -971,6 +975,7 @@ const studioUI = {
       search.addEventListener("input", filter);
       category.onchange = () => { this.filters.set('math-main', category.value); detailOptions(); filter(); };
       specific.onchange = () => { this.filters.set('math-detail', specific.value); filter(); };
+      needsEditing.onchange = () => { this.filters.set('math-needs-editing', needsEditing.checked); filter(); };
       this.filterMathQuestions = filter;
       filter();
     }
@@ -1016,16 +1021,27 @@ const studioUI = {
     if (this.mathKeyEditingId !== q.id) this.mathKeyEditingId = null;
     const inputs = [...root.querySelectorAll('[data-math-correct-choice], #math-accepted-answers, [data-math-dropdown-correct], [data-math-graph-correct-index], [data-math-drag-correct-index], [data-math-number-line-response-field^="correct"]')];
     if (!inputs.length) return;
-    const editing = this.mathKeyEditingId === q.id;
+    const editing = Boolean(q.importNeedsEditing) || this.mathKeyEditingId === q.id;
     inputs.forEach(input => input.disabled = !editing);
     root.querySelector('.studio-math-key-lock')?.remove();
     const bar = this.element('div', 'studio-question-key-lock studio-math-key-lock');
     const value = this.element('p', 'field-note');
-    value.innerHTML = renderMathTextHtml(`${editing ? 'Key editing enabled' : 'Answer key locked'} · ${this.mathAnswerSummaryText(q)}`);
+    value.innerHTML = this.mathAnswerKeyStatus(q);
+    bar.append(value);
+    if (q.importNeedsEditing) { inputs[0].closest('.math-answer-editor')?.prepend(bar); return; }
     const button = this.element('button', 'secondary', editing ? 'Finish key editing' : 'Edit answer key'); button.type = 'button';
-    button.onclick = () => { if (editing) { this.mathKeyEditingId = null; this.lockMathAnswerKey(root); } else this.openMathAnswerSummary(); };
-    bar.append(value, button);
+    button.onclick = () => { this.mathKeyEditingId = editing ? null : q.id; this.lockMathAnswerKey(root); if (!editing) inputs[0].focus(); };
+    bar.append(button);
     inputs[0].closest('.math-answer-editor')?.prepend(bar);
+  },
+  mathAnswerKeyStatus(question) {
+    const label = question.importNeedsEditing ? 'Draft answer key' : this.mathKeyEditingId === question.id ? 'Key editing enabled' : 'Answer key locked';
+    return renderMathTextHtml(`${label} · ${this.mathAnswerSummaryText(question)}`);
+  },
+  refreshMathAnswerKeyStatus() {
+    const question = app.mathDraft?.questions[app.selectedMathQuestionIndex];
+    const summary = document.querySelector('#math-builder .studio-math-key-lock p');
+    if (question && summary) summary.innerHTML = this.mathAnswerKeyStatus(question);
   },
   async openMathTopicManager() {
     if (app.mathDirty) { setStatus('Save or discard the math draft before changing shared categories.', 'error'); return; }
@@ -1830,7 +1846,7 @@ Object.assign(studioUI, {
     header.append(document.getElementById('open-document-drafts'));
     nav.hidden = false;
     nav.classList.add('studio-universal-nav');
-    const names = { passages: 'Passages', standalone: 'Part B', tests: 'Exam builder', math: 'Math', advanced: 'SAT', practice: 'Practice', 'question-bank': 'Question bank' };
+    const names = { passages: 'Passages', standalone: 'Part B', tests: 'Exam builder', math: 'Math', compare: 'Compare tests', advanced: 'SAT', practice: 'Practice', 'question-bank': 'Question bank' };
     nav.querySelectorAll('[data-tab]').forEach(button => { button.title = button.textContent; button.setAttribute('aria-label', button.textContent); button.textContent = names[button.dataset.tab]; });
     picker.after(nav);
     header.append(document.getElementById('studio-library-toggle'), document.getElementById('open-document-drafts'));

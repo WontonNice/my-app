@@ -1,37 +1,12 @@
 import { useEffect, useState } from "react";
-import { resolveExamContent, type ExamQuestion } from "../content/exams";
-import { createExamResult, isExamQuestionCorrect, type SelectedAnswer, type SelectedAnswers, type ExamResult } from "../lib/examResults";
+import { resolveExamContent } from "../content/exams";
+import { createExamResult, type SelectedAnswers, type ExamResult } from "../lib/examResults";
 import { enterStudentExamAnswers, getExamCorrectionSubmissions, setExamCorrectionsAccess, type AssessmentSection, type StudentProgressSnapshot, type TeacherAssessment } from "../lib/api";
 import { reviewQuestions, type CorrectionSubmission } from "../../../server/src/shared/examCorrections";
-import { ExamReviewQuestion, ExamText } from "./ExamReviewQuestion";
+import { AppLink } from "./AppLink";
+import { PaperAnswerGrid } from "./PaperAnswerGrid";
 
-function hasEnteredAnswer(answer: SelectedAnswer | undefined) {
-  if (typeof answer === "string") return Boolean(answer.trim());
-  if (Array.isArray(answer)) return answer.length > 0;
-  return Boolean(answer && Object.values(answer).some(value => value.trim()));
-}
-
-function AnswerFeedback({ answer, question }: { answer: SelectedAnswer | undefined; question: ExamQuestion }) {
-  const hasAnswer = hasEnteredAnswer(answer);
-  const correct = hasAnswer && isExamQuestionCorrect(question, answer);
-  return <span className={`exam-paper-answer-feedback ${hasAnswer ? correct ? "is-correct" : "is-incorrect" : "is-blank"}`}>{hasAnswer ? correct ? "Correct answer" : "Incorrect answer" : "No answer selected"}</span>;
-}
-
-function AnswerInput({ question, answer, onChange }: { question: ExamQuestion; answer?: SelectedAnswer; onChange: (value: SelectedAnswer) => void }) {
-  const scalar = typeof answer === "string" ? answer : "";
-  const values = answer && typeof answer === "object" && !Array.isArray(answer) ? answer : {};
-  const multiple = Array.isArray(answer) ? answer : [];
-  const choices = question.type === "graph_point_select" ? question.graph?.points.map(point => ({ id: point.id, text: `(${point.x}, ${point.y})` })) : question.choices;
-  if (["multiple_choice", "transition_drop"].includes(question.type)) return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div aria-label="Student answer" className="exam-paper-bubbles" role="group">{question.choices?.map(choice => { const selected = scalar === choice.id; const correctChoice = question.correctChoiceId === choice.id; return <button aria-label={`Select ${choice.id}: ${choice.text}`} aria-pressed={selected} className={`${selected ? `is-selected ${correctChoice ? "is-correct" : "is-incorrect"}` : ""}${scalar && correctChoice && !selected ? " is-answer-key" : ""}`} key={choice.id} onClick={() => onChange(choice.id)} title={choice.text} type="button">{choice.id}</button>; })}<button aria-label="Mark this question blank" aria-pressed={!scalar} className={`exam-paper-blank-bubble${!scalar ? " is-selected" : ""}`} onClick={() => onChange("")} title="Blank" type="button">—</button></div></div>;
-  if (["multi_select", "graph_point_select"].includes(question.type)) { const correct = hasEnteredAnswer(answer) && isExamQuestionCorrect(question, answer); const correctIds = question.type === "graph_point_select" ? question.correctPointIds ?? [] : question.correctChoiceIds ?? []; return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div aria-label="Student answers" className="exam-paper-bubbles is-multiple" role="group">{choices?.map(choice => { const selected = multiple.includes(choice.id); return <button aria-label={`Toggle ${choice.id}: ${choice.text}`} aria-pressed={selected} className={`${selected ? `is-selected ${correct ? "is-correct" : "is-incorrect"}` : ""}${multiple.length && correctIds.includes(choice.id) && !selected ? " is-answer-key" : ""}`} key={choice.id} onClick={() => onChange(selected ? multiple.filter(id => id !== choice.id) : [...multiple, choice.id])} title={choice.text || choice.id} type="button">{question.type === "graph_point_select" ? choice.text : choice.id}</button>; })}<button aria-label="Clear all selections" className="exam-paper-blank-bubble" onClick={() => onChange([])} title="Clear all" type="button">—</button></div></div>; }
-  if (question.type === "inline_dropdown") return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div className="exam-paper-structured">{question.dropdowns?.map(dropdown => <label key={dropdown.id}><span>{dropdown.id}</span><select value={values[dropdown.id] ?? ""} onChange={event => onChange({ ...values, [dropdown.id]: event.target.value })}><option value="">Blank</option>{dropdown.options.map(option => <option key={option.id} value={option.id}>{option.text || option.math || option.id}</option>)}</select></label>)}</div></div>;
-  if (["category_sort", "matrix_choice", "table_match"].includes(question.type)) return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div className="exam-paper-structured">{question.items?.map(item => <label key={item.id}><span><ExamText text={item.text} html={item.html} /></span><select value={values[item.id] ?? ""} onChange={event => { const next = { ...values }; if (event.target.value) next[item.id] = event.target.value; else delete next[item.id]; onChange(next); }}><option value="">Blank</option>{question.categories?.map(category => <option key={category.id} value={category.id}>{category.title}</option>)}</select></label>)}</div></div>;
-  if (question.type === "math_drag_drop") return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div className="exam-paper-structured">{question.dragDropSlots?.map(slot => <label key={slot.id}><span>{slot.id}</span><select value={values[slot.id] ?? ""} onChange={event => { const next = { ...values }; if (event.target.value) next[slot.id] = event.target.value; else delete next[slot.id]; onChange(next); }}><option value="">Not placed</option>{question.items?.map(item => <option key={item.id} value={item.id}>{item.text || item.id}</option>)}</select></label>)}</div></div>;
-  if (question.type === "number_line_response") return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><div className="exam-paper-number-line"><label>Boundary value<input type="text" inputMode="decimal" value={values.value ?? ""} onChange={event => onChange({ ...values, value: event.target.value })} /></label><label>Direction<select value={values.direction ?? ""} onChange={event => onChange({ ...values, direction: event.target.value })}><option value="">Blank</option><option value="left">Left</option><option value="right">Right</option></select></label><label>Endpoint<select value={values.endpoint ?? ""} onChange={event => onChange({ ...values, endpoint: event.target.value })}><option value="">Blank</option><option value="open">Open</option><option value="closed">Closed</option></select></label></div></div>;
-  return <div className="exam-paper-answer-stack"><AnswerFeedback answer={answer} question={question} /><input aria-label="Student answer" type="text" value={scalar} placeholder="Enter answer; leave empty for blank" onChange={event => onChange(event.target.value)} /></div>;
-}
-
-function PaperAnswerEntry({ assessment, student, accessToken, onSaved }: { assessment: TeacherAssessment; student: StudentProgressSnapshot; accessToken: string; onSaved: (result: ExamResult) => void }) {
+export function PaperAnswerEntry({ assessment, student, accessToken, onSaved }: { assessment: TeacherAssessment; student: StudentProgressSnapshot; accessToken: string; onSaved: (result: ExamResult) => void }) {
   const form = assessment.forms?.find(form => form.id === assessment.formAssignments?.[student.id]);
   const content = resolveExamContent({ ...assessment, passageOrder: form?.passageOrder });
   const availableSections: AssessmentSection[] = [
@@ -64,11 +39,12 @@ function PaperAnswerEntry({ assessment, student, accessToken, onSaved }: { asses
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [saveSucceeded, setSaveSucceeded] = useState(false);
+  const [hasInvalidAnswers, setHasInvalidAnswers] = useState(false);
   const allItems = reviewQuestions(content, createExamResult(content, {}, sections));
   const selectedAnswers = Object.fromEntries(allItems.filter(item => Object.hasOwn(answers, item.question.id)).map(item => [item.question.id, answers[item.question.id]]));
   const result = createExamResult(content, selectedAnswers, sections);
   async function save() {
-    if (!confirmed || saving || !sections.length) return;
+    if (!confirmed || saving || !sections.length || hasInvalidAnswers) return;
     setSaving(true); setMessage(""); setSaveSucceeded(false);
     try {
       const result = await enterStudentExamAnswers(accessToken, assessment.id, student.id, { answers: selectedAnswers, completedSections: sections, completedDate });
@@ -81,57 +57,16 @@ function PaperAnswerEntry({ assessment, student, accessToken, onSaved }: { asses
   return <section className="exam-paper-entry">
     <p>{existingResult ? "Update the student's saved answers. Saving will replace the current exam result. " : "Enter answers from the student's original paper. "}{form ? `Numbering follows ${form.label}.` : "Numbering follows the default exam order."} Empty answers count as incorrect.</p>
     <fieldset disabled={saving}>
-      <div className="exam-paper-entry-settings"><label>Test date<input type="date" required value={completedDate} onChange={event => setCompletedDate(event.target.value)} /></label><div className="exam-answer-checkboxes">{availableSections.map(section => <label key={section}><input type="checkbox" checked={sections.includes(section)} onChange={event => { setSections(current => event.target.checked ? [...current, section] : current.filter(value => value !== section)); setConfirmed(false); }} />{section === "english" ? "English" : "Math"}</label>)}</div></div>
-      <div className="exam-paper-question-list">{allItems.map(item => <article key={item.question.id}><strong className="exam-paper-question-number"><span>{item.section === "english" ? "ELA" : "Math"}</span>{item.number}</strong><div className="exam-paper-answer-control"><AnswerInput question={item.question} answer={answers[item.question.id]} onChange={answer => {
-        const next = { ...answers, [item.question.id]: answer }; setAnswers(next); setConfirmed(false); setSaveSucceeded(false);
+      <div className="exam-paper-entry-settings"><label>Test date<input type="date" required value={completedDate} onChange={event => { setCompletedDate(event.target.value); setConfirmed(false); }} /></label><div className="exam-answer-checkboxes">{availableSections.map(section => <label key={section}><input type="checkbox" checked={sections.includes(section)} onChange={event => { setSections(current => event.target.checked ? [...current, section] : current.filter(value => value !== section)); setConfirmed(false); setHasInvalidAnswers(false); }} />{section === "english" ? "English" : "Math"}</label>)}</div></div>
+      <PaperAnswerGrid key={sections.join(":")} items={allItems} answers={answers} onValidityChange={setHasInvalidAnswers} onChange={next => {
+        setAnswers(next); setConfirmed(false); setSaveSucceeded(false);
         try { localStorage.setItem(draftKey, JSON.stringify(next)); } catch { setMessage("Device storage is unavailable. Keep this page open until you save."); }
-      }} /></div><details><summary>View question</summary><ExamReviewQuestion item={item} showAnswers={false} /></details></article>)}</div>
+      }} />
       <div className="exam-paper-summary"><strong>Score preview: {result.correct} / {result.total} ({result.percentage}%)</strong>{result.subjects.map(subject => <span key={subject.subject}>{subject.subject}: {subject.correct} / {subject.total}</span>)}</div>
       <label className="exam-paper-confirm"><input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} />I checked these answers against the student's paper, including any blanks, and understand that saving replaces the current result.</label>
-      <button type="button" className="exam-review-primary" disabled={!confirmed || !sections.length || !completedDate || !allItems.length} onClick={save}>{saving ? "Saving…" : `${existingResult ? "Update" : "Save"} answers for ${student.fullName}`}</button>
+      <button type="button" className="exam-review-primary" disabled={!confirmed || !sections.length || !completedDate || !allItems.length || hasInvalidAnswers} onClick={save}>{saving ? "Saving…" : `${existingResult ? "Update" : "Save"} answers for ${student.fullName}`}</button>
     </fieldset>
     {message && <p role={saveSucceeded ? "status" : "alert"} className={saveSucceeded ? "exam-review-success" : "exam-review-error"}>{message}</p>}
-  </section>;
-}
-
-function CorrectionSubmissionReview({ studentName, submission }: { studentName: string; submission: CorrectionSubmission }) {
-  const items = submission.responses.flatMap(response => {
-    const item = submission.questions.find(question => question.question.id === response.questionId);
-    return item ? [{ item, response }] : [];
-  });
-  const [active, setActive] = useState(0);
-  const [isQuestionMenuOpen, setIsQuestionMenuOpen] = useState(false);
-  const [revealedQuestionIds, setRevealedQuestionIds] = useState<Set<string>>(() => new Set());
-  const current = items[active] ?? items[0];
-  if (!current) return <p className="exam-review-error">The submitted explanations were found, but their exam questions are no longer available.</p>;
-  const { item, response } = current;
-  const isRevealed = revealedQuestionIds.has(item.question.id);
-  const goTo = (index: number) => setActive(Math.max(0, Math.min(index, items.length - 1)));
-
-  return <section className="teacher-exam-correction-review exam-correction-work">
-    <header className="teacher-exam-correction-review-toolbar">
-      <div className="teacher-exam-correction-review-controls">
-        <button aria-label="Previous correction" disabled={active === 0} onClick={() => goTo(active - 1)} type="button">‹</button>
-        <button aria-expanded={isQuestionMenuOpen} onClick={() => setIsQuestionMenuOpen(value => !value)} type="button">Questions <span aria-hidden="true">{isQuestionMenuOpen ? "▴" : "▾"}</span></button>
-        <button aria-label="Next correction" disabled={active >= items.length - 1} onClick={() => goTo(active + 1)} type="button">›</button>
-      </div>
-      <div><strong>{studentName}</strong><span>{active + 1} of {items.length} · Submitted {new Date(submission.submittedAt).toLocaleString()}</span></div>
-    </header>
-    {isQuestionMenuOpen ? <nav className="teacher-exam-correction-question-menu" aria-label="Submitted correction navigation">{items.map(({ item: question }, index) => <button aria-current={index === active ? "step" : undefined} className={index === active ? "is-active" : ""} key={question.question.id} onClick={() => { goTo(index); setIsQuestionMenuOpen(false); }} type="button">{question.section === "math" ? "Math" : "English"} {question.number}</button>)}</nav> : null}
-    <article className="exam-correction-viewer">
-      <div className="exam-correction-question-heading">
-        <strong>{item.section === "english" ? "English" : "Math"} · Question {item.number}</strong>
-        <div className="exam-correction-question-actions"><span className="is-incorrect">Incorrect answer</span><button aria-pressed={isRevealed} onClick={() => setRevealedQuestionIds(currentIds => { const next = new Set(currentIds); if (next.has(item.question.id)) next.delete(item.question.id); else next.add(item.question.id); return next; })} type="button">{isRevealed ? "Hide answer" : "Show answer"}</button></div>
-      </div>
-      <ExamReviewQuestion answerPresentation="correction" item={item} showAnswers={isRevealed} variant="exam" />
-    </article>
-    <section className="exam-correction-response-panel teacher-correction-writing">
-      <header><div><p>Student correction</p><h4>Explanation and self assessment</h4></div><span>Submitted</span></header>
-      {response.questionType && <div><h5>Student-selected question type</h5><p>{response.questionType}</p></div>}
-      {response.whyChosenIncorrect ? <div><h5>Why the chosen answer is wrong</h5><p>{response.whyChosenIncorrect}</p></div> : null}
-      <div><h5>Why the correct answer is correct</h5><p>{response.whyCorrectAnswerCorrect}</p></div>
-      <strong>Understanding: {response.understanding} / 5</strong>
-    </section>
   </section>;
 }
 
@@ -142,7 +77,6 @@ export function TeacherExamTools({ assessment, students, accessToken, onAssessme
 }) {
   const [entryOpen, setEntryOpen] = useState(new URLSearchParams(window.location.search).get("enterAnswers") === assessment.id);
   const [submissionsOpen, setSubmissionsOpen] = useState(false);
-  const [selectedSubmissionKey, setSelectedSubmissionKey] = useState("");
   const [studentId, setStudentId] = useState("");
   const [submissions, setSubmissions] = useState<CorrectionSubmission[]>([]);
   const [loading, setLoading] = useState(true);
@@ -161,7 +95,6 @@ export function TeacherExamTools({ assessment, students, accessToken, onAssessme
     const interval = window.setInterval(() => setRefresh(value => value + 1), 15000);
     return () => window.clearInterval(interval);
   }, [submissionsOpen]);
-  const activeSubmission = submissions.find(submission => `${submission.studentId}:${submission.resultVersion}` === selectedSubmissionKey) ?? submissions[0];
   async function toggleAccess() {
     setSaving(true); setError("");
     try { onAssessmentChange(await setExamCorrectionsAccess(accessToken, assessment.id, !assessment.correctionsOpen)); }
@@ -183,7 +116,7 @@ export function TeacherExamTools({ assessment, students, accessToken, onAssessme
     {submissionsOpen && <section className="teacher-correction-submissions"><header><h3>Correction submissions</h3><button type="button" disabled={loading} onClick={() => { setLoading(true); setRefresh(value => value + 1); }}>Refresh submissions</button></header>{loading ? <p>Loading submissions…</p> : !submissions.length ? <p>No correction submissions yet.</p> : <><div aria-label="Submitted corrections" className="teacher-correction-submission-list">{submissions.map(submission => {
       const key = `${submission.studentId}:${submission.resultVersion}`;
       const name = students.find(student => student.id === submission.studentId)?.fullName ?? "Student";
-      return <button aria-pressed={activeSubmission === submission} key={key} onClick={() => setSelectedSubmissionKey(key)} type="button"><strong>{name}</strong><span>Updated {new Date(submission.submittedAt).toLocaleString()} · {submission.responses.length} correction{submission.responses.length === 1 ? "" : "s"}</span></button>;
-    })}</div>{activeSubmission ? <CorrectionSubmissionReview key={`${activeSubmission.studentId}:${activeSubmission.resultVersion}`} studentName={students.find(student => student.id === activeSubmission.studentId)?.fullName ?? "Student"} submission={activeSubmission} /> : null}</>}</section>}
+      return <AppLink className="teacher-correction-submission-link" key={key} href={`/teacher/corrections/${encodeURIComponent(assessment.id)}?student=${encodeURIComponent(submission.studentId)}&version=${encodeURIComponent(submission.resultVersion)}`}><strong>{name}</strong><span>Updated {new Date(submission.submittedAt).toLocaleString()} · {submission.responses.length} correction{submission.responses.length === 1 ? "" : "s"}</span><b>Open analysis →</b></AppLink>;
+    })}</div></>}</section>}
   </section>;
 }

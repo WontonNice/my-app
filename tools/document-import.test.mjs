@@ -263,7 +263,8 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.equal(numberingReloaded.richText, numberedSaved.data.passage.richText);
     const numberingBook = JSON.parse(await readFile(join(dir, 'server/data/library-books.json'), 'utf8')).find(b => b.id === numberedSettings.id);
     assert.deepEqual(numberingBook.passageSet.passage.lines.filter(l => l.lineNumber).map(l => [l.lineNumber, l.text]), [['1', 'First body.'], ['2', 'Bold body'], ['3', 'Last body.']]);
-    const mathPayload = { format: contract.format, mathQuestions: [{ id: 'fixture-math-1', type: 'numeric_entry', topic: state.mathTopicConfiguration.categories.find(category => category.topics.some(topic => topic.label === 'Evaluating expressions')).label, subtopic: 'Evaluating expressions', prompt: 'What number appears in the supplied table?', correctTextAnswers: [], explanation: '', entryLayout: 'plain' }] };
+    const mathCategory=state.mathTopicConfiguration.categories[0];
+    const mathPayload = { format: contract.format, mathQuestions: [{ id: 'fixture-math-1', type: 'numeric_entry', topic: mathCategory.label, subtopic: mathCategory.topics[0].label, prompt: 'What number appears in the supplied table?', correctTextAnswers: [], explanation: '', entryLayout: 'plain' }] };
     let maths = (await call('/api/document-drafts', { source: JSON.stringify(mathPayload) })).data;
     const math = approve(maths.entries.find(e => e.kind === 'math'));
     assert.ok(contract.issues(math, taxonomy).some(i => i.code === 'ANSWER_KEY_MISSING'));

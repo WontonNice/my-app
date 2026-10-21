@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ExamReviewQuestion } from "../components/ExamReviewQuestion";
+import { CorrectionCanvas } from "../components/CorrectionCanvas";
 import { getExamCorrectionView, submitExamCorrections } from "../lib/api";
 import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
 import { peekActiveSession } from "../lib/sessionCache";
@@ -15,7 +16,7 @@ export function ExamCorrectionsPage() {
   const [view, setView] = useState<ExamCorrectionView | null>(null);
   const [draft, setDraft] = useState<Record<string, CorrectionResponse>>({});
   const [active, setActive] = useState(0);
-  const [isQuestionMenuOpen, setIsQuestionMenuOpen] = useState(false);
+  const [isQuestionMenuOpen, setIsQuestionMenuOpen] = useState(true);
   const [revealedQuestionIds, setRevealedQuestionIds] = useState<Set<string>>(() => new Set());
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -136,7 +137,8 @@ export function ExamCorrectionsPage() {
               <fieldset disabled={saving || readOnly}>
                 <label>Question type <small>Select the skill or topic this question tests.</small><select required aria-label="Question type" value={response?.questionType || ""} onChange={event => update(question.question.id, { questionType: event.target.value })}><option value="">Choose a question type</option>{correctionQuestionTypes(view.questions.filter(item => item.section === question.section).map(item => item.question), question.section).map(type => <option key={type} value={type}>{type}</option>)}</select></label>
                 {question.section === "english" && <label>Why is the answer you chose wrong? <small>Required; if blank, explain why you did not answer.</small><textarea required maxLength={10000} rows={4} value={response?.whyChosenIncorrect ?? ""} onChange={event => update(question.question.id, { whyChosenIncorrect: event.target.value })} /></label>}
-                <label>Why is the correct answer correct? <small>Required{question.section === "math" ? ". Explain your reasoning or show your steps." : ". Use evidence from the text."}</small><textarea required maxLength={10000} rows={4} value={response?.whyCorrectAnswerCorrect ?? ""} onChange={event => update(question.question.id, { whyCorrectAnswerCorrect: event.target.value })} /></label>
+                <label>Why is the correct answer correct? <small>{question.section === "math" ? "Write your reasoning or draw your steps below." : "Required. Use evidence from the text."}</small><textarea required={question.section === "english" || !response?.drawing?.length} maxLength={10000} rows={4} value={response?.whyCorrectAnswerCorrect ?? ""} onChange={event => update(question.question.id, { whyCorrectAnswerCorrect: event.target.value })} /></label>
+                {question.section === "math" && <CorrectionCanvas value={response?.drawing} readOnly={readOnly || saving} onChange={drawing => update(question.question.id, { drawing })} />}
                 <label className="exam-correction-understanding">How much do you understand the question now?<strong>{response?.understanding ? `${response.understanding} / 5` : "Choose a rating from 1–5"}</strong><input aria-label="Understanding from 1 to 5" type="range" min={1} max={5} step={1} value={response?.understanding || 1} onChange={event => update(question.question.id, { understanding: Number(event.target.value) })} onPointerUp={event => update(question.question.id, { understanding: Number(event.currentTarget.value) })} onKeyUp={event => { if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) update(question.question.id, { understanding: Number(event.currentTarget.value) }); }} /><span className="exam-slider-labels"><span>1 · Still unsure</span><span>5 · I can explain it</span></span></label>
               </fieldset>
             </section> : <p className="exam-correction-not-required">This answer was correct, so no written correction is required.</p>}

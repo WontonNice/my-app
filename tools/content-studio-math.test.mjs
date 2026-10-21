@@ -16,6 +16,24 @@ test('captioned math images preserve their position and safe metadata when saved
   assert.doesNotMatch(sanitize('<figure><img src="javascript:unsafe()"><figcaption><script>unsafe()</script>Caption</figcaption></figure>'), /javascript|script|unsafe/);
 });
 
+test('image-only rich math choices satisfy strict validation without adding placeholder text', async () => {
+  const server = await readFile(new URL('./content-studio.mjs', import.meta.url), 'utf8');
+  const normalize = vm.runInNewContext(`class EditorError extends Error { constructor(status, message) { super(message); this.status = status; } }
+    ${server.slice(server.indexOf('function requiredText('), server.indexOf('function propertyName('))}
+    ${server.slice(server.indexOf('function normalizeMathChoiceImage('), server.indexOf('function normalizeMathDropdownOption('))}
+    normalizeMathChoice;`);
+  const html = '<img src="/exam-images/number-line.png" alt="Number line" width="200">';
+  for (const allowIncomplete of [false, true]) {
+    const choice = normalize({ id: 'A', text: '', html: `<p>${html}</p>` }, 0, 24, { allowIncomplete });
+    assert.equal(choice.html, html);
+    assert.equal(choice.text, '');
+    assert.equal(choice.image, undefined, 'inline images stay in their original rich content');
+  }
+  for (const emptyHtml of ['', '<p><br></p>', '<!-- image -->', '<img', '<img src="javascript:unsafe()">', '<img src="https://example.com/image.png">']) {
+    assert.throws(() => normalize({ id: 'A', text: '', html: emptyHtml }, 0, 24), /Math question 24 answer A is required/);
+  }
+});
+
 async function previewBootHarness(fetch) {
   const html = await readFile(new URL('./content-studio.html', import.meta.url), 'utf8');
   const start = html.indexOf('async function bootMathPreviewFrame(');

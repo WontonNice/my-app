@@ -10,16 +10,18 @@ const toolsRoot = dirname(fileURLToPath(import.meta.url));
 const sourceRoot = resolve(toolsRoot, '..');
 const fixtureRoot = join(toolsRoot, '.content-drafts');
 await mkdir(fixtureRoot, { recursive: true });
-const fixture = await mkdtemp(join(fixtureRoot, 'qa-'));
+const resumeArgument=process.argv.find(argument=>argument.startsWith('--resume='));
+const fixture = resumeArgument ? resolve(resumeArgument.slice('--resume='.length)) : await mkdtemp(join(fixtureRoot, 'qa-'));
+if(dirname(fixture)!==fixtureRoot || !fixture.startsWith(join(fixtureRoot,'qa-')))throw new Error('Resume only an existing disposable qa-* directory under tools/.content-drafts.');
 const modulePath = join(toolsRoot, `.content-studio-qa-${process.pid}.mjs`);
 const baseline = process.argv.includes('--baseline');
 await mkdir(join(fixture, 'tools'), { recursive: true });
 await mkdir(join(fixture, 'server/data'), { recursive: true });
-for (const path of ['client/src/content', 'client/src/styles', 'client/src/lib/studentMaterials.ts', 'client/public', 'server/src/shared', 'server/data/assessments.json', 'tools/practice-topics.json', 'tools/content-topics.json', 'tools/math-topics.json', 'tools/content-studio-glossary.js']) {
+for (const path of resumeArgument ? [] : ['client/src/content', 'client/src/styles', 'client/src/lib/studentMaterials.ts', 'client/public', 'server/src/shared', 'server/data/assessments.json', 'tools/practice-topics.json', 'tools/content-topics.json', 'tools/math-topics.json', 'tools/content-studio-glossary.js']) {
   await mkdir(dirname(join(fixture, path)), { recursive: true });
   await cp(join(sourceRoot, path), join(fixture, path), { recursive: true });
 }
-await writeFile(join(fixture, 'server/data/question-bank.json'), JSON.stringify({ revision: 0, questions: [], sets: [] }));
+if(!resumeArgument)await writeFile(join(fixture, 'server/data/question-bank.json'), JSON.stringify({ revision: 0, questions: [], sets: [] }));
 if (baseline) {
   for (const name of (await readdir(toolsRoot)).filter(name => /^content-studio.*\.(html|js|css)$/.test(name) || name === 'document-import.cjs')) {
     let original;
@@ -45,7 +47,7 @@ const server = createServer((request, response) => {
   if (request.method === 'POST' && request.url === '/__qa/fail-next-save') {
     failNextSave = true; response.writeHead(200); response.end('The next content save will fail in this disposable fixture.'); return;
   }
-  if (failNextSave && request.method === 'POST' && ['/api/passages', '/api/advanced-passages', '/api/math', '/api/standalone-items', '/api/tests'].includes(request.url)) {
+  if (failNextSave && request.method === 'POST' && ['/api/document-drafts', '/api/passages', '/api/advanced-passages', '/api/math', '/api/math/import', '/api/standalone-items', '/api/tests'].includes(request.url)) {
     failNextSave = false; response.writeHead(503, { 'Content-Type': 'application/json' }); response.end(JSON.stringify({ message: 'Simulated save failure in the disposable QA workspace. Your draft is retained.' })); return;
   }
   studio.handleRequest(request, response);
@@ -57,7 +59,7 @@ async function close() {
   if (closing) return; closing = true;
   await new Promise(resolve => server.close(resolve));
   // Only the exact disposable directory created above may be removed.
-  if (dirname(fixture) === fixtureRoot && fixture.startsWith(join(fixtureRoot, 'qa-'))) await rm(fixture, { recursive: true, force: true });
+  if (!resumeArgument && !process.argv.includes('--keep') && dirname(fixture) === fixtureRoot && fixture.startsWith(join(fixtureRoot, 'qa-'))) await rm(fixture, { recursive: true, force: true });
   process.exit(0);
 }
 process.on('SIGINT', close); process.on('SIGTERM', close);

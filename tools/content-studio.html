@@ -763,6 +763,7 @@
     }
   </style>
   <link rel="stylesheet" href="/content-studio-workspace.css">
+  <link rel="stylesheet" href="/content-studio-batches.css">
   <link rel="stylesheet" href="/content-studio-math.css">
 </head>
 <body class="studio-authoring">
@@ -779,6 +780,7 @@
     <button data-tab="standalone" type="button">Exam Part B</button>
     <button data-tab="tests" type="button">Exam builder</button>
     <button data-tab="math" type="button">Exam math</button>
+    <button data-tab="compare" type="button">Compare tests</button>
     <button data-tab="advanced" type="button">SAT passages</button>
     <button data-tab="practice" type="button">Regular practice</button>
     <button data-tab="question-bank" type="button">Question Bank · SHSAT Lab</button>
@@ -787,6 +789,7 @@
   </nav>
 
   <main>
+    <section class="view" id="compare-view"><div id="compare-workspace"></div></section>
     <section class="view" id="question-bank-view"><div id="question-bank-workspace"></div></section>
     <section class="view is-active" id="passages-view">
       <div class="passage-layout">
@@ -1108,8 +1111,12 @@ Why D is wrong."></textarea>
   <script src="/content-studio-images.js"></script>
   <script src="/content-studio-math.js"></script>
   <script src="/document-import.cjs"></script>
+  <script src="/math-import-batch.cjs"></script>
   <script src="/content-studio-workspace.js"></script>
   <script src="/content-studio-documents.js"></script>
+  <script src="/content-studio-batches.js"></script>
+  <link rel="stylesheet" href="/content-studio-compare.css">
+  <script src="/content-studio-compare.js"></script>
   <link rel="stylesheet" href="/content-studio-bank.css">
   <script defer src="/content-studio-bank.js"></script>
   <script>
@@ -1784,6 +1791,7 @@ Why D is wrong."></textarea>
       const viewId = tab === "advanced" ? "passages-view" : `${tab}-view`;
       $$(".view").forEach((view) => view.classList.toggle("is-active", view.id === viewId));
       studioUI.activateWorkspace(tab);
+      if (tab === "compare") ComparisonStudio.mount();
     }
 
     function renderErrors(elementId, errors) {
@@ -4996,6 +5004,7 @@ Why D is wrong."></textarea>
 
     function markMathDirty(message = "Unsaved math changes.") {
       app.mathDirty = true;
+      studioUI.refreshMathAnswerKeyStatus();
       setStatus(message);
     }
 
@@ -5336,7 +5345,7 @@ Why D is wrong."></textarea>
           <div class="panel-head"><div><h2>Interactive number-line ray</h2><small>Students choose a ray style, then place its endpoint on the number line.</small></div></div>
           <div class="question-grid">
             ${["min", "max", "tickStep", "labelStep", "correctValue"].map((field) => `
-              <label class="field"><span>${escapeHtml(field.replace(/([A-Z])/g, " $1"))}</span><input data-math-number-line-response-field="${field}" step="any" type="number" value="${escapeHtml(numberLine[field] ?? 0)}"></label>
+              <label class="field"><span>${escapeHtml(field.replace(/([A-Z])/g, " $1"))}</span><input data-math-number-line-response-field="${field}" step="any" type="number" value="${escapeHtml(numberLine[field] ?? '')}"></label>
             `).join("")}
             <label class="field"><span>Correct ray direction</span>
               <select data-math-number-line-response-field="correctDirection">
@@ -5558,7 +5567,7 @@ Why D is wrong."></textarea>
       $("#math-builder").innerHTML = `
         <div class="panel-head">
           <div><h2>${escapeHtml(assessment.title)} - Math</h2><small>${questions.length} unique math question${questions.length === 1 ? "" : "s"} for this exam</small></div>
-          <button class="secondary" id="open-math-import" type="button">Import official PDF question</button>
+          <button class="secondary" id="open-math-import" type="button">Import Math questions</button>
         </div>
         ${app.mathImportOpen ? mathImportPanelMarkup() : ""}
         <div class="math-workspace">
@@ -5586,6 +5595,7 @@ Why D is wrong."></textarea>
       studioMath.mount($("#math-builder"));
       renderMathPreview();
       startMathPreviewFrames();
+      MathBatchStudio.decorateEditor();
     }
 
     function mathQuestionPreviewMarkup(question, namePrefix = 'math-preview') {
@@ -5968,11 +5978,7 @@ Why D is wrong."></textarea>
     function bindMathBuilder() {
       const question = app.mathDraft.questions[app.selectedMathQuestionIndex];
       $("#open-math-import")?.addEventListener("click", () => {
-        app.mathImportOpen = true;
-        app.mathImportReview = null;
-        renderMathBuilder();
-        $("#math-import-target")?.focus();
-        setStatus("Enter one official question number, copy the conversion prompt, then validate ChatGPT's JSON.");
+        MathBatchStudio.importDialog();
       });
       $("#close-math-import")?.addEventListener("click", () => {
         app.mathImportOpen = false;
@@ -6426,7 +6432,7 @@ Why D is wrong."></textarea>
         input.addEventListener(eventName, () => {
           if (!question.numberLineResponse) return;
           const field = input.dataset.mathNumberLineResponseField;
-          question.numberLineResponse[field] = input.tagName === "SELECT" ? input.value : Number(input.value);
+          question.numberLineResponse[field] = input.tagName === "SELECT" ? input.value : input.value === '' ? null : Number(input.value);
           markMathDirty();
           renderMathPreview();
         });
@@ -6456,6 +6462,7 @@ Why D is wrong."></textarea>
       if (!app.state.mathTopicConfiguration) { setStatus('Restart Content Studio to load math category support before saving.', 'error'); return; }
       const originals = new Map((linkedMathSection(app.selectedMathAssessmentId)?.questions || []).map(question => [question.id, question]));
       const invalid = app.mathDraft.questions.findIndex(question => {
+        if (question.importNeedsEditing) return false;
         const original = originals.get(question.id), category = app.state.mathTopicConfiguration.categories.find(item => item.label === question.topic);
         const legacy = original && original.topic === question.topic && (!original.subtopic || original.subtopic === 'Unclassified');
         return !category || !(legacy && (!question.subtopic || question.subtopic === 'Unclassified')) && !category.topics.some(item => item.label === question.subtopic);

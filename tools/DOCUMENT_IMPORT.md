@@ -36,8 +36,9 @@ The finished pipeline is:
 3. Private, revision-checked `tools/.content-drafts/document-imports.json` ->
    **Saved import drafts**, review edits, image uploads and source checks.
 4. **Publish reviewed passage** -> existing passage validation/source writer and
-   library registration; **Publish reviewed Math questions** -> existing Math
-   validation/writer and selected assessment registration.
+   library registration. Math uses **Import into Math test** to add questions
+   directly through the existing Math writer and selected assessment registration,
+   marked red as **Needs editing** in the normal Math editor.
 5. Existing content exporters -> `server/data/exam-content.json`, learning/board
    catalogs, and `server/data/library-books.json` -> existing student renderers.
 6. Student responses/attempts continue using the existing database routes.
@@ -131,16 +132,16 @@ Revising/Editing (`section=revising_editing_a`):
 
 Math:
 
-- Arithmetic
 - Algebra
 - Geometry
-- Measurement
-- Number Sense
-- Percent
-- Probability & Statistics
-- Rates & Unit Conversion
-- Ratios & Proportions
-- Uncategorized
+- Statistics and Probability
+- Ratios and Proportional Relationships
+- Arithmetic & Number Sense
+
+Math-specific topics are configured under each category in `tools/math-topics.json`.
+Use the generated contract for the current values. Math batches go directly into
+the selected test; see [Math import](MATH_QUESTION_IMPORT.md) for red editing labels
+and continuation metadata.
 
 `type` is the response format, distinct from `topic`. Unknown/out-of-taxonomy
 classification stays blank in a draft. Difficulty is optional source/provenance
@@ -191,9 +192,10 @@ visuals support multiple images. Images are not generated from source descriptio
 preview. Use **Save review draft** for unfinished work, then **Review warnings /
 images** to return to review. Choose Publish passage to save immediately and continue editing in the normal
 passage editor.
-For Math, select the destination exam and publish the reviewed questions through
-the existing Math writer. Existing assessment/source hashes continue protecting
-against stale writes.
+For Math, select the destination test and import directly. Questions are marked
+red in the existing Math editor, where unfinished imports can be saved with blank
+keys or classifications. **Mark finished** saves the question and clears its red
+label. Existing source hashes continue protecting against stale writes.
 
 ## Verification and practical limits
 
@@ -227,7 +229,8 @@ classification review, source-count warnings, missing answers and unattached
 visual warnings do not block this explicit teacher action. Missing values stay
 blank; the importer does not solve questions or invent images. Private review
 notes and unresolved visual descriptions remain in Saved import drafts for later.
-Math publication retains its existing review checks.
+Math imports also save directly to the selected test and use red **Needs editing**
+labels in the existing editor instead of a separate review/publication process.
 
 The existing valid source-file/ID, supported-format/type, unique-question/choice
 and concurrent-edit checks still protect repository writes. Changes after

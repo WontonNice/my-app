@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent, type MouseEvent, type ReactNode } from "react";
-import { ArrowLeftRight, Check, ChevronRight, LogOut, Menu, Plus, Trash2, UserRound, X, type LucideIcon } from "lucide-react";
+import { ArrowLeftRight, Check, ChevronDown, ChevronRight, LogOut, Menu, Plus, Trash2, UserRound, X, type LucideIcon } from "lucide-react";
 import { getSavedAccounts, rememberCurrentAccount, removeSavedAccount, signInAndSaveAccount, switchToSavedAccount, type SavedAccount } from "../lib/accountSwitching";
 import { navigateTo } from "../lib/navigation";
 
@@ -34,7 +34,7 @@ function getRoleLabel(role: SavedAccount["role"]) {
   return "Student";
 }
 
-export function AccountSwitcher() {
+export function AccountSwitcher({ inMenu = false }: { inMenu?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [accounts, setAccounts] = useState<SavedAccount[]>([]);
   const [identifier, setIdentifier] = useState("");
@@ -102,8 +102,8 @@ export function AccountSwitcher() {
   }
 
   return (
-    <div className="staff-account-switcher" ref={containerRef}>
-      <button aria-expanded={isOpen} aria-haspopup="dialog" className="staff-account-switch" onClick={() => setIsOpen((value) => !value)} type="button">
+    <div className={`staff-account-switcher${inMenu ? " is-menu-item" : ""}`} ref={containerRef}>
+      <button aria-expanded={isOpen} aria-haspopup="dialog" className="staff-account-switch" onClick={() => setIsOpen((value) => !value)} role={inMenu ? "menuitem" : undefined} type="button">
         <ArrowLeftRight size={15} /> Switch account
       </button>
       {isOpen ? (
@@ -131,6 +131,35 @@ export function AccountSwitcher() {
           ) : <button className="staff-add-account" onClick={() => { setIsAdding(true); setMessage(""); }} type="button"><Plus size={15} /> Add another account</button>}
         </section>
       ) : null}
+    </div>
+  );
+}
+
+export function AccountMenu({ profileName, profileRole, enableAccountSwitcher = false, onSignOut, returnHref, returnLabel }: Pick<CorporateDashboardShellProps, "profileName" | "profileRole" | "enableAccountSwitcher" | "onSignOut" | "returnHref" | "returnLabel">) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    if (!isOpen) return;
+    function handlePointerDown(event: PointerEvent) {
+      if (!containerRef.current?.contains(event.target as Node)) setIsOpen(false);
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") { setIsOpen(false); triggerRef.current?.focus(); }
+    }
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => { document.removeEventListener("pointerdown", handlePointerDown); document.removeEventListener("keydown", handleKeyDown); };
+  }, [isOpen]);
+  return (
+    <div className="staff-profile-menu" ref={containerRef}>
+      <button aria-expanded={isOpen} aria-haspopup="menu" aria-label={`Account menu for ${profileName}`} className="staff-profile staff-profile-trigger" onClick={() => setIsOpen(current => !current)} ref={triggerRef} type="button">
+        <span>{getInitials(profileName)}</span><div><strong>{profileName}</strong><small>{profileRole}</small></div><ChevronDown size={15} />
+      </button>
+      {isOpen ? <div className="staff-profile-popover" role="menu">
+        {enableAccountSwitcher ? <AccountSwitcher inMenu /> : null}
+        {returnHref ? <a href={returnHref} role="menuitem"><LogOut size={16} /> {returnLabel || "Return"}</a> : onSignOut ? <button onClick={onSignOut} role="menuitem" type="button"><LogOut size={16} /> Sign out</button> : null}
+      </div> : null}
     </div>
   );
 }
@@ -194,8 +223,7 @@ export function CorporateDashboardShell({
         <header className="staff-topbar">
           <button aria-label="Open navigation" className="staff-menu-button" onClick={() => setIsNavigationOpen((value) => !value)} type="button"><Menu size={20} /></button>
           <div><span>{today}</span><small>{learningRoom ? "SHSAT teacher workspace" : "Promise Summer School portal"}</small></div>
-          {enableAccountSwitcher ? <AccountSwitcher /> : null}
-          <div className="staff-profile"><span>{getInitials(profileName)}</span><div><strong>{profileName}</strong><small>{profileRole}</small></div></div>
+          <AccountMenu enableAccountSwitcher={enableAccountSwitcher} onSignOut={onSignOut} profileName={profileName} profileRole={profileRole} returnHref={returnHref} returnLabel={returnLabel} />
         </header>
         <div className="staff-content corporate-dashboard-content">{children}</div>
       </section>

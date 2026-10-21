@@ -10,8 +10,9 @@ export type BoardNode = {
   reference?: BoardReference; highlights?: Record<string, BoardHighlight>; createdBy?: string; updatedBy?: string;
 };
 export type BoardEdge = { id: string; source: string; target: string; sourceHandle: string; targetHandle: string; label: string; color: string };
-export type BoardData = { nodes: BoardNode[]; edges: BoardEdge[] };
-export type BoardSummary = { id: string; title: string; studentId: string; studentName: string; ownerId: string; role: BoardRole; archivedAt: string | null; updatedAt: string; revision: number; epoch: string; participants: { id: string; name: string; role: BoardRole }[] };
+export type BoardStroke = { id: string; color: string; width: number; points: { x: number; y: number }[] };
+export type BoardData = { nodes: BoardNode[]; edges: BoardEdge[]; drawings?: BoardStroke[]; drawingEnabled?: boolean };
+export type BoardSummary = { id: string; title: string; studentId: string; studentName: string; ownerId: string; role: BoardRole; canControlDrawing?: boolean; archivedAt: string | null; updatedAt: string; revision: number; epoch: string; participants: { id: string; name: string; role: BoardRole }[] };
 export type BoardPresence = { peerId: string; userId: string; name: string; color: string; selection: string[]; editing: string | null; cursor: { x: number; y: number } | null; drag?: { id: string; x: number; y: number }[] };
 export const boardColors = ["", "#b74c4c", "#bb8425", "#438b61", "#4383b0", "#8262b5", "#ae5b91"];
 export const boardKinds: BoardKind[] = ["note", "math", "image", "file", "link", "group", "passage", "question", "assignment", "exam-question"];
@@ -22,6 +23,8 @@ export function readBoard(doc: Y.Doc): BoardData {
   return {
     nodes: [...doc.getMap<Y.Map<unknown>>("nodes").entries()].map(([id, node]) => ({ ...node.toJSON(), id }) as BoardNode),
     edges: [...doc.getMap<Y.Map<unknown>>("edges").entries()].map(([id, edge]) => ({ ...edge.toJSON(), id }) as BoardEdge),
+    drawings: [...doc.getMap<BoardStroke>("drawings").values()],
+    drawingEnabled: doc.getMap("settings").get("drawingEnabled") !== false,
   };
 }
 export function addBoardNode(doc: Y.Doc, node: BoardNode) {
@@ -72,9 +75,14 @@ const scalar = (value: unknown) => typeof value === "number" && Number.isFinite(
 const validColor = (value: unknown) => value === "" || typeof value === "string" && /^#[0-9a-f]{6}$/i.test(value);
 const validId = (value: unknown) => typeof value === "string" && /^[a-zA-Z0-9._:-]{1,200}$/.test(value);
 export function validateBoard(doc: Y.Doc) {
-  for (const name of doc.share.keys()) if (!["nodes", "edges"].includes(name)) throw new Error("Unknown board document field.");
+  for (const name of doc.share.keys()) if (!["nodes", "edges", "drawings", "settings"].includes(name)) throw new Error("Unknown board document field.");
   const nodes = doc.getMap<Y.Map<unknown>>("nodes"), edges = doc.getMap<Y.Map<unknown>>("edges");
-  if (nodes.size > 2000 || edges.size > 8000) throw new Error("This board exceeds the item limit.");
+  const drawings = doc.getMap<BoardStroke>("drawings"), settings = doc.getMap("settings");
+  if (nodes.size > 2000 || edges.size > 8000 || drawings.size > 5000) throw new Error("This board exceeds the item limit.");
+  for (const [key, value] of settings) if (key !== "drawingEnabled" || typeof value !== "boolean") throw new Error("Invalid drawing settings.");
+  for (const [id, stroke] of drawings) {
+    if (!validId(id) || !stroke || stroke.id !== id || Object.keys(stroke).some(key => !["id", "color", "width", "points"].includes(key)) || !validColor(stroke.color) || !stroke.color || !scalar(stroke.width) || stroke.width < 1 || stroke.width > 20 || !Array.isArray(stroke.points) || !stroke.points.length || stroke.points.length > 4000 || stroke.points.some(point => !point || Object.keys(point).some(key => !["x", "y"].includes(key)) || !scalar(point.x) || !scalar(point.y))) throw new Error("Invalid drawing stroke.");
+  }
   const nodeFields = new Set(["id", "type", "x", "y", "width", "height", "text", "color", "locked", "z", "url", "assetId", "reference", "highlights", "createdBy", "updatedBy"]);
   for (const [id, item] of nodes) {
     if (!(item instanceof Y.Map) || !validId(id) || [...item.keys()].some(key => !nodeFields.has(key))) throw new Error("Invalid card structure.");
@@ -98,8 +106,10 @@ export function validateBoard(doc: Y.Doc) {
   }
   if (Y.encodeStateAsUpdate(doc).byteLength > 8 * 1024 * 1024) throw new Error("This board exceeds the document size limit.");
 }
-export function checkBoardMutation(before: BoardData, after: BoardData, role: BoardRole, canManage: boolean) {
+export function checkBoardMutation(before: BoardData, after: BoardData, role: BoardRole, canManage: boolean, canControlDrawing = false) {
   if (role === "viewer") throw new Error("This board is view only.");
+  if ((before.drawingEnabled !== false) !== (after.drawingEnabled !== false) && !canControlDrawing) throw new Error("Only a teacher can enable or disable drawing.");
+  if ((before.drawingEnabled === false || after.drawingEnabled === false) && JSON.stringify(before.drawings ?? []) !== JSON.stringify(after.drawings ?? [])) throw new Error("Drawing is disabled for this board.");
   const old = new Map(before.nodes.map(node => [node.id, node]));
   const next = new Map(after.nodes.map(node => [node.id, node]));
   if (!canManage) {
@@ -109,6 +119,10 @@ export function checkBoardMutation(before: BoardData, after: BoardData, role: Bo
 }
 export function seedBoard(data: BoardData): Y.Doc {
   const doc = new Y.Doc();
-  doc.transact(() => { data.nodes.forEach(node => addBoardNode(doc, node)); data.edges.forEach(edge => addBoardEdge(doc, edge)); });
+  doc.transact(() => {
+    data.nodes.forEach(node => addBoardNode(doc, node)); data.edges.forEach(edge => addBoardEdge(doc, edge));
+    data.drawings?.forEach(stroke => doc.getMap<BoardStroke>("drawings").set(stroke.id, stroke));
+    if (data.drawingEnabled !== undefined) doc.getMap("settings").set("drawingEnabled", data.drawingEnabled);
+  });
   return doc;
 }

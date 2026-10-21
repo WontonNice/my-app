@@ -1,0 +1,48 @@
+{
+  "format": "nathan-tutors-official-passage-v1",
+  "batch": {
+    "sourceId": "authored-math-example-v1",
+    "jobId": "math-section",
+    "sourceLabel": "Authored Math example",
+    "section": "math",
+    "requestedScope": "Questions 1–2",
+    "expectedQuestions": ["1", "2"],
+    "expectedTotal": 2,
+    "inventoryConfirmed": true,
+    "chunkId": "part-1",
+    "completedQuestions": ["1", "2"],
+    "unresolvedQuestions": [],
+    "nextScope": ""
+  },
+  "review": { "expectedQuestionCount": 2 },
+  "mathQuestions": [
+    {
+      "id": "example-math-1",
+      "type": "multiple_choice",
+      "topic": "Algebra",
+      "subtopic": "Equations & Systems",
+      "prompt": "For \\(x+2=5\\), what is \\(x\\)?",
+      "choices": [
+        { "id": "A", "text": "1" },
+        { "id": "B", "text": "2" },
+        { "id": "C", "text": "3" },
+        { "id": "D", "text": "4" }
+      ],
+      "correctChoiceId": "C",
+      "explanation": "",
+      "review": { "sourceFile": "source.html", "sourcePages": [], "sourceQuestion": "1", "answerSource": { "sourceFile": "source.html#teacher-key", "sourcePages": [] }, "topicSource": "inferred", "topicConfidence": 0.95 },
+      "visuals": []
+    },
+    {
+      "id": "example-math-2",
+      "type": "short_response",
+      "topic": "Geometry",
+      "subtopic": "Area & Perimeter",
+      "prompt": "The diagram shows a rectangle. What is its area, in square units?",
+      "correctTextAnswers": ["12"],
+      "explanation": "",
+      "review": { "sourceFile": "source.html", "sourcePages": [], "sourceQuestion": "2", "answerSource": { "sourceFile": "source.html#teacher-key", "sourcePages": [] }, "topicSource": "inferred", "topicConfidence": 0.95 },
+      "visuals": [{ "questionId": "example-math-2", "scope": "Question 2", "sourceFile": "source.html", "sourcePage": null, "location": "Question 2 diagram", "description": "Rectangle with side lengths 4 units and 3 units", "state": "unresolved" }]
+    }
+  ]
+}

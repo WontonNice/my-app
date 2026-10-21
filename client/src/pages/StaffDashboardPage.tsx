@@ -23,7 +23,7 @@ import {
   Waves,
   X,
 } from "lucide-react";
-import { AccountSwitcher } from "../components/CorporateDashboardShell";
+import { AccountMenu } from "../components/CorporateDashboardShell";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import { getSquidGames, getStaffDashboard, getStaffSchedules, getStaffTasks, saveSquidGamesPoints, saveStaffAttendance, saveStaffDismissal, updateStaffTask, type SquidGamesData, type SquidGamesStudent, type StaffDashboardData, type StaffSchedule, type StaffTask } from "../lib/api";
@@ -624,8 +624,7 @@ export function StaffDashboardPage() {
         <header className="staff-topbar">
           <button aria-label="Open navigation" className="staff-menu-button" onClick={() => setIsNavigationOpen((value) => !value)} type="button"><Menu size={20} /></button>
           <div><span>{today}</span><small>Campus operations are running normally</small></div>
-          {!isStaffPreview ? <AccountSwitcher /> : null}
-          <div className="staff-profile"><span>{getInitials(staffName)}</span><div><strong>{staffName}</strong><small>{isStaffPreview ? "Teacher preview" : "Staff account"}</small></div></div>
+          <AccountMenu enableAccountSwitcher={!isStaffPreview} onSignOut={isStaffPreview ? undefined : handleSignOut} profileName={staffName} profileRole={isStaffPreview ? "Teacher preview" : "Staff account"} returnHref={isStaffPreview ? previewReturnPath : undefined} returnLabel="Return to dashboard" />
         </header>
 
         <div className="staff-content">

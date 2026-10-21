@@ -130,11 +130,11 @@ export function StudentPortalShell({
             value={searchQuery}
           />
         </form>
-        {!previewContext.isPreview ? <AccountSwitcher /> : null}
         <div className="student-portal-profile-menu" ref={profileRef}>
           <button
             aria-expanded={isProfileOpen}
             aria-haspopup="menu"
+            aria-label={`Account menu for ${studentName}`}
             className="student-portal-profile-trigger"
             onClick={() => setIsProfileOpen((current) => !current)}
             type="button"
@@ -146,6 +146,7 @@ export function StudentPortalShell({
           {isProfileOpen ? (
             <div className="student-portal-profile-popover" role="menu">
               <div><UserRound size={17} /><span><strong>{studentName}</strong><small>{previewContext.isPreview ? "Student preview" : "Student account"}</small></span></div>
+              {!previewContext.isPreview ? <AccountSwitcher inMenu /> : null}
               {previewContext.isPreview ? (
                 <AppLink href={previewContext.returnHref} role="menuitem"><LogOut size={16} /> Return to teacher dashboard</AppLink>
               ) : (
