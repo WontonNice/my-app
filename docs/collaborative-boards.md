@@ -16,6 +16,10 @@ The canvas supports text/math, image, file, link, group and linked educational c
 
 Ctrl/Cmd+C/V/D/A/Z/Shift+Z, Delete/Backspace, Enter, Escape, Ctrl/Cmd+F, Shift+1 and Shift+2 operate on the focused canvas. Clipboard and editing shortcuts remain native inside the collaborative editor. Pasting text creates a note, a URL creates a link card, and an image uploads a private attachment. Cross-board clipboard copies containing private assets are rejected; **Duplicate board** copies those assets through authorized storage operations.
 
+**Draw** opens eight pen colors and thin, medium, or thick strokes. Draw with a mouse, touch, or pen anywhere on the board, including over cards. **Erase** removes whole strokes; drawing undo/redo affects your own gestures and preserves other participants' work. Select or Pan exits drawing mode, as do Done and Escape. Strokes use board coordinates, remain aligned while zooming or panning, and synchronize when each gesture finishes. Fit all includes drawings. Saved strokes survive reopening, duplication, version restore, and recovery downloads.
+
+Teacher/admin owners and editors have a **Disable drawing / Enable drawing** button that applies to everyone on that board. Disabling cancels active unfinished gestures and prevents drawing, erasing, and drawing undo/redo; existing ink stays visible and note editing continues. The setting persists in the shared document. Server validation rejects student attempts to change the setting, viewer drawing, and pending offline strokes submitted while drawing is disabled. Student owners cannot override the teacher control. Drawing uses the installed board storage and requires no additional database migration.
+
 ## Collaboration and safeguards
 
 - Yjs maps store individual structural fields; each note has a `Y.Text`, bound to CodeMirror. Whole-string last-write-wins editing is not used. Undo tracks local operations and editor bindings, leaving independent remote edits intact.
@@ -33,7 +37,7 @@ Linked source cards resolve canonical passages, published question-bank question
 
 Multiple students use the existing Yjs/WebSocket session for simultaneous notes, movement, cursors, highlights and recovery. Membership changes refresh connected clients immediately; removed students lose access, and viewers cannot mutate cards. Additional student editors cannot unlock teacher source cards or manage membership. Shared boards appear in each participant's library and in the teacher's per-student view. Duplicating a shared board creates a private copy in the duplicating student's own workspace. This uses the existing participant table and transactional membership function; no new database migration is required.
 
-The isolated suite now includes 17 board tests, including two students and a teacher typing concurrently, viewer downgrade, removal, archived accounts, per-student source access and shared-library discovery. Browser verification used fictional accounts in the isolated preview; deployment and real-account acceptance remain separate.
+The isolated suite includes 21 board tests, including drawing persistence and concurrent merging, teacher drawing controls, stale-stroke rejection, drawing validation and live synchronization, two students and a teacher typing concurrently, viewer downgrade, removal, archived accounts, per-student source access and shared-library discovery. Browser verification used fictional accounts in the isolated preview; deployment and real-account acceptance remain separate.
 
 ## Passage screens, annotations and layers
 

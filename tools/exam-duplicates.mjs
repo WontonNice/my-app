@@ -4,7 +4,7 @@ const digest = value => createHash('sha256').update(JSON.stringify(value)).diges
 const canonical = value => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object'
   ? Object.fromEntries(Object.keys(value).sort().map(key => [key, canonical(value[key])])) : value;
 function htmlText(value) {
-  return String(value || '').replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, '').replace(/<\/?(?:p|div|br|li|h[1-6])\b[^>]*>/gi,' ').replace(/<[^>]*>/g, '')
+  return String(value || '').replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, '').replace(/<\/?(?:p|div|br|li|h[1-6])\b[^>]*>/gi,' ').replace(/<!--[\s\S]*?-->|<\/?[a-z][^>]*>/gi, '')
     .replace(/&(#x[0-9a-f]+|#\d+|nbsp|amp|lt|gt|quot|apos);/gi, (match, entity) => {
       if (!entity.startsWith('#')) return ({nbsp:' ',amp:'&',lt:'<',gt:'>',quot:'"',apos:"'"})[entity.toLowerCase()];
       const point = entity[1].toLowerCase() === 'x' ? parseInt(entity.slice(2),16) : Number(entity.slice(1));
@@ -12,7 +12,7 @@ function htmlText(value) {
     });
 }
 export function normalizeDuplicateText(value, math = false) {
-  const result = String(value || '').normalize('NFC').replace(/[\u2018\u2019]/g,"'").replace(/[\u201c\u201d]/g,'"')
+  const result = String(value || '').normalize('NFC').replace(/\*\*([^*]+)\*\*/g,'$1').replace(/[\u2018\u2019]/g,"'").replace(/[\u201c\u201d]/g,'"')
     .replace(/\u2212/g,'-').replace(/\\(?:left|right)\b/g,'').replace(/\\[()[\]]|\$\$/g,'')
     .replace(/\\(?:dfrac|tfrac)\b/g,'\\frac').replace(/\\(?:leq|le)\b/g,'≤').replace(/\\(?:geq|ge)\b/g,'≥')
     .replace(/\\times\b/g,'×').replace(/\\cdot\b/g,'·').replace(/\\[,!;:]|\\(?:quad|qquad)\b/g,' ')

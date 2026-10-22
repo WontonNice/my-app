@@ -59,3 +59,18 @@
 .board-invite-form { border-top: 1px solid #e1e8eb; padding-top: 20px; margin-top: 18px; }
 .board-invite-form h4 { margin: 0 0 14px; }
 .board-invite-form > small { color: #71828d; font-size: 11px; line-height: 1.5; }
+.board-drawing-layer { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; z-index: 2147483647; }
+.board-drawing-input rect { touch-action: none; cursor: crosshair; }
+.board-drawing-input.is-eraser rect { cursor: cell; }
+.board-drawing-tools { display: grid; gap: 10px; width: 176px; box-sizing: border-box; padding: 10px; background: #fff; border: 1px solid #dce2e9; border-radius: 6px; box-shadow: 0 2px 7px #1823330a; }
+.board-drawing-actions { display: flex; align-items: center; gap: 5px; }
+.board-drawing-actions button { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 6px 8px; font-size: 12px; }
+.board-drawing-actions button[aria-pressed=true] { background: #e6f3ef; color: #28796f; border-color: #87b5a9; }
+.board-drawing-colors { display: flex; flex-wrap: wrap; gap: 8px; padding: 2px; }
+.board-drawing-colors button { width: 24px; height: 24px; border-radius: 50%; padding: 0; border: 1px solid #18233344; }
+.board-drawing-colors button[aria-pressed=true] { outline: 2px solid #28796f; outline-offset: 2px; }
+.board-drawing-size { display: flex; align-items: center; justify-content: space-between; gap: 5px; font-size: 11px; color: #69778a; }
+.board-drawing-size select { padding: 3px; font: inherit; color: #182333; }
+.board-drawing-tools .board-drawing-toggle { font-size: 11px; padding: 6px; }
+.board-drawing-tools > small { color: #69778a; font-size: 11px; }
+@media(max-width:760px) { .board-drawing-tools { width: 152px; padding: 8px; }.board-drawing-colors { gap: 7px; }.board-drawing-colors button { width: 23px; height: 23px; } }

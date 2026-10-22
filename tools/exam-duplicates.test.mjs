@@ -37,6 +37,8 @@ test('format-only HTML, entities, Unicode quotes and TeX spacing normalize, whil
  state.mathSections[1].questions[0].choices[0].numberLine.solutionEnd=3;
  report=await compareExamState(state,'a','b');assert.equal(report.stats.math.groups,0);
  assert.equal(normalizeDuplicateText('“A”  \n value'),'"a" value');assert.notEqual(normalizeDuplicateText('x²',true),normalizeDuplicateText('x2',true));
+ state.mathSections[0].questions=[{...question('a'),promptHtml:'<p>Compare the numbers 1<2>3.</p>'}];state.mathSections[1].questions=[{...question('b'),promptHtml:'<p>Compare the numbers 1<4>3.</p>'}];
+ assert.equal((await compareExamState(state,'a','b')).stats.math.groups,0);
 });
 test('diagrams compare by content, never by alt text or dimensions; missing or changed diagrams are not confirmed matches',async()=>{
  const state=fixture();state.mathSections[0].questions=[question('a')];state.mathSections[1].questions=[question('b')];

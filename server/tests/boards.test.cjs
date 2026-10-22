@@ -27,6 +27,78 @@ function live(board, token) {
   const wait = (filter, existing = true) => { const found = existing && messages.find(filter); if (found) return Promise.resolve(found); return new Promise((resolve, reject) => { const waiter = { filter, resolve: message => { clearTimeout(timer); resolve(message); } }; const timer = setTimeout(() => { waiters.splice(waiters.indexOf(waiter), 1); reject(new Error('WebSocket message timed out')); }, 5000); waiters.push(waiter); }); };
   return { ws, doc, messages, wait, send: value => ws.send(JSON.stringify(value)), update: (change, sequence = 1) => { const vector = Y.encodeStateVector(doc); doc.transact(() => change(doc)); ws.send(JSON.stringify({ type: 'update', epoch: board.epoch, sequence, state: Buffer.from(Y.encodeStateAsUpdate(doc, vector)).toString('base64') })); return wait(message => message.type === 'ack' && message.sequence === sequence, false); } };
 }
+const stroke = (id = randomUUID(), color = '#287ac4') => ({ id, color, width: 4, points: [{ x: -20, y: 15 }, { x: 25, y: 30 }, { x: 60, y: 5 }] });
+
+test('colored drawings merge, persist, duplicate and undo without losing remote strokes', async () => {
+  const board = await newBoard(), first = stroke(), second = stroke(randomUUID(), '#c43c3c');
+  const teacher = docFor(board), student = docFor(board), vectors = [Y.encodeStateVector(teacher), Y.encodeStateVector(student)];
+  teacher.getMap('drawings').set(first.id, first); student.getMap('drawings').set(second.id, second);
+  fixture.conflict();
+  await Promise.all([teacher, student].map((doc, index) => store.commitBoardUpdate(board.id, index ? users.student : users.teacher, board.epoch, Y.encodeStateAsUpdate(doc, vectors[index]))));
+  const saved = docFor(board), restored = shared.seedBoard(shared.readBoard(saved)); shared.validateBoard(restored);
+  assert.deepEqual(shared.readBoard(restored).drawings.sort((a, b) => a.id.localeCompare(b.id)), [first, second].sort((a, b) => a.id.localeCompare(b.id)));
+  const copy = await call(`/${board.id}/duplicate`, 'student', 'POST'); assert.equal(copy.status, 201);
+  const copied = docFor(copy.data.board); assert.equal(shared.readBoard(copied).drawings.length, 2);
+  const undo = new Y.UndoManager(teacher.getMap('drawings'), { trackedOrigins: new Set(['local']), captureTimeout: 0 }), third = stroke();
+  teacher.transact(() => teacher.getMap('drawings').set(third.id, third), 'local'); Y.applyUpdate(teacher, Y.encodeStateAsUpdate(saved)); undo.undo();
+  assert.equal(teacher.getMap('drawings').has(third.id), false); assert.equal(teacher.getMap('drawings').has(second.id), true);
+  undo.redo(); assert.equal(teacher.getMap('drawings').has(third.id), true);
+  undo.destroy(); [teacher, student, saved, restored, copied].forEach(doc => doc.destroy());
+});
+
+test('only teachers toggle drawing; disabled boards preserve ink and block stale strokes while notes still work', async () => {
+  const board = await newBoard(), ink = stroke();
+  assert.equal((await call(`/${board.id}`)).data.board.canControlDrawing, true);
+  assert.equal((await call(`/${board.id}`, 'student')).data.board.canControlDrawing, false);
+  await commit(board, users.student, doc => doc.getMap('drawings').set(ink.id, ink));
+  const offline = docFor(board), vector = Y.encodeStateVector(offline), pending = stroke(); offline.getMap('drawings').set(pending.id, pending);
+  await assert.rejects(commit(board, users.student, doc => doc.getMap('settings').set('drawingEnabled', false)), /Only a teacher/);
+  await commit(board, users.teacher, doc => doc.getMap('settings').set('drawingEnabled', false));
+  await assert.rejects(store.commitBoardUpdate(board.id, users.student, board.epoch, Y.encodeStateAsUpdate(offline, vector)), /Drawing is disabled/);
+  await assert.rejects(commit(board, users.student, doc => doc.getMap('settings').set('drawingEnabled', true)), /Only a teacher/);
+  await assert.rejects(commit(board, users.teacher, doc => doc.getMap('drawings').delete(ink.id)), /Drawing is disabled/);
+  await commit(board, users.student, doc => shared.addBoardNode(doc, shared.makeBoardNode(randomUUID(), 'note', 0, 0, 'Notes still work')));
+  const disabled = docFor(board); assert.equal(shared.readBoard(disabled).drawingEnabled, false); assert.deepEqual(shared.readBoard(disabled).drawings, [ink]);
+  const copied = await call(`/${board.id}/duplicate`, 'teacher', 'POST'), copyDoc = docFor(copied.data.board); assert.equal(shared.readBoard(copyDoc).drawingEnabled, false);
+  await commit(board, users.teacher, doc => doc.getMap('settings').set('drawingEnabled', true));
+  await commit(board, users.student, doc => doc.getMap('drawings').set(pending.id, pending));
+  const reopened = docFor(board); assert.equal(shared.readBoard(reopened).drawings.length, 2);
+  const own = (await call('/', 'student', 'POST', { title: 'Student-owned drawing' })).data.board;
+  await assert.rejects(commit(own, users.student, doc => doc.getMap('settings').set('drawingEnabled', false)), /Only a teacher/);
+  assert.equal((await call(`/${own.id}/participants/${users.teacher.id}`, 'student', 'PUT', { role: 'editor', revision: own.revision })).status, 200);
+  assert.equal((await call(`/${own.id}`)).data.board.canControlDrawing, true);
+  await commit(own, users.teacher, doc => doc.getMap('settings').set('drawingEnabled', false));
+  [offline, disabled, copyDoc, reopened].forEach(doc => doc.destroy());
+});
+
+test('drawing schema rejects invalid ink and settings; viewers cannot draw or control drawing', async () => {
+  const board = await newBoard();
+  for (const changes of [{ color: 'url(https://example.test)' }, { width: 0 }, { width: 21 }, { points: [] }, { points: [{ x: Infinity, y: 1 }] }, { points: Array.from({length:4001}, () => ({x:0,y:0})) }, { extra: 'invalid' }]) {
+    await assert.rejects(commit(board, users.student, doc => { const value = { ...stroke(), ...changes }; doc.getMap('drawings').set(value.id, value); }), /Invalid drawing stroke/);
+  }
+  await assert.rejects(commit(board, users.teacher, doc => doc.getMap('settings').set('drawingEnabled', 'false')), /Invalid drawing settings/);
+  await assert.rejects(commit(board, users.teacher, doc => doc.getMap('settings').set('otherSetting', true)), /Invalid drawing settings/);
+  await call(`/${board.id}/participants/${users.viewer.id}`, 'teacher', 'PUT', { role: 'viewer', revision: board.revision });
+  assert.equal((await call(`/${board.id}`, 'viewer')).data.board.canControlDrawing, false);
+  await assert.rejects(commit(board, users.viewer, doc => { const value = stroke(); doc.getMap('drawings').set(value.id, value); }), /view only/);
+});
+
+test('drawing strokes and the teacher drawing toggle synchronize to connected students', async () => {
+  const board = await newBoard(), teacher = live(board, 'teacher'), student = live(board, 'student');
+  try {
+    await Promise.all([teacher.wait(message => message.type === 'ready'), student.wait(message => message.type === 'ready')]);
+    const value = stroke(); await student.update(doc => doc.getMap('drawings').set(value.id, value), 70);
+    await teacher.wait(() => teacher.doc.getMap('drawings').has(value.id));
+    await teacher.update(doc => doc.getMap('settings').set('drawingEnabled', false), 71);
+    await student.wait(() => shared.readBoard(student.doc).drawingEnabled === false);
+    assert.deepEqual(shared.readBoard(student.doc).drawings, [value]);
+    await teacher.update(doc => doc.getMap('settings').set('drawingEnabled', true), 72);
+    await student.wait(() => shared.readBoard(student.doc).drawingEnabled === true);
+    await student.update(doc => doc.getMap('drawings').delete(value.id), 73);
+    await teacher.wait(() => teacher.doc.getMap('drawings').size === 0);
+  } finally { [teacher, student].forEach(peer => { peer.ws.close(); peer.doc.destroy(); }); }
+});
+
 test('private student workspace creation, membership, management and forged teacher rejection', async () => {
   const originAllowed = require('../src/lib/boardRealtime.ts').boardOriginAllowed;
   assert.equal(originAllowed('%%%', 'localhost:8080', []), false);
