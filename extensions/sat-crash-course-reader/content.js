@@ -2,7 +2,7 @@
   const MAX_PAGE_TEXT_LENGTH = 250_000;
   const MAX_ITEM_TEXT_LENGTH = 10_000;
   const MAX_PASSAGE_QUESTIONS = 50;
-  const READER_VERSION = "0.4.0";
+  const READER_VERSION = "0.6.1";
   let scanInProgress = false;
 
   function cleanText(value) {
@@ -251,6 +251,7 @@
       return {
         label: normalizedLabel,
         text: textOf(wrapper.querySelector(".testSHSATPreview__questionChoiceText")),
+        html: NathanSatRichText.fromElement(wrapper.querySelector(".testSHSATPreview__questionChoiceText"), getComputedStyle),
         isCorrect: Boolean(wrapper.querySelector(".testSHSATPreview__radioButton--selected")),
         media: readMedia(wrapper),
       };
@@ -258,6 +259,7 @@
 
     const selectedChoice = choices.find((choice) => choice.isCorrect);
     const passageId = (passage?.id || "").replace(/^(?:passage|definition)\s+/i, "");
+    const richPassage = passage ? NathanSatRichText.passage(passage, getComputedStyle) : null;
 
     return {
       number: progress ? Number(progress[1]) : Number(textOf(preview.querySelector(".testSHSATPreview__questionNumber"))) || null,
@@ -265,7 +267,9 @@
       passage: passage
         ? {
             id: passageId,
-            text: textOf(passage),
+            text: richPassage.text || textOf(passage),
+            ...(richPassage.format ? { format: richPassage.format } : {}),
+            formattedBlocks: richPassage.formattedBlocks,
             glossaryTerms: [...new Set(
               [...preview.querySelectorAll(".testSHSATPreview__definitionMark")]
                 .map(textOf)
@@ -275,11 +279,13 @@
           }
         : null,
       prompt: textOf(preview.querySelector(".testSHSATPreview__questionQuestion")),
+      promptHtml: NathanSatRichText.fromElement(preview.querySelector(".testSHSATPreview__questionQuestion"), getComputedStyle),
       choices,
       correctAnswer: selectedChoice
         ? { label: selectedChoice.label, text: selectedChoice.text }
         : null,
       explanation: textOf(explanation),
+      explanationHtml: NathanSatRichText.fromElement(explanation, getComputedStyle),
       media: readMedia(questionRoot),
     };
   }
@@ -304,6 +310,38 @@
     }
   }
 
+  function explanationVisible() {
+    const panel = document.querySelector(".testSHSATPreview__popup--explanation");
+    return Boolean(panel && isVisible(panel));
+  }
+
+  async function setExplanationVisible(visible) {
+    if (explanationVisible() === visible) return true;
+    const button = previewButton("Explanation");
+    if (!button || button.disabled) return false;
+    button.click();
+    const deadline = Date.now() + 1_000;
+    do {
+      await nextPaint();
+      if (explanationVisible() === visible) return true;
+    } while (Date.now() < deadline);
+    return false;
+  }
+
+  async function waitForExplanation(question, module) {
+    const deadline = Date.now() + 3_000;
+    do {
+      const current = readCurrentPreviewQuestion();
+      if (current?.number !== question.number || current.prompt !== question.prompt || previewModule() !== module) {
+        throw new Error("The question changed while reading its explanation. Please avoid navigating during capture.");
+      }
+      const box = document.querySelector(".testSHSATPreview__explanationBox");
+      if (explanationVisible() && box && isVisible(box) && current.explanation && !/^(?:loading(?:[.\u2026 ]*)|please wait(?:[.\u2026 ]*))$/i.test(current.explanation)) return current.explanation;
+      await nextPaint();
+    } while (Date.now() < deadline);
+    return "";
+  }
+
   function previewModule() {
     return textOf(document.querySelector(".testSHSATPreview__moduleSelect"));
   }
@@ -317,6 +355,9 @@
   }
 
   async function navigateQuestion(direction, expectedNumber, module) {
+    // A fresh panel for each question prevents the preceding question's
+    // explanation from being exported while the source page updates.
+    await setExplanationVisible(false);
     const button = previewButton(direction);
     if (!button || button.disabled || button.getAttribute("aria-disabled") === "true") {
       throw new Error(`The ${direction} question control is unavailable.`);
@@ -336,12 +377,23 @@
     throw new Error(`Timed out waiting for Question ${expectedNumber}.`);
   }
 
-  async function captureQuestion(includeAnswer) {
+  async function captureQuestion(options, warnings) {
     const wasVisible = Boolean(previewButton("Hide answer"));
+    const wasExplanationVisible = explanationVisible();
+    const question = readCurrentPreviewQuestion();
+    const module = previewModule();
     try {
-      if (includeAnswer) await setAnswerVisible(true);
-      return readCurrentPreviewQuestion();
+      if (options.includeAnswer) await setAnswerVisible(true);
+      let explanation = "";
+      const requested = options.includeExplanations !== false;
+      if (requested) {
+        if (await setExplanationVisible(true)) explanation = await waitForExplanation(question, module);
+        if (!explanation) warnings.push(`Question ${question.number || "?"}: No source explanation was available after opening Explanation. Its explanation was left blank; the question was still captured.`);
+      }
+      const captured = readCurrentPreviewQuestion();
+      return { ...captured, explanation, explanationHtml: explanation ? captured.explanationHtml : "", explanationStatus: requested ? explanation ? "captured" : "missing" : "not-requested" };
     } finally {
+      if (!await setExplanationVisible(wasExplanationVisible)) warnings.push(`Question ${question.number || "?"}: Could not restore its explanation panel visibility.`);
       await setAnswerVisible(wasVisible);
     }
   }
@@ -353,6 +405,7 @@
     const originalQuestion = readCurrentPreviewQuestion();
     const originalModule = previewModule();
     const originalAnswerVisible = Boolean(previewButton("Hide answer"));
+    const originalExplanationVisible = explanationVisible();
 
     const title = [...document.querySelectorAll("h1")]
       .filter((heading) => !preview.contains(heading))
@@ -368,11 +421,12 @@
         stopReason: "current-question",
         restoredStartingQuestion: false,
         warnings: [],
+        explanationsRequested: options.includeExplanations !== false,
       },
     };
 
     try {
-      result.question = await captureQuestion(options.includeAnswer);
+      result.question = await captureQuestion(options, result.capture.warnings);
       if (result.question) result.questions.push(result.question);
       if (options.includePassageQuestions !== false && originalQuestion?.passage && originalQuestion.number) {
         const deadline = Date.now() + 60_000;
@@ -385,7 +439,7 @@
             current = await navigateQuestion("NEXT", previous.number + 1, originalModule);
             break;
           }
-          result.questions.push(await captureQuestion(options.includeAnswer));
+          result.questions.push(await captureQuestion(options, result.capture.warnings));
           current = previous;
         }
         while (result.questions.length < MAX_PASSAGE_QUESTIONS) {
@@ -407,7 +461,7 @@
             break;
           }
           if (!result.questions.some((question) => question.number === next.number)) {
-            result.questions.push(await captureQuestion(options.includeAnswer));
+            result.questions.push(await captureQuestion(options, result.capture.warnings));
           }
           current = next;
         }
@@ -439,6 +493,7 @@
           current = await navigateQuestion(forward ? "NEXT" : "BACK", current.number + (forward ? 1 : -1), originalModule);
         }
         await setAnswerVisible(originalAnswerVisible);
+        if (!await setExplanationVisible(originalExplanationVisible)) result.capture.warnings.push("Could not restore the original explanation panel visibility.");
         result.capture.restoredStartingQuestion = true;
       } catch (error) {
         result.capture.warnings.push(`${error.message} Return to Question ${originalQuestion?.number || "?"} manually.`);

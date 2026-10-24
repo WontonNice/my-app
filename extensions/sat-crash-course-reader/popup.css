@@ -147,6 +147,13 @@ button:disabled {
   gap: 7px;
 }
 
+.explanation-summary {
+  margin: 0 0 12px;
+  color: #12695f;
+  font-size: 12px;
+  font-weight: 600;
+}
+
 details {
   margin-top: 14px;
   font-size: 12px;

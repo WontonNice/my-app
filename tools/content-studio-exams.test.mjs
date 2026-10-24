@@ -83,6 +83,21 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.deepEqual(bulkResult.bank.sets, beforeBulk.sets); assert.deepEqual(bulkResult.bank.questions[0], beforeBulk.questions[0]);
     assert.equal(bulkResult.bank.questions.find(q => q.prompt === 'Bulk no explanation').status, 'draft');
     assert.equal(bulkResult.bank.questions.find(q => q.prompt === 'Bulk ready visual').status, 'published');
+    // The guided import previews without writing and commits import, publication
+    // and fixed-set creation together only for the exact previewed revision.
+    const quickCapture = [{ name: 'one.json', text: JSON.stringify({ ...captured, prompt: 'Quick import ready' }) }, { name: 'visual.json', text: JSON.stringify({ ...captured, prompt: 'Quick import missing image', visuals: ['Figure'], visualImage: { src: '/exam-images/quick-missing.png', alt: 'Required figure' } }) }];
+    const previewBody = { revision: bulkResult.bank.revision, capture: quickCapture };
+    assert.equal((await postBank('/import-preview', previewBody, 'invalid')).status, 403);
+    const previewResponse = await postBank('/import-preview', previewBody); assert.equal(previewResponse.status, 200);
+    const preview = await previewResponse.json(); assert.equal(preview.summary.added, 2); assert.equal(preview.summary.ready, 1); assert.equal(preview.summary.needsReview, 1); assert.match(preview.rows[1].issue, /file not found/);
+    assert.equal((await fetch(bankUrl).then(r => r.json())).revision, bulkResult.bank.revision);
+    const quickBody = { ...previewBody, previewToken: preview.previewToken, publishReady: true, verified: true, createSet: true, setTitle: 'Quick batch practice' };
+    assert.equal((await postBank('/import-batch', { ...quickBody, previewToken: 'changed' })).status, 400);
+    assert.equal((await postBank('/import-batch', { ...quickBody, verified: false })).status, 400);
+    assert.equal((await fetch(bankUrl).then(r => r.json())).revision, bulkResult.bank.revision);
+    const quickResponse = await postBank('/import-batch', quickBody); assert.equal(quickResponse.status, 201);
+    const quickResult = await quickResponse.json(); assert.equal(quickResult.bank.revision, bulkResult.bank.revision + 1); assert.equal(quickResult.summary.published, 1); assert.equal(quickResult.summary.set.questionIds.length, 1); assert.equal(quickResult.summary.skipped.length, 1);
+    assert.equal((await postBank('/import-batch', quickBody)).status, 400);
     assert.deepEqual(state.passageCategories.map(category => category.value), ['official_handbook', 'prestige', 'miscellaneous']);
     assert.ok(state.passages.every(passage => state.passageCategories.some(category => category.value === passage.passageCategory)));
     for (const passage of state.passages) {
@@ -402,10 +417,26 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.equal(image.status,201,JSON.stringify(image.data));
     const inline = `<p>Before.</p><img src="${image.data.image.src}" alt="Triangle" width="280" onerror="alert(1)"><p>After.</p><img src="https://example.invalid/tracker.png"><script>alert(1)</script>`;
     const updated = {...renamedMath.mathSections.find(section=>section.questions.some(question=>question.id===mathQuestion.id)),assessmentId:payload.assessment.id};
-    updated.questions=[{...mathQuestion,subtopic:'One-variable equations',type:'short_answer',prompt:'Before. After.',promptHtml:inline,entryLayout:'fraction'}];
+    updated.questions=[{...mathQuestion,subtopic:'One-variable equations',type:'numeric_entry',prompt:'Before. After.',promptHtml:inline,entryLayout:'x_equals',entryVariable:' w '}];
+    const calculatorSaved = await post('/api/math',updated); assert.equal(calculatorSaved.status,201,JSON.stringify(calculatorSaved.data));
+    const calculatorSection=(await studio.getState()).mathSections.find(section=>section.questions.some(question=>question.id===mathQuestion.id));
+    const calculatorRoundtrip=calculatorSection.questions[0]; updated.sourceHash = calculatorSection.sourceHash;
+    assert.equal(calculatorRoundtrip.entryVariable,'w'); assert.equal(calculatorRoundtrip.entryLayout,'x_equals');
+    assert.deepEqual(calculatorRoundtrip.correctTextAnswers,['2']);
+    updated.questions[0].entryVariable = 'w=';
+    const invalidVariable = await post('/api/math',updated); assert.equal(invalidVariable.status,400); assert.match(JSON.stringify(invalidVariable.data),/one letter/);
+    updated.questions[0].entryVariable = 'θ';
+    assert.equal((await post('/api/math',updated)).status,201);
+    updated.sourceHash = (await studio.getState()).mathSections.find(section=>section.questions.some(question=>question.id===mathQuestion.id)).sourceHash;
+    delete updated.questions[0].entryVariable;
+    assert.equal((await post('/api/math',updated)).status,201);
+    const defaultVariableSection=(await studio.getState()).mathSections.find(section=>section.questions.some(question=>question.id===mathQuestion.id));
+    assert.equal(defaultVariableSection.questions[0].entryVariable,undefined); updated.sourceHash = defaultVariableSection.sourceHash;
+    updated.questions[0] = {...updated.questions[0],type:'short_answer',entryLayout:'fraction',entryVariable:'w'};
     const saved = await post('/api/math',updated); assert.equal(saved.status,201,JSON.stringify(saved.data));
     const roundtrip=(await studio.getState()).mathSections.find(section=>section.questions.some(question=>question.id===mathQuestion.id)).questions[0];
     assert.equal(roundtrip.type,'short_response'); assert.equal(roundtrip.entryLayout,undefined);
+    assert.equal(roundtrip.entryVariable,undefined);
     assert.deepEqual(roundtrip.correctTextAnswers,['2']);
     assert.equal(roundtrip.promptHtml,`<p>Before.</p><img src="${image.data.image.src}" alt="Triangle" width="280"><p>After.</p>`);
     const imported = await post('/api/math/import-preview',{assessmentId:payload.assessment.id,source:JSON.stringify({format:'nathan-tutors-math-question-v1',question:{...mathQuestion,id:'qa-dropdown-import',type:'inline_dropdown',dropdownContent:['{{a}} + {{b}}'],dropdowns:['a','b'].map(id=>({id,options:[{id:'one',text:'1'},{id:'two',text:'2'}],correctChoiceId:'two'}))}})});

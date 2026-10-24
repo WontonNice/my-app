@@ -149,6 +149,7 @@ export function AuthPage({ mode }: AuthPageProps) {
           </button>
         </form>
 
+        {!isSignup && <a className="auth-switch" href="/forgot-password">Forgot your password?</a>}
         <a className="auth-switch" href={isSignup ? "/login" : "/signup"}>
           {isSignup ? "Already have an account? Login" : "Need an account? Sign up"}
         </a>

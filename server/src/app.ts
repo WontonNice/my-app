@@ -14,6 +14,9 @@ import { staffRouter } from "./routes/staff";
 import { learningPlanRouter } from "./routes/learningPlan";
 import { answerSheetsRouter } from "./routes/answerSheets";
 import { boardsRouter } from "./routes/boards";
+import { achievementsRouter } from "./routes/achievements";
+import { gameRoomsRouter } from "./routes/gameRooms";
+import { accountRouter } from "./routes/account";
 
 type CreateAppOptions = {
     allowedOrigins: string[];
@@ -38,6 +41,9 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
     const app = express();
 
     app.disable("x-powered-by");
+    // Configure only when deployed behind a known reverse proxy (e.g. Render).
+    const trustedProxyHops = Number(process.env.TRUST_PROXY_HOPS ?? 0);
+    if (Number.isInteger(trustedProxyHops) && trustedProxyHops > 0 && trustedProxyHops <= 3) app.set("trust proxy", trustedProxyHops);
     app.use((request, response, next) => {
         const incomingRequestId = request.header("x-request-id")?.trim().slice(0, 128);
         const requestId = incomingRequestId || randomUUID();
@@ -62,6 +68,9 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
     app.use("/api/staff", staffRouter);
     app.use("/api/learning-plan", learningPlanRouter);
     app.use("/api/boards", boardsRouter);
+    app.use("/api/achievements", achievementsRouter);
+    app.use("/api/game-rooms", gameRoomsRouter);
+    app.use("/api/account", accountRouter);
     app.use("/api/answer-sheets", answerSheetsRouter);
 
     app.use("/api", (_request, response) => {

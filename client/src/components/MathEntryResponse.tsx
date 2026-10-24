@@ -43,11 +43,14 @@ function EditIcon({ action }: { action: Selector | "clear" }) {
   </svg>;
 }
 
-export function MathEntryResponse({ layout, onChange, value }: {
+export function MathEntryResponse({ layout, onChange, value, variable = "x" }: {
   layout: "fraction" | "plain" | "x_equals";
   onChange: (value: string) => void;
   value: string;
+  variable?: string;
 }) {
+  const normalizedVariable = variable.trim().normalize("NFKC");
+  const displayVariable = /^\p{L}$/u.test(normalizedVariable) ? normalizedVariable : "x";
   const hostRef = useRef<HTMLDivElement>(null);
   const fieldRef = useRef<MathfieldElement | null>(null);
   const onChangeRef = useRef(onChange);
@@ -67,7 +70,6 @@ export function MathEntryResponse({ layout, onChange, value }: {
     field.popoverPolicy = "off";
     field.placeholderSymbol = "⬚";
     field.placeholder = "\\placeholder{}";
-    field.setAttribute("aria-label", layout === "x_equals" ? "Value of x" : "Math answer");
     field.setAttribute("aria-describedby", hintId);
     host.append(field);
     field.menuItems = [];
@@ -111,6 +113,10 @@ export function MathEntryResponse({ layout, onChange, value }: {
   }, [layout, hintId]);
 
   useEffect(() => {
+    fieldRef.current?.setAttribute("aria-label", layout === "x_equals" ? `Value of ${displayVariable}` : "Math answer");
+  }, [layout, displayVariable]);
+
+  useEffect(() => {
     const field = fieldRef.current;
     if (field && mathAnswerFromLatex(field.value) !== value) {
       field.setValue(mathAnswerToLatex(value), { silenceNotifications: true });
@@ -135,7 +141,7 @@ export function MathEntryResponse({ layout, onChange, value }: {
 
   return <div className="exam-math-entry-response">
     <div className={"exam-math-entry-display is-" + layout + (hasFraction ? " has-fraction" : "")}>
-      {layout === "x_equals" && <span aria-hidden="true" className="exam-math-entry-prefix" dangerouslySetInnerHTML={{ __html: katex.renderToString("x=") }} />}
+      {layout === "x_equals" && <span aria-hidden="true" className="exam-math-entry-prefix" dangerouslySetInnerHTML={{ __html: katex.renderToString(`${displayVariable}=`, { throwOnError: false, strict: "ignore" }) }} />}
       <div className="exam-math-field-host" ref={hostRef} />
     </div>
     <div className="exam-math-keypad" role="group" aria-label="Math answer keypad">

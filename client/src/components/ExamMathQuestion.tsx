@@ -1,4 +1,5 @@
 // One math question renderer for the student player and Content Studio preview.
+/* eslint react-refresh/only-export-components: ["error", { "allowExportNames": ["renderKatexExpression", "renderInlineMathText", "getBoldFormattedText", "renderMathAuthoredText", "renderMathRichText"] }] */
 import { useState, type MouseEvent, type PointerEvent, type ReactNode } from 'react';
 import katex from 'katex';
 import { MathEntryResponse } from './MathEntryResponse';
@@ -863,6 +864,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
               <MathEntryResponse
                 key={question.id}
                 layout={question.entryLayout ?? "plain"}
+                variable={question.entryVariable}
                 onChange={(value) => onChange(value)}
                 value={textAnswer}
               />

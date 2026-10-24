@@ -20,7 +20,7 @@ export function getExamResults(userId: string): ExamResult[] {
       const completionStatus =
         result.completionStatus === "english_complete" || result.completionStatus === "math_complete"
           ? result.completionStatus
-          : completedSections.includes("math") && !completedSections.includes("english")
+          : completedSections.includes("english") && !completedSections.includes("math") ? "english_complete" : completedSections.includes("math") && !completedSections.includes("english")
             ? "math_complete"
             : "complete";
 

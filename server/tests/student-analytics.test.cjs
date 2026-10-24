@@ -84,6 +84,7 @@ test('passage and question-type patterns drill down to response evidence only', 
 
 test('changed exam membership cannot invent historical unanswered questions', () => {
   const entry = input({ a: 'A', b: 'B' });
+  delete entry.result.analysisContent; // Legacy results have no frozen content snapshot.
   entry.content = { ...content, passageSets: [{ ...content.passageSets[0], questions: [...content.passageSets[0].questions, question('added-later')] }] };
   const data = buildStudentAnalytics([entry]);
   assert.equal(data.evidence.some(row => row.question.id === 'added-later'), false);

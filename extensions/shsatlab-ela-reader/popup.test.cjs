@@ -7,10 +7,10 @@ const reader = require('./reader.js');
 const queueApi = require('./queue.js');
 
 async function popup({ url = 'https://www.shsatlab.com/units/unit-1/practice', result, savedQueue = [] } = {}) {
-  const elements = Object.fromEntries(['page', 'capture', 'count', 'ready', 'download', 'copy', 'clear', 'automation', 'allow-submit', 'reveal', 'capture-next', 'all-queue', 'status'].map(id => [id, { checked: id === 'all-queue', disabled: true, value: '', listeners: {}, addEventListener(event, fn) { this.listeners[event] = fn; }, focus() {}, select() {} }]));
-  const state = { queue: savedQueue, messages: [], clipboard: '' };
+  const elements = Object.fromEntries(['page', 'capture', 'count', 'ready', 'download', 'copy', 'copy-open', 'clear', 'automation', 'allow-submit', 'reveal', 'capture-next', 'all-queue', 'status', 'bulk-start', 'bulk-stop', 'bulk-count', 'bulk-delay', 'bulk-sync', 'bulk-progress', 'sync-progress'].map(id => [id, { checked: ['all-queue', 'bulk-sync'].includes(id), disabled: true, value: id === 'bulk-count' ? '50' : id === 'bulk-delay' ? '1.5' : '', listeners: {}, addEventListener(event, fn) { this.listeners[event] = fn; }, focus() {}, select() {} }]));
+  const state = { queue: savedQueue, messages: [], clipboard: '', opened: [], stored: {} };
   const context = { document: { getElementById: id => elements[id] }, NathanLabElaReader: reader, NathanLabElaQueue: queueApi,
-    chrome: { tabs: { query: async () => [{ id: 4, url }], sendMessage: async (_id, message) => { state.messages.push(message); if (result.saved) state.queue = [result.question]; return result; } }, storage: { local: { get: async () => ({ elaQueue: state.queue }), set: async ({ elaQueue }) => { state.queue = elaQueue; } }, onChanged: { addListener() {} } } },
+    chrome: { tabs: { create: async input => state.opened.push(input), query: async () => [{ id: 4, url }], sendMessage: async (_id, message) => { state.messages.push(message); if (result?.saved) state.queue = [result.question]; if (result?.job) state.stored.elaBulkJob = result.job; return result; } }, storage: { local: { get: async () => ({ elaQueue: state.queue, ...state.stored }), set: async values => { Object.assign(state.stored, values); if ('elaQueue' in values) state.queue = values.elaQueue; } }, onChanged: { addListener() {} } } },
     navigator: { clipboard: { writeText: async text => { state.clipboard = text; } } }, confirm: () => true, setTimeout, URL, Blob
   };
   vm.runInNewContext(fs.readFileSync(`${__dirname}/popup.js`, 'utf8'), context);
@@ -46,4 +46,28 @@ test('manual capture does not grant submission consent and latest-only text rema
   await click('capture'); assert.equal(state.messages[0].allowSubmit, false); assert.equal(state.messages[0].reveal, false);
   elements['all-queue'].checked = false; elements['all-queue'].listeners.change();
   assert.equal(JSON.parse(elements.ready.value).questions.length, 1); assert.match(elements.status.textContent, /draft/);
+});
+test('copy and open transfers the selected queue through clipboard, never the URL or a remote request', async () => {
+  const { reader, document } = fixture({ revealed: true, expanded: true }); const question = reader.read(document, 'https://www.shsatlab.com/units/unit-1/practice');
+  const { elements, state, click } = await popup({ savedQueue: [question] });
+  await click('copy-open');
+  assert.equal(JSON.parse(state.clipboard).questions.length, 1); assert.equal(state.opened[0].url, 'http://127.0.0.1:4319/?bankImport=1#question-bank'); assert.equal(state.messages.length, 0); assert.match(elements.status.textContent, /Paste from clipboard/);
+});
+
+test('AFK Start requires consent, opens the local editor, and Stop disables further capture', async () => {
+  const job = { id: 'job', status: 'running', captured: 0, target: 50, newQuestions: 0, duplicates: 0, message: 'Starting capture' };
+  const { elements, state, click, consent } = await popup({ result: { job } });
+  await click('bulk-start'); assert.equal(state.messages.length, 0);
+  await consent(); await click('bulk-start');
+  assert.equal(state.messages[0].type, 'NATHAN_START_ELA_BULK'); assert.equal(state.messages[0].allowSubmit, true);
+  assert.equal(state.messages[0].count, 50); assert.equal(state.messages[0].delayMs, 1500);
+  assert.equal(state.opened[0].url, 'http://127.0.0.1:4319/#question-bank'); assert.equal(state.opened[0].active, false);
+  assert.equal(elements['capture-next'].disabled, true); assert.equal(elements['bulk-stop'].disabled, false);
+  await click('bulk-stop'); assert.equal(state.stored.elaBulkJob.status, 'stopped');
+  assert.equal(elements['bulk-stop'].disabled, true);
+});
+test('invalid AFK limits do not open an editor tab or start source actions', async () => {
+  const { elements, state, click, consent } = await popup(); await consent();
+  elements['bulk-count'].value = '501'; await click('bulk-start');
+  assert.equal(state.messages.length, 0); assert.equal(state.opened.length, 0); assert.match(elements.status.textContent, /1–500/);
 });

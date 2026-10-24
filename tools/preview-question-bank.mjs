@@ -18,6 +18,10 @@ const source = (await readFile(join(toolsRoot, "content-studio.mjs"), "utf8"))
 await writeFile(modulePath, source);
 const studio = await import(pathToFileURL(modulePath).href);
 const server = createServer((request, response) => {
+  if (request.method === "GET" && request.url === "/qa/mobile") {
+    response.writeHead(200, { "Content-Type": "text/html" });
+    response.end('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Question bank · 390px QA</title><style>body{margin:0;background:#e5ebe8}iframe{display:block;width:390px;height:900px;margin:20px auto;border:1px solid #9baea5;background:white}</style><iframe title="390px question bank preview" src="/#question-bank"></iframe>'); return;
+  }
   // Block every write except the isolated question-bank test endpoints.
   if (request.method !== "GET" && !request.url.startsWith("/api/question-bank/")) { response.writeHead(403); response.end('{"message":"Read-only QA for non-bank content."}'); return; }
   return studio.handleRequest(request, response);

@@ -16,11 +16,24 @@ const DocumentStudio = {
       if (!document.querySelector('#document-review-dialog').open) document.querySelector('#document-review-dialog').showModal();
     } catch (error) { setStatus(error.message, 'error'); }
   },
-  async accept(source) {
+  async accept(source, { openInEditor = false } = {}) {
+    if (openInEditor && !confirmDiscard()) return;
     try {
       this.state = await api('/api/document-drafts', { method: 'POST', body: JSON.stringify({ source, destination: app.passageImportDestination || 'exam' }) });
       document.querySelector('#official-passage-dialog').close();
       document.querySelector('#sat-passage-dialog').close();
+      if (openInEditor) {
+        const incoming = DocumentImport.parse(source)[0];
+        const importedIds = this.state.lastImport?.entryIds || [];
+        const destination = app.passageImportDestination || 'exam';
+        const entry = this.state.entries.find(entry => importedIds.includes(entry.id) && entry.kind === 'passage') || this.state.entries.find(entry => entry.kind === 'passage' && (entry.destination || 'exam') === destination && entry.content.id === incoming.content.id);
+        if (!entry) throw new Error('The imported passage was saved. Open it from Saved import drafts.');
+        this.entry = clone(entry);
+        this.openPassageDraft(entry);
+        const needsEditing = entry.content.questions.filter(question => question.review?.warnings?.length).length;
+        setStatus(`Imported ${entry.content.questions.length} questions into the Content Editor.${needsEditing ? ` ${needsEditing} ${needsEditing === 1 ? 'question needs' : 'questions need'} manual editing; captured wording and choices were retained.` : ''} Your draft is saved.`, 'success');
+        return;
+      }
       await this.library();
       setStatus('Import saved as teacher-only drafts. Identical reimports reuse their saved drafts.', 'success');
     } catch (error) { setStatus(error.message, 'error'); }
@@ -32,8 +45,21 @@ const DocumentStudio = {
       ${review.entries.map(entry => `<details open><summary>${escapeHtml(entry.content.title || 'Untitled section')} · ${entry.content.questions.length} questions</summary><pre style="white-space:pre-wrap">${escapeHtml(entry.content.text || '')}</pre>
         ${entry.content.questions.map(q => `<article><strong>${escapeHtml(q.review?.sourceQuestion || q.id)}. ${escapeHtml(q.prompt)}</strong><ol>${(q.choices || []).map(c => `<li>${escapeHtml(c.id)}. ${escapeHtml(c.text)}</li>`).join('')}</ol><p>Key: ${escapeHtml(q.correctChoiceId || q.correctChoiceIds?.join(', ') || q.correctTextAnswers?.join(', ') || 'Not provided')}</p><p>Explanation: ${escapeHtml(q.explanation || 'Not provided')}</p></article>`).join('')}</details>`).join('')}
       <div class="math-import-warnings"><strong>Review before publication</strong><ul>${review.warnings.map(w => `<li>${escapeHtml(w)}</li>`).join('')}</ul></div>
-      <button type="button" class="primary" id="document-accept">Save all as review drafts</button>`;
-    container.querySelector('#document-accept').onclick = () => this.accept(app.passageImportSource || document.querySelector('#official-passage-import-source').value);
+      <button type="button" class="primary" id="document-accept">${app.passageImportKind === 'sat' ? 'Import into Content Editor' : 'Save all as review drafts'}</button>`;
+    container.querySelector('#document-accept').onclick = () => this.accept(app.passageImportSource || document.querySelector('#official-passage-import-source').value, { openInEditor: app.passageImportKind === 'sat' });
+  },
+  openPassageDraft(entry) {
+    const destination = entry.destination || 'exam';
+    app.passageMode = destination; app.selectedPassageId = ''; app.passageDraft = clone(entry.content);
+    app.passageDraft.preserveSourceLayout = true; app.passageDirty = false;
+    studioUI.passageContext = '';
+    studioUI.preparePassage();
+    const firstProblem = app.passageDraft.questions.findIndex(question => question.review?.warnings?.length);
+    studioUI.selectedQuestionIndex = Math.max(0, firstProblem);
+    studioUI.selectedQuestionId = app.passageDraft.questions[studioUI.selectedQuestionIndex]?.id || '';
+    updatePassageWorkspaceLabels(); renderPassageList(); renderPassageEditor(); switchTab(destination === 'advanced' ? 'advanced' : 'passages');
+    if (firstProblem >= 0) studioUI.showSupportPanel('question');
+    document.querySelector('#document-review-dialog')?.close();
   },
   open(id) { if (this.state.entries.find(e=>e.id===id)?.batch) { MathBatchStudio.open(id); return; } this.entry = clone(this.state.entries.find(e => e.id === id)); this.index = 0; this.render(); },
   async save() {
@@ -126,12 +152,12 @@ const DocumentStudio = {
     });
     dialog.querySelectorAll('[data-review]').forEach(input => input.onchange = () => { p.review ||= {}; p.review[input.dataset.review] = input.checked; });
     const responseType = dialog.querySelector('#doc-response-type');
-    if (responseType) responseType.onchange = () => { q.type = DocumentImport.normalizeResponseType(responseType.value); if (q.type === 'short_response') delete q.entryLayout; this.render(); };
+    if (responseType) responseType.onchange = () => { q.type = DocumentImport.normalizeResponseType(responseType.value); if (q.type === 'short_response') { delete q.entryLayout; delete q.entryVariable; } this.render(); };
     if (q) dialog.querySelector('#doc-classification').onchange = event => { q.review ||= {}; q.review.classificationReviewed = event.target.checked; };
     dialog.querySelectorAll('[data-warning]').forEach(input => input.onchange = () => { const [target, i] = input.dataset.warning.split(':'); (target === 'passage' ? p : q).review.warnings[Number(i)].state = input.value; });
     dialog.querySelector('#doc-question').onchange = event => { this.index = Number(event.target.value); this.render(); };
     dialog.querySelectorAll('[data-doc-visual]').forEach(input => input.onchange = handle(() => this.upload(vs[Number(input.dataset.docVisual)], input.files[0])));
-    dialog.querySelector('#doc-apply').onclick = handle(() => { const content = JSON.parse(dialog.querySelector('#doc-json').value); if (!Array.isArray(content.questions)) throw new Error('questions must remain an array.'); content.questions.forEach(question => { question.type = DocumentImport.normalizeResponseType(question.type); if (question.type === 'short_response') delete question.entryLayout; }); this.entry.content = content; this.index = 0; this.render(); });
+    dialog.querySelector('#doc-apply').onclick = handle(() => { const content = JSON.parse(dialog.querySelector('#doc-json').value); if (!Array.isArray(content.questions)) throw new Error('questions must remain an array.'); content.questions.forEach(question => { question.type = DocumentImport.normalizeResponseType(question.type); if (question.type === 'short_response') { delete question.entryLayout; delete question.entryVariable; } }); this.entry.content = content; this.index = 0; this.render(); });
     if (e.kind === 'passage') dialog.querySelector('#doc-editor').onclick = handle(async () => {
       if (!confirmDiscard()) return;
       if (this.entry.status === 'published') {

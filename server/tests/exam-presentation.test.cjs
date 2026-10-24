@@ -4,7 +4,7 @@ const path = require('node:path');
 require('ts-node').register({ transpileOnly: true, project: path.resolve(__dirname, '../tsconfig.json'), compilerOptions: { module: 'CommonJS', moduleResolution: 'Node' }, moduleTypes: { '**': 'cjs' } });
 const { mathAnswerToLatex, mathAnswerFromLatex, normalizeMathAnswer, isMathAnswerComplete } = require('../src/shared/mathAnswer.ts');
 const { isExamQuestionCorrect, createExamResult, getAllExamQuestions } = require('../src/shared/examGrading.ts');
-const { createProsePassage, createPlainTextPassage, createSentenceNumberedPassage } = require('../../client/src/content/exams/formatters.ts');
+const { createProsePassage, createPlainTextPassage, createSourcePassage, createSentenceNumberedPassage } = require('../../client/src/content/exams/formatters.ts');
 
 test('glossary definitions preserve visible text and selected occurrence across passage formats', () => {
   const glossary = [{ term: 'serial', definition: 'A "story" & <series>.' }];
@@ -72,6 +72,15 @@ test('poetry preserves indentation, stanza gaps, italics, and line-number interv
   const rich = createPlainTextPassage({ id: 'rich-poem', title: 'Morning', text: 'One\nTwo', richText: '<div>  <em>One</em><br>Two</div>' });
   assert.equal(rich.lines[2].text, '  One');
   assert.match(rich.lines[2].html, /<em>One<\/em>/);
+});
+
+test('source-preserved poems number verse lines without counting stanza breaks', () => {
+  const source = createSourcePassage({ id: 'source-poem', title: 'Poem', byline: 'A. Writer', subtitle: 'An excerpt', format: 'poem', text: 'One\nTwo\n\nThree\nFour\nFive\nSix', richText: '<p>One<br>Two</p><p><br></p><p>Three<br>Four<br><em>Five</em><br>Six</p>' });
+  const body = source.lines.filter(line => !line.kind);
+  assert.deepEqual(body.map(line => line.text), ['One', 'Two', '', 'Three', 'Four', 'Five', 'Six']);
+  assert.deepEqual(body.filter(line => line.lineNumber).map(line => [line.lineNumber, line.text]), [['5', 'Five']]);
+  assert.match(body.find(line => line.lineNumber === '5').html, /<em>Five<\/em>/);
+  assert.equal(source.lines.find(line => line.kind === 'byline').text, 'A. Writer');
 });
 
 test('registered exams still resolve, retain unique question IDs, and grade every authored key', () => {

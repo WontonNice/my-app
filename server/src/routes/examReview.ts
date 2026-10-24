@@ -126,7 +126,7 @@ async function loadCorrectionView(user: User, assessmentId: string, response: Re
     const progress = await getDatabaseProgress(user);
     const result = progress.examResults.find(item => item.assessmentId === assessment.id) as ExamResult | undefined;
     if (!result || !result.answers) { response.status(409).json({ message: "Individual submitted answers are needed before corrections can open." }); return; }
-    const content = getExamContent(assessment.id);
+    const content = result.analysisContent ?? getExamContent(assessment.id);
     if (!content) { response.status(409).json({ message: "The exam content is unavailable. Ask your teacher to save the exam." }); return; }
     const questions = reviewQuestions(content, result);
     const resultVersion = createHash("sha256").update(JSON.stringify({ result, questions })).digest("hex");

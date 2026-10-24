@@ -1,0 +1,21 @@
+.corporate-dashboard-content .teacher-exam-reentry { border:1px solid #dce5e0; border-radius:10px; padding:18px; background:#fffdf9; color:#183d38; font:13px/1.5 "Segoe UI",Arial,sans-serif; }
+.teacher-exam-reentry header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+.teacher-exam-reentry header p,.teacher-exam-reentry header > span { display:flex; align-items:center; gap:6px; margin:0; font-size:11px; color:#426b5d; }
+.teacher-exam-reentry header p { font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+.teacher-exam-reentry h3 { margin:3px 0 0; font-size:18px; }
+.teacher-exam-reentry > p { margin:10px 0; }
+.teacher-exam-reentry .exam-reentry-fields { display:grid; grid-template-columns:minmax(150px,1.4fr) minmax(150px,1fr) auto minmax(150px,.8fr); gap:14px; align-items:start; }
+.teacher-exam-reentry .exam-reentry-fields > label { display:grid; gap:4px; font-size:12px; font-weight:600; }
+.corporate-dashboard-content .teacher-exam-reentry :is(select,input[type=number]) { box-sizing:border-box; width:100%; min-width:0; min-height:36px; padding:7px 9px; border:1px solid #cad9d1; border-radius:6px; background:#fff; color:#183d38; font:13px "Segoe UI",Arial,sans-serif; }
+.teacher-exam-reentry small { color:#687b72; font-size:11px; font-weight:400; }
+.teacher-exam-reentry fieldset { padding:0; border:0; margin:0; }
+.teacher-exam-reentry legend { padding:0 0 8px; font-size:12px; font-weight:600; }
+.teacher-exam-reentry fieldset label { display:inline-flex; align-items:center; gap:5px; margin-right:10px; }
+.corporate-dashboard-content .teacher-exam-reentry input[type=checkbox] { width:16px; height:16px; min-height:0; margin:0; accent-color:#245b4d; }
+.teacher-exam-reentry footer { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-top:14px; }
+.corporate-dashboard-content .teacher-exam-reentry button { display:inline-flex; width:auto; min-height:34px; padding:7px 12px; border:1px solid #bcd0c5; border-radius:6px; background:#fff; color:#245b4d; font:600 12px "Segoe UI",Arial,sans-serif; cursor:pointer; }
+.corporate-dashboard-content .teacher-exam-reentry footer button:first-child { color:white; background:#245b4d; border-color:#245b4d; }
+.teacher-exam-reentry button:disabled { opacity:.5; cursor:default; }
+.teacher-exam-reentry .exam-reentry-active { padding:8px 10px; border-radius:6px; background:#e7f4eb; }
+@media(max-width:1000px) { .teacher-exam-reentry .exam-reentry-fields { grid-template-columns:1fr 1fr; } }
+@media(max-width:550px) { .teacher-exam-reentry .exam-reentry-fields { grid-template-columns:1fr; } }

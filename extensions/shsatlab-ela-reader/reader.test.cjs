@@ -50,5 +50,7 @@ test('reader stays read-only and extension retains minimal permissions with no p
   assert.doesNotMatch(reader, /\.click\(/);
   const code = ['content.js', 'reader.js', 'automation.js', 'queue.js'].map(file => fs.readFileSync(`${__dirname}/${file}`, 'utf8')).join('\n');
   assert.doesNotMatch(code, /fetch\(|localStorage|document\.cookie|__NEXT_DATA__|reactFiber|history\.(?:pushState|replaceState)|location\.(?:assign|replace)/);
-  assert.deepEqual(manifest.content_scripts[0].js, ['reader.js', 'queue.js', 'automation.js', 'content.js']);
+  assert.deepEqual(manifest.content_scripts[0].js, ['reader.js', 'queue.js', 'automation.js', 'bulk.js', 'content.js']);
+  assert.deepEqual(manifest.content_scripts[1].matches, ['http://127.0.0.1:4319/*', 'http://localhost:4319/*']);
+  assert.deepEqual(manifest.content_scripts[1].js, ['editor-sync.js']);
 });

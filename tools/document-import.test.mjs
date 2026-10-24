@@ -227,6 +227,52 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     await studio.getState();
     const poemBook = JSON.parse(await readFile(join(dir, 'server/data/library-books.json'), 'utf8')).find(b => b.id === poem.content.id);
     assert.deepEqual(poemBook.passageSet.passage.lines.filter(l => !l.kind).map(l => l.text), fixture.passages[1].text.split('\n'));
+    // SAT Reader recoverable question errors survive the real preview/draft
+    // endpoints, manual editing, and publication without leaking source metadata.
+    {
+    const satUi = vm.runInNewContext((await readFile(join(toolsRoot, 'content-studio-workspace.js'), 'utf8')) + '\nstudioUI;', { URL });
+    const satSource = satUi.convertSatCrashCourseImport(JSON.stringify({ source: { url: 'https://tutor.thesatcrashcourse.com/tests/fixture' }, testPreview: {
+      testTitle: 'SAT manual repair fixture', capture: { mode: 'passage-all', warnings: [] },
+      questions: [8, 9, 10].map(number => ({ number, passage: { id: 'sat-repair', title: 'SAT repair passage', text: 'The complete source passage remains here.', formattedBlocks: [{ text: 'The complete source passage remains here.', html: 'The <strong>complete</strong> source passage remains here.' }] }, prompt: `Captured source question ${number}`, promptHtml: `Captured <em>source</em> question ${number}`, choices: number === 9 ? [] : ['A', 'B', 'C', 'D'].map(label => ({ label, text: `Original ${label}`, html: `<strong>Original</strong> ${label}`, isCorrect: label === 'B' })), correctAnswer: number === 9 ? null : { label: 'B' } })),
+    }}));
+    const satPreview = await call('/api/passages/import-preview', { source: JSON.stringify(satSource) });
+    assert.equal(satPreview.status, 200, JSON.stringify(satPreview.data));
+    assert.equal(satPreview.data.passage.questions.length, 3);
+    assert.ok(satPreview.data.warnings.some(warning => /Question 9.*manual editing/.test(warning)));
+    const satDrafts = (await call('/api/document-drafts', { source: JSON.stringify(satSource) })).data;
+    const satEntry = satDrafts.entries.find(entry => entry.content.title === 'SAT repair passage');
+    assert.equal(satEntry.content.questions[1].prompt, 'Captured source question 9');
+    assert.deepEqual(satEntry.content.questions[1].choices.map(choice => choice.text), ['', '', '', '']);
+    assert.equal(satEntry.content.questions[1].correctChoiceId, '');
+    assert.equal(satEntry.content.questions[2].correctChoiceId, 'B');
+    satEntry.content.questions[1].choices.forEach((choice, index) => { choice.text = `Manually completed ${index + 1}`; });
+    satEntry.content.questions[1].correctChoiceId = 'C';
+    const satEdited = await call('/api/document-drafts', { revision: satDrafts.revision, entry: satEntry });
+    assert.equal(satEdited.status, 200, JSON.stringify(satEdited.data));
+    const satReloaded = (await call('/api/document-drafts')).data.entries.find(entry => entry.id === satEntry.id);
+    assert.equal(satReloaded.content.questions[1].choices[2].text, 'Manually completed 3');
+    assert.equal(satReloaded.content.questions[1].review.sourceQuestionData.choices.length, 0);
+    const satPublished = await call('/api/passages', { ...satReloaded.content, publishNow: true });
+    assert.equal(satPublished.status, 201, JSON.stringify(satPublished.data));
+    assert.equal(satPublished.data.passage.questions[1].correctChoiceId, 'C');
+    assert.equal(satPublished.data.passage.passageCategory, 'prestige');
+    assert.match(satPublished.data.passage.richText, /<strong>complete<\/strong>/);
+    assert.match(satPublished.data.passage.questions[0].promptHtml, /<em>source<\/em>/);
+    assert.match(satPublished.data.passage.questions[0].choices[0].html, /<strong>Original<\/strong>/);
+    assert.doesNotMatch(JSON.stringify(satPublished.data.passage), /sourceQuestionData|sourceChoiceIds|tutor\.thesatcrashcourse/);
+    }
+    {
+      const { default: editorSync } = await import('../extensions/shsatlab-ela-reader/editor-sync.js');
+      const captured = { subject: 'English', source: 'SHSAT Lab', sourceUnit: 1, sourceTopic: 'Central Idea & Theme', sourceUrl: 'https://www.shsatlab.com/units/unit-1/practice', difficulty: 'medium', prompt: 'AFK import fixture question', choices: ['A', 'B', 'C', 'D'].map(id => ({ id, text: `Source ${id}` })), correctChoiceId: 'B', explanation: 'The source explains B.', passage: { title: 'Source heading', text: 'Complete source passage.', format: 'prose' }, reviewNotes: [], visuals: [] };
+      const memory = { elaSyncEnabled: true, elaQueue: [captured] };
+      const engine = editorSync.create({ storage: { get: async () => structuredClone(memory), set: async value => Object.assign(memory, structuredClone(value)) }, fetch: (path, options) => fetch(base + path, options), origin: 'http://127.0.0.1:4319', fingerprint: async question => JSON.stringify(question) });
+      await engine.sync();
+      assert.equal(memory.elaEditorSync.status, 'synced', memory.elaEditorSync.message);
+      const importedBank = (await call('/api/question-bank')).data;
+      assert.equal(importedBank.questions[0].prompt, captured.prompt);
+      assert.equal(importedBank.questions[0].status, 'draft'); assert.equal(importedBank.questions[0].explanation, captured.explanation);
+      const revision = importedBank.revision; await engine.sync(); assert.equal((await call('/api/question-bank')).data.revision, revision);
+    }
     // The teacher can publish immediately and complete review in the normal editor.
     const immediatePayload = structuredClone(fixture);
     immediatePayload.passages = [immediatePayload.passages[0]];

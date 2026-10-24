@@ -282,6 +282,7 @@ function toStaffAccount(user: {
 function toStudentAccount(user: {
     app_metadata: Record<string, unknown>;
     created_at: string;
+    last_sign_in_at?: string;
     email?: string;
     id: string;
     user_metadata: Record<string, unknown>;
@@ -300,6 +301,7 @@ function toStudentAccount(user: {
             ? archivedClassIds.filter((classId): classId is string => typeof classId === "string")
             : getEnrolledClassIds(user.app_metadata),
         createdAt: user.created_at,
+        lastLoginAt: user.last_sign_in_at ?? null,
         email: user.email ?? "",
         fullName: typeof user.user_metadata.full_name === "string" ? user.user_metadata.full_name : fallbackUsername,
         id: user.id,

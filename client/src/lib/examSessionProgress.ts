@@ -67,6 +67,13 @@ export function getExamSectionQuestionIds(examContent: ExamContent) {
   };
 }
 
+/** Only explicitly submitted questions become graded blanks. Pending sections keep their drafts. */
+export function prepareSectionSubmission(content: ExamContent, answers: SelectedAnswers, completed: ExamSection[], section: ExamSection) {
+  const nextAnswers = { ...answers };
+  for (const id of getExamSectionQuestionIds(content)[section]) if (!Object.hasOwn(nextAnswers, id)) nextAnswers[id] = "";
+  return { answers: nextAnswers, completedSections: [...new Set([...completed, section])] };
+}
+
 export function getCurrentCompletedSections(
   examContent: ExamContent,
   progress: Pick<ExamSessionProgress, "answers" | "completedSections"> | null | undefined,

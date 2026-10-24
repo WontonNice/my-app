@@ -12,9 +12,10 @@ test('shared math renderer preserves emphasis, formulas, short answers and inter
     console.log(renderToStaticMarkup(<ExamMathQuestion question={{...base,type:'short_response',correctTextAnswers:['-4'],stimulus:'\\\\(4w=2w-8\\\\)'}} answer="-4" onChange={()=>{}}/>));
     console.log(renderToStaticMarkup(<ExamMathQuestion question={{...base,type:'inline_dropdown',dropdownContent:['Choose {{a}} then {{b}}.'],dropdowns:[{id:'a',options:[{id:'one',text:'One'}]},{id:'b',options:[{id:'two',text:'Two'}]}]}} answer={{a:'one',b:'two'}} onChange={()=>{}}/>));
     console.log(renderToStaticMarkup(<ExamMathQuestion question={{...base,type:'number_line_response',numberLineResponse:{min:0,max:5,tickStep:0}}} onChange={()=>{}}/>));
+    for (const entryVariable of ['w', 'W', 'θ', undefined, 'w=']) console.log(renderToStaticMarkup(<ExamMathQuestion question={{...base,type:'numeric_entry',entryLayout:'x_equals',entryVariable,correctTextAnswers:['-4']}} answer="-4" onChange={()=>{}}/>));
   `, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic', loader: {'.css':'empty'}, plugins: [{name:'non-keypad-ssr',setup(build) {
-    // These cases never mount a keypad. MathLive exposes its browser-only custom
-    // element separately from its Node SSR API; keypad behavior is tested in Chrome.
+    // MathLive mounts its browser-only custom element in an effect. SSR verifies
+    // the real question/prefix rendering; interactive behavior is checked in Chrome.
     build.onResolve({filter:/^mathlive$/}, () => ({path:'mathlive',namespace:'non-keypad'}));
     build.onLoad({filter:/.*/,namespace:'non-keypad'}, () => ({contents:'export class MathfieldElement {}'}));
   }}] });
@@ -26,6 +27,11 @@ test('shared math renderer preserves emphasis, formulas, short answers and inter
   assert.equal((output[1].match(/<select/g) || []).length, 2);
   assert.match(output[1], /value="one" selected=""/); assert.match(output[1], /value="two" selected=""/);
   assert.match(output[2], /Set valid number-line bounds/);
+  for (const [i, variable] of ['w', 'W', 'θ', 'x', 'x'].entries()) {
+    assert.match(output[i + 3], /exam-math-entry-prefix/);
+    assert.ok(output[i + 3].includes(`<mi>${variable}</mi>`), `Expected ${variable} prefix`);
+    assert.match(output[i + 3], /Math answer keypad/);
+  }
 });
 // This fixture contains only plain source text and <br>/entities. Supply the DOM
 // surface needed by ExamText for Node SSR; browser sanitization is not mocked as tested.

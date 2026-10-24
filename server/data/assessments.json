@@ -1465,7 +1465,7 @@
     ],
     "status": "locked",
     "title": "2025-2026 Form A",
-    "updatedAt": "2026-10-17T13:07:11.467Z",
+    "updatedAt": "2026-10-24T11:03:53.798Z",
     "split": false,
     "allowCompletedAccess": true,
     "sectionAccess": {
@@ -1483,7 +1483,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-09-11T15:56:21.577Z",
-    "updatedAt": "2026-09-15T05:31:09.193Z",
+    "updatedAt": "2026-10-24T11:04:01.845Z",
     "passages": [
       {
         "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil",
@@ -2413,10 +2413,10 @@
     ],
     "forms": [],
     "formAssignments": {},
-    "status": "open",
+    "status": "locked",
     "sectionAccess": {
-      "english": true,
-      "math": true
+      "english": false,
+      "math": false
     },
     "correctionsOpen": false,
     "allowCompletedAccess": false,
@@ -2429,7 +2429,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-09-19T14:37:43.255Z",
-    "updatedAt": "2026-10-21T17:40:48.287Z",
+    "updatedAt": "2026-10-24T11:04:04.068Z",
     "passages": [
       {
         "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b",
@@ -4085,10 +4085,10 @@
     ],
     "forms": [],
     "formAssignments": {},
-    "status": "open",
+    "status": "locked",
     "sectionAccess": {
-      "english": true,
-      "math": true
+      "english": false,
+      "math": false
     },
     "correctionsOpen": true,
     "allowCompletedAccess": false,
@@ -4101,7 +4101,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-10-10T15:42:08.897Z",
-    "updatedAt": "2026-10-19T17:50:58.093Z",
+    "updatedAt": "2026-10-24T11:04:08.164Z",
     "passages": [
       {
         "id": "champion-of-the-channel-2020-2021-form-a",
@@ -4900,14 +4900,1253 @@
     ],
     "forms": [],
     "formAssignments": {},
-    "status": "open",
+    "status": "locked",
     "sectionAccess": {
-      "english": true,
-      "math": true
+      "english": false,
+      "math": false
     },
     "correctionsOpen": false,
     "allowCompletedAccess": false,
     "split": false,
     "examLabel": "Official practice"
+  },
+  {
+    "id": "2021-2022-form-a",
+    "title": "2021-2022 Form A",
+    "examLabel": "Official practice",
+    "classId": "shsat",
+    "description": "",
+    "durationMinutes": 180,
+    "createdAt": "2026-10-24T10:56:24.515Z",
+    "updatedAt": "2026-10-24T13:15:01.728Z",
+    "passages": [],
+    "questions": [
+      {
+        "answer": "162",
+        "choices": [],
+        "id": "2021-2022-form-a-q58",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure above, PQRS is a parallelogram. What is the value of \\(x\\)?",
+        "topic": "Geometry",
+        "subtopic": "Shapes & Angles",
+        "type": "short_response"
+      },
+      {
+        "answer": "99",
+        "choices": [],
+        "id": "2021-2022-form-a-q59",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The owner of a tree farm plants pine trees and oak trees in a ratio of 8:3. How many oak trees are planted if 264 pine trees are planted?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
+        "type": "short_response"
+      },
+      {
+        "answer": "-4",
+        "choices": [],
+        "id": "2021-2022-form-a-q60",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "For what value of \\(w\\) is \\(4w=2w-8\\)?",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
+        "type": "numeric_entry"
+      },
+      {
+        "answer": "45",
+        "choices": [],
+        "id": "2021-2022-form-a-q61",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true.\n\n• 20 students have cats.\n• 23 students have dogs.\n• 3 students have both dogs and cats.\n• 5 students have no dogs or cats.\n\nHow many students were surveyed?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Counting & Sets",
+        "type": "short_response"
+      },
+      {
+        "answer": "63",
+        "choices": [],
+        "id": "2021-2022-form-a-q62",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The sum of two consecutive integers is \\(-15\\). If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
+        "type": "short_response"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\{3,4,5\\}",
+          "\\{4,5,6\\}",
+          "\\{8,10,12\\}",
+          "\\{10,14,18\\}"
+        ],
+        "id": "2021-2022-form-a-q63",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The set of possible values of \\(m\\) is \\(\\{5,7,9\\}\\). What is the set of possible values of \\(k\\) if \\(2k=m+3\\)?",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "5-n",
+          "5+n",
+          "21-n",
+          "21+n"
+        ],
+        "id": "2021-2022-form-a-q64",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(7+(3n+6)-(4n+8)=\\)",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "72",
+          "80",
+          "90",
+          "92"
+        ],
+        "id": "2021-2022-form-a-q65",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a certain school, course grades range from 0 to 100. Adrianna took 4 courses and her mean course grade was 90. Roberto took 5 courses. If both students have the same sum of course grades, what was Roberto’s mean?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Averages & Spread",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "25",
+          "30",
+          "35",
+          "40"
+        ],
+        "id": "2021-2022-form-a-q66",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Jenny starts a game with twice as many marbles as Keiko. Jenny gives Keiko 5 marbles, but she still has 10 more than Keiko. How many marbles did Jenny have to start with?",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "0.001",
+          "0.01",
+          "0.1",
+          "0.12"
+        ],
+        "id": "2021-2022-form-a-q67",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "42",
+          "63",
+          "105",
+          "315"
+        ],
+        "id": "2021-2022-form-a-q68",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A researcher recorded the number of people in each vehicle that passed through a checkpoint. The table above shows the percent distribution for the 420 vehicles that passed through the checkpoint yesterday morning. How many of the 420 vehicles contained at least 3 people?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "48 sq cm",
+          "96 sq cm",
+          "128 sq cm",
+          "160 sq cm"
+        ],
+        "id": "2021-2022-form-a-q69",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the pyramid above, each triangular face has the same area, and the base MNPQ is a square that measures 8 centimeters on each side. If the length of \\(\\overline{RS}=6\\) centimeters, what is the surface area of the pyramid excluding the base?",
+        "topic": "Geometry",
+        "subtopic": "Surface Area & Volume",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "150 cm by 105 cm",
+          "153 cm by 102 cm",
+          "158 cm by 97 cm",
+          "165 cm by 90 cm"
+        ],
+        "id": "2021-2022-form-a-q70",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The perimeter of a rectangle is 510 centimeters. The ratio of the length to the width is 3:2. What are the dimensions of this rectangle?",
+        "topic": "Geometry",
+        "subtopic": "Area & Perimeter",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "id": "2021-2022-form-a-q71",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which number line below shows the solution to the inequality \\(-4<\\frac{x}{2}<2\\)?",
+        "topic": "Algebra",
+        "subtopic": "Inequalities",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "4",
+          "8",
+          "10",
+          "20"
+        ],
+        "id": "2021-2022-form-a-q72",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The sum of the numbers \\(x\\), \\(y\\), and \\(z\\) is 50. The ratio of \\(x\\) to \\(y\\) is 1:4, and the ratio of \\(y\\) to \\(z\\) is 4:5. What is the value of \\(y\\)?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "5",
+          "15",
+          "21",
+          "30"
+        ],
+        "id": "2021-2022-form-a-q73",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "$28",
+          "$52",
+          "$182",
+          "$282"
+        ],
+        "id": "2021-2022-form-a-q74",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "1 dollar = 7 lorgs\n\n1 dollar = 0.5 dalt\n\nKevin has 140 lorgs and 16 dalts. If he exchanges the lorgs and dalts for dollars according to the rates above, how many dollars will he receive?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Units & Conversions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "0.25 square unit",
+          "0.5 square unit",
+          "1 square unit",
+          "1.5 square units"
+        ],
+        "id": "2021-2022-form-a-q75",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the area of the shaded region in the graph above?",
+        "topic": "Geometry",
+        "subtopic": "Area & Perimeter",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "15%",
+          "16%",
+          "24%",
+          "39%"
+        ],
+        "id": "2021-2022-form-a-q76",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In Centerville, 45% of the population is female, and 60% of the population commutes to work daily. Of the total Centerville population, 21% are females who commute to work daily. What percentage of the total Centerville population are males who do not commute to work daily?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "$2.80",
+          "$3.25",
+          "$14.40",
+          "$22.40"
+        ],
+        "id": "2021-2022-form-a-q77",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, not including tax. What was the price per pound of the meat?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\frac{2}{15}",
+          "\\frac{4}{25}",
+          "\\frac{3}{10}",
+          "\\frac{1}{3}"
+        ],
+        "id": "2021-2022-form-a-q78",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "sind",
+          "dalt",
+          "harp",
+          "plunk"
+        ],
+        "id": "2021-2022-form-a-q79",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "1 sind = 4 lorgs\n\n2 plunks = 5 dalts\n\n5 sinds = 2 harps\n\n1 plunk = 3 harps\n\nA nation has five types of coins: sinds, dalts, lorgs, harps, and plunks. The relationship between the coins is shown above. Which coin is most valuable?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Units & Conversions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "1,989",
+          "2,022",
+          "2,652",
+          "2,685"
+        ],
+        "id": "2021-2022-form-a-q80",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The faculty of a certain four-year college consists of 179 teachers. There are 663 first-year students. The student-to-faculty ratio for the entire college is 15 to 1. What is the total number of second-, third-, and fourth-year students?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "2,500",
+          "2,700",
+          "2,800",
+          "3,000"
+        ],
+        "id": "2021-2022-form-a-q81",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How many more people in Center City walk to work than ride their bicycle to work?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Data Displays",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "30",
+          "35",
+          "39",
+          "44"
+        ],
+        "id": "2021-2022-form-a-q82",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following numbers has factors that include the smallest factor (other than 1) of 91?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "16 ft",
+          "32 ft",
+          "40 ft",
+          "48 ft"
+        ],
+        "id": "2021-2022-form-a-q83",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
+        "topic": "Geometry",
+        "subtopic": "Scale & Transformations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "22.5",
+          "75",
+          "77",
+          "85"
+        ],
+        "id": "2021-2022-form-a-q84",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the mean score of the 10 students in the table above?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Averages & Spread",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "2l",
+          "3l",
+          "l+2",
+          "l+5"
+        ],
+        "id": "2021-2022-form-a-q85",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The least of 5 consecutive integers is \\(l\\), and the greatest is \\(g\\). What is the value of \\(\\frac{l+g}{2}\\) in terms of \\(l\\)?",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\frac{55\\cdot 5{,}280}{1}",
+          "\\frac{55\\cdot 5{,}280}{3{,}600}",
+          "\\frac{55\\cdot 3{,}600}{5{,}280}",
+          "\\frac{55\\cdot 5{,}280}{60}"
+        ],
+        "id": "2021-2022-form-a-q86",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A car is traveling 55 miles per hour, and 1 mile = 5,280 feet. Which of the following calculations would give the car’s speed in feet per second?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Units & Conversions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "4 years old",
+          "6 years old",
+          "12 years old",
+          "16 years old"
+        ],
+        "id": "2021-2022-form-a-q87",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "0",
+          "1",
+          "2",
+          "12"
+        ],
+        "id": "2021-2022-form-a-q88",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How many positive even factors of 48 are greater than 24 and less than 48?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "14\\frac{7}{20}",
+          "14\\frac{2}{5}",
+          "15\\frac{7}{20}",
+          "15\\frac{2}{5}"
+        ],
+        "id": "2021-2022-form-a-q89",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\)\n\nWhat is the value of the expression shown above?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions & Decimals",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "3 ft",
+          "4 ft",
+          "6 ft",
+          "8 ft"
+        ],
+        "id": "2021-2022-form-a-q90",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An unmarked straight stick will be laid end over end to measure a distance of exactly 72 feet. The same stick will be used in the same way to measure a distance of exactly 30 feet. What is the length of the longest possible stick that can be used for both measurements?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "12",
+          "15",
+          "30",
+          "36"
+        ],
+        "id": "2021-2022-form-a-q91",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Counting & Sets",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "16",
+          "30",
+          "33",
+          "55"
+        ],
+        "id": "2021-2022-form-a-q92",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "For a presentation, Deion can create 5 slides in 20 minutes, working at a constant rate. Kyra can create 3 slides in 10 minutes, working at her own constant rate. What is the total number of slides the two of them can create in one hour?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "4.26",
+          "4.31",
+          "4.35",
+          "4.58"
+        ],
+        "id": "2021-2022-form-a-q93",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "On the number line above, \\(LN=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions & Decimals",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "$1,900",
+          "$4,600",
+          "$10,800",
+          "$11,800"
+        ],
+        "id": "2021-2022-form-a-q94",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Johan leased a car for three years. He paid a one-time fee of $1,000, and an additional $300 per month for the full three years. At the end of the three years, what is the total amount Johan paid for leasing this car?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Operations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "2\\frac{1}{6}\\text{ hr}",
+          "3\\frac{1}{4}\\text{ hr}",
+          "3\\frac{3}{4}\\text{ hr}",
+          "7\\frac{1}{2}\\text{ hr}"
+        ],
+        "id": "2021-2022-form-a-q95",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Ryan must read 150 pages for school this weekend. It took him 30 minutes to read the first 20 pages. At this rate, how much additional time will it take him to finish the reading?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\frac{wx}{yz}",
+          "\\frac{wy}{xz}",
+          "\\frac{wz}{xy}",
+          "\\frac{xy}{wz}"
+        ],
+        "id": "2021-2022-form-a-q96",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal 0. What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "5",
+          "6",
+          "13",
+          "15"
+        ],
+        "id": "2021-2022-form-a-q97",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of neither 2 nor 3?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Counting & Sets",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "id": "2021-2022-form-a-q98",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(3n\\) is a positive even number, how many odd numbers are in the range from \\(3n\\) up to and including \\(3n+5\\)?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\frac{1}{15}",
+          "\\frac{9}{100}",
+          "\\frac{7}{15}",
+          "\\frac{49}{100}"
+        ],
+        "id": "2021-2022-form-a-q99",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A box contains 5 strawberry candies, 3 banana candies, and 2 orange candies. If Braden selects 2 candies at random from this box, without replacement, what is the probability that both candies are not banana?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "x",
+          "xy",
+          "\\frac{w}{xy}",
+          "\\frac{xy}{w}"
+        ],
+        "id": "2021-2022-form-a-q100",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[\\frac{w}{x}=\\frac{y}{z}\\]\n\nIn the equation above, \\(w\\), \\(x\\), \\(y\\), and \\(z\\) are positive numbers. Which of these is equal to \\(z\\)?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "8",
+          "11",
+          "12",
+          "18"
+        ],
+        "id": "2021-2022-form-a-q101",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "On the number line above, points W, X, Y, and Z are integers, and WX:XY:YZ = 4:2:3. What is the value of WY?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "0.0002 in.",
+          "0.02 in.",
+          "0.0202 in.",
+          "0.03 in."
+        ],
+        "id": "2021-2022-form-a-q102",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A metal square used in an electronic device must have a thickness of 0.02 inch, with an allowable error of 1 percent. What is the greatest allowable thickness of the metal square?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "25",
+          "27",
+          "28",
+          "31"
+        ],
+        "id": "2021-2022-form-a-q103",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Mr. Blake’s biology class is divided into three sections. The same test was given to each section. The table above shows both the lowest score and the range of scores on this test for each section. What is the overall range of all scores in all three sections?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Averages & Spread",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "City M",
+          "City P",
+          "City Q",
+          "City R"
+        ],
+        "id": "2021-2022-form-a-q104",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The graph above shows the number of schools per city for five small cities. Cities M and N each have 500 students per school. City P has 400 students per school. Cities Q and R each have 700 students per school. Which of the five cities has the greatest number of students?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Data Displays",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "0",
+          "3",
+          "6",
+          "7"
+        ],
+        "id": "2021-2022-form-a-q105",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[\\frac{10}{13}=0.\\overline{769230}\\]\n\nIn the infinitely repeating decimal above, 7 is the first digit in the repeating pattern. What is the 391st digit?",
+        "topic": "Algebra",
+        "subtopic": "Patterns & Sequences",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "700",
+          "1,925",
+          "13,828",
+          "15,400"
+        ],
+        "id": "2021-2022-form-a-q106",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A car travels at 4,400 feet per minute. The radius of each tire on the car is 1 foot. How many revolutions does one of these tires make in 1 minute?\n\n(Use the approximation \\(\\frac{22}{7}\\) for \\(\\pi\\).)",
+        "topic": "Geometry",
+        "subtopic": "Area & Perimeter",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "101",
+          "200",
+          "301",
+          "341"
+        ],
+        "id": "2021-2022-form-a-q107",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(100(2+0.1)^2-100=\\)",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Exponents, Roots & Scientific Notation",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\frac{1}{37}",
+          "\\frac{1}{8}",
+          "\\frac{8}{37}",
+          "\\frac{8}{29}"
+        ],
+        "id": "2021-2022-form-a-q108",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A sports store has a container of handballs: 4 blue, 5 red, 8 yellow, 9 white, and 11 green. If one ball is picked from the container at random, what is the probability that it will be yellow?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "$1,875",
+          "$2,500",
+          "$3,125",
+          "$4,375"
+        ],
+        "id": "2021-2022-form-a-q109",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Each week, Leon has fixed expenses of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he sells each chair for $275. What is Leon’s profit if he makes and sells 25 chairs in 1 week?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Operations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "21.65",
+          "119.38",
+          "121.92",
+          "139.70"
+        ],
+        "id": "2021-2022-form-a-q110",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Using the approximation 2.54 centimeters = 1 inch, how many centimeters are in 4 feet 7 inches?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Units & Conversions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "5\\frac{1}{8}",
+          "5\\frac{1}{4}",
+          "5\\frac{1}{2}",
+          "6\\frac{1}{4}"
+        ],
+        "id": "2021-2022-form-a-q111",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "On the number line above, \\(JK=3\\frac{1}{2}\\), \\(JM=9\\frac{3}{4}\\), and \\(LM=1\\frac{1}{8}\\). What is the position of point L?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions & Decimals",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "x=\\frac{3}{4}y+12",
+          "x=-\\frac{3}{4}y+12",
+          "x=\\frac{3}{4}y+3",
+          "x=-\\frac{3}{4}y+3"
+        ],
+        "id": "2021-2022-form-a-q112",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(4x-3y=12\\), what is \\(x\\) in terms of \\(y\\)?",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "1\\frac{1}{2}",
+          "3",
+          "3\\frac{1}{3}",
+          "4"
+        ],
+        "id": "2021-2022-form-a-q113",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "There are 20 students in a class. The frequency table above shows the number of students in this class who ate 0, 1, 2, 3, 4, or 5 servings of fruits and vegetables yesterday. What is the mean number of servings of fruits and vegetables eaten yesterday per student in this class?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Averages & Spread",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "6",
+          "8",
+          "24",
+          "48"
+        ],
+        "id": "2021-2022-form-a-q114",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A paste used to cover a billboard is made by mixing the following ingredients by weight:\n\n4 parts powder, 3 parts water, 2 parts resin, and 1 part hardener. To cover one billboard requires 30 pounds of this paste. How many total pounds of resin are required to cover 4 billboards?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      }
+    ],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false
+  },
+  {
+    "id": "digital-shsat-practice-test-1",
+    "title": "Digital SHSAT Practice Test 1",
+    "examLabel": "Prestige",
+    "classId": "shsat",
+    "description": "Digital SHSAT Practice Test 1 (Prestige 2026)",
+    "durationMinutes": 180,
+    "createdAt": "2026-10-24T13:25:48.095Z",
+    "updatedAt": "2026-10-24T14:17:16.458Z",
+    "passages": [
+      {
+        "id": "excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"The Call of the Wild\"",
+        "versionLabel": "Digital SHSAT Practice Test 1"
+      },
+      {
+        "id": "excerpt-from-the-fix-it-saturdays",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"The Fix-It Saturdays\""
+      },
+      {
+        "id": "excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"Narrative of the Life of Frederick Douglass\"",
+        "versionLabel": "Digital SHSAT Practice Test 1"
+      }
+    ],
+    "questions": [
+      {
+        "answer": "B",
+        "choices": [
+          "explain why Judge Miller decided to sell Buck before the story begins.",
+          "create dramatic irony, letting the reader anticipate danger Buck does not yet suspect.",
+          "suggest that Buck's owners were secretly involved in the Klondike gold rush.",
+          "establish that the narrator disapproves of how Buck is treated by the household."
+        ],
+        "id": "excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The author's decision to reveal, in the very first lines, that 'trouble was brewing' for tide-water dogs like Buck, before ever describing Buck's comfortable life at Judge Miller's estate, most strongly serves to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The first paragraph provides evidence that directly contradicts the description that follows it.",
+          "The first paragraph and the estate description both take place after Buck has already left California.",
+          "The first paragraph's warning makes the estate's comfort feel temporary rather than secure.",
+          "The second paragraph resolves a conflict that was already fully explained in the first paragraph."
+        ],
+        "id": "excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The passage opens with a paragraph warning that trouble is coming for dogs like Buck, and only afterward moves into a long paragraph describing Judge Miller's estate in loving detail. Which choice most accurately describes how these two paragraphs, taken together across nearly a full page, function within the passage as a whole?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "sincere admiration for Buck's noble bloodline and inherited good breeding",
+          "gentle mockery of Buck's pampered self-importance, likened to a vain country gentleman",
+          "concern that Buck is being seriously mistreated or neglected by the Miller family",
+          "flat, unemotional reporting of Buck's daily habits and physical appearance"
+        ],
+        "id": "excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the description of Buck living 'the life of a sated aristocrat' with 'a fine pride in himself' and being 'even a trifle egotistical,' the word choice most strongly conveys",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "a metaphor showing how completely Buck believes he commands the whole estate.",
+          "a simile directly comparing Buck to an actual, crowned ruling monarch.",
+          "personification of the estate grounds themselves as a living kingdom.",
+          "an idiom describing a common, everyday farm chore or task."
+        ],
+        "id": "excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Describing Buck as ruling as 'king,—king over all creeping, crawling, flying things of Judge Miller's place, humans included' is best understood as an example of",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Wealth and comfort make a life, or a creature, immune from misfortune.",
+          "Household pets are always fully aware of major world events.",
+          "Gardeners are generally far more trustworthy than wealthy landowners.",
+          "A creature accustomed to importance may not recognize danger even once announced."
+        ],
+        "id": "excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which best states a theme suggested by the passage as a whole?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Manuel dislikes Buck and wants to see him removed from the estate.",
+          "Manuel's gambling debts and low wages leave him vulnerable to bribery.",
+          "Manuel believes Buck would be genuinely happier living somewhere else entirely.",
+          "Manuel is simply acting on direct orders given by Judge Miller."
+        ],
+        "id": "excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Based on the description of Manuel in the passage, which inference about why he might be willing to become involved in a secret arrangement is most strongly supported by the text?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "“Buck did not read the newspapers, or he would have known that trouble was brewing”",
+          "“he had a fine pride in himself, was even a trifle egotistical, as gentlemen become”",
+          "“Manuel had one besetting sin. He loved to play at Chinese lottery.”",
+          "“the Judge himself was at a meeting of the Raisin Growers’ Association”"
+        ],
+        "id": "excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What detail from the passage best supports the idea that Buck has no idea anything is about to change in his life?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Some categories of household objects are inherently easier to fix than others.",
+          "Fitch believes clothing repairs are more valuable to the community than furniture repairs.",
+          "The library plans to stop accepting furniture donations at future sessions entirely.",
+          "Volunteers are generally better trained in sewing repairs than in woodworking repairs."
+        ],
+        "id": "excerpt-from-the-fix-it-saturdays-a",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The contrast between furniture's repair rate and clothing's repair rate most directly supports which idea developed in the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "to announce that the library will stop accepting all furniture donations soon",
+          "to contradict Fitch's claim that a failed repair is not wasted effort",
+          "to introduce a category fixers cannot always repair",
+          "to shift the passage's entire focus permanently away from the volunteer program"
+        ],
+        "id": "excerpt-from-the-fix-it-saturdays-b",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The sentence 'Furniture told a different story,' which opens the paragraph about the twelve chairs, stools, and small tables the fixers examined, most directly serves to signal a shift from the passage's earlier examples toward information that complicates its optimistic pattern of high repair rates.",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "That Fitch is mainly interested in personal profit and expansion",
+          "That the informal pace matters most",
+          "That the recycling nonprofit's offer was disorganized and poorly planned",
+          "That the library quietly disapproves of Fitch's overall leadership style"
+        ],
+        "id": "excerpt-from-the-fix-it-saturdays-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "By including Fitch's own words explaining why he refuses to turn Fix-It Saturdays into a paid, weekly program, the author most strongly emphasizes which aspect of the program?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Odell Fitch is more skilled at repairs than most professional technicians.",
+          "A monthly repair program succeeds by fixing objects and giving honest attention.",
+          "Thistlewood's library struggles to find enough reliable volunteers for its programs.",
+          "Clothing is easier to repair than furniture because it requires fewer tools."
+        ],
+        "id": "excerpt-from-the-fix-it-saturdays-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which choice most fully captures the central idea of the passage's account of the Fix-It Saturdays program?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "They were fixed by volunteers who had less experience than Fitch.",
+          "The library quietly removed those particular volunteers from the program.",
+          "Those items were furniture pieces that had already been marked beyond repair.",
+          "Even Fitch's fixers cannot guarantee that every repair holds permanently."
+        ],
+        "id": "excerpt-from-the-fix-it-saturdays-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What can reasonably be inferred about the three items that reappeared with the same problem?",
+        "topic": "Inference",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "“Fourteen people showed up the first time, most curious rather than committed.”",
+          "“Clothing and textiles made up the largest group, with 44 pieces brought in.”",
+          "“turned down offers to expand the Fix-It Saturdays into a paid, weekly program”",
+          "“The library has begun tracking a second number alongside repairs made.”"
+        ],
+        "id": "excerpt-from-the-fix-it-saturdays-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What detail from the passage best supports the claim that Fitch values the informal pace of the sessions over their potential to grow?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Covey preferred to work far away from the fields he supervised.",
+          "Covey relied on constant surveillance and fear of being caught, not presence.",
+          "Covey was well liked by the people who worked under him.",
+          "Covey rarely checked on the progress of the work being done."
+        ],
+        "id": "excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1-passage-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which best states the central idea of the passage's first paragraph?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Even under surveillance, the narrator held onto an active longing.",
+          "The narrator believed that Covey was secretly a kind man underneath his cruelty.",
+          "The narrator's family lived quite comfortably and securely despite Covey's harsh methods.",
+          "Ships sailing on the Chesapeake Bay were dangerous to the sailors aboard them."
+        ],
+        "id": "excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1-passage-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which choice most fully captures the central idea that ties together Douglass's description of the bay, the ships, and his own reflection?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "“whose broad bosom was ever white with sails from every quarter of the habitable globe”",
+          "“were to me so many shrouded ghosts, to torment me with thoughts of my condition”",
+          "“I have often, in the deep stillness of a summer’s Sabbath, stood all alone”",
+          "“the countless number of sails moving off to the mighty ocean”"
+        ],
+        "id": "excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1-passage-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What detail from the second paragraph best supports the idea that the sight of the ships caused the narrator pain rather than simple admiration?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "request that a specific ship's captain secretly help him escape northward.",
+          "give voice, privately, to feelings of longing he could not otherwise express.",
+          "criticize the ship captains directly for ignoring enslaved people on the shore.",
+          "describe, in technical detail, how ships of the period were built and sailed."
+        ],
+        "id": "excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1-passage-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Douglass most likely addresses the ships directly, in the form of an apostrophe, in order to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "He intended to ask Covey directly for permission to travel north.",
+          "He believed escape was impossible and had given up all hope of it.",
+          "He planned to escape by secretly boarding one of the ships he watched.",
+          "He had already planned a route through Delaware and Pennsylvania."
+        ],
+        "id": "excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1-passage-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What can be reasonably inferred about the narrator's plans, based on the details in the quoted soliloquy?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It reveals that the soliloquy had actually been spoken aloud to another person nearby.",
+          "It directly contradicts the hope expressed at the end of the soliloquy.",
+          "It steps back to describe his ordinary state of mind.",
+          "It introduces an entirely new setting far from the Chesapeake Bay."
+        ],
+        "id": "excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1-passage-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the passage's final paragraph function in relation to the soliloquy quoted just before it?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      }
+    ],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false
   }
 ]

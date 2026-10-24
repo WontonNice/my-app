@@ -11,7 +11,7 @@ import mathBatches from "./math-import-batch.cjs";
 import { documentDraftStore, publicationContent } from "./document-drafts.mjs";
 import examExporter from "./export-exam-content.cjs";
 import learningExporter from "./export-learning-catalog.cjs";
-import { readBank, mutateBank, importCaptures, publishQuestion, publishQuestions, createBankSet, labTopics } from "./question-bank.mjs";
+import { readBank, mutateBank, importCaptures, previewCaptureBatch, applyCaptureBatch, publishQuestion, publishQuestions, createBankSet, labTopics } from "./question-bank.mjs";
 import { createGlossaryRichText } from "./content-studio-glossary.js";
 import { passageCategories, normalizePassageCategory as normalizeCategory, patchPassageCategory } from "./passage-category-editor.mjs";
 import { readMathTopicConfiguration, saveMathTopicConfiguration, validateMathClassification } from "./math-topic-editor.mjs";
@@ -1075,7 +1075,7 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
   if (["short_response", "numeric_entry"].includes(question.type)) {
     const correctTextAnswers = Array.isArray(question.correctTextAnswers) ? question.correctTextAnswers.filter(a => typeof a === "string" && a.trim()) : [];
     if (!allowIncomplete && !correctTextAnswers.length) throw new EditorError(400, `Question ${index + 1} needs an accepted answer.`);
-    return { ...baseQuestion, type: question.type, correctTextAnswers, ...(question.entryLayout ? { entryLayout: question.entryLayout } : {}) };
+    return { ...baseQuestion, type: question.type, correctTextAnswers, ...(question.type === "numeric_entry" ? normalizeCalculatorDisplay(question) : {}) };
   }
   if (question.type === "essay") return { ...baseQuestion, type: "essay" };
   throw new EditorError(400, `Unsupported passage response type: ${question.type}.`);
@@ -1932,6 +1932,15 @@ function normalizeMathDropdownOption(option, optionIndex, questionNumber, dropdo
   return { id, ...(math ? { math } : {}), text };
 }
 
+function normalizeCalculatorDisplay(question) {
+  const entryLayout = ["plain", "x_equals", "fraction"].includes(question.entryLayout) ? question.entryLayout : "plain";
+  const entryVariable = typeof question.entryVariable === "string" ? question.entryVariable.trim().normalize("NFKC") : "";
+  if (question.entryVariable != null && typeof question.entryVariable !== "string" || entryVariable && !/^\p{L}$/u.test(entryVariable)) {
+    throw new EditorError(400, "Calculator input answer variable must be one letter, such as w, y, or r.");
+  }
+  return { entryLayout, ...(entryVariable ? { entryVariable } : {}) };
+}
+
 function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete = false } = {}) {
   try { question = documentImport.normalizeChoiceLabels(question); }
   catch (error) { throw new EditorError(400, error.message); }
@@ -2022,10 +2031,7 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
     if (type === "short_response") {
       return { ...baseQuestion, correctTextAnswers, type };
     }
-    const entryLayout = ["plain", "x_equals", "fraction"].includes(question.entryLayout)
-      ? question.entryLayout
-      : "plain";
-    return { ...baseQuestion, correctTextAnswers, entryLayout, type };
+    return { ...baseQuestion, correctTextAnswers, ...normalizeCalculatorDisplay(question), type };
   }
 
   if (type === "math_drag_drop") {
@@ -3585,20 +3591,28 @@ async function handleRequest(request, response) {
     if (request.method === "GET" && url.pathname === "/api/question-bank") {
       sendJson(response, 200, { ...await readBank(workspaceRoot), topics: labTopics.map(topic => topic === "Text Structure" ? "Text Structure & Purpose" : topic) }); return;
     }
-    if (request.method === "POST" && ["/api/question-bank/import", "/api/question-bank/publish", "/api/question-bank/publish-all", "/api/question-bank/sets"].includes(url.pathname)) {
+    if (request.method === "POST" && ["/api/question-bank/import", "/api/question-bank/import-preview", "/api/question-bank/import-batch", "/api/question-bank/publish", "/api/question-bank/publish-all", "/api/question-bank/sets"].includes(url.pathname)) {
       verifyEditRequest(request);
       const body = await readJson(request);
       try {
         let summary;
         const visualErrors = {};
-        if (url.pathname.endsWith("/publish-all")) {
+        if (url.pathname.endsWith("/publish-all") || url.pathname.endsWith("/import-preview") || url.pathname.endsWith("/import-batch")) {
           const snapshot = await readBank(workspaceRoot);
           if (snapshot.revision !== body.revision) throw new Error("The question bank changed in another window. Reload it before saving.");
-          for (const q of snapshot.questions.filter(q => Array.isArray(body.questionIds) && body.questionIds.includes(q.id) && q.visualImage)) {
+          const preview = url.pathname.endsWith("/publish-all") ? undefined : previewCaptureBatch(snapshot, body.capture);
+          const sourceBank = preview?.bank ?? snapshot;
+          const questionIds = preview?.questionIds ?? body.questionIds;
+          for (const q of sourceBank.questions.filter(q => Array.isArray(questionIds) && questionIds.includes(q.id) && q.visualImage && q.status === "draft")) {
             const src = q.visualImage.src;
             if (typeof src !== "string" || !/^\/exam-images\/[\w.-]+\.(png|jpe?g|webp|gif|svgz?)$/i.test(src)) { visualErrors[q.id] = "Use a previously uploaded local supporting visual."; continue; }
             try { await readFile(join(examImagesRoot, src.slice("/exam-images/".length))); }
             catch { visualErrors[q.id] = "Supporting visual file not found. Upload it before publishing."; }
+          }
+          if (url.pathname.endsWith("/import-preview")) {
+            const { rows, summary: previewSummary, previewToken, questionIds: incomingIds } = preview;
+            const ready = incomingIds.filter(id => { const q = sourceBank.questions.find(q => q.id === id); return q.status === "draft" && !rows.find(row => row.id === id)?.issue && !visualErrors[id]; }).length;
+            sendJson(response, 200, { rows: rows.map(row => visualErrors[row.id] ? { ...row, issue: visualErrors[row.id] } : row), summary: { ...previewSummary, ready, needsReview: previewSummary.needsReview + previewSummary.ready - ready }, previewToken }); return;
           }
         }
         if (url.pathname.endsWith("/publish") && body.question?.visualImage) {
@@ -3607,6 +3621,7 @@ async function handleRequest(request, response) {
           try { await readFile(join(examImagesRoot, src.slice("/exam-images/".length))); } catch { throw new Error("Supporting visual file not found. Upload it before publishing."); }
         }
         const bank = await mutateBank(workspaceRoot, body.revision, current => {
+          if (url.pathname.endsWith("/import-batch")) { const result = applyCaptureBatch(current, body.capture, body, visualErrors); summary = result.summary; return result.bank; }
           if (url.pathname.endsWith("/import")) { const result = importCaptures(current, body.capture); summary = { added: result.added, enriched: result.enriched, duplicates: result.duplicates }; return result.bank; }
           if (url.pathname.endsWith("/publish")) return publishQuestion(current, body);
           if (url.pathname.endsWith("/publish-all")) { const result = publishQuestions(current, body, visualErrors); summary = { published: result.published, skipped: result.skipped }; return result.bank; }

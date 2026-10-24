@@ -48,7 +48,8 @@ To add or change a test:
 
 Math TEIs can live directly inside the exam's math set. Use `type: "short_response"` for a plain answer
 box and `type: "numeric_entry"` only when the question should show the on-screen math keypad. Both use
-`correctTextAnswers`; numeric entry also supports `entryLayout`.
+`correctTextAnswers`; numeric entry also supports `entryLayout`. With `entryLayout: "x_equals"`,
+set `entryVariable` to the desired letter (for example, `"w"` for **w =**); omitted values default to x.
 
 The exam player loads local content by `assessmentId`. If a local test file is not registered yet, it falls back to
 the basic assessment data from the server.

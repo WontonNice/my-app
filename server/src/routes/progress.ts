@@ -1,12 +1,21 @@
+import { isFullExamResult, submittedExamSections } from "../shared/examCompletion";
+import { createExamResult, type SelectedAnswers } from "../shared/examGrading";
+import type { ExamContent } from "../shared/examTypes";
 import { Router } from "express";
 import { randomUUID } from "node:crypto";
 import type { User } from "@supabase/supabase-js";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { supabase } from "../lib/supabase";
 import { recordPlanCompletion, recordPracticePlanCompletion } from "../lib/learningPlanStore";
+import { readExamReentries, withExamWriteLock } from "../lib/examReentry";
+import { examAttemptId } from "../shared/examReentry";
+import { findAssessmentForStudent, listTeacherAssessments } from "../config/assessments";
+import { hasAssignedContent } from "../lib/learningPlanStore";
+import { getExamContent } from "../lib/examContent";
 
 type JsonRecord = Record<string, unknown>;
 type LearningProgress = {
+    examHistory?: JsonRecord[];
     examResults: JsonRecord[];
     practice: Record<string, JsonRecord>;
 };
@@ -20,6 +29,10 @@ type ExamSessionProgress = {
 type VanRide = "none" | "5pm";
 const examSessionResultPrefix = "__exam_session__:";
 const libraryProgressPrefix = "english-library:";
+
+function isReservedExamId(assessmentId: string) {
+    return assessmentId.startsWith("__") || assessmentId.startsWith("answer-sheet:");
+}
 
 function isDate(value: unknown): value is string {
     return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
@@ -128,7 +141,7 @@ function getMetadataProgress(user: User): LearningProgress {
 
 export async function getDatabaseProgress(user: User): Promise<LearningProgress> {
     const [examQuery, practiceQuery] = await Promise.all([
-        supabase.from("student_exam_results").select("assessment_id,result").eq("user_id", user.id).not("assessment_id", "like", "\\_\\_%"),
+        supabase.from("student_exam_results").select("assessment_id,result").eq("user_id", user.id),
         supabase.from("student_practice_progress").select("topic_slug,progress").eq("user_id", user.id),
     ]);
 
@@ -151,7 +164,11 @@ export async function getDatabaseProgress(user: User): Promise<LearningProgress>
             .filter((row) => !String(row.topic_slug).startsWith(libraryProgressPrefix) && !String(row.topic_slug).startsWith("answer-sheet:"))
             .map((row) => [row.topic_slug, row.progress as JsonRecord])),
     };
-    return { examResults: [...examResults, ...fallbackExamResults], practice };
+    const examHistory = (examQuery.data ?? []).filter(row => String(row.assessment_id).startsWith("__exam_history__:")).map(row => {
+        const result = row.result as JsonRecord;
+        return Object.fromEntries(Object.entries(result).filter(([key]) => !["answers", "analysisContent", "questionTimes"].includes(key)));
+    });
+    return { examResults: [...examResults, ...fallbackExamResults], examHistory, practice };
 }
 
 async function saveMetadataProgress(user: User, progress: LearningProgress) {
@@ -176,8 +193,8 @@ function practiceTotals(item: JsonRecord) {
 }
 
 function createInsights(progress: LearningProgress) {
-    const completedResults = progress.examResults.filter((result) =>
-        result.completionStatus !== "english_complete" && result.completionStatus !== "math_complete"
+    const completedResults = [...progress.examResults, ...(progress.examHistory ?? [])].filter((result) =>
+        isFullExamResult(result)
     );
     const scores = completedResults.map((result) => numberValue(result.percentage));
     const topicTotals = Object.values(progress.practice).map(practiceTotals);
@@ -262,24 +279,56 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
     }
     const answers = request.body?.answers;
     const completedSections = request.body?.completedSections;
+    const assessmentId = request.params.assessmentId;
+    if (isReservedExamId(assessmentId) || (request.body?.assessmentId !== undefined && request.body.assessmentId !== assessmentId)) {
+        response.status(400).json({ message: "The exam session must match the requested assessment." }); return;
+    }
+    const configuredAssessment = listTeacherAssessments().find(assessment => assessment.id === assessmentId);
+    if (!configuredAssessment) { response.status(404).json({ message: "Assessment was not found." }); return; }
+    if (getUserRole(user) === "student" && !getEnrolledClassIds(user.app_metadata).includes(configuredAssessment.classId)) {
+        response.status(403).json({ message: "You are not enrolled for this assessment." }); return;
+    }
     if (!answers || typeof answers !== "object" || Array.isArray(answers) || !Array.isArray(completedSections)) {
         response.status(400).json({ message: "Valid exam session progress is required." });
         return;
     }
+    return withExamWriteLock(user.id, request.params.assessmentId, async () => {
     const normalizedSections = completedSections.filter(
         (section: unknown): section is "english" | "math" => section === "english" || section === "math",
     );
     const status: "in_progress" | "submitted" =
         request.body?.status === "submitted" ? "submitted" : "in_progress";
+    const { grants, records } = await readExamReentries(user.id);
+    const reentry = grants[request.params.assessmentId];
+    const suppliedGrantId = request.body?.reentryGrantId;
+    if (suppliedGrantId && (!reentry || reentry.id !== suppliedGrantId || reentry.revokedAt)) {
+        response.status(403).json({ message: "Your teacher revoked or replaced this re-entry permission. Return to assessments." }); return;
+    }
+    if (reentry?.remainingSections.length && suppliedGrantId !== reentry.id) {
+        response.status(409).json({ message: "Your teacher reopened this exam. Reload it to use the updated permission." }); return;
+    }
     const existingSession = (await getExamSessions(user))[request.params.assessmentId];
+    const submitted = records.get(request.params.assessmentId);
+    const globalRetake = !suppliedGrantId && submitted && isFullExamResult(submitted) && configuredAssessment?.status === "open" && configuredAssessment.allowCompletedAccess;
+    const protectedSections = submitted && !globalRetake ? submittedExamSections(submitted).filter(section => !reentry?.remainingSections.includes(section)) : [];
+    const snapshot = (submitted?.analysisContent as ExamContent | undefined) ?? getExamContent(request.params.assessmentId);
+    const editableIds = suppliedGrantId && snapshot ? new Set([
+        ...(reentry?.remainingSections.includes("english") ? [...snapshot.passageSets.flatMap(set => set.questions), ...(snapshot.standaloneSection?.questions ?? [])].map(question => question.id) : []),
+        ...(reentry?.remainingSections.includes("math") ? (snapshot.mathSection?.questions ?? []).map(question => question.id) : []),
+    ]) : null;
+    const protectedIds = snapshot ? [
+        ...(protectedSections.includes("english") ? [...snapshot.passageSets.flatMap(set => set.questions), ...(snapshot.standaloneSection?.questions ?? [])].map(question => question.id) : []),
+        ...(protectedSections.includes("math") ? (snapshot.mathSection?.questions ?? []).map(question => question.id) : []),
+    ] : [];
     const mergedAnswers = {
         ...(existingSession?.answers ?? {}),
-        ...(answers as JsonRecord),
+        ...(editableIds ? Object.fromEntries(Object.entries(answers as JsonRecord).filter(([id]) => editableIds.has(id))) : answers as JsonRecord),
+        ...Object.fromEntries(protectedIds.filter(id => submitted?.answers && Object.hasOwn(submitted.answers as object, id)).map(id => [id, (submitted!.answers as JsonRecord)[id]])),
     };
     const updatedAt = new Date().toISOString();
     const session: ExamSessionProgress = {
         answers: mergedAnswers,
-        completedSections: [...new Set(normalizedSections)],
+        completedSections: [...new Set([...normalizedSections, ...protectedSections])],
         status,
         ...(status === "submitted" ? { submittedAt: updatedAt } : {}),
         updatedAt,
@@ -320,6 +369,7 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
         return;
     }
     response.json({ session, storage: "database" });
+    });
 });
 
 progressRouter.patch("/students/:studentId/dismissal", async (request, response) => {
@@ -486,15 +536,103 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
         response.status(401).json({ message: error });
         return;
     }
-    const result = request.body?.result;
+    let result = request.body?.result;
     if (!result || typeof result !== "object" || Array.isArray(result)) {
         response.status(400).json({ message: "A valid exam result is required." });
         return;
     }
     const assessmentId = request.params.assessmentId;
-    if (assessmentId.startsWith("__") || assessmentId.startsWith("answer-sheet:") || result.source === "answer_sheet") {
-        response.status(400).json({ message: "Invalid assessment ID." });
+    if (isReservedExamId(assessmentId) || result.assessmentId !== assessmentId || result.source === "answer_sheet" || (result.analysisContent !== undefined && result.analysisContent?.assessmentId !== assessmentId)) {
+        response.status(400).json({ message: "The exam result and its content must match the requested assessment." });
         return;
+    }
+    if (getUserRole(user) === "student" && result.source !== undefined && result.source !== "digital") {
+        response.status(403).json({ message: "Teacher-recorded scores must be entered by your teacher." }); return;
+    }
+    if (!listTeacherAssessments().some(assessment => assessment.id === assessmentId)) {
+        response.status(404).json({ message: "Assessment was not found." }); return;
+    }
+    return withExamWriteLock(user.id, assessmentId, async () => {
+    const { grants, records } = await readExamReentries(user.id);
+    const grant = grants[assessmentId];
+    const existing = records.get(assessmentId);
+    const suppliedGrantId = result.reentryGrantId;
+    // A lost response must be safe to retry without consuming another permission.
+    if (suppliedGrantId && grant?.id === suppliedGrantId && !grant.revokedAt && existing?.reentryGrantId === grant.id && result.attemptId === grant.attemptId) {
+        const requested = submittedExamSections(result).filter(section => grant.sections.includes(section));
+        const completed = Array.isArray(existing.reentrySubmittedSections) ? existing.reentrySubmittedSections : [];
+        const content = existing.analysisContent as ExamContent | undefined;
+        const ids = content ? [
+            ...(requested.includes("english") ? [...content.passageSets.flatMap(set => set.questions), ...(content.standaloneSection?.questions ?? [])].map(question => question.id) : []),
+            ...(requested.includes("math") ? (content.mathSection?.questions ?? []).map(question => question.id) : []),
+        ] : [];
+        if (requested.length && ids.length && requested.every(section => completed.includes(section)) && ids.every(id => JSON.stringify(result.answers?.[id]) === JSON.stringify((existing.answers as SelectedAnswers)?.[id]))) {
+            response.json({ progress: await getDatabaseProgress(user), storage: "database" }); return;
+        }
+    }
+    if (suppliedGrantId && (!grant || grant.id !== suppliedGrantId || grant.revokedAt || !grant.remainingSections.length || result.attemptId !== grant.attemptId)) {
+        response.status(403).json({ message: "This re-entry permission is no longer active. Return to assessments or ask your teacher to reopen it." }); return;
+    }
+    if (grant?.remainingSections.length && suppliedGrantId !== grant.id) {
+        response.status(409).json({ message: "Your teacher reopened this exam. Reload it before submitting." }); return;
+    }
+    const assessment = findAssessmentForStudent(assessmentId, getEnrolledClassIds(user.app_metadata));
+    if (getUserRole(user) === "student") {
+        const personal = await hasAssignedContent(user.id, "exam", assessmentId, true);
+        if (!assessment || (assessment.status !== "open" && !suppliedGrantId && !personal)) {
+            response.status(403).json({ message: "Your teacher has locked this exam." }); return;
+        }
+        if (existing && examAttemptId(existing, assessmentId) !== result.attemptId && !suppliedGrantId && !assessment.allowCompletedAccess && !personal) {
+            response.status(403).json({ message: "Ask your teacher to reopen this submitted exam." }); return;
+        }
+        const previouslyCompleted = existing ? submittedExamSections(existing) : [];
+        const newlySubmitted = submittedExamSections(result).filter(section => !previouslyCompleted.includes(section));
+        if (!personal && !suppliedGrantId && newlySubmitted.some(section => !assessment.sectionAccess[section])) {
+            response.status(403).json({ message: "Your teacher has locked this section." }); return;
+        }
+    }
+    if (suppliedGrantId && grant && existing) {
+        const content = (existing.analysisContent as ExamContent | undefined) ?? getExamContent(assessmentId);
+        if (!content || content.assessmentId !== assessmentId) { response.status(409).json({ message: "The original exam content is unavailable. Ask your teacher for help." }); return; }
+        const previouslyRevised = existing.reentryGrantId === grant.id && Array.isArray(existing.reentrySubmittedSections) ? existing.reentrySubmittedSections as ("english" | "math")[] : [];
+        const submittedNow = submittedExamSections(result).filter(section => grant.remainingSections.includes(section));
+        if (!submittedNow.length) { response.status(400).json({ message: "Submit one of the sections your teacher reopened." }); return; }
+        const completed = [...new Set([...submittedExamSections(existing).filter(section => !grant.remainingSections.includes(section)), ...submittedNow])];
+        const editableIds = new Set([
+            ...(grant.remainingSections.includes("english") ? [...content.passageSets.flatMap(set => set.questions), ...(content.standaloneSection?.questions ?? [])].map(question => question.id) : []),
+            ...(grant.remainingSections.includes("math") ? (content.mathSection?.questions ?? []).map(question => question.id) : []),
+        ]);
+        const revisedAnswers = { ...(existing.answers as SelectedAnswers), ...Object.fromEntries(Object.entries(result.answers ?? {}).filter(([id]) => editableIds.has(id))) } as SelectedAnswers;
+        const revised = createExamResult(content, revisedAnswers, completed, result.questionTimes ?? existing.questionTimes ?? {});
+        result = { ...revised, attemptId: grant.attemptId, reentryGrantId: grant.id, reentrySubmittedSections: [...new Set([...previouslyRevised, ...submittedNow])], sectionCompletedAt: { ...(existing.sectionCompletedAt as object ?? {}), ...Object.fromEntries(submittedNow.map(section => [section, revised.completedAt])) }, timerState: result.timerState ?? grant.timerState };
+    }
+    // Preserve a previous genuine attempt before a new attempt replaces the current result.
+    // Section submissions within the same attempt update one record, not separate tests.
+    if (!suppliedGrantId && typeof result.attemptId === "string" && result.attemptId.length <= 200) {
+        const previous = await supabase.from("student_exam_results").select("result").eq("user_id", user.id).eq("assessment_id", assessmentId).maybeSingle();
+        if (previous.error) { response.status(503).json({ message: "Could not verify the previous attempt. Please retry." }); return; }
+        const old = previous.data?.result as JsonRecord | undefined;
+        if (old) {
+            const oldId = String(old.attemptId ?? `legacy:${assessmentId}:${old.completedAt}`);
+            if (oldId === result.attemptId && old.answers && result.answers) {
+                const content = (old.analysisContent as ExamContent | undefined) ?? getExamContent(assessmentId);
+                if (!content || content.assessmentId !== assessmentId) { response.status(409).json({ message: "The original exam content is unavailable. Ask your teacher for help." }); return; }
+                const completed = submittedExamSections(old);
+                const protectedIds = [
+                    ...(completed.includes("english") ? [...content.passageSets.flatMap(set=>set.questions), ...(content.standaloneSection?.questions??[])].map(question=>question.id) : []),
+                    ...(completed.includes("math") ? (content.mathSection?.questions??[]).map(question=>question.id) : []),
+                ];
+                const protectedAnswers = Object.fromEntries(protectedIds.filter(id=>Object.hasOwn(old.answers as object,id)).map(id=>[id,(old.answers as SelectedAnswers)[id]]));
+                const sections = [...new Set([...completed,...submittedExamSections(result)])];
+                const preserved = createExamResult(content,{...result.answers,...protectedAnswers},sections,{...(result.questionTimes??{}),...(old.questionTimes as Record<string,number>??{})});
+                result = {...result,...preserved,completedAt:result.completedAt,attemptId:oldId,sectionCompletedAt:{...(result.sectionCompletedAt??{}),...(old.sectionCompletedAt as object??{})},timerState:result.timerState??old.timerState,...(old.reentryGrantId ? { reentryGrantId: old.reentryGrantId, reentrySubmittedSections: old.reentrySubmittedSections } : {})};
+            }
+            if (oldId !== result.attemptId) {
+                const historyId = `__exam_history__:${assessmentId}:${Buffer.from(oldId).toString("base64url")}`;
+                const archived = await supabase.from("student_exam_results").upsert({ user_id: user.id, assessment_id: historyId, completed_at: old.completedAt, updated_at: new Date().toISOString(), result: { ...old, attemptId: oldId } }, { onConflict: "user_id,assessment_id" });
+                if (archived.error) { response.status(503).json({ message: "Could not preserve the previous attempt. Please retry." }); return; }
+            }
+        }
     }
     const saved = await supabase.from("student_exam_results").upsert({
         assessment_id: assessmentId,
@@ -517,8 +655,9 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
         response.status(503).json({ message: "Your result was backed up, but the results database did not confirm the save. Please submit again." });
         return;
     }
-    if (result.completionStatus !== "english_complete" && result.completionStatus !== "math_complete" && typeof result.completedAt === "string") await recordPlanCompletion(user.id, "exam", assessmentId, { source: "exam", at: result.completedAt, reference: assessmentId, correct: typeof result.correct === "number" ? result.correct : undefined, total: typeof result.total === "number" ? result.total : undefined });
+    if (isFullExamResult(result) && typeof result.completedAt === "string") await recordPlanCompletion(user.id, "exam", assessmentId, { source: "exam", at: result.completedAt, reference: assessmentId, correct: typeof result.correct === "number" ? result.correct : undefined, total: typeof result.total === "number" ? result.total : undefined });
     response.json({ progress: await getDatabaseProgress(user), storage: "database" });
+    });
 });
 
 progressRouter.put("/practice/:topicSlug", async (request, response) => {

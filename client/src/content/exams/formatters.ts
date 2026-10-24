@@ -19,6 +19,7 @@ export function createSourcePassage(input: PlainTextPassageInput & {
   const blocks: RichTextBlock[] = input.richText ? (input.format === "poem" ? richTextLines(input.richText) : richTextBlocks(input.richText))
     : input.text.split(input.format === "poem" ? /\r?\n/ : /\r?\n\r?\n/).map(text => ({ text, html: escape(text).replace(/\n/g, "<br>").replace(/ {2}/g, " &nbsp;") }));
   let paragraphNumber = 1;
+  let poemLineNumber = 1;
   const bodyParagraphs = blocks.filter(block => !block.kind && block.numbered !== false && block.text.trim());
   const printedLabels = bodyParagraphs.flatMap((block, index) => {
     const match = /^\s*(\d{1,3})\s+/.exec(block.text);
@@ -26,6 +27,10 @@ export function createSourcePassage(input: PlainTextPassageInput & {
   });
   const usePrintedLabels = printedLabels.length >= 2 && printedLabels.every(label => label.value === label.expected);
   lines.push(...blocks.map(block => {
+    if (input.format === "poem" && block.text.trim()) {
+      const lineNumber = poemLineNumber++;
+      return { ...block, lineNumber: lineNumber % Math.max(1, input.lineNumberInterval || 5) === 0 ? String(lineNumber) : "" };
+    }
     if ((input.format || "prose") !== "prose" || block.kind || block.numbered === false || !block.text.trim()) return block;
     const lineNumber = String(paragraphNumber++);
     // Printed paragraph labels move into the number badge; the source text stays intact.

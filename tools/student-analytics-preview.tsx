@@ -8,6 +8,7 @@ import type { TeacherAssessment, StudentProgressSnapshot } from "../client/src/l
 import assessmentData from "../server/data/assessments.json";
 import "../client/src/styles/global.css";
 import { StudentAnalyticsWorkstation } from "../client/src/components/StudentAnalyticsWorkstation";
+import { StudentProgressRoster } from "../client/src/components/StudentProgressRoster";
 
 const assessments = assessmentData as unknown as TeacherAssessment[];
 const assessment = assessments.find(item => item.id === "2020-2021-form-b") ?? assessments[0];
@@ -35,4 +36,10 @@ function Preview() {
   const student = { id: "qa-student", fullName: "Preview student", email: "preview@example.test", username: "preview", lastLoginAt: "2026-09-22T12:00:00Z", classes: ["shsat"], insights: { practiceAccuracy: null }, progress: { examResults: chosen, practice: {} }, examSessions: {} } as unknown as StudentProgressSnapshot;
   return <div className="corporate-dashboard-content" style={{ padding: "16px", maxWidth: "1440px", margin: "auto" }}><div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px", fontSize: "12px" }}><strong>Isolated QA · fictional records, actual exam content</strong><label>Student state <select value={mode} onChange={event => setMode(event.target.value)}>{["Mixed", "Zero", "One", "Two", "Paper only", "Digital only", "Missing Math", "Missing English"].map(value => <option key={value}>{value}</option>)}</select></label></div><section className="teacher-panel sa-selected-workspace"><StudentDetail key={mode} assessments={assessments} student={student} onAddPaperScore={async () => { /* QA only: no persistence */ }} /></section></div>;
 }
-createRoot(document.getElementById("root")!).render(window.location.pathname === "/categories" ? <CategoryPreview /> : <Preview />);
+function RosterPreview() {
+  const [selected,setSelected]=useState("");
+  const math={...createExamResult(content,Object.fromEntries(questions.map(q=>[q.id,correctAnswer(q)])),["math"]),completedAt:"2026-10-02T12:00:00Z"};
+  const students=[{id:"qa-1",fullName:"Alex Example",username:"alex",progress:{examResults:[...results,math]}},{id:"qa-2",fullName:"Jordan Example",username:"jordan",progress:{examResults:[]}},{id:"qa-3",fullName:"Taylor Example",username:"taylor",progress:{examResults:[paper]}}].map(student=>({...student,email:`${student.username}@example.test`,lastLoginAt:"2026-10-03T12:00:00Z",examSessions:{},classes:["shsat"],insights:{},progress:{...student.progress,practice:{}}}))as unknown as StudentProgressSnapshot[];
+  return <main style={{padding:20,maxWidth:1440,margin:"auto"}}><section className="teacher-panel"><h1>Student progress · fictional QA roster</h1><StudentProgressRoster students={students} inputsFor={student=>(student.progress.examResults??[]).map(result=>({result,content,subjects:result.subjects as typeof results[number]["subjects"]??[],passages:result.passages as typeof results[number]["passages"]??[]}))} onSelect={setSelected}/>{selected&&<p role="status">Selected {students.find(student=>student.id===selected)?.fullName}</p>}</section></main>;
+}
+createRoot(document.getElementById("root")!).render(window.location.pathname === "/roster" ? <RosterPreview /> : window.location.pathname === "/categories" ? <CategoryPreview /> : <Preview />);

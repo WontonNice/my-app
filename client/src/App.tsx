@@ -12,6 +12,9 @@ import { StudentMaterialsPage } from "./pages/StudentMaterialsPage";
 import { StudentResultsPage } from "./pages/StudentResultsPage";
 import { StudentTopicHubPage } from "./pages/StudentTopicHubPage";
 import { studentCorrectionRoute } from "./lib/correctionNavigation";
+import { AccountProvider } from "./features/account/account";
+const ProfileSettingsPage = lazy(() => import("./pages/ProfileSettingsPage").then(module => ({ default: module.ProfileSettingsPage })));
+const AccountEmailPage = lazy(() => import("./pages/ProfileSettingsPage").then(module => ({ default: module.AccountEmailPage })));
 
 const AnswerSheetsPage = lazy(() => import("./pages/AnswerSheetsPage").then(module => ({ default: module.AnswerSheetsPage })));
 const StudentAnswerSheetsPage = lazy(() => import("./pages/StudentAnswerSheetsPage").then(module => ({ default: module.StudentAnswerSheetsPage })));
@@ -25,6 +28,8 @@ const AdvancedPassagePage = lazy(() =>
 const AuthPage = lazy(() => import("./pages/AuthPage").then((module) => ({ default: module.AuthPage })));
 const BoardPage = lazy(() => import("./pages/BoardPage").then(module => ({ default: module.BoardPage })));
 const StudentBoardsPage = lazy(() => import("./pages/StudentBoardsPage").then(module => ({ default: module.StudentBoardsPage })));
+const StudentAchievementsPage = lazy(() => import("./pages/StudentAchievementsPage").then(module => ({ default: module.StudentAchievementsPage })));
+const StudentGameRoomsPage = lazy(() => import("./pages/StudentGameRoomsPage").then(module => ({ default: module.StudentGameRoomsPage })));
 const ExamLaunchPage = lazy(() =>
   import("./pages/ExamLaunchPage").then((module) => ({ default: module.ExamLaunchPage })),
 );
@@ -109,6 +114,10 @@ function LegacyStudentHomeRedirect() {
 
 function CurrentPage() {
   const path = window.location.pathname;
+  if (path === "/profile") return <ProfileSettingsPage />;
+  if (path === "/account/verify-email") return <AccountEmailPage mode="verify" />;
+  if (path === "/forgot-password") return <AccountEmailPage mode="forgot" />;
+  if (path === "/reset-password") return <AccountEmailPage mode="reset" />;
   if (/^\/teacher\/corrections\/[^/]+\/?$/.test(path)) return <TeacherCorrectionsPage />;
   if (path.startsWith("/teacher/answer-sheets")) return <AnswerSheetsPage />;
   if (path.startsWith("/answer-sheets/")) return withClassAccess(<AnswerSheetsPage />);
@@ -122,6 +131,8 @@ function CurrentPage() {
   }
 
   if (path.startsWith("/study-hall/")) {
+    if (path === "/study-hall/shsat/achievements") return withClassAccess(<StudentAchievementsPage />);
+    if (path === "/study-hall/shsat/games") return withClassAccess(<StudentGameRoomsPage />);
     if (path === "/study-hall/shsat/boards") return withClassAccess(<StudentBoardsPage />);
     if (path === "/study-hall/classroom") {
       return <StudentClassroomPage />;
@@ -214,9 +225,9 @@ function App() {
   }, []);
 
   return (
-    <Suspense fallback={<main className="loading-shell">Loading...</main>}>
+    <AccountProvider><Suspense fallback={<main className="loading-shell">Loading...</main>}>
       <CurrentPage key={location} />
-    </Suspense>
+    </Suspense></AccountProvider>
   );
 }
 

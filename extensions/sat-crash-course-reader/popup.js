@@ -1,17 +1,19 @@
 const state = {
   data: null,
 };
-const READER_VERSION = "0.4.0";
+const READER_VERSION = "0.6.1";
 
 const elements = {
   scan: document.querySelector("#scan"),
   includePageText: document.querySelector("#include-page-text"),
   includeAnswer: document.querySelector("#include-answer"),
+  includeExplanations: document.querySelector("#include-explanations"),
   includePassageQuestions: document.querySelector("#include-passage-questions"),
   status: document.querySelector("#status"),
   results: document.querySelector("#results"),
   testCount: document.querySelector("#test-count"),
   questionCount: document.querySelector("#question-count"),
+  explanationCount: document.querySelector("#explanation-count"),
   tableCount: document.querySelector("#table-count"),
   linkCount: document.querySelector("#link-count"),
   copy: document.querySelector("#copy"),
@@ -139,6 +141,7 @@ async function scanPage() {
       options: {
         includePageText: elements.includePageText.checked,
         includeAnswer: elements.includeAnswer.checked,
+        includeExplanations: elements.includeExplanations.checked,
         includePassageQuestions: elements.includePassageQuestions.checked,
       },
     });
@@ -153,6 +156,10 @@ async function scanPage() {
     const questions = state.data.testPreview?.questions ||
       (state.data.testPreview?.question ? [state.data.testPreview.question] : []);
     elements.questionCount.textContent = String(questions.length);
+    const explanations = questions.filter(question => question.explanation?.trim()).length;
+    elements.explanationCount.textContent = questions.length
+      ? elements.includeExplanations.checked ? `Explanations captured: ${explanations} of ${questions.length}` : "Explanations were not requested."
+      : "";
     elements.tableCount.textContent = String(state.data.tables.length);
     elements.linkCount.textContent = String(state.data.links.length);
     elements.preview.textContent = JSON.stringify(state.data, null, 2);
@@ -163,12 +170,13 @@ async function scanPage() {
     } else if (state.data.testPreview?.question) {
       const question = questions[0] || state.data.testPreview.question;
       const answerNote = questions.every((item) => item.correctAnswer) ? " with correct answers" : "";
+      const explanationNote = elements.includeExplanations.checked ? ` ${explanations} of ${questions.length} explanations captured.` : "";
       const warnings = state.data.testPreview.capture?.warnings || [];
       const range = questions.length > 1
         ? `Questions ${question.number}–${questions.at(-1).number}`
         : `Question ${question.number || "?"}`;
       setStatus(
-        `Captured ${range} of ${question.total || "?"}${answerNote}. ${warnings.join(" ") || "Starting question restored."}`,
+        `Captured ${range} of ${question.total || "?"}${answerNote}.${explanationNote} ${warnings.join(" ") || "Starting question restored."}`,
         warnings.length ? "error" : "success",
       );
     } else if (state.data.testPreview?.capture?.warnings.length) {

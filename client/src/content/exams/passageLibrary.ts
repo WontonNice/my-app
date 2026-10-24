@@ -37,6 +37,7 @@ import { snowyMountainsVersion2PassageSet } from "./passageSets/snowy-mountains-
 import { excerptFromAVoiceInTheWilderness20202021FormAPassageSet } from "./passageSets/excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a";
 import { inventionOfTheTelegraph20202021FormAPassageSet } from "./passageSets/invention-of-the-telegraph-2020-2021-form-a";
 import { theBenefitsOfIndoorPlants20202021FormAPassageSet } from "./passageSets/the-benefits-of-indoor-plants-2020-2021-form-a";
+import { excerptFromNarrativeOfTheLifeOfFrederickDouglassDigitalShsatPracticeTest1PassageSet } from "./passageSets/excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -75,6 +76,7 @@ export const examPassageLibrary: ExamPassageSet[] = [
   excerptFromAVoiceInTheWilderness20202021FormAPassageSet,
   inventionOfTheTelegraph20202021FormAPassageSet,
   theBenefitsOfIndoorPlants20202021FormAPassageSet,
+  excerptFromNarrativeOfTheLifeOfFrederickDouglassDigitalShsatPracticeTest1PassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);

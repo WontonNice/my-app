@@ -10,7 +10,7 @@ export type BoardContent = {
 // Explicit public presentation fields: never copy answer keys or explanations,
 // including the answers nested inside dropdowns and response specifications.
 export function boardQuestion(source: ExamQuestion): ExamQuestion {
-  const fields = ["id", "type", "topic", "prompt", "promptHtml", "instructions", "instructionsHtml", "stimulus", "stimulusHtml", "image", "graph", "choices", "items", "categories", "tableHeaders", "dropdownContent", "dragDropContent", "entryLayout", "requiredSelections", "requiredPlacements", "allowReuse", "categoryCapacity", "transitionBlankAfter", "transitionBlankBefore", "transitionSentenceNumber"] as const;
+  const fields = ["id", "type", "topic", "prompt", "promptHtml", "instructions", "instructionsHtml", "stimulus", "stimulusHtml", "image", "graph", "choices", "items", "categories", "tableHeaders", "dropdownContent", "dragDropContent", "entryLayout", "entryVariable", "requiredSelections", "requiredPlacements", "allowReuse", "categoryCapacity", "transitionBlankAfter", "transitionBlankBefore", "transitionSentenceNumber"] as const;
   const question: ExamQuestion = { ...Object.fromEntries(fields.filter(key => source[key] !== undefined).map(key => [key, source[key]])), id: source.id, type: source.type, topic: source.topic, prompt: source.prompt };
   if (source.dropdowns) question.dropdowns = source.dropdowns.map(({ id, options }) => ({ id, options }));
   // These legacy rendering types require answer fields. At the HTTP boundary

@@ -81,6 +81,7 @@ export type QuestionType =
   | "essay";
 
 export type StudentAssessment = {
+  reentry?: import("../../../server/src/shared/examReentry").ExamReentryGrant;
   correctionsOpen?: boolean;
   allowCompletedAccess: boolean;
   classId: string;
@@ -97,6 +98,7 @@ export type StudentAssessment = {
 };
 
 export type TeacherAssessment = {
+  reentry?: import("../../../server/src/shared/examReentry").ExamReentryGrant;
   correctionsOpen?: boolean;
   allowCompletedAccess: boolean;
   assignedFormId?: string;
@@ -487,6 +489,7 @@ export async function syncGoogleSheetsAttendance(accessToken: string) {
 }
 
 export type LearningProgressSnapshot = {
+  examHistory?: Record<string, unknown>[];
   examResults: Record<string, unknown>[];
   practice: Record<string, Record<string, unknown>>;
 };
@@ -524,6 +527,7 @@ export type StudentProgressSnapshot = {
 };
 
 export type StudentAccount = {
+  lastLoginAt?: string | null;
   archived: boolean;
   archivedAt: string | null;
   classes: string[];
@@ -732,6 +736,7 @@ export async function saveExamSessionProgress(
   accessToken: string,
   assessmentId: string,
   input: Pick<ExamSessionProgress, "answers" | "completedSections"> & {
+    reentryGrantId?: string;
     status?: ExamSessionProgress["status"];
   },
 ) {
@@ -788,6 +793,10 @@ export type BankPracticeAttempt = { id: string; bookId: string; title: string; c
   questions: { questionId: string; topic: string; difficulty: string; isCorrect: boolean; selectedAnswerId: string; correctAnswerId: string; timeSpentSeconds: number }[] };
 export async function getBankPracticeAttempts(accessToken: string, studentId: string) {
   return requestApi<{ attempts: BankPracticeAttempt[]; unverified?: number }>(`/api/library/teacher/bank-attempts/${encodeURIComponent(studentId)}`, { headers: createAuthHeaders(accessToken) });
+}
+
+export async function getTeacherAnalyticsEvidence(accessToken: string, studentId: string) {
+  return requestApi<{ inputs: import("./studentAnalytics").AnalyticsInput[]; examCorrections: { assessmentId:string;completedAt:string;responses: NonNullable<import("./studentAnalytics").AnalyticsInput["corrections"]> }[]; limitations: string[] }>(`/api/library/teacher/analytics/${encodeURIComponent(studentId)}`, { headers: createAuthHeaders(accessToken) });
 }
 
 export async function setTeacherLibraryStudentAccess(accessToken: string, bookId: string, studentId: string, granted: boolean) {
@@ -1063,6 +1072,18 @@ export async function getTeacherAssessments(accessToken: string) {
   });
 
   return data.assessments;
+}
+
+export type TeacherExamReentryStatus = {
+  grant: import("../../../server/src/shared/examReentry").ExamReentryGrant | null;
+  hasSubmission: boolean;
+  completedSections: AssessmentSection[];
+};
+export async function getTeacherExamReentry(accessToken: string, assessmentId: string, studentId: string) {
+  return requestApi<TeacherExamReentryStatus>(`/api/assessments/teacher/${encodeURIComponent(assessmentId)}/reentry/${encodeURIComponent(studentId)}`, { headers: createAuthHeaders(accessToken) });
+}
+export async function setTeacherExamReentry(accessToken: string, assessmentId: string, studentId: string, input: { sections: AssessmentSection[]; additionalMinutes: number } | null) {
+  return requestApi<{ grant: TeacherExamReentryStatus["grant"] }>(`/api/assessments/teacher/${encodeURIComponent(assessmentId)}/reentry/${encodeURIComponent(studentId)}`, { headers: createAuthHeaders(accessToken), method: input ? "PUT" : "DELETE", ...(input ? { body: JSON.stringify(input) } : {}) });
 }
 
 export async function setExamCorrectionsAccess(accessToken: string, assessmentId: string, open: boolean) {

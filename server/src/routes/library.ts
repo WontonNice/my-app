@@ -1,11 +1,16 @@
 import { randomUUID } from "node:crypto";
+import { createHash } from "node:crypto";
+import { getExamContent } from "../lib/examContent";
+import { reviewQuestions, type CorrectionResponse as ExamCorrectionResponse } from "../shared/examCorrections";
+import type { ExamResult } from "../shared/examGrading";
 import { Router, type ErrorRequestHandler } from "express";
 import type { User } from "@supabase/supabase-js";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { supabase } from "../lib/supabase";
 import { hasAssignedContent, learningCatalog, recordPlanCompletion } from "../lib/learningPlanStore";
 import { libraryContentKind, readQuestionBank } from "../lib/questionBank";
-import { gradeBankSet } from "../shared/questionBank";
+import { gradeBankSet, bankPassageSet, bankPassage } from "../shared/questionBank";
+import type { ExamContent, ExamQuestion } from "../shared/examTypes";
 import { canonicalLibraryBookId, getMergedLibraryBook, libraryBookAccessIds } from "../lib/libraryBooks";
 import { gradeLibraryBook } from "../shared/libraryBooks";
 
@@ -254,6 +259,52 @@ function activeLibraryStudent(user: Parameters<typeof getUserRole>[0]) {
 }
 
 export const libraryRouter = Router();
+
+// One student-scoped batch, including compatibility storage; no per-question requests.
+libraryRouter.get("/teacher/analytics/:studentId", async (request, response) => {
+    const auth = await requireTeacher(request.headers.authorization);
+    if (!auth.user) { response.status(403).json({ message: "Teacher access is required." }); return; }
+    const id = request.params.studentId;
+    if (!/^[\da-f-]{36}$/i.test(id)) { response.status(400).json({ message: "Invalid student ID." }); return; }
+    const target = await supabase.auth.admin.getUserById(id);
+    if (target.error || !target.data.user || !activeLibraryStudent(target.data.user)) { response.status(404).json({ message: "Active SHSAT student not found." }); return; }
+    const [rows, corrections, fallback, examRows] = await Promise.all([
+        libraryRows<LibraryAttemptRow>(offset => supabase.from("student_library_attempts").select("*").eq("user_id", id).order("id").range(offset, offset + 999), true),
+        libraryRows<LibraryCorrectionRow>(offset => supabase.from("student_library_corrections").select("*").eq("user_id", id).order("id").range(offset, offset + 999), true),
+        libraryRows<{ topic_slug: string; progress: unknown }>(offset => supabase.from("student_practice_progress").select("topic_slug,progress").eq("user_id", id).like("topic_slug", "english-library:%").order("topic_slug").range(offset, offset + 999)),
+        libraryRows<{ assessment_id:string; result: ExamResult & { resultVersion?:string; responses?:ExamCorrectionResponse[] } }>(offset => supabase.from("student_exam_results").select("assessment_id,result").eq("user_id", id).order("assessment_id").range(offset, offset+999)),
+    ]);
+    for (const row of fallback) {
+        const progress = readFallbackProgress(row.progress), bookId = row.topic_slug.slice(fallbackProgressPrefix.length);
+        rows.push(...progress.attempts.map(attempt => ({ ...attempt, book_id: bookId, user_id: id })));
+        if (progress.correction) corrections.push(progress.correction);
+    }
+    const bank = readQuestionBank(), seen = new Set<string>();
+    const inputs: unknown[] = rows.filter(row => { if (!row.id || seen.has(row.id) || row.user_id !== id) return false; seen.add(row.id); return true; }).map(row => {
+        const bankSet = bankPassageSet(bank, row.book_id), book = getMergedLibraryBook(canonicalLibraryBookId(row.book_id));
+        const original = bankSet ?? book?.passageSet;
+        const stats = Array.isArray(row.question_stats) ? row.question_stats : [];
+        const questions: ExamQuestion[] = stats.map(stat => original?.questions.find(question => question.id === stat.questionId) ?? { id: stat.questionId, type: "multiple_choice", topic: "Unclassified", prompt: "Original question content unavailable. The recorded answer and grade are preserved.", choices: [] });
+        const passageSets = bankSet ? questions.map(question => ({ ...bankSet, id: question.id, passage: bankPassage(bank.questions.find(item => item.id === question.id) ?? { id: question.id, source: "Unknown", passage: null } as Parameters<typeof bankPassage>[0]), questions: [question] })) : [{ ...(original ?? { id: row.book_id, directions: { title: "Content unavailable", subject: "English", body: "" }, questionCount: questions.length, passage: { id: row.book_id, title: row.book_id, lines: [] } }), questions }];
+        const content: ExamContent = { assessmentId: `library:${row.book_id}`, title: bankSet?.directions.title ?? original?.passage.title ?? row.book_id, passageSets };
+        const topics = [...new Set(questions.map(question => question.topic))].map(topic => ({ topic, correct: stats.filter(stat => questions.find(q => q.id === stat.questionId)?.topic === topic && stat.isCorrect).length, total: questions.filter(question => question.topic === topic).length }));
+        const subjects = [{ subject: "English Language Arts", correct: row.score, total: row.total_questions, topics }];
+        const correction = corrections.find(item => item.attempt_id === row.id);
+        return { kind: bankSet ? "practice" : "passage", sourceLabel: bankSet ? "Question-bank practice" : "Library passage", content, subjects, passages: [], responses: stats,
+            corrections: correction?.responses ?? [], result: { assessmentId: content.assessmentId, attemptId: row.id, title: content.title, source: "library", completedAt: row.completed_at, completedSections: ["english"], completionStatus: "english_complete", correct: row.score, total: row.total_questions, subjects, percentage: row.total_questions ? Math.round(100 * row.score / row.total_questions) : null, answers: Object.fromEntries(stats.map(stat => [stat.questionId, stat.selectedAnswerId])) } };
+    });
+    const examCorrections: { assessmentId:string; completedAt:string; responses:ExamCorrectionResponse[] }[] = [];
+    for (const row of examRows.filter(row => !row.assessment_id.startsWith("__") || row.assessment_id.startsWith("__exam_history__:"))) {
+        const result = row.result, content = result.analysisContent ?? getExamContent(result.assessmentId);
+        if (content) {
+            const questions = reviewQuestions(content,result), version=createHash("sha256").update(JSON.stringify({result,questions})).digest("hex");
+            const correction=examRows.find(item=>item.result.resultVersion===version&&Array.isArray(item.result.responses));
+            if (correction) examCorrections.push({ assessmentId:result.assessmentId, completedAt:result.completedAt, responses:correction.result.responses! });
+        }
+        if (row.assessment_id.startsWith("__exam_history__:")) inputs.push({ kind:"exam",result,content:content??undefined,subjects:result.subjects??[],passages:result.passages??[],corrections:examCorrections.find(item=>item.assessmentId===result.assessmentId&&item.completedAt===result.completedAt)?.responses });
+    }
+    response.json({ inputs, examCorrections, limitations: ["Historical library grades are the original recorded outcomes. Question text and skill metadata use current matching content when no frozen snapshot exists.", "Legacy practice totals without saved question responses remain in Practice progress and cannot supply question-level evidence. Earlier exam attempts overwritten before attempt history was introduced cannot be reconstructed."] });
+});
 
 libraryRouter.get("/teacher/bank-attempts/:studentId", async (request, response) => {
     const authenticated = await requireTeacher(request.headers.authorization);

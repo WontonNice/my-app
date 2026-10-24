@@ -6,6 +6,8 @@ const excerptFromTheFixItSaturdaysPassageText = "On the second Saturday of every
 const excerptFromTheFixItSaturdaysQuestions: ExamQuestion[] = [
   {
     "id": "excerpt-from-the-fix-it-saturdays-a",
+    "explanation": "The passage's numbers show clothing succeeded at a much higher rate (41 of 44) than furniture (8 of 12), and the text explains why: clothing problems like torn seams are quick fixes, while a cracked frame ‘asks more of a volunteer than an afternoon allows’ — supporting the idea that some categories are inherently easier to fix, not that one category matters more.",
+    "explanationHtml": "The passage's numbers show clothing succeeded at a much higher rate (41 of 44) than furniture (8 of 12), and the text explains why: clothing problems like torn seams are quick fixes, while a cracked frame ‘asks more of a volunteer than an afternoon allows’ — supporting the idea that some categories are inherently easier to fix, not that one category matters more.",
     "points": 1,
     "prompt": "The contrast between furniture's repair rate and clothing's repair rate most directly supports which idea developed in the passage?",
     "promptHtml": "The contrast between furniture's repair rate and clothing's repair rate most directly supports which idea developed in the passage?",
@@ -36,10 +38,60 @@ const excerptFromTheFixItSaturdaysQuestions: ExamQuestion[] = [
     "type": "multiple_choice"
   },
   {
+    "id": "excerpt-from-the-fix-it-saturdays-7",
+    "explanation": "Rows 1 and 2 state plain facts (why the program started; how many items were examined). Row 3's 'word began to spread' figuratively compares news to a spreading substance, and row 4's 'a repair that doesn't hold is really just a delay' is a metaphor equating a temporary fix with postponing a problem.",
+    "explanationHtml": "Rows 1 and 2 state plain facts (why the program started; how many items were examined). Row 3's 'word began to spread' figuratively compares news to a spreading substance, and row 4's 'a repair that doesn't hold is really just a delay' is a metaphor equating a temporary fix with postponing a problem.",
+    "points": 1,
+    "prompt": "Sort each statement from the passage into the category that best describes it.",
+    "instructions": "Move each answer to the correct box.",
+    "promptHtml": "Sort each statement from the passage into the category that <strong>best</strong> describes it.",
+    "topic": "Central Idea & Theme",
+    "categories": [
+      {
+        "id": "category-1",
+        "title": "Literal Statement"
+      },
+      {
+        "id": "category-2",
+        "title": "Figurative Language"
+      }
+    ],
+    "correctPlacements": {
+      "item-1": "category-1",
+      "item-2": "category-1",
+      "item-3": "category-2",
+      "item-4": "category-2"
+    },
+    "items": [
+      {
+        "html": "Fitch grew tired of watching repairable appliances end up at the curb.",
+        "id": "item-1",
+        "text": "Fitch grew tired of watching repairable appliances end up at the curb."
+      },
+      {
+        "html": "Volunteers examined 134 items in five broad categories.",
+        "id": "item-2",
+        "text": "Volunteers examined 134 items in five broad categories."
+      },
+      {
+        "html": "By the end of that afternoon, word began to spread.",
+        "id": "item-3",
+        "text": "By the end of that afternoon, word began to spread."
+      },
+      {
+        "html": "A repair that doesn't hold is really just a delay.",
+        "id": "item-4",
+        "text": "A repair that doesn't hold is really just a delay."
+      }
+    ],
+    "requiredPlacements": 4,
+    "type": "category_sort"
+  },
+  {
     "id": "excerpt-from-the-fix-it-saturdays-b",
     "points": 1,
     "prompt": "The sentence 'Furniture told a different story,' which opens the paragraph about the twelve chairs, stools, and small tables the fixers examined, most directly serves to signal a shift from the passage's earlier examples toward information that complicates its optimistic pattern of high repair rates.",
-    "promptHtml": "The sentence 'Furniture told a different story,' which opens the paragraph about the twelve chairs, stools, and small tables the fixers examined, most directly serves to signal a shift from the passage's earlier examples toward information that complicates its optimistic pattern of high repair rates.",
+    "promptHtml": "The sentence 'Furniture told a different story,' which opens the paragraph about the twelve chairs, stools, and small tables the fixers examined, <strong>most directly</strong> serves to signal a shift from the passage's earlier examples toward information that complicates its optimistic pattern of high repair rates.",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -68,6 +120,8 @@ const excerptFromTheFixItSaturdaysQuestions: ExamQuestion[] = [
   },
   {
     "id": "excerpt-from-the-fix-it-saturdays-1",
+    "explanation": "Fitch's quoted words — 'The whole thing works because nobody is in a hurry to move on to the next customer' — directly tie the program's value to its relaxed pace, which the author highlights by quoting Fitch rather than simply summarizing his decision.",
+    "explanationHtml": "Fitch's quoted words — 'The whole thing works because nobody is in a hurry to move on to the next customer' — directly tie the program's value to its relaxed pace, which the author highlights by quoting Fitch rather than simply summarizing his decision.",
     "points": 1,
     "prompt": "By including Fitch's own words explaining why he refuses to turn Fix-It Saturdays into a paid, weekly program, the author most strongly emphasizes which aspect of the program?",
     "promptHtml": "By including Fitch's own words explaining why he refuses to turn Fix-It Saturdays into a paid, weekly program, the author&nbsp;<strong>most strongly</strong>&nbsp;emphasizes which aspect of the program?",
@@ -194,6 +248,7 @@ const excerptFromTheFixItSaturdaysQuestions: ExamQuestion[] = [
 
 export const excerptFromTheFixItSaturdaysPassageSet: ExamPassageSet = {
   id: "ela-excerpt-from-the-fix-it-saturdays",
+  section: "reading",
   questionCount: excerptFromTheFixItSaturdaysQuestions.length,
   directions: {
   "subject": "English Language Arts",
@@ -208,8 +263,10 @@ export const excerptFromTheFixItSaturdaysPassageSet: ExamPassageSet = {
     blurb: "Odalys Ferreira is a freelance journalist who covers community programs for regional newspapers. The following is adapted from a feature she wrote about a volunteer repair program in the town of Thistlewood.",
     image: {"alt":"Excerpt from \"The Fix-It Saturdays\" illustration","src":"/exam-images/excerpt-from-the-fix-it-saturdays-passage.png"},
     passageType: "informational",
+    passageCategory: "prestige",
     richText: "<p>On the second Saturday of every month, the folding tables in the Thistlewood Public Library meeting room fill up with objects that have stopped working: table lamps with frayed cords, jackets missing buttons, bicycles with bent wheels, board games with cracked hinges. Volunteers known locally as the \"fixers\" sit at each table with screwdrivers, needles, and patience, ready to repair whatever a neighbor carries through the door.</p><p>The program began three years ago when a retired electrician named Odell Fitch grew tired of watching perfectly repairable appliances end up at the curb. He asked the library for a spare room one Saturday a month and put up a hand-lettered sign. Fourteen people showed up the first time, most of them curious rather than committed. By the end of that afternoon, Fitch and two friends had fixed nine lamps and a toaster, and word began to spread. Within a year, the fixers had outgrown the small meeting room and moved to the library's larger community hall, where six tables now stand instead of two.</p><p>Today the fixers keep a running log of what comes through the door, and the totals tell a story about which objects in a household are worth saving and which are not. Over the most recent ten sessions, volunteers examined 134 items in five broad categories. Clothing and textiles made up the largest single group, with 44 pieces brought in and 41 successfully mended, mostly torn seams, missing buttons, and broken zippers that take a skilled hand only minutes to fix. Lamps and small appliances came next, with 40 items and 34 repairs, the toasters and hair dryers usually failing for the same handful of reasons: a loose wire, a worn switch, a clogged heating coil.</p><p>Furniture told a different story. Of the twelve chairs, stools, and small tables that arrived, only eight went home fixed. A wobbly leg or a split seat is often manageable, but a cracked frame or water-damaged wood asks more of a volunteer than an afternoon allows. Bicycles fell in the middle, with twelve out of fourteen restored to rolling condition, since flat tires and slipped chains rarely require a spare part the fixers do not already have in a labeled bin under the table. Toys and games were the trickiest small items: nineteen of twenty-four were saved, but the five failures were almost all battery-powered toys whose internal circuits had corroded beyond a hand tool's reach.</p><p>Fitch is careful not to call the sessions a repair service. \"We are not here because we are better with tools than anyone else,\" he says. \"We are here because most people never get five uninterrupted minutes to sit down with a torn sleeve and figure out where the thread is supposed to go.\" He keeps a small notebook of \"teaching moments,\" short lessons he gives to whoever waits nearest a table, on the theory that a fixer who explains a repair sends two things home: a working lamp, and someone who might not need the Fix-It Saturday next time.</p><p>Not every object survives the visit. A cracked ceramic vase, a phone with a shattered screen, and a lawn mower with a seized engine have all been carried back out the door as they came in. But even a failed repair, Fitch insists, is not wasted effort: a volunteer can usually tell an owner whether an item is worth the cost of a professional repair, worth donating for parts, or simply worth letting go. That kind of honest assessment, he argues, is itself a service, one that a big-box return counter has no reason to offer.</p><p>The library has begun tracking a second number alongside repairs: how many items never came back for a second try. So far, of the items marked \"fixed\" in the log, only three have reappeared with the same problem, a rate Fitch is quietly proud of. \"A repair that doesn't hold is really just a delay,\" he says. \"We would rather tell someone the truth on the first Saturday than see the same lamp back on the table in March.\"</p><p><br>The sessions cost the library almost nothing to run. Fixers donate their own tools, and a hardware store two blocks away contributes spare screws, thread, and batteries whenever its bins run low. Fitch has turned down offers from a regional recycling nonprofit that wanted to expand the Fix-It Saturdays into a paid, weekly program with a rotating staff. He worries that paying fixers would change what the sessions are for. \"The whole thing works because nobody is in a hurry to move on to the next customer,\" he says. \"The day we start clocking hours is the day we stop teaching anybody anything.\"</p>",
     text: excerptFromTheFixItSaturdaysPassageText,
+    versionLabel: "Digital SHSAT Practice Test 1",
   }),
   questions: excerptFromTheFixItSaturdaysQuestions,
 };

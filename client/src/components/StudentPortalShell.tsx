@@ -1,3 +1,4 @@
+import { ProfileAvatar } from "../features/account/account";
 import {
   BarChart3,
   BookMarked,
@@ -7,6 +8,8 @@ import {
   ClipboardList,
   Clock3,
   Home,
+  Gamepad2,
+  Trophy,
   Library,
   LayoutDashboard,
   LogOut,
@@ -23,7 +26,7 @@ import { AppLink } from "./AppLink";
 import { AccountSwitcher } from "./CorporateDashboardShell";
 
 type StudentPortalShellProps = {
-  activeId: "assessments" | "assignments" | "home" | "materials" | "results" | "boards" | "answer-sheets";
+  activeId: "assessments" | "assignments" | "home" | "materials" | "results" | "boards" | "answer-sheets" | "games" | "achievements";
   children: ReactNode;
   onSignOut: () => void;
   previewContext: StudentPreviewContext;
@@ -139,7 +142,7 @@ export function StudentPortalShell({
             onClick={() => setIsProfileOpen((current) => !current)}
             type="button"
           >
-            <span>{getInitials(studentName)}</span>
+            <span>{previewContext.isPreview ? getInitials(studentName) : <ProfileAvatar fallback={getInitials(studentName)} />}</span>
             <strong>{studentName}</strong>
             <ChevronDown size={15} />
           </button>
@@ -147,6 +150,7 @@ export function StudentPortalShell({
             <div className="student-portal-profile-popover" role="menu">
               <div><UserRound size={17} /><span><strong>{studentName}</strong><small>{previewContext.isPreview ? "Student preview" : "Student account"}</small></span></div>
               {!previewContext.isPreview ? <AccountSwitcher inMenu /> : null}
+              {!previewContext.isPreview && <AppLink href="/profile" role="menuitem"><UserRound size={16} /> Profile settings</AppLink>}
               {previewContext.isPreview ? (
                 <AppLink href={previewContext.returnHref} role="menuitem"><LogOut size={16} /> Return to teacher dashboard</AppLink>
               ) : (
@@ -186,6 +190,8 @@ export function StudentPortalShell({
           <AppLink className={activeId === "answer-sheets" ? "is-active" : undefined} href={appendStudentPreview("/study-hall/shsat/answer-sheets", previewContext)} onClick={closeMobileNavigation}><ClipboardList size={18} /><span>Answer sheets</span></AppLink>
           <AppLink className={activeId === "assessments" ? "is-active" : undefined} href={assessmentsHref} onClick={closeMobileNavigation}><Library size={18} /><span>Assessments</span></AppLink>
           <AppLink className={activeId === "results" ? "is-active" : undefined} href={resultsHref} onClick={closeMobileNavigation}><BarChart3 size={18} /><span>Results</span></AppLink>
+          <AppLink className={activeId === "games" ? "is-active" : undefined} href={appendStudentPreview("/study-hall/shsat/games", previewContext)} onClick={closeMobileNavigation}><Gamepad2 size={18} /><span>Game rooms</span></AppLink>
+          <AppLink className={activeId === "achievements" ? "is-active" : undefined} href={appendStudentPreview("/study-hall/shsat/achievements", previewContext)} onClick={closeMobileNavigation}><Trophy size={18} /><span>Achievements</span></AppLink>
         </nav>
         <div className="student-portal-personal-links">
           <small>Quick access</small>

@@ -1,0 +1,4 @@
+.exam-section-submit-dialog { margin: 0; padding: 0; top: 20vh; max-height: 75vh; overflow: auto; }
+.exam-section-submit-dialog::backdrop { background: rgb(0 0 0 / 25%); }
+.exam-section-submit-dialog .exam-attention-actions { flex-wrap: wrap; gap: 12px; }
+.exam-section-submit-dialog .exam-attention-actions button { padding: 8px 14px; }

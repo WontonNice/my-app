@@ -1,7 +1,9 @@
 (function (root) {
-  // One item per explicit extension click. No background loop or private source API.
+  // One saved item per controller call; the explicit AFK runner owns repetition.
   function create({ reader, identity, document, getUrl, save, wait = ms => new Promise(resolve => setTimeout(resolve, ms)), now = () => Date.now(), timeoutMs = 15000, intervalMs = 250 }) {
     let busy = false;
+    let shouldContinue = () => true;
+    async function checkpoint() { if (!await shouldContinue()) throw new Error('Capture stopped. No further answer or Next action was taken.'); }
     const visible = el => Boolean(el?.getClientRects().length) && !el.closest('[hidden], [aria-hidden="true"]');
     const label = el => el.innerText.replace(/\r\n?/g, "\n").trim();
     const revealedSignature = q => JSON.stringify([q.correctChoiceId, q.explanation, q.incorrectChoiceExplanations]);
@@ -25,18 +27,20 @@
     async function poll(check, failure) {
       const deadline = now() + timeoutMs;
       do {
+        await checkpoint();
         const result = check();
         if (result) return result;
         await wait(intervalMs);
       } while (now() < deadline);
       throw new Error(failure);
     }
-    async function run({ reveal = false, advance = false, allowSubmit = false } = {}) {
+    async function run({ reveal = false, advance = false, allowSubmit = false, shouldContinue: continueRun = () => true } = {}) {
       supported(); // Always reject Math/unknown URLs before touching the DOM.
       if (busy) throw new Error("A capture is already running. Wait for it to finish.");
       if ((reveal || advance) && allowSubmit !== true) throw new Error("Enable the temporary-answer consent checkbox first. Submission changes SHSATLab practice history.");
       if (advance && !reveal) throw new Error("Advancing requires a complete revealed capture.");
       busy = true;
+      shouldContinue = continueRun;
       let question;
       try {
         const originalUrl = getUrl();
@@ -48,12 +52,14 @@
           // Verify the Submit control BEFORE selecting anything; never click a level/test control.
           button(/^Submit Answer$/i, "Submit Answer");
           sameQuestion(originalUrl, expected);
+          await checkpoint();
           buttons[0].click(); // Temporary A, not an inferred or imported correct answer.
           const submit = await poll(() => {
             sameQuestion(originalUrl, expected);
             const el = button(/^Submit Answer$/i, "Submit Answer");
             return !el.disabled && el;
           }, "Submit Answer did not become available. Nothing was saved or advanced.");
+          await checkpoint();
           submit.click(); // Exactly once; retries never resubmit a revealed item.
         }
         if (reveal) {
@@ -76,6 +82,7 @@
         const beforeSave = sameQuestion(originalUrl, expected);
         if (reveal && revealedSignature(beforeSave) !== revealedSignature(question)) throw new Error("The revealed answer or explanation changed before saving. Stopped without advancing; retry capture.");
         let saved;
+        await checkpoint();
         try { saved = await save(question); }
         catch (error) { return { question, error: `Capture could not be saved: ${error.message}. The source was NOT advanced. Copy the ready JSON to keep this item.`, saved: false }; }
         // The durable queue is saved before any Next click, even if the popup closes.
@@ -86,6 +93,7 @@
             if (!reader.explanationComplete(document, current) || revealedSignature(current) !== revealedSignature(question)) throw new Error("The revealed answer or explanation changed. Saved capture retained; source was not advanced.");
             const next = button(/^(Next Question|Try Another)$/i, "Next Question / Try Another");
             if (next.disabled) throw new Error("Next Question is disabled. Saved capture retained.");
+            await checkpoint();
             next.click();
             await poll(() => {
               supported();
@@ -97,7 +105,7 @@
           } catch (error) { result.nextError = error.message; }
         }
         return result;
-      } finally { busy = false; }
+      } finally { busy = false; shouldContinue = () => true; }
     }
     return { run };
   }

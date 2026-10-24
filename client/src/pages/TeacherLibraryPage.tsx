@@ -10,9 +10,11 @@ import {
   Clock3,
   Eye,
   EyeOff,
+  Gamepad2,
   LayoutDashboard,
   MessageSquareText,
   ShieldCheck,
+  Trophy,
   UserRoundCheck,
   UserRoundPlus,
   Users,
@@ -48,6 +50,8 @@ const teacherNavItems: DashboardNavItem[] = [
   { id: "accounts", label: "Student accounts", href: "/teacher/accounts", icon: UserRoundPlus },
   { id: "library", label: "English library", href: "/teacher/library", icon: BookOpen },
   { id: "assessments", label: "Assessments & insights", href: "/teacher/assessments", icon: ClipboardList },
+  { id: "games", label: "Game rooms", href: "/teacher/games", icon: Gamepad2 },
+  { id: "achievements", label: "Achievements", href: "/teacher/achievements", icon: Trophy },
 ];
 
 function getBookIdFromPath() {

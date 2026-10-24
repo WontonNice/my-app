@@ -105,7 +105,7 @@ export function ExamLaunchPage() {
             updatedAt: savedResult.completedAt,
           };
         }
-        const currentCompletedSections = getCurrentCompletedSections(examContent, progress);
+        const currentCompletedSections = getCurrentCompletedSections(examContent, progress).filter(section => !nextAssessment.reentry?.remainingSections.includes(section));
         const currentQuestionCount = nextAssessment.questions.length;
         const complete =
           isExamSessionCompleteForContent(examContent, progress) ||
@@ -132,7 +132,7 @@ export function ExamLaunchPage() {
   }, [previewContext.isPreview, previewContext.mode, previewContext.studentId, previewContext.studentName]);
 
   const sectionLines = useMemo(() => (assessment ? createAssessmentSectionLines(assessment) : []), [assessment]);
-  const canOpenCompletedExam = Boolean(assessment?.allowCompletedAccess || previewContext.isPreview);
+  const canOpenCompletedExam = Boolean(assessment?.reentry?.remainingSections.length || assessment?.allowCompletedAccess || previewContext.isPreview);
 
   function handleStartExam(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -148,7 +148,7 @@ export function ExamLaunchPage() {
     const launchName = typedName.trim() || studentName;
     window.sessionStorage.setItem(`exam-student-name:${assessment.id}`, launchName);
     window.sessionStorage.setItem(`exam-start-subject:${assessment.id}`, startingSubject);
-    if (!hasSavedProgress || isComplete) resetExamTimer(assessment.id);
+    if (!assessment.reentry && (!hasSavedProgress || isComplete)) resetExamTimer(assessment.id);
     window.location.assign(`/exam/${assessment.id}/session${window.location.search}`);
   }
 
@@ -214,7 +214,7 @@ export function ExamLaunchPage() {
                 </div>
               ) : <form className="exam-launch-form" onSubmit={handleStartExam}>
                 <h2>{isComplete ? "Reopen submitted exam" : "Enter your name:"}</h2>
-                {isComplete ? <p>Your saved answers will load. Submit both sections again to replace this attempt.</p> : null}
+                {assessment.reentry ? <p>Your teacher reopened {assessment.reentry.remainingSections.map(section => section === "math" ? "Math" : "English").join(" and ")}. Your saved answers and remaining exam time will load{assessment.reentry.additionalMinutes ? `, with ${assessment.reentry.additionalMinutes} extra minutes` : ""}. Submit each reopened section when finished.</p> : isComplete ? <p>Your saved answers will load. Submit both sections again to replace this attempt.</p> : null}
                 <label>
                   Name:
                   <input

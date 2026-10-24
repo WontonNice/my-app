@@ -1,11 +1,21 @@
+import { AccountActivity, useAccountActivity } from "../features/account/AccountActivity";
+import { isFullExamResult } from "../../../server/src/shared/examCompletion";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { StudentProgressRoster } from "../components/StudentProgressRoster";
 import { BankPracticeInsights } from "../components/BankPracticeInsights";
-import { Activity, Archive, ArchiveRestore, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ChevronDown, ClipboardList, Clock3, Cloud, Eye, LayoutDashboard, Pencil, PlusCircle, RotateCcw, Shuffle, Trash2, UserRoundCheck, UserRoundPlus, Users, X } from "lucide-react";
+import { Activity, Archive, ArchiveRestore, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ClipboardList, Clock3, Cloud, Eye, LayoutDashboard, Pencil, PlusCircle, RotateCcw, Search, Shuffle, Trash2, UserRoundCheck, UserRoundPlus, Users, X } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { TeacherExamTools } from "../components/TeacherExamTools";
 import { StudentSheetSummary } from "../features/answer-sheets/StudentSheetSummary";
 import { StudentAnalyticsWorkstation } from "../components/StudentAnalyticsWorkstation";
+import { TeacherAssessmentInsights } from "../components/TeacherAssessmentInsights";
+import { Achievements } from "../features/achievements/Achievements";
+import { TeacherCountdown } from "../components/TeacherCountdown";
+import { TeacherExamReentry } from "../components/TeacherExamReentry";
+import { GameRooms } from "../features/games/GameRooms";
+import { Gamepad2, Trophy } from "lucide-react";
+import "../styles/teacher-assessments.css";
 import { BoardLibrary } from "../features/boards/BoardLibrary";
 import { TeacherLearningPlan, type PlanView } from "../components/TeacherLearningPlan";
 import type { PlanOverview } from "../lib/learningPlan";
@@ -13,6 +23,7 @@ import { responseIsBlank, type Evidence } from "../lib/studentAnalytics";
 import { resolveExamContent, type ExamQuestion } from "../content/exams";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import {
+  getTeacherAnalyticsEvidence,
   getTeacherAssessments,
   getTeacherClassJoinRequests,
   getTeacherStudentAccounts,
@@ -135,7 +146,7 @@ function studentExamResultsForAssessments(
 }
 
 function isCompleteExamResult(result: Record<string, unknown>) {
-  return result.completionStatus !== "english_complete" && result.completionStatus !== "math_complete";
+  return isFullExamResult(result);
 }
 
 function examResultStatusLabel(result: Record<string, unknown>) {
@@ -144,17 +155,7 @@ function examResultStatusLabel(result: Record<string, unknown>) {
   return "Complete";
 }
 
-function studentAssessmentAverage(
-  student: StudentProgressSnapshot,
-  assessments: TeacherAssessment[],
-) {
-  const percentages = studentExamResultsForAssessments(student, assessments).flatMap((result) =>
-    isCompleteExamResult(result) && typeof result.percentage === "number" ? [result.percentage] : [],
-  );
-  return percentages.length
-    ? Math.round(percentages.reduce((sum, percentage) => sum + percentage, 0) / percentages.length)
-    : null;
-}
+
 
 function selectedAnswersFromResult(result: Record<string, unknown>): SelectedAnswers | null {
   if (!result.answers || typeof result.answers !== "object" || Array.isArray(result.answers)) return null;
@@ -471,7 +472,7 @@ type LeaderboardEntry = {
   username: string;
 };
 
-type ClassLeaderboard = {
+export type ClassLeaderboard = {
   average: number | null;
   entries: LeaderboardEntry[];
   id: string;
@@ -479,13 +480,14 @@ type ClassLeaderboard = {
   title: string;
 };
 
-type ClassAssessmentInsight = {
+export type ClassAssessmentInsight = {
   assessmentId: string;
   english: ClassLeaderboard;
   math: ClassLeaderboard;
   overallAverage: number | null;
   passages: ClassLeaderboard[];
   submissions: number;
+  fullSubmissions: number;
   title: string;
 };
 
@@ -774,9 +776,11 @@ function createPassageForms(assessment: TeacherAssessment): FormDraft["forms"] {
   }));
 }
 
-type TeacherWorkspace = "overview" | "students" | "accounts" | "assessments" | "enrollment" | "boards";
+type TeacherWorkspace = "overview" | "students" | "accounts" | "assessments" | "enrollment" | "boards" | "games" | "achievements";
 
 function getTeacherWorkspace(pathname: string): TeacherWorkspace {
+  if (pathname.startsWith("/teacher/games")) return "games";
+  if (pathname.startsWith("/teacher/achievements")) return "achievements";
   if (pathname.startsWith("/teacher/boards")) return "boards";
   if (pathname.startsWith("/teacher/students")) return "students";
   if (pathname.startsWith("/teacher/accounts")) return "accounts";
@@ -838,6 +842,19 @@ function createPaperScoreDraft(): PaperScoreDraft {
   };
 }
 
+function buildTeacherAnalyticsInputs(student: StudentProgressSnapshot, assessments: TeacherAssessment[]) {
+    const byId = new Map(assessments.map(assessment => [assessment.id, assessment]));
+    return [...studentExamResultsForAssessments(student, assessments), ...(student.progress.examHistory ?? [])].map(result => {
+      const assessment = byId.get(String(result.assessmentId));
+      return {
+        result,
+        content: assessment ? resolveExamContent({ ...assessment, passageOrder: assessment.forms?.find(form => form.id === assessment.formAssignments?.[student.id])?.passageOrder }) : undefined,
+        ...scoreBreakdownForResult(result, assessment),
+      };
+    });
+
+}
+
 export function StudentDetail({
   accessToken = "",
   assessments,
@@ -863,17 +880,25 @@ export function StudentDetail({
   const [isSavingPaperScore, setIsSavingPaperScore] = useState(false);
   const assessmentIds = new Set(assessments.map((assessment) => assessment.id));
   const examResults = studentExamResultsForAssessments(student, assessments);
-  const analyticsInputs = useMemo(() => {
-    const byId = new Map(assessments.map(assessment => [assessment.id, assessment]));
-    return studentExamResultsForAssessments(student, assessments).map(result => {
-      const assessment = byId.get(String(result.assessmentId));
-      return {
-        result,
-        content: assessment ? resolveExamContent({ ...assessment, passageOrder: assessment.forms?.find(form => form.id === assessment.formAssignments?.[student.id])?.passageOrder }) : undefined,
-        ...scoreBreakdownForResult(result, assessment),
-      };
+  const analyticsInputs = useMemo(() => buildTeacherAnalyticsInputs(student, assessments), [student, assessments]);
+  const [examCorrections, setExamCorrections] = useState<Awaited<ReturnType<typeof getTeacherAnalyticsEvidence>>["examCorrections"]>([]);
+  const [additionalEvidence, setAdditionalEvidence] = useState<import("../lib/studentAnalytics").AnalyticsInput[]>([]);
+  const [evidenceStatus, setEvidenceStatus] = useState(accessToken ? "Loading saved passage and practice evidence…" : "");
+  useEffect(() => {
+    if (!accessToken) return;
+    let active = true;
+    getTeacherAnalyticsEvidence(accessToken, student.id).then(data => {
+      if (active) {
+        setAdditionalEvidence(data.inputs);
+        setExamCorrections(data.examCorrections ?? []);
+        setEvidenceStatus(data.limitations.join(" "));
+      }
+    }).catch(reason => {
+      if (active) setEvidenceStatus(`Additional evidence unavailable: ${reason instanceof Error ? reason.message : "Try again later"}. Exam evidence remains available.`);
     });
-  }, [student, assessments]);
+    return () => { active = false; };
+  }, [accessToken, student.id]);
+
   const responseRecords = new Map<string, {
     answers: Record<string, unknown>;
     status: string;
@@ -928,8 +953,20 @@ export function StudentDetail({
   return (
     <section className="teacher-student-detail" aria-label={`${student.fullName} record`}>
       <div className="teacher-panel-header"><div><span>Student record</span><h2>{student.fullName}</h2></div><p>{student.email} · Last login: {formatDate(student.lastLoginAt)}</p></div>
-      {accessToken && <><nav className="lp-record-tabs" aria-label="Student record workspaces">{([["progress", "Progress & insights"], ["plan", "Learning plan"], ["content", "Available content"], ["schedule", "Weekly schedule"], ["history", "Homework history"], ["boards", "Boards"]] as const).map(([value, label]) => <button key={value} aria-pressed={workspaceView === value} onClick={() => { setWorkspaceView(value); setPlanSkill(""); }} type="button">{label}</button>)}</nav>{workspaceView === "boards" ? <BoardLibrary accessToken={accessToken} studentId={student.id} studentName={student.fullName} teacher /> : <TeacherLearningPlan client={planClient} key={planFocus} sourceCategory={planCategory} onSourceCategory={setPlanCategory} onInventory={setPassageInventory} accessToken={accessToken} studentId={student.id} studentName={student.fullName} view={workspaceView === "progress" ? "summary" : workspaceView} onView={setWorkspaceView} skillFilter={planSkill} onSkillFilter={setPlanSkill} />}</>}
+      {accessToken && <><nav className="lp-record-tabs" aria-label="Student record workspaces">{([["progress", "Progress & insights"], ["plan", "Learning plan"], ["content", "Available content"], ["schedule", "Weekly schedule"], ["history", "Homework history"], ["boards", "Boards"]] as const).map(([value, label]) => <button key={value} aria-pressed={workspaceView === value} onClick={() => { setWorkspaceView(value); setPlanSkill(""); }} type="button">{label}</button>)}</nav><div hidden={workspaceView === "progress"}>{workspaceView === "boards" ? <BoardLibrary accessToken={accessToken} studentId={student.id} studentName={student.fullName} teacher /> : <TeacherLearningPlan client={planClient} key={planFocus} sourceCategory={planCategory} onSourceCategory={setPlanCategory} onInventory={setPassageInventory} accessToken={accessToken} studentId={student.id} studentName={student.fullName} view={workspaceView === "progress" ? "summary" : workspaceView} onView={setWorkspaceView} skillFilter={planSkill} onSkillFilter={setPlanSkill} />}</div></>}
       <div hidden={workspaceView !== "progress"}>
+      <StudentAnalyticsWorkstation inputs={[...analyticsInputs.map(input => ({ ...input, corrections: examCorrections.find(item => item.assessmentId === input.result.assessmentId && item.completedAt === input.result.completedAt)?.responses })), ...additionalEvidence]} preferenceKey={`teacher-analysis:${student.id}`} initialAssessmentId={initialAnalyticsAssessmentId}
+        passageInventory={passageInventory}
+        onBrowseCategory={accessToken ? category => { setPlanCategory(category); setPlanSkill(""); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
+        onAssignSkill={accessToken ? skill => { setPlanCategory(""); setPlanSkill(skill); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
+        answerLabel={studentAnswerLabel} correctLabel={correctAnswerLabel}
+        renderExam={exam => {
+          const assessment = assessments.find(candidate => candidate.id === exam.result.assessmentId);
+          return <><SectionScoreBreakdown assessment={assessment} result={exam.result} /><details className="sa-individual-details"><summary>View individual analytics</summary><IndividualExamAnalytics evidence={exam.evidence} result={exam.result} /></details></>;
+        }} />
+      <p className="sa-data-note" role="status">{evidenceStatus}</p>
+      {accessToken && <details className="sa-retained-section"><summary>Reopen an accidentally submitted exam</summary><TeacherExamReentry key={student.id} accessToken={accessToken} assessments={assessments} students={[student]} initialStudentId={student.id} /></details>}
+      <details className="sa-retained-section"><summary>Score entry & source tools</summary>
       {accessToken && <StudentSheetSummary token={accessToken} studentId={student.id} />}
       <details className="teacher-paper-score-entry">
         <summary>
@@ -953,15 +990,7 @@ export function StudentDetail({
         </form>
       </details>
       {accessToken && <BankPracticeInsights key={student.id} accessToken={accessToken} studentId={student.id} onAssignSkill={skill => { setPlanCategory(""); setPlanSkill(skill); setPlanFocus(value => value + 1); setWorkspaceView("content"); }} />}
-      <StudentAnalyticsWorkstation inputs={analyticsInputs} initialAssessmentId={initialAnalyticsAssessmentId}
-        passageInventory={passageInventory}
-        onBrowseCategory={accessToken ? category => { setPlanCategory(category); setPlanSkill(""); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
-        onAssignSkill={accessToken ? skill => { setPlanCategory(""); setPlanSkill(skill); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
-        answerLabel={studentAnswerLabel} correctLabel={correctAnswerLabel}
-        renderExam={exam => {
-          const assessment = assessments.find(candidate => candidate.id === exam.result.assessmentId);
-          return <><SectionScoreBreakdown assessment={assessment} result={exam.result} /><details className="sa-individual-details"><summary>View individual analytics</summary><IndividualExamAnalytics evidence={exam.evidence} result={exam.result} /></details></>;
-        }} />
+      </details>
       <details className="sa-retained-section"><summary>Saved answers & in-progress sessions ({responseRecords.size})</summary>
       <div className="teacher-response-list">
         {Array.from(responseRecords, ([assessmentId, record]) => {
@@ -1014,6 +1043,7 @@ export function TeacherDashboardPage() {
     ? getCachedTeacherDashboard(initialSession.user.id)
     : null;
   const [accessToken, setAccessToken] = useState("");
+  const accountActivity = useAccountActivity(accessToken, getTeacherWorkspace(window.location.pathname) === "accounts");
   const [assessments, setAssessments] = useState<TeacherAssessment[]>(
     initialDashboardCache?.assessments ?? [],
   );
@@ -1037,6 +1067,9 @@ export function TeacherDashboardPage() {
   const [savingFormsId, setSavingFormsId] = useState("");
   const [openFormEditorId, setOpenFormEditorId] = useState("");
   const [openAnswerKeyId, setOpenAnswerKeyId] = useState("");
+  const [assessmentSearch, setAssessmentSearch] = useState("");
+  const [assessmentAccess, setAssessmentAccess] = useState("all");
+  const [assessmentSort, setAssessmentSort] = useState("default");
   const [formDrafts, setFormDrafts] = useState<Record<string, FormDraft>>({});
   const [editingStudentAccountId, setEditingStudentAccountId] = useState("");
   const [studentAccountDraft, setStudentAccountDraft] = useState({ fullName: "", password: "", username: "" });
@@ -1149,9 +1182,7 @@ export function TeacherDashboardPage() {
     });
 
     const assessmentById = new Map(assessments.map((assessment) => [assessment.id, assessment]));
-    const currentAssessmentIds = assessments
-      .map((assessment) => assessment.id)
-      .filter((assessmentId) => resultsByAssessment.has(assessmentId));
+    const currentAssessmentIds = assessments.map((assessment) => assessment.id);
     return currentAssessmentIds.map((assessmentId) => {
       const assessment = assessmentById.get(assessmentId);
       const resultByStudent = resultsByAssessment.get(assessmentId) ?? new Map();
@@ -1221,10 +1252,15 @@ export function TeacherDashboardPage() {
         overallAverage: average?.average ?? null,
         passages,
         submissions: resultByStudent.size,
+        fullSubmissions: average?.submissions ?? 0,
         title: assessment?.title ?? average?.title ?? (firstResult ? examValue(firstResult, "title", assessmentId) : assessmentId),
       };
     });
   }, [assessmentAverages, assessments, shsatStudents]);
+  const visibleAssessments = assessments.filter(assessment =>
+    `${assessment.title} ${assessment.description}`.toLowerCase().includes(assessmentSearch.toLowerCase()) &&
+    (assessmentAccess === "all" || (assessment.sectionAccess.english || assessment.sectionAccess.math ? "open" : "locked") === assessmentAccess),
+  ).sort((a,b) => assessmentSort === "name" ? a.title.localeCompare(b.title) : assessmentSort === "submissions" ? (classAssessmentInsights.find(item => item.assessmentId === b.id)?.submissions ?? 0) - (classAssessmentInsights.find(item => item.assessmentId === a.id)?.submissions ?? 0) : 0);
 
   async function handleAddPaperScore(studentId: string, input: ManualExamScoreInput) {
     if (!accessToken) throw new Error("Teacher access is unavailable. Refresh and try again.");
@@ -1488,8 +1524,12 @@ export function TeacherDashboardPage() {
     { id: "accounts", label: "Student accounts", href: "/teacher/accounts", icon: UserRoundPlus },
     { id: "library", label: "English library", href: "/teacher/library", icon: BookOpen },
     { id: "assessments", label: "Assessments & insights", href: "/teacher/assessments", icon: ClipboardList },
+    { id: "games", label: "Game rooms", href: "/teacher/games", icon: Gamepad2 },
+    { id: "achievements", label: "Achievements", href: "/teacher/achievements", icon: Trophy },
   ];
   const workspaceCopy = {
+    games: { description: "Bring the class together for live survival rounds and team test challenges.", eyebrow: "Play together", icon: Gamepad2, title: "Game rooms" },
+    achievements: { description: "Customize the milestones students earn from their submitted work.", eyebrow: "Celebrate progress", icon: Trophy, title: "Achievements" },
     boards: { description: "Create a shared board and invite a student to work with you.", eyebrow: "Shared learning workspace", icon: LayoutDashboard, title: "Teaching boards" },
     overview: {
       description: "A focused snapshot of SHSAT enrollment, activity, scores, and open exams.",
@@ -1517,8 +1557,8 @@ export function TeacherDashboardPage() {
     },
     assessments: {
       description: selectedClassInsight
-        ? "Section performance, passage rankings, and the complete class roster for this exam."
-        : "Control exam access, forms, answer keys, class averages, and performance from one place.",
+        ? "Compare student results, submitted sections, and passage performance."
+        : "Manage exam access and review class performance.",
       eyebrow: selectedClassInsight ? "Assessment performance" : "Assessment command center",
       icon: ClipboardList,
       title: selectedClassInsight?.title ?? "Assessments & insights",
@@ -1539,6 +1579,9 @@ export function TeacherDashboardPage() {
         ) : null}
       </header>
 
+      {teacherUserId && <TeacherCountdown key={teacherUserId} teacherId={teacherUserId} />}
+      {activeWorkspace === "achievements" && accessToken && <Achievements accessToken={accessToken} teacher />}
+      {activeWorkspace === "games" && accessToken && <GameRooms accessToken={accessToken} teacher />}
       {message && <p className="teacher-message corporate-message">{message}</p>}
 
       {activeWorkspace === "overview" ? (
@@ -1566,21 +1609,7 @@ export function TeacherDashboardPage() {
       {activeWorkspace === "students" ? (
       <section className={`teacher-panel teacher-roster-panel${selectedStudent ? " sa-selected-workspace" : ""}`} id="students">
           {selectedStudent ? <div className="sa-student-picker"><button onClick={() => setSelectedStudentId("")} type="button"><ArrowLeft size={14} /> All students</button><label>Student <select value={selectedStudentId} onChange={event => setSelectedStudentId(event.target.value)}>{shsatStudents.map(student => <option key={student.id} value={student.id}>{student.fullName}</option>)}</select></label><span>{shsatStudents.length} enrolled</span></div> : <div className="teacher-panel-header"><div><span>Roster</span><h2>SHSAT student progress</h2></div><p>Select a student to review progression and question evidence.</p></div>}
-          {!selectedStudent && <div className="teacher-student-list">
-            {shsatStudents.map((student) => {
-              const isOpen = student.id === selectedStudentId;
-              const studentAverage = studentAssessmentAverage(student, assessments);
-              return <div className={`teacher-student-entry${isOpen ? " is-open" : ""}`} key={student.id}>
-              <button aria-expanded={isOpen} onClick={() => setSelectedStudentId(isOpen ? "" : student.id)} type="button">
-                <span className="teacher-student-avatar">{student.fullName.split(" ").map((part) => part[0]).join("").slice(0, 2)}</span>
-                <span><strong>{student.fullName}</strong><small>{student.email}</small><small>Last login: {formatDate(student.lastLoginAt)}</small>{planRoster[student.id] && <small>{planRoster[student.id].assigned} active · {planRoster[student.id].overdue} overdue · {planRoster[student.id].planned} planned</small>}</span>
-                <span className="teacher-score-badge">{studentAverage === null ? "—" : `${studentAverage}%`}<small>avg.</small></span>
-                <ChevronDown className="teacher-roster-chevron" size={18} />
-              </button>
-              </div>;
-            })}
-            {!shsatStudents.length && <p className="teacher-empty-state">No students are enrolled in SHSAT yet.</p>}
-          </div>}
+          {!selectedStudent && <StudentProgressRoster plans={planRoster} students={shsatStudents} inputsFor={student => buildTeacherAnalyticsInputs(student, assessments)} onSelect={setSelectedStudentId} />}
           {selectedStudent && <StudentDetail key={selectedStudent.id} accessToken={accessToken} assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={selectedStudent} />}
 
       </section>
@@ -1625,7 +1654,7 @@ export function TeacherDashboardPage() {
             </div>
           </form>
           <div className="teacher-staff-list" aria-label={`${accountView === "archived" ? "Archived" : "Current"} SHSAT student accounts`}>
-            {visibleStudentAccounts.length ? visibleStudentAccounts.map((student) => <article className={student.archived ? "is-archived" : ""} key={student.id}><span>{student.fullName.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase()}</span><div><strong>{student.fullName}</strong><small>Username: {student.username}</small><small>Email: {student.email}</small><small>Created: {formatDate(student.createdAt)}</small>{student.archivedAt ? <small>Archived: {formatDate(student.archivedAt)}</small> : null}</div><div className="admin-account-actions">{student.archived ? <><button className="is-restore" disabled={savingAccountId === student.id} onClick={() => handleArchiveStudentAccount(student, false)} type="button"><ArchiveRestore size={14} /> Restore</button><button disabled={savingAccountId === student.id} onClick={() => beginEditingStudentAccount(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-danger" disabled={savingAccountId === student.id} onClick={() => handleDeleteStudentAccount(student)} type="button"><Trash2 size={14} /> Delete permanently</button></> : <><AppLink className="teacher-student-view-link" href={getStudentPreviewHref(student)}><Eye size={14} /> View as student</AppLink><button disabled={savingAccountId === student.id} onClick={() => beginEditingStudentAccount(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-archive" disabled={savingAccountId === student.id} onClick={() => handleArchiveStudentAccount(student, true)} type="button"><Archive size={14} /> Archive</button></>}</div></article>) : <p>{accountView === "archived" ? "No archived SHSAT student accounts." : "No current SHSAT student accounts found."}</p>}
+            {visibleStudentAccounts.length ? visibleStudentAccounts.map((student) => <article className={student.archived ? "is-archived" : ""} key={student.id}><span>{student.fullName.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase()}</span><div><strong>{student.fullName}</strong><small>Username: {student.username}</small><small>Email: {student.email}</small><small>Created: {formatDate(student.createdAt)}</small><AccountActivity id={student.id} lastLoginAt={student.lastLoginAt} archived={student.archived} activity={accountActivity} />{student.archivedAt ? <small>Archived: {formatDate(student.archivedAt)}</small> : null}</div><div className="admin-account-actions">{student.archived ? <><button className="is-restore" disabled={savingAccountId === student.id} onClick={() => handleArchiveStudentAccount(student, false)} type="button"><ArchiveRestore size={14} /> Restore</button><button disabled={savingAccountId === student.id} onClick={() => beginEditingStudentAccount(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-danger" disabled={savingAccountId === student.id} onClick={() => handleDeleteStudentAccount(student)} type="button"><Trash2 size={14} /> Delete permanently</button></> : <><AppLink className="teacher-student-view-link" href={getStudentPreviewHref(student)}><Eye size={14} /> View as student</AppLink><button disabled={savingAccountId === student.id} onClick={() => beginEditingStudentAccount(student)} type="button"><Pencil size={14} /> Edit</button><button className="is-archive" disabled={savingAccountId === student.id} onClick={() => handleArchiveStudentAccount(student, true)} type="button"><Archive size={14} /> Archive</button></>}</div></article>) : <p>{accountView === "archived" ? "No archived SHSAT student accounts." : "No current SHSAT student accounts found."}</p>}
           </div>
         </div>
       </section>
@@ -1633,42 +1662,11 @@ export function TeacherDashboardPage() {
 
       {activeWorkspace === "assessments" && insightAssessmentId ? (
         selectedClassInsight ? (
-          <section className="teacher-insight-studio" aria-label={`${selectedClassInsight.title} Insight Studio`}>
-            <div className="teacher-insight-studio-hero">
-              <div><span>Live class performance</span><h2>{selectedClassInsight.title}</h2><p>Every SHSAT student is shown. Rankings use percent accuracy, and tied scores share a rank.</p></div>
-              <div className="teacher-insight-studio-metrics">
-                <span><small>Submissions</small><strong>{selectedClassInsight.submissions}</strong></span>
-                <span><small>Overall</small><strong>{selectedClassInsight.overallAverage === null ? "—" : `${selectedClassInsight.overallAverage}%`}</strong></span>
-                <span><small>English</small><strong>{selectedClassInsight.english.average === null ? "—" : `${selectedClassInsight.english.average}%`}</strong></span>
-                <span><small>Math</small><strong>{selectedClassInsight.math.average === null ? "—" : `${selectedClassInsight.math.average}%`}</strong></span>
-              </div>
-            </div>
-            <section className="teacher-individual-analytics-launcher" aria-label="Individual student exam analytics">
-              <header><div><span>Student results</span><h3>Individual exam analytics</h3></div><p>Select a student to see question results, skill and question-type performance, and recorded time per question.</p></header>
-              <div>{shsatStudents.flatMap(student => {
-                const result = student.progress.examResults.find(candidate => candidate.assessmentId === selectedClassInsight.assessmentId);
-                if (!result) return [];
-                return [<AppLink href={getStudentExamAnalyticsHref(student.id, selectedClassInsight.assessmentId)} key={student.id}><span><strong>{student.fullName}</strong><small>{examResultStatusLabel(result)}</small></span><b>{examValue(result, "percentage")}%</b><em>View analytics <ArrowUpRight aria-hidden="true" size={13} /></em></AppLink>];
-              })}</div>
-            </section>
-            <div className="teacher-leaderboard-grid teacher-section-leaderboards">
-              <ClassScoreLeaderboardCard leaderboard={selectedClassInsight.english} subtitle="Section ranking" />
-              <ClassScoreLeaderboardCard leaderboard={selectedClassInsight.math} subtitle="Section ranking" />
-            </div>
-            {selectedClassInsight.passages.length ? (
-              <section className="teacher-passage-leaderboards" aria-label={`${selectedClassInsight.title} passage rankings`}>
-                <header><div><span>English detail</span><h3>Passage leaderboards</h3></div><p>Class average and complete roster for each passage.</p></header>
-                <div className="teacher-leaderboard-grid">
-                  {selectedClassInsight.passages.map((leaderboard, passageIndex) => (
-                    <ClassScoreLeaderboardCard key={leaderboard.id} leaderboard={leaderboard} subtitle={`Passage ${passageIndex + 1}`} />
-                  ))}
-                </div>
-              </section>
-            ) : (
-              <p className="teacher-leaderboard-note">Passage-level scoring is unavailable for this assessment.</p>
-            )}
-            <p className="teacher-leaderboard-note">Averages include students with detailed section scores. Older summary-only results remain visible as data unavailable.</p>
-          </section>
+          <TeacherAssessmentInsights key={selectedClassInsight.assessmentId} insight={selectedClassInsight} students={shsatStudents}
+            previewHref={getTeacherExamPreviewHref(selectedClassInsight.assessmentId)}
+            studentHref={studentId => getStudentExamAnalyticsHref(studentId, selectedClassInsight.assessmentId)}
+            renderLeaderboard={(leaderboard, subtitle) => <ClassScoreLeaderboardCard key={leaderboard.id} leaderboard={leaderboard} subtitle={subtitle} />}
+          />
         ) : (
           <section className="teacher-panel teacher-insight-not-found"><h2>Performance dashboard not found</h2><p>This exam may not have any completed submissions yet.</p><AppLink href="/teacher/assessments"><ArrowLeft size={15} /> Return to assessments</AppLink></section>
         )
@@ -1676,21 +1674,18 @@ export function TeacherDashboardPage() {
 
       {activeWorkspace === "assessments" && !insightAssessmentId ? (
       <section className="teacher-assessments-hub" id="assessments">
-      <AppLink className="corporate-heading-action" href="/teacher/answer-sheets"><ClipboardList size={18} /> Digital answer sheets · Create Answer Sheet</AppLink>
-        <div className="teacher-assessment-command-bar">
-          <div><span>Live assessment operations</span><h2>One exam. One control center.</h2><p>Manage student access and see class performance without switching workspaces.</p></div>
-          <div>
-            <span><small>Exams</small><strong>{assessments.length}</strong></span>
-            <span><small>Open now</small><strong>{assessments.filter((assessment) => assessment.status === "open").length}</strong></span>
-            <span><small>Submissions</small><strong>{classAssessmentInsights.reduce((sum, insight) => sum + insight.submissions, 0)}</strong></span>
-            <span><small>Class avg.</small><strong>{classAverage === null ? "—" : `${classAverage}%`}</strong></span>
-          </div>
+        {accessToken && <details className="assessment-reentry-tool"><summary><RotateCcw size={15} /> Reopen an exam for an individual student</summary><TeacherExamReentry accessToken={accessToken} assessments={assessments} students={shsatStudents} /></details>}
+        <div className="assessment-library-summary">
+          <div><span><strong>{assessments.length}</strong> assessments</span><span><strong>{assessments.filter(assessment => assessment.sectionAccess.english || assessment.sectionAccess.math).length}</strong> open</span><span><strong>{classAssessmentInsights.reduce((sum, insight) => sum + insight.fullSubmissions, 0)}</strong> full exams submitted</span><span><strong>{shsatStudents.length}</strong> students</span></div>
+          <AppLink className="assessment-button" href="/teacher/answer-sheets"><ClipboardList size={15} /> Digital answer sheets <ArrowUpRight size={13} /></AppLink>
         </div>
         <div className="teacher-panel teacher-assessment-management-panel">
-        <div className="teacher-panel-header"><div><span>Exam management</span><h2>Assessment library</h2></div><p>Open or lock each one-session exam, manage completed access, forms, answer keys, and performance.</p></div>
+        <div className="assessment-library-heading"><h2>Assessment library <span>{visibleAssessments.length}</span></h2><p>Scores and access at a glance.</p></div>
+        <div className="assessment-library-filters"><label className="assessment-search"><Search size={16} /><input type="search" aria-label="Find an assessment" placeholder="Find an assessment…" value={assessmentSearch} onChange={event => setAssessmentSearch(event.target.value)} /></label><label>Access<select value={assessmentAccess} onChange={event => setAssessmentAccess(event.target.value)}><option value="all">All exams</option><option value="open">Open sections</option><option value="locked">All sections locked</option></select></label><label>Sort<select value={assessmentSort} onChange={event => setAssessmentSort(event.target.value)}><option value="default">Exam order</option><option value="name">Name A–Z</option><option value="submissions">Most submissions</option></select></label></div>
         <div className="teacher-assessment-list">
-          {assessments.map((assessment) => {
+          {visibleAssessments.map((assessment) => {
             const classResult = assessmentAverages.get(assessment.id);
+            const assessmentContent = resolveOriginalExamContent(assessment);
             const assessmentInsight = classAssessmentInsights.find((insight) => insight.assessmentId === assessment.id);
             const formDraft = formDrafts[assessment.id];
             const isFormEditorOpen = openFormEditorId === assessment.id;
@@ -1706,59 +1701,37 @@ export function TeacherDashboardPage() {
                 : assessment.sectionAccess.math
                   ? "Math only"
                   : "All sections locked";
-            return <article className="teacher-assessment-card" key={assessment.id}>
-              <div className="teacher-assessment-card-heading">
-                <div><span className={`status-pill status-pill-${assessment.status}`}>{assessment.status}</span><small>{sectionAccessLabel}</small><small>{assessment.durationMinutes} min</small></div>
-                <div><span>SHSAT assessment</span><h3>{assessment.title}</h3><p>{assessment.description || "No description yet."}</p></div>
-              </div>
-              <div className="teacher-assessment-card-dashboard">
-                <dl><div><dt>Passages</dt><dd>{assessment.passages.length}</dd></div><div><dt>Questions</dt><dd>{assessment.questions.length}</dd></div><div><dt>Session</dt><dd>One</dd></div><div><dt>Duration</dt><dd>{assessment.durationMinutes}m</dd></div></dl>
-                <div className="teacher-assessment-performance-snapshot">
-                  <span><small>Overall</small><strong>{assessmentInsight?.overallAverage === null || !assessmentInsight ? "—" : `${assessmentInsight.overallAverage}%`}</strong></span>
-                  <span><small>English</small><strong>{assessmentInsight?.english.average === null || !assessmentInsight ? "—" : `${assessmentInsight.english.average}%`}</strong></span>
-                  <span><small>Math</small><strong>{assessmentInsight?.math.average === null || !assessmentInsight ? "—" : `${assessmentInsight.math.average}%`}</strong></span>
-                  <span><small>Submitted</small><strong>{classResult?.submissions ?? 0}</strong></span>
+            const isSavingAccess = savingStatusId === assessment.id || savingSectionAccessKey.startsWith(assessment.id + ":");
+            const submissions = assessmentInsight?.submissions ?? 0;
+            return <article className="teacher-assessment-card assessment-library-card" key={assessment.id}>
+              <header className="assessment-card-header">
+                <div className="assessment-card-title">
+                  <div className="assessment-card-status"><span className={`status-pill status-pill-${assessment.sectionAccess.english || assessment.sectionAccess.math ? "open" : "locked"}`}>{assessment.sectionAccess.english || assessment.sectionAccess.math ? "Open" : "Locked"}</span><small>{sectionAccessLabel}</small></div>
+                  <h3>{assessment.title}</h3><p>{assessment.description || "SHSAT practice assessment"}</p>
+                  <div className="assessment-card-metadata"><span><ClipboardList size={13} />{getAllExamQuestions(assessmentContent).length} questions</span><span><BookOpen size={13} />{assessmentContent.passageSets.length} passages</span><span><Clock3 size={13} />{assessment.durationMinutes} min · shared timer</span></div>
                 </div>
+                <div className="assessment-card-links">
+                  <a className="assessment-button" href={getTeacherExamPreviewHref(assessment.id)} onClick={() => resetExamTimer(assessment.id)} rel="noreferrer" target="_blank"><Eye size={15} /> View test <ArrowUpRight size={13} /></a>
+                  <AppLink className="assessment-button is-primary" href={`/teacher/assessments/${encodeURIComponent(assessment.id)}`}><BarChart3 size={15} /> Insights <ArrowUpRight size={13} /></AppLink>
+                </div>
+              </header>
+              <div className="assessment-card-body">
+                <section className="assessment-card-performance" aria-label={`${assessment.title} class performance`}>
+                  <div className="assessment-card-section-heading"><h4>Class performance</h4><span>{classResult?.submissions ?? 0} full exams submitted</span></div>
+                  <div className="assessment-card-scores">
+                    <div><span>Full-exam average</span><strong>{assessmentInsight?.overallAverage == null ? "—" : `${assessmentInsight.overallAverage}%`}</strong><small>{classResult?.submissions ?? 0} students scored</small></div>
+                    <div><span>English</span><strong>{assessmentInsight?.english.average == null ? "—" : `${assessmentInsight.english.average}%`}</strong><small>{assessmentInsight?.english.scoredStudents ?? 0} students scored</small></div>
+                    <div><span>Math</span><strong>{assessmentInsight?.math.average == null ? "—" : `${assessmentInsight.math.average}%`}</strong><small>{assessmentInsight?.math.scoredStudents ?? 0} students scored</small></div>
+                  </div>
+                  <div className="assessment-submission-coverage"><span><strong>{submissions} / {shsatStudents.length}</strong> students submitted <small>{submissions - (classResult?.submissions ?? 0)} section / other results</small></span><div role="progressbar" aria-label="Students with submitted results" aria-valuenow={submissions} aria-valuemin={0} aria-valuemax={Math.max(1,shsatStudents.length)}><i style={{width: `${shsatStudents.length ? 100 * submissions / shsatStudents.length : 0}%`}} /></div></div>
+                </section>
+                <section className="assessment-card-access" aria-label={`${assessment.title} student access`}>
+                  <div className="assessment-card-section-heading"><h4>Student access</h4><button className="assessment-text-button" disabled={isSavingAccess} type="button" onClick={() => handleToggleAssessment(assessment)}>{savingStatusId === assessment.id ? "Saving…" : allSectionsOpen ? "Lock both" : "Open both"}</button></div>
+                  <div className="assessment-section-switches">{(["english", "math"] as const).map(section => <button className={`assessment-section-switch ${assessment.sectionAccess[section] ? "is-open" : "is-locked"}`} role="switch" aria-checked={assessment.sectionAccess[section]} aria-label={`${section === "english" ? "English" : "Math"} access for ${assessment.title}`} disabled={isSavingAccess} key={section} onClick={() => handleToggleSectionAccess(assessment, section)} type="button"><span>{section === "english" ? "English" : "Math"}<small>{savingSectionAccessKey === assessment.id + ":" + section ? "Saving…" : assessment.sectionAccess[section] ? "Open" : "Locked"}</small></span><i aria-hidden="true" /></button>)}</div>
+                  <div className="assessment-completed-access"><span>Completed-student access<small>Allow entry after submission.</small></span><button className={`assessment-button ${assessment.allowCompletedAccess ? "is-allowed" : ""}`} aria-pressed={assessment.allowCompletedAccess} aria-label={`Completed-student access for ${assessment.title}`} disabled={savingCompletedAccessId === assessment.id} type="button" onClick={() => handleToggleCompletedAccess(assessment)}><RotateCcw size={13} />{savingCompletedAccessId === assessment.id ? "Saving…" : assessment.allowCompletedAccess ? "Allowed" : "Locked"}</button></div>
+                </section>
               </div>
-              <div className="teacher-section-access">
-                <span><strong>Student section access</strong><small>Open either section independently. Saved work resumes when that section is reopened.</small></span>
-                {(["english", "math"] as const).map((section) => (
-                  <button
-                    className={assessment.sectionAccess[section] ? "is-open" : "is-locked"}
-                    disabled={savingSectionAccessKey === `${assessment.id}:${section}`}
-                    key={section}
-                    onClick={() => handleToggleSectionAccess(assessment, section)}
-                    type="button"
-                  >
-                    {section === "english" ? "English" : "Math"}
-                    <b>{assessment.sectionAccess[section] ? "Open" : "Locked"}</b>
-                  </button>
-                ))}
-              </div>
-              <div className="teacher-assessment-actions">
-                <a
-                  className="teacher-assessment-test-link"
-                  href={getTeacherExamPreviewHref(assessment.id)}
-                  onClick={() => resetExamTimer(assessment.id)}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <Eye size={15} /> View test <ArrowUpRight size={14} />
-                </a>
-                {assessmentInsight ? <AppLink className="teacher-assessment-insight-link" href={`/teacher/assessments/${encodeURIComponent(assessment.id)}`}><BarChart3 size={15} /> View performance dashboard <ArrowUpRight size={14} /></AppLink> : null}
-                <button disabled={savingStatusId === assessment.id} type="button" onClick={() => handleToggleAssessment(assessment)}>{allSectionsOpen ? "Lock both sections" : "Open both sections"}</button>
-                <button
-                  className={assessment.allowCompletedAccess ? "is-completed-access-active" : "is-secondary"}
-                  disabled={savingCompletedAccessId === assessment.id}
-                  type="button"
-                  onClick={() => handleToggleCompletedAccess(assessment)}
-                >
-                  <RotateCcw size={14} />
-                  {assessment.allowCompletedAccess ? "Revoke completed access" : "Allow completed access"}
-                </button>
-                <button className="is-secondary teacher-form-toggle" disabled={!assessment.passages.length} type="button" onClick={() => openFormEditor(assessment)}><Shuffle size={15} /> {isFormEditorOpen ? "Close form assignments" : "Assign passage forms"}</button>
-                <button className="is-secondary teacher-answer-key-toggle" type="button" onClick={() => setOpenAnswerKeyId((current) => current === assessment.id ? "" : assessment.id)}>{openAnswerKeyId === assessment.id ? "Close answer key" : "View answer key"}</button>
-              </div>
+              <div className="assessment-card-tools"><span>Exam tools</span><button className="assessment-button teacher-form-toggle" disabled={!assessment.passages.length} type="button" aria-expanded={isFormEditorOpen} onClick={() => openFormEditor(assessment)}><Shuffle size={14} />{isFormEditorOpen ? "Close passage forms" : "Passage forms"}</button><button className="assessment-button teacher-answer-key-toggle" type="button" aria-expanded={openAnswerKeyId === assessment.id} onClick={() => setOpenAnswerKeyId(current => current === assessment.id ? "" : assessment.id)}><ClipboardList size={14} />{openAnswerKeyId === assessment.id ? "Close answer key" : "Answer key"}</button></div>
               {openAnswerKeyId === assessment.id && <ExamAnswerKey assessment={assessment} />}
               <TeacherExamTools assessment={assessment} accessToken={accessToken} students={students}
                 onAssessmentChange={updated => setAssessments(current => current.map(item => item.id === updated.id ? updated : item))}
@@ -1790,6 +1763,7 @@ export function TeacherDashboardPage() {
               </section> : null}
             </article>;
           })}
+          {!visibleAssessments.length && <div className="assessment-empty"><strong>{assessments.length ? "No matching assessments" : "No assessments yet"}</strong><p>{assessments.length ? "Try a different search or access filter." : "Published exams will appear here."}</p>{assessments.length > 0 && <button className="assessment-button" type="button" onClick={() => { setAssessmentSearch(""); setAssessmentAccess("all"); }}>Clear filters</button>}</div>}
         </div>
         </div>
       </section>

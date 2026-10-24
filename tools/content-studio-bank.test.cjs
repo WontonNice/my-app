@@ -33,3 +33,12 @@ test('desktop bank has its own scroll area and imports stop silently hiding publ
   assert.match(importCode, /showAll\(\)/); assert.match(importCode, /\.open = false/); assert.doesNotMatch(importCode, /value = "draft"/);
   assert.match(js, /I reviewed every listed draft against its source/); assert.match(js, /questionIds: \[\.\.\.publishIds\]/);
 });
+
+test('practice selection balances topics, excludes drafts and returns exactly the requested unique count', () => {
+  const candidates = [...Array.from({ length: 8 }, (_, i) => q(`evidence-${i}`, { topic: 'Evidence & Support' })), ...Array.from({ length: 2 }, (_, i) => q(`inference-${i}`)), q('draft', { status: 'draft' })];
+  const picked = model.selectQuestions(candidates, 6, true, () => .4);
+  assert.equal(picked.length, 6); assert.equal(new Set(picked.map(q => q.id)).size, 6); assert.ok(picked.every(q => q.status === 'published')); assert.equal(picked.filter(q => q.topic === 'Inference').length, 2);
+  assert.equal(model.selectQuestions(candidates, 5, false, () => .4).length, 5);
+  assert.throws(() => model.selectQuestions(candidates, 11), /Only 10/); assert.throws(() => model.selectQuestions(candidates, 0), /1.100/);
+  assert.equal(model.suggestedTitle(picked), 'Mixed ELA · 6-question practice'); assert.equal(model.suggestedTitle([q('one')]), 'Inference · 1-question practice');
+});

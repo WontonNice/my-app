@@ -84,14 +84,98 @@ test("SAT importer accepts legacy current-question exports but warns about incom
   assert.match(result.reviewNotes.join("\n"), /Only one question|may omit earlier/);
 });
 
+test('SAT imports default to Prestige and retain bold/italic passage, question, choice, and explanation formatting', () => {
+  const data = readerExport();
+  for (const question of data.testPreview.questions) question.passage.formattedBlocks = [
+    { text: 'Intro about an author.', html: '<em>Intro about an author.</em>' },
+    { text: 'Excerpt from "A Fixture"', html: 'Excerpt from "A Fixture"' },
+    { text: 'by Test Author', html: 'by Test Author' },
+    { text: '1 First paragraph.', html: '1 First <strong>paragraph.</strong>' },
+    { text: '2 Second paragraph.', html: '2 Second <em>paragraph.</em>' },
+  ];
+  data.testPreview.questions[0].promptHtml = 'What is <b>most important</b>?';
+  data.testPreview.questions[0].choices[0].html = '<i>Original emphasis</i><script>bad()</script>';
+  data.testPreview.questions[0].explanationHtml = '<p>A <strong>source explanation</strong>.</p>';
+  const result = setup().ui.convertSatCrashCourseImport(JSON.stringify(data));
+  assert.equal(result.passage.passageCategory, 'prestige');
+  assert.equal(result.passage.richText, '<p>First <strong>paragraph.</strong></p><p>Second <em>paragraph.</em></p>');
+  assert.equal(result.passage.questions[0].promptHtml, 'What is <strong>most important</strong>?');
+  assert.equal(result.passage.questions[0].choices[0].html, '<em>Original emphasis</em>');
+  assert.match(result.passage.questions[0].explanationHtml, /<strong>source explanation<\/strong>/);
+  const parsed = DocumentImport.parse(JSON.stringify(result))[0];
+  assert.equal(parsed.content.passageCategory, 'prestige'); assert.match(parsed.content.richText, /<em>/);
+});
+
+test('SAT poetry uses detected source format and keeps blank stanza blocks and inline emphasis', () => {
+  const data = readerExport();
+  const blocks = [{ text: 'A poem', html: 'A poem' }, { text: 'by Author', html: 'by Author' },
+    { text: 'First line', html: 'First <em>line</em>' }, { text: 'Second line', html: 'Second line' },
+    { text: '', html: '<br>' }, { text: 'Last stanza', html: 'Last stanza' }];
+  for (const question of data.testPreview.questions) question.passage = { id: 'poem', format: 'poem', text: blocks.map(block => block.text).join('\n'), formattedBlocks: blocks };
+  const result = setup().ui.convertSatCrashCourseImport(JSON.stringify(data));
+  assert.equal(result.passage.format, 'poem'); assert.equal(result.passage.passageType, 'poem');
+  assert.equal(result.passage.text, 'First line\nSecond line\n\nLast stanza');
+  assert.equal(result.passage.richText, '<p>First <em>line</em></p><p>Second line</p><p><br></p><p>Last stanza</p>');
+});
+
 test("SAT importer never invents missing or ambiguous answers", () => {
   const data = readerExport();
   data.testPreview.questions[2].correctAnswer = null;
   data.testPreview.questions[2].choices.forEach(choice => { choice.isCorrect = false; });
-  assert.throws(() => setup().ui.convertSatCrashCourseImport(JSON.stringify(data)), /Question 3.*missing or ambiguous/);
+  const missing = setup().ui.convertSatCrashCourseImport(JSON.stringify(data));
+  assert.equal(missing.passage.questions.length, 7);
+  assert.equal(missing.passage.questions[2].correctChoiceId, '');
+  assert.match(missing.reviewNotes.join('\n'), /Question 3.*missing or ambiguous/);
   data.testPreview.questions[2].correctAnswer = { label: "D" };
   data.testPreview.questions[2].choices[0].isCorrect = true;
-  assert.throws(() => setup().ui.convertSatCrashCourseImport(JSON.stringify(data)), /Question 3.*ambiguous/);
+  const ambiguous = setup().ui.convertSatCrashCourseImport(JSON.stringify(data));
+  assert.equal(ambiguous.passage.questions[2].correctChoiceId, '');
+  assert.equal(ambiguous.passage.questions[1].correctChoiceId, 'C');
+  assert.equal(ambiguous.passage.questions[2].review.sourceQuestionData.correctAnswer.label, 'D');
+  assert.ok(ambiguous.passage.questions[2].review.warnings.some(note => note.code === 'SOURCE_KEY_AMBIGUOUS'));
+});
+
+test("SAT importer retains unsupported choice counts and prompt-only questions as editable drafts", () => {
+  for (const count of [0, 1, 2, 3, 5, 9]) {
+    const data = readerExport();
+    const question = data.testPreview.questions[2];
+    question.number = 9;
+    question.choices = Array.from({ length: count }, (_, i) => ({ label: String.fromCharCode(65 + i), text: `Captured choice ${i + 1}`, isCorrect: false }));
+    question.correctAnswer = null;
+    const converted = setup().ui.convertSatCrashCourseImport(JSON.stringify(data));
+    const imported = converted.passage.questions.find(q => q.review.sourceQuestion === '9');
+    assert.equal(converted.passage.questions.length, 7);
+    assert.equal(imported.prompt, question.prompt);
+    assert.equal(imported.explanation, question.explanation);
+    assert.equal(imported.choices.length, count < 2 ? 4 : count);
+    assert.deepEqual(Array.from(imported.choices.slice(0, count), choice => choice.text), question.choices.map(choice => choice.text));
+    assert.ok(imported.choices.slice(count).every(choice => choice.text === ''));
+    assert.equal(imported.correctChoiceId, '');
+    assert.ok(imported.review.warnings.some(note => note.code === 'LOW_CONFIDENCE_QUESTION_TYPE'));
+    assert.equal(imported.review.sourceQuestionData.choices.length, count);
+    assert.equal(imported.review.sourceQuestionData.passage, undefined);
+    const [entry] = DocumentImport.parse(JSON.stringify(converted));
+    assert.equal(entry.content.questions.length, 7);
+    assert.ok(DocumentImport.issues(entry, { reading: ['Central Idea & Theme'] }).some(issue => issue.scope === 'Question 9'));
+  }
+});
+
+test("SAT importer keeps duplicate labels, missing prompts, and malformed choices for manual repair", () => {
+  const data = readerExport();
+  data.testPreview.questions[0].choices[1].label = 'A';
+  data.testPreview.questions[1].choices = null;
+  data.testPreview.questions[2].prompt = '';
+  const converted = setup().ui.convertSatCrashCourseImport(JSON.stringify(data));
+  const questions = converted.passage.questions;
+  assert.equal(questions.length, 7);
+  assert.equal(questions[0].correctChoiceId, '');
+  assert.deepEqual(Array.from(questions[0].choices, choice => choice.id), ['A', 'B', 'C', 'D']);
+  assert.equal(questions[0].review.sourceQuestionData.choices[1].label, 'A');
+  assert.equal(questions[1].choices.length, 4);
+  assert.equal(questions[1].correctChoiceId, '');
+  assert.equal(questions[2].prompt, '');
+  assert.equal(questions[3].correctChoiceId, 'C');
+  assert.doesNotThrow(() => DocumentImport.parse(JSON.stringify(converted)));
 });
 
 test("SAT importer rejects mixed passages, duplicate numbers, empty groups, other sites, and invalid JSON", () => {
@@ -362,6 +446,13 @@ test('direct authoring adds stable source-block markers without changing student
   }
   const rich = { title: 'Source layout', text: 'First.\n\nHeading\n\nSecond.', format: 'prose', preserveSourceLayout: true, blocks: [{ text: 'First.', html: '<em>First.</em>' }, { text: 'Heading', html: 'Heading', kind: 'heading' }, { text: 'Second.', html: 'Second.', numbered: false }] };
   assert.equal(markup(rich, true).replace(/ data-author-block="\d+" data-author-line="\d+"/g, ''), markup(rich));
+  const poem = { title: 'Source poem', subtitle: 'Excerpt', byline: 'Robert Frost', text: 'One\nTwo\nThree\nFour\nFive\n\nSix', format: 'poem', preserveSourceLayout: true };
+  const poemMarkup = markup(poem);
+  assert.match(poemMarkup, /<span>5<\/span><span>Five<\/span>/);
+  assert.match(poemMarkup, /class="exam-poem-line is-spacer"/);
+  assert.match(poemMarkup, /<span>Excerpt<\/span>/);
+  assert.match(poemMarkup, /<span>Robert Frost<\/span>/);
+  assert.equal(markup(poem, true).replace(/ data-author-block="\d+" data-author-line="\d+"/g, ''), poemMarkup);
   assert.match(markup({ title: '', text: '', format: 'prose' }, true), /data-author-block="0"/);
   assert.doesNotMatch(markup({ title: '', text: '', format: 'prose' }, true), /content has not been added|Untitled Passage/);
   const numbered = markup({ title: 'Labels', text: 'The source says (1) as a label. Next sentence.', format: 'sentence_prose' }, true);

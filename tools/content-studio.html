@@ -1020,7 +1020,7 @@ Why D is wrong."></textarea>
   <dialog aria-labelledby="sat-passage-dialog-title" class="studio-import-dialog" id="sat-passage-dialog">
     <section class="panel math-import-panel official-passage-import-panel">
       <div class="panel-head">
-        <div><span class="studio-eyebrow">Reader JSON-to-draft</span><h2 id="sat-passage-dialog-title">SAT Crash Course Passage Import</h2><small>Paste the reader's complete JSON export. Review all questions and answers before creating an unsaved draft.</small></div>
+        <div><span class="studio-eyebrow">Reader JSON-to-draft</span><h2 id="sat-passage-dialog-title">SAT Crash Course Passage Import</h2><small>Paste the reader's complete JSON export. Questions with capture problems are kept for manual editing in the Content Editor.</small></div>
         <button class="secondary" id="close-sat-passage-import" type="button">Close import</button>
       </div>
       <div class="studio-dialog-status" role="status" hidden></div>
@@ -1029,8 +1029,8 @@ Why D is wrong."></textarea>
         <label class="field"><span>Source/version override <small>Optional; otherwise use test title</small></span><input id="sat-passage-version" placeholder="Digital SHSAT Practice Test 1"></label>
         <label class="field"><span>Exam section</span><select id="sat-passage-section"><option value="reading">Reading Comprehension</option><option value="revising_editing_a">Revising/Editing Part A</option></select></label>
         <label class="field"><span>Initial question topic <small>Review each question after importing</small></span><select id="sat-passage-topic"></select></label>
-        <label class="field"><span>Passage format</span><select id="sat-passage-format"><option value="prose">Prose</option><option value="poem">Poem</option><option value="sentence_prose">Sentence-numbered prose</option></select></label>
-        <label class="field"><span>Library passage type</span><select id="sat-passage-type"><option value="informational">Informational</option><option value="literary">Literary</option><option value="poem">Poem</option><option value="long_reading">Long reading</option></select></label>
+        <label class="field"><span>Passage format</span><select id="sat-passage-format"><option value="">Use source format (automatic)</option><option value="prose">Prose</option><option value="poem">Poem</option><option value="sentence_prose">Sentence-numbered prose</option></select></label>
+        <label class="field"><span>Library passage type</span><select id="sat-passage-type"><option value="">Use source format (automatic)</option><option value="informational">Informational</option><option value="literary">Literary</option><option value="poem">Poem</option><option value="long_reading">Long reading</option></select></label>
       </div>
       <label class="field"><span>SAT Crash Course Reader JSON</span><textarea id="sat-passage-import-source" placeholder='Paste the complete {"schemaVersion":3,"testPreview":{"questions":[...]},...} export here.' spellcheck="false"></textarea></label>
       <div class="math-import-actions">
@@ -3045,7 +3045,7 @@ Why D is wrong."></textarea>
         : "";
       const text = passage.format === "poem" ? passage.text.replace(/^\s*\n/, "").trimEnd() : passage.text.trim();
       const richBlocks = richBlocksFromPassage(passage);
-      if (passage.preserveSourceLayout) {
+      if (passage.preserveSourceLayout && passage.format !== "poem") {
         const lineClass = passage.format === "poem" ? "exam-poem-line" : passage.format === "sentence_prose" ? "exam-sentence-prose-line" : "exam-prose-line";
         const title = `<p class="${lineClass}${passage.format === "poem" ? " is-centered" : ""} is-title"><span>${escapeHtml(passage.title)}</span></p>`;
         const subtitle = passage.subtitle ? `<p class="${lineClass} is-heading"><span>${escapeHtml(passage.subtitle)}</span></p>` : "";
@@ -3072,6 +3072,10 @@ Why D is wrong."></textarea>
 
 
       if (passage.format === "poem") {
+        const subtitle = passage.subtitle ? `<p class="exam-poem-line is-centered is-heading"><span>${escapeHtml(passage.subtitle)}</span></p>` : "";
+        const byline = passage.byline ? `<p class="exam-poem-line is-centered is-byline"><span>${escapeHtml(passage.byline)}</span></p>` : author;
+        const seenImages = new Set(passage.image ? [passage.image.src] : []);
+        const extraImages = [...(passage.images || []), ...(passage.visuals || []).filter(visual => !visual.questionId && visual.image).map(visual => visual.image)].filter(extra => { if (seenImages.has(extra.src)) return false; seenImages.add(extra.src); return true; });
         let contentLine = 1;
         const sourceLines = richBlocks
           ? richBlocks.flatMap((block, blockIndex) => {
@@ -3100,11 +3104,13 @@ Why D is wrong."></textarea>
         return [
           blurb,
           `<p class="exam-poem-line is-centered is-title"><span>${escapeHtml(passage.title || (authoring ? "" : "Untitled Passage"))}</span></p>`,
-          author,
+          subtitle,
+          byline,
           `<p class="exam-poem-line is-spacer"><span></span><span></span></p>`,
           ...contentLines,
           sourceNote,
           image,
+          ...extraImages.map(extra => `<figure class="exam-passage-image"><img src="${location.origin}${escapeHtml(extra.src)}" alt="${escapeHtml(extra.alt)}">${extra.caption ? `<figcaption>${escapeHtml(extra.caption)}</figcaption>` : ""}</figure>`),
         ].join("");
       }
 
@@ -5475,9 +5481,14 @@ Why D is wrong."></textarea>
               ${isCalculatorEntry ? `<label class="field"><span>Calculator input display</span>
                 <select id="math-entry-layout">
                   <option ${question.entryLayout === "plain" || !question.entryLayout ? "selected" : ""} value="plain">Plain answer box</option>
-                  <option ${question.entryLayout === "x_equals" ? "selected" : ""} value="x_equals">x = answer</option>
+                  <option ${question.entryLayout === "x_equals" ? "selected" : ""} value="x_equals">Variable = answer</option>
                   <option ${question.entryLayout === "fraction" ? "selected" : ""} value="fraction">Fraction answer</option>
                 </select>
+              </label>
+              <label class="field" id="math-entry-variable-field" ${question.entryLayout === "x_equals" ? "" : "hidden"}>
+                <span>Answer variable</span>
+                <input id="math-entry-variable" value="${escapeHtml(question.entryVariable || "x")}" maxlength="2" placeholder="x" autocomplete="off" spellcheck="false" aria-describedby="math-entry-variable-note">
+                <small id="math-entry-variable-note">Enter one letter, such as w, y, or r. Displays before the equals sign.</small>
               </label>` : ""}
               <label class="field"><span>Accepted answers</span>
                 <textarea id="math-accepted-answers" placeholder="Put each accepted answer on its own line.">${escapeHtml((question.correctTextAnswers || []).join("\n"))}</textarea>
@@ -5693,6 +5704,7 @@ Why D is wrong."></textarea>
         next.correctTextAnswers = current.correctTextAnswers?.length ? [...current.correctTextAnswers] : [""];
         if (type === "numeric_entry") {
           next.entryLayout = current.entryLayout || "plain";
+          if (current.entryVariable) next.entryVariable = current.entryVariable;
         }
       }
       app.mathDraft.questions[app.selectedMathQuestionIndex] = next;
@@ -6305,6 +6317,13 @@ Why D is wrong."></textarea>
       });
       $("#math-entry-layout")?.addEventListener("change", (event) => {
         question.entryLayout = event.target.value;
+        $("#math-entry-variable-field").hidden = question.entryLayout !== "x_equals";
+        markMathDirty();
+        renderMathPreview();
+      });
+      $("#math-entry-variable")?.addEventListener("input", (event) => {
+        question.entryVariable = event.target.value.trim().normalize("NFKC");
+        event.target.setCustomValidity(question.entryVariable && !/^\p{L}$/u.test(question.entryVariable) ? "Enter one letter for the answer variable." : "");
         markMathDirty();
         renderMathPreview();
       });

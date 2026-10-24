@@ -93,6 +93,7 @@
     "requiredSelections": "multi_select: source selection count, or null if unknown",
     "correctTextAnswers": "numeric_entry/short_response: source keyed strings, or []",
     "entryLayout": "numeric_entry: plain, fraction, x_equals",
+    "entryVariable": "numeric_entry/grid_in: optional single letter displayed before = for x_equals; defaults to x; preserve the source variable, e.g. w",
     "explanation": "exact supplied explanation or empty string/null",
     "review": "Review",
     "visuals": "Visual[]"

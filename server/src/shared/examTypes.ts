@@ -150,6 +150,8 @@ export type ExamQuestion = {
   dropdownContent?: string[];
   dropdowns?: ExamInlineDropdown[];
   entryLayout?: "fraction" | "plain" | "x_equals";
+  /** Letter displayed before = in the calculator input; defaults to x. */
+  entryVariable?: string;
   explanation?: string;
   explanationHtml?: string;
   graph?: ExamPointGraph;

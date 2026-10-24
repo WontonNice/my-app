@@ -1,7 +1,8 @@
+import { ExamSectionSubmission } from "../components/ExamSectionSubmission";
+import { restoredReentryTimer } from "../../../server/src/shared/examReentry";
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction, type DragEvent, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import katex from "katex";
-import { getBoldFormattedText, renderMathAuthoredText, ExamMathQuestion, renderMathRichText, renderKatexExpression, renderInlineMathText, MatrixChoiceResponse } from "../components/ExamMathQuestion";
+import { getBoldFormattedText, renderMathAuthoredText, ExamMathQuestion, renderMathRichText, renderInlineMathText, MatrixChoiceResponse } from "../components/ExamMathQuestion";
 import { PassageGlossary } from "../components/PassageGlossary";
 import { isMathAnswerComplete } from "../../../server/src/shared/mathAnswer";
 import "katex/dist/katex.min.css";
@@ -63,6 +64,7 @@ import {
 } from "lucide-react";
 import {
   resolveExamContent,
+  type ExamContent,
   type ExamQuestion,
 } from "../content/exams";
 import { getExamSessionProgress, getLearningProgress, getStudentAssessment, getTeacherStudentProgress, saveCloudExamResult, saveExamSessionProgress, type TeacherAssessment } from "../lib/api";
@@ -72,12 +74,13 @@ import {
   getExamTimerDisplay,
   loadExamTimer,
   pauseExamTimer,
-  resetExamTimer,
   resumeExamTimer,
   saveExamTimerState,
   type ExamTimerState,
 } from "../lib/examTimer";
 import {
+  getExamSectionQuestionIds,
+  prepareSectionSubmission,
   getCurrentCompletedSections,
   getNextExamSubject,
   getOpenExamSubject,
@@ -113,6 +116,7 @@ type SessionScreen =
   | "mathIntro"
   | "mathDirections"
   | "mathQuestion"
+  | "sectionComplete"
   | "testOver";
 type ReviewItemId = string;
 type ReviewFilter = "all" | "notAnswered" | "bookmarks";
@@ -236,9 +240,7 @@ function getSelectedChoiceIds(answer: SelectedAnswer | undefined) {
   return typeof answer === "string" && answer ? [answer] : [];
 }
 
-function getTextEntryValue(answer: SelectedAnswer | undefined) {
-  return typeof answer === "string" ? answer : "";
-}
+
 
 function getPassageSetLabel(index: number, total: number) {
   return `ELA - Passage Set ${index + 1} of ${total}`;
@@ -675,6 +677,7 @@ export function ExamToolbar({
   isReviewOpen = false,
   isNotepadOpen = false,
   onNext,
+  sectionSubmission,
   onPauseTimer,
   onPrevious,
   onReviewFilterChange,
@@ -692,6 +695,7 @@ export function ExamToolbar({
   reviewFilter = "all",
   reviewItems = [],
   reviewQuestionCount = 0,
+  questionProgress,
   showExhibits = false,
   showReviewTools = true,
   showStatusIcon = true,
@@ -721,6 +725,7 @@ export function ExamToolbar({
   isTimerOvertime?: boolean;
   isTimerVisible?: boolean;
   isUserMenuOpen?: boolean;
+  sectionSubmission?: { section: ExamSection; answered: number; total: number; disabled: boolean; finishesExam?: boolean; onSubmit: () => Promise<void> };
   onNext?: () => void;
   onPauseTimer?: () => void;
   onPrevious?: () => void;
@@ -739,6 +744,7 @@ export function ExamToolbar({
   reviewFilter?: ReviewFilter;
   reviewItems?: ReviewItem[];
   reviewQuestionCount?: number;
+  questionProgress?: { answered: number; total: number };
   showExhibits?: boolean;
   showReviewTools?: boolean;
   showStatusIcon?: boolean;
@@ -749,6 +755,7 @@ export function ExamToolbar({
   unansweredCount?: number;
   studentName: string;
 }) {
+  const progress = questionProgress ?? { answered: reviewQuestionCount - unansweredCount, total: reviewQuestionCount };
   const hasReviewMenu = Boolean(showReviewTools && reviewItems.length && onReviewItemSelect && onToggleReview);
   const filteredReviewItems = reviewItems.filter((item) => {
     if (reviewFilter === "notAnswered") {
@@ -939,6 +946,7 @@ export function ExamToolbar({
           </div>
 
           <div className="exam-session-user-tools">
+            {sectionSubmission && <ExamSectionSubmission {...sectionSubmission} />}
             {canUseFastForward ? (
               <div className="exam-teacher-preview-tools">
                 <label className="exam-fast-forward-toggle">
@@ -1016,7 +1024,7 @@ export function ExamToolbar({
                 <span>{breadcrumbCurrent}</span>
               </>
             ) : null}
-            {reviewQuestionCount > 0 && <span className="exam-session-progress"><progress aria-label="Questions answered" max={reviewQuestionCount} value={reviewQuestionCount - unansweredCount} /><span>{Math.round((reviewQuestionCount - unansweredCount) / reviewQuestionCount * 100)}%</span></span>}
+            {progress.total > 0 && <span className="exam-session-progress"><progress aria-label="Questions answered" max={progress.total} value={progress.answered} /><span>{Math.round(progress.answered / progress.total * 100)}%</span></span>}
             <span className="exam-unofficial-label">Nathan Tutors · Unofficial practice</span>
           </div>
           {showStatusIcon ? (
@@ -1033,12 +1041,22 @@ export function ExamToolbar({
   );
 }
 
-export function ExamSessionPage() {
+export type ExamGameSession = {
+  assessment: TeacherAssessment; content: ExamContent; studentName: string;
+  screen: "mathQuestion" | "passage" | "standaloneQuestion";
+  answers: SelectedAnswers; onAnswersChange: (answers: SelectedAnswers) => void;
+  onSubmit: (answers: SelectedAnswers) => Promise<boolean>; timerText: string;
+  subjectPosition: { current: number; total: number };
+};
+
+export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession } = {}) {
+  const isGameSession = Boolean(gameSession);
   const [pencilDrawings, setPencilDrawings] = useState<PencilDrawings>({});
   const [pencilRedoStacks, setPencilRedoStacks] = useState<PencilDrawings>({});
   const pencilStorage: PencilStorage = { drawings: pencilDrawings, redoStacks: pencilRedoStacks, setDrawings: setPencilDrawings, setRedoStacks: setPencilRedoStacks };
   const [accessToken, setAccessToken] = useState("");
-  const [assessment, setAssessment] = useState<TeacherAssessment | null>(null);
+  const [assessment, setAssessment] = useState<TeacherAssessment | null>(gameSession?.assessment ?? null);
+  const [attemptContent, setAttemptContent] = useState<ExamContent | null>(gameSession?.content ?? null);
   const [activeTool, setActiveTool] = useState<ExamTool>("pointer");
   const [activeMathQuestionIndex, setActiveMathQuestionIndex] = useState(0);
   const [activePassageSetIndex, setActivePassageSetIndex] = useState(0);
@@ -1047,11 +1065,14 @@ export function ExamSessionPage() {
   const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<string[]>([]);
   const [choiceLimitWarnings, setChoiceLimitWarnings] = useState<ChoiceLimitWarning[]>([]);
   const [completedSections, setCompletedSections] = useState<ExamSection[]>([]);
+  const [submittedSection, setSubmittedSection] = useState<ExamSection>("math");
+  const sectionDatesRef = useRef<Partial<Record<ExamSection, string>>>({});
+  const attemptIdRef = useRef<string>(crypto.randomUUID());
   const [eliminatedChoices, setEliminatedChoices] = useState<EliminatedChoices>({});
   const [errorMessage, setErrorMessage] = useState("");
   const [highlightToolbar, setHighlightToolbar] = useState<HighlightToolbarState | null>(null);
   const [isFastForwardEnabled, setIsFastForwardEnabled] = useState(false);
-  const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured);
+  const [isCheckingSession, setIsCheckingSession] = useState(!isGameSession && isSupabaseConfigured);
   const [isNotepadOpen, setIsNotepadOpen] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [isSubmittingSection, setIsSubmittingSection] = useState(false);
@@ -1061,11 +1082,16 @@ export function ExamSessionPage() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [passageNotes, setPassageNotes] = useState<PassageNotes>({});
   const [reviewFilter, setReviewFilter] = useState<ReviewFilter>("all");
-  const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
+  const [examAnswers, setExamAnswers] = useState<SelectedAnswers>({});
+  const selectedAnswers = gameSession?.answers ?? examAnswers;
+  const setSelectedAnswers: Dispatch<SetStateAction<SelectedAnswers>> = useCallback(value => {
+    if (gameSession) gameSession.onAnswersChange(typeof value === "function" ? value(gameSession.answers) : value);
+    else setExamAnswers(value);
+  }, [gameSession]);
   const [selectedCategoryItemId, setSelectedCategoryItemId] = useState("");
-  const [sessionScreen, setSessionScreen] = useState<SessionScreen>("directions");
+  const [sessionScreen, setSessionScreen] = useState<SessionScreen>(gameSession?.screen ?? "directions");
   const [studentId, setStudentId] = useState("");
-  const [studentName, setStudentName] = useState("Student");
+  const [studentName, setStudentName] = useState(gameSession?.studentName ?? "Student");
   const [textHighlights, setTextHighlights] = useState<TextHighlights>({});
   const [timerNow, setTimerNow] = useState(() => Date.now());
   const [timerState, setTimerState] = useState<ExamTimerState | null>(null);
@@ -1083,7 +1109,7 @@ export function ExamSessionPage() {
   ), []);
 
   useEffect(() => {
-    if (!isSupabaseConfigured) {
+    if (isGameSession || !isSupabaseConfigured) {
       return;
     }
 
@@ -1100,6 +1126,7 @@ export function ExamSessionPage() {
       const previewContext = getStudentPreviewContext();
       const fallbackName = previewContext.studentName || getDisplayName(data.session.user);
       const storedStartingSubject = getStoredStartingSubject(assessmentId);
+      const hadLocalTimer = Boolean(window.localStorage.getItem(`exam-timer:${assessmentId}`));
       setTimerState(loadExamTimer(assessmentId));
       setTimerNow(Date.now());
       setStudentId(data.session.user.id);
@@ -1143,8 +1170,17 @@ export function ExamSessionPage() {
                 NonNullable<ReturnType<typeof getExamResult>> | undefined) ??
               savedResult;
           } catch {
+            if (nextAssessment.reentry) throw new Error("Could not load the saved submission. Please reconnect and reload before editing reopened sections.");
             // Continue with the locally saved English answers when cloud sync is unavailable.
           }
+        }
+        const reentry = !isTeacherPreview ? nextAssessment.reentry : undefined;
+        if (reentry && progress && Date.parse(progress.updatedAt) < Date.parse(reentry.draftsFrom ?? reentry.grantedAt)) progress = null;
+        if (savedResult && progress && !isTeacherPreview) {
+          const submittedIds = getExamSectionQuestionIds(savedResult.analysisContent ?? resolveExamContent(nextAssessment));
+          const savedSections = (savedResult.completedSections ?? []).filter(section => !reentry?.remainingSections.includes(section));
+          const protectedAnswers = Object.fromEntries(savedSections.flatMap(section => submittedIds[section].filter(id => Object.hasOwn(savedResult!.answers, id)).map(id => [id, savedResult!.answers[id]])));
+          progress = { ...progress, answers: { ...savedResult.answers, ...progress.answers, ...protectedAnswers }, completedSections: [...new Set([...progress.completedSections, ...savedSections])] };
         }
         if (!progress && savedResult) {
           progress = {
@@ -1156,24 +1192,37 @@ export function ExamSessionPage() {
             ...(savedResult.questionTimes ? { questionTimes: savedResult.questionTimes } : {}),
           };
         }
-        const examContent = resolveExamContent(nextAssessment);
+        sectionDatesRef.current = savedResult?.sectionCompletedAt ?? {};
+        if (reentry) {
+          const timerGrantKey = `exam-reentry-timer:${data.session.user.id}:${assessmentId}`;
+          if (window.localStorage.getItem(timerGrantKey) !== reentry.id || !hadLocalTimer) {
+            const restoredTimer = restoredReentryTimer(reentry, savedResult);
+            saveExamTimerState(assessmentId, restoredTimer); setTimerState(restoredTimer);
+            window.localStorage.setItem(timerGrantKey, reentry.id);
+          }
+          sectionDatesRef.current = Object.fromEntries(Object.entries(sectionDatesRef.current).filter(([section]) => !reentry.remainingSections.includes(section as ExamSection)));
+        }
+        if (savedResult?.timerState && !isTeacherPreview && !hadLocalTimer && !reentry) { saveExamTimerState(assessmentId, savedResult.timerState); setTimerState(savedResult.timerState); }
+        const examContent = savedResult?.analysisContent ?? resolveExamContent(nextAssessment);
         const hasCompletedAttempt =
           isExamSessionCompleteForContent(examContent, progress) ||
           isExamResultCompleteForQuestionCount(savedResult, nextAssessment.questions.length);
         if (
           !isTeacherPreview &&
           hasCompletedAttempt &&
-          !nextAssessment.allowCompletedAccess
+          !nextAssessment.allowCompletedAccess && !reentry
         ) {
           window.location.assign(getAssessmentDashboardHref());
           return;
         }
         const isReopeningCompletedAttempt =
-          !isTeacherPreview && hasCompletedAttempt && nextAssessment.allowCompletedAccess;
+          !isTeacherPreview && hasCompletedAttempt && nextAssessment.allowCompletedAccess && !reentry;
+        attemptIdRef.current = isReopeningCompletedAttempt ? crypto.randomUUID() : savedResult ? savedResult.attemptId ?? `legacy:${assessmentId}:${savedResult.completedAt}` : attemptIdRef.current;
+        if (!isReopeningCompletedAttempt && savedResult?.analysisContent) setAttemptContent(savedResult.analysisContent);
         const effectiveSectionAccess = isTeacherPreview
           ? { english: true, math: true }
           : nextAssessment.sectionAccess;
-        const savedCompletedSections = getCurrentCompletedSections(examContent, progress);
+        const savedCompletedSections = getCurrentCompletedSections(examContent, progress).filter(section => !reentry?.remainingSections.includes(section));
         const currentCompletedSections = isReopeningCompletedAttempt
           ? savedCompletedSections.filter((section) => !effectiveSectionAccess[section])
           : savedCompletedSections;
@@ -1183,7 +1232,7 @@ export function ExamSessionPage() {
           : getNextExamSubject(storedStartingSubject, currentCompletedSections);
         const openStartingSubject = getOpenExamSubject(
           preferredStartingSubject,
-          effectiveSectionAccess,
+          { english: effectiveSectionAccess.english && !currentCompletedSections.includes("english"), math: effectiveSectionAccess.math && !currentCompletedSections.includes("math") },
         );
         if (!openStartingSubject) {
           window.location.assign(getAssessmentDashboardHref());
@@ -1213,16 +1262,16 @@ export function ExamSessionPage() {
     }
 
     loadExamSession();
-  }, []);
+  }, [isGameSession, setSelectedAnswers]);
 
   useEffect(() => {
     latestAnswersRef.current = selectedAnswers;
-    if (!assessment || !studentId || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
+    if (isGameSession || !assessment || !studentId || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
     saveLocalExamSession(studentId, assessment.id, selectedAnswers, completedSections, "in_progress", getQuestionTimesSnapshot());
-  }, [assessment, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, selectedAnswers, sessionScreen, studentId]);
+  }, [isGameSession, assessment, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, selectedAnswers, sessionScreen, studentId]);
 
   useEffect(() => {
-    if (!assessment || !accessToken || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
+    if (isGameSession || !assessment || !accessToken || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
 
     const assessmentId = assessment.id;
     async function syncAnswers() {
@@ -1233,6 +1282,7 @@ export function ExamSessionPage() {
       if (signature === lastAutosaveSignatureRef.current) return;
       autosaveInFlightRef.current = true;
       const savePromise = saveExamSessionProgress(accessToken, assessmentId, {
+        reentryGrantId: assessment?.reentry?.id,
         answers: answers as Record<string, unknown>,
         completedSections,
         status: "in_progress",
@@ -1259,7 +1309,7 @@ export function ExamSessionPage() {
       window.clearInterval(saveInterval);
       document.removeEventListener("visibilitychange", saveWhenHidden);
     };
-  }, [accessToken, assessment, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, sessionScreen, studentId]);
+  }, [isGameSession, accessToken, assessment, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, sessionScreen, studentId]);
 
   useEffect(() => {
     if (!timerState || timerState.pausedAt !== null) {
@@ -1271,7 +1321,7 @@ export function ExamSessionPage() {
   }, [timerState]);
 
   useEffect(() => {
-    if (!assessment || isCheckingSession || sessionScreen === "testOver") {
+    if (isGameSession || !assessment || isCheckingSession || sessionScreen === "testOver") {
       return;
     }
 
@@ -1282,13 +1332,13 @@ export function ExamSessionPage() {
 
     window.addEventListener("beforeunload", confirmBeforeLeaving);
     return () => window.removeEventListener("beforeunload", confirmBeforeLeaving);
-  }, [assessment, isCheckingSession, sessionScreen]);
+  }, [isGameSession, assessment, isCheckingSession, sessionScreen]);
 
   if (isCheckingSession) {
     return <main className="loading-shell">Loading exam session...</main>;
   }
 
-  if (!isSupabaseConfigured) {
+  if (!isGameSession && !isSupabaseConfigured) {
     return (
       <main className="loading-shell">
         Supabase auth is not configured. Add your Vite Supabase env vars, then log in.
@@ -1309,10 +1359,9 @@ export function ExamSessionPage() {
   }
 
   const currentAssessmentId = assessment.id;
-  const isSplitAssessment = assessment.split;
-  const canAccessEnglish = isTeacherPreviewSession || assessment.sectionAccess.english;
-  const canAccessMath = isTeacherPreviewSession || assessment.sectionAccess.math;
-  const examContent = resolveExamContent(assessment);
+  const canAccessEnglish = isTeacherPreviewSession || assessment.sectionAccess.english && !completedSections.includes("english");
+  const canAccessMath = isTeacherPreviewSession || assessment.sectionAccess.math && !completedSections.includes("math");
+  const examContent = attemptContent ?? resolveExamContent(assessment);
   const mathSection = examContent.mathSection ?? {
     directions: {
       body:
@@ -1381,7 +1430,7 @@ export function ExamSessionPage() {
   const englishQuestionCount = passageQuestionCount + standaloneQuestionCount;
   const totalExamQuestionCount = passageQuestionCount + standaloneQuestionCount + mathQuestionCount;
   const assessmentLabel = examContent.title.toUpperCase();
-  const timerDisplay = timerState
+  const timerDisplay = gameSession ? { isOvertime: false, text: gameSession.timerText } : timerState
     ? getExamTimerDisplay(timerState, timerNow)
     : { isOvertime: false, text: "3:00:00" };
   const isExamPaused = Boolean(timerState && timerState.pausedAt !== null);
@@ -1563,7 +1612,7 @@ export function ExamSessionPage() {
     finalSubmissionRef.current = true;
     try {
       await autosavePromiseRef.current;
-      const result = createExamResult(examContent, answers, ["english", "math"], getQuestionTimesSnapshot());
+      const result = { ...createExamResult(examContent, answers, ["english", "math"], getQuestionTimesSnapshot()), attemptId: attemptIdRef.current, sectionCompletedAt: sectionDatesRef.current, ...(assessment?.reentry ? { reentryGrantId: assessment.reentry.id, reentrySubmittedSections: assessment.reentry.sections } : {}), ...(timerState ? { timerState: pauseExamTimer(timerState) } : {}) };
       if (accessToken && !isTeacherPreviewSession) {
         await saveCloudExamResult(
           accessToken,
@@ -1572,6 +1621,7 @@ export function ExamSessionPage() {
         );
         try {
           await saveExamSessionProgress(accessToken, result.assessmentId, {
+            reentryGrantId: assessment?.reentry?.id,
             answers: answers as Record<string, unknown>,
             completedSections: ["english", "math"],
             status: "submitted",
@@ -1590,39 +1640,28 @@ export function ExamSessionPage() {
   }
 
   async function saveSectionCompletion(section: ExamSection) {
-    if (!studentId) {
-      throw new Error("Your student session is unavailable. Refresh and try again.");
-    }
-
-    const nextCompletedSections = [...new Set([...completedSections, section])];
+    if (!studentId) throw new Error("Your student session is unavailable. Refresh and try again.");
+    const submission = prepareSectionSubmission(examContent, selectedAnswers, completedSections, section);
     finalSubmissionRef.current = true;
     try {
       await autosavePromiseRef.current;
+      const pausedTimer = pauseExamTimer(timerState ?? loadExamTimer(currentAssessmentId));
+      const dates = { ...sectionDatesRef.current, [section]: new Date().toISOString() };
+      const result = { ...createExamResult(examContent, submission.answers, submission.completedSections, getQuestionTimesSnapshot()), attemptId: attemptIdRef.current, sectionCompletedAt: dates, timerState: pausedTimer, ...(assessment?.reentry ? { reentryGrantId: assessment.reentry.id, reentrySubmittedSections: submission.completedSections.filter(section => assessment.reentry!.sections.includes(section)) } : {}) };
       if (!isTeacherPreviewSession) {
-        saveLocalExamSession(studentId, currentAssessmentId, selectedAnswers, nextCompletedSections, "in_progress", getQuestionTimesSnapshot());
+        if (accessToken) await saveCloudExamResult(accessToken, currentAssessmentId, result as unknown as Record<string, unknown>);
+        saveExamResult(studentId, result);
+        saveLocalExamSession(studentId, currentAssessmentId, submission.answers, submission.completedSections, result.completionStatus === "complete" ? "submitted" : "in_progress", getQuestionTimesSnapshot());
         if (accessToken) {
-          await saveExamSessionProgress(accessToken, currentAssessmentId, {
-            answers: selectedAnswers as Record<string, unknown>,
-            completedSections: nextCompletedSections,
-            status: "in_progress",
-          });
+          try { await saveExamSessionProgress(accessToken, currentAssessmentId, { reentryGrantId: assessment?.reentry?.id, answers: submission.answers, completedSections: submission.completedSections, status: result.completionStatus === "complete" ? "submitted" : "in_progress" }); }
+          catch { /* The durable result also preserves answers and completed sections. */ }
         }
-
-        const sectionResult = createExamResult(examContent, selectedAnswers, nextCompletedSections, getQuestionTimesSnapshot());
-        if (accessToken) {
-          await saveCloudExamResult(
-            accessToken,
-            sectionResult.assessmentId,
-            sectionResult as unknown as Record<string, unknown>,
-          );
-        }
-        saveExamResult(studentId, sectionResult);
       }
-      setCompletedSections(nextCompletedSections);
-      return nextCompletedSections;
-    } finally {
-      finalSubmissionRef.current = false;
-    }
+      sectionDatesRef.current = dates;
+      setSelectedAnswers(submission.answers); setCompletedSections(submission.completedSections);
+      saveExamTimerState(currentAssessmentId, pausedTimer); setTimerState(pausedTimer);
+      return submission.completedSections;
+    } finally { finalSubmissionRef.current = false; }
   }
 
   function handleSpeedFinish() {
@@ -1708,6 +1747,7 @@ export function ExamSessionPage() {
   }
 
   function handlePassageEndNext() {
+    if (gameSession) { void gameSession.onSubmit(selectedAnswers); return; }
     if (!hasNextPassageSet) {
       if (standaloneSection) {
         setActiveStandaloneQuestionIndex(0);
@@ -1737,6 +1777,7 @@ export function ExamSessionPage() {
   }
 
   function handlePassagePrevious() {
+    if (gameSession && activeQuestionIndex === 0) return;
     if (activeQuestionIndex === 0 && !shouldShowPassageDirections && !isFastForwardEnabled) {
       return;
     }
@@ -1767,12 +1808,7 @@ export function ExamSessionPage() {
     }));
   }
 
-  function handleChangeTextEntry(questionId: string, value: string) {
-    setSelectedAnswers((currentAnswers) => ({
-      ...currentAnswers,
-      [questionId]: value,
-    }));
-  }
+
 
   function handleChangeStructuredAnswer(questionId: string, value: CategoryPlacements) {
     setSelectedAnswers((currentAnswers) => ({
@@ -1781,15 +1817,7 @@ export function ExamSessionPage() {
     }));
   }
 
-  function handleChangeInlineDropdownAnswer(questionId: string, dropdownId: string, choiceId: string) {
-    setSelectedAnswers((currentAnswers) => ({
-      ...currentAnswers,
-      [questionId]: {
-        ...getCategoryPlacements(currentAnswers[questionId]),
-        [dropdownId]: choiceId,
-      },
-    }));
-  }
+
 
   function handleToggleMultiSelectAnswer(question: ExamQuestion, choiceId: string) {
     const currentChoiceIds = getSelectedChoiceIds(selectedAnswers[question.id]);
@@ -2305,6 +2333,7 @@ export function ExamSessionPage() {
       setIsUnansweredModalOpen(true);
       return;
     }
+    if (gameSession) { void gameSession.onSubmit(selectedAnswers); return; }
 
     if (activeStandaloneQuestionIndex < standaloneSection.questions.length - 1) {
       setSelectedCategoryItemId("");
@@ -2330,6 +2359,7 @@ export function ExamSessionPage() {
   }
 
   function handleStandalonePrevious() {
+    if (gameSession && activeStandaloneQuestionIndex === 0) return;
     clearTransientExamUi();
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
@@ -2343,80 +2373,22 @@ export function ExamSessionPage() {
     setSessionScreen("standaloneDirections");
   }
 
-  async function handleEndSectionSubmit() {
-    if (!assessment) return;
-    clearTransientExamUi();
-    setActiveTool("pointer");
-    setIsNotepadOpen(false);
-    setIsReviewOpen(false);
-    setIsUnansweredModalOpen(false);
-    setSelectedCategoryItemId("");
-
-    setIsSubmittingSection(true);
-    setErrorMessage("");
+  async function submitExamSection(section: ExamSection) {
+    if (gameSession) { await gameSession.onSubmit(selectedAnswers); return; }
+    if (isSubmittingSection) return;
+    setIsSubmittingSection(true); setErrorMessage("");
     try {
-      const nextCompletedSections = await saveSectionCompletion("english");
-      if (!nextCompletedSections.includes("math")) {
-        if (!canAccessMath) {
-          window.location.assign(getAssessmentDashboardHref());
-          return;
-        }
-        window.sessionStorage.setItem(`exam-start-subject:${assessment.id}`, "math");
-        if (assessment.split) {
-          const nextTimer = resetExamTimer(assessment.id);
-          setTimerState(nextTimer);
-          setTimerNow(nextTimer.startedAt);
-        }
-        setSessionScreen("mathIntro");
-      } else {
-        await saveCompletedExam(selectedAnswers);
-        setSessionScreen("testOver");
-      }
-    } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Your English answers could not be saved. Please submit again.");
-      setSessionScreen("endSection");
-    } finally {
-      setIsSubmittingSection(false);
-    }
+      const sections = await saveSectionCompletion(section);
+      clearTransientExamUi(); setIsReviewOpen(false); setIsNotepadOpen(false); setIsUserMenuOpen(false); setIsUnansweredModalOpen(false);
+      setSubmittedSection(section);
+      setSessionScreen(sections.includes("english") && sections.includes("math") ? "testOver" : "sectionComplete");
+    } finally { setIsSubmittingSection(false); }
   }
-
+  async function handleEndSectionSubmit() {
+    try { await submitExamSection("english"); } catch (reason) { setErrorMessage(reason instanceof Error ? reason.message : "Could not save English. Try again."); }
+  }
   async function finishMathSection() {
-    clearTransientExamUi();
-    setActiveTool("pointer");
-    setIsNotepadOpen(false);
-    setIsReviewOpen(false);
-    setIsUnansweredModalOpen(false);
-    setReviewFilter("all");
-    setSelectedCategoryItemId("");
-
-    setIsSubmittingSection(true);
-    setErrorMessage("");
-    try {
-      const nextCompletedSections = await saveSectionCompletion("math");
-      if (!nextCompletedSections.includes("english")) {
-        if (!canAccessEnglish) {
-          window.location.assign(getAssessmentDashboardHref());
-          return;
-        }
-        window.sessionStorage.setItem(`exam-start-subject:${currentAssessmentId}`, "english");
-        if (isSplitAssessment) {
-          const nextTimer = resetExamTimer(currentAssessmentId);
-          setTimerState(nextTimer);
-          setTimerNow(nextTimer.startedAt);
-        }
-        setActivePassageSetIndex(0);
-        setActiveQuestionIndex(0);
-        setSessionScreen(isSplitAssessment ? "directions" : "passageIntro");
-      } else {
-        await saveCompletedExam(selectedAnswers);
-        setSessionScreen("testOver");
-      }
-    } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Your Math answers could not be saved. Please submit again.");
-      setSessionScreen("endSection");
-    } finally {
-      setIsSubmittingSection(false);
-    }
+    try { await submitExamSection("math"); } catch (reason) { setErrorMessage(reason instanceof Error ? reason.message : "Could not save Math. Try again."); }
   }
 
   function handleStartMathSection() {
@@ -2483,11 +2455,14 @@ export function ExamSessionPage() {
     setSessionScreen("mathDirections");
   }
 
+  const activeSubmissionSection: ExamSection = sessionScreen.startsWith("math") ? "math" : "english";
+  const submissionQuestions = activeSubmissionSection === "math" ? mathQuestions : [...examContent.passageSets.flatMap(set => set.questions), ...(standaloneSection?.questions ?? [])];
   const timerToolbarProps = {
+    sectionSubmission: !isGameSession && !isTeacherPreviewSession && !completedSections.includes(activeSubmissionSection) && submissionQuestions.length ? { section: activeSubmissionSection, answered: submissionQuestions.filter(question => isQuestionAnswered(question, selectedAnswers)).length, total: submissionQuestions.length, disabled: isSubmittingSection, finishesExam: completedSections.includes(activeSubmissionSection === "math" ? "english" : "math"), onSubmit: () => submitExamSection(activeSubmissionSection) } : undefined,
     isTimerOvertime: timerDisplay.isOvertime,
     isTimerVisible,
     isUserMenuOpen,
-    onPauseTimer: handlePauseTimer,
+    onPauseTimer: isGameSession ? undefined : handlePauseTimer,
     onToggleTimer: () => {
       setIsUserMenuOpen(false);
       setIsTimerVisible((currentValue) => !currentValue);
@@ -2529,6 +2504,7 @@ export function ExamSessionPage() {
     reviewFilter,
     reviewItems,
     reviewQuestionCount: accessibleQuestions.length,
+    questionProgress: gameSession ? { total: gameSession.subjectPosition.total, answered: gameSession.subjectPosition.current - 1 + accessibleQuestions.length - unansweredCount } : undefined,
     unansweredCount,
   };
 
@@ -2538,13 +2514,20 @@ export function ExamSessionPage() {
     onToggleUserMenu: () => setIsUserMenuOpen((currentValue) => !currentValue),
   };
 
-  if (isExamPaused) {
+  if (sessionScreen === "sectionComplete") {
+    const next = submittedSection === "math" ? "english" : "math";
+    const mayContinue = next === "math" ? canAccessMath : canAccessEnglish;
+    return <main className="exam-session-shell"><section className="exam-end-section-card"><h1>{submittedSection === "math" ? "Math" : "English"} submitted</h1><p>Your teacher can now review this section. {next === "math" ? "Math" : "English"} remains unfinished and has not been graded.</p><p>The shared three-hour exam timer is paused. Time remaining: {timerDisplay.text}.</p><div className="exam-test-over-actions"><button className="exam-end-section-submit" onClick={() => window.location.assign(getAssessmentDashboardHref())} type="button">Save & exit</button>{mayContinue && <button className="exam-end-section-submit" onClick={() => { handleResumeTimer(); window.sessionStorage.setItem(`exam-start-subject:${currentAssessmentId}`, next); setActivePassageSetIndex(0); setActiveQuestionIndex(0); setSessionScreen(next === "math" ? "mathIntro" : "directions"); }} type="button">Continue {next === "math" ? "Math" : "English"}</button>}</div></section></main>;
+  }
+
+  if (isExamPaused && sessionScreen !== "testOver") {
     return (
       <main className="exam-paused-screen" aria-label="Exam paused">
         <button onClick={handleResumeTimer} type="button">
           <Play aria-hidden="true" fill="currentColor" size={16} strokeWidth={2} />
           Resume exam
         </button>
+        <button onClick={() => window.location.assign(getAssessmentDashboardHref())} type="button">Save & exit</button>
       </main>
     );
   }
@@ -2619,7 +2602,7 @@ export function ExamSessionPage() {
       <main className="exam-session-shell is-math-session">
         <ExamToolbar
           assessmentLabel={assessmentLabel}
-          breadcrumbCurrent={`${activeMathQuestionIndex + 1} OF ${mathQuestions.length}`}
+          breadcrumbCurrent={gameSession ? `${gameSession.subjectPosition.current} OF ${gameSession.subjectPosition.total}` : `${activeMathQuestionIndex + 1} OF ${mathQuestions.length}`}
           breadcrumbMiddle={mathSection.label.toUpperCase()}
           {...reviewToolbarProps}
           isNotepadOpen={isNotepadOpen}
@@ -3143,7 +3126,7 @@ export function ExamSessionPage() {
           <span className="exam-end-section-check" aria-hidden="true">
             <Check size={31} strokeWidth={3.2} />
           </span>
-          <p>All Questions Answered</p>
+          <p>English section ready to submit</p>
           <p className="exam-end-section-copy">
             Use the <strong>Submit</strong> button below to submit your answers.
           </p>

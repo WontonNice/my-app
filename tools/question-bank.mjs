@@ -42,11 +42,108 @@ export function importCaptures(bank, envelope) {
   const next = structuredClone(bank); let added = 0, enriched = 0, duplicates = 0;
   for (const q of incoming) {
     const old = next.questions.find(old => old.id === q.id);
+    if (old?.correctChoiceId && q.correctChoiceId && old.correctChoiceId !== q.correctChoiceId) throw new Error(`Conflicting answer key for ${q.id}. Existing content was not changed.`);
     if (!old) { next.questions.push(q); added++; }
     else if (old.status === "draft" && (!old.correctChoiceId && q.correctChoiceId || !old.explanation && q.explanation)) { Object.assign(old, q, { correctChoiceId: old.correctChoiceId || q.correctChoiceId, explanation: old.explanation || q.explanation }); enriched++; }
     else { if (old.correctChoiceId && q.correctChoiceId && old.correctChoiceId !== q.correctChoiceId) throw new Error(`Conflicting answer key for ${q.id}. Existing content was not changed.`); duplicates++; }
   }
   return { bank: next, added, enriched, duplicates };
+}
+
+/** Accept the extension export, a single capture, arrays, JSONL, and multiple files.
+ * Infer only source metadata from a verified URL; never infer an answer or explanation. */
+export function captureBatchItems(input) {
+  const items = [];
+  function visit(value, label = "Pasted capture", defaults = {}, depth = 0) {
+    if (depth > 8) throw new Error("Capture nesting is too deep.");
+    if (items.length >= 1000) throw new Error("Import at most 1,000 questions at a time.");
+    if (typeof value === "string") {
+      if (value.length > 7_000_000) throw new Error("Capture input must be under 7 MB.");
+      const clean = value.trim().replace(/^```(?:json|jsonl)?\s*\n([\s\S]*?)\n```$/i, "$1");
+      if (!clean) throw new Error("Paste a capture or choose one or more JSON files.");
+      let parsed;
+      try { parsed = JSON.parse(clean); }
+      catch {
+        const lines = clean.split(/\r?\n/).filter(line => line.trim());
+        if (lines.length < 2) throw new Error(`${label}: invalid JSON. Copy the extension's ready JSON or choose its exported file.`);
+        for (let i = 0; i < lines.length; i++) {
+          try { visit(JSON.parse(lines[i]), `${label}, line ${i + 1}`, defaults, depth + 1); }
+          catch (error) { items.push({ label: `${label}, line ${i + 1}`, error: error.message }); }
+        }
+        return;
+      }
+      visit(parsed, label, defaults, depth + 1); return;
+    }
+    if (Array.isArray(value)) { value.forEach((item, index) => { try { visit(item, `${label} · ${index + 1}`, defaults, depth + 1); } catch (error) { items.push({ label: `${label} · ${index + 1}`, error: error.message }); } }); return; }
+    if (!value || typeof value !== "object") { items.push({ label, error: "Expected a question capture object." }); return; }
+    if (typeof value.text === "string" && typeof value.name === "string" && !value.prompt) { try { visit(value.text, value.name.slice(0, 200), defaults, depth + 1); } catch (error) { items.push({ label: value.name.slice(0, 200), error: error.message }); } return; }
+    if (Array.isArray(value.questions)) {
+      if (value.format && value.format !== "nathan-tutors-shsatlab-ela-v1") { items.push({ label, error: "Unsupported capture format. Use the SHSAT Lab extension export." }); return; }
+      const context = { ...defaults, ...(value.sourceUrl ? { sourceUrl: value.sourceUrl } : {}) };
+      visit(value.questions, label, context, depth + 1); return;
+    }
+    items.push({ label, raw: { ...defaults, ...value } });
+  }
+  visit(input);
+  if (!items.length || items.length > 1000) throw new Error("Import 1–1,000 questions at a time.");
+  return items;
+}
+
+function inferCaptureMetadata(raw) {
+  const unit = labUnit(raw.sourceUrl);
+  const choices = Array.isArray(raw.choices) ? raw.choices.map((choice, index) => typeof choice === "string" ? { id: String.fromCharCode(65 + index), text: choice } : choice) : raw.choices;
+  return { subject: "English", source: "SHSAT Lab", sourceUnit: unit, sourceTopic: labTopics[unit - 1], ...raw, choices };
+}
+
+export function capturePublishIssue(question) {
+  if (!question.correctChoiceId || !question.explanation?.trim() || question.difficulty === "unknown") return "Needs a revealed answer, explanation, and difficulty.";
+  if (question.visuals?.length && !question.visualImage) return "Required supporting visual needs upload.";
+  return "";
+}
+
+export function previewCaptureBatch(bank, input) {
+  const items = captureBatchItems(input), next = structuredClone(bank), rows = [];
+  const summary = { added: 0, enriched: 0, duplicates: 0, invalid: 0, ready: 0, needsReview: 0 };
+  const incomingIds = new Set();
+  for (const [index, item] of items.entries()) {
+    try {
+      if (item.error) throw new Error(item.error);
+      const q = normalizeCapture(inferCaptureMetadata(item.raw));
+      const old = next.questions.find(old => old.id === q.id);
+      if (old?.correctChoiceId && q.correctChoiceId && old.correctChoiceId !== q.correctChoiceId) throw new Error("Conflicting revealed answer key. Existing question will be kept.");
+      let action = "duplicate";
+      if (!old) { next.questions.push(q); action = "added"; summary.added++; }
+      else if (old.status === "draft" && (!old.correctChoiceId && q.correctChoiceId || !old.explanation && q.explanation)) { Object.assign(old, q, { correctChoiceId: old.correctChoiceId || q.correctChoiceId, explanation: old.explanation || q.explanation }); action = "enriched"; summary.enriched++; }
+      else summary.duplicates++;
+      incomingIds.add(q.id);
+      const saved = old ?? q;
+      rows.push({ index, source: item.label, id: q.id, prompt: q.prompt, topic: q.topic, difficulty: saved.difficulty, action, status: saved.status, issue: saved.status === "published" ? "" : capturePublishIssue(saved) });
+    } catch (error) { summary.invalid++; rows.push({ index, source: item.label, prompt: typeof item.raw?.prompt === "string" ? item.raw.prompt.slice(0, 200) : "Unreadable capture", action: "invalid", issue: error.message }); }
+  }
+  for (const id of incomingIds) { const q = next.questions.find(q => q.id === id); for (const row of rows.filter(row => row.id === id)) { row.question = q; row.status = q.status; row.difficulty = q.difficulty; row.issue = q.status === "published" ? "" : capturePublishIssue(q); } if (q.status === "draft") { if (capturePublishIssue(q)) summary.needsReview++; else summary.ready++; } }
+  return { bank: next, rows, summary, questionIds: [...incomingIds], previewToken: hash([bank.revision, input]) };
+}
+
+/** Validate, deduplicate, optionally publish and build a set in one atomic revision. */
+export function applyCaptureBatch(bank, input, options = {}, visualErrors = {}) {
+  const preview = previewCaptureBatch(bank, input);
+  if (options.previewToken !== preview.previewToken) throw new Error("Preview these captures again before importing. The input or bank changed.");
+  if (preview.summary.invalid && options.skipInvalid !== true) throw new Error("Some captures need fixing. Fix them or explicitly choose to skip invalid captures.");
+  if (!preview.questionIds.length) throw new Error("No valid captures are available to import.");
+  let next = preview.bank; let published = 0, skipped = [];
+  if (options.publishReady) {
+    if (options.verified !== true) throw new Error("Confirm that you reviewed the source captures before publishing.");
+    const ids = preview.questionIds.filter(id => next.questions.find(q => q.id === id)?.status === "draft");
+    if (ids.length) { const result = publishQuestions(next, { questionIds: ids, verified: true }, visualErrors); next = result.bank; published = result.published; skipped = result.skipped; }
+  }
+  let set;
+  if (options.createSet) {
+    const ids = preview.questionIds.filter(id => next.questions.find(q => q.id === id)?.status === "published");
+    if (!ids.length) throw new Error("A practice set needs published questions. Choose publish ready questions or save drafts first.");
+    next = createBankSet(next, { title: options.setTitle, questionIds: ids });
+    set = next.sets.find(set => set.id === `lab-set-${hash([options.setTitle.trim(), ids])}`);
+  }
+  return { bank: next, summary: { ...preview.summary, published, skipped, importedIds: preview.questionIds, set }, rows: preview.rows };
 }
 function reviewedQuestion(bank, input) {
   const old = bank.questions.find(q => q.id === input.id);

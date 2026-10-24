@@ -1,3 +1,4 @@
+import { ProfileAvatar } from "../features/account/account";
 import { useEffect, useMemo, useRef, useState, type FormEvent, type MouseEvent, type ReactNode } from "react";
 import { ArrowLeftRight, Check, ChevronDown, ChevronRight, LogOut, Menu, Plus, Trash2, UserRound, X, type LucideIcon } from "lucide-react";
 import { getSavedAccounts, rememberCurrentAccount, removeSavedAccount, signInAndSaveAccount, switchToSavedAccount, type SavedAccount } from "../lib/accountSwitching";
@@ -154,9 +155,10 @@ export function AccountMenu({ profileName, profileRole, enableAccountSwitcher = 
   return (
     <div className="staff-profile-menu" ref={containerRef}>
       <button aria-expanded={isOpen} aria-haspopup="menu" aria-label={`Account menu for ${profileName}`} className="staff-profile staff-profile-trigger" onClick={() => setIsOpen(current => !current)} ref={triggerRef} type="button">
-        <span>{getInitials(profileName)}</span><div><strong>{profileName}</strong><small>{profileRole}</small></div><ChevronDown size={15} />
+        <span><ProfileAvatar fallback={getInitials(profileName)} /></span><div><strong>{profileName}</strong><small>{profileRole}</small></div><ChevronDown size={15} />
       </button>
       {isOpen ? <div className="staff-profile-popover" role="menu">
+        <a href="/profile" role="menuitem"><UserRound size={16} /> Profile settings</a>
         {enableAccountSwitcher ? <AccountSwitcher inMenu /> : null}
         {returnHref ? <a href={returnHref} role="menuitem"><LogOut size={16} /> {returnLabel || "Return"}</a> : onSignOut ? <button onClick={onSignOut} role="menuitem" type="button"><LogOut size={16} /> Sign out</button> : null}
       </div> : null}

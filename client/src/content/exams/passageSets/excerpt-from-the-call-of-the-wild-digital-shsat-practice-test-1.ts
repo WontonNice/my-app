@@ -208,6 +208,7 @@ export const excerptFromTheCallOfTheWildDigitalShsatPracticeTest1PassageSet: Exa
   "title": "READING COMPREHENSION"
 },
   passage: createProsePassage({
+    passageCategory: "prestige",
     id: "excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1",
     title: "Excerpt from \"The Call of the Wild\"",
     author: "Jack London",

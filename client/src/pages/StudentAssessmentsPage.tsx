@@ -49,7 +49,7 @@ function AssessmentCard({ assessment, previewContext }: { assessment: StudentAss
   return (
     <article className={`student-assessment-card ${isOpen ? "is-open" : "is-locked"}`}>
       <header><span>{isOpen ? <FileCheck2 size={16} /> : <LockKeyhole size={16} />}{isOpen ? "Open" : "Locked by teacher"}</span><small><Clock3 size={14} /> {assessment.durationMinutes} minutes</small></header>
-      <h2>{assessment.title}</h2><p>{assessment.description}</p>
+      <h2>{assessment.title}</h2><p>{assessment.reentry ? `Reopened for you: ${assessment.reentry.remainingSections.map(section => section === "math" ? "Math" : "English").join(" and ")}. Continue with your saved answers.` : assessment.description}</p>
       <div className="student-assessment-sections"><span className={assessment.sectionAccess.english ? "is-available" : ""}>English</span><span className={assessment.sectionAccess.math ? "is-available" : ""}>Math</span></div>
       <dl><div><dt>Questions</dt><dd>{assessment.questionCount}</dd></div><div><dt>Passages</dt><dd>{assessment.passageCount}</dd></div></dl>
       {isOpen ? <AppLink href={appendStudentPreview(`/exam/${assessment.id}`, previewContext)}>Open assessment <ArrowRight size={16} /></AppLink> : <button disabled type="button"><LockKeyhole size={15} /> Waiting for teacher</button>}

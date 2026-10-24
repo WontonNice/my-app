@@ -28,6 +28,12 @@ const studioUI = {
     const firstPassage = questions[0]?.passage;
     if (!firstPassage?.text?.trim()) throw new Error("The export has no readable passage text.");
     const normalizeText = (value) => String(value || "").replace(/\s+/g, " ").trim();
+    const safeRich = value => typeof value !== 'string' ? '' : value
+      .replace(/<(script|style|iframe|svg|math)[^>]*>[\s\S]*?<\/\1>/gi, '')
+      .replace(/<\/?([a-z0-9-]+)(?:\s[^>]*)?>/gi, (match, rawTag) => {
+        const tag = ({ b: 'strong', i: 'em', div: 'p' })[rawTag.toLowerCase()] || rawTag.toLowerCase();
+        return ['p', 'br', 'strong', 'em', 'u', 's', 'sup', 'sub', 'h1', 'h2', 'h3', 'ol', 'ul', 'li'].includes(tag) ? `<${match.startsWith('</') ? '/' : ''}${tag}>` : '';
+      });
     if (questions.some((q) => !q.passage ||
       (firstPassage.id && q.passage.id ? firstPassage.id !== q.passage.id :
         normalizeText(firstPassage.text) !== normalizeText(q.passage.text)))) {
@@ -51,7 +57,7 @@ const studioUI = {
     const author = String(firstPassage.author || (byline >= 0 ? lines[byline].trim().replace(/^by\s+/i, "") : "")).trim();
     const blurb = String(firstPassage.blurb || (byline > 1 ? lines.slice(0, byline - 1).join("\n") : "")).trim();
     let text = (byline >= 0 ? lines.slice(byline + 1).join("\n") : firstPassage.text).trim();
-    const format = options.format || "prose";
+    const format = options.format || firstPassage.format || "prose";
     if (format === "prose") {
       let nextNumber = 1;
       const numberedLines = text.split("\n").map((line) => {
@@ -65,29 +71,55 @@ const studioUI = {
       }
     }
     const section = options.section || "reading";
+    let formattedBlocks = Array.isArray(firstPassage.formattedBlocks) ? firstPassage.formattedBlocks.filter(block => typeof block?.text === 'string' && typeof block?.html === 'string') : [];
+    const richByline = formattedBlocks.findIndex(block => /^by\s+\S/i.test(block.text.trim()));
+    if (richByline >= 0) formattedBlocks = formattedBlocks.slice(richByline + 1);
+    else if (normalizeText(formattedBlocks[0]?.text) === normalizeText(title)) formattedBlocks = formattedBlocks.slice(1);
+    let paragraphNumber = 1;
+    const richText = formattedBlocks.map(block => {
+      let html = safeRich(block.html);
+      if (format === 'prose' && new RegExp(`^${paragraphNumber}\\s+`).test(block.text.trim())) {
+        html = html.replace(/^(\s*(?:<(?:strong|em|u)>\s*)*)\d+\s+/, '$1'); paragraphNumber++;
+      }
+      return `<p>${html}</p>`;
+    }).join('');
     const topic = options.topic || "Central Idea & Theme";
     warnings.push(`All questions initially use the topic “${topic}”. Review each question's topic before saving.`);
     warnings.push("Review the passage title, genre, paragraph breaks, and any poetry layout in Student view before saving.");
     const mappedQuestions = questions.map((q, index) => {
-      if (!Array.isArray(q.choices) || q.choices.length !== 4) throw new Error(`Source Question ${q.number} is not a supported four-choice question.`);
+      const notes = [];
+      const note = (code, message) => { notes.push({ code, message, state: "unresolved" }); warnings.push(`Source Question ${q.number}: ${message}`); };
+      const capturedChoices = Array.isArray(q.choices) ? q.choices : [];
+      if (capturedChoices.length !== 4) note("LOW_CONFIDENCE_QUESTION_TYPE", `Captured ${capturedChoices.length} choices. The question was imported for manual editing; choose its response type and complete the answers in the Content Editor.`);
       const labelOf = (value) => String(value || "").replace(/[.\s]+/g, "").toUpperCase();
-      const choices = q.choices.map((choice, i) => ({
-        id: String.fromCharCode(65 + i), text: choice.text,
-        sourceLabel: labelOf(choice.label || String.fromCharCode(65 + i)),
+      const choices = capturedChoices.map((choice, i) => ({
+        id: String.fromCharCode(65 + i), text: typeof choice === "string" ? choice : String(choice?.text || ""),
+        ...(safeRich(choice?.html) ? { html: safeRich(choice.html) } : {}),
+        sourceLabel: labelOf(choice?.label || String.fromCharCode(65 + i)),
       }));
-      if (new Set(choices.map((choice) => choice.sourceLabel)).size !== 4) throw new Error(`Source Question ${q.number} has duplicate choice labels.`);
-      const flagged = q.choices.filter((choice) => choice.isCorrect === true);
-      const answerLabel = labelOf(q.correctAnswer?.label || (flagged.length === 1 ? flagged[0].label : ""));
-      const correct = choices.find((choice) => choice.sourceLabel === answerLabel);
-      if (!correct || flagged.length > 1 || (flagged.length === 1 && labelOf(flagged[0].label) !== answerLabel)) {
-        throw new Error(`Source Question ${q.number} has a missing or ambiguous correct answer. Enable Include the correct answer in the reader and capture again.`);
+      const duplicateLabels = new Set(choices.map((choice) => choice.sourceLabel)).size !== choices.length;
+      if (duplicateLabels) note("SOURCE_KEY_AMBIGUOUS", "Captured choice labels repeat. Choices were retained in source order; set the correct answer manually.");
+      const flagged = capturedChoices.flatMap((choice, i) => choice?.isCorrect === true ? [i] : []);
+      const answerLabel = labelOf(q.correctAnswer?.label || (flagged.length === 1 ? choices[flagged[0]].sourceLabel : ""));
+      const matches = choices.filter((choice) => choice.sourceLabel === answerLabel);
+      const correct = !duplicateLabels && matches.length === 1 && flagged.length <= 1 && (!flagged.length || choices[flagged[0]].sourceLabel === answerLabel) ? matches[0] : null;
+      if (!correct) {
+        note(q.correctAnswer || flagged.length ? "SOURCE_KEY_AMBIGUOUS" : "ANSWER_KEY_MISSING", "The correct answer is missing or ambiguous. The question was imported without a key; set it manually in Answer summary.");
       }
-      const media = [...(q.media || []), ...q.choices.flatMap((choice) => choice.media || [])];
-      if (media.length) warnings.push(`Source Question ${q.number} contains images. Upload the original visuals in the Studio; remote media URLs are not imported.`);
+      if (!String(q.prompt || "").trim()) note("UNCERTAIN_TEXT_EXTRACTION", "No question prompt was captured. Enter the prompt manually in the Content Editor.");
+      if (choices.some(choice => !choice.text.trim())) note("UNCERTAIN_TEXT_EXTRACTION", "Some captured choices have no text. Complete their text or upload the original images.");
+      // Blank authoring slots make prompt-only imports editable without inventing
+      // source choices or a key. The complete capture stays in teacher metadata.
+      if (choices.length < 2) while (choices.length < 4) choices.push({ id: String.fromCharCode(65 + choices.length), text: "" });
+      const media = [...(q.media || []), ...capturedChoices.flatMap((choice) => choice?.media || [])];
+      if (media.length) note("IMAGE_REQUIRED", "The source question contains images. Upload the original visuals in the Content Editor; remote media URLs are not imported.");
+      const { passage: _passage, ...sourceQuestionData } = q;
       return {
         id: `passage-${index + 1}`, type: "multiple_choice", points: 1, topic,
-        prompt: q.prompt, choices: choices.map(({ id, text }) => ({ id, text })),
-        correctChoiceId: correct.id, explanation: q.explanation || "",
+        prompt: String(q.prompt || ""), ...(safeRich(q.promptHtml) ? { promptHtml: safeRich(q.promptHtml) } : {}), choices: choices.map(({ id, text, html }) => ({ id, text, ...(html ? { html } : {}) })),
+        correctChoiceId: correct?.id || "", explanation: q.explanation || "",
+        ...(safeRich(q.explanationHtml) ? { explanationHtml: safeRich(q.explanationHtml) } : {}),
+        review: { sourceQuestion: String(q.number), sourceChoiceIds: capturedChoices.map((choice, i) => labelOf(choice?.label || String.fromCharCode(65 + i))), sourceQuestionData, warnings: notes },
       };
     });
     if (firstPassage.media?.length) warnings.push("The passage contains images. Upload the original visuals in the Studio; remote media URLs are not imported.");
@@ -95,8 +127,9 @@ const studioUI = {
     return {
       format: "nathan-tutors-official-passage-v1", sourceKind: "sat-crash-course",
       passage: {
-        title, author, blurb, text, format, section,
-        passageType: options.passageType || "informational",
+        title, author, blurb, text, format, section, ...(richText ? { richText } : {}),
+        passageCategory: 'prestige',
+        passageType: options.passageType || (format === 'poem' ? 'poem' : "informational"),
         label: section === "reading" ? "ELA - Reading Comprehension" : "ELA - Revising/Editing Part A",
         versionLabel: options.versionLabel || preview.testTitle || "SAT Crash Course",
         teacherSource: `${preview.testTitle || "SAT Crash Course"}; ${preview.module || ""}; original questions ${questions.map((q) => q.number).join(", ")}; passage ${firstPassage.id || "unknown"}; ${data.source?.url || ""}`,
@@ -1499,7 +1532,7 @@ Object.assign(studioUI, {
         clean.querySelectorAll('[data-glossary-definition]').forEach(term => { if (!term.textContent.trim()) term.replaceWith(...term.childNodes); });
         let html = clean.innerHTML;
         if (block.kind === 'heading' && clean.children.length === 1 && clean.firstElementChild.tagName === 'STRONG') html = clean.firstElementChild.innerHTML;
-        if (draft.format === 'poem' && !draft.preserveSourceLayout) {
+        if (draft.format === 'poem') {
           const lines = block.html.split(/<br\s*\/?>/gi); lines[Number(line.dataset.authorLine || 0)] = html; block.html = lines.join('<br>');
         } else block.html = html;
         const text = document.createElement('div'); text.innerHTML = block.html; block.text = text.textContent;
@@ -1577,7 +1610,7 @@ Object.assign(studioUI, {
           if (!label) { label = doc.createElement('span'); label.className = 'exam-paragraph-number'; line.prepend(label, doc.createTextNode(' ')); }
           label.textContent = number++;
         } else label?.remove();
-      } else if (draft.format === 'poem' && !draft.preserveSourceLayout && text.trim()) {
+      } else if (draft.format === 'poem' && text.trim()) {
         line.querySelector(':scope > span:first-child').textContent = number % Math.max(1, draft.lineNumberInterval || 5) ? '' : number;
         number++;
       }
@@ -1652,6 +1685,10 @@ Object.assign(studioUI, {
     const hint = this.element('p', 'field-note', 'Edit the prompt and answer choices in the preview. Open Answer summary to change the key.');
     if (!['multiple_choice', 'multi_select'].includes(q.type)) hint.textContent = 'Edit the prompt in the preview. Configure the answer interaction and key below.';
     panel.append(hint, card);
+    if (q.review?.warnings?.length) {
+      const notes = this.element('details', 'math-import-warnings', `<summary>Import notes · Source Question ${escapeHtml(q.review.sourceQuestion || this.selectedQuestionIndex + 1)}</summary><ul>${q.review.warnings.map(note => `<li>${escapeHtml(note.message)}</li>`).join('')}</ul>`);
+      notes.open = true; panel.prepend(notes);
+    }
     const keyInputs = [...card.querySelectorAll('[data-item-placement], [data-correct-choice]')];
     if (keyInputs.length) {
       const editing = this.interactionKeyEditingId === q.id;
@@ -2001,7 +2038,8 @@ Object.assign(studioUI, {
       const button = document.getElementById(id);
       if (button) more.querySelector('div').append(button);
     }
-    if (more.querySelector('button')) actions.append(more);
+    // New import drafts also need this menu for publication and source notes.
+    if (more.querySelector('button') || app.passageDraft.importDraftId) actions.append(more);
     const save = document.getElementById('save-passage');
     save.textContent = app.passageDraft.importDraftId ? 'Publish passage' : 'Save passage';
     actions.append(save);

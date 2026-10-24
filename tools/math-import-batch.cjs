@@ -71,7 +71,7 @@ var MathImportBatch = (() => {
     for (const menu of q.dropdowns || []) if (!Array.isArray(menu.options) || menu.options.some(v => !object(v))) throw new Error('Each dropdown needs an options array of objects.');
     if (q.graph !== undefined && (!object(q.graph) || !Array.isArray(q.graph.points) || q.graph.points.some(v => !object(v)))) throw new Error('graph needs a points array of objects.');
     if (q.numberLineResponse !== undefined && !object(q.numberLineResponse)) throw new Error('numberLineResponse must be an object.');
-    if (q.type === 'short_response' || ['short_answer', 'short answer', 'short-answer'].includes(q.type)) delete q.entryLayout;
+    if (q.type === 'short_response' || ['short_answer', 'short answer', 'short-answer'].includes(q.type)) { delete q.entryLayout; delete q.entryVariable; }
     return q;
   }
   function decode(source) {

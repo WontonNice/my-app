@@ -33,6 +33,12 @@ export type ExamQuestionTypeResult = {
 };
 
 export type ExamResult = {
+  reentryGrantId?: string;
+  reentrySubmittedSections?: ("english" | "math")[];
+  attemptId?: string;
+  analysisContent?: ExamContent;
+  sectionCompletedAt?: Partial<Record<"english" | "math", string>>;
+  timerState?: { startedAt: number; totalPausedMs: number; pausedAt: number | null };
   mathTopics?: ExamMathTopicResult[];
   answers: SelectedAnswers;
   assessmentId: string;
@@ -245,6 +251,7 @@ export function createExamResult(
 
   return {
     answers: { ...answers },
+    analysisContent: JSON.parse(JSON.stringify(examContent)) as ExamContent,
     assessmentId: examContent.assessmentId,
     completedSections,
     completionStatus:

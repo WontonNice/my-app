@@ -1,0 +1,19 @@
+.corporate-dashboard-content .teacher-countdown { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; padding: 14px 18px; margin: 0 0 22px; border: 1px solid #c8d9d2; border-radius: 10px; background: #fff; color: #16483f; font-family: "Segoe UI", sans-serif; }
+.teacher-countdown-title { display: flex; align-items: center; gap: 9px; margin-right: 8px; }
+.teacher-countdown-title div { display: grid; gap: 3px; }
+.teacher-countdown-title strong { font-size: 13px; }
+.teacher-countdown-title span { font-size: 11px; color: #647d73; }
+.teacher-countdown output { font-size: 29px; font-weight: 650; font-variant-numeric: tabular-nums; letter-spacing: .03em; }
+.teacher-countdown-controls, .teacher-countdown form { display: flex; gap: 6px; align-items: center; }
+.corporate-dashboard-content .teacher-countdown button { display: inline-flex; gap: 5px; align-items: center; justify-content: center; width: auto; min-height: 34px; border: 1px solid #c8d9d2; padding: 7px 9px; border-radius: 6px; background: #fff; color: #16483f; font: inherit; font-size: 12px; cursor: pointer; }
+.corporate-dashboard-content .teacher-countdown .countdown-primary { background: #194e42; border-color: #194e42; color: #fff; }
+.teacher-countdown label { display: flex; gap: 6px; align-items: center; font-size: 12px; }
+.corporate-dashboard-content .teacher-countdown input { width: 65px; border: 1px solid #c8d9d2; padding: 7px; border-radius: 6px; background: #fff; color: #16483f; font-size: 13px; }
+.teacher-countdown button:disabled { opacity: .5; cursor: default; }
+.teacher-countdown-note { font-size: 10px; color: #647d73; margin-left: auto; }
+.teacher-countdown .countdown-announcement { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.corporate-dashboard-content .teacher-countdown.is-expanded { position: fixed; inset: 25px; z-index: 1500; margin: 0; justify-content: center; align-content: center; flex-direction: column; background: #f8fbf8; box-shadow: 0 0 0 30px #103b34dd; }
+.teacher-countdown.is-expanded output { font-size: clamp(60px, 14vw, 200px); }
+.teacher-countdown.is-expanded .teacher-countdown-note { margin: 0; }
+.teacher-countdown.is-finished output { color: #ad502a; }
+@media(max-width: 620px) { .teacher-countdown-note { width: 100%; margin: 0; } .teacher-countdown-title { flex-basis: 100%; } .corporate-dashboard-content .teacher-countdown.is-expanded { inset: 12px; } }

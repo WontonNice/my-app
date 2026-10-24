@@ -31,6 +31,22 @@ const db = { auth: { admin: { listUsers: async () => ({ data: { users: Object.va
 } };
 stub('../src/lib/supabase.ts', { supabase: db });
 const express = require('express'); const { libraryRouter } = require('../src/routes/library.ts');
+test('teacher analytical feed is student-scoped, rejects students/archived accounts and deduplicates compatibility copies', async () => {
+  Object.assign(question,{prompt:'Stored fixture question',explanation:'Because A is supported.',incorrectChoiceExplanations:{},passage:null});
+  const row={id:'analytics-fixture',user_id:studentId,book_id:set.id,attempt_number:1,score:0,total_questions:1,completed_at:'2026-10-01T12:00:00Z',question_stats:[{questionId:question.id,questionNumber:1,selectedAnswerId:'B',correctAnswerId:'A',isCorrect:false,timeSpentSeconds:12}]};
+  tables.student_library_attempts.push(row,{...row,id:'foreign-analytics',user_id:otherId});
+  tables.student_practice_progress.push({user_id:studentId,topic_slug:'english-library:'+set.id,progress:{attempts:[row]}});
+  assert.equal((await call('/library/teacher/analytics/'+studentId,'student')).status,403);
+  const result=await call('/library/teacher/analytics/'+studentId);
+  assert.equal(result.status,200);assert.equal(result.data.inputs.filter(input=>input.result.attemptId===row.id).length,1);
+  assert.equal(result.data.inputs.some(input=>input.result.attemptId==='foreign-analytics'),false);
+  const record=result.data.inputs.find(input=>input.result.attemptId===row.id);assert.equal(record.responses[0].isCorrect,false);assert.equal(record.kind,'practice');
+  users.student.app_metadata.student_archived_at='2026-10-01';
+  try{assert.equal((await call('/library/teacher/analytics/'+studentId)).status,404);}finally{delete users.student.app_metadata.student_archived_at;}
+  tables.student_library_attempts.splice(tables.student_library_attempts.findIndex(item=>item.id===row.id),1);
+  tables.student_library_attempts.splice(tables.student_library_attempts.findIndex(item=>item.id==='foreign-analytics'),1);
+  tables.student_practice_progress.splice(tables.student_practice_progress.findIndex(item=>item.topic_slug==='english-library:'+set.id),1);
+});
 let server, base;
 before(async () => { const app = express(); app.use(express.json()); app.use('/library', libraryRouter); app.use('/progress', require('../src/routes/progress.ts').progressRouter); server = app.listen(0, '127.0.0.1'); await new Promise(resolve => server.once('listening', resolve)); base = `http://127.0.0.1:${server.address().port}`; });
 after(() => new Promise(resolve => server.close(resolve)));

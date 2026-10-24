@@ -4,7 +4,7 @@ import { createRequire } from "node:module";
 import { mkdtemp, mkdir, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { labTopics, labUnit, normalizeCapture, importCaptures, publishQuestion, publishQuestions, createBankSet, mutateBank } from "./question-bank.mjs";
+import { labTopics, labUnit, normalizeCapture, importCaptures, previewCaptureBatch, applyCaptureBatch, publishQuestion, publishQuestions, createBankSet, mutateBank } from "./question-bank.mjs";
 const require = createRequire(new URL("../server/package.json", import.meta.url));
 require("ts-node").register({ transpileOnly: true, project: resolve("server/tsconfig.json"), compilerOptions: { module: "CommonJS", moduleResolution: "Node" }, moduleTypes: { "**": "cjs" } });
 const { gradeBankSet, bankCatalog, bankPassageSet, bankPassage, bankTopicCatalog } = require("../server/src/shared/questionBank.ts");
@@ -131,4 +131,47 @@ test("concurrent stale revisions cannot overwrite bank changes", async () => {
   const { writeFile } = await import("node:fs/promises"); await writeFile(join(root, "server/data/question-bank.json"), JSON.stringify(empty()));
   try { const results = await Promise.allSettled([mutateBank(root, 0, b => importCaptures(b, envelope([capture()])).bank), mutateBank(root, 0, b => createBankSet(b, { title: "Lost", questionIds: [] }))]); assert.equal(results[0].status, "fulfilled"); assert.equal(results[1].status, "rejected"); assert.match(results[1].reason.message, /another window/); assert.equal(JSON.parse(await readFile(join(root, "server/data/question-bank.json"), "utf8")).questions.length, 1); }
   finally { await rm(root, { recursive: true }); }
+});
+
+test("batch preview detects single captures, fenced JSON, arrays, queues, files and JSONL without mutating the bank", () => {
+  const item = capture(); delete item.subject; delete item.source; delete item.sourceUnit; delete item.sourceTopic;
+  item.choices = item.choices.map(choice => choice.text);
+  const forms = [item, JSON.stringify(item), `\`\`\`json\n${JSON.stringify(item)}\n\`\`\``, [item], envelope([item]), [{ name: 'single.json', text: JSON.stringify(item) }], JSON.stringify(item) + '\n' + JSON.stringify({ ...item, prompt: 'Another question' })];
+  for (const input of forms) {
+    const original = empty(), before = structuredClone(original), preview = previewCaptureBatch(original, input);
+    assert.equal(preview.summary.invalid, 0); assert.ok(preview.summary.added >= 1); assert.ok(preview.summary.ready >= 1);
+    assert.equal(preview.rows[0].topic, 'Evidence & Support'); assert.equal(preview.rows[0].question.correctChoiceId, 'A'); assert.deepEqual(original, before);
+  }
+  assert.throws(() => previewCaptureBatch(empty(), Array.from({ length: 1001 }, () => item)), /1.1,000/);
+});
+
+test("batch preview handles duplicate enrichment, conflicting keys, malformed files and missing evidence individually", () => {
+  const bank = importCaptures(empty(), envelope([capture({ explanation: '' })])).bank;
+  const input = [{ name: 'ready.json', text: JSON.stringify(envelope([capture(), capture(), capture({ correctChoiceId: 'B', incorrectChoiceExplanations: {} }), capture({ prompt: 'Draft with missing details', correctChoiceId: '', explanation: '', difficulty: 'unknown', incorrectChoiceExplanations: {} })])) }, { name: 'broken.json', text: '{invalid' }];
+  const result = previewCaptureBatch(bank, input);
+  assert.deepEqual(result.summary, { added: 1, enriched: 1, duplicates: 1, invalid: 2, ready: 1, needsReview: 1 });
+  assert.match(result.rows.find(row => row.source === 'broken.json').issue, /invalid JSON/);
+  assert.match(result.rows[2].issue, /Conflicting/); assert.equal(bank.questions[0].explanation, '');
+  assert.throws(() => importCaptures(bank, envelope([capture({ correctChoiceId: 'B' })])), /Conflicting/);
+});
+
+test("one import atomically publishes complete items, retains incomplete drafts and builds a fixed set", () => {
+  const bank = empty(), input = [capture(), capture({ prompt: 'No explanation', explanation: '' }), capture({ subject: 'Math' })];
+  const preview = previewCaptureBatch(bank, input);
+  assert.throws(() => applyCaptureBatch(bank, input, { previewToken: preview.previewToken }), /skip invalid/);
+  assert.throws(() => applyCaptureBatch(bank, input, { previewToken: preview.previewToken, skipInvalid: true, publishReady: true }), /reviewed/);
+  assert.throws(() => applyCaptureBatch(bank, input, { previewToken: 'stale', skipInvalid: true }), /Preview/);
+  const result = applyCaptureBatch(bank, input, { previewToken: preview.previewToken, skipInvalid: true, publishReady: true, verified: true, createSet: true, setTitle: 'Quick practice' });
+  assert.equal(result.summary.published, 1); assert.equal(result.summary.skipped.length, 1); assert.equal(result.bank.questions.length, 2); assert.equal(result.bank.sets.length, 1); assert.equal(result.summary.set.title, 'Quick practice'); assert.equal(result.summary.set.questionIds.length, 1);
+  assert.equal(result.bank.questions[1].status, 'draft'); assert.equal(bank.questions.length, 0); assert.equal(bank.sets.length, 0);
+  assert.throws(() => applyCaptureBatch({ ...bank, revision: 1 }, input, { previewToken: preview.previewToken, skipInvalid: true }), /Preview/);
+  assert.throws(() => applyCaptureBatch(bank, input, { previewToken: preview.previewToken, skipInvalid: true, publishReady: true, verified: true, createSet: true, setTitle: '' }), /title/);
+  assert.equal(bank.questions.length, 0);
+});
+
+test("import-and-publish honors visual existence checks and preserves already published content", () => {
+  const bank = published(), input = [capture(), capture({ prompt: 'Required image', visuals: ['Required diagram'], visualImage: { src: '/exam-images/missing.png', alt: 'Diagram' } })];
+  const preview = previewCaptureBatch(bank, input), imageId = preview.rows[1].id;
+  const result = applyCaptureBatch(bank, input, { previewToken: preview.previewToken, publishReady: true, verified: true, createSet: true, setTitle: 'Existing published questions' }, { [imageId]: 'Supporting visual file not found.' });
+  assert.equal(result.summary.published, 0); assert.equal(result.summary.skipped.length, 1); assert.equal(result.summary.set.questionIds.length, 1); assert.deepEqual(result.bank.questions[0], bank.questions[0]);
 });
