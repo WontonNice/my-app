@@ -1,74 +1,78 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { ExamSessionPage, type ExamGameSession } from "../../pages/ExamSessionPage";
-import { GAME_BOOSTERS, type GameView } from "../../../../server/src/shared/gameRooms";
+import { hasActiveInk, type GameView } from "../../../../server/src/shared/gameRooms";
 import type { SelectedAnswer, SelectedAnswers } from "../../../../server/src/shared/examGrading";
 import { GamePlaytestControls } from "./GamePlaytestControls";
 import type { TeacherAssessment } from "../../lib/api";
+import { GameCursors } from "./GameCursors";
+import { GameStandings } from "./GameStandings";
+import { SabotageShop } from "./SabotageShop";
+import { InkBombOverlay } from "./InkBombOverlay";
 
 type Action = (action: string, body?: Record<string, unknown>, quiet?: boolean) => Promise<boolean>;
-export function BoosterInventory({ room, act, busy, now }: { room: GameView; act: Action; busy: boolean; now: number }) {
-  const team = room.teams.find(item => item.id === room.me?.teamId);
-  const [target, setTarget] = useState("");
-  if (!room.party || !team || room.phase !== "question") return null;
-  const opponents = room.teams.filter(item => item.id !== team.id && item.index < room.totalQuestions);
-  const targetId = opponents.some(item => item.id === target) ? target : opponents[0]?.id ?? "";
-  return <section className="game-booster-inventory" aria-label="Booster inventory"><label>Target team<select aria-label="Booster target" value={targetId} onChange={event => setTarget(event.target.value)}><option value="" disabled>No active opponents</option>{opponents.map(item => <option key={item.id} value={item.id}>{item.name}{item.blockedUntil > now ? " · Blackout active" : ""}</option>)}</select></label>{GAME_BOOSTERS.map(item => {
-    const count = team.inventory?.[item.id] ?? (item.id === "blackout" ? team.boosters : 0);
-    return <div key={item.id}><strong>{item.name} <span>×{count}</span></strong><small>{item.description}</small><button disabled={busy || !count || team.index >= room.totalQuestions || team.blockedUntil > now || !targetId || (opponents.find(item => item.id === targetId)?.blockedUntil ?? 0) > now} onClick={() => { void act("booster", { boosterId: item.id, teamId: targetId }); }}>Use {item.name}</button></div>;
-  })}</section>;
-}
-
 function sessionContent(room: GameView): Pick<ExamGameSession, "content" | "assessment" | "screen"> {
   const first = room.unit[0], math = first.subject.toLowerCase() === "math";
   const directions = { subject: "English Language Arts", title: "Reading Comprehension Directions", body: "Read the passage and answer all questions. Review your answers before completing the passage." };
-  // The shared player expects passage context even on Math/standalone screens.
-  // Only its active screen's questions enter navigation and progress counts.
   const set = { id: first.passage?.id ?? "game-context", directions, questionCount: room.unit.length, questions: room.unit.map(item => item.question), passage: first.passage ?? { id: "game-context", title: "Game question", format: "prose" as const, lines: [] } };
-  const content = { assessmentId: room.id, title: room.sourceTitle, passageSets: [set], ...(math ? { mathSection: { id: "game-math", label: "Math", questionCount: 1, questions: [first.question], directions: { subject: "Mathematics", title: "Math Directions", body: "Answer the question, then select Next to lock your answer.", notes: [] } } } : !first.passage ? { standaloneSection: { id: "game-english", label: "English", questionCount: 1, questions: [first.question], directions } } : {}) };
+  const content = { assessmentId: room.id, title: room.sourceTitle, passageSets: !math && first.passage ? [set] : [], ...(math ? { mathSection: { id: "game-math", label: "Math", questionCount: 1, questions: [first.question], directions: { subject: "Mathematics", title: "Math Directions", body: "Answer the question, then select Next when ready.", notes: [] } } } : !first.passage ? { standaloneSection: { id: "game-english", label: "English", questionCount: 1, questions: [first.question], directions } } : {}) };
   const assessment: TeacherAssessment = { id: room.id, title: room.title, classId: "shsat", createdAt: room.createdAt, updatedAt: room.updatedAt, description: "Live practice game", durationMinutes: room.testMinutes, allowCompletedAccess: false, passages: [], questions: [], sectionAccess: { english: true, math: true }, split: false, status: "open" };
   return { content, assessment, screen: math ? "mathQuestion" : first.passage ? "passage" : "standaloneQuestion" };
 }
 
-export function GameExamPlayer({ room, act, busy, now, timerText, error }: { room: GameView; act: Action; busy: boolean; now: number; timerText: string; error: string }) {
+export function GameExamPlayer({ room, act, busy, now, timerText, error, accessToken, watchControls }: { room: GameView; act: Action; busy: boolean; now: number; timerText: string; error: string; accessToken: string; watchControls?: ReactNode }) {
   const [controls, setControls] = useState(false);
   const [pending, setPending] = useState<Record<string, { value?: SelectedAnswer; version: number }>>({});
   const version = useRef(0);
-  const team = room.teams.find(item => item.id === room.me?.teamId), index = team?.index;
+  const surface = useRef<HTMLFieldSetElement>(null);
+  const observing = Boolean(room.observingTeamId);
+  const team = room.teams.find(item => item.id === (room.observingTeamId ?? room.me?.teamId)), index = team?.index;
+  const step = team?.step ?? 0, teammates = room.players.filter(player => player.teamId === team?.id), readyIds = team?.readyIds ?? [];
+  const voted = readyIds.includes(room.me?.id ?? ""), saving = Object.keys(pending).length > 0;
+  const navigation = { questionId: room.unit[0].question.id, index, step, draftVersion: team?.draftVersion ?? 0 };
   const answers = { ...room.myAnswers };
   for (const [id, edit] of Object.entries(pending)) { if (edit.value === undefined) delete answers[id]; else answers[id] = edit.value; }
   const locked = room.phase !== "question" || room.mode === "survival" && room.answeredIds.includes(room.me!.id);
-  const blocked = Math.max(0, Math.ceil(((team?.blockedUntil ?? 0) - now) / 1000));
+  const blackout = Math.max(0, Math.ceil(((team?.blockedUntil ?? 0) - now) / 1000));
+  const inked = Boolean(team && hasActiveInk(team, now));
+  const blocked = blackout || (inked ? 1 : 0);
   useEffect(() => {
-    if (room.mode !== "teams" || !Object.keys(pending).length || locked || blocked) return;
+    if (observing || room.mode !== "teams" || !Object.keys(pending).length || locked || blocked) return;
     const timer = window.setTimeout(() => {
-      for (const [questionId, edit] of Object.entries(pending)) void act("draft", { questionId, index, answer: edit.value ?? null }, true).then(ok => {
+      for (const [questionId, edit] of Object.entries(pending)) void act("draft", { questionId, index, answer: edit.value === "" || Array.isArray(edit.value) && !edit.value.length ? null : edit.value ?? null }, true).then(ok => {
         if (ok) setPending(current => { if (current[questionId]?.version !== edit.version) return current; const next = { ...current }; delete next[questionId]; return next; });
       });
     }, 450);
     return () => window.clearTimeout(timer);
-  }, [pending, act, index, room.mode, locked, blocked]);
+  }, [pending, act, index, room.mode, locked, blocked, observing]);
   useEffect(() => {
     const previous = document.body.style.overflow, root = document.getElementById("root"), wasInert = root?.inert ?? false;
     document.body.style.overflow = "hidden"; if (root) root.inert = true;
     return () => { document.body.style.overflow = previous; if (root) root.inert = wasInert; };
   }, []);
   function change(next: SelectedAnswers) {
+    if (observing) return;
     setPending(current => {
       const result = { ...current };
       for (const id of new Set([...Object.keys(answers), ...Object.keys(next)])) if (JSON.stringify(answers[id]) !== JSON.stringify(next[id])) result[id] = { value: next[id], version: ++version.current };
       return result;
     });
   }
+  const vote = () => observing || saving || busy || blocked > 0 ? Promise.resolve(false) : act("vote", navigation);
+  const review = (targetStep: number) => { if (!observing && !saving) void act("review", { ...navigation, targetStep }); };
   const session = sessionContent(room);
   return createPortal(<div className="game-exam-overlay">
-    <div className="game-exam-ribbon"><strong>{room.title}</strong><span>{team ? `${team.name} · ${team.score} pts` : room.me?.alive ? "Still standing" : "Audience"}</span><span>{room.unit.length > 1 ? "Points post when you finish this passage" : "Next locks your answer"}</span><button onClick={() => setControls(value => !value)}>{controls ? "Return to exam" : "Game controls & standings"}</button></div>
-    {controls && <aside className="game-exam-controls game-rooms"><button onClick={() => setControls(false)}>Return to exam</button><GamePlaytestControls room={room} act={act} busy={busy} /><BoosterInventory room={room} act={act} busy={busy} now={now} /><h3>Live standings</h3>{[...(room.mode === "teams" ? room.teams : room.players)].sort((a, b) => b.score - a.score).map(item => <p key={item.id}><strong>{item.name}</strong> · {item.score} points {"index" in item && `· ${item.index >= room.totalQuestions ? "Finished" : `Question ${item.index + 1} of ${room.totalQuestions}`}`}</p>)}{(room.isHost || room.canPlaytest) && <button onClick={() => { void act("finish"); }}>End room</button>}</aside>}
-    <fieldset className="game-exam-player" disabled={busy || locked || blocked > 0} inert={busy || locked || blocked > 0}>
-      <ExamSessionPage gameSession={{ ...session, subjectPosition: room.subjectPosition, answers, onAnswersChange: change, studentName: room.me!.name, timerText, onSubmit: values => act("answer", { questionId: room.unit[0].question.id, index, round: room.round, answers: values }) }} />
+    <div className="game-exam-ribbon"><strong>{room.title}</strong><span>{team ? `${team.name} · ${team.score} pts` : room.me?.alive ? "Still standing" : "Audience"}</span><span>{observing ? "Live teacher view · Read only" : room.mode === "teams" ? "Everyone votes before moving on" : room.unit.length > 1 ? "Points post when you finish this passage" : "Next locks your answer"}</span>{watchControls}{team && room.party && !observing && <button className="game-shop-trigger" onClick={() => setControls(true)}>Shop · {team.coins ?? 0} {(team.coins ?? 0) === 1 ? "coin" : "coins"}</button>}<button onClick={() => setControls(value => !value)}>{controls ? "Return to exam" : "Game controls & standings"}</button></div>
+    {team && <div className="game-team-ready game-rooms"><div><strong>{step >= room.unit.length ? "Ready to submit this passage?" : "Ready to move on together?"}</strong><p aria-live="polite">{saving ? "Saving your shared answer…" : `${readyIds.length} of ${teammates.length} teammates ready. Changing an answer clears the votes.`}</p><ul>{teammates.map(player => <li key={player.id} className={readyIds.includes(player.id) ? "is-ready" : ""}>{player.name} · {readyIds.includes(player.id) ? "Ready" : "Waiting"}</li>)}</ul></div>{!observing && <button className="game-primary" disabled={busy || saving || blocked > 0 || !voted && room.myAnswers[room.unit[Math.min(step, room.unit.length - 1)].question.id] === undefined} onClick={() => { void (voted ? act("unvote", navigation) : vote()); }}>{voted ? "Undo my ready vote" : step >= room.unit.length ? "Vote to submit passage" : "Ready for next question"}</button>}</div>}
+    {controls && <aside className="game-exam-controls game-rooms"><button onClick={() => setControls(false)}>Return to exam</button>{!observing && <><SabotageShop room={room} act={act} busy={busy} now={now} /><GamePlaytestControls room={room} act={act} busy={busy} /></>}<GameStandings room={room} now={now} />{!observing && (room.isHost || room.canPlaytest) && <button onClick={() => { void act("finish"); }}>End room</button>}</aside>}
+    <fieldset ref={surface} className="game-exam-player" disabled={observing || busy || locked || blocked > 0} inert={observing || busy || locked || blocked > 0}>
+      <ExamSessionPage gameSession={{ ...session, ...(team ? { teamNavigation: { step, onNext: () => { void vote(); }, onReview: review } } : {}), subjectPosition: room.subjectPosition, answers, onAnswersChange: change, studentName: observing ? `${team?.name} · Teacher view` : room.me!.name, timerText, onSubmit: values => team ? vote() : act("answer", { questionId: room.unit[0].question.id, index, round: room.round, answers: values }) }} />
     </fieldset>
+    {team && <GameCursors room={room} token={accessToken} surface={surface} hidden={controls || blocked > 0} />}
     {locked && <div className="game-exam-wait" role="status"><strong>Answers locked</strong><p>Waiting for the other players to finish.</p><button onClick={() => setControls(true)}>View standings</button></div>}
-    {blocked > 0 && <div className="game-exam-blackout" role="alert"><span>BLACKOUT</span><h2>Your team was sabotaged</h2><strong>{blocked}</strong><p>Your exam returns in {blocked} seconds.</p><button onClick={() => setControls(true)}>Game controls</button></div>}
+    {blackout > 0 && <div className="game-exam-blackout" role="alert"><span>{team?.sabotagedBy?.boosterId === "landmine" ? "LANDMINE TRIGGERED" : "BLACKOUT"}</span><h2>{team?.sabotagedBy ? `Sabotaged by ${team.sabotagedBy.teamName}` : "Your team was sabotaged"}</h2><strong>{blackout}</strong><p>{team?.name}'s exam returns in {blackout} seconds.</p><button onClick={() => setControls(true)}>Game controls</button></div>}
+    {inked && team?.inkBomb && <InkBombOverlay key={team.inkBomb.id} ink={team.inkBomb} now={now} observing={observing} act={act} />}
+    {team?.landmineResult?.outcome === "disarmed" && now - team.landmineResult.at < 8000 && <div className="game-mine-disarmed" role="status">Landmine disarmed! Your correct answer stopped {team.landmineResult.source.teamName}'s trap.</div>}
     {error && <div className="game-exam-error" role="alert">{error}</div>}
   </div>, document.body);
 }

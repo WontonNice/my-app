@@ -1,4 +1,5 @@
 import { createPlainTextPassage } from "./formatters";
+import { digitalShsatPracticeTest2Content } from "./tests/digital-shsat-practice-test-2";
 import { digitalShsatPracticeTest1Content } from "./tests/digital-shsat-practice-test-1";
 import { content20212022FormAContent } from "./tests/2021-2022-form-a";
 import { content20202021FormAContent } from "./tests/2020-2021-form-a";
@@ -15,6 +16,7 @@ import type {
 } from "./types";
 
 const examContentByAssessmentId: Record<string, ExamContent> = {
+  [digitalShsatPracticeTest2Content.assessmentId]: digitalShsatPracticeTest2Content,
   [digitalShsatPracticeTest1Content.assessmentId]: digitalShsatPracticeTest1Content,
   [content20212022FormAContent.assessmentId]: content20212022FormAContent,
   [content20202021FormAContent.assessmentId]: content20202021FormAContent,

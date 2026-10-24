@@ -1,23 +1,11 @@
 import type { User } from "@supabase/supabase-js";
+import { resolveExamContent } from "../content/exams";
 import type { TeacherAssessment } from "./api";
 
 export type ExamSectionLine = {
   label: string;
   questionCount: number;
 };
-
-export const shsatSectionTemplate: ExamSectionLine[] = [
-  { label: "General Directions", questionCount: 0 },
-  { label: "ELA - Passage Set 1 of 7", questionCount: 7 },
-  { label: "ELA - Passage Set 2 of 7", questionCount: 6 },
-  { label: "ELA - Passage Set 3 of 7", questionCount: 6 },
-  { label: "ELA - Passage Set 4 of 7", questionCount: 9 },
-  { label: "ELA - Passage Set 5 of 7", questionCount: 7 },
-  { label: "ELA - Passage Set 6 of 7", questionCount: 7 },
-  { label: "ELA - Passage Set 7 of 7", questionCount: 5 },
-  { label: "ELA - Revising/Editing Part B", questionCount: 3 },
-  { label: "Math", questionCount: 50 },
-];
 
 export function getAssessmentIdFromPath(pathname: string) {
   return pathname.split("/").filter(Boolean)[1] ?? "";
@@ -54,7 +42,21 @@ export function formatDuration(minutes: number) {
 
 export function createAssessmentSectionLines(assessment: TeacherAssessment) {
   if (assessment.classId === "shsat") {
-    return shsatSectionTemplate;
+    const content = resolveExamContent(assessment);
+    const sections: ExamSectionLine[] = [
+      { label: "General Directions", questionCount: 0 },
+      ...content.passageSets.map((passage, index) => ({
+        label: `ELA - Passage Set ${index + 1} of ${content.passageSets.length}`,
+        questionCount: passage.questions.length,
+      })),
+    ];
+    if (content.standaloneSection?.questions.length) {
+      sections.push({ label: "ELA - Revising/Editing Part B", questionCount: content.standaloneSection.questions.length });
+    }
+    if (content.mathSection?.questions.length) {
+      sections.push({ label: "Math", questionCount: content.mathSection.questions.length });
+    }
+    return sections;
   }
 
   const passageSections = assessment.passages.map((passage, index) => ({

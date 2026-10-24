@@ -79,14 +79,14 @@ export async function createGame(actor: GameActor, body: Record<string, unknown>
   const teamCount = body.mode === "teams" ? int(body.teamCount, 2, 2, 10) : 0;
   for (let attempt = 0; attempt < 5; attempt++) {
     const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", code = Array.from({ length: 6 }, () => alphabet[randomInt(alphabet.length)]).join("");
-    const room: GameRoom = { id: randomUUID(), code, hostId: actor.id, title: title || (body.mode === "teams" ? "Team test race" : "Last one standing"), mode: body.mode, phase: "lobby", createdAt: now, updatedAt: now, revision: 1, party: body.mode === "teams" && body.party === true, secondsPerQuestion: int(body.secondsPerQuestion, 90, 15, 600), testMinutes: int(body.testMinutes, 180, 1, 240), sourceTitle, players: [], questions, teams: Array.from({ length: teamCount }, (_, index) => ({ id: `team-${index + 1}`, name: `Team ${index + 1}`, index: 0, score: 0, streak: 0, boosters: 0, blockedUntil: 0, answers: [] })), round: 0, finalRound: false, deadline: null, roundAnswers: {}, winners: [], notice: "Share the room code. Students can join until the teacher starts." };
+    const room: GameRoom = { id: randomUUID(), code, hostId: actor.id, title: title || (body.mode === "teams" ? "Team test race" : "Last one standing"), mode: body.mode, phase: "lobby", createdAt: now, updatedAt: now, revision: 1, party: body.mode === "teams" && body.party === true, secondsPerQuestion: int(body.secondsPerQuestion, 90, 15, 600), testMinutes: int(body.testMinutes, 180, 1, 240), sourceTitle, players: [], questions, teams: Array.from({ length: teamCount }, (_, index) => ({ id: `team-${index + 1}`, name: `Team ${index + 1}`, index: 0, score: 0, streak: 0, coins: 0, boosters: 0, blockedUntil: 0, answers: [] })), round: 0, finalRound: false, deadline: null, roundAnswers: {}, winners: [], notice: "Share the room code. Students can join until the teacher starts." };
     if (body.playtest === true) initializePlaytest(room, Date.parse(now));
     const result = await supabase.from(table).insert({ id: room.id, code, host_id: actor.id, member_ids: [], revision: 1, updated_at: now, payload: room });
     if (result.error?.code === "23505") continue; storage(result.error); return room;
   }
   throw gameError("Could not reserve a room code. Try again.", 503);
 }
-/** Compare-and-swap retries make student answers, shared drafts and boosters atomic across server instances. */
+/** Compare-and-swap retries make student answers, shared drafts, purchases and ink cleanup atomic across server instances. */
 export async function updateGame(id: string, actor: GameActor, action?: string, body: Record<string, unknown> = {}) {
   for (let attempt = 0; attempt < 12; attempt++) {
     const room = await fetchGame(id);
@@ -96,9 +96,9 @@ export async function updateGame(id: string, actor: GameActor, action?: string, 
     // autoplay cannot race an automatic answer from the same simulated player.
     let simulated = false;
     if (action) {
-      if (expired && ["answer", "draft", "sabotage", "booster", "test-answer", "test-step", "test-teammate", "test-sabotage"].includes(action)) {
+      if (expired && ["answer", "draft", "vote", "unvote", "review", "sabotage", "booster", "buy-sabotage", "clear-ink", "test-answer", "test-step", "test-teammate", "test-team-ready", "test-sabotage"].includes(action)) {
         // Persist the deadline transition before returning the refreshed view.
-      } else if (action.startsWith("test-") || room.playtest && ["answer", "draft", "sabotage", "booster"].includes(action)) mutatePlaytest(room, actor, action, body, now);
+      } else if (action.startsWith("test-") || room.playtest && ["answer", "draft", "vote", "unvote", "review", "sabotage", "booster", "buy-sabotage", "clear-ink"].includes(action)) mutatePlaytest(room, actor, action, body, now);
       else mutateGame(room, actor, action, body, now);
       if (room.playtest && action === "start") room.playtest.nextBotAt = now + 12000;
     }

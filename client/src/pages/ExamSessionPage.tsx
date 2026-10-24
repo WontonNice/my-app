@@ -80,6 +80,7 @@ import {
 } from "../lib/examTimer";
 import {
   getExamSectionQuestionIds,
+  getExamSectionAccess,
   prepareSectionSubmission,
   getCurrentCompletedSections,
   getNextExamSubject,
@@ -1047,6 +1048,7 @@ export type ExamGameSession = {
   answers: SelectedAnswers; onAnswersChange: (answers: SelectedAnswers) => void;
   onSubmit: (answers: SelectedAnswers) => Promise<boolean>; timerText: string;
   subjectPosition: { current: number; total: number };
+  teamNavigation?: { step: number; onNext: () => void; onReview: (step: number) => void };
 };
 
 export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession } = {}) {
@@ -1060,7 +1062,8 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const [activeTool, setActiveTool] = useState<ExamTool>("pointer");
   const [activeMathQuestionIndex, setActiveMathQuestionIndex] = useState(0);
   const [activePassageSetIndex, setActivePassageSetIndex] = useState(0);
-  const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
+  const [localQuestionIndex, setActiveQuestionIndex] = useState(0);
+  const activeQuestionIndex = gameSession?.teamNavigation ? Math.min(gameSession.teamNavigation.step, Math.max(0, (gameSession.content.passageSets[0]?.questions.length ?? 1) - 1)) : localQuestionIndex;
   const [activeStandaloneQuestionIndex, setActiveStandaloneQuestionIndex] = useState(0);
   const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<string[]>([]);
   const [choiceLimitWarnings, setChoiceLimitWarnings] = useState<ChoiceLimitWarning[]>([]);
@@ -1089,7 +1092,10 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     else setExamAnswers(value);
   }, [gameSession]);
   const [selectedCategoryItemId, setSelectedCategoryItemId] = useState("");
-  const [sessionScreen, setSessionScreen] = useState<SessionScreen>(gameSession?.screen ?? "directions");
+  const [localSessionScreen, setSessionScreen] = useState<SessionScreen>(gameSession?.screen ?? "directions");
+  const sessionScreen = gameSession?.teamNavigation
+    ? gameSession.screen === "passage" && gameSession.teamNavigation.step >= (gameSession.content.passageSets[0]?.questions.length ?? 0) ? "passageEnd" : gameSession.screen
+    : localSessionScreen;
   const [studentId, setStudentId] = useState("");
   const [studentName, setStudentName] = useState(gameSession?.studentName ?? "Student");
   const [textHighlights, setTextHighlights] = useState<TextHighlights>({});
@@ -1219,9 +1225,10 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           !isTeacherPreview && hasCompletedAttempt && nextAssessment.allowCompletedAccess && !reentry;
         attemptIdRef.current = isReopeningCompletedAttempt ? crypto.randomUUID() : savedResult ? savedResult.attemptId ?? `legacy:${assessmentId}:${savedResult.completedAt}` : attemptIdRef.current;
         if (!isReopeningCompletedAttempt && savedResult?.analysisContent) setAttemptContent(savedResult.analysisContent);
-        const effectiveSectionAccess = isTeacherPreview
-          ? { english: true, math: true }
-          : nextAssessment.sectionAccess;
+        const effectiveSectionAccess = getExamSectionAccess(
+          examContent,
+          isTeacherPreview ? { english: true, math: true } : nextAssessment.sectionAccess,
+        );
         const savedCompletedSections = getCurrentCompletedSections(examContent, progress).filter(section => !reentry?.remainingSections.includes(section));
         const currentCompletedSections = isReopeningCompletedAttempt
           ? savedCompletedSections.filter((section) => !effectiveSectionAccess[section])
@@ -1359,9 +1366,10 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   const currentAssessmentId = assessment.id;
-  const canAccessEnglish = isTeacherPreviewSession || assessment.sectionAccess.english && !completedSections.includes("english");
-  const canAccessMath = isTeacherPreviewSession || assessment.sectionAccess.math && !completedSections.includes("math");
   const examContent = attemptContent ?? resolveExamContent(assessment);
+  const sectionAccess = getExamSectionAccess(examContent, isTeacherPreviewSession ? { english: true, math: true } : assessment.sectionAccess);
+  const canAccessEnglish = sectionAccess.english && (isTeacherPreviewSession || !completedSections.includes("english"));
+  const canAccessMath = sectionAccess.math && (isTeacherPreviewSession || !completedSections.includes("math"));
   const mathSection = examContent.mathSection ?? {
     directions: {
       body:
@@ -1387,8 +1395,8 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     ? (eliminatedChoices[activeMathQuestion.id] ?? [])
     : [];
   const standaloneSection = examContent.standaloneSection;
-  const activePassageSet = examContent.passageSets[activePassageSetIndex] ?? examContent.passageSets[0];
-  const activeQuestion = activePassageSet.questions[activeQuestionIndex] ?? activePassageSet.questions[0];
+  const activePassageSet = examContent.passageSets.at(activePassageSetIndex) ?? examContent.passageSets.at(0);
+  const activeQuestion = activePassageSet?.questions.at(activeQuestionIndex) ?? activePassageSet?.questions.at(0);
   const activeStandaloneQuestion =
     standaloneSection?.questions[activeStandaloneQuestionIndex] ?? standaloneSection?.questions[0];
   const activeStandaloneQuestionChoices = activeStandaloneQuestion?.choices ?? [];
@@ -1401,26 +1409,27 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const activeStandaloneQuestionSelectedChoiceIds = getSelectedChoiceIds(
     activeStandaloneQuestion ? selectedAnswers[activeStandaloneQuestion.id] : undefined,
   );
-  const activeQuestionChoices = activeQuestion.choices ?? [];
+  const activeQuestionChoices = activeQuestion?.choices ?? [];
   const hasLongAnswerContent =
-    activeQuestion.prompt.length > 190 ||
-    (activeQuestion.instructions?.length ?? 0) > 160 ||
+    (activeQuestion?.prompt.length ?? 0) > 190 ||
+    (activeQuestion?.instructions?.length ?? 0) > 160 ||
     activeQuestionChoices.some((choice) => choice.text.length > 130) ||
-    (activeQuestion.items ?? []).some((item) => item.text.length > 90);
+    (activeQuestion?.items ?? []).some((item) => item.text.length > 90);
   const isExpandedQuestionLayout =
-    activeQuestion.type === "category_sort" ||
-    activeQuestion.type === "matrix_choice" ||
-    activeQuestion.type === "table_match" ||
+    activeQuestion?.type === "category_sort" ||
+    activeQuestion?.type === "matrix_choice" ||
+    activeQuestion?.type === "table_match" ||
     hasLongAnswerContent;
-  const activeQuestionSelectedChoiceIds = getSelectedChoiceIds(selectedAnswers[activeQuestion.id]);
-  const activeQuestionCategoryPlacements = getCategoryPlacements(selectedAnswers[activeQuestion.id]);
-  const activeQuestionEliminatedChoiceIds = eliminatedChoices[activeQuestion.id] ?? [];
+  const activePassageAnswer = activeQuestion ? selectedAnswers[activeQuestion.id] : undefined;
+  const activeQuestionSelectedChoiceIds = getSelectedChoiceIds(activePassageAnswer);
+  const activeQuestionCategoryPlacements = getCategoryPlacements(activePassageAnswer);
+  const activeQuestionEliminatedChoiceIds = activeQuestion ? eliminatedChoices[activeQuestion.id] ?? [] : [];
   const activeTransitionChoiceId =
-    typeof selectedAnswers[activeQuestion.id] === "string" ? selectedAnswers[activeQuestion.id] : "";
+    typeof activePassageAnswer === "string" ? activePassageAnswer : "";
   const activeTransitionChoice = activeQuestionChoices.find(
     (choice) => choice.id === activeTransitionChoiceId,
   );
-  const activeQuestionTitleId = `question-title-${activeQuestion.id}`;
+  const activeQuestionTitleId = activeQuestion ? `question-title-${activeQuestion.id}` : undefined;
   const passageQuestionCount = examContent.passageSets.reduce(
     (total, passageSet) => total + passageSet.questions.length,
     0,
@@ -1435,18 +1444,18 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     : { isOvertime: false, text: "3:00:00" };
   const isExamPaused = Boolean(timerState && timerState.pausedAt !== null);
   const activePassageSection =
-    activePassageSet.section ?? examContent.passageSections?.[activePassageSet.id] ?? "reading";
+    activePassageSet?.section ?? (activePassageSet ? examContent.passageSections?.[activePassageSet.id] : undefined) ?? "reading";
   const passageSetDisplayLabel =
     activePassageSection === "reading"
       ? "ELA Rdg Comp"
       : activePassageSection === "revising_editing_a"
         ? "ELA Rev/Edit A"
-        : activePassageSet.label ?? getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length);
+        : activePassageSet?.label ?? getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length);
   const passageSetLabel = passageSetDisplayLabel.toUpperCase();
-  const isProsePassage = activePassageSet.passage.format === "prose";
-  const isSentenceProsePassage = activePassageSet.passage.format === "sentence_prose";
+  const isProsePassage = activePassageSet?.passage.format === "prose";
+  const isSentenceProsePassage = activePassageSet?.passage.format === "sentence_prose";
   const hasNextPassageSet = activePassageSetIndex < examContent.passageSets.length - 1;
-  const shouldShowPassageDirections = activePassageSetIndex === 0 || Boolean(activePassageSet.showDirectionsBefore);
+  const shouldShowPassageDirections = Boolean(activePassageSet && (activePassageSetIndex === 0 || activePassageSet.showDirectionsBefore));
   const reviewItems: ReviewItem[] = [];
   const isTeacherTestView = isTeacherPreviewSession && getStudentPreviewContext().mode === "teacher";
   const accessibleQuestions: ExamQuestion[] = [];
@@ -1491,9 +1500,9 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
       label: "General Directions",
     });
   } else if (
-    sessionScreen === "readingDirections" ||
+    activePassageSet && (sessionScreen === "readingDirections" ||
     sessionScreen === "passage" ||
-    sessionScreen === "passageEnd"
+    sessionScreen === "passageEnd")
   ) {
     if (shouldShowPassageDirections) {
       reviewItems.push({
@@ -1595,9 +1604,10 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const isActiveQuestionBookmarked = Boolean(
     currentReviewItemId && bookmarkedQuestionIds.includes(currentReviewItemId),
   );
-  const directionsBreadcrumbLabel =
-    activePassageSet.directions.breadcrumbLabel ??
-    `${activePassageSet.directions.title.split(" ").slice(0, 3).join(" ")} DIRECTIONS`;
+  const directionsBreadcrumbLabel = activePassageSet
+    ? activePassageSet.directions.breadcrumbLabel ??
+      `${activePassageSet.directions.title.split(" ").slice(0, 3).join(" ")} DIRECTIONS`
+    : "";
 
   function clearTransientExamUi() {
     setChoiceLimitWarnings([]);
@@ -1720,10 +1730,13 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   function handlePassageNext() {
+    if (!activePassageSet || !activeQuestion) return;
     if (!isFastForwardEnabled && !isQuestionAnswered(activeQuestion, selectedAnswers)) {
       setIsUnansweredModalOpen(true);
       return;
     }
+
+    if (gameSession?.teamNavigation) { gameSession.teamNavigation.onNext(); return; }
 
     if (activeQuestionIndex < activePassageSet.questions.length - 1) {
       setSelectedCategoryItemId("");
@@ -1777,6 +1790,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   function handlePassagePrevious() {
+    if (gameSession?.teamNavigation) { gameSession.teamNavigation.onReview(Math.max(0, activeQuestionIndex - 1)); return; }
     if (gameSession && activeQuestionIndex === 0) return;
     if (activeQuestionIndex === 0 && !shouldShowPassageDirections && !isFastForwardEnabled) {
       return;
@@ -1904,6 +1918,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   function handleChangePassageNote(note: string) {
+    if (!activePassageSet) return;
     setPassageNotes((currentNotes) => ({
       ...currentNotes,
       [activePassageSet.id]: note,
@@ -2280,6 +2295,12 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   function handleReviewItemSelect(itemId: ReviewItemId) {
     const item = reviewItems.find((candidate) => candidate.id === itemId);
     if (!item) return;
+    if (gameSession?.teamNavigation) {
+      setIsReviewOpen(false);
+      if (item.target?.kind === "passage") gameSession.teamNavigation.onReview(item.target.questionIndex);
+      else if (item.kind === "passageEnd") gameSession.teamNavigation.onReview(gameSession.content.passageSets[0]?.questions.length ?? 0);
+      return;
+    }
 
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
@@ -3176,7 +3197,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     );
   }
 
-  if (sessionScreen === "passageIntro") {
+  if (sessionScreen === "passageIntro" && activePassageSet) {
     return (
       <main className="exam-module-shell">
         {isTeacherTestView ? <ExamToolbar assessmentLabel={assessmentLabel} breadcrumbMiddle="TEACHER TEST VIEW" breadcrumbCurrent="" {...reviewToolbarProps} isNextActive={false} showTimer={false} showWorkTools={false} studentName={studentName} /> : <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />}
@@ -3207,7 +3228,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     );
   }
 
-  if (sessionScreen === "readingDirections") {
+  if (sessionScreen === "readingDirections" && activePassageSet) {
     return (
       <main className="exam-session-shell">
         <ExamToolbar
@@ -3247,7 +3268,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     );
   }
 
-  if (sessionScreen === "passageEnd") {
+  if (sessionScreen === "passageEnd" && activePassageSet) {
     return (
       <main className="exam-session-shell">
         <ExamToolbar
@@ -3258,6 +3279,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           {...reviewToolbarProps}
           onNext={handlePassageEndNext}
           onPrevious={() => {
+            if (gameSession?.teamNavigation) { gameSession.teamNavigation.onReview(activePassageSet.questions.length - 1); return; }
             setHighlightToolbar(null);
             setIsReviewOpen(false);
             setActiveQuestionIndex(activePassageSet.questions.length - 1);
@@ -3302,7 +3324,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     );
   }
 
-  if (sessionScreen === "passage") {
+  if (sessionScreen === "passage" && activePassageSet && activeQuestion) {
     return (
       <main className="exam-session-shell">
         <ExamToolbar
@@ -3951,7 +3973,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           setHighlightToolbar(null);
           setActivePassageSetIndex(0);
           setActiveQuestionIndex(0);
-          setSessionScreen("passageIntro");
+          setSessionScreen(activePassageSet ? "passageIntro" : standaloneQuestionCount > 0 ? "standaloneIntro" : "mathIntro");
         }}
         studentName={studentName}
       />

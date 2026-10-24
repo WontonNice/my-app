@@ -14,7 +14,7 @@ gameRoomsRouter.post("/join", async (request, response) => {
   const actor = response.locals.actor as GameActor, code = String(request.body?.code ?? "").trim().toUpperCase();
   const room = await fetchGame(code, true); response.json({ room: gameView(await updateGame(room.id, actor, "join"), actor, Date.now()) });
 });
-gameRoomsRouter.get("/:id", async (request, response) => { const actor = response.locals.actor as GameActor; response.json({ room: gameView(await updateGame(String(request.params.id), actor), actor, Date.now()) }); });
+gameRoomsRouter.get("/:id", async (request, response) => { const actor = response.locals.actor as GameActor; response.json({ room: gameView(await updateGame(String(request.params.id), actor), actor, Date.now(), typeof request.query.teamId === "string" ? request.query.teamId : undefined) }); });
 gameRoomsRouter.delete("/:id", async (request, response) => { await updateGame(String(request.params.id), response.locals.actor, "delete"); response.json({ removed: true }); });
 gameRoomsRouter.post("/:id/action", async (request, response) => {
   if (typeof request.body?.action !== "string" || request.body.action === "join") throw gameError("Choose a valid room action.");

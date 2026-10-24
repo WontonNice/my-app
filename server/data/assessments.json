@@ -6148,5 +6148,554 @@
     "correctionsOpen": false,
     "allowCompletedAccess": false,
     "split": false
+  },
+  {
+    "id": "digital-shsat-practice-test-2",
+    "title": "Digital SHSAT Practice Test 2",
+    "examLabel": "Prestige",
+    "classId": "shsat",
+    "description": "",
+    "durationMinutes": 180,
+    "createdAt": "2026-10-24T21:12:02.627Z",
+    "updatedAt": "2026-10-24T21:24:12.696Z",
+    "passages": [
+      {
+        "id": "excerpt-from-little-women-digital-shsat-practice-test-2",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"Little Women\"",
+        "versionLabel": "Digital SHSAT Practice Test 2"
+      },
+      {
+        "id": "excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"The Story of My Life\"",
+        "versionLabel": "Digital SHSAT Practice Test 2"
+      },
+      {
+        "id": "excerpt-from-the-cart-that-changed-the-supermarket-digital-shsat-practice-test-2",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"The Cart That Changed the Supermarket\"",
+        "versionLabel": "Digital SHSAT Practice Test 2"
+      },
+      {
+        "id": "excerpt-from-o-captain-my-captain-digital-shsat-practice-test-2",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"O Captain! My Captain!\"",
+        "versionLabel": "Digital SHSAT Practice Test 2"
+      },
+      {
+        "id": "excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"The Neighborhood Next Door Is Hotter Than Yours\"",
+        "versionLabel": "Digital SHSAT Practice Test 2"
+      }
+    ],
+    "questions": [
+      {
+        "answer": "A",
+        "choices": [
+          "It opens with the sisters' complaints and only gradually reveals their cause, so readers share the mood first and understand it later.",
+          "It presents the family's financial history in strict chronological order, beginning with their father's departure for the war and ending with the present moment by the fire.",
+          "It alternates between the perspective of the narrator and the perspective of the mother, contrasting their different attitudes toward the family's poverty and toward each other.",
+          "It uses a flashback to an earlier, wealthier period in the family's life before returning abruptly to the present conversation taking place by the fire."
+        ],
+        "id": "excerpt-from-little-women-digital-shsat-practice-test-2-passage-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the passage's structure most directly shape the reader's understanding of the sisters' financial situation?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "She believes complaining is pointless because their situation will never improve no matter what anyone does.",
+          "She feels some guilt about still wanting nice things even though she believes the family should make sacrifices.",
+          "She resents her mother for suggesting that the family give up giving each other holiday presents again this year.",
+          "She is more concerned with her sisters' bickering and behavior than with the family's actual day-to-day finances."
+        ],
+        "id": "excerpt-from-little-women-digital-shsat-practice-test-2-passage-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What can be inferred about Meg's feelings toward her own complaints about money?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Even amid real hardship, a family can find contentment in what they still have.",
+          "Children are rarely fully aware of the financial struggles that their parents quietly face at home.",
+          "Wealth is what most determines how close a family's members truly feel to one another over time.",
+          "Disagreements among siblings are usually resolved only through some kind of outside intervention or authority."
+        ],
+        "id": "excerpt-from-little-women-digital-shsat-practice-test-2-passage-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement best expresses a theme developed through the sisters' conversation?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Amy's brief comment that Jo often uses slang words her sisters consider unladylike and improper.",
+          "Jo's wish that she could fight alongside her father instead of staying home.",
+          "Beth singing a line about birds agreeing in their nests to soften Amy and Jo's argument.",
+          "Meg's description of the sisters as a jolly set despite having to work."
+        ],
+        "id": "excerpt-from-little-women-digital-shsat-practice-test-2-passage-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which detail from the passage best supports the idea that the sisters try to comfort one another despite their disagreements?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [
+          "frustrated",
+          "restless",
+          "grateful",
+          "indifferent"
+        ],
+        "id": "excerpt-from-little-women-digital-shsat-practice-test-2-passage-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Complete the sentence describing the tone of Jo's outburst about wanting to be a boy.",
+        "topic": "Central Idea & Theme",
+        "type": "transition_drop"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Sibling rivalry among four very different sisters reveals the distinct personalities and quirks within one busy household.",
+          "A family debates for some time how best to spend their limited holiday money on gifts meant only for themselves.",
+          "A mother visits her daughters to remind them of the importance of sacrificing personal wants during wartime.",
+          "Four sisters, missing their father and short on money, work through their frustrations together on Christmas Eve and find comfort in each other."
+        ],
+        "id": "excerpt-from-little-women-digital-shsat-practice-test-2-passage-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence best states the central idea of the passage as a whole?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "She believes grown women are admired mainly for their natural beauty and delicate charm.",
+          "She fears that growing up will make her fragile and easily hurt by the criticism of others.",
+          "She sees it as a stiff, decorative existence that would leave no room for her energetic nature.",
+          "She thinks growing up happens slowly and naturally, the way a flower gradually blooms."
+        ],
+        "id": "excerpt-from-little-women-digital-shsat-practice-test-2-passage-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In paragraph 29, what does Jo's comparison of a proper young lady to \"a China-aster\" most likely suggest about how she views growing up?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Learning often requires patient repetition and many small failures before any real breakthrough finally occurs.",
+          "Children generally learn best when they are simply allowed to make and learn from their own mistakes.",
+          "Physical senses, especially touch, are ultimately less reliable guides than purely emotional understanding of the world.",
+          "A single moment of sudden understanding can transform a person's whole relationship with the world."
+        ],
+        "id": "excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2-passage-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which theme is most strongly developed through the author's account of the well-house?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "To show that she had no capacity for kindness before she learned language.",
+          "To suggest that her teacher's early methods were poorly suited to a child of her particular age and temperament.",
+          "To explain why her teacher eventually stopped giving her toys to play with.",
+          "To highlight, through contrast, how differently she experienced the world once she grasped that things had names."
+        ],
+        "id": "excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2-passage-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Why does the author most likely include the detail about breaking the doll before describing the well-house scene?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Understanding that objects had names finally gave her a way to connect her mind to the world.",
+          "She realized for the first time that her teacher genuinely and deeply cared about her well-being.",
+          "The water itself had a genuinely calming, almost magical physical effect on her body and mind.",
+          "She no longer needed her sense of touch at all once she learned to spell out words."
+        ],
+        "id": "excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2-passage-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What does the author most likely mean by describing the word \"water\" as something that \"awakened my soul, gave it light, hope, joy, set it free\"?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It compares two entirely different teaching methods before concluding at the end which one actually worked better.",
+          "It presents a broad general claim about language and then supports that claim with detailed statistics.",
+          "It narrates a sequence of small events building toward one turning point, then briefly reflects on what followed.",
+          "It moves back and forth repeatedly between the author's own perspective and her teacher's perspective on the same events."
+        ],
+        "id": "excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2-passage-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which choice best describes how the passage is primarily structured, from its opening description of finger-spelling games to its closing reflection on that day?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "She understood that words carried meaning but stubbornly resisted learning any new ones from her teacher.",
+          "She refused outright to cooperate with her teacher's lessons because she was frustrated and tired.",
+          "She had already learned to read simple full sentences well before this particular scene took place.",
+          "She could spell many words already but did not yet grasp that the motions stood for real objects."
+        ],
+        "id": "excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2-passage-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What can be inferred about the author's understanding of language before the well-house scene?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Her teacher had already been living and working with her for several weeks before this scene occurs.",
+          "In the days after the doll lesson, she learned to spell words such as pin, hat, and cup in an uncomprehending way.",
+          "Earlier that same day, she and her teacher had struggled over the words \"m-u-g\" and \"w-a-t-e-r.\"",
+          "She describes a fleeting, misty sense of something forgotten, then immediately knows what \"water\" meant."
+        ],
+        "id": "excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2-passage-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which detail from the passage best supports the claim that the author's realization at the well-house was sudden rather than gradual?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "A young girl's frustration over a broken toy doll teaches her an early lesson about kindness.",
+          "A teacher's patient persistence finally helps a child grasp that words name real things around her.",
+          "A child learns to spell many new words, such as pin, hat, and cup, by imitating her teacher's finger motions.",
+          "A family is finally reunited after a long separation that was caused by a serious illness."
+        ],
+        "id": "excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2-passage-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence best states the central idea of the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It presents the invention's success as immediate and instant, then explains why it later declined in popularity anyway.",
+          "It compares Goldman's invention to several earlier, failed attempts made by others at solving the very same problem.",
+          "It moves from the problem Goldman noticed, through the cart's design and its initial rejection, to its eventual widespread adoption.",
+          "It focuses mainly on the mechanical details of the cart's folding frame rather than on how customers responded to it."
+        ],
+        "id": "excerpt-from-the-cart-that-changed-the-supermarket-digital-shsat-practice-test-2-passage-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the passage's structure develop its account of the shopping cart's invention?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Employees at the store simply refused to bring the new carts out to the store entrance at all.",
+          "Goldman's cart was simply too expensive for most small grocery stores to ever afford purchasing.",
+          "Female customers generally preferred using handbaskets because they found them easier and quicker to carry.",
+          "Goldman's cart failed at first because of social resistance rather than any real practical problem."
+        ],
+        "id": "excerpt-from-the-cart-that-changed-the-supermarket-digital-shsat-practice-test-2-passage-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence best states the central idea of paragraph 3?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Shopping carts were designed mainly to increase the physical comfort of grocery shoppers.",
+          "A useful invention can fail commercially until people are persuaded that using it is socially acceptable.",
+          "Sylvan Goldman became wealthy mainly through skillful advertising rather than through any genuine underlying innovation.",
+          "Grocery stores are always reluctant to adopt new technology, even when it clearly benefits them."
+        ],
+        "id": "excerpt-from-the-cart-that-changed-the-supermarket-digital-shsat-practice-test-2-passage-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement best expresses the central idea of the passage as a whole?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "He hoped to distract customers from the store's high prices.",
+          "He wanted to reduce the number of employees needed to stock shelves.",
+          "He believed customers would follow an example of ordinary-looking people already using the carts.",
+          "He was required by the store's insurance policy to demonstrate the carts before selling them."
+        ],
+        "id": "excerpt-from-the-cart-that-changed-the-supermarket-digital-shsat-practice-test-2-passage-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What can be inferred from Goldman's decision to hire people to push carts near the entrance?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "To argue directly that Goldman personally deserves far more public recognition than he currently receives today.",
+          "To criticize modern marketers for copying Goldman's methods without acknowledging him.",
+          "To broaden the story beyond the cart itself, toward a general point about how new habits get accepted.",
+          "To suggest that the shopping cart's design has not changed meaningfully since 1937."
+        ],
+        "id": "excerpt-from-the-cart-that-changed-the-supermarket-digital-shsat-practice-test-2-passage-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the author's most likely purpose in including the final paragraph about grocery historians?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\"exulting,\" \"trills,\" and \"crowding\"",
+          "\"anchor'd,\" \"safe,\" and \"sound\"",
+          "\"weather'd,\" \"steady,\" and \"daring\"",
+          "\"bleeding,\" \"cold and dead,\" and \"mournful tread\""
+        ],
+        "id": "excerpt-from-o-captain-my-captain-digital-shsat-practice-test-2-passage-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which words from the poem most strongly convey its overall tone of mourning?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "A single sailor's personal journey home from war, told through the extended image of a ship.",
+          "A single trading voyage that earned great wealth and lasting fame for its captain and crew.",
+          "The speaker's own long life finally coming to a peaceful, well-earned close after many years.",
+          "A nation reaching the end of a difficult struggle just as its leader dies."
+        ],
+        "id": "excerpt-from-o-captain-my-captain-digital-shsat-practice-test-2-passage-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The extended comparison of a ship completing a voyage most likely represents which of the following?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "The first stanza announces the death, the second urges him to rise, and the third accepts he won't.",
+          "Each stanza describes a different, separate stage of the long voyage, from its departure to its arrival.",
+          "The stanzas are each told from a different character's point of view aboard the returning ship.",
+          "Each stanza shifts to an entirely different setting, moving from the ship to the shore and back."
+        ],
+        "id": "excerpt-from-o-captain-my-captain-digital-shsat-practice-test-2-passage-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the poem's structure across its three stanzas develop the speaker's realization?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "The speaker feels toward the captain something like the devotion and grief owed to a father.",
+          "The speaker is the captain's literal son, and the ship is a family business.",
+          "The speaker seems genuinely confused about the captain's true identity throughout this part of the poem.",
+          "The captain had formally adopted the speaker earlier during the course of the long voyage."
+        ],
+        "id": "excerpt-from-o-captain-my-captain-digital-shsat-practice-test-2-passage-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What can be inferred about the relationship between the speaker and the captain from the line \"Here Captain! dear father!\"?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "A voyage that costs its leader's life can still end in triumph for those who survive it.",
+          "A public triumph can be shadowed by a private, personal loss too great for celebration to touch.",
+          "Celebration is almost always the wrong emotional response to the end of any long, difficult struggle.",
+          "Ships are generally unreliable vessels for safely carrying passengers through dangerous, unpredictable ocean waters."
+        ],
+        "id": "excerpt-from-o-captain-my-captain-digital-shsat-practice-test-2-passage-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement best captures the central idea of the poem?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Large groups of celebrating people are rarely ever aware of one individual's private suffering nearby.",
+          "A shared victory can mean entirely different things to different people experiencing it.",
+          "Sailors are generally far more emotional than the people who gather to welcome them home.",
+          "Public celebrations should be canceled whenever a tragedy has occurred."
+        ],
+        "id": "excerpt-from-o-captain-my-captain-digital-shsat-practice-test-2-passage-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The contrast between the celebrating crowds and the grieving speaker most directly develops which theme?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Appreciative and slightly wry, casting a tree's natural cooling effect as a clever, unpaid service.",
+          "Alarmed, warning readers urgently about a dangerous and increasingly unavoidable citywide problem that demands attention.",
+          "Dismissive, suggesting that a neighborhood's tree canopy makes little real difference to its temperature.",
+          "Formal and detached, avoiding any personal judgment about the findings."
+        ],
+        "id": "excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2-passage-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The author's word choice in describing a block with dense tree cover as running \"its own modest air-conditioning system for free\" most strongly conveys which tone?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Riverside Flats, with the lowest canopy coverage, recorded the highest afternoon temperature of the six neighborhoods.",
+          "Canopy coverage and afternoon temperature show no consistent relationship across the six neighborhoods.",
+          "Cedar Grove's especially low canopy coverage directly and fully explains its unusually high recorded temperature.",
+          "All six neighborhoods recorded nearly identical afternoon temperatures despite differing canopy coverage."
+        ],
+        "id": "excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2-passage-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Based on the figure and the passage, which conclusion is best supported?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Environmental problems are usually caused mainly by decisions made recently rather than long ago in the past.",
+          "Cities rarely have enough historical records to understand how their neighborhoods developed.",
+          "Decisions made long before a problem is understood can still shape who is most affected by it today.",
+          "Older neighborhoods are, generally speaking, always better planned and maintained than newly built ones today."
+        ],
+        "id": "excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2-passage-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which theme is most directly developed through the passage's discussion of old zoning decisions?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Cities should stop approving new residential developments until every neighborhood has exactly equal tree cover.",
+          "Tree canopy affects neighborhood temperature, and its uneven distribution has real consequences felt unevenly by residents.",
+          "Scientists have only very recently discovered that trees provide any real cooling benefit at all.",
+          "Modern air conditioning technology has essentially made natural tree cover unnecessary for keeping neighborhoods cool today."
+        ],
+        "id": "excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2-passage-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement best expresses the central idea of the passage as a whole?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Higher temperatures raise electricity demand for air conditioning, a cost that falls hardest on residents who can least afford it.",
+          "The passage's early description of transpiration as a slow, gradual, natural cooling process occurring in leaves.",
+          "The passage's brief description of volunteers riding bicycles around town to collect temperature data each afternoon.",
+          "The claim that a young, newly planted sapling provides noticeably less shade than a fully mature tree."
+        ],
+        "id": "excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2-passage-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which detail best supports the claim that higher neighborhood temperatures create financial burdens for residents?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Suggest that trees and humans regulate their body temperature in scientifically identical, interchangeable ways.",
+          "Criticize the widespread idea that trees provide any meaningful cooling benefit to nearby neighborhoods at all.",
+          "Make an unfamiliar process easier to picture by relating it to something the reader has felt firsthand.",
+          "Introduce a brand-new scientific term that the passage goes on to define later in more detail."
+        ],
+        "id": "excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2-passage-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The comparison of tree transpiration to \"the way sweat cools skin\" serves mainly to do what?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2-passage-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "For each statement, indicate whether it describes the research team's METHOD or one of its FINDINGS.",
+        "topic": "Central Idea & Theme",
+        "type": "category_sort"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It qualifies the passage's claim by clarifying what tree planting can and cannot immediately fix.",
+          "It summarizes the study's original methodology again, this time in far more technical detail.",
+          "It introduces a brand-new counterargument that directly contradicts the study's earlier, carefully measured findings.",
+          "It shifts the passage's entire focus away from temperature and toward cost and budgeting instead."
+        ],
+        "id": "excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2-passage-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the final paragraph function in relation to the rest of the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      }
+    ],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false
   }
 ]

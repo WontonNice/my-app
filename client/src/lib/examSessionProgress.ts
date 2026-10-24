@@ -110,6 +110,17 @@ export function getOpenExamSubject(
   return sectionAccess[alternateSubject] ? alternateSubject : null;
 }
 
+export function getExamSectionAccess(
+  content: ExamContent,
+  sectionAccess: Record<ExamSection, boolean>,
+): Record<ExamSection, boolean> {
+  const questions = getExamSectionQuestionIds(content);
+  return {
+    english: sectionAccess.english && questions.english.length > 0,
+    math: sectionAccess.math && questions.math.length > 0,
+  };
+}
+
 export function isExamResultCompleteForQuestionCount(
   result: Pick<ExamResult, "completionStatus" | "total"> | null | undefined,
   currentQuestionCount: number,

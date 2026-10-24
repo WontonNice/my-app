@@ -10,6 +10,7 @@ import {
 import { resetExamTimer } from "../lib/examTimer";
 import {
   getCurrentCompletedSections,
+  getExamSectionAccess,
   getNextExamSubject,
   getOpenExamSubject,
   getStoredStartingSubject,
@@ -62,8 +63,9 @@ export function ExamLaunchPage() {
 
       try {
         const nextAssessment = await getStudentAssessment(data.session.access_token, assessmentId);
-        setAssessment(nextAssessment);
         const examContent = resolveExamContent(nextAssessment);
+        const sectionAccess = getExamSectionAccess(examContent, nextAssessment.sectionAccess);
+        setAssessment({ ...nextAssessment, sectionAccess });
         const isAccountPreview = previewContext.mode === "student" && Boolean(previewContext.studentId);
         const localProgress = previewContext.isPreview
           ? null
@@ -119,7 +121,7 @@ export function ExamLaunchPage() {
           ? storedStartingSubject
           : getNextExamSubject(storedStartingSubject, currentCompletedSections);
         setStartingSubject(
-          getOpenExamSubject(preferredSubject, nextAssessment.sectionAccess) ?? "english",
+          getOpenExamSubject(preferredSubject, sectionAccess) ?? "english",
         );
       } catch (error) {
         setErrorMessage(error instanceof Error ? error.message : "Could not load this exam.");

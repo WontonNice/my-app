@@ -38,6 +38,11 @@ import { excerptFromAVoiceInTheWilderness20202021FormAPassageSet } from "./passa
 import { inventionOfTheTelegraph20202021FormAPassageSet } from "./passageSets/invention-of-the-telegraph-2020-2021-form-a";
 import { theBenefitsOfIndoorPlants20202021FormAPassageSet } from "./passageSets/the-benefits-of-indoor-plants-2020-2021-form-a";
 import { excerptFromNarrativeOfTheLifeOfFrederickDouglassDigitalShsatPracticeTest1PassageSet } from "./passageSets/excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1";
+import { excerptFromLittleWomenDigitalShsatPracticeTest2PassageSet } from "./passageSets/excerpt-from-little-women-digital-shsat-practice-test-2";
+import { excerptFromTheStoryOfMyLifeDigitalShsatPracticeTest2PassageSet } from "./passageSets/excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2";
+import { excerptFromTheCartThatChangedTheSupermarketDigitalShsatPracticeTest2PassageSet } from "./passageSets/excerpt-from-the-cart-that-changed-the-supermarket-digital-shsat-practice-test-2";
+import { excerptFromOCaptainMyCaptainDigitalShsatPracticeTest2PassageSet } from "./passageSets/excerpt-from-o-captain-my-captain-digital-shsat-practice-test-2";
+import { excerptFromTheNeighborhoodNextDoorIsHotterThanYoursDigitalShsatPracticeTest2PassageSet } from "./passageSets/excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -77,6 +82,11 @@ export const examPassageLibrary: ExamPassageSet[] = [
   inventionOfTheTelegraph20202021FormAPassageSet,
   theBenefitsOfIndoorPlants20202021FormAPassageSet,
   excerptFromNarrativeOfTheLifeOfFrederickDouglassDigitalShsatPracticeTest1PassageSet,
+  excerptFromLittleWomenDigitalShsatPracticeTest2PassageSet,
+  excerptFromTheStoryOfMyLifeDigitalShsatPracticeTest2PassageSet,
+  excerptFromTheCartThatChangedTheSupermarketDigitalShsatPracticeTest2PassageSet,
+  excerptFromOCaptainMyCaptainDigitalShsatPracticeTest2PassageSet,
+  excerptFromTheNeighborhoodNextDoorIsHotterThanYoursDigitalShsatPracticeTest2PassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);

@@ -7,6 +7,8 @@ async function call(url,token='teacher',method='GET',body){const response=await 
 const act=(room,token,action,body={})=>call(`/${room.id}/action`,token,'POST',{action,...body});
 async function lobby(mode='survival'){const response=await call('/','teacher','POST',{mode,assessmentId:fixture.content.assessmentId,party:true});assert.equal(response.status,201);const room=response.data.room;for(const token of ['maya','jordan'])assert.equal((await call('/join',token,'POST',{code:room.code})).status,200);return room;}
 const answer=(room,choice='A')=>({answer:choice,questionId:room.current.question.id,round:room.round,index:room.teams.find(team=>team.id===room.me?.teamId)?.index});
+const vote = room => { const team=room.teams.find(team=>team.id===room.me?.teamId); return {questionId:room.unit[0].question.id,index:team.index,step:team.step??0,draftVersion:team.draftVersion??0}; };
+async function choose(room,token,choice='A') { const current=(await call(`/${room.id}`,token)).data.room; const result=await act(current,token,'draft',answer(current,choice)); assert.equal(result.status,200); return result.data.room; }
 
 test('ending and deleting rooms remove them from both lists and reject reconnects and joins',async()=>{
  const room=await lobby('teams');
@@ -28,28 +30,26 @@ test('English drafts do not score, complete passages score atomically, and Math 
  const body={...answer(room),playtestPlayerId:room.me.id};
  room=(await act(room,'teacher','draft',body)).data.room;
  assert.equal(room.teams[0].score,0);assert.equal(room.teams[0].index,0);
- assert.equal((await act(room,'teacher','answer',body)).status,400);
+ assert.equal((await act(room,'teacher','answer',body)).status,409);
  assert.equal((await call(`/${room.id}`)).data.room.teams[0].score,0);
- const complete={...body,answers:Object.fromEntries(room.unit.map(item=>[item.question.id,'A']))};
- const results=await Promise.all([act(room,'teacher','answer',complete),act(room,'teacher','answer',complete)]);
- assert.deepEqual(results.map(item=>item.status).sort(),[200,409]);
+ assert.equal((await act(room,'teacher','test-answer',{correct:true})).status,200);
  room=(await call(`/${room.id}`)).data.room;assert.equal(room.teams[0].score,2);assert.equal(room.teams[0].index,2);assert.equal(room.unit.length,1);assert.equal(room.current.subject,'Math');
- room=(await act(room,'teacher','answer',{...answer(room),playtestPlayerId:room.me.id})).data.room;
- assert.equal(room.teams[0].score,3);assert.equal(room.teams[0].inventory.blackout,1);
+ room=(await act(room,'teacher','test-answer',{correct:true})).data.room;
+ assert.equal(room.teams[0].score,3);assert.equal(room.teams[0].coins,1);
 });
 
-test('private playtest can enable party mode and grant/use each registered booster without a streak',async()=>{
+test('private playtest can enable the shop, grant coins and purchase sabotage without a streak',async()=>{
  let room=await playtest('teams',{party:false});room=(await act(room,'teacher','start')).data.room;
- assert.equal((await act(room,'teacher','test-booster',{boosterId:'blackout'})).status,400);
+ assert.equal((await act(room,'teacher','test-coins',{boosterId:'ink-bomb'})).status,400);
  room=(await act(room,'teacher','test-party',{enabled:true})).data.room;
- assert.equal((await act(room,'teacher','test-booster',{boosterId:'invented'})).status,400);
- room=(await act(room,'teacher','test-booster',{boosterId:'blackout'})).data.room;
+ assert.equal((await act(room,'teacher','buy-sabotage',{boosterId:'invented',playtestPlayerId:room.me.id})).status,400);
+ room=(await act(room,'teacher','test-coins',{boosterId:'ink-bomb'})).data.room;
  const mine=room.teams.find(item=>item.id===room.me.teamId),opponent=room.teams.find(item=>item.id!==mine.id);
- assert.equal(mine.inventory.blackout,1);assert.equal(mine.streak,0);
- room=(await act(room,'teacher','booster',{boosterId:'blackout',teamId:opponent.id,playtestPlayerId:room.me.id})).data.room;
- assert.equal(room.teams.find(item=>item.id===mine.id).inventory.blackout,0);
- assert.ok(room.teams.find(item=>item.id===opponent.id).blockedUntil>Date.now());
- assert.equal((await act(room,'teacher','booster',{boosterId:'blackout',teamId:opponent.id,playtestPlayerId:room.me.id})).status,400);
+ assert.equal(mine.coins,1);assert.equal(mine.streak,0);
+ room=(await act(room,'teacher','buy-sabotage',{boosterId:'ink-bomb',teamId:opponent.id,playtestPlayerId:room.me.id})).data.room;
+ assert.equal(room.teams.find(item=>item.id===mine.id).coins,0);
+ assert.ok(room.teams.find(item=>item.id===opponent.id).inkBomb.expiresAt>Date.now());
+ assert.equal((await act(room,'teacher','buy-sabotage',{boosterId:'ink-bomb',teamId:opponent.id,playtestPlayerId:room.me.id})).status,400);
 });
 
 test('authentication, membership and host controls guard every route',async()=>{
@@ -72,13 +72,13 @@ test('team assignment, concurrent shared answers and server-enforced sabotage su
  let room=await lobby('teams');assert.equal((await act(room,'teacher','start')).status,400);room=(await act(room,'teacher','balance')).data.room;room=(await act(room,'teacher','start')).data.room;
  let maya=(await call(`/${room.id}`,'maya')).data.room;const initial=answer(maya);
  fixture.conflict();assert.equal((await act(room,'maya','draft',initial)).status,200);maya=(await call(`/${room.id}`,'maya')).data.room;assert.equal(maya.teams.find(team=>team.id===maya.me.teamId).draft,'A');
- const parallel=await Promise.all([act(room,'maya','answer',initial),act(room,'maya','answer',initial)]);assert.deepEqual(parallel.map(response=>response.status).sort(),[200,409]);
- for(let index=0;index<2;index++){maya=(await call(`/${room.id}`,'maya')).data.room;assert.equal((await act(room,'maya','answer',answer(maya))).status,200);}
- maya=(await call(`/${room.id}`,'maya')).data.room;const own=maya.teams.find(team=>team.id===maya.me.teamId),target=maya.teams.find(team=>team.id!==own.id);assert.equal(own.score,3);assert.equal(own.boosters,1);
- assert.equal((await act(room,'maya','sabotage',{teamId:target.id})).status,200);assert.equal((await act(room,'maya','sabotage',{teamId:target.id})).status,400);
- let jordan=(await call(`/${room.id}`,'jordan')).data.room;assert.ok(jordan.teams.find(team=>team.id===target.id).blockedUntil>Date.now());assert.equal((await act(room,'jordan','answer',answer(jordan))).status,409);
- fixture.rows.find(row=>row.id===room.id).payload.teams.find(team=>team.id===target.id).blockedUntil=Date.now()-1;
- jordan=(await call(`/${room.id}`,'jordan')).data.room;assert.equal((await act(room,'jordan','answer',answer(jordan))).status,200);
+ const parallel=await Promise.all([act(room,'maya','vote',vote(maya)),act(room,'maya','vote',vote(maya))]);assert.deepEqual(parallel.map(response=>response.status).sort(),[200,409]);
+ for(let index=0;index<2;index++){maya=await choose(room,'maya');assert.equal((await act(room,'maya','vote',vote(maya))).status,200);}
+ maya=(await call(`/${room.id}`,'maya')).data.room;const own=maya.teams.find(team=>team.id===maya.me.teamId),target=maya.teams.find(team=>team.id!==own.id);assert.equal(own.score,3);assert.equal(own.coins,1);
+ assert.equal((await act(room,'maya','buy-sabotage',{boosterId:'ink-bomb',teamId:target.id})).status,200);assert.equal((await act(room,'maya','buy-sabotage',{boosterId:'ink-bomb',teamId:target.id})).status,400);
+ let jordan=(await call(`/${room.id}`,'jordan')).data.room;assert.ok(jordan.teams.find(team=>team.id===target.id).inkBomb.expiresAt>Date.now());assert.equal((await act(room,'jordan','answer',answer(jordan))).status,409);
+ fixture.rows.find(row=>row.id===room.id).payload.teams.find(team=>team.id===target.id).inkBomb.expiresAt=Date.now()-1;
+ jordan=await choose(room,'jordan');assert.equal((await act(room,'jordan','vote',vote(jordan))).status,200);
  room=(await act(room,'teacher','finish')).data.room;assert.equal(room.phase,'finished');assert.deepEqual(room.winners,[own.id]);
 });
 test('deadlines persist automatically and late answers cannot earn points',async()=>{
@@ -96,7 +96,11 @@ test('teammates share drafts; stale drafts cannot change a locked answer or a la
  let room=await lobby('teams');await call('/join','alex','POST',{code:room.code});await act(room,'teacher','balance');await act(room,'teacher','start');
  const maya=(await call(`/${room.id}`,'maya')).data.room,first=answer(maya);await act(room,'maya','draft',first);
  const alex=(await call(`/${room.id}`,'alex')).data.room;assert.equal(alex.teams.find(team=>team.id===alex.me.teamId).draft,'A');
- assert.equal((await act(room,'alex','answer',answer(alex))).status,200);assert.equal((await act(room,'maya','draft',{...first,answer:'B'})).status,409);
+ assert.equal((await act(room,'alex','vote',vote(alex))).status,200);
+ assert.equal((await call(`/${room.id}`,'maya')).data.room.teams[0].index,0);
+ assert.equal((await act(room,'maya','vote',vote(maya))).status,409); // stale answer version
+ const refreshed=(await call(`/${room.id}`,'maya')).data.room;
+ assert.equal((await act(room,'maya','vote',vote(refreshed))).status,200);assert.equal((await act(room,'maya','draft',{...first,answer:'B'})).status,409);
  const saved=(await call(`/${room.id}`,'maya')).data.room,team=saved.teams.find(team=>team.id===saved.me.teamId);assert.equal(team.index,1);assert.equal(team.score,1);assert.equal(team.answers[0].answer,'A');assert.equal(team.draft,undefined);
 });
 
@@ -115,7 +119,7 @@ test('solo playtests are private, persist across reconnects, and cannot enable t
  assert.deepEqual(fixture.rows.find(row=>row.id===room.id).member_ids,[]);
  const refreshed=(await call(`/${room.id}`)).data.room;
  assert.equal(refreshed.me.id,room.me.id); assert.equal(refreshed.playtest.autoPlay,false);
- const live=await lobby('teams'); assert.equal((await act(live,'teacher','test-booster')).status,403);
+ const live=await lobby('teams'); assert.equal((await act(live,'teacher','test-coins')).status,403);
  assert.equal((await call('/','maya','POST',{mode:'survival',playtest:true})).status,403);
 });
 test('one teacher can test teammate selections, stale perspective protection, streaks and both sides of sabotage',async()=>{
@@ -127,19 +131,20 @@ test('one teacher can test teammate selections, stale perspective protection, st
  assert.equal(room.teams.find(team=>team.id===teammate.teamId).draft,'A');
  assert.equal((await act(room,'teacher','draft',{...answer(room),playtestPlayerId:pilot.id})).status,409);
  fixture.conflict();
- assert.equal((await act(room,'teacher','answer',{...answer(room),playtestPlayerId:teammate.id})).status,200);
+ assert.equal((await act(room,'teacher','vote',{...vote(room),playtestPlayerId:teammate.id})).status,200);
+ assert.equal((await act(room,'teacher','test-team-ready')).status,200);
  for(let i=0;i<2;i++)assert.equal((await act(room,'teacher','test-answer',{correct:true})).status,200);
  room=(await call(`/${room.id}`)).data.room;
- assert.equal(room.teams.find(team=>team.id===pilot.teamId).boosters,1);
- assert.equal((await act(room,'teacher','sabotage',{teamId:opponent.teamId,playtestPlayerId:teammate.id})).status,200);
+ assert.equal(room.teams.find(team=>team.id===pilot.teamId).coins,1);
+ assert.equal((await act(room,'teacher','buy-sabotage',{boosterId:'ink-bomb',teamId:opponent.teamId,playtestPlayerId:teammate.id})).status,200);
  room=(await act(room,'teacher','test-control',{playerId:opponent.id})).data.room;
- assert.ok(room.teams.find(team=>team.id===opponent.teamId).blockedUntil>Date.now());
+ assert.ok(room.teams.find(team=>team.id===opponent.teamId).inkBomb.expiresAt>Date.now());
  assert.equal((await act(room,'teacher','test-answer',{correct:true})).status,409);
- fixture.rows.find(row=>row.id===room.id).payload.teams.find(team=>team.id===opponent.teamId).blockedUntil=Date.now()-1;
+ fixture.rows.find(row=>row.id===room.id).payload.teams.find(team=>team.id===opponent.teamId).inkBomb.expiresAt=Date.now()-1;
  assert.equal((await act(room,'teacher','test-answer',{correct:true})).status,200);
  assert.equal((await act(room,'teacher','test-sabotage')).status,200);
  room=(await act(room,'teacher','test-expire')).data.room; assert.equal(room.phase,'finished'); assert.ok(room.winners.length);
- room=(await act(room,'teacher','test-reset')).data.room; assert.equal(room.phase,'lobby'); assert.equal(room.players.length,4); assert.notEqual(room.me.id,pilot.id); assert.ok(room.teams.every(team=>!team.score&&!team.index&&!team.boosters&&!team.blockedUntil));
+ room=(await act(room,'teacher','test-reset')).data.room; assert.equal(room.phase,'lobby'); assert.equal(room.players.length,4); assert.notEqual(room.me.id,pilot.id); assert.ok(room.teams.every(team=>!team.score&&!team.index&&!team.coins&&!team.boosters&&!team.blockedUntil&&!team.inkBomb&&!team.landmine));
 });
 test('solo survival plays through elimination, audience participation, finale and timer expiry',async()=>{
  let room=await playtest('survival',{questionCount:3}); await act(room,'teacher','start');

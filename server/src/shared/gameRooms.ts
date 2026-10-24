@@ -5,7 +5,10 @@ export type GameMode = "survival" | "teams";
 export type GamePhase = "lobby" | "question" | "reveal" | "finished";
 export type GameQuestion = { question: ExamQuestion; passage?: ExamPassage; subject: string };
 export type GamePlayer = { id: string; name: string; joinedAt: string; teamId: string | null; alive: boolean; score: number };
-export type GameTeam = { id: string; name: string; index: number; score: number; streak: number; boosters: number; inventory?: Record<string, number>; blockedUntil: number; draft?: SelectedAnswer; drafts?: Record<string, SelectedAnswer>; answers: { questionId: string; answer: SelectedAnswer; correct: boolean; by: string }[] };
+export type SabotageSource = { teamId: string; teamName: string; boosterId: string };
+export type GameTeam = { id: string; name: string; index: number; score: number; streak: number; boosters: number; inventory?: Record<string, number>; coins?: number; blockedUntil: number; sabotagedBy?: SabotageSource; landmine?: { questionIndex: number; source: SabotageSource }; landmineResult?: { outcome: "disarmed" | "triggered"; at: number; source: SabotageSource }; inkBomb?: { id: string; expiresAt: number; clearedSplats: number[]; source: SabotageSource }; step?: number; draftVersion?: number; readyIds?: string[]; draft?: SelectedAnswer; drafts?: Record<string, SelectedAnswer>; answers: { questionId: string; answer: SelectedAnswer; correct: boolean; by: string }[] };
+export type GameCursor = { anchor: string; x: number; y: number; index: number; step: number };
+export type GamePresence = { peerId: string; playerId: string; teamId: string; name: string; color: string; cursor: GameCursor | null };
 export type GameRoom = {
   id: string; code: string; hostId: string; title: string; mode: GameMode; phase: GamePhase;
   createdAt: string; updatedAt: string; revision: number; party: boolean; secondsPerQuestion: number;
@@ -22,6 +25,7 @@ export type GameView = Omit<GameRoom, "questions" | "roundAnswers" | "unitAnswer
   answeredIds: string[]; myAnswer?: SelectedAnswer; reveal: { correctChoiceId?: string; explanation?: string; correctIds: string[] } | null;
   unit: GameQuestion[]; myAnswers: Record<string, SelectedAnswer>;
   subjectPosition: { current: number; total: number };
+  observingTeamId?: string;
   teams: (Omit<GameTeam, "answers"> & { answers: GameTeam["answers"]; lastCorrect?: boolean })[];
 };
 export type GameCatalog = { labQuestions: number; assessments: { id: string; title: string; questions: number; unsupported: number }[] };
@@ -40,7 +44,14 @@ export function gameUnit(questions: GameQuestion[], start: number): GameQuestion
   return result;
 }
 
-/** Add new booster definitions here and a server effect handler in gameBoosters.ts. */
+export const GAME_COIN_STREAK = 3;
+export const INK_SPLATS = 5;
+/** Shop purchases are paid from the shared team wallet and immediately deployed. */
 export const GAME_BOOSTERS = [
-  { id: "blackout", name: "Blackout", description: "Blank an opposing team's exam for 10 seconds.", target: "opponent", durationSeconds: 10, maxStored: 3, earnedEvery: 3 },
+  { id: "landmine", name: "Landmine", description: "Hide a trap on another team's next question. A correct answer disarms it; a wrong answer triggers a 5-second blackout.", cost: 1, durationSeconds: 5 },
+  { id: "ink-bomb", name: "Ink Bomb", description: "Cover another team's screens with 5 ink splats. They must click them all to clear the ink, or wait 8 seconds.", cost: 1, durationSeconds: 8 },
 ] as const;
+
+export function hasActiveInk(team: Pick<GameTeam, "inkBomb">, now: number) {
+  return Boolean(team.inkBomb && team.inkBomb.expiresAt > now && team.inkBomb.clearedSplats.length < INK_SPLATS);
+}

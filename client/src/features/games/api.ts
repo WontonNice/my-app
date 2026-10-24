@@ -8,7 +8,7 @@ export function gameApi(token: string) {
     catalog: () => call<GameCatalog>("/catalog"),
     create: async (body: Record<string, unknown>) => (await call<{ room: GameView }>("/", "POST", body)).room,
     join: async (code: string) => (await call<{ room: GameView }>("/join", "POST", { code })).room,
-    get: async (id: string) => (await call<{ room: GameView }>(`/${id}`)).room,
+    get: async (id: string, teamId?: string) => (await call<{ room: GameView }>(`/${id}${teamId ? `?teamId=${encodeURIComponent(teamId)}` : ""}`)).room,
     action: async (id: string, action: string, body: Record<string, unknown> = {}) => (await call<{ room: GameView }>(`/${id}/action`, "POST", { ...body, action })).room,
   };
 }
