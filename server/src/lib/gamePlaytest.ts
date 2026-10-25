@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { gameError, mutateGame, tickGame, type GameActor } from "./gameEngine";
 import { isExamQuestionCorrect, type SelectedAnswer } from "../shared/examGrading";
 import type { ExamQuestion } from "../shared/examTypes";
-import { GAME_BOOSTERS, gameUnit, hasActiveInk, type GamePlayer, type GameRoom } from "../shared/gameRooms";
+import { GAME_BOOSTERS, activeTeamPlayers, gameUnit, hasActiveInk, type GamePlayer, type GameRoom } from "../shared/gameRooms";
 import { grantCoins, teamCoins } from "./gameBoosters";
 
 const interval = 12000;
@@ -75,7 +75,7 @@ function answerFor(room: GameRoom, player: GamePlayer, correct: boolean, now: nu
   for (const item of unit) asPlayer(room, player, "draft", { questionId: item.question.id, index: start, answer: answers[item.question.id] }, now);
   while (team!.index === start && room.phase === "question") {
     const body = { questionId: question.id, index: start, step: team!.step ?? 0, draftVersion: team!.draftVersion ?? 0 };
-    for (const member of room.players.filter(item => item.teamId === team!.id)) asPlayer(room, member, "vote", body, now);
+    for (const member of activeTeamPlayers(room, team!.id)) asPlayer(room, member, "vote", body, now);
   }
 }
 
@@ -101,7 +101,7 @@ export function mutatePlaytest(room: GameRoom, actor: GameActor, action: string,
   if (room.phase !== "question") throw gameError("Start a question to try this scenario.", 409);
   if (action === "test-step") { runBots(room, now); return; }
   if (action === "test-expire") { room.deadline = now; tickGame(room, now); return; }
-  if (["answer", "draft", "vote", "unvote", "review", "sabotage", "booster", "buy-sabotage", "clear-ink"].includes(action)) {
+  if (["answer", "draft", "vote", "unvote", "review", "sabotage", "booster", "buy-sabotage", "use-sabotage", "clear-ink"].includes(action)) {
     if (body.playtestPlayerId !== room.playtest.controlledPlayerId) throw gameError("Your playtest perspective changed. Try again from the current player.", 409);
     asPlayer(room, controlled(room), action, body, now); return;
   }
@@ -113,25 +113,26 @@ export function mutatePlaytest(room: GameRoom, actor: GameActor, action: string,
   if (room.mode !== "teams" || !team) throw gameError("This scenario is available in a team race.");
   if (action === "test-team-ready") {
     const body = { questionId: room.questions[team.index]?.question.id, index: team.index, step: team.step ?? 0, draftVersion: team.draftVersion ?? 0 };
-    for (const teammate of room.players.filter(item => item.id !== player.id && item.teamId === team.id)) asPlayer(room, teammate, "vote", body, now);
+    for (const teammate of activeTeamPlayers(room, team.id).filter(item => item.id !== player.id)) asPlayer(room, teammate, "vote", body, now);
     return;
   }
   if (action === "test-teammate") {
-    const teammate = room.players.find(item => item.id !== player.id && item.teamId === team.id);
+    const teammate = activeTeamPlayers(room, team.id).find(item => item.id !== player.id);
     if (!teammate) throw gameError("Assign a second simulated player to your team first.");
     answerFor(room, teammate, true, now, "draft"); return;
   }
   if (!room.party) throw gameError("Create a playtest with Party mode enabled to try the sabotage shop.");
   if (action === "test-coins") { grantCoins(team, 1); return; }
   if (action === "test-sabotage") {
-    const opponent = room.teams.find(item => item.id !== team.id && item.index < room.questions.length && item.blockedUntil <= now && !hasActiveInk(item, now));
-    const opponentPlayer = room.players.find(item => item.teamId === opponent?.id);
+    const opponent = room.teams.find(item => item.id !== team.id && item.index < room.questions.length && item.blockedUntil <= now && !hasActiveInk(item, now) && activeTeamPlayers(room, item.id).length > 0);
+    const opponentPlayer = opponent && activeTeamPlayers(room, opponent.id)[0];
     if (!opponent || !opponentPlayer) throw gameError("An active opposing team is needed to simulate sabotage.");
     const boosterId = String(body.boosterId ?? "ink-bomb");
     const definition = GAME_BOOSTERS.find(item => item.id === boosterId);
     if (!definition) throw gameError("Choose an available sabotage.");
     grantCoins(opponent, definition.cost);
-    asPlayer(room, opponentPlayer, "buy-sabotage", { boosterId, teamId: team.id }, now); return;
+    asPlayer(room, opponentPlayer, "buy-sabotage", { boosterId }, now);
+    asPlayer(room, opponentPlayer, "use-sabotage", { boosterId, teamId: team.id }, now); return;
   }
   throw gameError("Choose a valid playtest scenario.");
 }
@@ -147,11 +148,14 @@ function runBots(room: GameRoom, now: number) {
   } else {
     for (const [index, team] of room.teams.entries()) {
       if (team.id === player?.teamId || team.index >= room.questions.length || team.blockedUntil > now || hasActiveInk(team, now) || room.phase !== "question") continue;
-      const bot = room.players.find(item => item.teamId === team.id);
+      const bot = activeTeamPlayers(room, team.id)[0];
       if (!bot) continue;
       answerFor(room, bot, (team.index + index) % 5 !== 4, now, "answer", true);
-      const target = room.teams.find(item => item.id === player?.teamId && item.index < room.questions.length && item.blockedUntil <= now && !hasActiveInk(item, now) && !item.landmine);
-      if (room.phase === "question" && room.party && teamCoins(team) > 0 && team.index < room.questions.length && team.blockedUntil <= now && target) asPlayer(room, bot, "buy-sabotage", { boosterId: "ink-bomb", teamId: target.id }, now);
+      const target = room.teams.find(item => item.id === player?.teamId && item.index < room.questions.length && item.blockedUntil <= now && !hasActiveInk(item, now) && !item.landmine && activeTeamPlayers(room, item.id).length > 0);
+      if (room.phase === "question" && room.party && team.index < room.questions.length && team.blockedUntil <= now && target) {
+        if (!((team.inventory?.["ink-bomb"] ?? 0) > 0) && teamCoins(team) > 0) asPlayer(room, bot, "buy-sabotage", { boosterId: "ink-bomb" }, now);
+        if ((team.inventory?.["ink-bomb"] ?? 0) > 0) asPlayer(room, bot, "use-sabotage", { boosterId: "ink-bomb", teamId: target.id }, now);
+      }
     }
   }
 }

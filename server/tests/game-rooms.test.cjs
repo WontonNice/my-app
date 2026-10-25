@@ -48,6 +48,9 @@ test('private playtest can enable the shop, grant coins and purchase sabotage wi
  assert.equal(mine.coins,1);assert.equal(mine.streak,0);
  room=(await act(room,'teacher','buy-sabotage',{boosterId:'ink-bomb',teamId:opponent.id,playtestPlayerId:room.me.id})).data.room;
  assert.equal(room.teams.find(item=>item.id===mine.id).coins,0);
+ assert.equal(room.teams.find(item=>item.id===mine.id).inventory['ink-bomb'],1);
+ assert.equal(room.teams.find(item=>item.id===opponent.id).inkBomb,undefined);
+ room=(await act(room,'teacher','use-sabotage',{boosterId:'ink-bomb',teamId:opponent.id,playtestPlayerId:room.me.id})).data.room;
  assert.ok(room.teams.find(item=>item.id===opponent.id).inkBomb.expiresAt>Date.now());
  assert.equal((await act(room,'teacher','buy-sabotage',{boosterId:'ink-bomb',teamId:opponent.id,playtestPlayerId:room.me.id})).status,400);
 });
@@ -76,6 +79,7 @@ test('team assignment, concurrent shared answers and server-enforced sabotage su
  for(let index=0;index<2;index++){maya=await choose(room,'maya');assert.equal((await act(room,'maya','vote',vote(maya))).status,200);}
  maya=(await call(`/${room.id}`,'maya')).data.room;const own=maya.teams.find(team=>team.id===maya.me.teamId),target=maya.teams.find(team=>team.id!==own.id);assert.equal(own.score,3);assert.equal(own.coins,1);
  assert.equal((await act(room,'maya','buy-sabotage',{boosterId:'ink-bomb',teamId:target.id})).status,200);assert.equal((await act(room,'maya','buy-sabotage',{boosterId:'ink-bomb',teamId:target.id})).status,400);
+ assert.equal((await act(room,'maya','use-sabotage',{boosterId:'ink-bomb',teamId:target.id})).status,200);
  let jordan=(await call(`/${room.id}`,'jordan')).data.room;assert.ok(jordan.teams.find(team=>team.id===target.id).inkBomb.expiresAt>Date.now());assert.equal((await act(room,'jordan','answer',answer(jordan))).status,409);
  fixture.rows.find(row=>row.id===room.id).payload.teams.find(team=>team.id===target.id).inkBomb.expiresAt=Date.now()-1;
  jordan=await choose(room,'jordan');assert.equal((await act(room,'jordan','vote',vote(jordan))).status,200);
@@ -137,6 +141,7 @@ test('one teacher can test teammate selections, stale perspective protection, st
  room=(await call(`/${room.id}`)).data.room;
  assert.equal(room.teams.find(team=>team.id===pilot.teamId).coins,1);
  assert.equal((await act(room,'teacher','buy-sabotage',{boosterId:'ink-bomb',teamId:opponent.teamId,playtestPlayerId:teammate.id})).status,200);
+ assert.equal((await act(room,'teacher','use-sabotage',{boosterId:'ink-bomb',teamId:opponent.teamId,playtestPlayerId:teammate.id})).status,200);
  room=(await act(room,'teacher','test-control',{playerId:opponent.id})).data.room;
  assert.ok(room.teams.find(team=>team.id===opponent.teamId).inkBomb.expiresAt>Date.now());
  assert.equal((await act(room,'teacher','test-answer',{correct:true})).status,409);

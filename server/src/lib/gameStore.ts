@@ -96,9 +96,9 @@ export async function updateGame(id: string, actor: GameActor, action?: string, 
     // autoplay cannot race an automatic answer from the same simulated player.
     let simulated = false;
     if (action) {
-      if (expired && ["answer", "draft", "vote", "unvote", "review", "sabotage", "booster", "buy-sabotage", "clear-ink", "test-answer", "test-step", "test-teammate", "test-team-ready", "test-sabotage"].includes(action)) {
+      if (expired && ["answer", "draft", "vote", "unvote", "review", "sabotage", "booster", "buy-sabotage", "use-sabotage", "clear-ink", "test-answer", "test-step", "test-teammate", "test-team-ready", "test-sabotage"].includes(action)) {
         // Persist the deadline transition before returning the refreshed view.
-      } else if (action.startsWith("test-") || room.playtest && ["answer", "draft", "vote", "unvote", "review", "sabotage", "booster", "buy-sabotage", "clear-ink"].includes(action)) mutatePlaytest(room, actor, action, body, now);
+      } else if (action.startsWith("test-") || room.playtest && ["answer", "draft", "vote", "unvote", "review", "sabotage", "booster", "buy-sabotage", "use-sabotage", "clear-ink"].includes(action)) mutatePlaytest(room, actor, action, body, now);
       else mutateGame(room, actor, action, body, now);
       if (room.playtest && action === "start") room.playtest.nextBotAt = now + 12000;
     }

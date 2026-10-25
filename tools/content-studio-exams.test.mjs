@@ -300,6 +300,8 @@ test('new exams are locked, registered, editable, unique, and protected by edito
         ...(index === 0 ? {
           explanation: 'The keyed answer is supported by the passage.',
           explanationHtml: '<p>The keyed answer is <strong>supported</strong> by the passage.</p>',
+          instructions: 'Choose the best answer.',
+          instructionsHtml: 'Choose the <strong>best</strong> answer.',
         } : {}),
         id: `passage-${index + 1}`,
         topic: 'Sentence Structure',
@@ -316,6 +318,7 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.equal(version.section, 'revising_editing_a');
     assert.equal(version.questions[0].explanation, 'The keyed answer is supported by the passage.');
     assert.equal(version.questions[0].explanationHtml, '<p>The keyed answer is <strong>supported</strong> by the passage.</p>');
+    assert.equal(version.questions[0].instructionsHtml, 'Choose the <strong>best</strong> answer.');
     assert.equal(version.directions.title, 'REVISING/EDITING PART A');
     const glossaryHtml = '<p>First <span data-glossary-definition="A &quot;story&quot; &amp; &lt;series&gt;." role="link" tabindex="0">serial</span>.</p><p>Second serial.</p>';
     assert.equal(version.richText, glossaryHtml);
@@ -323,7 +326,12 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.equal(reopenedVersion.richText, glossaryHtml);
     assert.equal(reopenedVersion.text, 'First serial.\n\nSecond serial.');
     assert.equal(reopenedVersion.passageCategory, 'prestige');
+    assert.equal(reopenedVersion.questions[0].instructionsHtml, 'Choose the <strong>best</strong> answer.');
+    reopenedVersion.questions[0].instructions = '';
+    reopenedVersion.questions[0].instructionsHtml = '';
     const editedVersion = await studio.savePassage({ ...reopenedVersion, passageCategory: 'official_handbook' });
+    assert.equal(editedVersion.questions[0].instructions, undefined);
+    assert.equal(editedVersion.questions[0].instructionsHtml, undefined);
     assert.equal(editedVersion.passageCategory, 'official_handbook');
     assert.equal((await studio.getState()).passages.find(passage => passage.id === version.id).passageCategory, 'official_handbook');
     assert.equal((reopenedVersion.richText.match(/data-glossary-definition/g) || []).length, 1);

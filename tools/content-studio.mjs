@@ -853,6 +853,7 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
   const explanation = typeof question.explanation === "string" ? question.explanation : "";
   const explanationHtml = sanitizeRichText(question.explanationHtml);
   const promptHtml = sanitizeInlineRichText(question.promptHtml);
+  const instructionsHtml = sanitizeInlineRichText(question.instructionsHtml);
   const baseQuestion = {
     id,
     ...(explanation ? { explanation } : {}),
@@ -860,6 +861,7 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
     points: Number.isFinite(Number(question.points)) ? Math.max(1, Number(question.points)) : 1,
     prompt: allowIncomplete ? String(question.prompt || "") : requiredText(question.prompt, `Question ${index + 1}`, { preserve: true }),
     ...(question.instructions ? { instructions: question.instructions } : {}),
+    ...(instructionsHtml ? { instructionsHtml } : {}),
     ...(question.stimulus ? { stimulus: question.stimulus } : {}),
     ...(question.image ? { image: normalizePassageImage(question.image, `Question ${index + 1}`) } : {}),
     ...(promptHtml ? { promptHtml } : {}),

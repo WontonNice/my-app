@@ -2329,6 +2329,7 @@ Why D is wrong."></textarea>
                     <strong>Study Hall book cover <small class="field-note">Recommended: 900 × 1200 px (3:4 portrait) · shown behind the standard cover text</small></strong>
                     <div class="image-editor-actions">
                       <label class="secondary">Choose cover<input accept=".svgz,image/gif,image/jpeg,image/png,image/svg+xml,image/webp" id="passage-cover-file" type="file"></label>
+                      <button class="secondary" id="paste-passage-cover" type="button">Paste cover</button>
                       ${passage.coverImage ? `<button class="danger" id="remove-passage-cover" type="button">Remove cover</button>` : ""}
                     </div>
                     <label class="field"><span>Cover description for accessibility</span><input data-cover-image-field="alt" ${passage.coverImage ? "" : "disabled"} value="${escapeHtml(passage.coverImage?.alt || "")}" placeholder="Describe the book cover"></label>
@@ -2342,6 +2343,7 @@ Why D is wrong."></textarea>
                     <strong>Passage image <small class="field-note">Shown inside the passage · PNG, JPEG, GIF, WebP, or SVGZ up to 5 MB</small></strong>
                     <div class="image-editor-actions">
                       <label class="secondary">Choose image<input accept=".svgz,image/gif,image/jpeg,image/png,image/svg+xml,image/webp" id="passage-image-file" type="file"></label>
+                      <button class="secondary" id="paste-passage-image" type="button">Paste image</button>
                       ${passage.image ? `<button class="danger" id="remove-passage-image" type="button">Remove image</button>` : ""}
                     </div>
                     <label class="field"><span>Image description for accessibility</span><input data-image-field="alt" ${passage.image ? "" : "disabled"} value="${escapeHtml(passage.image?.alt || "")}" placeholder="Describe what the image shows"></label>
@@ -2387,6 +2389,7 @@ Why D is wrong."></textarea>
       studioUI.showAllQuestions = false;
       renderQuestionsV2();
       bindRichEditors($("#passage-rich-editor").closest(".rich-editor-shell"));
+      studioImages.bind($("#passage-rich-editor").closest(".rich-editor-shell"));
       $("#edit-passage-definition").addEventListener("mousedown", (event) => event.preventDefault());
       $("#edit-passage-definition").addEventListener("click", () => openPassageDefinition());
       renderPassageDefinitionList();
@@ -2681,6 +2684,7 @@ Why D is wrong."></textarea>
           event.preventDefault();
           const pastedImage = studioImages.fileFromPaste(event);
           if (pastedImage && editor.dataset.richKind?.startsWith('math-')) { studioImages.insert(editor, pastedImage); return; }
+          if (pastedImage && editor.dataset.richKind === 'passage') { studioImages.insert(editor, pastedImage); return; }
           const richHtml = event.clipboardData?.getData("text/html");
           const plainText = event.clipboardData?.getData("text/plain") || "";
           const blockRichKinds = new Set([
@@ -2852,7 +2856,7 @@ Why D is wrong."></textarea>
           setStatus(`Add the passage title before uploading its ${imageRole === "cover" ? "book cover" : "image"}.`, "error");
           return;
         }
-        const passageId = app.passageDraft.id;
+        const passage = app.passageDraft, passageId = passage.id;
         const draftKey = imageRole === "cover" ? "coverImage" : "image";
         const assetLabel = imageRole === "cover" ? "book cover" : "passage image";
         setStatus(`Copying the ${assetLabel} into the app…`);
@@ -2873,6 +2877,7 @@ Why D is wrong."></textarea>
             }),
             method: "POST",
           });
+          if (app.passageDraft !== passage) { setStatus('The image uploaded, but the passage changed. Paste again in the intended passage.'); return; }
           app.passageDraft[draftKey] = {
             alt: app.passageDraft[draftKey]?.alt || `${app.passageDraft.title || "Passage"} ${imageRole === "cover" ? "book cover" : "illustration"}`,
             ...(imageRole === "passage" ? { caption: app.passageDraft.image?.caption || "" } : {}),
@@ -2893,6 +2898,12 @@ Why D is wrong."></textarea>
         const file = event.target.files?.[0];
         uploadPassageAsset(file, "passage");
       });
+      for (const [id, role] of [['paste-passage-image', 'passage'], ['paste-passage-cover', 'cover']]) {
+        document.getElementById(id)?.addEventListener('click', async () => {
+          try { await uploadPassageAsset(await studioImages.clipboard(), role); }
+          catch (error) { setStatus(error.message, 'error'); }
+        });
+      }
       $$("[data-cover-image-field]", $("#passage-editor")).forEach((element) => {
         element.addEventListener("input", () => {
           if (!app.passageDraft.coverImage) return;
@@ -3376,7 +3387,7 @@ Why D is wrong."></textarea>
               </div>
               <form class="exam-question-panel">
                 <h1><span class="exam-rich-text">${question?.promptHtml || escapeHtml(question?.prompt || (authoring ? "" : "Add a question prompt to preview it."))}</span></h1>
-                ${question?.instructions ? `<p class="exam-question-instructions">${escapeHtml(question.instructions)}</p>` : ""}
+                ${question && (authoring || question.instructions || question.instructionsHtml) ? `<p class="exam-question-instructions">${inlineRichValue(question.instructionsHtml, question.instructions)}</p>` : ""}
                 ${studentQuestionMarkup(question)}
               </form>
             </section>
@@ -7108,6 +7119,7 @@ WRONG D:`;
       const target = $("#official-passage-target").value.trim();
       try {
         await studioUI.copyText(studioUI.buildOfficialPassagePrompt({
+          subject: "english",
           answerGuideLabel: $("#official-passage-answer-guide-label").value.trim(),
           hasAnswerGuide: $("#official-passage-has-answer-guide").checked,
           sourceLabel: $("#official-passage-source-label").value.trim(),

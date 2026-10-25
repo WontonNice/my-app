@@ -82,7 +82,7 @@ export function attachGameRealtime(server: Server, allowedOrigins: string[]) {
           const token = String(message.token), actor = await gameUser(`Bearer ${token}`), room = await fetchGame(String(message.roomId));
           const observer = typeof message.teamId === "string" ? message.teamId : undefined;
           const view = gameView(room, actor, Date.now(), observer), teamId = observer ?? view.me?.teamId;
-          if (room.mode !== "teams" || room.phase !== "question" || !teamId || room.playtest && !observer && message.playtestPlayerId !== view.me?.id) throw new Error("No active team to watch");
+          if (room.mode !== "teams" || room.phase !== "question" || !teamId || view.me?.excusedAt || room.playtest && !observer && message.playtestPlayerId !== view.me?.id) throw new Error("No active team to watch");
           if (ws.readyState !== WebSocket.OPEN) return;
           const player = view.me, colorIndex = room.players.findIndex(item => item.id === player?.id);
           peer = { ws, token, teamId, observer, playerId: player?.id ?? null, alive: true, presence: player ? { peerId: randomUUID(), playerId: player.id, teamId, name: player.name, color: colors[Math.max(0, colorIndex) % colors.length], cursor: null } : null };
@@ -116,7 +116,7 @@ export function attachGameRealtime(server: Server, allowedOrigins: string[]) {
         peer.alive = false; peer.ws.ping();
         void (async () => {
           const actor = await gameUser(`Bearer ${peer.token}`), room = await fetchGame(hub.id), view = gameView(room, actor, Date.now(), peer.observer);
-          if (room.phase !== "question" || !peer.observer && (view.me?.id !== peer.playerId || view.me?.teamId !== peer.teamId)) throw new Error("Team access changed");
+          if (room.phase !== "question" || view.me?.excusedAt || !peer.observer && (view.me?.id !== peer.playerId || view.me?.teamId !== peer.teamId)) throw new Error("Team access changed");
           if (peer.presence) await signal(hub, { kind: "presence", presence: peer.presence });
         })().catch(() => peer.ws.close(4003, "Team access changed"));
       }

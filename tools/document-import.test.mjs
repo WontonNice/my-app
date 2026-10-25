@@ -174,8 +174,13 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.equal((await browserApi('/api/document-drafts')).entries.length, 0);
     assert.equal(browserSession.token, state.editToken);
     assert.equal((await call('/api/document-drafts', { source: '{broken-json' })).status, 400);
-    let imported = (await call('/api/document-drafts', { source: JSON.stringify(fixture) })).data;
+    const vocabularyFixture = structuredClone(fixture);
+    const glossaryDefinition = 'a record of &quot;items&quot; &amp; totals';
+    vocabularyFixture.passages[0].richText = fixture.passages[0].text.split('\n\n')
+      .map(paragraph => `<p>${paragraph.replace('ledger', `<span data-glossary-definition="${glossaryDefinition}" role="link" tabindex="0">ledger</span>`)}</p>`).join('');
+    let imported = (await call('/api/document-drafts', { source: JSON.stringify(vocabularyFixture) })).data;
     assert.equal(imported.entries.length, 3);
+    assert.equal(imported.entries[0].content.richText, vocabularyFixture.passages[0].richText);
     assert.equal((await browserApi('/api/document-drafts')).entries.length, 3);
     assert.equal((await studio.getState()).passages.some(p => p.title === fixture.passages[0].title), false);
     const prose = imported.entries[0];
@@ -190,6 +195,7 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.equal(published.status, 201, JSON.stringify(published.data));
     const reopened = (await studio.getState()).passages.find(p => p.id === prose.content.id);
     assert.equal(reopened.text, fixture.passages[0].text);
+    assert.equal(reopened.richText, vocabularyFixture.passages[0].richText);
     assert.equal(reopened.author, fixture.passages[0].author);
     assert.equal(reopened.byline, prose.content.byline);
     assert.equal(reopened.subtitle, prose.content.subtitle);
@@ -200,6 +206,7 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     const student = books.find(b => b.id === prose.content.id).passageSet;
     assert.ok(student.passage.lines.some(line => line.text === fixture.passages[0].text.split('\n\n')[0]));
     assert.equal(student.questions[0].correctChoiceId, 'B');
+    assert.ok(student.passage.lines.some(line => line.html?.includes(`data-glossary-definition="${glossaryDefinition}" role="link" tabindex="0">ledger</span>`)));
     assert.deepEqual(student.passage.lines.filter(line => line.lineNumber).map(line => line.lineNumber), ['1', '2', '3']);
     assert.ok(student.passage.lines.some(line => line.text === 'translated by Mira Vale'));
     assert.ok(student.passage.lines.some(line => line.text === prose.content.subtitle));
@@ -383,6 +390,14 @@ test('Content Studio inline scripts and review UI parse; the reusable prompt com
   assert.match(contract.prompt(taxonomy), /DO NOT solve, guess/);
   assert.match(contract.prompt(taxonomy), /NEVER generate an explanation/);
   assert.ok(contract.prompt(taxonomy).includes(JSON.stringify("\\(x^2\\)")));
+  const englishPrompt = contract.prompt(taxonomy, { subject: 'english' });
+  assert.match(englishPrompt, /English Language Arts section only/);
+  assert.match(englishPrompt, /blank or failed text extraction does NOT mean a blank PDF/);
+  assert.match(englishPrompt, /data-glossary-definition/);
+  assert.match(englishPrompt, /COMPLETE passage AND ALL of its questions/);
+  assert.doesNotMatch(englishPrompt, /MATH BATCHES AND CONTINUATION|"mathInteractions"|"mathBatch"|"mathQuestions":/);
+  assert.match(contract.schema.passage.richText, /data-glossary-definition/);
+  assert.match(html, /buildOfficialPassagePrompt\(\{\s*subject: "english"/);
   assert.equal(publicationContent(approve(contract.parse(fixture)[0])).questions[0].review, undefined);
 });
 

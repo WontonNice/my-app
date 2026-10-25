@@ -107,6 +107,7 @@ test('ink bombs identify the attacking team after reconnect and reject frozen vo
   for (let i = 0; i < 3; i++) room = await bothReady(await draft(room));
   const target = room.teams.find(team => team.id !== own(room).id);
   assert.equal((await act(room, 'maya', 'buy-sabotage', { boosterId: 'ink-bomb', teamId: target.id })).status, 200);
+  assert.equal((await act(room, 'maya', 'use-sabotage', { boosterId:'ink-bomb', teamId:target.id })).status, 200);
   const victim = await read(room, 'jordan');
   assert.deepEqual(own(victim).sabotagedBy, { teamId: own(room).id, teamName: own(room).name, boosterId: 'ink-bomb' });
   assert.equal((await act(room, 'jordan', 'vote', ballot(victim))).status, 409);
@@ -122,7 +123,8 @@ async function attackMaya(id = 'ink-bomb', english = false, coins = 1) {
   const room = await race(english), victim = own(room), attacker = own(await read(room, 'jordan'));
   storedTeam(room, attacker.id).coins = coins;
   const result = await act(room, 'jordan', 'buy-sabotage', { boosterId: id, teamId: victim.id });
-  assert.equal(result.status, 200); return read(room);
+  assert.equal(result.status, 200);
+  assert.equal((await act(room, 'jordan', 'use-sabotage', {boosterId:id,teamId:victim.id})).status,200); return read(room);
 }
 
 test('three correct answers earn a shared coin, mistakes reset progress, and six earn two without granting sabotage', async () => {
@@ -144,7 +146,7 @@ test('shop validates ownership, balance, target and item; concurrent teammates c
   assert.equal((await act(room, 'maya', 'buy-sabotage', purchase)).status, 400);
   for (const token of ['teacher', 'outsider']) assert.equal((await act(room, token, 'buy-sabotage', purchase)).status, 403);
   for (let i = 0; i < 3; i++) room = await bothReady(await draft(room));
-  for (const invalid of [{...purchase, boosterId:'blackout'}, {...purchase, boosterId:'made-up'}, {...purchase,teamId:mine.id}, {...purchase,teamId:'missing'}]) {
+  for (const invalid of [{...purchase, boosterId:'blackout'}, {...purchase, boosterId:'made-up'}]) {
     assert.equal((await act(room, 'maya', 'buy-sabotage', invalid)).status, 400);
     assert.equal(own(await read(room)).coins, 1);
   }
@@ -152,26 +154,35 @@ test('shop validates ownership, balance, target and item; concurrent teammates c
   const purchases = await Promise.all(['maya','alex'].map(token => act(room, token, 'buy-sabotage', purchase)));
   assert.deepEqual(purchases.map(result => result.status).sort(), [200,400]);
   room = await read(room); assert.equal(own(room).coins, 0);
-  assert.ok(own(await read(room, 'jordan')).inkBomb);
+  assert.equal(own(await read(room, 'jordan')).inkBomb, undefined);
+  assert.equal(own(room).inventory['ink-bomb'],1);
+  for(const teamId of [mine.id,'missing']) assert.equal((await act(room,'maya','use-sabotage',{boosterId:'ink-bomb',teamId})).status,400);
+  for(const token of ['teacher','outsider','jordan']) assert.notEqual((await act(room,token,'use-sabotage',purchase)).status,200);
+  fixture.conflict(2);
+  const uses=await Promise.all(['maya','alex'].map(token=>act(room,token,'use-sabotage',purchase)));
+  assert.deepEqual(uses.map(result=>result.status).sort(),[200,400]);
+  assert.deepEqual(own(await read(room)).inventory,{});
+  assert.ok(own(await read(room,'jordan')).inkBomb);
 });
 
-test('ink cleanup is shared, deduplicated and persisted; only five distinct current splats unlock the team', async () => {
+test('ink cleanup is shared, deduplicated and persisted; only seven distinct current splats unlock the team', async () => {
   let room = await attackMaya('ink-bomb', false, 2), ink = own(room).inkBomb;
-  assert.ok(ink.expiresAt - room.serverNow <= 8000 && ink.expiresAt - room.serverNow > 7000);
+  assert.ok(ink.expiresAt - room.serverNow <= 30000 && ink.expiresAt - room.serverNow > 29000);
   const clear = splat => ({ inkId: ink.id, splat });
   assert.equal((await act(room, 'teacher', 'clear-ink', clear(0))).status, 403);
   assert.equal((await act(room, 'jordan', 'clear-ink', clear(0))).status, 409);
-  for (const splat of [-1, 5, 1.5, '0']) assert.equal((await act(room, 'maya', 'clear-ink', clear(splat))).status, 400);
+  for (const splat of [-1, 7, 1.5, '0']) assert.equal((await act(room, 'maya', 'clear-ink', clear(splat))).status, 400);
   assert.equal((await act(room, 'maya', 'clear-ink', { ...clear(0), inkId:'old' })).status, 409);
   assert.equal((await act(room, 'maya', 'draft', { questionId:room.current.question.id, index:0, answer:'A' })).status, 409);
   fixture.conflict(2);
   await Promise.all(['maya','alex','maya'].map(token => act(room, token, 'clear-ink', clear(0))));
   assert.deepEqual(own(await read(room, 'alex')).inkBomb.clearedSplats, [0]);
-  for (let splat = 1; splat < 4; splat++) assert.equal((await act(room, 'alex', 'clear-ink', clear(splat))).status, 200);
+  for (let splat = 1; splat < 6; splat++) assert.equal((await act(room, 'alex', 'clear-ink', clear(splat))).status, 200);
   assert.equal((await act(room, 'maya', 'vote', ballot(room))).status, 409);
-  assert.equal((await act(room, 'maya', 'clear-ink', clear(4))).status, 200);
+  assert.equal((await act(room, 'maya', 'clear-ink', clear(6))).status, 200);
   room = await bothReady(await draft(room)); assert.equal(own(room).index, 1);
-  assert.equal((await act(room, 'jordan', 'buy-sabotage', { boosterId:'ink-bomb', teamId:own(room).id })).status, 200);
+  assert.equal((await act(room, 'jordan', 'buy-sabotage', { boosterId:'ink-bomb' })).status, 200);
+  assert.equal((await act(room, 'jordan', 'use-sabotage', { boosterId:'ink-bomb', teamId:own(room).id })).status, 200);
   assert.equal((await act(room, 'maya', 'clear-ink', clear(0))).status, 409);
   assert.deepEqual(own(await read(room)).inkBomb.clearedSplats, []);
 });
@@ -179,11 +190,13 @@ test('ink cleanup is shared, deduplicated and persisted; only five distinct curr
 test('ink expires on the server without clicks and cannot be stacked or refreshed by another purchase', async () => {
   let room = await attackMaya('ink-bomb', false, 2), victim = own(room), jordan = own(await read(room, 'jordan'));
   const expiresAt = victim.inkBomb.expiresAt;
-  assert.equal((await act(room, 'jordan', 'buy-sabotage', { boosterId:'ink-bomb', teamId:victim.id })).status, 400);
-  assert.equal(own(await read(room, 'jordan')).coins, 1); assert.equal(own(await read(room)).inkBomb.expiresAt, expiresAt);
+  assert.equal((await act(room, 'jordan', 'buy-sabotage', { boosterId:'ink-bomb' })).status, 200);
+  assert.equal((await act(room, 'jordan', 'use-sabotage', { boosterId:'ink-bomb', teamId:victim.id })).status, 400);
+  assert.equal(own(await read(room,'jordan')).inventory['ink-bomb'],1);
+  assert.equal(own(await read(room, 'jordan')).coins, 0); assert.equal(own(await read(room)).inkBomb.expiresAt, expiresAt);
   storedTeam(room, victim.id).inkBomb.expiresAt = Date.now() - 1;
   room = await bothReady(await draft(room)); assert.equal(own(room).index, 1);
-  assert.equal(storedTeam(room, jordan.id).coins, 1);
+  assert.equal(storedTeam(room, jordan.id).coins, 0);
 });
 
 test('landmine remains hidden on the next question, then a wrong answer triggers exactly five seconds and attribution', async () => {
@@ -223,13 +236,17 @@ test('legacy blackout inventory becomes coins; invalid targets and disabled part
   const saved = storedTeam(room, mine.id); delete saved.coins; saved.boosters = 2; saved.inventory = {blackout:2};
   assert.equal(own(await read(room)).coins, 2);
   storedTeam(room, target.id).index = room.totalQuestions - 1;
-  assert.equal((await act(room, 'maya', 'buy-sabotage', {boosterId:'landmine',teamId:target.id})).status, 400);
-  assert.equal(own(await read(room)).coins, 2);
+  assert.equal((await act(room, 'maya', 'buy-sabotage', {boosterId:'landmine'})).status, 200);
+  assert.equal((await act(room, 'maya', 'use-sabotage', {boosterId:'landmine',teamId:target.id})).status, 400);
+  assert.equal(own(await read(room)).coins, 1);
+  assert.equal(own(await read(room)).inventory.landmine, 1);
   fixture.rows.find(row => row.id === room.id).payload.party = false;
   assert.equal((await act(room, 'maya', 'buy-sabotage', {boosterId:'ink-bomb',teamId:target.id})).status, 400);
   fixture.rows.find(row => row.id === room.id).payload.party = true;
   assert.equal((await act(room, 'maya', 'buy-sabotage', {boosterId:'ink-bomb',teamId:target.id})).status, 200);
-  room = await read(room); assert.equal(own(room).coins, 1); assert.equal(storedTeam(room, mine.id).boosters, 0); assert.deepEqual(storedTeam(room, mine.id).inventory, {});
+  room = await read(room); assert.equal(own(room).coins, 0); assert.equal(storedTeam(room, mine.id).boosters, 0); assert.deepEqual(storedTeam(room, mine.id).inventory, {landmine:1,'ink-bomb':1});
+  assert.equal((await act(room,'maya','use-sabotage',{boosterId:'ink-bomb',teamId:target.id})).status,200);
+  assert.deepEqual(own(await read(room)).inventory,{landmine:1});
 });
 async function connect(t, room, token, teamId, instance = 0) {
   const ws = new WebSocket(roots[instance].replace('http:', 'ws:') + '/live');
@@ -240,6 +257,72 @@ async function connect(t, room, token, teamId, instance = 0) {
   await waitFor(() => closed || messages.some(message => message.type === 'ready'));
   return { ws, messages, closed, latest: () => messages.filter(message => message.type === 'presence').at(-1)?.peers ?? [] };
 }
+
+test('host can excuse and restore a departing teammate without losing progress or allowing stale votes', async t => {
+  let room = await bothReady(await draft(await race()));
+  room = await draft(room); const stale = ballot(room), original = own(room);
+  await act(room,'maya','vote',stale);
+  for (const token of ['maya','alex','outsider','otherTeacher']) {
+    assert.equal((await act(room,token,'set-participation',{playerId:fixture.users.alex.id,active:false})).status,403);
+  }
+  assert.equal((await act(room,'teacher','set-participation',{playerId:'missing',active:false})).status,400);
+  assert.equal((await act(room,'teacher','set-participation',{playerId:fixture.users.alex.id,active:'false'})).status,400);
+  fixture.conflict(2);
+  assert.equal((await act(room,'teacher','set-participation',{playerId:fixture.users.alex.id,active:false})).status,200);
+  room = await read(room);
+  assert.equal(own(room).index,original.index); assert.equal(own(room).score,original.score);
+  assert.deepEqual(own(room).drafts,original.drafts); assert.deepEqual(own(room).readyIds,[]);
+  assert.ok(room.players.find(player=>player.id===fixture.users.alex.id).excusedAt);
+  assert.equal((await act(room,'maya','vote',stale)).status,409);
+  const absent = await read(room,'alex'); assert.ok(absent.me.excusedAt);
+  for (const action of ['draft','vote','review','unvote','buy-sabotage','use-sabotage','clear-ink']) assert.equal((await act(room,'alex',action,ballot(room))).status,403);
+  const cursor = await connect(t,room,'alex'); assert.equal(cursor.closed,4003);
+  assert.ok((await call('/join','alex','POST',{code:room.code})).data.room.me.excusedAt);
+  assert.equal((await act(room,'maya','vote',ballot(room))).status,200);
+  room = await read(room); assert.equal(own(room).index,2); assert.equal(own(room).score,2);
+  room = await draft(room); const beforeReturn = ballot(room);
+  assert.equal((await act(room,'teacher','set-participation',{playerId:fixture.users.alex.id,active:true})).status,200);
+  assert.equal((await act(room,'maya','vote',beforeReturn)).status,409);
+  room = await read(room); assert.equal(room.players.find(player=>player.id===fixture.users.alex.id).excusedAt,undefined);
+  await act(room,'maya','vote',ballot(room));
+  assert.equal(own(await read(room)).index,2);
+  room = await bothReady(room); assert.equal(own(room).index,3); assert.equal(own(room).coins,1);
+});
+
+test('departure during a passage keeps its answers and remaining teammate can finish every step', async () => {
+  let room = await bothReady(await draft(await race(true)));
+  await act(room,'teacher','set-participation',{playerId:fixture.users.alex.id,active:false});
+  room = await draft(room,'A',1);
+  room = (await act(room,'maya','vote',ballot(room))).data.room;
+  assert.equal(own(room).step,2); assert.equal(own(room).score,0);
+  room = (await act(room,'maya','vote',ballot(room))).data.room;
+  assert.equal(own(room).score,2); assert.equal(own(room).index,2);
+});
+
+test('fully absent teams cannot be targeted and do not prevent the remaining team from finishing', async () => {
+  let room = await race();
+  await act(room,'teacher','set-participation',{playerId:fixture.users.jordan.id,active:false});
+  storedTeam(room,own(room).id).coins = 1;
+  assert.equal((await act(room,'maya','buy-sabotage',{boosterId:'ink-bomb'})).status,200);
+  assert.equal((await act(room,'maya','use-sabotage',{boosterId:'ink-bomb',teamId:'team-2'})).status,400);
+  assert.equal(own(await read(room)).inventory['ink-bomb'],1);
+  for(let i=0;i<6;i++) room=await bothReady(await draft(room));
+  assert.equal(room.phase,'finished'); assert.equal(room.teams[1].index,0);
+  assert.deepEqual(room.winners,[own(room).id]);
+});
+
+test('inventory survives reconnects, new coins and other purchases until explicitly used', async () => {
+  let room=await race(); storedTeam(room,own(room).id).coins=2;
+  for(const boosterId of ['landmine','ink-bomb']) assert.equal((await act(room,'maya','buy-sabotage',{boosterId,teamId:'team-2'})).status,200);
+  room=await read(room,'alex'); assert.deepEqual(own(room).inventory,{landmine:1,'ink-bomb':1});
+  assert.equal(room.teams[1].inkBomb,undefined); assert.equal(storedTeam(room,'team-2').landmine,undefined);
+  for(let i=0;i<3;i++) room=await bothReady(await draft(room));
+  assert.equal(own(room).coins,1); assert.deepEqual(own(room).inventory,{landmine:1,'ink-bomb':1});
+  assert.equal((await act(room,'alex','use-sabotage',{boosterId:'landmine',teamId:'team-2'})).status,200);
+  room=await read(room); assert.equal(own(room).coins,1); assert.deepEqual(own(room).inventory,{'ink-bomb':1});
+  assert.equal((await act(room,'maya','use-sabotage',{boosterId:'ink-bomb',teamId:'team-2'})).status,400);
+  assert.deepEqual(own(await read(room)).inventory,{'ink-bomb':1});
+});
 test('live cursors cross server instances, stay inside the team, and are visible to the observing host', async t => {
   const room = await race(), teamId = own(room).id;
   const maya = await connect(t, room, 'maya'), alex = await connect(t, room, 'alex', undefined, 1), jordan = await connect(t, room, 'jordan');

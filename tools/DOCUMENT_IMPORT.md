@@ -13,6 +13,26 @@ The same prompt generator supplies the editor's copy actions. Regenerate it and
 the contract after taxonomy/schema changes with `npm run content-editor:prompt`.
 `npm run test:document-import` checks that the saved artifacts are synchronized.
 
+The passage import copy action selects English mode: it defaults to the English
+section, omits the Math batch contract, and includes scan/OCR checks and complete
+passage-sized JSON files. Supply a narrower scope when needed. A failed text
+extraction from a scanned PDF is not an empty source; rendered pages control the
+transcription. The original wording, meaningful emphasis, poem lines, continuation
+paragraphs, source footnotes and credits must be checked visually.
+
+Vocabulary uses the existing occurrence-level definition feature in `richText`:
+`<span data-glossary-definition="exact source definition" role="link" tabindex="0">exact term</span>`.
+Provide the complete rich passage and its plain-text counterpart. Match definitions
+to the marked occurrence, including multiword terms and continuation-page notes;
+HTML-escape definition attributes, then JSON-escape the rich text. Do not invent
+definitions or supply an unrelated vocabulary array. Vocabulary definitions appear
+only in the existing click-to-open Glossary Definition popup. Remove vocabulary
+footnote blocks and their numeric markers from both the passage body and its
+plain-text copy; do not repeat definitions in sourceNote. Ordinary non-vocabulary
+notes and credits can remain separately. The prompt audits every definition
+against its clickable annotation and checks that no definition is duplicated in
+visible passage text before returning JSON.
+
 ## Existing architecture found
 
 Content Studio is a local authoring tool (`tools/content-studio.mjs`, port 4319),

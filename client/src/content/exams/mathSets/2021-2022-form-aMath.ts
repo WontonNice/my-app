@@ -1488,7 +1488,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
         "text": "139.70"
       }
     ],
-    "correctChoiceId": "C",
+    "correctChoiceId": "D",
     "type": "multiple_choice"
   },
   {

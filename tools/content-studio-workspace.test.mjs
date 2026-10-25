@@ -357,7 +357,7 @@ test("universal prompt is the shared contract with source-only answers and compl
   const { app, ui } = setup();
   app.state = { topics: ["Central Idea & Theme", "Text Structure & Purpose"], mathTopics: ["Algebra"] };
   const prompt = ui.buildOfficialPassagePrompt({ target: "Entire packet", sourceLabel: "Fixture.pdf", answerGuideLabel: "Key.pdf" });
-  for (const text of ["Entire packet", "Fixture.pdf", "Key.pdf", "nathan-tutors-official-passage-v1", "DO NOT solve", "NEVER generate an explanation", "WHOLE passage", "sourceQuestion", "topicConfidence", "mathQuestions", "public-domain", "Return ONLY"]) assert.ok(prompt.includes(text), text);
+  for (const text of ["Entire packet", "Fixture.pdf", "Key.pdf", "nathan-tutors-official-passage-v1", "DO NOT solve", "NEVER generate an explanation", "WHOLE passage", "sourceQuestion", "topicConfidence", "mathQuestions", "user-provided document transcription", "Return ONLY"]) assert.ok(prompt.includes(text), text);
   assert.ok(prompt.includes('"Algebra"'));
   assert.doesNotMatch(prompt, /Solve each question carefully|generated from an official keyed answer/);
 });

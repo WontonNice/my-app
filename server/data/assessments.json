@@ -4918,7 +4918,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-10-24T10:56:24.515Z",
-    "updatedAt": "2026-10-24T13:15:01.728Z",
+    "updatedAt": "2026-10-25T00:09:17.130Z",
     "passages": [],
     "questions": [
       {
@@ -5729,7 +5729,7 @@
         "type": "multiple_choice"
       },
       {
-        "answer": "C",
+        "answer": "D",
         "choices": [
           "21.65",
           "119.38",

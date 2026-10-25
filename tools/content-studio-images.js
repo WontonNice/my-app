@@ -1,4 +1,4 @@
-/* Clipboard and cursor-position media reuse the existing math image API. */
+/* Clipboard and cursor-position media reuse the existing passage and math image APIs. */
 const studioImages = {
   fileFromPaste(event) {
     return Array.from(event.clipboardData?.items || []).find(item => item.kind === 'file' && item.type.startsWith('image/'))?.getAsFile();
@@ -12,28 +12,37 @@ const studioImages = {
     throw new Error('Copy an image or screenshot first, then paste it here.');
   },
   range(editor) {
-    const selection = getSelection();
+    const doc = editor.ownerDocument, selection = doc.getSelection();
     if (selection?.rangeCount && editor.contains(selection.getRangeAt(0).commonAncestorContainer)) return selection.getRangeAt(0).cloneRange();
     if (editor.studioSelection && editor.contains(editor.studioSelection.commonAncestorContainer)) return editor.studioSelection.cloneRange();
-    const range = document.createRange(); range.selectNodeContents(editor); range.collapse(false); return range;
+    const range = doc.createRange(); range.selectNodeContents(editor); range.collapse(false); return range;
   },
   async insert(editor, file, range = this.range(editor)) {
     if (!file || !editor.isConnected) return;
-    const question = app.mathDraft.questions[app.selectedMathQuestionIndex], assessmentId = app.selectedMathAssessmentId;
-    const marker = document.createElement('span'); marker.className = 'studio-image-upload'; marker.contentEditable = 'false'; marker.textContent = 'Uploading image…';
+    const passageImage = editor.dataset.richKind === 'passage' || Boolean(editor.closest('[data-author-block]'));
+    if (passageImage && !ensurePassageIdentity()) { setStatus('Add the passage title before pasting its image.', 'error'); return; }
+    const passage = passageImage ? app.passageDraft : null;
+    const question = passageImage ? null : app.mathDraft.questions[app.selectedMathQuestionIndex], assessmentId = app.selectedMathAssessmentId;
+    const doc = editor.ownerDocument;
+    const marker = doc.createElement('span'); marker.className = 'studio-image-upload'; marker.contentEditable = 'false'; marker.textContent = 'Uploading image…';
     // Inserting at a cloned range keeps the image at the intended line while the upload runs.
     range.collapse(false); range.insertNode(marker);
     setStatus('Uploading pasted image…');
     try {
       const dataUrl = await new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.onerror = () => reject(new Error('The image could not be read.')); reader.readAsDataURL(file); });
-      const data = await api('/api/math-images', { method: 'POST', body: JSON.stringify({assessmentId, questionId: question.id, dataUrl, fileName: file.name, mimeType: imageUploadMimeType(file), inline: true}) });
-      if (!editor.isConnected || app.mathDraft.questions[app.selectedMathQuestionIndex] !== question) { marker.remove(); setStatus('The image uploaded, but the question changed. Paste again in the intended question.'); return; }
-      const image = document.createElement('img'); image.src = data.image.src; image.alt = 'Math diagram'; image.width = 360;
-      marker.replaceWith(image);
-      const caret = document.createRange(); caret.setStartAfter(image); caret.collapse(true); editor.focus({preventScroll:true}); getSelection().removeAllRanges(); getSelection().addRange(caret);
+      const payload = passageImage
+        ? { passageId: `${passage.id}-inline-${Date.now()}-${this.uploadCounter = (this.uploadCounter || 0) + 1}`, imageRole: 'passage', dataUrl, fileName: file.name, mimeType: imageUploadMimeType(file) }
+        : { assessmentId, questionId: question.id, dataUrl, fileName: file.name, mimeType: imageUploadMimeType(file), inline: true };
+      const data = await api(passageImage ? '/api/images' : '/api/math-images', { method: 'POST', body: JSON.stringify(payload) });
+      if (!editor.isConnected || (passageImage ? app.passageDraft !== passage : app.mathDraft.questions[app.selectedMathQuestionIndex] !== question)) { marker.remove(); setStatus(`The image uploaded, but the ${passageImage ? 'passage' : 'question'} changed. Paste again in the intended ${passageImage ? 'passage' : 'question'}.`); return; }
+      const image = doc.createElement('img'); image.src = data.image.src; image.alt = passageImage ? 'Passage illustration' : 'Math diagram'; image.width = 360;
+      if (passageImage && editor.dataset.richKind === 'passage' && marker.parentNode === editor) {
+        const block = doc.createElement('p'); block.dataset.numbered = 'false'; block.append(image); marker.replaceWith(block);
+      } else marker.replaceWith(image);
+      const caret = doc.createRange(); caret.setStartAfter(image); caret.collapse(true); editor.focus({preventScroll:true}); doc.getSelection().removeAllRanges(); doc.getSelection().addRange(caret);
       editor.dispatchEvent(new Event('input', {bubbles:true}));
       this.inspect(editor, image);
-      setStatus('Image inserted at the cursor. Add a description below, then save the Math section.', 'success');
+      setStatus(`Image inserted at the cursor. Add a description, then save the ${passageImage ? 'passage' : 'Math section'}.`, 'success');
     } catch (error) { marker.remove(); setStatus(error.message, 'error'); }
   },
   linePositions(editor) {
@@ -116,7 +125,7 @@ const studioImages = {
       onPlaced?.();
       editor.dispatchEvent(new Event('input', {bubbles:true}));
       this.inspect(editor, image);
-      setStatus('Image moved between text lines. Save the Math section to keep this position.', 'success');
+      setStatus(`Image moved between text lines. Save the ${editor.dataset.richKind === 'passage' ? 'passage' : 'Math section'} to keep this position.`, 'success');
     };
     panel.querySelector('[data-image-cancel]').onclick = () => { finish(); panel.hidden = true; };
     panel.scrollIntoView({block:'nearest', behavior:'smooth'});
@@ -137,22 +146,34 @@ const studioImages = {
     });
   },
   inspect(editor, image) {
-    const panel = editor.closest('.rich-editor-shell').querySelector('.studio-inline-image-controls');
+    const shell = editor.closest('.rich-editor-shell');
+    let dialog;
+    if (!shell) {
+      dialog = document.getElementById('studio-passage-image-dialog');
+      if (!dialog) {
+        dialog = document.createElement('dialog'); dialog.id = 'studio-passage-image-dialog'; dialog.setAttribute('aria-label', 'Passage image options');
+        dialog.className = 'studio-passage-image-dialog'; dialog.innerHTML = '<h2>Passage image</h2><div class="studio-inline-image-controls"></div>';
+        document.body.append(dialog);
+      }
+    }
+    const panel = (shell || dialog)?.querySelector('.studio-inline-image-controls');
     if (!panel) return;
     panel.hidden = false;
     editor.studioImagePlacement?.();
     panel.innerHTML = '<label>Description <input aria-label="Inline image description"></label><label>Width <input aria-label="Inline image width" type="number" min="40" max="1200" step="10"></label><button type="button" data-image-move>Move between text lines</button><button type="button" data-image-remove>Remove image</button><button type="button" data-image-done>Done</button>';
+    panel.querySelector('[data-image-move]').hidden = !shell;
     const description = panel.querySelector('[aria-label="Inline image description"]'), width = panel.querySelector('[aria-label="Inline image width"]');
     description.value = image.alt; width.value = image.getAttribute('width') || '360';
     const changed = () => editor.dispatchEvent(new Event('input',{bubbles:true}));
     description.oninput = () => { image.alt = description.value; changed(); };
-    width.onchange = () => { image.width = Math.max(40, Math.min(1200, Number(width.value) || 360)); changed(); };
+    width.oninput = width.onchange = () => { image.width = Math.max(40, Math.min(1200, Number(width.value) || 360)); changed(); };
     panel.querySelector('[data-image-move]').onclick = () => this.move(editor, image);
-    panel.querySelector('[data-image-remove]').onclick = () => { (image.closest('figure') || image).remove(); panel.hidden = true; changed(); editor.focus(); };
-    panel.querySelector('[data-image-done]').onclick = () => { panel.hidden = true; editor.focus(); };
+    panel.querySelector('[data-image-remove]').onclick = () => { (image.closest('figure') || image).remove(); panel.hidden = true; dialog?.close(); changed(); editor.focus(); };
+    panel.querySelector('[data-image-done]').onclick = () => { panel.hidden = true; dialog?.close(); editor.focus(); };
+    if (dialog && !dialog.open) dialog.showModal();
   },
   bind(root) {
-    root.querySelectorAll('[data-rich-kind^="math-"]').forEach(editor => {
+    root.querySelectorAll('[data-rich-kind^="math-"], [data-rich-kind="passage"]').forEach(editor => {
       if (editor.dataset.imagesBound) return; editor.dataset.imagesBound = 'true';
       const shell = editor.closest('.rich-editor-shell'); if (!shell) return;
       const bar = document.createElement('div'); bar.className = 'studio-image-insert';

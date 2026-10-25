@@ -4,7 +4,7 @@ import type { SelectedAnswer } from "./examGrading";
 export type GameMode = "survival" | "teams";
 export type GamePhase = "lobby" | "question" | "reveal" | "finished";
 export type GameQuestion = { question: ExamQuestion; passage?: ExamPassage; subject: string };
-export type GamePlayer = { id: string; name: string; joinedAt: string; teamId: string | null; alive: boolean; score: number };
+export type GamePlayer = { id: string; name: string; joinedAt: string; teamId: string | null; alive: boolean; score: number; excusedAt?: string };
 export type SabotageSource = { teamId: string; teamName: string; boosterId: string };
 export type GameTeam = { id: string; name: string; index: number; score: number; streak: number; boosters: number; inventory?: Record<string, number>; coins?: number; blockedUntil: number; sabotagedBy?: SabotageSource; landmine?: { questionIndex: number; source: SabotageSource }; landmineResult?: { outcome: "disarmed" | "triggered"; at: number; source: SabotageSource }; inkBomb?: { id: string; expiresAt: number; clearedSplats: number[]; source: SabotageSource }; step?: number; draftVersion?: number; readyIds?: string[]; draft?: SelectedAnswer; drafts?: Record<string, SelectedAnswer>; answers: { questionId: string; answer: SelectedAnswer; correct: boolean; by: string }[] };
 export type GameCursor = { anchor: string; x: number; y: number; index: number; step: number };
@@ -45,13 +45,17 @@ export function gameUnit(questions: GameQuestion[], start: number): GameQuestion
 }
 
 export const GAME_COIN_STREAK = 3;
-export const INK_SPLATS = 5;
-/** Shop purchases are paid from the shared team wallet and immediately deployed. */
+export const INK_SPLATS = 7;
+/** Purchases enter shared inventory; using one requires a separate target selection. */
 export const GAME_BOOSTERS = [
   { id: "landmine", name: "Landmine", description: "Hide a trap on another team's next question. A correct answer disarms it; a wrong answer triggers a 5-second blackout.", cost: 1, durationSeconds: 5 },
-  { id: "ink-bomb", name: "Ink Bomb", description: "Cover another team's screens with 5 ink splats. They must click them all to clear the ink, or wait 8 seconds.", cost: 1, durationSeconds: 8 },
+  { id: "ink-bomb", name: "Ink Bomb", description: "Cover another team's screens with 7 ink splats. They must click them all to clear the ink, or wait 30 seconds.", cost: 1, durationSeconds: 30 },
 ] as const;
 
 export function hasActiveInk(team: Pick<GameTeam, "inkBomb">, now: number) {
   return Boolean(team.inkBomb && team.inkBomb.expiresAt > now && team.inkBomb.clearedSplats.length < INK_SPLATS);
+}
+
+export function activeTeamPlayers(room: Pick<GameRoom, "players">, teamId: string) {
+  return room.players.filter(player => player.teamId === teamId && !player.excusedAt);
 }

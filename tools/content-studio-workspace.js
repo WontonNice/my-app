@@ -1305,6 +1305,23 @@ Object.assign(studioUI, {
       if (editor?.closest('[data-author-block]')) openPassageDefinition(null, editor);
       else setStatus('Select a word in the passage to add a definition.', 'error');
     };
+    const removeParagraph = this.element('button', 'secondary', 'Delete paragraph');
+    removeParagraph.type = 'button'; removeParagraph.id = 'studio-exam-delete-paragraph';
+    removeParagraph.disabled = true; removeParagraph.hidden = app.passageDraft.format !== 'prose';
+    removeParagraph.onmousedown = event => event.preventDefault();
+    removeParagraph.onclick = () => this.deleteExamBlock(this.examActive);
+    direct.querySelector('.studio-direct-format').append(removeParagraph);
+    const pasteImage = this.element('button', 'secondary', 'Paste image');
+    pasteImage.type = 'button'; pasteImage.id = 'studio-exam-paste-image';
+    pasteImage.onmousedown = event => event.preventDefault();
+    pasteImage.onclick = async () => {
+      const editor = this.examActive?.isConnected && this.examActive.closest('[data-author-block]') ? this.examActive : [...frame.contentDocument.querySelectorAll('[data-author-block] > span:last-child')].at(-1);
+      if (!editor) { setStatus('Click in the passage where you want to paste the image.', 'error'); return; }
+      const range = studioImages.range(editor);
+      try { await studioImages.insert(editor, await studioImages.clipboard(), range); }
+      catch (error) { setStatus(error.message, 'error'); }
+    };
+    direct.querySelector('.studio-direct-format').append(pasteImage);
     for (const [redo, label] of [[false, 'Undo passage edit'], [true, 'Redo passage edit']]) {
       const button = this.element('button', 'secondary', redo ? '↷' : '↶'); button.type = 'button'; button.setAttribute('aria-label', label);
       button.onmousedown = event => event.preventDefault(); button.onclick = () => this.undoExamPassage(redo);
@@ -1450,13 +1467,14 @@ Object.assign(studioUI, {
     const editable = (node, key, onInput) => {
       if (!node) return;
       node.contentEditable = 'true'; node.dataset.examEdit = key; node.setAttribute('role', 'textbox');
-      node.setAttribute('aria-label', key); node.setAttribute('data-placeholder', key);
+      node.setAttribute('aria-label', key); node.setAttribute('data-placeholder', key === 'Exam question directions' ? 'Add directions (optional)' : key);
       node.addEventListener('focus', () => {
         this.examActive = node;
         document.querySelector('.studio-direct-format').dataset.context = node.closest('[data-author-block]') ? 'passage' : 'question';
         const select = document.querySelector('[aria-label="Exam paragraph style"]');
         select.disabled = draft.format !== 'prose' || !node.closest('[data-author-block]');
         document.getElementById('studio-exam-define').disabled = !node.closest('[data-author-block]');
+        document.getElementById('studio-exam-delete-paragraph').disabled = draft.format !== 'prose' || !node.closest('[data-author-block]');
         document.querySelectorAll('[data-exam-command]').forEach(button => button.disabled = !node.closest('[data-author-block]') && !key.startsWith('Exam '));
         const block = blocks[Number(node.closest('[data-author-block]')?.dataset.authorBlock)];
         if (block?.kind === 'list') {
@@ -1468,6 +1486,8 @@ Object.assign(studioUI, {
       node.addEventListener('input', () => { onInput(); this.examSignature = this.examRenderKey(); this.captureExamPosition(); });
       node.addEventListener('paste', event => {
         event.preventDefault();
+        const image = studioImages.fileFromPaste(event);
+        if (image && node.closest('[data-author-block]')) { studioImages.insert(node, image); return; }
         const html = event.clipboardData.getData('text/html');
         doc.execCommand('insertHTML', false, html ? sanitizePastedRichText(html, true) : escapeHtml(event.clipboardData.getData('text/plain')).replaceAll('\n', '<br>'));
         node.dispatchEvent(new Event('input', { bubbles: true }));
@@ -1484,6 +1504,13 @@ Object.assign(studioUI, {
         node.dispatchEvent(new Event('input', { bubbles: true }));
       });
       node.addEventListener('keydown', event => {
+        if (draft.format === 'prose' && ['Backspace', 'Delete'].includes(event.key) && !event.ctrlKey && !event.metaKey && !event.altKey && node.closest('[data-author-block]')) {
+          const selection = doc.getSelection(), range = selection?.rangeCount ? selection.getRangeAt(0) : null;
+          const selectedWholeBlock = range && node.contains(range.commonAncestorContainer) && !range.collapsed && range.toString() === node.textContent;
+          if (!node.textContent.trim() || selectedWholeBlock) {
+            event.preventDefault(); this.deleteExamBlock(node); return;
+          }
+        }
         if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') {
           event.preventDefault(); (document.getElementById('save-document-draft') || document.getElementById('save-passage')).click();
         }
@@ -1496,6 +1523,9 @@ Object.assign(studioUI, {
         }
       });
       node.addEventListener('blur', () => this.captureExamPosition());
+      node.addEventListener('click', event => {
+        if (event.target.tagName === 'IMG' && node.closest('[data-author-block]')) studioImages.inspect(node, event.target);
+      });
     };
     const syncSource = () => {
       const nextPlain = blocks.map(block => this.examBlockText(block));
@@ -1529,6 +1559,7 @@ Object.assign(studioUI, {
       // source commits. Parenthetical numbers in the source remain ordinary text.
       editable(span, draft.format === 'poem' ? `Passage line ${displayIndex + 1}` : `Passage paragraph ${index + 1}`, () => {
         const clean = span.cloneNode(true); clean.querySelectorAll('[data-generated-number]').forEach(number => number.remove());
+        clean.querySelectorAll('.studio-image-upload').forEach(marker => marker.remove());
         clean.querySelectorAll('[data-glossary-definition]').forEach(term => { if (!term.textContent.trim()) term.replaceWith(...term.childNodes); });
         let html = clean.innerHTML;
         if (block.kind === 'heading' && clean.children.length === 1 && clean.firstElementChild.tagName === 'STRONG') html = clean.firstElementChild.innerHTML;
@@ -1549,6 +1580,12 @@ Object.assign(studioUI, {
     const q = draft.questions[this.selectedQuestionIndex];
     if (q) editable(doc.querySelector('.exam-question-panel h1 > span'), 'Exam question prompt', () => {
       const node = doc.querySelector('.exam-question-panel h1 > span'); q.promptHtml = node.innerHTML; q.prompt = node.innerText; markDirty();
+    });
+    if (q) editable(doc.querySelector('.exam-question-panel .exam-question-instructions'), 'Exam question directions', () => {
+      const node = doc.querySelector('.exam-question-panel .exam-question-instructions');
+      q.instructions = node.innerText.trim();
+      q.instructionsHtml = q.instructions ? node.innerHTML : '';
+      markDirty();
     });
     doc.querySelectorAll('.exam-choice').forEach((choiceNode, i) => {
       const choice = q?.choices?.[i]; if (!choice) return;
@@ -1641,6 +1678,29 @@ Object.assign(studioUI, {
     this.refreshExamCanvas(true);
     const position = this.pendingExamPosition || this.examPositions.get(this.passageContext);
     if (position) { position.key = app.passageDraft.format === 'poem' ? `Passage line ${Number(node.closest('[data-author-block]').dataset.displayIndex) + 2}` : `Passage paragraph ${index + 2}`; position.bookmark = { start: 0, end: 0 }; position.refocus = true; }
+  },
+  deleteExamBlock(node) {
+    const line = node?.closest('[data-author-block]');
+    if (!line || app.passageDraft.format !== 'prose') return false;
+    const index = Number(line.dataset.authorBlock);
+    const source = document.getElementById('passage-rich-editor'), sourceNode = source?.children[index];
+    if (!sourceNode || !this.examBlocks[index]) return false;
+    this.captureExamPosition();
+    const nextPlain = this.examPlainBlocks.filter((_, i) => i !== index);
+    sourceNode.remove();
+    if (!source.children.length) {
+      const blank = document.createElement('p'); blank.innerHTML = '<br>'; source.append(blank);
+    }
+    const plainText = this.reconcileExamText(app.passageDraft.text, this.examPlainBlocks, nextPlain, 'prose');
+    source.dispatchEvent(new Event('input', { bubbles: true }));
+    app.passageDraft.text = plainText;
+    this.examTextHistory.get(this.passageContext).set(source.innerHTML, plainText);
+    this.refreshExamCanvas(true);
+    const targetIndex = Math.max(0, index - 1);
+    const offset = nextPlain[targetIndex]?.length || 0;
+    const position = this.pendingExamPosition || this.examPositions.get(this.passageContext);
+    if (position) { position.key = `Passage paragraph ${targetIndex + 1}`; position.bookmark = { start: offset, end: offset }; position.refocus = true; }
+    return true;
   },
   formatExamBlock(mode) {
     const line = this.examActive?.closest('[data-author-block]'); if (!line || app.passageDraft.format !== 'prose') return;

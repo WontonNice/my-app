@@ -1,6 +1,6 @@
 import { isExamQuestionCorrect, type SelectedAnswer } from "../shared/examGrading";
-import { gameUnit, hasActiveInk, type GameRoom, type GameView, type GameQuestion, type GamePlayer } from "../shared/gameRooms";
-import { teamCoins, earnCoins, buySabotage, clearInk, resolveLandmine } from "./gameBoosters";
+import { INK_SPLATS, activeTeamPlayers, gameUnit, hasActiveInk, type GameRoom, type GameView, type GameQuestion, type GamePlayer } from "../shared/gameRooms";
+import { teamCoins, sabotageInventory, earnCoins, buySabotage, useSabotage, clearInk, resolveLandmine } from "./gameBoosters";
 
 export const gameError = (message: string, status = 400) => Object.assign(new Error(message), { status });
 export type GameActor = { id: string; name: string; teacher: boolean };
@@ -14,6 +14,9 @@ function finishTeams(room: GameRoom) {
   const maximum = Math.max(...room.teams.map(team => team.score));
   room.winners = room.teams.filter(team => team.score === maximum).map(team => team.id);
   room.phase = "finished"; room.deadline = null; room.notice = "The team race is complete. Tied scores share the win.";
+}
+function teamsDone(room: GameRoom) {
+  return room.teams.every(team => team.index >= room.questions.length || activeTeamPlayers(room, team.id).length === 0);
 }
 function revealRound(room: GameRoom) {
   const unit = gameUnit(room.questions, room.round);
@@ -57,7 +60,20 @@ export function mutateGame(room: GameRoom, actor: GameActor, action: string, bod
     room.players.push({ id: actor.id, name: actor.name, joinedAt: new Date(now).toISOString(), teamId: null, alive: true, score: 0 }); return;
   }
   gameMember(room, actor);
-  if (["assign", "balance", "start", "next", "finish", "delete", "remove"].includes(action)) host(room, actor);
+  if (["assign", "balance", "start", "next", "finish", "delete", "remove", "set-participation"].includes(action)) host(room, actor);
+  if (action === "set-participation") {
+    if (room.mode !== "teams" || room.phase !== "question") throw gameError("Manage class departures during an active team race.", 409);
+    const member = room.players.find(item => item.id === body.playerId);
+    const team = room.teams.find(item => item.id === member?.teamId);
+    if (!member || !team || typeof body.active !== "boolean") throw gameError("Choose a student and their participation status.");
+    if (Boolean(member.excusedAt) === !body.active) return;
+    if (body.active) delete member.excusedAt; else member.excusedAt = new Date(now).toISOString();
+    // A changed voting roster needs fresh approval; stale tabs cannot submit it.
+    team.readyIds = []; team.draftVersion = (team.draftVersion ?? 0) + 1;
+    room.notice = `${member.name} ${body.active ? "is back in the race" : "has left class"}. ${team.name}'s active teammates should vote ready again.`;
+    if (teamsDone(room)) finishTeams(room);
+    return;
+  }
   if (action === "assign" || action === "balance" || action === "remove") {
     if (room.phase !== "lobby") throw gameError("Manage teams and players before starting.", 409);
     if (action === "remove") {
@@ -96,6 +112,7 @@ export function mutateGame(room: GameRoom, actor: GameActor, action: string, bod
   if (room.phase !== "question") throw gameError("Wait for the next question.", 409);
   const player = room.players.find(player => player.id === actor.id);
   if (!player) throw gameError("Only students can answer or use boosters.", 403);
+  if (player.excusedAt) throw gameError("Your teacher marked you as left class. Ask them to restore you before playing again.", 403);
   if (room.mode === "survival") {
     if (action !== "answer") throw gameError("Choose an answer.");
     if (body.questionId !== room.questions[room.round].question.id || Number(body.round) !== room.round) throw gameError("That question has ended.", 409);
@@ -110,9 +127,10 @@ export function mutateGame(room: GameRoom, actor: GameActor, action: string, bod
   if (!team) throw gameError("Your teacher needs to assign your team.", 409);
   if (action === "clear-ink") { clearInk(team, body, now); return; }
   if (team.blockedUntil > now) throw gameError("Your team was sabotaged. Wait for the countdown.", 409);
-  if (hasActiveInk(team, now)) throw gameError("Clear all 5 ink splats with your team, or wait for the ink to fade.", 409);
-  if (action === "buy-sabotage" || action === "sabotage" || action === "booster") {
-    buySabotage(room, team, String(body.boosterId ?? ""), body.teamId, now); return;
+  if (hasActiveInk(team, now)) throw gameError(`Clear all ${INK_SPLATS} ink splats with your team, or wait for the ink to fade.`, 409);
+  if (action === "buy-sabotage") { buySabotage(room, team, String(body.boosterId ?? "")); return; }
+  if (action === "use-sabotage" || action === "sabotage" || action === "booster") {
+    useSabotage(room, team, String(body.boosterId ?? ""), body.teamId, now); return;
   }
   if (!["draft", "answer", "vote", "unvote", "review"].includes(action)) throw gameError("Choose a valid game action.");
   const unit = gameUnit(room.questions, team.index);
@@ -139,7 +157,7 @@ export function mutateGame(room: GameRoom, actor: GameActor, action: string, bod
   if (step < unit.length) parseAnswer(drafts[unit[step].question.id]);
   else parseUnitAnswers(unit, { answers: drafts });
   team.readyIds = [...new Set([...(team.readyIds ?? []), actor.id])];
-  if (!room.players.filter(member => member.teamId === team.id).every(member => team.readyIds!.includes(member.id))) return;
+  if (!activeTeamPlayers(room, team.id).every(member => team.readyIds!.includes(member.id))) return;
   team.readyIds = []; team.draftVersion = (team.draftVersion ?? 0) + 1;
   // English passages remain ungraded until everyone approves the passage review.
   if (unit[0].passage && unit[0].subject.toLowerCase() !== "math" && step < unit.length) { team.step = step + 1; return; }
@@ -152,7 +170,7 @@ export function mutateGame(room: GameRoom, actor: GameActor, action: string, bod
     resolveLandmine(team, team.index + offset, correct, now);
   }
   team.index += unit.length; team.step = 0; delete team.draft; delete team.drafts;
-  if (room.teams.every(item => item.index >= room.questions.length)) finishTeams(room);
+  if (teamsDone(room)) finishTeams(room);
 }
 
 function sameAnswer(left: SelectedAnswer | undefined, right: SelectedAnswer | undefined) {
@@ -202,6 +220,6 @@ export function gameView(room: GameRoom, actor: GameActor, now: number, observin
     answeredIds: Object.keys(roundAnswers), myAnswer: playerId ? roundAnswers[playerId] : undefined,
     unit: room.phase === "lobby" ? [] : unit.map(publicGameQuestion), myAnswers: room.mode === "teams" ? myTeam?.drafts ?? (myTeam?.draft !== undefined && item ? { [item.question.id]: myTeam.draft } : {}) : playerId ? unitAnswers?.[playerId] ?? (roundAnswers[playerId] !== undefined && item ? { [item.question.id]: roundAnswers[playerId] } : {}) : {},
     reveal: revealed ? { correctChoiceId: unit.length === 1 ? questions[room.round].question.correctChoiceId : undefined, explanation: unit.length === 1 ? questions[room.round].question.explanation : undefined, correctIds: room.players.filter(player => unit.every(({ question }) => isExamQuestionCorrect(question, unitAnswers?.[player.id]?.[question.id] ?? (unit.length === 1 ? roundAnswers[player.id] : undefined)))).map(player => player.id) } : null,
-    teams: teams.map(team => ({ ...team, coins: teamCoins(team), boosters: 0, inventory: {}, landmine: room.hostId === actor.id && actor.teacher ? team.landmine : undefined, readyIds: team.id === myTeam?.id || room.hostId === actor.id ? team.readyIds ?? [] : undefined, draft: team.id === myTeam?.id ? team.draft : undefined, drafts: team.id === myTeam?.id ? team.drafts : undefined, answers: room.phase === "finished" || room.hostId === actor.id || team.id === myTeam?.id ? team.answers : [], lastCorrect: team.id === myTeam?.id ? team.answers.at(-1)?.correct : undefined })),
+    teams: teams.map(team => ({ ...team, coins: teamCoins(team), boosters: 0, inventory: sabotageInventory(team), landmine: room.hostId === actor.id && actor.teacher ? team.landmine : undefined, readyIds: team.id === myTeam?.id || room.hostId === actor.id ? team.readyIds ?? [] : undefined, draft: team.id === myTeam?.id ? team.draft : undefined, drafts: team.id === myTeam?.id ? team.drafts : undefined, answers: room.phase === "finished" || room.hostId === actor.id || team.id === myTeam?.id ? team.answers : [], lastCorrect: team.id === myTeam?.id ? team.answers.at(-1)?.correct : undefined })),
   };
 }

@@ -1,6 +1,8 @@
 import { FlaskConical, RotateCcw, Users, Zap } from "lucide-react";
 import { GAME_BOOSTERS, type GameView } from "../../../../server/src/shared/gameRooms";
 
+import { TeamParticipation } from "./TeamParticipation";
+
 type Props = { room: GameView; busy: boolean; act: (action: string, body?: Record<string, unknown>) => Promise<boolean> };
 export function GamePlaytestControls({ room, busy, act }: Props) {
   if (!room.canPlaytest || !room.playtest) return null;
@@ -23,6 +25,7 @@ export function GamePlaytestControls({ room, busy, act }: Props) {
       {room.mode === "teams" && <button disabled={busy || !playing || !team} onClick={() => { void act("test-team-ready"); }}>Teammates vote ready</button>}
       <button disabled={busy || !playing} onClick={() => { void act("test-expire"); }}>Run out the timer</button>
     </div><p>Switch to a teammate to see shared selections. Switch to an opponent to see the other side of a sabotage. Restart returns everyone to the lobby.</p></details>
-    {room.mode === "teams" && <div className="game-booster-lab"><h4><Zap size={16} />Sabotage test bench</h4><button disabled={busy || !room.party || !playing || !team} onClick={() => { void act("test-coins"); }}>Give my team 1 coin</button>{!room.party && <p>Turn on Party mode above to test the shop.</p>}{GAME_BOOSTERS.map(item => <div key={item.id}><strong>{item.name}</strong><span>{item.description}</span><button disabled={busy || !room.party || !playing || !team} onClick={() => { void act("test-sabotage", { boosterId: item.id }); }}>Test {item.name} on me</button></div>)}<small>Grant a coin, then buy a sabotage in the shop. Test Landmine on yourself, answer the current question, then answer the next one incorrectly to trigger its blackout.</small></div>}
+    {room.mode === "teams" && <div className="game-booster-lab"><h4><Zap size={16} />Sabotage test bench</h4><button disabled={busy || !room.party || !playing || !team} onClick={() => { void act("test-coins"); }}>Give my team 1 coin</button>{!room.party && <p>Turn on Party mode above to test the shop.</p>}{GAME_BOOSTERS.map(item => <div key={item.id}><strong>{item.name}</strong><span>{item.description}</span><button disabled={busy || !room.party || !playing || !team} onClick={() => { void act("test-sabotage", { boosterId: item.id }); }}>Test {item.name} on me</button></div>)}<small>Grant a coin, buy a sabotage, then choose Use in the inventory and select a team. Test Landmine on yourself, answer the current question, then answer the next one incorrectly to trigger its blackout.</small></div>}
+    <TeamParticipation room={room} busy={busy} act={act} />
   </section>;
 }

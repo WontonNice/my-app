@@ -43,6 +43,9 @@ import { excerptFromTheStoryOfMyLifeDigitalShsatPracticeTest2PassageSet } from "
 import { excerptFromTheCartThatChangedTheSupermarketDigitalShsatPracticeTest2PassageSet } from "./passageSets/excerpt-from-the-cart-that-changed-the-supermarket-digital-shsat-practice-test-2";
 import { excerptFromOCaptainMyCaptainDigitalShsatPracticeTest2PassageSet } from "./passageSets/excerpt-from-o-captain-my-captain-digital-shsat-practice-test-2";
 import { excerptFromTheNeighborhoodNextDoorIsHotterThanYoursDigitalShsatPracticeTest2PassageSet } from "./passageSets/excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2";
+import { excerptFromScribeLikeAnEgyptian2023FormAPassageSet } from "./passageSets/excerpt-from-scribe-like-an-egyptian-2023-form-a";
+import { excerptFromDoThemNoHarm2023FormAPassageSet } from "./passageSets/excerpt-from-do-them-no-harm-2023-form-a";
+import { excerptFromTheFoodBusinessIncubator2023FormAPassageSet } from "./passageSets/excerpt-from-the-food-business-incubator-2023-form-a";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -87,6 +90,9 @@ export const examPassageLibrary: ExamPassageSet[] = [
   excerptFromTheCartThatChangedTheSupermarketDigitalShsatPracticeTest2PassageSet,
   excerptFromOCaptainMyCaptainDigitalShsatPracticeTest2PassageSet,
   excerptFromTheNeighborhoodNextDoorIsHotterThanYoursDigitalShsatPracticeTest2PassageSet,
+  excerptFromScribeLikeAnEgyptian2023FormAPassageSet,
+  excerptFromDoThemNoHarm2023FormAPassageSet,
+  excerptFromTheFoodBusinessIncubator2023FormAPassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);
