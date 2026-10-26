@@ -15,6 +15,7 @@ export type QuestionType =
     | "transition_drop"
     | "short_response"
     | "numeric_entry"
+    | "expression_entry"
     | "grid_in"
     | "essay";
 

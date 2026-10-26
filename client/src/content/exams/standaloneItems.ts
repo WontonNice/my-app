@@ -1,6 +1,6 @@
 import type { ExamQuestion } from "./types";
 
-export const standaloneItems: (ExamQuestion & { versionLabel?: string })[] = [
+export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLabels?: string[]; duplicateOf?: string })[] = [
   {
     "id": "standalone-vague-pronoun-1",
     "topic": "Pronouns",
@@ -270,6 +270,7 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string })[] = [
   },
   {
     "id": "part-b-question-9",
+    "duplicateOf": "part-b-import-a014b48d8124-92d0f942",
     "points": 1,
     "prompt": "Which edit should be made to correct this sentence?",
     "promptHtml": "Which edit should be made to correct this sentence?",
@@ -335,6 +336,349 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string })[] = [
     ],
     "correctChoiceId": "A",
     "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-be14ccff9e7a-6d3f6f8f",
+    "points": 1,
+    "prompt": "Which revision corrects the error in sentence structure in the paragraph?",
+    "promptHtml": "Which revision corrects the error in sentence structure in the paragraph?",
+    "stimulus": "The land on Earth has not always been separated into the seven continents, at one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s surface. Additionally, the supercontinent was surrounded by ocean waters called Panthalassa, much of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s crust. In fact, experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.",
+    "stimulusHtml": "<p>The land on Earth has not always been separated into the seven <u>continents, at</u> one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s <u>surface. Additionally,</u> the supercontinent was surrounded by ocean waters called <u>Panthalassa, much</u> of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s <u>crust. In fact,</u> experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.</p>",
+    "explanation": "The question asks for the revision that corrects the error in sentence structure in the paragraph.\n\nA. CORRECT. The first sentence of the paragraph is a run-on because both clauses—“The land on Earth has not always been separated into the seven continents” and “at one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s surface”—are independent clauses. Independent clauses are complete sentences, and two complete sentences should not be combined with just a comma. The revision is correct because it separates the two sentences by placing a period where it is needed after “continents” and by capitalizing the word “At.”\n\nB. Incorrect. While adding a semicolon after “surface” can be considered a correct way to separate the independent clauses “at one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s surface” and “Additionally, the supercontinent was surrounded by ocean waters called Panthalassa, much of which were in Earth’s Southern Hemisphere,” this change does not address the sentence structure error in the paragraph (the run-on sentence). The use of a period separating the independent clauses (complete sentences) is correct as is.\n\nC. Incorrect. Adding a period after “Panthalassa” would separate the dependent clause “much of which were in Earth’s Southern Hemisphere” from its subject: “ocean waters called Panthalassa.” The dependent clause cannot stand on its own, because it shares elements with the main clause. A dependent clause is not a complete sentence and must be joined with an independent clause. The clause beginning with “much of which” is an adjective for “ocean waters.” Changing the comma to a period creates a new error (a sentence fragment) and does not address the existing sentence structure error at the beginning of the paragraph (the run-on sentence).\n\nD. Incorrect. Removing the period after “crust” would create a run-on sentence because the period is needed to separate two complete sentences—“Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s crust” and “In fact, experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.” A comma after “crust” would combine these sentences into a run-on, creating a new error in the sentence without fixing the existing sentence structure error (the run-on sentence) at the beginning of the paragraph.",
+    "explanationHtml": "The question asks for the revision that corrects the error in sentence structure in the paragraph.<br><strong>A. CORRECT.</strong> The first sentence of the paragraph is a run-on because both clauses—“The land on Earth has not always been separated into the seven continents” and “at one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s surface”—are independent clauses. Independent clauses are complete sentences, and two complete sentences should not be combined with just a comma. The revision is correct because it separates the two sentences by placing a period where it is needed after “continents” and by capitalizing the word “At.”<br><strong>B.</strong> Incorrect. While adding a semicolon after “surface” can be considered a correct way to separate the independent clauses “at one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s surface” and “Additionally, the supercontinent was surrounded by ocean waters called Panthalassa, much of which were in Earth’s Southern Hemisphere,” this change does not address the sentence structure error in the paragraph (the run-on sentence). The use of a period separating the independent clauses (complete sentences) is correct as is.<br><strong>C.</strong> Incorrect. Adding a period after “Panthalassa” would separate the dependent clause “much of which were in Earth’s Southern Hemisphere” from its subject: “ocean waters called Panthalassa.” The dependent clause cannot stand on its own, because it shares elements with the main clause. A dependent clause is not a complete sentence and must be joined with an independent clause. The clause beginning with “much of which” is an adjective for “ocean waters.” Changing the comma to a period creates a new error (a sentence fragment) and does not address the existing sentence structure error at the beginning of the paragraph (the run-on sentence).<br><strong>D.</strong> Incorrect. Removing the period after “crust” would create a run-on sentence because the period is needed to separate two complete sentences—“Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s crust” and “In fact, experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.” A comma after “crust” would combine these sentences into a run-on, creating a new error in the sentence without fixing the existing sentence structure error (the run-on sentence) at the beginning of the paragraph.",
+    "topic": "Sentence Structure",
+    "versionLabel": "2022-2023 Form A",
+    "choices": [
+      {
+        "id": "A",
+        "html": "continents. At",
+        "text": "continents. At"
+      },
+      {
+        "id": "B",
+        "html": "surface; additionally,",
+        "text": "surface; additionally,"
+      },
+      {
+        "id": "C",
+        "html": "Panthalassa. Much",
+        "text": "Panthalassa. Much"
+      },
+      {
+        "id": "D",
+        "html": "crust, in fact,",
+        "text": "crust, in fact,"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-6ac23baedc82-90db8349",
+    "points": 1,
+    "prompt": "Read this sentence.\n\nWhich revision of the sentence uses the most precise language?",
+    "promptHtml": "Read this sentence.<br>Which revision of the sentence uses the <strong>most</strong> precise language?",
+    "stimulus": "The Appalachian Trail is a really long trail that a lot of people do each year.",
+    "stimulusHtml": "<p>The Appalachian Trail is a really long trail that a lot of people do each year.</p>",
+    "explanation": "The question asks for the revision of the sentence that uses the most precise language.\n\nE. Incorrect. The word “extremely” does not specify the precise length of the trail (2,200 miles); “millions” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking).\n\nF. Incorrect. While the revision specifies the precise length of the trail and the verb “hike” precisely describes the purpose of visiting the trail, “more than a million” is less precise than the specific number of people who hike the trail each year (two million).\n\nG. CORRECT. The length of the trail (2,200 miles), the specific number of people who hike the trail each year (two million), and the action of the visitors (hiking) are clear and precise in this revision of the sentence.\n\nH. Incorrect. The word “lengthy” is less precise than specifying the actual length of the trail (2,200 miles); “a couple million” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking).",
+    "explanationHtml": "The question asks for the revision of the sentence that uses the <strong>most</strong> precise language.<br><strong>E.</strong> Incorrect. The word “extremely” does not specify the precise length of the trail (2,200 miles); “millions” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking).<br><strong>F.</strong> Incorrect. While the revision specifies the precise length of the trail and the verb “hike” precisely describes the purpose of visiting the trail, “more than a million” is less precise than the specific number of people who hike the trail each year (two million).<br><strong>G. CORRECT.</strong> The length of the trail (2,200 miles), the specific number of people who hike the trail each year (two million), and the action of the visitors (hiking) are clear and precise in this revision of the sentence.<br><strong>H.</strong> Incorrect. The word “lengthy” is less precise than specifying the actual length of the trail (2,200 miles); “a couple million” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking).",
+    "topic": "Word Choice & Precision",
+    "versionLabel": "2022-2023 Form A",
+    "choices": [
+      {
+        "id": "A",
+        "html": "The Appalachian Trail is an extremely long trail that millions of people do each year.",
+        "text": "The Appalachian Trail is an extremely long trail that millions of people do each year."
+      },
+      {
+        "id": "B",
+        "html": "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year.",
+        "text": "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year."
+      },
+      {
+        "id": "C",
+        "html": "The Appalachian Trail is a 2,200-mile trail that two million people hike each year.",
+        "text": "The Appalachian Trail is a 2,200-mile trail that two million people hike each year."
+      },
+      {
+        "id": "D",
+        "html": "The Appalachian Trail is a lengthy trail that a couple million people do each year.",
+        "text": "The Appalachian Trail is a lengthy trail that a couple million people do each year."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-ba9708d4a08f-39a88e57",
+    "points": 1,
+    "prompt": "What is the best way to combine these sentences to clarify the relationship between ideas?",
+    "promptHtml": "What is the <strong>best</strong> way to combine these sentences to clarify the relationship between ideas?",
+    "stimulus": "(1) The International Space Station has been inhabited by crew members since 2000.\n(2) Tourists will soon be allowed to pay for visits to the space station.\n(3) Because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space.",
+    "stimulusHtml": "<p>(1) The International Space Station has been inhabited by crew members since 2000.<br>(2) Tourists will soon be allowed to pay for visits to the space station.<br>(3) Because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space.</p>",
+    "explanation": "The question asks for the best way to combine the sentences.\n\nA. Incorrect. Although the option combines the sentences in a way that accurately reflects the meaning of each individual sentence, the combined sentence is a string of clauses that do not effectively cohere. Because it is poorly structured, the combined sentence does not clarify the relationship of ideas as effectively as the correct response does. The sentence incorrectly uses “but tourists,” and “which cost” modifies “the space station” but does not modify the trip. Compared with the correct response, the combined sentence in this option is also imprecise and unnecessarily wordy.\n\nB. CORRECT. The option uses a complex sentence to present ideas clearly and precisely, and it shows the relationship between the ideas in the original sentences. In the first part of the sentence, the conjunction “and” correctly joins the first and second sentences by indicating a relationship, rather than a contrast, between the two. In the second part of the sentence, the conjunction “but” adds additional emphasis to the fact that while tourists will be allowed to visit the space station, the cost of the trip will likely prohibit most people from visiting.\n\nC. Incorrect. Although the option combines the sentences in a way that accurately reflects the meaning of each individual sentence, the combined sentence is a string of clauses that do not effectively cohere. Because it is so poorly structured, the combined sentence does not clarify the relationship of ideas as effectively as the correct response does. Compared with the correct response, the combined sentence in this option is also imprecise and unnecessarily wordy.\n\nD. Incorrect. The combination of the sentences contains an illogical relationship between ideas with the statement that tourists will be allowed to pay for visits to the space station because the cost is $52–$58 million round trip. The connection between the idea that “tourists will soon be allowed to pay for visits” and the subsequent “therefore few people will be able to take advantage of the opportunity” is also illogical.",
+    "explanationHtml": "The question asks for the <strong>best</strong> way to combine the sentences.<br><strong>A.</strong> Incorrect. Although the option combines the sentences in a way that accurately reflects the meaning of each individual sentence, the combined sentence is a string of clauses that do not effectively cohere. Because it is poorly structured, the combined sentence does not clarify the relationship of ideas as effectively as the correct response does. The sentence incorrectly uses “but tourists,” and “which cost” modifies “the space station” but does not modify the trip. Compared with the correct response, the combined sentence in this option is also imprecise and unnecessarily wordy.<br><strong>B. CORRECT.</strong> The option uses a complex sentence to present ideas clearly and precisely, and it shows the relationship between the ideas in the original sentences. In the first part of the sentence, the conjunction “and” correctly joins the first and second sentences by indicating a relationship, rather than a contrast, between the two. In the second part of the sentence, the conjunction “but” adds additional emphasis to the fact that while tourists will be allowed to visit the space station, the cost of the trip will likely prohibit most people from visiting.<br><strong>C.</strong> Incorrect. Although the option combines the sentences in a way that accurately reflects the meaning of each individual sentence, the combined sentence is a string of clauses that do not effectively cohere. Because it is so poorly structured, the combined sentence does not clarify the relationship of ideas as effectively as the correct response does. Compared with the correct response, the combined sentence in this option is also imprecise and unnecessarily wordy.<br><strong>D.</strong> Incorrect. The combination of the sentences contains an illogical relationship between ideas with the statement that tourists will be allowed to pay for visits to the space station <em>because</em> the cost is $52–$58 million round trip. The connection between the idea that “tourists will soon be allowed to pay for visits” and the subsequent “therefore few people will be able to take advantage of the opportunity” is also illogical.",
+    "topic": "Sentence Structure",
+    "versionLabel": "2022-2023 Form A",
+    "choices": [
+      {
+        "id": "A",
+        "html": "The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, which cost $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space.",
+        "text": "The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, which cost $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space."
+      },
+      {
+        "id": "B",
+        "html": "The International Space Station has been inhabited by crew members since 2000 and will soon allow tourists to pay for visits, but because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space.",
+        "text": "The International Space Station has been inhabited by crew members since 2000 and will soon allow tourists to pay for visits, but because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space."
+      },
+      {
+        "id": "C",
+        "html": "The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, though the cost is $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space.",
+        "text": "The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, though the cost is $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space."
+      },
+      {
+        "id": "D",
+        "html": "The International Space Station has been inhabited by crew members since 2000, and tourists will soon be allowed to pay for visits to the space station because the cost is $52–$58 million round trip, therefore few people will be able to take advantage of the opportunity to have a vacation in outer space.",
+        "text": "The International Space Station has been inhabited by crew members since 2000, and tourists will soon be allowed to pay for visits to the space station because the cost is $52–$58 million round trip, therefore few people will be able to take advantage of the opportunity to have a vacation in outer space."
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-a014b48d8124-92d0f942",
+    "versionLabels": [
+      "2022-2023 Form A",
+      "2020-2021 Form A"
+    ],
+    "points": 1,
+    "prompt": "Which edit should be made to correct this sentence?",
+    "promptHtml": "Which edit should be made to correct this sentence?",
+    "stimulus": "In 1962 the agile athletic Wilt Chamberlain became the first and only professional basketball player in the United States to score 100 points in a single game.",
+    "stimulusHtml": "<p>In 1962 the <u>agile</u> athletic Wilt Chamberlain became the <u>first</u> and <u>only</u> professional basketball player in the United <u>States</u> to score 100 points in a single game.</p>",
+    "explanation": "The question asks which edit should be made to correct the sentence.\n\nE. CORRECT. The sentence in the box needs a comma to separate the coordinate adjectives. Coordinate adjectives describe characteristics of the same noun or subject and are connected with a comma or “and.” This option is the only one that places a comma where it is needed, between the coordinate adjectives “agile” and “athletic.”\n\nF. Incorrect. The option incorrectly adds a comma in the middle of the phrase “first and only,” which modifies, or gives additional information about, “professional basketball player.”\n\nG. Incorrect. The option incorrectly adds a comma between two adjectives that are not coordinate adjectives. “Only” is part of the phrase “first and only” and is modifying “professional basketball player.”\n\nH. Incorrect. The option is incorrect because a comma is not needed to set off the phrase “to score 100 points in a single game.”",
+    "explanationHtml": "The question asks which edit should be made to correct the sentence.<br><strong>E. CORRECT.</strong> The sentence in the box needs a comma to separate the coordinate adjectives. Coordinate adjectives describe characteristics of the same noun or subject and are connected with a comma or “and.” This option is the only one that places a comma where it is needed, between the coordinate adjectives “agile” and “athletic.”<br><strong>F.</strong> Incorrect. The option incorrectly adds a comma in the middle of the phrase “first and only,” which modifies, or gives additional information about, “professional basketball player.”<br><strong>G.</strong> Incorrect. The option incorrectly adds a comma between two adjectives that are not coordinate adjectives. “Only” is part of the phrase “first and only” and is modifying “professional basketball player.”<br><strong>H.</strong> Incorrect. The option is incorrect because a comma is not needed to set off the phrase “to score 100 points in a single game.”",
+    "topic": "Punctuation",
+    "versionLabel": "2022-2023 Form A",
+    "choices": [
+      {
+        "id": "A",
+        "html": "Insert a comma after <strong><em>agile</em></strong>.",
+        "text": "Insert a comma after agile."
+      },
+      {
+        "id": "B",
+        "html": "Insert a comma after <strong><em>first</em></strong>.",
+        "text": "Insert a comma after first."
+      },
+      {
+        "id": "C",
+        "html": "Insert a comma after <strong><em>only</em></strong>.",
+        "text": "Insert a comma after only."
+      },
+      {
+        "id": "D",
+        "html": "Insert a comma after <strong><em>States</em></strong>.",
+        "text": "Insert a comma after States."
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-f1c057628986-c19ffcec",
+    "points": 1,
+    "prompt": "Which revision corrects the error in sentence structure in the paragraph?",
+    "promptHtml": "Which revision corrects the error in sentence structure in the paragraph?",
+    "stimulus": "In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name, at that time, only men were permitted to officially register and receive a number for the legendary race. Once officials realized a woman was attempting to run in the race, they made efforts to remove her from the competition. Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women. In 2017, to mark the fiftieth anniversary of this pioneering event, a seventy-year-old Switzer repeated her run, wearing the number 261, the same number she had worn in that first run in 1967.",
+    "stimulusHtml": "<p>In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full <u>name, at</u> that time, only men were permitted to officially register and receive a number for the legendary race. Once officials realized a woman was attempting to run in the <u>race, they</u> made efforts to remove her from the competition. Switzer prevailed and finished in just over four <u>hours, paving</u> the way for the official rule change that allowed for the inclusion of women. In 2017, to mark the fiftieth anniversary of this pioneering event, a seventy-year-old Switzer repeated her run, wearing the number <u>261, the</u> same number she had worn in that first run in 1967.</p>",
+    "explanation": "The question asks for the revision that corrects the error in sentence structure in the paragraph.\n\nA. CORRECT. As written, the first sentence (“In 1967 Katherine Switzer . . . legendary race.”) is a run-on sentence because a comma is used to combine two independent clauses. Independent clauses are complete sentences with a subject and a verb. The clauses—“In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name” and “at that time, only men were permitted to officially register and receive a number for the legendary race”—should be separated with a period instead. This revision correctly places a period after the word “name” and capitalizes the word “At” to separate the two independent clauses into two sentences.\n\nB. Incorrect. The revision introduces an error into the paragraph and does not revise the run-on in the first sentence. The clause “Once officials realized a woman was attempting to run in the race” is a dependent clause functioning as an adverb of the independent clause that follows it. Changing the comma after the word “race” to a period would incorrectly separate the adverbial dependent clause from the independent clause.\n\nC. Incorrect. The revision introduces an error into the paragraph and does not revise the run-on in the first sentence. The sentence “Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women” is a complex sentence, which combines an independent clause (“Switzer prevailed and finished in just over four hours”) and a dependent clause (“paving the way for the official rule change that allowed for the inclusion of women”). The clause “paving the way for the official rule change that allowed for the inclusion of women” is not a complete sentence and must stay connected to the first part of the sentence. Changing the comma after “hours” to a period would incorrectly separate the dependent clause from the independent clause.\n\nD. Incorrect. The revision introduces an error into the paragraph and does not revise the run-on in the first sentence. Changing the comma after “261” to a period would incorrectly separate the modifying clause “the same number she had worn in that first run in 1967” from the words it describes (“number 261”). Additionally, the clause “the same number she had worn in that first run in 1967” is not a complete sentence.",
+    "explanationHtml": "The question asks for the revision that corrects the error in sentence structure in the paragraph.<br><strong>A. CORRECT.</strong> As written, the first sentence (“In 1967 Katherine Switzer . . . legendary race.”) is a run-on sentence because a comma is used to combine two independent clauses. Independent clauses are complete sentences with a subject and a verb. The clauses—“In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name” and “at that time, only men were permitted to officially register and receive a number for the legendary race”—should be separated with a period instead. This revision correctly places a period after the word “name” and capitalizes the word “At” to separate the two independent clauses into two sentences.<br><strong>B.</strong> Incorrect. The revision introduces an error into the paragraph and does not revise the run-on in the first sentence. The clause “Once officials realized a woman was attempting to run in the race” is a dependent clause functioning as an adverb of the independent clause that follows it. Changing the comma after the word “race” to a period would incorrectly separate the adverbial dependent clause from the independent clause.<br><strong>C.</strong> Incorrect. The revision introduces an error into the paragraph and does not revise the run-on in the first sentence. The sentence “Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women” is a complex sentence, which combines an independent clause (“Switzer prevailed and finished in just over four hours”) and a dependent clause (“paving the way for the official rule change that allowed for the inclusion of women”). The clause “paving the way for the official rule change that allowed for the inclusion of women” is not a complete sentence and must stay connected to the first part of the sentence. Changing the comma after “hours” to a period would incorrectly separate the dependent clause from the independent clause.<br><strong>D.</strong> Incorrect. The revision introduces an error into the paragraph and does not revise the run-on in the first sentence. Changing the comma after “261” to a period would incorrectly separate the modifying clause “the same number she had worn in that first run in 1967” from the words it describes (“number 261”). Additionally, the clause “the same number she had worn in that first run in 1967” is not a complete sentence.",
+    "topic": "Sentence Structure",
+    "versionLabels": [
+      "2022-2023 Form A"
+    ],
+    "versionLabel": "2022-2023 Form A",
+    "choices": [
+      {
+        "id": "A",
+        "html": "name. At",
+        "text": "name. At"
+      },
+      {
+        "id": "B",
+        "html": "race. They",
+        "text": "race. They"
+      },
+      {
+        "id": "C",
+        "html": "hours. Paving",
+        "text": "hours. Paving"
+      },
+      {
+        "id": "D",
+        "html": "261. The",
+        "text": "261. The"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-404ef8a6deeb-1222d1bf",
+    "points": 1,
+    "prompt": "Which pair of revisions needs to be made in this paragraph?",
+    "promptHtml": "Which pair of revisions needs to be made in this paragraph?",
+    "stimulus": "(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.",
+    "stimulusHtml": "<p>(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people <u>wonder</u>: what <u>is</u> the difference between the two? (2) To start <u>with,</u> the butterfat content is much higher in ice cream than <u>it is</u> in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing <u>process,</u> which adds less air to the frozen treat, <u>makes</u> gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the <u>gelato,</u> and <u>allow</u> it to melt more quickly.</p>",
+    "explanation": "The question asks for the revisions that are needed to correct errors in the paragraph.\n\nA. Incorrect. The revisions introduce new errors. The colon after “wonder” is needed to set off the question “what is the difference between the two?” from the rest of the sentence. In addition, changing the verb “is” to “are” would be incorrect with the use of the singular noun “difference,” which is the subject of the question.\n\nB. Incorrect. The revisions introduce new errors. The comma following the introductory phrase “To start with” helps with clarity and is needed to separate the phrase from the rest of the sentence. Changing “it is” to “they are” would be incorrect with the use of the singular noun “butterfat content,” which is what the words “it is” refer to in the sentence.\n\nC. Incorrect. The revisions introduce new errors. The comma following “process” is necessary to set off the nonrestrictive clause “which adds less air to the frozen treat” from the rest of the sentence. This clause is considered a nonrestrictive clause because it provides additional, but not essential, information about the mixing process. Changing the verb “makes” to “make” would be incorrect with the use of the singular noun “mixing process,” which is the subject of the sentence.\n\nD. CORRECT. Deleting the comma after “gelato” would include the clause “and allow it to melt more quickly” with the first part of the clause “which enhances the texture and flavor of the gelato.” The word “and” between the two verb phrases (“enhances the texture and flavor of the gelato” and “allow it to melt more quickly”) indicates that the two verb phrases share a subject, “which” (referring to the act of serving gelato 10 to 15 degrees warmer than ice cream). The two ideas should not be separated by a comma within the clause. The entire clause “which enhances the texture and flavor of the gelato and allow it to melt more quickly” should be separated from the main clause only by the comma after “cream” because the entire clause is a nonrestrictive clause. This clause provides additional, but not essential, information about the purpose of serving gelato at a warmer temperature than ice cream. Changing the verb “allow” to “allows” is also necessary to match the use of the singular pronoun “which.”",
+    "explanationHtml": "The question asks for the revisions that are needed to correct errors in the paragraph.<br><strong>A.</strong> Incorrect. The revisions introduce new errors. The colon after “wonder” is needed to set off the question “what is the difference between the two?” from the rest of the sentence. In addition, changing the verb “is” to “are” would be incorrect with the use of the singular noun “difference,” which is the subject of the question.<br><strong>B.</strong> Incorrect. The revisions introduce new errors. The comma following the introductory phrase “To start with” helps with clarity and is needed to separate the phrase from the rest of the sentence. Changing “it is” to “they are” would be incorrect with the use of the singular noun “butterfat content,” which is what the words “it is” refer to in the sentence.<br><strong>C.</strong> Incorrect. The revisions introduce new errors. The comma following “process” is necessary to set off the nonrestrictive clause “which adds less air to the frozen treat” from the rest of the sentence. This clause is considered a nonrestrictive clause because it provides additional, but not essential, information about the mixing process. Changing the verb “makes” to “make” would be incorrect with the use of the singular noun “mixing process,” which is the subject of the sentence.<br><strong>D.</strong> <strong>CORRECT.</strong> Deleting the comma after “gelato” would include the clause “and allow it to melt more quickly” with the first part of the clause “which enhances the texture and flavor of the gelato.” The word “and” between the two verb phrases (“enhances the texture and flavor of the gelato” and “allow it to melt more quickly”) indicates that the two verb phrases share a subject, “which” (referring to the act of serving gelato 10 to 15 degrees warmer than ice cream). The two ideas should not be separated by a comma within the clause. The entire clause “which enhances the texture and flavor of the gelato and allow it to melt more quickly” should be separated from the main clause only by the comma after “cream” because the entire clause is a nonrestrictive clause. This clause provides additional, but not essential, information about the purpose of serving gelato at a warmer temperature than ice cream. Changing the verb “allow” to “allows” is also necessary to match the use of the singular pronoun “which.”",
+    "topic": "Pronouns",
+    "versionLabels": [
+      "2022-2023 Form B"
+    ],
+    "versionLabel": "2022-2023 Form B",
+    "choices": [
+      {
+        "id": "A",
+        "html": "Sentence 1: Delete the colon after <strong><em>wonder</em></strong> AND change <strong><em>is</em></strong> to <strong><em>are</em></strong>.",
+        "text": "Sentence 1: Delete the colon after wonder AND change is to are."
+      },
+      {
+        "id": "B",
+        "html": "Sentence 2: Delete the comma after <strong><em>with</em></strong> AND change <strong><em>it is</em></strong> to <strong><em>they are</em></strong>.",
+        "text": "Sentence 2: Delete the comma after with AND change it is to they are."
+      },
+      {
+        "id": "C",
+        "html": "Sentence 3: Delete the comma after <strong><em>process</em></strong> AND change <strong><em>makes</em></strong> to <strong><em>make</em></strong>.",
+        "text": "Sentence 3: Delete the comma after process AND change makes to make."
+      },
+      {
+        "id": "D",
+        "html": "Sentence 4: Delete the comma after <strong><em>gelato</em></strong> AND change <strong><em>allow</em></strong> to <strong><em>allows</em></strong>.",
+        "text": "Sentence 4: Delete the comma after gelato AND change allow to allows."
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-2306e0b898d5-ae910e11",
+    "points": 1,
+    "prompt": "What is the best way to combine the sentences?",
+    "promptHtml": "What is the <strong>best</strong> way to combine the sentences?",
+    "stimulus": "(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.\n(2) One of Jupiter’s moons is named Io.\n(3) Io has the greatest number of active volcanoes in the solar system.",
+    "stimulusHtml": "<p>(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.<br>(2) One of Jupiter’s moons is named Io.<br>(3) Io has the greatest number of active volcanoes in the solar system.</p>",
+    "explanation": "The question asks for the best way to combine the sentences.\n\nE. Incorrect. Although the sentence incorporates the ideas presented in the three original sentences, it is incorrect because the combination suggests an incorrect relationship between the ideas. By beginning with “Io,” the sentence places emphasis on the moon and the detail about the number of active volcanoes rather than the key idea that “scientists now believe that Jupiter may have as many as seventy-nine moons.” Since Io is an example of one of Jupiter’s moons, the details about Io should follow and be subordinate to the main clause, which provides new information about the number of Jupiter’s moons in general.\n\nF. Incorrect. Although the sentence incorporates all three ideas from the original sentences and correctly places the detail about the number of active volcanoes on Io in a dependent clause, this option is incorrect because it presents an imprecise relationship between the ideas. By using the conjunction (connecting word) “and,” the sentence construction suggests that scientists “now believe” that “Jupiter may have as many as seventy-nine moons” and that “one of them is named Io,” instead of presenting Io as an example of one of Jupiter’s moons.\n\nG. CORRECT. This sentence is the best way to combine the original sentences because it uses a complex sentence to present ideas clearly and precisely, and it shows the relationship between the ideas in the original sentences. The sentence starts by stating the number of moons scientists now believe Jupiter may have and then specifies that one of those moons is named Io. The dependent clause “which has the greatest number of active volcanoes in the solar system” immediately follows the word “Io” to provide additional information about the moon. A dependent clause contains a subject (“which,” referring to Io) and a verb (“has”) but is not a complete sentence on its own.\n\nH. Incorrect. The sentence incorporates the key ideas from the original sentences, but its structure does not accurately present the relationship between these ideas. The beginning of the sentence includes the detail about Io having “the greatest number of active volcanoes in the solar system” before specifying that Io is one of the seventy-nine moons of Jupiter. The presentation of the details about Io at the beginning lessens the emphasis of the key idea that “scientists now believe that Jupiter may have as many as seventy-nine moons.”",
+    "explanationHtml": "The question asks for the <strong>best</strong> way to combine the sentences.<br><strong>E.</strong> Incorrect. Although the sentence incorporates the ideas presented in the three original sentences, it is incorrect because the combination suggests an incorrect relationship between the ideas. By beginning with “Io,” the sentence places emphasis on the moon and the detail about the number of active volcanoes rather than the key idea that “scientists now believe that Jupiter may have as many as seventy-nine moons.” Since Io is an example of one of Jupiter’s moons, the details about Io should follow and be subordinate to the main clause, which provides new information about the number of Jupiter’s moons in general.<br><strong>F.</strong> Incorrect. Although the sentence incorporates all three ideas from the original sentences and correctly places the detail about the number of active volcanoes on Io in a dependent clause, this option is incorrect because it presents an imprecise relationship between the ideas. By using the conjunction (connecting word) “and,” the sentence construction suggests that scientists “now believe” that “Jupiter may have as many as seventy-nine moons” and that “one of them is named Io,” instead of presenting Io as an example of one of Jupiter’s moons.<br><strong>G.</strong> <strong>CORRECT.</strong> This sentence is the best way to combine the original sentences because it uses a complex sentence to present ideas clearly and precisely, and it shows the relationship between the ideas in the original sentences. The sentence starts by stating the number of moons scientists now believe Jupiter may have and then specifies that one of those moons is named Io. The dependent clause “which has the greatest number of active volcanoes in the solar system” immediately follows the word “Io” to provide additional information about the moon. A dependent clause contains a subject (“which,” referring to Io) and a verb (“has”) but is not a complete sentence on its own.<br><strong>H.</strong> Incorrect. The sentence incorporates the key ideas from the original sentences, but its structure does not accurately present the relationship between these ideas. The beginning of the sentence includes the detail about Io having “the greatest number of active volcanoes in the solar system” before specifying that Io is one of the seventy-nine moons of Jupiter. The presentation of the details about Io at the beginning lessens the emphasis of the key idea that “scientists now believe that Jupiter may have as many as seventy-nine moons.”",
+    "topic": "Sentence Structure",
+    "versionLabels": [
+      "2022-2023 Form B"
+    ],
+    "versionLabel": "2022-2023 Form B",
+    "choices": [
+      {
+        "id": "A",
+        "html": "Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+        "text": "Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons."
+      },
+      {
+        "id": "B",
+        "html": "Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.",
+        "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system."
+      },
+      {
+        "id": "C",
+        "html": "Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.",
+        "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system."
+      },
+      {
+        "id": "D",
+        "html": "Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+        "text": "Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-f2325dca51de-51707498",
+    "points": 1,
+    "prompt": "Which sentence contains an error in its construction and should be revised?",
+    "promptHtml": "Which sentence contains an error in its construction and should be revised?",
+    "stimulus": "(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink, gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.",
+    "stimulusHtml": "<p>(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink, gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.</p>",
+    "explanation": "The question asks for the identification of the sentence that contains an error in its construction and should be revised.\n\nA. Incorrect. There are no errors in sentence 1. The singular pronoun “its” matches the number of the word it refers to, the singular noun “blobfish.” Additionally, the clause “a creature that certainly resembles its name” is correctly set off by commas to provide an additional, but not essential, detail about the blobfish. The comma separating “pink” and “gelatinous” is correct because these are coordinate adjectives.\n\nB. Incorrect. There are no errors in sentence 2. The singular pronouns “it” and “its” match the number of the word they refer to, the singular noun “blobfish.” Additionally, the structure of the sentence correctly shows that the clause “Because it has very few muscles and its density is close to that of water” modifies the words “the blobfish.”\n\nC. Incorrect. There are no errors in sentence 3. The “it” and “its” in the sentence refer to “the blobfish” mentioned in the previous sentence. The use of singular pronouns in sentence 3 is consistent with the rest of the paragraph.\n\nD. CORRECT. Sentence 4 contains an error because the sentence uses the plural pronoun “them” to refer to “The blobfish’s,” which is singular in number. The word “them” should be changed to “it.” The paragraph refers to the blobfish as a singular species in each of the four sentences, and sentence 4 should be revised to match.",
+    "explanationHtml": "The question asks for the identification of the sentence that contains an error in its construction and should be revised.<br><strong>A.</strong> Incorrect. There are no errors in sentence 1. The singular pronoun “its” matches the number of the word it refers to, the singular noun “blobfish.” Additionally, the clause “a creature that certainly resembles its name” is correctly set off by commas to provide an additional, but not essential, detail about the blobfish. The comma separating “pink” and “gelatinous” is correct because these are coordinate adjectives.<br><strong>B.</strong> Incorrect. There are no errors in sentence 2. The singular pronouns “it” and “its” match the number of the word they refer to, the singular noun “blobfish.” Additionally, the structure of the sentence correctly shows that the clause “Because it has very few muscles and its density is close to that of water” modifies the words “the blobfish.”<br><strong>C.</strong> Incorrect. There are no errors in sentence 3. The “it” and “its” in the sentence refer to “the blobfish” mentioned in the previous sentence. The use of singular pronouns in sentence 3 is consistent with the rest of the paragraph.<br><strong>D.</strong> <strong>CORRECT.</strong> Sentence 4 contains an error because the sentence uses the plural pronoun “them” to refer to “The blobfish’s,” which is singular in number. The word “them” should be changed to “it.” The paragraph refers to the blobfish as a singular species in each of the four sentences, and sentence 4 should be revised to match.",
+    "topic": "Pronouns",
+    "versionLabels": [
+      "2022-2023 Form B"
+    ],
+    "versionLabel": "2022-2023 Form B",
+    "choices": [
+      {
+        "id": "A",
+        "html": "sentence 1",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "sentence 2",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "sentence 3",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "sentence 4",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-7651e03756f2-ba433486",
+    "points": 1,
+    "prompt": "Which sentence contains an error in its construction and should be revised?",
+    "promptHtml": "Which sentence contains an error in its construction and should be revised?",
+    "stimulus": "(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) In 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.",
+    "stimulusHtml": "<p>(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) In 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.</p>",
+    "explanation": "The question asks for the identification of the sentence that has an error in its construction and should be revised.\n\nE. Incorrect. There are no errors in the structure of sentence 1. The clause “who played in the Long Island area at the time” correctly modifies the noun “New York Nets.” “Who” is the correct relative pronoun to serve as the subject of the modifying clause because it refers to people rather than objects or things.\n\nF. CORRECT. Sentence 2 contains a structural error. The current placement of the clause “where the team played for thirty-five seasons” suggests that the clause is modifying the term “financial troubles,” which is illogical. The clause “where the team played for thirty-five seasons” should immediately follow the location, “New Jersey.” A revised version of the sentence might read, “After the team had financial troubles, the owner of the Nets decided to take the team to New Jersey, where the team played for thirty-five seasons.”\n\nG. Incorrect. There are no errors in the structure of sentence 3. The phrase “including two appearances in the NBA finals” is a nonrestrictive phrase that provides further detail about the team’s “sixteen playoff appearances.” The phrase is set off by a comma because it is not essential to understanding the meaning of the sentence.\n\nH. Incorrect. There are no errors in the structure of sentence 4. The clause “where the team now plays under the name the Brooklyn Nets” is a nonrestrictive clause that provides further detail about the team after its move back to New York in 2012. The clause is set off by a comma because it is not essential to understanding the meaning of the sentence.",
+    "explanationHtml": "The question asks for the identification of the sentence that has an error in its construction and should be revised.<br><strong>E.</strong> Incorrect. There are no errors in the structure of sentence 1. The clause “who played in the Long Island area at the time” correctly modifies the noun “New York Nets.” “Who” is the correct relative pronoun to serve as the subject of the modifying clause because it refers to people rather than objects or things.<br><strong>F.</strong> <strong>CORRECT.</strong> Sentence 2 contains a structural error. The current placement of the clause “where the team played for thirty-five seasons” suggests that the clause is modifying the term “financial troubles,” which is illogical. The clause “where the team played for thirty-five seasons” should immediately follow the location, “New Jersey.” A revised version of the sentence might read, “After the team had financial troubles, the owner of the Nets decided to take the team to New Jersey, where the team played for thirty-five seasons.”<br><strong>G.</strong> Incorrect. There are no errors in the structure of sentence 3. The phrase “including two appearances in the NBA finals” is a nonrestrictive phrase that provides further detail about the team’s “sixteen playoff appearances.” The phrase is set off by a comma because it is not essential to understanding the meaning of the sentence.<br><strong>H.</strong> Incorrect. There are no errors in the structure of sentence 4. The clause “where the team now plays under the name the Brooklyn Nets” is a nonrestrictive clause that provides further detail about the team after its move back to New York in 2012. The clause is set off by a comma because it is not essential to understanding the meaning of the sentence.",
+    "topic": "Modifiers",
+    "versionLabels": [
+      "2022-2023 Form B"
+    ],
+    "versionLabel": "2022-2023 Form B",
+    "choices": [
+      {
+        "id": "A",
+        "html": "sentence 1",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "sentence 2",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "sentence 3",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "sentence 4",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
   }
 ];
 
@@ -348,6 +692,8 @@ export function getStandaloneItemsById(ids: string[]) {
 
     const studentQuestion: ExamQuestion = { ...item };
     delete (studentQuestion as ExamQuestion & { versionLabel?: string }).versionLabel;
+    delete (studentQuestion as ExamQuestion & { versionLabels?: string[] }).versionLabels;
+    delete (studentQuestion as ExamQuestion & { duplicateOf?: string }).duplicateOf;
     return studentQuestion;
   });
 }

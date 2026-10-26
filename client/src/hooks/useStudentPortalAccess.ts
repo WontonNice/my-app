@@ -4,8 +4,10 @@ import { isSupabaseConfigured } from "../lib/supabase";
 import { getActiveSession, peekActiveSession } from "../lib/sessionCache";
 import { getStudentPreviewContext } from "../lib/studentPreview";
 
-export function useStudentPortalAccess() {
-  const previewContext = getStudentPreviewContext();
+export function useStudentPortalAccess(teacherWorkspace = false) {
+  const previewContext = getStudentPreviewContext(teacherWorkspace
+    ? "?preview=teacher&teacherTools=1&returnTo=%2Fteacher"
+    : window.location.search);
   const initialSession = peekActiveSession();
   const initialMetadata = initialSession?.user.user_metadata as
     | { full_name?: string; name?: string }
@@ -34,6 +36,10 @@ export function useStudentPortalAccess() {
       }
 
       const userRole = getUserRole(session.user);
+      if (teacherWorkspace && userRole !== "teacher" && userRole !== "admin") {
+        window.location.replace("/study-hall/shsat/materials");
+        return;
+      }
       const metadata = session.user.user_metadata as { full_name?: string; name?: string };
 
       if (isMounted) {
@@ -68,7 +74,7 @@ export function useStudentPortalAccess() {
     return () => {
       isMounted = false;
     };
-  }, [previewContext.isPreview, previewContext.studentName]);
+  }, [previewContext.isPreview, previewContext.studentName, teacherWorkspace]);
 
   return {
     accessToken,

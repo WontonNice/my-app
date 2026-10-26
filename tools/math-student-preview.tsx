@@ -35,13 +35,14 @@ function StudentPreview() {
   if (!preview) return <p role="status">Loading student player…</p>;
   return <main className="exam-session-shell is-math-session">
     <ExamToolbar assessmentLabel={preview.title} breadcrumbMiddle="MATH" breadcrumbCurrent={`${preview.index + 1} OF ${preview.count}`} studentName="Preview"
-      showReviewTools={false} showExhibits activeTool={tool} canEliminate={['multiple_choice','multi_select'].includes(preview.question.type)} isPreviousActive={preview.index > 0} isNextActive={preview.index + 1 < preview.count}
+      showReviewTools={false} showExhibits activeTool={tool} canEliminate={['multiple_choice','multi_select','graph_point_select'].includes(preview.question.type)} isPreviousActive={preview.index > 0} isNextActive={preview.index + 1 < preview.count}
       onPrevious={() => parent.postMessage({ type: 'studio:math-preview-navigate', delta: -1 }, editorOrigin)}
       onNext={() => parent.postMessage({ type: 'studio:math-preview-navigate', delta: 1 }, editorOrigin)}
       onSelectTool={next => setTool(current => current === next ? 'pointer' : next)} isNotepadOpen={tool === 'notepad'}
       isTimerVisible={timer} onToggleTimer={() => setTimer(value => !value)} isUserMenuOpen={userMenu} onToggleUserMenu={() => setUserMenu(value => !value)} pencilKey={preview.question.id}
       pencilStorage={{drawings, setDrawings, redoStacks, setRedoStacks}} />
     <ExamMathQuestion key={preview.question.id + preview.question.type} question={preview.question} answer={answer} onChange={value => { setAnswer(value); const selected = Array.isArray(value) ? value : typeof value === 'string' ? [value] : []; setEliminated(current => current.filter(id => !selected.includes(id))); }} eliminatedIds={eliminated}
+      onEliminatePoint={tool === 'eliminator' ? id => setEliminated(current => current.includes(id) ? current.filter(item => item !== id) : [...current,id]) : undefined}
       onChoiceLabelClick={(event,id) => { if (tool !== 'eliminator') return; event.preventDefault(); setEliminated(current => current.includes(id) ? current.filter(item => item !== id) : [...current,id]); }} />
     {tool === 'notepad' && <section className="exam-notepad-window" aria-label="Notepad"><header><h2>Notepad</h2><button aria-label="Close notepad" onClick={() => setTool('pointer')}>×</button></header><textarea aria-label="Notes" value={note} onChange={event => setNote(event.target.value)} /></section>}
   </main>;

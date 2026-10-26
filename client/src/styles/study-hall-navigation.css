@@ -1,0 +1,17 @@
+.study-hall-teacher-tools { display:flex; align-items:center; flex-wrap:wrap; gap:12px 22px; margin-bottom:20px; padding:12px 0; border-bottom:1px solid var(--student-line); font-size:.74rem; }
+.study-hall-teacher-tools a { display:inline-flex; align-items:center; gap:7px; color:var(--student-green); text-decoration:none; }
+.study-hall-teacher-tools a:hover { text-decoration:underline; }
+.study-hall-teacher-tools > span { margin-right:auto; padding:5px 9px; background:var(--account-tint,#e8efea); color:var(--student-green); border-radius:5px; font-size:.65rem; }
+/* Browse and summary screens share the portal palette; the exam player retains its familiar format. */
+.mc-infinite-page:has(.mc-practice-hub) { background:var(--student-cream,#f4f0e7); min-height:100%; }
+.mc-infinite-page .mc-practice-hub { max-width:1200px; padding:8px 0 40px; color:var(--student-ink,#24382f); font:inherit; }
+.mc-practice-hub h1 { color:var(--student-green,var(--account-accent,#1f4a3a)); font:500 clamp(2rem,3vw,2.7rem)/1.15 Georgia,serif; }
+.mc-practice-hub h2,.mc-practice-hub h3 { color:var(--student-green,var(--account-accent,#1f4a3a)); font-family:Georgia,serif; font-weight:500; }
+.mc-practice-hub p,.mc-practice-module ul,.mc-practice-metrics dt { color:var(--student-muted,#6e756f); line-height:1.65; font-size:.85rem; }
+.mc-practice-module,.mc-practice-metrics > div { background:var(--student-paper,#fffdf8); border-color:var(--student-line,#ddd6ca); box-shadow:none; }
+.mc-practice-hub button { background:var(--student-green,var(--account-accent,#1f4a3a)); border-color:var(--student-green,var(--account-accent,#1f4a3a)); font-family:inherit; font-size:.8rem; font-weight:600; line-height:1.4; }
+.mc-practice-hub button:focus-visible { outline-color:var(--student-green-2,var(--account-secondary,#2e7257)); }
+.mc-practice-hub .mc-practice-back { color:var(--student-green,var(--account-accent,#1f4a3a)); border-color:var(--student-line,#ddd6ca); }
+.mc-practice-metrics dd { color:var(--student-green,var(--account-accent,#1f4a3a)); }
+.mc-exam-viewer .mc-practice-hub { padding:32px 24px 60px; }
+@media(max-width:700px) { .study-hall-teacher-tools > span { margin-right:0; } }

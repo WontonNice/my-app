@@ -46,6 +46,24 @@ import { excerptFromTheNeighborhoodNextDoorIsHotterThanYoursDigitalShsatPractice
 import { excerptFromScribeLikeAnEgyptian2023FormAPassageSet } from "./passageSets/excerpt-from-scribe-like-an-egyptian-2023-form-a";
 import { excerptFromDoThemNoHarm2023FormAPassageSet } from "./passageSets/excerpt-from-do-them-no-harm-2023-form-a";
 import { excerptFromTheFoodBusinessIncubator2023FormAPassageSet } from "./passageSets/excerpt-from-the-food-business-incubator-2023-form-a";
+import { birdTalk2023FormAPassageSet } from "./passageSets/bird-talk-2023-form-a";
+import { excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvil20222023FormAPassageSet } from "./passageSets/excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-2022-2023-form-a";
+import { crackingTheCode20222023FormAPassageSet } from "./passageSets/cracking-the-code-2022-2023-form-a";
+import { martialArtsForTheMindAndBody2023FormAPassageSet } from "./passageSets/martial-arts-for-the-mind-and-body-2023-form-a";
+import { excerptFromThePastAndTheFutureOfTheEarthSOldestTrees2023FormAPassageSet } from "./passageSets/excerpt-from-the-past-and-the-future-of-the-earth-s-oldest-trees-2023-form-a";
+import { movingThroughMountains20222023FormBPassageSet } from "./passageSets/moving-through-mountains-2022-2023-form-b";
+import { excerptFromTheWorldHasAnEWasteProblem20222023FormBPassageSet } from "./passageSets/excerpt-from-the-world-has-an-e-waste-problem-2022-2023-form-b";
+import { excerptFromTheHighestTide20222023FormBPassageSet } from "./passageSets/excerpt-from-the-highest-tide-2022-2023-form-b";
+import { goingSolarInChina20222023FormBPassageSet } from "./passageSets/going-solar-in-china-2022-2023-form-b";
+import { excerptFromHowExerciseCouldHelpYouLearnANewLanguage2023FormBPassageSet } from "./passageSets/excerpt-from-how-exercise-could-help-you-learn-a-new-language-2023-form-b";
+import { lookingForTheSmallestSparkOfEverything2023FormBPassageSet } from "./passageSets/looking-for-the-smallest-spark-of-everything-2023-form-b";
+import { excerptFromImpressionsOfAnIndianChildhood20222023FormBPassageSet } from "./passageSets/excerpt-from-impressions-of-an-indian-childhood-2022-2023-form-b";
+import { excerptFromTheKeyOfTheGardenDigitalShsatPracticeTest3PassageSet } from "./passageSets/excerpt-from-the-key-of-the-garden-digital-shsat-practice-test-3";
+import { theReturnOfTheFerryDigitalShsatPracticeTest3PassageSet } from "./passageSets/the-return-of-the-ferry-digital-shsat-practice-test-3";
+import { excerptFromOnWomenSRightToVoteDigitalShsatPracticeTest3PassageSet } from "./passageSets/excerpt-from-on-women-s-right-to-vote-digital-shsat-practice-test-3";
+import { theOrchardKeepsALedgerDigitalShsatPracticeTest3PassageSet } from "./passageSets/the-orchard-keeps-a-ledger-digital-shsat-practice-test-3";
+import { sixtySummersOnKestrelGlacierDigitalShsatPracticeTest3PassageSet } from "./passageSets/sixty-summers-on-kestrel-glacier-digital-shsat-practice-test-3";
+import { doverBeachDigitalShsatPracticeTest3PassageSet } from "./passageSets/dover-beach-digital-shsat-practice-test-3";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -93,6 +111,24 @@ export const examPassageLibrary: ExamPassageSet[] = [
   excerptFromScribeLikeAnEgyptian2023FormAPassageSet,
   excerptFromDoThemNoHarm2023FormAPassageSet,
   excerptFromTheFoodBusinessIncubator2023FormAPassageSet,
+  birdTalk2023FormAPassageSet,
+  excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvil20222023FormAPassageSet,
+  crackingTheCode20222023FormAPassageSet,
+  martialArtsForTheMindAndBody2023FormAPassageSet,
+  excerptFromThePastAndTheFutureOfTheEarthSOldestTrees2023FormAPassageSet,
+  movingThroughMountains20222023FormBPassageSet,
+  excerptFromTheWorldHasAnEWasteProblem20222023FormBPassageSet,
+  excerptFromTheHighestTide20222023FormBPassageSet,
+  goingSolarInChina20222023FormBPassageSet,
+  excerptFromHowExerciseCouldHelpYouLearnANewLanguage2023FormBPassageSet,
+  lookingForTheSmallestSparkOfEverything2023FormBPassageSet,
+  excerptFromImpressionsOfAnIndianChildhood20222023FormBPassageSet,
+  excerptFromTheKeyOfTheGardenDigitalShsatPracticeTest3PassageSet,
+  theReturnOfTheFerryDigitalShsatPracticeTest3PassageSet,
+  excerptFromOnWomenSRightToVoteDigitalShsatPracticeTest3PassageSet,
+  theOrchardKeepsALedgerDigitalShsatPracticeTest3PassageSet,
+  sixtySummersOnKestrelGlacierDigitalShsatPracticeTest3PassageSet,
+  doverBeachDigitalShsatPracticeTest3PassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);

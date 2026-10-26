@@ -4,6 +4,8 @@ import "mathlive/fonts.css";
 import katex from "katex";
 import { mathAnswerFromLatex, mathAnswerToLatex } from "../../../server/src/shared/mathAnswer";
 import { handleNumericBeforeInput, insertNumericNegative } from "../lib/mathEntryInput";
+import { advancedMathKeypadForVariable, isAdvancedMathCharacter, type AdvancedMathKey } from "../lib/advancedMathEntry";
+import { MathEntryHistory } from "../lib/mathEntryHistory";
 
 MathfieldElement.fontsDirectory = null; // Bundled fonts.css supplies local fonts.
 MathfieldElement.soundsDirectory = null;
@@ -43,16 +45,19 @@ function EditIcon({ action }: { action: Selector | "clear" }) {
   </svg>;
 }
 
-export function MathEntryResponse({ layout, onChange, value, variable = "x" }: {
+export function MathEntryResponse({ layout, onChange, value, variable, advanced = false }: {
+  advanced?: boolean;
   layout: "fraction" | "plain" | "x_equals";
   onChange: (value: string) => void;
   value: string;
   variable?: string;
 }) {
-  const normalizedVariable = variable.trim().normalize("NFKC");
+  const normalizedVariable = (variable ?? 'x').trim().normalize("NFKC");
   const displayVariable = /^\p{L}$/u.test(normalizedVariable) ? normalizedVariable : "x";
   const hostRef = useRef<HTMLDivElement>(null);
   const fieldRef = useRef<MathfieldElement | null>(null);
+  const historyRef = useRef<MathEntryHistory | null>(null);
+  const syncAnswerRef = useRef<(() => void) | null>(null);
   const onChangeRef = useRef(onChange);
   const valueRef = useRef(value);
   const hintId = useId();
@@ -76,30 +81,53 @@ export function MathEntryResponse({ layout, onChange, value, variable = "x" }: {
     field.inlineShortcuts = {};
     fieldRef.current = field;
     field.value = mathAnswerToLatex(valueRef.current) || (layout === "fraction" ? "\\frac{\\placeholder{}}{\\placeholder{}}" : "");
+    const history = new MathEntryHistory(field);
+    historyRef.current = history;
     setHasFraction(/\\(?:d?frac)\b/.test(field.value));
 
     const updateAnswer = () => {
+      historyRef.current?.record();
       setHasFraction(/\\(?:d?frac)\b/.test(field.value));
       const answer = mathAnswerFromLatex(field.value);
       valueRef.current = answer;
       onChangeRef.current(answer);
     };
-    // Match the numeric response pad: letters and expression operators are not
-    // valid keyboard input. Keep selection, navigation, undo, and paste shortcuts.
+    syncAnswerRef.current = updateAnswer;
+    const restoreHistory = (redo: boolean) => {
+      if (redo) historyRef.current?.redo(); else historyRef.current?.undo();
+      updateAnswer();
+    };
+    // Each pad accepts its own symbols. Keep selection, navigation, undo, and
+    // paste shortcuts available on both versions.
     const numericKeyboard = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && !event.altKey && ["z", "y"].includes(event.key.toLowerCase())) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        restoreHistory(event.key.toLowerCase() === "y" || event.shiftKey);
+        return;
+      }
       if (event.ctrlKey || event.metaKey || event.altKey) return;
-      if (event.key === "-" || event.key === "−") {
+      if (!advanced && (event.key === "-" || event.key === "−")) {
         event.preventDefault();
         event.stopImmediatePropagation();
         insertNumericNegative(field);
         return;
       }
-      if (event.key.length === 1 && !/^[\d.\-−%/]$/.test(event.key)) {
+      if (event.key.length === 1 && !(advanced ? isAdvancedMathCharacter(event.key, variable) : /^[\d.\-−%/]$/.test(event.key))) {
         event.preventDefault();
         event.stopImmediatePropagation();
       }
     };
-    const beforeInput = (event: Event) => handleNumericBeforeInput(field, event as InputEvent);
+    const beforeInput = (event: Event) => {
+      const input = event as InputEvent;
+      if (input.inputType === "historyUndo" || input.inputType === "historyRedo") {
+        input.preventDefault();
+        restoreHistory(input.inputType === "historyRedo");
+        return;
+      }
+      historyRef.current?.record();
+      if (!advanced) handleNumericBeforeInput(field, input);
+    };
     field.addEventListener("beforeinput", beforeInput);
     field.addEventListener("keydown", numericKeyboard, true);
     field.addEventListener("input", updateAnswer);
@@ -108,18 +136,21 @@ export function MathEntryResponse({ layout, onChange, value, variable = "x" }: {
       field.removeEventListener("beforeinput", beforeInput);
       field.removeEventListener("input", updateAnswer);
       fieldRef.current = null;
+      historyRef.current = null;
+      syncAnswerRef.current = null;
       field.remove();
     };
-  }, [layout, hintId]);
+  }, [layout, hintId, advanced, variable]);
 
   useEffect(() => {
-    fieldRef.current?.setAttribute("aria-label", layout === "x_equals" ? `Value of ${displayVariable}` : "Math answer");
-  }, [layout, displayVariable]);
+    fieldRef.current?.setAttribute("aria-label", layout === "x_equals" ? `Value of ${displayVariable}` : advanced ? "Math expression answer" : "Math answer");
+  }, [layout, displayVariable, advanced]);
 
   useEffect(() => {
     const field = fieldRef.current;
     if (field && mathAnswerFromLatex(field.value) !== value) {
       field.setValue(mathAnswerToLatex(value), { silenceNotifications: true });
+      historyRef.current = new MathEntryHistory(field);
       setHasFraction(/\\(?:d?frac)\b/.test(field.value));
     }
   }, [value]);
@@ -128,18 +159,25 @@ export function MathEntryResponse({ layout, onChange, value, variable = "x" }: {
     const field = fieldRef.current;
     if (!field) return;
     field.focus();
+    if (action === "undo" || action === "redo") {
+      historyRef.current?.[action]();
+      syncAnswerRef.current?.();
+      return;
+    }
+    historyRef.current?.record();
     if (action === "clear") { field.select(); field.executeCommand("deleteBackward"); }
     else field.executeCommand(action);
   }
 
-  function insert(key: MathKey) {
+  function insert(key: MathKey | AdvancedMathKey) {
     const field = fieldRef.current;
     if (!field) return;
-    if (key.latex === "-") { field.focus(); insertNumericNegative(field); }
+    historyRef.current?.record();
+    if (!advanced && key.latex === "-") { field.focus(); insertNumericNegative(field); }
     else field.insert(key.latex, { selectionMode: "placeholder", focus: true, format: "latex" });
   }
 
-  return <div className="exam-math-entry-response">
+  return <div className={"exam-math-entry-response" + (advanced ? " is-advanced" : "")}>
     <div className={"exam-math-entry-display is-" + layout + (hasFraction ? " has-fraction" : "")}>
       {layout === "x_equals" && <span aria-hidden="true" className="exam-math-entry-prefix" dangerouslySetInnerHTML={{ __html: katex.renderToString(`${displayVariable}=`, { throwOnError: false, strict: "ignore" }) }} />}
       <div className="exam-math-field-host" ref={hostRef} />
@@ -152,7 +190,13 @@ export function MathEntryResponse({ layout, onChange, value, variable = "x" }: {
         ] as const).map(([label, action]) => <button aria-label={label} title={label} key={label} type="button" onPointerDown={event => event.preventDefault()} onClick={() => command(action)}><EditIcon action={action} /></button>)}
       </div>
       <div className="exam-math-keypad-grid">
-        {keypadRows.map((row, index) => <div className="exam-math-keypad-row" key={index}>
+        {advanced ? advancedMathKeypadForVariable(variable).map((row, index) => <div className="exam-math-keypad-row" key={index}>
+          {row.map((key, column) => key ? <button aria-label={key.label} title={key.label} key={key.label} type="button" className={key.number ? "is-digit" : "is-symbol"} onPointerDown={event => event.preventDefault()} onClick={() => insert(key)}>
+            {key.icon === "fraction" || key.icon === "mixed" ? <TemplateIcon mixed={key.icon === "mixed"} />
+              : key.icon ? <AdvancedTemplateIcon icon={key.icon} />
+              : <span aria-hidden="true" className={key.label === "Negative" ? "is-negative-sign" : key.label === "Multiply dot" ? "is-multiply-dot" : undefined}>{key.text}</span>}
+          </button> : <span className="exam-math-keypad-spacer" aria-hidden="true" key={`blank-${column}`} />)}
+        </div>) : keypadRows.map((row, index) => <div className="exam-math-keypad-row" key={index}>
           {row.map(key => <button aria-label={key.label} title={key.label} key={key.label} type="button" onPointerDown={event => event.preventDefault()} onClick={() => insert(key)}>
             {key.template ? <TemplateIcon mixed={key.template === "mixed"} /> : <span aria-hidden="true">{key.text}</span>}
           </button>)}
@@ -161,4 +205,11 @@ export function MathEntryResponse({ layout, onChange, value, variable = "x" }: {
     </div>
     <p id={hintId} className="sr-only">Use the keypad or type your answer. Arrow keys move through your answer; Tab moves between empty boxes.</p>
   </div>;
+}
+
+function AdvancedTemplateIcon({ icon }: { icon: "square-root" | "root" | "exponent" }) {
+  return <svg className="exam-math-template-icon" viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.3">
+    {icon === "exponent" ? <><rect x="5" y="11" width="10" height="14" /><rect x="19" y="3" width="6" height="8" /></>
+      : <><path d="m6 15 4-2 4 12 6-21h9" />{icon === "root" && <text x="5" y="10" fill="currentColor" stroke="none" fontSize="12" fontStyle="italic" fontFamily="serif">n</text>}</>}
+  </svg>;
 }

@@ -1,0 +1,14 @@
+.math-study-modules article.practice-module-group { display:block; }
+.practice-module-heading { display:flex; align-items:center; gap:16px; }
+.practice-module-heading > div { flex:1; min-width:0; }
+.math-study-modules .practice-module-settings-toggle { padding:6px 0; margin-top:9px; border:0; background:transparent; font-size:.7rem; }
+.practice-module-settings { margin:10px 0 12px; padding:15px; border:1px solid var(--student-line,#ddd6ca); background:var(--account-tint,#e8efea); border-radius:8px; }
+.practice-module-settings h5 { margin:0 0 9px; font-size:.8rem; }
+.practice-module-settings label { display:flex; align-items:start; gap:9px; margin:11px 0; font-size:.75rem; line-height:1.5; }
+.practice-module-settings input { accent-color:var(--student-green-2,#2e7257); margin-top:3px; flex:none; }
+.practice-module-settings small { display:block; margin-top:12px; }
+.practice-module-heading button:disabled { opacity:.45; cursor:default; }
+.student-practice-shelf { margin:0 0 26px; }
+.student-practice-shelf h2 { margin:0 0 7px; font:500 1.35rem/1.2 Georgia,serif; }
+.student-practice-shelf .math-study-modules { max-height:360px; }
+.practice-module-warning { color:#8a4938; }

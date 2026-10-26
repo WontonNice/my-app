@@ -1,0 +1,20 @@
+{
+  "id": "evidence-matrix-fixture-1",
+  "type": "evidence_matrix",
+  "topic": "Evidence & Support",
+  "points": 1,
+  "prompt": "For each statement, mark whether it is supported by the passage text, by the data table, or by both.",
+  "categories": [
+    {"id": "passage", "title": "Passage only"},
+    {"id": "table", "title": "Table only"},
+    {"id": "both", "title": "Both passage and table"}
+  ],
+  "items": [
+    {"id": "row-1", "text": "The most recent decade's average annual retreat is more than nine times the 1970s rate."},
+    {"id": "row-2", "text": "Bare, dust-streaked ice absorbs more sunlight than fresh snow."},
+    {"id": "row-3", "text": "The glacier's retreat rate has increased in every decade since monitoring began."},
+    {"id": "row-4", "text": "Roughly forty thousand residents rely on water from the river the glacier feeds."}
+  ],
+  "correctPlacements": {},
+  "requiredPlacements": 4
+}

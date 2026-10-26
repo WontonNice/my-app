@@ -34,6 +34,7 @@ const crossPurposesFormBQuestions: ExamQuestion[] = [
     "id": "cross-purposes-form-b-2",
     "points": 1,
     "prompt": "Read lines 2–4 and lines 12–14 from the poem.\n\nI am what every athlete\nwants: to remain at the apex of the leap,\nup in the air.\n\nI am the blood flowing in the runner’s chest,\nand I catch everything: from the hills,\nthe mountains.\n\nHow do the lines contribute to the development of a central idea of the poem?",
+    "promptHtml": "<p>Read lines 2–4 and lines 12–14 from the poem.</p><blockquote><strong>I am what every athlete<br>wants: to remain at the apex of the leap,<br>up in the air.<br><br>I am the blood flowing in the runner’s chest,<br>and I catch everything: from the hills,<br>the mountains.</strong></blockquote><p>How do the lines contribute to the development of a central idea of the poem?</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -138,6 +139,7 @@ const crossPurposesFormBQuestions: ExamQuestion[] = [
     "id": "cross-purposes-form-b-6",
     "points": 1,
     "prompt": "Read lines 41–42 from the poem.\n\nBecause I am,\nabove all else, patient. I will wait for you.\n\nWhich of the following supports what is implied in these lines?",
+    "promptHtml": "<p>Read lines 41–42 from the poem.</p><blockquote><strong>Because I am,<br>above all else, patient. I will wait for you.</strong></blockquote><p>Which of the following supports what is implied in these lines?</p>",
     "topic": "Evidence & Support",
     "choices": [
       {

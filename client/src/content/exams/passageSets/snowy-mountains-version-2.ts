@@ -33,8 +33,8 @@ const snowyMountainsVersion2Questions: ExamQuestion[] = [
   {
     "id": "snowy-mountains-version-2-9",
     "points": 1,
-    "prompt": "Read line 5 from the poem.\nPillars of the sky at rest\nThe line helps develop the theme of the poem by suggesting that the mountains",
-    "promptHtml": "Read line 5 from the poem.\n<strong>Pillars of the sky at rest</strong>\nThe line helps develop the theme of the poem by suggesting that the mountains",
+    "prompt": "Read line 5 from the poem.\n\nPillars of the sky at rest\n\nThe line helps develop the theme of the poem by suggesting that the mountains",
+    "promptHtml": "<p>Read line 5 from the poem.</p><blockquote><strong><strong>Pillars of the sky at rest</strong></strong></blockquote><p>The line helps develop the theme of the poem by suggesting that the mountains</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -204,7 +204,8 @@ const snowyMountainsVersion2Questions: ExamQuestion[] = [
   {
     "id": "snowy-mountains-version-2-6",
     "points": 1,
-    "prompt": "Read lines 21–22 from the poem.\n**Barrier broken down by those who do not need**\n**The joy of time-resisting storm-worn stone,**\nHow do the lines help convey the speaker’s point of view?",
+    "prompt": "Read lines 21–22 from the poem.\n\nBarrier broken down by those who do not need\nThe joy of time-resisting storm-worn stone,\n\nHow do the lines help convey the speaker’s point of view?",
+    "promptHtml": "<p>Read lines 21–22 from the poem.</p><blockquote><strong><strong>Barrier broken down by those who do not need</strong><br><strong>The joy of time-resisting storm-worn stone,</strong></strong></blockquote><p>How do the lines help convey the speaker’s point of view?</p>",
     "topic": "Author's Point of View",
     "choices": [
       {
@@ -230,7 +231,8 @@ const snowyMountainsVersion2Questions: ExamQuestion[] = [
   {
     "id": "snowy-mountains-version-2-7",
     "points": 1,
-    "prompt": "Read lines 23–26 from the poem.\n\n**The mountains swing along\nThe south horizon of the sky;\nWelcoming with wide floors of blue-green ice\nThe mists that dance and drive before the sun.**\n\nThe personification in these concluding lines of the poem suggests that the mountains are",
+    "prompt": "Read lines 23–26 from the poem.\n\nThe mountains swing along\nThe south horizon of the sky;\nWelcoming with wide floors of blue-green ice\nThe mists that dance and drive before the sun.\n\nThe personification in these concluding lines of the poem suggests that the mountains are",
+    "promptHtml": "<p>Read lines 23–26 from the poem.</p><blockquote><strong><strong>The mountains swing along<br>The south horizon of the sky;<br>Welcoming with wide floors of blue-green ice<br>The mists that dance and drive before the sun.</strong></strong></blockquote><p>The personification in these concluding lines of the poem suggests that the mountains are</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {

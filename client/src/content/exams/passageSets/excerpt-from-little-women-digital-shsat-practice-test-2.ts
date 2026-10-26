@@ -142,7 +142,7 @@ const excerptFromLittleWomenDigitalShsatPracticeTest2Questions: ExamQuestion[] =
     "explanationHtml": "<p>Jo's rapid list of complaints and her physical shaking of the sock convey both frustration at her limits and a restless wish for a different kind of life.</p>",
     "points": 1,
     "prompt": "Complete the sentence describing the tone of Jo's outburst about wanting to be a boy.",
-    "instructions": "Move the correct answer to the box.",
+    "instructions": "Move a word into each blank.",
     "promptHtml": "Complete the sentence describing the tone of Jo's outburst about wanting to be a boy.",
     "topic": "Central Idea & Theme",
     "choices": [
@@ -167,9 +167,9 @@ const excerptFromLittleWomenDigitalShsatPracticeTest2Questions: ExamQuestion[] =
         "text": "indifferent"
       }
     ],
-    "correctChoiceId": "",
-    "transitionBlankAfter": "with her limited role at home and  for a more active life she cannot yet have.",
-    "transitionBlankBefore": "Jo's speech about wishing she were a boy reveals a tone that is both frusturated",
+    "dragDropContent": ["Jo's speech about wishing she were a boy reveals a tone that is both {{blank-1}} with her limited role at home and {{blank-2}} for a more active life she cannot yet have."],
+    "dragDropSlots": [{ "id": "blank-1", "correctItemId": "A" }, { "id": "blank-2", "correctItemId": "B" }],
+    "allowReuse": false,
     "type": "transition_drop"
   },
   {

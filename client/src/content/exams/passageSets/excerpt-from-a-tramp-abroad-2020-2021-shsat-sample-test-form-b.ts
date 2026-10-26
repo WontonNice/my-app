@@ -60,6 +60,7 @@ const excerptFromATrampAbroad20202021ShsatSampleTestFormBQuestions: ExamQuestion
     "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-3",
     "points": 1,
     "prompt": "Read this sentence from paragraph 2.\n\nAt the end of half an hour he fetches up within six inches of the place he started from, and lays his burden down.\n\nHow does the sentence contribute to the development of the central idea of the excerpt?",
+    "promptHtml": "<p>Read this sentence from paragraph 2.</p><blockquote><strong>At the end of half an hour he fetches up within six inches of the place he started from, and lays his burden down.</strong></blockquote><p>How does the sentence contribute to the development of the central idea of the excerpt?</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -190,6 +191,7 @@ const excerptFromATrampAbroad20202021ShsatSampleTestFormBQuestions: ExamQuestion
     "id": "excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-8",
     "points": 1,
     "prompt": "Read this sentence from paragraph 3.\n\nEvidently the friend remarks that a last year’s grasshopper leg is a very noble acquisition, and inquires where he got it.\n\nWhich statement best describes how the sentence fits into the overall structure of the excerpt?",
+    "promptHtml": "<p>Read this sentence from paragraph 3.</p><blockquote><strong>Evidently the friend remarks that a last year’s grasshopper leg is a very noble acquisition, and inquires where he got it.</strong></blockquote><p>Which statement best describes how the sentence fits into the overall structure of the excerpt?</p>",
     "topic": "Text Structure & Purpose",
     "choices": [
       {

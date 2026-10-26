@@ -86,6 +86,14 @@ function hasExactIds(actualIds: string[], expectedIds: string[]) {
 }
 
 export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAnswer | undefined) {
+  if (question.type === 'transition_drop' && question.dragDropSlots?.length) {
+    if (question.dragDropSlots.length === 1 && typeof answer === 'string') return Boolean(question.dragDropSlots[0].correctItemId) && answer === question.dragDropSlots[0].correctItemId;
+    const placements = getCategoryPlacements(answer), slots = question.dragDropSlots;
+    const values = Object.values(placements);
+    return Object.keys(placements).length === slots.length &&
+      (question.allowReuse === true || new Set(values).size === values.length) &&
+      slots.every(slot => Boolean(slot.correctItemId) && question.choices?.some(choice => choice.id === slot.correctItemId) && placements[slot.id] === slot.correctItemId);
+  }
   if (question.type === "multiple_choice" || question.type === "transition_drop") {
     return Boolean(question.correctChoiceId) && typeof answer === "string" && answer === question.correctChoiceId;
   }
@@ -146,7 +154,7 @@ export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAn
     );
   }
 
-  if (["short_response", "numeric_entry", "grid_in"].includes(question.type)) {
+  if (["short_response", "numeric_entry", "expression_entry", "grid_in"].includes(question.type)) {
     const acceptedAnswers = question.correctTextAnswers ?? [];
 
     return (

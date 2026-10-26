@@ -34,6 +34,7 @@ const excerptFromNiagaraFalls20202021ShsatSampleTestFormBQuestions: ExamQuestion
     "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b-2",
     "points": 1,
     "prompt": "Read this sentence from paragraph 2.\n\nThey are extraordinarily level, one long curtain of lacework and woven foam.\n\nWhat is the effect of comparing the American Falls to a “long curtain of lacework and woven foam”?",
+    "promptHtml": "<p>Read this sentence from paragraph 2.</p><blockquote><strong>They are extraordinarily level, one long curtain of lacework and woven foam.</strong></blockquote><p>What is the effect of comparing the American Falls to a “long curtain of lacework and woven foam”?</p>",
     "topic": "Figurative Language & Imagery",
     "choices": [
       {
@@ -60,6 +61,7 @@ const excerptFromNiagaraFalls20202021ShsatSampleTestFormBQuestions: ExamQuestion
     "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b-3",
     "points": 1,
     "prompt": "Read this sentence from paragraph 3.\n\nThese are the lower rapids, a sight more terrifying than the Falls, because less intelligible.\n\nWhich statement best describes how the sentence fits into the overall structure of the excerpt?",
+    "promptHtml": "<p>Read this sentence from paragraph 3.</p><blockquote><strong>These are the lower rapids, a sight more terrifying than the Falls, because less intelligible.</strong></blockquote><p>Which statement best describes how the sentence fits into the overall structure of the excerpt?</p>",
     "topic": "Text Structure & Purpose",
     "choices": [
       {
@@ -112,6 +114,7 @@ const excerptFromNiagaraFalls20202021ShsatSampleTestFormBQuestions: ExamQuestion
     "id": "excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b-5",
     "points": 1,
     "prompt": "Read this sentence from paragraph 4.\n\nThere one can sit and let great cloudy thoughts of destiny and the passage of empires drift through the mind; for such dreams are at home by Niagara.\n\nThe sentence most contributes to the development of ideas in the excerpt by",
+    "promptHtml": "<p>Read this sentence from paragraph 4.</p><blockquote><strong>There one can sit and let great cloudy thoughts of destiny and the passage of empires drift through the mind; for such dreams are at home by Niagara.</strong></blockquote><p>The sentence most contributes to the development of ideas in the excerpt by</p>",
     "topic": "Text Structure & Purpose",
     "choices": [
       {

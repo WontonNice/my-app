@@ -96,7 +96,9 @@ export async function notifyBoardChanged(board: BoardRow) {
 export function attachBoardRealtime(server: Server, allowedOrigins: string[]) {
   const wss = new WebSocketServer({ noServer: true, maxPayload: 768 * 1024, perMessageDeflate: false });
   server.on("upgrade", (request, socket, head) => {
-    if (request.url?.split("?", 1)[0] === "/api/game-rooms/live") return;
+    const pathname = request.url?.split("?", 1)[0];
+    // These upgrades belong to the game transports attached to the same server.
+    if (pathname === "/api/game-rooms/live" || pathname === "/api/game-rooms/world") return;
     if (request.url?.split("?", 1)[0] !== "/api/boards/live") { socket.destroy(); return; }
     const origin = request.headers.origin;
     if (!boardOriginAllowed(origin, request.headers.host, allowedOrigins)) { socket.destroy(); return; }

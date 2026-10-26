@@ -8,6 +8,7 @@ const winterWheatQuestions: ExamQuestion[] = [
     "id": "winter-wheat-1",
     "points": 1,
     "prompt": "Which sentence from the excerpt supports the idea that Ellen understands what her father is really thinking, and which sentence supports the idea that Ellen and her father share similar interests?",
+    "instructions": "Move the correct answer to each box.",
     "topic": "Central Idea & Theme",
     "categories": [
       {
@@ -24,7 +25,6 @@ const winterWheatQuestions: ExamQuestion[] = [
       "item-2": "category-2",
       "item-3": "category-1"
     },
-    "instructions": "Move the correct answer to each box.",
     "items": [
       {
         "id": "item-1",
@@ -50,7 +50,7 @@ const winterWheatQuestions: ExamQuestion[] = [
     "id": "winter-wheat-2",
     "points": 1,
     "prompt": "Read these sentences from paragraph 2.\n\nDad always said Mom could make all the dishes he’d had back in Vermont as well as though she were a New Englander herself, instead of a Russian. All of a sudden, I realized that tomorrow when those beans would be ready to eat I’d be going away. It gave me a funny feeling.\n\nThe sentences help develop a theme of the excerpt by",
-    "promptHtml": "Read these sentences from paragraph 2.<br><strong>Dad always said Mom could make all the dishes he’d had back in Vermont as well as though she were a New Englander herself, instead of a Russian. All of a sudden, I realized that tomorrow when those beans would be ready to eat I’d be going away. It gave me a funny feeling.</strong><br>The sentences help develop a theme of the excerpt by",
+    "promptHtml": "<p>Read these sentences from paragraph 2.</p><blockquote><strong><strong>Dad always said Mom could make all the dishes he’d had back in Vermont as well as though she were a New Englander herself, instead of a Russian. All of a sudden, I realized that tomorrow when those beans would be ready to eat I’d be going away. It gave me a funny feeling.</strong></strong></blockquote><p>The sentences help develop a theme of the excerpt by</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -77,7 +77,7 @@ const winterWheatQuestions: ExamQuestion[] = [
     "id": "winter-wheat-3",
     "points": 1,
     "prompt": "Read this sentence from paragraph 3.\n\n“I’ll be taking the train tomorrow night,” I said aloud, more to hear it myself.\n\nThis remark contributes to the conflict in the excerpt by",
-    "promptHtml": "Read this sentence from paragraph 3.<br><strong>“I’ll be taking the train tomorrow night,” I said aloud, more to hear it myself.</strong><br>This remark contributes to the conflict in the excerpt by",
+    "promptHtml": "<p>Read this sentence from paragraph 3.</p><blockquote><strong><strong>“I’ll be taking the train tomorrow night,” I said aloud, more to hear it myself.</strong></strong></blockquote><p>This remark contributes to the conflict in the excerpt by</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -108,7 +108,7 @@ const winterWheatQuestions: ExamQuestion[] = [
     "id": "winter-wheat-4",
     "points": 1,
     "prompt": "Read this sentence from paragraph 9.\n\nI tried to, and then I just sat still and looked straight at it.\n\nHow does the phrase “looked straight at it” contribute to the meaning of the excerpt?",
-    "promptHtml": "Read this sentence from paragraph 9.<br><strong>I tried to, and then I just sat still and looked straight at it.</strong><br>How does the phrase “looked straight at it” contribute to the meaning of the excerpt?",
+    "promptHtml": "<p>Read this sentence from paragraph 9.</p><blockquote><strong><strong>I tried to, and then I just sat still and looked straight at it.</strong></strong></blockquote><p>How does the phrase “looked straight at it” contribute to the meaning of the excerpt?</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -169,8 +169,8 @@ const winterWheatQuestions: ExamQuestion[] = [
   {
     "id": "winter-wheat-6",
     "points": 1,
-    "prompt": "Read these sentences from the excerpt.\n\nMom seems to think of nothing farther away than today or perhaps yesterday or tomorrow morning. (paragraph 1)\n\nMom was fixing oatmeal for tomorrow morning. (paragraph 19)\n\nThe sentences help develop a central idea of the excerpt by",
-    "promptHtml": "Read these sentences from the excerpt.<br><strong>Mom seems to think of nothing farther away than today or perhaps yesterday or tomorrow morning.</strong> (paragraph 1)<br><strong>Mom was fixing oatmeal for tomorrow morning.</strong> (paragraph 19)<br>The sentences help develop a central idea of the excerpt by",
+    "prompt": "Read these sentences from the excerpt.\n\nMom seems to think of nothing farther away than today or perhaps yesterday or tomorrow morning. (paragraph 1)\nMom was fixing oatmeal for tomorrow morning. (paragraph 19)\n\nThe sentences help develop a central idea of the excerpt by",
+    "promptHtml": "<p>Read these sentences from the excerpt.</p><blockquote><strong><strong>Mom seems to think of nothing farther away than today or perhaps yesterday or tomorrow morning.</strong> (paragraph 1)<br><strong>Mom was fixing oatmeal for tomorrow morning.</strong> (paragraph 19)</strong></blockquote><p>The sentences help develop a central idea of the excerpt by</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -263,6 +263,7 @@ const winterWheatQuestions: ExamQuestion[] = [
     "id": "winter-wheat-9",
     "points": 1,
     "prompt": "What is Ellen’s primary mood at key points in the excerpt?",
+    "instructions": "Move the correct answer to each box in the table.",
     "promptHtml": "What is Ellen’s primary mood at key points in the excerpt?",
     "topic": "Central Idea & Theme",
     "categories": [
@@ -285,7 +286,6 @@ const winterWheatQuestions: ExamQuestion[] = [
       "item-3": "row-3",
       "item-5": "row-2"
     },
-    "instructions": "Move the correct answer to each box in the table.",
     "items": [
       {
         "html": "Calm",
@@ -324,6 +324,7 @@ const winterWheatQuestions: ExamQuestion[] = [
 
 export const winterWheatPassageSet: ExamPassageSet = {
   id: "ela-winter-wheat",
+  section: "reading",
   questionCount: winterWheatQuestions.length,
   directions: {
   "subject": "English Language Arts",
@@ -333,16 +334,15 @@ export const winterWheatPassageSet: ExamPassageSet = {
 },
   passage: createProsePassage({
     id: "winter-wheat",
-    passageType: "literary",
     title: "Excerpt from Winter Wheat",
     author: "Mildred Walker",
     blurb: "Ellen, the narrator, is preparing to leave her parents and the family farm for college the next day.",
+    passageType: "literary",
+    passageCategory: "miscellaneous",
+    richText: "<p>I love Dad’s way of talking that makes him seem different from other ranchers. He’s lived here twenty-three years, but he still says “back East where I come from.” He’s the one who gets excited when I do about spring coming or a <span data-glossary-definition=\"story published in short segments at regular intervals\" role=\"link\" tabindex=\"0\">serial</span> running in the magazine we’re both reading, but it’s what Mom says that I depend on. When Mom used to say “Don’t worry” about my pet chicken or dog or new calf, it always got well. Dad is always talking of going some place, not now, but next year, maybe. Mom seems to think of nothing farther away than today or perhaps yesterday or tomorrow morning.</p><p>Mom folded the ironing board and put it inside their bedroom that was just off the kitchen. She carried in the freshly ironed clothes. Dad went back to his paper. When Mom came back she took beans from the cupboard to soak for tomorrow. Dad always said Mom could make all the dishes he’d had back in Vermont as well as though she were a New Englander herself, instead of a Russian. All of a sudden, I realized that tomorrow when those beans would be ready to eat I’d be going away. It gave me a funny feeling.</p><p>“I’ll be taking the train tomorrow night,” I said aloud, more to hear it myself.</p><p>“We can drive you into town in the afternoon,” Dad said, dropping his paper on the floor.</p><p>“There’s no need to go to town; she can catch the train at Gotham just as well. We haven’t nothing to take us into town for,” Mom said.</p><p>“Well, we don’t have to decide tonight,” Dad said, but I knew he wanted to go into Clark City. It wouldn’t be so flat as just seeing me go off on the train from Gotham. My going away was hard on both of them; they were so different—and I was part of them both. It made me uncomfortable to think of leaving them.</p><p>While I was getting ready for bed in my room that’s off the front room, I saw how it would be if I left from town. We’d go in right after dinner and go around to the stores, Dad going one way and Mom and I another. Dad would probably have his hair cut at the barbershop and stop in the bank and meet someone he knew to talk to. Then we’d meet at the big store on the corner and go to the cafeteria for supper. The train stops ten minutes or so at the station in town and there are other people and excitement and you have time to wave from the platform and then again from your window by your seat. We went to the station in Clark City to see the Goodals off when they went back to Iowa.</p><p>If I left from Gotham, we’d just drive down in the truck and wait till the train came. It only stops long enough for you to get on and you hardly have time to taste the flavor of going away.</p><p>I sat on the bed in my pyjamas with my arms around my knees. I couldn’t keep from thinking of that time Dad went back East. I tried to, and then I just sat still and looked straight at it. Sometimes that’s better than working so hard to keep from looking at what’s in your mind.</p><p>Dad went all the way back to Vermont. . . . It was in November and it was already dark when the train came through Gotham. Even now, I could feel how cold and dark it was. I held Mom’s hand. Dad was so dressed-up he seemed strange. . . . We stood there without saying anything until Dad told Mom to remember to call Mr. Bardich, our neighbor, if the cow didn’t calve tomorrow.</p><p>“I’ll manage,” Mom snapped back.</p><p>“I wish you could go, Anna,” Dad said to Mom, “and we could take Ellen.” . . .</p><p>“Good-by, Anna Petrovna,” he said, looking at Mom. I had never heard him call her by two names before.</p><p>“Good-by,” Mom said, standing still, without smiling.</p><p>Then he was gone and the crossroads were darker than ever. The train light shone on the high window in the top of the grain elevator for a moment and then that too was dark. We got into our old Ford and Mom drove back to the house. My throat ached all the way. The name Dad had called Mom kept saying itself in my ears: “Anna Petrovna, Anna Petrovna.” . . .</p><p>Our house seemed lonely when we came back to it. It seemed to be hiding under the <span data-glossary-definition=\"small gulch or ravine\" role=\"link\" tabindex=\"0\">coulee</span>. I went with Mom to put the truck in the barn that was bigger than the house. I think Mom was prouder of our barn than the house, anyway. We walked back to look at the cow that was going to calve. She was just a big light blob in the dark, waiting. I had thought she was exciting this morning, but now she seemed sad, too.</p><p>The wind blew when we walked across the open space to the house and I couldn’t help shivering with the cold. Inside the house it was warm, but empty.</p><p>“Bring your nightgown in here and I heat you some milk,” Mom said.</p><p>I drank the milk sitting on a stool in front of the stove. It tasted good, but the lonely ache in my throat was still there. I picked up my clothes and hung them neatly behind the stove and put my cup on the sink board. Mom was fixing oatmeal for tomorrow morning.</p><p>“Good night, Mom,” I said almost timidly, standing beside her. She seemed wrapped around in a kind of strangeness. Then she turned around and drew me to her. The front of her dress was warm from the stove. I felt the comfortable heat through my gown. She laid her hand against my face and it felt rough and hard but firm. I dared ask her something I wanted to know.</p><p>“Mom, was that really your name—what Dad called you?”</p><p>Her voice sounded surprised. “Why, Yeléna, you know that; Anna Petrovna. You know I am born in Russia, in Seletskoe.”</p><p>“Yes, but I didn’t know your other name,” I said.</p><p>“Anna Petrovna Webb.” She pronounced it slowly. “Once I think what a funny name Ben Webb is!” She laughed. Her laugh was warm and low like our kitchen, and comfortable. The house seemed natural and right again. . . .</p><p>But now that I am grown, I feel the wall of strangeness between them, more than when I was a child. I wondered how they would get along without me.</p>",
     sourceNote: "From WINTER WHEAT by Mildred Walker, published by University of Nebraska Press. Copyright © 1944 by Harcourt, Brace and Company, Inc. Copyright renewed 1971 by Mildred Walker. All rights reserved.",
     text: winterWheatPassageText,
-    glossary: [
-      { term: "serial", definition: "story published in short segments at regular intervals" },
-      { term: "coulee", definition: "small gulch or ravine" },
-    ],
+    versionLabel: "2025-2026 Form A",
   }),
   questions: winterWheatQuestions,
 };

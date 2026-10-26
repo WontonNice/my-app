@@ -13,6 +13,52 @@ const fixture = JSON.parse(await readFile(new URL('./fixtures/document-import/ex
 const observed = JSON.parse(await readFile(new URL('./fixtures/document-import/observed-source.json', import.meta.url), 'utf8'));
 const topics = JSON.parse(await readFile(new URL('./content-topics.json', import.meta.url), 'utf8'));
 const taxonomy = { reading: topics.slice(0, 8), revising_editing_a: topics.slice(8), math: ['Algebra'] };
+test('Exam Builder passage shortcuts retain the exam draft and honor passage-edit cancellation', async () => {
+  const html = await readFile(join(toolsRoot, 'content-studio.html'), 'utf8');
+  const start = html.indexOf('    function openTestPassageEditor(');
+  const source = html.slice(start, html.indexOf('    function testPassageSectionMarkup(', start));
+  const draft = { readingPassageIds: ['unsaved-passage'] };
+  const app = { saving: false, passageMode: 'exam', selectedPassageId: 'old', testDraft: draft, testDirty: true };
+  const tabs = [];
+  let allowSelection = true, allowModeChange = true;
+  const open = vm.runInNewContext(`${source}\nopenTestPassageEditor`, {
+    app, passageById: id => id === 'target',
+    selectPassage: id => { if (allowSelection) app.selectedPassageId = id; },
+    switchTab: tab => { if (allowModeChange) { tabs.push(tab); app.passageMode = 'exam'; } },
+  });
+  open('target');
+  assert.equal(app.selectedPassageId, 'target');
+  assert.deepEqual(tabs, ['passages']);
+  assert.equal(app.testDraft, draft);
+  assert.equal(app.testDirty, true);
+  tabs.length = 0; app.selectedPassageId = 'old'; allowSelection = false;
+  open('target'); assert.deepEqual(tabs, []);
+  app.passageMode = 'advanced'; allowModeChange = false;
+  open('target'); assert.equal(app.passageMode, 'advanced'); assert.equal(app.selectedPassageId, 'old');
+  allowModeChange = true; allowSelection = true;
+  open('target'); assert.equal(app.selectedPassageId, 'target'); assert.equal(app.testDraft, draft);
+  tabs.length = 0; open('missing'); assert.deepEqual(tabs, []);
+  app.saving = true; open('target'); assert.deepEqual(tabs, []);
+});
+const sectionDirections = 'DIRECTIONS: Read each of the following two texts and answer the related questions. You will be asked to improve the writing quality of each text and to correct errors so that the texts follow the conventions of standard written English. You should reread relevant parts of each text, while being mindful of time, before marking the best answer for each question.';
+
+test('section directions are removed on import and reload while local instructions, prompts and answers stay intact', async () => {
+  const original = { ...fixture.passages[0].questions[0], instructions: sectionDirections, instructionsHtml: `<p>${sectionDirections.replace('DIRECTIONS:', '<strong>DIRECTIONS:</strong>')}</p>` };
+  const cleaned = contract.withoutSectionDirections(original);
+  assert.equal(cleaned.instructions, ''); assert.equal(cleaned.instructionsHtml, '');
+  assert.equal(cleaned.prompt, original.prompt); assert.deepEqual(cleaned.choices, original.choices);
+  assert.equal(cleaned.correctChoiceId, original.correctChoiceId);
+  assert.equal(original.instructions, sectionDirections);
+  const mixed = contract.withoutSectionDirections({ instructions: sectionDirections + '\n\nSelect two answers.', instructionsHtml: `<div>${original.instructionsHtml}<p>Select <em>two</em> answers.</p></div>` });
+  assert.equal(mixed.instructions, 'Select two answers.');
+  assert.equal(mixed.instructionsHtml, '<div><p>Select <em>two</em> answers.</p></div>');
+  const local = { ...original, instructions: 'DIRECTIONS: Drag the best sentence to the box.', instructionsHtml: '<p>Use the <u>underlined</u> sentence.</p>' };
+  assert.deepEqual(contract.withoutSectionDirections(local), local);
+  const [entry] = contract.parse({ format: contract.format, passage: { ...fixture.passages[0], questions: [original] } });
+  assert.equal(entry.content.questions[0].instructionsHtml, '');
+  assert.equal(contract.normalizeEntryChoices({ questions: [original] }).questions[0].instructions, '');
+  assert.match(contract.prompt(taxonomy), /Exclude general exam\/section DIRECTIONS/);
+});
 
 test('all math response types retain their interactions and verified keys through prompt import, including short-answer aliases', () => {
   const questions = [
@@ -20,7 +66,7 @@ test('all math response types retain their interactions and verified keys throug
     { type:'multi_select', choices:[{id:'A',text:'1'},{id:'B',text:'2'}], correctChoiceIds:['A','B'], requiredSelections:2 },
     ...['numeric_entry','short_response','short_answer','short answer','short-answer','grid_in'].map(type => ({type,correctTextAnswers:['-4']})),
     { type:'inline_dropdown', dropdownContent:['{{a}} + {{b}}'], dropdowns:['a','b'].map(id=>({id,options:[{id:'one',text:'1'},{id:'two',text:'2'}],correctChoiceId:'two'})) },
-    { type:'math_drag_drop', items:[{id:'one',text:'1'},{id:'two',text:'2'}], dragDropContent:['x = {{a}}'], dragDropSlots:[{id:'a',correctItemId:'two'}], allowReuse:false },
+    ...['compact', 'outlined'].map(dragDropStyle => ({ type:'math_drag_drop', dragDropStyle, items:[{id:'one',text:'1'},{id:'two',text:'2'}], dragDropContent:['x = {{a}}'], dragDropSlots:[{id:'a',correctItemId:'two'}], allowReuse:false })),
     { type:'graph_point_select', graph:{xMin:0,xMax:4,xStep:1,yMin:0,yMax:4,yStep:1,xLabel:'x',yLabel:'y',points:[{id:'a',x:1,y:1},{id:'b',x:2,y:2}]},correctPointIds:['a'] },
     { type:'number_line_response', numberLineResponse:{min:-2,max:4,tickStep:1,labelStep:1,correctValue:1,correctEndpoint:'closed',correctDirection:'right'} },
   ].map((question,index) => ({id:`math-type-${index}`,prompt:'Source question',topic:'Algebra',subtopic:'Equations',explanation:'Source explanation',...question}));
@@ -133,6 +179,35 @@ test('draft persistence, stale-write protection and fingerprint duplicates survi
   } finally { assert.ok(resolve(dir).startsWith(resolve(toolsRoot))); await rm(dir, { recursive: true, force: true }); }
 });
 
+test('draft deletion is versioned, survives reload, allows reimport and protects published passages', async () => {
+  const dir = await mkdtemp(join(toolsRoot, '.document-draft-delete-test-'));
+  try {
+    const store = documentDraftStore(dir);
+    let state = await store.import(fixture);
+    const target = structuredClone(state.entries[0]), survivor = structuredClone(state.entries[1]);
+    await assert.rejects(store.delete({ id: target.id }), /Reopen/);
+    await assert.rejects(store.delete({ id: target.id, revision: state.revision - 1 }), /changed/);
+    state = await store.delete({ id: target.id, revision: state.revision });
+    assert.equal(state.entries.length, 2); assert.deepEqual(state.entries[0], survivor);
+    assert.equal((await documentDraftStore(dir).read()).entries.some(entry => entry.id === target.id), false);
+    await assert.rejects(store.delete({ id: target.id, revision: state.revision }), /not found/);
+    state = await store.import({ format: contract.format, passage: fixture.passages[0] }, state.revision);
+    const replacement = state.entries.find(entry => entry.content.title === target.content.title);
+    assert.ok(replacement); assert.notEqual(replacement.id, target.id);
+    await assert.rejects(store.save({ entry: target, revision: state.revision }), /not found/);
+    await store.published(replacement.id, replacement.content);
+    state = await store.read();
+    await assert.rejects(store.delete({ id: replacement.id, revision: state.revision }), /unpublished/);
+    // Simulate an old saved draft: opening it cleans only section boilerplate.
+    state.entries[0].content.questions[0].instructions = sectionDirections;
+    state.entries[0].content.questions[0].instructionsHtml = `<p>${sectionDirections}</p>`;
+    await writeFile(join(dir, 'tools/.content-drafts/document-imports.json'), JSON.stringify(state));
+    const reopened = await documentDraftStore(dir).read();
+    assert.equal(reopened.entries[0].content.questions[0].instructionsHtml, '');
+    assert.equal(reopened.entries[0].content.questions[0].prompt, state.entries[0].content.questions[0].prompt);
+  } finally { assert.equal(dirname(resolve(dir)), resolve(toolsRoot)); await rm(dir, { recursive: true, force: true }); }
+});
+
 test('real Content Studio endpoints: import/edit/save/reload/publish/student formatter, metadata privacy, visual gate and Math reuse', async () => {
   const fixtureRoot = join(toolsRoot, '.content-drafts');
   await mkdir(fixtureRoot, { recursive: true });
@@ -142,7 +217,7 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
   try {
     for (const path of ['client/src', 'client/src/lib', 'server/data', 'tools']) await mkdir(join(dir, path), { recursive: true });
     for (const path of ['client/src/content', 'server/src/shared']) await cp(join(root, path), join(dir, path), { recursive: true });
-    for (const path of ['client/src/lib/studentMaterials.ts', 'server/data/assessments.json', 'tools/content-topics.json', 'tools/math-topics.json', 'tools/practice-topics.json', 'tools/content-studio-glossary.js']) await cp(join(root, path), join(dir, path));
+    for (const path of ['client/src/lib/studentMaterials.ts', 'server/data/assessments.json', 'tools/content-topics.json', 'tools/math-topics.json', 'tools/practice-topics.json', 'tools/content-studio-glossary.js','tools/poem-layout.js']) await cp(join(root, path), join(dir, path));
     await writeFile(join(dir, 'server/data/question-bank.json'), '{"revision":0,"questions":[],"sets":[]}');
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8')).replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(dir)};`).split('if (process.argv.includes("--validate"))')[0] + '\nexport {handleRequest, getState, savePassage};';
     await writeFile(modulePath, source);
@@ -175,12 +250,18 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.equal(browserSession.token, state.editToken);
     assert.equal((await call('/api/document-drafts', { source: '{broken-json' })).status, 400);
     const vocabularyFixture = structuredClone(fixture);
+    vocabularyFixture.passages[1].richText = '<div>The gate stood still,<br>&nbsp;&nbsp;the rain came through;</div><div>I kept one seed,<br>and planted two.</div>';
+    vocabularyFixture.passages[0].questions[1].promptParts = { introduction: 'Read this sentence from paragraph 1.', excerpt: 'A *source* sentence.', followUp: 'What does it suggest?', bold: true };
+    const quotedPrompt = '<p>Read these lines.</p><blockquote><strong>First source line<br>Second source line</strong><br><br><em>Final stanza</em></blockquote><p>What do they convey?</p>';
+    vocabularyFixture.passages[0].questions[0].prompt = 'Read these lines.\n\nFirst source line\nSecond source line\n\nFinal stanza\n\nWhat do they convey?';
+    vocabularyFixture.passages[0].questions[0].promptHtml = quotedPrompt;
     const glossaryDefinition = 'a record of &quot;items&quot; &amp; totals';
     vocabularyFixture.passages[0].richText = fixture.passages[0].text.split('\n\n')
       .map(paragraph => `<p>${paragraph.replace('ledger', `<span data-glossary-definition="${glossaryDefinition}" role="link" tabindex="0">ledger</span>`)}</p>`).join('');
     let imported = (await call('/api/document-drafts', { source: JSON.stringify(vocabularyFixture) })).data;
     assert.equal(imported.entries.length, 3);
     assert.equal(imported.entries[0].content.richText, vocabularyFixture.passages[0].richText);
+    assert.equal(imported.entries[0].content.questions[0].promptHtml, quotedPrompt);
     assert.equal((await browserApi('/api/document-drafts')).entries.length, 3);
     assert.equal((await studio.getState()).passages.some(p => p.title === fixture.passages[0].title), false);
     const prose = imported.entries[0];
@@ -200,12 +281,71 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.equal(reopened.byline, prose.content.byline);
     assert.equal(reopened.subtitle, prose.content.subtitle);
     assert.equal(reopened.questions.length, 3);
+    assert.equal(reopened.questions[0].promptHtml, quotedPrompt);
+    assert.equal(reopened.questions[0].prompt, vocabularyFixture.passages[0].questions[0].prompt);
+    assert.equal(reopened.questions[1].promptParts, undefined);
+    assert.match(reopened.questions[1].promptHtml, /<blockquote><strong>A <em>source<\/em> sentence\.<\/strong><\/blockquote><p>What does it suggest\?<\/p>/);
+    const resavedQuote = await call('/api/passages', reopened);
+    assert.equal(resavedQuote.status, 201);
+    assert.equal(resavedQuote.data.passage.questions[0].promptHtml, quotedPrompt);
     assert.deepEqual(reopened.questions.map(q => q.choices), fixture.passages[0].questions.map(q => q.choices.map((c,i) => ({...c,id:String.fromCharCode(65+i)}))));
     assert.deepEqual(reopened.questions.map(q => q.explanation), fixture.passages[0].questions.map(q => q.explanation));
     const books = JSON.parse(await readFile(join(dir, 'server/data/library-books.json'), 'utf8'));
     const student = books.find(b => b.id === prose.content.id).passageSet;
     assert.ok(student.passage.lines.some(line => line.text === fixture.passages[0].text.split('\n\n')[0]));
     assert.equal(student.questions[0].correctChoiceId, 'B');
+    assert.equal(student.questions[0].promptHtml, quotedPrompt);
+    // Publish directly into an existing exam; preserve its other English sections and Math source.
+    const destinationTest = state.tests.find(t=>t.mathSectionFileName && t.readingPassageIds.length && t.revisingEditingPartAPassageIds.length && t.standaloneItemIds.length) || state.tests.find(t=>t.mathSectionFileName);
+    assert.ok(destinationTest, 'Fixture includes an existing exam with Math content');
+    const mathSourcePath = join(dir,'client/src/content/exams/mathSets',destinationTest.mathSectionFileName);
+    const originalMathSource = await readFile(mathSourcePath,'utf8');
+    const directPublish = await call('/api/passages',{...resavedQuote.data.passage,publishToExamId:destinationTest.assessmentId});
+    assert.equal(directPublish.status,201,JSON.stringify(directPublish.data));
+    assert.equal(directPublish.data.examAssignment.error,undefined);
+    assert.equal(directPublish.data.examAssignment.added,true);
+    const afterDirectPublish = (await studio.getState()).tests.find(t=>t.assessmentId===destinationTest.assessmentId);
+    assert.deepEqual(afterDirectPublish.readingPassageIds,[...destinationTest.readingPassageIds,prose.content.id]);
+    assert.deepEqual(afterDirectPublish.revisingEditingPartAPassageIds,destinationTest.revisingEditingPartAPassageIds);
+    assert.deepEqual(afterDirectPublish.standaloneItemIds,destinationTest.standaloneItemIds);
+    assert.equal(await readFile(mathSourcePath,'utf8'),originalMathSource);
+    const directRetry = await call('/api/passages',{...directPublish.data.passage,publishToExamId:destinationTest.assessmentId});
+    assert.equal(directRetry.data.examAssignment.added,false);
+    assert.equal((await studio.getState()).tests.find(t=>t.assessmentId===destinationTest.assessmentId).sourceHash,afterDirectPublish.sourceHash);
+    const invalidTarget = await call('/api/passages',{...directRetry.data.passage,publishToExamId:'missing-exam'});
+    assert.equal(invalidTarget.status,404);
+    const partAOriginal = state.passages.find(p=>p.section==='revising_editing_a');
+    assert.ok(partAOriginal);
+    const partACopy={...partAOriginal,id:'publish-part-a-fixture',title:'Publish Part A fixture',fileName:'publish-part-a-fixture.ts',exportName:'publishPartAFixture',passageSetId:'ela-publish-part-a-fixture',sourceHash:'',questions:partAOriginal.questions.map(q=>({...q,id:`publish-part-a-${q.id}`})),publishToExamId:destinationTest.assessmentId};
+    const partAPublished=await call('/api/passages',partACopy);
+    assert.equal(partAPublished.status,201,JSON.stringify(partAPublished.data));
+    assert.equal(partAPublished.data.examAssignment.error,undefined);
+    const afterPartA=(await studio.getState()).tests.find(t=>t.assessmentId===destinationTest.assessmentId);
+    assert.deepEqual(afterPartA.readingPassageIds,afterDirectPublish.readingPassageIds);
+    assert.deepEqual(afterPartA.revisingEditingPartAPassageIds,[...destinationTest.revisingEditingPartAPassageIds,partACopy.id]);
+    assert.equal(await readFile(mathSourcePath,'utf8'),originalMathSource);
+    const conflict={...directRetry.data.passage,id:'publish-conflict-fixture',title:'Publish conflict fixture',fileName:'publish-conflict-fixture.ts',exportName:'publishConflictFixture',passageSetId:'ela-publish-conflict-fixture',sourceHash:'',publishToExamId:destinationTest.assessmentId};
+    const conflictResult=await call('/api/passages',conflict);
+    assert.equal(conflictResult.status,201);
+    assert.match(conflictResult.data.examAssignment.error,/share the ID/);
+    assert.ok(conflictResult.data.passage.sourceHash);
+    assert.equal((await studio.getState()).tests.find(t=>t.assessmentId===destinationTest.assessmentId).sourceHash,afterPartA.sourceHash);
+    const fixedRetry=await call('/api/passages',{...conflictResult.data.passage,questions:conflictResult.data.passage.questions.map(q=>({...q,id:`retry-${q.id}`})),publishToExamId:destinationTest.assessmentId});
+    assert.equal(fixedRetry.data.examAssignment.error,undefined);
+    // The evidence matrix uses the same publication, source writer and student library pipeline.
+    const evidenceQuestion = JSON.parse(await readFile(new URL('./fixtures/evidence-matrix-question.json', import.meta.url), 'utf8'));
+    evidenceQuestion.correctPlacements = {'row-1':'table','row-2':'passage','row-3':'both','row-4':'passage'}; // Synthetic test key.
+    const [evidenceEntry] = contract.parse({format:contract.format,passage:{...fixture.passages[0],id:'evidence-matrix-fixture',title:'Evidence matrix fixture',questions:[evidenceQuestion]}});
+    approve(evidenceEntry);
+    const evidenceSaved = await call('/api/passages', evidenceEntry.content);
+    assert.equal(evidenceSaved.status,201,JSON.stringify(evidenceSaved.data));
+    assert.equal(evidenceSaved.data.passage.questions[0].matrixStyle,'evidence');
+    const evidenceReloaded = (await studio.getState()).passages.find(p=>p.id===evidenceSaved.data.passage.id);
+    assert.equal(evidenceReloaded.questions[0].type,'matrix_choice');
+    assert.equal(evidenceReloaded.questions[0].matrixStyle,'evidence');
+    assert.deepEqual(evidenceReloaded.questions[0].correctPlacements,evidenceQuestion.correctPlacements);
+    const evidenceBook = JSON.parse(await readFile(join(dir,'server/data/library-books.json'),'utf8')).find(b=>b.id===evidenceSaved.data.passage.id);
+    assert.equal(evidenceBook.passageSet.questions[0].matrixStyle,'evidence');
     assert.ok(student.passage.lines.some(line => line.html?.includes(`data-glossary-definition="${glossaryDefinition}" role="link" tabindex="0">ledger</span>`)));
     assert.deepEqual(student.passage.lines.filter(line => line.lineNumber).map(line => line.lineNumber), ['1', '2', '3']);
     assert.ok(student.passage.lines.some(line => line.text === 'translated by Mira Vale'));
@@ -371,6 +511,23 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.ok(!(await studio.getState()).advancedPassages.some(p => p.id === satSaved[0].id));
     assert.doesNotMatch(await readFile(join(dir, 'client/src/content/advancedPractice/index.ts'), 'utf8'), new RegExp(`\\b${satSaved[0].exportName}\\b`));
     await assert.rejects(readFile(join(dir, 'client/src/content/advancedPractice/passageSets', satSaved[0].fileName)), error => error.code === 'ENOENT');
+    const deleteDraft = (body, token = state.editToken) => fetch(base + '/api/document-drafts', { method: 'DELETE', headers: { 'Content-Type': 'application/json', 'x-editor-token': token }, body: JSON.stringify(body) });
+    let beforeDeletion = (await call('/api/document-drafts')).data;
+    const publishedDraft = beforeDeletion.entries.find(entry => entry.status === 'published');
+    assert.equal((await deleteDraft({ id: publishedDraft.id, revision: beforeDeletion.revision })).status, 400);
+    const deletionImport = { format: contract.format, passage: { ...fixture.passages[0], title: 'Accidental import for deletion test', text: fixture.passages[0].text + '\n\nAn extra paragraph for this private draft.' } };
+    beforeDeletion = (await call('/api/document-drafts', { source: JSON.stringify(deletionImport) })).data;
+    const deletionId = beforeDeletion.lastImport.entryIds[0];
+    const snapshot = await readFile(join(dir, 'server/data/library-books.json'), 'utf8');
+    assert.equal((await deleteDraft({ id: deletionId, revision: beforeDeletion.revision }, 'bad')).status, 403);
+    assert.equal((await deleteDraft({ id: deletionId, revision: beforeDeletion.revision - 1 })).status, 409);
+    const deleted = await deleteDraft({ id: deletionId, revision: beforeDeletion.revision });
+    assert.equal(deleted.status, 200);
+    assert.equal((await deleted.json()).entries.some(entry => entry.id === deletionId), false);
+    assert.equal((await call('/api/document-drafts')).data.entries.some(entry => entry.id === deletionId), false);
+    assert.equal(await readFile(join(dir, 'server/data/library-books.json'), 'utf8'), snapshot);
+    const reimport = (await call('/api/document-drafts', { source: JSON.stringify(deletionImport) })).data;
+    assert.notEqual(reimport.lastImport.entryIds[0], deletionId);
   } finally {
     if (server) await new Promise(done => server.close(done));
     await rm(modulePath, { force: true });

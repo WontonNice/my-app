@@ -17,6 +17,8 @@ import { boardsRouter } from "./routes/boards";
 import { achievementsRouter } from "./routes/achievements";
 import { gameRoomsRouter } from "./routes/gameRooms";
 import { accountRouter } from "./routes/account";
+import { mathCommandRouter } from "./routes/mathCommand";
+import { infinitePracticeRouter } from "./routes/infinitePractice";
 
 type CreateAppOptions = {
     allowedOrigins: string[];
@@ -72,6 +74,8 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
     app.use("/api/game-rooms", gameRoomsRouter);
     app.use("/api/account", accountRouter);
     app.use("/api/answer-sheets", answerSheetsRouter);
+    app.use("/api/math-command", mathCommandRouter);
+    app.use("/api/infinite-practice", infinitePracticeRouter);
 
     app.use("/api", (_request, response) => {
         response.status(404).json({ message: "API endpoint not found.", requestId: response.locals.requestId });

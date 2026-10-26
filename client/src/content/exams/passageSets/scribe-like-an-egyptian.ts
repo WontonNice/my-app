@@ -34,6 +34,7 @@ const scribeLikeAnEgyptianQuestions: ExamQuestion[] = [
     "id": "scribe-like-an-egyptian-2",
     "points": 1,
     "prompt": "Read this sentence from paragraph 2.\n\nIncluding both ideograms (which convey a whole word or idea, either concrete or abstract, in a single sign) and phonograms (representing either an alphabetic sound or a group of consonants), [the writing system] was used in formal inscriptions on tomb and temple walls as well as on elaborate funerary papyri.\n\nThe author’s purpose for including the sentence is to",
+    "promptHtml": "<p>Read this sentence from paragraph 2.</p><blockquote><strong>Including both ideograms (which convey a whole word or idea, either concrete or abstract, in a single sign) and phonograms (representing either an alphabetic sound or a group of consonants), [the writing system] was used in formal inscriptions on tomb and temple walls as well as on elaborate funerary papyri.</strong></blockquote><p>The author’s purpose for including the sentence is to</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -190,6 +191,7 @@ const scribeLikeAnEgyptianQuestions: ExamQuestion[] = [
 
 export const scribeLikeAnEgyptianPassageSet: ExamPassageSet = {
   id: "ela-scribe-like-an-egyptian",
+  section: "reading",
   questionCount: scribeLikeAnEgyptianQuestions.length,
   directions: {
   "subject": "English Language Arts",
@@ -199,11 +201,13 @@ export const scribeLikeAnEgyptianPassageSet: ExamPassageSet = {
 },
   passage: createProsePassage({
     id: "scribe-like-an-egyptian",
-    passageType: "informational",
     title: "Excerpt from “Scribe Like an Egyptian”",
     image: {"alt":"Excerpt from “Scribe Like an Egyptian” illustration","src":"/exam-images/scribe-like-an-egyptian-passage.png"},
+    passageType: "informational",
+    passageCategory: "miscellaneous",
     sourceNote: "From “Scribe Like an Egyptian” by Hilary Wilson from HISTORY TODAY, August 8, 2019. Copyright © 2019 by History Today Ltd. Company.",
     text: scribeLikeAnEgyptianPassageText,
+    versionLabel: "2025-2026 Form A",
   }),
   questions: scribeLikeAnEgyptianQuestions,
 };

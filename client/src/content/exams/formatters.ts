@@ -1,5 +1,6 @@
 import type { ExamPassage, ExamPassageLine, ExamPassageType, ExamQuestionImage } from "./types";
 import { createGlossaryRichText } from "../../../../tools/content-studio-glossary.js";
+import { poemRichBlocks } from "../../../../tools/poem-layout.js";
 import { passageCategory as normalizeCategory, type PassageCategory } from "../../../../server/src/shared/passageCategories";
 
 /** Preserve imported wording/layout while retaining the exam's prose paragraph numbers. */
@@ -16,7 +17,7 @@ export function createSourcePassage(input: PlainTextPassageInput & {
   lines.push({ kind: "title", text: input.title, align: "center" });
   if (input.subtitle) lines.push({ kind: "heading", text: input.subtitle, align: "center" });
   if (input.byline || input.author) lines.push({ kind: "byline", text: input.byline || `by ${input.author}`, align: "center" });
-  const blocks: RichTextBlock[] = input.richText ? (input.format === "poem" ? richTextLines(input.richText) : richTextBlocks(input.richText))
+  const blocks: RichTextBlock[] = input.richText ? (input.format === "poem" ? richTextLines(input.richText, input.text) : richTextBlocks(input.richText))
     : input.text.split(input.format === "poem" ? /\r?\n/ : /\r?\n\r?\n/).map(text => ({ text, html: escape(text).replace(/\n/g, "<br>").replace(/ {2}/g, " &nbsp;") }));
   let paragraphNumber = 1;
   let poemLineNumber = 1;
@@ -137,16 +138,8 @@ function richTextBlocks(value: string): RichTextBlock[] {
   }));
 }
 
-function richTextLines(value: string): RichTextBlock[] {
-  return richTextBlocks(value).flatMap((block) => {
-    const lines = block.html.split(/<br\s*\/?>/gi);
-    if (lines.length > 1 && !lines.at(-1)) lines.pop();
-    return lines.map((html) => ({
-      ...(block.align ? { align: block.align } : {}),
-      html,
-      text: plainTextFromHtml(html).trimEnd(),
-    }));
-  });
+function richTextLines(value: string, text = ""): RichTextBlock[] {
+  return poemRichBlocks(richTextBlocks(value), text);
 }
 
 function numberRichSentences(value: string, firstSentenceNumber: number) {
@@ -233,7 +226,7 @@ export function createPlainTextPassage({
     };
   }
 
-  const richLines = richText?.trim() ? richTextLines(richText) : null;
+  const richLines = richText?.trim() ? richTextLines(richText, normalizedText) : null;
   const sourceLines: RichTextBlock[] = richLines ?? normalizedText
     .split(/\r?\n/)
     .map((rawLine) => ({ html: "", text: rawLine.trimEnd() }));

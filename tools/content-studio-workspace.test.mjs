@@ -10,6 +10,209 @@ const setup = (questions = []) => {
   return { app, ui: vm.runInNewContext(`${source}\nstudioUI;`, { app, URL, DocumentImport }) };
 };
 
+const editorHtml = await readFile(new URL('./content-studio.html', import.meta.url), 'utf8');
+const editorFunction = name => {
+  const start = editorHtml.search(new RegExp(`^    (?:async )?function ${name}\\(`, 'm'));
+  assert.notEqual(start, -1, name);
+  const next = editorHtml.slice(start + 1).search(/^    (?:async )?function /m);
+  return editorHtml.slice(start, next < 0 ? undefined : start + 1 + next);
+};
+
+test('Part B uses its own student document in authoring and Student view without reading content or keys leaking', () => {
+  const nodes = { '#student-preview-modal': { hidden: false }, '#student-preview-subtitle': {}, '#student-preview-question': {}, '#student-preview-frame': {} };
+  const app = { previewMode: 'standalone', previewQuestionIndex: 12, studentStyles: '', passageDraft: { title: 'Reading sentinel', text: 'Other unsaved content', questions: [] }, standaloneDraft: { type: 'multiple_choice', prompt: 'Which revision?', promptHtml: 'Which <strong>revision</strong>?', stimulus: 'Paragraph text.', choices: ['A','B','C','D'].map(id => ({ id, text: `Answer ${id}` })), correctChoiceId: 'C' } };
+  const reading = JSON.stringify(app.passageDraft);
+  const render = vm.runInNewContext(`${editorFunction('inlineRichValue')}\n${editorFunction('studentQuestionMarkup')}\n${editorFunction('renderStudentPreview')}\nrenderStudentPreview;`, {
+    app, $: selector => nodes[selector], studioUI: { selectedQuestionIndex: 7 }, escapeHtml: value => String(value ?? ''),
+    studentPassageMarkup() { assert.fail('Part B must not render the Reading passage'); },
+  });
+  render();
+  const student = nodes['#student-preview-frame'].srcdoc;
+  assert.match(student, /<section class="exam-standalone-document">/);
+  assert.match(student, /Which <strong>revision<\/strong>\?/);
+  assert.match(student, /Paragraph text\./);
+  assert.doesNotMatch(student, /Reading sentinel|Other unsaved content|checked|studio-key-correct/);
+  assert.equal(app.previewQuestionIndex, 0);
+  const frame = { tagName: 'IFRAME', dataset: { editor: 'standalone' } };
+  app.previewMode = 'math'; nodes['#student-preview-modal'].hidden = true;
+  render(frame);
+  assert.match(frame.srcdoc, /<section class="exam-standalone-document">/);
+  assert.match(frame.srcdoc, /html, body \{ min-width: 0; background: #f7f7f7; color: #111820; color-scheme: light;/);
+  assert.match(frame.srcdoc, /\.exam-session-shell \{ min-height: 100vh; box-sizing: border-box;/);
+  assert.match(frame.srcdoc, /exam-choice-list exam-standalone-choice-list/);
+  assert.doesNotMatch(frame.srcdoc, /<script\b/);
+  assert.equal(JSON.stringify(app.passageDraft), reading);
+  app.standaloneDraft = { type: 'category_sort', prompt: 'Pick a sentence.', stimulus: 'Paragraph text.', items: [{ id: 's1', text: 'Sentence 1' }, { id: 's2', text: 'Sentence 2' }], categories: [{ id: 'box', title: 'Answer box' }], categoryCapacity: 1, correctPlacements: { s2: 'box' } };
+  render(frame);
+  assert.match(frame.srcdoc, /data-preview-category-item="s2"/);
+  assert.match(frame.srcdoc, /data-preview-category-capacity="1"/);
+  assert.match(frame.srcdoc, /class="exam-standalone-category-card"/);
+  assert.match(frame.srcdoc, /class="exam-standalone-category-target-items" data-preview-category-items/);
+  assert.doesNotMatch(frame.srcdoc, /class="exam-category-card"/);
+});
+
+test('direct Part B editing preserves rich text and paragraph boundaries without changing answer keys or other fields', () => {
+  const app = { standaloneDraft: { type: 'multiple_choice', prompt: 'Old', stimulus: 'Old', correctChoiceId: 'B', explanation: 'Keep explanation', points: 2, choices: [{ id: 'A', text: 'First' }, { id: 'B', text: 'Second' }] } };
+  const sourceEditor = { innerHTML: '' };
+  const ui = vm.runInNewContext(`${source}\nstudioUI;`, { app, document: { querySelector: () => sourceEditor }, markStandaloneDirty: () => { app.standaloneDirty = true; } });
+  ui.commitStandaloneRich('stimulus', 0, '<p>First <b>paragraph</b>.</p><p>Second.</p>', 'First paragraph.\nSecond.');
+  assert.equal(app.standaloneDraft.stimulus, 'First paragraph.\nSecond.');
+  assert.equal(app.standaloneDraft.stimulusHtml, sourceEditor.innerHTML);
+  ui.commitStandaloneRich('choice', 0, '<em>Changed</em> answer', 'Changed\u00a0answer');
+  assert.equal(app.standaloneDraft.choices[0].text, 'Changed answer');
+  assert.equal(app.standaloneDraft.choices[0].html, '<em>Changed</em> answer');
+  assert.equal(app.standaloneDraft.correctChoiceId, 'B');
+  assert.equal(app.standaloneDraft.explanation, 'Keep explanation');
+  assert.equal(app.standaloneDraft.points, 2); assert.equal(app.standaloneDirty, true);
+  const before = ui.standaloneRenderKey();
+  app.standaloneDraft.explanation = 'New explanation'; app.standaloneDraft.topic = 'Pronouns';
+  assert.equal(ui.standaloneRenderKey(), before, 'Private fields do not reload the canvas');
+});
+
+test('Part B saves retain the draft on failure and always restore editing controls', async () => {
+  for (const fails of [false, true]) {
+    const draft = { id: 'part-b', type: 'multiple_choice', explanation: 'Unsaved explanation' };
+    const app = { standaloneDraft: draft, selectedStandaloneItemId: 'part-b', standaloneDirty: true, state: { standaloneSourceHash: 'version1' } };
+    const editor = { setAttribute() {}, removeAttribute() {} }, button = {};
+    let posted, mounted = false;
+    const save = vm.runInNewContext(`${editorFunction('saveStandaloneItem')}\nsaveStandaloneItem;`, {
+      app, $: selector => selector === '#standalone-editor' ? editor : button, clone: structuredClone, setStatus() {},
+      api: async (_path, options) => { assert.equal(editor.inert, true); posted = JSON.parse(options.body); if (fails) throw new Error('Save failed'); return { standalone: { item: { ...draft, explanation: 'Saved explanation' } } }; },
+      reloadState: async () => {}, renderStandaloneList() {}, renderStandaloneEditor(preservePosition) { assert.equal(preservePosition, true); mounted = true; }, studioUI: { syncSaveState() {} },
+    });
+    await save();
+    assert.equal(posted.item.explanation, 'Unsaved explanation');
+    assert.equal(app.saving, false); assert.equal(editor.inert, false); assert.equal(button.disabled, false);
+    assert.equal(mounted, !fails); assert.equal(app.standaloneDirty, fails);
+    if (fails) assert.equal(app.standaloneDraft, draft);
+    else assert.equal(app.standaloneDraft.explanation, 'Saved explanation');
+  }
+});
+
+test('imported Part B drafts use versioned draft saves and retain unsaved edits when completion fails', async () => {
+  const importerSource = await readFile(new URL('./content-studio-part-b.js', import.meta.url), 'utf8');
+  for (const publish of [false, true]) {
+    const original = { id: 'part-b-import-1', prompt: 'Teacher edit', correctChoiceId: '', importDraftId: 'draft-1', importVersion: 3 };
+    const app = { standaloneDraft: original, standaloneDirty: true, state: { standaloneSourceHash: 'bank-version' } };
+    const editor = {}, button = {}; let request;
+    const importer = vm.runInNewContext(`${importerSource}\nPartBImport;`, {
+      app, document: { getElementById: id => id === 'standalone-editor' ? editor : button }, clone: structuredClone, setStatus() {},
+      api: async (path, options) => {
+        request = { path, method: options.method, ...JSON.parse(options.body) };
+        if (publish) throw new Error('Correct answer is required.');
+        return { entry: { id: 'draft-1', version: 4, question: { id: original.id, prompt: original.prompt, correctChoiceId: '' } } };
+      },
+      reloadState: async () => {}, renderStandaloneList() {}, renderStandaloneEditor(preserve) { assert.equal(preserve, true); }, studioUI: { syncSaveState() {} },
+    });
+    await importer.saveCurrent(publish);
+    assert.equal(request.path, publish ? '/api/standalone-drafts/publish' : '/api/standalone-drafts');
+    assert.equal(request.version, 3); assert.equal(request.sourceHash, 'bank-version'); assert.equal(request.question.prompt, 'Teacher edit');
+    assert.equal(app.saving, false); assert.equal(editor.inert, false); assert.equal(button.disabled, false);
+    if (publish) { assert.equal(app.standaloneDraft, original); assert.equal(app.standaloneDirty, true); }
+    else { assert.equal(app.standaloneDraft.importVersion, 4); assert.equal(app.standaloneDraft.correctChoiceId, ''); assert.equal(app.standaloneDirty, false); }
+  }
+});
+
+test('Part B draft deletion supports cancel, failure, next draft, bank fallback and an empty library', async () => {
+  const importerSource = await readFile(new URL('./content-studio-part-b.js', import.meta.url), 'utf8');
+  for (const scenario of ['cancel', 'failure', 'next', 'bank', 'empty', 'published']) {
+    const original = { id: 'q1', prompt: 'Unsaved edit', ...(scenario === 'published' ? {} : { importDraftId: 'draft-1', importVersion: 4 }) };
+    const next = { id: 'draft-2', version: 2, question: { id: 'q2', prompt: 'Next draft' } };
+    const bank = { id: 'bank-1', prompt: 'Saved question' };
+    const drafts = [{ id: 'draft-1', question: original }, next];
+    const app = { standaloneDraft: original, standaloneDirty: true, state: { standaloneImportDrafts: drafts, standaloneItems: scenario === 'bank' ? [bank] : [] } };
+    const editor = {}; let requests = 0, renders = 0, focused = false;
+    const importer = vm.runInNewContext(`${importerSource}\nPartBImport;`, {
+      app, document: { getElementById: id => id === 'standalone-editor' ? editor : { focus() { assert.equal(editor.inert, false); focused = true; } } },
+      window: { confirm(message) { assert.match(message, /Unsaved edit/); assert.match(message, /unsaved edits/); return scenario !== 'cancel'; } },
+      clone: structuredClone, setStatus() {}, studioUI: { syncSaveState() {} }, renderStandaloneList() {}, renderStandaloneEditor() { renders++; },
+      api: async (path, options) => {
+        requests++; assert.equal(path, '/api/standalone-drafts'); assert.equal(options.method, 'DELETE');
+        assert.deepEqual(JSON.parse(options.body), { id: 'draft-1', version: 4 }); assert.equal(editor.inert, true);
+        if (scenario === 'failure') throw new Error('Draft changed in another editor');
+        return { deleted: 'draft-1', drafts: scenario === 'next' ? [next] : [] };
+      },
+    });
+    await importer.deleteCurrent();
+    const succeeds = ['next', 'bank', 'empty'].includes(scenario);
+    assert.equal(requests, ['cancel', 'published'].includes(scenario) ? 0 : 1);
+    assert.equal(renders, succeeds ? 1 : 0); assert.equal(focused, succeeds);
+    assert.equal(Boolean(app.saving), false); assert.equal(Boolean(editor.inert), false);
+    assert.equal(app.standaloneDirty, !succeeds);
+    if (!succeeds) { assert.equal(app.standaloneDraft, original); assert.equal(app.state.standaloneImportDrafts, drafts); }
+    if (scenario === 'next') { assert.equal(app.standaloneDraft.importDraftId, next.id); assert.equal(app.standaloneDraft.importVersion, 2); }
+    if (scenario === 'bank') { assert.deepEqual(app.standaloneDraft, bank); assert.equal(app.selectedStandaloneItemId, bank.id); }
+    if (scenario === 'empty') assert.equal(app.standaloneDraft, null);
+  }
+});
+
+test('passage draft deletion preserves unsaved content on cancel or failure and clears only the deleted editor', async () => {
+  const documentSource = await readFile(new URL('./content-studio-documents.js', import.meta.url), 'utf8');
+  for (const scenario of ['cancel', 'failure', 'delete', 'other', 'published']) {
+    const original = { importDraftId: 'draft-1', title: 'Teacher edit', questions: [] };
+    const app = { passageMode: 'exam', passageDraft: original, passageDirty: true, state: { passages: [{ id: 'saved', title: 'Saved passage' }] } };
+    const editor = {}; let requests = 0;
+    const ui = vm.runInNewContext(`${documentSource}\nDocumentStudio;`, {
+      app, document: { getElementById: () => editor, querySelector: () => null }, window: { confirm: () => scenario !== 'cancel' },
+      clone: structuredClone, setStatus() {}, studioUI: { syncSaveState() {} }, renderPassageList() {}, renderPassageEditor() {},
+      api: async (path, options) => {
+        requests++; assert.equal(path, '/api/document-drafts'); assert.equal(options.method, 'DELETE');
+        assert.equal(JSON.parse(options.body).revision, 5); assert.equal(editor.inert, true);
+        if (scenario === 'failure') throw new Error('Drafts changed');
+        return { revision: 6, entries: [] };
+      },
+    });
+    const id = scenario === 'other' ? 'draft-2' : 'draft-1';
+    ui.state = { revision: 5, entries: [{ id, kind: 'passage', status: scenario === 'published' ? 'published' : 'draft', content: { title: 'Imported', questions: [{}] } }] };
+    await ui.deleteDraft(id);
+    assert.equal(requests, ['cancel', 'published'].includes(scenario) ? 0 : 1);
+    assert.equal(Boolean(app.saving), false); assert.equal(Boolean(editor.inert), false);
+    if (scenario === 'delete') { assert.equal(app.passageDraft.id, 'saved'); assert.equal(app.passageDirty, false); }
+    else { assert.equal(app.passageDraft, original); assert.equal(app.passageDirty, true); }
+  }
+});
+
+test('reading preview keeps rich question instructions in one editable block and omits the empty directions placeholder', () => {
+  const nodes = { '#student-preview-modal': { hidden: false }, '#student-preview-subtitle': {}, '#student-preview-question': {}, '#student-preview-frame': {} };
+  const question = { type: 'multiple_choice', prompt: 'Choose the revision.', instructionsHtml: '<p>Select <strong>two</strong> answers.</p><p>Use the evidence.</p>', choices: [] };
+  const app = { passageDraft: { title: 'Passage', format: 'prose', questions: [question] }, studentStyles: '', previewQuestionIndex: 0 };
+  const render = vm.runInNewContext(`${editorFunction('inlineRichValue')}\n${editorFunction('studentQuestionMarkup')}\n${editorFunction('renderStudentPreview')}\nrenderStudentPreview;`, {
+    app, $: selector => nodes[selector], studioUI: { selectedQuestionIndex: 0 }, escapeHtml: value => String(value ?? ''), studentPassageMarkup: () => 'Passage text',
+  });
+  const frame = { tagName: 'IFRAME', dataset: {} };
+  render(frame);
+  assert.ok(frame.srcdoc.includes(`<div class="exam-question-instructions">${question.instructionsHtml}</div>`));
+  assert.doesNotMatch(frame.srcdoc, /<p class="exam-question-instructions">/);
+  question.instructionsHtml = ''; render(frame);
+  assert.doesNotMatch(frame.srcdoc, /class="exam-question-instructions"|Add directions/);
+});
+
+test('reading startup mounts the editable preview after its workspace controls and survives a Practice setup error', async () => {
+  const html = await readFile(new URL('./content-studio.html', import.meta.url), 'utf8');
+  const start = html.indexOf('    async function initialize() {');
+  const end = html.indexOf('    $$("[data-tab]")', start);
+  for (const existing of [false, true]) {
+    const original = { id: 'reading-draft', text: 'Unsaved passage', questions: [{ id: 'q1', prompt: 'Unsaved question', correctChoiceId: 'B' }] };
+    const app = { state: { passages: [{ id: 'first', questions: [] }], assessments: [], advancedPassages: [], practice: { topics: [] } }, passageDraft: existing ? original : null, passageDirty: existing };
+    let shellReady = false, canvas = false, documentsReady = false;
+    const messages = [];
+    const initialize = vm.runInNewContext(`${html.slice(start, end)}\ninitialize;`, {
+      app, clone: structuredClone, document: { querySelector: () => canvas ? {} : null }, window: { location: { hash: '' } },
+      reloadState: async () => {}, updatePassageWorkspaceLabels() {}, renderPassageList() {},
+      studioUI: { readPreference: (_key, fallback) => fallback, restorePassageLibrary() {}, initialize() { shellReady = true; } },
+      renderPassageEditor() { assert.equal(shellReady, true); canvas = true; },
+      DocumentStudio: { initialize() { documentsReady = true; } },
+      initializePracticeEditor() { throw new Error('Unrelated saved Practice settings'); },
+      setStatus: message => messages.push(message),
+    });
+    await initialize();
+    assert.equal(canvas, true); assert.equal(documentsReady, true);
+    assert.match(messages.at(-1), /reading editor is ready/);
+    if (existing) { assert.equal(app.passageDraft, original); assert.equal(app.passageDirty, true); assert.equal(app.passageDraft.questions[0].correctChoiceId, 'B'); }
+    else { assert.equal(app.selectedPassageId, 'first'); assert.equal(app.passageDirty, false); }
+  }
+});
+
 test("category filter counts include empty categories and default legacy content without changing passages", () => {
   const { app, ui } = setup();
   app.state = { passageCategories: [{ value: "official_handbook", label: "Official Handbook" }, { value: "prestige", label: "Prestige" }, { value: "miscellaneous", label: "Miscellaneous" }] };

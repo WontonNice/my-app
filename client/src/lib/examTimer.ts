@@ -102,3 +102,7 @@ export function getExamTimerDisplay(timer: ExamTimerState, now = Date.now()) {
       .padStart(2, "0")}`,
   };
 }
+
+export function isExamTimeExpired(timer: ExamTimerState, now = Date.now()) {
+  return getExamElapsedMs(timer, now) >= EXAM_DURATION_MS;
+}

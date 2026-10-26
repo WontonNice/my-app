@@ -82,7 +82,10 @@ export function validateDraft(input: unknown, catalog: PlanContent[]): Assignmen
   if (!assignmentKinds.includes(row.kind as AssignmentKind) || !["planned", "assigned"].includes(String(row.status))) throw new Error("Choose an assignment type and Planned or Assigned.");
   const kind = row.kind as AssignmentKind;
   const content = catalog.find(item => item.kind === kind && item.id === row.contentId);
-  if (["passage", "practice", "exam"].includes(kind) && !content) throw new Error("Choose existing platform content.");
+  // Math question selections are created by the authenticated command-center
+  // route. The existing plan editor can update dates/instructions afterward.
+  const isMathSelection = kind === "practice" && typeof row.contentId === "string" && /^math-command:[a-f0-9-]{36}$/.test(row.contentId) && typeof row.id === "string" && row.contentId === `math-command:${row.id}`;
+  if (["passage", "practice", "exam"].includes(kind) && !content && !isMathSelection) throw new Error("Choose existing platform content.");
   const title = content?.title ?? (typeof row.title === "string" ? row.title.trim() : "");
   if (!title || title.length > 300) throw new Error("Enter a title of at most 300 characters.");
   const instructions = typeof row.instructions === "string" ? row.instructions.trim() : "";
@@ -97,9 +100,10 @@ export function validateDraft(input: unknown, catalog: PlanContent[]): Assignmen
   const isAnswerSheet = kind === "offline" && typeof row.contentId === "string" && /^answer-sheet-[a-f0-9-]{36}$/.test(row.contentId);
   let url: string | null = null;
   if (row.url) {
-    if (!["external", "offline"].includes(kind) || typeof row.url !== "string" || row.url.length > 2000) throw new Error("Use a valid external URL.");
-    if (isAnswerSheet && /^\/answer-sheets\/[a-f0-9-]{36}$/.test(row.url)) url = row.url;
+    if ((!isMathSelection && !["external", "offline"].includes(kind)) || typeof row.url !== "string" || row.url.length > 2000) throw new Error("Use a valid external URL.");
+    if (isMathSelection && row.url === `/math-practice/${row.id}`) url = row.url;
+    else if (isAnswerSheet && /^\/answer-sheets\/[a-f0-9-]{36}$/.test(row.url)) url = row.url;
     else try { const parsed = new URL(row.url); if (!["http:", "https:"].includes(parsed.protocol) || parsed.username || parsed.password) throw new Error(); url = parsed.href; } catch { throw new Error("External links must use http or https without embedded credentials."); }
   }
-  return { kind, status: row.status as "planned" | "assigned", contentId: content?.id ?? (isAnswerSheet ? row.contentId as string : null), title, instructions, url, dueDate, plannedDate, estimatedMinutes, questionTarget };
+  return { kind, status: row.status as "planned" | "assigned", contentId: content?.id ?? (isAnswerSheet || isMathSelection ? row.contentId as string : null), title, instructions, url, dueDate, plannedDate, estimatedMinutes, questionTarget };
 }

@@ -1,9 +1,13 @@
+import { teacherNavItems } from '../lib/teacherNavigation';
 import { AccountActivity, useAccountActivity } from "../features/account/AccountActivity";
 import { isFullExamResult } from "../../../server/src/shared/examCompletion";
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { Fragment, useEffect, useMemo, useState, type FormEvent } from "react";
+import { ExamLibraryFilters } from "../components/ExamLibraryFilters";
+import { compareExamLibrary, emptyExamLibraryFilter, examLibraryMetadata, matchesExamLibrary } from "../lib/examLibrary";
 import { StudentProgressRoster } from "../components/StudentProgressRoster";
 import { BankPracticeInsights } from "../components/BankPracticeInsights";
 import { Activity, Archive, ArchiveRestore, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CheckCircle2, ClipboardList, Clock3, Cloud, Eye, LayoutDashboard, Pencil, PlusCircle, RotateCcw, Search, Shuffle, Trash2, UserRoundCheck, UserRoundPlus, Users, X } from "lucide-react";
+import { navigateTo } from "../lib/navigation";
 import { AppLink } from "../components/AppLink";
 import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { TeacherExamTools } from "../components/TeacherExamTools";
@@ -632,6 +636,7 @@ function placementLabel(question: ExamQuestion, placements: Record<string, strin
 }
 
 function correctAnswerLabel(question: ExamQuestion) {
+  if (question.type === 'transition_drop' && question.dragDropSlots?.length) return question.dragDropSlots.map((slot, index) => `Blank ${index + 1}: ${choiceLabel(question, slot.correctItemId)}`).join('; ');
   if (question.type === "multiple_choice" || question.type === "transition_drop") {
     return choiceLabel(question, question.correctChoiceId ?? "—");
   }
@@ -692,6 +697,7 @@ function studentAnswerLabel(question: ExamQuestion, answer: unknown) {
         return `${dropdownId}: ${option?.text ?? optionId}`;
       }).join("; ") || "Blank";
     }
+    if (question.type === 'transition_drop' && question.dragDropSlots?.length) return question.dragDropSlots.map((slot, index) => `Blank ${index + 1}: ${values[slot.id] ? choiceLabel(question, values[slot.id]) : 'Blank'}`).join('; ');
     if (question.type === "math_drag_drop") {
       return Object.entries(values).map(([slotId, itemId]) => {
         const item = question.items?.find((candidate) => candidate.id === itemId);
@@ -776,9 +782,10 @@ function createPassageForms(assessment: TeacherAssessment): FormDraft["forms"] {
   }));
 }
 
-type TeacherWorkspace = "overview" | "students" | "accounts" | "assessments" | "enrollment" | "boards" | "games" | "achievements";
+type TeacherWorkspace = "overview" | "students" | "accounts" | "assessments" | "enrollment" | "boards" | "games" | "achievements" | "study-hall";
 
 function getTeacherWorkspace(pathname: string): TeacherWorkspace {
+  if (pathname.startsWith("/teacher/study-hall")) return "study-hall";
   if (pathname.startsWith("/teacher/games")) return "games";
   if (pathname.startsWith("/teacher/achievements")) return "achievements";
   if (pathname.startsWith("/teacher/boards")) return "boards";
@@ -955,9 +962,11 @@ export function StudentDetail({
       <div className="teacher-panel-header"><div><span>Student record</span><h2>{student.fullName}</h2></div><p>{student.email} · Last login: {formatDate(student.lastLoginAt)}</p></div>
       {accessToken && <><nav className="lp-record-tabs" aria-label="Student record workspaces">{([["progress", "Progress & insights"], ["plan", "Learning plan"], ["content", "Available content"], ["schedule", "Weekly schedule"], ["history", "Homework history"], ["boards", "Boards"]] as const).map(([value, label]) => <button key={value} aria-pressed={workspaceView === value} onClick={() => { setWorkspaceView(value); setPlanSkill(""); }} type="button">{label}</button>)}</nav><div hidden={workspaceView === "progress"}>{workspaceView === "boards" ? <BoardLibrary accessToken={accessToken} studentId={student.id} studentName={student.fullName} teacher /> : <TeacherLearningPlan client={planClient} key={planFocus} sourceCategory={planCategory} onSourceCategory={setPlanCategory} onInventory={setPassageInventory} accessToken={accessToken} studentId={student.id} studentName={student.fullName} view={workspaceView === "progress" ? "summary" : workspaceView} onView={setWorkspaceView} skillFilter={planSkill} onSkillFilter={setPlanSkill} />}</div></>}
       <div hidden={workspaceView !== "progress"}>
+      {accessToken && <p className="sa-data-note"><AppLink href={`/teacher/math-command?studentId=${encodeURIComponent(student.id)}&tab=students`}>Open math evidence, remaining questions, and targeted assignments →</AppLink></p>}
       <StudentAnalyticsWorkstation inputs={[...analyticsInputs.map(input => ({ ...input, corrections: examCorrections.find(item => item.assessmentId === input.result.assessmentId && item.completedAt === input.result.completedAt)?.responses })), ...additionalEvidence]} preferenceKey={`teacher-analysis:${student.id}`} initialAssessmentId={initialAnalyticsAssessmentId}
         passageInventory={passageInventory}
         onBrowseCategory={accessToken ? category => { setPlanCategory(category); setPlanSkill(""); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
+        onAssignMathSkill={accessToken ? (category, subcategory) => navigateTo(`/teacher/math-command?${new URLSearchParams({ tab: "bank", studentId: student.id, category, ...(subcategory && subcategory !== "Unclassified" ? { subcategory } : {}), history: "never_seen" })}`) : undefined}
         onAssignSkill={accessToken ? skill => { setPlanCategory(""); setPlanSkill(skill); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
         answerLabel={studentAnswerLabel} correctLabel={correctAnswerLabel}
         renderExam={exam => {
@@ -1069,7 +1078,9 @@ export function TeacherDashboardPage() {
   const [openAnswerKeyId, setOpenAnswerKeyId] = useState("");
   const [assessmentSearch, setAssessmentSearch] = useState("");
   const [assessmentAccess, setAssessmentAccess] = useState("all");
-  const [assessmentSort, setAssessmentSort] = useState("default");
+  const [assessmentSort, setAssessmentSort] = useState("year");
+  const [assessmentDimensions, setAssessmentDimensions] = useState(emptyExamLibraryFilter);
+  const [expandedAssessmentId, setExpandedAssessmentId] = useState("");
   const [formDrafts, setFormDrafts] = useState<Record<string, FormDraft>>({});
   const [editingStudentAccountId, setEditingStudentAccountId] = useState("");
   const [studentAccountDraft, setStudentAccountDraft] = useState({ fullName: "", password: "", username: "" });
@@ -1258,9 +1269,9 @@ export function TeacherDashboardPage() {
     });
   }, [assessmentAverages, assessments, shsatStudents]);
   const visibleAssessments = assessments.filter(assessment =>
-    `${assessment.title} ${assessment.description}`.toLowerCase().includes(assessmentSearch.toLowerCase()) &&
+    matchesExamLibrary(assessment, assessmentSearch, assessmentDimensions) &&
     (assessmentAccess === "all" || (assessment.sectionAccess.english || assessment.sectionAccess.math ? "open" : "locked") === assessmentAccess),
-  ).sort((a,b) => assessmentSort === "name" ? a.title.localeCompare(b.title) : assessmentSort === "submissions" ? (classAssessmentInsights.find(item => item.assessmentId === b.id)?.submissions ?? 0) - (classAssessmentInsights.find(item => item.assessmentId === a.id)?.submissions ?? 0) : 0);
+  ).sort((a,b) => (assessmentSort === "submissions" ? (classAssessmentInsights.find(item => item.assessmentId === b.id)?.submissions ?? 0) - (classAssessmentInsights.find(item => item.assessmentId === a.id)?.submissions ?? 0) : 0) || compareExamLibrary(a, b, assessmentSort));
 
   async function handleAddPaperScore(studentId: string, input: ManualExamScoreInput) {
     if (!accessToken) throw new Error("Teacher access is unavailable. Refresh and try again.");
@@ -1516,18 +1527,9 @@ export function TeacherDashboardPage() {
   const activeWorkspace = getTeacherWorkspace(window.location.pathname);
   const insightAssessmentId = getInsightAssessmentId(window.location.pathname);
   const selectedClassInsight = classAssessmentInsights.find((insight) => insight.assessmentId === insightAssessmentId);
-  const navItems = [
-    { id: "overview", label: "Overview", href: "/teacher", icon: LayoutDashboard },
-    { id: "students", label: "Student progress", href: "/teacher/students", icon: Activity },
-    { id: "boards", label: "Boards", href: "/teacher/boards", icon: LayoutDashboard },
-    { id: "enrollment", label: "Class requests", href: "/teacher/enrollment", icon: UserRoundCheck },
-    { id: "accounts", label: "Student accounts", href: "/teacher/accounts", icon: UserRoundPlus },
-    { id: "library", label: "English library", href: "/teacher/library", icon: BookOpen },
-    { id: "assessments", label: "Assessments & insights", href: "/teacher/assessments", icon: ClipboardList },
-    { id: "games", label: "Game rooms", href: "/teacher/games", icon: Gamepad2 },
-    { id: "achievements", label: "Achievements", href: "/teacher/achievements", icon: Trophy },
-  ];
+  const navItems = teacherNavItems;
   const workspaceCopy = {
+    "study-hall": { description: "Open English, Math, and practice modules from one place.", eyebrow: "Learning resources", icon: BookOpen, title: "Study Hall" },
     games: { description: "Bring the class together for live survival rounds and team test challenges.", eyebrow: "Play together", icon: Gamepad2, title: "Game rooms" },
     achievements: { description: "Customize the milestones students earn from their submitted work.", eyebrow: "Celebrate progress", icon: Trophy, title: "Achievements" },
     boards: { description: "Create a shared board and invite a student to work with you.", eyebrow: "Shared learning workspace", icon: LayoutDashboard, title: "Teaching boards" },
@@ -1592,6 +1594,8 @@ export function TeacherDashboardPage() {
           <section className="teacher-panel teacher-workspace-panel">
             <div className="teacher-panel-header"><div><span>Workspaces</span><h2>Choose where to work</h2></div><p>Each area now opens as its own page.</p></div>
             <div className="teacher-workspace-grid">
+              <AppLink href="/teacher/study-hall"><BookOpen size={20}/><span><strong>Study Hall</strong><small>English, Math, and infinite practice modules</small></span><ArrowUpRight size={17}/></AppLink>
+              <AppLink href="/teacher/math-command"><BarChart3 size={20}/><span><strong>Math Command Center</strong><small>Browse math questions and plan practice</small></span><ArrowUpRight size={17}/></AppLink>
               <AppLink href="/teacher/boards"><LayoutDashboard size={20} /><span><strong>Boards</strong><small>Create a board and invite a student</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/students"><Activity size={20} /><span><strong>Student progress</strong><small>{shsatStudents.length} SHSAT student{shsatStudents.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/enrollment"><UserRoundCheck size={20} /><span><strong>Class requests</strong><small>{classJoinRequests.length} awaiting approval</small></span><ArrowUpRight size={17} /></AppLink>
@@ -1680,9 +1684,10 @@ export function TeacherDashboardPage() {
           <AppLink className="assessment-button" href="/teacher/answer-sheets"><ClipboardList size={15} /> Digital answer sheets <ArrowUpRight size={13} /></AppLink>
         </div>
         <div className="teacher-panel teacher-assessment-management-panel">
-        <div className="assessment-library-heading"><h2>Assessment library <span>{visibleAssessments.length}</span></h2><p>Scores and access at a glance.</p></div>
-        <div className="assessment-library-filters"><label className="assessment-search"><Search size={16} /><input type="search" aria-label="Find an assessment" placeholder="Find an assessment…" value={assessmentSearch} onChange={event => setAssessmentSearch(event.target.value)} /></label><label>Access<select value={assessmentAccess} onChange={event => setAssessmentAccess(event.target.value)}><option value="all">All exams</option><option value="open">Open sections</option><option value="locked">All sections locked</option></select></label><label>Sort<select value={assessmentSort} onChange={event => setAssessmentSort(event.target.value)}><option value="default">Exam order</option><option value="name">Name A–Z</option><option value="submissions">Most submissions</option></select></label></div>
-        <div className="teacher-assessment-list">
+        <div className="assessment-library-heading"><h2>Assessment library <span>{visibleAssessments.length}</span></h2><p>Find an exam, then open Manage for access, answer keys, and corrections.</p></div>
+        <div className="assessment-library-filters"><label className="assessment-search"><Search size={16} /><input type="search" aria-label="Find an assessment" placeholder="Search by exam name or year…" value={assessmentSearch} onChange={event => setAssessmentSearch(event.target.value)} /></label><label>Access<select value={assessmentAccess} onChange={event => setAssessmentAccess(event.target.value)}><option value="all">All exams</option><option value="open">Open sections</option><option value="locked">All sections locked</option></select></label><label>Sort<select value={assessmentSort} onChange={event => setAssessmentSort(event.target.value)}><option value="year">Test year · newest</option><option value="form">Form A–Z</option><option value="category">Category</option><option value="name">Name A–Z</option><option value="submissions">Most submissions</option></select></label></div>
+        <ExamLibraryFilters exams={assessments} value={assessmentDimensions} onChange={setAssessmentDimensions} />
+        <div className="teacher-exams-table-wrap"><table className="teacher-exams-table"><caption className="sr-only">Assessment library ordered by {assessmentSort}. Expand Manage for exam controls.</caption><thead><tr><th scope="col">Exam name</th><th scope="col" aria-sort={assessmentSort === "year" ? "descending" : undefined}><button onClick={() => setAssessmentSort("year")} type="button">Test year{assessmentSort === "year" ? " ↓" : ""}</button></th><th scope="col" aria-sort={assessmentSort === "form" ? "ascending" : undefined}><button onClick={() => setAssessmentSort("form")} type="button">Form{assessmentSort === "form" ? " ↑" : ""}</button></th><th scope="col" aria-sort={assessmentSort === "category" ? "ascending" : undefined}><button onClick={() => setAssessmentSort("category")} type="button">Category{assessmentSort === "category" ? " ↑" : ""}</button></th><th scope="col">Access</th><th scope="col">Full-exam avg.</th><th scope="col">Actions</th></tr></thead><tbody>
           {visibleAssessments.map((assessment) => {
             const classResult = assessmentAverages.get(assessment.id);
             const assessmentContent = resolveOriginalExamContent(assessment);
@@ -1703,7 +1708,14 @@ export function TeacherDashboardPage() {
                   : "All sections locked";
             const isSavingAccess = savingStatusId === assessment.id || savingSectionAccessKey.startsWith(assessment.id + ":");
             const submissions = assessmentInsight?.submissions ?? 0;
-            return <article className="teacher-assessment-card assessment-library-card" key={assessment.id}>
+            const metadata = examLibraryMetadata(assessment), expanded = expandedAssessmentId === assessment.id;
+            return <Fragment key={assessment.id}><tr className={expanded ? "is-expanded" : undefined}>
+              <th scope="row" className="teacher-exams-name"><button type="button" aria-expanded={expanded} aria-controls={"exam-management-" + assessment.id} onClick={() => setExpandedAssessmentId(expanded ? "" : assessment.id)}>{assessment.title}</button><small>{getAllExamQuestions(assessmentContent).length} questions · {assessment.durationMinutes} min</small></th>
+              <td data-label="Test year">{metadata.year || "—"}</td><td data-label="Form">{metadata.form || "—"}</td><td data-label="Category">{metadata.category}</td>
+              <td data-label="Access"><span className={"teacher-exams-access " + (assessment.sectionAccess.english || assessment.sectionAccess.math ? "is-open" : "")}>{sectionAccessLabel}</span></td>
+              <td data-label="Full-exam avg."><strong>{assessmentInsight?.overallAverage == null ? "—" : assessmentInsight.overallAverage + "%"}</strong><small>{classResult?.submissions ?? 0} full submissions</small></td>
+              <td className="teacher-exams-actions"><a href={getTeacherExamPreviewHref(assessment.id)} onClick={() => resetExamTimer(assessment.id)} target="_blank" rel="noreferrer" aria-label={"View test " + assessment.title}>View test<ArrowUpRight size={12} /></a><AppLink href={"/teacher/assessments/" + encodeURIComponent(assessment.id)} aria-label={"Insights for " + assessment.title}>Insights</AppLink><button type="button" aria-expanded={expanded} aria-controls={"exam-management-" + assessment.id} onClick={() => setExpandedAssessmentId(expanded ? "" : assessment.id)}>{expanded ? "Close" : "Manage"}</button></td>
+            </tr><tr className="teacher-exams-expanded" hidden={!expanded} id={"exam-management-" + assessment.id}><td colSpan={7}><article className="teacher-assessment-card assessment-library-card">
               <header className="assessment-card-header">
                 <div className="assessment-card-title">
                   <div className="assessment-card-status"><span className={`status-pill status-pill-${assessment.sectionAccess.english || assessment.sectionAccess.math ? "open" : "locked"}`}>{assessment.sectionAccess.english || assessment.sectionAccess.math ? "Open" : "Locked"}</span><small>{sectionAccessLabel}</small></div>
@@ -1761,9 +1773,10 @@ export function TeacherDashboardPage() {
                 </div>
                 <button className="teacher-form-save" disabled={savingFormsId === assessment.id || !formDraft.forms.length} onClick={() => handleSaveForms(assessment)} type="button">{savingFormsId === assessment.id ? "Saving forms…" : "Save live assignments"}</button>
               </section> : null}
-            </article>;
+            </article></td></tr></Fragment>;
           })}
-          {!visibleAssessments.length && <div className="assessment-empty"><strong>{assessments.length ? "No matching assessments" : "No assessments yet"}</strong><p>{assessments.length ? "Try a different search or access filter." : "Published exams will appear here."}</p>{assessments.length > 0 && <button className="assessment-button" type="button" onClick={() => { setAssessmentSearch(""); setAssessmentAccess("all"); }}>Clear filters</button>}</div>}
+          {!visibleAssessments.length && <tr><td colSpan={7}><div className="assessment-empty"><strong>{assessments.length ? "No matching assessments" : "No assessments yet"}</strong><p>{assessments.length ? "Try a different search, test year, form, category, or access filter." : "Published exams will appear here."}</p>{assessments.length > 0 && <button className="assessment-button" type="button" onClick={() => { setAssessmentSearch(""); setAssessmentAccess("all"); setAssessmentDimensions(emptyExamLibraryFilter); }}>Clear filters</button>}</div></td></tr>}
+        </tbody></table>
         </div>
         </div>
       </section>

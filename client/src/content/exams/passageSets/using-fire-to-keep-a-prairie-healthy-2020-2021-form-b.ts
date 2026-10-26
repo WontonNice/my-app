@@ -69,8 +69,8 @@ const usingFireToKeepAPrairieHealthy20202021FormBQuestions: ExamQuestion[] = [
   {
     "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b-3",
     "points": 1,
-    "prompt": "Read this sentence from paragraph 6.\nThe patch-burn system is so successful that the conservationists at the preserve provide training to prairie farmers about conducting controlled burns on their own land.\nThe author includes this sentence to show that",
-    "promptHtml": "Read&nbsp;this&nbsp;sentence&nbsp;from&nbsp;paragraph&nbsp;6.<br><strong>The patch-burn system is so successful that the conservationists at the preserve provide training to prairie farmers about conducting controlled burns on their own land.</strong><br>The&nbsp;author&nbsp;includes this sentence to&nbsp;show&nbsp;that",
+    "prompt": "Read this sentence from paragraph 6.\n\nThe patch-burn system is so successful that the conservationists at the preserve provide training to prairie farmers about conducting controlled burns on their own land.\n\nThe author includes this sentence to show that",
+    "promptHtml": "<p>Read this sentence from paragraph 6.</p><blockquote><strong><strong>The patch-burn system is so successful that the conservationists at the preserve provide training to prairie farmers about conducting controlled burns on their own land.</strong></strong></blockquote><p>The author includes this sentence to show that</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -162,8 +162,8 @@ const usingFireToKeepAPrairieHealthy20202021FormBQuestions: ExamQuestion[] = [
   {
     "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b-6",
     "points": 1,
-    "prompt": "Read this sentence from paragraph 6.\nBurning land to make it healthy may seem counterintuitive, but strategic controlled fires have helped the prairie sustain life for hundreds of years and, with careful management, will continue to do so.\nThe words “counterintuitive” and “strategic” in the sentence convey the idea that",
-    "promptHtml": "Read&nbsp;this&nbsp;sentence&nbsp;from&nbsp;paragraph&nbsp;6.<br><strong>Burning land to make it healthy may seem counterintuitive, but strategic controlled fires have helped the prairie sustain life for hundreds of years and, with careful management, will continue to do so.</strong><br>The&nbsp;words&nbsp;“counterintuitive” and “strategic” in the sentence convey the idea that",
+    "prompt": "Read this sentence from paragraph 6.\n\nBurning land to make it healthy may seem counterintuitive, but strategic controlled fires have helped the prairie sustain life for hundreds of years and, with careful management, will continue to do so.\n\nThe words “counterintuitive” and “strategic” in the sentence convey the idea that",
+    "promptHtml": "<p>Read this sentence from paragraph 6.</p><blockquote><strong><strong>Burning land to make it healthy may seem counterintuitive, but strategic controlled fires have helped the prairie sustain life for hundreds of years and, with careful management, will continue to do so.</strong></strong></blockquote><p>The words “counterintuitive” and “strategic” in the sentence convey the idea that</p>",
     "topic": "Word & Phrase Meaning",
     "choices": [
       {

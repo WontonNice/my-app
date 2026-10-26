@@ -30,6 +30,7 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     await cp(join(toolsRoot, 'content-topics.json'), join(fixture, 'tools/content-topics.json'));
     await cp(join(toolsRoot, 'math-topics.json'), join(fixture, 'tools/math-topics.json'));
     await cp(join(toolsRoot, 'content-studio-glossary.js'), join(fixture, 'tools/content-studio-glossary.js'));
+    await cp(join(toolsRoot, 'poem-layout.js'), join(fixture, 'tools/poem-layout.js'));
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8'))
       .replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(fixture)};`)
       .split('if (process.argv.includes("--validate"))')[0] + '\nexport { bulkPassageCategory, deletePassage, handleRequest, getState, previewPassageImport, savePassage, saveAdvancedPassage, saveStandaloneItem, saveTest };\n';
@@ -131,15 +132,127 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     const originalPartBItem = state.standaloneItems[0];
     const partBVersionLabel = `Part B Form ${Date.now()}`;
     const savedPartBItem = await studio.saveStandaloneItem({
-      item: { ...originalPartBItem, versionLabel: partBVersionLabel },
+      item: { ...originalPartBItem, versionLabel: partBVersionLabel, explanation: 'The pronoun must identify its subject.', explanationHtml: 'The <strong>pronoun</strong> must identify its <em>subject</em>.', instructions: 'Choose one answer.' },
       originalId: originalPartBItem.id,
       sourceHash: state.standaloneSourceHash,
     });
     assert.equal(savedPartBItem.item.versionLabel, partBVersionLabel);
+    assert.equal(savedPartBItem.item.explanation, 'The pronoun must identify its subject.');
+    assert.equal(savedPartBItem.item.explanationHtml, 'The <strong>pronoun</strong> must identify its <em>subject</em>.');
+    assert.equal(savedPartBItem.item.instructions, 'Choose one answer.');
+    const reopenedPartB = (await studio.getState()).standaloneItems.find(item => item.id === originalPartBItem.id);
+    assert.deepEqual(reopenedPartB, savedPartBItem.item);
+    const dragPartB = state.standaloneItems.find(item => item.type === 'category_sort');
+    const savedDragPartB = await studio.saveStandaloneItem({ item: { ...dragPartB, explanation: 'This sentence has an unclear pronoun.', explanationHtml: 'This sentence has an <u>unclear pronoun</u>.' }, originalId: dragPartB.id, sourceHash: savedPartBItem.sourceHash });
+    const reopenedDragPartB = (await studio.getState()).standaloneItems.find(item => item.id === dragPartB.id);
+    assert.equal(reopenedDragPartB.explanationHtml, savedDragPartB.item.explanationHtml);
+    assert.deepEqual(reopenedDragPartB.correctPlacements, dragPartB.correctPlacements);
+    // Part B imports stay out of student content until the teacher completes them.
+    const partBUrl = `http://127.0.0.1:${server.address().port}`;
+    const partBRequest = async (path, body, method = 'POST', token = state.editToken) => {
+      const response = await fetch(partBUrl + path, { method, headers: { 'Content-Type': 'application/json', 'x-editor-token': token }, body: JSON.stringify(body) });
+      return { status: response.status, data: await response.json() };
+    };
+    const promptResponse = await fetch(partBUrl + '/api/standalone-import/prompt');
+    assert.equal(promptResponse.status, 200);
+    const partBPrompt = (await promptResponse.json()).prompt;
+    assert.match(partBPrompt, /nathan-tutors-part-b-v1/); assert.match(partBPrompt, /NEVER solve or guess/); assert.match(partBPrompt, /underlining, bold and italics/);
+    const incoming = { type: 'multiple_choice', prompt: 'Which revision fixes the pronoun?', promptHtml: 'Which <strong>revision</strong> fixes the pronoun?<script>alert(1)</script>', stimulus: '(1) Alex and Jo went home. (2) She called later.', stimulusHtml: '(1) Alex and Jo went home. (2) <u onclick="bad()">She</u> called later.', choices: ['E','F','G'].map(id => ({id, text:`Answer ${id}`, html:`<em>Answer ${id}</em>`})), correctChoiceId:'', topic:'', explanation:'', sourceQuestion:'9' };
+    assert.equal((await partBRequest('/api/standalone-import', {source:JSON.stringify(incoming)}, 'POST', 'bad-token')).status, 403);
+    const importedPartB = await partBRequest('/api/standalone-import', {sources:[JSON.stringify({format:'nathan-tutors-part-b-v1', questions:[incoming]})]});
+    assert.equal(importedPartB.status, 200, JSON.stringify(importedPartB.data)); assert.equal(importedPartB.data.added.length, 1);
+    let entry = importedPartB.data.drafts.find(entry => entry.id === importedPartB.data.added[0]);
+    assert.equal(entry.original.choices.length, 3); assert.equal(entry.question.choices.length, 4); assert.equal(entry.question.choices[3].text, ''); assert.equal(entry.question.correctChoiceId, '');
+    assert.equal(entry.question.choices[0].id, 'A'); assert.match(entry.question.stimulusHtml, /<u>She<\/u>/); assert.doesNotMatch(entry.question.promptHtml, /script|alert/); assert.doesNotMatch(entry.question.stimulusHtml, /onclick/);
+    assert.equal((await studio.getState()).standaloneItems.some(item => item.id === entry.question.id), false);
+    assert.equal((await partBRequest('/api/standalone-drafts/publish', {id:entry.id,version:entry.version,question:entry.question,sourceHash:savedDragPartB.sourceHash})).status, 400);
+    assert.equal((await partBRequest('/api/standalone-drafts', {id:entry.id,version:0,question:entry.question}, 'PUT')).status, 409);
+    const edited = { ...entry.question, prompt: 'Teacher edited prompt', promptHtml:'Teacher <strong>edited</strong> prompt' };
+    const savedDraft = await partBRequest('/api/standalone-drafts', {id:entry.id,version:entry.version,question:edited}, 'PUT');
+    assert.equal(savedDraft.status, 200); entry = savedDraft.data.entry;
+    const repeated = await partBRequest('/api/standalone-import', {source:JSON.stringify(incoming)});
+    assert.equal(repeated.data.added.length, 0); assert.equal(repeated.data.existing[0], entry.id); assert.equal(repeated.data.drafts.find(item => item.id === entry.id).question.prompt, 'Teacher edited prompt');
+    const beforeInvalid = (await studio.getState()).standaloneImportDrafts.length;
+    assert.equal((await partBRequest('/api/standalone-import', {sources:[JSON.stringify({...incoming,prompt:'Must not partially save'}),'{bad json']})).status, 400);
+    assert.equal((await studio.getState()).standaloneImportDrafts.length, beforeInvalid);
+    const completed = { ...entry.question, topic:'Pronouns', correctChoiceId:'B', choices:entry.question.choices.map((choice,i)=>({...choice,text:choice.text || 'Fourth source choice',html:i === 3 ? 'Fourth source choice' : choice.html})), explanation:'The pronoun has no clear antecedent.', explanationHtml:'The <em>pronoun</em> has no clear antecedent.' };
+    const publishedPartB = await partBRequest('/api/standalone-drafts/publish', {id:entry.id,version:entry.version,question:completed,sourceHash:savedDragPartB.sourceHash});
+    assert.equal(publishedPartB.status, 200, JSON.stringify(publishedPartB.data));
+    const publishedState = await studio.getState();
+    assert.equal(publishedState.standaloneImportDrafts.some(item => item.id === entry.id), false);
+    const publishedQuestion = publishedState.standaloneItems.find(item => item.id === publishedPartB.data.id);
+    assert.equal(publishedQuestion.correctChoiceId, 'B'); assert.equal(publishedQuestion.explanationHtml, completed.explanationHtml); assert.equal(publishedQuestion.importDraftId, undefined);
+    const repeatPublished = await partBRequest('/api/standalone-import', {source:JSON.stringify(incoming)});
+    assert.equal(repeatPublished.data.added.length, 0); assert.equal(repeatPublished.data.published[0], publishedQuestion.id);
+    const otherImports = await Promise.all([
+      partBRequest('/api/standalone-import', {source:JSON.stringify({...dragPartB,id:'source-drag-import',correctPlacements:{},prompt:'Incomplete drag source'})}),
+      partBRequest('/api/standalone-import', {source:JSON.stringify({...incoming,type:'unsupported-interaction',prompt:'Unusual source'})}),
+    ]);
+    for (const response of otherImports) assert.equal(response.status, 200, JSON.stringify(response.data));
+    const remainingDrafts = (await studio.getState()).standaloneImportDrafts;
+    assert.equal(remainingDrafts.length, 2);
+    assert.deepEqual(remainingDrafts.find(entry=>entry.question.type === 'category_sort').question.correctPlacements, {});
+    assert.ok(remainingDrafts.find(entry=>entry.original.type === 'unsupported-interaction').notes.some(note=>note.includes('manual setup')));
+    const deleteTarget = remainingDrafts[0];
+    const deleteRequest = {id:deleteTarget.id, version:deleteTarget.version};
+    const bankBeforeDelete = await readFile(join(fixture, 'client/src/content/exams/standaloneItems.ts'), 'utf8');
+    assert.equal((await partBRequest('/api/standalone-drafts', deleteRequest, 'DELETE', 'bad-token')).status, 403);
+    assert.equal((await partBRequest('/api/standalone-drafts', {...deleteRequest,version:0}, 'DELETE')).status, 409);
+    assert.equal((await partBRequest('/api/standalone-drafts', {id:entry.id,version:entry.version}, 'DELETE')).status, 409, 'Published questions cannot be deleted through draft deletion');
+    const deletedPartB = await partBRequest('/api/standalone-drafts', deleteRequest, 'DELETE');
+    assert.equal(deletedPartB.status, 200, JSON.stringify(deletedPartB.data));
+    assert.equal(deletedPartB.data.deleted, deleteTarget.id);
+    assert.equal(deletedPartB.data.drafts.length, 1);
+    assert.equal(deletedPartB.data.drafts[0].id, remainingDrafts[1].id);
+    assert.equal((await studio.getState()).standaloneImportDrafts.some(item=>item.id === deleteTarget.id), false);
+    assert.equal((await partBRequest('/api/standalone-drafts', deleteRequest, 'DELETE')).status, 404);
+    assert.equal(await readFile(join(fixture, 'client/src/content/exams/standaloneItems.ts'), 'utf8'), bankBeforeDelete);
+    const reimportedPartB = await partBRequest('/api/standalone-import', {source:JSON.stringify(deleteTarget.original)});
+    assert.equal(reimportedPartB.status, 200); assert.equal(reimportedPartB.data.added.length, 1);
+    assert.notEqual(reimportedPartB.data.added[0], deleteTarget.id, 'Reimports receive a fresh ID so a stale editor cannot modify or delete them');
+    assert.equal((await partBRequest('/api/standalone-drafts', deleteRequest, 'DELETE')).status, 404);
+    assert.equal((await partBRequest('/api/standalone-drafts', {...deleteRequest,question:deleteTarget.question}, 'PUT')).status, 404);
     const standaloneSource = await readFile(join(fixture, 'client/src/content/exams/standaloneItems.ts'), 'utf8');
     assert.match(standaloneSource, /versionLabel\?: string/);
     assert.match(standaloneSource, new RegExp(`"versionLabel": "${partBVersionLabel}"`));
     assert.match(standaloneSource, /delete \(studentQuestion as ExamQuestion & \{ versionLabel\?: string \}\)\.versionLabel/);
+    // Multiple source tags survive saves and a repeat import reuses one active
+    // bank question while retaining the imported content for older references.
+    const repeatState = await studio.getState();
+    const repeat = { ...publishedQuestion, id: 'test-repeat-source', versionLabels: ['Repeat Form A', 'Repeat Form B'] };
+    const repeatImport = await partBRequest('/api/standalone-import', { source: JSON.stringify(repeat) });
+    const repeatEntry = repeatImport.data.drafts.find(entry => repeatImport.data.added.includes(entry.id));
+    assert.deepEqual(repeatEntry.question.versionLabels, ['Repeat Form A', 'Repeat Form B']);
+    const repeatPublishedResult = await partBRequest('/api/standalone-drafts/publish', { id: repeatEntry.id, version: repeatEntry.version, question: repeatEntry.question, sourceHash: repeatState.standaloneSourceHash });
+    assert.equal(repeatPublishedResult.status, 200, JSON.stringify(repeatPublishedResult.data));
+    assert.equal(repeatPublishedResult.data.reused, true); assert.equal(repeatPublishedResult.data.id, publishedQuestion.id);
+    const afterRepeat = await studio.getState();
+    assert.deepEqual(afterRepeat.standaloneItems.find(q => q.id === publishedQuestion.id).versionLabels, ['Repeat Form A', 'Repeat Form B']);
+    assert.equal(afterRepeat.standaloneItems.find(q => q.id === repeatEntry.question.id).duplicateOf, publishedQuestion.id);
+    assert.equal(afterRepeat.standaloneImportDrafts.some(entry => entry.id === repeatEntry.id), false);
+    assert.equal(afterRepeat.standaloneItems.filter(q => !q.duplicateOf && q.prompt === publishedQuestion.prompt).length, 1);
+    // Seed two pre-existing copies to exercise the explicit comparison action.
+    const beforeCombineSource = await readFile(join(fixture, 'client/src/content/exams/standaloneItems.ts'), 'utf8');
+    const arrayStart = beforeCombineSource.indexOf(' = ') + 3;
+    const arrayEnd = beforeCombineSource.indexOf(';\n\nexport function');
+    const copies = ['left', 'right'].map(side => ({ ...publishedQuestion, id: `manual-repeat-${side}`, prompt: 'Manual repeat fixture', promptHtml: 'Manual repeat fixture', versionLabels: [`Source ${side}`] }));
+    const seeded = [...JSON.parse(beforeCombineSource.slice(arrayStart, arrayEnd)), ...copies];
+    await writeFile(join(fixture, 'client/src/content/exams/standaloneItems.ts'), beforeCombineSource.slice(0, arrayStart) + JSON.stringify(seeded, null, 2) + beforeCombineSource.slice(arrayEnd));
+    const combineState = await studio.getState();
+    const combineBody = { keepId: copies[1].id, removeId: copies[0].id, sourceHash: combineState.standaloneSourceHash };
+    assert.equal((await partBRequest('/api/standalone-items/combine', combineBody, 'POST', 'bad')).status, 403);
+    assert.equal((await partBRequest('/api/standalone-items/combine', { ...combineBody, sourceHash: 'stale' })).status, 409);
+    const combined = await partBRequest('/api/standalone-items/combine', combineBody);
+    assert.equal(combined.status, 200, JSON.stringify(combined.data));
+    assert.deepEqual(combined.data.item.versionLabels, ['Source right', 'Source left']);
+    const retained = combined.data.items.find(q => q.id === copies[0].id);
+    assert.deepEqual(retained, { ...copies[0], duplicateOf: copies[1].id });
+    assert.equal((await partBRequest('/api/standalone-items', { item: copies[0], originalId: copies[0].id, sourceHash: combined.data.sourceHash })).status, 409);
+    const clearedTags = await partBRequest('/api/standalone-items', { item: { ...combined.data.item, versionLabels: [] }, originalId: copies[1].id, sourceHash: combined.data.sourceHash });
+    assert.equal(clearedTags.status, 201, JSON.stringify(clearedTags.data));
+    assert.deepEqual(clearedTags.data.standalone.item.versionLabels, []);
+    assert.equal(clearedTags.data.standalone.item.versionLabel, undefined);
+    assert.equal((await studio.getState()).standaloneItems.find(q => q.id === copies[0].id).duplicateOf, copies[1].id);
     const send = (body, token = state.editToken, origin = '') => fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-editor-token': token, ...(origin ? { origin } : {}) },
@@ -447,8 +560,34 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.equal(roundtrip.entryVariable,undefined);
     assert.deepEqual(roundtrip.correctTextAnswers,['2']);
     assert.equal(roundtrip.promptHtml,`<p>Before.</p><img src="${image.data.image.src}" alt="Triangle" width="280"><p>After.</p>`);
+    // Both drag styles must survive save/reload independently of answer reuse.
+    const dragQuestion = { ...mathQuestion, subtopic:'One-variable equations', type: 'math_drag_drop', items: [{id:'one',text:'1'},{id:'two',text:'2'}], dragDropContent: ['\\(x+{{box}}=3\\)'], dragDropSlots: [{id:'box',correctItemId:'two'}] };
+    for (const [dragDropStyle, allowReuse] of [['outlined', true], ['compact', false], [undefined, true]]) {
+      updated.sourceHash = (await studio.getState()).mathSections.find(section=>section.questions.some(question=>question.id===mathQuestion.id)).sourceHash;
+      updated.questions = [{...dragQuestion, dragDropStyle, allowReuse}];
+      const dragSaved = await post('/api/math', updated); assert.equal(dragSaved.status,201,JSON.stringify(dragSaved.data));
+      const reopened = (await studio.getState()).mathSections.find(section=>section.questions.some(question=>question.id===mathQuestion.id)).questions[0];
+      assert.equal(reopened.dragDropStyle,dragDropStyle); assert.equal(reopened.allowReuse,allowReuse);
+      assert.deepEqual(reopened.dragDropContent,dragQuestion.dragDropContent);
+      assert.deepEqual(reopened.dragDropSlots,dragQuestion.dragDropSlots);
+    }
+    updated.sourceHash = (await studio.getState()).mathSections.find(section=>section.questions.some(question=>question.id===mathQuestion.id)).sourceHash;
+    updated.questions[0].dragDropStyle = 'unsupported';
+    assert.equal((await post('/api/math',updated)).status,400);
     const imported = await post('/api/math/import-preview',{assessmentId:payload.assessment.id,source:JSON.stringify({format:'nathan-tutors-math-question-v1',question:{...mathQuestion,id:'qa-dropdown-import',type:'inline_dropdown',dropdownContent:['{{a}} + {{b}}'],dropdowns:['a','b'].map(id=>({id,options:[{id:'one',text:'1'},{id:'two',text:'2'}],correctChoiceId:'two'}))}})});
     assert.equal(imported.status,200,JSON.stringify(imported.data)); assert.deepEqual(imported.data.question.dropdownContent,['{{a}} + {{b}}']);
+    }
+    {
+      const current = (await studio.getState()).passages[0];
+      const question = { id: 'sentence-blanks-qa', type: 'transition_drop', topic: 'Tone & Mood', points: 1, prompt: 'Complete both blanks.', choices: ['frustrated','restless','grateful','indifferent'].map((text,i)=>({id:String.fromCharCode(65+i),text})), dragDropContent: ['A tone that is {{blank-1}} and {{blank-2}}.'], dragDropSlots: [{id:'blank-1',correctItemId:'A'},{id:'blank-2',correctItemId:'B'}], allowReuse:false };
+      const saved = await studio.savePassage({...current, section:'reading', preserveSourceLayout:false, questions:[question]});
+      const reopened = (await studio.getState()).passages.find(passage=>passage.id === saved.id);
+      assert.deepEqual(reopened.questions[0].dragDropContent,question.dragDropContent);
+      assert.deepEqual(reopened.questions[0].dragDropSlots,question.dragDropSlots);
+      assert.equal(reopened.questions[0].allowReuse,false); assert.equal(reopened.questions[0].correctChoiceId,undefined);
+      for (const invalid of [{...question,dragDropSlots:[{id:'blank-1',correctItemId:'A'}]}, {...question,dragDropSlots:[{id:'blank-1',correctItemId:'A'},{id:'blank-2',correctItemId:''}]}, {...question,dragDropContent:['{{blank-1}} {{blank-1}}']}, {...question,dragDropSlots:[{id:'blank-1',correctItemId:'A'},{id:'blank-2',correctItemId:'A'}]}]) {
+        await assert.rejects(()=>studio.savePassage({...reopened,preserveSourceLayout:false,questions:[invalid]}),/blank|word/i);
+      }
     }
   } finally {
     if (server) await new Promise(resolve => server.close(resolve));

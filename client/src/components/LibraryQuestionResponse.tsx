@@ -1,6 +1,7 @@
 import type { ExamQuestion } from "../content/exams/types";
 import { ExamText } from "./ExamReviewQuestion";
 import { libraryAnswer } from "../../../server/src/shared/libraryBooks";
+import { SentenceDragDrop } from './SentenceDragDrop';
 
 export function LibraryQuestionResponse({ question, value, onChange }: { question: ExamQuestion; value: string; onChange: (value: string) => void }) {
   const answer = libraryAnswer(value);
@@ -9,6 +10,7 @@ export function LibraryQuestionResponse({ question, value, onChange }: { questio
   const place = (id: string, value: string) => { const next = { ...placements }; if (value) next[id] = value; else delete next[id]; onChange(JSON.stringify(next)); };
   const toggle = (id: string) => onChange(JSON.stringify(selected.includes(id) ? selected.filter(value => value !== id) : [...selected, id]));
   const text = typeof answer === "string" ? answer : "";
+  if (question.type === 'transition_drop') return <div className="library-response">{(question.instructions || question.instructionsHtml) && <p><ExamText text={question.instructions} html={question.instructionsHtml} /></p>}{(question.stimulus || question.stimulusHtml) && <p><ExamText text={question.stimulus} html={question.stimulusHtml} /></p>}{question.image && <img src={question.image.src} alt={question.image.alt} />}<SentenceDragDrop key={question.id} question={question} answer={answer} onChange={next => onChange(typeof next === 'string' ? next : JSON.stringify(next))} /></div>;
   return <div className="library-response">
     {(question.instructions || question.instructionsHtml) && <p><ExamText text={question.instructions} html={question.instructionsHtml} /></p>}
     {(question.stimulus || question.stimulusHtml) && <p><ExamText text={question.stimulus} html={question.stimulusHtml} /></p>}
@@ -21,6 +23,6 @@ export function LibraryQuestionResponse({ question, value, onChange }: { questio
     {question.dragDropSlots?.map((slot, index) => <label key={slot.id}>Answer box {index + 1}<select value={placements[slot.id] || ""} onChange={event => place(slot.id, event.target.value)}><option value="">Choose an answer</option>{question.items?.map(item => <option key={item.id} value={item.id}>{item.text}</option>)}</select></label>)}
     {question.graph?.points.map(point => <label key={point.id}><input type="checkbox" checked={selected.includes(point.id)} onChange={() => toggle(point.id)} />({point.x}, {point.y})</label>)}
     {question.numberLineResponse && <><p>Number line: {question.numberLineResponse.min} to {question.numberLineResponse.max}</p><label>Boundary<input value={placements.value || ""} inputMode="decimal" onChange={event => place("value", event.target.value)} /></label><label>Direction<select value={placements.direction || ""} onChange={event => place("direction", event.target.value)}><option value="">Choose direction</option><option value="left">Left</option><option value="right">Right</option></select></label><label>Endpoint<select value={placements.endpoint || ""} onChange={event => place("endpoint", event.target.value)}><option value="">Choose endpoint</option><option value="open">Open</option><option value="closed">Closed</option></select></label></>}
-    {["numeric_entry", "grid_in", "short_response", "essay"].includes(question.type) && <label>Answer<input value={text} onChange={event => onChange(event.target.value)} /></label>}
+    {["numeric_entry", "expression_entry", "grid_in", "short_response", "essay"].includes(question.type) && <label>Answer<input value={text} onChange={event => onChange(event.target.value)} /></label>}
   </div>;
 }

@@ -11,7 +11,7 @@ export function formatAnswerCell(answer: SelectedAnswer | undefined): string {
 export function answerCellHint(question: ExamQuestion): string {
   if (question.type === "number_line_response") return "value=2; direction=right; endpoint=closed";
   if (question.dropdowns?.length) return question.dropdowns.map(menu => `${menu.id}=${menu.options.map(option => option.id).join("/")}`).join("; ");
-  if (question.dragDropSlots?.length) return question.dragDropSlots.map(slot => `${slot.id}=${question.items?.map(item => item.id).join("/")}`).join("; ");
+  if (question.dragDropSlots?.length) return question.dragDropSlots.map(slot => `${slot.id}=${(question.type === 'transition_drop' ? question.choices : question.items)?.map(item => item.id).join("/")}`).join("; ");
   if (question.categories?.length) return question.items?.map(item => `${item.id}=${question.categories?.map(category => category.id).join("/")}`).join("; ") || "";
   if (question.type === "graph_point_select") return question.graph?.points.map(point => `${point.id} (${point.x}, ${point.y})`).join(" · ") || "Point IDs separated by commas";
   if (question.choices?.length) return `${question.choices.map(choice => choice.id).join(" / ")}${question.type === "multi_select" ? " · separate selections with commas" : ""}`;
@@ -20,7 +20,8 @@ export function answerCellHint(question: ExamQuestion): string {
 
 export function parseAnswerCell(question: ExamQuestion, raw: string): SelectedAnswer {
   const text = raw.trim();
-  const structured = ["inline_dropdown", "category_sort", "matrix_choice", "table_match", "math_drag_drop", "number_line_response"].includes(question.type);
+  const sentenceSlots = question.type === 'transition_drop' && Boolean(question.dragDropSlots?.length);
+  const structured = sentenceSlots || ["inline_dropdown", "category_sort", "matrix_choice", "table_match", "math_drag_drop", "number_line_response"].includes(question.type);
   const multiple = ["multi_select", "graph_point_select"].includes(question.type);
   if (!text || text === "—" || text === "-") return structured ? {} : multiple ? [] : "";
   function option(value: string, ids: string[], normalizePaperChoice = false) {
@@ -36,12 +37,12 @@ export function parseAnswerCell(question: ExamQuestion, raw: string): SelectedAn
     if (new Set(values).size !== values.length) throw new Error("Enter each selection once.");
     return values;
   }
-  if (["multiple_choice", "transition_drop"].includes(question.type)) return option(text, question.choices?.map(choice => choice.id) || [], true);
+  if (question.type === 'multiple_choice' || question.type === 'transition_drop' && !sentenceSlots) return option(text, question.choices?.map(choice => choice.id) || [], true);
   if (structured) {
     const fields: { id: string; options?: string[] }[] = question.type === "number_line_response"
       ? [{ id: "value" }, { id: "direction", options: ["left", "right"] }, { id: "endpoint", options: ["open", "closed"] }]
       : question.type === "inline_dropdown" ? (question.dropdowns || []).map(menu => ({ id: menu.id, options: menu.options.map(option => option.id) }))
-      : question.type === "math_drag_drop" ? (question.dragDropSlots || []).map(slot => ({ id: slot.id, options: question.items?.map(item => item.id) || [] }))
+      : question.type === "math_drag_drop" || sentenceSlots ? (question.dragDropSlots || []).map(slot => ({ id: slot.id, options: (sentenceSlots ? question.choices : question.items)?.map(item => item.id) || [] }))
       : (question.items || []).map(item => ({ id: item.id, options: question.categories?.map(category => category.id) || [] }));
     const result: Record<string, string> = {};
     for (const pair of text.split(";")) {

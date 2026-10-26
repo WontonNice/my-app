@@ -1,3 +1,4 @@
+import { teacherNavItems } from '../lib/teacherNavigation';
 import { useEffect, useMemo, useState } from "react";
 import {
   Activity,
@@ -6,21 +7,16 @@ import {
   BarChart3,
   BookOpen,
   Check,
-  ClipboardList,
   Clock3,
   Eye,
   EyeOff,
-  Gamepad2,
-  LayoutDashboard,
   MessageSquareText,
   ShieldCheck,
-  Trophy,
-  UserRoundCheck,
   UserRoundPlus,
   Users,
 } from "lucide-react";
 import { AppLink } from "../components/AppLink";
-import { CorporateDashboardShell, type DashboardNavItem } from "../components/CorporateDashboardShell";
+import { CorporateDashboardShell } from "../components/CorporateDashboardShell";
 import { getAdvancedPracticePassage } from "../content/advancedPractice";
 import { getExamLibraryPassage } from "../content/exams/passageLibrary";
 import type { ExamPassageSet } from "../content/exams/types";
@@ -42,17 +38,6 @@ import { getActiveSession, peekActiveSession } from "../lib/sessionCache";
 import { isSupabaseConfigured } from "../lib/supabase";
 import { PASSAGE_CATEGORIES, passageCategory, passageCategoryLabel } from "../../../server/src/shared/passageCategories";
 import "../styles/learning-plan.css";
-
-const teacherNavItems: DashboardNavItem[] = [
-  { id: "overview", label: "Overview", href: "/teacher", icon: LayoutDashboard },
-  { id: "students", label: "Student progress", href: "/teacher/students", icon: Activity },
-  { id: "enrollment", label: "Class requests", href: "/teacher/enrollment", icon: UserRoundCheck },
-  { id: "accounts", label: "Student accounts", href: "/teacher/accounts", icon: UserRoundPlus },
-  { id: "library", label: "English library", href: "/teacher/library", icon: BookOpen },
-  { id: "assessments", label: "Assessments & insights", href: "/teacher/assessments", icon: ClipboardList },
-  { id: "games", label: "Game rooms", href: "/teacher/games", icon: Gamepad2 },
-  { id: "achievements", label: "Achievements", href: "/teacher/achievements", icon: Trophy },
-];
 
 function getBookIdFromPath() {
   const encoded = window.location.pathname.split("/").filter(Boolean)[2] ?? "";

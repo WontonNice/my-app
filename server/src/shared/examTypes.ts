@@ -13,6 +13,7 @@ export type ExamQuestionType =
   | "transition_drop"
   | "short_response"
   | "numeric_entry"
+  | "expression_entry"
   | "grid_in"
   | "essay";
 
@@ -146,6 +147,8 @@ export type ExamQuestion = {
   correctPlacements?: Record<string, string>;
   correctTextAnswers?: string[];
   dragDropContent?: string[];
+  /** Compact black tiles or blue outlined tiles; independent of answer reuse. */
+  dragDropStyle?: "compact" | "outlined";
   dragDropSlots?: ExamMathDragSlot[];
   dropdownContent?: string[];
   dropdowns?: ExamInlineDropdown[];
@@ -160,6 +163,8 @@ export type ExamQuestion = {
   instructions?: string;
   instructionsHtml?: string;
   items?: ExamCategoryItem[];
+  /** Passage/table evidence matrix with square selectors and bold statement rows. */
+  matrixStyle?: "evidence";
   numberLineResponse?: ExamNumberLineResponse;
   points?: number;
   prompt: string;

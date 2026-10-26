@@ -4,6 +4,7 @@ import { createApp } from "./app";
 import { env } from "./config/env";
 import { attachBoardRealtime } from "./lib/boardRealtime";
 import { attachGameRealtime } from "./lib/gameRealtime";
+import { attachGameWorldRealtime } from "./lib/gameWorldRealtime";
 
 const clientDistPath = path.resolve(__dirname, "../../client/dist");
 const app = createApp({
@@ -16,3 +17,4 @@ const server = app.listen(env.port, () => {
 });
 attachBoardRealtime(server, env.allowedOrigins);
 attachGameRealtime(server, env.allowedOrigins);
+attachGameWorldRealtime(server, env.allowedOrigins);

@@ -20,7 +20,7 @@ For one Math question, return {"format":"nathan-tutors-official-passage-v1","que
 Inspect the requested scope to establish an ordered expectedQuestions inventory of original source numbers. Set expectedTotal to the confirmed total or null, and inventoryConfirmed=true only when the complete inventory was established from the source. This records extraction inventory, NOT human verification. All sourceReviewed, completenessReviewed and classificationReviewed flags remain false.
 Process manageable chunks ending at complete question boundaries, respecting multi-page questions/choices, two-column reading order, shared figures and output limits. Each chunk is one complete independently importable JSON object/file with the same sourceId/jobId and a distinct chunkId. Repeat unchanged chunkId/data only on an exact retry. Never output a truncated JSON object or half a question. The root review.expectedQuestionCount counts ONLY the questions contained in that complete chunk; batch.expectedTotal/expectedQuestions cover the whole requested job. Do not attach a whole-section count as a per-chunk mismatch warning.
 When file creation is available, provide complete .json chunk attachments. Persist continuation as another valid envelope with mathQuestions=[] and the same batch inventory, plus batch.completedQuestions, batch.unresolvedQuestions, and batch.nextScope. Otherwise return one complete bounded payload with those continuation fields; continue from that ledger when asked. Use reviewNotes only for genuine extraction problems, since they become review warnings. Do not declare the job complete until every requested source question is accounted for; uncertain inventories remain explicitly uncertain.
-Associate every Math visual with an explicit questionId (and choiceId for graphical choices). Repeat a faithful shared figure dependency for each question that uses it. Do not put an unscoped passage visual in an independent Math batch. For applicable paper grid-ins use existing short_response with correctTextAnswers and no entryLayout; retain genuine existing numeric_entry/grid_in interactions when requested. Inspect source figures, but never invent crops/URLs or convert static figures into interactive responses.
+Associate every Math visual with an explicit questionId (and choiceId for graphical choices). Repeat a faithful shared figure dependency for each question that uses it. Do not put an unscoped passage visual in an independent Math batch. For applicable paper grid-ins use existing short_response with correctTextAnswers and no entryLayout; retain genuine existing numeric_entry/expression_entry/grid_in interactions when requested. Inspect source figures, but never invent crops/URLs or convert static figures into interactive responses.
 
 
 FIDELITY
@@ -28,7 +28,12 @@ Transcribe source text faithfully. Never paraphrase, summarize, simplify, shorte
 
 Inspect all relevant PDF pages, including continuation pages and supplied key/guide pages. Preserve column reading order. Inspect rendered page images whenever OCR/text extraction is ambiguous (poetry, columns, fractions, superscripts, subscripts, symbols, choices, numbering, tables). The visible page is authoritative. Preserve paragraph boundaries as actual newline characters in decoded text (two between paragraphs/stanzas; one between poem lines). Serialize these as JSON newline escapes, not literal backslash+n content. Use optional richText only for faithful meaningful formatting; keep text as its exact plain-text equivalent. Represent source subheadings with h2/h3 tags, including headings that end with punctuation. Use <p data-numbered="false"> for other blocks that must not receive paragraph numbers; use data-numbered="true" only for explicitly numbered body paragraphs. Preserve printed sentence/paragraph numbers in stored source text; do not insert poem gutter labels as words. The existing exam viewer supplies prose paragraph-number badges; printed paragraph labels are represented by those badges without duplicating them in the visible paragraph. Represent source mathematics faithfully with JSON-escaped LaTeX, for example the JSON string "\\(x^2\\)". If text is technically unreadable, keep the rest, leave just that field/portion empty, and record its precise location in an UNCERTAIN_TEXT_EXTRACTION warning. Never silently omit the question.
 
+Exclude general exam/section DIRECTIONS (such as "Read each of the following two texts and answer the related questions"), timing rules, navigation instructions and test-taking advice. These are not question content: do not copy them into instructions, instructionsHtml, prompts, stimuli or passage text. Preserve only directions needed to answer the specific question, such as how many choices to select or where to place a word.
+
 ENGLISH FORMATTING AND VOCABULARY — USE THE EXISTING GLOSSARY
+For poetry, preserve every stanza boundary in BOTH text and richText. Use one newline between verse lines and two between stanzas in text. In richText, either use one div per stanza with br between its lines (<div>Line one<br>Line two</div><div>Next stanza</div>), or one div per line with an empty div between stanzas. Never join stanzas because a source page or JSON chunk ends. Do not use visual word-wrapping as a verse break or invent stanza breaks that are absent from the source. Keep introductory blurbs separate from poem body text; the blurb has no first-line indentation.
+For question prompts containing a quoted excerpt, output BOTH prompt and promptHtml, or prompt plus promptParts with introduction, excerpt, followUp and bold. Keep the introductory instruction, quoted excerpt, and follow-up question as separate blocks: <p>Read these lines...</p><blockquote><strong>First source line<br>Second source line</strong></blockquote><p>Follow-up question...</p>. Use strong/em only when the source uses bold/italics. Preserve poem line breaks with br and prose paragraph boundaries with p; do not flatten an excerpt into the surrounding question or turn ordinary inline quotations into block quotes. prompt must contain the same wording with actual newlines separating these blocks and source lines. Preserve this formatting through every import chunk. When using promptParts, the importer generates this exact layout; put ONLY quoted source text into excerpt, and keep the follow-up outside it. Never guess where an ambiguous excerpt ends.
+For a Passage/Table Evidence table, use type="matrix_choice" and matrixStyle="evidence" (type="evidence_matrix" is also accepted). Preserve every statement in items and every column heading in categories, in source order. Use correctPlacements to map each row ID to exactly one column ID from the supplied key; leave it blank when no verified key is supplied. Keep a supporting passage/data-table image with its original passage. Do not flatten the statement table into four multiple-choice answers, put statement text into column headings, or invent a source answer. The editor supplies the square selectors, bold statement rows and blank top-left header.
 For a passage with vocabulary definitions or meaningful formatting, output BOTH text and richText. richText must contain the COMPLETE passage, not only annotated words; it is the version shown by the student viewer. Keep its visible wording consistent with text. Use p for prose paragraphs, h2/h3 for source subheadings, strong/em/u/sup/sub for source emphasis and markers, and div/br for poem lines and stanza spacing. Preserve poem indentation with spaces/nonbreaking spaces. Margin line numbers are layout labels, not poem words: let the viewer supply its line-number gutter, record nonstandard numbering in teacherSource, and flag any unsupported layout. Retain sentence numbers in sentence_prose. Rejoin prose sentences/paragraphs broken ONLY by a page boundary or typeset wrap; do not insert page footnotes into the middle of a continuing sentence. Remove a wrap-only word hyphen only when the page images clearly establish the complete word; preserve lexical hyphens. Exclude running page headers/footers, page numbers and CONTINUE arrows from passage content. Preserve printed credits in sourceNote and introduction/byline/title in their own fields without duplicating them in the body.
 Find EVERY definition actually supplied in the source, including numbered footnotes, multiword terms and notes on continuation pages. Transcribe the term and its definition verbatim. Do not generate dictionary definitions, simplify them, add study vocabulary or attach a meaning that was not supplied. Match each definition to its marked occurrence in the passage by footnote number and context, not merely the first spelling match.
 Annotate that exact occurrence inside passage.richText with the existing markup:
@@ -118,6 +123,7 @@ EXACT CONTRACT
       "multiple_choice",
       "multi_select",
       "numeric_entry",
+      "expression_entry",
       "short_response",
       "grid_in",
       "inline_dropdown",
@@ -143,12 +149,38 @@ EXACT CONTRACT
     "correctChoiceId": "multiple_choice: exact choice ID, or empty string/null if no unambiguous supplied key",
     "correctChoiceIds": "multi_select: choice IDs from key, or [] if unknown",
     "requiredSelections": "multi_select: source selection count, or null if unknown",
-    "correctTextAnswers": "numeric_entry/short_response: source keyed strings, or []",
-    "entryLayout": "numeric_entry: plain, fraction, x_equals",
-    "entryVariable": "numeric_entry/grid_in: optional single letter displayed before = for x_equals; defaults to x; preserve the source variable, e.g. w",
+    "correctTextAnswers": "numeric_entry/expression_entry/short_response: source keyed strings, or []",
+    "entryLayout": "numeric_entry/expression_entry: plain, fraction, x_equals",
+    "entryVariable": "numeric_entry/expression_entry/grid_in: optional single letter displayed before = for x_equals; defaults to x; preserve the source variable, e.g. w",
     "explanation": "exact supplied explanation or empty string/null",
     "review": "Review",
-    "visuals": "Visual[]"
+    "visuals": "Visual[]",
+    "matrixStyle": "matrix_choice: use evidence for Passage/Table Evidence with bold centered statement rows, square checkboxes and Passage only / Table only / Both passage and table columns. evidence_matrix is accepted as an alias for this question type.",
+    "promptParts": {
+      "introduction": "Exact Read these sentences/lines instruction",
+      "excerpt": "Exact quoted text; actual newlines between poem lines and blank lines between stanzas",
+      "followUp": "Exact follow-up question",
+      "bold": "true for the bold TestNav excerpt; false only when the source quote is regular weight. Optional structured alternative to promptHtml; keep prompt as the same complete plain wording. **bold** and *italics* are supported within these strings."
+    }
+  },
+  "sentenceBlanks": {
+    "type": "transition_drop",
+    "choices": "Shared ordered word bank: {id,text,html?}[]",
+    "dragDropContent": [
+      "Sentence text with {{blank-1}} and {{blank-2}}."
+    ],
+    "dragDropSlots": [
+      {
+        "id": "blank-1",
+        "correctItemId": "verified choice ID or blank"
+      },
+      {
+        "id": "blank-2",
+        "correctItemId": "verified choice ID or blank"
+      }
+    ],
+    "allowReuse": "false unless the source allows the same word in several blanks",
+    "legacy": "Existing one-blank questions may retain transitionBlankBefore, transitionBlankAfter, and correctChoiceId. Use dragDropContent/dragDropSlots for multiple blanks. Keep all source blanks and never guess their keys."
   },
   "mathInteractions": {
     "inline_dropdown": {
@@ -174,6 +206,7 @@ EXACT CONTRACT
       ]
     },
     "math_drag_drop": {
+      "dragDropStyle": "compact for black tiles on a gray bank; outlined for blue tiles on an unshaded bank with larger boxes. Preserve source style independently of allowReuse.",
       "items": [
         {
           "id": "item-1",
@@ -286,7 +319,32 @@ EXACT CONTRACT
     "SOURCE_KEY_AMBIGUOUS",
     "UNSUPPORTED_RESPONSE_TYPE",
     "COUNT_MISMATCH"
-  ]
+  ],
+  "evidenceMatrix": {
+    "type": "evidence_matrix (stored as matrix_choice with matrixStyle=evidence)",
+    "categories": [
+      {
+        "id": "passage",
+        "title": "Passage only"
+      },
+      {
+        "id": "table",
+        "title": "Table only"
+      },
+      {
+        "id": "both",
+        "title": "Both passage and table"
+      }
+    ],
+    "items": "Ordered {id,text,html?}[]; each item is one exact source statement",
+    "correctPlacements": "{statement-id: column-id} from the supplied key only; leave missing answers blank",
+    "tableHeaders": {
+      "row": "",
+      "answer": "Answer"
+    },
+    "instructions": "Select one answer in each row.",
+    "requiredPlacements": "number of statement rows"
+  }
 }
 
 TOPIC TAXONOMY (exact values)
@@ -355,7 +413,7 @@ TOPIC TAXONOMY (exact values)
   }
 }
 
-Use multiple_choice for one keyed choice, multi_select only when source instructions require multiple choices, numeric_entry for Math numeric responses, short_response for a plain typed short answer in either Math or English. short_answer is accepted as an alias, but emit short_response. To change numeric_entry to short_response keep correctTextAnswers, prompt, classification, and explanation; omit entryLayout and entryVariable. Retain extended writing as essay with UNSUPPORTED_RESPONSE_TYPE: essays remain drafts because the existing publication/grading workflow does not support them. For Math also support inline_dropdown, math_drag_drop, graph_point_select, and number_line_response using the exact fields below. These types publish and run in the student player. Other unsupported interactions must be retained with their actual type and source fields plus UNSUPPORTED_RESPONSE_TYPE; they remain drafts until manually authored. Do not transform a static diagram into an interactive graph question. Keep choice wording and order unchanged, but use the editor’s A, B, C, D labels for the first four choices. Map source E→A, F→B, G→C, H→D by position, including supplied single/multi-select answer keys and visual choiceId references. Additional choices continue E, F, and so on. Retain original labels privately in review.sourceChoiceIds. Never guess an answer during this mapping. There is no mandatory difficulty field. Never fabricate a key to satisfy publication checks. All extracted warnings start unresolved and all review booleans start false. Do not put teacher-only source references into prompt, text or sourceNote. Source attribution printed for students belongs in sourceNote.
+Use multiple_choice for one keyed choice, multi_select only when source instructions require multiple choices, numeric_entry for the basic Math numeric keypad, expression_entry for Calculator Input (Advanced) with arithmetic, fractions, roots, powers, inequalities, pi, parentheses and absolute value, short_response for a plain typed short answer in either Math or English. short_answer is accepted as an alias, but emit short_response. To change numeric_entry to short_response keep correctTextAnswers, prompt, classification, and explanation; omit entryLayout and entryVariable. Retain extended writing as essay with UNSUPPORTED_RESPONSE_TYPE: essays remain drafts because the existing publication/grading workflow does not support them. For Math also support inline_dropdown, math_drag_drop, graph_point_select, and number_line_response using the exact fields below. These types publish and run in the student player. Other unsupported interactions must be retained with their actual type and source fields plus UNSUPPORTED_RESPONSE_TYPE; they remain drafts until manually authored. Do not transform a static diagram into an interactive graph question. Keep choice wording and order unchanged, but use the editor’s A, B, C, D labels for the first four choices. Map source E→A, F→B, G→C, H→D by position, including supplied single/multi-select answer keys and visual choiceId references. Additional choices continue E, F, and so on. Retain original labels privately in review.sourceChoiceIds. Never guess an answer during this mapping. There is no mandatory difficulty field. Never fabricate a key to satisfy publication checks. All extracted warnings start unresolved and all review booleans start false. Do not put teacher-only source references into prompt, text or sourceNote. Source attribution printed for students belongs in sourceNote.
 
 OUTPUT EXAMPLE (structure only; replace ALL sample content with the actual complete source, not a sample of it)
 {

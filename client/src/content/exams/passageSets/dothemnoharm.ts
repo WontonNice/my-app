@@ -225,7 +225,7 @@ const dothemnoharmQuestions: ExamQuestion[] = [
     "id": "dothemnoharm-8",
     "points": 1,
     "prompt": "Read these sentences from paragraph 22.\n\n“Belongs to Red Bear people. Gone then come back.”\n\nHow does this statement affect the villagers in the excerpt?",
-    "promptHtml": "Read these sentences from paragraph 22.<br><strong>“Belongs to Red Bear people. Gone then come back.”</strong><br>How does this statement affect the villagers in the excerpt?",
+    "promptHtml": "<p>Read these sentences from paragraph 22.</p><blockquote><strong><strong>“Belongs to Red Bear people. Gone then come back.”</strong></strong></blockquote><p>How does this statement affect the villagers in the excerpt?</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -287,6 +287,7 @@ const dothemnoharmQuestions: ExamQuestion[] = [
 
 export const dothemnoharmPassageSet: ExamPassageSet = {
   id: "ela-dothemnoharm",
+  section: "reading",
   questionCount: dothemnoharmQuestions.length,
   directions: {
   "subject": "English Language Arts",
@@ -296,13 +297,15 @@ export const dothemnoharmPassageSet: ExamPassageSet = {
 },
   passage: createProsePassage({
     id: "dothemnoharm",
-    passageType: "literary",
     title: "Excerpt from Do Them No Harm!",
     author: "Zoa L. Swayne",
     blurb: "This narrative is about the Nez Perce, an American Indian tribe, in what is now northern Idaho. The tribe is preparing for a gathering before the coming winter.",
+    passageType: "literary",
+    passageCategory: "miscellaneous",
     richText: "<p>In the moon of Ta-Yum, the hottest days of summer, when salmon spawn in the little streams and huckleberries ripen in the high mountains, people from many villages of the Chopunnish Nation gathered in the Oyaip Prairie for the work and festivities of their annual camas harvest.</p><p>From far and near The People came. . . .</p><p>Should a stranger enter their homeland and ask, “Where are you from?” the reply was always, “We are Nee-mee-poo, The People who live here in this place.”</p><p>It was a time of Lawtiwa-mah-ton—a time of being friends together—when The People came for this last chance to enjoy being together before the Cold Moons kept them close to their fires. The visiting and trading, the foot racing and horse racing, and the gambling and stick games would be remembered and talked about long after they had forgotten the drudgery of digging and roasting camas, picking berries, or drying meat and fish. Lawtiwa-mah-ton! It was good to be friends together.</p><p>As was their custom since wahk-kee-ma, a time far back beyond the memory of man, they set up their camps in the same locations their parents and grandparents had occupied before them. Red Bear’s people, from Kamiah, made their camp near the trail that came out of the mountains. Their neighbors in Kamiah Valley, The People from Tee-e-lap-a-lo, had their camp close by. Across the wide meadow, by the great roasting pits, the camps of the Te-wap-poo and Ask-kah-poo were located. The tepees and ish-nash, brush shelters, of other groups nestled in their accustomed areas in and among the pines in such numbers that they encircled the entire meadow land.</p><p>Red Bear’s people had traveled all summer with neighboring bands, gathering and preparing roots, picking and drying berries, drying and smoking meat and fish for their winter food supply. Now they were at the Oyaip camp. The women worked hard to dig and cure as many bags of roots as they could during the warm, sunny days, for the sharp night air brought warnings that WARM was going and COLD was coming.</p><p>Everyone helped in some way. Most of the men fished or hunted for meat. While many of the women dug and roasted camas, other women and older children picked and dried berries.</p><p>And the younger children played. They played at hunting. They played with the babies. They played with their horses and puppies. They learned how to live through their play.</p><p>This sun, happiness, peace, and quiet blessed the Red Bear camp. All were busy with their daily tasks, until sudden cries came from the children playing by the trail.</p><p>“People coming! People coming! People coming on the trail from the high mountains!” they called as they ran to their elders, who looked sharply at the figures of approaching horsemen.</p><p>Were they friends or enemies? Did they bring good news or bad?</p><p>“Who can it be? What brings them here?” were the questions in every mind.</p><p>“Could they be the four hunters who had gone to Buffalo Country two summers past? Would they have news of the families who had gone long ago to Buffalo Country and never returned?”</p><p>It was customary for a hunting party to be gone for more than one season.</p><p>“Looks like hunters,” the older men agreed. “Looks like they had good hunting. Maybe our four hunters. [They have] been gone many moons.”</p><p>“Looks like five people—not four,” others observed.</p><p>Excitement grew as the riders came close enough to be recognized.</p><p>“A-a-a-a-a, they are our four hunters! But who is the fifth person?” they asked.</p><p>“Looks like a woman. Who is she?”</p><p>The hunters rode up to the welcoming crowd, proud to show off the loads of meat, hides, and other trophies of their hunt. They paraded around the encampment for all to see how strong their Hunting Power had been—what great hunters they, themselves, were.</p><p>Red Bear’s people rejoiced at their hunters’ success. Good hunters brought good to everybody. The meat meant plenty of food and the hides meant soft-tanned robes to give comfort through the Cold Moons. But it was the sight of the frail figure of the woman that aroused their curiosity. Who was she? Where had she come from? . . .</p><p>“Belongs to Red Bear people. Gone then come back,” the hunters said, as they dismounted and unloaded their packs. . . .</p><p>Now they could see! She was the daughter of the family gone so long ago! The girl-child who had left came back now—a grown woman.</p><p>“Wat-ku-ese!” the women cried. “Gone-from-Home-then-Come-Back. Wat-ku-ese!” And Wat-ku-ese was her name from that time on.</p><p>Gentle arms lifted Wat-ku-ese from her horse. The women brought her food and made a place for her to rest. For many suns they cared for her until she became stronger.</p><p>One evening Wat-ku-ese told her story for all to hear.</p>",
     sourceNote: "From DO THEM NO HARM!: Lewis and Clark Among the Nez Perce by Zoa L. Swayne. Published by Caxton Press. Copyright © 1990 by Zoa L. Swayne. Orofino, Idaho and Legacy House, Inc. Orofino, Idaho. All rights reserved.",
     text: dothemnoharmPassageText,
+    versionLabel: "2025-2026 Form A",
   }),
   questions: dothemnoharmQuestions,
 };

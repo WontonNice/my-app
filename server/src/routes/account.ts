@@ -4,6 +4,7 @@ import { createClient, type User } from "@supabase/supabase-js";
 import { supabase } from "../lib/supabase";
 import { getUserRole, isStudentArchived } from "../lib/auth";
 import { accountMailReady, sendAccountMail } from "../lib/accountMail";
+import { ACCOUNT_COLORS, accountColor, loginStreak } from "../shared/accountPreferences";
 
 export const accountRouter = Router();
 function fail(message: string, status = 400): never { throw Object.assign(new Error(message), { status }); }
@@ -28,9 +29,24 @@ async function userFor(request: Request) {
 }
 async function profileFor(user: User) {
   const result = await supabase.from("account_profiles").select("*").eq("user_id", user.id).maybeSingle(); storage(result.error);
-  return { id: user.id, name: String(user.user_metadata.full_name || user.user_metadata.name || "Student"), username: String(user.user_metadata.username || user.email?.split("@")[0] || ""), avatar: result.data?.avatar_data ?? null, email: result.data?.email ?? null, verifiedAt: result.data?.email_verified_at ?? null, pendingEmail: result.data?.pending_email ?? null, lastLoginAt: user.last_sign_in_at ?? null, emailDeliveryReady: accountMailReady() };
+  return { id: user.id, name: String(user.user_metadata.full_name || user.user_metadata.name || "Student"), username: String(user.user_metadata.username || user.email?.split("@")[0] || ""), avatar: result.data?.avatar_data ?? null, email: result.data?.email ?? null, verifiedAt: result.data?.email_verified_at ?? null, pendingEmail: result.data?.pending_email ?? null, lastLoginAt: user.last_sign_in_at ?? null, emailDeliveryReady: accountMailReady(), themeColor: accountColor(result.data?.theme_color).id, streak: loginStreak(result.data) };
 }
 accountRouter.get("/profile", async (request, response) => response.json(await profileFor(await userFor(request))));
+accountRouter.patch("/preferences", async (request, response) => {
+  const user = await userFor(request), theme = request.body?.themeColor;
+  if (!ACCOUNT_COLORS.some(color => color.id === theme)) fail("Choose one of the available colors.");
+  await limit(`preferences:${user.id}`, 60, 3600);
+  const saved = await supabase.from("account_profiles").upsert({ user_id: user.id, theme_color: theme, updated_at: new Date().toISOString() });
+  storage(saved.error);
+  response.json(await profileFor(user));
+});
+accountRouter.post("/check-in", async (request, response) => {
+  const user = await userFor(request);
+  await limit(`check-in:${user.id}`, 120, 3600);
+  const result = await supabase.rpc("record_account_login", { p_user_id: user.id });
+  if (result.error) fail("Your login streak could not be saved. Please try again later.", 503);
+  response.json({ streak: loginStreak(result.data) });
+});
 accountRouter.patch("/profile", async (request, response) => {
   const user = await userFor(request), avatar = request.body?.avatar;
   await limit(`avatar:${user.id}`, 30, 3600);
@@ -72,18 +88,17 @@ accountRouter.post("/verify-email", async (request, response) => {
 accountRouter.post("/forgot-password", async (request, response) => {
   const email = normalizeEmail(request.body?.email);
   await limit(`recovery-ip:${request.ip}`, 10, 3600); await limit(`recovery-email:${email}`, 3, 3600);
-  if (!accountMailReady()) fail("Email delivery is not configured yet. Contact your teacher for password help.", 503);
   const profile = await supabase.from("account_profiles").select("user_id,email_verified_at").eq("email", email).maybeSingle(); storage(profile.error);
-  if (profile.data?.email_verified_at) {
-    const target = await supabase.auth.admin.getUserById(profile.data.user_id);
-    if (target.data.user && !isStudentArchived(target.data.user)) {
-      const token = randomBytes(32).toString("hex"), token_hash = hash(token);
-      const saved = await supabase.from("account_email_tokens").insert({ token_hash, user_id: profile.data.user_id, email, purpose: "recover", expires_at: new Date(Date.now() + 1800000).toISOString() }); storage(saved.error);
-      try { await sendAccountMail(email, "recover", token); }
-      catch { await supabase.from("account_email_tokens").update({ used_at: new Date().toISOString() }).eq("token_hash", token_hash); }
-    }
-  }
-  response.json({ message: "If that address is verified on an active account, a reset link will arrive shortly. Check spam too. If it does not arrive, ask your teacher for help." });
+  if (!profile.data?.email_verified_at) fail("Email not found. Enter an email verified in Profile settings.", 404);
+  const target = await supabase.auth.admin.getUserById(profile.data.user_id);
+  if (target.error) fail("Account recovery is temporarily unavailable. Please try again later.", 503);
+  if (!target.data.user || isStudentArchived(target.data.user)) fail("Email not found. Enter an email verified in Profile settings.", 404);
+  if (!accountMailReady()) fail("Email delivery is not configured yet. Contact your teacher for password help.", 503);
+  const token = randomBytes(32).toString("hex"), token_hash = hash(token);
+  const saved = await supabase.from("account_email_tokens").insert({ token_hash, user_id: profile.data.user_id, email, purpose: "recover", expires_at: new Date(Date.now() + 1800000).toISOString() }); storage(saved.error);
+  try { await sendAccountMail(email, "recover", token); }
+  catch (error) { await supabase.from("account_email_tokens").update({ used_at: new Date().toISOString() }).eq("token_hash", token_hash); throw error; }
+  response.json({ message: "Password-reset email sent. Check your inbox and spam folder. The link expires in 30 minutes." });
 });
 accountRouter.post("/reset-password", async (request, response) => {
   await limit(`reset:${request.ip}`, 20, 3600);

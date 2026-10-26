@@ -1,3 +1,5 @@
+import { LoginStreak } from "../features/account/LoginStreak";
+import { StudentPracticeShelf } from "../features/math-command/StudentPracticeShelf";
 import { useEffect, useState } from "react";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { AppLink } from "../components/AppLink";
@@ -30,7 +32,9 @@ export function StudentDashboardPage() {
   return <StudentPortalShell activeId="home" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
     <div className="student-course-home">
       <header className="student-course-heading"><div><p>Study Hall</p><h1>Your next steps</h1><span>Your teacher's personalized homework, followed by resources you can explore.</span></div><AppLink href={link("/study-hall/shsat/assignments")}>All assignments <ArrowRight size={15} /></AppLink></header>
+      <StudentPracticeShelf previewContext={previewContext}/>
       <ShsatCountdown />
+      {!previewContext.isPreview && <LoginStreak />}
       <StudentAnswerSheetList token={accessToken} previewContext={previewContext} compact />
       <StudentLearningPlan accessToken={accessToken} previewContext={previewContext} compact />
       <section className="student-upcoming" aria-label="Available assessments"><header><h2>Available assessments</h2><AppLink href={link("/study-hall/shsat/assessments")}>Assessment library</AppLink></header><p>Availability does not mean homework was assigned. Your personalized tasks are listed above.</p>

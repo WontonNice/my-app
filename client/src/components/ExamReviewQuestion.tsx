@@ -37,6 +37,7 @@ export function ExamText({ text = "", html }: { text?: string; html?: string }) 
 }
 
 function correctExamAnswer(question: ExamQuestion): SelectedAnswer | undefined {
+  if (question.type === 'transition_drop' && question.dragDropSlots?.length) return Object.fromEntries(question.dragDropSlots.map(slot => [slot.id, slot.correctItemId]));
   if (question.correctChoiceId) return question.correctChoiceId;
   if (question.correctChoiceIds) return question.correctChoiceIds;
   if (question.correctPointIds) return question.correctPointIds;
@@ -68,7 +69,7 @@ export function ExamAnswer({ question, answer }: { question: ExamQuestion; answe
   if (answer === undefined || answer === "" || Array.isArray(answer) && !answer.length || typeof answer === "object" && !Object.keys(answer).length) return <span>No answer submitted</span>;
   if (typeof answer === "string") {
     const choice = question.choices?.find(item => item.id === answer);
-    return <div className="exam-review-answer-value">{choice ? <><b>{choice.id}. </b><ChoiceContent choice={choice} /></> : ["numeric_entry", "grid_in"].includes(question.type) ? answer.split(" or ").map((value, index) => <span key={index}>{index > 0 ? " or " : ""}<ExamText text={`\\(${mathAnswerToLatex(value).replace(/\\placeholder(?:\[[^\]]*\])?\{[^{}]*\}/g, "\\square")}\\)`} /></span>) : <ExamText text={answer} />}</div>;
+    return <div className="exam-review-answer-value">{choice ? <><b>{choice.id}. </b><ChoiceContent choice={choice} /></> : ["numeric_entry", "expression_entry", "grid_in"].includes(question.type) ? answer.split(" or ").map((value, index) => <span key={index}>{index > 0 ? " or " : ""}<ExamText text={`\\(${mathAnswerToLatex(value).replace(/\\placeholder(?:\[[^\]]*\])?\{[^{}]*\}/g, "\\square")}\\)`} /></span>) : <ExamText text={answer} />}</div>;
   }
   if (Array.isArray(answer)) return <div className="exam-review-answer-value-list">{answer.map(id => {
     const point = question.graph?.points.find(item => item.id === id);
@@ -81,7 +82,7 @@ export function ExamAnswer({ question, answer }: { question: ExamQuestion; answe
     const dropdown = dropdownIndex >= 0 ? question.dropdowns?.[dropdownIndex] : undefined;
     const option = dropdown?.options.find(item => item.id === value);
     const slotIndex = question.dragDropSlots?.findIndex(slot => slot.id === id) ?? -1;
-    const dragItem = question.type === "math_drag_drop" ? question.items?.find(item => item.id === value) : undefined;
+    const dragItem = question.type === "math_drag_drop" ? question.items?.find(item => item.id === value) : question.type === 'transition_drop' ? question.choices?.find(item => item.id === value) : undefined;
     const label = item
       ? <ExamText text={item.text} html={item.html} />
       : question.numberLineResponse
@@ -156,7 +157,7 @@ export function ReviewQuestionBody({ answerPresentation, item, showAnswers, view
     </svg>}
     {question.dropdownContent && <p><ExamText text={templateText(question, question.dropdownContent)} /></p>}
     {question.dragDropContent && <p><ExamText text={templateText(question, question.dragDropContent)} /></p>}
-    {answerPresentation === "comparison" && question.type === "matrix_choice" && question.items && question.categories ? <div className="exam-matrix-choice-wrap"><table className="exam-matrix-choice-table"><thead><tr><th scope="col">{question.tableHeaders?.row ?? "Sentence"}</th>{question.categories.map(category => <th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(matrixItem => <tr key={matrixItem.id}><th scope="row"><ExamText html={matrixItem.html} text={matrixItem.text} /></th>{question.categories!.map(category => <td key={category.id}><label className="exam-matrix-choice-option"><input aria-label={`${matrixItem.text}: ${category.title}`} checked={submittedPlacements[matrixItem.id] === category.id} disabled readOnly type="radio" /><span aria-hidden="true" /></label></td>)}</tr>)}</tbody></table></div> : null}
+    {answerPresentation === "comparison" && question.type === "matrix_choice" && question.items && question.categories ? <div className={`exam-matrix-choice-wrap${question.matrixStyle === 'evidence' ? ' is-evidence-matrix' : ''}`}><table className="exam-matrix-choice-table"><thead><tr><th scope="col">{question.matrixStyle === 'evidence' ? '' : question.tableHeaders?.row ?? "Sentence"}</th>{question.categories.map(category => <th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(matrixItem => <tr key={matrixItem.id}><th scope="row"><ExamText html={matrixItem.html} text={matrixItem.text} /></th>{question.categories!.map(category => <td key={category.id}><label className="exam-matrix-choice-option"><input aria-label={`${matrixItem.text}: ${category.title}`} checked={submittedPlacements[matrixItem.id] === category.id} disabled readOnly type={question.matrixStyle === 'evidence' ? 'checkbox' : 'radio'} /><span aria-hidden="true" /></label></td>)}</tr>)}</tbody></table></div> : null}
     {question.choices?.length && (answerPresentation === "comparison" || isStandardChoiceQuestion(question)) ? <div className={viewer ? "exam-choice-list exam-review-viewer-choices" : "exam-review-choices"}>{question.choices.map(choice => {
       const submitted = highlightsChoices && !item.isCorrect && answerIncludesChoice(item.submittedAnswer, choice.id);
       const correct = highlightsChoices && showAnswers && answerIncludesChoice(correctAnswer, choice.id);

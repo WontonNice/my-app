@@ -1,0 +1,23 @@
+.game-ready-control { position:relative; display:flex; align-items:center; gap:10px; padding:5px 6px 5px 11px; border:1px solid #71958b; border-radius:9px; background:#102e2b; flex-shrink:0; max-width:100%; font:12px/1.3 "Segoe UI",sans-serif; color:#fff; }
+.game-ready-details { min-width:0; }
+.game-ready-details > summary { display:grid; grid-template-columns:1fr auto; column-gap:6px; cursor:pointer; list-style:none; }
+.game-ready-details > summary::-webkit-details-marker { display:none; }
+.game-ready-count { display:flex; gap:4px; align-items:center; font-weight:750; font-variant-numeric:tabular-nums; }
+.game-ready-hint { grid-column:1/-1; color:#c4d9d2; font-size:10px; max-width:175px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px; }
+.game-ready-control.partner-ready { border-color:#eacb70; box-shadow:inset 3px 0 #eacb70; }
+.partner-ready .game-ready-count,.partner-ready .game-ready-hint { color:#ffe9a9; }
+.game-ready-control.voted { border-color:#7ec8a5; }
+.game-exam-ribbon .game-ready-vote { display:flex; align-items:center; gap:4px; border:0; border-radius:5px; background:#e2f4e7; color:#153f30; font:750 12px "Segoe UI",sans-serif; min-height:32px; padding:7px 11px; margin:0; white-space:nowrap; }
+.game-exam-ribbon .game-ready-vote[aria-pressed=true] { background:#285444; color:#c9efda; }
+.game-exam-ribbon .game-ready-vote:disabled { opacity:.5; cursor:default; }
+.game-ready-popover { position:absolute; top:calc(100% + 8px); left:0; width:300px; max-width:calc(100vw - 36px); padding:14px; border:1px solid #bed3c8; border-radius:10px; background:#fff; color:#173b30; box-shadow:0 10px 36px #0c211f33; box-sizing:border-box; }
+.game-exam-ribbon .game-ready-popover > strong { font-size:13px; }
+.game-ready-popover ul { list-style:none; margin:12px 0; padding:0; display:grid; gap:9px; }
+.game-ready-popover li { display:flex; align-items:center; gap:7px; font-size:12px; }
+.game-ready-popover li > span { flex:1; overflow-wrap:anywhere; }
+.game-ready-popover li > small { font-size:10px; color:#697c74; }
+.game-ready-popover .is-ready,.game-ready-popover .is-ready > small { color:#237445; }
+.game-ready-popover .is-away { color:#809087; }
+.game-ready-popover p { color:#5c7065; font-size:11px; line-height:1.5; margin:0; }
+.game-ready-details > summary:focus-visible,.game-ready-vote:focus-visible { outline:2px solid #ffda70; outline-offset:3px; }
+@media(max-width:600px) { .game-ready-control { order:2; margin-left:0; }.game-exam-ribbon { padding:8px 12px; } }

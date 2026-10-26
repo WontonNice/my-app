@@ -104,8 +104,8 @@ const theEndOfAnEraQuestions: ExamQuestion[] = [
   {
     "id": "the-end-of-an-era-4",
     "points": 1,
-    "prompt": "Read this sentence.\nOne of Opportunity’s major contributions was finding possible evidence of the presence of water on Mars.\nWhere should the sentence be added to the passage?",
-    "promptHtml": "Read&nbsp;this&nbsp;sentence.<br>One&nbsp;of&nbsp;<em>Opportunity</em>’s&nbsp;major&nbsp;contributions&nbsp;was&nbsp;finding&nbsp;possible&nbsp;evidence&nbsp;of&nbsp;the&nbsp;presence&nbsp;of&nbsp;water&nbsp;on&nbsp;Mars.<br>Where&nbsp;should&nbsp;the&nbsp;sentence&nbsp;be&nbsp;added&nbsp;to&nbsp;the&nbsp;passage?",
+    "prompt": "Read this sentence.\n\nOne of Opportunity’s major contributions was finding possible evidence of the presence of water on Mars.\n\nWhere should the sentence be added to the passage?",
+    "promptHtml": "<p>Read this sentence.</p><blockquote><strong>One of <em>Opportunity</em>’s major contributions was finding possible evidence of the presence of water on Mars.</strong></blockquote><p>Where should the sentence be added to the passage?</p>",
     "topic": "Topic & Transitions",
     "choices": [
       {

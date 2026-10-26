@@ -1,0 +1,14 @@
+.game-answer-status { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font:600 12px/1.4 "Segoe UI",sans-serif; }
+.game-answer-status > span { display:flex; align-items:center; gap:5px; border:1px solid #64867a; padding:6px 8px; border-radius:6px; }
+.game-answer-status .answer-correct { background:#daf4e1; color:#205c33; border-color:#8acfa0; }
+.game-answer-status .answer-incorrect { background:#ffe3df; color:#8b2a28; border-color:#ecaaa2; }
+.game-live-streak { color:#dce9e4; background:#16352f; }
+.game-live-streak.is-hot { background:#593710; border-color:#ebbc60; color:#ffe5aa; }
+.game-exam-ribbon .game-live-streak strong { font-size:15px; }
+.game-shared-tools-status { font:11px "Segoe UI",sans-serif; color:#c9ddd5; white-space:nowrap; }
+.game-locked-answer-note { background:#eaf3ee; color:#285641; padding:8px 12px; border:1px solid #b9d3c3; border-radius:6px; font:12px/1.5 "Segoe UI",sans-serif; }
+.game-peer-notes { max-height:180px; overflow:auto; padding:12px; background:#eef5f0; color:#254a3e; border-top:1px solid #c4d5ca; font:12px/1.5 "Segoe UI",sans-serif; }
+.game-peer-notes p { white-space:pre-wrap; overflow-wrap:anywhere; margin:4px 0 12px; }
+
+.game-answer-lock { display:contents; border:0; padding:0; margin:0; min-width:0; }
+.game-results-feedback { margin:12px 0; padding:12px 16px; border-radius:9px; background:#183c38; }

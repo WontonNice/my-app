@@ -1,5 +1,19 @@
 # Nathan Tutors Content Studio
 
+Exam sections use dropdowns in exam creation and the exam builder. Create additional
+sections with **+ Label**. Official exams sort by descending year and then form;
+Prestige exams sort by ascending test number. The Math list uses the same order.
+
+For **Drag and drop — sentence blank**, open Question options and write the whole
+sentence. Select a missing word and click **Insert blank**, or type `[blank]` at
+each position. Edit the shared word bank, then choose the correct word for each
+blank. Changing the number of blanks resets the keys so they can be checked again.
+Enable word reuse only when the source permits it. Students can drag, move and
+clear cards, or select a word and a blank with the keyboard or mouse. Existing
+single-blank questions remain compatible. Multiple blanks save their sentence in
+`dragDropContent` and keys in `dragDropSlots` (`correctItemId` refers to a word-bank
+choice ID); they retain the `transition_drop` response type.
+
 Passage editing opens directly in the shared student presentation. Click passage
 text, the question prompt, or a choice to edit it in place. Answer bubbles are
 read-only while authoring. **Answer summary** shows every question
@@ -12,6 +26,46 @@ formatting, images, definitions, and review in one panel. There is no separate
 bulk-editing mode. **Student view** opens the read-only player in the same window.
 The library docks beside the canvas on desktop, and its controls wrap within the
 sidebar rather than clipping or covering passage text.
+
+**Exam Part B** also opens in the editable student presentation. Click the prompt,
+paragraph, answer choices, or drag-and-drop cards to edit; the formatting toolbar
+supports bold, italic, underline, undo and redo. **Answer key** opens the explicit
+key controls; editing answer text never selects a key. **Question options** holds
+type, topic, points, teacher version, directions, answer-card controls and the
+explanation. The canvas and options panel scroll independently and retain their
+positions when the same draft rerenders. **Student view** lets you try the current
+unsaved question. Saving retains explanations and their formatting.
+
+Use **Import Part B / ChatGPT prompt** in the library or **Import Part B** in the
+editor header. Copy the extraction prompt, attach source screenshots/PDFs in
+ChatGPT, then paste its JSON or select one or more `.json` files. Both one question
+and batches are accepted. Underlining, bold, italics, source sentence numbers,
+individual paragraphs and supplied explanations are retained. Unknown keys stay
+blank. Imports appear directly in this editor as red **Needs editing** drafts,
+saved in `tools/.content-drafts/part-b-imports.json`; **Save draft** retains
+incomplete work. **Finish & save to bank** validates the question and adds it to
+the reusable Part B bank for the exam builder. Exact reimports preserve prior
+edits and do not duplicate completed imports. Original source JSON and notes are
+available in Question options. Extra choices can be removed there before finishing.
+To remove an accidental import, open its red draft and click **Delete draft** in
+the editor header, then confirm. This removes that draft and any unsaved edits to
+it; completed bank questions are protected. The same source can be imported again.
+
+Passage imports also have **Delete draft** in the editor header and Saved document
+drafts. Deleting a passage draft removes its imported questions together; published
+passages remain protected. General Revising/Editing section directions are removed
+when drafts open or import, and extraction prompts exclude section boilerplate.
+
+Part B **Question options → Source tests / versions** accepts multiple tags with
+Enter or **Add tag**. Each tag is removable and searchable. Tags record the source
+paper; **Used in saved exams** separately lists actual exam assignments.
+**Check repeats** compares prompts, paragraphs, choices, answer keys and underlined
+targets across saved questions and import drafts. Shared paragraphs with different
+questions stay separate. Matching saved copies can be combined, choosing which
+copy remains in the bank. The other copy is retained as a source version so
+existing exams and responses keep their wording, keys and IDs. Future matching
+imports reuse the bank question and add their source tags when finished; the
+imported version is retained too. Source metadata is omitted from student content.
 
 The exam builder library separates **Official practice** from **Other exams**
 and custom labels. Year/form exams retain their existing official grouping;

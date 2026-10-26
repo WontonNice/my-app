@@ -36,7 +36,10 @@ for (const name of ['appStylesPath', 'katexDistRoot', 'mathliveRoot', ...(!basel
   source = source.replace(new RegExp(`const ${name} = join\\(workspaceRoot,`), `const ${name} = join(sourceRoot,`);
 }
 if (!baseline) source = source.replace('readFile(join(workspaceRoot, "tools", url.pathname.slice(1))', 'readFile(join(sourceRoot, "tools", url.pathname.slice(1))');
+if (!baseline) source = source.replaceAll("readFile(join(workspaceRoot, 'tools', url.pathname.slice(1))", "readFile(join(sourceRoot, 'tools', url.pathname.slice(1))")
+  .replace("readFile(join(workspaceRoot, 'tools/content-studio-part-b.js')", "readFile(join(sourceRoot, 'tools/content-studio-part-b.js')");
 source = source.replace('mathPreviewAsset(workspaceRoot, url.pathname)', 'mathPreviewAsset(sourceRoot, url.pathname)');
+source = source.replace('mathCommandAsset(workspaceRoot, url.pathname)', 'mathCommandAsset(sourceRoot, url.pathname)');
 source = source.split('if (process.argv.includes("--validate"))')[0] + '\nexport { handleRequest };\n';
 await writeFile(modulePath, source);
 let studio;

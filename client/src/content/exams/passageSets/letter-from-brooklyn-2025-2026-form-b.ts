@@ -69,8 +69,8 @@ const letterFromBrooklyn20252026FormBQuestions: ExamQuestion[] = [
   {
     "id": "letter-from-brooklyn-2025-2026-form-b-4",
     "points": 1,
-    "prompt": "Read lines 5–6 from the poem.\nThe weather will turn cold.\nBut that all happens later.\nHow do the lines develop a central theme of the poem?",
-    "promptHtml": "Read&nbsp;lines 5–6 from the&nbsp;poem.<br><strong>The weather will turn cold.</strong><br><strong>But that all happens later.</strong><br>How&nbsp;do the lines develop a central&nbsp;theme&nbsp;of the poem?",
+    "prompt": "Read lines 5–6 from the poem.\n\nThe weather will turn cold.\nBut that all happens later.\n\nHow do the lines develop a central theme of the poem?",
+    "promptHtml": "<p>Read lines 5–6 from the poem.</p><blockquote><strong><strong>The weather will turn cold.</strong><br><strong>But that all happens later.</strong></strong></blockquote><p>How do the lines develop a central theme of the poem?</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -100,8 +100,8 @@ const letterFromBrooklyn20252026FormBQuestions: ExamQuestion[] = [
   {
     "id": "letter-from-brooklyn-2025-2026-form-b-5",
     "points": 1,
-    "prompt": "Read lines 7–9 from the poem.\nFor now it is the early edge of fall,\nleaves green still while the air narrows,\nis slightly crisp,\nThe word choice in the lines helps convey the speaker’s belief that",
-    "promptHtml": "Read&nbsp;lines 7–9 from the&nbsp;poem.<br><strong>For now it is the early edge of fall,</strong><br><strong>leaves green still while the air narrows,</strong><br><strong>is slightly crisp,</strong><br>The&nbsp;word&nbsp;choice in the lines&nbsp;helps&nbsp;convey the speaker’s belief that",
+    "prompt": "Read lines 7–9 from the poem.\n\nFor now it is the early edge of fall,\nleaves green still while the air narrows,\nis slightly crisp,\n\nThe word choice in the lines helps convey the speaker’s belief that",
+    "promptHtml": "<p>Read lines 7–9 from the poem.</p><blockquote><strong><strong>For now it is the early edge of fall,</strong><br><strong>leaves green still while the air narrows,</strong><br><strong>is slightly crisp,</strong></strong></blockquote><p>The word choice in the lines helps convey the speaker’s belief that</p>",
     "topic": "Tone & Mood",
     "choices": [
       {
@@ -193,8 +193,8 @@ const letterFromBrooklyn20252026FormBQuestions: ExamQuestion[] = [
   {
     "id": "letter-from-brooklyn-2025-2026-form-b-8",
     "points": 1,
-    "prompt": "Read these lines from the poem.\nI can already see how this will end. (line 1)\nHow Brooklyn makes me nostalgic\nfor the moment I am walking inside of. (lines 21–22)\nThe lines develop a central idea of the poem by",
-    "promptHtml": "Read&nbsp;these lines from the&nbsp;poem.<br><strong>I can already see how this will end.</strong>&nbsp;(line 1)<br><strong>How Brooklyn makes me&nbsp;nostalgic</strong><br><strong>for the moment I am walking inside of.</strong>&nbsp;(lines 21–22)<br>The lines develop a central idea of the poem by",
+    "prompt": "Read these lines from the poem.\n\nI can already see how this will end. (line 1)\nHow Brooklyn makes me nostalgic\nfor the moment I am walking inside of. (lines 21–22)\n\nThe lines develop a central idea of the poem by",
+    "promptHtml": "<p>Read these lines from the poem.</p><blockquote><strong><strong>I can already see how this will end.</strong> (line 1)<br><strong>How Brooklyn makes me nostalgic</strong><br><strong>for the moment I am walking inside of.</strong> (lines 21–22)</strong></blockquote><p>The lines develop a central idea of the poem by</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {

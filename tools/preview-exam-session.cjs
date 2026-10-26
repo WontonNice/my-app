@@ -9,8 +9,9 @@ require(require.resolve('ts-node', { paths: [path.resolve(__dirname, '../server'
 const { formA2025_2026Content } = require('../client/src/content/exams/tests/formA2025_2026.ts');
 const { content20252026FormBContent } = require('../client/src/content/exams/tests/2025-2026-form-b.ts');
 const { content20202021FormBContent } = require('../client/src/content/exams/tests/2020-2021-form-b.ts');
+const { content20262027FormDContent } = require('../client/src/content/exams/tests/2026-2027-form-d.ts');
 const { getAllExamQuestions } = require('../server/src/shared/examGrading.ts');
-const content = [formA2025_2026Content, content20252026FormBContent, content20202021FormBContent];
+const content = [formA2025_2026Content, content20252026FormBContent, content20202021FormBContent, content20262027FormDContent];
 const sessions = {};
 const progress = { examResults: [], practice: {} };
 (async () => {

@@ -59,7 +59,7 @@ test('real comparison endpoint counts actual authored test content and serves it
  const modulePath=join(toolsRoot,`.compare-http-${Date.now()}.mjs`);let server;
  try{
   for(const name of ['client/src/content','server/src/shared'])await cp(join(root,name),join(work,name),{recursive:true});
-  for(const name of ['client/src/lib/studentMaterials.ts','server/data/assessments.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js']){await mkdir(dirname(join(work,name)),{recursive:true});await cp(join(root,name),join(work,name));}
+  for(const name of ['client/src/lib/studentMaterials.ts','server/data/assessments.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/poem-layout.js']){await mkdir(dirname(join(work,name)),{recursive:true});await cp(join(root,name),join(work,name));}
   await writeFile(join(work,'server/data/question-bank.json'),'{"revision":0,"questions":[],"sets":[]}');
   const source=(await readFile(join(toolsRoot,'content-studio.mjs'),'utf8')).replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");',`const workspaceRoot = ${JSON.stringify(work)};`).split('if (process.argv.includes("--validate"))')[0]+'\nexport {handleRequest,getState};';
   await writeFile(modulePath,source);const studio=await import(pathToFileURL(modulePath).href),state=await studio.getState();

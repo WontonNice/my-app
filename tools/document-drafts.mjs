@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { readFile, mkdir, writeFile, rename } from 'node:fs/promises';
 import { join } from 'node:path';
 import contract from './document-import.cjs';
@@ -147,7 +147,7 @@ export function documentDraftStore(root, sanitize = content => content) {
             p.thumbnailAlt ||= p.title;
           }
           entry.content = sanitize(entry.content);
-          entry.id = `import-${fingerprint.slice(0, 20)}`;
+          entry.id = `import-${fingerprint.slice(0, 20)}-${randomUUID().slice(0, 8)}`;
           entry.fingerprint = fingerprint;
           entry.status = 'draft';
           entry.content.importDraftId = entry.id;
@@ -155,6 +155,15 @@ export function documentDraftStore(root, sanitize = content => content) {
           state.entries.push(entry);
           state.lastImport.entryIds.push(entry.id);
         }
+      });
+    },
+    async delete(input) {
+      if (!Number.isInteger(input.revision)) throw new Error('Reopen the draft before deleting.');
+      return mutate(input.revision, state => {
+        const entry = state.entries.find(entry => entry.id === input.id);
+        if (!entry) throw new Error('Import draft not found.');
+        if (entry.kind !== 'passage' || entry.status === 'published' || entry.batch) throw new Error('Only unpublished passage drafts can be deleted here.');
+        state.entries = state.entries.filter(entry => entry.id !== input.id);
       });
     },
     async save(input) {

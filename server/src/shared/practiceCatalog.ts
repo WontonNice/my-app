@@ -1,0 +1,121 @@
+import { generatePracticeQuestion, practiceGenerators, practiceModules } from './infinitePractice';
+import type { ExamQuestion } from './examTypes';
+
+export type GeneratorSettings = { minCoefficient:number; maxCoefficient:number; minBoundary:number; maxBoundary:number; minOffset:number; maxOffset:number; negativeCoefficients:boolean; inclusive:boolean };
+export type PracticeGeneratorDefinition = { id:string; title:string; description:string; enabled:boolean; kind:'builtin'|'one-step'|'two-step'; builtinId?:string; settings?:GeneratorSettings; category?:string; topic?:string };
+export type ManagedPracticeModule = { id:string; title:string; description:string; category:string; topic:string; published:boolean; includeAll:boolean; generatorIds:string[]; parentId?:string|null };
+export type PracticeVideo = { id:string; title:string; description:string; category:string; topic:string; published:boolean; url:string; channelTitle?:string; duration?:string; viewCount?:number; publishedAt?:string };
+export type PracticeCatalog = { modules:ManagedPracticeModule[]; generators:PracticeGeneratorDefinition[]; videos:PracticeVideo[] };
+export type PracticeCatalogResponse = { revision:number; catalog:PracticeCatalog };
+export const defaultGeneratorSettings:GeneratorSettings = {minCoefficient:2,maxCoefficient:9,minBoundary:-10,maxBoundary:10,minOffset:1,maxOffset:12,negativeCoefficients:true,inclusive:false};
+export function defaultPracticeCatalog():PracticeCatalog {
+  return {
+    generators:practiceGenerators.map(generator=>({id:generator.id,title:generator.title,description:generator.description??(generator.foundation?'Small positive coefficients and exact division.':'Positive and negative coefficients, including sign flips.'),enabled:true,kind:'builtin',builtinId:generator.id})),
+    modules:practiceModules.map(module=>({id:module.id,title:module.title,description:module.id==='foundation'?'Build confidence with one-step inequalities, including positive division and sign flips.':module.description,category:'Algebra',topic:'Inequalities',published:true,includeAll:module.selection==='all',generatorIds:module.id==='foundation'?practiceGenerators.map(generator=>generator.id):Array.isArray(module.selection)?module.selection:[]})),
+    videos:[],
+  };
+}
+export type PracticeSelection = { childModuleIds?:string[]; topics?:string[] };
+export const generatorTopicKey=(generator:PracticeGeneratorDefinition)=>`${generator.category??'Algebra'} / ${generator.topic??'Inequalities'}`;
+export function managedGeneratorIds(module:ManagedPracticeModule,catalog:Pick<PracticeCatalog,'generators'>&Partial<Pick<PracticeCatalog,'modules'>>,selection:PracticeSelection={}) {
+  const children=catalog.modules?.filter(child=>child.parentId===module.id&&child.published&&(!selection.childModuleIds||selection.childModuleIds.includes(child.id)))??[];
+  const ids=new Set([...module.generatorIds,...children.flatMap(child=>child.generatorIds)]);
+  return catalog.generators.filter(generator=>generator.enabled&&(module.id==='all'||module.includeAll||ids.has(generator.id)||children.some(child=>child.includeAll))&&(!selection.topics||selection.topics.includes(generatorTopicKey(generator)))).map(generator=>generator.id);
+}
+export function movePracticeModule(catalog:PracticeCatalog,moduleId:string,parentId:string|null):PracticeCatalog {
+  const module=catalog.modules.find(item=>item.id===moduleId);
+  if(!module||module.id==='foundation'||module.id==='all')throw new Error('Only individual modules can be moved into Foundation Building.');
+  if(parentId!==null&&parentId!=='foundation')throw new Error('Choose Foundation Building or a separate listing.');
+  const inherited=new Set(module.includeAll?catalog.generators.map(generator=>generator.id):module.generatorIds);
+  return {...catalog,modules:catalog.modules.map(item=>item.id===moduleId?{...item,parentId}:parentId&&item.id===parentId?{...item,includeAll:false,generatorIds:item.generatorIds.filter(id=>!inherited.has(id))}:item)};
+}
+export function removePracticeGenerator(catalog:PracticeCatalog,generatorId:string):PracticeCatalog {
+  const next={...catalog,generators:catalog.generators.filter(item=>item.id!==generatorId),modules:catalog.modules.map(module=>({...module,generatorIds:module.generatorIds.filter(id=>id!==generatorId)}))};
+  return {...next,modules:next.modules.map(module=>({...module,published:module.published&&managedGeneratorIds(module,next).length>0}))};
+}
+const fail=(message:string):never=>{throw Object.assign(new Error(message),{status:400});};
+const record=(value:unknown):Record<string,unknown>=>value&&typeof value==='object'&&!Array.isArray(value)?value as Record<string,unknown>:fail('Invalid resource configuration.');
+const text=(value:unknown,label:string,max:number,required=true)=>typeof value==='string'&&value.length<=max&&(!required||value.trim())?value.trim():fail(`${label} must be ${required?'nonempty ':''}text up to ${max} characters.`);
+const bool=(value:unknown)=>typeof value==='boolean'?value:fail('Choose a valid on/off setting.');
+const id=(value:unknown)=>typeof value==='string'&&/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,99}$/.test(value)?value:fail('Invalid resource ID.');
+const array=(value:unknown,max:number)=>Array.isArray(value)&&value.length<=max?value:fail(`A resource list cannot contain more than ${max} items.`);
+export function youtubeVideoId(value:string):string|null {
+  try {const url=new URL(value);if(url.protocol!=='https:'||url.username||url.password||url.port)return null;
+    const host=url.hostname.toLowerCase(),parts=url.pathname.split('/').filter(Boolean);
+    const key=host==='youtu.be'?parts[0]:['youtube.com','www.youtube.com','m.youtube.com'].includes(host)?url.pathname==='/watch'?url.searchParams.get('v'):['shorts','embed','live'].includes(parts[0])?parts[1]:null:null;
+    return key&&/^[a-zA-Z0-9_-]{11}$/.test(key)?key:null;
+  }catch{return null;}
+}
+
+function videoDetails(row:Record<string,unknown>):Pick<PracticeVideo,'channelTitle'|'duration'|'viewCount'|'publishedAt'> {
+  const details:Pick<PracticeVideo,'channelTitle'|'duration'|'viewCount'|'publishedAt'>={};
+  if(row.channelTitle!==undefined&&row.channelTitle!=='')details.channelTitle=text(row.channelTitle,'Channel name',160);
+  if(row.duration!==undefined&&row.duration!==''){
+    const duration=text(row.duration,'Video duration',10);
+    if(!/^(?:\d{1,3}:[0-5]\d|\d{1,3}):[0-5]\d$/.test(duration))fail('Use a video duration like 14:02 or 1:14:02.');
+    details.duration=duration;
+  }
+  if(row.viewCount!==undefined){
+    if(typeof row.viewCount!=='number'||!Number.isSafeInteger(row.viewCount)||row.viewCount<0)fail('Video views must be a nonnegative whole number.');
+    details.viewCount=row.viewCount as number;
+  }
+  if(row.publishedAt!==undefined&&row.publishedAt!==''){
+    const date=text(row.publishedAt,'Published date',10);
+    const parsed=new Date(`${date}T00:00:00Z`);
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!Number.isFinite(parsed.getTime())||parsed.toISOString().slice(0,10)!==date)fail('Choose a valid video publication date.');
+    details.publishedAt=date;
+  }
+  return details;
+}
+export function validateGenerator(value:unknown):PracticeGeneratorDefinition {
+  const row=record(value),base={id:id(row.id),title:text(row.title,'Generator title',120),description:text(row.description,'Generator description',600,false),enabled:bool(row.enabled),category:row.category===undefined?'Algebra':text(row.category,'Generator category',120),topic:row.topic===undefined?'Inequalities':text(row.topic,'Generator topic',120)};
+  if(row.kind==='builtin') {
+    if(!practiceGenerators.some(generator=>generator.id===row.builtinId))return fail('This built-in question generator is unavailable.');
+    return {...base,kind:'builtin',builtinId:String(row.builtinId)};
+  }
+  if(row.kind!=='one-step'&&row.kind!=='two-step')return fail('Choose a supported question template.');
+  const input=record(row.settings),settings={} as GeneratorSettings;
+  for(const key of ['minCoefficient','maxCoefficient','minBoundary','maxBoundary','minOffset','maxOffset'] as const){const number=input[key];if(typeof number!=='number'||!Number.isSafeInteger(number)||Math.abs(number)>50)return fail('Generator ranges must use whole numbers between -50 and 50.');settings[key]=number;}
+  settings.negativeCoefficients=bool(input.negativeCoefficients);settings.inclusive=bool(input.inclusive);
+  if(settings.minCoefficient<1||settings.minCoefficient>settings.maxCoefficient||settings.minBoundary>settings.maxBoundary||settings.minOffset>settings.maxOffset)return fail('Check generator ranges. Coefficients must be positive magnitudes; minimums cannot exceed maximums.');
+  if(row.kind==='two-step'&&settings.minOffset===0&&settings.maxOffset===0)return fail('Two-step questions need a nonzero offset.');
+  return {...base,kind:row.kind,settings};
+}
+export function validatePracticeCatalog(value:unknown,topics?:{categories:{label:string;topics:string[]}[]}):PracticeCatalog {
+  const input=record(value),generators=array(input.generators,100).map(validateGenerator),known=new Set(generators.map(generator=>generator.id));
+  if(known.size!==generators.length)fail('Generator IDs must be unique.');
+  const location=(row:Record<string,unknown>)=>{const category=text(row.category,'Category',120),topic=text(row.topic,'Topic',120);if(topics&&!topics.categories.some(item=>item.label===category&&item.topics.includes(topic)))fail('Choose an existing math category and topic.');return {category,topic};};
+  const modules=array(input.modules,100).map(value=>{const row=record(value),generatorIds=array(row.generatorIds,100).map(id);if(new Set(generatorIds).size!==generatorIds.length||generatorIds.some(key=>!known.has(key)))fail('A module contains duplicate or unavailable generators.');
+    const module:ManagedPracticeModule={id:id(row.id),title:text(row.title,'Module title',120),description:text(row.description,'Module description',600,false),...location(row),published:bool(row.published),includeAll:row.id==='all'?true:bool(row.includeAll),generatorIds,parentId:row.parentId===undefined||row.parentId===null?null:id(row.parentId)};
+    return module;
+  });
+  const foundation=modules.find(module=>module.id==='foundation'),contained=modules.filter(module=>module.parentId==='foundation');
+  if(foundation&&contained.length){foundation.includeAll=false;const inherited=new Set(contained.flatMap(module=>module.includeAll?generators.map(generator=>generator.id):module.generatorIds));foundation.generatorIds=foundation.generatorIds.filter(id=>!inherited.has(id));}
+  for(const module of modules){
+    if(module.parentId&&(module.parentId!=='foundation'||module.id==='foundation'||module.id==='all'||!modules.some(parent=>parent.id===module.parentId)))fail('Individual modules can only be contained in Foundation Building.');
+    if(module.published&&!managedGeneratorIds(module,{generators,modules}).length&&!(module.id==='foundation'&&contained.length))fail(`“${module.title}” needs at least one enabled generator before publishing.`);
+  }
+  if(topics&&generators.some(generator=>!topics.categories.some(category=>category.label===generator.category&&category.topics.includes(generator.topic!))))fail('Choose an existing category and topic for each generator.');
+  const videos=array(input.videos,500).map(value=>{const row=record(value),raw=text(row.url,'YouTube link',600,false),key=youtubeVideoId(raw),published=bool(row.published);if((raw||published)&&!key)fail('Use a valid HTTPS YouTube video link (watch, shorts, or youtu.be).');return {id:id(row.id),title:text(row.title,'Video title',160),description:text(row.description,'Video description',1000,false),...location(row),published,url:key?`https://www.youtube.com/watch?v=${key}`:'',...videoDetails(row)};});
+  for(const [label,items]of [['Module',modules],['Video',videos]] as const)if(new Set(items.map(item=>item.id)).size!==items.length)fail(`${label} IDs must be unique.`);
+  return {modules,generators,videos};
+}
+export function studentPracticeCatalog(catalog:PracticeCatalog):PracticeCatalog {
+  return {...catalog,modules:catalog.modules.filter(module=>module.published),generators:catalog.generators.filter(generator=>generator.enabled),videos:catalog.videos.filter(video=>video.published)};
+}
+export function generateCatalogQuestion(generator:PracticeGeneratorDefinition,index:number,seed:string):ExamQuestion {
+  if(generator.kind==='builtin')return generatePracticeQuestion([generator.builtinId!],index,seed);
+  if(!Number.isSafeInteger(index)||index<0)throw new Error('Invalid practice sequence.');
+  const config=generator.settings!;let state=2166136261;for(const ch of `${generator.id}:${seed}:${index}`)state=Math.imul(state^ch.charCodeAt(0),16777619)>>>0;
+  const next=()=>{state^=state<<13;state^=state>>>17;state^=state<<5;return state>>>0;};
+  const between=(min:number,max:number)=>min+next()%(max-min+1);
+  const coefficient=between(config.minCoefficient,config.maxCoefficient)*(config.negativeCoefficients&&next()%2?-1:1),boundary=between(config.minBoundary,config.maxBoundary);
+  let offset=generator.kind==='two-step'?between(config.minOffset,config.maxOffset):0;
+  if(generator.kind==='two-step'&&offset===0)offset=config.maxOffset!==0?config.maxOffset:config.minOffset;
+  const sign=next()%2?'>':'<',relation=config.inclusive?`${sign}=`:sign,reverse=sign==='>'?'<':'>',solution=coefficient<0?(config.inclusive?`${reverse}=`:reverse):relation;
+  const opposite=solution.startsWith('>')?solution.replace('>','<'):solution.replace('<','>'),constant=coefficient*boundary+offset;
+  const options=[`x${solution}${boundary}`,`x${opposite}${boundary}`,`x${solution}${boundary+1}`,`x${solution}${boundary-1}`],rotation=next()%4,choices=options.slice(rotation).concat(options.slice(0,rotation));
+  const latex=(value:string)=>value.replace('>=','\\geq ').replace('<=','\\leq ');
+  const term=coefficient===1?'x':coefficient===-1?'-x':`${coefficient}x`;
+  return {id:`${generator.id}:${seed}:${index}`,type:'multiple_choice',points:1,topic:'Algebra',subtopic:'Inequalities',prompt:`\\[${term}${offset?offset>0?`+${offset}`:`${offset}`:''}${latex(relation)}${constant}\\]\n\nFor what values of \\(x\\) is the inequality true?`,choices:choices.map((math,at)=>({id:'ABCD'[at],math:latex(math),text:math})),correctChoiceId:'ABCD'[choices.indexOf(options[0])],explanation:`${offset?`Subtract ${offset} from both sides.\n\n`:''}Divide both sides by ${coefficient}. ${coefficient<0?'Dividing by a negative number reverses the inequality sign.':'Dividing by a positive number keeps the inequality sign.'}\n\nTherefore, \\(x${latex(solution)}${boundary}\\).`};
+}

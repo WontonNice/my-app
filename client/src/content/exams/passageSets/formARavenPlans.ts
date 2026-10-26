@@ -21,7 +21,8 @@ const ravenPlansQuestions: ExamQuestion[] = [
     topic: "Evidence & Support",
     type: "multiple_choice",
     prompt:
-      "Read this sentence from paragraph 1.\n\n**At Lund University in Sweden, researchers argue that ravens may be able to think ahead and even plan for the future.**\n\nWhich sentence from paragraph 4 provides support for this argument?",
+      "Read this sentence from paragraph 1.\n\nAt Lund University in Sweden, researchers argue that ravens may be able to think ahead and even plan for the future.\n\nWhich sentence from paragraph 4 provides support for this argument?",
+    "promptHtml": "<p>Read this sentence from paragraph 1.</p><blockquote><strong><strong>At Lund University in Sweden, researchers argue that ravens may be able to think ahead and even plan for the future.</strong></strong></blockquote><p>Which sentence from paragraph 4 provides support for this argument?</p>",
     correctChoiceId: "D",
     points: 1,
     choices: [

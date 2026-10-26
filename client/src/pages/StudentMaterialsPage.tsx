@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowRight, BookMarked, BookOpen, FileText, Filter, KeyRound, Library, Search } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookMarked, BookOpen, FileText, Filter, KeyRound, Library, Search } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { StudentPortalShell } from "../components/StudentPortalShell";
 import { MathStudyHall } from "../components/MathStudyHall";
@@ -19,6 +19,7 @@ import {
 import { appendStudentPreview, type StudentPreviewContext } from "../lib/studentPreview";
 import { PASSAGE_CATEGORIES, passageCategory, passageCategoryLabel } from "../../../server/src/shared/passageCategories";
 import "../styles/learning-plan.css";
+import "../styles/study-hall-navigation.css";
 
 type PassageFilter = Exclude<ReadingFormat, "Long reading"> | "All passage types";
 
@@ -45,8 +46,8 @@ function materialMatchesQuery(material: StudentMaterial, query: string) {
   ].join(" ").toLowerCase().includes(query);
 }
 
-export function StudentMaterialsPage() {
-  const { isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
+export function StudentMaterialsPage({ teacherWorkspace = false }: { teacherWorkspace?: boolean }) {
+  const { isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess(teacherWorkspace);
   const [activeSubject, setActiveSubject] = useState<MaterialSubject>(getInitialSubject);
   const [activePassageType, setActivePassageType] = useState<PassageFilter>("All passage types");
   const [isFiltersOpen, setIsFiltersOpen] = useState(true);
@@ -110,6 +111,7 @@ export function StudentMaterialsPage() {
   return (
     <StudentPortalShell activeId="materials" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
       <div className="student-materials-page study-hall-catalog-page">
+        {previewContext.mode === "teacher" && <nav className="study-hall-teacher-tools" aria-label="Teacher Study Hall tools"><AppLink href="/teacher"><ArrowLeft size={15} /> Teacher dashboard</AppLink><span>Teacher view</span><AppLink href="/teacher/practice-studio">Practice &amp; video studio</AppLink><AppLink href="/teacher/library">Manage English library</AppLink><AppLink href="/teacher/math-command">Math Command Center</AppLink></nav>}
         <header className="student-materials-heading">
           <p>Study Hall / {activeSubject}</p>
           <h1>{activeSubject} Study Hall</h1>
@@ -127,6 +129,7 @@ export function StudentMaterialsPage() {
         <div className="student-subject-switcher" aria-label="Choose a subject">
           {(["English", "Math"] as MaterialSubject[]).map((subject) => <button aria-pressed={activeSubject === subject} key={subject} onClick={() => selectSubject(subject)} type="button">{subject}</button>)}
         </div>
+
 
         {activeSubject === "English" && <nav className="student-topic-jump-nav" aria-label="English Study Hall sections">
           <a href="#study-hall-topic-title"><BookOpen size={16} />Reading skills</a>

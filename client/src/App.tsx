@@ -51,6 +51,10 @@ const TeacherDashboardPage = lazy(() =>
 const TeacherLibraryPage = lazy(() =>
   import("./pages/TeacherLibraryPage").then((module) => ({ default: module.TeacherLibraryPage })),
 );
+const MathCommandPage = lazy(() => import("./features/math-command/MathCommandPage").then(module => ({ default: module.MathCommandPage })));
+const InfinitePracticePage = lazy(() => import("./pages/InfinitePracticePage").then(module => ({ default: module.InfinitePracticePage })));
+const PracticeStudioPage = lazy(() => import("./pages/PracticeStudioPage").then(module => ({ default: module.PracticeStudioPage })));
+const MathPracticePage = lazy(() => import("./features/math-command/MathPracticePage").then(module => ({ default: module.MathPracticePage })));
 const TopicPracticePage = lazy(() =>
   import("./pages/TopicPracticePage").then((module) => ({ default: module.TopicPracticePage })),
 );
@@ -121,6 +125,11 @@ function CurrentPage() {
   if (/^\/teacher\/corrections\/[^/]+\/?$/.test(path)) return <TeacherCorrectionsPage />;
   if (path.startsWith("/teacher/answer-sheets")) return <AnswerSheetsPage />;
   if (path.startsWith("/answer-sheets/")) return withClassAccess(<AnswerSheetsPage />);
+  if (path === "/math-practice/inequalities" || path === "/math-practice/infinite") return withClassAccess(<InfinitePracticePage />);
+  if (path === "/teacher/study-hall") return <StudentMaterialsPage teacherWorkspace />;
+  if (path === "/teacher/practice-studio") return <PracticeStudioPage />;
+  if (path.startsWith("/math-practice/")) return withClassAccess(<MathPracticePage />);
+  if (path === "/teacher/math-command") return <MathCommandPage />;
   const correctionRoute = studentCorrectionRoute(path);
   if (correctionRoute === "exam") return withClassAccess(<ExamCorrectionsPage />);
   if (correctionRoute === "library") return withClassAccess(<LibraryCorrectionsPage />);

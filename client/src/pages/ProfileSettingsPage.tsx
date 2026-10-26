@@ -1,5 +1,7 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { accountCall, useAccountProfile } from "../features/account/account";
+import { LoginStreak } from "../features/account/LoginStreak";
+import { ACCOUNT_COLORS, type AccountColor } from "../../../server/src/shared/accountPreferences";
 import { getSupabaseClient } from "../lib/supabase";
 import { getDashboardPath, getUserRole } from "../lib/auth";
 import "../styles/profile-settings.css";
@@ -29,10 +31,17 @@ export function ProfileSettingsPage() {
     try { const result = await accountCall<{ message: string }>("/email", await token(), "POST", { email, password }); setPassword(""); setMessage(result.message); await refresh(); }
     catch (error) { setMessage((error as Error).message); } finally { setBusy(false); }
   }
+  async function saveColor(themeColor: AccountColor) {
+    setBusy(true); setMessage("");
+    try { await accountCall("/preferences", await token(), "PATCH", { themeColor }); await refresh(); setMessage("Your color is saved."); }
+    catch (error) { setMessage((error as Error).message); } finally { setBusy(false); }
+  }
   async function back() { const { data } = await getSupabaseClient().auth.getSession(); window.location.assign(data.session ? getDashboardPath(getUserRole(data.session.user)) : "/login"); }
   if (!profile) return <main className="profile-settings"><a href="/">← Back</a><h1>Profile settings</h1>{error ? <><p role="alert">{error}</p><button disabled={busy} onClick={() => { setBusy(true); void refresh().catch(failure => setMessage(failure.message)).finally(() => setBusy(false)); }}>Try again</button>{message && <p role="status">{message}</p>}</> : <p role="status">Loading your profile…</p>}</main>;
   return <main className="profile-settings"><button className="profile-back" onClick={() => { void back(); }}>← Back to dashboard</button><header><span>YOUR ACCOUNT</span><h1>Make yourself at home</h1><p>Your picture, email and account security in one place.</p></header>{message && <p className="profile-message" role="status">{message}</p>}
     <section className="profile-card"><div className="profile-large-avatar">{profile?.avatar ? <img src={profile.avatar} alt="Your profile" /> : profile?.name.slice(0, 1) ?? "?"}</div><div><h2>{profile?.name ?? "Profile settings"}</h2><p>Username: <strong>{profile?.username ?? "Loading…"}</strong></p><label className="profile-upload">{busy ? "Saving…" : "Choose profile picture"}<input type="file" accept="image/png,image/jpeg,image/webp" disabled={busy} onChange={event => { void saveAvatar(event); }} /></label>{profile?.avatar && <button disabled={busy} onClick={() => { setBusy(true); void token().then(value => accountCall("/profile", value, "PATCH", { avatar: null })).then(refresh).catch(error => setMessage(error.message)).finally(() => setBusy(false)); }}>Remove picture</button>}<small>Square crop · PNG, JPEG or WebP · Up to 8 MB</small></div></section>
+    <section className="profile-card profile-color-section"><div><span className="profile-kicker">MAKE IT YOURS</span><h2>Your portal color</h2><p>Choose an accent for your dashboard. The warm paper background stays familiar.</p></div><div className="profile-color-grid" role="group" aria-label="Portal color">{ACCOUNT_COLORS.map(color => <button className="profile-color-option" key={color.id} type="button" aria-pressed={profile.themeColor === color.id} disabled={busy} onClick={() => { void saveColor(color.id); }}><span className="profile-color-swatch" style={{ background: color.accent }}>{profile.themeColor === color.id ? "✓" : ""}</span><strong>{color.name}</strong><small>{profile.themeColor === color.id ? "Selected" : "Choose color"}</small></button>)}</div></section>
+    <LoginStreak />
     <section className="profile-card profile-email"><div><span className="profile-kicker">STAY CONNECTED</span><h2>Email & recovery</h2><p>Add an email you can open, verify it, and use it if you forget your password.</p>{profile?.email && <p className="profile-verified">✓ Verified: <strong>{profile.email}</strong></p>}{profile?.pendingEmail && <p>Awaiting verification: <strong>{profile.pendingEmail}</strong>. Enter it below to resend.</p>}{profile && !profile.emailDeliveryReady && <p className="profile-message">Email delivery setup is pending. Your teacher needs to connect the email service before verification or recovery messages can be sent.</p>}</div><form onSubmit={verify}><label>Email address<input type="email" autoComplete="email" required value={email} onChange={event => setEmail(event.target.value)} placeholder={profile?.email ?? "you@example.com"} /></label><label>Current password<input type="password" autoComplete="current-password" required value={password} onChange={event => setPassword(event.target.value)} /></label><button className="profile-primary" disabled={busy || !profile?.emailDeliveryReady}>Send verification email</button><small>Your login username stays the same. Recovery becomes available after you verify the email.</small></form><a href="/forgot-password">Forgot your password?</a></section></main>;
 }
 

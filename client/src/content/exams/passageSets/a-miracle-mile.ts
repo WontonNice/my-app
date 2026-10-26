@@ -225,7 +225,7 @@ const aMiracleMileQuestions: ExamQuestion[] = [
     "id": "a-miracle-mile-8",
     "points": 1,
     "prompt": "Read these sentences from paragraph 7.\n\nBannister said, “I felt that the moment of a lifetime had come. There was no pain, only a great unity of movement and aim.”\n\nThe sentences contribute to the development of ideas in the passage by showing that Bannister",
-    "promptHtml": "Read these sentences from paragraph&nbsp;7.<br>\n<strong>Bannister said, “I felt that the moment of a lifetime had come. There was no pain, only a great unity of movement and aim.”</strong><br>\nThe sentences contribute to the development of ideas in the passage by showing that Bannister",
+    "promptHtml": "<p>Read these sentences from paragraph 7.</p><blockquote><strong><strong>Bannister said, “I felt that the moment of a lifetime had come. There was no pain, only a great unity of movement and aim.”</strong></strong></blockquote><p>The sentences contribute to the development of ideas in the passage by showing that Bannister</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {

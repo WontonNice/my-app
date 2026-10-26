@@ -3,6 +3,7 @@ import { registerStudent } from "../lib/api";
 import { getDashboardPath, getStaffLoginEmail, getStudentLoginEmail, getUserRole } from "../lib/auth";
 import { rememberAccountSession } from "../lib/accountSwitching";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
+import { loginDestination } from '../lib/loginDestination';
 
 type AuthPageProps = {
   mode: "login" | "signup";
@@ -23,7 +24,7 @@ export function AuthPage({ mode }: AuthPageProps) {
 
     getSupabaseClient().auth.getSession().then(({ data }) => {
       if (data.session) {
-        window.location.assign(getDashboardPath(getUserRole(data.session.user)));
+        window.location.assign(loginDestination(window.location.search, getDashboardPath(getUserRole(data.session.user))));
       }
     });
   }, []);
@@ -81,7 +82,7 @@ export function AuthPage({ mode }: AuthPageProps) {
       }
 
       if (data.session) rememberAccountSession(data.session);
-      window.location.assign(getDashboardPath(getUserRole(data.user)));
+      window.location.assign(loginDestination(window.location.search, getDashboardPath(getUserRole(data.user))));
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
     } finally {
@@ -149,10 +150,12 @@ export function AuthPage({ mode }: AuthPageProps) {
           </button>
         </form>
 
+        <nav className="auth-links" aria-label="Account help">
         {!isSignup && <a className="auth-switch" href="/forgot-password">Forgot your password?</a>}
         <a className="auth-switch" href={isSignup ? "/login" : "/signup"}>
           {isSignup ? "Already have an account? Login" : "Need an account? Sign up"}
         </a>
+        </nav>
       </section>
     </main>
   );

@@ -1,3 +1,4 @@
+import { LoginStreak } from "../features/account/LoginStreak";
 import { ProfileAvatar } from "../features/account/account";
 import {
   BarChart3,
@@ -120,7 +121,7 @@ export function StudentPortalShell({
         </button>
         <AppLink className="student-portal-brand" href={homeHref}>
           <strong>The Learning Room</strong>
-          <small>Student portal</small>
+          <small>{previewContext.mode === "teacher" ? "Teacher · Study Hall" : "Student portal"}</small>
         </AppLink>
         <form className="student-portal-global-search" onSubmit={handleSearch}>
           <Search aria-hidden="true" size={17} />
@@ -133,6 +134,7 @@ export function StudentPortalShell({
             value={searchQuery}
           />
         </form>
+        {!previewContext.isPreview && <LoginStreak compact />}
         <div className="student-portal-profile-menu" ref={profileRef}>
           <button
             aria-expanded={isProfileOpen}
@@ -169,6 +171,7 @@ export function StudentPortalShell({
           <span>Fall intensive</span>
         </div>
         <nav aria-label="Student portal navigation">
+          {previewContext.isPreview && <AppLink href={previewContext.returnHref} onClick={closeMobileNavigation}><LogOut size={18}/><span>Back to teacher workspace</span></AppLink>}
           <AppLink className={activeId === "home" ? "is-active" : undefined} href={homeHref} onClick={closeMobileNavigation}><Home size={18} /><span>Home</span></AppLink>
           <AppLink className={activeId === "assignments" ? "is-active" : undefined} href={assignmentsHref} onClick={closeMobileNavigation}><ClipboardList size={18} /><span>Assignments</span><em>3</em></AppLink>
           <AppLink className={activeId === "boards" ? "is-active" : undefined} href={appendStudentPreview("/study-hall/shsat/boards", previewContext)} onClick={closeMobileNavigation}><LayoutDashboard size={18} /><span>Boards</span></AppLink>

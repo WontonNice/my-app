@@ -1,8 +1,13 @@
 // One math question renderer for the student player and Content Studio preview.
 /* eslint react-refresh/only-export-components: ["error", { "allowExportNames": ["renderKatexExpression", "renderInlineMathText", "getBoldFormattedText", "renderMathAuthoredText", "renderMathRichText"] }] */
-import { useState, type MouseEvent, type PointerEvent, type ReactNode } from 'react';
+import { parseInlineDropdownTemplate } from '../lib/inlineDropdownTemplate';
+import { useRef, useState, type MouseEvent, type PointerEvent, type ReactNode } from 'react';
 import katex from 'katex';
 import { MathEntryResponse } from './MathEntryResponse';
+import { parseMathDragTable } from '../lib/mathDragTable';
+import { pointGraphLayout } from '../lib/pointGraphLayout';
+import { numberLineTicks, clampNumberLineValue } from '../lib/numberLineInteraction';
+import { moveMathDragAnswer, type MathDragSelection } from '../lib/mathDragDrop';
 import type { ExamQuestion, ExamNumberLine } from '../../../server/src/shared/examTypes';
 import type { CategoryPlacements, SelectedAnswer } from '../../../server/src/shared/examGrading';
 import 'katex/dist/katex.min.css';
@@ -217,106 +222,167 @@ function MathDragDropResponse({
   onChange: (answer: CategoryPlacements) => void;
   question: ExamQuestion;
 }) {
-  const [selectedItemId, setSelectedItemId] = useState("");
+  const [selected, setSelected] = useState<MathDragSelection>();
+  const [announcement, setAnnouncement] = useState("");
+  const bankRef = useRef<HTMLDivElement>(null);
+  const [bankWidth, setBankWidth] = useState<number>();
+  const responseRef = useRef<HTMLDivElement>(null);
+  const pointer = useRef<{ id: number; x: number; y: number; selection: MathDragSelection; moving: boolean } | undefined>(undefined);
+  const suppressClick = useRef(false);
+  const [dragged, setDragged] = useState<{ itemId: string; x: number; y: number }>();
   const items = question.items ?? [];
   const slots = question.dragDropSlots ?? [];
+  const table = parseMathDragTable(question.dragDropContent);
+  const dragStyle = question.dragDropStyle ?? (table ? "outlined" : "compact");
   const placedItemIds = Object.values(answer);
   const availableItems = question.allowReuse
     ? items
     : items.filter((item) => !placedItemIds.includes(item.id));
 
-  function place(itemId: string, slotId: string) {
-    if (!itemId || !slots.some((slot) => slot.id === slotId)) return;
-    const next = { ...answer };
-    if (!question.allowReuse) {
-      Object.entries(next).forEach(([existingSlotId, existingItemId]) => {
-        if (existingItemId === itemId) delete next[existingSlotId];
+  function move(selection: MathDragSelection, slotId?: string) {
+    const next = moveMathDragAnswer(question, answer, selection, slotId);
+    if (next !== answer) {
+      onChange(next);
+      const text = items.find(item => item.id === selection.itemId)?.text || "Answer";
+      setAnnouncement(slotId ? `${text} placed in answer box ${slots.findIndex(slot => slot.id === slotId) + 1}.` : `${text} returned to the answer bank.`);
+      requestAnimationFrame(() => {
+        const destination = slotId
+          ? Array.from(responseRef.current?.querySelectorAll<HTMLButtonElement>("[data-answer-slot]") ?? [])
+            .find(slot => slot.dataset.answerSlot === slotId)
+          : Array.from(bankRef.current?.querySelectorAll("button") ?? [])
+            .find(tile => tile.dataset.itemId === selection.itemId);
+        destination?.focus();
       });
     }
-    next[slotId] = itemId;
-    onChange(next);
-    setSelectedItemId("");
+    setSelected(undefined);
+  }
+
+  function startPointer(event: PointerEvent<HTMLButtonElement>, selection: MathDragSelection) {
+    if (event.button !== 0 || !event.isPrimary) return;
+    suppressClick.current = false;
+    pointer.current = { id: event.pointerId, x: event.clientX, y: event.clientY, selection, moving: false };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  }
+
+  function movePointer(event: PointerEvent) {
+    const active = pointer.current;
+    if (!active || active.id !== event.pointerId) return;
+    if (!active.moving && Math.hypot(event.clientX - active.x, event.clientY - active.y) < 5) return;
+    if (!active.moving) selectTile(active.selection);
+    active.moving = true;
+    setDragged({ itemId: active.selection.itemId, x: event.clientX, y: event.clientY });
+  }
+
+  function endPointer(event: PointerEvent) {
+    const active = pointer.current;
+    if (!active || active.id !== event.pointerId) return;
+    pointer.current = undefined;
+    if (!active.moving) return;
+    suppressClick.current = true;
+    const target = document.elementFromPoint(event.clientX, event.clientY);
+    const slot = target?.closest<HTMLElement>("[data-answer-slot]");
+    if (slot && responseRef.current?.contains(slot)) move(active.selection, slot.dataset.answerSlot);
+    else if (target && bankRef.current?.contains(target)) move(active.selection);
+    setDragged(undefined);
+    setSelected(undefined);
+  }
+
+  function selectTile(selection: MathDragSelection) {
+    // Keep the return target in place as single-use choices leave the bank.
+    if (bankRef.current) setBankWidth(bankRef.current.getBoundingClientRect().width);
+    setSelected(selection);
   }
 
   function renderSlot(slotId: string, key: string) {
     const placedItem = items.find((item) => item.id === answer[slotId]);
     return (
       <button
-        aria-label={placedItem ? `Answer ${placedItem.text}. Click to remove.` : "Empty answer box"}
-        className={`exam-math-drag-slot ${placedItem ? "is-filled" : ""}`}
+        aria-label={placedItem ? `Answer box ${slots.findIndex(slot => slot.id === slotId) + 1}: ${placedItem.text}. Select, then click the bank to return or an empty box to move. Delete also returns to bank.` : `Empty answer box ${slots.findIndex(slot => slot.id === slotId) + 1}`}
+        aria-pressed={placedItem ? selected?.slotId === slotId : undefined}
+        className={`exam-math-drag-slot ${placedItem ? "is-filled" : ""} ${selected?.slotId === slotId ? "is-selected" : ""} ${selected && !placedItem ? "is-drop-target" : ""}`}
+        data-answer-slot={slotId}
+        draggable={false}
         key={key}
         onClick={() => {
-          if (selectedItemId) place(selectedItemId, slotId);
-          else if (placedItem) {
-            const next = { ...answer };
-            delete next[slotId];
-            onChange(next);
-          }
+          if (placedItem) selectTile({ itemId: placedItem.id, slotId });
+          else if (selected) move(selected, slotId);
         }}
-        onDragOver={(event) => event.preventDefault()}
-        onDrop={(event) => {
-          event.preventDefault();
-          place(event.dataTransfer.getData("text/plain"), slotId);
+        onKeyDown={event => {
+          if (placedItem && ["Delete", "Backspace"].includes(event.key)) { event.preventDefault(); move({ itemId: placedItem.id, slotId }); }
         }}
+        onPointerDown={event => { if (placedItem) startPointer(event, { itemId: placedItem.id, slotId }); }}
         type="button"
       >
-        {placedItem ? renderInteractionMath(placedItem.text, `${key}-placed`) : "\u00a0"}
+        {placedItem ? <span className="exam-math-drag-placed-tile">{renderInteractionMath(placedItem.text, `${key}-placed`)}</span> : "\u00a0"}
       </button>
     );
   }
 
-  function renderLine(template: string, lineIndex: number) {
-    return template
-      .split(/(\{\{[\w-]+\}\})/g)
-      .filter(Boolean)
-      .map((part, partIndex) => {
-        if (part.startsWith("{{") && part.endsWith("}}")) {
-          return renderSlot(part.slice(2, -2), `drag-slot-${lineIndex}-${partIndex}`);
-        }
-        return renderInteractionMath(part, `drag-text-${lineIndex}-${partIndex}`);
-      });
+  function renderLine(template: string, lineIndex: number | string) {
+    return parseInlineDropdownTemplate(template).map((part, partIndex) => {
+      const key = `drag-${lineIndex}-${partIndex}`;
+      if (part.kind === "dropdown") return renderSlot(part.value, key);
+      if (part.kind === "math") return <span className="exam-inline-math" key={key}>{renderKatexExpression(part.value)}</span>;
+      return renderInteractionMath(part.value, key);
+    });
   }
 
   return (
-    <div className={`exam-math-drag-response ${(question.dragDropContent?.length ?? 0) === 1 ? "is-single-line" : ""}`}>
+    <div ref={responseRef} className={`exam-math-drag-response is-${dragStyle} ${table ? "is-table" : ""} ${(question.dragDropContent?.length ?? 0) === 1 ? "is-single-line" : ""}`}
+      onPointerMove={movePointer} onPointerUp={endPointer}
+      onPointerCancel={() => { pointer.current = undefined; setDragged(undefined); setSelected(undefined); }}
+      onClickCapture={event => { if (suppressClick.current) { suppressClick.current = false; if (event.detail > 0) { event.preventDefault(); event.stopPropagation(); } } }}
+      onKeyDown={event => { if (event.key === "Escape") { pointer.current = undefined; setDragged(undefined); setSelected(undefined); } }}>
+      <span className="sr-only" aria-live="polite">{announcement}</span>
+      {dragged && <span aria-hidden="true" className="exam-math-drag-ghost" style={{ left: dragged.x, top: dragged.y }}>
+        {renderInteractionMath(items.find(item => item.id === dragged.itemId)?.text ?? "", "drag-ghost")}
+      </span>}
       <div
         aria-label="Answer bank"
-        className="exam-math-drag-bank"
-        onDragOver={(event) => event.preventDefault()}
-        onDrop={(event) => {
-          event.preventDefault();
-          const itemId = event.dataTransfer.getData("text/plain");
-          const slotId = Object.keys(answer).find((candidate) => answer[candidate] === itemId);
-          if (slotId) {
-            const next = { ...answer };
-            delete next[slotId];
-            onChange(next);
-          }
-        }}
+        className={`exam-math-drag-bank ${selected?.slotId ? "is-drop-target" : ""}`}
+        ref={bankRef}
+        style={bankWidth && !table ? { minWidth: `min(${bankWidth}px, 100%)` } : undefined}
+        role="group"
+        tabIndex={selected?.slotId ? 0 : undefined}
+        onClick={event => { if (!(event.target as Element).closest("button") && selected?.slotId) move(selected); }}
+        onKeyDown={event => { if (event.target === event.currentTarget && selected?.slotId && ["Enter", " "].includes(event.key)) { event.preventDefault(); move(selected); } }}
       >
         {availableItems.map((item) => (
           <button
-            className={selectedItemId === item.id ? "is-selected" : ""}
-            draggable
+            className={selected?.itemId === item.id && !selected.slotId ? "is-selected" : ""}
+            aria-pressed={selected?.itemId === item.id && !selected.slotId}
+            data-item-id={item.id}
+            draggable={false}
             key={item.id}
-            onClick={() => setSelectedItemId((current) => current === item.id ? "" : item.id)}
-            onDragStart={(event) => {
-              event.dataTransfer.setData("text/plain", item.id);
-              setSelectedItemId(item.id);
-            }}
+            onClick={() => selectTile({ itemId: item.id })}
+            onPointerDown={event => startPointer(event, { itemId: item.id })}
             type="button"
           >
             {renderInteractionMath(item.text, `drag-bank-${item.id}`)}
           </button>
         ))}
       </div>
-      <div className="exam-math-drag-lines">
+      {table ? (
+        <div className="exam-math-drag-table-wrap">
+          <table className="exam-math-drag-table">
+            {table.caption && <caption>{renderInteractionMath(table.caption, "drag-caption")}</caption>}
+            <thead><tr>{table.headers.map((header, index) => (
+              <th scope="col" key={index}>{renderInteractionMath(header, `drag-header-${index}`)}</th>
+            ))}</tr></thead>
+            <tbody>{table.rows.map((row, rowIndex) => (
+              <tr key={rowIndex}>{row.map((cell, columnIndex) => (
+                <td key={columnIndex}>{renderLine(cell, `${rowIndex}-${columnIndex}`)}</td>
+              ))}</tr>
+            ))}</tbody>
+          </table>
+        </div>
+      ) : <div className="exam-math-drag-lines">
         {(question.dragDropContent ?? []).map((line, lineIndex) => (
           <div className="exam-math-drag-line" key={`drag-line-${lineIndex}`}>
             {renderLine(line, lineIndex)}
           </div>
         ))}
-      </div>
+      </div>}
     </div>
   );
 }
@@ -332,13 +398,14 @@ export function MatrixChoiceResponse({
 }) {
   const categories = question.categories ?? [];
   const items = question.items ?? [];
+  const evidence = question.matrixStyle === 'evidence';
 
   return (
-    <div className="exam-matrix-choice-wrap">
+    <div className={`exam-matrix-choice-wrap${evidence ? ' is-evidence-matrix' : ''}`}>
       <table className="exam-matrix-choice-table">
         <thead>
           <tr>
-            <th scope="col">{question.tableHeaders?.row ?? "Sentence"}</th>
+            <th scope="col">{evidence ? '' : question.tableHeaders?.row ?? "Sentence"}</th>
             {categories.map((category) => <th key={category.id} scope="col">{category.title}</th>)}
           </tr>
         </thead>
@@ -353,8 +420,13 @@ export function MatrixChoiceResponse({
                       aria-label={`${item.text}: ${category.title}`}
                       checked={answer[item.id] === category.id}
                       name={`matrix-${question.id}-${item.id}`}
-                      onChange={() => onChange({ ...answer, [item.id]: category.id })}
-                      type="radio"
+                      onChange={() => {
+                        const next = { ...answer };
+                        if (evidence && answer[item.id] === category.id) delete next[item.id];
+                        else next[item.id] = category.id;
+                        onChange(next);
+                      }}
+                      type={evidence ? 'checkbox' : 'radio'}
                       value={category.id}
                     />
                     <span aria-hidden="true" />
@@ -373,55 +445,51 @@ function GraphPointResponse({
   onToggle,
   question,
   selectedIds,
+  eliminatedIds,
 }: {
   onToggle: (pointId: string) => void;
   question: ExamQuestion;
   selectedIds: string[];
+  eliminatedIds: string[];
 }) {
   const graph = question.graph;
   if (!graph) return null;
-  if (!['xMin','xMax','xStep','yMin','yMax','yStep'].every(key => Number.isFinite(graph[key as 'xMin'])) || graph.xMax <= graph.xMin || graph.yMax <= graph.yMin || graph.xStep <= 0 || graph.yStep <= 0 || (graph.xMax - graph.xMin) / graph.xStep > 1000 || (graph.yMax - graph.yMin) / graph.yStep > 1000) return <p role="status">Set valid graph bounds and positive tick spacing to display the graph.</p>;
-  const axisLeft = 64;
-  const axisRight = 404;
-  const axisTop = 38;
-  const axisBottom = 378;
-  const xFor = (value: number) => axisLeft + ((value - graph.xMin) / (graph.xMax - graph.xMin)) * (axisRight - axisLeft);
-  const yFor = (value: number) => axisBottom - ((value - graph.yMin) / (graph.yMax - graph.yMin)) * (axisBottom - axisTop);
-  const xTicks = Array.from(
-    { length: Math.floor((graph.xMax - graph.xMin) / graph.xStep) + 1 },
-    (_, index) => graph.xMin + index * graph.xStep,
-  );
-  const yTicks = Array.from(
-    { length: Math.floor((graph.yMax - graph.yMin) / graph.yStep) + 1 },
-    (_, index) => graph.yMin + index * graph.yStep,
-  );
+  const layout = pointGraphLayout(graph);
+  if (!layout) return <p role="status">Set valid graph bounds and positive tick spacing to display the graph.</p>;
+  const { left: axisLeft, right: axisRight, top: axisTop, bottom: axisBottom, xFor, yFor, xTicks, yTicks, width, height } = layout;
 
   return (
-    <div className="exam-graph-point-response">
-      {graph.title ? <h2>{graph.title}</h2> : null}
-      <svg aria-label="Selectable coordinate graph" role="group" viewBox="0 0 470 440">
+    <div className="exam-graph-point-response" style={{width, maxWidth: '100%'}}>
+      <svg aria-label={graph.title ? `${graph.title}. Select points on the coordinate graph.` : "Selectable coordinate graph"} role="group" viewBox={`0 0 ${width} ${height}`}>
+        {graph.title && <text className="exam-graph-title" x={axisLeft} y="14">{graph.title.toUpperCase()}</text>}
         {xTicks.map((value) => (
           <g key={`x-${value}`}>
             <line className="exam-graph-grid-line" x1={xFor(value)} x2={xFor(value)} y1={axisTop} y2={axisBottom} />
-            <text x={xFor(value)} y={axisBottom + 22}>{value}</text>
+            {value !== 0 && <text textAnchor="middle" x={xFor(value)} y={axisBottom + 18}>{value}</text>}
           </g>
         ))}
         {yTicks.map((value) => (
           <g key={`y-${value}`}>
             <line className="exam-graph-grid-line" x1={axisLeft} x2={axisRight} y1={yFor(value)} y2={yFor(value)} />
-            <text textAnchor="end" x={axisLeft - 10} y={yFor(value) + 5}>{value}</text>
+            {value !== 0 && <text textAnchor="end" x={axisLeft - 6} y={yFor(value) + 4}>{value}</text>}
           </g>
         ))}
         <line className="exam-graph-axis" x1={axisLeft} x2={axisRight + 20} y1={axisBottom} y2={axisBottom} />
         <line className="exam-graph-axis" x1={axisLeft} x2={axisLeft} y1={axisBottom + 4} y2={axisTop - 20} />
-        <text className="exam-graph-x-label" textAnchor="middle" x={(axisLeft + axisRight) / 2} y="432">{graph.xLabel}</text>
-        <text className="exam-graph-y-label" textAnchor="middle" transform="rotate(-90 18 208)" x="18" y="208">{graph.yLabel}</text>
+        <path className="exam-graph-arrow" d={`M ${axisRight + 20} ${axisBottom} l -7 -3 l 2 3 l -2 3 Z M ${axisLeft} ${axisTop - 20} l -3 7 l 3 -2 l 3 2 Z`} />
+        {graph.xMin === 0 && graph.yMin === 0 && <text className="exam-graph-variable" x={axisLeft - 15} y={axisBottom + 15}>O</text>}
+        <text className="exam-graph-variable" x={axisRight + 25} y={axisBottom + 4}>x</text>
+        <text className="exam-graph-variable" x={axisLeft - 3} y={axisTop - 29}>y</text>
+        <text className="exam-graph-x-label" textAnchor="middle" x={(axisLeft + axisRight) / 2} y={axisBottom + 38}>{graph.xLabel}</text>
+        <text className="exam-graph-y-label" textAnchor="middle" transform={`rotate(-90 15 ${(axisTop + axisBottom) / 2})`} x="15" y={(axisTop + axisBottom) / 2}>{graph.yLabel}</text>
         {graph.points.map((point) => {
           const selected = selectedIds.includes(point.id);
+          const eliminated = eliminatedIds.includes(point.id);
           return (
             <g
-              aria-label={`Point ${point.x}, ${point.y}${selected ? ", selected" : ""}`}
-              className={`exam-graph-point ${selected ? "is-selected" : ""}`}
+              aria-label={`Point ${point.x}, ${point.y}${eliminated ? ", eliminated" : ""}`}
+              aria-checked={selected}
+              className={`exam-graph-point ${selected ? "is-selected" : ""} ${eliminated ? "is-eliminated" : ""}`}
               key={point.id}
               onClick={() => onToggle(point.id)}
               onKeyDown={(event) => {
@@ -430,17 +498,26 @@ function GraphPointResponse({
                   onToggle(point.id);
                 }
               }}
-              role="button"
+              role="checkbox"
               tabIndex={0}
             >
-              <circle cx={xFor(point.x)} cy={yFor(point.y)} r="11" />
-              {selected ? <path d={`M ${xFor(point.x) - 5} ${yFor(point.y)} l 4 4 l 7 -8`} /> : null}
+              <circle className="exam-graph-point-hit" cx={xFor(point.x)} cy={yFor(point.y)} r="9" />
+              <circle className="exam-graph-point-dot" cx={xFor(point.x)} cy={yFor(point.y)} r="6" />
+              {eliminated && <path className="exam-graph-elimination" d={`M ${xFor(point.x)-4} ${yFor(point.y)-4} l 8 8 m 0 -8 l -8 8`} />}
             </g>
           );
         })}
       </svg>
     </div>
   );
+}
+
+function RayIcon({direction, endpoint}: {direction: "left" | "right"; endpoint: "closed" | "open"}) {
+  const left = direction === "left";
+  return <svg aria-hidden="true" viewBox="0 0 44 28">
+    <path d={left ? "M 5 14 H 33 M 5 14 L 13 7 M 5 14 L 13 21" : "M 11 14 H 39 M 39 14 L 31 7 M 39 14 L 31 21"} fill="none" stroke="currentColor" strokeWidth="2" />
+    <circle cx={left ? 35 : 9} cy="14" r="6" fill={endpoint === "closed" ? "currentColor" : "var(--ray-icon-background, white)"} stroke="currentColor" strokeWidth="1" />
+  </svg>;
 }
 
 function NumberLineResponse({
@@ -452,99 +529,116 @@ function NumberLineResponse({
   onChange: (answer: CategoryPlacements) => void;
   question: ExamQuestion;
 }) {
+  const dragPointer = useRef<number | undefined>(undefined);
+  const dragOrigin = useRef(0);
+  const dragStarted = useRef(false);
+  const endpointRef = useRef<SVGGElement>(null);
+  const firstRayRef = useRef<HTMLButtonElement>(null);
   const config = question.numberLineResponse;
   if (!config) return null;
   if (![config.min, config.max, config.tickStep].every(Number.isFinite) || config.max <= config.min || config.tickStep <= 0 || (config.max - config.min) / config.tickStep > 1000) return <p role="status">Set valid number-line bounds and positive tick spacing to display the number line.</p>;
-  const axisLeft = 48;
-  const axisRight = 572;
-  const axisY = 78;
+  const axisLeft = 50;
+  const axisRight = 450;
+  const axisY = 65;
   const xFor = (value: number) => axisLeft + ((value - config.min) / (config.max - config.min)) * (axisRight - axisLeft);
-  const ticks = Array.from(
-    { length: Math.floor((config.max - config.min) / config.tickStep) + 1 },
-    (_, index) => config.min + index * config.tickStep,
-  );
+  const ticks = numberLineTicks(config);
   const selectedValue = Number(answer.value);
   const hasValue = answer.value !== undefined && Number.isFinite(selectedValue);
   const direction = answer.direction as "left" | "right" | undefined;
   const endpoint = answer.endpoint as "closed" | "open" | undefined;
+  const hasRay = hasValue && (direction === 'left' || direction === 'right') && (endpoint === 'closed' || endpoint === 'open');
 
   function chooseRay(nextDirection: "left" | "right", nextEndpoint: "closed" | "open") {
-    onChange({ ...answer, direction: nextDirection, endpoint: nextEndpoint });
+    if (hasRay) return;
+    onChange({ value: String(clampNumberLineValue(config!, 0)), direction: nextDirection, endpoint: nextEndpoint });
   }
 
-  function moveEndpoint(event: PointerEvent<SVGSVGElement>) {
-    if (!config) return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const svgX = ((event.clientX - bounds.left) / bounds.width) * 620;
+  function removeRay() {
+    dragPointer.current = undefined;
+    onChange({});
+    requestAnimationFrame(() => firstRayRef.current?.focus());
+  }
+
+  function moveEndpoint(event: PointerEvent<SVGGElement>) {
+    if (!config || !hasRay || dragPointer.current !== event.pointerId) return;
+    if (!dragStarted.current && Math.abs(event.clientX - dragOrigin.current) < 3) return;
+    dragStarted.current = true;
+    const bounds = event.currentTarget.ownerSVGElement!.getBoundingClientRect();
+    const svgX = ((event.clientX - bounds.left) / bounds.width) * 500;
     const raw = config.min + ((svgX - axisLeft) / (axisRight - axisLeft)) * (config.max - config.min);
-    const snapped = Math.max(config.min, Math.min(config.max, config.min + Math.round((raw - config.min) / config.tickStep) * config.tickStep));
-    onChange({ ...answer, value: String(Number(snapped.toFixed(6))) });
+    onChange({ ...answer, value: String(clampNumberLineValue(config, raw)) });
   }
 
   return (
     <div className="exam-number-line-response">
       <svg
         aria-label="Interactive number line"
-        onPointerDown={event => { if (event.button !== 0) return; event.currentTarget.setPointerCapture(event.pointerId); event.currentTarget.focus(); moveEndpoint(event); }}
-        onPointerMove={event => { if (event.buttons === 1) moveEndpoint(event); }}
-        onKeyDown={event => {
-          const current = hasValue ? selectedValue : config.min;
-          const next = event.key === 'Home' ? config.min : event.key === 'End' ? config.max : ['ArrowLeft','ArrowDown'].includes(event.key) ? current - config.tickStep : ['ArrowRight','ArrowUp'].includes(event.key) ? current + config.tickStep : undefined;
-          if (next === undefined) return;
-          event.preventDefault();
-          onChange({ ...answer, value: String(Number(Math.max(config.min, Math.min(config.max, next)).toFixed(6))) });
-        }}
-        role="application"
-        tabIndex={0}
-        style={{touchAction: 'none'}}
-        viewBox="0 0 620 130"
+        role="group"
+        viewBox="0 0 500 125"
       >
-        <line className="exam-number-line-axis" x1={axisLeft} x2={axisRight} y1={axisY} y2={axisY} />
-        <path className="exam-number-line-axis" d={`M ${axisLeft} ${axisY} l 18 -24 M ${axisLeft} ${axisY} l 18 24`} />
-        <path className="exam-number-line-axis" d={`M ${axisRight} ${axisY} l -18 -24 M ${axisRight} ${axisY} l -18 24`} />
-        {ticks.map((tick) => (
-          <g key={tick}>
-            <line className="exam-number-line-tick" x1={xFor(tick)} x2={xFor(tick)} y1={axisY - 28} y2={axisY + 28} />
-            <text textAnchor="middle" x={xFor(tick)} y={axisY - 38}>{tick}</text>
+        <line className="exam-number-line-axis" x1="10" x2="490" y1={axisY} y2={axisY} />
+        <path className="exam-number-line-axis" d={`M 30 37 L 10 ${axisY} L 30 93 M 470 37 L 490 ${axisY} L 470 93`} />
+        {ticks.map(({value, showLabel}) => (
+          <g key={value}>
+            <line className="exam-number-line-tick" x1={xFor(value)} x2={xFor(value)} y1={axisY - 25} y2={axisY + 25} />
+            {showLabel && <text textAnchor="middle" x={xFor(value)} y="30">{value}</text>}
           </g>
         ))}
-        {hasValue && direction && endpoint ? (
+        {hasRay ? (
           <g className="exam-number-line-selected-ray">
+            <circle className="exam-number-line-halo" cx={xFor(selectedValue)} cy={axisY} r="40" />
             <line
-              x1={direction === "left" ? axisLeft + 8 : xFor(selectedValue)}
-              x2={direction === "right" ? axisRight - 8 : xFor(selectedValue)}
+              x1={direction === "left" ? 10 : xFor(selectedValue) + (endpoint === 'open' ? 8 : 0)}
+              x2={direction === "right" ? 490 : xFor(selectedValue) - (endpoint === 'open' ? 8 : 0)}
               y1={axisY}
               y2={axisY}
             />
-            <circle
-              cx={xFor(selectedValue)}
-              cy={axisY}
-              fill={endpoint === "closed" ? "currentColor" : "#fff"}
-              r="10"
-            />
+            <path className="exam-number-line-ray-arrow" d={direction === 'left' ? 'M 30 37 L 10 65 L 30 93' : 'M 470 37 L 490 65 L 470 93'} />
+            <g ref={endpointRef} role="slider" tabIndex={0} aria-label="Ray endpoint" aria-valuemin={config.min} aria-valuemax={config.max} aria-valuenow={selectedValue} aria-valuetext={`${selectedValue}, ${endpoint} endpoint, ray extends ${direction}`} className="exam-number-line-endpoint"
+              onPointerDown={event => { if (event.button !== 0 || !event.isPrimary) return; dragPointer.current = event.pointerId; dragOrigin.current = event.clientX; dragStarted.current = false; event.currentTarget.setPointerCapture(event.pointerId); event.currentTarget.focus(); event.preventDefault(); }}
+              onPointerMove={moveEndpoint}
+              onPointerUp={event => { moveEndpoint(event); dragPointer.current = undefined; }}
+              onPointerCancel={() => { dragPointer.current = undefined; }}
+              onKeyDown={event => {
+                if (event.key === 'Delete' || event.key === 'Backspace') { event.preventDefault(); removeRay(); return; }
+                const next = event.key === 'Home' ? config.min : event.key === 'End' ? config.max : ['ArrowLeft','ArrowDown'].includes(event.key) ? selectedValue - config.tickStep : ['ArrowRight','ArrowUp'].includes(event.key) ? selectedValue + config.tickStep : undefined;
+                if (next === undefined) return;
+                event.preventDefault(); onChange({...answer, value: String(clampNumberLineValue(config, next))});
+              }}>
+              <circle className="exam-number-line-endpoint-hit" cx={xFor(selectedValue)} cy={axisY} r="40" />
+              <circle className="exam-number-line-endpoint-dot" cx={xFor(selectedValue)} cy={axisY} fill={endpoint === 'closed' ? 'currentColor' : 'none'} r="8" />
+            </g>
           </g>
         ) : null}
       </svg>
-      <p className="exam-number-line-help" aria-live="polite">
-        {hasValue ? `Endpoint: ${selectedValue}.` : "Click the number line to place the endpoint."}
+      <p className="sr-only" aria-live="polite">
+        {hasRay ? `Endpoint: ${selectedValue}. Drag the endpoint or use the arrow keys to move it. Remove the ray to choose a different one.` : "Select a ray, then drag its endpoint to the correct position."}
       </p>
+      <div className={`exam-number-line-controls ${hasRay ? 'has-ray' : ''}`}>
       <div aria-label="Choose a ray" className="exam-number-line-ray-picker">
         {[
-          ["left", "closed", "←●", "Left ray with a closed endpoint"],
-          ["left", "open", "←○", "Left ray with an open endpoint"],
-          ["right", "open", "○→", "Right ray with an open endpoint"],
-          ["right", "closed", "●→", "Right ray with a closed endpoint"],
-        ].map(([rayDirection, rayEndpoint, symbol, label]) => (
+          ["left", "closed", "Left ray with a closed endpoint"],
+          ["left", "open", "Left ray with an open endpoint"],
+          ["right", "open", "Right ray with an open endpoint"],
+          ["right", "closed", "Right ray with a closed endpoint"],
+        ].map(([rayDirection, rayEndpoint, label], index) => (
           <button
             aria-label={label}
+            ref={index === 0 ? firstRayRef : undefined}
+            disabled={hasRay}
             className={direction === rayDirection && endpoint === rayEndpoint ? "is-selected" : ""}
             key={`${rayDirection}-${rayEndpoint}`}
             onClick={() => chooseRay(rayDirection as "left" | "right", rayEndpoint as "closed" | "open")}
             type="button"
           >
-            {symbol}
+            <RayIcon direction={rayDirection as "left" | "right"} endpoint={rayEndpoint as "closed" | "open"} />
           </button>
         ))}
+      </div>
+      {hasRay && <div className="exam-number-line-ray-actions">
+        <button type="button" aria-label="Focus selected ray" className="exam-number-line-current-ray" onClick={() => endpointRef.current?.focus()}><RayIcon direction={direction} endpoint={endpoint} /></button>
+        <button type="button" onClick={removeRay}>Remove</button>
+      </div>}
       </div>
     </div>
   );
@@ -707,27 +801,13 @@ export function renderMathRichText(html: string | undefined, text: string, highl
 function renderInlineDropdownText(question: ExamQuestion, template: string, templateIndex: number, answer: SelectedAnswer | undefined, onChange: (value: SelectedAnswer) => void) {
     const dropdownAnswers = placements(answer);
 
-    return template
-      .split(/(\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)|\{\{[\w-]+\}\})/g)
-      .filter(Boolean)
-      .map((part, partIndex) => {
-        if (part.startsWith("\\[") && part.endsWith("\\]")) {
-          return (
-            <span className="exam-katex-template-display" key={`display-math-${templateIndex}-${partIndex}`}>
-              {renderKatexExpression(part.slice(2, -2), true)}
-            </span>
-          );
+    return parseInlineDropdownTemplate(template).map((token, partIndex) => {
+        const part = token.value;
+        if (token.kind === 'math') {
+          return <span className={token.display ? 'exam-katex-template-display' : 'exam-inline-math'} key={`math-${templateIndex}-${partIndex}`}>{renderKatexExpression(part, token.display)}</span>;
         }
-        if (part.startsWith("\\(") && part.endsWith("\\)")) {
-          return (
-            <span className="exam-inline-math" key={`math-${templateIndex}-${partIndex}`}>
-              {renderInlineMathText(part.slice(2, -2))}
-            </span>
-          );
-        }
-
-        if (part.startsWith("{{") && part.endsWith("}}")) {
-          const dropdownId = part.slice(2, -2);
+        if (token.kind === 'dropdown') {
+          const dropdownId = part;
           const dropdown = question.dropdowns?.find((candidate) => candidate.id === dropdownId);
 
           if (!dropdown) {
@@ -736,7 +816,7 @@ function renderInlineDropdownText(question: ExamQuestion, template: string, temp
 
           return (
             <select
-              aria-label="Choose answer"
+              aria-label={`Answer menu ${(question.dropdowns?.findIndex(item => item.id === dropdown.id) ?? 0) + 1}`}
               className="exam-inline-dropdown-select"
               key={`dropdown-${templateIndex}-${partIndex}`}
               onChange={(event) =>
@@ -767,23 +847,25 @@ function renderInlineDropdownText(question: ExamQuestion, template: string, temp
 type Props = {
   question: ExamQuestion; answer?: SelectedAnswer; onChange: (value: SelectedAnswer) => void;
   onSelectChoice?: (id: string) => void; onTogglePoint?: (id: string) => void;
+  onEliminatePoint?: (id: string) => void;
   allowExtraSelections?: boolean;
   eliminatedIds?: string[]; onChoiceLabelClick?: (event: MouseEvent<HTMLLabelElement>, id: string) => void;
   onTextSelection?: (event: MouseEvent<HTMLElement>) => void; children?: ReactNode;
   renderText?: (html: string | undefined, text: string, key: string) => ReactNode;
+  answerFeedback?: 'correct' | 'incorrect';
 };
 const placements = (answer: SelectedAnswer | undefined): CategoryPlacements => answer && typeof answer === 'object' && !Array.isArray(answer) ? answer : {};
-const isTextEntryQuestion = (q: ExamQuestion) => ['short_response','numeric_entry','grid_in'].includes(q.type);
-const usesMathEntryKeypad = (q: ExamQuestion) => ['numeric_entry','grid_in'].includes(q.type);
+const isTextEntryQuestion = (q: ExamQuestion) => ['short_response','numeric_entry','expression_entry','grid_in'].includes(q.type);
+const usesMathEntryKeypad = (q: ExamQuestion) => ['numeric_entry','expression_entry','grid_in'].includes(q.type);
 const isInlineDropdownQuestion = (q: ExamQuestion) => q.type === 'inline_dropdown';
-export function ExamMathQuestion({question, answer, onChange, onSelectChoice, onTogglePoint, allowExtraSelections = false, eliminatedIds = [], onChoiceLabelClick, onTextSelection, children, renderText = renderMathRichText}: Props) {
+export function ExamMathQuestion({question, answer, onChange, onSelectChoice, onTogglePoint, onEliminatePoint, allowExtraSelections = false, eliminatedIds = [], onChoiceLabelClick, onTextSelection, children, renderText = renderMathRichText, answerFeedback}: Props) {
   const [selectionWarning, setSelectionWarning] = useState(false);
   const choices = question.choices || [], selectedIds = Array.isArray(answer) ? answer : typeof answer === 'string' && answer ? [answer] : [];
   const textAnswer = typeof answer === 'string' ? answer : '';
   const maxChoices = question.requiredSelections ?? question.correctPointIds?.length ?? question.correctChoiceIds?.length ?? 2;
   const toggle = (id: string) => onChange(selectedIds.includes(id) ? selectedIds.filter(value => value !== id) : [...selectedIds, id]);
   const select = (id: string, callback?: (id: string) => void) => {
-    if (!allowExtraSelections && ['multi_select', 'graph_point_select'].includes(question.type) && !selectedIds.includes(id) && selectedIds.length >= maxChoices) { setSelectionWarning(true); return; }
+    if (!allowExtraSelections && question.type === 'multi_select' && !selectedIds.includes(id) && selectedIds.length >= maxChoices) { setSelectionWarning(true); return; }
     setSelectionWarning(false);
     if (callback) callback(id);
     else if (['multi_select', 'graph_point_select'].includes(question.type)) toggle(id);
@@ -793,10 +875,10 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
           aria-labelledby={`math-title-${question.id}`}
           className={`exam-standalone-document exam-math-document ${
             isTextEntryQuestion(question) ? "is-text-entry" : ""
-          } ${isInlineDropdownQuestion(question) ? "is-inline-dropdown" : ""} ${
+          } ${isInlineDropdownQuestion(question) ? "is-inline-dropdown" : ""} ${question.type === "graph_point_select" ? "is-point-graph" : ""} ${question.type === "number_line_response" ? "is-number-line-response" : ""} ${
             question.image ? "is-image-question" : ""
-          } ${question.type === "math_drag_drop" ? "is-math-drag" : ""
-          }`}
+          } ${question.type === "math_drag_drop" ? `is-math-drag ${parseMathDragTable(question.dragDropContent) ? "is-math-table-drag" : ""} ${question.dragDropStyle === "outlined" ? "is-math-outlined-drag" : ""}` : ""
+          } ${answerFeedback ? `has-answer-feedback is-${answerFeedback}` : ''}`}
           onMouseUp={onTextSelection}
         >
           <form key={question.id} className="exam-standalone-panel exam-math-panel" onSubmit={event => event.preventDefault()}>
@@ -863,6 +945,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
             ) : usesMathEntryKeypad(question) ? (
               <MathEntryResponse
                 key={question.id}
+                advanced={question.type === "expression_entry"}
                 layout={question.entryLayout ?? "plain"}
                 variable={question.entryVariable}
                 onChange={(value) => onChange(value)}
@@ -870,18 +953,21 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
               />
             ) : question.type === "math_drag_drop" ? (
               <MathDragDropResponse
+                key={question.id}
                 answer={placements(answer)}
                 onChange={(value) => onChange(value)}
                 question={question}
               />
             ) : question.type === "graph_point_select" ? (
               <GraphPointResponse
-                onToggle={(pointId) => select(pointId, onTogglePoint)}
+                onToggle={(pointId) => onEliminatePoint ? onEliminatePoint(pointId) : select(pointId, onTogglePoint)}
                 question={question}
                 selectedIds={selectedIds}
+                eliminatedIds={eliminatedIds}
               />
             ) : question.type === "number_line_response" ? (
               <NumberLineResponse
+                key={question.id}
                 answer={placements(answer)}
                 onChange={(value) => onChange(value)}
                 question={question}
@@ -900,7 +986,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
                   <label
                     className={`exam-choice ${
                       eliminatedIds.includes(choice.id) ? "is-eliminated" : ""
-                    }`}
+                    } ${answerFeedback ? choice.id === question.correctChoiceId || question.correctChoiceIds?.includes(choice.id) ? 'is-answer-correct' : selectedIds.includes(choice.id) ? 'is-answer-incorrect' : '' : ''}`}
                     key={choice.id}
                     onClick={(event) => onChoiceLabelClick?.(event, choice.id)}
                   >

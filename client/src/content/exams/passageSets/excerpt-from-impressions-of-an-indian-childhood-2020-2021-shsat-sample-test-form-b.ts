@@ -190,7 +190,7 @@ const excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFormBQuest
     "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-8",
     "points": 1,
     "prompt": "Read this sentence from paragraph 7.\n\nAlways after these confining lessons I was wild with surplus spirits, and found joyous relief in running loose in the open again.\n\nWhich sentence best describes how this sentence fits into the overall structure of the excerpt?",
-    "promptHtml": "Read this sentence from paragraph 7.<br><strong>Always after these confining lessons I was wild with surplus spirits, and found joyous relief in running loose in the open again.</strong><br>Which sentence best describes how this sentence fits into the overall structure of the excerpt?",
+    "promptHtml": "<p>Read this sentence from paragraph 7.</p><blockquote><strong><strong>Always after these confining lessons I was wild with surplus spirits, and found joyous relief in running loose in the open again.</strong></strong></blockquote><p>Which sentence best describes how this sentence fits into the overall structure of the excerpt?</p>",
     "topic": "Text Structure & Purpose",
     "choices": [
       {

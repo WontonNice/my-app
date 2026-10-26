@@ -7,8 +7,8 @@ const excerptFromInSearchOfTheUnknownQuestions: ExamQuestion[] = [
   {
     "id": "excerpt-from-in-search-of-the-unknown-1",
     "points": 1,
-    "prompt": "Read paragraph 2 from the excerpt.\nTo the proprietors of . . . mangy lynxes, moth-eaten coyotes, and dancing bears I returned courteous but uncompromising refusals—of course, first submitting all such letters, together with my replies, to Professor Farrago.\nThis paragraph helps develop the plot by establishing that the narrator",
-    "promptHtml": "Read&nbsp;paragraph&nbsp;2 from the excerpt.<br><strong>To the proprietors of . . . mangy lynxes, moth-eaten coyotes, and dancing bears I returned courteous but uncompromising&nbsp;refusals—of course, first submitting all such letters, together with my replies, to&nbsp;Professor Farrago.</strong><br>This paragraph&nbsp;helps&nbsp;develop the&nbsp;plot&nbsp;by establishing that the&nbsp;narrator",
+    "prompt": "Read paragraph 2 from the excerpt.\n\nTo the proprietors of . . . mangy lynxes, moth-eaten coyotes, and dancing bears I returned courteous but uncompromising refusals—of course, first submitting all such letters, together with my replies, to Professor Farrago.\n\nThis paragraph helps develop the plot by establishing that the narrator",
+    "promptHtml": "<p>Read paragraph 2 from the excerpt.</p><blockquote><strong><strong>To the proprietors of . . . mangy lynxes, moth-eaten coyotes, and dancing bears I returned courteous but uncompromising refusals—of course, first submitting all such letters, together with my replies, to Professor Farrago.</strong></strong></blockquote><p>This paragraph helps develop the plot by establishing that the narrator</p>",
     "topic": "Central Idea & Theme",
     "choices": [
       {
@@ -38,8 +38,8 @@ const excerptFromInSearchOfTheUnknownQuestions: ExamQuestion[] = [
   {
     "id": "excerpt-from-in-search-of-the-unknown-2",
     "points": 1,
-    "prompt": "Read this sentence from paragraph 3.\nThe professor, who was sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his glasses down and looked over them at me with a whimsical smile that suggested amusement, impatience, annoyance, and perhaps a faint trace of apology.\nWhat does the phrase “a faint trace of apology” convey about the professor?",
-    "promptHtml": "Read&nbsp;this&nbsp;sentence&nbsp;from&nbsp;paragraph&nbsp;3.<br><strong>The professor, who was sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his glasses down and looked over them at me with a whimsical smile that suggested amusement, impatience, annoyance, and perhaps a faint trace of apology.</strong><br>What&nbsp;does the&nbsp;phrase&nbsp;“a faint trace of apology” convey about the professor?",
+    "prompt": "Read this sentence from paragraph 3.\n\nThe professor, who was sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his glasses down and looked over them at me with a whimsical smile that suggested amusement, impatience, annoyance, and perhaps a faint trace of apology.\n\nWhat does the phrase “a faint trace of apology” convey about the professor?",
+    "promptHtml": "<p>Read this sentence from paragraph 3.</p><blockquote><strong><strong>The professor, who was sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his glasses down and looked over them at me with a whimsical smile that suggested amusement, impatience, annoyance, and perhaps a faint trace of apology.</strong></strong></blockquote><p>What does the phrase “a faint trace of apology” convey about the professor?</p>",
     "topic": "Word & Phrase Meaning",
     "choices": [
       {

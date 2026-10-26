@@ -283,7 +283,7 @@ function inspectMapping(sheet: AnswerSheet, body: { assessmentId: string; source
     seen.add(item.id); targets.add(question.id);
     const section = sheet.sections.find(section => section.items.some(row => row.id === item.id))!;
     if (section.subject !== "other" && (math.has(question.id) ? "math" : "english") !== section.subject) problems.push(`Wrong section for question ${item.number}.`);
-    if (question.type !== item.type && !(item.type === "short_response" && ["numeric_entry", "grid_in", "essay"].includes(question.type))) problems.push(`Response type differs for question ${item.number}.`);
+    if (question.type !== item.type && !(item.type === "short_response" && ["numeric_entry", "expression_entry", "grid_in", "essay"].includes(question.type))) problems.push(`Response type differs for question ${item.number}.`);
     if (item.type !== "short_response") {
       const mapped = item.options.map(option => mapping.optionMap?.[option.id]);
       if (mapped.length !== question.choices?.length || new Set(mapped).size !== mapped.length || mapped.some(id => !question.choices?.some(option => option.id === id))) problems.push(`Incomplete or incompatible option mapping for question ${item.number}.`);

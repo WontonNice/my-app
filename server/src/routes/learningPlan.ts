@@ -150,6 +150,7 @@ learningPlanRouter.post("/teacher/:studentId/assignments", async (request, respo
   const catalog = learningCatalog().filter(item => !item.classId || getEnrolledClassIds(student.app_metadata).includes(item.classId));
   const { items, allowRepeat, batchId } = request.body ?? {};
   if (!Array.isArray(items) || !items.length || items.length > 30 || typeof batchId !== "string" || !uuid.test(batchId)) throw fail("Choose 1–30 tasks and a valid submission ID.");
+  if (items.some(item => String(item?.contentId ?? "").startsWith("math-command:"))) throw fail("Create question selections through the Math Command Center preview.");
   const drafts = items.map(item => validateDraft(item, catalog));
   const refs = drafts.filter(item => item.contentId).map(item => `${item.kind}:${item.contentId}`);
   if (new Set(refs).size !== refs.length) throw fail("The same content appears twice in this batch.");
@@ -199,6 +200,7 @@ learningPlanRouter.patch("/student/assignments/:id", async (request, response) =
   if (!old || !old.assignedAt || !activeStatuses.includes(old.status)) throw fail("Active assignment not found.", 404);
   if (request.body?.revision !== old.revision) throw fail("This assignment changed. Reload before updating.", 409);
   if (old.contentId?.startsWith("answer-sheet-")) throw fail("Open the answer sheet to save and submit its responses.");
+  if (old.contentId?.startsWith("math-command:")) throw fail("Open the assigned math practice to save and submit its responses.");
   const action = request.body?.action;
   if (action !== "start" && action !== "submit") throw fail("Choose Start or Submit for teacher review.");
   if (old.status === "review") throw fail("Your teacher is reviewing this task.");

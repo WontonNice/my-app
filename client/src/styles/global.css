@@ -4959,6 +4959,22 @@ button {
   font-weight: 400;
 }
 
+:is(.exam-rich-text, .exam-review-text) blockquote {
+  margin: 12px 25px;
+  padding: 0;
+  border: 0;
+  font-style: normal;
+}
+
+:is(.exam-rich-text, .exam-review-text) > p {
+  margin: 0 0 12px;
+}
+
+:is(.exam-rich-text, .exam-review-text) > p:last-child,
+:is(.exam-rich-text, .exam-review-text) blockquote > p:last-child {
+  margin-bottom: 0;
+}
+
 .exam-rich-text strong,
 .exam-rich-text b {
   font-weight: 700;
@@ -5352,6 +5368,7 @@ button {
 }
 
 .exam-inline-dropdown-select {
+  margin-inline: 4px;
   min-width: 60px;
   max-width: 112px;
   height: 31px;
@@ -5667,6 +5684,24 @@ button {
   outline: 3px solid rgb(18 107 197 / 32%);
   outline-offset: 2px;
 }
+
+.is-evidence-matrix { max-width: 640px; padding-top: 16px; }
+.is-evidence-matrix .exam-matrix-choice-table { font: 16px/1.5 "Times New Roman", Times, serif; color: #000; }
+.is-evidence-matrix .exam-matrix-choice-table th,
+.is-evidence-matrix .exam-matrix-choice-table td { border: 2px solid #e1e1e1; }
+.exam-session-shell .is-evidence-matrix .exam-matrix-choice-table thead th:first-child,
+.exam-session-shell .is-evidence-matrix .exam-matrix-choice-table tbody th,
+.is-evidence-matrix .exam-matrix-choice-table thead th:first-child,
+.is-evidence-matrix .exam-matrix-choice-table tbody th { width: 56%; text-align: center; font-weight: 700; padding: 5px 10px; }
+.is-evidence-matrix .exam-matrix-choice-table thead th { height: 60px; padding: 5px 10px; line-height: 24px; }
+.is-evidence-matrix .exam-matrix-choice-table thead tr:has(> th:nth-child(4):last-child) > th:nth-child(2) { width: 14%; }
+.is-evidence-matrix .exam-matrix-choice-table thead tr:has(> th:nth-child(4):last-child) > th:nth-child(3) { width: 11%; }
+.is-evidence-matrix .exam-matrix-choice-table thead tr:has(> th:nth-child(4):last-child) > th:nth-child(4) { width: 19%; }
+.is-evidence-matrix .exam-matrix-choice-table tbody td,
+.is-evidence-matrix .exam-matrix-choice-option { height: 60px; min-height: 60px; }
+.is-evidence-matrix .exam-matrix-choice-option > span { width: 16px; height: 16px; border: 1px solid #888; border-radius: 2px; background: #fff; box-shadow: none; }
+.is-evidence-matrix .exam-matrix-choice-option input:checked + span { border-color: #126bc5; }
+.is-evidence-matrix .exam-matrix-choice-option input:checked + span::after { width: 5px; height: 9px; border: solid #126bc5; border-width: 0 2px 2px 0; border-radius: 0; background: transparent; transform: translateY(-1px) rotate(45deg); }
 
 .exam-table-match-bank {
   display: flex;
@@ -6070,6 +6105,15 @@ button {
 .exam-math-keypad-row button { height: 40px; }
 .exam-math-keypad-row:last-child button { background: #fff; }
 
+.exam-math-entry-response.is-advanced .exam-math-keypad-row {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+.exam-math-entry-response.is-advanced .exam-math-keypad-row .is-symbol { background: #fff; }
+.exam-math-entry-response.is-advanced .exam-math-keypad-row button:active { background: #ddd; }
+.exam-math-keypad-spacer { height: 40px; pointer-events: none; }
+.exam-math-keypad .is-negative-sign { font-size: 23px; transform: translateY(-7px); }
+.exam-math-keypad .is-multiply-dot { font: bold 39px/1 "Times New Roman", serif; }
+
 .exam-math-drag-response {
   display: grid;
   gap: 28px;
@@ -6142,6 +6186,7 @@ button {
 .exam-graph-point-response {
   width: min(100%, 500px);
 }
+.exam-math-document.is-point-graph .exam-standalone-instructions { margin-bottom: 10px; }
 
 .exam-graph-point-response h2 {
   margin: 0 0 6px 64px;
@@ -6152,19 +6197,19 @@ button {
 .exam-graph-point-response svg {
   display: block;
   width: 100%;
-  max-height: 480px;
+  height: auto;
   overflow: visible;
   color: #111820;
 }
 
 .exam-graph-grid-line {
-  stroke: #9ba2a9;
+  stroke: #888;
   stroke-width: 1;
 }
 
 .exam-graph-axis {
-  stroke: #111820;
-  stroke-width: 2;
+  stroke: #111;
+  stroke-width: 1;
 }
 
 .exam-graph-point-response text {
@@ -6174,8 +6219,10 @@ button {
 
 .exam-graph-x-label,
 .exam-graph-y-label {
-  font-weight: 700 !important;
+  font-weight: 400 !important;
 }
+.exam-graph-point-response .exam-graph-variable { font: italic 14px "Times New Roman", serif; }
+.exam-graph-arrow { fill: #111; }
 
 .exam-graph-point {
   color: #0871d1;
@@ -6183,64 +6230,74 @@ button {
   outline: none;
 }
 
-.exam-graph-point circle {
-  fill: #111820;
-  stroke: #1825e0;
+.exam-graph-point .exam-graph-point-hit { fill: transparent; stroke: none; }
+.exam-graph-point .exam-graph-point-dot {
+  fill: #000;
+  stroke: rgb(0 0 255 / 50%);
+  stroke-width: 2;
+}
+
+.exam-graph-point:hover .exam-graph-point-dot,
+.exam-graph-point:focus-visible .exam-graph-point-dot { filter: drop-shadow(0 0 3px #00f); }
+.exam-graph-point.is-selected .exam-graph-point-dot {
+  stroke: #00f;
   stroke-width: 4;
 }
 
-.exam-graph-point:hover circle,
-.exam-graph-point:focus-visible circle,
-.exam-graph-point.is-selected circle {
-  fill: #0871d1;
-  stroke: #001770;
-  stroke-width: 5;
-}
-
-.exam-graph-point path {
+.exam-graph-point .exam-graph-elimination {
   fill: none;
-  stroke: #ffffff;
+  stroke: #d50000;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 3;
+  stroke-width: 2;
 }
 
 .exam-number-line-response {
-  width: min(100%, 650px);
+  width: min(100%, 550px);
 }
+.exam-session-shell .exam-math-document.is-number-line-response { padding-bottom: 18px; min-height: 0; }
+.exam-math-document.is-number-line-response .exam-standalone-instructions { margin-bottom: 10px; }
 
 .exam-number-line-response > svg {
   display: block;
-  width: 100%;
+  width: min(100%, 500px);
+  height: auto;
+  margin-inline: auto;
   overflow: visible;
-  cursor: crosshair;
 }
 
 .exam-number-line-axis,
 .exam-number-line-tick {
   fill: none;
-  stroke: #111820;
+  stroke: #000;
   stroke-width: 2;
 }
 
 .exam-number-line-response text {
-  fill: #111820;
-  font: 18px Arial, Helvetica, sans-serif;
+  fill: #000;
+  font: 20px Arial, Helvetica, sans-serif;
 }
 
 .exam-number-line-selected-ray {
-  color: #111820;
+  color: #000;
 }
 
 .exam-number-line-selected-ray line {
   stroke: currentColor;
   stroke-width: 8;
+  stroke-linecap: round;
 }
 
-.exam-number-line-selected-ray circle {
+.exam-number-line-ray-arrow { fill: none; stroke: currentColor; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.exam-number-line-selected-ray .exam-number-line-halo { fill: rgb(0 0 0 / 20%); stroke: none; }
+.exam-number-line-endpoint { cursor: grab; outline: none; touch-action: none; }
+.exam-number-line-endpoint:active { cursor: grabbing; }
+.exam-number-line-endpoint .exam-number-line-endpoint-hit { fill: transparent; stroke: none; }
+.exam-number-line-endpoint-dot {
   stroke: currentColor;
-  stroke-width: 4;
+  stroke-width: 2;
 }
+.exam-number-line-endpoint:focus-visible .exam-number-line-endpoint-dot { filter: drop-shadow(0 0 2px #555); }
 
 .exam-number-line-help {
   margin: -4px 0 12px;
@@ -6250,29 +6307,34 @@ button {
 
 .exam-number-line-ray-picker {
   display: grid;
-  grid-template-columns: repeat(2, 78px);
-  width: fit-content;
-  border: 8px solid #050505;
-  border-radius: 10px;
+  grid-template-columns: repeat(2, 69px);
+  flex: 0 0 138px;
   overflow: hidden;
-  background: #050505;
-  gap: 1px;
+  gap: 0;
 }
+.exam-number-line-controls { display: flex; align-items: center; gap: 18px; box-sizing: border-box; width: 186px; height: 120px; margin: 17px auto 0; padding: 6px 16px; background: #000; border-radius: 12px; }
+.exam-number-line-controls.has-ray { width: 303px; max-width: 100%; }
 
 .exam-number-line-ray-picker button {
   min-height: 54px;
-  border: 0;
+  height: 54px;
+  border: 1px solid #000;
+  border-radius: 0;
   background: #ffffff;
-  color: #111820;
+  color: #000;
   cursor: pointer;
-  font: 1.7rem/1 Arial, Helvetica, sans-serif;
+  padding: 11px 12px;
 }
+.exam-number-line-ray-picker button svg, .exam-number-line-ray-actions svg { display: block; width: 44px; height: 28px; margin: auto; }
+.exam-number-line-ray-picker button:disabled { background: #777; color: #333; --ray-icon-background: #777; cursor: default; opacity: 1; }
 
 .exam-number-line-ray-picker button.is-selected {
-  background: #050505;
-  color: #ffffff;
-  box-shadow: inset 0 0 0 2px #0871d1;
+  box-shadow: inset 0 0 0 2px #444;
 }
+.exam-number-line-ray-actions { display: grid; gap: 4px; flex: 0 0 112px; padding: 6px; border-radius: 7px; background: #fff; box-sizing: border-box; }
+.exam-number-line-ray-actions button { min-height: 44px; border: 1px solid #000; border-radius: 5px; background: white; color: #111; font: 16px Arial, sans-serif; cursor: pointer; }
+.exam-number-line-ray-actions .exam-number-line-current-ray { min-height: 46px; background: black; color: white; --ray-icon-background: black; }
+@media (max-width: 360px) { .exam-number-line-controls.has-ray { gap: 6px; padding-inline: 6px; } }
 
 .exam-transition-drop {
   display: grid;
@@ -6303,6 +6365,10 @@ button {
 .exam-transition-chip:active {
   cursor: grabbing;
 }
+
+.exam-transition-chip[hidden] { display: none; }
+.exam-transition-chip[aria-pressed="true"] { outline: 2px solid #075ca8; outline-offset: 3px; }
+.exam-transition-help { display: block; margin: 8px 0 20px; font-size: 12px; line-height: 1.5; color: #53657a; }
 
 .exam-transition-sentence {
   margin: 0;
@@ -14296,6 +14362,7 @@ button {
 .exam-question-passage-scroll.is-poem .exam-poem-line.is-byline { margin-top: 0; margin-bottom: 10px; font-style: normal; }
 .exam-question-passage-scroll.is-poem .exam-poem-line.is-spacer { height: 24px; min-height: 24px; margin: 0 auto; }
 .exam-question-passage-scroll.is-poem .exam-poem-line.is-intro { display: block; margin-bottom: 16px; }
+.exam-question-passage-scroll.is-poem .exam-poem-line.is-intro > span:last-child { padding-left: 0; text-indent: 0; white-space: normal; }
 .exam-question-passage-scroll.is-poem .exam-poem-line.is-centered + .exam-poem-line.is-spacer { display: none; }
 .exam-session-shell .exam-question-panel h1, .exam-session-shell .exam-question-instructions, .exam-session-shell .exam-choice { line-height: 24px; font-size: 16px; }
 .exam-session-shell .exam-question-panel h1 { max-width: none; margin-bottom: 15px; }
@@ -14307,9 +14374,20 @@ button {
 .exam-session-shell .exam-choice:hover { color: #000; }
 .exam-session-shell .exam-standalone-document { font-family: inherit; }
 .exam-session-shell .exam-standalone-choice-list { gap: 33px; }
-.exam-session-shell .exam-math-document { width: min(calc(100% - 48px), 1170px); }
+.exam-session-shell .exam-math-document { width: min(calc(100% - 28px), 1170px); }
+.exam-session-shell .exam-math-panel { max-width: 750px; font-family: Arial, Helvetica, sans-serif; }
+.exam-session-shell .exam-math-panel h1 { max-width: 750px; line-height: 24px; }
+/* A paragraph of consecutive equations is one compact, centered display group. */
+.exam-math-panel h1 .exam-rich-text > p { margin: 0; }
+.exam-math-panel h1 .exam-rich-text > p:not(:has(> .exam-katex-display)) { max-width: 700px; }
+.exam-math-panel h1 .exam-rich-text > p + p { margin-top: 12px; }
+.exam-math-panel h1 .exam-rich-text > p:has(> .exam-katex-display) { margin-block: 8px 12px; }
+.exam-math-panel h1 .exam-rich-text > p > .exam-katex-display { padding: 0; }
+.exam-math-panel h1 .exam-rich-text > p > .exam-katex-display .katex-display { margin: 0; }
+.exam-math-panel h1 .exam-rich-text > p > .exam-katex-display .katex { line-height: 24px; }
 .is-math-session .exam-session-work-tools { margin-left: 36px; }
-.is-math-session .exam-math-document { padding-left: 18px; padding-right: 18px; }
+.is-math-session .exam-math-document { padding-left: 19px; padding-right: 19px; }
+.is-math-session .exam-math-document:not(.is-text-entry):not(.is-inline-dropdown):not(.is-image-question):not(.is-math-drag):not(.is-number-line-response) { padding-top: 16px; padding-bottom: 40px; }
 .is-math-session .exam-session-tool-button:disabled { opacity: .45; cursor: default; }
 @media (max-width: 900px) {
   .is-math-session .exam-session-toolbar { height: auto; min-height: 47px; overflow: visible; }
@@ -14357,7 +14435,6 @@ button {
 .exam-session-shell .exam-category-target h2,
 .exam-session-shell .exam-standalone-category-target h2 { font: 700 16px/20px Arial, Helvetica, sans-serif; }
 .exam-category-target:focus-visible, .exam-category-bank:focus-visible { outline: 2px solid #0871d1; outline-offset: 3px; }
-.exam-unofficial-label { color: #fff; font-size: 10px; font-weight: 400; text-transform: none; white-space: nowrap; }
 .exam-session-progress { display: inline-flex; align-items: center; gap: 5px; color: #eee; font-size: 11px; }
 .exam-session-progress progress { appearance: none; width: 100px; height: 6px; border: 0; background: #333; }
 .exam-session-progress progress::-webkit-progress-bar { background: #333; border-radius: 3px; }
@@ -14368,7 +14445,6 @@ button {
   .exam-session-shell .exam-question-document .exam-question-panel, .exam-session-shell .exam-question-document.is-expanded-layout .exam-question-panel { height: auto; min-height: 0; max-height: 65dvh; overflow: auto; padding-left: 0; }
   .exam-session-breadcrumb-text { gap: 7px; }
   .exam-session-progress progress { width: 50px; }
-  .exam-unofficial-label { display: none; }
 }
 
 /* Individual library access, shared by every version of a book. */
@@ -14407,3 +14483,176 @@ button {
 .teacher-book-version-picker select { min-height: 36px; min-width: 0; border: 1px solid #c9d5cd; border-radius: 7px; background: var(--student-paper); color: var(--student-ink); padding: 7px; font: inherit; }
 
 .teacher-library-detail-heading > div.teacher-library-access-summary small { font-size: 11px; }
+
+/* Imported drag-and-drop tables share this layout in the player and studio preview. */
+.exam-math-document.is-math-table-drag {
+  border: 0;
+  padding: 16px 20px 8px;
+  color: #333;
+}
+.exam-session-shell .exam-math-document.is-math-table-drag .exam-math-panel {
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.exam-math-document.is-math-table-drag .exam-math-panel h1,
+.exam-math-document.is-math-table-drag .exam-standalone-instructions { color: #333; }
+.exam-session-shell .exam-math-document.is-math-table-drag .exam-standalone-instructions { margin-bottom: 0; }
+.exam-math-drag-response.is-table { gap: 7px; margin-top: 8px; }
+.exam-math-drag-response.is-outlined .exam-math-drag-bank {
+  min-width: 0;
+  width: 100%;
+  min-height: 40px;
+  align-items: flex-start;
+  padding: 0 4px;
+  margin: 4px 0;
+  gap: 0;
+  background: transparent;
+}
+.exam-math-drag-response.is-outlined .exam-math-drag-bank button {
+  min-width: 30.8px;
+  min-height: 26px;
+  margin: 4px;
+  padding: 2px 10px;
+  border: 1px solid #0088cc;
+  border-radius: 3px;
+  background: #f6f6f6;
+  color: #2871bd;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.exam-math-drag-response.is-outlined .exam-math-drag-bank button.is-selected {
+  min-width: 32.8px;
+  min-height: 28px;
+  border: 2px inset #2f60cc;
+  background: #e8e8e8;
+  color: #2871bd;
+}
+.exam-math-drag-response.is-outlined .exam-math-drag-bank.is-drop-target,
+.exam-math-drag-response.is-outlined .exam-math-drag-slot.is-drop-target {
+  background: #bbcef1;
+  border: 1px dashed #6d95e0;
+}
+.exam-math-drag-table-wrap { max-width: 100%; overflow-x: auto; }
+.exam-math-drag-table {
+  width: max-content;
+  max-width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #808080;
+  color: #333;
+  font-size: 16px;
+  line-height: 28px;
+}
+.exam-math-drag-table caption { padding: 0; text-align: center; font-weight: 400; }
+.exam-math-drag-table th,
+.exam-math-drag-table td { border: 1px solid #808080; padding: 1px; text-align: center; vertical-align: middle; }
+.exam-math-drag-table th { font-weight: 700; }
+.exam-math-drag-response.is-table .exam-math-drag-slot {
+  width: 102px;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 28px;
+  padding: 0;
+  border: 1px solid #333;
+  border-radius: 0;
+  background: transparent;
+  color: #2871bd;
+  font-size: 16px;
+  line-height: 26px;
+  vertical-align: middle;
+  box-shadow: none;
+}
+.exam-math-drag-response.is-table .exam-math-drag-slot.is-filled { border-color: #333; cursor: grab; }
+.exam-math-drag-response.is-outlined .exam-math-drag-placed-tile {
+  display: block;
+  min-height: 26px;
+  border: 1px solid #ccc;
+  background: #e8e8e8;
+  padding: 2px 0;
+  font: 700 14px/20px Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.exam-math-drag-response.is-outlined .exam-math-drag-slot.is-selected .exam-math-drag-placed-tile { border: 2px inset #2f60cc; }
+
+/* Expression drag questions use the same selection/return feedback as tables. */
+.exam-math-drag-response.is-compact .exam-math-drag-bank button.is-selected {
+  background: #fff;
+  color: #111;
+  outline: 2px solid #2f60cc;
+  outline-offset: -2px;
+}
+.exam-math-drag-response.is-compact .exam-math-drag-bank.is-drop-target {
+  background: #bbcef1;
+  outline: 1px dashed #6d95e0;
+  cursor: pointer;
+}
+.exam-math-drag-response.is-compact .exam-math-drag-slot {
+  border: 1px solid #333;
+  border-radius: 0;
+  box-shadow: none;
+}
+.exam-math-drag-response.is-compact .exam-math-drag-slot.is-drop-target {
+  background: #bbcef1;
+  border: 1px dashed #6d95e0;
+}
+.exam-math-drag-response.is-compact .exam-math-drag-slot.is-filled {
+  padding: 1px 2px;
+  cursor: grab;
+}
+.exam-math-drag-response.is-compact .exam-math-drag-placed-tile {
+  display: block;
+  border: 1px solid #333;
+  padding: 0 3px;
+  background: #fff;
+}
+.exam-math-drag-response.is-compact .exam-math-drag-slot.is-selected .exam-math-drag-placed-tile {
+  outline: 2px solid #2f60cc;
+  outline-offset: -2px;
+}
+.exam-math-drag-bank:focus-visible { outline: 2px solid #2f60cc; outline-offset: 2px; }
+.exam-math-drag-response.is-outlined:not(.is-table) { gap: 14px; margin-top: 8px; }
+.exam-math-drag-response.is-outlined:not(.is-table) .exam-math-drag-lines { gap: 11px; }
+.exam-math-drag-response.is-outlined .exam-math-drag-line .exam-inline-math { font-size: 1em; }
+.exam-math-drag-response.is-outlined:not(.is-table) .exam-math-drag-line {
+  justify-content: flex-start;
+  gap: 5px;
+  min-height: 28px;
+  font-size: 16px;
+  line-height: 28px;
+}
+.exam-math-drag-response.is-outlined:not(.is-table) .exam-math-drag-slot {
+  min-width: 47px;
+  min-height: 28px;
+  padding: 0;
+  border: 1px solid #333;
+  border-radius: 0;
+  background: white;
+  color: #2871bd;
+  box-shadow: none;
+  line-height: 26px;
+}
+.exam-math-drag-response.is-outlined:not(.is-table) .exam-math-drag-slot.is-drop-target {
+  background: #bbcef1;
+  border: 1px dashed #6d95e0;
+}
+.exam-math-drag-response.is-outlined:not(.is-table) .exam-math-drag-slot.is-filled { cursor: grab; }
+.exam-session-shell .exam-math-document.is-math-outlined-drag .exam-math-panel {
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+}
+.exam-math-document.is-math-outlined-drag .exam-math-panel h1,
+.exam-math-document.is-math-outlined-drag .exam-standalone-instructions { color: #333; }
+.exam-session-shell .exam-math-document.is-math-outlined-drag .exam-standalone-instructions { margin-bottom: 0; }
+.exam-math-drag-bank button, .exam-math-drag-slot { touch-action: none; user-select: none; }
+.exam-math-drag-ghost {
+  position: fixed;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  min-width: 30px;
+  padding: 2px 4px;
+  border: 2px solid #2f60cc;
+  background: white;
+  color: #111;
+  font: 13px/20px Arial, sans-serif;
+  text-align: center;
+}

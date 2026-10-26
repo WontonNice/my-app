@@ -69,13 +69,20 @@ than inventing interactive graphs. An unattached figure is listed in source note
 so you can attach its actual crop while editing. SVG and SVGZ source crops are
 supported alongside the existing image formats.
 
-Supported Math responses: `multiple_choice`, `multi_select`, `numeric_entry`,
+Supported Math responses: `multiple_choice`, `multi_select`, `numeric_entry`, `expression_entry`,
 `short_response`, `grid_in`, `inline_dropdown`, `math_drag_drop`,
 `graph_point_select` and `number_line_response`. Short-answer spelling aliases
 normalize to `short_response`; this type omits `entryLayout`. Choice labels and
 supplied keys map to A, B, C, D by position while retaining original source labels
 privately. Unsupported response types remain in the retained input for manual
 authoring rather than being silently converted.
+
+Use `expression_entry` for **Calculator Input (Advanced)**: the five-row keypad
+supports arithmetic, fractions, mixed numbers, roots, powers, parentheses,
+comparisons, pi, and absolute value. The existing `numeric_entry` keypad stays
+separate. Both preserve `correctTextAnswers`, `entryLayout`, and `entryVariable`.
+Answer alternatives must be explicitly keyed; the player does not infer algebraic
+equivalence.
 
 The direct endpoint is `POST /api/math/import` with `assessmentId` and `source`
 (or a saved `entryId`). It reuses the existing Math source writer, test registration

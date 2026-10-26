@@ -193,7 +193,7 @@ export function LibraryCorrectionsWorkspace({
                     return <div className={`${isSelected ? " is-selected" : ""}${isCorrectAnswer ? " is-answer" : ""}`} key={choice.id}><b>{choice.id}</b><span>{renderFormattedText(choice.text)}</span>{isSelected ? <small>Your first answer</small> : null}{isCorrectAnswer ? <small>Correct answer</small> : null}</div>;
                   })}
                 </div>
-                {!["multiple_choice", "transition_drop"].includes(question.type) && <div><p>Your first answer</p><ExamAnswer question={question} answer={libraryAnswer(result.selectedAnswerId)} /><p>Correct answer</p><ExamAnswer question={question} answer={libraryAnswer(result.correctAnswerId)} /></div>}
+                {(!["multiple_choice", "transition_drop"].includes(question.type) || question.type === 'transition_drop' && Boolean(question.dragDropSlots?.length)) && <div><p>Your first answer</p><ExamAnswer question={question} answer={libraryAnswer(result.selectedAnswerId)} /><p>Correct answer</p><ExamAnswer question={question} answer={libraryAnswer(result.correctAnswerId)} /></div>}
                 {result.isCorrect ? (
                   <div className="library-correction-congrats"><CheckCircle2 size={20} /><span><strong>Congratulations, you got it correct.</strong><small>No written correction is needed for this question.</small></span></div>
                 ) : (

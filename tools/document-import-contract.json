@@ -69,6 +69,7 @@
       "multiple_choice",
       "multi_select",
       "numeric_entry",
+      "expression_entry",
       "short_response",
       "grid_in",
       "inline_dropdown",
@@ -94,12 +95,38 @@
     "correctChoiceId": "multiple_choice: exact choice ID, or empty string/null if no unambiguous supplied key",
     "correctChoiceIds": "multi_select: choice IDs from key, or [] if unknown",
     "requiredSelections": "multi_select: source selection count, or null if unknown",
-    "correctTextAnswers": "numeric_entry/short_response: source keyed strings, or []",
-    "entryLayout": "numeric_entry: plain, fraction, x_equals",
-    "entryVariable": "numeric_entry/grid_in: optional single letter displayed before = for x_equals; defaults to x; preserve the source variable, e.g. w",
+    "correctTextAnswers": "numeric_entry/expression_entry/short_response: source keyed strings, or []",
+    "entryLayout": "numeric_entry/expression_entry: plain, fraction, x_equals",
+    "entryVariable": "numeric_entry/expression_entry/grid_in: optional single letter displayed before = for x_equals; defaults to x; preserve the source variable, e.g. w",
     "explanation": "exact supplied explanation or empty string/null",
     "review": "Review",
-    "visuals": "Visual[]"
+    "visuals": "Visual[]",
+    "matrixStyle": "matrix_choice: use evidence for Passage/Table Evidence with bold centered statement rows, square checkboxes and Passage only / Table only / Both passage and table columns. evidence_matrix is accepted as an alias for this question type.",
+    "promptParts": {
+      "introduction": "Exact Read these sentences/lines instruction",
+      "excerpt": "Exact quoted text; actual newlines between poem lines and blank lines between stanzas",
+      "followUp": "Exact follow-up question",
+      "bold": "true for the bold TestNav excerpt; false only when the source quote is regular weight. Optional structured alternative to promptHtml; keep prompt as the same complete plain wording. **bold** and *italics* are supported within these strings."
+    }
+  },
+  "sentenceBlanks": {
+    "type": "transition_drop",
+    "choices": "Shared ordered word bank: {id,text,html?}[]",
+    "dragDropContent": [
+      "Sentence text with {{blank-1}} and {{blank-2}}."
+    ],
+    "dragDropSlots": [
+      {
+        "id": "blank-1",
+        "correctItemId": "verified choice ID or blank"
+      },
+      {
+        "id": "blank-2",
+        "correctItemId": "verified choice ID or blank"
+      }
+    ],
+    "allowReuse": "false unless the source allows the same word in several blanks",
+    "legacy": "Existing one-blank questions may retain transitionBlankBefore, transitionBlankAfter, and correctChoiceId. Use dragDropContent/dragDropSlots for multiple blanks. Keep all source blanks and never guess their keys."
   },
   "mathInteractions": {
     "inline_dropdown": {
@@ -125,6 +152,7 @@
       ]
     },
     "math_drag_drop": {
+      "dragDropStyle": "compact for black tiles on a gray bank; outlined for blue tiles on an unshaded bank with larger boxes. Preserve source style independently of allowReuse.",
       "items": [
         {
           "id": "item-1",
@@ -238,6 +266,31 @@
     "UNSUPPORTED_RESPONSE_TYPE",
     "COUNT_MISMATCH"
   ],
+  "evidenceMatrix": {
+    "type": "evidence_matrix (stored as matrix_choice with matrixStyle=evidence)",
+    "categories": [
+      {
+        "id": "passage",
+        "title": "Passage only"
+      },
+      {
+        "id": "table",
+        "title": "Table only"
+      },
+      {
+        "id": "both",
+        "title": "Both passage and table"
+      }
+    ],
+    "items": "Ordered {id,text,html?}[]; each item is one exact source statement",
+    "correctPlacements": "{statement-id: column-id} from the supplied key only; leave missing answers blank",
+    "tableHeaders": {
+      "row": "",
+      "answer": "Answer"
+    },
+    "instructions": "Select one answer in each row.",
+    "requiredPlacements": "number of statement rows"
+  },
   "taxonomy": {
     "reading": [
       "Central Idea & Theme",

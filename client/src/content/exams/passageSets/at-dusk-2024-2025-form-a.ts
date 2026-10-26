@@ -131,8 +131,8 @@ const atDusk20242025FormAQuestions: ExamQuestion[] = [
   {
     "id": "at-dusk-2024-2025-form-a-5",
     "points": 1,
-    "prompt": "Read lines 11–13 from the poem.\ntoward the voice, then back\nto the constellation of fireflies flickering\nnear her head\nWhich idea from the poem does the imagery in these lines help convey?",
-    "promptHtml": "Read&nbsp;lines 11–13 from the&nbsp;poem.<br><strong>toward the voice, then back</strong><br><strong>to the constellation of fireflies flickering</strong><br><strong>near her head</strong><br>Which&nbsp;idea from the poem does the imagery in these lines&nbsp;help&nbsp;convey?",
+    "prompt": "Read lines 11–13 from the poem.\n\ntoward the voice, then back\nto the constellation of fireflies flickering\nnear her head\n\nWhich idea from the poem does the imagery in these lines help convey?",
+    "promptHtml": "<p>Read lines 11–13 from the poem.</p><blockquote><strong><strong>toward the voice, then back</strong><br><strong>to the constellation of fireflies flickering</strong><br><strong>near her head</strong></strong></blockquote><p>Which idea from the poem does the imagery in these lines help convey?</p>",
     "topic": "Figurative Language & Imagery",
     "choices": [
       {

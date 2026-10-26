@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Character workshop</title>
+<style>body{margin:0;background:#d4e8ec;font:16px system-ui;color:#29404b}header{padding:18px 30px;display:flex;gap:20px;align-items:center}h1{font-size:22px;margin:0}button,select{padding:8px 14px}#cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:10px 24px}.card{background:#f1f6f4;border-radius:18px;overflow:hidden;text-align:center}.card h2{font-size:16px}canvas{width:100%;height:auto;display:block}</style></head>
+<body><header><h1>Character workshop</h1><label>Pose <select id="pose"><option value="">Idle</option><option>walk</option><option>wave</option><option>cheer</option><option>dance</option></select></label><button id="turn">Rotate</button></header><div id="cards"></div>
+<script type="module">
+import * as THREE from 'three';
+import {createAvatar} from './src/features/games/world/avatars.ts';
+import {WORLD_CHARACTERS} from '../server/src/shared/gameWorld.ts';
+const entries=[]; let rotate=false;
+for(const item of WORLD_CHARACTERS.slice(0,4)){
+ const card=document.createElement('section');card.className='card';card.innerHTML=`<h2>${item.name}</h2>`;document.querySelector('#cards').append(card);
+ const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(350,490,false);renderer.setPixelRatio(1);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;card.append(renderer.domElement);
+ const scene=new THREE.Scene();scene.background=new THREE.Color('#f1f6f4');scene.add(new THREE.HemisphereLight('#fff9e7','#9aaab7',2));const light=new THREE.DirectionalLight('#ffedd6',2.8);light.position.set(-3,5,5);scene.add(light);
+ const camera=new THREE.PerspectiveCamera(32,350/490,.1,30);camera.position.set(0,1.35,5.3);camera.lookAt(0,1.2,0);
+ const avatar=createAvatar(item.id);scene.add(avatar.root);entries.push({renderer,scene,camera,avatar});
+ const ground=new THREE.Mesh(new THREE.CircleGeometry(1.2,48),new THREE.MeshBasicMaterial({color:'#dce6df'}));ground.rotation.x=-Math.PI/2;ground.position.y=-.015;scene.add(ground);
+}
+document.querySelector('#turn').onclick=()=>rotate=!rotate;
+function frame(ms){const pose=document.querySelector('#pose').value;for(const {renderer,scene,camera,avatar} of entries){avatar.animate(ms/1000,pose==='walk',pose==='walk'?undefined:pose||undefined);avatar.root.rotation.y=rotate?ms/1400:0;renderer.render(scene,camera);}requestAnimationFrame(frame)}requestAnimationFrame(frame);
+</script></body></html>

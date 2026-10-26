@@ -8,7 +8,7 @@ const massachusettsLowellNationalHistoricalPark20202021FormBQuestions: ExamQuest
     "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b-1",
     "points": 1,
     "prompt": "Read this sentence from paragraph 1.\n\nAs one Scottish traveler observed during his visit to America, “Niagara and Lowell are the two objects I will longest remember in my American journey, the one the glory of American scenery, the other of American industry.”\n\nThe author most likely includes the quotation from the Scottish traveler in order to",
-    "promptHtml": "Read this sentence from paragraph 1.<br><strong>As one Scottish traveler observed during his visit to America, “Niagara and Lowell are the two objects I will longest remember in my American journey, the one the glory of American scenery, the other of American industry.”</strong><br>The author <strong>most likely</strong> includes the quotation from the Scottish traveler in order to",
+    "promptHtml": "<p>Read this sentence from paragraph 1.</p><blockquote><strong><strong>As one Scottish traveler observed during his visit to America, “Niagara and Lowell are the two objects I will longest remember in my American journey, the one the glory of American scenery, the other of American industry.”</strong></strong></blockquote><p>The author <strong>most likely</strong> includes the quotation from the Scottish traveler in order to</p>",
     "topic": "Author's Point of View",
     "choices": [
       {
@@ -70,7 +70,7 @@ const massachusettsLowellNationalHistoricalPark20202021FormBQuestions: ExamQuest
     "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b-4",
     "points": 1,
     "prompt": "Read this sentence from paragraph 3.\n\nFrom the early to mid-1800s, women left the constricted lifestyle of small rural towns and rural areas for independent industrial city life.\n\nWhich statement best describes how the sentence fits into the overall structure of the passage?",
-    "promptHtml": "Read this sentence from paragraph 3.<br><strong>From the early to mid-1800s, women left the constricted lifestyle of small rural towns and rural areas for independent industrial city life.</strong><br>Which statement <strong>best </strong>describes how the sentence fits into the overall structure of the passage?",
+    "promptHtml": "<p>Read this sentence from paragraph 3.</p><blockquote><strong><strong>From the early to mid-1800s, women left the constricted lifestyle of small rural towns and rural areas for independent industrial city life.</strong></strong></blockquote><p>Which statement <strong>best </strong>describes how the sentence fits into the overall structure of the passage?</p>",
     "topic": "Text Structure & Purpose",
     "choices": [
       {
@@ -101,7 +101,7 @@ const massachusettsLowellNationalHistoricalPark20202021FormBQuestions: ExamQuest
     "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b-5",
     "points": 1,
     "prompt": "Read this sentence from paragraph 5.\n\nAlthough Lowell received an influx of Irish families during this time, the Irish were a part of the city’s history from its birth, and before the “mill girls” arrived, they built Lowell’s historic canals, mills, and boardinghouses.\n\nHow does this sentence contribute to the development of ideas in the passage?",
-    "promptHtml": "Read this sentence from paragraph 5.<br><strong>Although Lowell received an influx of Irish families during this time, the Irish were a part of the city’s history from its birth, and before the “mill girls” arrived, they built Lowell’s historic canals, mills, and boardinghouses.</strong><br>How does this sentence contribute to the development of ideas in the passage?",
+    "promptHtml": "<p>Read this sentence from paragraph 5.</p><blockquote><strong><strong>Although Lowell received an influx of Irish families during this time, the Irish were a part of the city’s history from its birth, and before the “mill girls” arrived, they built Lowell’s historic canals, mills, and boardinghouses.</strong></strong></blockquote><p>How does this sentence contribute to the development of ideas in the passage?</p>",
     "topic": "Text Structure & Purpose",
     "choices": [
       {

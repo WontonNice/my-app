@@ -1,4 +1,22 @@
 import { createPlainTextPassage } from "./formatters";
+import { digitalShsatPracticeTest3Content } from "./tests/digital-shsat-practice-test-3";
+import { content20262027FormDContent } from "./tests/2026-2027-form-d";
+import { content20262027FormCContent } from "./tests/2026-2027-form-c";
+import { content20262027FormBContent } from "./tests/2026-2027-form-b";
+import { content20262027FormAContent } from "./tests/2026-2027-form-a";
+import { content20242025FormBContent } from "./tests/2024-2025-form-b";
+import { content20242025FormAContent } from "./tests/2024-2025-form-a";
+import { content20192020FormBContent } from "./tests/2019-2020-form-b";
+import { content20192020FormAContent } from "./tests/2019-2020-form-a";
+import { content20182019FormBContent } from "./tests/2018-2019-form-b";
+import { content20182019FormAContent } from "./tests/2018-2019-form-a";
+import { content20172018FormBContent } from "./tests/2017-2018-form-b";
+import { content20172018FormAContent } from "./tests/2017-2018-form-a";
+import { content20232024FormBContent } from "./tests/2023-2024-form-b";
+import { content20232024FormAContent } from "./tests/2023-2024-form-a";
+import { content20212022FormBContent } from "./tests/2021-2022-form-b";
+import { content20222023FormBContent } from "./tests/2022-2023-form-b";
+import { content20222023FormAContent } from "./tests/2022-2023-form-a";
 import { digitalShsatPracticeTest2Content } from "./tests/digital-shsat-practice-test-2";
 import { digitalShsatPracticeTest1Content } from "./tests/digital-shsat-practice-test-1";
 import { content20212022FormAContent } from "./tests/2021-2022-form-a";
@@ -16,6 +34,24 @@ import type {
 } from "./types";
 
 const examContentByAssessmentId: Record<string, ExamContent> = {
+  [digitalShsatPracticeTest3Content.assessmentId]: digitalShsatPracticeTest3Content,
+  [content20262027FormDContent.assessmentId]: content20262027FormDContent,
+  [content20262027FormCContent.assessmentId]: content20262027FormCContent,
+  [content20262027FormBContent.assessmentId]: content20262027FormBContent,
+  [content20262027FormAContent.assessmentId]: content20262027FormAContent,
+  [content20242025FormBContent.assessmentId]: content20242025FormBContent,
+  [content20242025FormAContent.assessmentId]: content20242025FormAContent,
+  [content20192020FormBContent.assessmentId]: content20192020FormBContent,
+  [content20192020FormAContent.assessmentId]: content20192020FormAContent,
+  [content20182019FormBContent.assessmentId]: content20182019FormBContent,
+  [content20182019FormAContent.assessmentId]: content20182019FormAContent,
+  [content20172018FormBContent.assessmentId]: content20172018FormBContent,
+  [content20172018FormAContent.assessmentId]: content20172018FormAContent,
+  [content20232024FormBContent.assessmentId]: content20232024FormBContent,
+  [content20232024FormAContent.assessmentId]: content20232024FormAContent,
+  [content20212022FormBContent.assessmentId]: content20212022FormBContent,
+  [content20222023FormBContent.assessmentId]: content20222023FormBContent,
+  [content20222023FormAContent.assessmentId]: content20222023FormAContent,
   [digitalShsatPracticeTest2Content.assessmentId]: digitalShsatPracticeTest2Content,
   [digitalShsatPracticeTest1Content.assessmentId]: digitalShsatPracticeTest1Content,
   [content20212022FormAContent.assessmentId]: content20212022FormAContent,
@@ -50,6 +86,7 @@ function isChoiceBasedQuestion(question: AssessmentContentSource["questions"][nu
   return ![
     "short_response",
     "numeric_entry",
+    "expression_entry",
     "grid_in",
     "essay",
     "category_sort",
@@ -85,7 +122,7 @@ function createFallbackQuestions(assessment: AssessmentContentSource): ExamQuest
     const isCategorySort = question.type === "category_sort" || question.type === "matrix_choice" || question.type === "table_match";
     const isTableMatch = question.type === "table_match";
     const isMatrixChoice = question.type === "matrix_choice";
-    const isTextEntry = ["short_response", "numeric_entry", "grid_in"].includes(question.type);
+    const isTextEntry = ["short_response", "numeric_entry", "expression_entry", "grid_in"].includes(question.type);
 
     return {
       categories: isCategorySort

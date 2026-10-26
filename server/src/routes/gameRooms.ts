@@ -1,6 +1,8 @@
 import { Router, type ErrorRequestHandler } from "express";
 import { createGame, fetchGame, gameCatalog, gameUser, listGames, updateGame } from "../lib/gameStore";
-import { gameError, gameView, type GameActor } from "../lib/gameEngine";
+import { gameError, gameMember, gameView, type GameActor } from "../lib/gameEngine";
+import { crystalCatalog } from "../lib/crystalSources";
+import { crystalHostId } from "../lib/crystalDefense";
 
 export const gameRoomsRouter = Router();
 gameRoomsRouter.use(async (request, response, next) => { try { response.locals.actor = await gameUser(request.headers.authorization); next(); } catch (error) { next(error); } });
@@ -8,6 +10,15 @@ gameRoomsRouter.get("/", async (_request, response) => response.json({ rooms: aw
 gameRoomsRouter.get("/catalog", (_request, response) => {
   if (!(response.locals.actor as GameActor).teacher) throw gameError("Teacher access is required.", 403);
   response.json(gameCatalog());
+});
+gameRoomsRouter.get("/crystal-catalog", async (request, response) => {
+  const actor = response.locals.actor as GameActor;
+  if (!actor.teacher) {
+    if (typeof request.query.roomId !== "string") throw gameError("Join a Crystal Defense lobby as its host first.", 403);
+    const room = await fetchGame(request.query.roomId); gameMember(room, actor);
+    if (room.mode !== "world" || room.phase !== "question" || crystalHostId(room, Date.now()) !== actor.id) throw gameError("Only the current game host can choose Crystal Defense questions.", 403);
+  }
+  response.json(crystalCatalog());
 });
 gameRoomsRouter.post("/", async (request, response) => { const actor = response.locals.actor as GameActor; response.status(201).json({ room: gameView(await createGame(actor, request.body ?? {}), actor, Date.now()) }); });
 gameRoomsRouter.post("/join", async (request, response) => {

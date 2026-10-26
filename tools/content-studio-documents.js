@@ -80,6 +80,32 @@ const DocumentStudio = {
     } catch (error) { setStatus(error.message, 'error'); return false; }
     finally { app.saving = false; }
   },
+  async deleteDraft(id = app.passageDraft?.importDraftId) {
+    if (app.saving) return;
+    const entry = this.state.entries.find(entry => entry.id === id);
+    if (!entry || entry.status === 'published' || entry.batch) return;
+    const current = app.passageDraft?.importDraftId === id;
+    if (!window.confirm(`Delete the imported draft “${entry.content.title || 'Untitled'}” and its ${entry.content.questions.length} questions?\n\n${current && app.passageDirty ? 'Unsaved edits to this draft will also be discarded. ' : ''}You can import the source again later.`)) return;
+    app.saving = true;
+    const editor = document.getElementById('passage-editor');
+    editor.inert = true;
+    try {
+      this.state = await api('/api/document-drafts', { method: 'DELETE', body: JSON.stringify({ id, revision: this.state.revision }) });
+      if (this.entry?.id === id) this.entry = null;
+      if (current) {
+        const advanced = app.passageMode === 'advanced';
+        const next = (advanced ? app.state.advancedPassages : app.state.passages)[0];
+        app.selectedPassageId = next?.id || '';
+        app.passageDraft = next ? clone(next) : advanced ? defaultAdvancedPassage() : defaultPassage();
+        app.passageDirty = false;
+        studioUI.passageContext = '';
+        renderPassageList(); renderPassageEditor();
+      }
+      if (document.querySelector('#document-review-dialog')?.open) this.render();
+      setStatus('Import draft deleted.', 'success');
+    } catch (error) { setStatus(error.message, 'error'); }
+    finally { app.saving = false; editor.inert = false; studioUI.syncSaveState(); }
+  },
   openPublishedPassage(passage, destination = 'exam') {
     if (app.passageDirty) return false;
     app.passageMode = destination; app.selectedPassageId = passage.id; app.passageDraft = clone(passage);
@@ -110,6 +136,7 @@ const DocumentStudio = {
       ${!e ? `<p>Drafts are private to this Content Studio checkout. Publish uses the existing content files and student renderers.</p>${this.state.entries.filter(entry => entry.status !== 'published').map(entry => `<p><button data-doc-open="${entry.id}">${escapeHtml(entry.content.title || 'Untitled')} · ${entry.kind === 'math' ? 'Math' : entry.destination === 'advanced' ? 'SAT passages' : 'Exam passages'} · ${entry.content.questions.length} questions · ${entry.status}</button></p>`).join('') || '<p>No unpublished document drafts. In Exam passages or SAT passages, choose Import documents, paste the JSON returned by ChatGPT, then Validate and review → Save all as review drafts.</p>'}` : `
       ${e.kind === 'passage' ? `<p>Publish to <strong>${destinationLabel}</strong>${destination === 'advanced' ? ' · Students will find it under Advanced readings in English Study Hall.' : ''}</p>` : ''}
       <div class="math-import-actions"><button id="doc-library">Back to drafts</button><button id="doc-save">Save review draft</button>${e.kind === 'passage' ? '<button id="doc-editor">Open passage editor / Student view</button>' : `<label>Destination exam <select id="doc-assessment"><option value="">Choose an exam</option>${app.state.assessments.map(a => `<option value="${escapeHtml(a.id)}">${escapeHtml(a.title)}</option>`).join('')}</select></label>`}<button class="primary" id="doc-publish">${e.kind === 'passage' ? 'Publish passage' : 'Publish reviewed Math questions'}</button></div>
+      ${e.kind === 'passage' && destination === 'exam' ? studioUI.publishExamMarkup(e.id) : ''}
       <details class="studio-review-summary" ${e.kind === 'math' && issues.some(i => i.blocking) ? 'open' : ''}><summary>Review · ${issues.length} issues${e.kind === 'math' ? ` · ${issues.filter(i => i.blocking).length} publication checks` : ''}</summary><p>${e.kind === 'passage' ? 'Existing passage rules allow publishing with review notes. Missing source data stays blank.' : 'Resolve publication checks before publishing Math.'}</p><div>${issues.map((issue, index) => `<button type="button" class="studio-review-issue" data-doc-issue="${index}">${issue.blocking ? '⚠ ' : ''}${escapeHtml(issue.scope)}: ${escapeHtml(issue.message)}</button>`).join('') || '<p>No review issues.</p>'}</div></details>
       ${field('Title', 'title', p.title)}${e.kind === 'passage' ? `${field('Author name', 'author', p.author)}${field('Exact printed byline', 'byline', p.byline)}${field('Subtitle', 'subtitle', p.subtitle)}${field('Introductory blurb', 'blurb', p.blurb, true)}${field('Complete passage text', 'text', p.text, true)}` : ''}
       ${e.kind === 'passage' && destination === 'advanced' ? `<label class="field"><span>Reading genre</span><select data-doc-field="genre">${app.state.advancedGenres.map(genre => `<option ${genre === p.genre ? 'selected' : ''}>${escapeHtml(genre)}</option>`).join('')}</select></label>${field('Library card excerpt', 'excerpt', p.excerpt, true)}` : ''}
@@ -123,7 +150,7 @@ const DocumentStudio = {
       <p>Classification: ${escapeHtml(q.review?.topicSource || 'unknown')} · confidence ${q.review?.topicConfidence ?? 'unrated'} · difficulty ${escapeHtml(q.review?.difficulty || 'unrated')} (${escapeHtml(q.review?.difficultySource || 'unknown')})</p>
       <label><input type="checkbox" id="doc-classification" ${q.review?.classificationReviewed ? 'checked' : ''}> I reviewed this question’s classification.</label>
       ${(q.choices || []).map((c, i) => field(`Choice ${escapeHtml(c.id)}`, `choice.${i}`, c.text, true)).join('')}
-      ${['multiple_choice','multi_select','numeric_entry','short_response','grid_in','transition_drop'].includes(q.type) ? field('Verified answer (choice ID; multi-select / accepted answers separated by |)', 'answer', q.correctChoiceId || q.correctChoiceIds?.join('|') || q.correctTextAnswers?.join('|')) : '<p>Structured response: review each keyed dropdown, drag slot, graph point, or endpoint in Complete draft JSON below.</p>'}
+      ${['multiple_choice','multi_select','numeric_entry','expression_entry','short_response','grid_in','transition_drop'].includes(q.type) ? field('Verified answer (choice ID; multi-select / accepted answers separated by |)', 'answer', q.correctChoiceId || q.correctChoiceIds?.join('|') || q.correctTextAnswers?.join('|')) : '<p>Structured response: review each keyed dropdown, drag slot, graph point, or endpoint in Complete draft JSON below.</p>'}
       ${field('Source explanation (leave blank when absent)', 'question.explanation', q.explanation, true)}${reviewMarkup(q.review, 'question')}
       <details><summary>Answer and explanation source references</summary><pre>${escapeHtml(JSON.stringify({ answerSource: q.review?.answerSource || null, explanationSource: q.review?.explanationSource || null }, null, 2))}</pre></details>` : '<p>No questions. Restore them in the JSON below.</p>'}
       ${vs.map((v, i) => `<div class="math-import-warnings"><strong>${v.state === 'resolved' ? 'Visual attached' : '⚠ SOURCE IMAGE REQUIRED'}</strong><p>${escapeHtml(v.scope || v.questionId || 'Passage')} · ${escapeHtml(v.sourceFile || '')} · PDF page ${v.sourcePage || '?'} · ${escapeHtml(v.location || '')}</p><p>${escapeHtml(v.description)}</p>${v.image ? `<img style="max-width:100%;max-height:240px" src="${escapeHtml(v.image.src)}" alt="${escapeHtml(v.image.alt)}">` : ''}<label>Upload original image / prepared crop <input type="file" data-doc-visual="${i}" accept="image/png,image/jpeg,image/webp,image/gif,.svgz"></label></div>`).join('')}
@@ -136,7 +163,21 @@ const DocumentStudio = {
     };
     dialog.querySelector('#doc-close').onclick = () => { if (!e || window.confirm('Close review? Save your draft first to keep edits.')) dialog.close(); };
     dialog.querySelectorAll('[data-doc-open]').forEach(button => button.onclick = () => this.open(button.dataset.docOpen));
+    const deleteButton = entry => {
+      if (entry.status === 'published' || entry.batch) return null;
+      const button = document.createElement('button');
+      button.type = 'button'; button.className = 'danger'; button.textContent = 'Delete draft';
+      button.setAttribute('aria-label', `Delete draft ${entry.content.title || 'Untitled'}`);
+      button.onclick = handle(() => this.deleteDraft(entry.id));
+      return button;
+    };
+    dialog.querySelectorAll('[data-doc-open]').forEach(button => {
+      const remove = deleteButton(this.state.entries.find(entry => entry.id === button.dataset.docOpen));
+      if (remove) button.after(remove);
+    });
+    if (e) { const remove = deleteButton(e); if (remove) dialog.querySelector('.math-import-actions').append(remove); }
     if (!e) return;
+    if (e.kind === 'passage' && destination === 'exam') studioUI.bindPublishExam(dialog, e.id);
     dialog.querySelectorAll('[data-doc-issue]').forEach(button => button.onclick = () => this.locateIssue(issues[Number(button.dataset.docIssue)]));
     dialog.querySelector('#doc-library').onclick = handle(async () => { await this.save(); this.entry = null; this.render(); });
     dialog.querySelector('#doc-save').onclick = handle(async () => { await this.save(); this.render(); dialog.querySelector('#doc-message').textContent = 'Draft saved.'; });
@@ -169,11 +210,17 @@ const DocumentStudio = {
     });
     dialog.querySelector('#doc-publish').onclick = handle(async () => {
       const target = dialog.querySelector('#doc-assessment')?.value;
+      const publishKey = this.entry.id;
+      const publishToExamId = destination === 'exam' ? studioUI.publishExamTargets.get(publishKey) || '' : '';
       await this.save();
       if (e.kind === 'passage') {
-        const result = await api(destination === 'advanced' ? '/api/advanced-passages' : '/api/passages', { method: 'POST', body: JSON.stringify({ ...this.entry.content, publishNow: true }) });
+        const result = await api(destination === 'advanced' ? '/api/advanced-passages' : '/api/passages', { method: 'POST', body: JSON.stringify({ ...this.entry.content, publishNow: true, ...(publishToExamId ? {publishToExamId} : {}) }) });
         await reloadState();
-        if (this.openPublishedPassage(result.passage, destination)) { setStatus(`${result.passage.title} published to ${destinationLabel}. Make further changes in the passage editor.`, 'success'); return; }
+        const message = studioUI.completePassagePublication(result, publishKey);
+        if (this.openPublishedPassage(result.passage, destination)) { setStatus(message || `${result.passage.title} published to ${destinationLabel}. Make further changes in the passage editor.`, result.examAssignment?.error ? 'error' : 'success'); return; }
+        await this.library();
+        setStatus(message || `${result.passage.title} published to ${destinationLabel}.`, result.examAssignment?.error ? 'error' : 'success');
+        return;
       } else await api('/api/document-publish-math', { method: 'POST', body: JSON.stringify({ entryId: e.id, assessmentId: target, revision: this.state.revision }) });
       await reloadState(); await this.library(); setStatus('Reviewed content published through the existing content editor.', 'success');
     });

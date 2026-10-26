@@ -1,6 +1,10 @@
+import { toolSetter, mergeToolLists, type SharedExamTools } from "../features/games/useTeamTools";
+import { SharedToolNotes } from "../features/games/SharedToolNotes";
+import { SentenceDragDrop } from '../components/SentenceDragDrop';
 import { ExamSectionSubmission } from "../components/ExamSectionSubmission";
+import { ExamTimeExpiredDialog } from "../components/ExamTimeExpiredDialog";
 import { restoredReentryTimer } from "../../../server/src/shared/examReentry";
-import { memo, useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction, type DragEvent, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { Fragment, memo, useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction, type DragEvent, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { getBoldFormattedText, renderMathAuthoredText, ExamMathQuestion, renderMathRichText, renderInlineMathText, MatrixChoiceResponse } from "../components/ExamMathQuestion";
 import { PassageGlossary } from "../components/PassageGlossary";
@@ -72,6 +76,7 @@ import { getUserRole } from "../lib/auth";
 import { formatDuration, getAssessmentIdFromPath, getDisplayName } from "../lib/exam";
 import {
   getExamTimerDisplay,
+  isExamTimeExpired,
   loadExamTimer,
   pauseExamTimer,
   resumeExamTimer,
@@ -173,6 +178,8 @@ const emptyPencilStrokes: PencilStroke[] = [];
 type PencilDrawings = Record<string, PencilStroke[]>;
 type PencilStorage = {
   drawings: PencilDrawings;
+  peerDrawings?: PencilDrawings;
+  shared?: boolean;
   redoStacks: PencilDrawings;
   setDrawings: Dispatch<SetStateAction<PencilDrawings>>;
   setRedoStacks: Dispatch<SetStateAction<PencilDrawings>>;
@@ -216,13 +223,14 @@ function QuestionTimeTracker({
 function isTextEntryQuestion(question: ExamQuestion) {
   return (
     question.type === "short_response" ||
+    question.type === "expression_entry" ||
     question.type === "numeric_entry" ||
     question.type === "grid_in"
   );
 }
 
 function usesMathEntryKeypad(question: ExamQuestion) {
-  return question.type === "numeric_entry" || question.type === "grid_in";
+  return question.type === "numeric_entry" || question.type === "expression_entry" || question.type === "grid_in";
 }
 
 function isInlineDropdownQuestion(question: ExamQuestion) {
@@ -260,11 +268,13 @@ function isQuestionAnswered(question: ExamQuestion, selectedAnswers: SelectedAns
     return typeof selectedAnswers[question.id] === "string" && Boolean(selectedAnswers[question.id]);
   }
 
-  if (question.type === "multi_select" || question.type === "graph_point_select") {
+  if (question.type === "graph_point_select") return getSelectedChoiceIds(selectedAnswers[question.id]).length > 0;
+  if (question.type === "multi_select") {
     return getSelectedChoiceIds(selectedAnswers[question.id]).length >= getRequiredSelectionCount(question);
   }
 
-  if (question.type === "math_drag_drop") {
+  if (question.type === 'transition_drop' && question.dragDropSlots?.length === 1 && typeof selectedAnswers[question.id] === 'string') return Boolean(selectedAnswers[question.id]);
+  if (question.type === "math_drag_drop" || question.type === "transition_drop" && question.dragDropSlots?.length) {
     const placements = getCategoryPlacements(selectedAnswers[question.id]);
     const slots = question.dragDropSlots ?? [];
     return slots.length > 0 && slots.every((slot) => Boolean(placements[slot.id]));
@@ -307,6 +317,10 @@ function getRandomItem<T>(items: T[]) {
 }
 
 function createRandomQuestionAnswer(question: ExamQuestion): SelectedAnswer {
+  if (question.type === "transition_drop" && question.dragDropSlots?.length) {
+    const available = [...(question.choices || [])];
+    return Object.fromEntries(question.dragDropSlots.map(slot => { const item = getRandomItem(available); if (!question.allowReuse && item) available.splice(available.indexOf(item), 1); return [slot.id, item?.id || ""]; }));
+  }
   if (question.type === "multiple_choice" || question.type === "transition_drop") {
     return getRandomItem(question.choices ?? [])?.id ?? "preview-answer";
   }
@@ -368,6 +382,7 @@ function createRandomQuestionAnswer(question: ExamQuestion): SelectedAnswer {
 
   if (
     question.type === "short_response" ||
+    question.type === "expression_entry" ||
     question.type === "numeric_entry" ||
     question.type === "grid_in"
   ) {
@@ -430,11 +445,13 @@ function ExamModuleHeader({
   onPauseTimer,
   onToggleUserMenu,
   studentName,
+  onTimeExpiredSubmit,
 }: {
   isUserMenuOpen?: boolean;
   onPauseTimer?: () => void;
   onToggleUserMenu?: () => void;
   studentName: string;
+  onTimeExpiredSubmit?: () => Promise<void>;
 }) {
   return (
     <>
@@ -451,6 +468,7 @@ function ExamModuleHeader({
       </header>
       <div className="exam-module-bluebar" />
       <div className="exam-module-shadow" />
+      {onTimeExpiredSubmit && <ExamTimeExpiredDialog onSubmit={onTimeExpiredSubmit} />}
     </>
   );
 }
@@ -508,7 +526,24 @@ function PencilWorkspace({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const isDrawingRef = useRef(false);
   const [canvasVersion, setCanvasVersion] = useState(0);
-  const { drawings, setDrawings, redoStacks, setRedoStacks } = storage;
+  const [controlsHost, setControlsHost] = useState<HTMLElement | null>(null);
+  const { drawings, peerDrawings, setDrawings, redoStacks, setRedoStacks } = storage;
+  const peerStrokes = peerDrawings?.[drawingKey] ?? emptyPencilStrokes;
+  const [anchorBounds, setAnchorBounds] = useState<{ left: number; top: number; width: number; height: number } | null>(null);
+  const shared = Boolean(storage.shared);
+  useEffect(() => {
+    // Keep controls in the player's stacking context when it opens as an overlay.
+    setControlsHost(canvasRef.current?.closest<HTMLElement>('dialog, .mc-exam-viewer') ?? document.body);
+  }, []);
+  useEffect(() => {
+    if (!shared || contained) return;
+    const panel = canvasRef.current?.closest(".game-exam-player")?.querySelector(".exam-math-panel, .exam-standalone-panel");
+    if (!panel) return;
+    const measure = () => { const { left, top, width, height } = panel.getBoundingClientRect(); setAnchorBounds({ left, top, width, height }); };
+    const observer = new ResizeObserver(measure); observer.observe(panel);
+    window.addEventListener("scroll", measure, true); window.addEventListener("resize", measure); measure();
+    return () => { observer.disconnect(); window.removeEventListener("scroll", measure, true); window.removeEventListener("resize", measure); };
+  }, [shared, contained, drawingKey]);
   const strokes = drawings[drawingKey] ?? emptyPencilStrokes;
   const redoStrokes = redoStacks[drawingKey] ?? emptyPencilStrokes;
 
@@ -543,7 +578,7 @@ function PencilWorkspace({
     context.lineJoin = "round";
     context.lineWidth = 2.4;
     context.strokeStyle = "#151515";
-    for (const stroke of strokes) {
+    for (const stroke of [...strokes, ...peerStrokes]) {
       if (!stroke.points.length) continue;
       context.beginPath();
       const firstPoint = stroke.points[0];
@@ -556,13 +591,13 @@ function PencilWorkspace({
       }
       context.stroke();
     }
-  }, [canvasVersion, drawingKey, strokes]);
+  }, [canvasVersion, drawingKey, strokes, peerStrokes]);
 
   function pointFromEvent(event: ReactPointerEvent<HTMLCanvasElement>): PencilPoint {
     const bounds = event.currentTarget.getBoundingClientRect();
     return {
-      x: (event.clientX - bounds.left) / bounds.width,
-      y: (event.clientY - bounds.top) / bounds.height,
+      x: Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width)),
+      y: Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height)),
     };
   }
 
@@ -631,7 +666,7 @@ function PencilWorkspace({
 
   return (
     <>
-    <div className={`exam-pencil-layer ${contained ? "is-contained" : ""} ${active ? "is-active" : ""}`}>
+    <div className={`exam-pencil-layer ${contained ? "is-contained" : ""} ${active ? "is-active" : ""}`} style={shared && !contained && anchorBounds ? { inset: "auto", ...anchorBounds } : undefined}>
       <canvas
         aria-hidden="true"
         className="exam-pencil-canvas"
@@ -657,7 +692,7 @@ function PencilWorkspace({
           <button aria-label="Clear pencil marks" disabled={!strokes.length} onClick={clear} type="button">
             <Trash2 aria-hidden="true" size={19} strokeWidth={2.2} />
           </button>
-        </div>, document.body
+        </div>, controlsHost ?? document.body
       ) : null}
     </>
   );
@@ -709,6 +744,9 @@ export function ExamToolbar({
   timerText = "3:00:00",
   unansweredCount = 0,
   studentName,
+  sessionStats,
+  exitLabel = "Pause timer",
+  onTimeExpiredSubmit,
 }: {
   assessmentLabel: string;
   breadcrumbCurrent: string;
@@ -755,6 +793,9 @@ export function ExamToolbar({
   timerText?: string;
   unansweredCount?: number;
   studentName: string;
+  sessionStats?: ReactNode;
+  exitLabel?: string;
+  onTimeExpiredSubmit?: () => Promise<void>;
 }) {
   const progress = questionProgress ?? { answered: reviewQuestionCount - unansweredCount, total: reviewQuestionCount };
   const hasReviewMenu = Boolean(showReviewTools && reviewItems.length && onReviewItemSelect && onToggleReview);
@@ -947,6 +988,7 @@ export function ExamToolbar({
           </div>
 
           <div className="exam-session-user-tools">
+            {sessionStats}
             {sectionSubmission && <ExamSectionSubmission {...sectionSubmission} />}
             {canUseFastForward ? (
               <div className="exam-teacher-preview-tools">
@@ -1002,7 +1044,7 @@ export function ExamToolbar({
                 <div className="exam-user-menu-dropdown" role="menu">
                   <button onClick={onPauseTimer} role="menuitem" type="button">
                     <Pause aria-hidden="true" size={15} strokeWidth={2.2} />
-                    Pause timer
+                    {exitLabel}
                   </button>
                 </div>
               ) : null}
@@ -1026,7 +1068,6 @@ export function ExamToolbar({
               </>
             ) : null}
             {progress.total > 0 && <span className="exam-session-progress"><progress aria-label="Questions answered" max={progress.total} value={progress.answered} /><span>{Math.round(progress.answered / progress.total * 100)}%</span></span>}
-            <span className="exam-unofficial-label">Nathan Tutors · Unofficial practice</span>
           </div>
           {showStatusIcon ? (
             <span className="exam-session-status-icon" aria-label="Current battery level 100%">
@@ -1038,6 +1079,7 @@ export function ExamToolbar({
       </nav>
       {showWorkTools ? <ExamExhibits showExhibits={showExhibits} /> : null}
       {showWorkTools && pencilStorage && !pencilInPassage ? <PencilWorkspace active={activeTool === "pencil"} drawingKey={pencilKey} storage={pencilStorage} onDeactivate={() => onSelectTool?.("pointer")} /> : null}
+      {onTimeExpiredSubmit && <ExamTimeExpiredDialog onSubmit={onTimeExpiredSubmit} />}
     </>
   );
 }
@@ -1047,15 +1089,23 @@ export type ExamGameSession = {
   screen: "mathQuestion" | "passage" | "standaloneQuestion";
   answers: SelectedAnswers; onAnswersChange: (answers: SelectedAnswers) => void;
   onSubmit: (answers: SelectedAnswers) => Promise<boolean>; timerText: string;
+  hideTimer?: boolean;
   subjectPosition: { current: number; total: number };
+  sharedTools?: SharedExamTools;
+  lockedQuestionIds?: string[];
+  onCurrentQuestionChange?: (questionId: string | null) => void;
   teamNavigation?: { step: number; onNext: () => void; onReview: (step: number) => void };
+  practice?: { stats: ReactNode; feedback: ReactNode; onExit: () => void; exitLabel?: string; result?: 'correct' | 'incorrect' };
 };
 
 export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession } = {}) {
   const isGameSession = Boolean(gameSession);
-  const [pencilDrawings, setPencilDrawings] = useState<PencilDrawings>({});
+  const AnswerLock = gameSession ? "fieldset" : Fragment;
+  const [pencilDrawings, setLocalPencilDrawings] = useState<PencilDrawings>({});
   const [pencilRedoStacks, setPencilRedoStacks] = useState<PencilDrawings>({});
-  const pencilStorage: PencilStorage = { drawings: pencilDrawings, redoStacks: pencilRedoStacks, setDrawings: setPencilDrawings, setRedoStacks: setPencilRedoStacks };
+  const sharedTools = gameSession?.sharedTools;
+  const setPencilDrawings = toolSetter(sharedTools, "drawings", setLocalPencilDrawings);
+  const pencilStorage: PencilStorage = { shared: Boolean(sharedTools), drawings: sharedTools?.own.drawings ?? pencilDrawings, peerDrawings: sharedTools ? mergeToolLists({}, sharedTools.peers.map(peer => peer.state.drawings)) : undefined, redoStacks: pencilRedoStacks, setDrawings: setPencilDrawings, setRedoStacks: setPencilRedoStacks };
   const [accessToken, setAccessToken] = useState("");
   const [assessment, setAssessment] = useState<TeacherAssessment | null>(gameSession?.assessment ?? null);
   const [attemptContent, setAttemptContent] = useState<ExamContent | null>(gameSession?.content ?? null);
@@ -1071,7 +1121,9 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const [submittedSection, setSubmittedSection] = useState<ExamSection>("math");
   const sectionDatesRef = useRef<Partial<Record<ExamSection, string>>>({});
   const attemptIdRef = useRef<string>(crypto.randomUUID());
-  const [eliminatedChoices, setEliminatedChoices] = useState<EliminatedChoices>({});
+  const [localEliminatedChoices, setLocalEliminatedChoices] = useState<EliminatedChoices>({});
+  const eliminatedChoices = sharedTools ? mergeToolLists(sharedTools.own.eliminated, sharedTools.peers.map(peer => peer.state.eliminated)) : localEliminatedChoices;
+  const setEliminatedChoices = toolSetter(sharedTools, "eliminated", setLocalEliminatedChoices);
   const [errorMessage, setErrorMessage] = useState("");
   const [highlightToolbar, setHighlightToolbar] = useState<HighlightToolbarState | null>(null);
   const [isFastForwardEnabled, setIsFastForwardEnabled] = useState(false);
@@ -1083,12 +1135,18 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const [isUnansweredModalOpen, setIsUnansweredModalOpen] = useState(false);
   const [isTeacherPreviewSession, setIsTeacherPreviewSession] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [passageNotes, setPassageNotes] = useState<PassageNotes>({});
+  const [localPassageNotes, setLocalPassageNotes] = useState<PassageNotes>({});
+  const passageNotes = sharedTools?.own.notes ?? localPassageNotes;
+  const setPassageNotes = toolSetter(sharedTools, "notes", setLocalPassageNotes);
   const [reviewFilter, setReviewFilter] = useState<ReviewFilter>("all");
   const [examAnswers, setExamAnswers] = useState<SelectedAnswers>({});
   const selectedAnswers = gameSession?.answers ?? examAnswers;
   const setSelectedAnswers: Dispatch<SetStateAction<SelectedAnswers>> = useCallback(value => {
-    if (gameSession) gameSession.onAnswersChange(typeof value === "function" ? value(gameSession.answers) : value);
+    if (gameSession) {
+      const next = { ...(typeof value === "function" ? value(gameSession.answers) : value) };
+      for (const id of gameSession.lockedQuestionIds ?? []) { if (gameSession.answers[id] === undefined) delete next[id]; else next[id] = gameSession.answers[id]; }
+      gameSession.onAnswersChange(next);
+    }
     else setExamAnswers(value);
   }, [gameSession]);
   const [selectedCategoryItemId, setSelectedCategoryItemId] = useState("");
@@ -1098,7 +1156,12 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     : localSessionScreen;
   const [studentId, setStudentId] = useState("");
   const [studentName, setStudentName] = useState(gameSession?.studentName ?? "Student");
-  const [textHighlights, setTextHighlights] = useState<TextHighlights>({});
+  const [localTextHighlights, setLocalTextHighlights] = useState<TextHighlights>({});
+  const textHighlights = sharedTools ? mergeToolLists(sharedTools.own.highlights, sharedTools.peers.map(peer => peer.state.highlights)) : localTextHighlights;
+  const setTextHighlights = toolSetter(sharedTools, "highlights", setLocalTextHighlights);
+  const peerNotesSignature = JSON.stringify(sharedTools?.peers.filter(peer => Object.values(peer.state.notes).some(Boolean)).map(peer => ({ playerId: peer.playerId, notes: peer.state.notes })) ?? []);
+  const previousPeerNotes = useRef(peerNotesSignature);
+  useEffect(() => { if (previousPeerNotes.current !== peerNotesSignature) { previousPeerNotes.current = peerNotesSignature; setIsNotepadOpen(true); } }, [peerNotesSignature]);
   const [timerNow, setTimerNow] = useState(() => Date.now());
   const [timerState, setTimerState] = useState<ExamTimerState | null>(null);
   const autosaveInFlightRef = useRef(false);
@@ -1341,6 +1404,15 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     return () => window.removeEventListener("beforeunload", confirmBeforeLeaving);
   }, [isGameSession, assessment, isCheckingSession, sessionScreen]);
 
+  const gameQuestions = sessionScreen === "mathQuestion" ? gameSession?.content.mathSection?.questions
+    : sessionScreen === "standaloneQuestion" ? gameSession?.content.standaloneSection?.questions
+      : sessionScreen === "passage" ? gameSession?.content.passageSets[activePassageSetIndex]?.questions : undefined;
+  const gameQuestionIndex = sessionScreen === "mathQuestion" ? activeMathQuestionIndex
+    : sessionScreen === "standaloneQuestion" ? activeStandaloneQuestionIndex : activeQuestionIndex;
+  const visibleGameQuestionId = (gameQuestions?.[gameQuestionIndex] ?? gameQuestions?.[0])?.id ?? null;
+  const reportGameQuestion = gameSession?.onCurrentQuestionChange;
+  useEffect(() => { reportGameQuestion?.(visibleGameQuestionId); }, [reportGameQuestion, visibleGameQuestionId]);
+
   if (isCheckingSession) {
     return <main className="loading-shell">Loading exam session...</main>;
   }
@@ -1366,7 +1438,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   const currentAssessmentId = assessment.id;
-  const examContent = attemptContent ?? resolveExamContent(assessment);
+  const examContent = gameSession?.practice ? gameSession.content : attemptContent ?? resolveExamContent(assessment);
   const sectionAccess = getExamSectionAccess(examContent, isTeacherPreviewSession ? { english: true, math: true } : assessment.sectionAccess);
   const canAccessEnglish = sectionAccess.english && (isTeacherPreviewSession || !completedSections.includes("english"));
   const canAccessMath = sectionAccess.math && (isTeacherPreviewSession || !completedSections.includes("math"));
@@ -1424,11 +1496,6 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const activeQuestionSelectedChoiceIds = getSelectedChoiceIds(activePassageAnswer);
   const activeQuestionCategoryPlacements = getCategoryPlacements(activePassageAnswer);
   const activeQuestionEliminatedChoiceIds = activeQuestion ? eliminatedChoices[activeQuestion.id] ?? [] : [];
-  const activeTransitionChoiceId =
-    typeof activePassageAnswer === "string" ? activePassageAnswer : "";
-  const activeTransitionChoice = activeQuestionChoices.find(
-    (choice) => choice.id === activeTransitionChoiceId,
-  );
   const activeQuestionTitleId = activeQuestion ? `question-title-${activeQuestion.id}` : undefined;
   const passageQuestionCount = examContent.passageSets.reduce(
     (total, passageSet) => total + passageSet.questions.length,
@@ -1845,7 +1912,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
       return;
     }
 
-    if (!isFastForwardEnabled && currentChoiceIds.length >= maxChoices) {
+    if (question.type !== 'graph_point_select' && !isFastForwardEnabled && currentChoiceIds.length >= maxChoices) {
       showChoiceLimitWarning(maxChoices);
       return;
     }
@@ -2258,30 +2325,6 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     }
   }
 
-  function handleTransitionChoiceDrop(question: ExamQuestion, event: DragEvent<HTMLElement>) {
-    event.preventDefault();
-
-    const choiceId = event.dataTransfer.getData("text/plain");
-
-    if (choiceId && question.choices?.some((choice) => choice.id === choiceId)) {
-      handleChooseAnswer(question.id, choiceId);
-    }
-  }
-
-  function handleTransitionBankDrop(question: ExamQuestion, event: DragEvent<HTMLElement>) {
-    event.preventDefault();
-
-    const choiceId = event.dataTransfer.getData("text/plain");
-
-    if (choiceId && selectedAnswers[question.id] === choiceId) {
-      setSelectedAnswers((currentAnswers) => {
-        const nextAnswers = { ...currentAnswers };
-        delete nextAnswers[question.id];
-        return nextAnswers;
-      });
-    }
-  }
-
   function handleToggleBookmark() {
     if (!currentReviewItemId || !reviewItems.some((item) => item.id === currentReviewItemId && item.kind === "question")) return;
 
@@ -2434,6 +2477,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   function handleMathNext() {
+    if (gameSession?.practice?.feedback) clearTransientExamUi();
     if (!activeMathQuestion) {
       finishMathSection();
       return;
@@ -2477,8 +2521,13 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   const activeSubmissionSection: ExamSection = sessionScreen.startsWith("math") ? "math" : "english";
+  const onTimeExpiredSubmit = !isGameSession && !isTeacherPreviewSession && timerState && timerState.pausedAt === null && sessionScreen !== "testOver" && sessionScreen !== "sectionComplete" && isExamTimeExpired(timerState, timerNow)
+    ? async () => { await saveCompletedExam(selectedAnswers); setSessionScreen("testOver"); }
+    : undefined;
   const submissionQuestions = activeSubmissionSection === "math" ? mathQuestions : [...examContent.passageSets.flatMap(set => set.questions), ...(standaloneSection?.questions ?? [])];
   const timerToolbarProps = {
+    showTimer: !gameSession?.hideTimer,
+    onTimeExpiredSubmit,
     sectionSubmission: !isGameSession && !isTeacherPreviewSession && !completedSections.includes(activeSubmissionSection) && submissionQuestions.length ? { section: activeSubmissionSection, answered: submissionQuestions.filter(question => isQuestionAnswered(question, selectedAnswers)).length, total: submissionQuestions.length, disabled: isSubmittingSection, finishesExam: completedSections.includes(activeSubmissionSection === "math" ? "english" : "math"), onSubmit: () => submitExamSection(activeSubmissionSection) } : undefined,
     isTimerOvertime: timerDisplay.isOvertime,
     isTimerVisible,
@@ -2530,6 +2579,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   };
 
   const moduleHeaderProps = {
+    onTimeExpiredSubmit,
     isUserMenuOpen,
     onPauseTimer: handlePauseTimer,
     onToggleUserMenu: () => setIsUserMenuOpen((currentValue) => !currentValue),
@@ -2623,9 +2673,10 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
       <main className="exam-session-shell is-math-session">
         <ExamToolbar
           assessmentLabel={assessmentLabel}
-          breadcrumbCurrent={gameSession ? `${gameSession.subjectPosition.current} OF ${gameSession.subjectPosition.total}` : `${activeMathQuestionIndex + 1} OF ${mathQuestions.length}`}
+          breadcrumbCurrent={gameSession?.practice ? `QUESTION ${gameSession.subjectPosition.current}` : gameSession ? `${gameSession.subjectPosition.current} OF ${gameSession.subjectPosition.total}` : `${activeMathQuestionIndex + 1} OF ${mathQuestions.length}`}
           breadcrumbMiddle={mathSection.label.toUpperCase()}
           {...reviewToolbarProps}
+          {...(gameSession?.practice ? { sessionStats: gameSession.practice.stats, showTimer: false, onPauseTimer: gameSession.practice.onExit, exitLabel: gameSession.practice.exitLabel ?? "End practice" } : {})}
           isNotepadOpen={isNotepadOpen}
           isPreviousActive={isTeacherPreviewSession || isFastForwardEnabled}
           showReviewTools={isTeacherPreviewSession || isFastForwardEnabled}
@@ -2633,22 +2684,26 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           onPrevious={handleMathPrevious}
           onSelectTool={handleSelectTool}
           showExhibits
-          canEliminate={['multiple_choice', 'multi_select'].includes(activeMathQuestion.type)}
+          canEliminate={['multiple_choice', 'multi_select', 'graph_point_select'].includes(activeMathQuestion.type)}
           studentName={studentName}
         />
 
         <ExamMathQuestion
           key={activeMathQuestion.id} question={activeMathQuestion}
+          answerFeedback={gameSession?.practice?.result}
           answer={selectedAnswers[activeMathQuestion.id]}
           allowExtraSelections={isFastForwardEnabled}
           onChange={value => setSelectedAnswers(current => ({ ...current, [activeMathQuestion.id]: value }))}
           eliminatedIds={activeMathQuestionEliminatedChoiceIds}
           onSelectChoice={id => handleChoiceClick(activeMathQuestion, id)}
           onTogglePoint={id => handleToggleMultiSelectAnswer(activeMathQuestion, id)}
+          onEliminatePoint={activeTool === 'eliminator' ? id => handleToggleEliminatedChoice(activeMathQuestion.id, id) : undefined}
           onChoiceLabelClick={(event, id) => handleChoiceLabelClick(event, activeMathQuestion, id)}
           onTextSelection={handleExamTextSelection}
           renderText={(html, text, key) => renderMathRichText(html, text, key, (value, id) => renderMathAuthoredText(value, id, renderHighlightedText))}
         ><QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeMathQuestion.id} /></ExamMathQuestion>
+
+        {gameSession?.practice?.feedback}
 
         {highlightToolbar ? (
           <div
@@ -2687,7 +2742,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         {isNotepadOpen ? (
           <section className="exam-notepad-window" aria-label="Notepad">
             <header>
-              <h2>Global Notepad</h2>
+              <h2>{sharedTools ? "Team Notepad · Your notes" : "Global Notepad"}</h2>
               <button
                 aria-label="Close notepad"
                 onClick={() => {
@@ -2709,7 +2764,9 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 }))
               }
               value={passageNotes[mathNoteKey] ?? ""}
+              maxLength={sharedTools ? 4000 : undefined}
             />
+            <SharedToolNotes tools={sharedTools} noteKey={mathNoteKey} />
           </section>
         ) : null}
 
@@ -2885,7 +2942,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
               </p>
             ) : null}
 
-            {activeStandaloneQuestion.type === "matrix_choice" &&
+            {activeStandaloneQuestion.type === 'transition_drop' ? <SentenceDragDrop key={activeStandaloneQuestion.id} question={activeStandaloneQuestion} answer={selectedAnswers[activeStandaloneQuestion.id]} onChange={answer => setSelectedAnswers(current => ({ ...current, [activeStandaloneQuestion.id]: answer }))} /> : activeStandaloneQuestion.type === "matrix_choice" &&
             activeStandaloneQuestion.items &&
             activeStandaloneQuestion.categories ? (
               <MatrixChoiceResponse
@@ -3062,7 +3119,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         {isNotepadOpen ? (
           <section className="exam-notepad-window" aria-label="Notepad">
             <header>
-              <h2>Global Notepad</h2>
+              <h2>{sharedTools ? "Team Notepad · Your notes" : "Global Notepad"}</h2>
               <button
                 aria-label="Close notepad"
                 onClick={() => {
@@ -3084,7 +3141,9 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 }))
               }
               value={passageNotes[standaloneNoteKey] ?? ""}
+              maxLength={sharedTools ? 4000 : undefined}
             />
+            <SharedToolNotes tools={sharedTools} noteKey={standaloneNoteKey} />
           </section>
         ) : null}
 
@@ -3134,6 +3193,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           breadcrumbCurrent=""
           breadcrumbMiddle="END SECTION"
           {...(isTeacherTestView ? reviewToolbarProps : {})}
+          onTimeExpiredSubmit={onTimeExpiredSubmit}
           isNextActive={false}
           showReviewTools={isTeacherTestView}
           showStatusIcon={false}
@@ -3470,6 +3530,8 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           </div>
 
           <form key={activeQuestion.id} className="exam-question-panel" onSubmit={event => event.preventDefault()}>
+            <AnswerLock {...(gameSession ? { className: "game-answer-lock", disabled: gameSession.lockedQuestionIds?.includes(activeQuestion.id) } : {})}>
+            {gameSession?.lockedQuestionIds?.includes(activeQuestion.id) && <p className="game-locked-answer-note">Answer locked · Your result is shown above. You can still use tools and review the passage.</p>}
             <QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeQuestion.id} />
             <h1
               className="exam-highlightable"
@@ -3691,63 +3753,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 </div>
               </div>
             ) : activeQuestion.type === "transition_drop" && activeQuestionChoices.length > 0 ? (
-              <div className="exam-transition-drop">
-                <div
-                  aria-label="Drag-and-drop answer bank"
-                  className="exam-transition-bank"
-                  onDragOver={(event) => event.preventDefault()}
-                  onDrop={(event) => handleTransitionBankDrop(activeQuestion, event)}
-                >
-                  {activeQuestionChoices
-                    .filter((choice) => choice.id !== activeTransitionChoiceId)
-                    .map((choice) => (
-                      <button
-                        className="exam-transition-chip"
-                        draggable
-                        key={choice.id}
-                        onClick={() => handleChooseAnswer(activeQuestion.id, choice.id)}
-                        onDragStart={(event) => {
-                          event.dataTransfer.setData("text/plain", choice.id);
-                        }}
-                        type="button"
-                      >
-                        {choice.text}
-                      </button>
-                    ))}
-                </div>
-
-                <p className="exam-transition-sentence">
-                  {activeQuestion.transitionSentenceNumber ? (
-                    <span>{activeQuestion.transitionSentenceNumber}</span>
-                  ) : null}
-                  {activeQuestion.transitionBlankBefore}{" "}
-                  <button
-                    aria-label="Drop transition answer here"
-                    className={`exam-transition-blank ${activeTransitionChoice ? "is-filled" : ""}`}
-                    draggable={Boolean(activeTransitionChoice)}
-                    onClick={() => {
-                      if (activeTransitionChoice) {
-                        setSelectedAnswers((currentAnswers) => {
-                          const nextAnswers = { ...currentAnswers };
-                          delete nextAnswers[activeQuestion.id];
-                          return nextAnswers;
-                        });
-                      }
-                    }}
-                    onDragOver={(event) => event.preventDefault()}
-                    onDragStart={(event) => {
-                      if (activeTransitionChoice) {
-                        event.dataTransfer.setData("text/plain", activeTransitionChoice.id);
-                      }
-                    }}
-                    onDrop={(event) => handleTransitionChoiceDrop(activeQuestion, event)}
-                    type="button"
-                  >
-                    {activeTransitionChoice?.text ?? ""}
-                  </button>{" "}
-                  {activeQuestion.transitionBlankAfter}
-                </p>
-              </div>
+              <SentenceDragDrop key={activeQuestion.id} question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({ ...current, [activeQuestion.id]: answer }))} />
             ) : (
               <div className="exam-choice-list">
                 {activeQuestion.type === "multi_select" && activeQuestionChoices.length > 0 ? (
@@ -3827,6 +3833,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 )}
               </div>
             )}
+          </AnswerLock>
           </form>
         </section>
 
@@ -3905,7 +3912,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         {isNotepadOpen ? (
           <section className="exam-notepad-window" aria-label="Notepad">
             <header>
-              <h2>Global Notepad</h2>
+              <h2>{sharedTools ? "Team Notepad · Your notes" : "Global Notepad"}</h2>
               <button
                 aria-label="Close notepad"
                 onClick={() => {
@@ -3922,7 +3929,9 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
               autoFocus
               onChange={(event) => handleChangePassageNote(event.target.value)}
               value={passageNotes[activePassageSet.id] ?? ""}
+              maxLength={sharedTools ? 4000 : undefined}
             />
+            <SharedToolNotes tools={sharedTools} noteKey={activePassageSet.id} />
           </section>
         ) : null}
 
@@ -3981,7 +3990,6 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
       <section className="exam-session-document" aria-labelledby="exam-session-title">
         <article className="exam-session-page">
           <header className="exam-session-page-header">
-            <p>Nathan Tutors · Unofficial practice</p>
             <h1 id="exam-session-title">SHSAT Practice Test</h1>
             <p>Grade 8</p>
           </header>

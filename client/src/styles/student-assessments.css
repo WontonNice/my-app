@@ -1,0 +1,83 @@
+.student-exams-library { border:1px solid var(--student-line); border-radius:12px; background:var(--student-paper); overflow:hidden; }
+.student-exams-toolbar { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 22px 14px; }
+.student-exams-search { display:flex; align-items:center; gap:9px; width:min(100%,440px); min-height:40px; border:1px solid var(--student-line); border-radius:7px; background:#fff; padding:0 12px; color:var(--student-muted); }
+.student-exams-search:focus-within { border-color:var(--student-green-2); box-shadow:0 0 0 2px #2a6b5220; }
+.student-exams-search > svg { flex:none; }
+.student-exams-search input { min-width:0; width:100%; border:0; outline:none; background:transparent; padding:10px 0; color:var(--student-ink); font:inherit; font-size:.78rem; box-shadow:none; }
+.student-exams-search input::-webkit-search-cancel-button { display:none; }
+.student-exams-search button { display:grid; place-items:center; flex:none; border:0; background:none; padding:5px; color:var(--student-muted); cursor:pointer; }
+.student-exams-sort { display:flex; align-items:center; gap:10px; white-space:nowrap; color:var(--student-muted); font-size:.7rem; }
+.student-exams-sort select { max-width:180px; border:1px solid var(--student-line); border-radius:6px; background:var(--student-paper); color:var(--student-ink); padding:9px 26px 9px 10px; font:inherit; font-size:.74rem; cursor:pointer; }
+.student-exams-filterbar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:0 22px; border-bottom:1px solid var(--student-line); }
+.student-exams-filterbar nav { display:flex; gap:22px; }
+.student-exams-filterbar button { display:flex; align-items:center; gap:7px; min-height:46px; padding:10px 0 12px; border:0; border-bottom:2px solid transparent; background:none; color:var(--student-muted); font:inherit; font-size:.76rem; cursor:pointer; }
+.student-exams-filterbar button[aria-pressed=true] { color:var(--student-green); border-bottom-color:var(--student-green); font-weight:750; }
+.student-exams-filterbar button > span { min-width:21px; padding:2px 5px; border-radius:5px; background:#eeebe5; color:var(--student-muted); font-size:.63rem; font-variant-numeric:tabular-nums; text-align:center; }
+.student-exams-filterbar button[aria-pressed=true] > span { background:#e5eee7; color:var(--student-green); }
+.student-exams-count { font-size:.66rem; color:var(--student-muted); white-space:nowrap; }
+.student-exams-table { width:100%; border-collapse:collapse; color:var(--student-ink); text-align:left; font-size:.76rem; }
+.student-exams-table thead { background:#f6f3ed; color:var(--student-muted); }
+.student-exams-table thead th { padding:11px 12px; font-size:.64rem; font-weight:600; }
+.student-exams-table th:first-child { padding-left:22px; }
+.student-exams-table td:last-child { padding-right:22px; }
+.student-exams-table tbody tr { border-bottom:1px solid var(--student-line); }
+.student-exams-table tbody tr:last-child { border-bottom:0; }
+.student-exams-table tbody tr:hover { background:#f7f5ef; }
+.student-exams-table td,.student-exams-table tbody th { padding:14px 12px; vertical-align:middle; }
+.student-exams-table .student-exams-name { width:34%; font-weight:650; }
+.student-exams-name > a { color:var(--student-green-2); text-decoration:none; }
+.student-exams-name > a:hover { text-decoration:underline; text-underline-offset:3px; }
+.student-exams-name > span,.student-exams-name > a { overflow-wrap:anywhere; line-height:1.5; }
+.student-exams-name > small { display:block; color:var(--student-muted); font-size:.62rem; font-weight:400; margin-top:4px; }
+.student-exams-name > small.is-reopened { color:var(--student-green-2); }
+.student-exams-sections > div { display:flex; gap:5px; }
+.student-exams-sections > div > span { display:inline-flex; align-items:center; gap:3px; padding:4px 7px; border-radius:4px; background:#f0ede6; color:#74766d; font-size:.61rem; white-space:nowrap; }
+.student-exams-sections > div > span.is-open { color:var(--student-green); background:#e8efe7; }
+.student-exams-questions strong { font-size:.76rem; font-weight:600; font-variant-numeric:tabular-nums; }
+.student-exams-questions small { display:block; color:var(--student-muted); font-size:.6rem; white-space:nowrap; margin-top:3px; }
+.student-exams-duration,.student-exams-year { white-space:nowrap; font-variant-numeric:tabular-nums; }
+.student-exams-year small { display:block; font-size:.62rem; color:var(--student-muted); margin-top:3px; }
+.student-exams-status > span { display:flex; align-items:center; gap:5px; color:var(--student-muted); font-size:.67rem; white-space:nowrap; }
+.student-exams-status > span.is-open { color:var(--student-green-2); font-weight:650; }
+.student-exams-action { text-align:right; white-space:nowrap; }
+.student-exams-action > a { display:inline-flex; align-items:center; justify-content:center; gap:7px; min-height:32px; border-radius:5px; padding:7px 11px; background:var(--student-green); color:#fff; text-decoration:none; font-size:.68rem; font-weight:650; }
+.student-exams-action > a:hover { background:var(--student-green-2); }
+.student-exams-action > span { color:var(--student-muted); font-size:.63rem; }
+.student-exams-note { display:flex; align-items:center; gap:7px; border-top:1px solid var(--student-line); padding:13px 22px; color:var(--student-muted); font-size:.65rem; line-height:1.5; }
+.student-exams-note > svg { flex:none; }
+.student-exams-empty { display:grid; justify-items:center; gap:12px; padding:54px 20px; color:var(--student-muted); text-align:center; }
+.student-exams-empty h2 { margin:0; font-family:Georgia,"Times New Roman",serif; font-size:1.3rem; font-weight:400; color:var(--student-ink); }
+.student-exams-empty p { margin:0; font-size:.78rem; line-height:1.6; }
+.student-exams-empty button { border:1px solid var(--student-line); border-radius:6px; background:#f5f2eb; padding:9px 14px; color:var(--student-green); font:inherit; font-size:.74rem; cursor:pointer; }
+.student-exams-library :is(a,button,select):focus-visible { outline:2px solid var(--student-green-2); outline-offset:3px; }
+.student-exams-mobile-label { display:none; }
+@media(max-width:1150px) and (min-width:761px) {
+  .student-exams-table td,.student-exams-table tbody th,.student-exams-table thead th { padding-inline:8px; }
+  .student-exams-table .student-exams-name { width:28%; }
+  .student-exams-sections > div { flex-wrap:wrap; }
+}
+@media(max-width:760px) {
+  .student-exams-toolbar { flex-wrap:wrap; gap:12px; padding:16px; }
+  .student-exams-search { width:100%; }
+  .student-exams-sort { margin-left:auto; }
+  .student-exams-filterbar { padding:0 16px; flex-wrap:wrap; gap:0; }
+  .student-exams-filterbar nav { width:100%; justify-content:space-between; gap:12px; }
+  .student-exams-count { padding:8px 0 12px; }
+  .student-exams-table,.student-exams-table tbody { display:block; }
+  .student-exams-table thead { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+  .student-exams-table tbody tr { display:grid; grid-template-columns:minmax(0,1fr) auto auto; grid-template-areas:"name name name" "year year year" "sections sections status" "questions duration action"; align-items:center; gap:10px 12px; padding:16px; }
+  .student-exams-table tbody th,.student-exams-table td,.student-exams-table th:first-child,.student-exams-table td:last-child { padding:0; }
+  .student-exams-table .student-exams-name { grid-area:name; width:auto; font-size:.85rem; }
+  .student-exams-year { grid-area:year; display:flex; align-items:center; gap:8px; color:var(--student-muted); font-size:.68rem; }
+  .student-exams-year small { display:inline; margin:0; }
+  .student-exams-sections { grid-area:sections; }
+  .student-exams-questions { grid-area:questions; }
+  .student-exams-questions strong { font-size:.69rem; font-weight:500; }
+  .student-exams-questions small { display:none; }
+  .student-exams-duration { grid-area:duration; color:var(--student-muted); font-size:.69rem; }
+  .student-exams-status { grid-area:status; justify-self:end; }
+  .student-exams-action { grid-area:action; }
+  .student-exams-mobile-label { display:inline; }
+  .student-exams-note { padding:14px 16px; }
+}
+

@@ -1,0 +1,41 @@
+:root { --account-accent:#1f4a3a; --account-secondary:#2e7257; --account-tint:#e8efea; }
+.auth-panel .auth-links { display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:24px; }
+.auth-panel .auth-links .auth-switch { display:block; margin:0; line-height:1.5; text-align:center; }
+html .student-portal-shell { --student-green:var(--account-accent); --student-green-2:var(--account-secondary); }
+html .student-portal-global-search, html .student-portal-topbar .staff-account-switch { background:color-mix(in srgb,var(--account-accent) 85%,white); color:#f5f4f0; }
+html .student-portal-global-search input::placeholder, html .student-portal-brand small { color:#e6e5e1; }
+html .student-portal-sidebar nav > .is-active,
+html .student-material-filter-row button[aria-pressed="true"],
+html .student-assignment-kind,
+html .student-section-heading > strong { background:var(--account-tint); }
+html .student-shsat-countdown { border-color:color-mix(in srgb,var(--account-accent) 20%,white); background:linear-gradient(110deg,var(--account-tint),#faf9f0); }
+html .profile-settings { color:var(--account-accent); }
+html .profile-settings header > span, html .profile-kicker, html .profile-settings button, html .profile-settings .profile-upload { color:var(--account-accent); }
+html .profile-settings .profile-primary { background:var(--account-accent); border-color:var(--account-accent); color:white; }
+html .profile-large-avatar { background:linear-gradient(135deg,var(--account-tint),#f4f0e7); color:var(--account-accent); }
+.profile-settings .profile-color-section { display:block; }
+.student-portal-topbar:has(> .account-streak-badge) { grid-template-columns:minmax(180px,1fr) minmax(180px,440px) auto auto; }
+.profile-color-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:18px; }
+.profile-settings .profile-color-option { margin:0; display:grid; grid-template-columns:24px 1fr; justify-content:flex-start; gap:3px 10px; padding:12px; min-height:68px; border:1px solid #d9d8d0; text-align:left; }
+.profile-color-option .profile-color-swatch { grid-row:span 2; }
+.profile-settings .profile-color-option small { margin:0; font-size:10px; }
+.profile-settings .profile-color-option[aria-pressed="true"] { border-color:var(--account-accent); box-shadow:0 0 0 1px var(--account-accent); background:var(--account-tint); }
+.profile-color-swatch { width:24px; height:24px; border-radius:50%; flex:none; display:grid; place-items:center; color:white; }
+.account-streak-card { margin:20px 0; padding:24px 28px; border:1px solid #ded9ce; border-radius:16px; background:#fffdf8; color:var(--account-accent); }
+.account-streak-heading { display:flex; align-items:center; gap:14px; }
+.account-streak-flame { display:grid; place-items:center; width:52px; height:52px; border-radius:14px; background:var(--account-tint); flex:none; }
+.account-streak-heading p { margin:0 0 5px; color:var(--account-secondary); font-size:10px; font-weight:800; letter-spacing:.12em; }
+.account-streak-heading h2 { margin:0; font-size:30px; line-height:1.2; }
+.account-streak-heading h2 span { font-size:17px; font-weight:500; }
+.account-streak-best { margin-left:auto; font-size:11px; color:#6e756f; text-align:right; }
+.account-streak-best span { display:block; font-size:16px; color:var(--account-accent); margin-top:3px; }
+.account-streak-week { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); list-style:none; padding:0; gap:8px; margin:22px 0 10px; }
+.account-streak-week li { display:grid; justify-items:center; gap:8px; color:#75766e; font-size:12px; }
+.account-streak-week i { display:grid; place-items:center; width:34px; height:34px; border-radius:50%; border:1px solid #ded9ce; font-style:normal; }
+.account-streak-week .is-checked i { color:white; background:var(--account-accent); border-color:var(--account-accent); }
+.account-streak-week .is-today i { outline:2px solid var(--account-secondary); outline-offset:3px; }
+.account-streak-week small { font-size:10px; margin:0; color:var(--account-secondary); }
+.account-streak-card .account-streak-note { font-size:12px; color:#68716b; line-height:1.6; margin:0; }
+.account-streak-badge { display:inline-flex; align-items:center; gap:5px; padding:7px 10px; border-radius:20px; background:#ffffff20; color:white; text-decoration:none; white-space:nowrap; font-size:12px; }
+@media(max-width:600px) { .profile-color-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .account-streak-card { padding:20px 16px; } .account-streak-badge span { display:none; } .account-streak-week { gap:3px; } .account-streak-heading h2 { font-size:25px; } }
+@media(max-width:900px) { .student-portal-topbar:has(> .account-streak-badge) { grid-template-columns:auto minmax(0,1fr) auto auto; gap:8px; } }

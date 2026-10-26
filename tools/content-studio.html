@@ -765,6 +765,7 @@
   <link rel="stylesheet" href="/content-studio-workspace.css">
   <link rel="stylesheet" href="/content-studio-batches.css">
   <link rel="stylesheet" href="/content-studio-math.css">
+  <link rel="stylesheet" href="/content-studio-command.css">
 </head>
 <body class="studio-authoring">
   <header class="app-header">
@@ -780,6 +781,7 @@
     <button data-tab="standalone" type="button">Exam Part B</button>
     <button data-tab="tests" type="button">Exam builder</button>
     <button data-tab="math" type="button">Exam math</button>
+    <button data-tab="math-command" type="button">Math Command Center</button>
     <button data-tab="compare" type="button">Compare tests</button>
     <button data-tab="advanced" type="button">SAT passages</button>
     <button data-tab="practice" type="button">Regular practice</button>
@@ -789,6 +791,7 @@
   </nav>
 
   <main>
+    <section class="view" id="math-command-view"><iframe id="math-command-frame" title="Math Command Center" style="display:block;width:100%;height:calc(100dvh - 68px);border:0;background:#f6f8fa"></iframe></section>
     <section class="view" id="compare-view"><div id="compare-workspace"></div></section>
     <section class="view" id="question-bank-view"><div id="question-bank-workspace"></div></section>
     <section class="view is-active" id="passages-view">
@@ -821,6 +824,8 @@
             <input class="search" id="standalone-search" placeholder="Search Part B bank" type="search">
             <button class="primary" id="new-standalone" type="button">+ New Part B question</button>
             <button class="secondary" id="new-standalone-drag" type="button">+ New one-box drag and drop</button>
+            <button class="secondary" id="import-standalone" type="button">Import Part B / ChatGPT prompt</button>
+            <button class="secondary" id="check-standalone-repeats" type="button">Check repeats</button>
           </div>
           <div class="passage-list" id="standalone-list"></div>
         </aside>
@@ -838,16 +843,16 @@
         </header>
         <div class="test-grid">
           <section class="panel">
-            <div class="panel-head"><div><h2>Exams</h2><small>Create an exam or select one to assemble.</small></div><button class="primary" id="new-exam" type="button">+ New exam</button></div>
+            <div class="panel-head"><div><h2>Exams</h2><small>Create an exam or select one to assemble.</small></div><button aria-controls="new-exam-form" aria-expanded="false" class="primary" id="new-exam" type="button">+ New exam</button></div>
             <form id="new-exam-form" hidden style="padding:16px;display:none">
               <label>Exam title<input name="title" required maxlength="160" placeholder="2026 Fall Practice Test"></label>
-              <label>Exam section / label<input name="examLabel" list="new-exam-labels" maxlength="60" value="Other exams" placeholder="Official practice, mock exams, publisher…"><datalist id="new-exam-labels"><option>Official practice</option><option>Other exams</option></datalist></label>
+              <label>Exam section / label<select name="examLabel"><option>Official practice</option><option selected>Other exams</option></select></label>
               <label>Duration (minutes)<input name="durationMinutes" type="number" min="1" max="600" value="180" required></label>
               <label>Description<textarea name="description" rows="2"></textarea></label>
               <p class="field-note">New exams start locked. Add English and Math questions, then open access from the teacher dashboard.</p>
               <label><input name="paperAnswers" type="checkbox"> Enter answers from a test students already took</label>
               <p class="field-note">After saving your questions and answer key, use Enter student answers in the teacher dashboard.</p>
-              <button class="primary" type="submit">Create exam</button>
+              <div><button class="primary" type="submit">Create exam</button> <button class="secondary" id="cancel-new-exam" type="button">Cancel</button></div>
               <p id="new-exam-error" role="alert"></p>
             </form>
             <div class="assessment-list" id="assessment-list"></div>
@@ -1111,8 +1116,13 @@ Why D is wrong."></textarea>
   <script src="/content-studio-images.js"></script>
   <script src="/content-studio-math.js"></script>
   <script src="/document-import.cjs"></script>
+  <script src="/passage-exam-assignment.cjs"></script>
   <script src="/math-import-batch.cjs"></script>
   <script src="/content-studio-workspace.js"></script>
+  <script src="/content-studio-command.js"></script>
+  <script src="/content-studio-part-b.js"></script>
+  <script src="/part-b-bank.cjs"></script>
+  <script src="/content-studio-part-b-tools.js"></script>
   <script src="/content-studio-documents.js"></script>
   <script src="/content-studio-batches.js"></script>
   <link rel="stylesheet" href="/content-studio-compare.css">
@@ -1256,6 +1266,7 @@ Why D is wrong."></textarea>
           content = `<span data-glossary-definition="${escapeHtml(definition.trim().slice(0, 4000))}" role="link" tabindex="0">${content}</span>`;
         }
         if (tag === "br") return "<br>";
+        if (tag === "blockquote") return `<blockquote>${content}</blockquote>`;
         if (tag === "li") return inline ? `${content}<br>` : `<li>${content}</li>`;
         if (tag === "ul" || tag === "ol") return inline ? content : `<${tag}>${content}</${tag}>`;
         if (/^h[1-6]$/.test(tag)) return inline ? `${content}<br>` : `<h2>${content}</h2>`;
@@ -1552,7 +1563,7 @@ Why D is wrong."></textarea>
       if (type === "short_response") {
         return { ...base, correctTextAnswers: [""] };
       }
-      if (type === "numeric_entry") {
+      if (type === "numeric_entry" || type === "expression_entry") {
         return { ...base, correctTextAnswers: [""], entryLayout: "plain" };
       }
       if (type === "math_drag_drop") {
@@ -1792,6 +1803,7 @@ Why D is wrong."></textarea>
       $$(".view").forEach((view) => view.classList.toggle("is-active", view.id === viewId));
       studioUI.activateWorkspace(tab);
       if (tab === "compare") ComparisonStudio.mount();
+      if (tab === "math-command") { const frame = document.getElementById('math-command-frame'); if (!frame.src) frame.src = '/math-command/'; else frame.contentWindow.location.reload(); }
     }
 
     function renderErrors(elementId, errors) {
@@ -2290,7 +2302,7 @@ Why D is wrong."></textarea>
             <button class="secondary" id="add-question" type="button">+ Add question</button>
             ${passage.sourceHash ? `<button class="danger" id="delete-passage" type="button">Delete passage</button>` : ""}
             <button class="primary" id="save-passage" type="button">${app.saving ? "Saving…" : passage.importDraftId ? "Publish reviewed passage" : "Save to code"}</button>
-            ${passage.importDraftId ? `<button class="secondary" id="save-document-draft">Save review draft</button><button class="secondary" id="review-document-draft">Review warnings / images</button>` : ""}
+            ${passage.importDraftId ? `<button class="secondary" id="save-document-draft">Save review draft</button><button class="secondary" id="review-document-draft">Review warnings / images</button><button class="danger" id="delete-document-draft" type="button">Delete draft</button>` : ""}
           </div>
         </div>
 
@@ -2405,6 +2417,7 @@ Why D is wrong."></textarea>
       $("#save-passage").addEventListener("click", savePassage);
       $("#save-document-draft")?.addEventListener("click", () => DocumentStudio.saveCurrentPassage());
       $("#review-document-draft")?.addEventListener("click", async () => { if (!await DocumentStudio.saveCurrentPassage()) return; await DocumentStudio.library(); DocumentStudio.open(app.passageDraft.importDraftId); });
+      $("#delete-document-draft")?.addEventListener("click", () => DocumentStudio.deleteDraft());
       $("#manage-content-topics").addEventListener("click", openContentTopicManager);
       studioUI.mountPassage();
     }
@@ -2741,6 +2754,11 @@ Why D is wrong."></textarea>
             app.standaloneDraft.stimulus = text;
             markStandaloneDirty();
             return;
+          } else if (editor.dataset.richKind === "standalone-explanation") {
+            app.standaloneDraft.explanationHtml = html;
+            app.standaloneDraft.explanation = text;
+            markStandaloneDirty();
+            return;
           } else if (editor.dataset.richKind === "standalone-choice") {
             const choice = app.standaloneDraft.choices[Number(editor.dataset.choiceIndex)];
             choice.html = html;
@@ -3006,7 +3024,8 @@ Why D is wrong."></textarea>
         blocks.push({ html: list ? element.outerHTML : element.innerHTML, text, align, kind: heading ? "heading" : list ? "list" : "", ...(numbered !== undefined ? { numbered: numbered === "true" } : {}) });
       });
       flushInline();
-      return blocks.length ? blocks : [{ html: wrapper.innerHTML, text: wrapper.textContent.trimEnd() }];
+      const result = blocks.length ? blocks : [{ html: wrapper.innerHTML, text: wrapper.textContent.trimEnd() }];
+      return passage.format === 'poem' ? app.poemRichBlocks(result, passage.text || '') : result;
     }
 
     function numberRichSentences(html, firstSentenceNumber, authoring = false) {
@@ -3176,16 +3195,17 @@ Why D is wrong."></textarea>
       ].join("");
     }
 
-    function studentQuestionMarkup(question) {
+    function studentQuestionMarkup(question, standalone = false) {
       if (!question) return `<p class="exam-question-placeholder">Add a question to preview this passage.</p>`;
       if (question.type === "matrix_choice") {
+        const evidence = question.matrixStyle === 'evidence';
         return `
-          <div class="exam-matrix-choice-wrap">
+          <div class="exam-matrix-choice-wrap${evidence ? ' is-evidence-matrix' : ''}">
             <table class="exam-matrix-choice-table">
-              <thead><tr><th scope="col">${escapeHtml(question.tableHeaders?.row || "Sentence")}</th>${(question.categories || []).map((category) => `<th scope="col">${escapeHtml(category.title)}</th>`).join("")}</tr></thead>
+              <thead><tr><th scope="col">${evidence ? '' : escapeHtml(question.tableHeaders?.row || "Sentence")}</th>${(question.categories || []).map((category) => `<th scope="col">${escapeHtml(category.title)}</th>`).join("")}</tr></thead>
               <tbody>${(question.items || []).map((item) => `
                 <tr><th scope="row">${item.html || escapeHtml(item.text || "Untitled row")}</th>${(question.categories || []).map((category) => `
-                  <td><label class="exam-matrix-choice-option"><input aria-label="${escapeHtml(`${item.text || "Row"}: ${category.title}`)}" name="preview-matrix-${escapeHtml(item.id)}" type="radio" value="${escapeHtml(category.id)}"><span aria-hidden="true"></span></label></td>
+                  <td><label class="exam-matrix-choice-option"><input aria-label="${escapeHtml(`${item.text || "Row"}: ${category.title}`)}" name="preview-matrix-${escapeHtml(item.id)}" type="${evidence ? 'checkbox' : 'radio'}" value="${escapeHtml(category.id)}"><span aria-hidden="true"></span></label></td>
                 `).join("")}</tr>
               `).join("")}</tbody>
             </table>
@@ -3222,18 +3242,19 @@ Why D is wrong."></textarea>
         `;
       }
       if (question.type === "category_sort") {
+        const prefix = standalone ? 'exam-standalone-category' : 'exam-category';
         return `
-          <div class="exam-category-sort ${question.categoryCapacity === 1 ? "is-single-capacity" : ""} ${(question.categories || []).length === 1 ? "is-single-category" : ""}">
-            <div class="exam-category-bank" aria-label="Answer choice bank" data-preview-category-bank>
+          <div class="${prefix}-sort ${question.categoryCapacity === 1 ? "is-single-capacity" : ""} ${(question.categories || []).length === 1 ? "is-single-category" : ""}">
+            <div class="${prefix}-bank" aria-label="Answer choice bank" data-preview-category-bank>
               ${(question.items || []).map((item) => `
-                <button class="exam-category-card" data-preview-category-item="${escapeHtml(item.id)}" draggable="true" type="button">${item.html || escapeHtml(item.text || "Untitled answer card")}</button>
+                <button class="${prefix}-card" data-preview-category-item="${escapeHtml(item.id)}" draggable="true" type="button">${item.html || escapeHtml(item.text || "Untitled answer card")}</button>
               `).join("")}
             </div>
-            <div class="exam-category-target-grid">
+            <div class="${prefix}-target-grid">
               ${(question.categories || []).map((category) => `
-                <section class="exam-category-target" data-preview-category-capacity="${question.categoryCapacity === 1 ? "1" : ""}" data-preview-category-target="${escapeHtml(category.id)}">
+                <section class="${prefix}-target" data-preview-category-capacity="${question.categoryCapacity === 1 ? "1" : ""}" data-preview-category-target="${escapeHtml(category.id)}">
                   <h2>${escapeHtml(category.title)}</h2>
-                  <div class="exam-category-target-items"></div>
+                  <div class="${prefix}-target-items" data-preview-category-items></div>
                 </section>
               `).join("")}
             </div>
@@ -3242,28 +3263,19 @@ Why D is wrong."></textarea>
       }
       if (question.type === "transition_drop") {
         const choices = Array.isArray(question.choices) ? question.choices : [];
-        return `
-          <div class="exam-transition-drop">
-            <div aria-label="Drag-and-drop answer bank" class="exam-transition-bank" data-preview-transition-bank>
-              ${choices.map((choice) => `
-                <button class="exam-transition-chip" data-preview-transition-choice="${escapeHtml(choice.id)}" draggable="true" type="button">${choice.html || escapeHtml(choice.text || choice.id)}</button>
-              `).join("")}
-            </div>
-            <p class="exam-transition-sentence">
-              ${question.transitionSentenceNumber ? `<span>${escapeHtml(question.transitionSentenceNumber)}</span>` : ""}
-              ${escapeHtml(question.transitionBlankBefore || "")}
-              <button aria-label="Drop an answer card here" class="exam-transition-blank" data-preview-transition-target type="button"></button>
-              ${escapeHtml(question.transitionBlankAfter || "")}
-            </p>
-          </div>
-        `;
+        return `<div class="exam-transition-drop" data-transition-reuse="${question.allowReuse === true}">
+          <div aria-label="Drag-and-drop answer bank" class="exam-transition-bank" data-preview-transition-bank>${choices.map(choice => `<button class="exam-transition-chip" data-preview-transition-choice="${escapeHtml(choice.id)}" draggable="true" type="button">${choice.html || escapeHtml(choice.text || choice.id)}</button>`).join('')}</div>
+          <small class="exam-transition-help">Drag a word into each blank, or choose a word and then a blank. Click a filled blank to clear it.</small>
+          ${question.transitionSentenceNumber ? `<span>${escapeHtml(question.transitionSentenceNumber)}</span>` : ''}
+          ${studioUI.transitionSentenceMarkup(question)}
+        </div>`;
       }
       const choices = Array.isArray(question.choices) ? question.choices : [];
       if (!choices.length) {
         return `<p class="exam-question-placeholder">The ${escapeHtml(question.type)} interaction is preserved in code but is not available in this studio preview yet.</p>`;
       }
       return `
-        <div class="exam-choice-list">
+        <div class="exam-choice-list${standalone ? ' exam-standalone-choice-list' : ''}">
           ${choices.map((choice) => `
             <label class="exam-choice">
                <input name="student-preview-answer" type="${question.type === "multi_select" ? "checkbox" : "radio"}">
@@ -3301,11 +3313,13 @@ Why D is wrong."></textarea>
         renderMathStudentPreview();
         return;
       }
-      if (!app.passageDraft) return;
-      $("#student-preview-subtitle").textContent = "Live preview of the current unsaved passage and questions";
-      const questions = app.passageDraft.questions || [];
+      const standalone = authoring ? authoringFrame.dataset.editor === 'standalone' : app.previewMode === 'standalone';
+      const draft = standalone ? app.standaloneDraft : app.passageDraft;
+      if (!draft) return;
+      $("#student-preview-subtitle").textContent = standalone ? "Live preview of the current unsaved Part B question" : "Live preview of the current unsaved passage and questions";
+      const questions = standalone ? [draft] : draft.questions || [];
       app.previewQuestionIndex = Math.max(0, Math.min(app.previewQuestionIndex, Math.max(questions.length - 1, 0)));
-      const questionIndex = authoring ? studioUI.selectedQuestionIndex : app.previewQuestionIndex;
+      const questionIndex = standalone ? 0 : authoring ? studioUI.selectedQuestionIndex : app.previewQuestionIndex;
       const question = questions[questionIndex];
       const questionCount = Math.max(questions.length, 1);
       const longContent = question && (
@@ -3329,6 +3343,10 @@ Why D is wrong."></textarea>
           <style>${embeddedStudentStyles}</style>
           <style>
             html, body { margin: 0; min-width: 320px; min-height: 100%; }
+            ${standalone ? `html, body { min-width: 0; background: #f7f7f7; color: #111820; color-scheme: light; }
+            .exam-session-shell { min-height: 100vh; box-sizing: border-box; }
+            .exam-standalone-document { box-sizing: border-box; }
+            @media (max-width: 600px) { .exam-standalone-document { width: calc(100% - 24px); padding: 16px; } }` : ''}
             .preview-tool-glyph { font-size: 12px; font-weight: 800; line-height: 1; }
             .exam-question-document { min-height: calc(100vh - 84px); }
             .exam-question-panel { padding-top: 2px; }
@@ -3373,13 +3391,20 @@ Why D is wrong."></textarea>
               <div class="exam-session-breadcrumb-inner">
                 <div class="exam-session-breadcrumb-text">
                   <span>CONTENT STUDIO PREVIEW</span><span>/</span>
-                  <span>${escapeHtml(app.passageDraft.label || app.passageDraft.title || "PASSAGE")}</span><span>/</span>
+                  <span>${escapeHtml(standalone ? "REVISING/EDITING PART B" : draft.label || draft.title || "PASSAGE")}</span><span>/</span>
                   <span>${app.previewQuestionIndex + 1} OF ${questionCount}</span>
                 </div>
                 <span class="exam-session-status-icon" aria-hidden="true">▣</span>
               </div>
             </nav>
-            <section class="exam-question-document ${longContent ? "is-expanded-layout" : ""}">
+            ${standalone ? `<section class="exam-standalone-document">
+              <form class="exam-standalone-panel">
+                <h1><span class="exam-rich-text">${inlineRichValue(draft.promptHtml, draft.prompt)}</span></h1>
+                <div class="exam-standalone-stimulus">${draft.stimulusHtml || escapeHtml(draft.stimulus || '').replaceAll('\n', '<br>')}</div>
+                ${draft.instructions ? `<p class="exam-standalone-instructions">${escapeHtml(draft.instructions)}</p>` : ''}
+                ${studentQuestionMarkup(draft, true)}
+              </form>
+            </section>` : `<section class="exam-question-document ${longContent ? "is-expanded-layout" : ""}">
               <div class="exam-question-passage">
                 <div class="exam-question-passage-scroll is-${app.passageDraft.format === "sentence_prose" ? "sentence-prose" : app.passageDraft.format}">
                   <div class="exam-passage-pencil-surface">${studentPassageMarkup(app.passageDraft, authoring)}</div>
@@ -3387,16 +3412,21 @@ Why D is wrong."></textarea>
               </div>
               <form class="exam-question-panel">
                 <h1><span class="exam-rich-text">${question?.promptHtml || escapeHtml(question?.prompt || (authoring ? "" : "Add a question prompt to preview it."))}</span></h1>
-                ${question && (authoring || question.instructions || question.instructionsHtml) ? `<p class="exam-question-instructions">${inlineRichValue(question.instructionsHtml, question.instructions)}</p>` : ""}
+                ${question && (question.instructions || question.instructionsHtml) ? `<div class="exam-question-instructions">${inlineRichValue(question.instructionsHtml, question.instructions)}</div>` : ""}
                 ${studentQuestionMarkup(question)}
               </form>
-            </section>
+            </section>`}
           </main>
           <script type="module">
             import { mountPassageGlossary } from '/content-studio-glossary.js';
             mountPassageGlossary(document.body);
           <\/script>
           <script>
+            document.querySelectorAll('.is-evidence-matrix input').forEach(function (input) {
+              input.addEventListener('change', function () {
+                if (input.checked) input.closest('tr').querySelectorAll('input').forEach(function (other) { if (other !== input) other.checked = false; });
+              });
+            });
             document.querySelectorAll("[data-preview-delta]").forEach(function (button) {
               button.addEventListener("click", function () {
                 parent.postMessage({ type: "exam-content-preview-navigation", delta: Number(button.dataset.previewDelta) }, "*");
@@ -3427,7 +3457,7 @@ Why D is wrong."></textarea>
                     occupiedItem.classList.remove("is-placed", "is-selected");
                   }
                 }
-                target.querySelector(".exam-category-target-items").appendChild(item);
+                target.querySelector("[data-preview-category-items], .exam-category-target-items").appendChild(item);
                 item.classList.add("is-placed");
                 item.classList.remove("is-selected");
                 selectedCategoryItem = null;
@@ -3456,45 +3486,36 @@ Why D is wrong."></textarea>
                 returnToBank(document.querySelector('[data-preview-category-item="' + event.dataTransfer.getData("text/plain") + '"]'));
               });
             }
-            var transitionTarget = document.querySelector("[data-preview-transition-target]");
+            var transitionTargets = Array.from(document.querySelectorAll("[data-preview-transition-target]"));
+            var transitionChoices = Array.from(document.querySelectorAll("[data-preview-transition-choice]"));
             var transitionBank = document.querySelector("[data-preview-transition-bank]");
-            var placedTransitionChoice = null;
-            function returnTransitionChoice() {
-              if (placedTransitionChoice) placedTransitionChoice.hidden = false;
-              placedTransitionChoice = null;
-              if (transitionTarget) {
-                transitionTarget.textContent = "";
-                transitionTarget.classList.remove("is-filled");
-              }
+            var transitionSelected = null;
+            var transitionReuse = document.querySelector("[data-transition-reuse]")?.dataset.transitionReuse === "true";
+            function clearTransitionTarget(target) {
+              var id = target.dataset.placedChoice; delete target.dataset.placedChoice; target.textContent = ""; target.classList.remove("is-filled"); target.draggable = false;
+              var choice = transitionChoices.find(function(choice) { return choice.dataset.previewTransitionChoice === id; });
+              if(choice) choice.hidden = false;
             }
-            function placeTransitionChoice(choice) {
-              if (!choice || !transitionTarget) return;
-              returnTransitionChoice();
-              placedTransitionChoice = choice;
-              choice.hidden = true;
-              transitionTarget.innerHTML = choice.innerHTML;
-              transitionTarget.classList.add("is-filled");
+            function placeTransitionChoice(choice, target) {
+              if(!choice || !target) return;
+              if(!transitionReuse) transitionTargets.forEach(function(other) { if(other.dataset.placedChoice === choice.dataset.previewTransitionChoice) clearTransitionTarget(other); });
+              clearTransitionTarget(target); target.dataset.placedChoice = choice.dataset.previewTransitionChoice;
+              target.innerHTML = choice.innerHTML; target.classList.add("is-filled"); target.draggable = true; choice.hidden = !transitionReuse;
+              transitionSelected = null; transitionChoices.forEach(function(item) { item.setAttribute("aria-pressed","false"); });
             }
-            document.querySelectorAll("[data-preview-transition-choice]").forEach(function (choice) {
-              choice.addEventListener("click", function () { placeTransitionChoice(choice); });
-              choice.addEventListener("dragstart", function (event) {
-                event.dataTransfer.setData("text/plain", choice.dataset.previewTransitionChoice);
-              });
+            transitionChoices.forEach(function(choice) {
+              choice.addEventListener("click",function() { if(transitionTargets.length === 1) placeTransitionChoice(choice,transitionTargets[0]); else { transitionSelected = choice; transitionChoices.forEach(function(item) { item.setAttribute("aria-pressed",String(item === choice)); }); } });
+              choice.addEventListener("dragstart",function(event) { event.dataTransfer.setData("text/plain",choice.dataset.previewTransitionChoice); });
             });
-            if (transitionTarget) {
-              transitionTarget.addEventListener("click", returnTransitionChoice);
-              transitionTarget.addEventListener("dragover", function (event) { event.preventDefault(); });
-              transitionTarget.addEventListener("drop", function (event) {
-                event.preventDefault();
-                placeTransitionChoice(document.querySelector('[data-preview-transition-choice="' + event.dataTransfer.getData("text/plain") + '"]'));
-              });
-            }
-            if (transitionBank) {
-              transitionBank.addEventListener("dragover", function (event) { event.preventDefault(); });
-              transitionBank.addEventListener("drop", function (event) {
-                event.preventDefault();
-                returnTransitionChoice();
-              });
+            transitionTargets.forEach(function(target) {
+              target.addEventListener("click",function() { if(transitionSelected) placeTransitionChoice(transitionSelected,target); else clearTransitionTarget(target); });
+              target.addEventListener("dragover",function(event) { event.preventDefault(); });
+              target.addEventListener("dragstart",function(event) { if(target.dataset.placedChoice) event.dataTransfer.setData("text/plain",target.dataset.placedChoice); });
+              target.addEventListener("drop",function(event) { event.preventDefault(); placeTransitionChoice(transitionChoices.find(function(choice) { return choice.dataset.previewTransitionChoice === event.dataTransfer.getData("text/plain"); }),target); });
+            });
+            if(transitionBank) {
+              transitionBank.addEventListener("dragover",function(event) { event.preventDefault(); });
+              transitionBank.addEventListener("drop",function(event) { event.preventDefault(); transitionTargets.forEach(function(target) { if(target.dataset.placedChoice === event.dataTransfer.getData("text/plain")) clearTransitionTarget(target); }); });
             }
           <\/script>
         </body>
@@ -3533,6 +3554,15 @@ Why D is wrong."></textarea>
     function openMathStudentPreview() {
       app.previewMode = "math";
       app.previewQuestionIndex = app.selectedMathQuestionIndex;
+      $("#student-preview-modal").hidden = false;
+      document.body.style.overflow = "hidden";
+      renderStudentPreview();
+      studioUI.openStudentDialog();
+    }
+
+    function openStandaloneStudentPreview() {
+      app.previewMode = "standalone";
+      app.previewQuestionIndex = 0;
       $("#student-preview-modal").hidden = false;
       document.body.style.overflow = "hidden";
       renderStudentPreview();
@@ -3641,7 +3671,7 @@ Why D is wrong."></textarea>
         const isSingleCategoryQuestion = question.type === "category_sort" && question.categoryCapacity !== 1 && question.categories?.length === 1;
         const typeLabel =
           isMatrixQuestion
-            ? "Matrix choice - one answer per row"
+            ? question.matrixStyle === 'evidence' ? "Passage/Table Evidence" : "Matrix choice - one answer per row"
             : isTableQuestion
             ? "Table match - one answer per row"
             : isTransitionQuestion
@@ -3688,46 +3718,24 @@ Why D is wrong."></textarea>
           </div>
         ` : "";
         const transitionEditor = isTransitionQuestion ? `
-          <label class="field wide"><span>Student instructions</span><input data-question-field="instructions" value="${escapeHtml(question.instructions || "Move the correct answer to the box.")}"></label>
-          <label class="field"><span>Sentence number (optional)</span><input data-question-field="transitionSentenceNumber" value="${escapeHtml(question.transitionSentenceNumber || "")}" placeholder="Example: (5)"></label>
-          <label class="field wide"><span>Text before the answer box</span><textarea data-question-field="transitionBlankBefore" rows="3" placeholder="Sentence text before the missing transition">${escapeHtml(question.transitionBlankBefore || "")}</textarea></label>
-          <label class="field wide"><span>Text after the answer box</span><textarea data-question-field="transitionBlankAfter" rows="3" placeholder="Sentence text after the missing transition">${escapeHtml(question.transitionBlankAfter || "")}</textarea></label>
           <section class="transition-authoring wide">
-            <header>
-              <strong>Draggable answer bank</strong>
-              <small>These appear as blue draggable cards above the sentence, not as multiple-choice answers.</small>
-            </header>
-            <div class="transition-authoring-bank">
-              ${question.choices.map((choice, choiceIndex) => `
-                <div class="transition-authoring-option">
-                  <strong>${choice.id}</strong>
-                  <div class="rich-editor-content is-choice" contenteditable="true" data-choice-index="${choiceIndex}" data-placeholder="Drag card ${choice.id}" data-question-index="${index}" data-rich-kind="choice" role="textbox">${inlineRichValue(choice.html, choice.text)}</div>
-                </div>
-              `).join("")}
-            </div>
-            <p class="transition-sentence-preview">
-              <span data-transition-preview="transitionSentenceNumber">${escapeHtml(question.transitionSentenceNumber || "")}</span>
-              <span data-transition-preview="transitionBlankBefore">${escapeHtml(question.transitionBlankBefore || "")}</span>
-              <span aria-label="Student answer drop box" class="transition-sentence-preview-box"></span>
-              <span data-transition-preview="transitionBlankAfter">${escapeHtml(question.transitionBlankAfter || "")}</span>
-            </p>
-            <div class="transition-correct-field">
-              <strong>Correct draggable card</strong>
-              <div class="transition-correct-options" role="group" aria-label="Correct draggable card">
-                ${question.choices.map((choice) => `
-                  <label class="transition-correct-option">
-                    <input ${question.correctChoiceId === choice.id ? "checked" : ""} data-correct-choice="${choice.id}" name="correct-answer-${index}" type="radio">
-                    <span>${choice.id}${choice.text ? ` · ${escapeHtml(choice.text)}` : ""}</span>
-                  </label>
-                `).join("")}
-              </div>
-            </div>
+            <header><strong>1. Write the sentence and insert blanks</strong><small>Replace each missing word with [blank], or select it and click Insert blank.</small></header>
+            <label class="field"><span>Sentence with blanks</span><textarea data-transition-sentence rows="4" placeholder="The tone is both [blank] and [blank].">${escapeHtml(studioUI.transitionSentence(question))}</textarea></label>
+            <div><button class="secondary" data-transition-insert type="button">+ Insert blank</button></div>
+            <header><strong>2. Add words to the answer bank</strong><small>Include the correct words and any distractors.</small></header>
+            <div class="transition-authoring-bank">${question.choices.map((choice, choiceIndex) => `<div class="transition-authoring-option"><strong>${choice.id}</strong><div class="rich-editor-content is-choice" contenteditable="true" data-choice-index="${choiceIndex}" data-question-index="${index}" data-rich-kind="choice" role="textbox" aria-label="Word ${choiceIndex + 1}">${inlineRichValue(choice.html, choice.text)}</div></div>`).join('')}</div>
+            <div><button class="secondary" data-transition-add-word type="button" ${question.choices.length >= 8 ? 'disabled' : ''}>+ Add word</button> <button class="secondary" data-transition-remove-word type="button" ${question.choices.length <= 2 ? 'disabled' : ''}>Remove last word</button></div>
+            <header><strong>3. Choose the correct word for each blank</strong></header>
+            <div class="field-grid" data-transition-keys>${studioUI.transitionKeyFields(question)}</div>
+            <small class="field-note" data-transition-key-note role="status"></small>
+            <label><input type="checkbox" data-transition-reuse ${question.allowReuse ? 'checked' : ''}> Allow the same word in more than one blank</label>
+            <details><summary>Instructions &amp; sentence number</summary><label class="field"><span>Student instructions</span><input data-question-field="instructions" value="${escapeHtml(question.instructions || 'Move a word into each blank.')}"></label><label class="field"><span>Sentence number (optional)</span><input data-question-field="transitionSentenceNumber" value="${escapeHtml(question.transitionSentenceNumber || '')}"></label></details>
           </section>
-        ` : "";
+        ` : '';
         const categoryEditor = isCategoryQuestion ? `
           <label class="field wide"><span>Student instructions</span><input data-question-field="instructions" value="${escapeHtml(question.instructions || (isMatrixQuestion ? "Select one answer in each row." : isTableQuestion ? "Move the correct answer to each box in the table." : "Move each answer to the correct box."))}"></label>
           <div class="category-editor wide">
-            ${isTableQuestion || isMatrixQuestion ? `
+            ${isTableQuestion || isMatrixQuestion && question.matrixStyle !== 'evidence' ? `
               <section class="category-editor-section">
                 <header><strong>Table column headers</strong></header>
                 <div class="field-grid">
@@ -3798,7 +3806,8 @@ Why D is wrong."></textarea>
                   <option ${question.type === "transition_drop" ? "selected" : ""} value="transition_drop">Drag and drop — sentence blank</option>
                   <option ${question.type === "category_sort" && question.categoryCapacity !== 1 ? "selected" : ""} value="category_sort">Category sort — multiple answers per box</option>
                   <option ${question.type === "category_sort" && question.categoryCapacity === 1 ? "selected" : ""} value="category_sort_single">Category sort — one answer per box</option>
-                  <option ${question.type === "matrix_choice" ? "selected" : ""} value="matrix_choice">Matrix choice — one answer per row</option>
+                  <option ${question.type === "matrix_choice" && question.matrixStyle !== 'evidence' ? "selected" : ""} value="matrix_choice">Matrix choice — one answer per row</option>
+                  <option ${question.type === "matrix_choice" && question.matrixStyle === 'evidence' ? "selected" : ""} value="evidence_matrix">Passage/Table Evidence — one box per statement</option>
                   <option ${question.type === "table_match" ? "selected" : ""} value="table_match">Table match - one answer per row</option>
                 </select>
               </label>
@@ -3829,6 +3838,19 @@ Why D is wrong."></textarea>
             markDirty();
           });
         });
+        if (app.passageDraft.questions[index].type === 'transition_drop') {
+          const q = app.passageDraft.questions[index], sentence = card.querySelector('[data-transition-sentence]');
+          const bindKeys = () => card.querySelectorAll('[data-transition-slot]').forEach(select => select.onchange = () => {
+            studioUI.setTransitionSentence(q, sentence.value); q.dragDropSlots[Number(select.dataset.transitionSlot)].correctItemId = select.value; markDirty(); studioUI.updateCanvasAnswerKey();
+          });
+          sentence.oninput = () => { const count = studioUI.transitionLayout(q).slots.length; studioUI.setTransitionSentence(q, sentence.value); card.querySelector('[data-transition-keys]').innerHTML = studioUI.transitionKeyFields(q); bindKeys(); if (count !== q.dragDropSlots.length) card.querySelector('[data-transition-key-note]').textContent = 'Blank positions changed. Choose the correct word for each blank.'; markDirty(); };
+          card.querySelector('[data-transition-insert]').onclick = () => { sentence.setRangeText('[blank]', sentence.selectionStart, sentence.selectionEnd, 'end'); sentence.dispatchEvent(new Event('input', { bubbles: true })); sentence.focus(); };
+          card.querySelector('[data-transition-add-word]').onclick = () => { q.choices.push({ id: String.fromCharCode(65 + q.choices.length), text: '' }); markDirty(); renderQuestionsV2(); };
+          card.querySelector('[data-transition-remove-word]').onclick = () => { if (q.choices.length <= 2) return; const removed = q.choices.pop(); if (q.correctChoiceId === removed.id) q.correctChoiceId = ''; q.dragDropSlots?.forEach(slot => { if (slot.correctItemId === removed.id) slot.correctItemId = ''; }); markDirty(); renderQuestionsV2(); };
+          card.querySelector('[data-transition-reuse]').onchange = event => { q.allowReuse = event.target.checked; markDirty(); };
+          card.querySelectorAll('[data-rich-kind="choice"]').forEach(node => node.addEventListener('input', () => queueMicrotask(() => { card.querySelector('[data-transition-keys]').innerHTML = studioUI.transitionKeyFields(q); bindKeys(); })));
+          bindKeys();
+        }
         $$("[data-correct-choice]", card).forEach((element) => {
           element.addEventListener("change", () => {
             const question = app.passageDraft.questions[index];
@@ -3948,9 +3970,10 @@ Why D is wrong."></textarea>
         ...(current.explanationHtml ? { explanationHtml: current.explanationHtml } : {}),
         topic: current.topic || "Central Idea & Theme",
       };
-      if (type === "category_sort" || type === "category_sort_single" || type === "matrix_choice" || type === "table_match") {
+      if (type === "category_sort" || type === "category_sort_single" || type === "matrix_choice" || type === "evidence_matrix" || type === "table_match") {
         const isTableMatch = type === "table_match";
-        const isMatrixChoice = type === "matrix_choice";
+        const isEvidenceMatrix = type === 'evidence_matrix';
+        const isMatrixChoice = type === "matrix_choice" || isEvidenceMatrix;
         const isPlacementQuestion = current.type === "category_sort" || current.type === "matrix_choice" || current.type === "table_match";
         const categoryCapacity = isTableMatch || type === "category_sort_single" ? 1 : undefined;
         const next =
@@ -3973,6 +3996,13 @@ Why D is wrong."></textarea>
         if (isMatrixChoice && next.categories.length < 2) {
           next.categories.push({ id: "column-2", title: "Presents Evidence" });
         }
+        if (isEvidenceMatrix && current.matrixStyle !== 'evidence') {
+          next.categories = [{id:'passage',title:'Passage only'},{id:'table',title:'Table only'},{id:'both',title:'Both passage and table'}];
+          next.correctPlacements = {};
+          if (!next.prompt) next.prompt = 'For each statement, mark whether it is supported by the passage text, by the data table, or by both.';
+        }
+        if (isEvidenceMatrix) next.matrixStyle = 'evidence';
+        else delete next.matrixStyle;
         if (categoryCapacity === 1) {
           if (next.categories.length < 2) {
             next.categories.push({
@@ -4041,6 +4071,7 @@ Why D is wrong."></textarea>
             next.transitionBlankAfter = current.transitionBlankAfter || "";
             next.transitionBlankBefore = current.transitionBlankBefore || "";
             next.transitionSentenceNumber = current.transitionSentenceNumber || "";
+            if (current.type === 'transition_drop' && current.dragDropSlots) { next.dragDropContent = clone(current.dragDropContent || []); next.dragDropSlots = clone(current.dragDropSlots); next.allowReuse = current.allowReuse === true; delete next.correctChoiceId; }
           }
         } else {
           next.correctChoiceIds = (current.correctChoiceIds || (current.correctChoiceId ? [current.correctChoiceId] : []))
@@ -4153,6 +4184,7 @@ Why D is wrong."></textarea>
 
     async function savePassage() {
       if (app.saving) return;
+      const publishKey = app.passageDraft.importDraftId || app.passageDraft.id || 'new';
       if (!ensurePassageIdentity()) return;
       app.saving = true;
       $("#save-passage").disabled = true;
@@ -4160,8 +4192,10 @@ Why D is wrong."></textarea>
       setStatus("Writing passage source…");
       try {
         const endpoint = app.passageMode === "advanced" ? "/api/advanced-passages" : "/api/passages";
-        const data = await api(endpoint, { method: "POST", body: JSON.stringify({ ...app.passageDraft, ...(app.passageDraft.importDraftId ? { publishNow: true } : {}) }) });
+        const publishToExamId = app.passageMode === 'exam' ? studioUI.publishExamTargets.get(publishKey) || '' : '';
+        const data = await api(endpoint, { method: "POST", body: JSON.stringify({ ...app.passageDraft, ...(app.passageDraft.importDraftId ? { publishNow: true } : {}), ...(publishToExamId ? { publishToExamId } : {}) }) });
         await reloadState();
+        const examMessage = studioUI.completePassagePublication(data, publishKey);
         const saved = data.passage;
         app.selectedPassageId = saved.id;
         app.passageDraft = clone(saved);
@@ -4171,7 +4205,7 @@ Why D is wrong."></textarea>
         const folder = app.passageMode === "advanced"
           ? "client/src/content/advancedPractice/passageSets"
           : "client/src/content/exams/passageSets";
-        setStatus(`${saved.title} was written to ${folder}/${saved.fileName}.`, "success");
+        setStatus(examMessage || `${saved.title} was written to ${folder}/${saved.fileName}.`, data.examAssignment?.error ? 'error' : "success");
       } catch (error) {
         setStatus(error.message, "error");
       } finally {
@@ -4230,16 +4264,18 @@ Why D is wrong."></textarea>
 
     function renderStandaloneList() {
       const query = $("#standalone-search").value.trim().toLowerCase();
-      const matches = app.state.standaloneItems.filter((item) =>
-        `${item.prompt} ${item.stimulus || ""} ${item.topic} ${item.versionLabel || ""} ${item.id}`.toLowerCase().includes(query),
+      const records = [...(app.state.standaloneImportDrafts || []).map(entry => ({ ...entry.question, importDraftId: entry.id })), ...app.state.standaloneItems.filter(item => !item.duplicateOf)];
+      const matches = records.filter((item) =>
+        `${item.prompt} ${item.stimulus || ""} ${item.topic} ${PartBBank.labels(item).join(' ')} ${PartBBank.usage(item, app.state.standaloneItems, app.state.tests).map(test => test.title).join(' ')} ${item.id}`.toLowerCase().includes(query),
       );
       const items = studioUI.libraryPage(matches, "standalone", query, renderStandaloneList);
-      $("#standalone-count").textContent = app.state.standaloneItems.length;
+      $("#standalone-count").textContent = records.length;
       $("#standalone-list").innerHTML = items.map((item) => `
-        <button aria-current="${item.id === app.selectedStandaloneItemId}" title="${escapeHtml(item.prompt || item.id)}" class="${item.id === app.selectedStandaloneItemId ? "is-active" : ""}" data-standalone-id="${escapeHtml(item.id)}" type="button">
+        <button aria-current="${item.importDraftId ? item.importDraftId === app.standaloneDraft?.importDraftId : item.id === app.selectedStandaloneItemId}" title="${escapeHtml(item.prompt || item.id)}" class="${(item.importDraftId ? item.importDraftId === app.standaloneDraft?.importDraftId : item.id === app.selectedStandaloneItemId) ? "is-active" : ""} ${item.importDraftId ? 'studio-part-b-needs-editing' : ''}" data-standalone-id="${escapeHtml(item.id)}" type="button">
           <strong>${escapeHtml(item.prompt || item.id)}</strong>
-          <span class="passage-version-tag">${escapeHtml(item.versionLabel || "Original / unlabeled")}</span>
+          <span class="studio-part-b-tags">${(PartBBank.labels(item).length ? PartBBank.labels(item) : ['Unlabeled']).map(label => `<span class="passage-version-tag">${escapeHtml(label)}</span>`).join('')}</span>
           <small>${escapeHtml(item.topic || "Uncategorized")} · ${escapeHtml(String(item.type).replaceAll("_", " "))}</small>
+          ${item.importDraftId ? '<small>Needs editing · saved draft</small>' : ''}
         </button>
       `).join("") || `<p class="field-note">No Part B questions match this search.</p>`;
       $$("[data-standalone-id]", $("#standalone-list")).forEach((button) => {
@@ -4248,11 +4284,15 @@ Why D is wrong."></textarea>
     }
 
     function selectStandaloneItem(id) {
+      if (app.saving) return;
+      const imported = app.state.standaloneImportDrafts?.find(entry => entry.question.id === id);
+      if (imported) { PartBImport.select(imported.id); return; }
       if (!confirmStandaloneDiscard()) return;
       const item = app.state.standaloneItems.find((candidate) => candidate.id === id);
       if (!item) return;
-      app.selectedStandaloneItemId = id;
-      app.standaloneDraft = clone(item);
+      const primary = app.state.standaloneItems.find(q => q.id === PartBBank.rootId(item, app.state.standaloneItems)) || item;
+      app.selectedStandaloneItemId = primary.id;
+      app.standaloneDraft = clone(primary);
       app.standaloneDirty = false;
       renderStandaloneList();
       renderStandaloneEditor();
@@ -4260,6 +4300,7 @@ Why D is wrong."></textarea>
     }
 
     function startNewStandaloneItem(type = "multiple_choice") {
+      if (app.saving) return;
       if (!confirmStandaloneDiscard()) return;
       app.selectedStandaloneItemId = "";
       app.standaloneDraft = defaultStandaloneItem(type);
@@ -4286,9 +4327,14 @@ Why D is wrong."></textarea>
         stimulusHtml: app.standaloneDraft.stimulusHtml,
         topic: app.standaloneDraft.topic,
         versionLabel: app.standaloneDraft.versionLabel,
+        versionLabels: PartBBank.labels(app.standaloneDraft),
+        explanation: app.standaloneDraft.explanation,
+        explanationHtml: app.standaloneDraft.explanationHtml,
+        ...(app.standaloneDraft.importDraftId ? { importDraftId: app.standaloneDraft.importDraftId, importVersion: app.standaloneDraft.importVersion } : {}),
       };
       markStandaloneDirty();
       renderStandaloneEditor();
+      studioUI.showStandaloneOptions?.(true);
     }
 
     function addStandaloneAnswerCard() {
@@ -4330,8 +4376,10 @@ Why D is wrong."></textarea>
       markStandaloneDirty();
     }
 
-    function renderStandaloneEditor() {
+    function renderStandaloneEditor(preservePosition = false) {
+      studioUI.captureStandalonePosition();
       const item = app.standaloneDraft;
+      if (preservePosition && studioUI.standalonePosition) studioUI.standalonePosition.draft = item;
       if (!item) {
         $("#standalone-editor").innerHTML = `<div class="editor-empty">Choose a Part B question or create a new one.</div>`;
         return;
@@ -4356,15 +4404,15 @@ Why D is wrong."></textarea>
             <div><h1>${app.selectedStandaloneItemId ? "Edit Part B question" : "New Part B question"}</h1><p>Paste the paragraph and answers directly. Formatting such as bold, italics, and underlining is preserved.</p></div>
             <div class="standalone-item-actions">
               <button class="secondary" id="manage-standalone-topics" type="button">Manage topics</button>
-              <button class="secondary" id="refresh-standalone-preview" type="button">Refresh preview</button>
+              <button class="secondary" id="standalone-student-view" type="button">Student view</button>
             </div>
           </header>
           <div class="standalone-bank-form">
             <label class="field"><span>Question ID</span><div class="field-input-action"><input id="standalone-id" data-standalone-field="id" ${app.selectedStandaloneItemId ? "disabled" : ""} value="${escapeHtml(item.id)}"><button class="secondary" id="generate-standalone-id" ${app.selectedStandaloneItemId ? "disabled" : ""} type="button">Generate</button></div></label>
             <label class="field"><span>Question type</span><select id="standalone-type"><option ${isDragDrop ? "" : "selected"} value="multiple_choice">Multiple choice</option><option ${isDragDrop ? "selected" : ""} value="category_sort">Drag and drop · one answer box</option></select></label>
-            <label class="field"><span>Topic</span><select data-standalone-field="topic">${topicOptions(item.topic, "revising_editing_a")}</select></label>
+            <label class="field"><span>Topic</span><select data-standalone-field="topic"><option value="" ${!questionTopicsForSection('revising_editing_a').includes(item.topic) ? 'selected' : ''}>Choose a Revising/Editing topic</option>${topicOptions(item.topic, "revising_editing_a")}</select></label>
             <label class="field"><span>Points</span><input data-standalone-field="points" min="1" type="number" value="${escapeHtml(item.points || 1)}"></label>
-            <label class="field wide"><span>Passage version <small>Teacher only</small></span><input data-standalone-field="versionLabel" value="${escapeHtml(item.versionLabel || "")}" placeholder="Version 1, Form A, 2026 edition"><small class="field-note">Use this to identify which version of the Part B sentence or paragraph this question belongs to. Students will not see it.</small></label>
+            <section class="field wide" id="standalone-version-tags" aria-label="Source test and version tags"></section>
             <div class="wide">
               <label class="field"><span>Question prompt</span></label>
               <div class="question-rich-toolbar">${richToolbarHtml("Format selected question text")}</div>
@@ -4402,6 +4450,7 @@ Why D is wrong."></textarea>
                 </div>
               </div>
             ` : `
+              <label class="field wide"><span>Directions (optional)</span><input data-standalone-field="instructions" value="${escapeHtml(item.instructions || '')}"></label>
               <div class="choices wide">
                 ${item.choices.map((choice, choiceIndex) => `
                   <div class="choice"><strong>${choice.id}</strong><div class="rich-editor-content is-choice" contenteditable="true" data-choice-index="${choiceIndex}" data-placeholder="Answer choice ${choice.id}" data-rich-kind="standalone-choice" role="textbox">${inlineRichValue(choice.html, choice.text)}</div></div>
@@ -4419,6 +4468,11 @@ Why D is wrong."></textarea>
                 </div>
               </div>
             `}
+            <div class="wide">
+              <label class="field"><span>Explanation</span></label>
+              <div class="question-rich-toolbar">${richToolbarHtml("Format selected explanation text")}</div>
+              <div class="rich-editor-shell"><div class="rich-editor-content is-compact" contenteditable="true" data-rich-kind="standalone-explanation" role="textbox" aria-label="Part B explanation" data-placeholder="Explain the correct answer">${inlineRichValue(item.explanationHtml, item.explanation)}</div></div>
+            </div>
           </div>
           <section class="standalone-bank-preview">
             <small>Student-style preview</small>
@@ -4477,14 +4531,17 @@ Why D is wrong."></textarea>
       $("#add-standalone-card")?.addEventListener("click", addStandaloneAnswerCard);
       $("#generate-standalone-id")?.addEventListener("click", generateStandaloneId);
       $("#manage-standalone-topics")?.addEventListener("click", openContentTopicManager);
-      $("#refresh-standalone-preview")?.addEventListener("click", renderStandaloneEditor);
+      $("#standalone-student-view")?.addEventListener("click", openStandaloneStudentPreview);
       $("#save-standalone")?.addEventListener("click", saveStandaloneItem);
       studioUI.mountStandalone();
     }
 
     async function saveStandaloneItem() {
       if (app.saving || !app.standaloneDraft) return;
+      if (app.standaloneDraft.importDraftId) return PartBImport.saveCurrent();
       app.saving = true;
+      $("#standalone-editor").inert = true;
+      $("#standalone-editor").setAttribute('aria-busy', 'true');
       $("#save-standalone").disabled = true;
       $("#save-standalone").textContent = "Writing code…";
       setStatus("Writing the Part B question bank…");
@@ -4499,17 +4556,23 @@ Why D is wrong."></textarea>
         });
         await reloadState();
         app.standaloneDirty = false;
-        selectStandaloneItem(data.standalone.item.id);
-        setStatus(`${data.standalone.item.id} was written to the Part B question bank.`, "success");
+        app.selectedStandaloneItemId = data.standalone.item.id;
+        app.standaloneDraft = clone(data.standalone.item);
+        renderStandaloneList();
+        renderStandaloneEditor(true);
+        setStatus(data.standalone.reused ? 'Existing question reused. Source tags were combined and the new source version was retained.' : `${data.standalone.item.id} was written to the Part B question bank.`, "success");
       } catch (error) {
         setStatus(error.message, "error");
       } finally {
         app.saving = false;
+        $("#standalone-editor").inert = false;
+        $("#standalone-editor").removeAttribute('aria-busy');
         const button = $("#save-standalone");
         if (button) {
           button.disabled = false;
           button.textContent = "Save Part B question";
         }
+        studioUI.syncSaveState();
       }
     }
 
@@ -4571,6 +4634,16 @@ Why D is wrong."></textarea>
       return app.state.standaloneItems.find((item) => item.id === id);
     }
 
+    function openTestPassageEditor(id) {
+      if (app.saving || !passageById(id)) return;
+      if (app.passageMode !== "exam") {
+        switchTab("passages");
+        if (app.passageMode !== "exam") return;
+      }
+      selectPassage(id);
+      if (app.selectedPassageId === id) switchTab("passages");
+    }
+
     function testPassageSectionMarkup(field, title, note, emptyMessage) {
       const passageIds = app.testDraft[field] || [];
       return `
@@ -4583,6 +4656,7 @@ Why D is wrong."></textarea>
                 <article class="order-item">
                   <div><strong>${escapeHtml(passage ? teacherPassageTitle(passage) : passageId)}</strong><small>${escapeHtml(passageId)} · ${passage?.questions.length || 0} questions${passage?.teacherSource ? ` · Source: ${escapeHtml(passage.teacherSource)}` : ""}</small></div>
                   <div class="order-actions">
+                    <button data-edit-test-passage="${escapeHtml(passageId)}" ${passage ? "" : "disabled"} type="button">Go to editor →</button>
                     <button class="icon-button" data-order-action="up" data-order-index="${index}" data-order-section="${field}" title="Move up" type="button">↑</button>
                     <button class="icon-button" data-order-action="down" data-order-index="${index}" data-order-section="${field}" title="Move down" type="button">↓</button>
                     <button class="danger" data-order-action="remove" data-order-index="${index}" data-order-section="${field}" type="button">Remove</button>
@@ -4680,6 +4754,7 @@ Why D is wrong."></textarea>
                       <span class="passage-version-tag">${assignedSection ? "✓ " : ""}${escapeHtml(passageVersionText(passage))}</span>
                       <small>${passage.questions.length} questions · ${escapeHtml(passage.format.replace("_", " "))}</small>
                       <small class="teacher-source">Teacher source: ${escapeHtml(passage.teacherSource || "Not recorded")}</small>
+                      <button data-edit-test-passage="${escapeHtml(passage.id)}" type="button">Go to editor →</button>
                       ${assignedSection
                         ? `<small>Assigned to ${escapeHtml(assignedSection)}</small>`
                         : `<div class="passage-picker-actions">
@@ -4710,15 +4785,20 @@ Why D is wrong."></textarea>
         </div>
         <div class="panel-head"><div><h2>Revising/Editing Part B question bank</h2><small>Add the stand-alone questions that do not share a passage.</small></div></div>
         <div class="standalone-picker">
-          ${app.state.standaloneItems.map((item) => {
+          ${app.state.standaloneItems.filter(item => !item.duplicateOf || app.testDraft.standaloneItemIds.includes(item.id)).map((item) => {
             const selected = app.testDraft.standaloneItemIds.includes(item.id);
+            const otherVersionSelected = app.testDraft.standaloneItemIds.some(id => {
+              const q = app.state.standaloneItems.find(q => q.id === id);
+              return q && PartBBank.rootId(q, app.state.standaloneItems) === PartBBank.rootId(item, app.state.standaloneItems);
+            });
             return `
               <article class="passage-picker-card ${selected ? "is-selected" : ""}">
                 <strong>${selected ? "✓ " : ""}${escapeHtml(item.prompt)}</strong>
-                <span class="passage-version-tag">${escapeHtml(item.versionLabel || "Original / unlabeled")}</span>
+                <span class="studio-part-b-tags">${PartBBank.labels(item).map(label => `<span class="passage-version-tag">${escapeHtml(label)}</span>`).join('')}</span>
                 <small>${escapeHtml(item.topic)} · ${escapeHtml(String(item.type).replaceAll("_", " "))}</small>
                 ${selected
                   ? `<small>Added to this test</small>`
+                  : otherVersionSelected ? `<small>Another source version is already in this test</small>`
                   : `<div class="passage-picker-actions"><button data-add-standalone="${escapeHtml(item.id)}" type="button">+ Add to Part B</button></div>`}
               </article>
             `;
@@ -4729,6 +4809,9 @@ Why D is wrong."></textarea>
           <button class="primary" id="save-test" ${!hasEnglishContent ? "disabled" : ""} type="button">${app.saving ? "Saving…" : "Write English test into code"}</button>
         </div>
       `;
+      $$("[data-edit-test-passage]", $("#test-builder")).forEach((button) => {
+        button.addEventListener("click", () => openTestPassageEditor(button.dataset.editTestPassage));
+      });
       $$("[data-add-passage]", $("#test-builder")).forEach((button) => {
         button.addEventListener("click", () => {
           const selectedPassage = passageById(button.dataset.addPassage);
@@ -4783,6 +4866,7 @@ Why D is wrong."></textarea>
     }
 
     function studioCorrectAnswer(question) {
+      if (question.type === 'transition_drop' && question.dragDropSlots?.length) return studioUI.exportCorrectAnswer(question);
       const choiceLabel = (choiceId) => {
         const choice = (question.choices || []).find((candidate) => candidate.id === choiceId);
         return choice ? `${choiceId} — ${choice.text}` : choiceId;
@@ -4912,7 +4996,7 @@ Why D is wrong."></textarea>
     }
 
     function renderMathAssessmentList() {
-      $("#math-assessment-list").innerHTML = app.state.assessments.map((assessment) => {
+      $("#math-assessment-list").innerHTML = studioUI.orderedAssessments().map((assessment) => {
         const section = linkedMathSection(assessment.id);
         return `
           <button class="${assessment.id === app.selectedMathAssessmentId ? "is-active" : ""}" data-math-assessment-id="${escapeHtml(assessment.id)}" type="button">
@@ -5288,6 +5372,14 @@ Why D is wrong."></textarea>
       return `
         <section class="math-answer-editor">
           <div class="panel-head"><div><h2>Drag-and-drop math boxes</h2><small>Students move an answer from the bank into each box. Put each box token, such as {{box-1}}, exactly where it should appear.</small></div></div>
+          <label class="field"><span>Answer style</span>
+            <select id="math-drag-style">
+              <option value="" ${!question.dragDropStyle ? 'selected' : ''}>Original / automatic (keeps existing formatting)</option>
+              <option value="compact" ${question.dragDropStyle === 'compact' ? 'selected' : ''}>Compact — black tiles on a gray bank (question 17)</option>
+              <option value="outlined" ${question.dragDropStyle === 'outlined' ? 'selected' : ''}>Outlined — blue tiles and wider boxes (question 27)</option>
+            </select>
+            <small class="field-note">Style and answer reuse are separate. Outlined equation rows align left; tables keep their column layout.</small>
+          </label>
           <label class="toggle-row">
             <input ${question.allowReuse ? "checked" : ""} id="math-drag-allow-reuse" type="checkbox">
             <span><strong>Allow answers to be reused</strong><small>Turn this on when the same answer may fill more than one box.</small></span>
@@ -5318,7 +5410,7 @@ Why D is wrong."></textarea>
               </article>
             `).join("")}
             <button class="secondary" id="add-math-drag-slot" type="button">+ Add answer box</button>
-            <label class="field"><span>Answer layout <small class="field-note">One visual row per line; insert each box token where it belongs.</small></span><textarea id="math-drag-content-rows">${escapeHtml((question.dragDropContent || []).join("\n"))}</textarea></label>
+            <label class="field"><span>Answer layout <small class="field-note">One visual row per line; insert each box token where it belongs. Wrap equations in \\( and \\) for mathematical formatting, including variables and fractions.</small></span><textarea id="math-drag-content-rows">${escapeHtml((question.dragDropContent || []).join("\n"))}</textarea></label>
           </div>
         </section>
       `;
@@ -5385,10 +5477,10 @@ Why D is wrong."></textarea>
       if (!question) {
         return `<div class="editor-empty">Add the first math question.</div>`;
       }
-      const supported = ["multiple_choice", "multi_select", "short_response", "numeric_entry", "inline_dropdown", "math_drag_drop", "graph_point_select", "number_line_response"].includes(question.type);
+      const supported = ["multiple_choice", "multi_select", "short_response", "numeric_entry", "expression_entry", "inline_dropdown", "math_drag_drop", "graph_point_select", "number_line_response"].includes(question.type);
       const isChoice = question.type === "multiple_choice" || question.type === "multi_select";
-      const isTextEntry = question.type === "short_response" || question.type === "numeric_entry";
-      const isCalculatorEntry = question.type === "numeric_entry";
+      const isTextEntry = ["short_response", "numeric_entry", "expression_entry"].includes(question.type);
+      const isCalculatorEntry = ["numeric_entry", "expression_entry"].includes(question.type);
       const isInlineDropdown = question.type === "inline_dropdown";
       const isMathDragDrop = question.type === "math_drag_drop";
       const isGraphPointSelect = question.type === "graph_point_select";
@@ -5411,6 +5503,7 @@ Why D is wrong."></textarea>
                 <option ${question.type === "multi_select" ? "selected" : ""} value="multi_select">Multi-select</option>
                 <option ${question.type === "short_response" ? "selected" : ""} value="short_response">Short answer</option>
                 <option ${question.type === "numeric_entry" ? "selected" : ""} value="numeric_entry">Calculator input</option>
+                <option ${question.type === "expression_entry" ? "selected" : ""} value="expression_entry">Calculator Input (Advanced)</option>
                 <option ${question.type === "inline_dropdown" ? "selected" : ""} value="inline_dropdown">Inline drop-down sentences</option>
                 <option ${question.type === "math_drag_drop" ? "selected" : ""} value="math_drag_drop">Drag answers into math</option>
                 <option ${question.type === "graph_point_select" ? "selected" : ""} value="graph_point_select">Select points on a graph</option>
@@ -5614,6 +5707,7 @@ Why D is wrong."></textarea>
       `;
       bindMathBuilder();
       studioUI.mountMath();
+      MathCommandStudio.mountInspector(document.getElementById('math-view'));
       studioMath.mount($("#math-builder"));
       renderMathPreview();
       startMathPreviewFrames();
@@ -5711,9 +5805,9 @@ Why D is wrong."></textarea>
           next.requiredSelections = next.correctChoiceIds.length;
         }
       }
-      if (type === "short_response" || type === "numeric_entry") {
+      if (["short_response", "numeric_entry", "expression_entry"].includes(type)) {
         next.correctTextAnswers = current.correctTextAnswers?.length ? [...current.correctTextAnswers] : [""];
-        if (type === "numeric_entry") {
+        if (type === "numeric_entry" || type === "expression_entry") {
           next.entryLayout = current.entryLayout || "plain";
           if (current.entryVariable) next.entryVariable = current.entryVariable;
         }
@@ -6341,6 +6435,13 @@ Why D is wrong."></textarea>
       $("#math-drag-allow-reuse")?.addEventListener("change", (event) => {
         question.allowReuse = event.target.checked;
         markMathDirty();
+        renderMathPreview();
+      });
+      $("#math-drag-style")?.addEventListener("change", (event) => {
+        if (event.target.value) question.dragDropStyle = event.target.value;
+        else delete question.dragDropStyle;
+        markMathDirty();
+        renderMathPreview();
       });
       $$("[data-math-drag-item-index]", $("#math-builder")).forEach((input) => {
         input.addEventListener("input", () => {
@@ -7040,6 +7141,7 @@ WRONG D:`;
 
     async function initialize() {
       try {
+        app.poemRichBlocks = (await import('/poem-layout.js')).poemRichBlocks;
         await reloadState();
         updatePassageWorkspaceLabels();
         const previousId = studioUI.readPreference('selected-passage:exam', '');
@@ -7050,12 +7152,15 @@ WRONG D:`;
           app.passageDraft = clone(firstPassage);
           app.passageDirty = false;
           renderPassageList();
-          renderPassageEditor();
         }
-        initializePracticeEditor();
+        // The preview needs the workspace controls before its first render.
+        // Practice setup must not leave reading passages in the old form view.
         studioUI.initialize();
+        if (app.passageDraft && !document.querySelector('#studio-exam-canvas')) renderPassageEditor();
         DocumentStudio.initialize();
         if (window.location.hash === "#question-bank") switchTab("question-bank");
+        try { initializePracticeEditor(); }
+        catch (error) { setStatus(`The reading editor is ready. Regular practice could not load: ${error.message}`, "error"); return; }
         setStatus(
           `Ready: ${app.state.assessments.length} exams, ${app.state.advancedPassages.length} SAT passages, and ${app.state.practice.topics.length} regular-practice banks.`,
           "success",
@@ -7153,17 +7258,29 @@ WRONG D:`;
       event.target.value = "";
     });
     $("#preview-passage-import").addEventListener("click", previewOfficialPassageImport);
-    $("#new-exam").addEventListener("click", () => {
+    function setNewExamFormOpen(open) {
       const form = $("#new-exam-form");
-      form.hidden = !form.hidden;
-      form.style.display = form.hidden ? "none" : "grid";
-      if (!form.hidden) form.elements.title.focus();
+      form.hidden = !open;
+      form.style.display = open ? "grid" : "none";
+      $("#new-exam").setAttribute("aria-expanded", String(open));
+      if (open) form.elements.title.focus();
+      else { $("#new-exam-error").textContent = ""; $("#new-exam").focus(); }
+    }
+    $("#new-exam").addEventListener("click", () => {
+      if (!$("#new-exam-form").querySelector('button[type="submit"]').disabled) setNewExamFormOpen($("#new-exam-form").hidden);
+    });
+    $("#cancel-new-exam").addEventListener("click", () => setNewExamFormOpen(false));
+    $("#new-exam-form").addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !event.currentTarget.querySelector('button[type="submit"]').disabled) {
+        event.preventDefault(); event.stopPropagation(); setNewExamFormOpen(false);
+      }
     });
     $("#new-exam-form").addEventListener("submit", async (event) => {
       event.preventDefault();
       const form = event.currentTarget;
       const button = form.querySelector('button[type="submit"]');
       button.disabled = true;
+      $("#cancel-new-exam").disabled = true;
       $("#new-exam-error").textContent = "";
       try {
         const data = await api("/api/exams", { method: "POST", body: JSON.stringify({
@@ -7172,13 +7289,15 @@ WRONG D:`;
         await reloadState();
         selectAssessment(data.assessment.id);
         setStatus(form.elements.paperAnswers.checked ? "Exam created. Save your questions and answer key, then use Enter student answers below the builder." : "Exam created and locked. Add English passages or switch to Exam math.", "success");
-        form.reset(); form.hidden = true; form.style.display = "none";
+        form.reset(); setNewExamFormOpen(false);
       } catch (error) { $("#new-exam-error").textContent = error.message; }
-      finally { button.disabled = false; }
+      finally { button.disabled = false; $("#cancel-new-exam").disabled = false; }
     });
     $("#standalone-search").addEventListener("input", renderStandaloneList);
     $("#new-standalone").addEventListener("click", () => startNewStandaloneItem("multiple_choice"));
     $("#new-standalone-drag").addEventListener("click", () => startNewStandaloneItem("category_sort"));
+    $("#import-standalone").addEventListener("click", () => PartBImport.open());
+    $("#check-standalone-repeats").addEventListener("click", () => PartBTools.openRepeats());
     $("#practice-question-form").addEventListener("submit", previewPracticeQuestion);
     $("#practice-write-button").addEventListener("click", writePracticeQuestion);
     $("#practice-clear").addEventListener("click", clearPracticeQuestion);
@@ -7245,6 +7364,12 @@ WRONG D:`;
       renderStudentPreview();
     });
     window.addEventListener("message", (event) => {
+      if(event.origin===location.origin && event.source===$("#math-command-frame").contentWindow && event.data?.type==='studio:math-management-changed') {
+        if(app.mathDirty){setStatus('Math management changed. Your question edits are retained; reload the saved section before saving over new classifications.','warning');return;}
+        const assessmentId=app.mathDraft?.assessmentId,questionId=app.mathDraft?.questions[app.selectedMathQuestionIndex]?.id;
+        reloadState().then(()=>{if(assessmentId)selectMathAssessment(assessmentId,{selectedQuestionId:questionId});}).catch(error=>setStatus(error.message,'error'));
+        return;
+      }
       if (event.source !== $("#student-preview-frame").contentWindow || event.data?.type !== "exam-content-preview-navigation") return;
       app.previewQuestionIndex += Number(event.data.delta) || 0;
       renderStudentPreview();

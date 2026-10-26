@@ -172,13 +172,11 @@
 .game-room-item { display:flex; gap:10px; align-items:center; }.game-room-item .game-room-link { flex:1; min-width:0; }.game-room-item > button:last-child:not(.game-room-link) { flex-shrink:0; color:#9b4444; }
 body:has(.game-exam-overlay) > .exam-pencil-controls { z-index:2015; }
 .game-exam-error { position:fixed; bottom:20px; left:20px; right:20px; z-index:2100; padding:15px 20px; background:#fff0ef; color:#9c3030; border:1px solid #e4b8b8; border-radius:10px; }
-.game-team-ready { max-width:none; padding:12px 20px; background:#eef6f1; border-bottom:1px solid #bfd5ca; display:flex; align-items:center; justify-content:space-between; gap:18px; }
-.game-team-ready p { font-size:12px; margin:4px 0; }.game-team-ready ul { display:flex; flex-wrap:wrap; gap:6px; list-style:none; padding:0; margin:6px 0 0; }.game-team-ready li { border:1px solid #d2dcd6; background:white; padding:4px 8px; border-radius:20px; font-size:12px; }.game-team-ready li.is-ready { background:#d5f1df; border-color:#76b18b; color:#205c35; }.game-team-ready button { flex-shrink:0; }
 .game-team-members { font-size:12px; color:#405d50; line-height:1.5; overflow-wrap:anywhere; }.game-team-monitor button { justify-self:start; }
 .game-exam-ribbon label { display:flex; align-items:center; gap:7px; }.game-exam-ribbon select { max-width:160px; padding:7px; border-radius:6px; background:white; color:#173c39; }.game-exam-ribbon button { margin-left:0; }.game-exam-ribbon > button:last-child { margin-left:auto; }
 .game-cursors { pointer-events:none; position:fixed; inset:0; z-index:2016; overflow:hidden; }.game-cursor { position:absolute; display:flex; align-items:flex-start; transition:left .1s linear,top .1s linear; }.game-cursor span { color:white; font:600 11px "Segoe UI",sans-serif; padding:4px 7px; border-radius:4px; margin-top:18px; white-space:nowrap; box-shadow:0 1px 5px #0003; }.game-cursor-status { position:fixed; bottom:8px; right:12px; background:#ffffffed; border:1px solid #bfd5ca; border-radius:5px; padding:4px 8px; color:#46665a; font:11px "Segoe UI",sans-serif; pointer-events:none; z-index:2010; }
 .game-observer-status { position:fixed; z-index:2100; inset:25% 15% auto; padding:30px; border:1px solid #b3cabc; border-radius:14px; background:white; box-shadow:0 20px 100px #173c3955; }.game-observer-status p { margin:15px 0; }.game-observer-status label { margin-right:15px; }
-@media(max-width:700px) { .game-team-ready { align-items:stretch; flex-direction:column; gap:8px; padding:10px 12px; }.game-observer-status { inset:15% 5% auto; }.game-team-ready li { font-size:11px; } }
+@media(max-width:700px) { .game-observer-status { inset:15% 5% auto; } }
 @media(prefers-reduced-motion:reduce) { .game-cursor { transition:none; } }
 .game-shop { padding:22px; margin:16px 0; border:1px solid #d6c6ef; border-radius:18px; background:linear-gradient(135deg,#faf6ff,#f1f7ff); color:#302545; }
 .game-shop > header { display:flex; justify-content:space-between; gap:18px; align-items:center; }
@@ -204,3 +202,28 @@ body:has(.game-exam-overlay) > .exam-pencil-controls { z-index:2015; }
 .game-ink-splats .game-ink-splat { position:relative; left:auto; right:auto; top:auto; bottom:auto; width:min(100%,200px); height:clamp(95px,16vw,155px); }
 .game-ink-splats .splat-6 { grid-column:2; transform:rotate(-7deg); }.splat-5 { transform:rotate(11deg); }
 @media(max-width:600px) { .game-inventory-items { grid-template-columns:1fr; }.game-ink-splats { gap:16px 10px; padding:12px 4%; }.game-ink-splats .game-ink-splat { height:100px; font-size:12px; gap:5px; box-shadow:8px 6px 0 -4px #452164,0 8px 18px #180b4640; }.game-ink-splat svg { width:25px; height:25px; } }
+.game-exam-ribbon { position:sticky; top:0; z-index:2055; }
+.game-exam-controls { z-index:2050; width:min(740px,calc(100vw - 28px)); padding:16px; }
+.game-panel-tabs { display:flex; align-items:center; gap:8px; position:sticky; top:-16px; background:#fff; z-index:3; padding:12px 0; border-bottom:1px solid #dce4df; }
+.game-rooms .game-panel-tabs button { border:0; background:#eef2f5; color:#436079; font-size:12px; padding:9px 15px; }
+.game-rooms .game-panel-tabs button[aria-pressed=true] { background:#1d3e5c; color:#fff; }
+.game-panel-tabs .game-panel-close { margin-left:auto; }
+.game-exam-ribbon .game-sandbox-pov { font-size:11px; margin-left:auto; white-space:nowrap; }
+.game-exam-ribbon .game-sandbox-pov select { max-width:190px; }
+@media(max-width:1000px) { .game-exam-ribbon { flex-wrap:wrap; gap:7px 12px; }.game-exam-ribbon > span:nth-of-type(2) { display:none; }.game-exam-ribbon .game-sandbox-pov { margin-left:0; }.game-exam-controls { top:104px; } }
+.game-playtest-key { background:#fff2ce; border-bottom:1px solid #e7cf93; color:#674d1e; padding:9px 20px; font:12px/1.5 "Segoe UI",sans-serif; }.game-playtest-key summary { cursor:pointer; font-weight:700; }.game-playtest-key p { margin:6px 0; }.game-panel-tabs { flex-wrap:wrap; }.game-exam-ribbon { flex-wrap:wrap; }
+.game-exam-controls { top:calc(var(--game-ribbon-height,52px) + 12px); }
+@media(max-width:440px) { .game-rooms .game-panel-tabs button { padding:8px; font-size:11px; }.game-panel-tabs { gap:5px; } }
+
+.game-ink-overlay { top:var(--game-ribbon-height,52px); }
+.game-ink-overlay.is-cleared { background:none; backdrop-filter:none; pointer-events:none; }
+
+/* The shared Game Room picker also opens the realtime 3D island. */
+.game-mode-picker { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.game-mode-picker button:last-child svg { color:#3c8e99; }
+.game-world-intro { display:flex; align-items:center; gap:13px; padding:10px 16px; border-radius:11px; background:#f0f8f3; grid-column:span 2; }
+.game-world-intro>svg { flex-shrink:0; color:#3b9483; }
+.game-world-intro strong { font-size:13px; }
+.game-rooms .game-world-intro p { font-size:12px; margin-top:4px; }
+.game-room-icon.world { color:#397d89; background:#e6f4ee; }
+@media(max-width:640px) { .game-mode-picker { grid-template-columns:1fr; }.game-rooms .game-mode-picker button { grid-template-columns:35px 1fr; min-height:74px; }.game-mode-picker svg { grid-row:1/3; }.game-world-intro { grid-column:auto; }.game-create-fields:has(.game-world-intro) { grid-template-columns:1fr; } }

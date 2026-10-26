@@ -1,12 +1,19 @@
-import { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, FileText, Infinity as InfinityIcon, Layers3 } from "lucide-react";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { ArrowLeft, ArrowRight, FileText, Infinity as InfinityIcon, Layers3, Play } from "lucide-react";
 import { AppLink } from "./AppLink";
 import { mathStudyCategories, mathStudyHref } from "../lib/mathStudyHall";
 import { appendStudentPreview, type StudentPreviewContext } from "../lib/studentPreview";
+import { managedGeneratorIds, type PracticeSelection } from "../../../server/src/shared/practiceCatalog";
+import { PracticeModuleList } from "../features/math-command/PracticeModuleList";
+import { PracticeVideoList } from "../features/math-command/PracticeVideoList";
+import { usePracticeCatalog } from "../features/math-command/usePracticeCatalog";
 import "../styles/math-study-hall.css";
+const PracticePlayer = lazy(() => import("../features/math-command/InequalityPractice").then(module => ({ default: module.InequalityPractice })));
 
 export function MathStudyHall({ query, previewContext }: { query: string; previewContext: StudentPreviewContext }) {
   const [search, setSearch] = useState(() => window.location.search);
+  const [selectedModule, setSelectedModule] = useState<{id:string;selection:PracticeSelection} | null>(null);
+  const {catalog,error,loading,reload}=usePracticeCatalog();
   useEffect(() => {
     const update = () => setSearch(window.location.search);
     window.addEventListener("popstate", update);
@@ -18,6 +25,13 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
   const topic = category?.topics.find(item => item === topicName);
   const href = (main?: string, specific?: string) => appendStudentPreview(mathStudyHref(main, specific), previewContext);
   const matches = (text: string) => text.toLowerCase().includes(query.trim().toLowerCase());
+  const modules=catalog?.modules.filter(module=>module.published&&module.category===category?.label&&module.topic===topic&&managedGeneratorIds(module,catalog).length>0)??[];
+  const videos=catalog?.videos.filter(video=>video.published&&video.category===category?.label&&video.topic===topic)??[];
+  async function startModule(id:string,selection:PracticeSelection) {
+    const next=await reload();
+    if(next?.modules.some(module=>module.id===id&&module.published&&managedGeneratorIds(module,next,selection).length>0))setSelectedModule({id,selection});
+  }
+  const resourceStatus=loading?<p className="math-study-resource-status" role="status">Loading resources…</p>:error?<div className="math-study-resource-status" role="alert"><p>{error}</p><button type="button" onClick={()=>void reload()}>Try again</button></div>:null;
 
   return <section className="math-study-hall" aria-labelledby="math-study-title">
     <nav className="math-study-breadcrumbs" aria-label="Math topic navigation">
@@ -32,14 +46,19 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
       <AppLink href={href()}><ArrowLeft size={16} />All math categories</AppLink>
     </div> : topic && category ? <>
       <header className="study-hall-section-heading"><div><p>{category.label}</p><h2 id="math-study-title">{topic}</h2><span>Worksheets and practice for this topic, together in one place.</span></div></header>
+      {previewContext.mode==='teacher'&&<AppLink className="math-study-manage" href={`/teacher/practice-studio?${new URLSearchParams({category:category.label,topic})}`}>Manage practice &amp; videos <ArrowRight size={15}/></AppLink>}
       <div className="math-study-resources">
         <section aria-labelledby="math-worksheets-title" className="math-study-resource-section">
           <header><FileText size={21} aria-hidden="true" /><div><h3 id="math-worksheets-title">Worksheets</h3><p>Work through a focused set at your own pace.</p></div></header>
           <div className="math-study-resource-empty"><FileText size={30} aria-hidden="true" /><strong>No worksheets yet</strong><p>Worksheets from your teacher will appear here.</p></div>
         </section>
         <section aria-labelledby="math-infinite-title" className="math-study-resource-section">
-          <header><InfinityIcon size={24} aria-hidden="true" /><div><h3 id="math-infinite-title">Infinite practice</h3><p>Keep practicing with fresh questions.</p></div><span className="math-study-coming-soon">Coming soon</span></header>
-          <div className="math-study-resource-empty"><InfinityIcon size={34} aria-hidden="true" /><strong>Practice modules are on the way</strong><p>Your teacher’s template-based modules will appear here when they’re ready.</p></div>
+          <header><InfinityIcon size={24} aria-hidden="true" /><div><h3 id="math-infinite-title">Infinite practice</h3><p>Keep practicing with fresh questions.</p></div></header>
+          {resourceStatus??(modules.length?<PracticeModuleList catalog={catalog!} previewContext={previewContext} category={category.label} topic={topic} onStart={(id,selection)=>void startModule(id,selection)}/>:<div className="math-study-resource-empty"><InfinityIcon size={34} aria-hidden="true" /><strong>No practice modules yet</strong><p>Modules published by your teacher will appear here.</p></div>)}
+        </section>
+        <section aria-labelledby="math-videos-title" className="math-study-resource-section">
+          <header><Play size={23} aria-hidden="true"/><div><h3 id="math-videos-title">YouTube videos</h3><p>Educational references for this topic.</p></div></header>
+          {resourceStatus??(videos.length?<PracticeVideoList videos={videos}/>:<div className="math-study-resource-empty"><Play size={30} aria-hidden="true"/><strong>No videos yet</strong><p>Video references selected by your teacher will appear here.</p></div>)}
         </section>
       </div>
     </> : <>
@@ -52,5 +71,6 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
         {!mathStudyCategories.some(item => matches(`${item.label} ${item.topics.join(" ")}`)) && <p className="math-study-empty">No math categories match your search.</p>}
       </div>}
     </>}
+    {selectedModule && catalog && <Suspense fallback={<p role="status">Opening practice…</p>}><PracticePlayer key={selectedModule.id} initialModuleId={selectedModule.id} initialSelection={selectedModule.selection} catalog={catalog} onClose={() => setSelectedModule(null)} /></Suspense>}
   </section>;
 }

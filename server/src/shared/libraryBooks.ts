@@ -55,15 +55,16 @@ export function libraryAnswer(value: string): SelectedAnswer {
 }
 export function libraryQuestionAnswered(question: ExamQuestion, value: string) {
   const answer = libraryAnswer(value);
-  if (typeof answer === "string") return Boolean(answer.trim());
+  if (typeof answer === "string") return !(question.type === 'transition_drop' && (question.dragDropSlots?.length || 0) > 1) && Boolean(answer.trim());
   if (Array.isArray(answer)) return answer.length === (question.requiredSelections || question.correctChoiceIds?.length || question.correctPointIds?.length || 1);
   if (!answer || typeof answer !== "object") return false;
   if (question.type === "inline_dropdown") return Boolean(question.dropdowns?.every(menu => answer[menu.id]));
-  if (question.type === "math_drag_drop") return Boolean(question.dragDropSlots?.every(slot => answer[slot.id]));
+  if (question.type === "math_drag_drop" || question.type === 'transition_drop' && question.dragDropSlots?.length) return Boolean(question.dragDropSlots?.every(slot => answer[slot.id]));
   if (question.type === "number_line_response") return Boolean(typeof answer.value === "string" && answer.value.trim() && answer.direction && answer.endpoint);
   return Object.keys(answer).length === (question.requiredPlacements || Object.keys(question.correctPlacements ?? {}).length);
 }
 export function libraryCorrectAnswer(question: ExamQuestion): SelectedAnswer {
+  if (question.type === 'transition_drop' && question.dragDropSlots?.length) return Object.fromEntries(question.dragDropSlots.map(slot => [slot.id, slot.correctItemId]));
   if (question.correctChoiceId) return question.correctChoiceId;
   if (question.correctChoiceIds || question.correctPointIds) return question.correctChoiceIds || question.correctPointIds!;
   if (question.correctPlacements) return question.correctPlacements;
@@ -79,7 +80,11 @@ export function gradeLibraryBook(book: PassageBook, input: unknown) {
     const row = input.find(row => row?.questionId === question.id);
     if (!row || typeof row.selectedAnswerId !== "string" || !libraryQuestionAnswered(question, row.selectedAnswerId)) throw new Error("Answer every question in this book.");
     const answer = libraryAnswer(row.selectedAnswerId);
-    if (["multiple_choice", "transition_drop"].includes(question.type) && !question.choices?.some(choice => choice.id === answer)) throw new Error("Choose an included answer.");
+    if ((question.type === 'multiple_choice' || question.type === 'transition_drop' && !question.dragDropSlots?.length) && !question.choices?.some(choice => choice.id === answer)) throw new Error("Choose an included answer.");
+    if (question.type === 'transition_drop' && question.dragDropSlots?.length) {
+      const placements = typeof answer === 'string' && question.dragDropSlots.length === 1 ? { [question.dragDropSlots[0].id]: answer } : answer;
+      if (typeof placements !== 'object' || Array.isArray(placements) || Object.keys(placements).length !== question.dragDropSlots.length || question.dragDropSlots.some(slot => !placements[slot.id]) || Object.values(placements).some(id => !question.choices?.some(choice => choice.id === id)) || question.allowReuse !== true && new Set(Object.values(placements)).size !== Object.values(placements).length) throw new Error('Fill each blank with an included word.');
+    }
     if (question.type === "multi_select" && (!Array.isArray(answer) || new Set(answer).size !== answer.length || answer.some(id => !question.choices?.some(choice => choice.id === id)))) throw new Error("Choose included answers.");
     const correct = libraryCorrectAnswer(question);
     return { questionId: question.id, questionNumber: index + 1, selectedAnswerId: row.selectedAnswerId, correctAnswerId: typeof correct === "string" ? correct : JSON.stringify(correct), isCorrect: isExamQuestionCorrect(question, answer), timeSpentSeconds: typeof row.timeSpentSeconds === "number" && Number.isFinite(row.timeSpentSeconds) ? Math.max(0, Math.min(86400, Math.round(row.timeSpentSeconds))) : 0 };
