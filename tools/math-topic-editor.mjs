@@ -36,14 +36,22 @@ async function snapshot(root) {
     try { return { path, source, ...mathQuestionTopics(source, name) }; }
     catch (error) { return { path, source, questions: [], error }; }
   }));
-  const categories = JSON.parse(configSource).categories.map(category => ({ label: category.label, topics: [...category.topics] }));
+  const managementPath = join(root, 'server/data/math-command.json');
+  let managementSource = null, management = {};
+  try { managementSource = await readFile(managementPath, 'utf8'); management = JSON.parse(managementSource); } catch(error) { if(error.code !== 'ENOENT') throw error; }
+  for(const file of files) for(const question of file.questions) {
+    const overlay = management.metadata?.[question.id];
+    if(overlay?.category !== undefined) question.topic = overlay.category;
+    if(overlay?.subcategory !== undefined) question.subtopic = overlay.subcategory;
+  }
+  const categories = (management.taxonomy || JSON.parse(configSource)).categories.map(category => ({ label: category.label, topics: [...category.topics] }));
   for (const { questions } of files) for (const question of questions) {
     let category = categories.find(category => category.label === question.topic);
     if (!category) { category = { label: question.topic, topics: [] }; categories.push(category); }
     if (question.subtopic && question.subtopic !== 'Unclassified' && !category.topics.includes(question.subtopic)) category.topics.push(question.subtopic);
   }
-  const revision = hash(configSource + files.map(file => file.path + hash(file.source)).join(''));
-  return { configPath, configSource, files, categories, revision };
+  const revision = hash(configSource + (managementSource || '') + files.map(file => file.path + hash(file.source)).join(''));
+  return { configPath, configSource, files, categories, revision, managementPath, managementSource, management };
 }
 
 export async function readMathTopicConfiguration(root) {
@@ -143,7 +151,7 @@ export async function saveMathTopicConfiguration(root, input) {
     const edits = [];
     for (const question of file.questions) {
       const updated = reclassify(question);
-      for (const key of ['topic', 'subtopic']) if (question[key] !== updated[key]) {
+      for (const key of ['topic', 'subtopic']) if ((question[`${key}Node`]?.text || '') !== updated[key]) {
         const node = question[`${key}Node`];
         if (node) edits.push({ start: node.getStart(file.tree), end: node.end, text: JSON.stringify(updated[key]) });
         else if (key === 'subtopic') edits.push({ start: question.topicNode.end, end: question.topicNode.end, text: `, subtopic: ${JSON.stringify(updated[key])}` });
@@ -154,10 +162,11 @@ export async function saveMathTopicConfiguration(root, input) {
     if (next !== file.source) changes.push({ path: file.path, source: file.source, next });
   }
   const assessmentPath = join(root, 'server/data/assessments.json'), assessmentSource = await readFile(assessmentPath, 'utf8'), assessments = JSON.parse(assessmentSource);
-  const mathIds = new Set(state.files.flatMap(file => file.questions.map(question => question.id)));
+  const effectiveQuestions = new Map(state.files.flatMap(file => file.questions.map(question => [question.id, question])));
+  const mathIds = new Set(effectiveQuestions.keys());
   let assessmentChanged = false;
   for (const assessment of assessments) for (const question of assessment.questions || []) if (mathIds.has(question.id)) {
-    const updated = reclassify(question);
+    const updated = reclassify(effectiveQuestions.get(question.id) || question);
     if (updated.topic !== question.topic || updated.subtopic !== question.subtopic) { Object.assign(question, updated); assessmentChanged = true; }
   }
   if (assessmentChanged) changes.push({ path: assessmentPath, source: assessmentSource, next: `${JSON.stringify(assessments, null, 2)}\n` });
@@ -168,13 +177,29 @@ export async function saveMathTopicConfiguration(root, input) {
   try { english = JSON.parse(await readFile(join(root, 'tools/content-topics.json'), 'utf8')); }
   catch (error) { if (error.code !== 'ENOENT') throw error; }
   if (english) {
-    const taxonomy = { reading: english.slice(0, 8), revising_editing_a: english.slice(8), math: normalized.map(category => category.label), mathSpecificTopics: Object.fromEntries(normalized.map(category => [category.label, category.topics.map(topic => topic.label)])) };
+    let englishSections = {};
+    try {englishSections=JSON.parse(await readFile(join(root,'tools/content-topic-sections.json'),'utf8'));}catch(error){if(error.code!=='ENOENT')throw error;}
+    const taxonomy = { reading: englishSections.reading || english.slice(0, 8), revising_editing_a: englishSections.revising_editing_a || english.slice(8), math: normalized.map(category => category.label), mathSpecificTopics: Object.fromEntries(normalized.map(category => [category.label, category.topics.map(topic => topic.label)])) };
     for (const [name, next] of Object.entries({ 'DOCUMENT_EXTRACTION_PROMPT.txt': documentImport.prompt(taxonomy) + '\n', 'document-import-contract.json': JSON.stringify({ ...documentImport.schema, taxonomy }, null, 2) + '\n' })) {
       const path = join(root, 'tools', name);
       let source;
       try { source = await readFile(path, 'utf8'); } catch (error) { if (error.code === 'ENOENT') continue; throw error; }
       if (source !== next) changes.push({ path, source, next });
     }
+  }
+  if (state.managementSource) {
+    const management = state.management;
+    const practiceRenames=normalized.filter(category=>category.original===category.label).flatMap(category=>category.topics.filter(topic=>topic.original&&topic.original!==topic.label).map(topic=>({category:category.label,from:topic.original,to:topic.label})));
+    if(practiceRenames.length)management.taxonomyTopicRenames=[...(management.taxonomyTopicRenames||[]),...practiceRenames];
+    management.taxonomy = {categories: normalized.map(({label, topics}) => ({label, topics: topics.map(topic => topic.label)}))};
+    for(const file of state.files) for(const question of file.questions) {
+      const updated = reclassify(question), metadata = management.metadata?.[question.id];
+      if(metadata) { if(metadata.category !== undefined) metadata.category = updated.topic; if(metadata.subcategory !== undefined) metadata.subcategory = updated.subtopic; }
+    }
+    management.skills = (management.skills || []).map(skill => { const updated = reclassify({topic: skill.category, subtopic: skill.subcategory}); return {...skill, category: updated.topic, subcategory: updated.subtopic}; });
+    if(management.targets?.overrides) management.targets.overrides = management.targets.overrides.map(target => {const updated = reclassify({topic: target.category, subtopic: target.subcategory});return {...target,category:updated.topic,subcategory:updated.subtopic};});
+    management.revision = randomBytes(16).toString('hex');
+    changes.push({path: state.managementPath, source: state.managementSource, next: JSON.stringify(management, null, 2)+'\n'});
   }
   await commitFiles(changes);
   return readMathTopicConfiguration(root);

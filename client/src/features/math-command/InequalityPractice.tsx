@@ -1,4 +1,5 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { X } from 'lucide-react';
 import { createPortal } from 'react-dom';
 import { generatePracticeQuestion, moduleGeneratorIds, practiceGenerators, practiceModules, type PracticeModule } from '../../../../server/src/shared/infinitePractice';
 import { isExamQuestionCorrect } from '../../../../server/src/shared/examGrading';
@@ -12,16 +13,18 @@ import { generateCatalogQuestion, managedGeneratorIds, type PracticeCatalog, typ
 import { PracticeModuleList } from './PracticeModuleList';
 import { PracticeFeedback, PracticeStats } from './PracticeFeedback';
 
-export function InequalityPractice({ onClose, renderOverview, initialModuleId, catalog, initialSelection, previewOnly=false }: { onClose?: () => void; renderOverview?: (overview: ReactNode) => ReactNode; initialModuleId?: string; catalog?:PracticeCatalog; initialSelection?:PracticeSelection; previewOnly?:boolean }) {
+export function InequalityPractice({ onClose, renderOverview, initialModuleId, catalog, initialSelection, previewOnly=false, presentation='fullscreen' }: { onClose?: () => void; renderOverview?: (overview: ReactNode) => ReactNode; initialModuleId?: string; catalog?:PracticeCatalog; initialSelection?:PracticeSelection; previewOnly?:boolean; presentation?:'fullscreen'|'mini' }) {
+  const mini=previewOnly&&presentation==='mini',previewRef=useRef<HTMLElement>(null);
   const { session: state, update } = useInfinitePracticeSession(initialModuleId,catalog,initialSelection,!previewOnly);
   const [choosing, setChoosing] = useState(false);
   const playing = Boolean(state && !state.finished && !choosing);
-  useEffect(() => { if (!onClose) return; const before = document.body.style.overflow; document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = before; }; }, [onClose]);
+  useEffect(() => { if (!onClose||mini) return; const before = document.body.style.overflow; document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = before; }; }, [onClose,mini]);
+  useEffect(()=>{if(mini)previewRef.current?.focus({preventScroll:true});},[mini]);
   const leave = () => onClose ? onClose() : window.location.assign(appendStudentPreview('/study-hall/shsat/materials?subject=math'));
   const end = () => update(previous => previous ? { ...previous, finished: true } : previous);
   const start = (id: string,selection:PracticeSelection={}) => { update(() => createPracticeState(id, crypto.randomUUID().slice(0, 8),catalog,selection)); setChoosing(false); };
   const modules=catalog?catalog.modules.filter(module=>module.published):practiceModules;
-  const module = state?.moduleTitle?{title:state.moduleTitle}:modules.find(item => item.id === state?.moduleId);
+  const module = state?.moduleTitle?{title:state.moduleTitle==='All Question Types'?'General Practice':state.moduleTitle}:modules.find(item => item.id === state?.moduleId);
   const card = (item: PracticeModule|ManagedPracticeModule) => {
     const ids = 'generatorIds' in item?managedGeneratorIds(item,catalog!):moduleGeneratorIds(item);
     return <article className="mc-practice-module" key={item.id}><h3>{item.title}</h3><p>{item.description}</p><ul>{(catalog?.generators??practiceGenerators).filter(generator => ids.includes(generator.id)).map(generator => <li key={generator.id}>{generator.title}</li>)}</ul><button disabled={!ids.length} onClick={() => start(item.id)}>Start {item.title}</button></article>;
@@ -54,6 +57,6 @@ export function InequalityPractice({ onClose, renderOverview, initialModuleId, c
     };
     body = <ExamSessionPage key={state.seed} gameSession={exam} />;
   }
-  const content = <section className={onClose ? 'mc-exam-viewer mc-infinite-page' : 'mc-infinite-page'} role={onClose ? 'dialog' : undefined} aria-modal={onClose ? true : undefined} aria-label={previewOnly ? 'Generated question preview' : 'Infinite math practice'} onKeyDown={event => { if (event.key === 'Escape' && (previewOnly || !playing)) onClose?.(); }}>{body}</section>;
+  const content = <section ref={previewRef} tabIndex={mini?-1:undefined} className={mini?'mc-exam-mini mc-infinite-page':onClose ? 'mc-exam-viewer mc-infinite-page' : 'mc-infinite-page'} role={mini?'region':onClose ? 'dialog' : undefined} aria-modal={onClose&&!mini ? true : undefined} aria-label={previewOnly ? 'Generated question preview' : 'Infinite math practice'} onKeyDown={event => { if (event.key === 'Escape' && (previewOnly || !playing)) {event.stopPropagation();onClose?.();} }}>{mini?<><header className="mc-mini-heading"><strong>Question preview</strong><button aria-label="Close question preview" onClick={onClose} type="button"><X size={18}/></button></header><div className="mc-mini-viewport">{body}</div></>:body}</section>;
   return onClose ? createPortal(content, document.body) : !playing && renderOverview ? renderOverview(content) : content;
 }

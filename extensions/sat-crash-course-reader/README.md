@@ -1,5 +1,28 @@
 # SAT Crash Course Reader
 
+## Version 0.7.1: Math and TEI imports
+
+Select **Mathematics** on the source page, then **All 50 math questions** in the
+extension. Short-answer prompts use a different source container; the reader now
+handles those without stopping at question 3. It captures source answer keys for
+short responses, expression entry, multi-select, inline dropdowns, and sentence
+blanks with multiple drag targets. The importer retains these as editable Math
+question types. Unsupported interactions or unreadable keys remain flagged drafts,
+never guessed answers. Complex MathLive expression keys that cannot be recovered
+faithfully from rendered markup are left blank for teacher review.
+
+In Content Studio, use **Math → Import → SAT Crash Course Reader · All 50 math
+questions** and paste the complete Reader JSON. Restart Content Studio to load the
+updated importer. Reload the extension in `chrome://extensions` and refresh the
+source test tab before scanning; the popup should show **0.7.1**.
+
+For **Part B**, choose English Language Arts on the source page and the extension's
+Part B range option (Practice Test 3: 47–50). Use the SAT Crash Course option in
+the Part B import dialog. Each question retains its own paragraph.
+
+Run the TEI regression suite with:
+`node --test extensions/sat-crash-course-reader/tei.test.cjs`
+
 A read-only Chrome extension for extracting structured information from
 `https://tutor.thesatcrashcourse.com/` while using the session that is already signed in
 in Chrome.

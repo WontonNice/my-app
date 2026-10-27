@@ -1,3 +1,4 @@
+import { teacherCatalog } from "../lib/teacherLabels";
 import { Router, type Response } from "express";
 import { createHash, randomUUID } from "node:crypto";
 import type { User } from "@supabase/supabase-js";
@@ -46,12 +47,13 @@ mathCommandRouter.get("/students/:studentId/evidence",async(request,response)=>{
   response.json({items:rows.slice(page*pageSize,(page+1)*pageSize),total:rows.length,page,pageSize});
 });
 mathCommandRouter.get("/questions/:questionId/performance",async(request,response)=>{const stats=await mathPerformance();response.json({...stats.details[request.params.questionId]??mathQuestionMetrics([]),assignmentCount:stats.metrics[request.params.questionId]?.assignmentCount??0,lastAssignedAt:stats.metrics[request.params.questionId]?.lastAssignedAt??null,sampleMinimum:10});});
-async function selectionContext(data:Awaited<ReturnType<typeof loadMathStudent>>,rules:MathAssignmentRules){
+async function selectionContext(data:Awaited<ReturnType<typeof loadMathStudent>>,rules:MathAssignmentRules,actor: string){
   if(!rules||typeof rules!=="object"||Array.isArray(rules))throw fail("Choose assignment selection rules.");
   const filters=validateMathCatalogFilters(rules.catalogFilters),needsPerformance=filters.status==="never_assigned"||filters.status==="previously_assigned";
   const snapshot=mathCatalogSnapshot(undefined,needsPerformance?(await mathPerformance()).metrics:undefined),eligible=new Set<string>();
-  let page=queryMathCommandCatalog(snapshot.catalog,{...filters,page:1,pageSize:100});
-  for(;;){page.items.filter(row=>row.ready).forEach(row=>eligible.add(row.id));if(page.page>=page.pages)break;page=queryMathCommandCatalog(snapshot.catalog,{...filters,page:page.page+1,pageSize:100});}
+  const personalCatalog=teacherCatalog(snapshot.catalog,mathCommandRoot,actor);
+  let page=queryMathCommandCatalog(personalCatalog,{...filters,page:1,pageSize:100});
+  for(;;){page.items.filter(row=>row.ready).forEach(row=>eligible.add(row.id));if(page.page>=page.pages)break;page=queryMathCommandCatalog(personalCatalog,{...filters,page:page.page+1,pageSize:100});}
   const seen=new Set(data.evidence.map(row=>row.questionId)),assigned=new Set(Object.entries(data.questionStates).filter(([,value])=>value.assigned||value.planned||value.completed).map(([id])=>id));
   for(const group of snapshot.catalog.duplicates.filter(group=>group.kind==="exact")){
     if(group.questionIds.some(id=>seen.has(id)))group.questionIds.forEach(id=>seen.add(id));
@@ -61,7 +63,7 @@ async function selectionContext(data:Awaited<ReturnType<typeof loadMathStudent>>
 }
 mathCommandRouter.post("/students/:studentId/assignment-preview",async(request,response)=>{
   const student=await mathCommandStudent(request.params.studentId),data=await loadMathStudent(student),rules=request.body as MathAssignmentRules;
-  const {pool,seen,assigned}=await selectionContext(data,rules),selection=selectMathAssignment(pool,seen,assigned,rules);
+  const {pool,seen,assigned}=await selectionContext(data,rules,response.locals.user.id),selection=selectMathAssignment(pool,seen,assigned,rules);
   const previewToken=randomUUID(),expiresAt=new Date(Date.now()+15*60000).toISOString();
   const preview:MathAssignmentPreview={previewToken,studentId:student.id,questionIds:selection.selected.map(row=>row.id),questions:selection.selected.map(row=>({id:row.id,prompt:row.question.prompt,category:row.question.topic,subcategory:row.question.subtopic||"",diagnosticSkill:row.metadata?.diagnosticSkill||"",difficulty:row.metadata?.difficulty??null,previouslySeen:seen.has(row.id)||assigned.has(row.id),source:row.sources.map(source=>source.title).join("; ")})),requested:selection.requested,selected:selection.selected.length,shortfall:selection.shortfall,warnings:selection.warnings,rules,expiresAt};
   for(const [id,record]of previews)if(Date.parse(record.preview.expiresAt)<Date.now())previews.delete(id);
@@ -80,12 +82,12 @@ mathCommandRouter.post("/students/:studentId/assignments",async(request,response
   if(!Array.isArray(body.questionIds)||hash(body.questionIds)!==hash(ids))throw fail("The question selection changed. Preview it again before assigning.",409);
   const catalog=readMathCommandCatalog(),selection=ids.map(id=>catalog.find(row=>row.id===id));
   if(selection.some(row=>!row)||hash(selection)!==record.signature)throw fail("Question content or classification changed. Preview again before assigning.",409);
-  const latest=await selectionContext(await loadMathStudent(student),record.preview.rules);
+  const latest=await selectionContext(await loadMathStudent(student),record.preview.rules,actor.id);
   if(record.preview.rules.excludeSeen!==false&&record.preview.questions.some(row=>!row.previouslySeen&&(latest.seen.has(row.id)||latest.assigned.has(row.id))))throw fail("Student history or assignments changed after this preview. Preview again to select unseen questions.",409);
   try{selectMathAssignment(latest.pool,latest.seen,latest.assigned,{...record.preview.rules,questionIds:ids});}catch(error){throw fail(`The preview is no longer eligible: ${(error as Error).message}`,409);}
   const title=String(body.title??`${ids.length}-question math practice`).trim();if(!title||title.length>300)throw fail("Use an assignment title of 1–300 characters.");
   const dueDate=body.dueDate||null;if(dueDate&&!validDate(dueDate))throw fail("Choose a valid due date.");
-  const at=new Date().toISOString(),task:PlanAssignment={id,studentId:student.id,kind:"practice",contentId:`math-command:${id}`,title,instructions:typeof body.instructions==="string"?body.instructions.slice(0,10000):"Complete the selected mathematics questions.",url:`/math-practice/${id}`,status:"assigned",assignedAt:at,dueDate,plannedDate:null,completedAt:null,estimatedMinutes:null,questionTarget:ids.length,practiceBaseline:null,createdAt:at,createdBy:actor.id,updatedAt:at,revision:1,completion:null,events:[{at,actor:actor.id,action:"Assigned mathematics questions from existing content",changes:{mathCommand:{questionIds:ids,rules:record.preview.rules,signature:record.signature}}}]};
+  const at=new Date().toISOString(),task:PlanAssignment={id,studentId:student.id,kind:"practice",contentId:`math-command:${id}`,title,instructions:typeof body.instructions==="string"?body.instructions.slice(0,10000):"Complete the selected mathematics questions.",url:`/math-practice/${id}`,status:"assigned",assignedAt:at,dueDate,plannedDate:null,completedAt:null,estimatedMinutes:null,questionTarget:ids.length,practiceBaseline:null,createdAt:at,createdBy:actor.id,updatedAt:at,revision:1,completion:null,events:[{at,actor:actor.id,action:"Assigned mathematics questions from existing content",changes:{mathCommand:{questionIds:ids,signature:record.signature}}}]};
   const saved=await supabase.from("student_assignments").upsert(toAssignmentRow(task),{onConflict:"id",ignoreDuplicates:true});if(saved.error)throw fail("The assignment could not be saved. Retry with the same submission ID.",503);
   invalidateMathPerformance();response.status(201).json({assignment:task});
 });

@@ -777,7 +777,8 @@
   </header>
 
   <nav class="tabbar" aria-label="Editor sections">
-    <button class="is-active" data-tab="passages" type="button">Exam passages</button>
+    <button class="is-active" data-tab="passages" type="button">Reading passages</button>
+    <button data-tab="part-a" type="button">Revising/Editing Part A</button>
     <button data-tab="standalone" type="button">Exam Part B</button>
     <button data-tab="tests" type="button">Exam builder</button>
     <button data-tab="math" type="button">Exam math</button>
@@ -1086,7 +1087,7 @@ Why D is wrong."></textarea>
   <dialog aria-labelledby="content-topic-dialog-title" class="topic-manager-dialog content-topic-dialog" id="content-topic-dialog">
     <div class="topic-manager-shell">
       <header>
-        <div><span class="studio-eyebrow">Question categorization</span><h2 id="content-topic-dialog-title">Manage question topics</h2><p>The first eight topics belong to Reading Comprehension. Every topic after that belongs exclusively to Revising/Editing.</p></div>
+        <div><span class="studio-eyebrow">Question categorization</span><h2 id="content-topic-dialog-title">Manage question topics</h2><p>These topics belong only to this library. Renaming or adding a topic here does not change the other libraries.</p></div>
         <button aria-label="Close question topic manager" class="icon-button" id="content-topic-close" type="button">×</button>
       </header>
       <div class="topic-manager-safety"><strong>Protected changes</strong><span>Renames update existing question records when saved. Topics in use cannot be removed, and removals require confirmation.</span></div>
@@ -1119,6 +1120,8 @@ Why D is wrong."></textarea>
   <script src="/passage-exam-assignment.cjs"></script>
   <script src="/math-import-batch.cjs"></script>
   <script src="/content-studio-workspace.js"></script>
+  <link rel="stylesheet" href="/math-command/teacher-labels-studio.css">
+  <script type="module" src="/math-command/teacher-labels-studio.js"></script>
   <script src="/content-studio-command.js"></script>
   <script src="/content-studio-part-b.js"></script>
   <script src="/part-b-bank.cjs"></script>
@@ -1134,6 +1137,8 @@ Why D is wrong."></textarea>
       state: null,
       token: "",
       passageMode: "exam",
+      passageLibrary: "reading",
+      passageWorkspaceDrafts: new Map(),
       passageDraft: null,
       passageDirty: false,
       passageImportBusy: false,
@@ -1459,18 +1464,18 @@ Why D is wrong."></textarea>
         directions: undefined,
         exportName: "",
         fileName: "",
-        format: "prose",
+        format: app.passageMode === "exam" && app.passageLibrary === "revising_editing_a" ? "sentence_prose" : "prose",
         coverImage: undefined,
         id: "",
         image: undefined,
         label: "",
         passageSetId: "",
         passageType: "",
-        questions: [defaultQuestion("passage", 1)],
+        questions: [defaultQuestion("passage", 1, "multiple_choice", questionTopicsForSection(app.passageMode === "advanced" ? "reading" : app.passageLibrary || "reading")[0])],
         richText: "",
         sourceHash: "",
         sourceNote: "",
-        section: "",
+        section: app.passageMode === "advanced" ? "reading" : app.passageLibrary || "reading",
         teacherSource: "",
         text: "",
         title: "",
@@ -1504,7 +1509,7 @@ Why D is wrong."></textarea>
         promptHtml: "",
         stimulus: "",
         stimulusHtml: "",
-        topic: questionTopicsForSection("revising_editing_a")[0] || "Sentence Structure",
+        topic: questionTopicsForSection("revising_editing_b")[0] || "Sentence Structure",
         versionLabel: "",
       };
       if (type === "category_sort") {
@@ -1782,24 +1787,24 @@ Why D is wrong."></textarea>
     function switchTab(tab) {
       if (app.saving) return;
       if (!app.state) { setStatus('Loading the content library…'); return; }
-      const requestedPassageMode = tab === "advanced" ? "advanced" : tab === "passages" ? "exam" : "";
-      if (requestedPassageMode && requestedPassageMode !== app.passageMode) {
-        if (!confirmDiscard()) return;
+      const requestedPassageMode = tab === 'advanced' ? 'advanced' : ['passages','part-a'].includes(tab) ? 'exam' : '';
+      const requestedLibrary = tab === 'part-a' ? 'revising_editing_a' : 'reading';
+      if (requestedPassageMode && (requestedPassageMode !== app.passageMode || requestedPassageMode === 'exam' && requestedLibrary !== (app.passageLibrary || 'reading'))) {
         studioUI.capturePassageLibrary();
-        app.passageMode = requestedPassageMode;
-        const sourcePassages = requestedPassageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
-        const previousId = studioUI.readPreference(`selected-passage:${requestedPassageMode}`, '');
+        app.passageWorkspaceDrafts ||= new Map();
+        app.passageWorkspaceDrafts.set(studioUI.passageLibraryKey(), {id:app.selectedPassageId,draft:app.passageDraft,dirty:app.passageDirty});
+        app.passageMode = requestedPassageMode; app.passageLibrary = requestedLibrary;
+        const sourcePassages = studioUI.passagesForLibrary();
+        const cached = app.passageWorkspaceDrafts.get(studioUI.passageLibraryKey());
+        const previousId = studioUI.readPreference('selected-passage:'+studioUI.passageLibraryKey(), '');
         const firstPassage = sourcePassages.find(passage => passage.id === previousId) || sourcePassages[0];
-        app.selectedPassageId = firstPassage?.id || "";
-        app.passageDraft = firstPassage ? clone(firstPassage) : null;
-        app.passageDirty = false;
-        updatePassageWorkspaceLabels();
-        studioUI.restorePassageLibrary();
-        renderPassageList();
-        renderPassageEditor();
+        app.selectedPassageId = cached?.id ?? firstPassage?.id ?? '';
+        app.passageDraft = cached?.draft ?? (firstPassage ? clone(firstPassage) : null);
+        app.passageDirty = cached?.dirty || false;
+        updatePassageWorkspaceLabels(); studioUI.restorePassageLibrary(); renderPassageList(); renderPassageEditor();
       }
       $$("[data-tab]").forEach((button) => button.classList.toggle("is-active", button.dataset.tab === tab));
-      const viewId = tab === "advanced" ? "passages-view" : `${tab}-view`;
+      const viewId = ["advanced", "part-a"].includes(tab) ? "passages-view" : `${tab}-view`;
       $$(".view").forEach((view) => view.classList.toggle("is-active", view.id === viewId));
       studioUI.activateWorkspace(tab);
       if (tab === "compare") ComparisonStudio.mount();
@@ -1824,7 +1829,7 @@ Why D is wrong."></textarea>
 
     function passageLibraryButtonMarkup(passage, nested = false) {
       return `
-        <div class="studio-category-row"><input type="checkbox" aria-label="Select ${escapeHtml(teacherPassageTitle(passage))} for categorization" data-category-select="${escapeHtml(passage.id)}" ${categorySelection.has(app.passageMode + ":" + passage.id) ? "checked" : ""}>
+        <div class="studio-category-row"><input type="checkbox" aria-label="Select ${escapeHtml(teacherPassageTitle(passage))} for categorization" data-category-select="${escapeHtml(passage.id)}" ${categorySelection.has(studioUI.passageLibraryKey() + ":" + passage.id) ? "checked" : ""}>
         <button style="flex:1;min-width:0" aria-current="${passage.id === app.selectedPassageId}" title="${escapeHtml(teacherPassageTitle(passage))} · ${escapeHtml(passage.id)}" class="${passage.id === app.selectedPassageId ? "is-active" : ""}" data-passage-id="${escapeHtml(passage.id)}" type="button">
           <strong>${escapeHtml(nested ? passageVersionText(passage) : passage.title)}</strong>
           <small class="studio-catalog-meta">${nested ? escapeHtml(categoryLabel(passage.passageCategory)) : escapeHtml(passageVersionText(passage))}<span>· ${passage.questions.length} Q</span></small>
@@ -1887,13 +1892,13 @@ Why D is wrong."></textarea>
     function renderPassageList() {
       const previousScroll = $("#passage-list").scrollTop;
       const query = $("#passage-search").value.trim().toLowerCase();
-      const sourcePassages = app.passageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
+      const sourcePassages = studioUI.passagesForLibrary();
       const categoryFilter = $("#passage-category-filter");
       const category = categoryFilter.value;
       categoryFilter.innerHTML = `<option value="">All categories (${sourcePassages.length})</option>` + studioUI.passageCategoryCounts(sourcePassages).map(item => `<option value="${item.value}">${escapeHtml(item.label)} (${item.count})</option>`).join("");
       categoryFilter.value = category;
       const matches = studioUI.searchPassages(sourcePassages.filter(passage => (!category || (passage.passageCategory || "miscellaneous") === category) && (!studioUI.catalogSection || app.passageMode === "advanced" || examPassageSection(passage) === studioUI.catalogSection)), query);
-      const passages = studioUI.libraryPage(matches, "passages", query + app.passageMode + category + (studioUI.catalogSection || ''), renderPassageList);
+      const passages = studioUI.libraryPage(matches, "passages", query + studioUI.passageLibraryKey() + category + (studioUI.catalogSection || ''), renderPassageList);
       $("#passage-count").textContent = category || query ? `${matches.length}/${sourcePassages.length}` : sourcePassages.length;
       const passageList = $("#passage-list");
       passageList.innerHTML = passageLibraryMarkup(passages, query) || `<p class="field-note">No English passages match ${category ? escapeHtml(categoryLabel(category)) + " and " : ""}these filters. <button id="clear-passage-filters" type="button">Clear filters</button></p>`;
@@ -1929,7 +1934,7 @@ Why D is wrong."></textarea>
     async function applyPassageCategory() {
       if (app.saving) return;
       if (!confirmDiscard()) return;
-      const source = app.passageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
+      const source = studioUI.passagesForLibrary();
       const items = source.filter(passage => categorySelection.has(app.passageMode + ":" + passage.id)).map(passage => ({ id: passage.id, sourceHash: passage.sourceHash }));
       const passageCategory = $("#passage-bulk-category").value;
       if (!items.length || !confirm(`Set ${items.length} passages to ${categoryLabel(passageCategory)}? Passage text and questions will be retained.`)) return;
@@ -1949,7 +1954,7 @@ Why D is wrong."></textarea>
     function selectPassage(id) {
       if (app.selectedPassageId === id && app.passageDraft) return;
       if (!confirmDiscard()) return;
-      const passages = app.passageMode === "advanced" ? app.state.advancedPassages : app.state.passages;
+      const passages = studioUI.passagesForLibrary();
       const passage = passages.find((candidate) => candidate.id === id);
       if (!passage) return;
       app.selectedPassageId = id;
@@ -1957,7 +1962,7 @@ Why D is wrong."></textarea>
       app.passageDirty = false;
       renderPassageList();
       renderPassageEditor();
-      studioUI.remember(`selected-passage:${app.passageMode}`, id);
+      studioUI.remember(`selected-passage:${studioUI.passageLibraryKey()}`, id);
       setStatus(
         `Editing ${passage.title}. Changes write to ${
           app.passageMode === "advanced" ? "advancedPractice/passageSets" : "exams/passageSets"
@@ -2017,9 +2022,9 @@ Why D is wrong."></textarea>
 
     function updatePassageWorkspaceLabels() {
       const advanced = app.passageMode === "advanced";
-      $("#passage-library-title").textContent = advanced ? "SAT passages" : "Exam passages";
-      $("#passage-search").placeholder = advanced ? "Search SAT passages" : "Search exam passages";
-      $("#new-passage").textContent = advanced ? "+ New SAT passage" : "+ New exam passage";
+      $("#passage-library-title").textContent = advanced ? "SAT passages" : app.passageLibrary === "revising_editing_a" ? "Revising/Editing Part A" : "Reading passages";
+      $("#passage-search").placeholder = advanced ? "Search SAT passages" : app.passageLibrary === "revising_editing_a" ? "Search Part A passages" : "Search reading passages";
+      $("#new-passage").textContent = advanced ? "+ New SAT passage" : app.passageLibrary === "revising_editing_a" ? "+ New Part A passage" : "+ New reading passage";
       $("#open-passage-import").hidden = false;
       $("#open-sat-passage-import").hidden = false;
     }
@@ -2129,6 +2134,7 @@ Why D is wrong."></textarea>
     function openSatPassageImport() {
       app.passageImportDestination = app.passageMode;
       app.passageImportKind = "sat";
+      $("#sat-passage-section").value = app.passageMode === "advanced" ? "reading" : app.passageLibrary || "reading";
       app.passageImportReview = null;
       $("#official-passage-import-review").innerHTML = "";
       renderOfficialPassageImportReview();
@@ -2171,7 +2177,8 @@ Why D is wrong."></textarea>
     }
 
     function questionTopicsForSection(section = "reading") {
-      if (section === "revising_editing_a") return app.state.revisingEditingTopics || app.state.topics.slice(8);
+      if (section === "revising_editing_a") return app.state.partATopics || app.state.revisingEditingTopics || app.state.topics.slice(8);
+      if (section === "revising_editing_b") return app.state.partBTopics || app.state.revisingEditingTopics || app.state.topics.slice(8);
       return app.state.readingTopics || app.state.topics.slice(0, 8);
     }
 
@@ -3633,7 +3640,7 @@ Why D is wrong."></textarea>
         `;
       }).join("");
 
-      $$("[data-question-index]", container).forEach((card) => {
+      $$(".question-card[data-question-index]", container).forEach((card) => {
         const index = Number(card.dataset.questionIndex);
         $$("[data-question-field]", card).forEach((element) => {
           element.addEventListener("input", () => {
@@ -3826,7 +3833,7 @@ Why D is wrong."></textarea>
         `;
       }).join("");
 
-      $$("[data-question-index]", container).forEach((card) => {
+      $$(".question-card[data-question-index]", container).forEach((card) => {
         const index = Number(card.dataset.questionIndex);
         $("[data-question-type]", card)?.addEventListener("change", (event) => changeQuestionType(index, event.target.value));
         $$("[data-question-field]", card).forEach((element) => {
@@ -4200,6 +4207,7 @@ Why D is wrong."></textarea>
         app.selectedPassageId = saved.id;
         app.passageDraft = clone(saved);
         app.passageDirty = false;
+        if(app.passageMode === "exam") {app.passageLibrary=studioUI.passageLibrarySection(saved);updatePassageWorkspaceLabels();switchTab(studioUI.passageLibraryTab(saved));}
         renderPassageList();
         renderPassageEditor();
         const folder = app.passageMode === "advanced"
@@ -4235,7 +4243,7 @@ Why D is wrong."></textarea>
           body: JSON.stringify({ id: passage.id, sourceHash: passage.sourceHash }),
         });
         await reloadState();
-        const nextPassage = (advanced ? app.state.advancedPassages : app.state.passages)[0];
+        const nextPassage = studioUI.passagesForLibrary()[0];
         app.selectedPassageId = nextPassage?.id || "";
         app.passageDraft = nextPassage ? clone(nextPassage) : advanced ? defaultAdvancedPassage() : defaultPassage();
         app.passageDirty = false;
@@ -4266,7 +4274,7 @@ Why D is wrong."></textarea>
       const query = $("#standalone-search").value.trim().toLowerCase();
       const records = [...(app.state.standaloneImportDrafts || []).map(entry => ({ ...entry.question, importDraftId: entry.id })), ...app.state.standaloneItems.filter(item => !item.duplicateOf)];
       const matches = records.filter((item) =>
-        `${item.prompt} ${item.stimulus || ""} ${item.topic} ${PartBBank.labels(item).join(' ')} ${PartBBank.usage(item, app.state.standaloneItems, app.state.tests).map(test => test.title).join(' ')} ${item.id}`.toLowerCase().includes(query),
+        `${item.prompt} ${item.stimulus || ""} ${item.topic} ${PartBBank.labels(item).join(' ')} ${PartBBank.usage(item, app.state.standaloneItems, app.state.tests).map(test => test.title).join(' ')} ${item.id} ${studioUI.teacherSearchText(item.id)}`.toLowerCase().includes(query),
       );
       const items = studioUI.libraryPage(matches, "standalone", query, renderStandaloneList);
       $("#standalone-count").textContent = records.length;
@@ -4410,7 +4418,7 @@ Why D is wrong."></textarea>
           <div class="standalone-bank-form">
             <label class="field"><span>Question ID</span><div class="field-input-action"><input id="standalone-id" data-standalone-field="id" ${app.selectedStandaloneItemId ? "disabled" : ""} value="${escapeHtml(item.id)}"><button class="secondary" id="generate-standalone-id" ${app.selectedStandaloneItemId ? "disabled" : ""} type="button">Generate</button></div></label>
             <label class="field"><span>Question type</span><select id="standalone-type"><option ${isDragDrop ? "" : "selected"} value="multiple_choice">Multiple choice</option><option ${isDragDrop ? "selected" : ""} value="category_sort">Drag and drop · one answer box</option></select></label>
-            <label class="field"><span>Topic</span><select data-standalone-field="topic"><option value="" ${!questionTopicsForSection('revising_editing_a').includes(item.topic) ? 'selected' : ''}>Choose a Revising/Editing topic</option>${topicOptions(item.topic, "revising_editing_a")}</select></label>
+            <label class="field"><span>Topic</span><select data-standalone-field="topic"><option value="" ${!questionTopicsForSection('revising_editing_b').includes(item.topic) ? 'selected' : ''}>Choose a Revising/Editing topic</option>${topicOptions(item.topic, "revising_editing_b")}</select></label>
             <label class="field"><span>Points</span><input data-standalone-field="points" min="1" type="number" value="${escapeHtml(item.points || 1)}"></label>
             <section class="field wide" id="standalone-version-tags" aria-label="Source test and version tags"></section>
             <div class="wide">
@@ -4635,13 +4643,12 @@ Why D is wrong."></textarea>
     }
 
     function openTestPassageEditor(id) {
-      if (app.saving || !passageById(id)) return;
-      if (app.passageMode !== "exam") {
-        switchTab("passages");
-        if (app.passageMode !== "exam") return;
-      }
+      const passage=passageById(id);
+      if(app.saving || !passage) return;
+      const tab=studioUI.passageLibrarySection(passage)==='revising_editing_a'?'part-a':'passages';
+      switchTab(tab);
+      if(app.passageMode!=='exam')return;
       selectPassage(id);
-      if (app.selectedPassageId === id) switchTab("passages");
     }
 
     function testPassageSectionMarkup(field, title, note, emptyMessage) {
@@ -4656,7 +4663,7 @@ Why D is wrong."></textarea>
                 <article class="order-item">
                   <div><strong>${escapeHtml(passage ? teacherPassageTitle(passage) : passageId)}</strong><small>${escapeHtml(passageId)} · ${passage?.questions.length || 0} questions${passage?.teacherSource ? ` · Source: ${escapeHtml(passage.teacherSource)}` : ""}</small></div>
                   <div class="order-actions">
-                    <button data-edit-test-passage="${escapeHtml(passageId)}" ${passage ? "" : "disabled"} type="button">Go to editor →</button>
+                    ${studioUI.passageEditorButton(passageId, !passage)}
                     <button class="icon-button" data-order-action="up" data-order-index="${index}" data-order-section="${field}" title="Move up" type="button">↑</button>
                     <button class="icon-button" data-order-action="down" data-order-index="${index}" data-order-section="${field}" title="Move down" type="button">↓</button>
                     <button class="danger" data-order-action="remove" data-order-index="${index}" data-order-section="${field}" type="button">Remove</button>
@@ -4741,7 +4748,7 @@ Why D is wrong."></textarea>
         </div>
         ${testAnswerKeyMarkup(assessment.id)}
         <h2>Passage library</h2>
-        <p class="field-note">Choose one version of a passage for Reading Comprehension or Revising/Editing Part A. Choosing another version of the same title replaces the current selection. Part B is built from the separate stand-alone question bank below.</p>
+        <p class="field-note">The library follows the selected Reading or Part A section. Choosing another version of the same title replaces the current selection. Part B is built from the separate stand-alone question bank below.</p>
         <div class="passage-version-groups">
           ${passageGroups.map((group) => `
             <section class="passage-version-group">
@@ -4750,16 +4757,15 @@ Why D is wrong."></textarea>
                 ${group.passages.map((passage) => {
                   const assignedSection = assignedSectionByPassage.get(passage.id);
                   return `
-                    <article class="passage-picker-card ${assignedSection ? "is-selected" : ""}">
+                    <article data-passage-library="${studioUI.passageLibrarySection(passage)}" data-teacher-questions="${escapeHtml(passage.questions.map(q=>q.id).join('|'))}" class="passage-picker-card ${assignedSection ? "is-selected" : ""}">
                       <span class="passage-version-tag">${assignedSection ? "✓ " : ""}${escapeHtml(passageVersionText(passage))}</span>
                       <small>${passage.questions.length} questions · ${escapeHtml(passage.format.replace("_", " "))}</small>
                       <small class="teacher-source">Teacher source: ${escapeHtml(passage.teacherSource || "Not recorded")}</small>
-                      <button data-edit-test-passage="${escapeHtml(passage.id)}" type="button">Go to editor →</button>
+                      ${studioUI.passageEditorButton(passage.id)}
                       ${assignedSection
                         ? `<small>Assigned to ${escapeHtml(assignedSection)}</small>`
                         : `<div class="passage-picker-actions">
-                            <button data-add-passage="${escapeHtml(passage.id)}" data-section-field="readingPassageIds" title="Use for Reading Comprehension" type="button">+ Reading</button>
-                            <button data-add-passage="${escapeHtml(passage.id)}" data-section-field="revisingEditingPartAPassageIds" title="Use for Revising/Editing Part A" type="button">+ Part A</button>
+                            ${studioUI.passageLibrarySection(passage) === "revising_editing_a" ? `<button data-add-passage="${escapeHtml(passage.id)}" data-section-field="revisingEditingPartAPassageIds" type="button">+ Part A</button>` : `<button data-add-passage="${escapeHtml(passage.id)}" data-section-field="readingPassageIds" type="button">+ Reading</button>`}
                           </div>`}
                     </article>
                   `;
@@ -6839,6 +6845,7 @@ WRONG D:`;
     }
 
     function renderContentTopicManager() {
+      $('#content-topic-dialog-title').textContent=(app.contentTopicSection === 'revising_editing_a' ? 'Revising/Editing Part A' : app.contentTopicSection === 'revising_editing_b' ? 'Revising/Editing Part B' : 'Reading')+' question topics';
       const list = $("#content-topic-list");
       const topicDrafts = app.contentTopicDrafts || [];
       list.innerHTML = topicDrafts.length ? topicDrafts.map((topic, index) => {
@@ -6846,8 +6853,6 @@ WRONG D:`;
         const protectedTopic = Boolean(topic.original && topic.questionCount > 0);
         const isConfirming = app.contentTopicDeleteConfirm === topicKey;
         return `
-          ${index === 0 ? '<h3 class="topic-manager-scope">Reading Comprehension · topics 1–8</h3>' : ""}
-          ${index === 8 ? '<h3 class="topic-manager-scope">Revising/Editing · exclusive topics</h3>' : ""}
           <article class="topic-manager-row" data-content-topic-index="${index}">
             <span class="topic-manager-index">${index + 1}</span>
             <label>Topic name<input data-content-topic-field="label" maxlength="80" required value="${escapeHtml(topic.label)}"></label>
@@ -6856,18 +6861,21 @@ WRONG D:`;
               <button aria-label="Move ${escapeHtml(topic.label || "new topic")} down" class="icon-button" data-content-topic-action="down" ${index === topicDrafts.length - 1 ? "disabled" : ""} title="Move down" type="button">↓</button>
               <button class="danger${isConfirming ? " is-confirming" : ""}" data-content-topic-action="remove" ${protectedTopic ? "disabled" : ""} title="${protectedTopic ? "Move these questions to another topic before removing it." : isConfirming ? "Confirm topic removal" : "Stage this topic for removal"}" type="button">${isConfirming ? "Confirm" : "Remove"}</button>
             </div>
-            <small><strong>${index < 8 ? "Reading Comprehension" : "Revising/Editing"}</strong> · ${topic.original ? `${topic.questionCount} question${topic.questionCount === 1 ? "" : "s"} use this topic${topic.label !== topic.original ? ` · Renaming ${escapeHtml(topic.original)}` : ""}` : "New topic"}</small>
+            <small><strong>${app.contentTopicSection === "revising_editing_a" ? "Part A" : app.contentTopicSection === "revising_editing_b" ? "Part B" : "Reading"}</strong> · ${topic.original ? `${topic.questionCount} question${topic.questionCount === 1 ? "" : "s"} use this topic${topic.label !== topic.original ? ` · Renaming ${escapeHtml(topic.original)}` : ""}` : "New topic"}</small>
           </article>`;
       }).join("") : `<p class="topic-manager-empty">Add at least one topic before saving.</p>`;
     }
 
     function openContentTopicManager() {
       if (app.passageDirty || app.standaloneDirty || app.mathDirty) {
-        setStatus("Save or discard the current editor changes before managing the shared Topic dropdown.", "error");
+        setStatus("Save or discard the current editor changes before managing topics for this library.", "error");
         return;
       }
-      const usageByTopic = new Map((app.state.topicDetails || []).map((topic) => [topic.label, topic.questionCount]));
-      app.contentTopicDrafts = app.state.topics.map((label) => ({
+      app.contentTopicSection = document.body.dataset.workspace === 'standalone' ? 'revising_editing_b' : currentPassageQuestionSection();
+      const configuration = app.state.topicConfiguration;
+      app.contentTopicRevision = configuration.revision;
+      const usageByTopic = new Map((configuration.topicDetailsBySection[app.contentTopicSection] || []).map((topic) => [topic.label, topic.questionCount]));
+      app.contentTopicDrafts = questionTopicsForSection(app.contentTopicSection).map((label) => ({
         label,
         original: label,
         questionCount: Number(usageByTopic.get(label)) || 0,
@@ -6937,11 +6945,12 @@ WRONG D:`;
       app.contentTopicBusy = true;
       $("#content-topic-save").disabled = true;
       $("#content-topic-save").textContent = "Saving topics…";
-      setStatus("Updating the shared question Topic dropdown...");
+      setStatus("Updating topics for this library...");
       try {
         await api("/api/topics", {
           method: "PUT",
           body: JSON.stringify({
+            section: app.contentTopicSection, revision: app.contentTopicRevision,
             topics: app.contentTopicDrafts.map(({ label, original }) => ({ label, original })),
           }),
         });
@@ -6958,7 +6967,8 @@ WRONG D:`;
           renderPassageList();
           renderPassageEditor();
         }
-        setStatus(`Saved ${app.state.topics.length} shared question topics.`, "success");
+        if(app.contentTopicSection === "revising_editing_b" && app.standaloneDraft) {app.standaloneDraft=clone(app.state.standaloneItems.find(item=>item.id===app.selectedStandaloneItemId) || app.standaloneDraft);renderStandaloneEditor();}
+        setStatus(`Saved ${questionTopicsForSection(app.contentTopicSection).length} topics for this library.`, "success");
       } catch (error) {
         setStatus(error.message, "error");
       } finally {
@@ -7144,8 +7154,9 @@ WRONG D:`;
         app.poemRichBlocks = (await import('/poem-layout.js')).poemRichBlocks;
         await reloadState();
         updatePassageWorkspaceLabels();
-        const previousId = studioUI.readPreference('selected-passage:exam', '');
-        const firstPassage = app.state.passages.find(passage => passage.id === previousId) || app.state.passages[0];
+        const previousId = studioUI.readPreference('selected-passage:reading', '');
+        const readingPassages = studioUI.passagesForLibrary();
+        const firstPassage = readingPassages.find(passage => passage.id === previousId) || readingPassages[0];
         studioUI.restorePassageLibrary();
         if (!app.passageDraft && firstPassage) {
           app.selectedPassageId = firstPassage.id;

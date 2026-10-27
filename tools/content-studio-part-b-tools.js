@@ -16,6 +16,7 @@ const PartBTools = {
     const button = studioUI.element('button', 'secondary', 'Check repeats');
     button.type = 'button'; button.onclick = () => this.openRepeats(app.standaloneDraft.id);
     root.querySelector('.standalone-item-actions').append(button);
+    studioUI.mountTeacherTags(root.querySelector('.studio-part-b-toolbar'), app.standaloneDraft.id);
     this.renderSummary();
   },
   setTags(values) {

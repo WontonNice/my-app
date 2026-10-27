@@ -1,7 +1,4 @@
-import taxonomy from "../../../tools/math-topics.json";
-
-// Include every managed topic, even before it has published resources.
-export const mathStudyCategories = taxonomy.categories;
+export type MathStudyCategory = {label:string;topics:string[]};
 
 export function mathStudyHref(category?: string, topic?: string) {
   const query = new URLSearchParams({ subject: "math" });

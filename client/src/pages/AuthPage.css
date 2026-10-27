@@ -1,0 +1,147 @@
+@font-face {
+  font-family: "Nathan Auth Sans";
+  src: url("/landing/fonts/dm-sans-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nathan Auth Serif";
+  src: url("/landing/fonts/instrument-serif-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Auth-only surface: the portal and recovery pages retain their original styles. */
+html:has(.na-page) { scrollbar-gutter: auto; background: #fbfaf7; }
+html:has(.na-page-meadow) { background: #f2f3f0; }
+body:has(.na-page) { min-width: 0; }
+.na-page {
+  --na-ink: #202a27;
+  --na-muted: #657069;
+  --na-paper: #fbfaf7;
+  --na-line: #88958b;
+  min-height: 100svh;
+  position: relative;
+  padding: 0;
+  color: var(--na-ink);
+  background: #efefea;
+  font: 400 14px/1.5 "Nathan Auth Sans", sans-serif;
+  letter-spacing: 0;
+  color-scheme: light;
+  isolation: isolate;
+}
+.na-page :where(h1, p) { margin: 0; }
+.na-page :where(a, button, input):focus-visible { outline: 3px solid #3c6b58; outline-offset: 4px; }
+.na-page ::selection { background: #dce6d6; color: #202a27; }
+.na-page :where(button, a) { -webkit-tap-highlight-color: transparent; }
+.na-page button { cursor: pointer; }
+.na-page button:disabled { cursor: default; }
+.na-page .na-header { position: absolute; z-index: 4; top: 0; left: 0; width: 100%; min-height: 86px; padding: 16px 40px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; }
+.na-page-thinker .na-header { width: 49%; padding-inline: 28px; gap: 12px; }
+.na-page-thinker .na-header .na-back > span, .na-page-thinker .na-header .na-scene-switch > span { display: none; }
+.na-page .na-back, .na-page .na-scene-switch { display: inline-flex; align-items: center; gap: 9px; width: fit-content; min-height: 44px; font-size: 12px; }
+.na-page .na-back:hover { text-decoration: underline; text-underline-offset: 4px; }
+.na-page .na-brand { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 600; font-size: 16px; letter-spacing: -.025em; white-space: nowrap; }
+.na-page .na-brand > span { font: 400 29px/1 "Nathan Auth Serif", serif; border: 1px solid #42594d; border-radius: 8px 8px 8px 0; padding: 0 4px 4px; }
+.na-page .na-scene-switch { justify-self: end; padding: 6px 0 6px 12px; border: 0; color: #44534a; background: transparent; }
+.na-page .na-scene-switch:hover { color: #172d21; }
+.na-page .na-shell { position: relative; width: 100%; min-height: 100svh; background: var(--na-paper); }
+.na-page .na-shell-thinker { display: grid; grid-template-columns: 49% 51%; overflow: hidden; }
+.na-page .na-form-wrap { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; min-width: 0; padding: 110px 50px 90px; }
+.na-page .na-form-panel { width: 100%; max-width: 350px; }
+.na-page h1 { font: 400 54px/1.05 "Nathan Auth Serif", serif; letter-spacing: -.025em; }
+.na-page .na-intro { margin-top: 14px; color: var(--na-muted); font-size: 14px; line-height: 1.7; max-width: 320px; }
+.na-page .na-form { display: grid; gap: 21px; margin-top: 35px; }
+.na-page .na-form label { display: grid; gap: 9px; font-size: 13px; font-weight: 500; }
+.na-page .na-form input { width: 100%; min-height: 48px; border: 1px solid var(--na-line); border-radius: 4px; padding: 12px 13px; background: #fffefc; color: var(--na-ink); font: 400 14px/1.5 "Nathan Auth Sans", sans-serif; transition: border-color 150ms ease; }
+.na-page .na-form input::placeholder { color: #6d786e; opacity: 1; }
+.na-page .na-form input:hover { border-color: #56675b; }
+.na-page .na-form input:focus { border-color: #3c6b58; }
+.na-page .na-password-label { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 9px; }
+.na-page .na-password-label a { color: #4d6354; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; }
+.na-page .na-password-input { position: relative; }
+.na-page .na-password-input input { padding-right: 48px; }
+.na-page .na-password-toggle { position: absolute; top: 2px; right: 2px; width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: transparent; color: #627267; border-radius: 3px; }
+.na-page .na-password-toggle:hover { color: #1f3e2c; background: #edf1e9; }
+.na-page .na-submit { display: flex; justify-content: space-between; align-items: center; min-height: 49px; width: 100%; padding: 12px 17px; border: 1px solid #202a27; border-radius: 4px; color: #fffefa; background: #202a27; font-size: 13px; font-weight: 500; transition: background 160ms ease, border-color 160ms ease; }
+.na-page .na-submit:hover { background: #365344; border-color: #365344; }
+.na-page .na-submit:disabled { background: #657069; border-color: #657069; }
+.na-page .na-message { padding: 12px; color: #8b2f2b; background: #fbede8; border: 1px solid #d59b93; border-radius: 4px; font-size: 13px; overflow-wrap: anywhere; }
+.na-page .na-account-help { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-top: 24px; color: var(--na-muted); font-size: 12px; }
+.na-page .na-account-help a { color: #283e30; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.na-page .na-form-footnote { margin-top: 52px; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--na-muted); font-size: 11px; }
+.na-page .na-portrait { position: relative; min-height: 650px; overflow: hidden; background: #5383a8; }
+.na-page .na-portrait > img, .na-page .na-water { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.na-page .na-water { opacity: 0; pointer-events: none; }
+.na-page .na-portrait::after { content: ""; position: absolute; inset: 42% 0 0; pointer-events: none; background: linear-gradient(transparent 5%, rgb(10 22 19 / 72%)); }
+.na-page .na-portrait-caption { position: absolute; z-index: 1; left: 36px; right: 30px; bottom: 36px; color: #fffaf0; pointer-events: none; }
+.na-page .na-portrait-caption p { font: 400 clamp(42px, 4.3vw, 62px)/1.02 "Nathan Auth Serif", serif; letter-spacing: -.02em; }
+.na-page .na-portrait-caption > span { display: block; margin-top: 18px; font-size: 12px; }
+.na-page .na-footer { position: absolute; z-index: 3; bottom: 0; left: 0; width: 100%; min-height: 60px; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #344a36; font-size: 11px; pointer-events: none; }
+.na-page-thinker .na-footer { width: 49%; color: #657069; padding-inline: 28px; }
+
+.na-page-meadow { background: #f2f3f0; }
+.na-page .na-shell-meadow { overflow: hidden; background: #f9fcfc; }
+.na-page .na-shell-meadow .na-form-wrap { width: 100%; min-height: inherit; padding: 110px 20px 200px; }
+.na-page .na-shell-meadow .na-form-panel { max-width: 380px; padding: 32px; background: #fffefa; border: 1px solid #e4e7de; border-radius: 12px; }
+.na-page .na-shell-meadow h1 { font-size: 44px; }
+.na-page .na-shell-meadow .na-intro { font-size: 13px; margin-top: 10px; }
+.na-page .na-shell-meadow .na-form { margin-top: 25px; gap: 17px; }
+.na-page .na-shell-meadow .na-form-footnote { margin-top: 24px; }
+.na-page .na-meadow { position: absolute; inset: 0; }
+.na-page .na-meadow-art { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; object-position: center bottom; }
+.na-page .na-deer { position: absolute; top: 0; left: 0; z-index: 3; display: block; width: 100px; height: 78px; margin: 0; padding: 0; border: 0; border-radius: 6px; background: transparent; touch-action: manipulation; }
+.na-page .na-deer[data-running="true"] { will-change: transform; }
+.na-page .na-deer canvas { display: block; width: 100%; height: 100%; pointer-events: none; }
+.na-page .na-deer:focus-visible { outline-offset: 1px; background: rgb(255 255 255 / 55%); }
+.na-page .na-deer:hover { filter: brightness(1.07); }
+
+@media (min-width: 1600px) {
+  .na-page .na-header { min-height: 110px; }
+}
+@media (max-width: 1000px) {
+  .na-page .na-form-wrap { padding: 110px 32px 90px; }
+  .na-page h1 { font-size: 47px; }
+  .na-page .na-portrait { min-height: 640px; }
+  .na-page .na-portrait-caption { left: 26px; bottom: 30px; }
+  .na-page .na-form-footnote { flex-wrap: wrap; margin-top: 36px; }
+}
+@media (max-width: 700px) {
+  .na-page .na-header { width: 100%; min-height: 75px; gap: 12px; padding: 12px 24px; }
+  .na-page .na-brand { font-size: 15px; gap: 6px; }
+  .na-page .na-back > span, .na-page .na-scene-switch > span { display: none; }
+  .na-page .na-back, .na-page .na-scene-switch { justify-content: center; width: 44px; padding: 0; }
+  .na-page .na-back { margin-left: -10px; }
+  .na-page .na-scene-switch { margin-right: -10px; }
+  .na-page .na-shell-thinker { grid-template-columns: 1fr; }
+  .na-page .na-form-wrap { padding: 110px 28px 48px; }
+  .na-page .na-form-panel { max-width: 390px; }
+  .na-page h1 { font-size: 49px; }
+  .na-page .na-intro { max-width: 340px; }
+  .na-page .na-form { margin-top: 28px; }
+  .na-page .na-form input { font-size: 16px; }
+  .na-page .na-form-footnote { margin-top: 30px; }
+  .na-page .na-portrait { min-height: 380px; }
+  .na-page .na-portrait > img { object-position: center 38%; }
+  .na-page .na-portrait-caption { left: 25px; bottom: 80px; }
+  .na-page .na-portrait-caption p { font-size: 44px; }
+  .na-page .na-shell-meadow .na-form-wrap { padding: 100px 16px 280px; }
+  .na-page .na-shell-meadow .na-form-panel { padding: 27px 23px; }
+  .na-page .na-shell-meadow h1 { font-size: 43px; }
+  .na-page .na-meadow-art { inset: auto 0 0; height: 520px; object-fit: cover; mask-image: linear-gradient(to bottom, transparent, #000 110px); }
+  .na-page .na-deer { width: 86px; height: 68px; }
+  .na-page .na-footer { width: 100%; padding-inline: 24px; font-size: 10px; min-height: 65px; gap: 12px; }
+  .na-page-thinker .na-footer { color: #fffaf0; }
+}
+@media (max-width: 380px) {
+  .na-page .na-form-wrap { padding-inline: 22px; }
+  .na-page .na-shell-meadow .na-form-wrap { padding-inline: 10px; }
+  .na-page .na-shell-meadow .na-form-panel { padding-inline: 19px; }
+  .na-page .na-account-help { font-size: 11px; }
+  .na-page .na-form-footnote { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .na-page *, .na-page *::before, .na-page *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

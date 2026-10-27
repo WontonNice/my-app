@@ -20,8 +20,8 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "explanation": "",
     "points": 1,
     "prompt": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
-    "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Ratios & Proportions",
+    "topic": "Geometry",
+    "subtopic": "Scale & Transformations",
     "choices": [
       {
         "id": "A",
@@ -93,8 +93,8 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "explanation": "",
     "points": 1,
     "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true:\n\n• 20 students have cats.\n• 23 students have dogs.\n• 3 students have both dogs and cats.\n• 5 students have no dogs or cats.\n\nHow many students were surveyed?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Counting & Sets",
+    "topic": "Statistics and Probability",
+    "subtopic": "Set Relationships",
     "correctTextAnswers": [
       "45"
     ],
@@ -545,8 +545,8 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, not including tax. What was the price per pound of the meat?",
     "promptHtml": "Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, <strong>not</strong> including tax. What was the price per pound of the meat?",
-    "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -1064,7 +1064,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of neither 2 nor 3?",
     "promptHtml": "In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of <strong>neither</strong> 2 nor 3?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Counting & Sets",
+    "subtopic": "Number Properties",
     "choices": [
       {
         "id": "A",
@@ -1304,8 +1304,8 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "explanation": "",
     "points": 1,
     "prompt": "\\[\\frac{10}{13}=0.\\overline{769230}\\]\n\nIn the infinitely repeating decimal above, 7 is the first digit in the repeating pattern. What is the 391st digit?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "topic": "Algebra",
+    "subtopic": "Patterns & Sequences",
     "choices": [
       {
         "id": "A",
@@ -1383,8 +1383,8 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "explanation": "",
     "points": 1,
     "prompt": "Each week, Leon has fixed expenses of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he sells each chair for $275. What is Leon’s profit if he makes and sells 25 chairs in 1 week?",
-    "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Number Operations",
     "choices": [
       {
         "id": "A",

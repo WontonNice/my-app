@@ -4,6 +4,11 @@ import { getDashboardPath, getStaffLoginEmail, getStudentLoginEmail, getUserRole
 import { rememberAccountSession } from "../lib/accountSwitching";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 import { loginDestination } from '../lib/loginDestination';
+import { ArrowLeft, ArrowRight, Eye, EyeOff, Shuffle } from "lucide-react";
+import { WaterPortrait } from "../components/auth/WaterPortrait";
+import { MeadowScene } from "../components/auth/MeadowScene";
+import { useReducedMotion } from "../components/auth/useReducedMotion";
+import "./AuthPage.css";
 
 type AuthPageProps = {
   mode: "login" | "signup";
@@ -11,6 +16,10 @@ type AuthPageProps = {
 
 export function AuthPage({ mode }: AuthPageProps) {
   const isSignup = mode === "signup";
+  const [scene, setScene] = useState<"thinker" | "meadow">(() => Math.random() < 0.5 ? "thinker" : "meadow");
+  const [showPassword, setShowPassword] = useState(false);
+  const reducedMotion = useReducedMotion();
+  const motionEnabled = !reducedMotion;
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [message, setMessage] = useState("");
@@ -91,72 +100,67 @@ export function AuthPage({ mode }: AuthPageProps) {
   }
 
   return (
-    <main className="auth-shell">
-      <a className="public-logo auth-logo" href="/">
-        Promise Summer School
-      </a>
-      <section className="auth-panel" aria-labelledby="auth-title">
-        {isSignup ? <p className="home-kicker">Create student account</p> : null}
-        <h1 id="auth-title">{isSignup ? "Sign up" : "Login"}</h1>
-        {isSignup ? <p>Student accounts are created by default.</p> : null}
+    <main className={`na-page na-page-${scene}`} data-auth-scene={scene}>
+      <header className="na-header">
+        <a className="na-back" href="/" aria-label="Back to home"><ArrowLeft size={16} aria-hidden="true" /><span>Back to home</span></a>
+        <a className="na-brand" href="/" aria-label="Nathan Tutors home"><span aria-hidden="true">n.</span> Nathan Tutors</a>
+        <button className="na-scene-switch" type="button" onClick={() => setScene(current => current === "thinker" ? "meadow" : "thinker")} aria-label={`Change scenery: switch to ${scene === "thinker" ? "landscape" : "Thinker"} scene`}>
+          <Shuffle size={15} aria-hidden="true" /><span>Change scenery</span>
+        </button>
+      </header>
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          {isSignup && (
-            <label>
-              Full name
-              <input
-                autoComplete="name"
-                required
-                type="text"
-                value={fullName}
-                onChange={(event) => setFullName(event.target.value)}
-              />
-            </label>
-          )}
+      <div className={`na-shell na-shell-${scene}`}>
+        <div className="na-form-wrap">
+          <section className="na-form-panel" aria-labelledby="auth-title">
+            <h1 id="auth-title">{isSignup ? "A new chapter." : "Welcome back."}</h1>
+            <p className="na-intro">{isSignup ? "Create your student account. Let’s see where learning takes you." : "A little focus. A little progress. Pick up where you left off."}</p>
 
-          <label>
-            Email or username
-            <input
-              autoComplete="username"
-              autoCapitalize="none"
-              autoCorrect="off"
-              inputMode="text"
-              name={isSignup ? "username" : "login-identifier"}
-              required
-              spellCheck={false}
-              title={isSignup ? "Enter an email, or use 3–32 letters, numbers, dots, dashes, or underscores for a username." : undefined}
-              type="text"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </label>
+            <form className="na-form" onSubmit={handleSubmit} aria-busy={isSubmitting}>
+              {isSignup && (
+                <label htmlFor="na-full-name">
+                  Full name
+                  <input id="na-full-name" autoComplete="name" name="full-name" required type="text" placeholder="Your full name" value={fullName} onChange={event => setFullName(event.target.value)} />
+                </label>
+              )}
+              <label htmlFor="na-identifier">
+                Email or username
+                <input
+                  id="na-identifier"
+                  autoComplete="username"
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  inputMode="text"
+                  name={isSignup ? "username" : "login-identifier"}
+                  required
+                  spellCheck={false}
+                  title={isSignup ? "Enter an email, or use 3–32 letters, numbers, dots, dashes, or underscores for a username." : undefined}
+                  type="text"
+                  placeholder="Your email or username"
+                  value={email}
+                  onChange={event => setEmail(event.target.value)}
+                />
+              </label>
+              <div className="na-password-group">
+                <div className="na-password-label"><label htmlFor="na-password">Password</label>{!isSignup && <a href="/forgot-password">Forgot password?</a>}</div>
+                <div className="na-password-input">
+                  <input id="na-password" name="password" autoComplete={isSignup ? "new-password" : "current-password"} minLength={6} required type={showPassword ? "text" : "password"} placeholder={isSignup ? "At least 6 characters" : "Your password"} value={password} onChange={event => setPassword(event.target.value)} />
+                  <button type="button" className="na-password-toggle" aria-label={showPassword ? "Hide password" : "Show password"} aria-controls="na-password" onClick={() => setShowPassword(current => !current)}>{showPassword ? <EyeOff size={17} aria-hidden="true" /> : <Eye size={17} aria-hidden="true" />}</button>
+                </div>
+              </div>
+              {message && <p className="na-message" role="alert">{message}</p>}
+              <button className="na-submit" disabled={isSubmitting} type="submit"><span>{isSubmitting ? "Please wait…" : isSignup ? "Create your account" : "Sign in"}</span><ArrowRight size={17} aria-hidden="true" /></button>
+            </form>
 
-          <label>
-            Password
-            <input
-              autoComplete={isSignup ? "new-password" : "current-password"}
-              minLength={6}
-              required
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </label>
-
-          {message && <p className="auth-message">{message}</p>}
-
-          <button className="home-primary" disabled={isSubmitting} type="submit">
-            {isSubmitting ? "Please wait" : isSignup ? "Create account" : "Login"}
-          </button>
-        </form>
-
-        <nav className="auth-links" aria-label="Account help">
-        {!isSignup && <a className="auth-switch" href="/forgot-password">Forgot your password?</a>}
-        <a className="auth-switch" href={isSignup ? "/login" : "/signup"}>
-          {isSignup ? "Already have an account? Login" : "Need an account? Sign up"}
-        </a>
-        </nav>
-      </section>
+            <nav className="na-account-help" aria-label="Account help">
+              <span>{isSignup ? "Already learning with us?" : "New to Nathan Tutors?"}</span>
+              <a href={isSignup ? "/login" : "/signup"}>{isSignup ? "Sign in" : "Create an account"}</a>
+            </nav>
+            <p className="na-form-footnote">{isSignup ? "Made for your next step." : "Good to have you here."}</p>
+          </section>
+        </div>
+        {scene === "thinker" ? <WaterPortrait motionEnabled={motionEnabled} /> : <MeadowScene motionEnabled={motionEnabled} />}
+      </div>
+      <footer className="na-footer"><span>Room to think. Space to grow.</span><span>© {new Date().getFullYear()} Nathan Tutors</span></footer>
     </main>
   );
 }

@@ -50,14 +50,14 @@ const DocumentStudio = {
   },
   openPassageDraft(entry) {
     const destination = entry.destination || 'exam';
-    app.passageMode = destination; app.selectedPassageId = ''; app.passageDraft = clone(entry.content);
+    app.passageMode = destination; app.passageLibrary = studioUI.passageLibrarySection(entry.content); app.selectedPassageId = ''; app.passageDraft = clone(entry.content);
     app.passageDraft.preserveSourceLayout = true; app.passageDirty = false;
     studioUI.passageContext = '';
     studioUI.preparePassage();
     const firstProblem = app.passageDraft.questions.findIndex(question => question.review?.warnings?.length);
     studioUI.selectedQuestionIndex = Math.max(0, firstProblem);
     studioUI.selectedQuestionId = app.passageDraft.questions[studioUI.selectedQuestionIndex]?.id || '';
-    updatePassageWorkspaceLabels(); renderPassageList(); renderPassageEditor(); switchTab(destination === 'advanced' ? 'advanced' : 'passages');
+    updatePassageWorkspaceLabels(); renderPassageList(); renderPassageEditor(); switchTab(destination === 'advanced' ? 'advanced' : studioUI.passageLibraryTab(app.passageDraft));
     if (firstProblem >= 0) studioUI.showSupportPanel('question');
     document.querySelector('#document-review-dialog')?.close();
   },
@@ -94,7 +94,7 @@ const DocumentStudio = {
       if (this.entry?.id === id) this.entry = null;
       if (current) {
         const advanced = app.passageMode === 'advanced';
-        const next = (advanced ? app.state.advancedPassages : app.state.passages)[0];
+        const next = studioUI.passagesForLibrary()[0];
         app.selectedPassageId = next?.id || '';
         app.passageDraft = next ? clone(next) : advanced ? defaultAdvancedPassage() : defaultPassage();
         app.passageDirty = false;
@@ -108,9 +108,9 @@ const DocumentStudio = {
   },
   openPublishedPassage(passage, destination = 'exam') {
     if (app.passageDirty) return false;
-    app.passageMode = destination; app.selectedPassageId = passage.id; app.passageDraft = clone(passage);
+    app.passageMode = destination; app.passageLibrary = studioUI.passageLibrarySection(passage); app.selectedPassageId = passage.id; app.passageDraft = clone(passage);
     studioUI.passageContext = ''; updatePassageWorkspaceLabels(); renderPassageList(); renderPassageEditor();
-    switchTab(destination === 'advanced' ? 'advanced' : 'passages');
+    switchTab(destination === 'advanced' ? 'advanced' : studioUI.passageLibraryTab(app.passageDraft));
     document.querySelector('#document-review-dialog')?.close();
     return true;
   },
@@ -133,7 +133,7 @@ const DocumentStudio = {
     const vs = p ? [...(p.visuals || []), ...(q?.visuals || [])] : [];
     const issues = e ? DocumentImport.issues(e, this.taxonomy()) : [];
     dialog.innerHTML = `<section class="panel"><div class="panel-head"><h2>${e ? 'Document review' : 'Saved document drafts'}</h2><button type="button" id="doc-close">Close</button></div><div id="doc-message" role="status"></div>
-      ${!e ? `<p>Drafts are private to this Content Studio checkout. Publish uses the existing content files and student renderers.</p>${this.state.entries.filter(entry => entry.status !== 'published').map(entry => `<p><button data-doc-open="${entry.id}">${escapeHtml(entry.content.title || 'Untitled')} · ${entry.kind === 'math' ? 'Math' : entry.destination === 'advanced' ? 'SAT passages' : 'Exam passages'} · ${entry.content.questions.length} questions · ${entry.status}</button></p>`).join('') || '<p>No unpublished document drafts. In Exam passages or SAT passages, choose Import documents, paste the JSON returned by ChatGPT, then Validate and review → Save all as review drafts.</p>'}` : `
+      ${!e ? `<p>Drafts are private to this Content Studio checkout. Publish uses the existing content files and student renderers.</p>${this.state.entries.filter(entry => entry.status !== 'published').map(entry => `<p><button data-doc-open="${entry.id}">${escapeHtml(entry.content.title || 'Untitled')} · ${entry.kind === 'math' ? 'Math' : entry.destination === 'advanced' ? 'SAT passages' : entry.content.section === 'revising_editing_a' ? 'Revising/Editing Part A' : 'Reading passages'} · ${entry.content.questions.length} questions · ${entry.status}</button></p>`).join('') || '<p>No unpublished document drafts. In Exam passages or SAT passages, choose Import documents, paste the JSON returned by ChatGPT, then Validate and review → Save all as review drafts.</p>'}` : `
       ${e.kind === 'passage' ? `<p>Publish to <strong>${destinationLabel}</strong>${destination === 'advanced' ? ' · Students will find it under Advanced readings in English Study Hall.' : ''}</p>` : ''}
       <div class="math-import-actions"><button id="doc-library">Back to drafts</button><button id="doc-save">Save review draft</button>${e.kind === 'passage' ? '<button id="doc-editor">Open passage editor / Student view</button>' : `<label>Destination exam <select id="doc-assessment"><option value="">Choose an exam</option>${app.state.assessments.map(a => `<option value="${escapeHtml(a.id)}">${escapeHtml(a.title)}</option>`).join('')}</select></label>`}<button class="primary" id="doc-publish">${e.kind === 'passage' ? 'Publish passage' : 'Publish reviewed Math questions'}</button></div>
       ${e.kind === 'passage' && destination === 'exam' ? studioUI.publishExamMarkup(e.id) : ''}
@@ -205,8 +205,8 @@ const DocumentStudio = {
         const saved = (destination === 'advanced' ? app.state.advancedPassages : app.state.passages).find(passage => passage.id === p.id);
         if (saved) { app.passageDirty = false; this.openPublishedPassage(saved, destination); return; }
       }
-      await this.save(); app.passageMode = destination; app.selectedPassageId = ''; app.passageDraft = clone(this.entry.content); app.passageDraft.preserveSourceLayout = true; app.passageDirty = false;
-      studioUI.passageContext = ''; updatePassageWorkspaceLabels(); renderPassageList(); renderPassageEditor(); switchTab(destination === 'advanced' ? 'advanced' : 'passages'); dialog.close();
+      await this.save(); app.passageMode = destination; app.passageLibrary = studioUI.passageLibrarySection(this.entry.content); app.selectedPassageId = ''; app.passageDraft = clone(this.entry.content); app.passageDraft.preserveSourceLayout = true; app.passageDirty = false;
+      studioUI.passageContext = ''; updatePassageWorkspaceLabels(); renderPassageList(); renderPassageEditor(); switchTab(destination === 'advanced' ? 'advanced' : studioUI.passageLibraryTab(app.passageDraft)); dialog.close();
     });
     dialog.querySelector('#doc-publish').onclick = handle(async () => {
       const target = dialog.querySelector('#doc-assessment')?.value;

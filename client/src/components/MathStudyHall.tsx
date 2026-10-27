@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, FileText, Infinity as InfinityIcon, Layers3, Play } from "lucide-react";
 import { AppLink } from "./AppLink";
-import { mathStudyCategories, mathStudyHref } from "../lib/mathStudyHall";
+import { mathStudyHref } from "../lib/mathStudyHall";
 import { appendStudentPreview, type StudentPreviewContext } from "../lib/studentPreview";
 import { managedGeneratorIds, type PracticeSelection } from "../../../server/src/shared/practiceCatalog";
 import { PracticeModuleList } from "../features/math-command/PracticeModuleList";
@@ -13,7 +13,8 @@ const PracticePlayer = lazy(() => import("../features/math-command/InequalityPra
 export function MathStudyHall({ query, previewContext }: { query: string; previewContext: StudentPreviewContext }) {
   const [search, setSearch] = useState(() => window.location.search);
   const [selectedModule, setSelectedModule] = useState<{id:string;selection:PracticeSelection} | null>(null);
-  const {catalog,error,loading,reload}=usePracticeCatalog();
+  const {catalog,taxonomy,error,loading,reload}=usePracticeCatalog();
+  const mathStudyCategories=taxonomy??[];
   useEffect(() => {
     const update = () => setSearch(window.location.search);
     window.addEventListener("popstate", update);
@@ -25,13 +26,15 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
   const topic = category?.topics.find(item => item === topicName);
   const href = (main?: string, specific?: string) => appendStudentPreview(mathStudyHref(main, specific), previewContext);
   const matches = (text: string) => text.toLowerCase().includes(query.trim().toLowerCase());
-  const modules=catalog?.modules.filter(module=>module.published&&module.category===category?.label&&module.topic===topic&&managedGeneratorIds(module,catalog).length>0)??[];
+  const modules=catalog?.modules.filter(module=>module.published&&module.category===category?.label&&module.topic===topic)??[];
   const videos=catalog?.videos.filter(video=>video.published&&video.category===category?.label&&video.topic===topic)??[];
   async function startModule(id:string,selection:PracticeSelection) {
     const next=await reload();
     if(next?.modules.some(module=>module.id===id&&module.published&&managedGeneratorIds(module,next,selection).length>0))setSelectedModule({id,selection});
   }
   const resourceStatus=loading?<p className="math-study-resource-status" role="status">Loading resources…</p>:error?<div className="math-study-resource-status" role="alert"><p>{error}</p><button type="button" onClick={()=>void reload()}>Try again</button></div>:null;
+
+  if(!taxonomy)return <section className="math-study-hall" aria-labelledby="math-study-title"><h2 id="math-study-title">Math categories</h2>{error?<div className="math-study-resource-status" role="alert"><p>{error}</p><button type="button" onClick={()=>void reload()}>Try again</button></div>:<p role="status">Loading math categories…</p>}</section>;
 
   return <section className="math-study-hall" aria-labelledby="math-study-title">
     <nav className="math-study-breadcrumbs" aria-label="Math topic navigation">

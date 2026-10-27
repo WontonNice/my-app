@@ -3,35 +3,98 @@ import type { ExamQuestion } from './examTypes';
 
 export type GeneratorSettings = { minCoefficient:number; maxCoefficient:number; minBoundary:number; maxBoundary:number; minOffset:number; maxOffset:number; negativeCoefficients:boolean; inclusive:boolean };
 export type PracticeGeneratorDefinition = { id:string; title:string; description:string; enabled:boolean; kind:'builtin'|'one-step'|'two-step'; builtinId?:string; settings?:GeneratorSettings; category?:string; topic?:string };
-export type ManagedPracticeModule = { id:string; title:string; description:string; category:string; topic:string; published:boolean; includeAll:boolean; generatorIds:string[]; parentId?:string|null };
+export type ManagedPracticeModule = { id:string; title:string; description:string; category:string; topic:string; published:boolean; includeAll:boolean; generatorIds:string[]; parentId?:string|null; defaultType?:'foundation'|'general' };
 export type PracticeVideo = { id:string; title:string; description:string; category:string; topic:string; published:boolean; url:string; channelTitle?:string; duration?:string; viewCount?:number; publishedAt?:string };
 export type PracticeCatalog = { modules:ManagedPracticeModule[]; generators:PracticeGeneratorDefinition[]; videos:PracticeVideo[] };
 export type PracticeCatalogResponse = { revision:number; catalog:PracticeCatalog };
 export const defaultGeneratorSettings:GeneratorSettings = {minCoefficient:2,maxCoefficient:9,minBoundary:-10,maxBoundary:10,minOffset:1,maxOffset:12,negativeCoefficients:true,inclusive:false};
-export function defaultPracticeCatalog():PracticeCatalog {
-  return {
-    generators:practiceGenerators.map(generator=>({id:generator.id,title:generator.title,description:generator.description??(generator.foundation?'Small positive coefficients and exact division.':'Positive and negative coefficients, including sign flips.'),enabled:true,kind:'builtin',builtinId:generator.id})),
-    modules:practiceModules.map(module=>({id:module.id,title:module.title,description:module.id==='foundation'?'Build confidence with one-step inequalities, including positive division and sign flips.':module.description,category:'Algebra',topic:'Inequalities',published:true,includeAll:module.selection==='all',generatorIds:module.id==='foundation'?practiceGenerators.map(generator=>generator.id):Array.isArray(module.selection)?module.selection:[]})),
+export function defaultPracticeCatalog(topics?:PracticeTaxonomy):PracticeCatalog {
+  return ensureTopicPracticeModules({
+    generators:practiceGenerators.map(generator=>({id:generator.id,title:generator.title,description:generator.description??(generator.foundation?'Small positive coefficients and exact division.':'Positive and negative coefficients, including sign flips.'),enabled:true,kind:'builtin',builtinId:generator.id,category:generator.category??'Algebra',topic:generator.topic??'Inequalities'})),
+    modules:practiceModules.map(module=>({id:module.id,title:module.title,description:module.id==='foundation'?'Build confidence with one-step inequalities, including positive division and sign flips.':module.description,category:module.category??'Algebra',topic:module.topic??'Inequalities',published:true,includeAll:module.selection==='all',generatorIds:module.id==='foundation'?practiceGenerators.filter(generator=>(generator.category??'Algebra')==='Algebra'&&(generator.topic??'Inequalities')==='Inequalities').map(generator=>generator.id):Array.isArray(module.selection)?module.selection:[]})),
     videos:[],
-  };
+  },topics);
 }
 export type PracticeSelection = { childModuleIds?:string[]; topics?:string[] };
 export const generatorTopicKey=(generator:PracticeGeneratorDefinition)=>`${generator.category??'Algebra'} / ${generator.topic??'Inequalities'}`;
+export type PracticeTaxonomy = {categories:{label:string;topics:string[]}[]};
+export type PracticeTopicRename = {category:string;from:string;to:string};
+/** Follow explicit taxonomy renames without guessing destinations or changing stable IDs. */
+export function reconcilePracticeTaxonomy(catalog:PracticeCatalog,taxonomy:PracticeTaxonomy,renames:PracticeTopicRename[]=[]):PracticeCatalog {
+  const location=<T extends {category?:string;topic?:string}>(resource:T):T=>{
+    const category=resource.category??'Algebra',topic=resource.topic??'Inequalities';
+    if(taxonomy.categories.some(item=>item.label===category&&item.topics.includes(topic)))return {...resource};
+    let renamed=topic;
+    for(const rename of renames)if(rename.category===category&&rename.from===renamed)renamed=rename.to;
+    return {...resource,...(renamed!==topic?{topic:renamed}:{})};
+  };
+  return {...catalog,modules:catalog.modules.map(location),generators:catalog.generators.map(location),videos:catalog.videos.map(location)};
+}
+export function practiceModuleKind(module:ManagedPracticeModule) {
+  return module.defaultType ?? (module.id==='foundation'?'foundation':module.id==='all'?'general':undefined);
+}
+const sameTopic=(first:{category?:string;topic?:string},second:{category?:string;topic?:string})=>(first.category??'Algebra')===(second.category??'Algebra')&&(first.topic??'Inequalities')===(second.topic??'Inequalities');
+export function topicPracticeModuleId(category:string,topic:string,kind:'foundation'|'general') {
+  let hash=2166136261;for(const ch of JSON.stringify([category,topic]))hash=Math.imul(hash^ch.charCodeAt(0),16777619)>>>0;
+  const slug=(category+'-'+topic).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,65);
+  return kind+'-'+slug+'-'+hash.toString(36);
+}
+/** Backfill each topic once, retaining stable IDs, curated selections and visibility. */
+export function ensureTopicPracticeModules(catalog:PracticeCatalog,topics?:PracticeTaxonomy):PracticeCatalog {
+  const modules=catalog.modules.map(module=>{
+    const kind=practiceModuleKind(module);
+    return {...module,...(kind?{defaultType:kind,parentId:null}:{}),...(kind==='general'?{title:'General Practice',includeAll:true}:{})};
+  });
+  const locations=new Map<string,{category:string;topic:string}>();
+  const add=(category:string,topic:string)=>locations.set(JSON.stringify([category,topic]),{category,topic});
+  topics?.categories.forEach(category=>category.topics.forEach(topic=>add(category.label,topic)));
+  [...catalog.modules,...catalog.generators,...catalog.videos].forEach(item=>add(item.category??'Algebra',item.topic??'Inequalities'));
+  for(const location of locations.values())for(const kind of ['foundation','general'] as const){
+    if(modules.some(module=>practiceModuleKind(module)===kind&&sameTopic(module,location)))continue;
+    modules.push({id:topicPracticeModuleId(location.category,location.topic,kind),title:kind==='foundation'?'Foundation Building':'General Practice',
+      description:kind==='foundation'?'Build confidence with a focused selection of question types.':'Practice every available question type in this topic.',
+      ...location,defaultType:kind,published:true,includeAll:true,generatorIds:[],parentId:null});
+  }
+  for(const module of modules){
+    if(practiceModuleKind(module))continue;
+    const parent=modules.find(item=>item.id===module.parentId);
+    if(parent&&practiceModuleKind(parent)&&sameTopic(module,parent))continue;
+    module.parentId=modules.find(item=>practiceModuleKind(item)==='general'&&sameTopic(module,item))!.id;
+  }
+  return {...catalog,modules};
+}
 export function managedGeneratorIds(module:ManagedPracticeModule,catalog:Pick<PracticeCatalog,'generators'>&Partial<Pick<PracticeCatalog,'modules'>>,selection:PracticeSelection={}) {
+  const excludedChildren=catalog.modules?.filter(child=>child.parentId===module.id&&(!child.published||selection.childModuleIds&&!selection.childModuleIds.includes(child.id)))??[];
   const children=catalog.modules?.filter(child=>child.parentId===module.id&&child.published&&(!selection.childModuleIds||selection.childModuleIds.includes(child.id)))??[];
   const ids=new Set([...module.generatorIds,...children.flatMap(child=>child.generatorIds)]);
-  return catalog.generators.filter(generator=>generator.enabled&&(module.id==='all'||module.includeAll||ids.has(generator.id)||children.some(child=>child.includeAll))&&(!selection.topics||selection.topics.includes(generatorTopicKey(generator)))).map(generator=>generator.id);
+  const kind=practiceModuleKind(module);
+  const available=(generator:PracticeGeneratorDefinition)=>!kind||sameTopic(module,generator);
+  return catalog.generators.filter(generator=>generator.enabled&&available(generator)&&(!excludedChildren.some(child=>child.includeAll||child.generatorIds.includes(generator.id))||ids.has(generator.id)||children.some(child=>child.includeAll))&&(kind==='general'||module.includeAll||ids.has(generator.id)||children.some(child=>child.includeAll))&&(!selection.topics||selection.topics.includes(generatorTopicKey(generator)))).map(generator=>generator.id);
 }
 export function movePracticeModule(catalog:PracticeCatalog,moduleId:string,parentId:string|null):PracticeCatalog {
   const module=catalog.modules.find(item=>item.id===moduleId);
-  if(!module||module.id==='foundation'||module.id==='all')throw new Error('Only individual modules can be moved into Foundation Building.');
-  if(parentId!==null&&parentId!=='foundation')throw new Error('Choose Foundation Building or a separate listing.');
-  const inherited=new Set(module.includeAll?catalog.generators.map(generator=>generator.id):module.generatorIds);
-  return {...catalog,modules:catalog.modules.map(item=>item.id===moduleId?{...item,parentId}:parentId&&item.id===parentId?{...item,includeAll:false,generatorIds:item.generatorIds.filter(id=>!inherited.has(id))}:item)};
+  if(!module||practiceModuleKind(module))throw new Error('Only individual modules can be moved between practice groups.');
+  const parent=catalog.modules.find(item=>parentId?item.id===parentId:practiceModuleKind(item)==='general'&&sameTopic(module,item));
+  if(!parent||!practiceModuleKind(parent)||!sameTopic(module,parent))throw new Error('Choose Foundation Building or General Practice in the same category and subcategory.');
+  const inherited=new Set(managedGeneratorIds(module,catalog));
+  return {...catalog,modules:catalog.modules.map(item=>item.id===moduleId?{...item,parentId:parent.id}:item.id===parent.id&&practiceModuleKind(parent)==='foundation'?{...item,includeAll:false,generatorIds:managedGeneratorIds(item,catalog).filter(id=>!inherited.has(id))}:item)};
 }
 export function removePracticeGenerator(catalog:PracticeCatalog,generatorId:string):PracticeCatalog {
   const next={...catalog,generators:catalog.generators.filter(item=>item.id!==generatorId),modules:catalog.modules.map(module=>({...module,generatorIds:module.generatorIds.filter(id=>id!==generatorId)}))};
-  return {...next,modules:next.modules.map(module=>({...module,published:module.published&&managedGeneratorIds(module,next).length>0}))};
+  return {...next,modules:next.modules.map(module=>({...module,published:module.published&&(Boolean(practiceModuleKind(module))||managedGeneratorIds(module,next).length>0)}))};
+}
+export function removePracticeModule(catalog:PracticeCatalog,moduleId:string):PracticeCatalog {
+  const module=catalog.modules.find(item=>item.id===moduleId);
+  if(!module)throw new Error('This practice module no longer exists.');
+  if(practiceModuleKind(module))throw new Error('Foundation Building and General Practice are required topic groups.');
+  if(catalog.modules.some(item=>item.parentId===moduleId))throw new Error('Move contained modules before deleting this module.');
+  return {...catalog,modules:catalog.modules.filter(item=>item.id!==moduleId)};
+}
+export function mergePracticeModules(catalog:PracticeCatalog,keepId:string,removeId:string):PracticeCatalog {
+  const keep=catalog.modules.find(item=>item.id===keepId),remove=catalog.modules.find(item=>item.id===removeId);
+  if(!keep||!remove||keepId===removeId||practiceModuleKind(keep)||practiceModuleKind(remove)||!sameTopic(keep,remove))throw new Error('Choose two individual modules in the same category and subcategory.');
+  const next={...catalog,modules:catalog.modules.map(item=>item.id===keepId?{...item,includeAll:keep.includeAll||remove.includeAll,generatorIds:[...new Set([...keep.generatorIds,...remove.generatorIds])]}:item)};
+  return removePracticeModule(next,removeId);
 }
 const fail=(message:string):never=>{throw Object.assign(new Error(message),{status:400});};
 const record=(value:unknown):Record<string,unknown>=>value&&typeof value==='object'&&!Array.isArray(value)?value as Record<string,unknown>:fail('Invalid resource configuration.');
@@ -82,29 +145,37 @@ export function validateGenerator(value:unknown):PracticeGeneratorDefinition {
   return {...base,kind:row.kind,settings};
 }
 export function validatePracticeCatalog(value:unknown,topics?:{categories:{label:string;topics:string[]}[]}):PracticeCatalog {
-  const input=record(value),generators=array(input.generators,100).map(validateGenerator),known=new Set(generators.map(generator=>generator.id));
+  const input=record(value),generators=array(input.generators,1000).map(validateGenerator),known=new Set(generators.map(generator=>generator.id));
   if(known.size!==generators.length)fail('Generator IDs must be unique.');
   const location=(row:Record<string,unknown>)=>{const category=text(row.category,'Category',120),topic=text(row.topic,'Topic',120);if(topics&&!topics.categories.some(item=>item.label===category&&item.topics.includes(topic)))fail('Choose an existing math category and topic.');return {category,topic};};
-  const modules=array(input.modules,100).map(value=>{const row=record(value),generatorIds=array(row.generatorIds,100).map(id);if(new Set(generatorIds).size!==generatorIds.length||generatorIds.some(key=>!known.has(key)))fail('A module contains duplicate or unavailable generators.');
-    const module:ManagedPracticeModule={id:id(row.id),title:text(row.title,'Module title',120),description:text(row.description,'Module description',600,false),...location(row),published:bool(row.published),includeAll:row.id==='all'?true:bool(row.includeAll),generatorIds,parentId:row.parentId===undefined||row.parentId===null?null:id(row.parentId)};
+  const modules=array(input.modules,1000).map(value=>{const row=record(value),generatorIds=array(row.generatorIds,1000).map(id);if(new Set(generatorIds).size!==generatorIds.length||generatorIds.some(key=>!known.has(key)))fail('A module contains duplicate or unavailable generators.');
+    const module:ManagedPracticeModule={id:id(row.id),title:text(row.title,'Module title',120),description:text(row.description,'Module description',600,false),...location(row),published:bool(row.published),includeAll:row.id==='all'?true:bool(row.includeAll),generatorIds,parentId:row.parentId===undefined||row.parentId===null?null:id(row.parentId),...(row.defaultType===undefined?{}:{defaultType:row.defaultType==='foundation'||row.defaultType==='general'?row.defaultType:fail('Choose a valid default module type.')})};
     return module;
   });
-  const foundation=modules.find(module=>module.id==='foundation'),contained=modules.filter(module=>module.parentId==='foundation');
-  if(foundation&&contained.length){foundation.includeAll=false;const inherited=new Set(contained.flatMap(module=>module.includeAll?generators.map(generator=>generator.id):module.generatorIds));foundation.generatorIds=foundation.generatorIds.filter(id=>!inherited.has(id));}
+  for(const foundation of modules.filter(module=>practiceModuleKind(module)==='foundation')){
+    const contained=modules.filter(module=>module.parentId===foundation.id);
+    if(contained.length){foundation.includeAll=false;const inherited=new Set(contained.flatMap(module=>managedGeneratorIds(module,{generators,modules})));foundation.generatorIds=foundation.generatorIds.filter(id=>!inherited.has(id));}
+  }
+  const presets=new Set<string>();
   for(const module of modules){
-    if(module.parentId&&(module.parentId!=='foundation'||module.id==='foundation'||module.id==='all'||!modules.some(parent=>parent.id===module.parentId)))fail('Individual modules can only be contained in Foundation Building.');
-    if(module.published&&!managedGeneratorIds(module,{generators,modules}).length&&!(module.id==='foundation'&&contained.length))fail(`“${module.title}” needs at least one enabled generator before publishing.`);
+    const kind=practiceModuleKind(module),parent=modules.find(item=>item.id===module.parentId);
+    if(module.parentId&&(kind||!parent||!practiceModuleKind(parent)||!sameTopic(module,parent)))fail('Individual modules can only be contained in Foundation Building or General Practice in the same topic.');
+    if(kind){const key=JSON.stringify([module.category,module.topic,kind]);if(presets.has(key))fail('Each topic can have only one Foundation Building and one General Practice module.');presets.add(key);}
+    if(module.published&&!kind&&!managedGeneratorIds(module,{generators,modules}).length)fail('“'+module.title+'” needs at least one enabled generator before publishing.');
   }
   if(topics&&generators.some(generator=>!topics.categories.some(category=>category.label===generator.category&&category.topics.includes(generator.topic!))))fail('Choose an existing category and topic for each generator.');
   const videos=array(input.videos,500).map(value=>{const row=record(value),raw=text(row.url,'YouTube link',600,false),key=youtubeVideoId(raw),published=bool(row.published);if((raw||published)&&!key)fail('Use a valid HTTPS YouTube video link (watch, shorts, or youtu.be).');return {id:id(row.id),title:text(row.title,'Video title',160),description:text(row.description,'Video description',1000,false),...location(row),published,url:key?`https://www.youtube.com/watch?v=${key}`:'',...videoDetails(row)};});
   for(const [label,items]of [['Module',modules],['Video',videos]] as const)if(new Set(items.map(item=>item.id)).size!==items.length)fail(`${label} IDs must be unique.`);
-  return {modules,generators,videos};
+  return ensureTopicPracticeModules({modules,generators,videos},topics);
 }
 export function studentPracticeCatalog(catalog:PracticeCatalog):PracticeCatalog {
   return {...catalog,modules:catalog.modules.filter(module=>module.published),generators:catalog.generators.filter(generator=>generator.enabled),videos:catalog.videos.filter(video=>video.published)};
 }
 export function generateCatalogQuestion(generator:PracticeGeneratorDefinition,index:number,seed:string):ExamQuestion {
-  if(generator.kind==='builtin')return generatePracticeQuestion([generator.builtinId!],index,seed);
+  if(generator.kind==='builtin'){
+    const question=generatePracticeQuestion([generator.builtinId!],index,seed);
+    return {...question,topic:generator.category??question.topic,subtopic:generator.topic??question.subtopic};
+  }
   if(!Number.isSafeInteger(index)||index<0)throw new Error('Invalid practice sequence.');
   const config=generator.settings!;let state=2166136261;for(const ch of `${generator.id}:${seed}:${index}`)state=Math.imul(state^ch.charCodeAt(0),16777619)>>>0;
   const next=()=>{state^=state<<13;state^=state>>>17;state^=state<<5;return state>>>0;};

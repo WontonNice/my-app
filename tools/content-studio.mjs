@@ -1,3 +1,5 @@
+import {readEnglishTopicSections, englishTopicConfiguration, saveEnglishSectionTopics} from "./english-topic-sections.mjs";
+import { homedir } from "node:os";
 import { createHash, randomBytes } from "node:crypto";
 import { createServer } from "node:http";
 import { mkdir, readFile, readdir, rename, rm, writeFile } from "node:fs/promises";
@@ -19,6 +21,8 @@ import { readMathTopicConfiguration, saveMathTopicConfiguration, validateMathCla
 import { mathPreviewAsset } from "./math-preview-bundle.mjs";
 import { compareExamState } from "./exam-duplicates.mjs";
 import { createPartBImports } from "./part-b-import.mjs";
+import satCrashCourse from './sat-crash-course-import.cjs';
+import { satCrashCourseImageImporter } from './sat-crash-course-assets.mjs';
 import partBBank from './part-b-bank.cjs';
 import mathCommand from './math-command-service.cjs';
 import { mathCommandAsset } from './math-command-bundle.mjs';
@@ -56,8 +60,8 @@ const questionBanksRoot = join(
   "questionBanks",
 );
 const practiceTopicsPath = join(workspaceRoot, "tools", "practice-topics.json");
-const contentTopicsPath = join(workspaceRoot, "tools", "content-topics.json");
 const examImagesRoot = join(workspaceRoot, "client", "public", "exam-images");
+const importSatCrashCourseImage = satCrashCourseImageImporter(examImagesRoot);
 const katexDistRoot = join(workspaceRoot, "node_modules", "katex", "dist");
 const mathliveRoot = join(workspaceRoot, "node_modules", "mathlive");
 const assessmentsPath = join(workspaceRoot, "server", "data", "assessments.json");
@@ -72,26 +76,8 @@ function normalizePassageCategory(value) {
   try { return normalizeCategory(value); } catch (error) { throw new EditorError(400, error.message); }
 }
 const examPassageSections = ["reading", "revising_editing_a"];
-const defaultTopics = [
-  "Central Idea & Theme",
-  "Author's Point of View",
-  "Word & Phrase Meaning",
-  "Figurative Language & Imagery",
-  "Tone & Mood",
-  "Text Structure & Purpose",
-  "Evidence & Support",
-  "Inference",
-  "Sentence Structure",
-  "Pronouns",
-  "Verbs",
-  "Modifiers",
-  "Punctuation",
-  "Word Choice & Precision",
-  "Topic & Transitions",
-  "Relevance & Conclusion",
-];
-const readingTopicCount = 8;
-let topics = await readContentTopics();
+let topicSections = await readEnglishTopicSections(workspaceRoot);
+let topics = [...new Set(Object.values(topicSections).flat())];
 let mathTopicConfiguration = await readMathTopicConfiguration(workspaceRoot);
 let mathTopics = mathTopicConfiguration.categories.map(category => category.label);
 let mathMutation = Promise.resolve();
@@ -220,17 +206,6 @@ function identifierFrom(value, suffix = "") {
     .join("");
   const safeIdentifier = /^[a-zA-Z_$]/.test(identifier) ? identifier : `content${identifier}`;
   return `${safeIdentifier || "content"}${suffix}`;
-}
-
-async function readContentTopics() {
-  try {
-    const parsed = JSON.parse(await readFile(contentTopicsPath, "utf8"));
-    if (!Array.isArray(parsed) || !parsed.length) throw new Error("The content topic list is empty.");
-    return parsed.map((topic) => String(topic ?? "").trim()).filter(Boolean);
-  } catch (error) {
-    if (error?.code === "ENOENT") return [...defaultTopics];
-    throw error;
-  }
 }
 
 async function readPracticeTopics() {
@@ -1137,9 +1112,7 @@ function defaultDirectionsForSection(section) {
 }
 
 function topicsForPassageSection(section) {
-  return section === "revising_editing_a"
-    ? topics.slice(readingTopicCount)
-    : topics.slice(0, readingTopicCount);
+  return topicSections[section] || topicSections.reading;
 }
 
 function validateQuestionTopics(questions, section, contextLabel) {
@@ -2554,7 +2527,7 @@ async function saveMath(input, { importedStatuses = {} } = {}) {
     throw new EditorError(400, "Math section data is invalid.");
   }
   const state = await getState();
-  if (input.managementRevision && input.managementRevision !== mathCommand.readMathCommandState(workspaceRoot).revision) throw new EditorError(409, "Math classifications changed in the Command Center. Refresh the editor before saving.");
+  if (input.managementRevision && input.managementRevision !== mathCommand.mathClassificationRevision(workspaceRoot)) throw new EditorError(409, "Math classifications changed in the Command Center. Refresh the editor before saving.");
   const assessmentId = requiredText(input.assessmentId, "Assessment");
   const assessment = state.assessments.find((candidate) => candidate.id === assessmentId);
   if (!assessment) throw new EditorError(404, "The selected assessment was not found.");
@@ -2563,7 +2536,7 @@ async function saveMath(input, { importedStatuses = {} } = {}) {
     ? state.mathSections.find((candidate) => candidate.fileName === existingTest.mathSectionFileName)
     : undefined;
   if (existingSection && !input.managementRevision) throw new EditorError(409, "Refresh the editor before saving so its Math Command Center classifications are current.");
-  const managementRevision = input.managementRevision || mathCommand.readMathCommandState(workspaceRoot).revision;
+  const managementRevision = input.managementRevision || mathCommand.mathClassificationRevision(workspaceRoot);
   const configuration = await readMathTopicConfiguration(workspaceRoot);
   const importStatus = await readMathImportStatus();
   const incompleteQuestionIds = new Set((Array.isArray(input.questions) ? input.questions : []).filter(question =>
@@ -2592,7 +2565,7 @@ async function saveMath(input, { importedStatuses = {} } = {}) {
   for (const [id, status] of Object.entries(importedStatuses)) importStatus[mathImportStatusKey(assessmentId, id)] = { ...status, needsEditing: true };
   if (Object.keys(importedStatuses).length) await writeMathImportStatus(importStatus);
   await mkdir(mathSetsRoot, { recursive: true });
-  if (mathCommand.readMathCommandState(workspaceRoot).revision !== managementRevision) throw new EditorError(409, "Math classifications changed while this save was being prepared. Refresh the editor before saving.");
+  if (mathCommand.mathClassificationRevision(workspaceRoot) !== managementRevision) throw new EditorError(409, "Math classifications changed while this save was being prepared. Refresh the editor before saving.");
   await writeFile(mathFilePath, buildMathSource(section), "utf8");
 
   const test =
@@ -2662,6 +2635,16 @@ async function importMathIntoTest(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) throw new EditorError(400, "Math import data is invalid.");
   const initial = await getState();
   if (!initial.assessments.some(assessment => assessment.id === input.assessmentId)) throw new EditorError(400, "Choose a destination Math test.");
+  if (input.source !== undefined) {
+    let source;
+    // Ordinary malformed imports must still reach captureFailures below so the
+    // editor retains their original input as a recoverable draft.
+    try { source = satCrashCourse.decode(input.source); } catch { /* handled by the draft importer */ }
+    if (satCrashCourse.isReader(source)) {
+      try { input = { ...input, source: await satCrashCourse.math(source, importSatCrashCourseImage) }; }
+      catch (error) { throw new EditorError(400, error.message); }
+    }
+  }
   let drafts;
   try {
     drafts = input.source !== undefined
@@ -2895,10 +2878,10 @@ function normalizeStandaloneItem(input) {
     versionLabels: partBBank.labels(input),
     ...(partBBank.labels(input)[0] ? { versionLabel: partBBank.labels(input)[0] } : {}),
   };
-  if (!topicsForPassageSection("revising_editing_a").includes(baseItem.topic)) {
+  if (!topicsForPassageSection("revising_editing_b").includes(baseItem.topic)) {
     throw new EditorError(
       400,
-      `Part B questions must use a Revising/Editing topic: ${topicsForPassageSection("revising_editing_a").join(", ")}.`,
+      `Part B questions must use a Revising/Editing topic: ${topicsForPassageSection("revising_editing_b").join(", ")}.`,
     );
   }
 
@@ -2992,7 +2975,7 @@ const partBImports = createPartBImports({
   workspaceRoot, sanitizeRichText, sanitizeInlineRichText,
   normalizeChoiceLabels: documentImport.normalizeChoiceLabels,
   listItems: listStandaloneItems, normalizeItem: normalizeStandaloneItem, saveItem: saveStandaloneItem,
-  getTopics: () => topicsForPassageSection('revising_editing_a'),
+  getTopics: () => topicsForPassageSection('revising_editing_b'),
 });
 
 let standaloneWriteQueue = Promise.resolve();
@@ -3077,99 +3060,24 @@ function buildContentTopicDetails(passages, advancedPassages, standaloneItems) {
   ];
 }
 
+async function englishTopicSources() {
+  const [{passages},{advancedPassages},standaloneItems]=await Promise.all([listPassages(),listAdvancedPassages(),listStandaloneItems()]);
+  return [...passages.map(passage=>({section:passage.section==='revising_editing_a'?'revising_editing_a':'reading',path:join(passageSetsRoot,passage.fileName),questions:passage.questions})),...advancedPassages.map(passage=>({section:'reading',path:join(advancedPassageSetsRoot,passage.fileName),questions:passage.questions})),{section:'revising_editing_b',path:standaloneItemsPath,questions:standaloneItems.filter(item=>!item.duplicateOf)}];
+}
 async function getContentTopicConfiguration() {
-  const [{ passages }, { advancedPassages }, standaloneItems] = await Promise.all([
-    listPassages(),
-    listAdvancedPassages(),
-    listStandaloneItems(),
-  ]);
-  return {
-    topicDetails: buildContentTopicDetails(passages, advancedPassages, standaloneItems),
-    topics,
-  };
-}
-
-async function topicSourceFiles() {
-  const files = [];
-  for (const root of [passageSetsRoot, advancedPassageSetsRoot]) {
-    const entries = await readdir(root, { withFileTypes: true });
-    files.push(...entries.filter((entry) => entry.isFile() && entry.name.endsWith(".ts")).map((entry) => join(root, entry.name)));
-  }
-  files.push(standaloneItemsPath);
-  return files;
-}
-
-async function renameTopicsInContent(renames) {
-  if (!renames.length) return;
-  for (const filePath of await topicSourceFiles()) {
-    const source = await readFile(filePath, "utf8");
-    let updated = source;
-    for (const { from, to } of renames) {
-      updated = updated
-        .replaceAll(`topic: ${quote(from)}`, `topic: ${quote(to)}`)
-        .replaceAll(`${quote("topic")}: ${quote(from)}`, `${quote("topic")}: ${quote(to)}`);
-    }
-    if (updated !== source) await writeFile(filePath, updated, "utf8");
-  }
-
-  const assessments = await readAssessments();
-  let assessmentsChanged = false;
-  for (const assessment of assessments) {
-    for (const question of assessment.questions ?? []) {
-      const rename = renames.find((candidate) => candidate.from === question.topic);
-      if (!rename) continue;
-      question.topic = rename.to;
-      assessmentsChanged = true;
-    }
-  }
-  if (assessmentsChanged) {
-    await writeFile(assessmentsPath, `${JSON.stringify(assessments, null, 2)}\n`, "utf8");
-  }
+  const configuration=await englishTopicConfiguration(workspaceRoot,await englishTopicSources());
+  return {...configuration, topics:[...new Set(Object.values(configuration.sections).flat())],topicDetails:Object.values(configuration.topicDetailsBySection).flat()};
 }
 
 async function saveContentTopics(input) {
-  if (!input || !Array.isArray(input.topics) || !input.topics.length) {
-    throw new EditorError(400, "Keep at least one content topic.");
-  }
-  if (input.topics.length > 150) throw new EditorError(400, "The topic list may contain at most 150 topics.");
-
-  const normalized = input.topics.map((candidate, index) => {
-    if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) {
-      throw new EditorError(400, `Topic ${index + 1} is invalid.`);
-    }
-    const label = requiredText(candidate.label, `Topic ${index + 1} name`);
-    const original = typeof candidate.original === "string" ? candidate.original.trim() : "";
-    if (original && !topics.includes(original)) throw new EditorError(409, `${original} is no longer in the topic list.`);
-    return { label, original };
-  });
-  const labels = normalized.map((topic) => topic.label.toLowerCase());
-  if (new Set(labels).size !== labels.length) throw new EditorError(409, "Every topic needs a unique name.");
-  const originals = normalized.map((topic) => topic.original).filter(Boolean);
-  if (new Set(originals).size !== originals.length) throw new EditorError(409, "A topic can appear only once.");
-
-  const currentConfiguration = await getContentTopicConfiguration();
-  const usageByTopic = new Map(currentConfiguration.topicDetails.map((topic) => [topic.label, topic.questionCount]));
-  const retainedTopics = new Set(originals);
-  for (const removedTopic of topics.filter((topic) => !retainedTopics.has(topic))) {
-    const questionCount = usageByTopic.get(removedTopic) ?? 0;
-    if (questionCount > 0) {
-      throw new EditorError(
-        409,
-        `${removedTopic} is used by ${questionCount} question${questionCount === 1 ? "" : "s"} and cannot be removed. Rename it or move those questions first.`,
-      );
-    }
-  }
-
-  const renames = normalized
-    .filter((topic) => topic.original && topic.original !== topic.label)
-    .map((topic) => ({ from: topic.original, to: topic.label }));
-  await renameTopicsInContent(renames);
-  topics = normalized.map((topic) => topic.label);
-  await writeFile(contentTopicsPath, `${JSON.stringify(topics, null, 2)}\n`, "utf8");
+  topicSections = await saveEnglishSectionTopics(workspaceRoot,input,await englishTopicSources());
+  topics = [...new Set(Object.values(topicSections).flat())];
   return getContentTopicConfiguration();
 }
 
 async function getState() {
+  topicSections = await readEnglishTopicSections(workspaceRoot);
+  topics = [...new Set(Object.values(topicSections).flat())];
   mathTopicConfiguration = await readMathTopicConfiguration(workspaceRoot);
   mathTopics = mathTopicConfiguration.categories.map(category => category.label);
   examExporter.exportExamContent(workspaceRoot);
@@ -3181,7 +3089,7 @@ async function getState() {
   const importStatus = await readMathImportStatus();
   const mathManagement = mathCommand.readMathCommandState(workspaceRoot);
   for (const section of mathSections) {
-    section.managementRevision = mathManagement.revision;
+    section.managementRevision = mathCommand.mathClassificationRevision(workspaceRoot);
     const assessmentId = tests.find(test => test.mathSectionFileName === section.fileName)?.assessmentId;
     section.questions = section.questions.map(question => {
       const status = importStatus[mathImportStatusKey(assessmentId, question.id)];
@@ -3216,6 +3124,9 @@ async function getState() {
     standaloneSourceHash: hashSource(standaloneSource),
     readingTopics: topicsForPassageSection("reading"),
     revisingEditingTopics: topicsForPassageSection("revising_editing_a"),
+    partATopics: topicsForPassageSection("revising_editing_a"),
+    partBTopics: topicsForPassageSection("revising_editing_b"),
+    topicConfiguration: await getContentTopicConfiguration(),
     testErrors,
     tests,
     topicDetails: buildContentTopicDetails(passages, advancedPassages, standaloneItems),
@@ -3590,7 +3501,7 @@ async function handleRequest(request, response) {
         sendJson(response, 200, await openTeacherWorkspace(typeof body.query === 'string' ? body.query.slice(0, 20000) : ''));
         return;
       }
-      const result = mathCommand.handleMathCatalogRequest({ method: request.method, pathname: url.pathname.slice('/api/math-command'.length), body: request.method === 'GET' ? undefined : await readJson(request), query: Object.fromEntries(url.searchParams), root: workspaceRoot, actor: 'content-studio' });
+      const result = mathCommand.handleMathCatalogRequest({ method: request.method, pathname: url.pathname.slice('/api/math-command'.length), body: request.method === 'GET' ? undefined : await readJson(request), query: Object.fromEntries(url.searchParams), root: workspaceRoot, actor: process.env.CONTENT_STUDIO_TEACHER_ID || 'local-teacher:' + createHash('sha256').update(homedir()).digest('hex').slice(0, 24) });
       if (result === undefined) throw new EditorError(404, 'Open the authenticated teacher workspace for student records and assignments.');
       sendJson(response, 200, result); return;
     }

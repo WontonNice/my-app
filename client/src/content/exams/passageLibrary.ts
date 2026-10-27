@@ -64,6 +64,7 @@ import { excerptFromOnWomenSRightToVoteDigitalShsatPracticeTest3PassageSet } fro
 import { theOrchardKeepsALedgerDigitalShsatPracticeTest3PassageSet } from "./passageSets/the-orchard-keeps-a-ledger-digital-shsat-practice-test-3";
 import { sixtySummersOnKestrelGlacierDigitalShsatPracticeTest3PassageSet } from "./passageSets/sixty-summers-on-kestrel-glacier-digital-shsat-practice-test-3";
 import { doverBeachDigitalShsatPracticeTest3PassageSet } from "./passageSets/dover-beach-digital-shsat-practice-test-3";
+import { whatTheCubeTaughtMeDigitalShsatPracticeTest3PassageSet } from "./passageSets/what-the-cube-taught-me-digital-shsat-practice-test-3";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -129,6 +130,7 @@ export const examPassageLibrary: ExamPassageSet[] = [
   theOrchardKeepsALedgerDigitalShsatPracticeTest3PassageSet,
   sixtySummersOnKestrelGlacierDigitalShsatPracticeTest3PassageSet,
   doverBeachDigitalShsatPracticeTest3PassageSet,
+  whatTheCubeTaughtMeDigitalShsatPracticeTest3PassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);

@@ -679,6 +679,123 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     ],
     "correctChoiceId": "B",
     "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-b44dc5773be7-9c6e5dcf",
+    "points": 1,
+    "prompt": "Select the word in the paragraph that is a vague pronoun with no single clear noun it refers to.",
+    "promptHtml": "Select the word in the paragraph that is a vague pronoun with no single clear noun it refers to.",
+    "stimulus": "(1) The seventh-grade garden club spent Saturday morning planting native wildflowers along the fence behind the cafeteria. (2) Ms. Ferro, the club's advisor, had ordered seed packets of black-eyed Susan, milkweed, and purple coneflower over the winter, and she kept a written log of which varieties still needed to arrive. (3) When the shipment finally arrived in April, it had already begun to sprout inside the box, so the club decided to plant them the same afternoon. (4) The members, who had checked the mailroom every day that week, were thrilled to see the seedlings.",
+    "stimulusHtml": "<p>(1) The seventh-grade garden club spent Saturday morning planting native wildflowers along the fence behind the cafeteria. (2) Ms. Ferro, the club's advisor, had ordered seed packets of black-eyed Susan, milkweed, and purple coneflower over the winter, and <u>she</u> kept a written log of which varieties still needed to arrive. (3) When the shipment finally arrived in April, <u>it</u> had already begun to sprout inside the box, so the club decided to plant <u>them</u> the same afternoon. (4) The members, <u>who</u> had checked the mailroom every day that week, were thrilled to see the seedlings.</p>",
+    "explanation": "\"Them\" has no single clear plural noun to attach to — the sentence names only the singular \"shipment\" and \"box,\" so a reader cannot tell for certain whether \"them\" refers to the seed packets or to the seedlings that had already sprouted inside. \"She\" clearly refers back to the singular \"Ms. Ferro,\" \"it\" clearly refers back to the singular \"shipment,\" and \"who\" clearly introduces a relative clause describing \"the members\" — none of those three pronouns leaves any doubt about its antecedent.",
+    "explanationHtml": "&quot;Them&quot; has no single clear plural noun to attach to — the sentence names only the singular &quot;shipment&quot; and &quot;box,&quot; so a reader cannot tell for certain whether &quot;them&quot; refers to the seed packets or to the seedlings that had already sprouted inside. &quot;She&quot; clearly refers back to the singular &quot;Ms. Ferro,&quot; &quot;it&quot; clearly refers back to the singular &quot;shipment,&quot; and &quot;who&quot; clearly introduces a relative clause describing &quot;the members&quot; — none of those three pronouns leaves any doubt about its antecedent.",
+    "topic": "Pronouns",
+    "versionLabels": [
+      "Digital SHSAT Practice Test 3"
+    ],
+    "versionLabel": "Digital SHSAT Practice Test 3",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<strong>she</strong>",
+        "text": "she"
+      },
+      {
+        "id": "B",
+        "html": "<strong>it</strong>",
+        "text": "it"
+      },
+      {
+        "id": "C",
+        "html": "<strong>them</strong>",
+        "text": "them"
+      },
+      {
+        "id": "D",
+        "html": "<strong>who</strong>",
+        "text": "who"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-06cbf355559e-5c52b8eb",
+    "points": 1,
+    "prompt": "Which sentence contains an error in its construction and should be revised?",
+    "promptHtml": "Which sentence contains an error in its construction and should be revised?",
+    "stimulus": "(1) After an overnight storm left the outdoor field soaked, the gym teacher moved the sixth-grade kickball tournament indoors at the last minute. (2) Dribbling across the hallway tile, the janitor mopped up puddles near the gym doors before the first game could begin. (3) Several teams complained that the indoor court felt cramped compared to the outdoor field they had practiced on all season. (4) By the third inning, most players agreed the switch had been the right call, since lightning was still visible over the football field outside.",
+    "stimulusHtml": "<p>(1) After an overnight storm left the outdoor field soaked, the gym teacher moved the sixth-grade kickball tournament indoors at the last minute. (2) Dribbling across the hallway tile, the janitor mopped up puddles near the gym doors before the first game could begin. (3) Several teams complained that the indoor court felt cramped compared to the outdoor field they had practiced on all season. (4) By the third inning, most players agreed the switch had been the right call, since lightning was still visible over the football field outside.</p>",
+    "explanation": "Sentence 2 opens with the modifying phrase \"Dribbling across the hallway tile,\" which as written describes the janitor rather than the water being mopped up, creating an illogical, misplaced modifier; sentences 1, 3, and 4 are each constructed correctly.",
+    "explanationHtml": "Sentence 2 opens with the modifying phrase &quot;Dribbling across the hallway tile,&quot; which as written describes the janitor rather than the water being mopped up, creating an illogical, misplaced modifier; sentences 1, 3, and 4 are each constructed correctly.",
+    "topic": "Sentence Structure",
+    "versionLabels": [
+      "Digital SHSAT Practice Test 3"
+    ],
+    "versionLabel": "Digital SHSAT Practice Test 3",
+    "choices": [
+      {
+        "id": "A",
+        "html": "sentence 2",
+        "text": "sentence 2"
+      },
+      {
+        "id": "B",
+        "html": "sentence 3",
+        "text": "sentence 3"
+      },
+      {
+        "id": "C",
+        "html": "sentence 1",
+        "text": "sentence 1"
+      },
+      {
+        "id": "D",
+        "html": "sentence 4",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-cc7d82dcf786-61f08277",
+    "points": 1,
+    "prompt": "Which pair of revisions is needed to correct the errors in the paragraph?",
+    "promptHtml": "Which pair of revisions is needed to correct the errors in the paragraph?",
+    "stimulus": "(1) On Tuesday, the eighth-grade science classes traveled downtown for a field trip to the planetarium. (2) Ms. Okafor, the trip coordinator, and her co-teacher was in charge of counting students onto each bus. (3) Each student was given a booklet listing all of the shows and told to circle the ones they most wanted to see. (4) When a student asked the astronomer a question about the moon's orbit, they answered so thoroughly that the whole auditorium burst into applause.",
+    "stimulusHtml": "<p>(1) On Tuesday, the eighth-grade science classes traveled downtown for a field trip to the planetarium. (2) Ms. Okafor, the trip coordinator, and her co-teacher was in charge of counting students onto each bus. (3) Each student was given a booklet listing all of the shows and told to circle the ones they most wanted to see. (4) When a student asked the astronomer a question about the moon's orbit, they answered so thoroughly that the whole auditorium burst into applause.</p>",
+    "explanation": "In sentence 2, the compound subject \"Ms. Okafor...and her co-teacher,\" joined by *and*, requires the plural verb *were* rather than *was*, and in sentence 4 the pronoun *they* has two possible singular antecedents — *a student* and *the astronomer* — so replacing it with the noun *the astronomer* corrects the vague reference. Choice A proposes changes to sentence 1, which contains no error: *traveled* correctly agrees with the plural subject and *classes* is correctly plural. Choice C proposes changes to sentence 3, which is also error-free: *was* correctly agrees with the singular *each student*, and *listing* is a correctly formed participle. Choice D correctly flags sentence 4 but misidentifies the fix: changing *they* to *he or she* still fails to specify which singular antecedent is meant, and changing *answered* to *answers* would wrongly break the paragraph's consistent past-tense narration.",
+    "explanationHtml": "In sentence 2, the compound subject &quot;Ms. Okafor...and her co-teacher,&quot; joined by *and*, requires the plural verb *were* rather than *was*, and in sentence 4 the pronoun *they* has two possible singular antecedents — *a student* and *the astronomer* — so replacing it with the noun *the astronomer* corrects the vague reference. Choice A proposes changes to sentence 1, which contains no error: *traveled* correctly agrees with the plural subject and *classes* is correctly plural. Choice C proposes changes to sentence 3, which is also error-free: *was* correctly agrees with the singular *each student*, and *listing* is a correctly formed participle. Choice D correctly flags sentence 4 but misidentifies the fix: changing *they* to *he or she* still fails to specify which singular antecedent is meant, and changing *answered* to *answers* would wrongly break the paragraph's consistent past-tense narration.",
+    "topic": "Sentence Structure",
+    "versionLabels": [
+      "Digital SHSAT Practice Test 3"
+    ],
+    "versionLabel": "Digital SHSAT Practice Test 3",
+    "choices": [
+      {
+        "id": "A",
+        "html": "Sentence 1: Change *<em>traveled</em>* to *travels*, AND also change *classes* to *class* throughout.",
+        "text": "Sentence 1: Change *traveled* to *travels*, AND also change *classes* to *class* throughout."
+      },
+      {
+        "id": "B",
+        "html": "Sentence 4: Change *they* to *he or she*, AND also change *answered* to *answers* accordingly.",
+        "text": "Sentence 4: Change *they* to *he or she*, AND also change *answered* to *answers* accordingly."
+      },
+      {
+        "id": "C",
+        "html": "Sentence 3: Change *was* to *were*, AND also change *listing* to *listed*.",
+        "text": "Sentence 3: Change *was* to *were*, AND also change *listing* to *listed*."
+      },
+      {
+        "id": "D",
+        "html": "Sentence 2: Change *was* to *were*, AND change *they* in sentence 4 to *the astronomer*.",
+        "text": "Sentence 2: Change *was* to *were*, AND change *they* in sentence 4 to *the astronomer*."
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
   }
 ];
 

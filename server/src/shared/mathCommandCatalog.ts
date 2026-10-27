@@ -186,8 +186,10 @@ export function queryMathCommandCatalog(catalog:MathCatalog,filters:MathCatalogF
   const terms=words(filters.search).toLowerCase().split(/\s+/).filter(Boolean);
   const rows=catalog.rows.filter(row=>{
     if(ids&&!ids.has(row.id)||exclude.has(row.id))return false;
+    if(filters.favoritesOnly && !row.personal?.favorite) return false;
+    if(filters.teacherLabelIds?.length && !filters.teacherLabelIds.every(id => row.personal?.labelIds.includes(id))) return false;
     if(!matches(filters.category,row.category)||!matches(filters.subcategory,row.subcategory)||!matches(filters.diagnosticSkill,row.diagnosticSkill)||!matches(filters.secondarySkill,row.secondarySkills)||!matches(filters.standard,row.standards.filter(s=>s.verified).map(s=>s.code))||!matches(filters.difficulty,row.difficulty||"unclassified")||!matches(filters.responseType,row.type)||!matches(filters.source,[row.source,...row.sources.map(s=>s.source||s.title)])||!matches(filters.year,row.years)||!matches(filters.form,row.forms)||!matches(filters.assessmentId,row.sources.map(s=>s.assessmentId)))return false;
-    if(terms.length){const haystack=[row.id,row.prompt,row.category,row.subcategory,row.diagnosticSkill,...row.secondarySkills,row.source,row.context,...row.sources.map(s=>s.title)].join(" ").toLowerCase();if(!terms.every(term=>haystack.includes(term)))return false;}
+    if(terms.length){const haystack=[row.id,row.prompt,row.category,row.subcategory,row.diagnosticSkill,...row.secondarySkills,row.source,row.context,row.personal?.note ?? "",...(row.teacherLabelNames ?? []),...row.sources.map(s=>s.title)].join(" ").toLowerCase();if(!terms.every(term=>haystack.includes(term)))return false;}
     if(filters.context&&!row.context.toLowerCase().includes(filters.context.toLowerCase()))return false;
     for(const type of ["diagram","graph","table"] as const)if(filters[type]!==undefined&&row.representations.includes(type)!==filters[type])return false;
     if(filters.issue?.length&&!filters.issue.some(issue=>row.issues.includes(issue)))return false;
@@ -197,6 +199,8 @@ export function queryMathCommandCatalog(catalog:MathCatalog,filters:MathCatalogF
   });
   const field=filters.sort||"category",direction=filters.direction==="desc"?-1:1;
   const sortValue=(row:MathCatalogRow):string|number|null=>{
+    if(field==="favorite") return row.personal?.favorite ? 0 : 1;
+    if(field==="taggedAt") return row.personal?.updatedAt || null;
     if(field==="difficulty")return row.difficulty?mathDifficulties.indexOf(row.difficulty):null;
     if(field==="importedAt")return row.importedAt;
     if(["attempts","accuracy","incorrect","unanswered","lastAssignedAt"].includes(field))return row.performance?.[field as "attempts"|"accuracy"|"incorrect"|"unanswered"|"lastAssignedAt"]??null;
@@ -212,8 +216,8 @@ export function validateMathCatalogFilters(value:unknown):MathCatalogFilters {
   try{parsed=typeof value==="string"?JSON.parse(value):value??{};}catch{throw new Error("Invalid saved question filters.");}
   if(!parsed||typeof parsed!=="object"||Array.isArray(parsed)||JSON.stringify(parsed).length>250_000)throw new Error("Invalid question filters.");
   const filter=parsed as Record<string,unknown>;
-  const lists=["category","subcategory","diagnosticSkill","secondarySkill","standard","difficulty","responseType","source","year","form","assessmentId","issue","collectionQuestionIds","excludeQuestionIds"];
-  const strings=["search","context","status","sort","direction"],numbers=["page","pageSize"],booleans=["diagram","graph","table"];
+  const lists=["teacherLabelIds","category","subcategory","diagnosticSkill","secondarySkill","standard","difficulty","responseType","source","year","form","assessmentId","issue","collectionQuestionIds","excludeQuestionIds"];
+  const strings=["search","context","status","sort","direction"],numbers=["page","pageSize"],booleans=["favoritesOnly","diagram","graph","table"];
   if(Object.keys(filter).some(key=>![...lists,...strings,...numbers,...booleans].includes(key)))throw new Error("Unsupported question filter.");
   for(const key of lists)if(filter[key]!==undefined&&(!Array.isArray(filter[key])||(filter[key] as unknown[]).length>10000||(filter[key] as unknown[]).some(item=>typeof item!=="string"||item.length>2000)))throw new Error(`Invalid ${key} filter.`);
   for(const key of strings)if(filter[key]!==undefined&&(typeof filter[key]!=="string"||String(filter[key]).length>2000))throw new Error(`Invalid ${key} filter.`);
@@ -222,7 +226,7 @@ export function validateMathCatalogFilters(value:unknown):MathCatalogFilters {
   if(filter.difficulty&&(filter.difficulty as string[]).some(d=>![...mathDifficulties,"unclassified"].includes(d)))throw new Error("Invalid difficulty filter.");
   if(filter.issue&&(filter.issue as string[]).some(d=>!(d in mathReviewIssueLabels)))throw new Error("Invalid review filter.");
   if(filter.status!==undefined&&!["ready","needs_review","never_assigned","previously_assigned","possible_duplicate"].includes(String(filter.status)))throw new Error("Invalid status filter.");
-  if(filter.sort!==undefined&&!["category","subcategory","difficulty","importedAt","attempts","accuracy","incorrect","unanswered","lastAssignedAt","source","id"].includes(String(filter.sort)))throw new Error("Invalid sort field.");
+  if(filter.sort!==undefined&&!["favorite","taggedAt","category","subcategory","difficulty","importedAt","attempts","accuracy","incorrect","unanswered","lastAssignedAt","source","id"].includes(String(filter.sort)))throw new Error("Invalid sort field.");
   if(filter.direction!==undefined&&!["asc","desc"].includes(String(filter.direction)))throw new Error("Invalid sort direction.");
   return structuredClone(filter) as MathCatalogFilters;
 }

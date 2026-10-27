@@ -1,10 +1,12 @@
 const state = {
   data: null,
 };
-const READER_VERSION = "0.6.1";
+const READER_VERSION = "0.7.1";
 
 const elements = {
   scan: document.querySelector("#scan"),
+  captureMode: document.querySelector('#capture-mode'),
+  questionRange: document.querySelector('#question-range'),
   includePageText: document.querySelector("#include-page-text"),
   includeAnswer: document.querySelector("#include-answer"),
   includeExplanations: document.querySelector("#include-explanations"),
@@ -126,7 +128,7 @@ async function scanPage() {
   elements.scan.disabled = true;
   state.data = null;
   elements.results.hidden = true;
-  setStatus(elements.includePassageQuestions.checked
+  setStatus(elements.captureMode.value !== 'passage' ? 'Reading the requested questions… Keep this popup open and avoid navigating. This may take several minutes.' : elements.includePassageQuestions.checked
     ? "Reading this passage’s questions… Keep this popup open and avoid navigating."
     : "Reading the current page…");
 
@@ -139,6 +141,8 @@ async function scanPage() {
     const response = await chrome.tabs.sendMessage(tab.id, {
       type: "SAT_READER_SCAN",
       options: {
+        captureMode: elements.captureMode.value,
+        questionRange: elements.questionRange.value,
         includePageText: elements.includePageText.checked,
         includeAnswer: elements.includeAnswer.checked,
         includeExplanations: elements.includeExplanations.checked,
@@ -175,8 +179,10 @@ async function scanPage() {
       const range = questions.length > 1
         ? `Questions ${question.number}–${questions.at(-1).number}`
         : `Question ${question.number || "?"}`;
+      const batch = state.data.testPreview.capture;
+      const countNote = batch.expectedNumbers ? `${questions.length}/${batch.expectedNumbers.length} requested questions. ${batch.complete ? 'Complete.' : 'PARTIAL EXPORT.'} ` : '';
       setStatus(
-        `Captured ${range} of ${question.total || "?"}${answerNote}.${explanationNote} ${warnings.join(" ") || "Starting question restored."}`,
+        `${countNote}Captured ${range} of ${question.total || "?"}${answerNote}.${explanationNote} ${warnings.join(" ") || "Starting question restored."}`,
         warnings.length ? "error" : "success",
       );
     } else if (state.data.testPreview?.capture?.warnings.length) {
@@ -196,6 +202,13 @@ async function scanPage() {
 }
 
 elements.scan.addEventListener("click", scanPage);
+elements.captureMode.addEventListener('change', () => {
+  const mode = elements.captureMode.value;
+  document.querySelector('#question-range-field').hidden = mode !== 'part-b';
+  document.querySelector('#capture-help').hidden = mode !== 'math-all';
+  elements.includePassageQuestions.closest('label').hidden = mode !== 'passage';
+  elements.scan.textContent = mode === 'math-all' ? 'Read all 50 math questions' : mode === 'part-b' ? 'Read Part B questions' : 'Read current page';
+});
 
 elements.copy.addEventListener("click", async () => {
   if (!state.data) return;

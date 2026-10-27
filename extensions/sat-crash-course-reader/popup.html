@@ -9,10 +9,23 @@
   <body>
     <main>
       <header>
-        <p class="eyebrow">READ-ONLY PAGE TOOL · 0.6.1</p>
+        <p class="eyebrow">READ-ONLY PAGE TOOL · 0.7.1</p>
         <h1>SAT Crash Course Reader</h1>
         <p class="lede">Extract the current page into structured, local data.</p>
       </header>
+
+      <label class="capture-field">Capture
+        <select id="capture-mode">
+          <option value="passage">Current page / shared passage</option>
+          <option value="part-b">Revising/Editing Part B</option>
+          <option value="math-all">All 50 math questions</option>
+        </select>
+      </label>
+      <label class="capture-field" id="question-range-field" hidden>Part B question numbers
+        <input id="question-range" value="47-50" placeholder="47-50 or 47,48,49" />
+        <small>Practice Test 3: 47–50. Select English Language Arts on the test page.</small>
+      </label>
+      <p id="capture-help" hidden>Select Mathematics on the test page first. The reader captures questions 1–50 and restores your starting question. Keep this popup open.</p>
 
       <label class="option">
         <input id="include-page-text" type="checkbox" />
@@ -65,7 +78,7 @@
         Uses your existing signed-in tab. To identify a correct answer, the reader briefly
         toggles the site's Show answer control. Explanations are read by opening the separate
         Explanation panel. Passage capture uses BACK and NEXT until the passage
-        changes, then restores your starting question, answer visibility, and explanation panel. It never requests
+        changes. Part B reads the specified range across paragraph changes; Math reads the entire module. All modes restore your starting question, answer visibility, and explanation panel. It never requests
         or exports cookies.
       </footer>
     </main>

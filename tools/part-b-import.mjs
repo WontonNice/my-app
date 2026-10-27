@@ -3,6 +3,7 @@ import { mkdir, readFile, writeFile, rename } from 'node:fs/promises';
 import { join } from 'node:path';
 import documentImport from './document-import.cjs';
 import partBBank from './part-b-bank.cjs';
+import satCrashCourse from './sat-crash-course-import.cjs';
 
 const canonical = value => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map(key => [key, canonical(value[key])])) : value;
 const fingerprint = value => createHash('sha256').update(JSON.stringify(canonical(value))).digest('hex');
@@ -86,6 +87,7 @@ export function createPartBImports({ workspaceRoot, sanitizeRichText, sanitizeIn
     let data;
     try { data = typeof source === 'string' ? JSON.parse(source.trim().replace(/^```(?:json)?\s*([\s\S]*?)\s*```$/i, '$1')) : source; }
     catch { fail('Paste valid Part B JSON or choose a .json file.'); }
+    if (satCrashCourse.isReader(data)) data = satCrashCourse.partB(data);
     if (data?.format && data.format !== 'nathan-tutors-part-b-v1') fail('Use the Part B extraction prompt for this import.');
     const records = Array.isArray(data) ? data : data?.questions ?? (data?.question ? [data.question] : data?.prompt !== undefined ? [data] : null);
     if (!Array.isArray(records) || !records.length || records.length > 500) fail('Include one question or a batch of 1–500 Part B questions.');

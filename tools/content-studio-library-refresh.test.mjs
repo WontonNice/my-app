@@ -15,6 +15,7 @@ test('returning to Exam Builder indexes newly published Prestige passages withou
     selectAssessment: id => selections.push(id),
   });
   workspace.syncSaveState = () => {};
+  workspace.setLibraryExpanded = () => {};
   workspace.filters.set('test-passages', 'New Prestige');
   workspace.testSection = '1';
   workspace.activateWorkspace('tests');

@@ -5,7 +5,8 @@ const PartBImport = {
     if (!dialog) { dialog = document.createElement('dialog'); dialog.id = 'part-b-import-dialog'; dialog.className = 'studio-import-dialog'; document.body.append(dialog); }
     if (!dialog.querySelector('#part-b-import-source')) {
       dialog.innerHTML = `<section class="panel"><div class="panel-head"><h2>Import Part B questions</h2><button type="button" id="part-b-import-close">Close</button></div>
-        <p>Copy the prompt into ChatGPT with your source screenshots or PDF. Paste its JSON here or choose JSON files. Import one question or a batch directly into the Part B editor.</p>
+        <label>Import format<select id="part-b-import-format"><option value="document">Part B / ChatGPT JSON</option><option value="satcc">SAT Crash Course Reader · Part B</option></select></label>
+        <p id="part-b-import-help">Copy the prompt into ChatGPT with your source screenshots or PDF. Paste its JSON here or choose JSON files. Import one question or a batch directly into the Part B editor.</p>
         <button type="button" id="part-b-copy-prompt" disabled>Copy ChatGPT prompt</button>
         <details><summary>View extraction prompt</summary><textarea id="part-b-import-prompt" readonly rows="10" aria-label="Part B extraction prompt"></textarea></details>
         <label>JSON files<input type="file" id="part-b-import-files" accept=".json,application/json" multiple></label>
@@ -13,6 +14,14 @@ const PartBImport = {
         <p>Imports appear in red as <strong>Needs editing</strong>. Missing answers stay blank. Save your draft at any time; use <strong>Finish & save to bank</strong> when it is ready.</p>
         <button class="primary" type="button" id="part-b-import-submit">Import into Part B editor</button><p id="part-b-import-status" role="status"></p></section>`;
       const message = dialog.querySelector('#part-b-import-status');
+      dialog.querySelector('#part-b-import-format').onchange = event => {
+        const sat = event.target.value === 'satcc';
+        dialog.querySelector('#part-b-import-help').textContent = sat
+          ? 'In SAT Crash Course Reader, select Revising/Editing Part B, enter the source question range (Practice Test 3: 47–50), and copy or download JSON. Paste that complete export below. Each question keeps its own paragraph. Word selections become multiple choice; sentence blanks become drag-and-drop answer boxes, with the original interaction retained in source notes.'
+          : 'Copy the extraction prompt into ChatGPT with your source. Paste one Part B question or a batch below.';
+        dialog.querySelector('#part-b-copy-prompt').hidden = sat;
+        dialog.querySelector('#part-b-import-source').placeholder = sat ? 'Paste the complete SAT Crash Course Reader JSON export here' : 'Paste Part B JSON here';
+      };
       dialog.querySelector('#part-b-import-close').onclick = () => dialog.close();
       dialog.oncancel = event => { if (dialog.dataset.busy === 'true') event.preventDefault(); };
       dialog.querySelector('#part-b-copy-prompt').onclick = async () => {
@@ -21,7 +30,7 @@ const PartBImport = {
       };
       dialog.querySelector('#part-b-import-submit').onclick = async () => {
         dialog.dataset.busy = 'true';
-        dialog.querySelectorAll('button, input, textarea').forEach(node => node.disabled = true);
+        dialog.querySelectorAll('button, input, textarea, select').forEach(node => node.disabled = true);
         message.textContent = 'Importing Part B questions…';
         try {
           const sources = [];
@@ -39,7 +48,7 @@ const PartBImport = {
           setStatus(`${result.added.length} Part B questions imported. ${result.existing.length + result.published.length} already imported; existing edits kept.`, 'success');
           dialog.querySelector('#part-b-import-source').value = ''; dialog.querySelector('#part-b-import-files').value = '';
         } catch (error) { message.textContent = error.message; }
-        finally { dialog.dataset.busy = 'false'; dialog.querySelectorAll('button, input, textarea').forEach(node => node.disabled = false); }
+        finally { dialog.dataset.busy = 'false'; dialog.querySelectorAll('button, input, textarea, select').forEach(node => node.disabled = false); }
       };
     }
     if (!dialog.open) dialog.showModal();

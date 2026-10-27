@@ -1,0 +1,557 @@
+{
+  "metadata": {
+    "2026-2027-form-a-math-item-22": {
+      "category": "Statistics and Probability",
+      "subcategory": "Data Displays"
+    },
+    "2021-2022-form-a-q76": {
+      "category": "Statistics and Probability",
+      "subcategory": "Data Displays"
+    },
+    "2025-2026-form-a-math-5": {
+      "category": "Statistics and Probability",
+      "subcategory": "Set Relationships"
+    },
+    "2025-2026-form-a-math-1": {
+      "category": "Ratios and Proportional Relationships",
+      "subcategory": "Ratios & Proportions"
+    },
+    "2026-2027-form-a-math-item-1": {
+      "category": "Ratios and Proportional Relationships",
+      "subcategory": "Ratios & Proportions"
+    }
+  },
+  "savedViews": [],
+  "collections": [],
+  "targets": {
+    "defaultPerDifficulty": 10
+  },
+  "skills": [
+    {
+      "id": "integer-operations",
+      "label": "Integer Operations",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Number Operations",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "order-of-operations",
+      "label": "Order of Operations",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Number Operations",
+      "prerequisiteIds": [
+        "integer-operations"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "factors-multiples",
+      "label": "Factors and Multiples",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Number Properties",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "divisibility-primes",
+      "label": "Divisibility and Prime Factorization",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Number Properties",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "fraction-operations",
+      "label": "Fraction Operations",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Fractions & Decimals",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "decimal-operations",
+      "label": "Decimal Operations",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Fractions & Decimals",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "rational-conversions",
+      "label": "Fraction and Decimal Conversions",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Fractions & Decimals",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "exponents-roots",
+      "label": "Exponents and Roots",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Exponents, Roots & Scientific Notation",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "scientific-notation",
+      "label": "Scientific Notation",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Exponents, Roots & Scientific Notation",
+      "prerequisiteIds": [
+        "exponents-roots"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "unit-conversions",
+      "label": "Unit Conversions",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Units & Conversions",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "counting-sets",
+      "label": "Counting and Set Relationships",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Counting & Sets",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "distributive-property",
+      "label": "Distributive Property",
+      "category": "Algebra",
+      "subcategory": "Algebraic Expressions",
+      "prerequisiteIds": [
+        "integer-operations"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "combining-like-terms",
+      "label": "Combining Like Terms",
+      "category": "Algebra",
+      "subcategory": "Algebraic Expressions",
+      "prerequisiteIds": [
+        "integer-operations"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "evaluate-expressions",
+      "label": "Evaluate Expressions",
+      "category": "Algebra",
+      "subcategory": "Algebraic Expressions",
+      "prerequisiteIds": [
+        "order-of-operations"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "one-step-equations",
+      "label": "One-Step Equations",
+      "category": "Algebra",
+      "subcategory": "Equations & Systems",
+      "prerequisiteIds": [
+        "integer-operations"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "linear-equations",
+      "label": "Linear Equations",
+      "category": "Algebra",
+      "subcategory": "Equations & Systems",
+      "prerequisiteIds": [
+        "one-step-equations",
+        "distributive-property",
+        "combining-like-terms"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "systems-equations",
+      "label": "Systems of Equations",
+      "category": "Algebra",
+      "subcategory": "Equations & Systems",
+      "prerequisiteIds": [
+        "linear-equations"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "linear-inequalities",
+      "label": "Linear Inequalities",
+      "category": "Algebra",
+      "subcategory": "Inequalities",
+      "prerequisiteIds": [
+        "integer-operations",
+        "linear-equations"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "slope-linear-graphs",
+      "label": "Slope and Linear Graphs",
+      "category": "Algebra",
+      "subcategory": "Functions & Graphs",
+      "prerequisiteIds": [
+        "unit-rates"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "function-tables",
+      "label": "Function Tables and Rules",
+      "category": "Algebra",
+      "subcategory": "Functions & Graphs",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "patterns-sequences",
+      "label": "Patterns and Sequences",
+      "category": "Algebra",
+      "subcategory": "Patterns & Sequences",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "angle-relationships",
+      "label": "Angle Relationships",
+      "category": "Geometry",
+      "subcategory": "Shapes & Angles",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "triangles-polygons",
+      "label": "Triangles and Polygons",
+      "category": "Geometry",
+      "subcategory": "Shapes & Angles",
+      "prerequisiteIds": [
+        "angle-relationships"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "area-perimeter",
+      "label": "Area and Perimeter",
+      "category": "Geometry",
+      "subcategory": "Area & Perimeter",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "circles",
+      "label": "Circle Measurements",
+      "category": "Geometry",
+      "subcategory": "Area & Perimeter",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "composite-area",
+      "label": "Composite Area",
+      "category": "Geometry",
+      "subcategory": "Area & Perimeter",
+      "prerequisiteIds": [
+        "area-perimeter",
+        "circles"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "surface-area",
+      "label": "Surface Area",
+      "category": "Geometry",
+      "subcategory": "Surface Area & Volume",
+      "prerequisiteIds": [
+        "area-perimeter"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "volume",
+      "label": "Volume",
+      "category": "Geometry",
+      "subcategory": "Surface Area & Volume",
+      "prerequisiteIds": [
+        "area-perimeter"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "coordinate-distance",
+      "label": "Coordinate Distance and Locations",
+      "category": "Geometry",
+      "subcategory": "Coordinate Geometry",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "pythagorean-theorem",
+      "label": "Pythagorean Theorem",
+      "category": "Geometry",
+      "subcategory": "Pythagorean Theorem",
+      "prerequisiteIds": [
+        "exponents-roots"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "scale-drawings",
+      "label": "Scale Drawings",
+      "category": "Geometry",
+      "subcategory": "Scale & Transformations",
+      "prerequisiteIds": [
+        "proportional-relationships"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "transformations",
+      "label": "Transformations",
+      "category": "Geometry",
+      "subcategory": "Scale & Transformations",
+      "prerequisiteIds": [
+        "coordinate-distance"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "read-data-displays",
+      "label": "Read Data Displays",
+      "category": "Statistics and Probability",
+      "subcategory": "Data Displays",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "simple-probability",
+      "label": "Simple Probability",
+      "category": "Statistics and Probability",
+      "subcategory": "Probability",
+      "prerequisiteIds": [
+        "fraction-operations"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "compound-probability",
+      "label": "Compound Probability",
+      "category": "Statistics and Probability",
+      "subcategory": "Probability",
+      "prerequisiteIds": [
+        "simple-probability",
+        "counting-sets"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "center-spread",
+      "label": "Measures of Center and Spread",
+      "category": "Statistics and Probability",
+      "subcategory": "Averages & Spread",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "ratio-comparisons",
+      "label": "Ratio Comparisons",
+      "category": "Ratios and Proportional Relationships",
+      "subcategory": "Ratios & Proportions",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "proportional-relationships",
+      "label": "Proportional Relationships",
+      "category": "Ratios and Proportional Relationships",
+      "subcategory": "Ratios & Proportions",
+      "prerequisiteIds": [
+        "ratio-comparisons"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "unit-rates",
+      "label": "Unit Rates",
+      "category": "Ratios and Proportional Relationships",
+      "subcategory": "Rates & Unit Rates",
+      "prerequisiteIds": [],
+      "standardReferences": []
+    },
+    {
+      "id": "percent-amounts",
+      "label": "Percent Amounts",
+      "category": "Ratios and Proportional Relationships",
+      "subcategory": "Percentages",
+      "prerequisiteIds": [
+        "rational-conversions"
+      ],
+      "standardReferences": []
+    },
+    {
+      "id": "percent-change",
+      "label": "Percent Change",
+      "category": "Ratios and Proportional Relationships",
+      "subcategory": "Percentages",
+      "prerequisiteIds": [
+        "percent-amounts"
+      ],
+      "standardReferences": []
+    }
+  ],
+  "rules": {
+    "targetAccuracy": 70,
+    "minAttempts": 5,
+    "minUniqueQuestions": 3,
+    "minAssessments": 2,
+    "recentDays": 90,
+    "recentMinAttempts": 3,
+    "trendMinAttempts": 3,
+    "trendDifference": 10
+  },
+  "pacePerWeek": 20,
+  "history": [
+    {
+      "id": "2da1e4d9-1011-4d1f-a571-16852b7e7d80",
+      "revision": "88712720b1c7e0bcb1da7d63c962930bb8ed8f9626026dfe95d5d4e6945167f2",
+      "at": "2026-10-27T14:26:58.557Z",
+      "actor": "content-studio",
+      "before": {
+        "2026-2027-form-a-math-item-22": {}
+      },
+      "after": {
+        "2026-2027-form-a-math-item-22": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays"
+        }
+      }
+    },
+    {
+      "id": "b21ac4b9-4ed5-4199-9fcc-2592a50b5f00",
+      "revision": "af9cd1b8-ab6a-4037-8cec-9e2e395c5b44",
+      "at": "2026-10-27T14:27:32.472Z",
+      "actor": "content-studio",
+      "before": {
+        "2021-2022-form-a-q76": {}
+      },
+      "after": {
+        "2021-2022-form-a-q76": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays"
+        }
+      }
+    },
+    {
+      "id": "b1bf4b9c-4aab-4cbd-b810-d30b39706e3f",
+      "revision": "53c73826-dc50-4ec5-86dd-f7c97bf1aedb",
+      "at": "2026-10-27T15:04:50.720Z",
+      "actor": "local-teacher:13ef5f1c8c364eb30800ad0b",
+      "before": {
+        "2025-2026-form-a-math-5": {}
+      },
+      "after": {
+        "2025-2026-form-a-math-5": {
+          "category": "Statistics and Probability",
+          "subcategory": "Overlapping Groups"
+        }
+      }
+    },
+    {
+      "id": "cd7aebf0-0bfd-4bf9-9d7c-b6e683d10821",
+      "revision": "e2f7a9cf-5fcc-4498-a273-4647943fdf08",
+      "at": "2026-10-27T18:22:13.312Z",
+      "actor": "local-teacher:13ef5f1c8c364eb30800ad0b",
+      "before": {
+        "2025-2026-form-a-math-1": {}
+      },
+      "after": {
+        "2025-2026-form-a-math-1": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        }
+      }
+    },
+    {
+      "id": "0857eb34-ccdc-4ce6-ab38-1d8cbb965bae",
+      "revision": "9ac0fb40-e501-4e86-af5a-4a19f3d1839a",
+      "at": "2026-10-27T18:22:46.321Z",
+      "actor": "local-teacher:13ef5f1c8c364eb30800ad0b",
+      "before": {
+        "2026-2027-form-a-math-item-1": {}
+      },
+      "after": {
+        "2026-2027-form-a-math-item-1": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        }
+      }
+    }
+  ],
+  "revision": "5ab226cf-af61-4ac4-90b4-31c3741683cb",
+  "taxonomy": {
+    "categories": [
+      {
+        "label": "Algebra",
+        "topics": [
+          "Algebraic Expressions",
+          "Equations & Systems",
+          "Inequalities",
+          "Functions & Graphs",
+          "Patterns & Sequences"
+        ]
+      },
+      {
+        "label": "Geometry",
+        "topics": [
+          "Shapes & Angles",
+          "Area & Perimeter",
+          "Surface Area & Volume",
+          "Coordinate Geometry",
+          "Pythagorean Theorem",
+          "Scale & Transformations"
+        ]
+      },
+      {
+        "label": "Statistics and Probability",
+        "topics": [
+          "Data Displays",
+          "Probability",
+          "Set Relationships",
+          "Averages & Spread"
+        ]
+      },
+      {
+        "label": "Ratios and Proportional Relationships",
+        "topics": [
+          "Ratios & Proportions",
+          "Rates & Unit Rates",
+          "Percentages"
+        ]
+      },
+      {
+        "label": "Arithmetic & Number Sense",
+        "topics": [
+          "Number Properties",
+          "Fractions & Decimals",
+          "Number Operations",
+          "Exponents, Roots & Scientific Notation",
+          "Units & Conversions",
+          "Counting & Sets"
+        ]
+      }
+    ]
+  },
+  "taxonomyTopicRenames": [
+    {
+      "category": "Statistics and Probability",
+      "from": "Overlapping Groups",
+      "to": "Set Relationships"
+    }
+  ]
+}

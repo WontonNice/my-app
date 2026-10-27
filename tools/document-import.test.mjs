@@ -22,7 +22,8 @@ test('Exam Builder passage shortcuts retain the exam draft and honor passage-edi
   const tabs = [];
   let allowSelection = true, allowModeChange = true;
   const open = vm.runInNewContext(`${source}\nopenTestPassageEditor`, {
-    app, passageById: id => id === 'target',
+    app, passageById: id => id === 'target' ? {section:'reading'} : id === 'part-a-target' ? {section:'revising_editing_a'} : null,
+    studioUI: {passageLibrarySection: passage => passage.section},
     selectPassage: id => { if (allowSelection) app.selectedPassageId = id; },
     switchTab: tab => { if (allowModeChange) { tabs.push(tab); app.passageMode = 'exam'; } },
   });
@@ -32,11 +33,12 @@ test('Exam Builder passage shortcuts retain the exam draft and honor passage-edi
   assert.equal(app.testDraft, draft);
   assert.equal(app.testDirty, true);
   tabs.length = 0; app.selectedPassageId = 'old'; allowSelection = false;
-  open('target'); assert.deepEqual(tabs, []);
+  open('target'); assert.deepEqual(tabs, ['passages']);
   app.passageMode = 'advanced'; allowModeChange = false;
   open('target'); assert.equal(app.passageMode, 'advanced'); assert.equal(app.selectedPassageId, 'old');
   allowModeChange = true; allowSelection = true;
   open('target'); assert.equal(app.selectedPassageId, 'target'); assert.equal(app.testDraft, draft);
+  tabs.length = 0; open('part-a-target'); assert.equal(app.selectedPassageId,'part-a-target'); assert.deepEqual(tabs,['part-a']);
   tabs.length = 0; open('missing'); assert.deepEqual(tabs, []);
   app.saving = true; open('target'); assert.deepEqual(tabs, []);
 });
@@ -528,6 +530,24 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.equal(await readFile(join(dir, 'server/data/library-books.json'), 'utf8'), snapshot);
     const reimport = (await call('/api/document-drafts', { source: JSON.stringify(deletionImport) })).data;
     assert.notEqual(reimport.lastImport.entryIds[0], deletionId);
+    // Part A topic management persists independently and publication enforces its library.
+    const topicState=await studio.getState(),partATopic='Part A source development';
+    const topicRequest={section:'revising_editing_a',revision:topicState.topicConfiguration.revision,topics:[...topicState.partATopics.map(label=>({label,original:label})),{label:partATopic,original:''}]};
+    await browserApi('/api/topics',{method:'PUT',body:JSON.stringify(topicRequest)});
+    const withPartATopic=await studio.getState();
+    assert.ok(withPartATopic.partATopics.includes(partATopic));
+    assert.deepEqual(withPartATopic.readingTopics,topicState.readingTopics);
+    assert.deepEqual(withPartATopic.partBTopics,topicState.partBTopics);
+    await assert.rejects(browserApi('/api/topics',{method:'PUT',body:JSON.stringify(topicRequest)}),/changed/);
+    const partA=structuredClone(withPartATopic.passages.find(p=>p.section==='revising_editing_a'));
+    assert.ok(partA);partA.questions[0].topic=partATopic;
+    const savePartA=await call('/api/passages',partA);
+    assert.equal(savePartA.status,201,JSON.stringify(savePartA.data));
+    const reread=await studio.getState();
+    assert.equal(reread.passages.find(p=>p.id===partA.id).questions[0].topic,partATopic);
+    const reading=structuredClone(reread.passages.find(p=>p.section==='reading' && !p.preserveSourceLayout));
+    reading.questions[0].topic=partATopic;
+    assert.equal((await call('/api/passages',reading)).status,400,'Part A topics cannot classify Reading questions');
   } finally {
     if (server) await new Promise(done => server.close(done));
     await rm(modulePath, { force: true });

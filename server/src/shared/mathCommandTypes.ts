@@ -34,6 +34,8 @@ export type MathQuestionPerformance = {
 export type MathDuplicateKind = "exact" | "possible" | "template";
 export type MathDuplicateGroup = { id: string; kind: MathDuplicateKind; questionIds: string[]; score: number; reason: string };
 export type MathCatalogRow = {
+  personal?: import("./teacherLabels").TeacherQuestionNote;
+  teacherLabelNames?: string[];
   id: string; prompt: string; type: string; category: string; subcategory: string;
   diagnosticSkill: string; secondarySkills: string[]; difficulty: MathDifficulty | "";
   source: string; sourceQuestionId: string; sources: MathQuestionSource[]; years: string[]; forms: string[];
@@ -43,13 +45,14 @@ export type MathCatalogRow = {
 };
 export type MathCatalogFilters = {
   search?: string;
+  teacherLabelIds?: string[]; favoritesOnly?: boolean;
   category?: string[]; subcategory?: string[]; diagnosticSkill?: string[]; secondarySkill?: string[];
   standard?: string[]; difficulty?: (MathDifficulty | "unclassified")[]; responseType?: string[];
   source?: string[]; year?: string[]; form?: string[]; assessmentId?: string[]; context?: string;
   diagram?: boolean; graph?: boolean; table?: boolean;
   issue?: MathReviewIssue[]; status?: "ready" | "needs_review" | "never_assigned" | "previously_assigned" | "possible_duplicate";
   collectionQuestionIds?: string[]; excludeQuestionIds?: string[];
-  sort?: "category" | "subcategory" | "difficulty" | "importedAt" | "attempts" | "accuracy" | "incorrect" | "unanswered" | "lastAssignedAt" | "source" | "id";
+  sort?: "favorite" | "taggedAt" | "category" | "subcategory" | "difficulty" | "importedAt" | "attempts" | "accuracy" | "incorrect" | "unanswered" | "lastAssignedAt" | "source" | "id";
   direction?: "asc" | "desc"; page?: number; pageSize?: number;
 };
 export type MathCatalogPage = { items: MathCatalogRow[]; total: number; page: number; pageSize: number; pages: number };

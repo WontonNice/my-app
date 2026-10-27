@@ -10,6 +10,15 @@ function el(tag, children = [], classes = [], style = {}) {
   node.childNodes.forEach(child => { child.parentElement = node; }); return node;
 }
 const style = node => node.style || {};
+test('HTML-only source math preserves fractions and exponents in helper prompts', () => {
+  const {parse} = require('./dom-fixture.cjs');
+  const katex = require('katex');
+  const node = parse(`<p>Evaluate ${katex.renderToString('\\frac{2}{3}+x^2',{output:'html'})}.</p>`);
+  const html = rich.fromElement(node, style);
+  assert.match(html,/\\frac\{2\}\{3\}/);
+  assert.match(html,/x\^\{2\}/);
+  assert.doesNotMatch(html,/32|<input/);
+});
 test('preserves semantic and computed emphasis while dropping attributes and executable content', () => {
   const node = el('div', ['A ', el('strong', ['bold']), ' and ', el('em', ['italic']), ' plus ', el('span', ['styled'], [], { fontWeight: '700', fontStyle: 'italic' }), el('script', ['alert(1)']), ' <&>']);
   assert.equal(rich.fromElement(node, style), '<p>A <strong>bold</strong> and <em>italic</em> plus <em><strong>styled</strong></em> &lt;&amp;&gt;</p>');

@@ -395,6 +395,7 @@ TOPIC TAXONOMY (exact values)
     "Statistics and Probability": [
       "Data Displays",
       "Probability",
+      "Overlapping Groups",
       "Averages & Spread"
     ],
     "Ratios and Proportional Relationships": [

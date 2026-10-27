@@ -533,7 +533,7 @@ function PencilWorkspace({
   const shared = Boolean(storage.shared);
   useEffect(() => {
     // Keep controls in the player's stacking context when it opens as an overlay.
-    setControlsHost(canvasRef.current?.closest<HTMLElement>('dialog, .mc-exam-viewer') ?? document.body);
+    setControlsHost(canvasRef.current?.closest<HTMLElement>('dialog, .mc-exam-viewer, .mc-mini-viewport') ?? document.body);
   }, []);
   useEffect(() => {
     if (!shared || contained) return;

@@ -29,9 +29,9 @@ async function loadRenderer() {
         const wrong=question.choices.find(choice=>choice.id!==question.correctChoiceId).id;
         return renderToStaticMarkup(<ExamMathQuestion question={question} answer={feedback==='correct'?question.correctChoiceId:wrong} answerFeedback={feedback} onChange={()=>{}}/>);
       }
-      export function renderPreview() {
+      export function renderPreview(presentation='fullscreen') {
         const catalog=generatorPreviewCatalog(defaultPracticeCatalog().generators[1]);
-        return renderToStaticMarkup(<InequalityPractice initialModuleId="generator-preview" catalog={catalog} previewOnly/>);
+        return renderToStaticMarkup(<InequalityPractice initialModuleId="generator-preview" catalog={catalog} previewOnly presentation={presentation}/>);
       }
     `,resolveDir:resolve(__dirname,'..'),loader:'tsx'},platform:'node',format:'cjs',bundle:true,write:false,jsx:'automatic',loader:{'.css':'empty'},define:{'import.meta.env':'{}'},plugins:[{name:'browser-only-mathfield',setup(plugin){plugin.onLoad({filter:/ExamReviewQuestion\.tsx$/},()=>({contents:'import React from "react"; export function ExamText({text}) { return <span>{text}</span>; } export function ExamAnswer({answer}) { return <span>{answer}</span>; }',loader:'tsx'}));plugin.onResolve({filter:/^mathlive$/},()=>({path:'mathlive',namespace:'stub'}));plugin.onLoad({filter:/.*/,namespace:'stub'},()=>({contents:'export class MathfieldElement {}',loader:'js'}));}}]});
     const module={exports:{}};
@@ -62,4 +62,12 @@ test('generator preview renders the existing exam toolbar, question, drawing too
   assert.match(html,/exam-session-shell/);assert.match(html,/Exam controls/);
   assert.match(html,/Next item/);assert.match(html,/Pencil tool/);assert.match(html,/Best streak/);
   assert.match(html,/PREVIEW:/);assert.doesNotMatch(html,/ps-sample|CORRECT ANSWER/);
+});
+
+test('mini preview retains the exam controls in a bounded nonmodal region',async()=>{
+ const {renderPreview}=await loadRenderer(),html=renderPreview('mini');
+ assert.match(html,/mc-exam-mini mc-infinite-page/);assert.match(html,/mc-mini-viewport/);
+ assert.match(html,/role="region"/);assert.match(html,/Close question preview/);
+ assert.doesNotMatch(html,/mc-exam-viewer|aria-modal|role="dialog"/);
+ assert.match(html,/Next item/);assert.match(html,/Pencil tool/);assert.match(html,/Best streak/);
 });

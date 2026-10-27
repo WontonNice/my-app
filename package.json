@@ -50,7 +50,7 @@
         "preview:math-command": "node tools/preview-math-command.cjs --port=4328",
         "seed:math-command": "node tools/seed-math-command.cjs",
         "test:question-bank": "node --test tools/question-bank.test.mjs tools/content-studio-bank.test.cjs extensions/shsatlab-ela-reader/reader.test.cjs extensions/shsatlab-ela-reader/automation.test.cjs extensions/shsatlab-ela-reader/popup.test.cjs extensions/shsatlab-ela-reader/bulk.test.cjs extensions/shsatlab-ela-reader/editor-sync.test.cjs server/tests/question-bank-routes.test.cjs",
-        "test:import-readers": "node --test extensions/sat-crash-course-reader/reader.test.cjs extensions/sat-crash-course-reader/rich-text.test.cjs extensions/shsatlab-ela-reader/reader.test.cjs extensions/shsatlab-ela-reader/automation.test.cjs extensions/shsatlab-ela-reader/popup.test.cjs extensions/shsatlab-ela-reader/bulk.test.cjs extensions/shsatlab-ela-reader/editor-sync.test.cjs",
+        "test:import-readers": "node --test extensions/sat-crash-course-reader/reader.test.cjs extensions/sat-crash-course-reader/rich-text.test.cjs extensions/sat-crash-course-reader/tei.test.cjs extensions/shsatlab-ela-reader/reader.test.cjs extensions/shsatlab-ela-reader/automation.test.cjs extensions/shsatlab-ela-reader/popup.test.cjs extensions/shsatlab-ela-reader/bulk.test.cjs extensions/shsatlab-ela-reader/editor-sync.test.cjs",
         "test:exam-presentation": "node --test server/tests/exam-presentation.test.cjs server/tests/math-entry-input.test.cjs server/tests/advanced-math-entry.test.cjs tools/exam-session-view.test.cjs",
         "test:shsat-countdown": "node --test server/tests/shsat-countdown.test.cjs",
         "exam-editor": "npm run content-editor",
@@ -60,7 +60,7 @@
         "test:document-import": "node tools/generate-document-prompt.mjs --check && node --test tools/document-import.test.mjs tools/document-render.test.cjs tools/math-import-batch.test.mjs",
         "content-editor:prompt": "node tools/generate-document-prompt.mjs",
         "test:passage-progress": "node --test server/tests/passage-organization.test.cjs server/tests/learning-plan.test.cjs tools/passage-progress-view.test.cjs",
-        "test:practice-studio": "node --test server/tests/practice-catalog.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs"
+        "test:practice-studio": "node --test server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs"
     },
     "devDependencies": {
         "concurrently": "^9.1.2",

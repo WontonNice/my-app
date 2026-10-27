@@ -2,6 +2,15 @@
 const studioUI = {
   passageContext: "",
   passageSection: "content",
+  passageLibraryKey() { return app.passageMode === 'advanced' ? 'advanced' : app.passageLibrary === 'revising_editing_a' ? 'revising_editing_a' : 'reading'; },
+  passageLibraryTab(passage = app.passageDraft) { return app.passageMode === 'advanced' ? 'advanced' : this.passageLibrarySection(passage) === 'revising_editing_a' ? 'part-a' : 'passages'; },
+  passageLibrarySection(passage) {
+    if(passage?.section === 'reading' || passage?.section === 'revising_editing_a') return passage.section;
+    return passage?.format === 'sentence_prose' || String(passage?.directions?.title || '').toLowerCase().includes('revising/editing') ? 'revising_editing_a' : 'reading';
+  },
+  passagesForLibrary(mode = app.passageMode, library = app.passageLibrary || 'reading') {
+    return mode === 'advanced' ? app.state.advancedPassages : app.state.passages.filter(passage => this.passageLibrarySection(passage) === library);
+  },
   selectedQuestionId: "",
   selectedQuestionIndex: 0,
   showAllQuestions: false,
@@ -290,7 +299,8 @@ const studioUI = {
     ];
     const configuredTopics = (app.state?.topics || []).filter(Boolean);
     const readingTopics = (app.state?.readingTopics || configuredTopics.slice(0, 8) || fallbackReadingTopics).filter(Boolean);
-    const revisingEditingTopics = (app.state?.revisingEditingTopics || configuredTopics.slice(8) || fallbackRevisingEditingTopics).filter(Boolean);
+    const revisingEditingTopics = (app.state?.partATopics || app.state?.revisingEditingTopics || configuredTopics.slice(8) || fallbackRevisingEditingTopics).filter(Boolean);
+    if (section === "revising_editing_b") return app.state?.partBTopics || configuredTopics.slice(8);
     if (section === "revising_editing_a") {
       return revisingEditingTopics.length ? revisingEditingTopics : fallbackRevisingEditingTopics;
     }
@@ -434,16 +444,21 @@ const studioUI = {
   initialize() {
     const header = document.querySelector(".app-header");
     if (!document.querySelector("#studio-library-toggle")) {
-      const toggle = this.element("button", "studio-library-toggle", "☰ <span>Library</span>");
+      const toggle = this.element("button", "studio-library-toggle", '<svg class="studio-library-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 7-5 5 5 5"/></svg><span class="studio-library-label">Library</span>');
       toggle.id = "studio-library-toggle";
       toggle.type = "button";
       toggle.title = "Show or hide the content library";
       toggle.setAttribute("aria-expanded", "true");
       toggle.addEventListener("click", () => {
-        const hidden = document.body.classList.toggle("studio-library-hidden");
-        toggle.setAttribute("aria-expanded", String(!hidden));
+        const expanded = !document.body.classList.contains('studio-library-hidden');
+        if (expanded && this.libraryPinned) this.setLibraryPinned(false);
+        this.setLibraryExpanded(!expanded);
       });
-      header.insertBefore(toggle, header.firstChild);
+      toggle.addEventListener('pointerenter', event => {
+        if (event.pointerType !== 'touch') this.setLibraryExpanded(true);
+      });
+      toggle.addEventListener('pointerleave', () => this.scheduleLibraryClose());
+      document.body.append(toggle);
       document.querySelector(".brand small").textContent = "CONTENT EDITOR";
       document.querySelector(".brand strong").textContent = "Nathan Tutors";
     }
@@ -466,26 +481,89 @@ const studioUI = {
     });
   },
 
+  setLibraryExpanded(expanded) {
+    clearTimeout(this.libraryCloseTimer);
+    document.body.classList.toggle('studio-library-hidden', !expanded);
+    this.syncLibraryToggle();
+  },
+  setLibraryPinned(pinned) {
+    this.libraryPinned = pinned;
+    this.remember('library-pinned', pinned);
+    if (pinned) this.setLibraryExpanded(true);
+    else this.syncLibraryToggle();
+  },
+  scheduleLibraryClose() {
+    clearTimeout(this.libraryCloseTimer);
+    this.libraryCloseTimer = setTimeout(() => {
+      const sidebar = this.libraryToggleSidebar, toggle = document.getElementById('studio-library-toggle');
+      const focused = sidebar?.contains(document.activeElement) && document.activeElement.matches(':focus-visible');
+      if (!this.libraryPinned && !sidebar?.matches(':hover') && !toggle?.matches(':hover') && !focused && !document.querySelector('dialog[open]')) this.setLibraryExpanded(false);
+    }, 160);
+  },
+  syncLibraryToggle() {
+    const toggle=document.getElementById('studio-library-toggle'),layout=this.libraryToggleLayout,sidebar=this.libraryToggleSidebar;
+    if(!toggle || !layout || !sidebar || toggle.hidden) return;
+    if (this.libraryPinned && document.body.classList.contains('studio-library-hidden')) document.body.classList.remove('studio-library-hidden');
+    const expanded=!document.body.classList.contains('studio-library-hidden');
+    toggle.setAttribute('aria-expanded',String(expanded));
+    toggle.setAttribute('aria-label',expanded?'Collapse library':'Expand library');
+    toggle.title=expanded?'Collapse library':'Hover or click to open library';
+    sidebar.inert = !expanded;
+    sidebar.setAttribute('aria-hidden', String(!expanded));
+    const pin = sidebar.querySelector('.studio-library-pin');
+    if (pin) {
+      pin.setAttribute('aria-pressed', String(!!this.libraryPinned));
+      pin.setAttribute('aria-label', this.libraryPinned ? 'Unpin library' : 'Pin library open');
+      pin.title = this.libraryPinned ? 'Unpin library · auto-hide on' : 'Pin library open';
+    }
+  },
+  placeLibraryToggle(tab) {
+    const toggle=document.getElementById('studio-library-toggle'); if(!toggle)return;
+    const selectors={passages:'#passages-view .passage-layout','part-a':'#passages-view .passage-layout',advanced:'#passages-view .passage-layout',standalone:'#standalone-view .passage-layout',math:'#math-view .test-grid',tests:'#tests-view .test-grid'};
+    const layout=selectors[tab]?document.querySelector(selectors[tab]):null;
+    toggle.hidden=!layout; toggle.disabled=!layout;
+    clearTimeout(this.libraryCloseTimer);
+    if(!layout)return;
+    const sidebar=layout.querySelector(':scope > .sidebar, :scope > .panel:first-child'); if(!sidebar)return;
+    this.libraryToggleLayout=layout;this.libraryToggleSidebar=sidebar;
+    layout.classList.add('studio-library-shell');layout.append(toggle);
+    sidebar.classList.add('studio-library-panel');
+    if (!sidebar.querySelector('.studio-library-pin')) {
+      const bar = this.element('div', 'studio-library-topbar', '<span>Library</span><button class="studio-library-pin" type="button" aria-label="Pin library open" aria-pressed="false" title="Pin library open"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6m-5 0v6l-4 4v3h12v-3l-4-4V3M12 16v5"/></svg></button>');
+      sidebar.prepend(bar);
+      bar.querySelector('button').addEventListener('click', () => this.setLibraryPinned(!this.libraryPinned));
+      sidebar.addEventListener('pointerenter', event => {
+        if (event.pointerType !== 'touch') { clearTimeout(this.libraryCloseTimer); this.setLibraryExpanded(true); }
+      });
+      sidebar.addEventListener('pointerleave', () => this.scheduleLibraryClose());
+      sidebar.addEventListener('focusin', () => clearTimeout(this.libraryCloseTimer));
+      sidebar.addEventListener('focusout', () => this.scheduleLibraryClose());
+    }
+    sidebar.id ||= 'studio-library-'+tab;
+    toggle.setAttribute('aria-controls',sidebar.id);
+    if(!this.libraryToggleMutation && typeof MutationObserver!=='undefined') {this.libraryToggleMutation=new MutationObserver(()=>this.syncLibraryToggle());this.libraryToggleMutation.observe(document.body,{attributes:true,attributeFilter:['class']});}
+    this.syncLibraryToggle();
+  },
+  passageEditorButton(id, disabled = false) {
+    return '<button class="studio-edit-passage" data-edit-test-passage="'+escapeHtml(id)+'" type="button"'+(disabled?' disabled':'')+'><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5 4 4M4 20l4-1 12-12a2.8 2.8 0 0 0-4-4L4 15z"/></svg><span>Go to editor</span><svg class="studio-edit-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></button>';
+  },
   activateWorkspace(tab) {
     document.querySelectorAll("[data-tab]").forEach((button) => button.setAttribute("aria-current", button.dataset.tab === tab ? "page" : "false"));
     document.body.dataset.workspace = tab;
-    if (tab === "tests") {
-      document.body.classList.remove("studio-library-hidden");
-      document.getElementById("studio-library-toggle")?.setAttribute("aria-expanded", "true");
-    }
+    this.setLibraryExpanded(!!this.libraryPinned);
     if (this.shellReady) this.remember('section', tab);
     const sectionPicker = document.getElementById("studio-section-picker");
     if (sectionPicker) sectionPicker.value = tab;
     this.syncSaveState?.();
-    const toggle = document.getElementById("studio-library-toggle");
-    if (toggle) { toggle.hidden = false; toggle.disabled = tab === "practice" || tab === "question-bank" || tab === "compare" || tab === "math-command"; }
+    this.placeLibraryToggle(tab);
     // Open the first item only on initial entry; switching workspaces keeps drafts intact.
     if (tab === "standalone" && !app.standaloneDraft && app.state.standaloneItems[0]) selectStandaloneItem(app.state.standaloneItems.find(item => item.id === this.readPreference('part-b-item', ''))?.id || app.state.standaloneItems[0].id);
     if (tab === "tests" && !app.testDraft && app.state.assessments[0]) selectAssessment(app.state.assessments.find(item => item.id === this.readPreference('builder-exam', ''))?.id || app.state.assessments[0].id);
     else if (tab === "tests" && app.testDraft) renderTestBuilder();
     if (tab === "math" && !app.mathDraft && app.state.assessments[0]) selectMathAssessment(app.state.assessments.find(item => item.id === this.readPreference('math-exam', ''))?.id || app.state.assessments[0].id, { selectedQuestionId: this.readPreference('math-question', '') });
     const messages = {
-      passages: app.passageDirty ? "Unsaved passage changes." : "Exam passages · edit text, questions, settings, or media.",
+      passages: app.passageDirty ? "Unsaved passage changes." : "Reading library · passages, questions, and reading topics.",
+      "part-a": app.passageDirty ? "Unsaved Part A changes." : "Revising/Editing Part A library · passages, questions, and Part A topics.",
       advanced: app.passageDirty ? "Unsaved SAT passage changes." : "SAT passages · passage, library card, and questions.",
       standalone: app.standaloneDirty ? "Unsaved Part B changes." : "Part B · reusable stand-alone questions.",
       tests: "Exam builder · arrange Reading, Part A, and Part B.",
@@ -507,13 +585,17 @@ const studioUI = {
     return categories.map(category => ({ ...category, count: counts.get(category.value) || 0 }));
   },
 
+  teacherSearchText(id) {
+    const data = this.teacherLabels, own = data?.questions?.[id];
+    return own ? [own.favorite ? 'favorite bookmarked' : '', own.note, ...(data.labels || []).filter(label => own.labelIds.includes(label.id)).map(label => label.name)].join(' ') : '';
+  },
   searchPassages(passages, query) {
     const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/<[^>]*>/g, ' ').toLowerCase();
     const words = normalize(query).split(/\s+/).filter(Boolean);
     if (!words.length) return passages;
     return passages.map((passage, index) => {
       const title = normalize(passage.title), identity = normalize(`${passage.id} ${passage.versionLabel || ''}`);
-      const text = normalize([passage.title, passage.id, passage.versionLabel, passage.teacherSource, passage.advancedId, passage.genre, passage.fileName, ...(passage.questions || []).flatMap(question => [question.topic, question.prompt])].join(' '));
+      const text = normalize([passage.title, passage.id, passage.versionLabel, passage.teacherSource, passage.advancedId, passage.genre, passage.fileName, ...(passage.questions || []).flatMap(question => [question.topic, question.prompt, this.teacherSearchText?.(question.id) || ""])].join(' '));
       const score = words.reduce((sum, word) => sum + (title.includes(word) ? 4 : identity.includes(word) ? 2 : 0), 0);
       return { passage, index, score, matches: words.every(word => text.includes(word)) };
     }).filter(item => item.matches).sort((a, b) => b.score - a.score || a.index - b.index).map(item => item.passage);
@@ -1126,11 +1208,16 @@ const studioUI = {
       this.filters.set(key, input.value);
       const query = input.value.toLowerCase().trim();
       let count = 0;
-      container.querySelectorAll(itemSelector).forEach((card) => { card.hidden = !card.textContent.toLowerCase().includes(query); if (!card.hidden) count++; });
+      container.querySelectorAll(itemSelector).forEach((card) => {
+        const versions=key === 'test-passages' ? [...card.querySelectorAll('[data-passage-library]')] : [];
+        versions.forEach(version => {version.hidden = this.testSection === '0' && version.dataset.passageLibrary !== 'reading' || this.testSection === '1' && version.dataset.passageLibrary !== 'revising_editing_a';});
+        const wrongSection=versions.length>0 && versions.every(version=>version.hidden);
+        card.hidden = wrongSection || ![card.textContent, ...[card, ...card.querySelectorAll('[data-teacher-questions]')].flatMap(node => (node.dataset.teacherQuestions || '').split('|').map(id => this.teacherSearchText(id)))].join(' ').toLowerCase().includes(query); if (!card.hidden) count++; });
       tools.querySelector("span").textContent = `${count} results`;
     };
     input.addEventListener("input", filter);
     filter();
+    return filter;
   },
 
   mountTestBuilder() {
@@ -1172,13 +1259,15 @@ const studioUI = {
     banks.append(passageDetails, bankDetails);
     passageDetails.addEventListener("toggle", () => this.folds.set("test-passages", passageDetails.open));
     bankDetails.addEventListener("toggle", () => this.folds.set("test-bank", bankDetails.open));
-    this.searchablePicker(library, "test-passages", "Search passage library…", ":scope > .passage-version-group");
+    const filterPassages = this.searchablePicker(library, "test-passages", "Search passage library…", ":scope > .passage-version-group");
     this.searchablePicker(standalone, "test-bank", "Search Part B bank…");
     const sectionNav = this.element("nav", "studio-practice-nav studio-test-nav", ["Reading", "Part A", "Part B", "All sections"].map((label, index) => `<button type="button" data-test-section="${index}">${label}</button>`).join(""));
     sectionNav.setAttribute("aria-label", "English test sections");
     columns.before(sectionNav);
     const showSection = (selected) => {
       this.testSection = selected;
+      passageDetails.querySelector("summary").textContent=selected === "1" ? "Part A passage library" : selected === "0" ? "Reading passage library" : "Passage libraries";
+      filterPassages();
       [...sections.children].forEach((section, index) => { section.hidden = selected !== "3" && String(index) !== selected; });
       passageDetails.hidden = selected === "2";
       bankDetails.hidden = selected !== "2" && selected !== "3";
@@ -1195,7 +1284,7 @@ const studioUI = {
     const root = document.getElementById("math-builder");
     this.moveSaveBar(root, "Save math section");
     const importButton = document.getElementById("open-math-import");
-    importButton.textContent = 'Import Math questions';
+    importButton.textContent = 'Import Math JSON';
     document.getElementById('add-math-question').textContent = '+ Question';
     root.querySelector(".studio-save-bar")?.prepend(importButton);
     const manage = this.element('button', 'secondary', 'Manage categories'); manage.type = 'button'; manage.id = 'studio-manage-math-topics';
@@ -1204,11 +1293,6 @@ const studioUI = {
     const answers = this.element('button', 'secondary', 'Answer summary'); answers.type = 'button';
     answers.onclick = () => this.openMathAnswerSummary();
     root.querySelector('.studio-save-bar').prepend(answers);
-    const libraryHead = document.querySelector('#math-view .test-grid > .panel:first-child .panel-head');
-    if (libraryHead && !libraryHead.querySelector('.studio-catalog-close')) {
-      const close = this.element('button', 'studio-catalog-close', '×'); close.type = 'button'; close.setAttribute('aria-label', 'Close math exam library');
-      close.onclick = () => document.getElementById('studio-library-toggle').click(); libraryHead.append(close);
-    }
     const stack = root.querySelector(".math-editor-stack");
     if (stack) {
       const grid = stack.querySelector(".question-grid");
@@ -1217,6 +1301,7 @@ const studioUI = {
       const settings = this.element('details', 'studio-math-settings', '<summary>Question settings</summary><div></div>');
       ['type', 'points'].forEach(key => settings.querySelector('div').append(grid.querySelector(`[data-math-field='${key}']`).closest('label')));
       metadata.append(settings);
+      this.mountTeacherTags(metadata, app.mathDraft?.questions[app.selectedMathQuestionIndex]?.id);
       const coverage = this.element('p', 'studio-math-coverage'); coverage.id = 'studio-math-classification-state';
       const codeId = grid.querySelector(".question-code-id");
       stack.querySelector(":scope > .panel-head").after(metadata, coverage);
@@ -1290,7 +1375,7 @@ const studioUI = {
           const item = app.mathDraft.questions[Number(button.dataset.mathQuestionIndex)];
           const searchMatch = /^\d+$/.test(query)
             ? query !== String(Number(button.dataset.mathQuestionIndex) + 1)
-            : !`${item.prompt} ${item.type} ${item.topic} ${item.subtopic || 'unclassified'}`.toLowerCase().includes(query);
+            : !`${item.prompt} ${item.type} ${item.topic} ${item.subtopic || 'unclassified'} ${this.teacherSearchText(item.id)}`.toLowerCase().includes(query);
           button.hidden = searchMatch || needsEditing.checked && !item.importNeedsEditing || Boolean(category.value && item.topic !== category.value) || Boolean(specific.value && (specific.value === '__unclassified__' ? item.subtopic && item.subtopic !== 'Unclassified' : item.subtopic !== specific.value));
         });
         let empty = questionNav.querySelector(".studio-search-empty");
@@ -1319,6 +1404,13 @@ const studioUI = {
     }
   },
 
+  mountTeacherTags(container, id) {
+    if (!container || !id) return;
+    let host = container.querySelector(':scope > [data-teacher-tags]');
+    if (!host) { host = document.createElement('div'); host.dataset.teacherTags = ''; container.append(host); }
+    if (window.mountTeacherTags) window.mountTeacherTags(host, Array.isArray(id) ? id : [id]);
+    else window.addEventListener('studio:teacher-labels-ready', () => { if(host.isConnected) window.mountTeacherTags(host, Array.isArray(id) ? id : [id]); }, {once: true});
+  },
   updateMathClassification() {
     const questions = app.mathDraft?.questions || [], question = questions[app.selectedMathQuestionIndex];
     const missing = questions.filter(item => !item.subtopic || item.subtopic === 'Unclassified').length;
@@ -1700,6 +1792,8 @@ Object.assign(studioUI, {
     const frame = document.getElementById('studio-exam-canvas'); if (!frame || !app.passageDraft) return;
     const signature = this.examRenderKey();
     if (!force && signature === this.examSignature) return;
+    const toolbar = document.querySelector('.studio-direct-question') || document.querySelector('#passage-preview-panel > .panel-head');
+    this.mountTeacherTags(toolbar, app.passageDraft.questions[this.selectedQuestionIndex]?.id);
     this.captureExamPosition(); this.examSignature = signature;
     this.pendingExamPosition = { ...this.examPositions.get(this.passageContext) };
     this.examRendering = true;
@@ -2254,14 +2348,15 @@ Object.assign(studioUI, {
     header.append(document.getElementById('open-document-drafts'));
     nav.hidden = false;
     nav.classList.add('studio-universal-nav');
-    const names = { passages: 'Passages', standalone: 'Part B', tests: 'Exam builder', math: 'Math', 'math-command': 'Math Center', compare: 'Compare tests', advanced: 'SAT', practice: 'Practice', 'question-bank': 'Question bank' };
+    const names = { passages: 'Reading', 'part-a': 'Part A', standalone: 'Part B', tests: 'Exam builder', math: 'Math', 'math-command': 'Math Center', compare: 'Compare tests', advanced: 'SAT', practice: 'Practice', 'question-bank': 'Question bank' };
     nav.querySelectorAll('[data-tab]').forEach(button => { button.title = button.textContent; button.setAttribute('aria-label', button.textContent); button.textContent = names[button.dataset.tab]; });
     picker.after(nav);
-    header.append(document.getElementById('studio-library-toggle'), document.getElementById('open-document-drafts'));
+    header.append(document.getElementById('open-document-drafts'));
     const help = this.element('details', 'studio-help', '<summary>Help</summary><div><strong>Content Editor</strong><p>Choose a workspace to browse its library. Edit the passage, questions, answer keys, and explanations together. Click text in the preview to edit it. Passage options contains details, formatting, images, definitions, and review. Question options contains type, topic, points, and explanation.</p><p><kbd>Ctrl / ⌘ + S</kbd> saves the current workspace. Saving updates repository content. Import review drafts stay teacher-only until published.</p><p>Select text to format or define it. Paragraph style applies to the current paragraph or selected paragraphs. Formatting and definitions are included in Undo.</p></div>');
     header.append(help);
     const toggle = document.getElementById('studio-library-toggle');
-    const hidden = this.readPreference('library-hidden', false);
+    this.libraryPinned = this.readPreference('library-pinned', false);
+    const hidden = !this.libraryPinned;
     document.body.classList.toggle('studio-library-hidden', hidden);
     toggle.setAttribute('aria-expanded', String(!hidden));
     toggle.addEventListener('click', () => this.remember('library-hidden', document.body.classList.contains('studio-library-hidden')));
@@ -2313,20 +2408,12 @@ Object.assign(studioUI, {
     imports.addEventListener('click', event => { if (event.target.closest('button')) imports.open = false; });
     actions.append(imports);
     head.querySelector(':scope > div').append(actions);
-    const close = this.element('button', 'studio-catalog-close', '×');
-    close.type = 'button'; close.setAttribute('aria-label', 'Close passage library');
-    close.onclick = () => document.getElementById('studio-library-toggle').click();
-    actions.append(close);
     const search = document.getElementById('passage-search');
     search.placeholder = 'Search titles, sources, questions…';
     const searchBox = this.element('div', 'studio-catalog-search');
     search.before(searchBox); searchBox.append(search);
     const toolbar = this.element('div', 'studio-catalog-toolbar');
     head.append(toolbar);
-    const sections = this.element('div', 'studio-catalog-sections', '<button type="button" data-catalog-section="" aria-pressed="true">All</button><button type="button" data-catalog-section="reading" aria-pressed="false">Reading</button><button type="button" data-catalog-section="revising-editing" aria-pressed="false">Revising</button>');
-    toolbar.append(sections);
-    sections.setAttribute('aria-label', 'Passage section');
-    sections.querySelectorAll('button').forEach(button => button.onclick = () => { this.catalogSection = button.dataset.catalogSection; renderPassageList(); });
     const filters = this.element('details', 'studio-catalog-filters', '<summary>Filters</summary><div></div>');
     toolbar.append(filters);
     const category = document.getElementById('passage-category-filter').closest('label');
@@ -2362,26 +2449,26 @@ Object.assign(studioUI, {
     this.saveErrors ||= new Map();
     if (app.saving && tone === 'error') this.saveErrors.set(tab, true);
     else if (tone !== undefined && tone !== 'error') this.saveErrors.delete(tab);
-    const dirty = tab === 'math' ? app.mathDirty : tab === 'standalone' ? app.standaloneDirty : tab === 'tests' ? app.testDirty : ['passages', 'advanced'].includes(tab) ? app.passageDirty : false;
+    const dirty = tab === 'math' ? app.mathDirty : tab === 'standalone' ? app.standaloneDirty : tab === 'tests' ? app.testDirty : ['passages', 'part-a', 'advanced'].includes(tab) ? app.passageDirty : false;
     const failed = this.saveErrors.has(tab);
     const state = failed ? 'Save failed · changes retained' : app.saving ? 'Saving…' : dirty ? 'Unsaved changes' : tab === 'practice' ? 'Local recovery draft' : app.passageDraft?.importDraftId && ['passages', 'advanced'].includes(tab) ? 'Teacher-only review draft' : ['passages', 'advanced'].includes(tab) && !app.passageDraft?.sourceHash ? 'New draft' : 'Saved';
     document.querySelectorAll('.studio-item-state').forEach(node => { node.textContent = state; node.dataset.state = failed ? 'error' : app.saving ? 'saving' : dirty ? 'dirty' : 'saved'; });
   },
   capturePassageLibrary() {
     const list = document.getElementById('passage-list');
-    this.remember(`library:${app.passageMode}`, {
+    this.remember(`library:${this.passageLibraryKey()}`, {
       query: document.getElementById('passage-search').value,
       category: document.getElementById('passage-category-filter').value,
       format: document.querySelector('#passages-filters select')?.value || '',
       sort: document.querySelectorAll('#passages-filters select')[1]?.value || 'source',
-      section: this.catalogSection || '',
+      section: '',
       scroll: list.scrollTop,
       page: this.pages.get('passages'),
     });
   },
   restorePassageLibrary() {
-    const value = this.readPreference(`library:${app.passageMode}`, {});
-    this.catalogSection = value.section || '';
+    const value = this.readPreference(`library:${this.passageLibraryKey()}`, {});
+    this.catalogSection = '';
     document.getElementById('passage-search').value = value.query || '';
     document.getElementById('passage-category-filter').value = value.category || '';
     const selects = document.querySelectorAll('#passages-filters select');
@@ -2394,7 +2481,7 @@ Object.assign(studioUI, {
     const root = document.getElementById('passage-editor');
     if (root.querySelector('#studio-support-tools')) return;
     if (!this.supportPreferenceLoaded) { this.supportPanel = this.readPreference('support-panel', ''); this.supportPreferenceLoaded = true; }
-    if (app.selectedPassageId) this.remember(`selected-passage:${app.passageMode}`, app.selectedPassageId);
+    if (app.selectedPassageId) this.remember(`selected-passage:${this.passageLibraryKey()}`, app.selectedPassageId);
     const head = root.querySelector('.editor-head');
     const bar = root.querySelector('.content-editor-command-bar');
     const actions = bar.querySelector(':scope > div');
@@ -2402,7 +2489,7 @@ Object.assign(studioUI, {
     head.append(actions);
     const badge = this.element('span', 'studio-item-state');
     badge.setAttribute('role', 'status');
-    head.querySelector('h1').before(this.element('span', 'studio-eyebrow', app.passageMode === 'advanced' ? 'SAT passages / Editing' : 'Exam passages / Editing'));
+    head.querySelector('h1').before(this.element('span', 'studio-eyebrow', app.passageMode === 'advanced' ? 'SAT passages / Editing' : app.passageLibrary === 'revising_editing_a' ? 'Part A / Editing' : 'Reading / Editing'));
     head.querySelector('h1').after(badge);
     const more = this.element('details', 'studio-more', '<summary>More <span aria-hidden="true">⌄</span></summary><div></div>');
     for (const id of ['create-passage-version', 'delete-passage']) {
@@ -2423,7 +2510,7 @@ Object.assign(studioUI, {
     document.querySelector('#passage-questions > .panel-head').append(document.getElementById('add-question'));
     const versionMeta = root.querySelector('.content-editor-heading-meta');
     if (app.passageMode === 'exam' && app.passageDraft.sourceHash) {
-      const versions = app.state.passages.filter(item => item.title.trim().toLowerCase() === app.passageDraft.title.trim().toLowerCase());
+      const versions = this.passagesForLibrary().filter(item => item.title.trim().toLowerCase() === app.passageDraft.title.trim().toLowerCase());
       const version = this.element('label', 'studio-version-switcher', '<span>Editing version</span><select aria-label="Switch existing passage version"></select>');
       version.querySelector('select').innerHTML = versions.map(item => `<option value="${escapeHtml(item.id)}" ${item.id === app.selectedPassageId ? 'selected' : ''}>${escapeHtml(passageVersionText(item))}</option>`).join('');
       version.querySelector('select').onchange = event => { const requested = event.target.value; selectPassage(requested); if (event.target.isConnected) event.target.value = app.selectedPassageId; };
@@ -2702,3 +2789,5 @@ Object.assign(studioUI, {
     if (this.previewReturnFocus?.isConnected) this.previewReturnFocus.focus({ preventScroll: true });
   },
 });
+
+if (typeof window !== 'undefined') window.addEventListener('studio:teacher-labels', event => { studioUI.teacherLabels = event.detail; });

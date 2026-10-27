@@ -1,0 +1,24 @@
+.teacher-tags { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; font: 13px/1.4 system-ui, sans-serif; color: #294553; }
+.teacher-tags button, .teacher-tags summary { cursor: pointer; }
+.teacher-tags > button, .teacher-tags > details > summary { display: flex; align-items: center; gap: 5px; padding: 5px 8px; border: 1px solid #cbd8df; border-radius: 5px; background: white; color: #294553; }
+.teacher-tags > button[aria-pressed="true"] { background: #e4f2ed; color: #17614c; }
+.teacher-tags details { position: relative; }
+.teacher-tags-panel { position: absolute; z-index: 70; top: 100%; right: 0; width: min(330px, 85vw); max-height: 65vh; overflow: auto; padding: 14px; background: white; border: 1px solid #b8cbd5; border-radius: 6px; box-shadow: 0 8px 24px #16303e26; text-align: left; }
+.teacher-tags-panel > strong, .teacher-tags-panel > small { display: block; }
+.teacher-tags-panel label { display: flex; flex-direction: column; gap: 4px; margin: 8px 0; }
+.teacher-tags-panel input:not([type="checkbox"]), .teacher-tags-panel textarea, .teacher-tags-panel select { box-sizing: border-box; width: 100%; padding: 7px; border: 1px solid #b8cbd5; border-radius: 4px; color: #253e4b; background: white; font: inherit; }
+.teacher-tags-list { max-height: 180px; overflow: auto; margin: 10px 0; }
+.teacher-tags-list label { flex-direction: row; align-items: center; }
+.teacher-tags-list input { width: 16px; height: 16px; accent-color: #187559; }
+.teacher-tags-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.teacher-label-manager { padding-top: 10px; margin-top: 10px; border-top: 1px solid #dce4e9; }
+.teacher-tags [role="alert"] { color: #9c251d; white-space: normal; }
+.teacher-tags :focus-visible { outline: 2px solid #166a98; outline-offset: 2px; }
+.teacher-tags button:disabled { opacity: .55; cursor: default; }
+.mc-taxonomy-inline { margin: 12px 18px; padding: 12px; border: 1px solid #d7e2e8; }
+.mc-taxonomy-inline > div { display: flex; gap: 8px; flex-wrap: wrap; align-items: end; margin-top: 10px; }
+
+.teacher-tags .teacher-tags-list label { display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 8px; text-align: left; color: #294553; }
+.teacher-tags .teacher-tags-panel { right: auto; }
+.teacher-tags .teacher-tags-panel p { margin: 8px 0; white-space: normal; }
+.teacher-tags .teacher-tags-panel > label { color: #294553; }

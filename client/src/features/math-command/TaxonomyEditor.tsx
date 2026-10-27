@@ -1,0 +1,13 @@
+import { useState } from 'react';
+import { jsonRequest, type MathCommandOverview, type MathCommandRequest } from './client';
+export function TaxonomyEditor({ overview, request, onSaved }: { overview: MathCommandOverview; request: MathCommandRequest; onSaved: () => void }) {
+  const [action, setAction] = useState('add-subcategory'), [category, setCategory] = useState(overview.taxonomy.categories[0]?.label ?? ''), [original, setOriginal] = useState(''), [name, setName] = useState('');
+  const [busy, setBusy] = useState(false), [message, setMessage] = useState('');
+  async function save() {
+    setBusy(true); setMessage('');
+    try { await request('/taxonomy', jsonRequest('POST', { revision: overview.revision, action, category, original, name })); setName(''); setOriginal(''); setMessage('Saved. The new subcategory is available below.'); onSaved(); }
+    catch (error) { setMessage(error instanceof Error ? error.message : 'Could not save categories.'); }
+    finally { setBusy(false); }
+  }
+  return <details className="mc-taxonomy-inline"><summary>Create / edit subcategories</summary><div><label>Action<select value={action} onChange={event => { setAction(event.target.value); setName(''); setOriginal(''); setCategory(event.target.value === 'add-category' ? '' : overview.taxonomy.categories[0]?.label ?? ''); }}><option value="add-subcategory">New subcategory</option><option value="rename-subcategory">Rename subcategory</option><option value="add-category">New main category</option></select></label><label>Main category{action === 'add-category' ? <input maxLength={80} value={category} onChange={event => setCategory(event.target.value)}/> : <select value={category} onChange={event => { setCategory(event.target.value); setOriginal(''); }}>{overview.taxonomy.categories.map(item => <option key={item.label}>{item.label}</option>)}</select>}</label>{action === 'rename-subcategory' && <label>Existing subcategory<select value={original} onChange={event => { setOriginal(event.target.value); setName(event.target.value); }}><option value="">Choose subcategory</option>{overview.taxonomy.categories.find(item => item.label === category)?.topics.map(topic => <option key={topic}>{topic}</option>)}</select></label>}<label>{action === 'rename-subcategory' ? 'New name' : 'Subcategory name'}<input maxLength={80} value={name} onChange={event => setName(event.target.value)}/></label><button type="button" disabled={busy || !name.trim() || !category.trim() || action === 'rename-subcategory' && !original} onClick={save}>{busy ? 'Saving…' : 'Save subcategory'}</button></div>{action === 'rename-subcategory' && <p>Renaming updates classifications on questions already using this subcategory.</p>}{message && <p role="status">{message}</p>}</details>;
+}

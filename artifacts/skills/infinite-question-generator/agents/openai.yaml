@@ -1,0 +1,4 @@
+interface:
+  display_name: "Infinite Question Generator"
+  short_description: "Build source-based Nathan Tutors practice generators"
+  default_prompt: "Use $infinite-question-generator to create and register practice generators from these question IDs and topic overrides."

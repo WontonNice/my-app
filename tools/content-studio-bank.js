@@ -54,8 +54,24 @@ if (typeof module !== "undefined") module.exports = contentStudioBankModel;
   });
   const paging = document.createElement("div"); paging.className = "bank-paging"; paging.innerHTML = '<button id="bank-prev" type="button">Previous</button><span id="bank-page"></span><button id="bank-next" type="button">Next</button>'; $("bank-rows").closest(".bank-table").after(paging);
   async function api(path, body) { const r = await fetch(path, body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision: bank.revision, ...body }) } : { cache: "no-store" }); const data = await r.json(); if (!r.ok) throw new Error(data.message || "Bank request failed."); return data; }
-  function matching() { return contentStudioBankModel.matching(bank, Object.fromEntries(["subject", "source", "section", "topic", "difficulty", "status", "search"].map(key => [key, $(`bank-${key}`).value]))); }
-  function showAll() { $("bank-subject").value = "English"; for (const id of ["bank-section", "bank-topic", "bank-difficulty", "bank-status", "bank-search"]) $(id).value = ""; page = 0; render(); }
+  let personal = {labels: [], questions: {}};
+  const tagsBar = document.createElement('div'); tagsBar.className = 'bank-toolbar';
+  tagsBar.innerHTML = '<label>My Tags<select id="bank-my-label"><option value="">All labels</option></select></label><label><input id="bank-my-favorites" type="checkbox"> Favorites only</label><label>Sort<select id="bank-my-sort"><option value="">Source order</option><option value="favorite">Favorites first</option><option value="recent">Recently tagged</option></select></label><div id="bank-bulk-tags"></div>';
+  root.querySelector('.bank-toolbar').after(tagsBar);
+  for (const input of tagsBar.querySelectorAll('select,input')) input.onchange = () => {page=0;render();};
+  window.addEventListener('studio:teacher-labels', event => { personal=event.detail;const value=$('bank-my-label').value;$('bank-my-label').innerHTML='<option value="">All labels</option>'+personal.labels.map(label=>'<option value="'+esc(label.id)+'">'+esc(label.name)+'</option>').join('');$('bank-my-label').value=value;render(); });
+  function matching() {
+    const filters=Object.fromEntries(["subject", "source", "section", "topic", "difficulty", "status"].map(key => [key, $(`bank-${key}`).value]));
+    const query=$('bank-search').value.toLowerCase().trim(), label=$('bank-my-label').value;
+    const rows=contentStudioBankModel.matching(bank, filters).filter(q => {
+      const own=personal.questions[q.id];
+      return (!label || own?.labelIds.includes(label)) && (!$('bank-my-favorites').checked || own?.favorite) && [q.prompt,q.passage?.text,own?.note,...personal.labels.filter(l=>own?.labelIds.includes(l.id)).map(l=>l.name)].join(' ').toLowerCase().includes(query);
+    });
+    if($('bank-my-sort').value==='favorite')rows.sort((a,b)=>Number(!!personal.questions[b.id]?.favorite)-Number(!!personal.questions[a.id]?.favorite));
+    if($('bank-my-sort').value==='recent')rows.sort((a,b)=>(personal.questions[b.id]?.updatedAt||'').localeCompare(personal.questions[a.id]?.updatedAt||''));
+    return rows;
+  }
+  function showAll() { $('bank-my-label').value='';$('bank-my-favorites').checked=false;$('bank-my-sort').value=''; $("bank-subject").value = "English"; for (const id of ["bank-section", "bank-topic", "bank-difficulty", "bank-status", "bank-search"]) $(id).value = ""; page = 0; render(); }
   function selectedQuestions() { return [...selected].map(id => bank.questions.find(q => q.id === id)).filter(Boolean); }
   function renderImportOptions() {
     const publish = $("bank-import-publish").checked;
@@ -99,6 +115,7 @@ if (typeof module !== "undefined") module.exports = contentStudioBankModel;
     $("bank-set-count").textContent = `${bank.sets.length} sets`;
     $("bank-sets").innerHTML = bank.sets.map(set => `<article><div><strong>${esc(set.title)}</strong><span>${set.questionIds.length} questions · ${new Set(set.questionIds.map(id => bank.questions.find(q => q.id === id)?.topic).filter(Boolean)).size} topics</span></div><div class="bank-row-actions"><button type="button" data-use-set="${esc(set.id)}">Use as starting point</button><button type="button" data-copy-set="${esc(set.id)}">Copy student path</button></div></article>`).join("") || '<p class="bank-muted">Your saved practice sets will appear here.</p>';
     renderSelection(); renderImportOptions();
+    studioUI.mountTeacherTags($("bank-bulk-tags"), [...selected]);
   }
   async function reload() { bank = await api("/api/question-bank"); sourceTopics = bank.topics ?? sourceTopics; for (const id of selected) if (!bank.questions.some(q => q.id === id && q.status === "published")) selected.delete(id); invalidatePreview(); render(); }
   async function action(fn) { if (busy) return; busy = true; render(); try { await fn(); } catch (error) { notice(error.message); } finally { busy = false; render(); } }
@@ -182,7 +199,7 @@ if (typeof module !== "undefined") module.exports = contentStudioBankModel;
     set("title", review.passage?.title); set("passage", review.passage?.text); set("format", review.passage?.format || "prose"); set("prompt", review.prompt); set("correct", review.correctChoiceId); set("difficulty", review.difficulty); set("explanation", review.explanation); set("image", review.visualImage?.src); set("alt", review.visualImage?.alt);
     for (const c of review.choices) { set(`choice-${c.id}`, c.text); set(`wrong-${c.id}`, review.incorrectChoiceExplanations[c.id]); }
     $("bank-review-meta").textContent = `English · SHSAT Lab · ${review.sourceTopic} · ${review.id}`; $("bank-review-notes").textContent = [...review.reviewNotes, ...review.visuals].join("\n") || "Check every field against the source."; $("bank-review-error").textContent = "";
-    const published = review.status === "published"; [...form.elements].forEach(el => { if (el.id !== "bank-close") el.disabled = published; }); $("bank-review-title").textContent = published ? "Published question · read only" : "Review captured question"; $("bank-review").showModal();
+    const published = review.status === "published"; [...form.elements].forEach(el => { if (el.id !== "bank-close" && !el.closest("[data-teacher-tags]")) el.disabled = published; }); $("bank-review-title").textContent = published ? "Published question · read only" : "Review captured question"; studioUI.mountTeacherTags($("bank-review-title").parentElement, review.id); $("bank-review-title").after($("bank-review").querySelector("[data-teacher-tags]")); $("bank-review").showModal();
   };
   $("bank-close").onclick = () => $("bank-review").close();
   $("bank-review").querySelector("form").onsubmit = async event => {

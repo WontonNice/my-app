@@ -2,7 +2,7 @@
 const {createServer}=require('node:http'),{resolve,basename}=require('node:path'),{build}=require('esbuild');
 require(require.resolve('ts-node',{paths:[resolve(__dirname,'../server')]})).register({transpileOnly:true,project:resolve(__dirname,'../server/tsconfig.json'),compilerOptions:{module:'CommonJS',moduleResolution:'Node'},moduleTypes:{'**':'cjs'}});
 const {defaultPracticeCatalog,validatePracticeCatalog,studentPracticeCatalog}=require('../server/src/shared/practiceCatalog.ts');
-const taxonomy=require('./math-topics.json');let catalog=defaultPracticeCatalog(),revision=0;
+const taxonomy=require('./math-topics.json');let catalog=defaultPracticeCatalog(taxonomy),revision=0;
 (async()=>{
  const result=await build({entryPoints:[resolve(__dirname,'study-hall-preview.tsx')],bundle:true,write:false,outdir:resolve(__dirname,'.study-hall-preview'),format:'esm',jsx:'automatic',loader:{'.woff':'file','.woff2':'file','.ttf':'file'},define:{'import.meta.env':'{}'},plugins:[{name:'fictional-study-hall-session',setup(plugin){
   plugin.onLoad({filter:/useStudentPortalAccess\.ts$/},()=>({loader:'ts',contents:`export function useStudentPortalAccess(teacher=false){const params=new URLSearchParams(location.search),mode=teacher?'teacher':params.get('preview')||'';const isPreview=teacher||Boolean(mode&&params.get('teacherTools')==='1');return {accessToken:'fictional',isCheckingSession:false,isSupabaseConfigured:true,studentName:mode==='teacher'?'QA Teacher':'QA Student',previewContext:{isPreview,mode,query:isPreview?'?preview='+mode+'&teacherTools=1&returnTo=%2Fteacher':'',returnHref:'/teacher',studentId:'',studentName:''}};}`}));

@@ -185,3 +185,7 @@ footer {
   font-size: 10px;
   line-height: 1.4;
 }
+ .capture-field { display: grid; gap: 7px; margin: 12px 0; }
+ .capture-field select, .capture-field input { width: 100%; box-sizing: border-box; padding: 9px; border: 1px solid #bcccd1; border-radius: 6px; background: white; color: #16333e; font: inherit; }
+ .capture-field small, #capture-help { font-size: 12px; line-height: 1.5; }
+ [hidden] { display: none !important; }

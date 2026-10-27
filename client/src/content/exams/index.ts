@@ -1,4 +1,7 @@
 import { createPlainTextPassage } from "./formatters";
+import { digitalShsatPracticeTest6Content } from "./tests/digital-shsat-practice-test-6";
+import { digitalShsatPracticeTest5Content } from "./tests/digital-shsat-practice-test-5";
+import { digitalShsatPracticeTest4Content } from "./tests/digital-shsat-practice-test-4";
 import { digitalShsatPracticeTest3Content } from "./tests/digital-shsat-practice-test-3";
 import { content20262027FormDContent } from "./tests/2026-2027-form-d";
 import { content20262027FormCContent } from "./tests/2026-2027-form-c";
@@ -34,6 +37,9 @@ import type {
 } from "./types";
 
 const examContentByAssessmentId: Record<string, ExamContent> = {
+  [digitalShsatPracticeTest6Content.assessmentId]: digitalShsatPracticeTest6Content,
+  [digitalShsatPracticeTest5Content.assessmentId]: digitalShsatPracticeTest5Content,
+  [digitalShsatPracticeTest4Content.assessmentId]: digitalShsatPracticeTest4Content,
   [digitalShsatPracticeTest3Content.assessmentId]: digitalShsatPracticeTest3Content,
   [content20262027FormDContent.assessmentId]: content20262027FormDContent,
   [content20262027FormCContent.assessmentId]: content20262027FormCContent,

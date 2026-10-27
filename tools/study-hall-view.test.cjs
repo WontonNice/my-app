@@ -11,7 +11,7 @@ test('English Study Hall renders eight reading topics, separate editing topics, 
  vm.runInNewContext(result.outputFiles[0].text,{require,console:{log:value=>output.push(value)},process,URL,URLSearchParams,setTimeout,clearTimeout,TextEncoder,TextDecoder,Buffer,queueMicrotask,setImmediate,clearImmediate,AbortController,ReadableStream,WritableStream,TransformStream},{filename:'study-hall-render.cjs'});
  const html=output[0], advancedIds=JSON.parse(output[1]);
  const studentEnglish=output[2],teacher=output[3],studentMath=output[4],dashboard=output[5];
- assert.match(dashboard,/dashboard-practice-title/);assert.match(dashboard,/Start Foundation Building/);assert.match(dashboard,/All Question Types settings/);assert.ok(dashboard.indexOf('dashboard-practice-title')<dashboard.indexOf('shsat-countdown-title'),'Practice is visible above the countdown on the student home');
+ assert.match(dashboard,/dashboard-practice-title/);assert.match(dashboard,/Start Foundation Building/);assert.match(dashboard,/General Practice settings/);assert.ok(dashboard.indexOf('dashboard-practice-title')<dashboard.indexOf('shsat-countdown-title'),'Practice is visible above the countdown on the student home');
  for(const student of [studentEnglish,studentMath]){
   assert.doesNotMatch(student,/href="\/math-practice\/infinite"/,'Practice stays within its topic box');
   assert.doesNotMatch(student,/study-hall-practice-link/,'No duplicate practice banner');

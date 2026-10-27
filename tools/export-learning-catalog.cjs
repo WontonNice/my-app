@@ -2,6 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const ts = require('typescript');
+const { writeExportFile } = require('./write-export-file.cjs');
 const defaultRoot = path.resolve(__dirname, '..');
 function exportLearningCatalog(root = defaultRoot) {
 const previous = require.extensions['.ts'];
@@ -26,9 +27,7 @@ try {
   });
   const practice = practiceTopics.filter(topic => topic.questionBank.length).map(topic => ({ id: topic.slug, kind: 'practice', title: topic.title, href: `/practice/${topic.slug}`, subject: 'English', category: 'Reading comprehension', skills: [...new Set([topic.title, topic.key])], questionCount: topic.questionBank.length, aliases: [topic.slug] }));
   const output = path.join(root, 'server/data/learning-catalog.json');
-  const temporary = output + `.${process.pid}.tmp`;
-  fs.writeFileSync(temporary, JSON.stringify([...passages, ...practice]) + '\n');
-  fs.renameSync(temporary, output);
+  writeExportFile(output, JSON.stringify([...passages, ...practice]) + '\n');
   // Canonical read-only sources for linked canvas cards. No answer keys are
   // exported into this file; boards store only the stable passage reference.
   const sources = passages.flatMap(item => {
@@ -37,16 +36,10 @@ try {
     return entry ? [{ id: item.id, title: entry.set.passage.title, text: entry.set.passage.lines.map(line => line.text).join(entry.set.passage.format === 'poem' ? '\n' : '\n\n'), viewer: { passage: entry.set.passage, directions: entry.set.directions, questions: entry.set.questions.map(boardQuestion) } }] : [];
   });
   const sourceOutput = path.join(root, 'server/data/board-content.json');
-  const sourceTemporary = sourceOutput + `.${process.pid}.tmp`;
-  fs.writeFileSync(sourceTemporary, JSON.stringify(sources) + '\n');
-  fs.renameSync(sourceTemporary, sourceOutput);
+  writeExportFile(sourceOutput, JSON.stringify(sources) + '\n');
   const bookOutput = path.join(root, 'server/data/library-books.json');
-  const bookTemporary = bookOutput + `.${process.pid}.tmp`;
   const bookJson = JSON.stringify(examLibraryBooks) + '\n';
-  if (!fs.existsSync(bookOutput) || fs.readFileSync(bookOutput, 'utf8') !== bookJson) {
-    fs.writeFileSync(bookTemporary, bookJson);
-    fs.renameSync(bookTemporary, bookOutput);
-  }
+  writeExportFile(bookOutput, bookJson);
 } finally { if (previous) require.extensions['.ts'] = previous; else delete require.extensions['.ts']; }
 }
 module.exports = { exportLearningCatalog };

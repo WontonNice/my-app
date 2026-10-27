@@ -1,6 +1,7 @@
 .math-study-modules article.practice-module-group { display:block; }
 .practice-module-heading { display:flex; align-items:center; gap:16px; }
 .practice-module-heading > div { flex:1; min-width:0; }
+.practice-module-heading .practice-module-topic { display:block; margin-bottom:7px; line-height:1.5; }
 .math-study-modules .practice-module-settings-toggle { padding:6px 0; margin-top:9px; border:0; background:transparent; font-size:.7rem; }
 .practice-module-settings { margin:10px 0 12px; padding:15px; border:1px solid var(--student-line,#ddd6ca); background:var(--account-tint,#e8efea); border-radius:8px; }
 .practice-module-settings h5 { margin:0 0 9px; font-size:.8rem; }

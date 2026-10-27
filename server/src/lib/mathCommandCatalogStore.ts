@@ -11,6 +11,9 @@ import { defaultMathDiagnosticSkills } from "../shared/mathCommandTaxonomy";
 
 export type MathManagementState = {
   revision: string;
+  taxonomyTopicRenames?: {category:string;from:string;to:string}[];
+  teacherLabels?: Record<string, import("../shared/teacherLabels").TeacherLabels>;
+  taxonomy?: MathTaxonomy;
   metadata: Record<string, MathQuestionMetadata & { category?: string; subcategory?: string }>;
   savedViews: { id: string; name: string; filters: MathCatalogFilters }[];
   collections: { id: string; name: string; questionIds: string[] }[];
@@ -44,7 +47,8 @@ export function readMathCommandState(root = mathCommandRoot): MathManagementStat
 
 export function readMathCommandTaxonomy(root = mathCommandRoot): MathTaxonomy {
   const taxonomy = read<MathTaxonomy>(path.join(root, "tools/math-topics.json"), { categories: [] });
-  return { ...taxonomy, skills: readMathCommandState(root).skills };
+  const state = readMathCommandState(root);
+  return { ...(state.taxonomy ?? taxonomy), skills: state.skills };
 }
 
 export function readMathCommandCatalog(root = mathCommandRoot): MathQuestionRecord[] {
@@ -84,22 +88,27 @@ export function readMathCommandCatalog(root = mathCommandRoot): MathQuestionReco
   });
 }
 
+export function mathClassificationRevision(root = mathCommandRoot) {
+  const state = readMathCommandState(root);
+  return hash({metadata: state.metadata, taxonomy: state.taxonomy});
+}
+
 export function syncMathNativeClassifications(root:string,questions:ExamQuestion[],expectedRevision?:string) {
   const state=readMathCommandState(root);let changed=false;
   // A source save can yield between its initial guard and this synchronization.
   // Preserve newer overlays; they remain effective until the editor is refreshed.
-  if(expectedRevision!==undefined&&state.revision!==expectedRevision)return;
+  if(expectedRevision!==undefined&&state.revision!==expectedRevision&&mathClassificationRevision(root)!==expectedRevision)return;
   for(const question of questions){const metadata=state.metadata[question.id];if(!metadata)continue;
     // Legacy callers without a revision may only retire already-persisted values.
     if(expectedRevision===undefined&&((metadata.category!==undefined&&metadata.category!==question.topic)||(metadata.subcategory!==undefined&&metadata.subcategory!==question.subtopic)))continue;
     if(metadata.category!==undefined||metadata.subcategory!==undefined){delete metadata.category;delete metadata.subcategory;changed=true;}
   }
-  if(changed)commitState(root,state.revision,state);
+  if(changed)commitMathCommandState(root,state.revision,state);
 }
 
 // Only management metadata and references live here. Question content, results,
 // assignments and keys continue to live in their existing authoritative stores.
-function commitState(root: string, expected: string, state: MathManagementState) {
+export function commitMathCommandState(root: string, expected: string, state: MathManagementState) {
   const context=currentMathCommandStateContext(root);
   if(context){
     if(context.state.revision!==expected)throw fail("Math management changed in another window. Reload before saving.",409);
@@ -197,7 +206,7 @@ export function applyMathMetadata(root: string, token: string, actor: string) {
   for (const id of preview.ids) { before[id] = state.metadata[id] ?? {}; after[id] = { ...before[id], ...preview.patch }; state.metadata[id] = after[id]; }
   const undoToken = randomUUID();
   state.history = [...state.history.slice(-39), {id: undoToken, revision: state.revision, at: new Date().toISOString(), actor, before, after}];
-  const saved = commitState(root, state.revision, state); previews.delete(token);
+  const saved = commitMathCommandState(root, state.revision, state); previews.delete(token);
   return { undoToken, changed: preview.ids.length, revision: saved.revision };
 }
 
@@ -207,7 +216,7 @@ export function undoMathMetadata(root: string, token: string, actor: string) {
   for (const [id, after] of Object.entries(change.after)) if (hash(state.metadata[id]) !== hash(after)) throw fail("These questions changed after that edit. Undo would overwrite newer work.", 409);
   for (const [id, before] of Object.entries(change.before)) { if (Object.keys(before).length) state.metadata[id] = before; else delete state.metadata[id]; }
   state.history = state.history.filter(item => item.id !== token);
-  return { revision: commitState(root, state.revision, state).revision, changed: Object.keys(change.before).length };
+  return { revision: commitMathCommandState(root, state.revision, state).revision, changed: Object.keys(change.before).length };
 }
 
 export function saveMathCommandPreferences(root: string, input: unknown) {
@@ -264,5 +273,5 @@ export function saveMathCommandPreferences(root: string, input: unknown) {
     try{state.rules=validMathRules({...state.rules,...input.rules});}catch(error){throw fail((error as Error).message);}
   }
   if (input.pacePerWeek !== undefined) { if (!Number.isInteger(input.pacePerWeek)||Number(input.pacePerWeek)<1||Number(input.pacePerWeek)>1000)throw fail("Weekly pace must be a whole number from 1–1,000.");state.pacePerWeek=Number(input.pacePerWeek); }
-  return commitState(root,state.revision,state);
+  return commitMathCommandState(root,state.revision,state);
 }

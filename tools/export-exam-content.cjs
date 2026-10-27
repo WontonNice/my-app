@@ -2,6 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const ts = require('typescript');
+const { writeExportFile } = require('./write-export-file.cjs');
 const root = path.resolve(__dirname, '..');
 
 function mathImportReview(workspaceRoot, content) {
@@ -48,13 +49,9 @@ function exportExamContent(workspaceRoot = root) {
     const content = Object.fromEntries(assessments.map(assessment => [assessment.id, resolveExamContent(assessment)]));
     const review = mathImportReview(workspaceRoot, content);
     const output = path.join(workspaceRoot, 'server/data/exam-content.json');
-    const temporary = output + `.${process.pid}.tmp`;
     const reviewOutput = path.join(workspaceRoot, 'server/data/math-import-review.json');
-    const reviewTemporary = reviewOutput + `.${process.pid}.tmp`;
-    fs.writeFileSync(temporary, JSON.stringify(content) + '\n');
-    fs.writeFileSync(reviewTemporary, JSON.stringify(review) + '\n');
-    fs.renameSync(temporary, output);
-    fs.renameSync(reviewTemporary, reviewOutput);
+    writeExportFile(output, JSON.stringify(content) + '\n');
+    writeExportFile(reviewOutput, JSON.stringify(review) + '\n');
   } finally {
     if (previous) require.extensions['.ts'] = previous;
     else delete require.extensions['.ts'];

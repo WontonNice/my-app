@@ -47,6 +47,44 @@ test('sentence authoring migrates old single blanks and resets keys when blank p
   assert.match(ui.exportCorrectAnswer(q),/Blank 1: A.*Blank 2: B/);
 });
 
+test('the real question editor binds sentence controls once per card, excluding nested indexed word fields',()=>{
+  const html=fs.readFileSync(path.join(__dirname,'content-studio.html'),'utf8');
+  const start=html.indexOf('    function renderQuestionsV2() {'),end=html.indexOf('    function choiceArrayFromQuestion(',start);
+  assert.ok(start>0&&end>start);
+  const {ui}=studio(),q=question(),app={passageDraft:{questions:[q]}};
+  const node=(dataset={})=>({dataset,value:'',innerHTML:'',textContent:'',handlers:{},addEventListener(type,fn){this.handlers[type]=fn;}});
+  const sentence=node(),keys=node(),notice=node(),insert=node(),add=node(),remove=node(),reuse=node();
+  sentence.value=ui.transitionSentence(q);
+  const keySelects=q.dragDropSlots.map((slot,i)=>({...node({transitionSlot:String(i)}),value:slot.correctItemId}));
+  const fields=new Map([['[data-transition-sentence]',sentence],['[data-transition-keys]',keys],['[data-transition-key-note]',notice],['[data-transition-insert]',insert],['[data-transition-add-word]',add],['[data-transition-remove-word]',remove],['[data-transition-reuse]',reuse]]);
+  const nestedWordFields=q.choices.map((choice,i)=>({...node({questionIndex:'0',choiceIndex:String(i),richKind:'choice'}),querySelector(){return null;},querySelectorAll(){return [];}}));
+  const card={...node({questionIndex:'0'}),querySelector:selector=>fields.get(selector)||null,querySelectorAll:selector=>selector==='[data-transition-slot]'?keySelects:selector==='[data-rich-kind="choice"]'?nestedWordFields:[]};
+  const container=node();let dirty=0,canvasUpdates=0;
+  Object.assign(ui,{ensureQuestionSelection(){},selectedQuestionId:q.id,mountQuestions(){},updateCanvasAnswerKey(){canvasUpdates++;}});
+  const render=vm.runInNewContext(html.slice(start,end)+'\nrenderQuestionsV2;',{
+    app,studioUI:ui,escapeHtml,inlineRichValue:(_html,text)=>text||'',richToolbarHtml:()=>'',topicOptions:()=>'',currentPassageQuestionSection:()=> 'reading',
+    $:(selector,root)=>root?root.querySelector(selector):container,
+    $$:(selector,root)=>{
+      if(root===container&&selector==='[data-question-index]')return [card,...nestedWordFields];
+      if(root===container&&selector==='.question-card[data-question-index]')return [card];
+      return [];
+    },bindRichEditors(){},markDirty(){dirty++;},queueMicrotask:fn=>fn(),
+  });
+  assert.doesNotThrow(render);
+  assert.match(container.innerHTML,/data-transition-sentence/);
+  assert.match(container.innerHTML,/Word 4/);
+  assert.equal(typeof sentence.oninput,'function');
+  assert.ok(nestedWordFields.every(word=>typeof word.handlers.input==='function'));
+  keySelects[1].value='C';keySelects[1].onchange();
+  assert.equal(q.dragDropSlots[0].correctItemId,'A');assert.equal(q.dragDropSlots[1].correctItemId,'C');assert.equal(canvasUpdates,1);
+  sentence.value='First [blank], then [blank], finally [blank].';sentence.oninput();
+  assert.equal(q.dragDropSlots.length,3);assert.ok(q.dragDropSlots.every(slot=>!slot.correctItemId));
+  assert.match(keys.innerHTML,/Blank 3 correct word/);assert.match(notice.textContent,/Blank positions changed/);
+  assert.equal(dirty,2);
+  add.onclick();assert.equal(q.choices.length,5);assert.match(container.innerHTML,/Word 5/);
+  remove.onclick();assert.equal(q.choices.length,4);
+});
+
 test('exam lists sort official years newest first, forms alphabetically, and Prestige tests numerically without mutating input',()=>{
   const {ui}=studio();const exams=[{id:'2024-2025-form-b',title:'2024–2025 Form B'},{id:'2025-2026-form-b',title:'2025–2026 Form B'},{id:'2025-2026-form-a',title:'2025–2026 Form A'},...['10','2','1'].map(n=>({id:'prestige-'+n,title:'Digital SHSAT Practice Test '+n,examLabel:'Prestige'}))];
   const before=JSON.stringify(exams),groups=ui.assessmentGroups(exams);

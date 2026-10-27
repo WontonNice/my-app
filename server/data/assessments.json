@@ -892,8 +892,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
-        "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "topic": "Geometry",
+        "subtopic": "Scale & Transformations",
         "type": "multiple_choice"
       },
       {
@@ -908,8 +908,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "A car is traveling 55 miles per hour, and 1 mile = 5,280 feet. Which of the following calculations would give the car's speed in feet per second?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Units & Conversions",
         "type": "multiple_choice"
       },
       {
@@ -920,7 +920,7 @@
         "points": 1,
         "prompt": "For what value of \\(w\\) is \\(4w = 2w - 8\\)?",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Equations & Systems",
         "type": "short_response"
       },
       {
@@ -931,7 +931,7 @@
         "points": 1,
         "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true:\n\n. 20 students have cats.\n. 23 students have dogs.\n. 3 students have both dogs and cats.\n. 5 students have no dogs or cats.\n\nHow many students were surveyed?",
         "topic": "Statistics and Probability",
-        "subtopic": "Unclassified",
+        "subtopic": "Set Relationships",
         "type": "short_response"
       },
       {
@@ -947,7 +947,7 @@
         "points": 1,
         "prompt": "The sum of the numbers \\(x\\), \\(y\\), and \\(z\\) is 50. The ratio of \\(x\\) to \\(y\\) is 1:4, and the ratio of \\(y\\) to \\(z\\) is 4:5. What is the value of \\(y\\)?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Unclassified",
+        "subtopic": "Ratios & Proportions",
         "type": "multiple_choice"
       },
       {
@@ -963,7 +963,7 @@
         "points": 1,
         "prompt": "The set of possible values of \\(m\\) is \\(\\{5, 7, 9\\}\\). What is the set of possible values of \\(k\\) if \\(2k = m + 3\\)?",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Equations & Systems",
         "type": "multiple_choice"
       },
       {
@@ -979,7 +979,7 @@
         "points": 1,
         "prompt": "\\(7+(3n+6)-(4n+8)=\\)",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Algebraic Expressions",
         "type": "multiple_choice"
       },
       {
@@ -994,8 +994,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "In a certain school, course grades range from 0 to 100. Adrianna took 4 courses and her mean course grade was 90. Roberto took 5 courses. If both students have the same sum of course grades, what was Roberto's mean?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Statistics and Probability",
+        "subtopic": "Averages & Spread",
         "type": "multiple_choice"
       },
       {
@@ -1006,7 +1006,7 @@
         "points": 1,
         "prompt": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives \n8\n8\n of his stamps to Kevin. Liam now has \n12\n12\n more stamps than Kevin.\n\n\nHow many stamps did Liam start with?",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Equations & Systems",
         "type": "inline_dropdown"
       },
       {
@@ -1016,8 +1016,8 @@
         "imageUrl": "/exam-images/2025-2026-form-a-2025-2026-form-a-math-11-math.png",
         "points": 1,
         "prompt": "In the figure above, PQRS is a parallelogram. What is the value of x?\n\nEnter your answer in the space.",
-        "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "topic": "Geometry",
+        "subtopic": "Shapes & Angles",
         "type": "short_response"
       },
       {
@@ -1035,7 +1035,7 @@
         "points": 1,
         "prompt": "Three expressions are given:\n\n\\[-2(2.5n + 4)\\]\n\\[5 - n\\]\n\\[3(2n + 7)\\]\n\nWhich of these are equivalent to the sum of these three expressions?\n\nSelect the **two** correct answers.",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Algebraic Expressions",
         "type": "multi_select"
       },
       {
@@ -1051,7 +1051,7 @@
         "points": 1,
         "prompt": "In the pyramid above, each triangular face has the same area, and the base \\(MNPQ\\) is a square that measures 8 centimeters on each side. If the length of \\(\\overline{RS}\\) = 6 centimeters, what is the surface area of the pyramid excluding the base?",
         "topic": "Geometry",
-        "subtopic": "Unclassified",
+        "subtopic": "Surface Area & Volume",
         "type": "multiple_choice"
       },
       {
@@ -1066,8 +1066,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The perimeter of a rectangle is 510 centimeters. The ratio of the length to the width is 3:2. What are the dimensions of this rectangle?",
-        "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Unclassified",
+        "topic": "Geometry",
+        "subtopic": "Area & Perimeter",
         "type": "multiple_choice"
       },
       {
@@ -1083,7 +1083,7 @@
         "points": 1,
         "prompt": "Which number line below shows the solution to the inequality \\(-4\\) \\(\\lt\\) \\(\\frac{x}{2 }\\) \\(\\lt\\) \\(2\\)?",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Inequalities",
         "type": "multiple_choice"
       },
       {
@@ -1094,7 +1094,7 @@
         "points": 1,
         "prompt": "The sum of two consecutive integers is \\(-15\\). If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?\n\nEnter your answer in the space.",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Equations & Systems",
         "type": "short_response"
       },
       {
@@ -1110,7 +1110,7 @@
         "points": 1,
         "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
         "topic": "Statistics and Probability",
-        "subtopic": "Unclassified",
+        "subtopic": "Probability",
         "type": "multiple_choice"
       },
       {
@@ -1125,8 +1125,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "1 dollar = 7 lorgs\n\n1 dollar = 0.5 dalt\n\nKevin has 140 lorgs and 16 dalts. If he exchanges the lorgs and dalts for dollars according to the rates above, how many dollars will he receive?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
         "type": "multiple_choice"
       },
       {
@@ -1142,7 +1142,7 @@
         "points": 1,
         "prompt": "What is the area of the shaded region in the graph above?",
         "topic": "Geometry",
-        "subtopic": "Unclassified",
+        "subtopic": "Area & Perimeter",
         "type": "multiple_choice"
       },
       {
@@ -1152,8 +1152,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Consider this expression:",
-        "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Operations",
         "type": "math_drag_drop"
       },
       {
@@ -1168,8 +1168,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, not including tax. What was the price per pound of the meat?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
         "type": "multiple_choice"
       },
       {
@@ -1185,7 +1185,7 @@
         "points": 1,
         "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
         "topic": "Statistics and Probability",
-        "subtopic": "Unclassified",
+        "subtopic": "Probability",
         "type": "multiple_choice"
       },
       {
@@ -1200,8 +1200,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "1 sind = 4 lorgs\n\n2 plunks = 5 dalts\n\n5 sinds = 2 harps\n\n1 plunk = 3 harps\n\nA nation has five types of coins: sinds, dalts, lorgs, harps, and plunks. The relationship between the coins is shown above. Which coin is most valuable?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
         "type": "multiple_choice"
       },
       {
@@ -1217,7 +1217,7 @@
         "points": 1,
         "prompt": "The faculty of a certain four-year college consists of 179 teachers. There are 663 first-year students. The student-to-faculty ratio for the entire college is 15 to 1. What is the total number of second-, third-, and fourth-year students?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Unclassified",
+        "subtopic": "Ratios & Proportions",
         "type": "multiple_choice"
       },
       {
@@ -1232,8 +1232,8 @@
         "imageUrl": "/exam-images/2025-2026-form-a-center-city-walk-vs-bicycle-math.svgz",
         "points": 1,
         "prompt": "How many more people in Center City walk to work than ride their bicycle to work?",
-        "topic": "Geometry",
-        "subtopic": "Surface Area & Volume",
+        "topic": "Statistics and Probability",
+        "subtopic": "Data Displays",
         "type": "multiple_choice"
       },
       {
@@ -1248,8 +1248,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Which of the following numbers has factors that include the smallest factor (other than 1) of 91?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
         "type": "multiple_choice"
       },
       {
@@ -1264,8 +1264,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
-        "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Unclassified",
+        "topic": "Geometry",
+        "subtopic": "Scale & Transformations",
         "type": "multiple_choice"
       },
       {
@@ -1281,7 +1281,7 @@
         "points": 1,
         "prompt": "The least of 5 consecutive integers is \\(l\\), and the greatest is \\(g\\). What is the value of \\(\\frac{l+g}{2}\\) in terms of \\(l\\)?",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Algebraic Expressions",
         "type": "multiple_choice"
       },
       {
@@ -1291,8 +1291,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The owner of a tree farm plants pine trees and oak trees in a ratio of 8:3. How many oak trees are planted if 264 pine trees are planted?",
-        "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
         "type": "short_response"
       },
       {
@@ -1308,7 +1308,7 @@
         "points": 1,
         "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Equations & Systems",
         "type": "multiple_choice"
       },
       {
@@ -1319,7 +1319,7 @@
         "points": 1,
         "prompt": "Complete the steps to show one way to solve the equation \\(24=-0.5(x+8)\\) for \\(x\\).",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Equations & Systems",
         "type": "math_drag_drop"
       },
       {
@@ -1334,8 +1334,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "What is the value of the expression shown above?\n\n\\(2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\)",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions & Decimals",
         "type": "multiple_choice"
       },
       {
@@ -1350,8 +1350,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "An unmarked straight stick will be laid end over end to measure a distance of exactly 72 feet. The same stick will be used in the same way to measure a distance of exactly 30 feet. What is the length of the longest possible stick that can be used for both measurements?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
         "type": "multiple_choice"
       },
       {
@@ -1366,8 +1366,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
-        "topic": "Statistics and Probability",
-        "subtopic": "Unclassified",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Counting & Sets",
         "type": "multiple_choice"
       },
       {
@@ -1382,8 +1382,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "For a presentation, Deion can create 5 slides in 20 minutes, working at a constant rate. Kyra can create 3 slides in 10 minutes, working at her own constant rate. What is the total number of slides the two of them can create in one hour?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
         "type": "multiple_choice"
       },
       {
@@ -1398,8 +1398,8 @@
         "imageUrl": "/exam-images/2025-2026-form-a-point-between-fraction-number-line-math.svgz",
         "points": 1,
         "prompt": "On the number line above, \\(LN=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions & Decimals",
         "type": "multiple_choice"
       },
       {
@@ -1410,7 +1410,7 @@
         "points": 1,
         "prompt": "What is the value of \\(x\\) in the equation \\(6x=9x+13\\)?",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Equations & Systems",
         "type": "numeric_entry"
       },
       {
@@ -1425,8 +1425,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Ryan must read 150 pages for school this weekend. It took him 30 minutes to read the first 20 pages. At this rate, how much additional time will it take him to finish the reading?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
         "type": "multiple_choice"
       },
       {
@@ -1436,8 +1436,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "When a student buys 4 notebooks, the total cost is $12. Each notebook costs the same amount. Select each point on the graph that best represents \\(y\\), the total cost of \\(x\\) notebooks.",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
         "type": "graph_point_select"
       },
       {
@@ -1448,7 +1448,7 @@
         "points": 1,
         "prompt": "Graph the solution set for the inequality \\(-3 \\le 2x-5\\).",
         "topic": "Algebra",
-        "subtopic": "Unclassified",
+        "subtopic": "Inequalities",
         "type": "number_line_response"
       },
       {
@@ -1458,8 +1458,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Let \\(b=3\\), \\(c=4\\), and \\(d=5\\). Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\).",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions & Decimals",
         "type": "numeric_entry"
       }
     ],
@@ -10579,8 +10579,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
-        "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "topic": "Geometry",
+        "subtopic": "Scale & Transformations",
         "type": "multiple_choice"
       },
       {
@@ -10617,8 +10617,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true:\n\n• 20 students have cats.\n• 23 students have dogs.\n• 3 students have both dogs and cats.\n• 5 students have no dogs or cats.\n\nHow many students were surveyed?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "topic": "Statistics and Probability",
+        "subtopic": "Set Relationships",
         "type": "short_response"
       },
       {
@@ -10823,8 +10823,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, not including tax. What was the price per pound of the meat?",
-        "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
         "type": "multiple_choice"
       },
       {
@@ -11081,7 +11081,7 @@
         "points": 1,
         "prompt": "In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of neither 2 nor 3?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "subtopic": "Number Properties",
         "type": "multiple_choice"
       },
       {
@@ -11187,8 +11187,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "\\[\\frac{10}{13}=0.\\overline{769230}\\]\n\nIn the infinitely repeating decimal above, 7 is the first digit in the repeating pattern. What is the 391st digit?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "topic": "Algebra",
+        "subtopic": "Patterns & Sequences",
         "type": "multiple_choice"
       },
       {
@@ -11230,8 +11230,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Each week, Leon has fixed expenses of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he sells each chair for $275. What is Leon’s profit if he makes and sells 25 chairs in 1 week?",
-        "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Operations",
         "type": "multiple_choice"
       },
       {
@@ -12147,7 +12147,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-10-26T17:43:48.763Z",
-    "updatedAt": "2026-10-26T18:32:33.066Z",
+    "updatedAt": "2026-10-27T18:55:24.672Z",
     "passages": [
       {
         "id": "excerpt-from-the-key-of-the-garden-digital-shsat-practice-test-3",
@@ -12783,8 +12783,979 @@
         "prompt": "What does the final stanza reveal about why the speaker turns to his companion?",
         "topic": "Central Idea & Theme",
         "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Instead,",
+          "As a result,",
+          "For example,",
+          "Similarly,"
+        ],
+        "id": "what-the-cube-taught-me-digital-shsat-practice-test-3-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which transition word or phrase should be added to the beginning of sentence 5 to emphasize the relationship between sentences 4 and 5?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [
+          "solve",
+          "solves",
+          "is solving"
+        ],
+        "id": "what-the-cube-taught-me-digital-shsat-practice-test-3-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Select the correct answer from the drop-down to complete sentence 6.",
+        "topic": "Sentence Structure",
+        "type": "transition_drop"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Breaking a big, confusing problem into smaller stages — get the first layer solved, then worry about the second — will turn out to be a habit I will start using on math homework and long reading assignments too.",
+          "Breaking a big, confusing problem into smaller stages — get the first layer solved, then worry about the second — turned out to be a habit I started using on math homework and long reading assignments too.",
+          "Breaking a big, confusing problem into smaller stages — get the first layer solved, then worry about the second — had turned out to be a habit I have started using on math homework and long reading assignments too.",
+          "Breaking a big, confusing problem into smaller stages — get the first layer solved, then worry about the second — turns out to be a habit I start using on math homework and long reading assignments too."
+        ],
+        "id": "what-the-cube-taught-me-digital-shsat-practice-test-3-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which version of sentence 10 keeps its verb tense consistent with the simple past tense used throughout the surrounding paragraph (sentences 9–11)?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "The part that keeps me coming back is not the speed, which it's the small, satisfying click of the last layer locking into place.",
+          "The part that keeps me coming back is not the speed; it's the small, satisfying click of the last layer locking into place.",
+          "The part that keeps me coming back is not the speed, being the small, satisfying click of the last layer locking into place.",
+          "The part that keeps me coming back is not the speed, however, it's the small, satisfying click of the last layer locking into place."
+        ],
+        "id": "what-the-cube-taught-me-digital-shsat-practice-test-3-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision of sentence 15 corrects the comma splice?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Deshawn says the club is planning to enter a regional speedcubing meet in the spring, and I'm not sure I'll be fast enough to compete, by then, either.",
+          "Although Deshawn says the club is planning to enter a regional speedcubing meet in the spring, I'm not sure I'll be fast enough to compete by then.",
+          "Planning to enter a regional speedcubing meet in the spring, I'm not sure I'll be fast enough to compete by then, Deshawn says.",
+          "The club is planning, Deshawn says, to enter a regional speedcubing meet, in the spring I'm not sure I'll be fast enough."
+        ],
+        "id": "what-the-cube-taught-me-digital-shsat-practice-test-3-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the best way to combine sentences 13 and 14?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Whatever happens at the meet, I've already gotten better at breaking big problems into small steps.",
+          "Cube club meets every Tuesday, and Ms. Alvarez always brings extra cubes for anyone who forgets theirs.",
+          "Rubik's cubes were invented decades before speedcubing competitions became popular around the world.",
+          "Deshawn's twenty-second solve time is faster than most competitors his own age at regional meets."
+        ],
+        "id": "what-the-cube-taught-me-digital-shsat-practice-test-3-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which concluding sentence should follow sentence 15 to best support the information presented in the passage?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "she",
+          "it",
+          "them",
+          "who"
+        ],
+        "id": "part-b-import-b44dc5773be7-9c6e5dcf",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Select the word in the paragraph that is a vague pronoun with no single clear noun it refers to.",
+        "topic": "Pronouns",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "sentence 2",
+          "sentence 3",
+          "sentence 1",
+          "sentence 4"
+        ],
+        "id": "part-b-import-06cbf355559e-5c52b8eb",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence contains an error in its construction and should be revised?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Sentence 1: Change *traveled* to *travels*, AND also change *classes* to *class* throughout.",
+          "Sentence 4: Change *they* to *he or she*, AND also change *answered* to *answers* accordingly.",
+          "Sentence 3: Change *was* to *were*, AND also change *listing* to *listed*.",
+          "Sentence 2: Change *was* to *were*, AND change *they* in sentence 4 to *the astronomer*."
+        ],
+        "id": "part-b-import-cc7d82dcf786-61f08277",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which pair of revisions is needed to correct the errors in the paragraph?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(0.07p + 18 = 263\\)",
+          "\\(0.07\\)(p + \\(18\\)) = \\(263\\)",
+          "\\(18p + 0.07 = 263\\)",
+          "\\(263 = 0.07p - 18\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A printing service charges a flat setup fee of \\(\\$18\\) plus \\(\\$0.07\\) per page. A school orders enough copies that the total cost is exactly \\(\\$263\\). Which equation can be used to find p, the number of pages printed?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\sqrt{11}\\)",
+          "\\(\\sqrt{48}\\)",
+          "\\(\\sqrt{64}\\)",
+          "\\(\\pi \\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following numbers is rational?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "1.25",
+        "choices": [],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the value of (\\(\\frac{2}{3}\\)) + (\\(\\frac{3}{4}\\)) \\(-\\) (\\(\\frac{1}{6}\\))? Enter your answer as a decimal.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "short_response"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(11\\)",
+          "\\(44\\)",
+          "\\(55\\)",
+          "\\(60\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "On a city map, \\(\\frac{3}{4}\\) inch represents \\(5\\) actual miles. If two parks are \\(8\\) \\(\\frac{1}{4}\\) inches apart on the map, what is the actual distance between them in miles?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(28\\)",
+          "\\(34\\)",
+          "\\(46\\)",
+          "\\(52\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(x = 4\\) and \\(y = -3\\), what is the value of \\(2x^{2} - 3y + 5\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(15^{∘}\\)",
+          "\\(18^{∘}\\)",
+          "\\(22^{∘}\\)",
+          "\\(72^{∘}\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A right triangle has one angle that measures \\(90^{∘}\\). Of the remaining two angles, one measures four times the other. What is the measure of the smallest angle in the triangle?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "90%",
+          "95%",
+          "100%",
+          "105%"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The price of a laptop was increased by 20%. After a month, the new price was decreased by 25% during a holiday sale. The final sale price is what percent of the original price?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(4, 9, 14\\)",
+          "\\(6, 7, 15\\)",
+          "\\(8, 10, 17\\)",
+          "\\(5, 5, 11\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-8",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which set of three side lengths could form a triangle?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(120\\)",
+          "\\(240\\)",
+          "\\(256\\)",
+          "\\(264\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-9",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A rectangular box has dimensions \\(4\\) cm by \\(5\\) cm by \\(12\\) cm. If the entire surface of the box is to be painted, what is the total surface area, in square centimeters, that must be painted?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(\\frac{1}{6}\\)",
+          "\\(\\frac{2}{9}\\)",
+          "\\(\\frac{1}{4}\\)",
+          "\\(\\frac{5}{18}\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-10",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Two fair six-sided number cubes are rolled at the same time. What is the probability that the sum of the two numbers rolled is either \\(7\\) or \\(11\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(C = 8.8h\\); cost for \\(7\\) hours is \\(\\$61.60\\).",
+          "\\(C = 8h\\); cost for \\(7\\) hours is \\(\\$56\\).",
+          "\\(C = 9.5h\\); cost for \\(7\\) hours is \\(\\$66.50\\).",
+          "\\(C = 11h\\); cost for \\(7\\) hours is \\(\\$77\\)."
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-11",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The cost C (in dollars) of renting a paddleboard is proportional to the number of hours h. If renting a paddleboard for \\(2.5\\) hours costs \\(\\$22\\), which equation represents this proportional relationship, and what is the cost of renting for \\(7\\) hours?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(24\\)",
+          "\\(36\\)",
+          "\\(30\\)",
+          "\\(27\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-12",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The table shown represents a proportional relationship between x and y. If the relationship continues, what is the value of \\(y\\) when \\(x = 18\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "1",
+        "choices": [],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-13",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Evaluate the expression |\\(-7\\)| - |\\(3 - 11\\)| + |\\(-2\\)| \n Enter your answer as an integer.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "short_response"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(x = 6\\)",
+          "\\(x = -7\\)",
+          "\\(x = -8\\)",
+          "\\(x = -10\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-14",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which value of \\(x\\) satisfies the inequality \\(-2x + 5 > 21\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(275\\)",
+          "\\(330\\)",
+          "\\(385\\)",
+          "\\(440\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-15",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A trapezoidal prism-shaped block has a trapezoidal cross-section with parallel sides of \\(8\\) cm and \\(14\\) cm and a height of \\(5\\) cm. If the length of the prism is \\(7\\) cm, what is the volume of the block, in cubic centimeters?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(14x + 1\\)",
+          "\\(14x + 13\\)",
+          "\\(5x + 1\\)",
+          "\\(5x + 13\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-16",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Combine like terms to simplify: \\(3(4x - 1) + 2(x + 5) - 6\\)",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(6.00\\) mph",
+          "\\(6.25\\) mph",
+          "\\(7.00\\) mph",
+          "\\(7.60\\) mph"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-17",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An athlete runs \\(6\\) miles at an average speed of \\(10\\) mph and then walks another \\(4\\) miles at an average speed of \\(4\\) mph. What is the average speed for the entire \\(10\\)-mile workout?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\$82.50\\)",
+          "\\(\\$85.00\\)",
+          "\\(\\$88.00\\)",
+          "\\(\\$92.50\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-18",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A pair of headphones is on sale for \\(25\\)% off. If the sale price is \\(\\$66\\), what was the original price?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(\\frac{3}{5}\\)",
+          "\\(\\frac{9}{25}\\)",
+          "\\(\\frac{3}{10}\\)",
+          "\\(\\frac{6}{25}\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-19",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A jar contains \\(6\\) yellow candies, \\(3\\) purple candies, and \\(1\\) orange candy. A candy is picked at random, its color is noted, and it is placed back in the jar. A second candy is then picked at random. What is the probability that both candies picked are yellow?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Speed \\(5\\) m/s; distance \\(125\\) m.",
+          "Speed \\(6\\) m/s; distance \\(150\\) m.",
+          "Speed \\(5\\) m/s; distance \\(100\\) m.",
+          "Speed \\(4\\) m/s; distance \\(100\\) m."
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-20",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The graph shown represents a proportional relationship between time \\(t\\) (in seconds) and distance \\(d\\) (in meters) traveled by a runner. Based on the line shown, what is the runner's speed in meters per second, and what distance would the runner travel in \\(25\\) seconds at this constant speed?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(1\\),\\(728\\)",
+          "\\(2\\),\\(592\\)",
+          "\\(3\\),\\(456\\)",
+          "\\(5\\),\\(184\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-21",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A rectangular fish tank is \\(24\\) inches long, \\(12\\) inches wide, and \\(18\\) inches tall. The tank is filled with water to two-thirds of its height. What is the volume of water in the tank, in cubic inches?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-22",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "On a scale drawing of a garden, \\(8\\) centimeters represents \\(12\\) actual meters. A rectangular flower bed shown on the drawing measures \\(14\\) centimeters by \\(22\\) centimeters. Drag options from the word bank into the blanks to complete the statements about the flower bed's actual dimensions.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "math_drag_drop"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(40^{∘}\\)",
+          "\\(60^{∘}\\)",
+          "\\(72^{∘}\\)",
+          "\\(80^{∘}\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-23",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In triangle ABC, the three interior angles measure \\((2x)^{∘}\\), \\((3x)^{∘}\\), and \\((4x)^{∘}\\). What is the measure of the largest angle of the triangle?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(10\\)",
+          "\\(15\\)",
+          "\\(35\\)",
+          "\\(49\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-24",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the value of the expression shown? \\(5 + 2\\) \\(\\times \\)  (\\(8 - 3\\))\\(^{2}\\div \\)  \\(5\\)",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(88\\)",
+          "\\(90\\)",
+          "\\(92\\)",
+          "\\(94\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-25",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The mean of five test scores is \\(84\\). If four of the scores are \\(76\\), \\(80\\), \\(82\\), and \\(88\\), what is the value of the fifth test score?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(0.5 \\times  10^{2}\\)",
+          "\\(2.0 \\times  10^{5}\\)",
+          "\\(5.0 \\times  10^{5}\\)",
+          "\\(5.0 \\times  10^{4}\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-26",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following is equivalent to \\(\\frac{(4.0\\times 10^{8})}{(8.0\\times 10^{3})}\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(11\\) and \\(12\\)",
+          "\\(12\\) and \\(13\\)",
+          "\\(13\\) and \\(14\\)",
+          "\\(14\\) and \\(15\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-27",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "On a number line, between which two whole numbers would you plot \\(\\sqrt{150}\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(-1\\)",
+          "\\(1\\)",
+          "\\(11\\)",
+          "\\(23\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-28",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(p = -2\\), \\(q = 3\\), and \\(r = -1\\), what is the value of the expression \\(p^{2}q - 2pqr + r^{3}\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "1",
+          "2",
+          "2.5",
+          "3"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-29",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Thirteen students recorded how many pets they each own. Their results are displayed in the dot plot below. What is the median value shown?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(10\\pi \\)",
+          "\\(100\\pi \\)",
+          "\\(36\\pi \\)",
+          "\\(20\\pi \\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-30",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A circle has a radius of 10 cm. What is the area of a sector of this circle with a central angle of \\(72^{∘}\\), in square centimeters, expressed in terms of \\(\\pi \\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(1\\) \\(\\frac{1}{2}\\)",
+          "\\(1\\) \\(\\frac{7}{8}\\)",
+          "\\(2\\) \\(\\frac{5}{8}\\)",
+          "\\(3\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-31",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A recipe calls for \\(\\frac{3}{4}\\) cup of flour for one batch of cookies. Lin wants to make \\(2\\) \\(\\frac{1}{2}\\) batches. How many cups of flour will she need in total?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(x \\ge  4\\)",
+          "\\(x \\le  -2\\)",
+          "\\(x \\ge  -2\\)",
+          "\\(x \\le  4\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-32",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following describes all values of x that satisfy the inequality \\(5 - 3x \\ge  2x - 15\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(1.71\\)",
+          "\\(1.74\\)",
+          "\\(1.91\\)",
+          "\\(2.06\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-33",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "On a number line, point \\(A\\) represents the number \\(1.4\\), and point \\(B\\) represents the number \\(2\\frac{1}{4}\\). Point \\(P\\) is located between point \\(A\\) and point \\(B\\) such that the ratio of the distance from \\(A\\) to \\(P\\) to the distance from \\(P\\) to \\(B\\) is \\(2 : 3\\) Which of the following decimals best represents the location of point \\(P\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(32\\)",
+          "\\(40\\)",
+          "\\(48\\)",
+          "\\(56\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-34",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The function \\(f\\) is defined by \\(f(x)\\) = \\(3x^{2} - 2x\\). What is the value of \\(f\\)(\\(-4\\)) \\(-f(2\\))?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(\\frac{4}{25}\\)",
+          "\\(\\frac{1}{5}\\)",
+          "\\(\\frac{1}{6}\\)",
+          "\\(\\frac{2}{15}\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-35",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A box contains \\(6\\) white chips and \\(4\\) black chips. Two chips are drawn at random without replacement. What is the probability that both chips drawn are black?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(80\\)",
+          "\\(82\\)",
+          "\\(84\\)",
+          "\\(86\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-36",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A teacher records the test scores of \\(6\\) students: \\(70\\), \\(78\\), \\(82\\), \\(86\\), \\(90\\), and an unknown score \\(x\\). If the median of these 6 scores is 84, what is the value of \\(x\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(50\\)",
+          "\\(54\\)",
+          "\\(58\\)",
+          "\\(62\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-37",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is its exact value? \\(3^{2}\\) \\(\\times \\)  (\\(10 - 4\\)) - \\(24 \\div  6 + 2^{3}\\)",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(5, 200\\)",
+          "\\(5, 625\\)",
+          "\\(6, 750\\)",
+          "\\(8, 000\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-38",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A rectangular parking lot has a perimeter of \\(340\\) feet. The length of the lot is \\(10\\) feet less than three times its width. What is the area of the parking lot, in square feet?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(f + 4c = 52\\); \\(f + 7c = 73\\)",
+          "\\(f + 4c = 73\\); \\(f + 7c = 52\\)",
+          "\\(4f + c = 52\\); \\(7f + c = 73\\)",
+          "\\(4f + 7c = 52\\); \\(f + c = 73\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-39",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A cell-phone plan charges a monthly fee of f dollars plus c dollars per gigabyte of data used. If a customer's bill last month was \\(\\$52\\) for using \\(4\\) gigabytes of data, and her bill this month was \\(\\$73\\) for using \\(7\\) gigabytes, which system of equations could be used to find the values of f and c?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-40",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The stem-and-leaf plot shows the test scores of \\(13\\) students, where the stem represents the tens digit and the leaf represents the units digit. How many students scored higher than \\(40\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-41",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A car travels \\(270\\) miles using \\(9\\) gallons of gas. Use the dropdowns to complete the statements about the car's fuel efficiency and travel distance.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "inline_dropdown"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(12\\) miles",
+          "\\(13\\) miles",
+          "\\(14\\) miles",
+          "\\(15\\) miles"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-42",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A taxi service charges a flat fee of \\(\\$3.50\\) plus \\(\\$1.25\\) per mile driven. If Sarah has at most \\(\\$20\\) to spend on a taxi ride, what is the maximum number of full miles she can travel?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(0.36\\)",
+          "\\(0.\\overline{36}\\)",
+          "\\(0.366\\)",
+          "\\(0.\\overline{63}\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-43",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the decimal equivalent of \\(\\frac{4}{11}\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\$2.00\\)",
+          "\\(\\$2.15\\)",
+          "\\(\\$2.25\\)",
+          "\\(\\$2.40\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-44",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A store sells notebooks in bulk. Buying \\(8\\) notebooks costs \\(\\$18.00\\), and buying \\(12\\) notebooks costs \\(\\$27.00\\) — a proportional relationship. What is the cost per notebook?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "60",
+        "choices": [],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-45",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A rectangular prism measures \\(6\\) cm by \\(6\\) cm by \\(10\\) cm. It is sliced by a flat plane parallel to one of its \\(6\\) cm by \\(10\\) cm faces. What is the area of the resulting cross-section, in square centimeters? Enter your answer as an integer.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "short_response"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(8\\)",
+          "\\(9\\)",
+          "\\(10\\)",
+          "\\(12\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-46",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a regular polygon, the measure of each interior angle is \\(144^{∘}\\). Using the formula that the sum of interior angles of an \\(n\\)-sided polygon is \\(180(n - 2)^{∘}\\), how many sides does the polygon have?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A,B",
+        "choices": [
+          "The probability of rolling an even number is \\(\\frac{1}{2}\\).",
+          "The probability of rolling a number greater than \\(4\\) is \\(\\frac{1}{3}\\).",
+          "The probability of rolling a \\(7\\) is \\(\\frac{1}{6}\\).",
+          "The probability of rolling a multiple of \\(3\\) is \\(\\frac{1}{2}\\).",
+          "The probability of rolling a \\(1\\) is \\(\\frac{1}{3}\\)."
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-47",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A fair number cube (with faces numbered \\(1\\) through \\(6\\)) is rolled once. Select \\(\\text{two}\\) statements that are true about the probability of the events described.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multi_select"
+      },
+      {
+        "answer": "30x+45",
+        "choices": [],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-48",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A gym membership costs a one-time enrollment fee of \\(\\$45\\) plus \\(\\$30\\) per month. Write an algebraic expression for the total cost, in dollars, of a gym membership after \\(x\\) months.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "expression_entry"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(-3\\)",
+          "\\(-2\\)",
+          "\\(2\\)",
+          "\\(3\\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-49",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Solve for \\(x\\): \\(2(3x - 5) + 4 = 5(x - 1) - 3\\)",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(9\\pi \\)",
+          "\\(36\\pi \\)",
+          "\\(63\\pi \\)",
+          "\\(81\\pi \\)"
+        ],
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-50",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A circular garden has a circumference of \\(18\\pi \\) feet. A walking path is built around the entire garden, increasing the total radius (garden plus path) by \\(3\\) feet. What is the area of just the walking path (not including the garden), in terms of \\(\\pi \\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
       }
     ],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false
+  },
+  {
+    "id": "digital-shsat-practice-test-4",
+    "title": "Digital SHSAT Practice Test 4",
+    "examLabel": "Prestige",
+    "classId": "shsat",
+    "description": "",
+    "durationMinutes": 180,
+    "createdAt": "2026-10-27T17:11:40.667Z",
+    "updatedAt": "2026-10-27T17:11:41.531Z",
+    "passages": [],
+    "questions": [],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false
+  },
+  {
+    "id": "digital-shsat-practice-test-5",
+    "title": "Digital SHSAT Practice Test 5",
+    "examLabel": "Prestige",
+    "classId": "shsat",
+    "description": "",
+    "durationMinutes": 180,
+    "createdAt": "2026-10-27T17:11:48.235Z",
+    "updatedAt": "2026-10-27T17:11:49.037Z",
+    "passages": [],
+    "questions": [],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false
+  },
+  {
+    "id": "digital-shsat-practice-test-6",
+    "title": "Digital SHSAT Practice Test 6",
+    "examLabel": "Prestige",
+    "classId": "shsat",
+    "description": "",
+    "durationMinutes": 180,
+    "createdAt": "2026-10-27T17:11:58.518Z",
+    "updatedAt": "2026-10-27T17:11:59.281Z",
+    "passages": [],
+    "questions": [],
     "forms": [],
     "formAssignments": {},
     "status": "locked",

@@ -2,7 +2,7 @@
   const MAX_PAGE_TEXT_LENGTH = 250_000;
   const MAX_ITEM_TEXT_LENGTH = 10_000;
   const MAX_PASSAGE_QUESTIONS = 50;
-  const READER_VERSION = "0.6.1";
+  const READER_VERSION = "0.7.1";
   let scanInProgress = false;
 
   function cleanText(value) {
@@ -244,7 +244,7 @@
     const explanation = preview.querySelector(".testSHSATPreview__explanationBox");
     const choiceWrappers = [...preview.querySelectorAll(".testSHSATPreview__questionChoiceWrapper")];
 
-    const choices = choiceWrappers.map((wrapper, index) => {
+    const choices = choiceWrappers.filter(wrapper => wrapper.querySelector(".testSHSATPreview__questionChoiceText")).map((wrapper, index) => {
       const label = textOf(wrapper.querySelector(".testSHSATPreview__choiceText")) ||
         String.fromCharCode(65 + index);
       const normalizedLabel = label.replace(/\.$/, "");
@@ -252,7 +252,7 @@
         label: normalizedLabel,
         text: textOf(wrapper.querySelector(".testSHSATPreview__questionChoiceText")),
         html: NathanSatRichText.fromElement(wrapper.querySelector(".testSHSATPreview__questionChoiceText"), getComputedStyle),
-        isCorrect: Boolean(wrapper.querySelector(".testSHSATPreview__radioButton--selected")),
+        isCorrect: Boolean(previewButton('Hide answer') && wrapper.querySelector(".testSHSATPreview__radioButton--selected")),
         media: readMedia(wrapper),
       };
     });
@@ -260,10 +260,53 @@
     const selectedChoice = choices.find((choice) => choice.isCorrect);
     const passageId = (passage?.id || "").replace(/^(?:passage|definition)\s+/i, "");
     const richPassage = passage ? NathanSatRichText.passage(passage, getComputedStyle) : null;
+    const hotWords = [...preview.querySelectorAll('.testSHSATPreview__questionHelperHotText')];
+    const blankHelper = preview.querySelector('.digitalSHSATPreview__blankQuestionHelperText');
+    const blankBoxes = blankHelper ? [...blankHelper.querySelectorAll('[data-index]')] : [];
+    const rich = node => NathanSatRichText.fromElement(node, getComputedStyle);
+    const helper = preview.querySelector('.testSHSATPreview__questionHelperText');
+    const entries = [...preview.querySelectorAll('.testSHSATPreview__questionHelperFB, .testSHSATPreview__questionHelperFBBox')];
+    const menus = [...preview.querySelectorAll('.testSHSATPreview__questionHelperIC')];
+    const mathField = preview.querySelector('.testSHSATPreview__eeContainer math-field');
+    const answerShown = Boolean(previewButton('Hide answer'));
+    const controls = [...entries, ...menus];
+    const primaryPrompt = preview.querySelector('.testSHSATPreview__questionQuestion');
+    const helperPromptHtml = NathanSatRichText.fromElement(helper, getComputedStyle, null, node => controls.includes(node) ? '' : undefined);
+    const promptHtml = rich(primaryPrompt) || helperPromptHtml;
+    const promptText = textOf(primaryPrompt) || NathanSatRichText.plain(promptHtml);
+    const selectionCount = promptText.match(/\b(?:select|choose)\s+(two|three|four|five|six|seven|eight|[2-8])\b/i)?.[1]?.toLowerCase();
+    const requiredSelections = selectionCount ? ({two:2,three:3,four:4,five:5,six:6,seven:7,eight:8}[selectionCount] || Number(selectionCount)) : null;
+    const interaction = entries.length ? {
+      type: 'short_response',
+      contentHtml: NathanSatRichText.fromElement(helper, getComputedStyle, null, node => entries.includes(node) ? `{{answer-${entries.indexOf(node) + 1}}}` : undefined),
+      // Never read an input's value: it may be a teacher's attempted answer.
+      slots: entries.map((node, i) => ({ id: `answer-${i + 1}`, answer: answerShown ? textOf(node.querySelector('.testSHSATPreview__fbCorrectAnswer')) : '' })),
+    } : menus.length ? {
+      type: 'inline_dropdown',
+      contentHtml: NathanSatRichText.fromElement(helper, getComputedStyle, null, node => menus.includes(node) ? `{{dropdown-${menus.indexOf(node) + 1}}}` : undefined),
+      dropdowns: menus.map((node, i) => ({ id: `dropdown-${i + 1}`, options: [...node.querySelectorAll('[value]')].filter(option => textOf(option)).map((option, index) => ({id: `option-${index + 1}`, text: textOf(option), html: rich(option), isCorrect: answerShown && option.classList.contains('testSHSATPreview__fbCorrectAnswer')})) })),
+    } : mathField ? {
+      type: 'expression_entry',
+      // MathLive's value getter is unavailable in Chrome's isolated content-script
+      // world. Read its rendered answer from the open shadow DOM instead.
+      answer: answerShown ? NathanSatRichText.expressionAnswer(mathField.shadowRoot?.querySelector('.ML__content')) : '',
+    } : hotWords.length ? {
+      type: 'hot_text',
+      text: textOf(preview.querySelector('.testSHSATPreview__questionHelperText')),
+      options: hotWords.map((node, i) => ({ id: `word-${i + 1}`, text: textOf(node), html: rich(node), isCorrect: answerShown && node.classList.contains('correct') })),
+    } : blankHelper ? {
+      type: 'sentence_blank',
+      contentHtml: NathanSatRichText.fromElement(blankHelper, getComputedStyle, null, node => blankBoxes.includes(node) ? `{{blank-${blankBoxes.indexOf(node) + 1}}}` : undefined),
+      options: [...preview.querySelectorAll('.digitalSHSATPreview__blankItem')].map((node, i) => ({ id: `option-${i + 1}`, text: textOf(node), html: rich(node) })),
+      slots: blankBoxes.map((node, i) => ({ id: `blank-${i + 1}`, answer: answerShown && node.className.includes('Filled--correct') ? textOf(node) : '', answerHtml: answerShown && node.className.includes('Filled--correct') ? rich(node) : '' })),
+    } : null;
 
     return {
       number: progress ? Number(progress[1]) : Number(textOf(preview.querySelector(".testSHSATPreview__questionNumber"))) || null,
       total: progress ? Number(progress[2]) : null,
+      sourceNumber: Number(textOf(preview.querySelector('.testSHSATPreview__questionNumber'))) || null,
+      ...(interaction ? { interaction } : {}),
+      ...(choices.length && (requiredSelections || /\b(?:select|choose)\s+all\b/i.test(promptText)) ? {responseType:'multi_select', requiredSelections} : {}),
       passage: passage
         ? {
             id: passageId,
@@ -278,8 +321,8 @@
             media: readMedia(preview.querySelector(".testSHSATPreview__passage")),
           }
         : null,
-      prompt: textOf(preview.querySelector(".testSHSATPreview__questionQuestion")),
-      promptHtml: NathanSatRichText.fromElement(preview.querySelector(".testSHSATPreview__questionQuestion"), getComputedStyle),
+      prompt: promptText,
+      promptHtml,
       choices,
       correctAnswer: selectedChoice
         ? { label: selectedChoice.label, text: selectedChoice.text }
@@ -363,12 +406,14 @@
       throw new Error(`The ${direction} question control is unavailable.`);
     }
     button.click();
-    const deadline = Date.now() + 4_000;
+    const deadline = Date.now() + 8_000;
     while (Date.now() < deadline) {
       await nextPaint();
       const question = readCurrentPreviewQuestion();
       if (previewModule() !== module) throw new Error("The test module changed during capture.");
-      if (question?.number === expectedNumber && question.prompt) return question;
+      // Navigation identity is independent of response layout. Capture performs
+      // its own bounded content wait and flags unknown controls for review.
+      if (question?.number === expectedNumber) return question;
       if (question?.number && question.number !== expectedNumber &&
           question.number !== expectedNumber + (direction === "NEXT" ? -1 : 1)) {
         throw new Error("The question changed unexpectedly. Please avoid navigating during capture.");
@@ -380,10 +425,15 @@
   async function captureQuestion(options, warnings) {
     const wasVisible = Boolean(previewButton("Hide answer"));
     const wasExplanationVisible = explanationVisible();
-    const question = readCurrentPreviewQuestion();
+    let question = readCurrentPreviewQuestion();
     const module = previewModule();
     try {
+      // Read the complete word bank before Show answer moves a correct tile into its blank.
+      await setAnswerVisible(false);
+      question = await waitForStableQuestion(question.number, module);
+      const unkeyed = question;
       if (options.includeAnswer) await setAnswerVisible(true);
+      await waitForStableQuestion(question.number, module);
       let explanation = "";
       const requested = options.includeExplanations !== false;
       if (requested) {
@@ -391,11 +441,60 @@
         if (!explanation) warnings.push(`Question ${question.number || "?"}: No source explanation was available after opening Explanation. Its explanation was left blank; the question was still captured.`);
       }
       const captured = readCurrentPreviewQuestion();
+      if (captured.number !== question.number || previewModule() !== module) throw new Error('The question or module changed during capture.');
+      if (captured.interaction?.type === 'sentence_blank') {
+        captured.interaction.options = unkeyed.interaction?.options || [];
+        captured.interaction.contentHtml = unkeyed.interaction?.contentHtml || captured.interaction.contentHtml;
+      }
+      if (captured.interaction) {
+        const answers = captured.interaction.type === 'hot_text'
+          ? captured.interaction.options.filter(item => item.isCorrect).map(item => item.text)
+          : captured.interaction.type === 'inline_dropdown'
+            ? captured.interaction.dropdowns.flatMap(menu => menu.options.filter(item => item.isCorrect).map(item => item.text))
+            : captured.interaction.type === 'expression_entry' ? [captured.interaction.answer].filter(Boolean)
+            : (captured.interaction.slots || []).map(slot => slot.answer).filter(Boolean);
+        captured.correctAnswer = answers.length ? { label: '', text: answers.join(' | ') } : null;
+      }
+      if (captured.responseType === 'multi_select') {
+        const answers = captured.choices.filter(choice => choice.isCorrect);
+        captured.correctAnswer = answers.length ? {label:answers.map(c=>c.label).join(', '), text:answers.map(c=>c.text).join(' | ')} : null;
+      }
+      if (!captured.prompt) warnings.push(`Question ${question.number}: Source prompt could not be read. Record retained for manual review.`);
+      if (!captured.choices.length && !captured.interaction) warnings.push(`Question ${question.number}: Unrecognized source response. Question retained for manual setup.`);
+      if (options.includeAnswer && !captured.correctAnswer) warnings.push(`Question ${question.number}: No verified source answer was captured; its key is blank.`);
       return { ...captured, explanation, explanationHtml: explanation ? captured.explanationHtml : "", explanationStatus: requested ? explanation ? "captured" : "missing" : "not-requested" };
     } finally {
       if (!await setExplanationVisible(wasExplanationVisible)) warnings.push(`Question ${question.number || "?"}: Could not restore its explanation panel visibility.`);
       await setAnswerVisible(wasVisible);
     }
+  }
+
+  async function waitForStableQuestion(number, module) {
+    let last = '', stable = 0;
+    const deadline = Date.now() + 5_000;
+    while (Date.now() < deadline) {
+      await nextPaint();
+      const current = readCurrentPreviewQuestion();
+      if (current?.number !== number || previewModule() !== module) throw new Error('The question or module changed during capture.');
+      const signature = JSON.stringify([current.promptHtml, current.choices, current.interaction, current.media]);
+      stable = signature === last ? stable + 1 : 0;
+      if (current.prompt && (current.choices.length || current.interaction) && stable >= 3) return current;
+      last = signature;
+    }
+    // Preserve an unsupported response for teacher review rather than dropping it.
+    return readCurrentPreviewQuestion();
+  }
+
+  function requestedNumbers(value, total) {
+    const numbers = new Set();
+    for (const part of String(value || '').split(',')) {
+      const match = part.trim().match(/^(\d+)(?:\s*-\s*(\d+))?$/);
+      if (!match) throw new Error('Enter Part B numbers such as 47-50 or 47,48,49.');
+      const start = Number(match[1]), end = Number(match[2] || match[1]);
+      if (start < 1 || end < start || end > total) throw new Error(`Use question numbers 1–${total} in the English module. Math has its own capture option.`);
+      for (let n = start; n <= end; n++) numbers.add(n);
+    }
+    return [...numbers].sort((a, b) => a - b);
   }
 
   async function readTestPreview(options = {}) {
@@ -406,6 +505,12 @@
     const originalModule = previewModule();
     const originalAnswerVisible = Boolean(previewButton("Hide answer"));
     const originalExplanationVisible = explanationVisible();
+    const batchMode = ['part-b', 'math-all'].includes(options.captureMode) ? options.captureMode : null;
+    if (batchMode === 'math-all' && !/math/i.test(originalModule)) throw new Error('Select Mathematics on the test page, then read all 50 math questions.');
+    if (batchMode === 'part-b' && !/english/i.test(originalModule)) throw new Error('Select English Language Arts on the test page, then read Part B.');
+    const expected = batchMode === 'part-b' ? requestedNumbers(options.questionRange, originalQuestion.total)
+      : batchMode === 'math-all' ? Array.from({ length: originalQuestion.total }, (_, i) => i + 1) : null;
+    if (batchMode === 'math-all' && originalQuestion.total !== 50) throw new Error(`This Math module reports ${originalQuestion.total} questions, not 50. Select the intended 50-question module.`);
 
     const title = [...document.querySelectorAll("h1")]
       .filter((heading) => !preview.contains(heading))
@@ -417,7 +522,8 @@
       question: null, // Retained for older consumers expecting the starting question.
       questions: [],
       capture: {
-        mode: options.includePassageQuestions === false ? "current-question" : "passage-all",
+        mode: batchMode || (options.includePassageQuestions === false ? "current-question" : "passage-all"),
+        ...(expected ? { expectedNumbers: expected, complete: false } : {}),
         stopReason: "current-question",
         restoredStartingQuestion: false,
         warnings: [],
@@ -426,6 +532,22 @@
     };
 
     try {
+      if (expected) {
+        const deadline = Date.now() + 300_000;
+        for (const number of expected) {
+          let current = readCurrentPreviewQuestion();
+          while (current.number !== number) {
+            if (Date.now() >= deadline) throw new Error('Capture reached its five-minute limit. Partial results are retained.');
+            const forward = current.number < number;
+            current = await navigateQuestion(forward ? 'NEXT' : 'BACK', current.number + (forward ? 1 : -1), originalModule);
+          }
+          const captured = await captureQuestion(options, result.capture.warnings);
+          result.questions.push(captured);
+          result.question ||= captured;
+        }
+        result.capture.complete = expected.every(number => result.questions.some(q => q.number === number));
+        result.capture.stopReason = result.capture.complete ? 'requested-questions-complete' : 'incomplete';
+      } else {
       result.question = await captureQuestion(options, result.capture.warnings);
       if (result.question) result.questions.push(result.question);
       if (options.includePassageQuestions !== false && originalQuestion?.passage && originalQuestion.number) {
@@ -477,11 +599,16 @@
       } else if (options.includePassageQuestions !== false) {
         result.capture.stopReason = "no-passage";
       }
+      }
     } catch (error) {
       result.capture.stopReason = "interrupted";
       result.capture.warnings.push(error.message || "Passage capture was interrupted.");
     } finally {
       result.questions.sort((a, b) => a.number - b.number);
+      if (expected) {
+        result.capture.missingNumbers = expected.filter(number => !result.questions.some(q => q.number === number));
+        if (result.capture.missingNumbers.length) result.capture.warnings.push(`Missing questions: ${result.capture.missingNumbers.join(', ')}. This is a partial export.`);
+      }
       try {
         // Restore through the same visible navigation controls, even after a partial scan.
         let current = readCurrentPreviewQuestion();

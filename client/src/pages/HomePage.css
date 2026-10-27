@@ -1,0 +1,232 @@
+@font-face {
+  font-family: "Nathan Landing Sans";
+  src: url("/landing/fonts/dm-sans-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nathan Landing Serif";
+  src: url("/landing/fonts/instrument-serif-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* Keep all selectors and tokens local to the public landing page. */
+html:has(.nt-landing) { scrollbar-gutter: stable; background: #f8f7f2; }
+/* Allow landing-only reflow below the app's 320px minimum when scrollbars take space. */
+body:has(.nt-landing) { min-width: 0; }
+.nt-landing {
+  --nt-paper: #f8f7f2;
+  --nt-ink: #182d37;
+  --nt-muted: #52626a;
+  --nt-blue: #255cba;
+  --nt-line: #d9ded9;
+  min-height: 100vh;
+  background: var(--nt-paper);
+  color: var(--nt-ink);
+  font-family: "Nathan Landing Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0;
+  isolation: isolate;
+  color-scheme: light;
+}
+.nt-landing :where(h1, h2, h3, p, ul, ol) { margin: 0; }
+.nt-landing ::selection { background: #d4e3f8; color: #182d37; }
+.nt-landing :where(a, button, input) { -webkit-tap-highlight-color: transparent; }
+.nt-landing :where(a, button, input, main):focus-visible { outline: 3px solid var(--nt-blue); outline-offset: 5px; }
+.nt-landing :where(a, button) { transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease; }
+.nt-landing :where(section, #rewards, main) { scroll-margin-top: 24px; }
+.nt-landing .nt-container { width: min(1240px, calc(100% - 96px)); margin-inline: auto; }
+.nt-landing .nt-skip-link { position: absolute; top: 12px; left: 20px; z-index: 10; padding: 12px 20px; transform: translateY(-180%); background: var(--nt-ink); color: white; border-radius: 4px; }
+.nt-landing .nt-skip-link:focus { transform: translateY(0); }
+.nt-landing .nt-header { border-bottom: 1px solid var(--nt-line); }
+.nt-landing .nt-header-inner { min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+.nt-landing .nt-brand { display: inline-flex; align-items: center; gap: 11px; font-size: 20px; font-weight: 700; letter-spacing: -.035em; white-space: nowrap; min-height: 44px; }
+.nt-landing .nt-brand-mark { width: 35px; height: 38px; border: 1px solid var(--nt-ink); border-radius: 9px 9px 9px 0; display: flex; align-items: center; justify-content: center; font-family: "Nathan Landing Serif", serif; font-size: 32px; line-height: 1; font-weight: 400; padding-bottom: 6px; }
+.nt-landing .nt-brand-mark > span { color: var(--nt-blue); }
+.nt-landing .nt-navigation { display: flex; gap: 30px; font-size: 14px; font-weight: 500; }
+.nt-landing .nt-navigation a, .nt-landing .nt-login, .nt-landing .nt-footer nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.nt-landing .nt-navigation a:hover, .nt-landing .nt-login:hover, .nt-landing .nt-footer nav a:hover { color: var(--nt-blue); text-decoration: underline; text-underline-offset: 5px; }
+.nt-landing .nt-header-actions { display: flex; align-items: center; gap: 26px; font-size: 14px; font-weight: 600; }
+.nt-landing .nt-button { min-height: 54px; padding: 14px 23px; display: inline-flex; align-items: center; justify-content: center; gap: 19px; border: 1px solid var(--nt-blue); border-radius: 6px; background: var(--nt-blue); color: white; font-size: 14px; font-weight: 600; line-height: 1.5; text-align: center; }
+.nt-landing .nt-button:hover { background: #184b9f; border-color: #184b9f; }
+.nt-landing .nt-button-small { min-height: 44px; padding: 10px 17px; gap: 16px; }
+.nt-landing .nt-button svg { flex: none; }
+.nt-landing .nt-hero { padding-block: 74px 54px; display: block; text-align: center; }
+.nt-landing h1 { font-family: "Nathan Landing Serif", serif; font-size: clamp(66px, 6.6vw, 96px); font-weight: 400; line-height: .99; letter-spacing: -.025em; }
+.nt-landing h1 > span { color: var(--nt-blue); }
+.nt-landing .nt-hero-description { max-width: 440px; margin-top: 28px; font-size: 22px; line-height: 1.45; font-weight: 500; letter-spacing: -.02em; }
+.nt-landing .nt-hero-detail { max-width: 440px; margin-top: 16px; color: var(--nt-muted); font-size: 16px; line-height: 1.7; }
+.nt-landing .nt-hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 18px 24px; margin-top: 30px; }
+.nt-landing .nt-text-link { display: inline-flex; align-items: center; min-height: 44px; gap: 8px; font-size: 14px; font-weight: 600; }
+.nt-landing .nt-text-link:hover { color: var(--nt-blue); }
+.nt-landing .nt-returning { margin-top: 24px; color: var(--nt-muted); font-size: 12px; }
+.nt-landing .nt-returning a { display: inline-flex; align-items: center; gap: 2px; color: var(--nt-ink); text-decoration: underline; text-underline-offset: 3px; padding-block: 7px; }
+.nt-landing .nt-programs { display: flex; align-items: center; gap: 66px; padding-block: 27px; border-top: 1px solid var(--nt-line); border-bottom: 1px solid var(--nt-line); }
+.nt-landing .nt-programs > span { flex-shrink: 0; font-size: 12px; line-height: 1.5; color: var(--nt-muted); }
+.nt-landing .nt-programs ul { display: flex; align-items: center; justify-content: space-between; flex: 1; padding: 0; list-style: none; gap: 20px; }
+.nt-landing .nt-programs li { font-size: 28px; font-weight: 500; letter-spacing: -.025em; }
+.nt-landing .nt-programs li > span { font-family: "Nathan Landing Serif", serif; font-size: 31px; font-weight: 400; }
+.nt-landing .nt-platform { display: grid; grid-template-columns: 1fr 1.1fr; gap: 110px; padding-block: 106px; }
+.nt-landing .nt-section-intro h2, .nt-landing .nt-process h2, .nt-landing .nt-final h2 { font-family: "Nathan Landing Serif", serif; font-size: clamp(42px, 4.2vw, 60px); line-height: 1.05; font-weight: 400; letter-spacing: -.02em; }
+.nt-landing .nt-section-intro > p { max-width: 410px; margin-top: 24px; color: var(--nt-muted); font-size: 15px; line-height: 1.75; }
+.nt-landing .nt-teacher-note { margin-top: 32px; display: flex; gap: 14px; padding: 21px 24px; background: #eaf0e7; border-radius: 6px; }
+.nt-landing .nt-teacher-note svg { flex: none; margin-top: 2px; color: #44715b; }
+.nt-landing .nt-teacher-note p { font-size: 12px; line-height: 1.65; color: #425b50; }
+.nt-landing .nt-teacher-note strong { display: block; color: #244b36; margin-bottom: 5px; font-weight: 600; }
+.nt-landing .nt-benefit { display: flex; gap: 21px; padding-block: 26px; border-bottom: 1px solid var(--nt-line); }
+.nt-landing .nt-benefit:first-child { padding-top: 4px; }
+.nt-landing .nt-benefit:last-child { padding-bottom: 0; border-bottom: 0; }
+.nt-landing .nt-benefit-number { padding-top: 3px; font-size: 12px; color: var(--nt-blue); font-variant-numeric: tabular-nums; }
+.nt-landing .nt-benefit h3 { font-size: 20px; font-weight: 500; line-height: 1.35; letter-spacing: -.02em; }
+.nt-landing .nt-benefit p { margin-top: 11px; color: var(--nt-muted); font-size: 14px; line-height: 1.7; }
+.nt-landing .nt-process { background: var(--nt-ink); color: #f7f6ee; padding-block: 76px 0; }
+.nt-landing .nt-process-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 70px; }
+.nt-landing .nt-process h2 > span { color: #c7d9c9; }
+.nt-landing .nt-process-heading > p { max-width: 300px; color: #c0cdd0; font-size: 14px; line-height: 1.8; padding-bottom: 4px; }
+.nt-landing .nt-steps { display: grid; grid-template-columns: repeat(3, 1fr); list-style: none; gap: 50px; padding: 0; margin-top: 46px; }
+.nt-landing .nt-steps li { padding-top: 23px; border-top: 1px solid #52626a; }
+.nt-landing .nt-step-number { color: #bfceb9; font-size: 13px; font-variant-numeric: tabular-nums; }
+.nt-landing .nt-steps h3 { margin-top: 18px; font-weight: 500; font-size: 20px; letter-spacing: -.02em; }
+.nt-landing .nt-steps p { margin-top: 12px; color: #c0cdd0; font-size: 14px; line-height: 1.75; }
+.nt-landing .nt-rewards { display: flex; gap: 20px; align-items: center; margin-top: 52px; padding-block: 30px; border-top: 1px solid #52626a; }
+.nt-landing .nt-reward-icon { display: grid; place-items: center; flex: none; width: 48px; height: 48px; border: 1px solid #798c78; border-radius: 50%; color: #dbe7b9; }
+.nt-landing .nt-rewards h3 { font-size: 16px; font-weight: 500; }
+.nt-landing .nt-rewards p { margin-top: 4px; font-size: 12px; color: #c0cdd0; }
+.nt-landing .nt-rewards a { display: inline-flex; align-items: center; gap: 16px; min-height: 44px; margin-left: auto; font-size: 13px; font-weight: 500; white-space: nowrap; }
+.nt-landing .nt-rewards a:hover { color: #dbe7b9; }
+.nt-landing .nt-process a:focus-visible { outline-color: #dbe7b9; }
+.nt-landing .nt-final { padding-block: 87px; display: flex; justify-content: space-between; align-items: center; gap: 50px; }
+.nt-landing .nt-final h2 { font-size: clamp(46px, 4.6vw, 66px); }
+.nt-landing .nt-final p { margin-top: 22px; color: var(--nt-muted); font-size: 14px; }
+.nt-landing .nt-final-action { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.nt-landing .nt-final-action > span { font-size: 12px; color: var(--nt-muted); }
+.nt-landing .nt-final-action > span a { color: var(--nt-ink); text-decoration: underline; text-underline-offset: 3px; padding-block: 10px; }
+.nt-landing .nt-footer { display: grid; grid-template-columns: 1fr auto; gap: 14px 40px; padding-block: 34px 25px; border-top: 1px solid var(--nt-line); }
+.nt-landing .nt-footer .nt-brand { font-size: 17px; }
+.nt-landing .nt-footer .nt-brand-mark { width: 29px; height: 32px; font-size: 26px; }
+.nt-landing .nt-footer p { margin-top: 9px; font-size: 12px; color: var(--nt-muted); }
+.nt-landing .nt-footer nav { display: flex; gap: 24px; align-items: center; font-size: 12px; }
+.nt-landing .nt-copyright { grid-column: 1 / -1; font-size: 12px; color: var(--nt-muted); margin-top: 16px; }
+
+@media (min-width: 1600px) {
+  .nt-landing .nt-hero { padding-block: 88px 66px; }
+}
+@media (max-width: 1100px) {
+  .nt-landing .nt-container { width: calc(100% - 64px); }
+  .nt-landing .nt-navigation { gap: 20px; font-size: 13px; }
+  .nt-landing .nt-header-inner { gap: 20px; }
+  .nt-landing .nt-header-actions { gap: 18px; }
+  .nt-landing .nt-hero { gap: 38px; padding-top: 54px; }
+  .nt-landing h1 { font-size: clamp(60px, 7vw, 78px); }
+  .nt-landing .nt-hero-description { font-size: 20px; }
+  .nt-landing .nt-hero-detail { font-size: 14px; }
+  .nt-landing .nt-platform { gap: 62px; padding-block: 80px; }
+  .nt-landing .nt-programs { gap: 45px; }
+  .nt-landing .nt-steps { gap: 30px; }
+}
+@media (max-width: 850px) {
+  .nt-landing .nt-header-inner { flex-wrap: wrap; padding-top: 16px; gap: 10px 20px; }
+  .nt-landing .nt-header-actions { margin-left: auto; }
+  .nt-landing .nt-navigation { order: 3; width: 100%; justify-content: center; gap: 36px; padding-top: 4px; }
+  .nt-landing .nt-hero { grid-template-columns: 1fr; gap: 42px; padding-block: 46px 36px; }
+  .nt-landing .nt-hero-copy { max-width: 660px; }
+  .nt-landing h1 { font-size: clamp(66px, 10vw, 84px); }
+  .nt-landing .nt-hero-description { max-width: 480px; }
+  .nt-landing .nt-hero-detail { max-width: 530px; font-size: 16px; }
+  .nt-landing .nt-programs { gap: 36px; }
+  .nt-landing .nt-programs li { font-size: 24px; }
+  .nt-landing .nt-programs li > span { font-size: 27px; }
+  .nt-landing .nt-platform { grid-template-columns: 1fr; gap: 42px; padding-block: 62px; }
+  .nt-landing .nt-section-intro { max-width: 560px; }
+  .nt-landing .nt-section-intro > p { max-width: 520px; }
+  .nt-landing .nt-teacher-note { margin-top: 23px; }
+  .nt-landing .nt-section-intro h2, .nt-landing .nt-process h2 { font-size: 52px; }
+  .nt-landing .nt-process { padding-top: 60px; }
+  .nt-landing .nt-process-heading { align-items: flex-start; flex-direction: column; gap: 24px; }
+  .nt-landing .nt-process-heading > p { max-width: 400px; }
+  .nt-landing .nt-steps { gap: 24px; }
+  .nt-landing .nt-steps h3 { font-size: 18px; line-height: 1.4; }
+  .nt-landing .nt-steps p { font-size: 13px; }
+  .nt-landing .nt-rewards { flex-wrap: wrap; gap: 16px; }
+  .nt-landing .nt-rewards > div:nth-child(2) { flex: 1; }
+  .nt-landing .nt-rewards a { width: 100%; margin-left: 64px; }
+  .nt-landing .nt-final { align-items: flex-start; flex-direction: column; gap: 30px; padding-block: 60px; }
+  .nt-landing .nt-final-action { align-items: flex-start; }
+  .nt-landing .nt-footer { grid-template-columns: 1fr; gap: 20px; }
+  .nt-landing .nt-footer nav { gap: 30px; flex-wrap: wrap; }
+  .nt-landing .nt-copyright { margin-top: 0; }
+}
+@media (max-width: 520px) {
+  .nt-landing .nt-container { width: calc(100% - 40px); }
+  .nt-landing .nt-brand { gap: 8px; font-size: 17px; }
+  .nt-landing .nt-brand-mark { width: 29px; height: 33px; font-size: 27px; }
+  .nt-landing .nt-header-actions { gap: 13px; font-size: 12px; }
+  .nt-landing .nt-button-small { font-size: 12px; padding: 10px 12px; gap: 8px; }
+  .nt-landing .nt-button-small svg { display: none; }
+  .nt-landing .nt-navigation { gap: 32px; font-size: 12px; }
+  .nt-landing .nt-hero { gap: 32px; padding-top: 36px; }
+  .nt-landing h1 { font-size: clamp(52px, 12.8vw, 66px); }
+  .nt-landing .nt-hero-description { font-size: 20px; margin-top: 22px; }
+  .nt-landing .nt-hero-detail { font-size: 14px; margin-top: 13px; }
+  .nt-landing .nt-hero-actions { align-items: flex-start; flex-direction: column; gap: 10px; margin-top: 24px; }
+  .nt-landing .nt-hero-actions .nt-button { width: 100%; }
+  .nt-landing .nt-returning { margin-top: 11px; max-width: 280px; font-size: 12px; }
+  .nt-landing .nt-programs { flex-direction: column; gap: 18px; align-items: stretch; padding-block: 23px; }
+  .nt-landing .nt-programs > span { font-size: 12px; }
+  .nt-landing .nt-programs > span br { display: none; }
+  .nt-landing .nt-programs ul { gap: 13px; }
+  .nt-landing .nt-programs li { font-size: 23px; }
+  .nt-landing .nt-programs li > span { font-size: 25px; }
+  .nt-landing .nt-platform { padding-block: 50px; gap: 35px; }
+  .nt-landing .nt-section-intro h2, .nt-landing .nt-process h2 { font-size: 43px; }
+  .nt-landing .nt-section-intro > p { margin-top: 18px; font-size: 14px; }
+  .nt-landing .nt-teacher-note { padding: 19px; gap: 11px; }
+  .nt-landing .nt-benefit { gap: 16px; padding-block: 22px; }
+  .nt-landing .nt-benefit h3 { font-size: 19px; }
+  .nt-landing .nt-benefit p { font-size: 13px; }
+  .nt-landing .nt-process { padding-top: 46px; }
+  .nt-landing .nt-steps { grid-template-columns: 1fr; gap: 26px; margin-top: 32px; }
+  .nt-landing .nt-steps li { position: relative; padding: 20px 0 0 42px; }
+  .nt-landing .nt-step-number { position: absolute; top: 22px; left: 0; }
+  .nt-landing .nt-steps h3 { margin-top: 0; font-size: 19px; }
+  .nt-landing .nt-steps p { margin-top: 9px; }
+  .nt-landing .nt-rewards { margin-top: 34px; padding-block: 25px; gap: 12px; align-items: flex-start; }
+  .nt-landing .nt-reward-icon { width: 38px; height: 38px; }
+  .nt-landing .nt-rewards h3 { font-size: 15px; line-height: 1.4; }
+  .nt-landing .nt-rewards p { font-size: 12px; }
+  .nt-landing .nt-rewards a { margin-left: 50px; }
+  .nt-landing .nt-final { padding-block: 48px; gap: 25px; }
+  .nt-landing .nt-final h2 { font-size: 46px; }
+  .nt-landing .nt-final p { margin-top: 18px; font-size: 13px; }
+  .nt-landing .nt-final-action { width: 100%; }
+  .nt-landing .nt-final-action > .nt-button { width: 100%; padding-inline: 17px; font-size: 13px; }
+  .nt-landing .nt-footer nav { gap: 22px; }
+}
+@media (max-width: 360px) {
+  .nt-landing .nt-container { width: calc(100% - 32px); }
+  .nt-landing .nt-brand { font-size: 15px; gap: 6px; }
+  .nt-landing .nt-header-actions { gap: 10px; }
+  .nt-landing .nt-header-inner { column-gap: 8px; }
+  .nt-landing .nt-button-small { padding-inline: 10px; }
+  .nt-landing h1 { font-size: 49px; }
+  .nt-landing .nt-section-intro h2, .nt-landing .nt-process h2 { font-size: 38px; }
+  .nt-landing .nt-final h2 { font-size: 41px; }
+  .nt-landing .nt-programs li { font-size: 21px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nt-landing *, .nt-landing *::before, .nt-landing *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* The landing hero stands on its own after removing the practice demo. */
+.nt-landing .nt-hero-copy { max-width: 780px; margin-inline: auto; }
+.nt-landing .nt-hero-description, .nt-landing .nt-hero-detail { max-width: 520px; margin-inline: auto; }
+.nt-landing .nt-hero-actions { justify-content: center; }
+.nt-landing .nt-returning { margin-inline: auto; }
+@media (max-width: 520px) {
+  .nt-landing .nt-hero-actions { align-items: center; }
+}

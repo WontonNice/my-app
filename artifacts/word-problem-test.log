@@ -1,0 +1,1261 @@
+TAP version 13
+# Subtest: all survey total stems subtract overlap once and include neither, including zero-size cells
+ok 1 - all survey total stems subtract overlap once and include neither, including zero-size cells
+  ---
+  duration_ms: 2383.7647
+  type: 'test'
+  ...
+# Subtest: every remaining-reading stem asks for additional time and has one exact hours answer
+not ok 2 - every remaining-reading stem asks for additional time and has one exact hours answer
+  ---
+  duration_ms: 10.9811
+  type: 'test'
+  location: 'C:\\Users\\Nathan Im\\Desktop\\my-app-main\\tools\\word-problem-practice.test.cjs:26:1'
+  failureType: 'testCodeFailure'
+  error: 'A question needs four distinct choices.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    choices (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceWordProblems.ts:11:30)
+    Object.generateRemainingReading [as generate] (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceWordProblems.ts:72:23)
+    verifyCycle (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:11:23)
+    TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:28:17)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1306:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+    Test.postRun (node:internal/test_runner/test:1447:19)
+    Test.run (node:internal/test_runner/test:1372:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+  ...
+# Subtest: every mixture stem uses all ratio parts and all projects with one correct choice
+ok 3 - every mixture stem uses all ratio parts and all projects with one correct choice
+  ---
+  duration_ms: 1457.1525
+  type: 'test'
+  ...
+# Subtest: new word-problem sequences reproduce, cycle explicitly, and reject invalid indices
+ok 4 - new word-problem sequences reproduce, cycle explicitly, and reject invalid indices
+  ---
+  duration_ms: 0.8742
+  type: 'test'
+  ...
+# Subtest: batch registration preserves teacher resources and snapshots all three generators in their own topics
+not ok 5 - batch registration preserves teacher resources and snapshots all three generators in their own topics
+  ---
+  duration_ms: 28.6736
+  type: 'test'
+  location: 'C:\\Users\\Nathan Im\\Desktop\\my-app-main\\tools\\word-problem-practice.test.cjs:59:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      [
+        {
+          category: 'Algebra',
+          defaultType: 'foundation',
+          description: 'Build confidence with one-step inequalities, including positive division and sign flips.',
+    ...
+          includeAll: false,
+    +     parentId: null,
+          published: true,
+          title: 'One-step Inequalities',
+          topic: 'Inequalities'
+        },
+        {
+    ...
+          includeAll: false,
+    +     parentId: null,
+          published: true,
+          title: 'Inequalities: Variables on Both Sides',
+          topic: 'Inequalities'
+        },
+        {
+    ...
+          includeAll: false,
+    +     parentId: null,
+          published: true,
+          title: 'Writing Inequalities',
+          topic: 'Inequalities'
+        },
+        {
+    ...
+          includeAll: false,
+    +     parentId: null,
+          published: true,
+          title: 'Overlapping Groups',
+          topic: 'Overlapping Groups'
+        },
+        {
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      id: 'foundation'
+      title: 'Curated foundation'
+      description: 'Build confidence with one-step inequalities, including positive division and sign flips.'
+      category: 'Algebra'
+      topic: 'Inequalities'
+      published: true
+      includeAll: false
+      generatorIds:
+        0: 'inequalities-foundation-v1'
+        1: 'one-step-inequalities-v1'
+        2: 'variables-both-sides-inequalities-v1'
+        3: 'writing-inequalities-v1'
+      defaultType: 'foundation'
+      parentId: ~
+    1:
+      id: 'all'
+      title: 'General Practice'
+      description: 'Mix every available practice type in one session.'
+      category: 'Algebra'
+      topic: 'Inequalities'
+      published: true
+      includeAll: true
+      generatorIds:
+      defaultType: 'general'
+      parentId: ~
+    2:
+      id: 'inequalities'
+      title: 'One-step Inequalities'
+      description: 'Practice positive and negative coefficients, strict inequalities, and sign flips.'
+      category: 'Algebra'
+      topic: 'Inequalities'
+      published: true
+      includeAll: false
+      generatorIds:
+        0: 'one-step-inequalities-v1'
+    3:
+      id: '2022-2023-form-b-q70'
+      title: 'Inequalities: Variables on Both Sides'
+      description: 'Based on 2022–2023 Form B Q70. Collect variable terms and constants, then solve, reversing the sign when dividing by a negative number.'
+      category: 'Algebra'
+      topic: 'Inequalities'
+      published: true
+      includeAll: false
+      generatorIds:
+        0: 'variables-both-sides-inequalities-v1'
+    4:
+      id: '2026-2027-form-d-math-item-26'
+      title: 'Writing Inequalities'
+      description: 'Based on 2026–2027 Form D, math item 26. Write a budget inequality using an hourly rental rate and a one-time fee.'
+      category: 'Algebra'
+      topic: 'Inequalities'
+      published: true
+      includeAll: false
+      generatorIds:
+        0: 'writing-inequalities-v1'
+    5:
+      id: '2021-2022-form-a-q76'
+      title: 'Overlapping Groups'
+      description: 'Based on 2021–2022 Form A Q76. Use two overlapping group percentages to find the percentage in neither group.'
+      category: 'Statistics and Probability'
+      topic: 'Overlapping Groups'
+      published: true
+      includeAll: false
+      generatorIds:
+        0: 'overlapping-groups-v1'
+    6:
+      id: 'foundation-algebra-algebraic-expressions-rj42ee'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Algebra'
+      topic: 'Algebraic Expressions'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    7:
+      id: 'general-algebra-algebraic-expressions-rj42ee'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Algebra'
+      topic: 'Algebraic Expressions'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    8:
+      id: 'foundation-algebra-equations-systems-1iaob9y'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Algebra'
+      topic: 'Equations & Systems'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    9:
+      id: 'general-algebra-equations-systems-1iaob9y'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Algebra'
+      topic: 'Equations & Systems'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    10:
+      id: 'foundation-algebra-functions-graphs-w7fmwh'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Algebra'
+      topic: 'Functions & Graphs'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    11:
+      id: 'general-algebra-functions-graphs-w7fmwh'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Algebra'
+      topic: 'Functions & Graphs'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    12:
+      id: 'foundation-algebra-patterns-sequences-1f8v94i'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Algebra'
+      topic: 'Patterns & Sequences'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    13:
+      id: 'general-algebra-patterns-sequences-1f8v94i'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Algebra'
+      topic: 'Patterns & Sequences'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    14:
+      id: 'foundation-geometry-shapes-angles-y1d10t'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Shapes & Angles'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    15:
+      id: 'general-geometry-shapes-angles-y1d10t'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Shapes & Angles'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    16:
+      id: 'foundation-geometry-area-perimeter-1kz9wsp'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Area & Perimeter'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    17:
+      id: 'general-geometry-area-perimeter-1kz9wsp'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Area & Perimeter'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    18:
+      id: 'foundation-geometry-surface-area-volume-1l75wmt'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Surface Area & Volume'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    19:
+      id: 'general-geometry-surface-area-volume-1l75wmt'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Surface Area & Volume'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    20:
+      id: 'foundation-geometry-coordinate-geometry-1js46n'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Coordinate Geometry'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    21:
+      id: 'general-geometry-coordinate-geometry-1js46n'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Coordinate Geometry'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    22:
+      id: 'foundation-geometry-pythagorean-theorem-1qv40h7'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Pythagorean Theorem'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    23:
+      id: 'general-geometry-pythagorean-theorem-1qv40h7'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Pythagorean Theorem'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    24:
+      id: 'foundation-geometry-scale-transformations-1q4h9dr'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Scale & Transformations'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    25:
+      id: 'general-geometry-scale-transformations-1q4h9dr'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Scale & Transformations'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    26:
+      id: 'foundation-statistics-and-probability-data-displays-e3a8k7'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Statistics and Probability'
+      topic: 'Data Displays'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    27:
+      id: 'general-statistics-and-probability-data-displays-e3a8k7'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Statistics and Probability'
+      topic: 'Data Displays'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    28:
+      id: 'foundation-statistics-and-probability-probability-mzsbkv'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Statistics and Probability'
+      topic: 'Probability'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    29:
+      id: 'general-statistics-and-probability-probability-mzsbkv'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Statistics and Probability'
+      topic: 'Probability'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    30:
+      id: 'foundation-statistics-and-probability-overlapping-groups-e6op6z'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Statistics and Probability'
+      topic: 'Overlapping Groups'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    31:
+      id: 'general-statistics-and-probability-overlapping-groups-e6op6z'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Statistics and Probability'
+      topic: 'Overlapping Groups'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    32:
+      id: 'foundation-statistics-and-probability-averages-spread-tscqx'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Statistics and Probability'
+      topic: 'Averages & Spread'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    33:
+      id: 'general-statistics-and-probability-averages-spread-tscqx'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Statistics and Probability'
+      topic: 'Averages & Spread'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    34:
+      id: 'foundation-ratios-and-proportional-relationships-ratios-proportions-r19h39'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Ratios & Proportions'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    35:
+      id: 'general-ratios-and-proportional-relationships-ratios-proportions-r19h39'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Ratios & Proportions'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    36:
+      id: 'foundation-ratios-and-proportional-relationships-rates-unit-rates-e78tk2'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Rates & Unit Rates'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    37:
+      id: 'general-ratios-and-proportional-relationships-rates-unit-rates-e78tk2'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Rates & Unit Rates'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    38:
+      id: 'foundation-ratios-and-proportional-relationships-percentages-4bd37f'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Percentages'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    39:
+      id: 'general-ratios-and-proportional-relationships-percentages-4bd37f'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Percentages'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    40:
+      id: 'foundation-arithmetic-number-sense-number-properties-1j4ekza'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Number Properties'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    41:
+      id: 'general-arithmetic-number-sense-number-properties-1j4ekza'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Number Properties'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    42:
+      id: 'foundation-arithmetic-number-sense-fractions-decimals-7j6qc9'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Fractions & Decimals'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    43:
+      id: 'general-arithmetic-number-sense-fractions-decimals-7j6qc9'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Fractions & Decimals'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    44:
+      id: 'foundation-arithmetic-number-sense-number-operations-27w2sd'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Number Operations'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    45:
+      id: 'general-arithmetic-number-sense-number-operations-27w2sd'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Number Operations'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    46:
+      id: 'foundation-arithmetic-number-sense-exponents-roots-scientific-notation-1pbgwsc'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Exponents, Roots & Scientific Notation'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    47:
+      id: 'general-arithmetic-number-sense-exponents-roots-scientific-notation-1pbgwsc'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Exponents, Roots & Scientific Notation'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    48:
+      id: 'foundation-arithmetic-number-sense-units-conversions-1qqbgus'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Units & Conversions'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    49:
+      id: 'general-arithmetic-number-sense-units-conversions-1qqbgus'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Units & Conversions'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    50:
+      id: 'foundation-arithmetic-number-sense-counting-sets-136amh8'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Counting & Sets'
+      defaultType: 'foundation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+    51:
+      id: 'general-arithmetic-number-sense-counting-sets-136amh8'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Counting & Sets'
+      defaultType: 'general'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+  actual:
+    0:
+      id: 'foundation'
+      title: 'Curated foundation'
+      description: 'Build confidence with one-step inequalities, including positive division and sign flips.'
+      category: 'Algebra'
+      topic: 'Inequalities'
+      published: true
+      includeAll: false
+      generatorIds:
+        0: 'inequalities-foundation-v1'
+        1: 'one-step-inequalities-v1'
+        2: 'variables-both-sides-inequalities-v1'
+        3: 'writing-inequalities-v1'
+      parentId: ~
+      defaultType: 'foundation'
+    1:
+      id: 'all'
+      title: 'General Practice'
+      description: 'Mix every available practice type in one session.'
+      category: 'Algebra'
+      topic: 'Inequalities'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    2:
+      id: 'inequalities'
+      title: 'One-step Inequalities'
+      description: 'Practice positive and negative coefficients, strict inequalities, and sign flips.'
+      category: 'Algebra'
+      topic: 'Inequalities'
+      published: true
+      includeAll: false
+      generatorIds:
+        0: 'one-step-inequalities-v1'
+      parentId: ~
+    3:
+      id: '2022-2023-form-b-q70'
+      title: 'Inequalities: Variables on Both Sides'
+      description: 'Based on 2022–2023 Form B Q70. Collect variable terms and constants, then solve, reversing the sign when dividing by a negative number.'
+      category: 'Algebra'
+      topic: 'Inequalities'
+      published: true
+      includeAll: false
+      generatorIds:
+        0: 'variables-both-sides-inequalities-v1'
+      parentId: ~
+    4:
+      id: '2026-2027-form-d-math-item-26'
+      title: 'Writing Inequalities'
+      description: 'Based on 2026–2027 Form D, math item 26. Write a budget inequality using an hourly rental rate and a one-time fee.'
+      category: 'Algebra'
+      topic: 'Inequalities'
+      published: true
+      includeAll: false
+      generatorIds:
+        0: 'writing-inequalities-v1'
+      parentId: ~
+    5:
+      id: '2021-2022-form-a-q76'
+      title: 'Overlapping Groups'
+      description: 'Based on 2021–2022 Form A Q76. Use two overlapping group percentages to find the percentage in neither group.'
+      category: 'Statistics and Probability'
+      topic: 'Overlapping Groups'
+      published: true
+      includeAll: false
+      generatorIds:
+        0: 'overlapping-groups-v1'
+      parentId: ~
+    6:
+      id: 'foundation-algebra-algebraic-expressions-rj42ee'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Algebra'
+      topic: 'Algebraic Expressions'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    7:
+      id: 'general-algebra-algebraic-expressions-rj42ee'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Algebra'
+      topic: 'Algebraic Expressions'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    8:
+      id: 'foundation-algebra-equations-systems-1iaob9y'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Algebra'
+      topic: 'Equations & Systems'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    9:
+      id: 'general-algebra-equations-systems-1iaob9y'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Algebra'
+      topic: 'Equations & Systems'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    10:
+      id: 'foundation-algebra-functions-graphs-w7fmwh'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Algebra'
+      topic: 'Functions & Graphs'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    11:
+      id: 'general-algebra-functions-graphs-w7fmwh'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Algebra'
+      topic: 'Functions & Graphs'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    12:
+      id: 'foundation-algebra-patterns-sequences-1f8v94i'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Algebra'
+      topic: 'Patterns & Sequences'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    13:
+      id: 'general-algebra-patterns-sequences-1f8v94i'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Algebra'
+      topic: 'Patterns & Sequences'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    14:
+      id: 'foundation-geometry-shapes-angles-y1d10t'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Shapes & Angles'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    15:
+      id: 'general-geometry-shapes-angles-y1d10t'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Shapes & Angles'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    16:
+      id: 'foundation-geometry-area-perimeter-1kz9wsp'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Area & Perimeter'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    17:
+      id: 'general-geometry-area-perimeter-1kz9wsp'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Area & Perimeter'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    18:
+      id: 'foundation-geometry-surface-area-volume-1l75wmt'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Surface Area & Volume'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    19:
+      id: 'general-geometry-surface-area-volume-1l75wmt'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Surface Area & Volume'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    20:
+      id: 'foundation-geometry-coordinate-geometry-1js46n'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Coordinate Geometry'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    21:
+      id: 'general-geometry-coordinate-geometry-1js46n'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Coordinate Geometry'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    22:
+      id: 'foundation-geometry-pythagorean-theorem-1qv40h7'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Pythagorean Theorem'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    23:
+      id: 'general-geometry-pythagorean-theorem-1qv40h7'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Pythagorean Theorem'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    24:
+      id: 'foundation-geometry-scale-transformations-1q4h9dr'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Geometry'
+      topic: 'Scale & Transformations'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    25:
+      id: 'general-geometry-scale-transformations-1q4h9dr'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Geometry'
+      topic: 'Scale & Transformations'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    26:
+      id: 'foundation-statistics-and-probability-data-displays-e3a8k7'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Statistics and Probability'
+      topic: 'Data Displays'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    27:
+      id: 'general-statistics-and-probability-data-displays-e3a8k7'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Statistics and Probability'
+      topic: 'Data Displays'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    28:
+      id: 'foundation-statistics-and-probability-probability-mzsbkv'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Statistics and Probability'
+      topic: 'Probability'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    29:
+      id: 'general-statistics-and-probability-probability-mzsbkv'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Statistics and Probability'
+      topic: 'Probability'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    30:
+      id: 'foundation-statistics-and-probability-overlapping-groups-e6op6z'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Statistics and Probability'
+      topic: 'Overlapping Groups'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    31:
+      id: 'general-statistics-and-probability-overlapping-groups-e6op6z'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Statistics and Probability'
+      topic: 'Overlapping Groups'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    32:
+      id: 'foundation-statistics-and-probability-averages-spread-tscqx'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Statistics and Probability'
+      topic: 'Averages & Spread'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    33:
+      id: 'general-statistics-and-probability-averages-spread-tscqx'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Statistics and Probability'
+      topic: 'Averages & Spread'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    34:
+      id: 'foundation-ratios-and-proportional-relationships-ratios-proportions-r19h39'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Ratios & Proportions'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    35:
+      id: 'general-ratios-and-proportional-relationships-ratios-proportions-r19h39'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Ratios & Proportions'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    36:
+      id: 'foundation-ratios-and-proportional-relationships-rates-unit-rates-e78tk2'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Rates & Unit Rates'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    37:
+      id: 'general-ratios-and-proportional-relationships-rates-unit-rates-e78tk2'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Rates & Unit Rates'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    38:
+      id: 'foundation-ratios-and-proportional-relationships-percentages-4bd37f'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Percentages'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    39:
+      id: 'general-ratios-and-proportional-relationships-percentages-4bd37f'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Ratios and Proportional Relationships'
+      topic: 'Percentages'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    40:
+      id: 'foundation-arithmetic-number-sense-number-properties-1j4ekza'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Number Properties'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    41:
+      id: 'general-arithmetic-number-sense-number-properties-1j4ekza'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Number Properties'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    42:
+      id: 'foundation-arithmetic-number-sense-fractions-decimals-7j6qc9'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Fractions & Decimals'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    43:
+      id: 'general-arithmetic-number-sense-fractions-decimals-7j6qc9'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Fractions & Decimals'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    44:
+      id: 'foundation-arithmetic-number-sense-number-operations-27w2sd'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Number Operations'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    45:
+      id: 'general-arithmetic-number-sense-number-operations-27w2sd'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Number Operations'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    46:
+      id: 'foundation-arithmetic-number-sense-exponents-roots-scientific-notation-1pbgwsc'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Exponents, Roots & Scientific Notation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    47:
+      id: 'general-arithmetic-number-sense-exponents-roots-scientific-notation-1pbgwsc'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Exponents, Roots & Scientific Notation'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    48:
+      id: 'foundation-arithmetic-number-sense-units-conversions-1qqbgus'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Units & Conversions'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    49:
+      id: 'general-arithmetic-number-sense-units-conversions-1qqbgus'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Units & Conversions'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+    50:
+      id: 'foundation-arithmetic-number-sense-counting-sets-136amh8'
+      title: 'Foundation Building'
+      description: 'Build confidence with a focused selection of question types.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Counting & Sets'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'foundation'
+    51:
+      id: 'general-arithmetic-number-sense-counting-sets-136amh8'
+      title: 'General Practice'
+      description: 'Practice every available question type in this topic.'
+      category: 'Arithmetic & Number Sense'
+      topic: 'Counting & Sets'
+      published: true
+      includeAll: true
+      generatorIds:
+      parentId: ~
+      defaultType: 'general'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:67:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1306:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+    Test.postRun (node:internal/test_runner/test:1447:19)
+    Test.run (node:internal/test_runner/test:1372:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:897:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 3
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4254.0039

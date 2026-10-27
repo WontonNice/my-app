@@ -26,6 +26,7 @@ const AdvancedPassagePage = lazy(() =>
   import("./pages/AdvancedPassagePage").then((module) => ({ default: module.AdvancedPassagePage })),
 );
 const AuthPage = lazy(() => import("./pages/AuthPage").then((module) => ({ default: module.AuthPage })));
+const HomePage = lazy(() => import("./pages/HomePage").then((module) => ({ default: module.HomePage })));
 const BoardPage = lazy(() => import("./pages/BoardPage").then(module => ({ default: module.BoardPage })));
 const StudentBoardsPage = lazy(() => import("./pages/StudentBoardsPage").then(module => ({ default: module.StudentBoardsPage })));
 const StudentAchievementsPage = lazy(() => import("./pages/StudentAchievementsPage").then(module => ({ default: module.StudentAchievementsPage })));
@@ -118,6 +119,7 @@ function LegacyStudentHomeRedirect() {
 
 function CurrentPage() {
   const path = window.location.pathname;
+  if (path === "/") return <HomePage />;
   if (path === "/profile") return <ProfileSettingsPage />;
   if (path === "/account/verify-email") return <AccountEmailPage mode="verify" />;
   if (path === "/forgot-password") return <AccountEmailPage mode="forgot" />;

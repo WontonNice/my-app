@@ -5,6 +5,7 @@ import {dirname,join,resolve} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {createServer} from 'node:http';
 import vm from 'node:vm';
+import syncFs from 'node:fs';
 import batches from './math-import-batch.cjs';
 import contract from './document-import.cjs';
 import {documentDraftStore,publicationContent} from './document-drafts.mjs';
@@ -200,7 +201,7 @@ test('HTTP selected publication preserves good neighbors, recovers a missing led
   } finally {if(server)await new Promise(done=>server.close(done));await rm(modulePath,{force:true});}
 }));
 
-test('direct Math import inserts incomplete red questions into the chosen test, preserves edits on retries and clears labels on finish',()=>isolated(async path=>{
+test('direct Math import inserts incomplete red questions into the chosen test, preserves edits on retries and clears labels on finish',t=>isolated(async path=>{
   for(const name of ['client/src/content','server/src/shared'])await cp(join(root,name),join(path,name),{recursive:true});
   await mkdir(join(path,'tools'),{recursive:true});await mkdir(join(path,'server/data'),{recursive:true});
   for(const name of ['client/src/lib/studentMaterials.ts','server/data/assessments.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/poem-layout.js']){
@@ -216,6 +217,13 @@ test('direct Math import inserts incomplete red questions into the chosen test, 
     const category=initial.mathTopicConfiguration.categories[0],subtopic=category.topics[0].label;
     const base=`http://127.0.0.1:${server.address().port}`;
     const call=async(url,body,status=201)=>{const response=await fetch(base+url,{method:'POST',headers:{'Content-Type':'application/json','X-Editor-Token':initial.editToken},body:JSON.stringify(body)});const data=await response.json();assert.equal(response.status,status,JSON.stringify(data));return data;};
+    const boardPath=join(path,'server/data/board-content.json'), rename=syncFs.renameSync;
+    await writeFile(boardPath,'[]\n');
+    let lockedRenames=0;
+    t.mock.method(syncFs,'renameSync',(temporary,target)=>{
+      if(target===boardPath && lockedRenames<2){lockedRenames++;throw Object.assign(new Error('Windows reader holds board snapshot'),{code:'EPERM'});}
+      return rename(temporary,target);
+    });
     const q=(n,extra)=>question(n,{topic:'',subtopic:'',correctTextAnswers:[],...extra});
     const choices=[{id:'A',text:'One'},{id:'B',text:'Two'}];
     const chunk=payload([
@@ -229,6 +237,7 @@ test('direct Math import inserts incomplete red questions into the chosen test, 
       {...q(88),choices:'invalid array'},
     ],{sourceId:'direct-red-workflow',expectedQuestions:[],expectedTotal:null,inventoryConfirmed:false});
     const result=await call('/api/math/import',{assessmentId,source:JSON.stringify(chunk)});
+    assert.equal(lockedRenames,2);
     assert.equal(result.added.length,7);assert.equal(result.errors.length,1);assert.match(result.errors[0],/choices/);
     const sectionNow=async()=>{const state=await studio.getState();const file=state.tests.find(t=>t.assessmentId===assessmentId).mathSectionFileName;return state.mathSections.find(s=>s.fileName===file);};
     let section=await sectionNow(),imported=section.questions.filter(q=>result.added.includes(q.id));
@@ -294,5 +303,18 @@ test('direct Math import inserts incomplete red questions into the chosen test, 
     const oneRetry=await call('/api/math/import',{assessmentId,source:JSON.stringify({question:single})});
     assert.equal(oneRetry.added.length,0);assert.deepEqual(oneRetry.existing,one.added);
     assert.equal((await sectionNow()).questions.find(q=>q.id===one.added[0]).prompt,'Teacher edited the single imported question.');
+    // Reader exports must be recognized by the HTTP endpoint before they reach
+    // the ordinary ChatGPT-envelope parser, regardless of the UI format picker.
+    const readerSource={schemaVersion:3,readerVersion:'0.7.1',source:{url:'https://tutor.thesatcrashcourse.com/tests/reader-regression'},testPreview:{testTitle:'Reader regression',module:'Mathematics',questions:Array.from({length:50},(_,i)=>({number:i+1,total:50,sourceNumber:i+51,prompt:`Reader question ${i+1}`,promptHtml:`<p>Reader <strong>question ${i+1}</strong></p>`,choices:['A','B','C','D'].map(label=>({label,text:`Choice ${label}`,html:`<p>Choice ${label}</p>`,isCorrect:label==='B',media:[]})),correctAnswer:{label:'B'},explanation:'Captured source explanation',explanationHtml:'<p>Captured <em>source explanation</em></p>',media:[]}))}};
+    const readerImported=await call('/api/math/import',{assessmentId,source:JSON.stringify(readerSource)});
+    assert.equal(readerImported.added.length,50);assert.deepEqual(readerImported.errors,[]);
+    section=await sectionNow();
+    const readerQuestion=section.questions.find(q=>q.id===readerImported.added[0]);
+    assert.equal(readerQuestion.importNeedsEditing,true);
+    assert.equal(readerQuestion.correctChoiceId,'B');
+    assert.match(readerQuestion.promptHtml,/<strong>question 1<\/strong>/);
+    assert.equal(readerQuestion.explanation,'Captured source explanation');
+    const readerRetried=await call('/api/math/import',{assessmentId,source:JSON.stringify(readerSource)});
+    assert.equal(readerRetried.added.length,0);assert.equal(readerRetried.existing.length,50);assert.deepEqual(readerRetried.errors,[]);
   } finally {if(server)await new Promise(done=>server.close(done));await rm(modulePath,{force:true});}
 }));
