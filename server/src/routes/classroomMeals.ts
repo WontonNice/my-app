@@ -2,7 +2,7 @@ import { Router, type ErrorRequestHandler } from 'express';
 import { randomUUID } from 'node:crypto';
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from '../lib/auth';
 import { supabase } from '../lib/supabase';
-import { emptyMealMenu, mealRestaurants, quoteMeal, validateMealMenu, type MealSession } from '../shared/classroomMeals';
+import { emptyMealMenu, mealRestaurants, quoteMeal, validateMealMenu, type MealOrder, type MealSession } from '../shared/classroomMeals';
 
 export const classroomMealsRouter = Router();
 const fail = (message: string, status = 400) => Object.assign(new Error(message), { status });
@@ -31,6 +31,8 @@ classroomMealsRouter.post('/student/orders', async (request, response) => {
   const session = found.data as MealSession | null;
   if (!session || !session.open || session.revision !== menuRevision) throw fail('The menu changed or ordering closed. Reload before submitting.', 409);
   const user = response.locals.user;
+  const previous = await supabase.from('classroom_meal_orders').select('data').eq('session_id', sessionId).eq('student_id', user.id).maybeSingle(); check(previous.error);
+  if (previous.data?.data?.teacherDecision === 'denied') throw fail('Your teacher denied this request. Ask your teacher to restore it before submitting again.', 409);
   const data = cancel ? {} : { quote: quoteMeal(session.menu, selections), notes: notes.trim(), menuRevision,
     studentName: String(user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0] || 'Student').slice(0, 150) };
   const saved = await supabase.rpc('save_classroom_meal_order', { p_session_id: sessionId, p_student_id: user.id, p_menu_revision: menuRevision, p_order_revision: orderRevision, p_data: data, p_cancel: cancel });
@@ -61,11 +63,25 @@ classroomMealsRouter.put('/teacher/sessions/:id', async (request, response) => {
 });
 classroomMealsRouter.patch('/teacher/orders/:sessionId/:studentId', async (request, response) => {
   const { revision, status } = request.body ?? {};
-  if (![request.params.sessionId, request.params.studentId].every(value => uuid.test(value)) || !Number.isSafeInteger(revision) || !['ordered', 'submitted'].includes(status)) throw fail('Choose a valid order and status.');
+  if (![request.params.sessionId, request.params.studentId].every(value => uuid.test(value)) || !Number.isSafeInteger(revision) || revision < 1 || !['ordered', 'submitted', 'denied', 'removed', 'restore'].includes(status)) throw fail('Choose a valid order and status.');
   const session = await supabase.from('classroom_meal_sessions').select('open').eq('id', request.params.sessionId).eq('class_id', 'shsat').maybeSingle(); check(session.error);
   if (!session.data) throw fail('Meal session not found.', 404);
-  if (session.data.open) throw fail('Close ordering before marking meals as ordered. This keeps student edits from racing with checkout.', 409);
-  const saved = await supabase.from('classroom_meal_orders').update({ status, revision: revision + 1, updated_at: new Date().toISOString() }).eq('session_id', request.params.sessionId).eq('student_id', request.params.studentId).eq('revision', revision).neq('status', 'cancelled').select('*').maybeSingle();
+  const previous = await supabase.from('classroom_meal_orders').select('*').eq('session_id', request.params.sessionId).eq('student_id', request.params.studentId).maybeSingle(); check(previous.error);
+  const order = previous.data as MealOrder | null;
+  if (!order) throw fail('Meal request not found.', 404);
+  if (order.revision !== revision) throw fail('This request changed. Refresh requests before updating it.', 409);
+  if (status === 'restore' ? !order.data.teacherDecision : order.status === 'cancelled') throw fail('This action is unavailable for the current request. Refresh requests.', 409);
+  if (status === 'denied' && order.status === 'ordered') throw fail('Undo ordered before denying this request.', 409);
+  const data = { ...order.data };
+  let nextStatus: MealOrder['status'];
+  if (status === 'denied' || status === 'removed') {
+    data.teacherDecision = status; data.previousStatus = order.status === 'ordered' ? 'ordered' : 'submitted'; nextStatus = 'cancelled';
+  } else if (status === 'restore') {
+    nextStatus = data.previousStatus === 'ordered' ? 'ordered' : 'submitted'; delete data.teacherDecision; delete data.previousStatus;
+  } else { nextStatus = status; }
+  // The revision condition makes teacher changes race safely with student submissions.
+  // The student RPC already prevents edits to ordered rows; denial also blocks resubmission above.
+  const saved = await supabase.from('classroom_meal_orders').update({ status: nextStatus, data, revision: revision + 1, updated_at: new Date().toISOString() }).eq('session_id', request.params.sessionId).eq('student_id', request.params.studentId).eq('revision', revision).select('*').maybeSingle();
   check(saved.error); if (!saved.data) throw fail('This order changed. Reload before updating it.', 409);
   response.json({ order: saved.data });
 });

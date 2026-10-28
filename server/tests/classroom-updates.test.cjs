@@ -49,6 +49,32 @@ test('meal routes isolate identities and recompute prices before the locked data
  tables.classroom_meal_sessions[0].revision=1;tables.classroom_meal_sessions[0].open=false;assert.equal((await call('/meals/student/orders','student','POST',body)).status,409);
 });
 const gallery = () => ({...menu,restaurant:'',items:[],restaurants:[{id:'cafe',name:'Lunch café',url:menu.restaurantUrl,image:'',rating:4.6,reviewCount:322,items:[{...menu.items[0],buyOneGetOne:true,image:''}]},{id:'bakery',name:'Bakery',url:menu.restaurantUrl,image:'',rating:null,reviewCount:null,items:[{id:'bread',name:'Bread',description:'',priceCents:400,available:true}]}]});
+function requestRow(){return {session_id:id,student_id:student,status:'submitted',revision:1,data:{studentName:'Student',notes:'Keep this note',menuRevision:1,quote:quoteMeal(menu,[{id:'bowl',quantity:1}])}};}
+test('teacher can mark and undo ordered while the rest of the menu remains open',async()=>{
+ tables.classroom_meal_orders.push(requestRow());const route='/meals/teacher/orders/'+id+'/'+student;
+ assert.equal((await call(route,'student','PATCH',{revision:1,status:'ordered'})).status,403);
+ const marked=await call(route,'teacher','PATCH',{revision:1,status:'ordered'});assert.equal(marked.status,200);assert.equal(marked.data.order.status,'ordered');assert.equal(tables.classroom_meal_sessions[0].open,true);
+ assert.equal((await call(route,'teacher','PATCH',{revision:1,status:'submitted'})).status,409);
+ const undone=await call(route,'teacher','PATCH',{revision:2,status:'submitted'});assert.equal(undone.data.order.status,'submitted');assert.equal(undone.data.order.data.notes,'Keep this note');
+});
+test('denial blocks student resubmission until restored; removal remains recoverable',async()=>{
+ tables.classroom_meal_orders.push(requestRow());const route='/meals/teacher/orders/'+id+'/'+student;
+ const denied=await call(route,'teacher','PATCH',{revision:1,status:'denied'});assert.equal(denied.status,200);assert.equal(denied.data.order.status,'cancelled');assert.equal(denied.data.order.data.teacherDecision,'denied');
+ const body={sessionId:id,menuRevision:1,orderRevision:2,selections:[{id:'bowl',quantity:1}]};
+ assert.equal((await call('/meals/student/orders','student','POST',body)).status,409);assert.equal(rpcArgs,null);
+ assert.equal((await call('/meals/student/orders','student','POST',{...body,cancel:true})).status,409);
+ const restored=await call(route,'teacher','PATCH',{revision:2,status:'restore'});assert.equal(restored.status,200);assert.equal(restored.data.order.status,'submitted');assert.equal(restored.data.order.data.teacherDecision,undefined);
+ const removed=await call(route,'teacher','PATCH',{revision:3,status:'removed'});assert.equal(removed.status,200);assert.equal(removed.data.order.data.teacherDecision,'removed');assert.equal(removed.data.order.data.quote.items[0].name,'Bowl');
+ assert.equal((await call('/meals/student/orders','student','POST',{...body,orderRevision:4})).status,200);
+ assert.equal((await call(route,'teacher','PATCH',{revision:4,status:'restore'})).data.order.status,'submitted');
+});
+test('removed ordered requests restore to ordered; cancelled student requests cannot be restored by these actions',async()=>{
+ const row=requestRow();row.status='ordered';tables.classroom_meal_orders.push(row);const route='/meals/teacher/orders/'+id+'/'+student;
+ assert.equal((await call(route,'teacher','PATCH',{revision:1,status:'denied'})).status,409);
+ assert.equal((await call(route,'teacher','PATCH',{revision:1,status:'removed'})).status,200);
+ assert.equal((await call(route,'teacher','PATCH',{revision:2,status:'restore'})).data.order.status,'ordered');
+ tables.classroom_meal_orders[0].status='cancelled';assert.equal((await call(route,'teacher','PATCH',{revision:3,status:'restore'})).status,409);
+});
 test('customizations enforce required/max choices, snapshot selections and use all-in estimates once',()=>{
  const input=gallery();input.restaurants[0].items[0].estimatedTotalCents=1500;
  input.restaurants[0].items[0].optionGroups=[{id:'rice',name:'Rice',required:true,maxChoices:1,options:[{id:'white',name:'White rice',extraCents:0},{id:'brown',name:'Brown rice',extraCents:100}]},{id:'extras',name:'Extras',required:false,maxChoices:2,options:[{id:'chicken',name:'Chicken',extraCents:450},{id:'salsa',name:'Salsa',extraCents:0}]}];

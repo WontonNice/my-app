@@ -14,6 +14,12 @@ Each item supports up to 20 customization groups and 30 options per group. Teach
 
 Browser checks verified editing/saving groups, included and paid options, required-choice blocking, a $15 base + $4.50 extra + $0.40 estimated extra tax = $19.90 cart total, and the matching teacher receipt. Tests cover missing/duplicate/unknown/over-limit choices, invalid option prices, quantity multiplication, N/A estimates, and ignoring forged client prices.
 
+## Managing requests
+
+Mark ordered works while the session is open. It records the teacher's manual Uber Eats order and prevents further student edits to that request; Undo returns it to submitted. Deny moves a submitted request to the inactive list and blocks student resubmission until restored. Remove is recoverable and allows the student to send a fresh request while ordering remains open. Denied/removed requests appear in a collapsible section with Restore request; removing an ordered request preserves its prior ordered status for restoration.
+
+Teacher actions preserve the quote/notes and increment the existing request revision. They use the existing cancelled status plus teacher-decision metadata, requiring no migration. Student denial checks plus the existing revision-checked save function prevent a student request racing with denial from overwriting it. Ordered-row protection remains in the database save function. Fourteen targeted tests and fictional browser checks cover these actions, permissions, stale revisions, student lockout, removal/restoration, and menu-open ordering.
+
 The user explicitly selected display-only promotion tags. A tagged item does not receive a discount, multiply quantities or add a free item. Student and teacher views state that quantities/prices are unchanged. Submitted quotes retain restaurant names and promotion labels with the saved prices; subsequent menu changes do not rewrite historical requests.
 
 ## Data and limits

@@ -45,7 +45,7 @@ export function ClassroomMealsPage() {
   const selections = Object.entries(quantities).filter(([, quantity]) => quantity > 0).map(([id, quantity]) => ({ id, quantity, choices: choices[id] ?? {} }));
   let quote = null;
   try { if (session && selections.length) quote = quoteMeal(session.menu, selections); } catch { /* A saved selection may have been removed from the menu. */ }
-  const locked = !session?.open || data?.order?.status === 'ordered' || previewContext.isPreview;
+  const locked = !session?.open || data?.order?.status === 'ordered' || data?.order?.data.teacherDecision === 'denied' || previewContext.isPreview;
   async function submit(cancel = false) {
     if (!session || busy) return;
     setBusy(true); setError(''); setMessage('');
@@ -76,6 +76,7 @@ export function ClassroomMealsPage() {
       {data && !session && <div className="meals-empty"><Utensils size={32} /><h2>No meal session yet</h2><p>Your teacher will open a menu when it’s time to order.</p></div>}
       {session && <>
         <div className="meal-store-status"><span><strong>{session.title}</strong> · {data?.order?.status === 'ordered' ? 'Marked ordered' : session.open ? 'Ordering open' : 'Ordering closed'}</span><button type="button" disabled={busy} onClick={() => void reload()}><RefreshCw size={16} />Refresh</button></div>
+        {data?.order?.data.teacherDecision && <p className="meals-notice" role="status">{data.order.data.teacherDecision === 'denied' ? 'Your teacher denied your meal request. Ask your teacher to restore it before sending another request.' : 'Your teacher removed your meal request. You may send a new request while ordering is open.'}</p>}
         {previewContext.isPreview && <p className="meals-notice">Student preview cannot submit requests.</p>}
         <div className="meals-layout"><section className="meals-menu" aria-label="Meal menu">
           {restaurant ? <>
