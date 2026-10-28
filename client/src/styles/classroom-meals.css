@@ -57,3 +57,93 @@ html:has(.meals-page), body:has(.meals-page) { background: #f4f0e7; }
 @media (max-width: 1000px) { .meals-layout { grid-template-columns: minmax(0,1fr) 300px; gap: 20px; } .meal-item-editor { grid-template-columns: 1fr 100px; } .meal-item-editor label:nth-child(3) { grid-column: 1 / -1; } }
 @media (max-width: 700px) { .meals-layout { grid-template-columns: 1fr; } .meals-heading { gap: 14px; flex-wrap: wrap; } .meals-heading > div { flex: 1; min-width: 180px; } .meals-heading img { width: 64px; height: 64px; } .meal-fields { grid-template-columns: 1fr; } .meals-toolbar { align-items: start; } .meals-toolbar label { min-width: 190px; } .meal-menu-item { gap: 10px; } .meal-quantity { gap: 4px; } .meal-summary { padding: 20px; } }
 
+/* Restaurant browsing follows the supplied photo-first marketplace reference. */
+.meal-storefront { max-width: 1320px; color: #171717; }
+.meal-storefront h1, .meal-storefront h2, .meal-storefront h3 { font-family: Inter, sans-serif; font-weight: 700; }
+.meal-storefront h1 { font-size: clamp(28px, 3vw, 38px); }
+.meal-storefront h2 { font-size: 25px; }
+.meal-storefront h2[tabindex] { scroll-margin-top: 96px; }
+.meal-storefront .meals-heading { margin-bottom: 14px; }
+.meal-storefront .meals-heading .wonton-pet { width: 90px; height: 90px; }
+.meal-storefront .meals-layout { grid-template-columns: minmax(0,1fr) 300px; gap: 30px; }
+.meal-storefront .meals-layout:not(:has(.meal-summary)) { grid-template-columns: 1fr; }
+.meal-storefront .meal-summary { background: #fff; border-color: #e1e1e1; position: sticky; top: 24px; border-radius: 14px; padding: 22px; }
+.meal-storefront .meal-summary h2 { display: flex; justify-content: space-between; font-size: 20px; }
+.meal-summary h2 > span { font-size: 14px; padding: 3px 9px; background: #eee; border-radius: 20px; }
+.meal-summary li { border-bottom: 1px solid #e7e7e7; padding-bottom: 14px; }
+.meal-summary li strong { white-space: nowrap; }
+.meal-summary li small { display: block; color: #626262; font-size: 12px; margin: 4px 0; }
+.meal-summary .meal-quantity { gap: 5px; margin-top: 8px; }
+.meal-summary .meal-quantity button { width: 30px; min-height: 30px; padding: 5px; border-radius: 50%; }
+.meal-storefront .meal-primary { background: #111; border-color: #111; }
+.meal-storefront .meal-primary:hover:not(:disabled) { background: #333; }
+.meal-storefront .meal-fineprint { color: #595959; }
+.meal-store-status { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 10px 0 18px; border-bottom: 1px solid #deded9; font-size: 14px; }
+.meal-search { position: relative; margin: 20px 0 28px; }
+.meal-search > svg { position: absolute; left: 15px; top: 14px; color: #666; }
+.meal-search input { padding-left: 44px; border: 0; background: #eaeae6; border-radius: 24px; min-height: 48px; }
+.meal-sr-only, .meal-file-input { position: absolute; width: 1px !important; height: 1px; padding: 0 !important; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.meal-restaurants { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 28px 20px; }
+.meals-layout:has(.meal-summary) .meal-restaurants { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.meals-page .meal-restaurant-card { display: block; padding: 0; border: 0; border-radius: 0; background: transparent; text-align: left; color: #171717; min-width: 0; }
+.meals-page .meal-restaurant-card:hover:not(:disabled) { background: transparent; }
+.meal-cover { position: relative; aspect-ratio: 2.4; overflow: hidden; border-radius: 14px; background: #e5e5e0; }
+.meal-cover img, .meal-product-photo img, .meal-restaurant-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.meal-restaurant-card:hover .meal-cover img { filter: brightness(.94); }
+.meal-card-info { padding: 12px 0 0; }
+.meal-card-info h3 { margin: 0 0 6px; font-size: 18px; line-height: 1.35; overflow-wrap: anywhere; }
+.meal-card-info small { display: block; color: #626262; margin-top: 5px; font-size: 13px; }
+.meal-rating { display: flex; align-items: center; gap: 4px; font-size: 13px; color: #242424; margin: 0; min-height: 18px; }
+.meal-rating > span { color: #626262; }
+.meal-offer { display: inline-block; background: #c90000; color: #fff; font-size: 11px; font-weight: 700; line-height: 1.5; padding: 3px 6px; border-radius: 3px; }
+.meal-cover > .meal-offer { position: absolute; top: 10px; left: 10px; }
+.meal-photo-empty { width: 100%; height: 100%; min-height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: #ebece8; color: #62665d; font-size: 12px; }
+.meals-page .meal-back { border: 0; padding-left: 0; margin-bottom: 16px; background: none; color: #171717; }
+.meal-restaurant-hero { aspect-ratio: 3.4; border-radius: 16px; overflow: hidden; background: #e5e5e0; }
+.meal-restaurant-title { padding: 22px 0 0; }
+.meal-restaurant-title h2 { font-size: 30px; margin-bottom: 8px; overflow-wrap: anywhere; }
+.meal-restaurant-title a { display: inline-block; margin-top: 9px; font-size: 13px; }
+.meal-items-heading { margin: 30px 0 20px !important; font-size: 21px !important; }
+.meal-product-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 30px 18px; }
+.meal-product { min-width: 0; }
+.meal-product-photo { position: relative; aspect-ratio: 1.1; border-radius: 14px; overflow: hidden; background: #f6f6f4; }
+.meal-product-controls { display: flex; align-items: center; position: absolute; right: 9px; bottom: 9px; border-radius: 30px; background: #fff; box-shadow: 0 3px 8px #0002; }
+.meals-page .meal-product-controls button { min-height: 40px; width: 40px; padding: 8px; border: 0; background: #fff; color: #111; border-radius: 50%; }
+.meal-product-controls output { min-width: 22px; text-align: center; }
+.meal-product h4 { font-size: 15px; font-weight: 600; line-height: 1.4; margin: 12px 0 4px; overflow-wrap: anywhere; }
+.meal-product-price { margin: 0 0 6px; font-size: 14px; font-variant-numeric: tabular-nums; }
+.meal-product-description { font-size: 12px; color: #626262; margin-top: 8px; }
+.meal-session-settings { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 24px 0 12px; }
+.meal-restaurant-picker { display: flex; overflow-x: auto; gap: 12px; padding: 4px 3px 15px; scrollbar-color: #a6b4a5 #eef0eb; }
+.meal-restaurant-picker > button { min-width: 205px; max-width: 260px; text-align: left; flex: none; padding: 10px; justify-content: start; }
+.meal-restaurant-picker img, .meal-restaurant-picker .meal-photo-empty { width: 60px; height: 48px; min-height: 0; object-fit: cover; border-radius: 6px; flex: none; }
+.meal-restaurant-picker .meal-photo-empty span { display: none; }
+.meal-restaurant-picker small { display: block; margin-top: 5px; font-size: 12px; }
+.meal-restaurant-picker strong { overflow-wrap: anywhere; }
+.meals-page .meal-restaurant-picker .selected { background: #e1ebdf; border-color: #245239; }
+.meal-restaurant-editor { margin: 15px 0 28px; padding: 8px 0 24px; border-block: 1px solid #d5dcd0; }
+.meal-restaurant-fields { display: grid; grid-template-columns: minmax(200px, .8fr) 1.4fr; gap: 26px; align-items: start; }
+.meal-restaurant-fields .meal-fields label:nth-child(3) { grid-column: auto; }
+.meal-restaurant-fields .meal-fields > label:nth-child(-n+2) { grid-column: 1 / -1; }
+.meal-field-label { font-size: 13px; font-weight: 600; display: block; margin-bottom: 9px; }
+.meal-image-preview { aspect-ratio: 2; border-radius: 10px; background: #e5e9df; overflow: hidden; display: grid; place-items: center; }
+.meal-image-preview img { width: 100%; height: 100%; object-fit: cover; }
+.meal-image-preview > span { display: grid; justify-items: center; gap: 8px; color: #536157; font-size: 13px; }
+.meal-image-actions { display: flex; gap: 6px; margin: 10px 0 8px; flex-wrap: wrap; }
+.meal-image-actions button { padding: 8px 11px; }
+.meal-image-field small { color: #536157; font-size: 11px; }
+.meal-image-field:focus-visible { outline: 3px solid #6c9774; outline-offset: 5px; border-radius: 10px; }
+.meal-image-error { color: #a12218; font-size: 13px; }
+.teacher-meals .meal-item-editor { grid-template-columns: 200px minmax(0,1fr) 42px; align-items: start; padding: 24px 0; gap: 20px; }
+.meal-item-editor .meal-image-preview { aspect-ratio: 1.5; }
+.meal-item-fields { display: grid; grid-template-columns: minmax(0,1fr) 130px; gap: 16px; }
+.meal-item-fields .meal-description-field { grid-column: 1 / -1; }
+.meal-item-fields .meal-checkbox { grid-column: 1 / -1; min-height: 26px; }
+.meal-item-fields small { color: #536157; font-size: 12px; }
+.meal-publish { background: #fffefa; padding: 18px; border-radius: 12px; border: 1px solid #d5dcd0; }
+.meal-publish > span { flex: 1; font-size: 13px; }
+.meal-order .meal-offer { margin-left: 8px; }
+@media (max-width:1100px) { .meal-product-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .meal-restaurants { grid-template-columns: repeat(2,minmax(0,1fr)); } .meal-storefront .meals-layout { gap: 22px; grid-template-columns: minmax(0,1fr) 275px; } }
+@media (max-width:800px) { .meal-storefront .meals-layout { grid-template-columns: 1fr; } .meal-storefront .meal-summary { position: static; } .meal-restaurant-fields { grid-template-columns: 1fr; } .meal-session-settings { grid-template-columns: 1fr 1fr; } .meal-session-settings > label:first-child { grid-column: 1 / -1; } .teacher-meals .meal-item-editor { grid-template-columns: 150px minmax(0,1fr); } .meal-item-fields { grid-template-columns: 1fr; } .meal-item-editor > button { grid-column: 2; justify-self: end; } }
+@media (max-width:540px) { .meal-restaurants, .meals-layout:has(.meal-summary) .meal-restaurants { grid-template-columns: 1fr; } .meal-cover { aspect-ratio: 2.3; } .meal-restaurant-hero { aspect-ratio: 2.2; } .meal-restaurant-title h2 { font-size: 26px; } .meal-storefront .meals-heading .wonton-pet { width: 68px; height: 68px; } .meal-store-status { align-items: start; } .meal-store-status > span { line-height: 1.8; } .teacher-meals .meal-item-editor { grid-template-columns: 1fr; } .meal-item-editor > button { grid-column: 1; } .meal-item-editor .meal-image-preview { aspect-ratio: 2; } .meal-session-settings { grid-template-columns: 1fr; } .meal-product-grid { gap: 24px 12px; } .meal-publish > span { flex-basis: 100%; } }
+

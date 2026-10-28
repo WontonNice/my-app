@@ -48,3 +48,21 @@ test('meal routes isolate identities and recompute prices before the locked data
  tables.classroom_meal_sessions[0].revision=2;assert.equal((await call('/meals/student/orders','student','POST',body)).status,409);
  tables.classroom_meal_sessions[0].revision=1;tables.classroom_meal_sessions[0].open=false;assert.equal((await call('/meals/student/orders','student','POST',body)).status,409);
 });
+const gallery = () => ({...menu,restaurant:'',items:[],restaurants:[{id:'cafe',name:'Lunch café',url:menu.restaurantUrl,image:'',rating:4.6,reviewCount:322,items:[{...menu.items[0],buyOneGetOne:true,image:''}]},{id:'bakery',name:'Bakery',url:menu.restaurantUrl,image:'',rating:null,reviewCount:null,items:[{id:'bread',name:'Bread',description:'',priceCents:400,available:true}]}]});
+test('restaurant galleries preserve ratings and label-only offers without discounting quantities',()=>{
+ const valid=validateMealMenu(gallery());const quote=quoteMeal(valid,[{id:'bowl',quantity:2},{id:'bread',quantity:1}]);
+ assert.equal(quote.subtotalCents,2900);assert.equal(quote.items[0].quantity,2);assert.equal(quote.items[0].buyOneGetOne,true);assert.equal(quote.items[0].restaurant,'Lunch café');assert.equal(quote.items[1].restaurant,'Bakery');assert.equal(valid.restaurants[0].reviewCount,322);
+});
+test('gallery rejects duplicate IDs, malformed images, forged offers, and invalid ratings',()=>{
+ for(const change of [{rating:5.1},{rating:NaN},{reviewCount:-1},{reviewCount:1.5},{image:'data:image/svg+xml;base64,PHN2Zz4='},{image:'https://example.com/pixel.png'},{image:'data:image/png;base64,bm90YW5pbWFnZQ=='}]){const value=gallery();Object.assign(value.restaurants[0],change);assert.throws(()=>validateMealMenu(value));}
+ const duplicated=gallery();duplicated.restaurants[1].items[0].id='bowl';assert.throws(()=>validateMealMenu(duplicated));
+ const badOffer=gallery();badOffer.restaurants[0].items[0].buyOneGetOne='yes';assert.throws(()=>validateMealMenu(badOffer));
+});
+test('teacher saves gallery with inline raster images, requires revision, and student cannot edit it',async()=>{
+ const value=gallery();value.restaurants[0].image='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aWZkAAAAASUVORK5CYII=';
+ const body={title:'Lunch',revision:1,open:true,menu:value};
+ assert.equal((await call('/meals/teacher/sessions/'+id,'student','PUT',body)).status,403);
+ const result=await call('/meals/teacher/sessions/'+id,'teacher','PUT',body);assert.equal(result.status,200);assert.equal(result.data.session.menu.restaurants[0].image,value.restaurants[0].image);
+ assert.equal((await call('/meals/teacher/sessions/'+id,'teacher','PUT',body)).status,409);
+ const studentView=await call('/meals/student');assert.equal(studentView.data.session.menu.restaurants.length,2);
+});

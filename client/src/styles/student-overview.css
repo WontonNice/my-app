@@ -16,7 +16,7 @@
 .wonton-companion { position: relative; padding: 20px; background: #e6eadc; border-radius: 14px; }
 .wonton-trigger { display: flex; gap: 17px; align-items: center; border: 0; padding: 0; background: none; color: #24392e; cursor: pointer; text-align: left; width: 100%; }
 .wonton-trigger img { width: 76px; height: 76px; flex: none; border-radius: 12px; animation: wonton-wave 5s ease-in-out infinite; }
-.wonton-trigger span { display: grid; gap: 8px; }
+.wonton-trigger .wonton-caption { display: grid; gap: 5px; }
 .wonton-trigger strong { font: 500 22px/1.15 Georgia,serif; }
 .wonton-trigger small { font-size: 12px; line-height: 1.5; color: #506149; }
 .wonton-options { margin-top: 20px; border-top: 1px solid #bec9b3; padding-top: 16px; font-size: 14px; }

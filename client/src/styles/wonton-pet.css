@@ -1,0 +1,20 @@
+.wonton-pet { display: inline-block; position: relative; flex: none; width: 128px; height: 128px; }
+.wonton-pet .wonton-pet-frames { display: block; position: absolute; inset: 0; background: url('/images/wonton-sprites.png') 0 0 / 400% 200% no-repeat; animation: wonton-idle 7s steps(1) infinite; }
+.wonton-pet-shadow { position: absolute; width: 54px; height: 7px; bottom: 1px; left: calc(50% - 27px); background: #24382f20; border-radius: 50%; }
+.wonton-pet--wave .wonton-pet-frames { animation: wonton-greeting .6s steps(1) infinite; }
+.wonton-pet--walk .wonton-pet-frames { animation: wonton-step .5s steps(1) infinite; }
+@keyframes wonton-idle { 0%, 43%, 48%, 84%, 100% { background-position: 0 0; } 45%, 47% { background-position: 33.333% 0; } 75%, 83% { background-position: 100% 100%; } 90%, 94% { background-position: 66.667% 100%; } }
+@keyframes wonton-greeting { 0%,100% { background-position: 66.667% 0; } 50% { background-position: 100% 0; } }
+@keyframes wonton-step { 0%,100% { background-position: 0 100%; } 50% { background-position: 33.333% 100%; } }
+.wonton-pet--paused .wonton-pet-frames { animation: none; background-position: 0 0; }
+@media(prefers-reduced-motion: reduce) { .wonton-pet .wonton-pet-frames { animation: none; background-position: 0 0; } }
+.student-course-home .wonton-companion { position: fixed; right: 26px; bottom: 20px; padding: 0; z-index: 40; background: none; border-radius: 0; }
+.wonton-companion .wonton-trigger { display: flex; flex-direction: column; gap: 3px; width: 128px; text-align: center; }
+.wonton-companion .wonton-caption { background: #fffdf8; padding: 5px 12px; border-radius: 10px; }
+.wonton-companion .wonton-caption strong { font: 700 13px/1.2 Inter, sans-serif; }
+.wonton-companion .wonton-caption small { font-size: 11px; }
+.wonton-companion .wonton-options { position: absolute; bottom: calc(100% + 12px); right: 0; width: min(300px, calc(100vw - 40px)); box-sizing: border-box; padding: 20px; margin: 0; background: #fffdf8; border: 1px solid #d5dcd0; border-radius: 14px; }
+.wonton-companion.wonton-roaming .wonton-trigger { animation: wonton-stroll 3s ease-in-out; }
+@keyframes wonton-stroll { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-48px); } }
+@media (max-width:700px) { .student-course-home .wonton-companion { position: relative; right: auto; bottom: auto; justify-self: end; padding: 0 0 8px; } .wonton-companion .wonton-pet, .wonton-companion .wonton-trigger { width: 100px; } .wonton-companion .wonton-pet { height: 100px; } .wonton-companion .wonton-caption small { display: none; } }
+@media(prefers-reduced-motion: reduce) { .wonton-companion.wonton-roaming .wonton-trigger { animation: none; } }

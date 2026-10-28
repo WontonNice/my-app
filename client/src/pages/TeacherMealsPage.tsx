@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Plus, RefreshCw, Trash2 } from 'lucide-react';
-import { mealMoney, type MealOrder, type MealSession, type TeacherMeals } from '../../../server/src/shared/classroomMeals';
+import { mealMoney, mealRestaurants, type MealRestaurant, type MealOrder, type MealSession, type TeacherMeals } from '../../../server/src/shared/classroomMeals';
 import { CorporateDashboardShell } from '../components/CorporateDashboardShell';
 import { useStudentPortalAccess } from '../hooks/useStudentPortalAccess';
 import { createAuthHeaders, requestApi } from '../lib/api';
 import { teacherNavItems } from '../lib/teacherNavigation';
 import { signOutCurrentAccount } from '../lib/accountSwitching';
+import { MealImageField } from '../components/MealImageField';
+import { MealPhoto } from '../components/MealPhoto';
 import '../styles/classroom-meals.css';
 
 export function TeacherMealsPage() {
@@ -15,6 +17,8 @@ export function TeacherMealsPage() {
   const [selected, setSelected] = useState('');
   const [title, setTitle] = useState('');
   const [busy, setBusy] = useState(false);
+  const [imageBusy, setImageBusy] = useState(false);
+  const [restaurantId, setRestaurantId] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const createId = useRef<string | null>(null);
@@ -44,7 +48,7 @@ export function TeacherMealsPage() {
     finally { setBusy(false); }
   }
   async function save(open = draft?.open ?? false) {
-    if (!draft) return;
+    if (!draft || imageBusy) return;
     setBusy(true); setError(''); setMessage('');
     try {
       const next = await call<{ session: MealSession }>(`/sessions/${draft.id}`, 'PUT', { ...draft, open });
@@ -61,23 +65,51 @@ export function TeacherMealsPage() {
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'Could not update this request.'); }
     finally { setBusy(false); }
   }
+
   const orders = data?.orders.filter(order => order.status !== 'cancelled') ?? [];
   const totals = orders.reduce((sum, order) => sum + order.data.quote.totalCents, 0);
+  const restaurants = draft ? mealRestaurants(draft.menu) : [];
+  const restaurant = restaurants.find(entry => entry.id === restaurantId) ?? restaurants[0];
+  const disabled = busy || imageBusy;
+  const dirty = JSON.stringify(draft) !== JSON.stringify(data?.session ?? null);
+  const discard = () => !dirty || window.confirm('Discard your unsaved menu changes?');
   const setMenu = (changes: Partial<MealSession['menu']>) => setDraft(current => current && ({ ...current, menu: { ...current.menu, ...changes } }));
+  const changeRestaurant = (changes: Partial<MealRestaurant>) => setDraft(current => current && ({ ...current, menu: { ...current.menu, items: [], restaurant: '', restaurants: mealRestaurants(current.menu).map(entry => entry.id === restaurant?.id ? { ...entry, ...changes } : entry) } }));
+  function addRestaurant() {
+    const id = crypto.randomUUID();
+    setMenu({ restaurant: '', items: [], restaurants: [...restaurants, { id, name: '', url: 'https://www.ubereats.com/feed?diningMode=DELIVERY', image: '', rating: null, reviewCount: null, items: [] }] });
+    setRestaurantId(id);
+  }
   return <CorporateDashboardShell activeId="meals" profileName={studentName} profileRole="Teacher" navItems={teacherNavItems} onSignOut={() => void signOutCurrentAccount().then(() => window.location.assign('/'))}>
-    <div className="meals-page teacher-meals"><header className="meals-heading"><div><h1>Classroom meals</h1><p>Publish a menu, collect everyone’s choices, then place the order on Uber Eats.</p></div><button type="button" disabled={busy} onClick={() => void reload()}><RefreshCw size={16} /> Refresh saved menu & requests</button></header>
-      <p className="meals-notice">Enter menu prices from Uber Eats and your estimated tax and fees. Students see these as estimates.</p>
+    <div className="meals-page teacher-meals"><header className="meals-heading"><div><h1>Classroom meals</h1><p>Your restaurants, your menu. Collect everyone’s choices in one place.</p></div><button type="button" disabled={disabled} onClick={() => { if (discard()) void reload(); }}><RefreshCw size={16} /> Refresh saved menu & requests</button></header>
       {error && <p role="alert" className="meals-notice">{error} Refresh to recover the latest saved version.</p>}{message && <p role="status" className="meals-notice">{message}</p>}
-      <form className="meals-toolbar" onSubmit={event => { event.preventDefault(); void create(); }}><label>New meal session<input required maxLength={120} placeholder="Wednesday lunch" value={title} onChange={event => { setTitle(event.target.value); createId.current = null; }} /></label><button type="submit" disabled={busy || !title.trim()}><Plus size={16} /> Create session</button></form>
-      {data?.sessions.length ? <label className="meal-session-select">View session<select value={draft?.id ?? ''} disabled={busy} onChange={event => { setSelected(event.target.value); setMessage(''); }}>{data.sessions.map(session => <option key={session.id} value={session.id}>{session.title} · {session.open ? 'Open' : 'Closed'}</option>)}</select></label> : !busy && <p>No meal sessions yet. Create one to get started.</p>}
-      {draft && <><form className="meal-editor" onSubmit={event => { event.preventDefault(); void save(); }}><div className="meals-toolbar"><h2>Menu & pricing</h2><strong>{data?.session?.open ? 'Ordering open' : 'Ordering closed'}</strong></div><fieldset disabled={busy}><div className="meal-fields"><label>Session title<input required maxLength={120} value={draft.title} onChange={event => setDraft({ ...draft, title: event.target.value })} /></label><label>Restaurant<input maxLength={120} value={draft.menu.restaurant} onChange={event => setMenu({ restaurant: event.target.value })} /></label><label>Uber Eats restaurant link<input type="url" required value={draft.menu.restaurantUrl} onChange={event => setMenu({ restaurantUrl: event.target.value })} /></label><label>Estimated tax (%)<input type="number" min="0" max="25" step="0.001" required value={draft.menu.taxBasisPoints / 100} onChange={event => setMenu({ taxBasisPoints: Number(event.target.value) * 100 })} /></label><label>Estimated fees per student ($)<input type="number" min="0" max="100" step="0.01" required value={draft.menu.feeCents / 100} onChange={event => setMenu({ feeCents: Math.round(Number(event.target.value) * 100) })} /></label></div>
-        <p className="meal-fineprint">Divide shared delivery and service fees across students. Tax is calculated on the food subtotal. Saved requests keep the prices shown when submitted.</p>
-        {draft.menu.items.map((item, index) => { const change = (fields: Partial<typeof item>) => setMenu({ items: draft.menu.items.map(entry => entry.id === item.id ? { ...entry, ...fields } : entry) }); return <div className="meal-item-editor" key={item.id}><label>Item {index + 1}<input required maxLength={150} value={item.name} onChange={event => change({ name: event.target.value })} /></label><label>Price ($)<input required type="number" min="0" max="1000" step="0.01" value={item.priceCents / 100} onChange={event => change({ priceCents: Math.round(Number(event.target.value) * 100) })} /></label><label>Description<input maxLength={1000} value={item.description} onChange={event => change({ description: event.target.value })} /></label><label className="meal-checkbox"><input type="checkbox" checked={item.available} onChange={event => change({ available: event.target.checked })} /> Available</label><button type="button" aria-label={`Remove ${item.name || `item ${index + 1}`}`} onClick={() => setMenu({ items: draft.menu.items.filter(entry => entry.id !== item.id) })}><Trash2 size={17} /></button></div>; })}
-        <button type="button" disabled={draft.menu.items.length >= 100} onClick={() => setMenu({ items: [...draft.menu.items, { id: crypto.randomUUID(), name: '', description: '', priceCents: 0, available: true }] })}><Plus size={16} /> Add menu item</button>
-        <div className="meal-actions"><button className="meal-primary" type="submit">Save menu</button><button type="button" onClick={() => void save(!draft.open)}>{draft.open ? 'Save & close ordering' : 'Save & open ordering'}</button><a href={draft.menu.restaurantUrl} target="_blank" rel="noreferrer">Open Uber Eats</a></div>
+      <form className="meals-toolbar" onSubmit={event => { event.preventDefault(); if (discard()) void create(); }}><label>New meal session<input required maxLength={120} placeholder="Friday lunch" disabled={disabled} value={title} onChange={event => { setTitle(event.target.value); createId.current = null; }} /></label><button type="submit" disabled={disabled || !title.trim()}><Plus size={16} /> Create session</button></form>
+      {data?.sessions.length ? <label className="meal-session-select">View session<select value={draft?.id ?? ''} disabled={disabled} onChange={event => { if (discard()) { setSelected(event.target.value); setMessage(''); setRestaurantId(''); } }}>{data.sessions.map(session => <option key={session.id} value={session.id}>{session.title} · {session.open ? 'Open' : 'Closed'}</option>)}</select></label> : !busy && <p>No meal sessions yet. Create one to get started.</p>}
+      {draft && <><form className="meal-editor" onSubmit={event => { event.preventDefault(); void save(); }}><fieldset disabled={disabled}>
+        <div className="meal-session-settings"><label>Session title<input required maxLength={120} value={draft.title} onChange={event => setDraft({ ...draft, title: event.target.value })} /></label><label>Estimated tax (%)<input type="number" min="0" max="25" step="0.001" required value={draft.menu.taxBasisPoints / 100} onChange={event => setMenu({ taxBasisPoints: Number(event.target.value) * 100 })} /></label><label>Estimated fees per student ($)<input type="number" min="0" max="100" step="0.01" required value={draft.menu.feeCents / 100} onChange={event => setMenu({ feeCents: Math.round(Number(event.target.value) * 100) })} /></label></div>
+        <p className="meal-fineprint">Tax and fees apply to each student’s whole selection. All totals are estimates; enter the amounts you expect at checkout.</p>
+        <div className="meals-toolbar"><h2>Restaurants ({restaurants.length})</h2><button type="button" disabled={restaurants.length >= 20} onClick={addRestaurant}><Plus size={16} /> Add restaurant</button></div>
+        <div className="meal-restaurant-picker" aria-label="Choose restaurant to edit">{restaurants.map(entry => <button key={entry.id} type="button" className={entry.id === restaurant?.id ? 'selected' : ''} aria-pressed={entry.id === restaurant?.id} onClick={() => setRestaurantId(entry.id)}><MealPhoto image={entry.image} name={entry.name || 'New restaurant'} /><span><strong>{entry.name || 'New restaurant'}</strong><small>{entry.items.length} menu items</small></span></button>)}</div>
+        {!restaurant && <div className="meals-empty"><h3>Build your restaurant gallery</h3><p>Add a restaurant, paste a cover photo, then fill its menu.</p></div>}
+        {restaurant && <section className="meal-restaurant-editor" aria-label="Restaurant editor" key={restaurant.id}>
+          <div className="meals-toolbar"><h2>{restaurant.name || 'New restaurant'}</h2><button type="button" onClick={() => { if (window.confirm('Remove this restaurant and its menu from the draft? Saved requests will stay unchanged.')) { setMenu({ restaurant: '', items: [], restaurants: restaurants.filter(entry => entry.id !== restaurant.id) }); setRestaurantId(''); } }}><Trash2 size={16} /> Remove restaurant</button></div>
+          <div className="meal-restaurant-fields"><MealImageField label="Restaurant cover image" value={restaurant.image} onChange={image => changeRestaurant({ image })} onBusyChange={setImageBusy} /><div className="meal-fields">
+            <label>Restaurant name<input required maxLength={120} value={restaurant.name} placeholder="Restaurant name" onChange={event => changeRestaurant({ name: event.target.value })} /></label>
+            <label>Uber Eats link<input type="url" required value={restaurant.url} onChange={event => changeRestaurant({ url: event.target.value })} /></label>
+            <label>Star rating<input type="number" min="0" max="5" step="0.1" placeholder="e.g. 4.7" value={restaurant.rating ?? ''} onChange={event => changeRestaurant({ rating: event.target.value === '' ? null : Number(event.target.value) })} /></label>
+            <label>Review count<input type="number" min="0" max="10000000" step="1" placeholder="e.g. 320" value={restaurant.reviewCount ?? ''} onChange={event => changeRestaurant({ reviewCount: event.target.value === '' ? null : Number(event.target.value) })} /></label>
+          </div></div>
+          <div className="meals-toolbar"><h2>Menu items</h2><span>{restaurant.items.length} items</span></div>
+          {restaurant.items.map((item, index) => { const change = (fields: Partial<typeof item>) => changeRestaurant({ items: restaurant.items.map(entry => entry.id === item.id ? { ...entry, ...fields } : entry) }); return <div className="meal-item-editor" key={item.id}>
+            <MealImageField label={'Item ' + (index + 1) + ' image'} value={item.image ?? ''} onChange={image => change({ image })} onBusyChange={setImageBusy} />
+            <div className="meal-item-fields"><label>Item name<input required maxLength={150} value={item.name} onChange={event => change({ name: event.target.value })} /></label><label>Price ($)<input required type="number" min="0" max="1000" step="0.01" value={item.priceCents / 100} onChange={event => change({ priceCents: Math.round(Number(event.target.value) * 100) })} /></label><label className="meal-description-field">Description<input maxLength={1000} value={item.description} onChange={event => change({ description: event.target.value })} /></label><label className="meal-checkbox"><input type="checkbox" checked={item.available} onChange={event => change({ available: event.target.checked })} /> Available</label><label className="meal-checkbox"><input type="checkbox" checked={item.buyOneGetOne ?? false} onChange={event => change({ buyOneGetOne: event.target.checked })} /> Buy 1, get 1 free tag</label><small className="meal-description-field">Offer label only. Quantities and prices are unchanged.</small></div>
+            <button type="button" aria-label={'Remove ' + (item.name || 'item ' + (index + 1))} onClick={() => changeRestaurant({ items: restaurant.items.filter(entry => entry.id !== item.id) })}><Trash2 size={17} /></button>
+          </div>; })}
+          <button type="button" disabled={restaurants.reduce((sum, entry) => sum + entry.items.length, 0) >= 100} onClick={() => changeRestaurant({ items: [...restaurant.items, { id: crypto.randomUUID(), name: '', description: '', priceCents: 0, available: true, image: '', buyOneGetOne: false }] })}><Plus size={16} /> Add menu item</button>
+        </section>}
+        <div className="meal-actions meal-publish"><span role="status">{dirty ? 'Unsaved changes' : 'All changes saved'} · {data?.session?.open ? 'Ordering open' : 'Ordering closed'}</span><button className="meal-primary" type="submit">{busy ? 'Saving…' : 'Save menu'}</button><button type="button" onClick={event => { if (event.currentTarget.form?.reportValidity()) void save(!draft.open); }}>{draft.open ? 'Save & close ordering' : 'Save & open ordering'}</button></div>
       </fieldset></form>
-      <section className="meal-requests"><div className="meals-toolbar"><h2>Student requests ({orders.length})</h2><strong>{mealMoney(totals)} estimated combined total</strong></div><p>Close ordering before you place the order on your phone. Refresh to collect the latest requests.</p>{!orders.length && <p>No requests for this session yet.</p>}{orders.map(order => <article className="meal-order" key={order.student_id}><div className="meals-toolbar"><h3>{order.data.studentName}</h3><strong>{mealMoney(order.data.quote.totalCents)} estimated</strong></div><ul>{order.data.quote.items.map(item => <li key={item.id}>{item.quantity} × {item.name} — {mealMoney(item.totalCents)}</li>)}</ul>{order.data.notes && <p><strong>Note:</strong> {order.data.notes}</p>}<p className="meal-fineprint">Food {mealMoney(order.data.quote.subtotalCents)} · Tax {mealMoney(order.data.quote.taxCents)} · Fees {mealMoney(order.data.quote.feeCents)} · Updated {new Date(order.updated_at).toLocaleString()}</p><button type="button" disabled={busy || data?.session?.open} onClick={() => void mark(order)}>{order.status === 'ordered' ? 'Ordered · Undo' : 'Mark ordered on Uber Eats'}</button></article>)}</section></>}
+      <section className="meal-requests"><div className="meals-toolbar"><h2>Student requests ({orders.length})</h2><strong>{mealMoney(totals)} estimated combined total</strong></div><p>Close ordering before you place the order on your phone. Refresh to collect the latest requests.</p>{!orders.length && <p>No requests for this session yet.</p>}{orders.map(order => <article className="meal-order" key={order.student_id}><div className="meals-toolbar"><h3>{order.data.studentName}</h3><strong>{mealMoney(order.data.quote.totalCents)} estimated</strong></div><ul>{order.data.quote.items.map(item => <li key={item.id}>{item.quantity} × {item.name} — {mealMoney(item.totalCents)}{item.restaurant && <span> · {item.restaurant}</span>}{item.buyOneGetOne && <span className="meal-offer">Buy 1, get 1 free</span>}</li>)}</ul>{order.data.notes && <p><strong>Note:</strong> {order.data.notes}</p>}<p className="meal-fineprint">Food {mealMoney(order.data.quote.subtotalCents)} · Tax {mealMoney(order.data.quote.taxCents)} · Fees {mealMoney(order.data.quote.feeCents)} · Updated {new Date(order.updated_at).toLocaleString()}</p><button type="button" disabled={disabled || data?.session?.open} onClick={() => void mark(order)}>{order.status === 'ordered' ? 'Ordered · Undo' : 'Mark ordered on Uber Eats'}</button></article>)}</section></>}
     </div>
   </CorporateDashboardShell>;
 }
-

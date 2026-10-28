@@ -2,7 +2,7 @@ import { Router, type ErrorRequestHandler } from 'express';
 import { randomUUID } from 'node:crypto';
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from '../lib/auth';
 import { supabase } from '../lib/supabase';
-import { emptyMealMenu, quoteMeal, validateMealMenu, type MealSession } from '../shared/classroomMeals';
+import { emptyMealMenu, mealRestaurants, quoteMeal, validateMealMenu, type MealSession } from '../shared/classroomMeals';
 
 export const classroomMealsRouter = Router();
 const fail = (message: string, status = 400) => Object.assign(new Error(message), { status });
@@ -54,7 +54,7 @@ classroomMealsRouter.put('/teacher/sessions/:id', async (request, response) => {
   const { revision, title, open, menu: input } = request.body ?? {};
   if (!uuid.test(request.params.id) || !Number.isSafeInteger(revision) || revision < 1 || typeof title !== 'string' || !title.trim() || title.length > 120 || typeof open !== 'boolean') throw fail('Reload and enter valid meal session details.');
   const menu = validateMealMenu(input);
-  if (open && (!menu.restaurant || !menu.items.some(item => item.available))) throw fail('Add a restaurant and at least one available menu item before opening orders.');
+  if (open && !mealRestaurants(menu).some(restaurant => restaurant.name && restaurant.items.some(item => item.available))) throw fail('Add a restaurant and at least one available menu item before opening orders.');
   const saved = await supabase.from('classroom_meal_sessions').update({ title: title.trim(), menu, open, revision: revision + 1, updated_at: new Date().toISOString() }).eq('id', request.params.id).eq('class_id', 'shsat').eq('revision', revision).select(columns).maybeSingle();
   check(saved.error); if (!saved.data) throw fail('This menu changed in another window. Reload before saving.', 409);
   response.json({ session: saved.data });

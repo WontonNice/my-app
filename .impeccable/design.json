@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-28T02:46:27.817Z",
+  "generatedAt": "2026-10-28T11:50:01.964Z",
   "title": "Design System: Nathan Tutors — Learning Room and classroom meals",
   "extensions": {
     "colorMeta": {
@@ -228,6 +228,111 @@
           "oklch(95.0% 0.0000 89.9)"
         ],
         "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "storefront-ink": {
+        "role": "neutral",
+        "displayName": "Storefront ink",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95% 0 0)"
+        ],
+        "tonalRampSource": "Synthesized neutral panel metadata; not source CSS or approved additional tokens."
+      },
+      "storefront-primary": {
+        "role": "primary",
+        "displayName": "Storefront primary",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95% 0 0)"
+        ],
+        "tonalRampSource": "Synthesized neutral panel metadata; not source CSS or approved additional tokens."
+      },
+      "storefront-primary-hover": {
+        "role": "primary",
+        "displayName": "Storefront primary hover",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95% 0 0)"
+        ],
+        "tonalRampSource": "Synthesized neutral panel metadata; not source CSS or approved additional tokens."
+      },
+      "storefront-muted": {
+        "role": "neutral",
+        "displayName": "Storefront muted",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95% 0 0)"
+        ],
+        "tonalRampSource": "Synthesized neutral panel metadata; not source CSS or approved additional tokens."
+      },
+      "storefront-border": {
+        "role": "neutral",
+        "displayName": "Storefront border",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95% 0 0)"
+        ],
+        "tonalRampSource": "Synthesized neutral panel metadata; not source CSS or approved additional tokens."
+      },
+      "storefront-search": {
+        "role": "neutral",
+        "displayName": "Storefront search",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.4% 0 0)",
+          "oklch(37.9% 0 0)",
+          "oklch(49.3% 0 0)",
+          "oklch(60.7% 0 0)",
+          "oklch(72.1% 0 0)",
+          "oklch(83.6% 0 0)",
+          "oklch(95% 0 0)"
+        ],
+        "tonalRampSource": "Synthesized neutral panel metadata; not source CSS or approved additional tokens."
+      },
+      "meal-offer": {
+        "role": "secondary",
+        "displayName": "Meal offer",
+        "tonalRamp": [
+          "oklch(15% 0.04 29)",
+          "oklch(26.4% 0.08 29)",
+          "oklch(37.9% 0.14 29)",
+          "oklch(49.3% 0.20 29)",
+          "oklch(60.7% 0.20 29)",
+          "oklch(72.1% 0.14 29)",
+          "oklch(83.6% 0.08 29)",
+          "oklch(95% 0.02 29)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
       }
     },
     "typographyMeta": {
@@ -237,11 +342,19 @@
       },
       "meal-headline": {
         "displayName": "Meal headline",
-        "purpose": "Student and teacher meal page titles."
+        "purpose": "Teacher meal page title; student storefront has a scoped sans-serif role."
       },
       "meal-title": {
         "displayName": "Meal section title",
-        "purpose": "Shared menu, selection, and request headings."
+        "purpose": "Teacher meal section and request headings."
+      },
+      "storefront-headline": {
+        "displayName": "Storefront headline",
+        "purpose": "Bold student meal page title following the supplied marketplace references."
+      },
+      "storefront-title": {
+        "displayName": "Storefront section title",
+        "purpose": "Student gallery and menu hierarchy; restaurant and summary sizes are locally specialized."
       }
     },
     "shadows": [
@@ -249,13 +362,33 @@
         "name": "student-active-strip",
         "value": "inset 4px 0 #2e7257",
         "purpose": "Existing active navigation marker, not surface elevation."
+      },
+      {
+        "name": "photo-quantity-controls",
+        "value": "0 3px 8px #0002",
+        "purpose": "White quantity controls lift above item photos."
       }
     ],
     "motion": [
       {
         "name": "wonton-idle",
-        "value": "wonton-wave 5s ease-in-out infinite",
-        "purpose": "0% and 100% rotate(-2deg) translateY(0); 50% rotate(2deg) translateY(-3px). Disabled for prefers-reduced-motion: reduce."
+        "value": "wonton-idle 7s steps(1) infinite",
+        "purpose": "Eight-cell sheet supplies idle, blink, head-tilt, and bounce frames. Disabled by pause and reduced motion."
+      },
+      {
+        "name": "wonton-wave",
+        "value": "wonton-greeting .6s steps(1) infinite",
+        "purpose": "Alternates wave frames on hover, focus, or open menu."
+      },
+      {
+        "name": "wonton-walk",
+        "value": "wonton-step .5s steps(1) infinite",
+        "purpose": "Alternates two walking frames during the periodic stroll."
+      },
+      {
+        "name": "wonton-stroll",
+        "value": "wonton-stroll 3s ease-in-out",
+        "purpose": "Short 48px horizontal out-and-back movement, scheduled every 18 seconds while closed and unpaused. Disabled for reduced motion."
       }
     ],
     "breakpoints": [
@@ -264,19 +397,27 @@
         "value": "1100px"
       },
       {
-        "name": "meal-narrow-summary",
-        "value": "1000px"
-      },
-      {
         "name": "overview-stack",
         "value": "800px"
       },
       {
-        "name": "meal-stack",
+        "name": "results-filter-search-full-row",
+        "value": "540px"
+      },
+      {
+        "name": "storefront-two-columns-and-narrow-summary",
+        "value": "1100px"
+      },
+      {
+        "name": "storefront-summary-and-restaurant-editor-stack",
+        "value": "800px"
+      },
+      {
+        "name": "wonton-normal-flow-dock",
         "value": "700px"
       },
       {
-        "name": "results-filter-search-full-row",
+        "name": "restaurant-card-and-item-editor-stack",
         "value": "540px"
       }
     ]
@@ -286,8 +427,8 @@
       "name": "Meal primary button",
       "kind": "button",
       "refersTo": "meal-button-primary",
-      "description": "Shared meal submission and save action. Typeface inherits its host shell in the application.",
-      "html": "<button class=\"ds-button ds-primary\">Send to teacher</button>",
+      "description": "Teacher meal save action; student submission uses the separate black storefront variant.",
+      "html": "<button class=\"ds-button ds-primary\">Save menu</button>",
       "css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:9px 14px;border:1px solid #b8c6b9;border-radius:8px;background:#fffefa;color:#294c35;cursor:pointer;font:14px Inter,ui-sans-serif,system-ui,sans-serif}.ds-button:hover:not(:disabled){background:#e9eee5}.ds-button:disabled{opacity:.5;cursor:not-allowed}.ds-button:focus-visible{outline:3px solid #6c9774;outline-offset:3px}.ds-primary{background:#245239;color:#fff;border-color:#245239}.ds-primary:hover:not(:disabled){background:#183d29}"
     },
     {
@@ -310,9 +451,9 @@
       "name": "Meal summary",
       "kind": "card",
       "refersTo": "meal-summary",
-      "description": "Flat selection summary, showing the estimated nature of a total.",
+      "description": "White student selection summary with teacher-estimated total.",
       "html": "<aside class=\"ds-summary\"><h2>Your selection</h2><p>1 × Chicken rice bowl</p><div class=\"ds-total\"><span>Estimated total</span><strong>$14.86</strong></div></aside>",
-      "css": ".ds-summary{background:#fffefa;border:1px solid #d5dcd0;padding:24px;border-radius:14px;color:#24392e;font:14px/1.6 Inter,ui-sans-serif,system-ui,sans-serif}.ds-summary h2{font:500 25px/1.25 Georgia,serif;margin:0 0 12px}.ds-total{display:flex;justify-content:space-between;gap:14px;border-top:1px solid #d5dcd0;padding-top:16px;margin-top:18px;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}"
+      "css": ".ds-summary{background:#fff;border:1px solid #e1e1e1;padding:22px;border-radius:14px;color:#171717;font:14px/1.6 Inter,ui-sans-serif,system-ui,sans-serif}.ds-summary h2{font:700 20px/1.25 Inter,sans-serif;margin:0 0 12px}.ds-total{display:flex;justify-content:space-between;gap:14px;border-top:1px solid #d5dcd0;padding-top:16px;margin-top:18px;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}"
     },
     {
       "name": "Student navigation",
@@ -327,15 +468,31 @@
       "description": "Sentence-case status message used on student and teacher meal pages.",
       "html": "<p class=\"ds-notice\" role=\"status\">Your teacher has your meal request. You can update it while ordering is open.</p>",
       "css": ".ds-notice{padding:14px 18px;background:#e9eee5;border-radius:8px;color:#24392e;font:14px/1.6 Inter,ui-sans-serif,system-ui,sans-serif}"
+    },
+    {
+      "name": "Storefront primary button",
+      "kind": "button",
+      "refersTo": "storefront-button-primary",
+      "description": "Student meal submission action.",
+      "html": "<button class=\"ds-button ds-primary\">Send to teacher</button>",
+      "css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:9px 14px;border:1px solid #b8c6b9;border-radius:8px;background:#fffefa;color:#294c35;cursor:pointer;font:14px Inter,ui-sans-serif,system-ui,sans-serif}.ds-button:hover:not(:disabled){background:#e9eee5}.ds-button:disabled{opacity:.5;cursor:not-allowed}.ds-button:focus-visible{outline:3px solid #6c9774;outline-offset:3px}.ds-primary{background:#111;color:#fff;border-color:#111}.ds-primary:hover:not(:disabled){background:#333}"
+    },
+    {
+      "name": "Meal offer label",
+      "kind": "chip",
+      "refersTo": "meal-offer",
+      "description": "Display-only offer tag; never changes quantities or prices.",
+      "html": "<span class=\"ds-offer\">Buy 1, get 1 free</span>",
+      "css": ".ds-offer{display:inline-block;background:#c90000;color:#fff;font:700 11px/1.5 Inter,sans-serif;padding:3px 6px;border-radius:3px}"
     }
   ],
   "narrative": {
     "northStar": "The Learning Room",
-    "overview": "This name comes from the existing student navigation, not a new brand workshop. Warm paper, dark green navigation, serif headings, compact sans-serif controls, and quiet dividers define the sampled student experience. This record describes the built overview, results, and shared meal controls; it does not establish a global design system for all Nathan Tutors products.\n\nThe teacher meal page keeps the incumbent navy dashboard shell and its cooler canvas. Authentication keeps its separate Instrument Serif/DM Sans scenery composition. Neither is migrated to the student shell by this document. Product-wide audience priorities and brand commitments beyond the Nathan Tutors name remain undecided in PRODUCT.md.",
+    "overview": "This name comes from the existing student navigation, not a new brand workshop. Warm paper, dark green navigation, serif headings, compact sans-serif controls, and quiet dividers define the sampled student experience. This record describes the built overview, results, classroom storefront, and shared meal controls; it does not establish a global design system for all Nathan Tutors products.\n\nThe teacher meal page keeps the incumbent navy dashboard shell and its cooler canvas. Authentication keeps its separate Instrument Serif/DM Sans scenery composition. Neither is migrated to the student shell by this document. Product-wide audience priorities and brand commitments beyond the Nathan Tutors name remain undecided in PRODUCT.md.\n\nThe classroom storefront follows the user’s restaurant-card and featured-item references: photo-led browsing, bold sans-serif headings, compact rating metadata, and red offer labels. Wonton is a transparent full-body sprite companion derived from the original robot reference, replacing the earlier cropped-image treatment. These are scoped changes, not a new identity for the whole portal.",
     "keyCharacteristics": [
       "Green navigation and paper surfaces in the student portal.",
-      "Serif page and section headings beside compact sans-serif controls.",
-      "Flat, divided lists and gently rounded functional surfaces.",
+      "Serif overview and teacher headings; bold sans-serif storefront headings beside compact controls.",
+      "Flat functional surfaces, photo-led restaurant and item grids, and divided teacher request rows.",
       "Shared meal controls inside each role's existing shell."
     ],
     "rules": [
@@ -346,15 +503,16 @@
       },
       {
         "name": "The Heading Role Rule",
-        "body": "Preserve the serif-heading/sans-serif-control distinction when extending these surfaces. The recorded Georgia use is an incumbent compatibility fact, not approval to introduce system display faces on unrelated new surfaces.",
+        "body": "Keep the overview and teacher serif headings scoped to those surfaces; use the recorded bold sans-serif hierarchy for the photo-led storefront. Neither role is a product-wide display-font mandate.",
         "section": "typography"
       }
     ],
     "dos": [
       "**Do** preserve each role's incumbent shell and scoped visual vocabulary.",
       "**Do** keep meal estimates, saved requests, and primary actions legible in their existing hierarchy.",
-      "**Do** use the exact supplied Wonton bitmap and respect reduced-motion preferences.",
-      "**Do** consult the surface contract for overview composition and raster provenance."
+      "**Do** preserve Wonton’s full-body black-and-white robot identity, use the recorded sprite asset, and respect pause and reduced-motion preferences.",
+      "**Do** consult the overview and restaurant-gallery surface contracts for scoped composition and raster provenance.",
+      "**Do** keep offer labels display-only and ratings tied to teacher-entered values."
     ],
     "donts": [
       "**Don't** apply these sampled tokens as a product-wide redesign mandate.",

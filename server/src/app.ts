@@ -59,6 +59,8 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
         next();
     });
     app.use(cors(createCorsOptions(allowedOrigins)));
+    // Teacher menus contain resized raster images. Keep the larger limit scoped to this write route.
+    app.use('/api/classroom-meals/teacher/sessions', express.json({ limit: '10mb' }));
     app.use(express.json({ limit: "1mb" }));
 
     app.use("/health", healthRouter);
