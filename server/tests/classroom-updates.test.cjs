@@ -49,6 +49,13 @@ test('meal routes isolate identities and recompute prices before the locked data
  tables.classroom_meal_sessions[0].revision=1;tables.classroom_meal_sessions[0].open=false;assert.equal((await call('/meals/student/orders','student','POST',body)).status,409);
 });
 const gallery = () => ({...menu,restaurant:'',items:[],restaurants:[{id:'cafe',name:'Lunch café',url:menu.restaurantUrl,image:'',rating:4.6,reviewCount:322,items:[{...menu.items[0],buyOneGetOne:true,image:''}]},{id:'bakery',name:'Bakery',url:menu.restaurantUrl,image:'',rating:null,reviewCount:null,items:[{id:'bread',name:'Bread',description:'',priceCents:400,available:true}]}]});
+test('manual item totals default to N/A, persist in quotes, and reject invalid money',()=>{
+ const input=gallery();let valid=validateMealMenu(input);assert.equal(valid.restaurants[0].items[0].estimatedTotalCents,null);
+ input.restaurants[0].items[0].estimatedTotalCents=1599;valid=validateMealMenu(input);
+ const quote=quoteMeal(valid,[{id:'bowl',quantity:2,estimatedTotalCents:1}]);assert.equal(quote.items[0].estimatedTotalCents,1599);assert.equal(quote.subtotalCents,2500);
+ input.restaurants[0].items[0].estimatedTotalCents=0;assert.equal(validateMealMenu(input).restaurants[0].items[0].estimatedTotalCents,0);
+ for(const value of [-1,1.5,NaN,'1599',1000001]){input.restaurants[0].items[0].estimatedTotalCents=value;assert.throws(()=>validateMealMenu(input));}
+});
 test('restaurant galleries preserve ratings and label-only offers without discounting quantities',()=>{
  const valid=validateMealMenu(gallery());const quote=quoteMeal(valid,[{id:'bowl',quantity:2},{id:'bread',quantity:1}]);
  assert.equal(quote.subtotalCents,2900);assert.equal(quote.items[0].quantity,2);assert.equal(quote.items[0].buyOneGetOne,true);assert.equal(quote.items[0].restaurant,'Lunch café');assert.equal(quote.items[1].restaurant,'Bakery');assert.equal(valid.restaurants[0].reviewCount,322);

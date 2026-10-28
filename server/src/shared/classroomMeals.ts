@@ -1,8 +1,8 @@
-export type MealItem = { id: string; name: string; description: string; priceCents: number; available: boolean; image?: string; buyOneGetOne?: boolean };
+export type MealItem = { id: string; name: string; description: string; priceCents: number; available: boolean; image?: string; buyOneGetOne?: boolean; estimatedTotalCents?: number | null };
 export type MealRestaurant = { id: string; name: string; url: string; image: string; rating: number | null; reviewCount: number | null; items: MealItem[] };
 export type MealMenu = { restaurant: string; restaurantUrl: string; taxBasisPoints: number; feeCents: number; items: MealItem[]; restaurants?: MealRestaurant[] };
 export type MealSession = { id: string; title: string; menu: MealMenu; open: boolean; revision: number; created_at: string };
-export type MealQuote = { items: { id: string; name: string; quantity: number; unitCents: number; totalCents: number; restaurant?: string; buyOneGetOne?: boolean }[]; subtotalCents: number; taxCents: number; feeCents: number; totalCents: number; currency: 'USD'; pricing: 'teacher_estimate' };
+export type MealQuote = { items: { id: string; name: string; quantity: number; unitCents: number; totalCents: number; restaurant?: string; buyOneGetOne?: boolean; estimatedTotalCents?: number | null }[]; subtotalCents: number; taxCents: number; feeCents: number; totalCents: number; currency: 'USD'; pricing: 'teacher_estimate' };
 export type MealOrder = { session_id: string; student_id: string; revision: number; status: 'submitted' | 'ordered' | 'cancelled'; updated_at: string; data: { studentName: string; notes: string; quote: MealQuote; menuRevision: number } };
 export type StudentMeals = { session: MealSession | null; order: MealOrder | null };
 export type TeacherMeals = { sessions: MealSession[]; session: MealSession | null; orders: MealOrder[] };
@@ -33,7 +33,7 @@ export function validateMealMenu(input: unknown): MealMenu {
   const items = menu.items.map(item => {
     if (!item || typeof item.id !== 'string' || !/^[a-zA-Z0-9-]{1,80}$/.test(item.id) || typeof item.name !== 'string' || !item.name.trim() || item.name.length > 150 || typeof item.description !== 'string' || item.description.length > 1000 || typeof item.available !== 'boolean') return fail('Each item needs a name, a valid ID, and a description under 1,000 characters.');
     if (item.buyOneGetOne !== undefined && typeof item.buyOneGetOne !== 'boolean') return fail('Choose a valid offer tag.');
-    return { id: item.id, name: item.name.trim(), description: item.description.trim(), available: item.available, priceCents: integer(item.priceCents, 100000, 'item price'), image: mealImage(item.image), buyOneGetOne: item.buyOneGetOne ?? false };
+    return { id: item.id, name: item.name.trim(), description: item.description.trim(), available: item.available, priceCents: integer(item.priceCents, 100000, 'item price'), image: mealImage(item.image), buyOneGetOne: item.buyOneGetOne ?? false, estimatedTotalCents: item.estimatedTotalCents == null ? null : integer(item.estimatedTotalCents, 1000000, 'estimated item total up to $10,000') };
   });
   if (new Set(items.map(item => item.id)).size !== items.length) fail('Menu item IDs must be unique.');
   if (typeof menu.taxBasisPoints !== 'number' || !Number.isFinite(menu.taxBasisPoints) || menu.taxBasisPoints < 0 || menu.taxBasisPoints > 2500) fail('Enter a tax rate from 0% to 25%.');
@@ -63,7 +63,7 @@ export function quoteMeal(menu: MealMenu, selections: unknown): MealQuote {
     seen.add(item.id);
     const quantity = integer(selection.quantity, 10, 'quantity from 1 to 10');
     if (!quantity) return fail('Quantity must be at least 1.');
-    return { id: item.id, name: item.name, quantity, unitCents: item.priceCents, totalCents: item.priceCents * quantity, restaurant: restaurant?.name, buyOneGetOne: item.buyOneGetOne ?? false };
+    return { id: item.id, name: item.name, quantity, unitCents: item.priceCents, totalCents: item.priceCents * quantity, restaurant: restaurant?.name, buyOneGetOne: item.buyOneGetOne ?? false, estimatedTotalCents: item.estimatedTotalCents ?? null };
   });
   const subtotalCents = items.reduce((sum, item) => sum + item.totalCents, 0);
   const taxCents = Math.round(subtotalCents * menu.taxBasisPoints / 10000), feeCents = menu.feeCents;

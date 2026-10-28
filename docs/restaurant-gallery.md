@@ -8,6 +8,8 @@ Open **Teacher → Classroom meals**. Create or select a session, add a restaura
 
 When no session exists, the page opens a local first-restaurant draft immediately. The first Save menu creates the closed session and saves its restaurant details; it does not require a separate Create session step. Browser verification used the preview harness's `--empty-meals` option and confirmed the first save survives reload.
 
+Each item also has an optional manually entered estimated total after taxes and fees. Blank values display N/A; clearing the field restores N/A. This per-item amount is separate from the calculated cart estimate and is copied into saved request items from the server menu. Browser checks verified entering $15.99, save/reload, student display, and clearing; validation tests cover missing, zero, invalid and forged amounts.
+
 The user explicitly selected display-only promotion tags. A tagged item does not receive a discount, multiply quantities or add a free item. Student and teacher views state that quantities/prices are unchanged. Submitted quotes retain restaurant names and promotion labels with the saved prices; subsequent menu changes do not rewrite historical requests.
 
 ## Data and limits
