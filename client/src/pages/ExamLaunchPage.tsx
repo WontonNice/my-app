@@ -14,7 +14,7 @@ import {
   getNextExamSubject,
   getOpenExamSubject,
   getStoredStartingSubject,
-  isExamResultCompleteForQuestionCount,
+  isExamResultCompleteForContent,
   isExamSessionCompleteForContent,
   loadLocalExamSession,
 } from "../lib/examSessionProgress";
@@ -108,10 +108,9 @@ export function ExamLaunchPage() {
           };
         }
         const currentCompletedSections = getCurrentCompletedSections(examContent, progress).filter(section => !nextAssessment.reentry?.remainingSections.includes(section) && (!nextAssessment.canEditSubmittedSections || !sectionAccess[section]));
-        const currentQuestionCount = nextAssessment.questions.length;
         const complete =
           isExamSessionCompleteForContent(examContent, progress) ||
-          isExamResultCompleteForQuestionCount(savedResult, currentQuestionCount);
+          isExamResultCompleteForContent(savedResult, examContent);
         setIsComplete(complete);
         setHasSavedProgress(
           Boolean(progress && (Object.keys(progress.answers).length > 0 || currentCompletedSections.length > 0)),
@@ -148,10 +147,14 @@ export function ExamLaunchPage() {
     }
 
     const launchName = typedName.trim() || studentName;
-    window.sessionStorage.setItem(`exam-student-name:${assessment.id}`, launchName);
-    window.sessionStorage.setItem(`exam-start-subject:${assessment.id}`, startingSubject);
+    try {
+      window.sessionStorage.setItem(`exam-student-name:${assessment.id}`, launchName);
+      window.sessionStorage.setItem(`exam-start-subject:${assessment.id}`, startingSubject);
+    } catch { /* The chosen section also travels in the URL. */ }
     if (!assessment.reentry && (!hasSavedProgress || (isComplete && !assessment.canEditSubmittedSections))) resetExamTimer(assessment.id);
-    window.location.assign(`/exam/${assessment.id}/session${window.location.search}`);
+    const params = new URLSearchParams(window.location.search);
+    params.set("subject", startingSubject);
+    window.location.assign(`/exam/${assessment.id}/session?${params}`);
   }
 
   if (isCheckingSession) {

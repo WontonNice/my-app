@@ -6,8 +6,10 @@ const storagePrefix = "nathan-tutors:exam-session-progress:v1";
 export type ExamSection = "english" | "math";
 
 export function getStoredStartingSubject(assessmentId: string): ExamSection {
-  const storedSubject = window.sessionStorage.getItem(`exam-start-subject:${assessmentId}`);
-  return storedSubject === "math" ? "math" : "english";
+  const requested = new URLSearchParams(window.location.search).get("subject");
+  if (requested === "english" || requested === "math") return requested;
+  try { return window.sessionStorage.getItem(`exam-start-subject:${assessmentId}`) === "math" ? "math" : "english"; }
+  catch { return "english"; }
 }
 
 function storageKey(userId: string, assessmentId: string) {
@@ -45,12 +47,13 @@ export function saveLocalExamSession(
     ...(status === "submitted" ? { submittedAt: savedAt } : {}),
     updatedAt: savedAt,
   };
-  window.localStorage.setItem(storageKey(userId, assessmentId), JSON.stringify(progress));
+  try { window.localStorage.setItem(storageKey(userId, assessmentId), JSON.stringify(progress)); }
+  catch { /* Cloud autosave remains available when device storage is full or blocked. */ }
   return progress;
 }
 
 export function clearLocalExamSession(userId: string, assessmentId: string) {
-  window.localStorage.removeItem(storageKey(userId, assessmentId));
+  try { window.localStorage.removeItem(storageKey(userId, assessmentId)); } catch { /* Device storage is optional. */ }
 }
 
 function hasSavedAnswer(answers: Record<string, unknown>, questionId: string) {
@@ -81,9 +84,16 @@ export function getCurrentCompletedSections(
   if (!progress) return [];
   const questionIds = getExamSectionQuestionIds(examContent);
 
-  return progress.completedSections.filter((section) =>
+  return (progress.completedSections ?? []).filter((section) => (section === "english" || section === "math") &&
     questionIds[section].every((questionId) => hasSavedAnswer(progress.answers, questionId)),
   );
+}
+
+/** Counts alone cannot detect a replaced question or a newly published section. */
+export function isExamResultCompleteForContent(result: ExamResult | null | undefined, content: ExamContent) {
+  return Boolean(result?.completionStatus === "complete" && isExamSessionCompleteForContent(content, {
+    answers: result.answers ?? {}, completedSections: result.completedSections ?? ["english", "math"], status: "submitted", updatedAt: result.completedAt,
+  }));
 }
 
 export function isExamSessionCompleteForContent(
@@ -92,7 +102,9 @@ export function isExamSessionCompleteForContent(
 ) {
   if (progress?.status !== "submitted") return false;
   const completedSections = getCurrentCompletedSections(examContent, progress);
-  return completedSections.includes("english") && completedSections.includes("math");
+  const ids = getExamSectionQuestionIds(examContent);
+  const sections = (["english", "math"] as const).filter(section => ids[section].length > 0);
+  return sections.length > 0 && sections.every(section => completedSections.includes(section));
 }
 
 export function getNextExamSubject(defaultSubject: ExamSection, completedSections: ExamSection[]): ExamSection {

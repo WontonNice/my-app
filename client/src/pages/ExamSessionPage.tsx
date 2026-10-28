@@ -91,7 +91,7 @@ import {
   getNextExamSubject,
   getOpenExamSubject,
   getStoredStartingSubject,
-  isExamResultCompleteForQuestionCount,
+  isExamResultCompleteForContent,
   isExamSessionCompleteForContent,
   loadLocalExamSession,
   saveLocalExamSession,
@@ -1196,7 +1196,8 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
       const previewContext = getStudentPreviewContext();
       const fallbackName = previewContext.studentName || getDisplayName(data.session.user);
       const storedStartingSubject = getStoredStartingSubject(assessmentId);
-      const hadLocalTimer = Boolean(window.localStorage.getItem(`exam-timer:${assessmentId}`));
+      let hadLocalTimer = false;
+      try { hadLocalTimer = Boolean(window.localStorage.getItem(`exam-timer:${assessmentId}`)); } catch { /* Cloud timer can restore without device storage. */ }
       setTimerState(loadExamTimer(assessmentId));
       setTimerNow(Date.now());
       setStudentId(data.session.user.id);
@@ -1208,7 +1209,6 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
       try {
         const nextAssessment = await getStudentAssessment(data.session.access_token, assessmentId);
-        setAssessment(nextAssessment);
         let nextStartingSubject = storedStartingSubject;
         const localProgress = isTeacherPreview ? null : loadLocalExamSession(data.session.user.id, assessmentId);
         let progress = localProgress;
@@ -1266,10 +1266,12 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         sectionDatesRef.current = savedResult?.sectionCompletedAt ?? {};
         if (reentry) {
           const timerGrantKey = `exam-reentry-timer:${data.session.user.id}:${assessmentId}`;
-          if (window.localStorage.getItem(timerGrantKey) !== reentry.id || !hadLocalTimer) {
+          let timerGrantId: string | null = null;
+          try { timerGrantId = window.localStorage.getItem(timerGrantKey); } catch { /* Restore from the server. */ }
+          if (timerGrantId !== reentry.id || !hadLocalTimer) {
             const restoredTimer = restoredReentryTimer(reentry, savedResult);
             saveExamTimerState(assessmentId, restoredTimer); setTimerState(restoredTimer);
-            window.localStorage.setItem(timerGrantKey, reentry.id);
+            try { window.localStorage.setItem(timerGrantKey, reentry.id); } catch { /* Keep the restored in-memory timer. */ }
           }
           sectionDatesRef.current = Object.fromEntries(Object.entries(sectionDatesRef.current).filter(([section]) => !reentry.remainingSections.includes(section as ExamSection)));
         }
@@ -1277,7 +1279,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         const examContent = nextAssessment.resumeContent ?? savedResult?.analysisContent ?? resolveExamContent(nextAssessment);
         const hasCompletedAttempt =
           isExamSessionCompleteForContent(examContent, progress) ||
-          isExamResultCompleteForQuestionCount(savedResult, nextAssessment.questions.length);
+          isExamResultCompleteForContent(savedResult, examContent);
         if (
           !isTeacherPreview &&
           hasCompletedAttempt &&
@@ -1325,7 +1327,8 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
             setActiveMathQuestionIndex(firstUnansweredMathIndex >= 0 ? firstUnansweredMathIndex : 0);
           }
         }
-        window.sessionStorage.setItem(`exam-start-subject:${assessmentId}`, nextStartingSubject);
+        try { window.sessionStorage.setItem(`exam-start-subject:${assessmentId}`, nextStartingSubject); } catch { /* Optional device storage. */ }
+        setAssessment(nextAssessment);
         setSessionScreen(nextStartingSubject === "math" ? "mathIntro" : "directions");
       } catch (error) {
         setErrorMessage(error instanceof Error ? error.message : "Could not load this exam.");
@@ -2593,7 +2596,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   if (sessionScreen === "sectionComplete") {
     const next = submittedSection === "math" ? "english" : "math";
     const mayContinue = next === "math" ? canAccessMath : canAccessEnglish;
-    return <main className="exam-session-shell"><section className="exam-end-section-card"><h1>{submittedSection === "math" ? "Math" : "English"} submitted</h1><p>Your teacher can now review this section. {assessment.canEditSubmittedSections ? "You can continue to the next section or return to any open section later." : <>{next === "math" ? "Math" : "English"} remains unfinished and has not been graded.</>}</p><p>The shared three-hour exam timer is paused. Time remaining: {timerDisplay.text}.</p><div className="exam-test-over-actions"><button className="exam-end-section-submit" onClick={() => window.location.assign(getAssessmentDashboardHref())} type="button">Save & exit</button>{mayContinue && <button className="exam-end-section-submit" onClick={() => { handleResumeTimer(); window.sessionStorage.setItem(`exam-start-subject:${currentAssessmentId}`, next); setActivePassageSetIndex(0); setActiveQuestionIndex(0); setSessionScreen(next === "math" ? "mathIntro" : "directions"); }} type="button">Continue {next === "math" ? "Math" : "English"}</button>}</div></section></main>;
+    return <main className="exam-session-shell"><section className="exam-end-section-card"><h1>{submittedSection === "math" ? "Math" : "English"} submitted</h1><p>Your teacher can now review this section. {assessment.canEditSubmittedSections ? "You can continue to the next section or return to any open section later." : <>{next === "math" ? "Math" : "English"} remains unfinished and has not been graded.</>}</p><p>The shared three-hour exam timer is paused. Time remaining: {timerDisplay.text}.</p><div className="exam-test-over-actions"><button className="exam-end-section-submit" onClick={() => window.location.assign(getAssessmentDashboardHref())} type="button">Save & exit</button>{mayContinue && <button className="exam-end-section-submit" onClick={() => { handleResumeTimer(); try { window.sessionStorage.setItem(`exam-start-subject:${currentAssessmentId}`, next); } catch { /* Selection is also held in state. */ } setActivePassageSetIndex(0); setActiveQuestionIndex(0); setSessionScreen(next === "math" ? "mathIntro" : "directions"); }} type="button">Continue {next === "math" ? "Math" : "English"}</button>}</div></section></main>;
   }
 
   if (isExamPaused && sessionScreen !== "testOver") {

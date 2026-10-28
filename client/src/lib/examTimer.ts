@@ -32,7 +32,7 @@ export function createExamTimerState(now = Date.now()): ExamTimerState {
 }
 
 export function saveExamTimerState(assessmentId: string, timer: ExamTimerState) {
-  window.localStorage.setItem(getExamTimerStorageKey(assessmentId), JSON.stringify(timer));
+  try { window.localStorage.setItem(getExamTimerStorageKey(assessmentId), JSON.stringify(timer)); } catch { /* Continue with the in-memory timer. */ }
 }
 
 export function resetExamTimer(assessmentId: string, now = Date.now()) {
@@ -42,7 +42,8 @@ export function resetExamTimer(assessmentId: string, now = Date.now()) {
 }
 
 export function loadExamTimer(assessmentId: string) {
-  const storedTimer = window.localStorage.getItem(getExamTimerStorageKey(assessmentId));
+  let storedTimer: string | null = null;
+  try { storedTimer = window.localStorage.getItem(getExamTimerStorageKey(assessmentId)); } catch { /* Device storage is optional. */ }
 
   if (storedTimer) {
     try {

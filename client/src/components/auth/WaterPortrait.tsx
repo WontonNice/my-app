@@ -9,7 +9,11 @@ void main() {
 }`;
 
 const fragmentSource = `
+#ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
+#else
+precision mediump float;
+#endif
 uniform sampler2D u_image;
 uniform vec2 u_cover;
 uniform float u_aspect;
@@ -160,6 +164,10 @@ export function WaterPortrait({ motionEnabled }: { motionEnabled: boolean }) {
       if (disposed) return;
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, photo);
       ready = true;
+      const now = performance.now();
+      drops.set([0.5, 0.55, now / 1000, 1.1], 0);
+      nextDrop = 1;
+      settleAt = now + 3300;
       resize();
     };
     photo.src = "/auth/thinker.png";

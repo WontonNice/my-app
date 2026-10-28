@@ -1,4 +1,4 @@
-import { Activity, BarChart3, BookOpen, ClipboardList, Gamepad2, GraduationCap, LayoutDashboard, Trophy, UserRoundCheck, UserRoundPlus } from 'lucide-react';
+import { Activity, BarChart3, BookOpen, ClipboardList, Gamepad2, GraduationCap, LayoutDashboard, Trophy, UserRoundCheck, UserRoundPlus, Utensils } from 'lucide-react';
 import type { DashboardNavItem } from '../components/CorporateDashboardShell';
 
 export const teacherNavItems: DashboardNavItem[] = [
@@ -11,6 +11,7 @@ export const teacherNavItems: DashboardNavItem[] = [
   { id: 'accounts', label: 'Student accounts', href: '/teacher/accounts', icon: UserRoundPlus },
   { id: 'library', label: 'English library', href: '/teacher/library', icon: BookOpen },
   { id: 'assessments', label: 'Assessments & insights', href: '/teacher/assessments', icon: ClipboardList },
+  { id: 'meals', label: 'Classroom meals', href: '/teacher/meals', icon: Utensils },
   { id: 'games', label: 'Game rooms', href: '/teacher/games', icon: Gamepad2 },
   { id: 'achievements', label: 'Achievements', href: '/teacher/achievements', icon: Trophy },
 ];

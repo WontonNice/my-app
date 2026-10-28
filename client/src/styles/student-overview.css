@@ -1,0 +1,37 @@
+.student-course-home { max-width: 1300px; margin: auto; }
+.student-course-home .student-course-heading { padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid #d3d9cc; align-items: end; }
+.student-course-home .student-course-heading h1 { font-size: clamp(32px,4vw,46px); letter-spacing: -.025em; }
+.student-course-home .student-course-heading span { display: block; max-width: 60ch; font-size: 15px; line-height: 1.6; }
+.student-course-home .student-course-heading > a { font-size: 14px; min-height: 42px; }
+.student-overview-grid { display: grid; grid-template-columns: minmax(0,1fr) 305px; gap: 36px; margin-bottom: 36px; align-items: start; }
+.student-overview-work { min-width: 0; display: grid; gap: 24px; }
+.student-overview-aside { display: grid; gap: 24px; }
+.student-overview-aside .student-shsat-countdown { margin: 0; padding: 22px 0; display: grid; border: 0; border-radius: 0; background: none; border-block: 1px solid #d3d9cc; }
+.student-overview-aside .student-shsat-countdown-icon { display: none; }
+.student-overview-aside .student-shsat-countdown-copy h2 { font-size: 23px; }
+.student-overview-aside .student-shsat-countdown-copy p { display: none; }
+.student-overview-aside .student-shsat-countdown-clock { gap: 8px; }
+.student-overview-aside .student-shsat-countdown-clock strong { font-size: 32px; }
+.student-overview-aside .student-shsat-countdown-clock > div { min-width: 46px; }
+.wonton-companion { position: relative; padding: 20px; background: #e6eadc; border-radius: 14px; }
+.wonton-trigger { display: flex; gap: 17px; align-items: center; border: 0; padding: 0; background: none; color: #24392e; cursor: pointer; text-align: left; width: 100%; }
+.wonton-trigger img { width: 76px; height: 76px; flex: none; border-radius: 12px; animation: wonton-wave 5s ease-in-out infinite; }
+.wonton-trigger span { display: grid; gap: 8px; }
+.wonton-trigger strong { font: 500 22px/1.15 Georgia,serif; }
+.wonton-trigger small { font-size: 12px; line-height: 1.5; color: #506149; }
+.wonton-options { margin-top: 20px; border-top: 1px solid #bec9b3; padding-top: 16px; font-size: 14px; }
+.wonton-options > div { display: flex; gap: 10px; align-items: center; justify-content: space-between; }
+.wonton-options button { border: 0; background: transparent; color: #24392e; padding: 8px; cursor: pointer; }
+.wonton-options a { display: flex; justify-content: space-between; align-items: center; background: #245239; color: white; padding: 12px 15px; border-radius: 8px; margin-top: 14px; text-decoration: none; }
+.wonton-options p { margin: 12px 0 0; color: #506149; font-size: 12px; line-height: 1.5; }
+.wonton-companion :is(button,a):focus-visible { outline: 3px solid #547a51; outline-offset: 5px; }
+.student-course-home .student-upcoming { margin-top: 34px; }
+.student-course-home .student-upcoming > header { flex-wrap: wrap; gap: 12px; }
+.student-course-home .student-upcoming > p { color: #536157; font-size: 14px; line-height: 1.6; }
+.student-course-home .student-upcoming article strong { font-size: 16px; }
+.student-course-home .student-upcoming article small { font-size: 13px; }
+.student-course-home .student-upcoming article > a,.student-course-home .student-upcoming > header a { font-size: 13px; }
+@keyframes wonton-wave { 0%,100% { transform: rotate(-2deg) translateY(0); } 50% { transform: rotate(2deg) translateY(-3px); } }
+@media (prefers-reduced-motion:reduce) { .wonton-trigger img { animation: none; } }
+@media (max-width:1100px) { .student-overview-grid { grid-template-columns: minmax(0,1fr) 270px; gap: 24px; } .wonton-companion { padding: 16px; } .wonton-trigger { gap: 12px; } .wonton-trigger img { width: 64px; height: 64px; } }
+@media (max-width:800px) { .student-overview-grid { grid-template-columns: 1fr; } .student-overview-aside { grid-template-columns: 1fr; } .student-course-home .student-course-heading { flex-direction: column; align-items: start; gap: 16px; } .student-course-home .student-course-heading > a { display: inline-flex; } .wonton-trigger img { width: 70px; height: 70px; } }

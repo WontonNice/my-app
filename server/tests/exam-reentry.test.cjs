@@ -185,11 +185,12 @@ test('closing an exam or section stops edits from an already open browser',async
 });
 
 
-test('saved answer keys stay frozen while new questions are detected by ID rather than total count',()=>{
+test('published question edits replace saved wording while new questions are detected by ID',()=>{
   const {resumeExamContent}=require('../src/shared/examResume.ts');
   const changed={...content,passageSets:[{...content.passageSets[0],questions:[{...content.passageSets[0].questions[0],prompt:'Edited question',correctChoiceId:'B'}]}],mathSection:{...content.mathSection,questions:[{...content.mathSection.questions[0],id:'replacement-math'}]}};
   const resumed=resumeExamContent(changed,content);
-  assert.equal(resumed.passageSets[0].questions[0].correctChoiceId,'A');
+  assert.equal(resumed.passageSets[0].questions[0].correctChoiceId,'B');
+  assert.equal(resumed.passageSets[0].questions[0].prompt,'Edited question');
   assert.equal(resumed.mathSection.questions[0].id,'replacement-math');
   assert.equal(createExamResult(resumed,{e:'A','replacement-math':'5'}).total,2);
   assert.equal(content.mathSection.questions[0].id,'m','Neither input is mutated');

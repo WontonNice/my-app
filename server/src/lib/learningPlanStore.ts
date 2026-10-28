@@ -7,8 +7,8 @@ import { readQuestionBank } from "./questionBank";
 import { bankCatalog } from "../shared/questionBank";
 import { activeStatuses, practiceAnswered, type AssignmentKind, type CompletionEvidence, type PlanAssignment, type PlanContent } from "../shared/learningPlan";
 
-const fields: Record<string, string> = { studentId: "student_id", contentId: "content_id", assignedAt: "assigned_at", dueDate: "due_date", plannedDate: "planned_date", completedAt: "completed_at", estimatedMinutes: "estimated_minutes", questionTarget: "question_target", practiceBaseline: "practice_baseline", createdAt: "created_at", createdBy: "created_by", updatedAt: "updated_at" };
-export const listColumns = "id,student_id,kind,content_id,title,instructions,url,status,assigned_at,due_date,planned_date,completed_at,estimated_minutes,question_target,practice_baseline,created_at,created_by,updated_at,revision,completion";
+const fields: Record<string, string> = { streakTarget: "streak_target", studentId: "student_id", contentId: "content_id", assignedAt: "assigned_at", dueDate: "due_date", plannedDate: "planned_date", completedAt: "completed_at", estimatedMinutes: "estimated_minutes", questionTarget: "question_target", practiceBaseline: "practice_baseline", createdAt: "created_at", createdBy: "created_by", updatedAt: "updated_at" };
+export const listColumns = "id,student_id,kind,content_id,title,instructions,url,status,assigned_at,due_date,planned_date,completed_at,estimated_minutes,question_target,streak_target,practice_baseline,created_at,created_by,updated_at,revision,completion";
 export const summaryColumns = listColumns.replace(",instructions,url", "");
 export function fromAssignmentRow(value: unknown): PlanAssignment {
   const row = value as Record<string, unknown>;
@@ -67,6 +67,7 @@ export async function recordPlanCompletion(studentId: string, kind: AssignmentKi
     if (query.error) return;
     for (const row of query.data ?? []) {
       const item = fromAssignmentRow(row);
+      if (item.streakTarget) continue;
       if (!item.assignedAt || !Number.isFinite(Date.parse(evidence.at)) || Date.parse(evidence.at) < Date.parse(item.assignedAt)) continue;
       if (kind === "practice" && !(evidence.source === "library" && readQuestionBank().sets.some(set => set.id === contentId)) && (item.questionTarget === null || item.practiceBaseline === null || answered === undefined || answered - item.practiceBaseline < item.questionTarget)) continue;
       await updateAssignment(item, { status: "completed", completedAt: evidence.at, completion: evidence }, "system", "Completed from saved platform work");
@@ -84,6 +85,7 @@ export async function reconcileCompletions(studentId: string, evidence: { kind: 
   let changed = false;
   for (const row of query.data ?? []) {
     const item = fromAssignmentRow(row);
+    if (item.streakTarget) continue;
     const match = evidence.filter(value => value.kind === item.kind && value.contentId === item.contentId && item.assignedAt && Date.parse(value.completion.at) >= Date.parse(item.assignedAt)).sort((a, b) => a.completion.at.localeCompare(b.completion.at))[0];
     if (!match) continue;
     if (item.kind === "practice" && !(match.completion.source === "library" && readQuestionBank().sets.some(set => set.id === item.contentId)) && (item.questionTarget === null || item.practiceBaseline === null || match.answered === undefined || match.answered - item.practiceBaseline < item.questionTarget)) continue;

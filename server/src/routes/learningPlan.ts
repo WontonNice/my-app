@@ -1,3 +1,4 @@
+import { infiniteHomeworkCatalog } from '../lib/infiniteHomeworkCatalog';
 import { Router } from "express";
 import { createHash } from "node:crypto";
 import type { User } from "@supabase/supabase-js";
@@ -8,6 +9,7 @@ import { assignmentDetail, assignmentSummaries, checkStorage, fromAssignmentRow,
 import { activeStatuses, assignmentStatuses, inventory, planSummary, practiceAnswered, todayInNewYork, validDate, validateDraft, weekDays, type PlanAssignment, type PlanContent, type PlanSettings, type PriorContentActivity } from "../shared/learningPlan";
 
 export const learningPlanRouter = Router();
+async function assignmentCatalog() { return [...learningCatalog(), ...await infiniteHomeworkCatalog()]; }
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const teacher = (user: User) => ["teacher", "admin"].includes(getUserRole(user));
 const fail = (message: string, status = 400) => Object.assign(new Error(message), { status });
@@ -80,7 +82,7 @@ async function priorLibraryAttempts(studentId: string) {
   }
 }
 async function getOverview(student: User, isTeacher: boolean) {
-  const catalog = learningCatalog().filter(item => !item.classId || getEnrolledClassIds(student.app_metadata).includes(item.classId));
+  const catalog = (await assignmentCatalog()).filter(item => !item.classId || getEnrolledClassIds(student.app_metadata).includes(item.classId));
   let assignments = await assignmentSummaries(student.id);
   // Repair completion tracking from canonical saves if a write hook was deferred.
   // Passage evidence from an exam is historical usage, not completion of a separately assigned passage task.
@@ -135,7 +137,7 @@ learningPlanRouter.get("/teacher/:studentId/assignments", async (request, respon
 learningPlanRouter.get("/student/assignments", async (request, response) => { response.json(await listAssignments(response.locals.student, request.query, false)); });
 learningPlanRouter.get("/teacher/:studentId/content/:kind/:contentId", async (request, response) => {
   const student = response.locals.student as User;
-  const catalog = learningCatalog();
+  const catalog = await assignmentCatalog();
   const history = await listAssignments(student, { ...request.query, kind: request.params.kind, contentId: request.params.contentId, status: "all" }, true);
   const prior = (await priorActivity(student, catalog)).filter(item => item.contentId === request.params.contentId);
   response.json({ ...history, prior });
@@ -147,7 +149,7 @@ learningPlanRouter.get("/teacher/:studentId/assignments/:id", async (request, re
 
 learningPlanRouter.post("/teacher/:studentId/assignments", async (request, response) => {
   const student = response.locals.student as User; const actor = response.locals.user as User;
-  const catalog = learningCatalog().filter(item => !item.classId || getEnrolledClassIds(student.app_metadata).includes(item.classId));
+  const catalog = (await assignmentCatalog()).filter(item => !item.classId || getEnrolledClassIds(student.app_metadata).includes(item.classId));
   const { items, allowRepeat, batchId } = request.body ?? {};
   if (!Array.isArray(items) || !items.length || items.length > 30 || typeof batchId !== "string" || !uuid.test(batchId)) throw fail("Choose 1–30 tasks and a valid submission ID.");
   if (items.some(item => String(item?.contentId ?? "").startsWith("math-command:"))) throw fail("Create question selections through the Math Command Center preview.");
@@ -184,9 +186,9 @@ learningPlanRouter.patch("/teacher/:studentId/assignments/:id", async (request, 
   if (old.status === "planned" && !["planned", "assigned", "cancelled", "skipped"].includes(status)) throw fail("Assign planned work before marking it started or complete.");
   if (["completed", "cancelled", "skipped"].includes(old.status) && status !== old.status) throw fail("Keep this history intact; create a new assignment to repeat the work.");
   if (old.assignedAt && status === "planned") throw fail("An issued task cannot become an unpublished draft. Cancel it and plan a new task.");
-  const validated = validateDraft({ ...old, ...body, kind: old.kind, contentId: old.contentId, status: status === "planned" ? "planned" : "assigned" }, learningCatalog());
+  const validated = validateDraft({ ...old, ...body, kind: old.kind, contentId: old.contentId, status: status === "planned" ? "planned" : "assigned" }, await assignmentCatalog());
   const changes: Partial<PlanAssignment> = { title: validated.title, instructions: validated.instructions, url: validated.url, dueDate: validated.dueDate, plannedDate: validated.plannedDate, estimatedMinutes: validated.estimatedMinutes, status };
-  if (!old.assignedAt) changes.questionTarget = validated.questionTarget;
+  if (!old.assignedAt) { changes.questionTarget = validated.questionTarget; changes.streakTarget = validated.streakTarget; }
   if (status !== "planned" && !old.assignedAt && !["cancelled", "skipped"].includes(status)) {
     changes.assignedAt = new Date().toISOString();
     if (old.kind === "practice") changes.practiceBaseline = practiceAnswered((await getDatabaseProgress(response.locals.student)).practice[old.contentId!]);
@@ -200,6 +202,7 @@ learningPlanRouter.patch("/student/assignments/:id", async (request, response) =
   if (!old || !old.assignedAt || !activeStatuses.includes(old.status)) throw fail("Active assignment not found.", 404);
   if (request.body?.revision !== old.revision) throw fail("This assignment changed. Reload before updating.", 409);
   if (old.contentId?.startsWith("answer-sheet-")) throw fail("Open the answer sheet to save and submit its responses.");
+  if (old.streakTarget) throw fail("Open the infinite module to complete its required streak.");
   if (old.contentId?.startsWith("math-command:")) throw fail("Open the assigned math practice to save and submit its responses.");
   const action = request.body?.action;
   if (action !== "start" && action !== "submit") throw fail("Choose Start or Submit for teacher review.");

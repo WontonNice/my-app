@@ -54,8 +54,11 @@ const TeacherLibraryPage = lazy(() =>
 );
 const MathCommandPage = lazy(() => import("./features/math-command/MathCommandPage").then(module => ({ default: module.MathCommandPage })));
 const InfinitePracticePage = lazy(() => import("./pages/InfinitePracticePage").then(module => ({ default: module.InfinitePracticePage })));
+const ClassroomMealsPage = lazy(() => import("./pages/ClassroomMealsPage").then(module => ({ default: module.ClassroomMealsPage })));
+const TeacherMealsPage = lazy(() => import("./pages/TeacherMealsPage").then(module => ({ default: module.TeacherMealsPage })));
 const PracticeStudioPage = lazy(() => import("./pages/PracticeStudioPage").then(module => ({ default: module.PracticeStudioPage })));
 const MathPracticePage = lazy(() => import("./features/math-command/MathPracticePage").then(module => ({ default: module.MathPracticePage })));
+const InfiniteHomeworkPage = lazy(() => import("./features/math-command/InfiniteHomeworkPage").then(module => ({ default: module.InfiniteHomeworkPage })));
 const TopicPracticePage = lazy(() =>
   import("./pages/TopicPracticePage").then((module) => ({ default: module.TopicPracticePage })),
 );
@@ -129,8 +132,11 @@ function CurrentPage() {
   if (path.startsWith("/answer-sheets/")) return withClassAccess(<AnswerSheetsPage />);
   if (path === "/math-practice/inequalities" || path === "/math-practice/infinite") return withClassAccess(<InfinitePracticePage />);
   if (path === "/teacher/study-hall") return <StudentMaterialsPage teacherWorkspace />;
+  if (path === "/teacher/meals") return <TeacherMealsPage />;
+  if (path === "/study-hall/shsat/meals") return withClassAccess(<ClassroomMealsPage />);
   if (path === "/teacher/practice-studio") return <PracticeStudioPage />;
   if (path.startsWith("/math-practice/")) return withClassAccess(<MathPracticePage />);
+  if (path.startsWith("/infinite-homework/")) return withClassAccess(<InfiniteHomeworkPage />);
   if (path === "/teacher/math-command") return <MathCommandPage />;
   const correctionRoute = studentCorrectionRoute(path);
   if (correctionRoute === "exam") return withClassAccess(<ExamCorrectionsPage />);

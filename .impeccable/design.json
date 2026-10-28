@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T02:46:27.817Z",
+  "title": "Design System: Nathan Tutors — Learning Room and classroom meals",
+  "extensions": {
+    "colorMeta": {
+      "student-ink": {
+        "role": "neutral",
+        "displayName": "Student Ink",
+        "tonalRamp": [
+          "oklch(15.0% 0.0138 164.8)",
+          "oklch(26.4% 0.0224 164.8)",
+          "oklch(37.9% 0.0282 164.8)",
+          "oklch(49.3% 0.0304 164.8)",
+          "oklch(60.7% 0.0287 164.8)",
+          "oklch(72.1% 0.0233 164.8)",
+          "oklch(83.6% 0.0150 164.8)",
+          "oklch(95.0% 0.0048 164.8)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "student-green": {
+        "role": "primary",
+        "displayName": "Student Green",
+        "tonalRamp": [
+          "oklch(15.0% 0.0253 166.5)",
+          "oklch(26.4% 0.0412 166.5)",
+          "oklch(37.9% 0.0518 166.5)",
+          "oklch(49.3% 0.0558 166.5)",
+          "oklch(60.7% 0.0527 166.5)",
+          "oklch(72.1% 0.0429 166.5)",
+          "oklch(83.6% 0.0276 166.5)",
+          "oklch(95.0% 0.0087 166.5)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "student-green-2": {
+        "role": "primary",
+        "displayName": "Student Green 2",
+        "tonalRamp": [
+          "oklch(15.0% 0.0372 164.4)",
+          "oklch(26.4% 0.0605 164.4)",
+          "oklch(37.9% 0.0761 164.4)",
+          "oklch(49.3% 0.0819 164.4)",
+          "oklch(60.7% 0.0774 164.4)",
+          "oklch(72.1% 0.0629 164.4)",
+          "oklch(83.6% 0.0404 164.4)",
+          "oklch(95.0% 0.0128 164.4)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "student-cream": {
+        "role": "neutral",
+        "displayName": "Student Cream",
+        "tonalRamp": [
+          "oklch(15.0% 0.0058 86.8)",
+          "oklch(26.4% 0.0094 86.8)",
+          "oklch(37.9% 0.0118 86.8)",
+          "oklch(49.3% 0.0127 86.8)",
+          "oklch(60.7% 0.0120 86.8)",
+          "oklch(72.1% 0.0098 86.8)",
+          "oklch(83.6% 0.0063 86.8)",
+          "oklch(95.0% 0.0020 86.8)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "student-paper": {
+        "role": "neutral",
+        "displayName": "Student Paper",
+        "tonalRamp": [
+          "oklch(15.0% 0.0031 88.6)",
+          "oklch(26.4% 0.0051 88.6)",
+          "oklch(37.9% 0.0064 88.6)",
+          "oklch(49.3% 0.0069 88.6)",
+          "oklch(60.7% 0.0065 88.6)",
+          "oklch(72.1% 0.0053 88.6)",
+          "oklch(83.6% 0.0034 88.6)",
+          "oklch(95.0% 0.0011 88.6)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "student-line": {
+        "role": "neutral",
+        "displayName": "Student Line",
+        "tonalRamp": [
+          "oklch(15.0% 0.0082 81.3)",
+          "oklch(26.4% 0.0133 81.3)",
+          "oklch(37.9% 0.0167 81.3)",
+          "oklch(49.3% 0.0180 81.3)",
+          "oklch(60.7% 0.0170 81.3)",
+          "oklch(72.1% 0.0138 81.3)",
+          "oklch(83.6% 0.0089 81.3)",
+          "oklch(95.0% 0.0028 81.3)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "student-muted": {
+        "role": "neutral",
+        "displayName": "Student Muted",
+        "tonalRamp": [
+          "oklch(15.0% 0.0056 149.7)",
+          "oklch(26.4% 0.0092 149.7)",
+          "oklch(37.9% 0.0115 149.7)",
+          "oklch(49.3% 0.0124 149.7)",
+          "oklch(60.7% 0.0117 149.7)",
+          "oklch(72.1% 0.0095 149.7)",
+          "oklch(83.6% 0.0061 149.7)",
+          "oklch(95.0% 0.0019 149.7)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "student-gold": {
+        "role": "secondary",
+        "displayName": "Student Gold",
+        "tonalRamp": [
+          "oklch(15.0% 0.0539 83.5)",
+          "oklch(26.4% 0.0876 83.5)",
+          "oklch(37.9% 0.1101 83.5)",
+          "oklch(49.3% 0.1186 83.5)",
+          "oklch(60.7% 0.1120 83.5)",
+          "oklch(72.1% 0.0911 83.5)",
+          "oklch(83.6% 0.0586 83.5)",
+          "oklch(95.0% 0.0186 83.5)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "meal-primary": {
+        "role": "primary",
+        "displayName": "Meal Primary",
+        "tonalRamp": [
+          "oklch(15.0% 0.0302 157.6)",
+          "oklch(26.4% 0.0491 157.6)",
+          "oklch(37.9% 0.0618 157.6)",
+          "oklch(49.3% 0.0666 157.6)",
+          "oklch(60.7% 0.0628 157.6)",
+          "oklch(72.1% 0.0511 157.6)",
+          "oklch(83.6% 0.0329 157.6)",
+          "oklch(95.0% 0.0104 157.6)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "meal-primary-hover": {
+        "role": "primary",
+        "displayName": "Meal Primary Hover",
+        "tonalRamp": [
+          "oklch(15.0% 0.0254 157.5)",
+          "oklch(26.4% 0.0413 157.5)",
+          "oklch(37.9% 0.0519 157.5)",
+          "oklch(49.3% 0.0559 157.5)",
+          "oklch(60.7% 0.0528 157.5)",
+          "oklch(72.1% 0.0429 157.5)",
+          "oklch(83.6% 0.0276 157.5)",
+          "oklch(95.0% 0.0087 157.5)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "meal-paper": {
+        "role": "neutral",
+        "displayName": "Meal Paper",
+        "tonalRamp": [
+          "oklch(15.0% 0.0024 95.1)",
+          "oklch(26.4% 0.0040 95.1)",
+          "oklch(37.9% 0.0050 95.1)",
+          "oklch(49.3% 0.0054 95.1)",
+          "oklch(60.7% 0.0051 95.1)",
+          "oklch(72.1% 0.0041 95.1)",
+          "oklch(83.6% 0.0027 95.1)",
+          "oklch(95.0% 0.0008 95.1)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "meal-ink": {
+        "role": "neutral",
+        "displayName": "Meal Ink",
+        "tonalRamp": [
+          "oklch(15.0% 0.0151 160.9)",
+          "oklch(26.4% 0.0246 160.9)",
+          "oklch(37.9% 0.0309 160.9)",
+          "oklch(49.3% 0.0333 160.9)",
+          "oklch(60.7% 0.0314 160.9)",
+          "oklch(72.1% 0.0256 160.9)",
+          "oklch(83.6% 0.0164 160.9)",
+          "oklch(95.0% 0.0052 160.9)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "meal-border": {
+        "role": "neutral",
+        "displayName": "Meal Border",
+        "tonalRamp": [
+          "oklch(15.0% 0.0107 147.4)",
+          "oklch(26.4% 0.0174 147.4)",
+          "oklch(37.9% 0.0219 147.4)",
+          "oklch(49.3% 0.0236 147.4)",
+          "oklch(60.7% 0.0223 147.4)",
+          "oklch(72.1% 0.0181 147.4)",
+          "oklch(83.6% 0.0117 147.4)",
+          "oklch(95.0% 0.0037 147.4)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "meal-notice": {
+        "role": "neutral",
+        "displayName": "Meal Notice",
+        "tonalRamp": [
+          "oklch(15.0% 0.0059 130.8)",
+          "oklch(26.4% 0.0097 130.8)",
+          "oklch(37.9% 0.0121 130.8)",
+          "oklch(49.3% 0.0131 130.8)",
+          "oklch(60.7% 0.0123 130.8)",
+          "oklch(72.1% 0.0100 130.8)",
+          "oklch(83.6% 0.0065 130.8)",
+          "oklch(95.0% 0.0020 130.8)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15.0% 0.0000 89.9)",
+          "oklch(26.4% 0.0000 89.9)",
+          "oklch(37.9% 0.0000 89.9)",
+          "oklch(49.3% 0.0000 89.9)",
+          "oklch(60.7% 0.0000 89.9)",
+          "oklch(72.1% 0.0000 89.9)",
+          "oklch(83.6% 0.0000 89.9)",
+          "oklch(95.0% 0.0000 89.9)"
+        ],
+        "tonalRampSource": "Synthesized OKLCH panel metadata; not source CSS or approved additional tokens."
+      }
+    },
+    "typographyMeta": {
+      "student-headline": {
+        "displayName": "Overview headline",
+        "purpose": "Overview page heading only; results retain the incumbent section heading ramp."
+      },
+      "meal-headline": {
+        "displayName": "Meal headline",
+        "purpose": "Student and teacher meal page titles."
+      },
+      "meal-title": {
+        "displayName": "Meal section title",
+        "purpose": "Shared menu, selection, and request headings."
+      }
+    },
+    "shadows": [
+      {
+        "name": "student-active-strip",
+        "value": "inset 4px 0 #2e7257",
+        "purpose": "Existing active navigation marker, not surface elevation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "wonton-idle",
+        "value": "wonton-wave 5s ease-in-out infinite",
+        "purpose": "0% and 100% rotate(-2deg) translateY(0); 50% rotate(2deg) translateY(-3px). Disabled for prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "overview-narrow-rail-and-result-reflow",
+        "value": "1100px"
+      },
+      {
+        "name": "meal-narrow-summary",
+        "value": "1000px"
+      },
+      {
+        "name": "overview-stack",
+        "value": "800px"
+      },
+      {
+        "name": "meal-stack",
+        "value": "700px"
+      },
+      {
+        "name": "results-filter-search-full-row",
+        "value": "540px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Meal primary button",
+      "kind": "button",
+      "refersTo": "meal-button-primary",
+      "description": "Shared meal submission and save action. Typeface inherits its host shell in the application.",
+      "html": "<button class=\"ds-button ds-primary\">Send to teacher</button>",
+      "css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:9px 14px;border:1px solid #b8c6b9;border-radius:8px;background:#fffefa;color:#294c35;cursor:pointer;font:14px Inter,ui-sans-serif,system-ui,sans-serif}.ds-button:hover:not(:disabled){background:#e9eee5}.ds-button:disabled{opacity:.5;cursor:not-allowed}.ds-button:focus-visible{outline:3px solid #6c9774;outline-offset:3px}.ds-primary{background:#245239;color:#fff;border-color:#245239}.ds-primary:hover:not(:disabled){background:#183d29}"
+    },
+    {
+      "name": "Meal secondary button",
+      "kind": "button",
+      "refersTo": "meal-button-secondary",
+      "description": "Quiet supporting meal action.",
+      "html": "<button class=\"ds-button\">Clear selection</button>",
+      "css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:9px 14px;border:1px solid #b8c6b9;border-radius:8px;background:#fffefa;color:#294c35;cursor:pointer;font:14px Inter,ui-sans-serif,system-ui,sans-serif}.ds-button:hover:not(:disabled){background:#e9eee5}.ds-button:disabled{opacity:.5;cursor:not-allowed}.ds-button:focus-visible{outline:3px solid #6c9774;outline-offset:3px}"
+    },
+    {
+      "name": "Meal field",
+      "kind": "input",
+      "refersTo": "meal-field",
+      "description": "Visible label and shared input treatment; uses host typography in the application.",
+      "html": "<label class=\"ds-label\">Session title<input class=\"ds-input\" value=\"Wednesday lunch\"></label>",
+      "css": ".ds-label{display:grid;gap:7px;color:#24392e;font:600 13px Inter,ui-sans-serif,system-ui,sans-serif}.ds-input{width:100%;min-width:0;padding:11px 12px;border:1px solid #b8c6b9;border-radius:7px;background:#fffefa;color:#24392e;font:400 15px Inter,ui-sans-serif,system-ui,sans-serif;caret-color:#245239}.ds-input::placeholder{color:#657366}.ds-input:focus-visible{outline:3px solid #6c9774;outline-offset:3px}"
+    },
+    {
+      "name": "Meal summary",
+      "kind": "card",
+      "refersTo": "meal-summary",
+      "description": "Flat selection summary, showing the estimated nature of a total.",
+      "html": "<aside class=\"ds-summary\"><h2>Your selection</h2><p>1 × Chicken rice bowl</p><div class=\"ds-total\"><span>Estimated total</span><strong>$14.86</strong></div></aside>",
+      "css": ".ds-summary{background:#fffefa;border:1px solid #d5dcd0;padding:24px;border-radius:14px;color:#24392e;font:14px/1.6 Inter,ui-sans-serif,system-ui,sans-serif}.ds-summary h2{font:500 25px/1.25 Georgia,serif;margin:0 0 12px}.ds-total{display:flex;justify-content:space-between;gap:14px;border-top:1px solid #d5dcd0;padding-top:16px;margin-top:18px;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}"
+    },
+    {
+      "name": "Student navigation",
+      "kind": "nav",
+      "description": "Existing sidebar active state. Browser-native keyboard outline is retained; no new authored focus color is inferred.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Student navigation\"><a href=\"#overview\" aria-current=\"page\" class=\"ds-active\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"m3 10 9-7 9 7v10H3Z M9 20v-8h6v8\"/></svg><span>Home</span></a></nav>",
+      "css": ".ds-nav{padding:12px;background:#fffdf8;font-family:Inter,ui-sans-serif,system-ui,sans-serif}.ds-nav a{display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:center;gap:10px;min-height:44px;border:0;border-radius:8px;background:transparent;color:#4e554f;padding:0 12px;font-size:.78rem;text-decoration:none}.ds-nav a:hover{background:#f4f0e7}.ds-nav .ds-active{box-shadow:inset 4px 0 #2e7257;background:#e8efea;color:#1f4a3a;font-weight:700}.ds-nav a:focus-visible{outline:auto}"
+    },
+    {
+      "name": "Meal status notice",
+      "kind": "custom",
+      "description": "Sentence-case status message used on student and teacher meal pages.",
+      "html": "<p class=\"ds-notice\" role=\"status\">Your teacher has your meal request. You can update it while ordering is open.</p>",
+      "css": ".ds-notice{padding:14px 18px;background:#e9eee5;border-radius:8px;color:#24392e;font:14px/1.6 Inter,ui-sans-serif,system-ui,sans-serif}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Learning Room",
+    "overview": "This name comes from the existing student navigation, not a new brand workshop. Warm paper, dark green navigation, serif headings, compact sans-serif controls, and quiet dividers define the sampled student experience. This record describes the built overview, results, and shared meal controls; it does not establish a global design system for all Nathan Tutors products.\n\nThe teacher meal page keeps the incumbent navy dashboard shell and its cooler canvas. Authentication keeps its separate Instrument Serif/DM Sans scenery composition. Neither is migrated to the student shell by this document. Product-wide audience priorities and brand commitments beyond the Nathan Tutors name remain undecided in PRODUCT.md.",
+    "keyCharacteristics": [
+      "Green navigation and paper surfaces in the student portal.",
+      "Serif page and section headings beside compact sans-serif controls.",
+      "Flat, divided lists and gently rounded functional surfaces.",
+      "Shared meal controls inside each role's existing shell."
+    ],
+    "rules": [
+      {
+        "name": "The Shell Boundary Rule",
+        "body": "Use a surface's existing shell and scoped palette; this record does not recolor teacher navigation or authentication.",
+        "section": "colors"
+      },
+      {
+        "name": "The Heading Role Rule",
+        "body": "Preserve the serif-heading/sans-serif-control distinction when extending these surfaces. The recorded Georgia use is an incumbent compatibility fact, not approval to introduce system display faces on unrelated new surfaces.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "**Do** preserve each role's incumbent shell and scoped visual vocabulary.",
+      "**Do** keep meal estimates, saved requests, and primary actions legible in their existing hierarchy.",
+      "**Do** use the exact supplied Wonton bitmap and respect reduced-motion preferences.",
+      "**Do** consult the surface contract for overview composition and raster provenance."
+    ],
+    "donts": [
+      "**Don't** apply these sampled tokens as a product-wide redesign mandate.",
+      "**Don't** canonize existing tiny metadata, uppercase kickers, or unrelated color fallbacks as patterns for new screens.",
+      "**Don't** replace preserved authentication assets or invent their original provenance."
+    ]
+  }
+}

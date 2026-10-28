@@ -48,7 +48,8 @@ export function saveExamResult(userId: string, result: ExamResult) {
     (storedResult) => storedResult.assessmentId !== result.assessmentId,
   );
 
-  window.localStorage.setItem(getStorageKey(userId), JSON.stringify([result, ...otherResults]));
+  try { window.localStorage.setItem(getStorageKey(userId), JSON.stringify([result, ...otherResults])); }
+  catch { /* A successful server submission must not fail because device storage is full. */ }
 }
 
 export function replaceExamResults(userId: string, results: ExamResult[]) {

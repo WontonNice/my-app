@@ -4,7 +4,7 @@ import { getDashboardPath, getStaffLoginEmail, getStudentLoginEmail, getUserRole
 import { rememberAccountSession } from "../lib/accountSwitching";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 import { loginDestination } from '../lib/loginDestination';
-import { ArrowLeft, ArrowRight, Eye, EyeOff, Shuffle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Eye, EyeOff, Pause, Play } from "lucide-react";
 import { WaterPortrait } from "../components/auth/WaterPortrait";
 import { MeadowScene } from "../components/auth/MeadowScene";
 import { useReducedMotion } from "../components/auth/useReducedMotion";
@@ -16,10 +16,17 @@ type AuthPageProps = {
 
 export function AuthPage({ mode }: AuthPageProps) {
   const isSignup = mode === "signup";
-  const [scene, setScene] = useState<"thinker" | "meadow">(() => Math.random() < 0.5 ? "thinker" : "meadow");
+  const [scene, setScene] = useState<"thinker" | "meadow">(() => {
+    try { return localStorage.getItem('nathan:login-scene') === 'meadow' ? 'meadow' : 'thinker'; } catch { return 'thinker'; }
+  });
   const [showPassword, setShowPassword] = useState(false);
   const reducedMotion = useReducedMotion();
-  const motionEnabled = !reducedMotion;
+  const [motionOverride, setMotionOverride] = useState<boolean | null>(null);
+  const motionEnabled = motionOverride ?? !reducedMotion;
+  function changeScene(next: 'thinker' | 'meadow') {
+    setScene(next);
+    try { localStorage.setItem('nathan:login-scene', next); } catch { /* Optional preference. */ }
+  }
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [message, setMessage] = useState("");
@@ -104,9 +111,10 @@ export function AuthPage({ mode }: AuthPageProps) {
       <header className="na-header">
         <a className="na-back" href="/" aria-label="Back to home"><ArrowLeft size={16} aria-hidden="true" /><span>Back to home</span></a>
         <a className="na-brand" href="/" aria-label="Nathan Tutors home"><span aria-hidden="true">n.</span> Nathan Tutors</a>
-        <button className="na-scene-switch" type="button" onClick={() => setScene(current => current === "thinker" ? "meadow" : "thinker")} aria-label={`Change scenery: switch to ${scene === "thinker" ? "landscape" : "Thinker"} scene`}>
-          <Shuffle size={15} aria-hidden="true" /><span>Change scenery</span>
-        </button>
+        <div className="na-scene-controls">
+          <label className="na-scene-choice"><span className="sr-only">Login scenery</span><select aria-label="Login scenery" value={scene} onChange={event => changeScene(event.target.value as 'thinker' | 'meadow')}><option value="thinker">Water ripples</option><option value="meadow">Meadow & deer</option></select></label>
+          <button className="na-scene-switch" type="button" aria-pressed={motionEnabled} onClick={() => setMotionOverride(!motionEnabled)} aria-label={motionEnabled ? 'Pause animations' : 'Play animations'} title={motionEnabled ? 'Pause animations' : 'Play animations'}>{motionEnabled ? <Pause size={15} aria-hidden="true" /> : <Play size={15} aria-hidden="true" />}</button>
+        </div>
       </header>
 
       <div className={`na-shell na-shell-${scene}`}>

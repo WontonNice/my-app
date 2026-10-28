@@ -8,11 +8,12 @@ export type PlanAssignment = {
   assignedAt: string | null; dueDate: string | null; plannedDate: string | null;
   completedAt: string | null; estimatedMinutes: number | null;
   questionTarget: number | null; practiceBaseline: number | null;
+  streakTarget?: number | null;
   createdAt: string; createdBy: string; updatedAt: string; revision: number;
   completion: CompletionEvidence | null; events?: PlanEvent[];
 };
 export type PlanSettings = { studentId: string; passagePace: number | null; targetDate: string | null; teacherNotes: string; updatedAt: string | null; revision: number };
-export type PlanContent = { id: string; kind: "passage" | "practice" | "exam"; title: string; href: string; subject: string; category: string; contentSource?: string; practiceMode?: "bank_set"; passageCategory?: import("./passageCategories").PassageCategory; skills: string[]; questionCount: number; aliases: string[]; classId?: string; versionLabel?: string };
+export type PlanContent = { id: string; kind: "passage" | "practice" | "exam"; title: string; href: string; subject: string; category: string; contentSource?: string; practiceMode?: "bank_set" | "infinite"; passageCategory?: import("./passageCategories").PassageCategory; skills: string[]; questionCount: number; aliases: string[]; classId?: string; versionLabel?: string };
 export type PriorContentActivity = { contentId: string; at: string | null; correct?: number; total?: number; source: string; reference?: string };
 export type InventoryStatus = "Never assigned" | "Planned" | "Assigned" | "In progress" | "Awaiting review" | "Completed" | "Previously assigned";
 export const assignmentKinds: AssignmentKind[] = ["passage", "practice", "exam", "external", "offline"];
@@ -75,7 +76,7 @@ export function planSummary(assignments: PlanAssignment[], today = todayInNewYor
     weekly: weekly.length, knownMinutes: timed.reduce((sum, item) => sum + item.estimatedMinutes!, 0), timed: timed.length,
     upcoming: assignments.filter(item => activeStatuses.includes(item.status) || item.status === "planned").sort((a, b) => (assignmentDay(a) ?? "9999").localeCompare(assignmentDay(b) ?? "9999")).slice(0, 4) };
 }
-export type AssignmentDraft = { kind: AssignmentKind; contentId?: string | null; title?: string; instructions?: string; url?: string | null; status: "planned" | "assigned"; dueDate?: string | null; plannedDate?: string | null; estimatedMinutes?: number | null; questionTarget?: number | null };
+export type AssignmentDraft = { kind: AssignmentKind; contentId?: string | null; title?: string; instructions?: string; url?: string | null; status: "planned" | "assigned"; dueDate?: string | null; plannedDate?: string | null; estimatedMinutes?: number | null; questionTarget?: number | null; streakTarget?: number | null };
 export function validateDraft(input: unknown, catalog: PlanContent[]): AssignmentDraft & { title: string; contentId: string | null; instructions: string; url: string | null; dueDate: string | null; plannedDate: string | null; estimatedMinutes: number | null; questionTarget: number | null } {
   if (!input || typeof input !== "object" || Array.isArray(input)) throw new Error("Enter assignment details.");
   const row = input as Record<string, unknown>;
@@ -96,7 +97,10 @@ export function validateDraft(input: unknown, catalog: PlanContent[]): Assignmen
   const optionalNumber = (value: unknown, max: number) => { if (value == null || value === "") return null; if (typeof value !== "number" || !Number.isInteger(value) || value < 1 || value > max) throw new Error(`Enter a whole number from 1 to ${max}.`); return value; };
   const estimatedMinutes = optionalNumber(row.estimatedMinutes, 10080);
   if (content?.practiceMode === "bank_set" && row.questionTarget != null && row.questionTarget !== "") throw new Error("Saved question-bank sets require all their questions; do not set an aggregate practice target.");
-  const questionTarget = kind === "practice" && content?.practiceMode !== "bank_set" ? optionalNumber(row.questionTarget, 10000) : null;
+  const isInfinite = content?.practiceMode === "infinite";
+  const streakTarget = isInfinite ? optionalNumber(row.streakTarget, 100) : null;
+  if (isInfinite && !streakTarget) throw new Error("Set a required streak from 1 to 100 correct answers.");
+  const questionTarget = kind === "practice" && !isInfinite && content?.practiceMode !== "bank_set" ? optionalNumber(row.questionTarget, 10000) : null;
   const isAnswerSheet = kind === "offline" && typeof row.contentId === "string" && /^answer-sheet-[a-f0-9-]{36}$/.test(row.contentId);
   let url: string | null = null;
   if (row.url) {
@@ -105,5 +109,5 @@ export function validateDraft(input: unknown, catalog: PlanContent[]): Assignmen
     else if (isAnswerSheet && /^\/answer-sheets\/[a-f0-9-]{36}$/.test(row.url)) url = row.url;
     else try { const parsed = new URL(row.url); if (!["http:", "https:"].includes(parsed.protocol) || parsed.username || parsed.password) throw new Error(); url = parsed.href; } catch { throw new Error("External links must use http or https without embedded credentials."); }
   }
-  return { kind, status: row.status as "planned" | "assigned", contentId: content?.id ?? (isAnswerSheet || isMathSelection ? row.contentId as string : null), title, instructions, url, dueDate, plannedDate, estimatedMinutes, questionTarget };
+  return { kind, status: row.status as "planned" | "assigned", contentId: content?.id ?? (isAnswerSheet || isMathSelection ? row.contentId as string : null), title, instructions, url, dueDate, plannedDate, estimatedMinutes, questionTarget, streakTarget };
 }

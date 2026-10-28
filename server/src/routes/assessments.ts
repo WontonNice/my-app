@@ -20,6 +20,7 @@ import { examAttemptId, type ExamReentryGrant } from "../shared/examReentry";
 import { contentForExamAttempt } from "../lib/examResume";
 import type { ExamContent } from "../shared/examTypes";
 import { submittedExamSections } from "../shared/examCompletion";
+import { preserveSubmittedSections } from "../shared/examResume";
 
 function applyReentry<T extends { sectionAccess: Record<AssessmentSection, boolean>; status: AssessmentStatus; allowCompletedAccess: boolean }>(assessment: T, grant?: ExamReentryGrant, openForEveryone = assessment.status === "open") {
     if (openForEveryone) return { ...assessment, allowCompletedAccess: true, canEditSubmittedSections: true };
@@ -81,7 +82,10 @@ assessmentsRouter.get("/student/:assessmentId", async (request, response) => {
         return;
     }
 
-    const resumeContent = assessment.status === "open" ? contentForExamAttempt(assessment.id, records.get(assessment.id)?.analysisContent as ExamContent | undefined, true) : undefined;
+    const savedContent = records.get(assessment.id)?.analysisContent as ExamContent | undefined;
+    const publishedContent = assessment.status === "open" ? contentForExamAttempt(assessment.id, savedContent, true) : undefined;
+    const closedSections = (["english", "math"] as const).filter(section => !assessment.sectionAccess[section]);
+    const resumeContent = publishedContent ? preserveSubmittedSections(publishedContent, savedContent, closedSections) : undefined;
     response.json({ assessment: { ...applyReentry(toStudentAssessmentDetail(personalAccess ? { ...assessment, status: "open", allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, user.id), reentry, assessment.status === "open"), ...(resumeContent ? { resumeContent } : {}) } });
 });
 
