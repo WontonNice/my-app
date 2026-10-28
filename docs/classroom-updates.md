@@ -1,6 +1,6 @@
 # Classroom updates — October 27, 2026
 
-Status: production migrations applied on October 28, 2026; application release being deployed. Both migration scripts completed and the new schema passed service-role read-only checks.
+Status: deployed to production on October 28, 2026. Render release `20f09ebf` succeeded at approximately 6:55 AM EDT. Both migration scripts completed and the new schema passed service-role read-only checks.
 
 ## Release order
 
@@ -36,6 +36,8 @@ Suggested request for the user's Uber contact (not sent): “Nathan Tutors reque
 - 40 targeted tests passed: exam reentry and section submission, learning-plan lifecycle, result dates/order, equal-count question replacement, blocked browser storage, homework authorization/streak/reset/retry/concurrency, and server-priced meal requests.
 - ESLint passed for all changed TypeScript/TSX files. Full-repository lint has existing failures in unrelated game and Practice Studio files.
 - Browser checks used fictional local fixtures, never student production data. Screenshots are in `.impeccable/review/`. The local harness is `node tools/preview-classroom-updates.cjs --port=4336`.
-- Both migrations were executed successfully against Nathan Tutors production on October 28, 2026; real-account acceptance follows deployment.
+- Both migrations were executed successfully against Nathan Tutors production on October 28, 2026. All three new tables have RLS enabled and deny direct reads to anon/authenticated roles; the meal-save function permits service_role execution only.
+- Render confirmed release `20f09ebf` live. Production health returned 200; unauthenticated feature routes returned 401; new client chunks and Wonton asset returned 200. The authenticated teacher meals page loaded its empty state, and the live login displayed both scenery options. No student production records were changed for acceptance testing.
+- Render remains on its existing free instance, which can delay the first request by 50 seconds or more after inactivity.
 
 Wonton provenance: `client/public/images/wontonrobot.png` is an unchanged copy of the user's supplied image. No generated replacement was used.
