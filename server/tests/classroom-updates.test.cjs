@@ -2,7 +2,7 @@ const { test, before, after, beforeEach } = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('node:path');
 require('ts-node').register({ transpileOnly:true,project:path.resolve(__dirname,'../tsconfig.json') });
-const {validateMealMenu,quoteMeal}=require('../src/shared/classroomMeals.ts');
+const {validateMealMenu,quoteMeal,mealEstimateCents}=require('../src/shared/classroomMeals.ts');
 const {defaultPracticeCatalog,studentPracticeCatalog}=require('../src/shared/practiceCatalog.ts');
 const {homeworkQuestion}=require('../src/shared/infiniteHomework.ts');
 const {validateDraft}=require('../src/shared/learningPlan.ts');
@@ -75,13 +75,13 @@ test('removed ordered requests restore to ordered; cancelled student requests ca
  assert.equal((await call(route,'teacher','PATCH',{revision:2,status:'restore'})).data.order.status,'ordered');
  tables.classroom_meal_orders[0].status='cancelled';assert.equal((await call(route,'teacher','PATCH',{revision:3,status:'restore'})).status,409);
 });
-test('customizations enforce required/max choices, snapshot selections and use all-in estimates once',()=>{
+test('customizations enforce required/max choices, snapshot selections and keep the teacher estimate fixed',()=>{
  const input=gallery();input.restaurants[0].items[0].estimatedTotalCents=1500;
  input.restaurants[0].items[0].optionGroups=[{id:'rice',name:'Rice',required:true,maxChoices:1,options:[{id:'white',name:'White rice',extraCents:0},{id:'brown',name:'Brown rice',extraCents:100}]},{id:'extras',name:'Extras',required:false,maxChoices:2,options:[{id:'chicken',name:'Chicken',extraCents:450},{id:'salsa',name:'Salsa',extraCents:0}]}];
  const valid=validateMealMenu(input);
  for(const choices of [{},{rice:['white','brown']},{rice:['fake']},{rice:['white','white']},{rice:['white'],fake:[]},{rice:['white'],extras:['chicken','salsa','fake']}])assert.throws(()=>quoteMeal(valid,[{id:'bowl',quantity:1,choices}]));
  const quote=quoteMeal(valid,[{id:'bowl',quantity:2,choices:{rice:['white'],extras:['chicken']},extraCents:0}]);
- assert.equal(quote.items[0].customizations[0].option,'White rice');assert.equal(quote.items[0].customizations[1].extraCents,450);assert.equal(quote.afterFeesTotalCents,3980);assert.equal(quote.items[0].unitCents,1700);
+ assert.equal(quote.items[0].customizations[0].option,'White rice');assert.equal(quote.items[0].customizations[1].extraCents,450);assert.equal(quote.afterFeesTotalCents,3000);assert.equal(quote.items[0].unitCents,1700);assert.equal(mealEstimateCents({...quote,afterFeesTotalCents:3980}),3000);assert.equal(quoteMeal(valid,[{id:'bowl',quantity:2,choices:{rice:['brown'],extras:['chicken','salsa']}}]).afterFeesTotalCents,3000);
  assert.equal(quoteMeal(valid,[{id:'bowl',quantity:1,choices:{rice:['white']}}]).afterFeesTotalCents,1500);
  assert.equal(quoteMeal(valid,[{id:'bread',quantity:1}]).afterFeesTotalCents,null);
  assert.equal(quoteMeal(valid,[{id:'bowl',quantity:1,choices:{rice:['white']}},{id:'bread',quantity:1}]).afterFeesTotalCents,null);

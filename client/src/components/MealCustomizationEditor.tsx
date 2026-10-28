@@ -3,7 +3,7 @@ import type { MealOptionGroup } from '../../../server/src/shared/classroomMeals'
 
 export function MealCustomizationEditor({ groups, onChange }: { groups: MealOptionGroup[]; onChange: (groups: MealOptionGroup[]) => void }) {
   const update = (id: string, changes: Partial<MealOptionGroup>) => onChange(groups.map(group => group.id === id ? { ...group, ...changes } : group));
-  return <div className="meal-customization-editor"><h4>Customizations</h4><p className="meal-fineprint">Add groups such as Rice, Beans, or Protein. Included options cost $0; enter a surcharge for paid extras.</p>
+  return <div className="meal-customization-editor"><h4>Customizations</h4><p className="meal-fineprint">Add groups such as Rice, Beans, or Protein. Included options cost $0; option prices are recorded for reference. Your fixed after-tax estimate stays unchanged.</p>
     {groups.map((group, index) => <fieldset className="meal-option-editor" key={group.id}><legend>Group {index + 1}</legend>
       <div className="meal-fields"><label>Group name<input required maxLength={100} placeholder="e.g. Rice" value={group.name} onChange={event => update(group.id, { name: event.target.value })} /></label><label>Maximum choices<input required type="number" min="1" max={Math.max(1, group.options.length)} value={group.maxChoices} onChange={event => update(group.id, { maxChoices: Number(event.target.value) })} /></label></div>
       <label className="meal-checkbox"><input type="checkbox" checked={group.required} onChange={event => update(group.id, { required: event.target.checked })} />Required — select at least one</label>

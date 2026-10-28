@@ -8,11 +8,11 @@ Open **Teacher → Classroom meals**. Create or select a session, add a restaura
 
 When no session exists, the page opens a local first-restaurant draft immediately. The first Save menu creates the closed session and saves its restaurant details; it does not require a separate Create session step. Browser verification used the preview harness's `--empty-meals` option and confirmed the first save survives reload.
 
-Each item also has an optional manually entered estimated total after taxes and fees. Blank values display N/A; clearing the field restores N/A. The cart estimate sums these amounts by quantity. Selected extra costs and their estimated tax are added to this base, with no second delivery-fee charge. If any selected item lacks its base estimate, the combined estimate is N/A. Existing raw subtotal/tax fields are retained in stored quotes for compatibility; the UI displays the after-fee estimate. Saved request items copy the server menu amounts.
+Each item also has an optional manually entered estimated total after taxes and fees. Blank values display N/A; clearing the field restores N/A. The cart estimate sums these amounts by quantity. Customization choices, including options with extra-cost labels, never change the fixed estimate. Only quantity multiplies it. If any selected item lacks its base estimate, the combined estimate is N/A. Existing raw subtotal/tax fields are retained in stored quotes for compatibility; the UI displays the after-fee estimate. Saved request items copy the server menu amounts.
 
 Each item supports up to 20 customization groups and 30 options per group. Teachers name groups/options, mark groups required or optional, set maximum choices, and enter included ($0) or extra-cost options. Students configure the item before adding it; one configuration applies to every quantity of that item in their request. They can edit those choices from the cart. Required groups, selection limits and valid option IDs are enforced on the server. Saved requests snapshot group names, selected option names and extra costs so the teacher can reproduce the order.
 
-Browser checks verified editing/saving groups, included and paid options, required-choice blocking, a $15 base + $4.50 extra + $0.40 estimated extra tax = $19.90 cart total, and the matching teacher receipt. Tests cover missing/duplicate/unknown/over-limit choices, invalid option prices, quantity multiplication, N/A estimates, and ignoring forged client prices.
+Browser checks verified editing/saving groups, included and paid options, required-choice blocking, a fixed $15 estimate remaining $15 with a $4.50 customization selected, and $30 for quantity two, and the matching teacher receipt. Tests cover missing/duplicate/unknown/over-limit choices, invalid option prices, quantity multiplication, N/A estimates, and ignoring forged client prices.
 
 ## Managing requests
 
@@ -39,3 +39,5 @@ The built-in image-generation tool created `client/public/images/wonton-sprites.
 - Independent review identified and corrected mobile pet overlap and sticky-header clearance on restaurant entry. Scoped review/documentation evidence is recorded alongside the captures.
 
 Uber menu/cart API access is unchanged. Menus, ratings, reviews, prices, taxes and fees are teacher-entered; requests still go to the teacher for manual ordering.
+
+Fixed pricing also applies when displaying older saved requests: the UI sums their snapshotted per-item manual estimates, rather than reusing a previously calculated extras-inclusive total. Missing manual estimates remain N/A.

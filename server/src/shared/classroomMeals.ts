@@ -98,8 +98,8 @@ export function quoteMeal(menu: MealMenu, selections: unknown): MealQuote {
     });
     const extras = customizations.reduce((sum, choice) => sum + choice.extraCents, 0);
     const unitCents = item.priceCents + extras;
-    // The manual base already includes fees and taxes. Only newly selected extras need estimated tax.
-    const afterFeesCents = item.estimatedTotalCents == null ? null : (item.estimatedTotalCents + extras + Math.round(extras * menu.taxBasisPoints / 10000)) * quantity;
+    // The teacher's all-in estimate is fixed regardless of customization prices.
+    const afterFeesCents = item.estimatedTotalCents == null ? null : item.estimatedTotalCents * quantity;
     return { id: item.id, name: item.name, quantity, unitCents, totalCents: unitCents * quantity, restaurant: restaurant?.name, buyOneGetOne: item.buyOneGetOne ?? false, estimatedTotalCents: item.estimatedTotalCents ?? null, choices, customizations, afterFeesCents };
   });
   const subtotalCents = items.reduce((sum, item) => sum + item.totalCents, 0);
@@ -108,4 +108,6 @@ export function quoteMeal(menu: MealMenu, selections: unknown): MealQuote {
   return { items, afterFeesTotalCents, subtotalCents, taxCents, feeCents, totalCents: subtotalCents + taxCents + feeCents, currency: 'USD', pricing: 'teacher_estimate' };
 }
 export const mealMoney = (cents: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(cents / 100);
-export const mealEstimate = (quote: MealQuote) => quote.afterFeesTotalCents == null ? 'N/A' : mealMoney(quote.afterFeesTotalCents);
+// Derive from snapshotted item estimates so older saved quotes also honor fixed pricing.
+export const mealEstimateCents = (quote: MealQuote): number | null => quote.items.some(item => item.estimatedTotalCents == null) ? null : quote.items.reduce((sum, item) => sum + (item.estimatedTotalCents ?? 0) * item.quantity, 0);
+export const mealEstimate = (quote: MealQuote) => { const cents = mealEstimateCents(quote); return cents == null ? 'N/A' : mealMoney(cents); };
