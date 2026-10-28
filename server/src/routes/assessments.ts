@@ -17,9 +17,12 @@ import { randomUUID } from "node:crypto";
 import { supabase } from "../lib/supabase";
 import { examReentryPrefix, readExamReentries, withExamWriteLock } from "../lib/examReentry";
 import { examAttemptId, type ExamReentryGrant } from "../shared/examReentry";
+import { contentForExamAttempt } from "../lib/examResume";
+import type { ExamContent } from "../shared/examTypes";
 import { submittedExamSections } from "../shared/examCompletion";
 
-function applyReentry<T extends { sectionAccess: Record<AssessmentSection, boolean>; status: AssessmentStatus; allowCompletedAccess: boolean }>(assessment: T, grant?: ExamReentryGrant) {
+function applyReentry<T extends { sectionAccess: Record<AssessmentSection, boolean>; status: AssessmentStatus; allowCompletedAccess: boolean }>(assessment: T, grant?: ExamReentryGrant, openForEveryone = assessment.status === "open") {
+    if (openForEveryone) return { ...assessment, allowCompletedAccess: true, canEditSubmittedSections: true };
     if (!grant?.remainingSections.length) return assessment;
     return { ...assessment, status: "open" as const, reentry: grant, sectionAccess: { english: grant.remainingSections.includes("english"), math: grant.remainingSections.includes("math") } };
 }
@@ -50,7 +53,7 @@ assessmentsRouter.get("/student", async (request, response) => {
 
     const personal = getUserRole(user) === "student" ? await assignedContentIds(user.id, "exam", true) : new Set<string>();
     const { grants } = await readExamReentries(user.id);
-    response.json({ assessments: listStudentAssessments(classIds).map(assessment => applyReentry(personal.has(assessment.id) ? { ...assessment, status: "open" as const, allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, grants[assessment.id])) });
+    response.json({ assessments: listStudentAssessments(classIds).map(assessment => applyReentry(personal.has(assessment.id) ? { ...assessment, status: "open" as const, allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, grants[assessment.id], assessment.status === "open")) });
 });
 
 assessmentsRouter.get("/student/:assessmentId", async (request, response) => {
@@ -71,14 +74,15 @@ assessmentsRouter.get("/student/:assessmentId", async (request, response) => {
     }
 
     const personalAccess = getUserRole(user) === "student" && await hasAssignedContent(user.id, "exam", assessment.id, true);
-    const { grants } = await readExamReentries(user.id);
+    const { grants, records } = await readExamReentries(user.id);
     const reentry = grants[assessment.id];
     if (assessment.status !== "open" && !isTeacher && !personalAccess && !reentry?.remainingSections.length) {
         response.status(403).json({ message: "This exam is still locked by your teacher." });
         return;
     }
 
-    response.json({ assessment: applyReentry(toStudentAssessmentDetail(personalAccess ? { ...assessment, status: "open", allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, user.id), reentry) });
+    const resumeContent = assessment.status === "open" ? contentForExamAttempt(assessment.id, records.get(assessment.id)?.analysisContent as ExamContent | undefined, true) : undefined;
+    response.json({ assessment: { ...applyReentry(toStudentAssessmentDetail(personalAccess ? { ...assessment, status: "open", allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, user.id), reentry, assessment.status === "open"), ...(resumeContent ? { resumeContent } : {}) } });
 });
 
 assessmentsRouter.route("/teacher/:assessmentId/reentry/:studentId")

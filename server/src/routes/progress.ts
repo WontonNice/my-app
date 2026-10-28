@@ -1,3 +1,5 @@
+import { contentForExamAttempt } from "../lib/examResume";
+import { preserveSubmittedSections } from "../shared/examResume";
 import { isFullExamResult, submittedExamSections } from "../shared/examCompletion";
 import { createExamResult, type SelectedAnswers } from "../shared/examGrading";
 import type { ExamContent } from "../shared/examTypes";
@@ -299,28 +301,33 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
     const status: "in_progress" | "submitted" =
         request.body?.status === "submitted" ? "submitted" : "in_progress";
     const { grants, records } = await readExamReentries(user.id);
-    const reentry = grants[request.params.assessmentId];
-    const suppliedGrantId = request.body?.reentryGrantId;
+    const openExam = configuredAssessment.status === "open";
+    const reentry = openExam ? undefined : grants[request.params.assessmentId];
+    const suppliedGrantId = openExam ? undefined : request.body?.reentryGrantId;
     if (suppliedGrantId && (!reentry || reentry.id !== suppliedGrantId || reentry.revokedAt)) {
         response.status(403).json({ message: "Your teacher revoked or replaced this re-entry permission. Return to assessments." }); return;
     }
     if (reentry?.remainingSections.length && suppliedGrantId !== reentry.id) {
         response.status(409).json({ message: "Your teacher reopened this exam. Reload it to use the updated permission." }); return;
     }
+    if (!openExam && getUserRole(user) === "student" && !reentry?.remainingSections.length && !(await hasAssignedContent(user.id, "exam", assessmentId, true))) {
+        response.status(403).json({ message: "Your teacher has locked this exam." }); return;
+    }
     const existingSession = (await getExamSessions(user))[request.params.assessmentId];
     const submitted = records.get(request.params.assessmentId);
     const globalRetake = !suppliedGrantId && submitted && isFullExamResult(submitted) && configuredAssessment?.status === "open" && configuredAssessment.allowCompletedAccess;
-    const protectedSections = submitted && !globalRetake ? submittedExamSections(submitted).filter(section => !reentry?.remainingSections.includes(section)) : [];
-    const snapshot = (submitted?.analysisContent as ExamContent | undefined) ?? getExamContent(request.params.assessmentId);
-    const editableIds = suppliedGrantId && snapshot ? new Set([
-        ...(reentry?.remainingSections.includes("english") ? [...snapshot.passageSets.flatMap(set => set.questions), ...(snapshot.standaloneSection?.questions ?? [])].map(question => question.id) : []),
-        ...(reentry?.remainingSections.includes("math") ? (snapshot.mathSection?.questions ?? []).map(question => question.id) : []),
+    const protectedSections = submitted && !globalRetake ? submittedExamSections(submitted).filter(section => !reentry?.remainingSections.includes(section) && (!openExam || !configuredAssessment.sectionAccess[section])) : [];
+    const snapshot = contentForExamAttempt(assessmentId, submitted?.analysisContent as ExamContent | undefined, openExam);
+    const editableIds = (suppliedGrantId || openExam) && snapshot ? new Set([
+        ...((openExam ? configuredAssessment.sectionAccess.english : reentry?.remainingSections.includes("english")) ? [...snapshot.passageSets.flatMap(set => set.questions), ...(snapshot.standaloneSection?.questions ?? [])].map(question => question.id) : []),
+        ...((openExam ? configuredAssessment.sectionAccess.math : reentry?.remainingSections.includes("math")) ? (snapshot.mathSection?.questions ?? []).map(question => question.id) : []),
     ]) : null;
     const protectedIds = snapshot ? [
         ...(protectedSections.includes("english") ? [...snapshot.passageSets.flatMap(set => set.questions), ...(snapshot.standaloneSection?.questions ?? [])].map(question => question.id) : []),
         ...(protectedSections.includes("math") ? (snapshot.mathSection?.questions ?? []).map(question => question.id) : []),
     ] : [];
     const mergedAnswers = {
+        ...(submitted?.answers as JsonRecord ?? {}),
         ...(existingSession?.answers ?? {}),
         ...(editableIds ? Object.fromEntries(Object.entries(answers as JsonRecord).filter(([id]) => editableIds.has(id))) : answers as JsonRecord),
         ...Object.fromEntries(protectedIds.filter(id => submitted?.answers && Object.hasOwn(submitted.answers as object, id)).map(id => [id, (submitted!.answers as JsonRecord)[id]])),
@@ -554,11 +561,13 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
     }
     return withExamWriteLock(user.id, assessmentId, async () => {
     const { grants, records } = await readExamReentries(user.id);
-    const grant = grants[assessmentId];
+    const configuredAssessment = listTeacherAssessments().find(item => item.id === assessmentId)!;
+    const openExam = configuredAssessment.status === "open";
+    const grant = openExam ? undefined : grants[assessmentId];
     const existing = records.get(assessmentId);
-    const suppliedGrantId = result.reentryGrantId;
+    const suppliedGrantId = openExam ? undefined : result.reentryGrantId;
     // A lost response must be safe to retry without consuming another permission.
-    if (suppliedGrantId && grant?.id === suppliedGrantId && !grant.revokedAt && existing?.reentryGrantId === grant.id && result.attemptId === grant.attemptId) {
+    if (suppliedGrantId && grant && grant.id === suppliedGrantId && !grant.revokedAt && existing?.reentryGrantId === grant.id && result.attemptId === grant.attemptId) {
         const requested = submittedExamSections(result).filter(section => grant.sections.includes(section));
         const completed = Array.isArray(existing.reentrySubmittedSections) ? existing.reentrySubmittedSections : [];
         const content = existing.analysisContent as ExamContent | undefined;
@@ -615,17 +624,19 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
         if (old) {
             const oldId = String(old.attemptId ?? `legacy:${assessmentId}:${old.completedAt}`);
             if (oldId === result.attemptId && old.answers && result.answers) {
-                const content = (old.analysisContent as ExamContent | undefined) ?? getExamContent(assessmentId);
-                if (!content || content.assessmentId !== assessmentId) { response.status(409).json({ message: "The original exam content is unavailable. Ask your teacher for help." }); return; }
+                const requested = submittedExamSections(result);
                 const completed = submittedExamSections(old);
+                const protectedSections = completed.filter(section => !openExam || !configuredAssessment.sectionAccess[section] || !requested.includes(section));
+                const content = preserveSubmittedSections(contentForExamAttempt(assessmentId, old.analysisContent as ExamContent | undefined, openExam)!, old.analysisContent as ExamContent | undefined, protectedSections);
+                if (!content || content.assessmentId !== assessmentId) { response.status(409).json({ message: "The original exam content is unavailable. Ask your teacher for help." }); return; }
                 const protectedIds = [
-                    ...(completed.includes("english") ? [...content.passageSets.flatMap(set=>set.questions), ...(content.standaloneSection?.questions??[])].map(question=>question.id) : []),
-                    ...(completed.includes("math") ? (content.mathSection?.questions??[]).map(question=>question.id) : []),
+                    ...(protectedSections.includes("english") ? [...content.passageSets.flatMap(set=>set.questions), ...(content.standaloneSection?.questions??[])].map(question=>question.id) : []),
+                    ...(protectedSections.includes("math") ? (content.mathSection?.questions??[]).map(question=>question.id) : []),
                 ];
                 const protectedAnswers = Object.fromEntries(protectedIds.filter(id=>Object.hasOwn(old.answers as object,id)).map(id=>[id,(old.answers as SelectedAnswers)[id]]));
                 const sections = [...new Set([...completed,...submittedExamSections(result)])];
                 const preserved = createExamResult(content,{...result.answers,...protectedAnswers},sections,{...(result.questionTimes??{}),...(old.questionTimes as Record<string,number>??{})});
-                result = {...result,...preserved,completedAt:result.completedAt,attemptId:oldId,sectionCompletedAt:{...(result.sectionCompletedAt??{}),...(old.sectionCompletedAt as object??{})},timerState:result.timerState??old.timerState,...(old.reentryGrantId ? { reentryGrantId: old.reentryGrantId, reentrySubmittedSections: old.reentrySubmittedSections } : {})};
+                result = {...result,...preserved,completedAt:result.completedAt,attemptId:oldId,sectionCompletedAt:{...(old.sectionCompletedAt as object??{}),...(result.sectionCompletedAt??{})},timerState:result.timerState??old.timerState,...(old.reentryGrantId ? { reentryGrantId: old.reentryGrantId, reentrySubmittedSections: old.reentrySubmittedSections } : {})};
             }
             if (oldId !== result.attemptId) {
                 const historyId = `__exam_history__:${assessmentId}:${Buffer.from(oldId).toString("base64url")}`;

@@ -27,6 +27,8 @@ stub('../src/lib/supabase.ts', { supabase: { auth: { admin: { listUsers: async (
 const { createExamResult } = require('../src/shared/examGrading.ts');
 const { restoredReentryTimer } = require('../src/shared/examReentry.ts');
 const content = { assessmentId: 'exam', title: 'Exam', passageSets: [{ id: 'p', passage: { id: 'p', title: 'Passage', lines: [] }, questions: [{ id: 'e', type: 'multiple_choice', topic: 'Inference', choices: [{ id: 'A', text: 'Yes' }], correctChoiceId: 'A' }] }], mathSection: { id: 'math', questions: [{ id: 'm', type: 'numeric_entry', topic: 'Algebra', correctTextAnswers: ['5'] }] } };
+let publishedContent=content;
+stub('../src/lib/examContent.ts',{getExamContent:id=>id==='exam'?publishedContent:null});
 let server, root;
 before(async () => { const express = require('express'), app = express(); app.use(express.json()); app.use('/api/progress', require('../src/routes/progress.ts').progressRouter); app.use('/api/assessments', require('../src/routes/assessments.ts').assessmentsRouter); server = await new Promise(resolve => { const instance = app.listen(0, '127.0.0.1', () => resolve(instance)); }); root = `http://127.0.0.1:${server.address().port}/api`; });
 after(async () => new Promise(resolve => server.close(resolve)));
@@ -90,13 +92,14 @@ test('each reopened section closes after submission and revoke prevents both ans
   assert.equal(latest().answers.m, '5');
 });
 
-test('students cannot bypass re-entry by inventing a new attempt id, and autosave protects submitted answers', async () => {
+test('open exams keep the same attempt and accept editable drafts without changing submitted grades', async () => {
   assessment.status = 'open'; assessment.sectionAccess = { english: true, math: true };
   try {
     assert.equal((await call('/progress/exam-results/exam', 'student', 'PUT', { result: { ...createExamResult(content, { e: 'B', m: '5' }, ['english', 'math']), attemptId: 'invented' } })).status, 403);
     assert.equal((await call('/progress/exam-sessions/exam', 'student', 'PUT', { answers: { e: 'B', m: '5' }, completedSections: [] })).status, 200);
     const session = (await call('/progress/exam-sessions', 'student')).data.sessions.exam;
-    assert.deepEqual(session.answers, { e: 'A', m: '0' }); assert.deepEqual(session.completedSections, ['english', 'math']);
+    assert.deepEqual(session.answers, { e: 'B', m: '5' }); assert.deepEqual(session.completedSections, []);
+    assert.deepEqual(latest().answers,{e:'A',m:'0'},'Autosaving a revision does not grade it');
   } finally { assessment.status = 'locked'; assessment.sectionAccess = { english: false, math: false }; }
 });
 
@@ -126,4 +129,68 @@ test('students cannot alias a locked exam through unknown IDs, foreign snapshots
   assert.equal((await call('/progress/exam-sessions/exam', 'student', 'PUT', { assessmentId: 'another-exam', answers: { m: '5' }, completedSections: ['math'] })).status, 400);
   assert.equal((await call('/progress/exam-sessions/exam', 'outsider', 'PUT', { answers: { m: '5' }, completedSections: ['math'] })).status, 403);
   assert.equal(tables.student_exam_results.length, 1); assert.equal(tables.student_exam_sessions.length, 0); assert.equal(latest().answers.m, '0');
+});
+
+
+test('an open exam remains editable after every submission, including with an old individual grant',async()=>{
+  const manual=(await call(permissionPath,'teacher','PUT',{sections:['english']})).data.grant;
+  assessment.status='open';assessment.sectionAccess={english:true,math:true};
+  try{
+    const detail=(await call('/assessments/student/exam','student')).data.assessment;
+    assert.equal(detail.canEditSubmittedSections,true);assert.equal(detail.allowCompletedAccess,true);
+    assert.equal(detail.reentry,undefined);assert.deepEqual(detail.sectionAccess,{english:true,math:true});
+    for(const answer of ['B','A','B']){
+      const result={...createExamResult(content,{e:answer,m:'5'},['english']),attemptId:'original',reentryGrantId:manual.id};
+      assert.equal((await call('/progress/exam-results/exam','student','PUT',{result})).status,200);
+      assert.equal(latest().answers.e,answer);assert.equal(latest().attemptId,'original');
+      assert.equal((await call('/assessments/student/exam','student')).data.assessment.canEditSubmittedSections,true);
+    }
+    assert.equal(tables.student_exam_results.filter(row=>row.assessment_id.startsWith('__exam_history__:')).length,0);
+  }finally{assessment.status='locked';assessment.sectionAccess={english:false,math:false};}
+});
+
+test('newly published question IDs appear in a saved exam and are graded only when their section is submitted',async()=>{
+  assessment.status='open';assessment.sectionAccess={english:true,math:true};
+  const oldSnapshot=structuredClone(latest().analysisContent),oldEnglish=structuredClone(latest().subjects.find(s=>s.subject==='English Language Arts'));
+  const extra={...content.passageSets[0].questions[0],id:'new-english',correctChoiceId:'A'};
+  publishedContent={...content,passageSets:[{...content.passageSets[0],questions:[...content.passageSets[0].questions,extra]}]};
+  try{
+    const detail=(await call('/assessments/student/exam','student')).data.assessment;
+    assert.deepEqual(detail.resumeContent.passageSets[0].questions.map(q=>q.id),['e','new-english']);
+    assert.deepEqual(latest().analysisContent,oldSnapshot,'Reading the revised content does not alter the original submission');
+    const math={...createExamResult(detail.resumeContent,{e:'B',m:'5'},['math']),attemptId:'original'};
+    assert.equal((await call('/progress/exam-results/exam','student','PUT',{result:math})).status,200);
+    assert.equal(latest().total,2);assert.deepEqual(latest().subjects.find(s=>s.subject==='English Language Arts'),oldEnglish);
+    const english={...createExamResult(detail.resumeContent,{e:'A','new-english':'A',m:'0'},['english']),attemptId:'original'};
+    assert.equal((await call('/progress/exam-results/exam','student','PUT',{result:english})).status,200);
+    assert.equal(latest().total,3);assert.equal(latest().answers.m,'5');assert.equal(latest().answers['new-english'],'A');
+    assert.equal(latest().attemptId,'original');assert.equal(tables.student_exam_results.filter(row=>row.assessment_id.startsWith('__exam_history__:')).length,0);
+  }finally{publishedContent=content;assessment.status='locked';assessment.sectionAccess={english:false,math:false};}
+});
+
+test('closing an exam or section stops edits from an already open browser',async()=>{
+  assessment.status='open';assessment.sectionAccess={english:false,math:true};
+  try{
+    assert.equal((await call('/progress/exam-sessions/exam','student','PUT',{answers:{e:'B',m:'5'},completedSections:[]})).status,200);
+    let session=(await call('/progress/exam-sessions','student')).data.sessions.exam;
+    assert.equal(session.answers.e,'A');assert.equal(session.answers.m,'5');assert.deepEqual(session.completedSections,['english']);
+    const result={...createExamResult(content,{e:'B',m:'5'},['math']),attemptId:'original'};
+    assert.equal((await call('/progress/exam-results/exam','student','PUT',{result})).status,200);
+    assert.equal(latest().answers.e,'A');
+    assessment.status='locked';assessment.sectionAccess={english:false,math:false};
+    assert.equal((await call('/assessments/student/exam','student')).status,403);
+    assert.equal((await call('/progress/exam-sessions/exam','student','PUT',{answers:{e:'B'},completedSections:[]})).status,403);
+    assert.equal((await call('/progress/exam-results/exam','student','PUT',{result})).status,403);
+  }finally{assessment.status='locked';assessment.sectionAccess={english:false,math:false};}
+});
+
+
+test('saved answer keys stay frozen while new questions are detected by ID rather than total count',()=>{
+  const {resumeExamContent}=require('../src/shared/examResume.ts');
+  const changed={...content,passageSets:[{...content.passageSets[0],questions:[{...content.passageSets[0].questions[0],prompt:'Edited question',correctChoiceId:'B'}]}],mathSection:{...content.mathSection,questions:[{...content.mathSection.questions[0],id:'replacement-math'}]}};
+  const resumed=resumeExamContent(changed,content);
+  assert.equal(resumed.passageSets[0].questions[0].correctChoiceId,'A');
+  assert.equal(resumed.mathSection.questions[0].id,'replacement-math');
+  assert.equal(createExamResult(resumed,{e:'A','replacement-math':'5'}).total,2);
+  assert.equal(content.mathSection.questions[0].id,'m','Neither input is mutated');
 });

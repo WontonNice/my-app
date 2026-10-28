@@ -63,7 +63,7 @@ export function ExamLaunchPage() {
 
       try {
         const nextAssessment = await getStudentAssessment(data.session.access_token, assessmentId);
-        const examContent = resolveExamContent(nextAssessment);
+        const examContent = nextAssessment.resumeContent ?? resolveExamContent(nextAssessment);
         const sectionAccess = getExamSectionAccess(examContent, nextAssessment.sectionAccess);
         setAssessment({ ...nextAssessment, sectionAccess });
         const isAccountPreview = previewContext.mode === "student" && Boolean(previewContext.studentId);
@@ -107,7 +107,7 @@ export function ExamLaunchPage() {
             updatedAt: savedResult.completedAt,
           };
         }
-        const currentCompletedSections = getCurrentCompletedSections(examContent, progress).filter(section => !nextAssessment.reentry?.remainingSections.includes(section));
+        const currentCompletedSections = getCurrentCompletedSections(examContent, progress).filter(section => !nextAssessment.reentry?.remainingSections.includes(section) && (!nextAssessment.canEditSubmittedSections || !sectionAccess[section]));
         const currentQuestionCount = nextAssessment.questions.length;
         const complete =
           isExamSessionCompleteForContent(examContent, progress) ||
@@ -117,7 +117,7 @@ export function ExamLaunchPage() {
           Boolean(progress && (Object.keys(progress.answers).length > 0 || currentCompletedSections.length > 0)),
         );
         const storedStartingSubject = getStoredStartingSubject(assessmentId);
-        const preferredSubject = complete
+        const preferredSubject = complete || nextAssessment.canEditSubmittedSections
           ? storedStartingSubject
           : getNextExamSubject(storedStartingSubject, currentCompletedSections);
         setStartingSubject(
@@ -150,7 +150,7 @@ export function ExamLaunchPage() {
     const launchName = typedName.trim() || studentName;
     window.sessionStorage.setItem(`exam-student-name:${assessment.id}`, launchName);
     window.sessionStorage.setItem(`exam-start-subject:${assessment.id}`, startingSubject);
-    if (!assessment.reentry && (!hasSavedProgress || isComplete)) resetExamTimer(assessment.id);
+    if (!assessment.reentry && (!hasSavedProgress || (isComplete && !assessment.canEditSubmittedSections))) resetExamTimer(assessment.id);
     window.location.assign(`/exam/${assessment.id}/session${window.location.search}`);
   }
 
@@ -216,7 +216,7 @@ export function ExamLaunchPage() {
                 </div>
               ) : <form className="exam-launch-form" onSubmit={handleStartExam}>
                 <h2>{isComplete ? "Reopen submitted exam" : "Enter your name:"}</h2>
-                {assessment.reentry ? <p>Your teacher reopened {assessment.reentry.remainingSections.map(section => section === "math" ? "Math" : "English").join(" and ")}. Your saved answers and remaining exam time will load{assessment.reentry.additionalMinutes ? `, with ${assessment.reentry.additionalMinutes} extra minutes` : ""}. Submit each reopened section when finished.</p> : isComplete ? <p>Your saved answers will load. Submit both sections again to replace this attempt.</p> : null}
+                {assessment.reentry ? <p>Your teacher reopened {assessment.reentry.remainingSections.map(section => section === "math" ? "Math" : "English").join(" and ")}. Your saved answers and remaining exam time will load{assessment.reentry.additionalMinutes ? `, with ${assessment.reentry.additionalMinutes} extra minutes` : ""}. Submit each reopened section when finished.</p> : isComplete ? <p>Your saved answers will load. You can edit and resubmit open sections while your teacher keeps this exam open.</p> : null}
                 <label>
                   Name:
                   <input

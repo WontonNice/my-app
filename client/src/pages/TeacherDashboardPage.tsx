@@ -38,7 +38,6 @@ import {
   reviewTeacherClassJoinRequest,
   setStudentAccountArchived,
   updateStudentAccount,
-  updateTeacherAssessmentCompletedAccess,
   updateTeacherAssessmentSectionAccess,
   updateTeacherAssessmentStatus,
   updateTeacherAssessmentForms,
@@ -1070,7 +1069,6 @@ export function TeacherDashboardPage() {
   const [classJoinRequests, setClassJoinRequests] = useState<TeacherClassJoinRequest[]>([]);
   const [savingClassRequestKey, setSavingClassRequestKey] = useState("");
   const [savingStatusId, setSavingStatusId] = useState("");
-  const [savingCompletedAccessId, setSavingCompletedAccessId] = useState("");
   const [savingSectionAccessKey, setSavingSectionAccessKey] = useState("");
   const [savingAccountId, setSavingAccountId] = useState("");
   const [savingFormsId, setSavingFormsId] = useState("");
@@ -1331,24 +1329,6 @@ export function TeacherDashboardPage() {
     }
   }
 
-  async function handleToggleCompletedAccess(assessment: TeacherAssessment) {
-    if (!accessToken) return;
-    setSavingCompletedAccessId(assessment.id); setMessage("");
-    try {
-      const updated = await updateTeacherAssessmentCompletedAccess(
-        accessToken,
-        assessment.id,
-        !assessment.allowCompletedAccess,
-      );
-      setAssessments((current) => current.map((item) => item.id === updated.id ? updated : item));
-      setMessage(
-        updated.allowCompletedAccess
-          ? `Completed students can now reopen ${updated.title} while it is open.`
-          : `Completed access is off for ${updated.title}.`,
-      );
-    } catch (error) { setMessage(error instanceof Error ? error.message : "Could not update completed access."); }
-    finally { setSavingCompletedAccessId(""); }
-  }
 
   function openFormEditor(assessment: TeacherAssessment) {
     setOpenFormEditorId((current) => current === assessment.id ? "" : assessment.id);
@@ -1740,7 +1720,7 @@ export function TeacherDashboardPage() {
                 <section className="assessment-card-access" aria-label={`${assessment.title} student access`}>
                   <div className="assessment-card-section-heading"><h4>Student access</h4><button className="assessment-text-button" disabled={isSavingAccess} type="button" onClick={() => handleToggleAssessment(assessment)}>{savingStatusId === assessment.id ? "Saving…" : allSectionsOpen ? "Lock both" : "Open both"}</button></div>
                   <div className="assessment-section-switches">{(["english", "math"] as const).map(section => <button className={`assessment-section-switch ${assessment.sectionAccess[section] ? "is-open" : "is-locked"}`} role="switch" aria-checked={assessment.sectionAccess[section]} aria-label={`${section === "english" ? "English" : "Math"} access for ${assessment.title}`} disabled={isSavingAccess} key={section} onClick={() => handleToggleSectionAccess(assessment, section)} type="button"><span>{section === "english" ? "English" : "Math"}<small>{savingSectionAccessKey === assessment.id + ":" + section ? "Saving…" : assessment.sectionAccess[section] ? "Open" : "Locked"}</small></span><i aria-hidden="true" /></button>)}</div>
-                  <div className="assessment-completed-access"><span>Completed-student access<small>Allow entry after submission.</small></span><button className={`assessment-button ${assessment.allowCompletedAccess ? "is-allowed" : ""}`} aria-pressed={assessment.allowCompletedAccess} aria-label={`Completed-student access for ${assessment.title}`} disabled={savingCompletedAccessId === assessment.id} type="button" onClick={() => handleToggleCompletedAccess(assessment)}><RotateCcw size={13} />{savingCompletedAccessId === assessment.id ? "Saving…" : assessment.allowCompletedAccess ? "Allowed" : "Locked"}</button></div>
+                  <div className="assessment-completed-access"><span>Student re-entry<small>Students can return to open sections after submitting. Their saved answers remain available.</small></span></div>
                 </section>
               </div>
               <div className="assessment-card-tools"><span>Exam tools</span><button className="assessment-button teacher-form-toggle" disabled={!assessment.passages.length} type="button" aria-expanded={isFormEditorOpen} onClick={() => openFormEditor(assessment)}><Shuffle size={14} />{isFormEditorOpen ? "Close passage forms" : "Passage forms"}</button><button className="assessment-button teacher-answer-key-toggle" type="button" aria-expanded={openAnswerKeyId === assessment.id} onClick={() => setOpenAnswerKeyId(current => current === assessment.id ? "" : assessment.id)}><ClipboardList size={14} />{openAnswerKeyId === assessment.id ? "Close answer key" : "Answer key"}</button></div>

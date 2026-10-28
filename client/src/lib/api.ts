@@ -99,6 +99,8 @@ export type StudentAssessment = {
 };
 
 export type TeacherAssessment = {
+  canEditSubmittedSections?: boolean;
+  resumeContent?: import("../../../server/src/shared/examTypes").ExamContent;
   reentry?: import("../../../server/src/shared/examReentry").ExamReentryGrant;
   correctionsOpen?: boolean;
   allowCompletedAccess: boolean;

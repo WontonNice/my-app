@@ -1,3 +1,11 @@
+# Open exams and individual re-entry
+
+While an exam is open, students can return to its open sections even after submitting. They continue the same attempt with saved answers and the existing timer; a revision does not create another attempt in averages. Previously submitted attempts remain editable while open even when the original timer has expired; the timer remains visible as a record of elapsed time. Initial timed attempts still show the expiry submission dialog.
+
+Newly published questions are included when a student reloads the exam. Existing question IDs retain their saved question wording and answer keys; new IDs use the published content. Draft saves do not change grades. Resubmitting one section revises that section's grade and preserves the other submitted section until it is explicitly resubmitted. Closing an exam or section stops further ordinary edits, including requests from an older tab.
+
+Individual re-entry remains available as a teacher-controlled exception for closed exams. The following details apply to those exceptions.
+
 # Individual exam re-entry
 
 Teachers can reopen English, Math, or both for one enrolled student from the assessment library or the student's progress details. Students see “Reopened for you” on their assessment card. A permission works even when that exam is locked for the rest of the class.

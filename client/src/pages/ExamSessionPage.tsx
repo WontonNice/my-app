@@ -1131,6 +1131,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const [isNotepadOpen, setIsNotepadOpen] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [isSubmittingSection, setIsSubmittingSection] = useState(false);
+  const [hasSubmittedAttempt, setHasSubmittedAttempt] = useState(false);
   const [isTimerVisible, setIsTimerVisible] = useState(false);
   const [isUnansweredModalOpen, setIsUnansweredModalOpen] = useState(false);
   const [isTeacherPreviewSession, setIsTeacherPreviewSession] = useState(false);
@@ -1243,11 +1244,12 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
             // Continue with the locally saved English answers when cloud sync is unavailable.
           }
         }
+        setHasSubmittedAttempt(Boolean(savedResult));
         const reentry = !isTeacherPreview ? nextAssessment.reentry : undefined;
         if (reentry && progress && Date.parse(progress.updatedAt) < Date.parse(reentry.draftsFrom ?? reentry.grantedAt)) progress = null;
         if (savedResult && progress && !isTeacherPreview) {
           const submittedIds = getExamSectionQuestionIds(savedResult.analysisContent ?? resolveExamContent(nextAssessment));
-          const savedSections = (savedResult.completedSections ?? []).filter(section => !reentry?.remainingSections.includes(section));
+          const savedSections = (savedResult.completedSections ?? []).filter(section => !reentry?.remainingSections.includes(section) && (!nextAssessment.canEditSubmittedSections || !nextAssessment.sectionAccess[section]));
           const protectedAnswers = Object.fromEntries(savedSections.flatMap(section => submittedIds[section].filter(id => Object.hasOwn(savedResult!.answers, id)).map(id => [id, savedResult!.answers[id]])));
           progress = { ...progress, answers: { ...savedResult.answers, ...progress.answers, ...protectedAnswers }, completedSections: [...new Set([...progress.completedSections, ...savedSections])] };
         }
@@ -1272,7 +1274,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           sectionDatesRef.current = Object.fromEntries(Object.entries(sectionDatesRef.current).filter(([section]) => !reentry.remainingSections.includes(section as ExamSection)));
         }
         if (savedResult?.timerState && !isTeacherPreview && !hadLocalTimer && !reentry) { saveExamTimerState(assessmentId, savedResult.timerState); setTimerState(savedResult.timerState); }
-        const examContent = savedResult?.analysisContent ?? resolveExamContent(nextAssessment);
+        const examContent = nextAssessment.resumeContent ?? savedResult?.analysisContent ?? resolveExamContent(nextAssessment);
         const hasCompletedAttempt =
           isExamSessionCompleteForContent(examContent, progress) ||
           isExamResultCompleteForQuestionCount(savedResult, nextAssessment.questions.length);
@@ -1285,19 +1287,20 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           return;
         }
         const isReopeningCompletedAttempt =
-          !isTeacherPreview && hasCompletedAttempt && nextAssessment.allowCompletedAccess && !reentry;
+          !isTeacherPreview && hasCompletedAttempt && nextAssessment.allowCompletedAccess && !nextAssessment.canEditSubmittedSections && !reentry;
         attemptIdRef.current = isReopeningCompletedAttempt ? crypto.randomUUID() : savedResult ? savedResult.attemptId ?? `legacy:${assessmentId}:${savedResult.completedAt}` : attemptIdRef.current;
-        if (!isReopeningCompletedAttempt && savedResult?.analysisContent) setAttemptContent(savedResult.analysisContent);
+        if (nextAssessment.resumeContent) setAttemptContent(nextAssessment.resumeContent);
+        else if (!isReopeningCompletedAttempt && savedResult?.analysisContent) setAttemptContent(savedResult.analysisContent);
         const effectiveSectionAccess = getExamSectionAccess(
           examContent,
           isTeacherPreview ? { english: true, math: true } : nextAssessment.sectionAccess,
         );
         const savedCompletedSections = getCurrentCompletedSections(examContent, progress).filter(section => !reentry?.remainingSections.includes(section));
-        const currentCompletedSections = isReopeningCompletedAttempt
+        const currentCompletedSections = isReopeningCompletedAttempt || nextAssessment.canEditSubmittedSections
           ? savedCompletedSections.filter((section) => !effectiveSectionAccess[section])
           : savedCompletedSections;
         setCompletedSections(currentCompletedSections);
-        const preferredStartingSubject = isReopeningCompletedAttempt
+        const preferredStartingSubject = isReopeningCompletedAttempt || nextAssessment.canEditSubmittedSections
           ? storedStartingSubject
           : getNextExamSubject(storedStartingSubject, currentCompletedSections);
         const openStartingSubject = getOpenExamSubject(
@@ -1710,6 +1713,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
       saveExamResult(studentId, result);
       saveLocalExamSession(studentId, result.assessmentId, answers, ["english", "math"], "submitted", getQuestionTimesSnapshot());
       setCompletedSections(["english", "math"]);
+      setHasSubmittedAttempt(true);
     } catch (error) {
       finalSubmissionRef.current = false;
       throw error;
@@ -1736,6 +1740,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
       }
       sectionDatesRef.current = dates;
       setSelectedAnswers(submission.answers); setCompletedSections(submission.completedSections);
+      setHasSubmittedAttempt(true);
       saveExamTimerState(currentAssessmentId, pausedTimer); setTimerState(pausedTimer);
       return submission.completedSections;
     } finally { finalSubmissionRef.current = false; }
@@ -2521,7 +2526,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   const activeSubmissionSection: ExamSection = sessionScreen.startsWith("math") ? "math" : "english";
-  const onTimeExpiredSubmit = !isGameSession && !isTeacherPreviewSession && timerState && timerState.pausedAt === null && sessionScreen !== "testOver" && sessionScreen !== "sectionComplete" && isExamTimeExpired(timerState, timerNow)
+  const onTimeExpiredSubmit = !isGameSession && !isTeacherPreviewSession && !(assessment?.canEditSubmittedSections && hasSubmittedAttempt) && timerState && timerState.pausedAt === null && sessionScreen !== "testOver" && sessionScreen !== "sectionComplete" && isExamTimeExpired(timerState, timerNow)
     ? async () => { await saveCompletedExam(selectedAnswers); setSessionScreen("testOver"); }
     : undefined;
   const submissionQuestions = activeSubmissionSection === "math" ? mathQuestions : [...examContent.passageSets.flatMap(set => set.questions), ...(standaloneSection?.questions ?? [])];
@@ -2588,7 +2593,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   if (sessionScreen === "sectionComplete") {
     const next = submittedSection === "math" ? "english" : "math";
     const mayContinue = next === "math" ? canAccessMath : canAccessEnglish;
-    return <main className="exam-session-shell"><section className="exam-end-section-card"><h1>{submittedSection === "math" ? "Math" : "English"} submitted</h1><p>Your teacher can now review this section. {next === "math" ? "Math" : "English"} remains unfinished and has not been graded.</p><p>The shared three-hour exam timer is paused. Time remaining: {timerDisplay.text}.</p><div className="exam-test-over-actions"><button className="exam-end-section-submit" onClick={() => window.location.assign(getAssessmentDashboardHref())} type="button">Save & exit</button>{mayContinue && <button className="exam-end-section-submit" onClick={() => { handleResumeTimer(); window.sessionStorage.setItem(`exam-start-subject:${currentAssessmentId}`, next); setActivePassageSetIndex(0); setActiveQuestionIndex(0); setSessionScreen(next === "math" ? "mathIntro" : "directions"); }} type="button">Continue {next === "math" ? "Math" : "English"}</button>}</div></section></main>;
+    return <main className="exam-session-shell"><section className="exam-end-section-card"><h1>{submittedSection === "math" ? "Math" : "English"} submitted</h1><p>Your teacher can now review this section. {assessment.canEditSubmittedSections ? "You can continue to the next section or return to any open section later." : <>{next === "math" ? "Math" : "English"} remains unfinished and has not been graded.</>}</p><p>The shared three-hour exam timer is paused. Time remaining: {timerDisplay.text}.</p><div className="exam-test-over-actions"><button className="exam-end-section-submit" onClick={() => window.location.assign(getAssessmentDashboardHref())} type="button">Save & exit</button>{mayContinue && <button className="exam-end-section-submit" onClick={() => { handleResumeTimer(); window.sessionStorage.setItem(`exam-start-subject:${currentAssessmentId}`, next); setActivePassageSetIndex(0); setActiveQuestionIndex(0); setSessionScreen(next === "math" ? "mathIntro" : "directions"); }} type="button">Continue {next === "math" ? "Math" : "English"}</button>}</div></section></main>;
   }
 
   if (isExamPaused && sessionScreen !== "testOver") {
@@ -4023,7 +4028,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
             <h2>Planning Your Time</h2>
             <ul>
               <li>
-                If the timer is enabled, your session will end after {formatDuration(assessment.durationMinutes)}.
+                {assessment.canEditSubmittedSections ? <>The first timed attempt allows {formatDuration(assessment.durationMinutes)}. You can revisit submitted work while your teacher keeps the exam open.</> : <>If the timer is enabled, your session will end after {formatDuration(assessment.durationMinutes)}.</>}
               </li>
               <li>
                 Answer every question. Use Previous, Next, or Review to navigate within your current passage set or section.
@@ -4037,8 +4042,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 is best.
               </li>
               <li>
-                Complete the subject area you started before moving to the next subject area. Once submitted, that
-                subject area will be locked.
+                {assessment.canEditSubmittedSections ? "Your answers stay saved after submission. You can return to and revise any section your teacher keeps open." : "Complete the subject area you started before moving to the next subject area. Once submitted, that subject area will be locked."}
               </li>
             </ul>
           </section>
