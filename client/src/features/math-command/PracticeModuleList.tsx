@@ -4,11 +4,11 @@ import { generatorTopicKey, managedGeneratorIds, practiceModuleKind, type Practi
 import { useAccountProfile } from '../account/account';
 import type { StudentPreviewContext } from '../../lib/studentPreview';
 import './practice-modules.css';
+import { changePracticeChild, choiceStrings, practiceChildIsHidden, type PracticeChoices } from './practiceChoices';
 
-type Choices={hiddenChildren?:string[];hiddenTopics?:string[]};
+type Choices=PracticeChoices;
 type ChoiceMap=Record<string,Record<string,Choices>>;
 function restore():ChoiceMap {try{const value=JSON.parse(localStorage.getItem('practice-module-choices:v1')??'{}');return value&&typeof value==='object'&&!Array.isArray(value)?value:{};}catch{return {};}}
-const strings=(value:unknown):string[]=>Array.isArray(value)?value.filter(item=>typeof item==='string').slice(0,1000):[];
 export function PracticeModuleList({catalog,previewContext,onStart,category,topic}:{catalog:PracticeCatalog;previewContext:StudentPreviewContext;onStart:(id:string,selection:PracticeSelection)=>void;category?:string;topic?:string}) {
   const {profile}=useAccountProfile();
   const [preferences,setPreferences]=useState<ChoiceMap>(restore),[settings,setSettings]=useState<Record<string,boolean>>({});
@@ -21,14 +21,14 @@ export function PracticeModuleList({catalog,previewContext,onStart,category,topi
   return <div className="math-study-modules practice-module-list" role="region" aria-label="Infinite practice modules" tabIndex={0}>{modules.map(module=>{
     const kind=practiceModuleKind(module);
     const children=catalog.modules.filter(child=>child.published&&child.parentId===module.id),topics=[...new Set(catalog.generators.filter(generator=>generator.enabled&&(!kind||(generator.category??'Algebra')===module.category&&(generator.topic??'Inequalities')===module.topic)).map(generatorTopicKey))];
-    const choices=own[module.id]??{},hiddenChildren=strings(choices.hiddenChildren),hiddenTopics=strings(choices.hiddenTopics);
-    const selection:PracticeSelection={...(children.length?{childModuleIds:children.filter(child=>!hiddenChildren.includes(child.id)).map(child=>child.id)}:{}),...(kind==='general'||module.includeAll?{topics:topics.filter(topic=>!hiddenTopics.includes(topic))}:{})};
+    const choices=own[module.id]??{},hiddenTopics=choiceStrings(choices.hiddenTopics);
+    const selection:PracticeSelection={...(children.length?{childModuleIds:children.filter(child=>!practiceChildIsHidden(child,choices)).map(child=>child.id)}:{}),...(kind==='general'||module.includeAll?{topics:topics.filter(topic=>!hiddenTopics.includes(topic))}:{})};
     const count=managedGeneratorIds(module,catalog,selection).length,canConfigure=Boolean(kind)||children.length>0||module.includeAll;
     return <article className="practice-module-group" key={module.id}>
       <div className="practice-module-heading"><div>{!category&&<small className="practice-module-topic">{module.category} / {module.topic}</small>}<h4>{module.title}</h4><p>{module.description}</p><small>{count} generator{count===1?'':'s'} · No calculator</small></div><button disabled={!count} type="button" onClick={()=>onStart(module.id,selection)} aria-label={`Start ${module.title}`}>Start <ArrowRight size={16}/></button></div>
       {canConfigure&&<button className="practice-module-settings-toggle" aria-expanded={!!settings[module.id]} aria-label={`${module.title} settings`} type="button" onClick={()=>setSettings(current=>({...current,[module.id]:!current[module.id]}))}><Settings2 size={14}/> Settings</button>}
       {settings[module.id]&&<div className="practice-module-settings">
-        {!children.length&&(kind==='general'||module.includeAll)?<><h5>Topics to practice</h5><p>{kind?'This module includes the enabled generators in this subcategory.':'Choose which topics to include in your next session.'}</p>{topics.map(topic=><label key={topic}><input type="checkbox" checked={!hiddenTopics.includes(topic)} onChange={event=>change(module.id,{...choices,hiddenTopics:event.target.checked?hiddenTopics.filter(item=>item!==topic):[...hiddenTopics,topic]})}/>{topic}</label>)}</>:<><h5>Modules in {module.title}</h5><p>Choose which modules to include in your next session.</p>{children.map(child=><label key={child.id}><input type="checkbox" checked={!hiddenChildren.includes(child.id)} onChange={event=>change(module.id,{...choices,hiddenChildren:event.target.checked?hiddenChildren.filter(item=>item!==child.id):[...hiddenChildren,child.id]})}/>{child.title}</label>)}{!children.length&&<p>Your teacher can move modules between practice groups from the studio.</p>}</>}
+        {!children.length&&(kind==='general'||module.includeAll)?<><h5>Topics to practice</h5><p>{kind?'This module includes the enabled generators in this subcategory.':'Choose which topics to include in your next session.'}</p>{topics.map(topic=><label key={topic}><input type="checkbox" checked={!hiddenTopics.includes(topic)} onChange={event=>change(module.id,{...choices,hiddenTopics:event.target.checked?hiddenTopics.filter(item=>item!==topic):[...hiddenTopics,topic]})}/>{topic}</label>)}</>:<><h5>Modules in {module.title}</h5><p>Choose which modules to include in your next session.</p>{children.map(child=><label key={child.id}><input type="checkbox" checked={!practiceChildIsHidden(child,choices)} onChange={event=>change(module.id,changePracticeChild(children,choices,child.id,event.target.checked))}/>{child.title}</label>)}{!children.length&&<p>Your teacher can move modules between practice groups from the studio.</p>}</>}
         {!count&&<p className="practice-module-warning">{!topics.length&&!children.length?'No generators are published for this subcategory yet.':'Select at least one available topic or module to start.'}</p>}<small>Settings are saved on this device.</small>
       </div>}
     </article>;

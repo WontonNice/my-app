@@ -76,6 +76,7 @@
 .achievement-card--minimal .achievement-emblem-shield { background:color-mix(in srgb,var(--achievement-accent) 45%,white); }
 .achievement-card.is-earned { border-color:color-mix(in srgb,var(--achievement-accent) 35%,white); }
 .achievement-journey { background:linear-gradient(155deg,#f4f0fb,#faf8f3); border:1px solid #e5deee; border-radius:17px; padding:25px; min-width:0; }
+.achievement-journey--collection { grid-column:1 / -1; }
 .achievement-journey-heading { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:25px; }
 .achievement-journey-heading>span:first-child { display:flex; align-items:center; gap:7px; color:#89729f; font-size:9px; letter-spacing:.08em; font-weight:750; }
 .achievement-journey-goal { font-size:25px; letter-spacing:-.04em; font-weight:800; color:#b19abf; }

@@ -8,7 +8,7 @@ import type { SelectedAnswers } from '../../lib/examResults';
 import type { MathCommandRequest, MathQuestionDetail } from './client';
 import './math-player.css';
 
-export function MathBankPlayer({ ids, initialId, request, onClose }: { ids: string[]; initialId?: string; request: MathCommandRequest; onClose: () => void }) {
+export function MathBankPlayer({ ids, initialId, request, onClose, onCreate }: { ids: string[]; initialId?: string; request: MathCommandRequest; onClose: () => void; onCreate?: (id:string) => void }) {
   const [index, setIndex] = useState(Math.max(0, ids.indexOf(initialId || '')));
   const [detail, setDetail] = useState<MathQuestionDetail>();
   const [answers, setAnswers] = useState<SelectedAnswers>({});
@@ -37,7 +37,7 @@ export function MathBankPlayer({ ids, initialId, request, onClose }: { ids: stri
   }}>
     <header className="mc-player-toolbar"><button autoFocus onClick={onClose}>← Back to question bank</button><strong>Math · {index + 1} of {ids.length}</strong><TeacherTags key={id} ids={[id]}/><button disabled={index === 0} onClick={() => go(index - 1)}>← Previous</button><button disabled={index === ids.length - 1} onClick={() => go(index + 1)}>Next →</button></header>
     <nav className="mc-player-nav" aria-label="Filtered bank questions"><button disabled={start === 0} onClick={() => go(start - 20)}>Previous 20</button>{ids.slice(start, start + 20).map((key, at) => <button key={key} aria-current={index === start + at ? 'step' : undefined} title={key} onClick={() => go(start + at)}>{start + at + 1}</button>)}<button disabled={start + 20 >= ids.length} onClick={() => go(start + 20)}>Next 20</button><form onSubmit={event => { event.preventDefault(); const value = Number(jump); if (Number.isInteger(value) && value >= 1 && value <= ids.length) go(value - 1); }}><label>Go to <input aria-label="Go to question number" type="number" min={1} max={ids.length} value={jump} onChange={event => setJump(event.target.value)} /></label><button>Go</button></form></nav>
-    <p className="mc-player-source">{current?.record.sources.map(source => `${source.title} · Math question ${source.number}`).join(' / ')} · {id} · Preview answers stay in this viewer. Alt + ← / → to navigate.</p>
+    <p className="mc-player-source">{current?.record.sources.map(source => `${source.title} · Math question ${source.number}`).join(' / ')} · {id} · Preview answers stay in this viewer. Alt + ← / → to navigate. {onCreate&&<button type="button" disabled={!current} onClick={()=>onCreate(id)}>Create infinite practice from this question</button>}</p>
     {error ? <p role="alert" className="mc-player-feedback">{error} <button onClick={() => setRetry(value => value + 1)}>Retry</button></p> : current ? <><ExamMathQuestion key={id} question={current.record.question} answer={answers[id]} onChange={value => setAnswers(previous => ({ ...previous, [id]: value }))}/><div className="mc-player-answer"><button onClick={() => setRevealed(value => !value)}>{revealed ? 'Hide answer' : 'Show answer & explanation'}</button>{revealed && <div><ExamAnswer question={current.record.question} answer={mathCorrectAnswer(current.record.question) ?? undefined}/><ExamText text={current.record.question.explanation || 'No explanation saved.'}/></div>}</div></> : <p role="status" className="mc-player-feedback">Loading question…</p>}
   </section>, document.body);
 }

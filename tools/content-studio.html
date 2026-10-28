@@ -2205,6 +2205,11 @@ Why D is wrong."></textarea>
       return '<option value="">Choose specific topic</option>' + topics.map(label => `<option value="${escapeHtml(label)}" ${label === selected ? 'selected' : ''}>${escapeHtml(label)}</option>`).join('');
     }
 
+    function mathSkilledOptions(category,topic,selected='TBD') {
+      const skills=(app.state.mathManagement?.classificationSkills||[]).filter(skill=>skill.category===category&&skill.subcategory===topic);
+      return '<option value="TBD">TBD</option>'+skills.map(skill=>'<option value="'+escapeHtml(skill.id)+'" '+(skill.id===selected?'selected':'')+'>'+escapeHtml(skill.label)+'</option>').join('');
+    }
+
     function mathFormulaToolbarHtml(target, compact = false, raw = false) {
       return studioMath.toolbar(target, compact, raw);
     }
@@ -4791,9 +4796,8 @@ Why D is wrong."></textarea>
         </div>
         <div class="panel-head"><div><h2>Revising/Editing Part B question bank</h2><small>Add the stand-alone questions that do not share a passage.</small></div></div>
         <div class="standalone-picker">
-          ${app.state.standaloneItems.filter(item => !item.duplicateOf || app.testDraft.standaloneItemIds.includes(item.id)).map((item) => {
-            const selected = app.testDraft.standaloneItemIds.includes(item.id);
-            const otherVersionSelected = app.testDraft.standaloneItemIds.some(id => {
+          ${app.state.standaloneItems.filter(item => !item.duplicateOf).map((item) => {
+            const selected = app.testDraft.standaloneItemIds.some(id => {
               const q = app.state.standaloneItems.find(q => q.id === id);
               return q && PartBBank.rootId(q, app.state.standaloneItems) === PartBBank.rootId(item, app.state.standaloneItems);
             });
@@ -4804,7 +4808,6 @@ Why D is wrong."></textarea>
                 <small>${escapeHtml(item.topic)} · ${escapeHtml(String(item.type).replaceAll("_", " "))}</small>
                 ${selected
                   ? `<small>Added to this test</small>`
-                  : otherVersionSelected ? `<small>Another source version is already in this test</small>`
                   : `<div class="passage-picker-actions"><button data-add-standalone="${escapeHtml(item.id)}" type="button">+ Add to Part B</button></div>`}
               </article>
             `;
@@ -5520,6 +5523,7 @@ Why D is wrong."></textarea>
             <div class="question-code-id">Code ID: ${escapeHtml(question.id)}</div>
             <label class="field"><span>Main category <small>Sorting</small></span><select data-math-field="topic" aria-label="Math main category">${mathTopicOptions(question.topic)}</select></label>
             <label class="field"><span>Specific topic <small>Detailed analysis</small></span><select data-math-field="subtopic" aria-label="Math specific topic">${mathSubtopicOptions(question.topic, question.subtopic)}</select></label>
+            <div class="studio-skilled-field"><label class="field"><span>Skilled</span><select data-math-field="skilled" aria-label="Math Skilled">${mathSkilledOptions(question.topic,question.subtopic,question.skilled)}</select></label><button type="button" class="secondary" data-manage-skilled>Manage Skilled</button></div>
             <label class="field"><span>Points</span><input data-math-field="points" min="1" type="number" value="${escapeHtml(question.points || 1)}"></label>
             <div class="wide">
               <label class="field"><span>Question prompt <small class="field-note">This is how students will see it</small></span></label>
@@ -6276,11 +6280,12 @@ Why D is wrong."></textarea>
             question.subtopic = '';
             document.querySelector('[data-math-field="subtopic"]').innerHTML = mathSubtopicOptions(question.topic);
           }
-          if (field === 'topic' || field === 'subtopic') studioUI.updateMathClassification();
+          if (field === 'topic' || field === 'subtopic') {question.skilled='TBD';document.querySelector('[data-math-field="skilled"]').innerHTML=mathSkilledOptions(question.topic,question.subtopic);studioUI.updateMathClassification();}
           markMathDirty();
           renderMathPreview();
         });
       });
+      $('[data-manage-skilled]', $('#math-builder'))?.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();if(app.mathDirty){setStatus('Save or discard the math draft before managing shared Skilled definitions.','error');return;}window.openSkilledManager?.(question.topic,question.subtopic);});
       bindRichEditors($("#math-builder"));
       studioImages.bind($("#math-builder"));
       $('#math-dropdown-layout')?.addEventListener('input', event => { question.dropdownContent = event.target.value.split('\n'); markMathDirty(); renderMathPreview(); });
@@ -7373,6 +7378,13 @@ WRONG D:`;
     $("#student-preview-question").addEventListener("change", (event) => {
       app.previewQuestionIndex = Number(event.target.value);
       renderStudentPreview();
+    });
+    window.addEventListener('focus',()=>{if(!app.state?.mathManagement)return;api('/api/math-command/classification-skills').then(snapshot=>{if(JSON.stringify(snapshot.skills)!==JSON.stringify(app.state.mathManagement.classificationSkills||[]))window.dispatchEvent(new CustomEvent('studio:skilled-changed',{detail:snapshot}));}).catch(()=>setStatus('Skilled definitions could not be refreshed. Reload the studio before assigning a skill.','warning'));});
+    window.addEventListener('studio:skilled-changed',event=>{
+      app.state.mathManagement={...app.state.mathManagement,classificationSkills:event.detail.skills};
+      if(app.mathDraft){const question=app.mathDraft.questions[app.selectedMathQuestionIndex];const picker=document.querySelector('[data-math-field="skilled"]');if(question&&picker){if(!event.detail.skills.some(skill=>skill.id===question.skilled&&skill.category===question.topic&&skill.subcategory===question.subtopic))question.skilled='TBD';picker.innerHTML=mathSkilledOptions(question.topic,question.subtopic,question.skilled);}}
+      if(!app.mathDirty){const assessmentId=app.mathDraft?.assessmentId,questionId=app.mathDraft?.questions[app.selectedMathQuestionIndex]?.id;reloadState().then(()=>{if(assessmentId)selectMathAssessment(assessmentId,{selectedQuestionId:questionId});}).catch(error=>setStatus(error.message,'error'));}
+      else setStatus('Skilled definitions changed. Your draft is retained; reload the saved section before saving over updated classifications.','warning');
     });
     window.addEventListener("message", (event) => {
       if(event.origin===location.origin && event.source===$("#math-command-frame").contentWindow && event.data?.type==='studio:math-management-changed') {

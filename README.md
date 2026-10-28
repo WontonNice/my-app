@@ -10,6 +10,19 @@ Run the client locally:
 npm.cmd run dev:client
 ```
 
+To keep teacher and student accounts signed in at the same time, run the app
+normally with `npm.cmd run dev`. In a second terminal, run:
+
+```powershell
+npm.cmd run dev:student
+```
+
+Sign in as the teacher at `http://localhost:5173/teacher` and as the student at
+`http://localhost:5174/`. These separate ports keep browser login storage separate
+while sharing the same backend and data. Keep both terminals running. If the
+normal client reports a different port, use that URL for the teacher; port 5174
+is reserved by the student command and it will report an error if already in use.
+
 Build the full app:
 
 ```powershell

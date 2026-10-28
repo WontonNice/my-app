@@ -2,7 +2,7 @@ const {test,before,after}=require('node:test'),assert=require('node:assert/stric
 require('ts-node').register({transpileOnly:true,project:path.resolve(__dirname,'../tsconfig.json'),compilerOptions:{module:'CommonJS',moduleResolution:'Node'},moduleTypes:{'**':'cjs'}});
 const {defaultPracticeCatalog,defaultGeneratorSettings,validatePracticeCatalog,validateGenerator,managedGeneratorIds,movePracticeModule,removePracticeGenerator,removePracticeModule,mergePracticeModules,generatorTopicKey,generateCatalogQuestion,youtubeVideoId}=require('../src/shared/practiceCatalog.ts');
 const {createPracticeState,parsePracticeState}=require('../../client/src/features/math-command/inequalitySession.ts');
-const taxonomy={categories:[{label:'Algebra',topics:['Inequalities','Equations']},{label:'Statistics and Probability',topics:['Overlapping Groups']},{label:'Ratios and Proportional Relationships',topics:['Rates & Unit Rates','Ratios & Proportions']}]};
+const taxonomy={categories:[{label:'Algebra',topics:['Inequalities','Equations']},{label:'Statistics and Probability',topics:['Overlapping Groups','Probability']},{label:'Ratios and Proportional Relationships',topics:['Rates & Unit Rates','Ratios & Proportions']}]};
 const fresh=()=>structuredClone(defaultPracticeCatalog());
 const custom=(changes={})=>({id:'custom-two-step',title:'Two-step inequalities',description:'Teacher template',kind:'two-step',enabled:true,settings:{...defaultGeneratorSettings},...changes});
 
@@ -118,7 +118,7 @@ test('renaming a subcategory keeps studio GET, saves, student reads and generate
  const backup=structuredClone(stored),category=taxonomy.categories.find(c=>c.label==='Statistics and Probability');
  const topics=[...category.topics];
  try{
-  category.topics=['Set Relationships'];taxonomyTopicRenames=[{category:category.label,from:'Overlapping Groups',to:'Set Relationships'}];
+  category.topics=['Set Relationships','Probability'];taxonomyTopicRenames=[{category:category.label,from:'Overlapping Groups',to:'Set Relationships'}];
   const result=await call('teacher',null,true);assert.equal(result.status,200);
   const changed=result.data.catalog.modules.find(m=>m.id==='2021-2022-form-a-q76');
   assert.equal(changed.topic,'Set Relationships');assert.equal(changed.parentId,backup.catalog.modules.find(m=>m.id===changed.id).parentId);

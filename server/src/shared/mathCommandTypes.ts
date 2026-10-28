@@ -6,6 +6,7 @@ export type MathRepresentation = "diagram" | "graph" | "table";
 export type MathReviewIssue = "missing_category" | "missing_subcategory" | "missing_difficulty" | "missing_source" | "missing_answer" | "missing_explanation" | "missing_diagram" | "invalid_formatting" | "invalid_answer" | "invalid_classification" | "possible_duplicate" | "teacher_review";
 export type MathStandardMapping = { code: string; verified: boolean; referenceUrl?: string; note?: string };
 export type MathQuestionMetadata = {
+  skilled?: string;
   category?: string;
   subcategory?: string;
   diagnosticSkill?: string;
@@ -23,7 +24,7 @@ export type MathQuestionMetadata = {
 };
 export type MathQuestionSource = { assessmentId: string; title: string; number: number; year?: string; form?: string; source?: string };
 export type MathQuestionRecord = { id: string; question: ExamQuestion; sources: MathQuestionSource[]; metadata?: MathQuestionMetadata };
-export type MathTaxonomy = { categories: { label: string; topics: string[] }[]; skills?: MathDiagnosticSkill[] };
+export type MathTaxonomy = { categories: { label: string; topics: string[] }[]; skills?: MathDiagnosticSkill[]; classificationSkills?: import('./mathClassificationSkills').MathClassificationSkill[] };
 export type MathDiagnosticSkill = { id: string; label: string; category: string; subcategory: string; prerequisiteIds?: string[]; standardReferences?: string[] };
 export type MathQuestionPerformance = {
   attempts: number; uniqueStudents: number; correct: number; incorrect: number; unanswered: number;
@@ -37,6 +38,7 @@ export type MathCatalogRow = {
   personal?: import("./teacherLabels").TeacherQuestionNote;
   teacherLabelNames?: string[];
   id: string; prompt: string; type: string; category: string; subcategory: string;
+  skilled?: string; skilledLabel?: string;
   diagnosticSkill: string; secondarySkills: string[]; difficulty: MathDifficulty | "";
   source: string; sourceQuestionId: string; sources: MathQuestionSource[]; years: string[]; forms: string[];
   standards: MathStandardMapping[]; representations: MathRepresentation[]; context: string;
@@ -44,6 +46,7 @@ export type MathCatalogRow = {
   duplicateKinds: MathDuplicateKind[]; performance: MathQuestionPerformance | null;
 };
 export type MathCatalogFilters = {
+  skilled?: string[];
   search?: string;
   teacherLabelIds?: string[]; favoritesOnly?: boolean;
   category?: string[]; subcategory?: string[]; diagnosticSkill?: string[]; secondarySkill?: string[];

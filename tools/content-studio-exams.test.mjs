@@ -235,16 +235,20 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     const beforeCombineSource = await readFile(join(fixture, 'client/src/content/exams/standaloneItems.ts'), 'utf8');
     const arrayStart = beforeCombineSource.indexOf(' = ') + 3;
     const arrayEnd = beforeCombineSource.indexOf(';\n\nexport function');
-    const copies = ['left', 'right'].map(side => ({ ...publishedQuestion, id: `manual-repeat-${side}`, prompt: 'Manual repeat fixture', promptHtml: 'Manual repeat fixture', versionLabels: [`Source ${side}`] }));
+    const copies = ['left', 'right'].map(side => ({ ...publishedQuestion, id: `manual-repeat-${side}`, prompt: 'Manual repeat fixture', promptHtml: 'Manual repeat fixture', versionLabels: [`Source ${side}`], points: side === 'left' ? 2 : 1 }));
     const seeded = [...JSON.parse(beforeCombineSource.slice(arrayStart, arrayEnd)), ...copies];
     await writeFile(join(fixture, 'client/src/content/exams/standaloneItems.ts'), beforeCombineSource.slice(0, arrayStart) + JSON.stringify(seeded, null, 2) + beforeCombineSource.slice(arrayEnd));
     const combineState = await studio.getState();
     const combineBody = { keepId: copies[1].id, removeId: copies[0].id, sourceHash: combineState.standaloneSourceHash };
     assert.equal((await partBRequest('/api/standalone-items/combine', combineBody, 'POST', 'bad')).status, 403);
     assert.equal((await partBRequest('/api/standalone-items/combine', { ...combineBody, sourceHash: 'stale' })).status, 409);
-    const combined = await partBRequest('/api/standalone-items/combine', combineBody);
+    assert.equal((await partBRequest('/api/standalone-items/combine', combineBody)).status, 400);
+    const combined = await partBRequest('/api/standalone-items/combine', { ...combineBody, verifiedSameQuestion: true });
     assert.equal(combined.status, 200, JSON.stringify(combined.data));
     assert.deepEqual(combined.data.item.versionLabels, ['Source right', 'Source left']);
+    const reloadedCombined = (await studio.getState()).standaloneItems.filter(q => q.id.startsWith('manual-repeat-'));
+    assert.equal(reloadedCombined.filter(q => !q.duplicateOf).length, 1);
+    assert.deepEqual(reloadedCombined.find(q => !q.duplicateOf).versionLabels, ['Source right', 'Source left']);
     const retained = combined.data.items.find(q => q.id === copies[0].id);
     assert.deepEqual(retained, { ...copies[0], duplicateOf: copies[1].id });
     assert.equal((await partBRequest('/api/standalone-items', { item: copies[0], originalId: copies[0].id, sourceHash: combined.data.sourceHash })).status, 409);
@@ -253,6 +257,40 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.deepEqual(clearedTags.data.standalone.item.versionLabels, []);
     assert.equal(clearedTags.data.standalone.item.versionLabel, undefined);
     assert.equal((await studio.getState()).standaloneItems.find(q => q.id === copies[0].id).duplicateOf, copies[1].id);
+    // An imported repeat can be verified directly, without first publishing a
+    // conflicting second bank question. Its source is archived after success.
+    const directImport = await partBRequest('/api/standalone-import', { source: JSON.stringify({ ...combined.data.item, id: 'direct-repeat-import', points: 2, versionLabels: ['Imported Form'] }) });
+    const directEntry = directImport.data.drafts.find(entry => directImport.data.added.includes(entry.id));
+    const directBody = { keepId: copies[1].id, removeId: directEntry.question.id, drafts: [{ id: directEntry.id, version: directEntry.version }], verifiedSameQuestion: true, sourceHash: (await studio.getState()).standaloneSourceHash };
+    assert.equal((await partBRequest('/api/standalone-items/combine', directBody, 'POST', 'invalid')).status, 403);
+    assert.equal((await partBRequest('/api/standalone-items/combine', { ...directBody, verifiedSameQuestion: false })).status, 400);
+    assert.equal((await partBRequest('/api/standalone-items/combine', { ...directBody, drafts: [{ id: directEntry.id, version: 0 }] })).status, 409);
+    assert.equal((await partBRequest('/api/standalone-items/combine', { ...directBody, sourceHash: 'stale' })).status, 409);
+    assert.ok((await studio.getState()).standaloneImportDrafts.some(entry => entry.id === directEntry.id));
+    const directCombined = await partBRequest('/api/standalone-items/combine', directBody);
+    assert.equal(directCombined.status, 200, JSON.stringify(directCombined.data));
+    assert.deepEqual(directCombined.data.item.versionLabels, ['Imported Form']);
+    assert.equal(directCombined.data.item.points, 1, 'The selected bank copy keeps its grading');
+    assert.equal(directCombined.data.items.some(item => item.id === directEntry.question.id), false, 'An unpublished duplicate needs no exported bank alias');
+    assert.equal(directCombined.data.drafts.some(entry => entry.id === directEntry.id), false);
+    const directReload = await studio.getState();
+    assert.equal(directReload.standaloneImportDrafts.some(entry => entry.id === directEntry.id), false);
+    assert.deepEqual(directReload.standaloneItems.find(item => item.id === copies[1].id).versionLabels, ['Imported Form']);
+    assert.equal((await partBRequest('/api/standalone-import', { source: JSON.stringify(directEntry.original) })).data.published[0], copies[1].id);
+    const keepDraftImport = await partBRequest('/api/standalone-import', { source: JSON.stringify({ ...combined.data.item, points: 2, versionLabels: ['New Form'] }) });
+    const keepDraftEntry = keepDraftImport.data.drafts.find(entry => keepDraftImport.data.added.includes(entry.id));
+    const keepDraftBody = { keepId: keepDraftEntry.question.id, removeId: copies[1].id, verifiedSameQuestion: true, sourceHash: directReload.standaloneSourceHash, drafts: [{ id: keepDraftEntry.id, version: keepDraftEntry.version, question: { ...keepDraftEntry.question, points: 3 } }] };
+    const invalidKeepDraft = await partBRequest('/api/standalone-items/combine', { ...keepDraftBody, drafts: [{ ...keepDraftBody.drafts[0], question: { ...keepDraftBody.drafts[0].question, topic: '' } }] });
+    assert.equal(invalidKeepDraft.status, 400, JSON.stringify(invalidKeepDraft.data));
+    assert.ok((await studio.getState()).standaloneImportDrafts.some(entry => entry.id === keepDraftEntry.id));
+    const keptDraft = await partBRequest('/api/standalone-items/combine', keepDraftBody);
+    assert.equal(keptDraft.status, 200, JSON.stringify(keptDraft.data));
+    assert.equal(keptDraft.data.item.id, keepDraftEntry.question.id);
+    assert.equal(keptDraft.data.item.points, 3, 'Verification includes current draft edits');
+    assert.deepEqual(keptDraft.data.item.versionLabels, ['New Form', 'Source left', 'Imported Form']);
+    assert.equal(keptDraft.data.items.find(item => item.id === copies[1].id).duplicateOf, keptDraft.data.item.id);
+    assert.equal(keptDraft.data.items.find(item => item.id === copies[0].id).duplicateOf, keptDraft.data.item.id);
+    assert.equal((await studio.getState()).standaloneImportDrafts.some(entry => entry.id === keepDraftEntry.id), false);
     const send = (body, token = state.editToken, origin = '') => fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-editor-token': token, ...(origin ? { origin } : {}) },

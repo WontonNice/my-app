@@ -1,0 +1,47 @@
+✔ every variant has the independently computed answer and explanation, with a complete deterministic cycle (7.5167ms)
+✔ constraints guard division before derived values and exact fractions work for short response (1.0532ms)
+✔ invalid domains, code, unknown fields, placeholders, and inconsistent stems are rejected (1.2229ms)
+✔ numeric-equivalent choices and undefined fractions cannot pass validation (0.4048ms)
+✔ import adds source-linked drafts without changing existing resources; sessions retain their version (5.4449ms)
+✔ custom names survive classification reconciliation and topic group normalization (2.0702ms)
+✔ adding a Foundation child preserves the group’s existing practice selection (2.0514ms)
+✔ creation prompt retains the full source and destination without asking for executable code (0.2602ms)
+✔ local Content Studio shares durable saves, rejects stale revisions and validates before writes (6.9479ms)
+✔ Q70 is published under Inequalities, snapshots its generator, and registers safely in saved catalogs (15.8032ms)
+✔ moving a module makes it a Foundation child and settings exclude its generators from a session (1.2703ms)
+✔ deleting either built-in generator cleans references and preserves sessions already running (1.0811ms)
+✔ General Practice includes all enabled generators in its own topic and snapshots student choices (1.1278ms)
+✔ teachers can add a two-step generator, mix it into Foundation Building, and preserve order and placement (1.1545ms)
+✔ generated one-step and two-step keys solve the displayed inequality, including negative coefficients and inclusive endpoints (25.0658ms)
+✔ invalid generators and empty published modules cannot be saved (2.1661ms)
+✔ YouTube references accept video links only and normalize safe hosts (0.8585ms)
+✔ optional video details persist and reject invalid durations, counts and dates (4.4429ms)
+✔ catalog permissions, durable saves, conflicts and student publication filtering (75.1355ms)
+✔ renaming a subcategory keeps studio GET, saves, student reads and generated tags consistent (8.9476ms)
+✔ unmapped stale taxonomy returns a repairable conflict instead of an unexpected server error (1.6478ms)
+✔ deleting individual modules keeps generators, other resources and running snapshots (2.8996ms)
+✔ Overlapping Groups is one module using both generators and legacy split modules merge without losing settings (1.271ms)
+✔ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (9.27ms)
+✔ customized broad modules, hidden state, disabled generators, and reviewed metadata survive migration (1.8365ms)
+✔ registration restores a generator to its skill even when migration reused legacy module IDs (17.3008ms)
+✔ metadata is validated and survives saves and session snapshots without changing the generated questions (2.475ms)
+✔ search, facets, focused usage, and bulk changes work across a 1000-generator library (12.749ms)
+✔ bulk disabling the last generators hides empty focused modules and remains saveable (2.2197ms)
+✔ generation set filters combine inclusion, category, subcategory, and search without changing selections (2.3912ms)
+✔ included-only respects automatic groups, inherited selections, hidden children, and disabled generators (1.5229ms)
+✔ module preview snapshots the complete effective draft mix and allows unpublished modules without publishing edits (2.4446ms)
+✔ every topic receives exactly one Foundation Building and General Practice, including empty topics (9.3086ms)
+✔ migration retains legacy IDs, nested modules, curated selections, hidden state and resources (2.0801ms)
+✔ General Practice automatically follows enabled generators only in its own topic (1.6443ms)
+✔ each foundation accepts only its own topic modules and empty defaults remain available (2.7928ms)
+✔ studio grouping and filters remain usable with hundreds of resources (8.4488ms)
+✔ individual modules default to their own General Practice and keep explicit Foundation placement (3.6159ms)
+✔ General Practice settings honor selected and unpublished nested modules (1.0613ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 834.7919

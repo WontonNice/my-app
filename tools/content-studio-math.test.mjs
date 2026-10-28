@@ -9,6 +9,19 @@ import ts from "typescript";
 const source = await readFile(new URL("./content-studio-math.js", import.meta.url), "utf8");
 const math = vm.runInNewContext(`${source}\nstudioMath;`, { window: { katex } });
 
+test('native math saves and assessment registration preserve Skilled IDs and default unassigned math to TBD',async()=>{
+  const server=await readFile(new URL('./content-studio.mjs',import.meta.url),'utf8');
+  const normalize=vm.runInNewContext(server.slice(server.indexOf('function normalizeMathQuestion('),server.indexOf('function normalizeMathSection('))+'\nnormalizeMathQuestion;',{
+    documentImport:{normalizeChoiceLabels:value=>value},EditorError:class extends Error{},requiredText:value=>value,slugify:value=>value,sanitizeRichText:()=>'',normalizeMathImage:()=>undefined,
+  });
+  const input={id:'manual-question',type:'short_response',topic:'Algebra',subtopic:'Inequalities',skilled:'teacher-skill-id',prompt:'Find x.',correctTextAnswers:['2']};
+  const normalized=normalize(input,'exam',0);assert.equal(normalized.skilled,input.skilled);assert.equal(normalized.prompt,input.prompt);assert.deepEqual(Array.from(normalized.correctTextAnswers),input.correctTextAnswers);
+  assert.equal(normalize({...input,skilled:undefined},'exam',0).skilled,'TBD');
+  const registry=vm.runInNewContext(server.slice(server.indexOf('function assessmentQuestionFrom('),server.indexOf('async function saveTest('))+'\nassessmentQuestionFrom;');
+  assert.equal(registry(normalized).skilled,input.skilled);
+  assert.equal(registry({id:'english',topic:'Reading',prompt:'A passage question',type:'short_response'}).skilled,undefined);
+});
+
 test('captioned math images preserve their position and safe metadata when saved', async () => {
   const server = await readFile(new URL('./content-studio.mjs', import.meta.url), 'utf8');
   const sanitize = vm.runInNewContext(server.slice(server.indexOf('const allowedRichTags ='), server.indexOf('function sanitizeInlineRichText(')) + '\nsanitizeRichText;');

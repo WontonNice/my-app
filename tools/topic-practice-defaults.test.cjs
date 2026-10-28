@@ -76,7 +76,7 @@ test('individual modules default to their own General Practice and keep explicit
  const catalog=defaultPracticeCatalog(taxonomy);
  for(const module of catalog.modules.filter(module=>!practiceModuleKind(module))){
   const parent=catalog.modules.find(item=>item.id===module.parentId);
-  assert.equal(practiceModuleKind(parent),'general');assert.equal(parent.category,module.category);assert.equal(parent.topic,module.topic);
+  assert.equal(practiceModuleKind(parent),module.topic==='Probability'?'foundation':'general');assert.equal(parent.category,module.category);assert.equal(parent.topic,module.topic);
  }
  const legacy=structuredClone(catalog);legacy.modules.find(item=>item.id==='2021-2022-form-a-q76').parentId=null;
  legacy.modules.push({...legacy.modules.find(item=>item.id==='2021-2022-form-a-q76'),id:'2025-2026-form-a-math-5',generatorIds:['overlapping-survey-totals-v1']});

@@ -7,6 +7,7 @@ const previous = require.extensions['.ts'];
 require.extensions['.ts'] = (module, filename) => module._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true } }).outputText, filename);
 try {
   module.exports = {
+    ...require(path.join(__dirname,'../server/src/shared/mathClassificationSkills.ts')),
     ...require(path.join(__dirname,'../server/src/lib/mathCommandCatalogStore.ts')),
     ...require(path.join(__dirname,'../server/src/lib/mathCommandCatalogService.ts')),
   };

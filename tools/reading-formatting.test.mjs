@@ -65,3 +65,20 @@ test('one-div-per-line imports stay consecutive and source blank lines restore o
   assert.deepEqual(poemRichBlocks(blocks,'One\nTwo\n\nThree\nFour').map(line=>line.text), ['One','Two','','Three','Four']);
   assert.deepEqual(poemRichBlocks([{html:'One<br><br>Two'}]).map(line=>line.text), ['One','','Two']);
 });
+
+test('pretty-printed poem HTML does not add rows or shift line numbers beside br tags', () => {
+  const text='First line\nSecond line\n\nThird line\n    Indented last line';
+  const richText='<div>First line<br>\nSecond <em>line</em>\n<br>\n<br>\nThird line<br>\n    Indented last line<br></div>';
+  const expected=['First line','Second line','','Third line','    Indented last line'];
+  const lines=poemRichBlocks([{html:richText.slice(5,-6)}],text);
+  assert.deepEqual(lines.map(line=>line.text),expected);
+  assert.equal(lines[1].html,'Second <em>line</em>');
+  assert.equal(lines[4].html,'    Indented last line');
+  assert.deepEqual(poemRichBlocks(lines,text),lines);
+  for(const create of [createPlainTextPassage,createSourcePassage]){
+    const passage=create({id:'pretty-printed-poem',title:'Poem',format:'poem',text,richText});
+    const body=passage.lines.filter(line=>!line.kind);
+    assert.deepEqual(body.filter(line=>line.text.trim()).map(line=>line.text),expected.filter(line=>line.trim()));
+    assert.ok(body.every(line=>!/[\r\n]/.test(line.text)));
+  }
+});

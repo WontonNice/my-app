@@ -5,8 +5,10 @@ const express=require(require.resolve('express',{paths:[path.join(__dirname,'../
 const repo=path.resolve(__dirname,'..'),fixtures=path.join(__dirname,'.content-drafts');
 fs.mkdirSync(fixtures,{recursive:true});const reuse=process.argv.find(arg=>arg.startsWith('--root='))?.slice(7),root=reuse?path.resolve(reuse):fs.mkdtempSync(path.join(fixtures,'math-command-qa-'));
 const fixture=require('./math-command-fixture.cjs').install(root,{reuse:Boolean(reuse)});
+if(!reuse)fs.copyFileSync(path.join(__dirname,'math-topics.json'),path.join(root,'tools/math-topics.json'));
 const {mathCommandRouter}=require('../server/src/routes/mathCommand.ts');
-const app=express();app.use(express.json({limit:'1mb'}));app.use('/api/math-command',mathCommandRouter);
+const {infinitePracticeRouter}=require('../server/src/routes/infinitePractice.ts');
+const app=express();app.use(express.json({limit:'1mb'}));app.use('/api/math-command',mathCommandRouter);app.use('/api/infinite-practice',infinitePracticeRouter);
 // Explicit fixture-only help makes assignment selection verifiable without private data.
 app.get('/__qa/state',(_request,response)=>response.json({fixture:true,studentId:fixture.studentId,assignments:fixture.db.tables.student_assignments,results:fixture.db.tables.student_exam_results.map(row=>({studentId:row.user_id,assessmentId:row.assessment_id,correct:row.result.correct,total:row.result.total}))}));
 app.get('/__qa/export',(_request,response)=>response.json({fixture:true,tables:fixture.db.tables}));

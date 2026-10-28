@@ -8,8 +8,11 @@ import { validateMathCatalogFilters } from "../shared/mathCommandCatalog";
 import { validMathRules } from "../shared/mathCommandAnalytics";
 import type { MathCatalogFilters, MathDiagnosticSkill, MathInventoryTargets, MathQuestionMetadata, MathQuestionRecord, MathTaxonomy } from "../shared/mathCommandTypes";
 import { defaultMathDiagnosticSkills } from "../shared/mathCommandTaxonomy";
+import { resolveSkilled, skilledTbd } from '../shared/mathClassificationSkills';
 
 export type MathManagementState = {
+  classificationSkills?: import('../shared/mathClassificationSkills').MathClassificationSkill[];
+  retiredClassificationSkillIds?: string[];
   revision: string;
   taxonomyTopicRenames?: {category:string;from:string;to:string}[];
   teacherLabels?: Record<string, import("../shared/teacherLabels").TeacherLabels>;
@@ -48,7 +51,7 @@ export function readMathCommandState(root = mathCommandRoot): MathManagementStat
 export function readMathCommandTaxonomy(root = mathCommandRoot): MathTaxonomy {
   const taxonomy = read<MathTaxonomy>(path.join(root, "tools/math-topics.json"), { categories: [] });
   const state = readMathCommandState(root);
-  return { ...(state.taxonomy ?? taxonomy), skills: state.skills };
+  return { ...(state.taxonomy ?? taxonomy), skills: state.skills, classificationSkills: state.classificationSkills??[] };
 }
 
 export function readMathCommandCatalog(root = mathCommandRoot): MathQuestionRecord[] {
@@ -82,15 +85,16 @@ export function readMathCommandCatalog(root = mathCommandRoot): MathQuestionReco
   }
   return [...records.values()].map(record => {
     const metadata = { ...record.metadata, ...state.metadata[record.id] };
+    metadata.skilled=resolveSkilled(metadata.skilled??record.question.skilled,metadata.category??record.question.topic,metadata.subcategory??record.question.subtopic,state.classificationSkills??[]);
     // A manual duplicate-review acknowledgement cannot publish an imported draft.
     if(record.metadata?.reviewStatus==="needs_review")metadata.reviewStatus="needs_review";
-    return { ...record, question: { ...record.question, ...(metadata.category !== undefined ? { topic: metadata.category } : {}), ...(metadata.subcategory !== undefined ? { subtopic: metadata.subcategory } : {}) }, metadata };
+    return { ...record, question: { ...record.question, skilled:metadata.skilled, ...(metadata.category !== undefined ? { topic: metadata.category } : {}), ...(metadata.subcategory !== undefined ? { subtopic: metadata.subcategory } : {}) }, metadata };
   });
 }
 
 export function mathClassificationRevision(root = mathCommandRoot) {
   const state = readMathCommandState(root);
-  return hash({metadata: state.metadata, taxonomy: state.taxonomy});
+  return hash({metadata: state.metadata, taxonomy: state.taxonomy, classificationSkills:state.classificationSkills});
 }
 
 export function syncMathNativeClassifications(root:string,questions:ExamQuestion[],expectedRevision?:string) {
@@ -100,8 +104,8 @@ export function syncMathNativeClassifications(root:string,questions:ExamQuestion
   if(expectedRevision!==undefined&&state.revision!==expectedRevision&&mathClassificationRevision(root)!==expectedRevision)return;
   for(const question of questions){const metadata=state.metadata[question.id];if(!metadata)continue;
     // Legacy callers without a revision may only retire already-persisted values.
-    if(expectedRevision===undefined&&((metadata.category!==undefined&&metadata.category!==question.topic)||(metadata.subcategory!==undefined&&metadata.subcategory!==question.subtopic)))continue;
-    if(metadata.category!==undefined||metadata.subcategory!==undefined){delete metadata.category;delete metadata.subcategory;changed=true;}
+    if(expectedRevision===undefined&&((metadata.category!==undefined&&metadata.category!==question.topic)||(metadata.subcategory!==undefined&&metadata.subcategory!==question.subtopic)||(metadata.skilled!==undefined&&metadata.skilled!==question.skilled)))continue;
+    if(metadata.category!==undefined||metadata.subcategory!==undefined||metadata.skilled!==undefined){delete metadata.category;delete metadata.subcategory;delete metadata.skilled;changed=true;}
   }
   if(changed)commitMathCommandState(root,state.revision,state);
 }
@@ -141,7 +145,7 @@ const cleanList = (value: unknown, label: string, limit = 50): string[] => {
   if (!Array.isArray(value) || value.length > limit) throw fail(`${label} must be a list with at most ${limit} entries.`);
   return [...new Set(value.map(item => cleanString(item, label)).filter(Boolean))];
 };
-const metadataFields = new Set(["category", "subcategory", "diagnosticSkill", "secondarySkills", "difficulty", "source", "sourceQuestionId", "standards", "representations", "requiresDiagram", "reviewStatus", "importedAt", "context", "notes"]);
+const metadataFields = new Set(["category", "subcategory", "skilled", "diagnosticSkill", "secondarySkills", "difficulty", "source", "sourceQuestionId", "standards", "representations", "requiresDiagram", "reviewStatus", "importedAt", "context", "notes"]);
 export function validateMathMetadataPatch(input: unknown, taxonomy: MathTaxonomy): MathQuestionMetadata & {category?: string; subcategory?: string} {
   if (!plain(input) || !Object.keys(input).length || Object.keys(input).some(key => !metadataFields.has(key))) throw fail("Choose supported metadata fields to change. Question wording and answer keys cannot be edited in bulk.");
   const result: Record<string, unknown> = {};
@@ -166,6 +170,8 @@ export function validateMathMetadataPatch(input: unknown, taxonomy: MathTaxonomy
   if (result.reviewStatus && !["needs_review", "reviewed"].includes(String(result.reviewStatus))) throw fail("Choose a valid review status.");
   if (result.importedAt && !Number.isFinite(Date.parse(String(result.importedAt)))) throw fail("Imported date must be a valid date.");
   if (result.category && !taxonomy.categories.some(category => category.label === result.category)) throw fail("Choose an existing main category.");
+  if('skilled'in result&&!result.skilled)result.skilled=skilledTbd;
+  if(result.skilled&&result.skilled!==skilledTbd&&!taxonomy.classificationSkills?.some(skill=>skill.id===result.skilled))throw fail("Choose a configured Skilled definition, or TBD.");
   if (result.diagnosticSkill && !taxonomy.skills?.some(skill => skill.id === result.diagnosticSkill)) throw fail("Choose a configured diagnostic skill.");
   return result;
 }
@@ -183,6 +189,8 @@ export function previewMathMetadata(root: string, input: {questionIds?: unknown;
     const record = records.get(id); if (!record) throw fail(`Question ${id} no longer exists.`, 409);
     const category = patch.category ?? record.question.topic, subcategory = patch.subcategory ?? record.question.subtopic;
     if (("category" in patch || "subcategory" in patch) && subcategory && !taxonomy.categories.find(item => item.label === category)?.topics.includes(subcategory)) throw fail(`Select a subcategory under ${category} for ${id}.`);
+    const assignedSkilled=patch.skilled??record.metadata?.skilled??skilledTbd;
+    if(assignedSkilled!==skilledTbd&&resolveSkilled(assignedSkilled,category,subcategory,taxonomy.classificationSkills)!==assignedSkilled)throw fail(`Choose a Skilled definition under ${category} / ${subcategory}, or choose TBD.`);
     const diagnostic = patch.diagnosticSkill ?? record.metadata?.diagnosticSkill;
     const skill = taxonomy.skills?.find(skill => skill.id === diagnostic);
     if (skill && (skill.category !== category || skill.subcategory !== subcategory)) throw fail(`Diagnostic skill ${skill.label} does not belong to ${category} / ${subcategory}. Clear or change the skill with the classification.`);

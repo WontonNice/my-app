@@ -1,0 +1,113 @@
+
+> nathantutors@0.0.0 test:practice-studio
+> node --test server/tests/generator-template.test.cjs server/tests/math-classification-skills.test.cjs tools/practice-organization.test.cjs server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/probability-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs
+
+✔ every variant has the independently computed answer and explanation, with a complete deterministic cycle (10.6932ms)
+✔ constraints guard division before derived values and exact fractions work for short response (1.6426ms)
+✔ invalid domains, code, unknown fields, placeholders, and inconsistent stems are rejected (2.2758ms)
+✔ numeric-equivalent choices and undefined fractions cannot pass validation (0.6267ms)
+✔ import adds source-linked drafts without changing existing resources; sessions retain their version (8.3497ms)
+✔ custom names survive classification reconciliation and topic group normalization (2.852ms)
+✔ creation prompt retains the full source and destination without asking for executable code (0.3604ms)
+✔ local Content Studio shares durable saves, rejects stale revisions and validates before writes (10.847ms)
+✔ the shared Skilled registry starts empty and existing questions are TBD without inferred assignments (30.0941ms)
+✔ manual assignment, rename, filtering, and module names use one stable definition without changing question content (59.0808ms)
+✔ delete resets native and metadata assignments to TBD and cannot silently reattach a reused ID (42.8082ms)
+✔ scopes, reserved names, duplicates, malformed definitions, and stale saves are rejected (24.9335ms)
+✔ subcategory renames move Skilled definitions while preserving their IDs and question assignments (29.7971ms)
+✔ Q70 is published under Inequalities, snapshots its generator, and registers safely in saved catalogs (26.5764ms)
+✔ moving a module makes it a Foundation child and settings exclude its generators from a session (2.0551ms)
+✔ deleting either built-in generator cleans references and preserves sessions already running (1.9845ms)
+✔ General Practice includes all enabled generators in its own topic and snapshots student choices (1.6107ms)
+✔ teachers can add a two-step generator, mix it into Foundation Building, and preserve order and placement (1.5518ms)
+✔ generated one-step and two-step keys solve the displayed inequality, including negative coefficients and inclusive endpoints (40.8273ms)
+✔ invalid generators and empty published modules cannot be saved (3.1548ms)
+✔ YouTube references accept video links only and normalize safe hosts (1.5362ms)
+✔ optional video details persist and reject invalid durations, counts and dates (7.2939ms)
+✔ catalog permissions, durable saves, conflicts and student publication filtering (107.8934ms)
+✔ renaming a subcategory keeps studio GET, saves, student reads and generated tags consistent (14.3242ms)
+✔ unmapped stale taxonomy returns a repairable conflict instead of an unexpected server error (1.9733ms)
+✔ deleting individual modules keeps generators, other resources and running snapshots (3.4832ms)
+✔ Overlapping Groups is one module using both generators and legacy split modules merge without losing settings (1.6179ms)
+✔ all 1,056 stems are distinct, calculator-free, and have exactly one equivalent answer (19.678ms)
+✔ a seed reproduces a question, cycles are explicit, and invalid indices fail (1.7396ms)
+✔ Q70 generates distinct variables-on-both-sides stems with exactly one correct answer throughout its cycle (942.6338ms)
+✔ Q70 seeds reproduce questions, repeat only after a complete cycle, and reject invalid indices (0.4908ms)
+✔ teacher login returns to its same-origin destination and rejects external redirects (0.4452ms)
+✔ teacher launcher preserves a local or configured origin and fixes the destination path (2.7039ms)
+✔ teacher previews snapshot unsaved and disabled generators without changing their catalog (5.2173ms)
+✔ modules expose all registered types, foundation stays easy, and targeted practice stays focused (8.8949ms)
+✔ session metrics distinguish answering, feedback, unfinished questions and longest streak (0.6293ms)
+✔ module generator selection is snapshotted for a running session (0.2695ms)
+✔ session storage preserves typed and structured responses for future generators (0.2627ms)
+✔ Math Study Hall follows the managed hierarchy and reserves topic resource sections (488.4614ms)
+✔ student practice lists show parent modules while nested modules remain part of their generation set (406.719ms)
+✔ YouTube references render in-site play buttons with thumbnails and optional metadata (267.9148ms)
+✔ every overlapping-groups variant has a valid population, distinct stem and exactly one correct choice (1506.9358ms)
+✔ overlapping-group sequences are deterministic, cycle explicitly and validate indices (0.4773ms)
+✔ Overlapping Groups is a statistics topic and catalog registration preserves existing resources (234.7637ms)
+✔ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (12.8683ms)
+✔ customized broad modules, hidden state, disabled generators, and reviewed metadata survive migration (1.85ms)
+✔ registration restores a generator to its skill even when migration reused legacy module IDs (20.9298ms)
+✔ metadata is validated and survives saves and session snapshots without changing the generated questions (3.287ms)
+✔ search, facets, focused usage, and bulk changes work across a 1000-generator library (13.8535ms)
+✔ bulk disabling the last generators hides empty focused modules and remains saveable (2.9095ms)
+✔ generation set filters combine inclusion, category, subcategory, and search without changing selections (1.9429ms)
+✔ included-only respects automatic groups, inherited selections, hidden children, and disabled generators (1.6274ms)
+✔ module preview snapshots the complete effective draft mix and allows unpublished modules without publishing edits (2.3579ms)
+✔ answer feedback distinguishes correct/incorrect results and retains best streak after a miss (747.6031ms)
+✔ checked choices identify the correct answer and a wrong selection without coloring an unanswered question (29.9105ms)
+✔ generator preview renders the existing exam toolbar, question, drawing tool and streak statistics (22.9348ms)
+✔ mini preview retains the exam controls in a bounded nonmodal region (10.7613ms)
+✔ Probability: Number-cube Sum Counts: every stem is valid, unique, and includes its source example (13.8578ms)
+✔ Probability: Ratio Counts After Removal: every stem is valid, unique, and includes its source example (35.4081ms)
+✔ Probability: Ordered Draws Without Replacement: every stem is valid, unique, and includes its source example (26.2278ms)
+✔ Probability: Both Not Blue: every stem is valid, unique, and includes its source example (5.4382ms)
+✔ Probability: Repeated Draws With Replacement: every stem is valid, unique, and includes its source example (15.1287ms)
+✔ Probability: Spinner Products: every stem is valid, unique, and includes its source example (5.8697ms)
+✔ Probability: Unordered Sample Spaces: every stem is valid, unique, and includes its source example (46.6739ms)
+✔ Probability: One Specific Conditional Outcome: every stem is valid, unique, and includes its source example (85.4395ms)
+✔ all eight probability sequences reproduce, complete explicit cycles and validate safe indices (3.7666ms)
+✔ Probability uses five focused Foundation Building children with eight generators, preserving other topics and snapshots (47.6747ms)
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (1221.2196ms)
+✔ every topic receives exactly one Foundation Building and General Practice, including empty topics (9.067ms)
+✔ migration retains legacy IDs, nested modules, curated selections, hidden state and resources (2.7612ms)
+✔ General Practice automatically follows enabled generators only in its own topic (1.8634ms)
+✔ each foundation accepts only its own topic modules and empty defaults remain available (3.2866ms)
+✔ studio grouping and filters remain usable with hundreds of resources (11.5376ms)
+✔ individual modules default to their own General Practice and keep explicit Foundation placement (4.6781ms)
+✔ General Practice settings honor selected and unpublished nested modules (1.0891ms)
+✔ all survey total stems subtract overlap once and include neither, including zero-size cells (2608.3296ms)
+✔ every remaining-reading stem asks for additional time and has one exact hours answer (244.6883ms)
+✔ every mixture stem uses all ratio parts and all projects with one correct choice (1409.6644ms)
+✔ new word-problem sequences reproduce, cycle explicitly, and reject invalid indices (0.9005ms)
+✔ batch registration preserves teacher resources and snapshots all three generators in their own topics (25.973ms)
+✔ Writing Inequalities visits every stem and includes the original Form D item 26 (1123.4855ms)
+✔ typed budgets accept both orientations, term orders and notation, and reject modelling errors (412.679ms)
+✔ Writing Inequalities sequences are reproducible, cycle explicitly, and validate indices (1.1301ms)
+✔ Writing Inequalities registers in saved catalogs without changing nesting or existing resources (194.2851ms)
+ℹ tests 84
+ℹ suites 0
+ℹ pass 83
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5177.9446
+
+✖ failing tests:
+
+test at tools\study-hall-view.test.cjs:6:1
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (1221.2196ms)
+  AssertionError [ERR_ASSERTION]: Practice is visible above the countdown on the student home
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\study-hall-view.test.cjs:14:164)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

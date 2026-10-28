@@ -25,11 +25,11 @@ async function fixture(run) {
 
 test('two math categories are required for new questions; legacy gaps remain explicit and cross-category skills are rejected', () => {
   const configuration = { categories: [{ label: 'Algebra', topics: [{ label: 'Linear equations' }] }, { label: 'Geometry', topics: [{ label: 'Area' }] }] };
-  assert.deepEqual(validateMathClassification({ topic: 'Algebra', subtopic: 'Linear equations' }, configuration), { topic: 'Algebra', subtopic: 'Linear equations' });
+  assert.deepEqual(validateMathClassification({ topic: 'Algebra', subtopic: 'Linear equations' }, configuration), { topic: 'Algebra', subtopic: 'Linear equations', skilled:'TBD' });
   assert.throws(() => validateMathClassification({ topic: 'Algebra' }, configuration), /Specific topic/);
   assert.throws(() => validateMathClassification({ topic: '', subtopic: 'Area' }, configuration), /Main category/);
   assert.throws(() => validateMathClassification({ topic: 'Algebra', subtopic: 'Area' }, configuration), /under Algebra/);
-  assert.deepEqual(validateMathClassification({ topic: 'Algebra' }, configuration, { topic: 'Algebra' }), { topic: 'Algebra', subtopic: 'Unclassified' });
+  assert.deepEqual(validateMathClassification({ topic: 'Algebra' }, configuration, { topic: 'Algebra' }), { topic: 'Algebra', subtopic: 'Unclassified', skilled:'TBD' });
   assert.throws(() => validateMathClassification({ topic: 'Geometry' }, configuration, { topic: 'Algebra' }), /Specific topic/);
   assert.throws(() => validateMathClassification({ topic: 'Algebra', subtopic: {} }, configuration), /must be text/);
 });

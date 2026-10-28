@@ -200,7 +200,7 @@ Student links have a minimum height (44px), icon/text alignment, warm hover fill
 
 ### Status and result chips
 
-Meal status notices use the pale notice fill and ordinary sentence text. Existing result subject summaries use subdued blocks; their colors and typography remain local to the result component. Do not promote legacy uppercase status kickers into a new shared chip primitive.
+Student meal requests have a prominent status panel above the menu: green with a check for ordered, amber for removed, rose for declined, blue for waiting, and neutral for student cancellation. Each pairs a plain-language heading with the available next step, so color never carries the meaning alone. A native disclosure holds the saved request details. Routine notices retain their pale notice fill. Existing result subject summaries use subdued blocks; their colors and typography remain local to the result component. Do not promote legacy uppercase status kickers into a new shared chip primitive.
 
 ### Wonton and authentication scenery
 

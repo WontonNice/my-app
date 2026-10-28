@@ -10476,15 +10476,1898 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-10-26T05:38:34.417Z",
-    "updatedAt": "2026-10-26T05:38:34.862Z",
-    "passages": [],
-    "questions": [],
+    "updatedAt": "2026-10-28T14:42:08.431Z",
+    "passages": [
+      {
+        "id": "a-miracle-mile-2019-2020-form-a",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "A Miracle Mile",
+        "versionLabel": "2019–2020 Form A"
+      },
+      {
+        "id": "ode-to-fireworks-2019-2020-form-a",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Ode to Fireworks",
+        "versionLabel": "2019–2020 Form A"
+      },
+      {
+        "id": "excerpt-from-research-riddle-resolved-2019-2020-form-a",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from “Research Riddle Resolved”",
+        "versionLabel": "2019–2020 Form A"
+      },
+      {
+        "id": "excerpt-from-how-we-made-the-first-flight-2019-2020-form-a",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from “How We Made the First Flight”",
+        "versionLabel": "2019–2020 Form A"
+      },
+      {
+        "id": "excerpt-from-in-search-of-the-unknown-2019-2020-form-a",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from In Search of the Unknown",
+        "versionLabel": "2019–2020 Form A"
+      },
+      {
+        "id": "is-it-time-for-term-limits-2019-2020-form-a",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Is It Time for Term Limits?",
+        "versionLabel": "2019–2020 Form A"
+      }
+    ],
+    "questions": [
+      {
+        "answer": "B",
+        "choices": [
+          "highlight the idea that only the most skilled runners would be able to run a four-minute mile.",
+          "emphasize the idea that running a mile in less than four minutes was a seemingly unattainable goal.",
+          "convey the competitiveness among elite runners to consistently set and break speed records.",
+          "show the intensity of the training programs athletes endure in order to achieve their goals."
+        ],
+        "id": "a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q10",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The words “feat,” “humanly impossible,” and “impenetrable barrier” in paragraph 1 affect the tone of the paragraph because they",
+        "topic": "Tone & Mood",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It helped him learn how to moderate his pace while running.",
+          "It helped him understand the importance of running with a team.",
+          "It helped him improve his pace and stamina while running.",
+          "It helped him decrease his recovery time after an intense run."
+        ],
+        "id": "a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q11",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How did interval training affect Bannister’s performance?",
+        "topic": "Inference",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“Bannister’s performance was a disappointment for him and his country, Great Britain.” (paragraph 2)",
+          "“The amateur athlete decided to use intensive interval training to develop endurance and speed.” (paragraph 3)",
+          "“For these workouts, Bannister ran an interval of ten consecutive laps on a quarter-mile track, aiming for sixty seconds each lap.” (paragraph 3)",
+          "“Frustrated by the plateau he had reached, Bannister took a break from training and went mountain climbing for three days.” (paragraph 4)"
+        ],
+        "id": "a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q12",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence best supports the idea that Bannister needed an alternative to “logical planning” in order to accomplish his goal?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "“By early 1954, Bannister had succeeded in lowering his quarter-mile pace to sixty-one seconds, but he had to shave off at least one more second in order to reach his target.” (paragraph 4)",
+          "“When the starting pistol fired, Brasher pounced into the lead, and Bannister followed behind his first rabbit.” (paragraph 6)",
+          "“Propelled by the excitement, Bannister lost his instinctive feel for his pace and shouted ‘Faster!’ at Brasher.” (paragraph 7)",
+          "“At the beginning of the back straightaway of the track, Bannister bolted past Chataway.” (paragraph 7)"
+        ],
+        "id": "a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q13",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage indicates that Bannister nearly made a mistake that would have cost him the world record?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "runners recognized that running a mile in under four minutes was physically possible.",
+          "breaking the four-minute-mile barrier was no longer considered an impressive feat for elite runners.",
+          "runners understood how hard they would have to train in order to run a mile in under four minutes.",
+          "entering races in an attempt to break the four-minute-mile barrier became commonplace for elite runners."
+        ],
+        "id": "a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q14",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The phrase “a new mindset had taken root” in paragraph 8 conveys the idea that",
+        "topic": "Word & Phrase Meaning",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "allowing him to recognize his weaknesses and improve his running ability.",
+          "prompting him to take a different approach to his regular training.",
+          "motivating him to prove to himself that he could set and achieve a goal.",
+          "giving him the opportunity to reach a goal no runner had ever accomplished."
+        ],
+        "id": "a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q15",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Bannister’s loss in the 1952 Olympics influenced his decision to pursue breaking the four-minute-mile barrier by",
+        "topic": "Inference",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It presents the increasing physical effects of Bannister’s intense training methods as he prepared to break the four-minute-mile barrier.",
+          "It shows the increase in Bannister’s confidence in his ability to break the four-minute-mile barrier.",
+          "It emphasizes the key events in Bannister’s life that inspired him to break the four-minute-mile barrier.",
+          "It highlights the progression of Bannister’s training and details about his successful attempt to break the four-minute-mile barrier."
+        ],
+        "id": "a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q16",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the author’s use of chronological structure contribute to the development of ideas in the passage?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "knew that he was about to achieve the goal he had worked toward.",
+          "was no longer experiencing personal disappointment from his past failure in the Olympics.",
+          "felt grateful to his teammates for helping him take the lead.",
+          "was satisfied that his training had helped him perfect his running technique."
+        ],
+        "id": "a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q17",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read these sentences from paragraph 7.\n\nBannister said, “I felt that the moment of a lifetime had come. There was no pain, only a great unity of movement and aim.”\n\nThe sentences contribute to the development of ideas in the passage by showing that Bannister",
+        "topic": "Inference",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "wish to return to a simpler way of living.",
+          "bittersweet feelings about leaving the past behind.",
+          "high expectations for everyday life.",
+          "reflections on past interactions with relatives."
+        ],
+        "id": "ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q18",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The fireworks in the poem represent the speaker’s",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "the muffled pounding of explosions in the distance.",
+          "the way lightning streaks through the clouds.",
+          "the echoes of thunder on an autumn night.",
+          "the glow of sparks falling from the sky."
+        ],
+        "id": "ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q19",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The comparison in lines 8–9 of the poem is used to convey",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "The speaker values material possessions.",
+          "The speaker imagines that the fireworks are magical.",
+          "The speaker believes that the country setting is distinctive.",
+          "The speaker cherishes the memory of seeing fireworks as a child."
+        ],
+        "id": "ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q20",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 22–23 from the poem.\n\nthe sky at night written upon\nwith those jewels.\n\nWhat does the word choice in these lines convey about the speaker?",
+        "topic": "Word & Phrase Meaning",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "sense of mystery in the darkness.",
+          "sense of absolute darkness.",
+          "speaker’s fear of night.",
+          "speaker’s certainty about that night."
+        ],
+        "id": "ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q21",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The use of italics on the word “night” in line 24 is most likely intended to emphasize the",
+        "topic": "Word & Phrase Meaning",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "to create a distinction between solitude and meaningful interaction",
+          "to demonstrate a connection between the speaker’s past and present",
+          "to emphasize the speaker’s attention to the surrounding sounds",
+          "to compare the fireworks to common sights and sounds"
+        ],
+        "id": "ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q22",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the purpose of the repeated words “rising and falling” in lines 26 and 37?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It reveals that the speaker finds the city more pleasurable than the country.",
+          "It suggests that the persistent brightness of the city can be overwhelming to the speaker.",
+          "It implies that what is normal in the city was unusual in the country.",
+          "It emphasizes the hectic pace of daily life in the city."
+        ],
+        "id": "ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q23",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What impact does the phrase “Everything is a constant celebration” (line 33) have in the poem?",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "The speaker believes it is impossible to ever return to a place in the past.",
+          "The speaker is still amused by the impatience felt during fireworks displays.",
+          "The speaker now regrets abandoning the rural way of life.",
+          "The speaker feels a sense of comfort when reflecting on the past."
+        ],
+        "id": "ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q24",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 41–42 from the poem.\n\nI kept waiting for those\nchildhood bursts, watching as they escorted us home.\n\nHow does this memory affect the speaker?",
+        "topic": "Inference",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "shifting the focus of the excerpt from the platypus’s unique appearance to its physiology.",
+          "highlighting how the platypus’s unusual appearance has attracted scientists’ attention.",
+          "revealing current ideas about the genetic background of the platypus.",
+          "introducing the platypus’s scientific significance that the rest of the excerpt develops."
+        ],
+        "id": "excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q25",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 2.\n\nBut cuteness and weirdness aside, the platypus research results are a gold mine for medical researchers.\n\nThe sentence contributes to the overall structure of the excerpt by",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "has a rich and diverse genetic history linked to reptiles, birds, and other mammals.",
+          "was able to develop its mammalian and reptilian traits at different points in time.",
+          "continues to be the best resource for studying the evolution of animal genomes.",
+          "is especially useful to researchers because its genes have never been altered."
+        ],
+        "id": "excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q26",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The phrase “evolutionary DNA tapestry” in paragraph 3 conveys the idea that the platypus",
+        "topic": "Figurative Language & Imagery",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It provides a transition from the discussion of the platypus genome to a discussion on comparative genomics.",
+          "It introduces the way that scientists solved the problem of how to study complex human genomes through comparative genomics.",
+          "It contrasts the efforts made to study the different parts of the human genome with the efforts made to study certain animal genomes.",
+          "It elaborates on the idea that deciphering genetic signals is a rigorous research challenge."
+        ],
+        "id": "excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q27",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does paragraph 8 fit into the overall structure of the excerpt?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The platypus is the most recent of several species whose genomes have been compared with the human genome.",
+          "Comparative genomics is an effective way to examine a variety of different species, from single-celled organisms to large mammals.",
+          "Comparing human genes with the genes of other animals and studying which genes are the same across species yield valuable information that may lead to a greater understanding of human disease.",
+          "Scientists are able to use computers in order to compare and examine evolutionary changes in genes across a number of species, including humans."
+        ],
+        "id": "excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q28",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence gives the best summary of the section “Same and Different” (paragraphs 9–11)?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "showing that the platypus has a gene that allows it to produce nutrient-rich milk, as humans do.",
+          "proving that the platypus, whose DNA is made up of DNA from several other species, has developed venom to defend itself.",
+          "suggesting that the platypus, while gaining traits in common with mammals and reptiles, has lost some bird-like traits.",
+          "demonstrating that the platypus has a rare evolutionary background that includes bird, reptile, and mammal DNA."
+        ],
+        "id": "excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q29",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The details in paragraphs 12–14 about the platypus’s different abilities convey a central idea of the excerpt by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "a description of the type of information about human genetics that specialized research can yield.",
+          "a comparison of the platypus with its closest bird and reptile relatives on the evolutionary tree.",
+          "the discussion of how unusual the platypus genome is in the animal kingdom.",
+          "the explanation of how genetics can be aligned to physiological function."
+        ],
+        "id": "excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q30",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The author elaborates on the idea that creating a full analysis of platypus DNA was an important scientific endeavor mainly through",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Tracking how other animals evolved over millions of years helps researchers preserve and sustain nature.",
+          "Finding ways that animal genomes are similar to the human genome helps researchers find signals that control genes.",
+          "Observing that all living things evolved from a common ancestor helps researchers pinpoint certain genetic traits.",
+          "Understanding how other animals are similar to one another helps researchers find new ways to understand the human genome."
+        ],
+        "id": "excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q31",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How can researching the genomes of other animals inform scientists’ understanding of human health and disease?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“The findings cement what may have seemed totally obvious but turned out to be a bit of a scientific surprise: platypus DNA is a patchwork of genes from reptiles, birds, and mammals.” (paragraph 2)",
+          "“In other words, the platypus heritage is laid out in an evolutionary DNA tapestry that marks the time, hundreds of millions of years ago, when reptiles and mammals branched off the evolutionary tree.” (paragraph 3)",
+          "“The platypus is nothing like a human, so what can its DNA tell us about people and the diseases we get?” (paragraph 4)",
+          "“The evolutionary reason for maintaining such molecular weaponry isn’t yet clear, but what is fascinating is that it appears nature mixed and matched together DNA pieces separately to create the venom genes in reptiles and monotremes like the platypus.” (paragraph 14)"
+        ],
+        "id": "excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q32",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt best supports the idea that the same DNA material results in the same traits even in different classes of animals?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "through the mention of a signal to notify lifesaving experts that the flight attempt was about to begin",
+          "by providing specific details about the speed of the wind and the Wright brothers’ response to the windy conditions",
+          "by suggesting that a slower landing would be necessary at the end of the flight in order to maintain safety",
+          "through the indication that the Wright brothers waited indoors for most of the morning because of the poor weather"
+        ],
+        "id": "excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q33",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does paragraph 1 introduce the idea that the Wright brothers knew that their flight attempt was risky?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "demonstrating the challenge of the extreme winter conditions during the flight.",
+          "revealing how many tries it took for Wilbur Wright to finally get the machine to take flight.",
+          "demonstrating that both Orville and Wilbur Wright were eager to pilot what could potentially be the first flight.",
+          "suggesting a sense that both brothers felt confident they would soon succeed in completing the first flight."
+        ],
+        "id": "excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q34",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 4.\n\nWilbur having used his turn in the unsuccessful attempt on the 14th, the right to the first trial now belonged to me.\n\nThe sentence contributes to the development of ideas in the excerpt by",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "even a flight of such minor duration had taken a long time to achieve.",
+          "the short flight gave the Wright brothers hope for longer ones in the future.",
+          "the flight proved that the machine was, at last, capable of becoming airborne.",
+          "although it was brief, the flight was a remarkable accomplishment."
+        ],
+        "id": "excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q35",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 5.\n\nThis flight lasted only 12 seconds, but it was nevertheless the first in the history of the world in which a machine carrying a man had raised itself by its own power into the air in full flight, had sailed forward without reduction of speed and had finally landed at a point as high as that from which it started.\n\nThe words “only,” “nevertheless,” and “finally” most clearly convey the idea that",
+        "topic": "Word & Phrase Meaning",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It provides evidence that he maintained a scientific approach when attempting flight.",
+          "It emphasizes that he believed the flight was successful despite its short distance.",
+          "It provides a comparison between flight distances under calm and high wind conditions.",
+          "It highlights the importance of such calculations in the success of future flights."
+        ],
+        "id": "excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q36",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 5.\n\nAs the velocity of the wind was over 35 feet per second and the speed of the machine over the ground against this wind ten feet per second, the speed of the machine relative to the air was over 45 feet per second, and the length of the flight was equivalent to a flight of 540 feet made in calm air.\n\nHow does the sentence help convey Orville Wright’s perspective about this first flight?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "by explaining how the flawed design of the machine caused it to turn unpredictably in the air and brought the first flight by a person to an abrupt end",
+          "by indicating that the difficulty in controlling the flight was caused by the rudimentary instruments of the machine and the inexperience of the pilot",
+          "by explaining how the pilot and the plane overcame adverse conditions in order to complete the first piloted flight",
+          "by indicating that the gradual change in wind velocity created an extreme environment in which to maneuver the plane and maintain its flight"
+        ],
+        "id": "excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q37",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How do the details in paragraph 5 about the uneven nature of the flight convey a central idea of the excerpt?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "“When we arose on the morning of the 17th, the puddles of water, which had been standing about camp since the recent rains, were covered with ice.” (paragraph 1)",
+          "“We realized the difficulties of flying in so high a wind, but estimated that the added dangers in flight would be partly compensated for by the slower speed in landing.” (paragraph 1)",
+          "“After running the motor a few minutes to heat it up, I released the wire that held the machine to the track, and the machine started forward in the wind.” (paragraph 4)",
+          "“The course of the flight up and down was exceedingly erratic, partly due to the irregularity of the air, and partly to lack of experience in handling this machine.” (paragraph 5)"
+        ],
+        "id": "excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q38",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt best supports the idea that the Wright brothers had to adapt their flight plans to accommodate the weather conditions?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "outlining the actions that the Wright brothers took to prepare for and successfully complete the first flight.",
+          "identifying the primary factors that allowed the Wright brothers to overcome obstacles and achieve the first flight.",
+          "showing how the Wright brothers applied lessons learned from their previous flight attempts to accomplish the first flight.",
+          "demonstrating how the Wright brothers analyzed the impact of wind velocity to identify the ideal conditions for the first flight."
+        ],
+        "id": "excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q39",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The use of chronological structure contributes to the development of ideas in the excerpt by",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "thinks that writing refusal letters for the animals offered to the zoological society is not necessary.",
+          "attempts to predict what the professor would say in the refusal letters.",
+          "believes that many of the animals offered are not acceptable for the zoological society.",
+          "resents the professor’s insistence on reviewing the refusal letters."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q40",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read paragraph 2 from the excerpt.\n\nTo the proprietors of . . . mangy lynxes, moth-eaten coyotes, and dancing bears I returned courteous but uncompromising refusals—of course, first submitting all such letters, together with my replies, to Professor Farrago.\n\nThis paragraph helps develop the plot by establishing that the narrator",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It indicates that the professor feels bad that he has to call the narrator to his office after work.",
+          "It shows that the professor is hesitant to share his opinions with the narrator.",
+          "It implies that the professor is uncomfortable criticizing the narrator’s work.",
+          "It suggests that the professor knows that the conversation will be frustrating for the narrator."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q41",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 3.\n\nThe professor, who was sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his glasses down and looked over them at me with a whimsical smile that suggested amusement, impatience, annoyance, and perhaps a faint trace of apology.\n\nWhat does the phrase “a faint trace of apology” convey about the professor?",
+        "topic": "Word & Phrase Meaning",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It establishes the conflict between the professor and the narrator concerning the validity of the letter.",
+          "It suggests a theme of collaboration because the narrator and the professor regularly work together.",
+          "It reveals the characters’ traits by contrasting the narrator’s distrust of the content of the letter with how easily the professor is deceived by what he reads.",
+          "It hints that the resolution will involve the narrator accepting the professor’s opinion about the content of the letter."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q42",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the exchange between the professor and the narrator in paragraphs 8–11 contribute to the development of the excerpt?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "flustered by the professor’s criticism of his logic.",
+          "annoyed by the professor’s sarcasm about his inexperience.",
+          "confused by the professor’s lack of respect for his opinion.",
+          "frustrated by the professor’s lack of interest in his theory."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q43",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The professor’s observations in paragraphs 15–17 create tension in the excerpt by causing the narrator to feel",
+        "topic": "Inference",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It illustrates the professor’s patience as the narrator argues against making the expedition.",
+          "It reveals the narrator’s frustration with his limited role in making decisions for the zoological society.",
+          "It emphasizes the professor’s desire to acquire new specimens for the zoological society at any cost.",
+          "It shows the narrator’s acceptance of his assignment despite his personal objections."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q44",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the interaction between the narrator and the professor in paragraphs 26–28 contribute to the development of the theme?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "by providing both the narrator’s and professor’s thoughts on how age and experience influence each other’s reasoning",
+          "by using the conversation between the narrator and the professor to emphasize their reactions to the letter",
+          "by describing the professor’s persistent efforts to change the narrator’s mind about the letter",
+          "by including dialogue that explains why the professor is the supervisor and the narrator is his subordinate"
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q45",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the author develop the contrast between the narrator’s point of view and the professor’s point of view?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It shows that the narrator is beginning to consider the possibility of finding the great auks.",
+          "It demonstrates that the narrator is struggling to understand why the professor thinks the great auks exist.",
+          "It establishes that the narrator is willing to let the professor overrule him about the great auks.",
+          "It emphasizes that the narrator feels a sense of urgency to begin an expedition to locate the great auks."
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q46",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does paragraph 34 help develop the plot of the excerpt?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "“I said as much to Professor Farrago, but, to my surprise, he appeared to waver.” (paragraph 8)",
+          "“Clearly, Professor Farrago was on the verge of dotage—ah, what a loss to the world!” (paragraph 24)",
+          "“I drew a chair up beside his desk—there was nothing to do but to obey, and this fool’s errand was none of my conceiving.” (paragraph 25)",
+          "“ ‘Very well,’ said Professor Farrago, good-humoredly, ‘you shall have all the assistance you may require.’ ” (paragraph 29)"
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q47",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence best demonstrates the professional relationship between the narrator and the professor?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“ ‘Whatever it is that our correspondent has—and I am daring to believe that it is the great auk itself—I want you to secure it for the society.’ ” (paragraph 23)",
+          "“ ‘What I want you to do is to get those birds here safely.’ ” (paragraph 27)",
+          "“ ‘I suppose,’ he replied, with the same half-apologetic, half-humorous smile, ‘it is instinct.’ ” (paragraph 33)",
+          "“ ‘I can’t get away from the idea that we are on the eve of acquiring the rarest of living creatures.’ ” (paragraph 33)"
+        ],
+        "id": "excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q48",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the excerpt best explains why the professor is eager to send the narrator on an expedition?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "While all members of Congress can be reelected an unlimited number of times, members of the House of Representatives and of the Senate serve different term lengths; this inequity has become troubling to many American citizens in recent years.",
+          "The discrepancy between the president having term limits and members of Congress having unlimited terms has come to seem like a governmental flaw to many American citizens, and this flaw could be remedied by imposing congressional term limits.",
+          "Support for congressional term limits is increasing, as shown by recent surveys indicating that American citizens of different backgrounds and political beliefs are beginning to favor implementation of term limits for members of Congress.",
+          "While the Constitution sets a term limit for the office of president, no such limit exists for members of Congress; however, recent surveys show that many American citizens are now in favor of term limits for members of Congress."
+        ],
+        "id": "is-it-time-for-term-limits-2019-2020-form-a-2019-form-a-ela-q49",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the best summary of the discussion of congressional term policy outlined in paragraph 2?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "“Currently, members of the House of Representatives, who serve two-year terms, and Senators, who serve six-year terms, can run for reelection an unlimited number of times.” (paragraph 2)",
+          "“Modern surveys conducted by multiple firms consistently show that American citizens of a variety of backgrounds and political leanings approve of the idea of setting term limits for members of Congress.” (paragraph 2)",
+          "“Former Senator Joe Lieberman, upon his retirement, suggested that Congress ‘might be healthier and less partisan and less rigid if it turned over more often, and term limits are one way to do that.’ ” (paragraph 3)",
+          "“Thomas E. Mann, Senior Fellow in governance studies at the Brookings Institution, notes that every decade, new members replace at least half the members of the House and the Senate, due to retirement or elections.” (paragraph 7)"
+        ],
+        "id": "is-it-time-for-term-limits-2019-2020-form-a-2019-form-a-ela-q50",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage supports the idea that congressional term limits would “benefit our government” (paragraph 2)?",
+        "topic": "Evidence & Support",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "emphasizing some of the possible effects term limits would have on how Congress functions.",
+          "showing that both politicians and law experts have strong opinions about congressional term limits.",
+          "suggesting that citizens defer to career politicians and law experts on issues such as congressional term limits.",
+          "implying that term limits would affect the ways that members of Congress campaign and vote."
+        ],
+        "id": "is-it-time-for-term-limits-2019-2020-form-a-2019-form-a-ela-q51",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The quotations in paragraph 3 convey a central idea of the passage by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It provides evidence for the idea that term limits are controversial.",
+          "It summarizes the consequences of having term limits.",
+          "It begins to explore the effects of instituting term limits.",
+          "It shifts from the arguments for to the arguments against term limits."
+        ],
+        "id": "is-it-time-for-term-limits-2019-2020-form-a-2019-form-a-ela-q52",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 5.\n\nWhile challenging the career politician’s path is seen as a benefit to term limit supporters, there is a possibility that a Congress mostly composed of newcomers could severely affect policy making.\n\nWhich statement best describes how the sentence fits into the overall structure of the passage?",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "motivating them to learn the congressional processes necessary to create legislation.",
+          "encouraging them to collaborate with politicians of the opposing party in order to pass legislation.",
+          "allowing them to gain expertise and develop strong political relationships.",
+          "enabling them to create new policies while fostering their own careers."
+        ],
+        "id": "is-it-time-for-term-limits-2019-2020-form-a-2019-form-a-ela-q53",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "According to paragraph 5, serving more terms improves politicians’ effectiveness by",
+        "topic": "Inference",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Term limits would lead to a greater number of new representatives who rely on guidance and support from special-interest groups early in their terms.",
+          "Term limits would create a situation in which special-interest groups have to work more closely with the new representatives who replace experienced representatives.",
+          "Term limits would force experienced representatives out of their seats and bring in new representatives who focus on the agendas of special-interest groups.",
+          "Term limits would result in both new and experienced representatives looking to special-interest groups in order to influence decisions made in legislature."
+        ],
+        "id": "is-it-time-for-term-limits-2019-2020-form-a-2019-form-a-ela-q54",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "According to the passage, why would setting term limits for members of Congress potentially increase the influence of special-interest groups?",
+        "topic": "Inference",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "describing the amount of time it takes for new representatives to build connections with experienced representatives.",
+          "explaining why members of Congress need experience in order to govern well.",
+          "illustrating the various ways lobbyists seek to influence the decisions of new members of Congress.",
+          "revealing the statistics on the turnover rates for representatives."
+        ],
+        "id": "is-it-time-for-term-limits-2019-2020-form-a-2019-form-a-ela-q55",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The author of the passage develops the idea that congressional term limits might have negative effects mainly by",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The expertise of lawmakers should outweigh other considerations when it comes to deciding about term limits.",
+          "The decision to institute term limits for Congress is the most pressing issue facing American voters today.",
+          "There are compelling reasons both for and against setting term limits for Congress.",
+          "Special-interest groups are likely to have a huge influence on whether term limits are set."
+        ],
+        "id": "is-it-time-for-term-limits-2019-2020-form-a-2019-form-a-ela-q56",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "With which statement would the author of the passage most likely agree?",
+        "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "highlighting the idea that the number of members of Congress who are reelected in each election has increased substantially since 1950.",
+          "demonstrating that the number of times members of Congress are reelected throughout their careers has shifted since 1950.",
+          "showing that the reelection rate in the Senate differs from the reelection rate in the House.",
+          "emphasizing the fact that the Senate has fewer seats but a greater reelection rate than the House."
+        ],
+        "id": "is-it-time-for-term-limits-2019-2020-form-a-2019-form-a-ela-q57",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The tables at the end of the passage contribute to the development of ideas in paragraph 7 by",
+        "topic": "Text Structure & Purpose",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "People who code have to learn this language because they can construct programs that will perform detailed and complex tasks.",
+          "People who code have to learn this language so they can construct programs that will perform detailed or complex tasks.",
+          "When people who code have to learn this language, it is so they can construct programs that will perform detailed and complex tasks.",
+          "If people who code have to learn this language, then they can construct programs that will perform detailed as well as complex tasks."
+        ],
+        "id": "cracking-the-code-2019-2020-form-a-2019-form-a-ela-q05",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the best way to combine sentences 3 through 5 to clarify the relationship between ideas?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "People should take advantage of opportunities to study and learn basic coding because of its many valuable benefits.",
+          "People should attempt to understand how code can be used to design programs that are beneficial for a variety of industries and businesses.",
+          "Schools should offer coding classes because knowing how to code will help students succeed in many types of businesses.",
+          "Students should prepare for the future job market by studying code and learning how to code programs."
+        ],
+        "id": "cracking-the-code-2019-2020-form-a-2019-form-a-ela-q06",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence should follow sentence 5 to best state the main claim in the passage?",
+        "topic": "Topic & Transitions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Learning a coding language may be difficult, but coding skills are becoming important in many occupational fields.",
+          "Learning a coding language is useful because coding skills are becoming important in many occupational fields.",
+          "Employers in most industries realize that coding skills are becoming important in many occupational fields.",
+          "Even though programming is its own unique field, coding skills are becoming important in many occupational fields."
+        ],
+        "id": "cracking-the-code-2019-2020-form-a-2019-form-a-ela-q07",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision of sentence 10 provides the best transition to the argument in the third paragraph (sentences 10–13)?",
+        "topic": "Topic & Transitions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Experienced programmers, software engineers, and system administrators at large companies can earn well over $100,000 a year.",
+          "Hospitals, physicians’ offices, and pharmaceutical companies are frequently looking to hire people who code to help with a variety of tasks.",
+          "Many companies are eager to hire employees who have experience in a specific industry as well as knowledge of basic coding.",
+          "According to a report from a job market analytics firm, almost half of today’s jobs paying more than $58,000 a year call for some level of coding ability."
+        ],
+        "id": "cracking-the-code-2019-2020-form-a-2019-form-a-ela-q08",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence would best follow sentence 13 and support the ideas in the third paragraph (sentences 10–13)?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "People should understand that knowing how to code is becoming an essential requirement for most high-paying jobs.",
+          "By understanding basic coding concepts, people can participate in an increasingly digital marketplace.",
+          "Students who want to secure a high-paying job in the technology industry should become proficient in coding.",
+          "Since coding is a valuable marketplace skill, today’s students should begin to write their own computer programs."
+        ],
+        "id": "cracking-the-code-2019-2020-form-a-2019-form-a-ela-q09",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which concluding sentence would best follow sentence 20 and support the argument presented in the passage?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Sentence 1: Change \nspent\n to \nhad spent\n, AND insert a comma after \nplay\n.",
+          "Sentence 2: Change \ndid\n to \ndoes\n, AND insert a comma after \nprojection\n.",
+          "Sentence 3: Change \nstudies\n to \nstudied\n, AND delete the comma after \nemotions\n.",
+          "Sentence 4: Change \nrecited\n to \nrecites\n, AND delete the comma after \ntimes\n."
+        ],
+        "id": "part-b-question-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How should the paragraph be revised?",
+        "topic": "Verbs",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "continents. At",
+          "surface; additionally,",
+          "Panthalassa. Much",
+          "crust, in fact,"
+        ],
+        "id": "part-b-import-be14ccff9e7a-6d3f6f8f",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision corrects the error in sentence structure in the paragraph?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "sentence 1",
+          "sentence 2",
+          "sentence 3",
+          "sentence 4"
+        ],
+        "id": "part-b-import-7651e03756f2-ba433486",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence contains an error in its construction and should be revised?",
+        "topic": "Modifiers",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "While flyby missions near Jupiter have been happening since 1973, scientists collect data about the planet and its moons.",
+          "Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons.",
+          "Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973.",
+          "Flyby missions have been happening near Jupiter, but scientists have been collecting data about the planet and its moons since 1973."
+        ],
+        "id": "part-b-question-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read these sentences.\nWhat is the best way to combine the sentences to clarify the relationship between the ideas?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "5",
+        "choices": [],
+        "id": "2019-2020-form-a-q58",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Ms. Li opened a retirement account with a deposit of $2,500. This account earns 4% simple interest annually. How many years will it take her to earn $500 on her $2,500 deposit?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "short_response"
+      },
+      {
+        "answer": "-9",
+        "choices": [],
+        "id": "2019-2020-form-a-q59",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[6-9\\div|-3|+(-2)^3\\times1\\frac{1}{2}\\]\nWhat is the value of the expression shown above?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Operations",
+        "type": "short_response"
+      },
+      {
+        "answer": "4",
+        "choices": [],
+        "id": "2019-2020-form-a-q60",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Solve for \\(x\\):\n\\[7x+3-2(2x+1)=13\\]",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
+        "type": "short_response"
+      },
+      {
+        "answer": "55",
+        "choices": [],
+        "id": "2019-2020-form-a-q61",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure above, line \\(l\\) is perpendicular to line \\(n\\). What is the value of \\(x\\)?",
+        "topic": "Geometry",
+        "subtopic": "Shapes & Angles",
+        "type": "short_response"
+      },
+      {
+        "answer": "19.2",
+        "choices": [],
+        "id": "2019-2020-form-a-q62",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The mean value of 8 numbers is 17. Three of these numbers (9, 11, and 20) are discarded. What is the mean of the 5 remaining numbers?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Averages & Spread",
+        "type": "short_response"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "40",
+          "370",
+          "2,482",
+          "10,000"
+        ],
+        "id": "2019-2020-form-a-q63",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[3^4+7^4=\\]",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Operations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "five and seven twenty-fourths",
+          "five and one twenty-fourth",
+          "three and four-fifths",
+          "three and one-half"
+        ],
+        "id": "2019-2020-form-a-q64",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In one week, \\(1\\frac{3}{4}\\) inches of rain fell on Monday, \\(2\\frac{2}{3}\\) inches fell on Tuesday, and \\(\\frac{7}{8}\\) inch fell on Wednesday. How many inches of rain fell during those three days?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions & Decimals",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "235",
+          "435",
+          "473",
+          "583"
+        ],
+        "id": "2019-2020-form-a-q65",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An alarm bell will ring when the pressurized gas in a cylinder reaches an internal pressure that is 215% of the maximum allowable pressure. If the maximum allowable pressure is 220 pounds per square inch, at what pressure, in pounds per square inch, will the alarm bell ring?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "1:00 a.m.",
+          "2:30 a.m.",
+          "4:00 p.m.",
+          "12:00 midnight"
+        ],
+        "id": "2019-2020-form-a-q66",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A revolving sign makes 1 complete revolution every 90 minutes. If the sign starts moving at 2:30 p.m., at what time will the sign complete 8 revolutions?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "2",
+          "4",
+          "6",
+          "8"
+        ],
+        "id": "2019-2020-form-a-q67",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Points Y and Z are not shown on the number line above. If X is the midpoint of \\(\\overline{WY}\\), and Y is the midpoint of \\(\\overline{WZ}\\), where on the number line would point Z be located?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Operations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "1",
+          "one and one-ninth",
+          "5",
+          "ten and one-ninth"
+        ],
+        "id": "2019-2020-form-a-q68",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[\\frac{81}{10}=\\frac{9}{n}\\]\nWhat value of \\(n\\) makes the equation above true?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "five n plus one",
+          "four n plus five",
+          "two n plus three",
+          "n plus two"
+        ],
+        "id": "2019-2020-form-a-q69",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(n\\) is an integer and \\(3n+3\\) is an even number, which expression must also represent an even number?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "5",
+          "18",
+          "24",
+          "52"
+        ],
+        "id": "2019-2020-form-a-q70",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The product of two positive integers is 65. Which number could be the sum of the two integers?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "−1",
+          "−2",
+          "−3",
+          "−5"
+        ],
+        "id": "2019-2020-form-a-q71",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(n\\) is an odd integer that is less than −3.25, what is the greatest possible value of \\(n\\)?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "60",
+          "65",
+          "70",
+          "75"
+        ],
+        "id": "2019-2020-form-a-q72",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Mikah’s history assignment is to read 420 pages. He planned to do the assignment in 6 hours. He read the first 160 pages in 2 hours. What is the mean number of pages he must read per hour during the next 4 hours in order to complete the assignment according to plan?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "2 and 3",
+          "3 and 4",
+          "4 and 5",
+          "5 and 6"
+        ],
+        "id": "2019-2020-form-a-q73",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Between which two consecutive integers is the fraction \\(\\frac{29}{7}\\)?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions & Decimals",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Change “Excellent” to 36.6%.",
+          "Change “Good” to 32.7%.",
+          "Change “Fair” to 33.2%.",
+          "Change “Poor” to 4.7%."
+        ],
+        "id": "2019-2020-form-a-q74",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "One number in the percentage column is incorrect. Which change needs to be made?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Data Displays",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "4.5",
+          "5.5",
+          "6.5",
+          "7.5"
+        ],
+        "id": "2019-2020-form-a-q75",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Joseph is 5 feet 9 inches tall, and Roberto is 6 feet 4.5 inches tall. What is the difference in height, in inches, between Roberto and Joseph?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Units & Conversions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "27",
+          "25",
+          "16",
+          "13"
+        ],
+        "id": "2019-2020-form-a-q76",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[x:35=20:28\\]\nFor what value of \\(x\\) is the proportion shown above true?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "−60",
+          "negative seventeen-thirds",
+          "seventy-seven ninths",
+          "68"
+        ],
+        "id": "2019-2020-form-a-q77",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[\\frac{3^2+(-8)^2+2^2}{(3-8+2)^2}=\\]",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Operations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "24%",
+          "28%",
+          "32%",
+          "36%"
+        ],
+        "id": "2019-2020-form-a-q78",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Anya contributed $1,200 toward the purchase of a $2,000 computer. Her brother contributed $240 toward the same computer. Her parents provided the rest of the money for the computer. What percentage of the total cost of the computer did Anya’s parents pay?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "2",
+          "3",
+          "6",
+          "12"
+        ],
+        "id": "2019-2020-form-a-q79",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The numbers \\(m\\), \\(n\\), \\(p\\), and \\(q\\) are different, and each is equal to one of the numbers 1, 2, 3, 6, or 12. If \\(2m=6q=\\frac{1}{2}n=p\\), what is the value of \\(p\\)?",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "one-fifth",
+          "two-fifths",
+          "three-fifths",
+          "two-thirds"
+        ],
+        "id": "2019-2020-form-a-q80",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[\\{0.1,0.01,0.001,0.0001,0.00001\\}\\]\nIf a person chooses a number at random from the set above, what is the probability that the number is less than 0.005?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "85%",
+          "67%",
+          "34%",
+          "15%"
+        ],
+        "id": "2019-2020-form-a-q81",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Lemont answered 6 out of 40 questions on a test incorrectly. What percentage of the questions did he answer correctly?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "55",
+          "45",
+          "35",
+          "30"
+        ],
+        "id": "2019-2020-form-a-q82",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Lines \\(j\\) and \\(k\\) intersect at point Q, and \\(h\\) is a straight line. What is the value of \\(x\\)?",
+        "topic": "Geometry",
+        "subtopic": "Shapes & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "one over x plus one is greater than one over x plus two",
+          "one over x plus one is less than one over x plus two",
+          "one over x plus one minus one over x plus two is greater than one",
+          "one over x plus one minus one over x plus two is greater than one over x"
+        ],
+        "id": "2019-2020-form-a-q83",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement must be true if \\(x\\) is a whole number greater than or equal to 1?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions & Decimals",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "3",
+          "8",
+          "9",
+          "16"
+        ],
+        "id": "2019-2020-form-a-q84",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A basket contains red balls, green balls, and white balls. There are 12 red balls in the basket. The probability of randomly choosing a red ball is 1 in 3. If the probability of randomly choosing a green ball is 1 in 4, how many green balls are in the basket?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "1.5",
+          "15.0",
+          "30.0",
+          "38.4"
+        ],
+        "id": "2019-2020-form-a-q85",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "It took Lars 2 hours to ride his bicycle 48 kilometers. What was his average speed in miles per hour? (Use the approximation 1 mile = 1.6 kilometers.)",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "two x plus one",
+          "three x minus five",
+          "four x minus one",
+          "four x plus six"
+        ],
+        "id": "2019-2020-form-a-q86",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Integer \\(x\\) is evenly divisible by 3. Which expression below is also evenly divisible by 3?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "four-fifths",
+          "seven-tenths",
+          "three-tenths",
+          "one-fifth"
+        ],
+        "id": "2019-2020-form-a-q87",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Lamel has a jar containing 6 red chips, 10 blue chips, and 4 yellow chips. If he removes one chip at random, what is the probability that it will not be red?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "R",
+          "S",
+          "T",
+          "U"
+        ],
+        "id": "2019-2020-form-a-q88",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The arrow starts on Space P and moves clockwise around the circle. It moves through one space each minute. What space will the arrow point to in 100 minutes?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Operations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "5",
+          "6",
+          "10",
+          "12"
+        ],
+        "id": "2019-2020-form-a-q89",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Mei-Ling is one of 6 members of a committee. If 2 members of that committee are selected to go to a conference, how many of the possible pairs of members would include Mei-Ling?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Counting & Sets",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "−9",
+          "−1",
+          "1",
+          "9"
+        ],
+        "id": "2019-2020-form-a-q90",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(m=5\\) and \\(t=-1\\), what is the value of \\(\\frac{6-8(2-t)}{2m+4(3-m)}\\)?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Operations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "112",
+          "124",
+          "148",
+          "248"
+        ],
+        "id": "2019-2020-form-a-q91",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the parallelogram above, what is the value of \\(x+y\\)?",
+        "topic": "Geometry",
+        "subtopic": "Shapes & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "−2",
+          "0",
+          "2",
+          "4"
+        ],
+        "id": "2019-2020-form-a-q92",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "On the number line above, point L (not shown) is located on line segment \\(\\overline{JK}\\) so that \\(\\overline{JL}=\\frac{2}{3}\\overline{LK}\\). What is the position of point L?",
+        "topic": "Geometry",
+        "subtopic": "Shapes & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "300",
+          "800",
+          "1,500",
+          "2,500"
+        ],
+        "id": "2019-2020-form-a-q93",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Josef and Mai divided some stamps between themselves. Josef got 60% of the stamps. If Josef received 500 more stamps than Mai, how many stamps did Josef receive?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "144 pi feet",
+          "24 pi feet",
+          "18 pi feet",
+          "9 pi feet"
+        ],
+        "id": "2019-2020-form-a-q94",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The shaded sector of the circle shown above has an area of \\(18\\pi\\) square feet. What is the circumference of the circle?",
+        "topic": "Geometry",
+        "subtopic": "Shapes & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Open circle at −1, shaded left.",
+          "Open circle at 1, shaded left.",
+          "Open circle at −1, shaded right.",
+          "Open circle at 1, shaded right."
+        ],
+        "id": "2019-2020-form-a-q95",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which graph represents the solution to \\(-3x-7>-4\\)?",
+        "topic": "Algebra",
+        "subtopic": "Inequalities",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "1:18",
+          "2:1",
+          "3:1",
+          "18:1"
+        ],
+        "id": "2019-2020-form-a-q96",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A scientist mixed three chemicals, R, S, and T, in a glass container. The amount of R is 3 times the amount of S, and the amount of T is \\(\\frac{1}{6}\\) the amount of S. What is the ratio of the amount of R to the amount of T?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "k minus six equals two times j plus six",
+          "k minus six equals two j plus six",
+          "two times k minus six equals j",
+          "two times k minus six equals j plus six"
+        ],
+        "id": "2019-2020-form-a-q97",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Ken has \\(k\\) video games, and Jeff has \\(j\\) video games. If Ken gives 6 video games to Jeff, Ken will have twice as many video games as Jeff. Which equation shows the relationship between \\(k\\) and \\(j\\)?",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "seven twenty-fifths",
+          "three-tenths",
+          "seventeen twenty-fifths",
+          "seven-tenths"
+        ],
+        "id": "2019-2020-form-a-q98",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Yesterday Sarah read 15% of her entire book. Today she read another 17% of the entire book. In lowest terms, what fraction of the book is left for her to read?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "11",
+          "13",
+          "20",
+          "22"
+        ],
+        "id": "2019-2020-form-a-q99",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[\\{1,2,3,4,5,\\ldots,198,199,200\\}\\]\nHow many members of the set shown above are multiples of 6 but not multiples of 9?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "0.08",
+          "80",
+          "800",
+          "8,000"
+        ],
+        "id": "2019-2020-form-a-q100",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Kim jogs 8 kilometers in 1 hour 40 minutes. At that rate, how many meters does she jog per minute?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "seventy-five elevenths",
+          "seventy-five thirty-firsts",
+          "fifteen sevenths",
+          "sixty-five thirty-firsts"
+        ],
+        "id": "2019-2020-form-a-q101",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "For what value of \\(x\\) is the equation \\(\\frac{x}{5}-4=3(4-2x)-1\\) true?",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "140°",
+          "130°",
+          "50°",
+          "40°"
+        ],
+        "id": "2019-2020-form-a-q102",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The diagram above shows line segment \\(\\overline{RS}\\) intersecting a rectangle. What is the measure of angle \\(y\\)?",
+        "topic": "Geometry",
+        "subtopic": "Shapes & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "20",
+          "30",
+          "100",
+          "120"
+        ],
+        "id": "2019-2020-form-a-q103",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "All 150 students in Grade 8 at a school are assigned to write an essay on the same topic. A teacher records the number of words in a random sample of the essays, as shown in the table above. Based on this sample, how many students in the entire grade would be expected to write essays with at least 100 words?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "0%",
+          "0.1%",
+          "1%",
+          "100%"
+        ],
+        "id": "2019-2020-form-a-q104",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which percentage is closest in value to 0.0099?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "100",
+          "115",
+          "120",
+          "230"
+        ],
+        "id": "2019-2020-form-a-q105",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Anita played 3 games and had a mean score of 140. Tariq played 2 games and had a mean score of 90. What was the mean of the scores for all 5 of these games?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Averages & Spread",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "five and one-third square feet",
+          "six square feet",
+          "nine and one-third square feet",
+          "twelve square feet"
+        ],
+        "id": "2019-2020-form-a-q106",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure above, the shaded rectangle is similar to the outer rectangle. The length of the outer rectangle is 4 feet, and the perimeter of the outer rectangle is 14 feet. If the width of the shaded rectangle is 2 feet, what is the area of the shaded rectangle?",
+        "topic": "Geometry",
+        "subtopic": "Scale & Transformations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "44 cu ft",
+          "48 cu ft",
+          "120 cu ft",
+          "240 cu ft"
+        ],
+        "id": "2019-2020-form-a-q107",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A rectangular concrete driveway is 30 feet long, 8 feet wide, and 6 inches thick. What is the volume of the concrete?",
+        "topic": "Geometry",
+        "subtopic": "Shapes & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "8",
+          "7",
+          "6",
+          "5"
+        ],
+        "id": "2019-2020-form-a-q108",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The greatest common factor of 24 and \\(x\\) is 8. How many possible values for \\(x\\) are greater than 10 and less than 70?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Number Properties",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "two and one-half",
+          "two and two-thirds",
+          "three and one-third",
+          "five and one-third"
+        ],
+        "id": "2019-2020-form-a-q109",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Vicente and Carla each ran 8 laps around a track. They started at the same time and place. If Vicente ran 1.5 times as fast as Carla, how many laps did Carla have left to finish when Vicente finished his 8th lap?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "10%",
+          "12%",
+          "19%",
+          "38%"
+        ],
+        "id": "2019-2020-form-a-q110",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "At West College, students are randomly assigned to one of 20 dormitories and one of 6 dining rooms. Kharleen likes 6 of the dormitories and 2 of the dining rooms. What is the probability that she is assigned to both a dormitory and a dining room that she likes?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "46",
+          "45",
+          "43",
+          "41"
+        ],
+        "id": "2019-2020-form-a-q111",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A train travels 2,200 miles from Phoenix to New York City. The train covers the first 240 miles in 5 hours. If the train continues to travel at this rate, how many more hours will it take to reach New York City? Round your answer to the nearest whole hour.",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "1",
+          "2",
+          "12",
+          "13"
+        ],
+        "id": "2019-2020-form-a-q112",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the least of four consecutive integers whose sum is 58?",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Closed segment from 1.5 to 2.5 on the number line.",
+          "Closed segment from 1 to 2 on the number line.",
+          "Closed segment from 0.5 to 2 on the number line.",
+          "Closed segment from 2/3 to 2 on the number line."
+        ],
+        "id": "2019-2020-form-a-q113",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If all possible values of \\(x\\) are indicated by the shaded part of the number line above, which number line best shows all possible values of \\(\\frac1x\\)?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions & Decimals",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "one seventy-second",
+          "one thirty-sixth",
+          "one-eighth",
+          "one-sixth"
+        ],
+        "id": "2019-2020-form-a-q114",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Chanelle selects a marble from a container and then returns it to the container. When she does this 3 times, the probability of choosing a red marble all 3 times is \\(\\frac1{216}\\). Based on this information, what is the probability of Chanelle choosing a red marble the first time she selects a marble?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      }
+    ],
     "forms": [],
     "formAssignments": {},
-    "status": "locked",
+    "status": "open",
     "sectionAccess": {
-      "english": false,
-      "math": false
+      "english": true,
+      "math": true
     },
     "correctionsOpen": false,
     "allowCompletedAccess": false,

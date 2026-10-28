@@ -31,7 +31,7 @@ Envelope (one question may also use {"question":{...}} or a bare question object
 The example describes the schema, not content to reuse. Produce one complete question or the complete requested batch. Never truncate JSON. If splitting a large job, end each file after a complete question and state the covered source range in its questions' notes.`;
 }
 
-export function createPartBImports({ workspaceRoot, sanitizeRichText, sanitizeInlineRichText, normalizeChoiceLabels, listItems, normalizeItem, saveItem, getTopics }) {
+export function createPartBImports({ workspaceRoot, sanitizeRichText, sanitizeInlineRichText, normalizeChoiceLabels, listItems, normalizeItem, saveItem, combineItems, getTopics }) {
   const directory = join(workspaceRoot, 'tools', '.content-drafts');
   const path = join(directory, 'part-b-imports.json');
   let queue = Promise.resolve();
@@ -132,6 +132,24 @@ export function createPartBImports({ workspaceRoot, sanitizeRichText, sanitizeIn
       state.entries = state.entries.filter(item => item.id !== entry.id);
       await write(state);
       return { deleted: entry.id, drafts: state.entries.filter(item => !item.publishedId) };
+    }),
+    combine: input => mutate(async () => {
+      if (input?.verifiedSameQuestion !== true) fail('Verify that these are the same question before combining.');
+      if (!Array.isArray(input.drafts) || !input.drafts.length || input.drafts.length > 2 || new Set(input.drafts.map(draft => draft?.id)).size !== input.drafts.length) fail('Choose the imported drafts to combine.');
+      const state = await read();
+      const entries = input.drafts.map(draft => {
+        const entry = state.entries.find(entry => entry.id === draft?.id);
+        if (!entry || entry.publishedId) fail('This Part B import draft is no longer available. Refresh the editor.', 409);
+        if (entry.version !== draft.version) fail('This Part B draft changed in another editor. Refresh before combining.', 409);
+        if (![input.keepId, input.removeId].includes(entry.question.id)) fail('The imported draft is not part of this question pair.');
+        return { entry, cleaned: question(draft.question || entry.question, entry.question.id).question };
+      });
+      const result = await combineItems(input, entries.map(({ cleaned }) => cleaned));
+      for (const { entry, cleaned } of entries) {
+        entry.question = cleaned; entry.publishedId = result.item.id; entry.version++;
+      }
+      await write(state);
+      return { ...result, drafts: state.entries.filter(entry => !entry.publishedId) };
     }),
     publish: input => mutate(async () => {
       const state = await read(), entry = state.entries.find(entry => entry.id === input?.id);

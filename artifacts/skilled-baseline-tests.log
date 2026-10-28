@@ -1,0 +1,251 @@
+✖ student dropdown sentences render display math while preserving answer values and plain menu labels (53.4254ms)
+✖ Part B uses its own student document in authoring and Student view without reading content or keys leaking (4.4027ms)
+✖ passage draft deletion preserves unsaved content on cancel or failure and clears only the deleted editor (7.0044ms)
+✖ reading startup mounts the editable preview after its workspace controls and survives a Practice setup error (44.0077ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 451.681
+
+✖ failing tests:
+
+test at tools\.skilled-baseline-content-studio-math.test.mjs:167:1
+✖ student dropdown sentences render display math while preserving answer values and plain menu labels (53.4254ms)
+  ReferenceError: parseInlineDropdownTemplate is not defined
+      at renderInlineDropdownText (evalmachine.<anonymous>:3:5)
+      at TestContext.<anonymous> (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/tools/.skilled-baseline-content-studio-math.test.mjs:180:18)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+
+test at tools\.skilled-baseline-content-studio-workspace.test.mjs:24:1
+✖ Part B uses its own student document in authoring and Student view without reading content or keys leaking (4.4027ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /Reading sentinel|Other unsaved content|checked|studio-key-correct/. Input:
+  
+  '\n' +
+    '        <!doctype html>\n' +
+    '        <html lang="en">\n' +
+    '        <head>\n' +
+    '          <meta charset="utf-8">\n' +
+    '          <meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+    '          <style></style>\n' +
+    '          <style>\n' +
+    '            html, body { margin: 0; min-width: 320px; min-height: 100%; }\n' +
+    '            html, body { min-width: 0; background: #f7f7f7; color: #111820; color-scheme: light; }\n' +
+    '            .exam-session-shell { min-height: 100vh; box-sizing: border-box; }\n' +
+    '            .exam-standalone-document { box-sizing: border-box; }\n' +
+    '            @media (max-width: 600px) { .exam-standalone-document { width: calc(100% - 24px); padding: 16px; } }\n' +
+    '            .preview-tool-glyph { font-size: 12px; font-weight: 800; line-height: 1; }\n' +
+    '            .exam-question-document { min-height: calc(100vh - 84px); }\n' +
+    '            .exam-question-panel { padding-top: 2px; }\n' +
+    '            @media (max-width: 760px) {\n' +
+    '              .exam-session-review-tools, .exam-session-work-tools { display: none; }\n' +
+    '              .exam-session-toolbar-cluster { gap: 0; }\n' +
+    '              .exam-question-document { grid-template-columns: 1fr; gap: 20px; }\n' +
+    '              .exam-question-passage-scroll { height: 390px; }\n' +
+    '              .exam-question-panel { padding: 0; }\n' +
+    '            }\n' +
+    '          </style>\n' +
+    '        </head>\n' +
+    '        <body>\n' +
+    '          <main class="exam-session-shell">\n' +
+    '            <header class="exam-session-toolbar" aria-label="Exam controls">\n' +
+    '              <div class="exam-session-toolbar-inner">\n' +
+    '                <div class="exam-session-toolbar-cluster">\n' +
+    '                  <div class="exam-session-toolbar-group exam-session-question-nav">\n' +
+    '                    <button class="exam-session-toolbar-button is-muted" data-preview-delta="-1" disabled type="button"><span class="exam-session-arrow-glyph is-left"></span></button>\n' +
+    '                    <button class="exam-session-toolbar-button is-muted" data-preview-delta="1" disabled type="button"><span class="exam-session-arrow-glyph is-right"></span></button>\n' +
+    '                  </div>\n' +
+    '                  <div class="exam-session-toolbar-group exam-session-review-tools">\n' +
+    '                    <button class="exam-session-toolbar-button is-review" type="button"><span>Review</span><span class="preview-tool-glyph">☷</span></button>\n' +
+    '                    <button class="exam-session-toolbar-button is-bookmark" type="button"><span class="preview-tool-glyph">◇</span><span>Bookmark</span></button>\n' +
+    '                  </div>\n' +
+    '                  <div class="exam-session-toolbar-group exam-session-work-tools">\n' +
+    '                    <button class="exam-session-tool-button is-active" type="button"><span class="preview-tool-glyph">↖</span></button>\n' +
+    '                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">X</span></button>\n' +
+    '                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">▢</span></button>\n' +
+    '                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">✎</span></button>\n' +
+    '                  </div>\n' +
+    '                </div>\n' +
+    '                <div class="exam-session-user-tools">\n' +
+    '                  <button class="exam-session-timer-button" type="button"><span class="preview-tool-glyph">◷</span></button>\n' +
+    '                  <span class="exam-session-user-name">Student Preview</span>\n' +
+    '                  <button class="exam-session-user-button" type="button"><span class="preview-tool-glyph">●⌄</span></button>\n' +
+    '                </div>\n' +
+    '              </div>\n' +
+    '            </header>\n' +
+    '            <div class="exam-session-bluebar"></div>\n' +
+    '            <nav class="exam-session-breadcrumb" aria-label="Exam location">\n' +
+    '              <div class="exam-session-breadcrumb-inner">\n' +
+    '                <div class="exam-session-breadcrumb-text">\n' +
+    '                  <span>CONTENT STUDIO PREVIEW</span><span>/</span>\n' +
+    '                  <span>REVISING/EDITING PART B</span><span>/</span>\n' +
+    '                  <span>1 OF 1</span>\n' +
+    '                </div>\n' +
+    '                <span class="exam-session-status-icon" aria-hidden="true">▣</span>\n' +
+    '              </div>\n' +
+    '            </nav>\n' +
+    '            <section class="exam-standalone-document">\n' +
+    '              <form class="exam-standalone-panel">\n' +
+    '                <h1><span class="exam-rich-text">Which <strong>revision</strong>?</span></h1>\n' +
+    '                <div class="exam-standalone-stimulus">Paragraph text.</div>\n' +
+    '                \n' +
+    '                \n' +
+    '        <div class="exam-choice-list exam-standalone-choice-list">\n' +
+    '          \n' +
+    '            <label class="exam-choice">\n' +
+    '               <input name="student-preview-answer" type="radio">\n' +
+    '               <span>A.</span>\n' +
+    '               <span class="exam-rich-text">Answer A</span>\n' +
+    '             </label>\n' +
+    '           \n' +
+    '            <label class="exam-choice">\n' +
+    '               <input name="student-preview-answer" type="radio">\n' +
+    '               <span>B.</span>\n' +
+    '               <span class="exam-rich-text">Answer B</span>\n' +
+    '             </label>\n' +
+    '           \n' +
+    '            <label class="exam-choice">\n' +
+    '               <input name="student-preview-answer" type="radio">\n' +
+    '               <span>C.</span>\n' +
+    '               <span class="exam-rich-text">Answer C</span>\n' +
+    '             </label>\n' +
+    '           \n' +
+    '            <label class="exam-choice">\n' +
+    '               <input name="student-preview-answer" type="radio">\n' +
+    '               <span>D.</span>\n' +
+    '               <span class="exam-rich-text">Answer D</span>\n' +
+    '             </label>\n' +
+    '           \n' +
+    '        </div>\n' +
+    '      \n' +
+    '              </form>\n' +
+    '            </section>\n' +
+    '          </main>\n' +
+    '          <script type="module">\n' +
+    "            import { mountPassageGlossary } from '/content-studio-glossary.js';\n" +
+    '            mountPassageGlossary(document.body);\n' +
+    '          </script>\n' +
+    '          <script>\n' +
+    "            document.querySelectorAll('.is-evidence-matrix input').forEach(function (input) {\n" +
+    "              input.addEventListener('change', function () {\n" +
+    "                if (input.checked) input.closest('tr').querySelectorAll('input').forEach(function (other) { if (other !== input) other.checked = false; });\n" +
+    '              });\n' +
+    '            });\n' +
+    '            document.querySelectorAll("[data-preview-delta]").forEach(function (button) {\n' +
+    '              button.addEventListener("click", function () {\n' +
+    '                parent.postMessage({ type: "exam-content-preview-navigation", delta: Number(button.dataset.previewDelta) }, "*");\n' +
+    '              });\n' +
+    '            });\n' +
+    '            var selectedCategoryItem = null;\n' +
+    '            document.querySelectorAll("[data-preview-category-item]").forEach(function (item) {\n' +
+    '              item.addEventListener("click", function () {\n' +
+    '                document.querySelectorAll("[data-preview-category-item]").forEach(function (candidate) {\n' +
+    '                  candidate.classList.remove("is-selected");\n' +
+    '                });\n' +
+    '                selectedCategoryItem = item;\n' +
+    '                item.classList.add("is-selected");\n' +
+    '              });\n' +
+    '              item.addEventListener("dragstart", function (event) {\n' +
+    '                selectedCategoryItem = item;\n' +
+    '                event.dataTransfer.setData("text/plain", item.dataset.previewCategoryItem);\n' +
+    '              });\n' +
+    '            });\n' +
+    '            document.querySelectorAll("[data-preview-category-target]").forEach(function (target) {\n' +
+    '              function placeItem(item) {\n' +
+    '                if (!item) return;\n' +
+    '                if (target.dataset.previewCategoryCapacity === "1") {\n' +
+    '                  var occupiedItem = target.querySelector("[data-preview-category-item]");\n' +
+    '                  var answerBank = document.querySelector("[data-preview-category-bank]");\n' +
+    '                  if (occupiedItem && occupiedItem !== item && answerBank) {\n' +
+    '                    answerBank.appendChild(occupiedItem);\n' +
+    '                    occupiedItem.classList.remove("is-placed", "is-selected");\n' +
+    '                  }\n' +
+    '                }\n' +
+    '                target.querySelector("[data-preview-category-items], .exam-category-target-items").appendChild(item);\n' +
+    '                item.classList.add("is-placed");\n' +
+    '                item.classList.remove("is-selected");\n' +
+    '                selectedCategoryItem = null;\n' +
+    '              }\n' +
+    '              target.addEventListener("click", function () { placeItem(selectedCategoryItem); });\n' +
+    '              target.addEventListener("dragover", function (event) { event.preventDefault(); });\n' +
+    '              target.addEventListener("drop", function (event) {\n' +
+    '                event.preventDefault();\n' +
+    `                placeItem(document.querySelector('[data-preview-category-item="' + event.dataTransfer.getData("text/plain") + '"]'));\n` +
+    '              });\n' +
+    '            });\n' +
+    '            var categoryBank = document.querySelector("[data-preview-category-bank]");\n' +
+    '            if (categoryBank) {\n' +
+    '              function returnToBank(item) {\n' +
+    '                if (!item) return;\n' +
+    '                categoryBank.appendChild(item);\n' +
+    '                item.classList.remove("is-placed", "is-selected");\n' +
+    '                selectedCategoryItem = null;\n' +
+    '              }\n' +
+    '              categoryBank.addEventListener("click", function (event) {\n' +
+    '                if (event.target === categoryBank) returnToBank(selectedCategoryItem);\n' +
+    '              });\n' +
+    '              categoryBank.addEventListener("dragover", function (event) { event.preventDefault(); });\n' +
+    '              categoryBank.addEventListener("drop", function (event) {\n' +
+    '                event.preventDefault();\n' +
+    `                returnToBank(document.querySelector('[data-preview-category-item="' + event.dataTransfer.getData("text/plain") + '"]'));\n` +
+    '              });\n' +
+    '            }\n' +
+    '            var transitionTargets = Array.from(document.querySelectorAll("[data-preview-transition-target]"));\n' +
+    '            var transitionChoices = Array.from(document.querySelectorAll("[data-preview-transition-choice]"));\n' +
+    '            var transitionBank = document.querySelector("[data-preview-transition-bank]");\n' +
+    '            var transitionSelected = null;\n' +
+    '            var transitionReuse = document.querySelector("[data-transition-reuse]")?.dataset.transitionReuse === "true";\n' +
+    '            function clearTransitionTarget(target) '... 2823 more characters
+  
+      at TestContext.<anonymous> (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/tools/.skilled-baseline-content-studio-workspace.test.mjs:37:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: `\n        <!doctype html>\n        <html lang="en">\n        <head>\n          <meta charset="utf-8">\n          <meta name="viewport" content="width=device-width, initial-scale=1">\n          <style></style>\n          <style>\n            html, body { margin: 0; min-width: 320px; min-height: 100%; }\n            html, body { min-width: 0; background: #f7f7f7; color: #111820; color-scheme: light; }\n            .exam-session-shell { min-height: 100vh; box-sizing: border-box; }\n            .exam-standalone-document { box-sizing: border-box; }\n            @media (max-width: 600px) { .exam-standalone-document { width: calc(100% - 24px); padding: 16px; } }\n            .preview-tool-glyph { font-size: 12px; font-weight: 800; line-height: 1; }\n            .exam-question-document { min-height: calc(100vh - 84px); }\n            .exam-question-panel { padding-top: 2px; }\n            @media (max-width: 760px) {\n              .exam-session-review-tools, .exam-session-work-tools { display: none; }\n              .exam-session-toolbar-cluster { gap: 0; }\n              .exam-question-document { grid-template-columns: 1fr; gap: 20px; }\n              .exam-question-passage-scroll { height: 390px; }\n              .exam-question-panel { padding: 0; }\n            }\n          </style>\n        </head>\n        <body>\n          <main class="exam-session-shell">\n            <header class="exam-session-toolbar" aria-label="Exam controls">\n              <div class="exam-session-toolbar-inner">\n                <div class="exam-session-toolbar-cluster">\n                  <div class="exam-session-toolbar-group exam-session-question-nav">\n                    <button class="exam-session-toolbar-button is-muted" data-preview-delta="-1" disabled type="button"><span class="exam-session-arrow-glyph is-left"></span></button>\n                    <button class="exam-session-toolbar-button is-muted" data-preview-delta="1" disabled type="button"><span class="exam-session-arrow-glyph is-right"></span></button>\n                  </div>\n                  <div class="exam-session-toolbar-group exam-session-review-tools">\n                    <button class="exam-session-toolbar-button is-review" type="button"><span>Review</span><span class="preview-tool-glyph">☷</span></button>\n                    <button class="exam-session-toolbar-button is-bookmark" type="button"><span class="preview-tool-glyph">◇</span><span>Bookmark</span></button>\n                  </div>\n                  <div class="exam-session-toolbar-group exam-session-work-tools">\n                    <button class="exam-session-tool-button is-active" type="button"><span class="preview-tool-glyph">↖</span></button>\n                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">X</span></button>\n                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">▢</span></button>\n                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">✎</span></button>\n                  </div>\n                </div>\n                <div class="exam-session-user-tools">\n                  <button class="exam-session-timer-button" type="button"><span class="preview-tool-glyph">◷</span></button>\n                  <span class="exam-session-user-name">Student Preview</span>\n                  <button class="exam-session-user-button" type="button"><span class="preview-tool-glyph">●⌄</span></button>\n                </div>\n              </div>\n            </header>\n            <div class="exam-session-bluebar"></div>\n            <nav class="exam-session-breadcrumb" aria-label="Exam location">\n              <div class="exam-session-breadcrumb-inner">\n                <div class="exam-session-breadcrumb-text">\n                  <span>CONTENT STUDIO PREVIEW</span><span>/</span>\n                  <span>REVISING/EDITING PART B</span><span>/</span>\n                  <span>1 OF 1</span>\n                </div>\n                <span class="exam-session-status-icon" aria-hidden="true">▣</span>\n              </div>\n            </nav>\n            <section class="exam-standalone-document">\n              <form class="exam-standalone-panel">\n                <h1><span class="exam-rich-text">Which <strong>revision</strong>?</span></h1>\n                <div class="exam-standalone-stimulus">Paragraph text.</div>\n                \n                \n        <div class="exam-choice-list exam-standalone-choice-list">\n          \n            <label class="exam-choice">\n               <input name="student-preview-answer" type="radio">\n               <span>A.</span>\n               <span class="exam-rich-text">Answer A</span>\n             </label>\n           \n            <label class="exam-choice">\n               <input name="student-preview-answer" type="radio">\n               <span>B.</span>\n               <span class="exam-rich-text">Answer B</span>\n             </label>\n           \n            <label class="exam-choice">\n               <input name="student-preview-answer" type="radio">\n               <span>C.</span>\n               <span class="exam-rich-text">Answer C</span>\n             </label>\n           \n            <label class="exam-choice">\n               <input name="student-preview-answer" type="radio">\n               <span>D.</span>\n               <span class="exam-rich-text">Answer D</span>\n             </label>\n           \n        </div>\n      \n              </form>\n            </section>\n          </main>\n          <script type="module">\n            import { mountPassageGlossary } from '/content-studio-glossary.js';\n            mountPassageGlossary(document.body);\n          </script>\n          <script>\n            document.querySelectorAll('.is-evidence-matrix input').forEach(function (input) {\n              input.addEventListener('change', function () {\n                if (input.checked) input.closest('tr').querySelectorAll('input').forEach(function (other) { if (other !== input) other.checked = false; });\n              });\n            });\n            document.querySelectorAll("[data-preview-delta]").forEach(function (button) {\n              button.addEventListener("click", function () {\n                parent.postMessage({ type: "exam-content-preview-navigation", delta: Number(button.dataset.previewDelta) }, "*");\n              });\n            });\n            var selectedCategoryItem = null;\n            document.querySelectorAll("[data-preview-category-item]").forEach(function (item) {\n              item.addEventListener("click", function () {\n                document.querySelectorAll("[data-preview-category-item]").forEach(function (candidate) {\n                  candidate.classList.remove("is-selected");\n                });\n                selectedCategoryItem = item;\n                item.classList.add("is-selected");\n              });\n              item.addEventListener("dragstart", function (event) {\n                selectedCategoryItem = item;\n                event.dataTransfer.setData("text/plain", item.dataset.previewCategoryItem);\n              });\n            });\n            document.querySelectorAll("[data-preview-category-target]").forEach(function (target) {\n              function placeItem(item) {\n                if (!item) return;\n                if (target.dataset.previewCategoryCapacity === "1") {\n                  var occupiedItem = target.querySelector("[data-preview-category-item]");\n                  var answerBank = document.querySelector("[data-preview-category-bank]");\n                  if (occupiedItem && occupiedItem !== item && answerBank) {\n                    answerBank.appendChild(occupiedItem);\n                    occupiedItem.classList.remove("is-placed", "is-selected");\n                  }\n                }\n                target.querySelector("[data-preview-category-items], .exam-category-target-items").appendChild(item);\n                item.classList.add("is-placed");\n                item.classList.remove("is-selected");\n                selectedCategoryItem = null;\n              }\n              target.addEventListener("click", function () { placeItem(selectedCategoryItem); });\n              target.addEventListener("dragover", function (event) { event.preventDefault(); });\n              target.addEventListener("drop", function (event) {\n                event.preventDefault();\n                placeItem(document.querySelector('[data-preview-category-item="' + event.dataTransfer.getData("text/plain") + '"]'));\n              });\n            });\n            var categoryBank = document.querySelector("[data-preview-category-bank]");\n            if (categoryBank) {\n              function returnToBank(item) {\n                if (!item) return;\n                categoryBank.appendChild(item);\n                item.classList.remove("is-placed", "is-selected");\n                selectedCategoryItem = null;\n              }\n              categoryBank.addEventListener("click", function (event) {\n                if (event.target === categoryBank) returnToBank(selectedCategoryItem);\n              });\n              categoryBank.addEventListener("dragover", function (event) { event.preventDefault(); });\n              categoryBank.addEventListener("drop", function (event) {\n                event.preventDefault();\n                returnToBank(document.querySelector('[data-preview-category-item="' + event.dataTransfer.getData("text/plain") + '"]'));\n              });\n            }\n            var transitionTargets = Array.from(document.querySelectorAll("[data-preview-transition-target]"));\n            var transitionChoices = Array.from(document.querySelectorAll("[data-preview-transition-choice]"));\n            var transitionBank = document.querySelector("[data-preview-transition-bank]");\n            var transitionSelected = null;\n            var transitionReuse = document.querySelector("[data-transition-reuse]")?.dataset.transitionReuse === "true";\n            function clearTransitionTarget(target) `... 2823 more characters,
+    expected: /Reading sentinel|Other unsaved content|checked|studio-key-correct/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at tools\.skilled-baseline-content-studio-workspace.test.mjs:152:1
+✖ passage draft deletion preserves unsaved content on cancel or failure and clears only the deleted editor (7.0044ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'saved'
+  
+      at TestContext.<anonymous> (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/tools/.skilled-baseline-content-studio-workspace.test.mjs:173:41)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'saved',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\.skilled-baseline-content-studio-workspace.test.mjs:193:1
+✖ reading startup mounts the editable preview after its workspace controls and survives a Practice setup error (44.0077ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/tools/.skilled-baseline-content-studio-workspace.test.mjs:212:12)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

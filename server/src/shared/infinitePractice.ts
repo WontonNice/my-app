@@ -3,9 +3,10 @@ import { generateInequality, generateVariablesBothSidesInequality, variablesBoth
 import { generateWritingInequality, writingInequalitiesTemplate } from './writingInequalities';
 import { generateOverlappingGroups, overlappingGroupsTemplate } from './overlappingGroups';
 import { wordProblemPractice, surveyTotalsTemplate } from './practiceWordProblems';
+import { probabilityPractice, probabilityModule } from './probabilityPractice';
 
 type Generator = { id: string; title: string; description?: string; category?: string; topic?: string; foundation: boolean; generate: (index: number, seed: string) => ExamQuestion };
-export type PracticeModule = { id: string; title: string; description: string; category?: string; topic?: string; selection: 'foundation' | 'all' | string[] };
+export type PracticeModule = { id: string; title: string; description: string; category?: string; topic?: string; placement?:'foundation'|'general'; selection: 'foundation' | 'all' | string[] };
 const foundationIndices = Array.from({ length: 1056 }, (_, index) => index).filter(index => {
   const item = generateInequality(index, 'foundation');
   return item.coefficient >= 2 && item.coefficient <= 5 && item.boundary >= 1 && item.boundary <= 8;
@@ -24,6 +25,7 @@ export const practiceGenerators: Generator[] = [
   { id: writingInequalitiesTemplate.id, title: writingInequalitiesTemplate.title, description: writingInequalitiesTemplate.description, foundation: false, generate: (index, seed) => generateWritingInequality(index, seed).question },
   { id: overlappingGroupsTemplate.id, title: overlappingGroupsTemplate.title, description: overlappingGroupsTemplate.description, category: overlappingGroupsTemplate.category, topic: overlappingGroupsTemplate.topic, foundation: false, generate: (index, seed) => generateOverlappingGroups(index, seed).question },
   ...wordProblemPractice.map(template=>({id:template.id,title:template.title,description:template.description,category:template.category,topic:template.topic,foundation:false,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
+  ...probabilityPractice.map(template=>({id:template.id,title:template.title,description:template.description,category:template.category,topic:template.topic,foundation:true,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
 ];
 
 // Targeted modules can combine any number of registered generators. Stable IDs
@@ -36,10 +38,11 @@ export const practiceModules: PracticeModule[] = [
   { id: writingInequalitiesTemplate.sourceId, title: writingInequalitiesTemplate.title, description: writingInequalitiesTemplate.description, selection: [writingInequalitiesTemplate.id] },
   { id: overlappingGroupsTemplate.sourceId, title: overlappingGroupsTemplate.title, description: 'Practice overlapping group percentages and survey totals, including both groups and neither group.', category: overlappingGroupsTemplate.category, topic: overlappingGroupsTemplate.topic, selection: [overlappingGroupsTemplate.id,surveyTotalsTemplate.id] },
   ...wordProblemPractice.filter(template=>!('moduleId'in template)).map(template=>({id:template.sourceId,title:template.title,description:template.description,category:template.category,topic:template.topic,selection:[template.id]})),
+  {...probabilityModule,selection:probabilityPractice.map(template=>template.id)},
 ];
 
 export function moduleGeneratorIds(module: PracticeModule): string[] {
-  return practiceGenerators.filter(generator => module.selection === 'all' || (module.selection === 'foundation' ? generator.foundation : module.selection.includes(generator.id))).map(generator => generator.id);
+  return practiceGenerators.filter(generator => module.selection === 'all' || (module.selection === 'foundation' ? generator.foundation&&(generator.category??'Algebra')===(module.category??'Algebra')&&(generator.topic??'Inequalities')===(module.topic??'Inequalities') : module.selection.includes(generator.id))).map(generator => generator.id);
 }
 
 export function generatePracticeQuestion(generatorIds: string[], index: number, seed: string): ExamQuestion {

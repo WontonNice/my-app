@@ -20,6 +20,7 @@ stub('../src/lib/auth.ts', {
   isStudentArchived: user => user.app_metadata.archived === true,
 });
 const exam = { id: 'qa-exam', classId: 'shsat', title: 'QA exam', status: 'locked', sectionAccess: { english: false, math: false }, allowCompletedAccess: false };
+stub('../src/lib/assessmentAccess.ts', {resolveAssessmentAccess:async value=>value,resolveAssessmentAccessList:async values=>values,assessmentAccessErrorHandler:(error,_request,_response,next)=>next(error)});
 stub('../src/config/assessments.ts', {
   listTeacherAssessments: () => [exam], listStudentAssessments: () => [exam],
   findAssessmentForStudent: id => id === exam.id ? exam : null,

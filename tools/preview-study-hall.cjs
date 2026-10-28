@@ -1,10 +1,17 @@
 // Local-only fictional catalog. Never reads env files or connects to Supabase.
 const {createServer}=require('node:http'),{resolve,basename}=require('node:path'),{build}=require('esbuild');
 require(require.resolve('ts-node',{paths:[resolve(__dirname,'../server')]})).register({transpileOnly:true,project:resolve(__dirname,'../server/tsconfig.json'),compilerOptions:{module:'CommonJS',moduleResolution:'Node'},moduleTypes:{'**':'cjs'}});
-const {defaultPracticeCatalog,validatePracticeCatalog,studentPracticeCatalog}=require('../server/src/shared/practiceCatalog.ts');
+const {defaultPracticeCatalog,validatePracticeCatalog,studentPracticeCatalog,reconcilePracticeSkilled}=require('../server/src/shared/practiceCatalog.ts');
+const {validateClassificationSkills}=require('../server/src/shared/mathClassificationSkills.ts');
+let classificationSkills=[],skilledRevision=0;
 const taxonomy=require('./math-topics.json');let catalog=defaultPracticeCatalog(taxonomy),revision=0;
+const generatorCount=Number(process.argv.find(value=>value.startsWith('--generators='))?.split('=')[1]);
+if(Number.isInteger(generatorCount)&&generatorCount>catalog.generators.length&&generatorCount<=1000){
+ const original=[...catalog.generators];
+ while(catalog.generators.length<generatorCount){const index=catalog.generators.length,base=original[index%original.length];catalog.generators.push({...base,id:`qa-generator-${index}`,title:`QA ${index}: ${base.title}`});}
+}
 (async()=>{
- const result=await build({entryPoints:[resolve(__dirname,'study-hall-preview.tsx')],bundle:true,write:false,outdir:resolve(__dirname,'.study-hall-preview'),format:'esm',jsx:'automatic',loader:{'.woff':'file','.woff2':'file','.ttf':'file'},define:{'import.meta.env':'{}'},plugins:[{name:'fictional-study-hall-session',setup(plugin){
+ const result=await build({entryPoints:[resolve(__dirname,'study-hall-preview.tsx')],bundle:true,external:['/images/*'],write:false,outdir:resolve(__dirname,'.study-hall-preview'),format:'esm',jsx:'automatic',loader:{'.woff':'file','.woff2':'file','.ttf':'file'},define:{'import.meta.env':'{}'},plugins:[{name:'fictional-study-hall-session',setup(plugin){
   plugin.onLoad({filter:/useStudentPortalAccess\.ts$/},()=>({loader:'ts',contents:`export function useStudentPortalAccess(teacher=false){const params=new URLSearchParams(location.search),mode=teacher?'teacher':params.get('preview')||'';const isPreview=teacher||Boolean(mode&&params.get('teacherTools')==='1');return {accessToken:'fictional',isCheckingSession:false,isSupabaseConfigured:true,studentName:mode==='teacher'?'QA Teacher':'QA Student',previewContext:{isPreview,mode,query:isPreview?'?preview='+mode+'&teacherTools=1&returnTo=%2Fteacher':'',returnHref:'/teacher',studentId:'',studentName:''}};}`}));
   plugin.onLoad({filter:/[\\/]lib[\\/]sessionCache\.ts$/},()=>({loader:'ts',contents:`const session={access_token:'fictional',user:{id:'fictional',app_metadata:{role:'teacher'},user_metadata:{full_name:'QA Teacher'}}};export const getActiveSession=async()=>session;export const peekActiveSession=()=>session;export const cacheActiveSession=()=>{};export const cacheStudentClasses=()=>{};export const getCachedStudentClasses=()=>null;export const cacheStudentDashboard=()=>{};export const getCachedStudentDashboard=()=>null;export const cacheTeacherDashboard=()=>{};export const getCachedTeacherDashboard=()=>null;`}));
  }}]});
@@ -12,10 +19,16 @@ const taxonomy=require('./math-topics.json');let catalog=defaultPracticeCatalog(
  const port=Number(process.argv.find(value=>value.startsWith('--port='))?.slice(7))||4330;
  createServer(async(request,response)=>{
   const url=new URL(request.url,'http://localhost'),name=url.pathname;
+  if(name==='/api/math-command/classification-skills'){
+   response.setHeader('Content-Type','application/json');
+   if(request.method==='POST'){let raw='';for await(const chunk of request)raw+=chunk;try{const body=JSON.parse(raw);if(body.revision!==String(skilledRevision))throw Error('Skilled definitions changed. Reload before saving.');classificationSkills=validateClassificationSkills(body.skills,taxonomy);skilledRevision++;}catch(error){response.statusCode=400;response.end(JSON.stringify({message:error.message}));return;}}
+   response.end(JSON.stringify({revision:String(skilledRevision),skills:classificationSkills,categories:taxonomy.categories}));return;
+  }
   if(name==='/api/infinite-practice/catalog'){
    response.setHeader('Content-Type','application/json');
-   if(request.method==='PUT'){let raw='';for await(const chunk of request)raw+=chunk;try{const body=JSON.parse(raw);if(body.revision!==revision){response.statusCode=409;response.end('{"message":"Another window saved changes. Reload the latest catalog before saving."}');return;}catalog=validatePracticeCatalog(body.catalog,taxonomy);revision++;}catch(error){response.statusCode=400;response.end(JSON.stringify({message:error.message}));return;}}
-   response.end(JSON.stringify({revision,catalog:request.method==='PUT'||url.searchParams.get('manage')==='1'?catalog:studentPracticeCatalog(catalog),taxonomy:taxonomy.categories}));return;
+   if(request.method==='PUT'){let raw='';for await(const chunk of request)raw+=chunk;try{const body=JSON.parse(raw);if(body.revision!==revision){response.statusCode=409;response.end('{"message":"Another window saved changes. Reload the latest catalog before saving."}');return;}catalog=validatePracticeCatalog(body.catalog,{...taxonomy,classificationSkills});revision++;}catch(error){response.statusCode=400;response.end(JSON.stringify({message:error.message}));return;}}
+   const effective=reconcilePracticeSkilled(catalog,classificationSkills);
+   response.end(JSON.stringify({revision,catalog:request.method==='PUT'||url.searchParams.get('manage')==='1'?effective:studentPracticeCatalog(effective),taxonomy:taxonomy.categories,classificationSkills}));return;
   }
   if(name==='/api/assessments/student'){response.setHeader('Content-Type','application/json');response.end('{"assessments":[]}');return;}
   if(name.includes('/learning-plan/')&&name.endsWith('/assignments')){response.setHeader('Content-Type','application/json');response.end('{"assignments":[],"total":0}');return;}

@@ -5,7 +5,7 @@ import type { MathQuestionPerformance } from "../shared/mathCommandTypes";
 
 export function createMathCommandCatalogRouter(performanceProvider?:()=>Promise<Record<string,MathQuestionPerformance>>) {
   const router=Router();
-  const paths=new Set(["/teacher-labels","/taxonomy","/overview","/catalog","/player-queue","/duplicates","/export","/bulk-preview","/bulk-apply","/bulk-undo","/preferences"]);
+  const paths=new Set(["/classification-skills","/teacher-labels","/taxonomy","/overview","/catalog","/player-queue","/duplicates","/export","/bulk-preview","/bulk-apply","/bulk-undo","/preferences"]);
   router.use(async(request,response,next)=>{
     if(!paths.has(request.path)&&!request.path.startsWith("/catalog/"))return next();
     if(!response.locals.user||!["teacher","admin"].includes(String(response.locals.user.app_metadata.role))){response.status(403).json({message:"Teacher access is required."});return;}

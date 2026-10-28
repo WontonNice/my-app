@@ -70,7 +70,7 @@ test('batch registration preserves teacher resources and snapshots all three gen
   assert.equal(module.title,template.moduleId?'Overlapping Groups':template.title);assert.ok(managedGeneratorIds(general,catalog).includes(template.id));
   assert.ok(!managedGeneratorIds(catalog.modules.find(m=>m.id==='all'),catalog).includes(template.id));
   const state=createPracticeState(module.id,'batch',catalog);assert.ok(state.generatorIds.includes(template.id));assert.deepEqual(parsePracticeState(JSON.stringify(state)),state);
-  assert.deepEqual(generateCatalogQuestion(state.generatorDefinitions.find(g=>g.id===template.id),4,state.seed),template.generate(4,state.seed).question);
+  assert.deepEqual(generateCatalogQuestion(state.generatorDefinitions.find(g=>g.id===template.id),4,state.seed),{...template.generate(4,state.seed).question,skilled:'TBD'});
  }
  assert.equal(generateSurveyTotals(0).question.type,'short_response');assert.equal(generateRemainingReading(0).question.type,'multiple_choice');assert.equal(generateMixtureRatios(0).question.type,'multiple_choice');
 });

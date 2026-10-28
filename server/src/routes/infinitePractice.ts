@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabase';
 import { getAuthenticatedUser, getEnrolledClassIds } from '../lib/auth';
 import { mathCommandRoot, readMathCommandState, readMathCommandTaxonomy } from '../lib/mathCommandCatalogStore';
 import { withMathCommandPersistence } from '../lib/mathCommandPersistence';
-import { defaultPracticeCatalog, reconcilePracticeTaxonomy, studentPracticeCatalog, validatePracticeCatalog } from '../shared/practiceCatalog';
+import { defaultPracticeCatalog, reconcilePracticeSkilled, reconcilePracticeTaxonomy, studentPracticeCatalog, validatePracticeCatalog } from '../shared/practiceCatalog';
 
 export const infinitePracticeRouter=Router();
 const storageMessage='Practice studio storage is unavailable. Apply migration 202610260004_practice_catalog.sql and check the database connection.';
@@ -20,10 +20,10 @@ infinitePracticeRouter.get('/catalog',async(request,response)=>withMathCommandPe
   if(stored.error){response.status(503).json({message:storageMessage});return;}
   const taxonomy=readMathCommandTaxonomy();
   let catalog;
-  try{catalog=validatePracticeCatalog(reconcilePracticeTaxonomy(stored.data?.catalog??defaultPracticeCatalog(),taxonomy,readMathCommandState().taxonomyTopicRenames),taxonomy);}
+  try{catalog=validatePracticeCatalog(reconcilePracticeSkilled(reconcilePracticeTaxonomy(stored.data?.catalog??defaultPracticeCatalog(),taxonomy,readMathCommandState().taxonomyTopicRenames),taxonomy.classificationSkills??[]),taxonomy);}
   catch(error){if((error as {status?:number}).status!==400)throw error;response.status(409).json({message:`Practice resources need an update before the studio can open: ${(error as Error).message}`,requestId:response.locals.requestId});return;}
   const manage=request.query.manage==='1'&&response.locals.teacher;
-  response.json({catalog:manage?catalog:studentPracticeCatalog(catalog),revision:stored.data?.revision??0,taxonomy:taxonomy.categories.map(({label,topics})=>({label,topics}))});
+  response.json({catalog:manage?catalog:studentPracticeCatalog(catalog),revision:stored.data?.revision??0,taxonomy:taxonomy.categories.map(({label,topics})=>({label,topics})),classificationSkills:taxonomy.classificationSkills??[]});
 }));
 infinitePracticeRouter.put('/catalog',async(request,response)=>withMathCommandPersistence(mathCommandRoot,async()=>{
   const revision=request.body?.revision;

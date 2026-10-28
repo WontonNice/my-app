@@ -65,6 +65,13 @@ import { theOrchardKeepsALedgerDigitalShsatPracticeTest3PassageSet } from "./pas
 import { sixtySummersOnKestrelGlacierDigitalShsatPracticeTest3PassageSet } from "./passageSets/sixty-summers-on-kestrel-glacier-digital-shsat-practice-test-3";
 import { doverBeachDigitalShsatPracticeTest3PassageSet } from "./passageSets/dover-beach-digital-shsat-practice-test-3";
 import { whatTheCubeTaughtMeDigitalShsatPracticeTest3PassageSet } from "./passageSets/what-the-cube-taught-me-digital-shsat-practice-test-3";
+import { crackingTheCode20192020FormAPassageSet } from "./passageSets/cracking-the-code-2019-2020-form-a";
+import { aMiracleMile20192020FormAPassageSet } from "./passageSets/a-miracle-mile-2019-2020-form-a";
+import { odeToFireworks20192020FormAPassageSet } from "./passageSets/ode-to-fireworks-2019-2020-form-a";
+import { excerptFromHowWeMadeTheFirstFlight20192020FormAPassageSet } from "./passageSets/excerpt-from-how-we-made-the-first-flight-2019-2020-form-a";
+import { excerptFromInSearchOfTheUnknown20192020FormAPassageSet } from "./passageSets/excerpt-from-in-search-of-the-unknown-2019-2020-form-a";
+import { isItTimeForTermLimits20192020FormAPassageSet } from "./passageSets/is-it-time-for-term-limits-2019-2020-form-a";
+import { excerptFromResearchRiddleResolved20192020FormAPassageSet } from "./passageSets/excerpt-from-research-riddle-resolved-2019-2020-form-a";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -131,6 +138,13 @@ export const examPassageLibrary: ExamPassageSet[] = [
   sixtySummersOnKestrelGlacierDigitalShsatPracticeTest3PassageSet,
   doverBeachDigitalShsatPracticeTest3PassageSet,
   whatTheCubeTaughtMeDigitalShsatPracticeTest3PassageSet,
+  crackingTheCode20192020FormAPassageSet,
+  aMiracleMile20192020FormAPassageSet,
+  odeToFireworks20192020FormAPassageSet,
+  excerptFromHowWeMadeTheFirstFlight20192020FormAPassageSet,
+  excerptFromInSearchOfTheUnknown20192020FormAPassageSet,
+  isItTimeForTermLimits20192020FormAPassageSet,
+  excerptFromResearchRiddleResolved20192020FormAPassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);

@@ -3,12 +3,18 @@ import { createRoot, type Root } from 'react-dom/client';
 import { useEffect } from 'react';
 import { TeacherLabelsProvider, TeacherTags } from '../client/src/features/math-command/TeacherLabels';
 import type { MathCommandRequest } from '../client/src/features/math-command/client';
+import { SkilledManager } from '../client/src/features/math-command/SkilledManager';
 
 const request: MathCommandRequest = async <T,>(suffix: string, options: RequestInit = {}) => {
   const response = await fetch('/api/math-command' + suffix, { ...options, headers: { 'Content-Type': 'application/json', ...options.headers } });
   const data = await response.json(); if (!response.ok) throw new Error(data.message || 'Could not save My Tags.'); return data as T;
 };
 const roots = new Map<HTMLElement, Root>();
+let skilledRoot:Root|undefined;
+Object.assign(window,{openSkilledManager(category='',topic=''){
+  if(!skilledRoot){const container=document.createElement('div');container.id='studio-skilled-manager';document.body.append(container);skilledRoot=createRoot(container);}
+  skilledRoot.render(<SkilledManager key={`${category}/${topic}`} request={request} initialCategory={category} initialTopic={topic} onClose={()=>skilledRoot?.render(null)} onSaved={snapshot=>window.dispatchEvent(new CustomEvent('studio:skilled-changed',{detail:snapshot}))}/>);
+}});
 function Snapshot() {
   const { data } = useTeacherLabels();
   useEffect(() => { if (data) window.dispatchEvent(new CustomEvent('studio:teacher-labels', { detail: data })); }, [data]);

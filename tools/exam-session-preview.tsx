@@ -8,6 +8,7 @@ import { content20262027FormDMathSection } from '../client/src/content/exams/mat
 import { content20262027FormAMathSection } from '../client/src/content/exams/mathSets/2026-2027-form-aMath';
 import type { SelectedAnswer } from '../server/src/shared/examGrading';
 import { ExamSessionPage } from '../client/src/pages/ExamSessionPage';
+import { ExamLaunchPage } from '../client/src/pages/ExamLaunchPage';
 import '../client/src/styles/global.css';
 const subject = new URLSearchParams(location.search).get('subject');
 if (subject) sessionStorage.setItem(`exam-start-subject:${location.pathname.split('/')[2]}`, subject);
@@ -24,4 +25,4 @@ function QuestionPreview() {
     {submitted && <p role="status">Final answers submitted.</p>}
   </div>;
 }
-createRoot(document.getElementById('root')!).render(previewQuestion ? <QuestionPreview /> : <ExamSessionPage />);
+createRoot(document.getElementById('root')!).render(previewQuestion ? <QuestionPreview /> : location.pathname.endsWith('/launch') ? <ExamLaunchPage /> : <ExamSessionPage />);

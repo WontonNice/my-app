@@ -12,6 +12,7 @@ const assessment = { id: 'exam', classId: 'shsat', title: 'Test exam', status: '
 const tables = { student_exam_results: [], student_exam_sessions: [], student_practice_progress: [] };
 function stub(relative, exports) { const id = require.resolve(relative); require.cache[id] = { id, filename: id, loaded: true, exports }; }
 stub('../src/lib/auth.ts', { getAuthenticatedUser: async header => { const user = users[header?.replace('Bearer ', '')]; return { user, error: user ? null : 'Sign in required' }; }, getEnrolledClassIds: metadata => metadata.class_ids ?? [], getUserRole: user => user.app_metadata.role, isStudentArchived: () => false });
+stub('../src/lib/assessmentAccess.ts', {resolveAssessmentAccess:async value=>value,resolveAssessmentAccessList:async values=>values,assessmentAccessErrorHandler:(error,_request,_response,next)=>next(error)});
 stub('../src/config/assessments.ts', {
   listTeacherAssessments: () => [assessment], listStudentAssessments: classes => classes.includes('shsat') ? [assessment] : [],
   findAssessmentForStudent: (id, classes) => id === 'exam' && classes.includes('shsat') ? assessment : undefined, toStudentAssessmentDetail: value => value,
@@ -45,6 +46,39 @@ test('re-entry resumed on another device uses elapsed time from the latest revis
   assert.deepEqual(restoredReentryTimer(grant, { reentryGrantId: 'grant', timerState: resumed }), resumed);
   assert.deepEqual(restoredReentryTimer(grant, { reentryGrantId: 'older-grant', timerState: resumed }), initial);
   assert.deepEqual(restoredReentryTimer(grant, { reentryGrantId: 'grant', timerState: { startedAt: null } }), initial);
+});
+
+test('resume positions round-trip through cloud sessions; legacy saves preserve both section positions', async () => {
+  const grant = (await call(permissionPath, 'teacher', 'PUT', { sections: ['english', 'math'] })).data.grant;
+  const draft = { reentryGrantId: grant.id, answers: { e: 'A' }, completedSections: [] };
+  const english = { screen: 'passage', passageSetId: 'p', questionId: 'e' };
+  assert.equal((await call('/progress/exam-sessions/exam', 'student', 'PUT', { ...draft, navigation: { subject: 'english', english } })).status, 200);
+  const math = { screen: 'mathQuestion', questionId: 'm' };
+  await call('/progress/exam-sessions/exam', 'student', 'PUT', { ...draft, navigation: { subject: 'math', math } });
+  await call('/progress/exam-sessions/exam', 'student', 'PUT', draft);
+  const session = (await call('/progress/exam-sessions', 'student')).data.sessions.exam;
+  assert.deepEqual(session.navigation, { subject: 'math', english, math });
+  assert.equal(session.answers.e, 'A');
+  assert.equal((await call('/progress/exam-sessions', 'other')).data.sessions.exam, undefined);
+});
+
+test('a newer fallback session wins over an older dedicated row', async () => {
+  const navigation = { subject: 'math', math: { screen: 'mathQuestion', questionId: 'm' } };
+  tables.student_exam_sessions.push({ user_id: 'student', assessment_id: 'exam', answers: { m: '1' }, completed_sections: [], updated_at: '2026-10-28T10:00:00Z' });
+  tables.student_exam_results.push({ user_id: 'student', assessment_id: '__exam_session__:exam', result: { answers: { m: '4' }, completedSections: [], status: 'in_progress', updatedAt: '2026-10-28T11:00:00Z', navigation } });
+  const session = (await call('/progress/exam-sessions', 'student')).data.sessions.exam;
+  assert.equal(session.answers.m, '4');
+  assert.deepEqual(session.navigation, navigation);
+});
+
+test('invalid resume locations are rejected without replacing a saved draft', async () => {
+  const grant = (await call(permissionPath, 'teacher', 'PUT', { sections: ['math'] })).data.grant;
+  const draft = { reentryGrantId: grant.id, answers: { m: '4' }, completedSections: [], navigation: { subject: 'math', math: { screen: 'mathQuestion', questionId: 'm' } } };
+  await call('/progress/exam-sessions/exam', 'student', 'PUT', draft);
+  for (const navigation of [null, [], { subject: 'science' }, { subject: 'math', math: { screen: 'testOver' } }, { subject: 'math', math: { screen: 'mathQuestion', questionId: 'x'.repeat(301) } }]) {
+    assert.equal((await call('/progress/exam-sessions/exam', 'student', 'PUT', { ...draft, navigation, answers: { m: '9' } })).status, 400);
+  }
+  assert.equal((await call('/progress/exam-sessions', 'student')).data.sessions.exam.answers.m, '4');
 });
 
 test('teacher grants only enrolled individual students; other students stay locked and timer keeps original remaining allowance', async () => {

@@ -1,0 +1,65 @@
+
+> nathantutors@0.0.0 test:math-command
+> node --test server/tests/math-classification-skills.test.cjs server/tests/math-command-catalog.test.cjs server/tests/math-command-management.test.cjs server/tests/math-command-persistence.test.cjs server/tests/math-command.test.cjs tools/export-exam-content.test.cjs
+
+✔ the shared Skilled registry starts empty and existing questions are TBD without inferred assignments (36.5694ms)
+✔ manual assignment, rename, filtering, and module names use one stable definition without changing question content (61.4342ms)
+✔ delete resets native and metadata assignments to TBD and cannot silently reattach a reused ID (43.5382ms)
+✔ scopes, reserved names, duplicates, malformed definitions, and stale saves are rejected (40.2141ms)
+✔ subcategory renames move Skilled definitions while preserving their IDs and question assignments (25.9698ms)
+✔ combined medium/hard linear-equation filters preserve source, readiness, standard verification and sort (35.3943ms)
+✔ bulk metadata overlays 30 questions without changing canonical wording, answers or sources (12.6373ms)
+✔ coverage counts include zero inventory and report teacher-defined difficulty shortages (1.8309ms)
+✔ review queue distinguishes absent metadata, answer errors, explicitly required diagrams and unsafe formatting (0.6554ms)
+✔ math keys reject impossible configurations and numeric duplicate choices without solving symbolic questions (0.8146ms)
+✔ duplicate detection separates exact repeats, numeric templates, source conflicts and preserves inequalities (5.3429ms)
+✔ unknown performance is not mistaken for zero attempts or never assigned; null sorts last both ways (1.9812ms)
+✔ collections and unseen exclusions use stable existing IDs, and CSV is spreadsheet-safe (2.2099ms)
+✔ diagnostic skill defaults preserve existing taxonomy and prerequisites cannot contain cycles (1.6399ms)
+✔ 5,000-question catalog uses bounded candidate comparisons and paginated results (572.5902ms)
+✔ exam player queue covers filtered questions across pages in bank order without copying content (111.3799ms)
+✔ preview/apply 30 existing questions modifies only explicit metadata and can be undone (44.9227ms)
+✔ metadata validation rejects content edits, invalid classifications and unverified mapping claims (37.1928ms)
+✔ native saves retire only known overlays and preserve concurrent classification edits (52.4032ms)
+✔ draft bank questions and any red import source stay in review despite acknowledgement (35.403ms)
+✔ preview tokens are actor, workspace, expiration, revision and content bound (46.101ms)
+✔ undo rejects another actor or newer changes but permits unrelated edits (65.2831ms)
+✔ file lock rejects overlapping writers without changing state or source files (38.7528ms)
+✔ saved views, targets, rules and reference-only collections persist and validate (52.7357ms)
+✔ management endpoints return paginated catalog/detail/CSV and invalidate cached import review status (50.554ms)
+✔ ordinary management operations perform no network or AI requests and require no API key (37.0461ms)
+✔ durable metadata survives a new adapter and never rewrites local source or sidecar (30.4074ms)
+✔ concurrent remote commits use compare-and-swap and preserve the winning edit (20.7707ms)
+✔ initial publication is previewable and never overwrites existing durable metadata (10.418ms)
+✔ remote state controls catalog caches and analytics-compatible synchronous reads (51.2545ms)
+✔ missing migration and storage failures fail closed without modifying files (8.5776ms)
+✔ production always selects durable storage; local dev opts in explicitly (0.3957ms)
+✔ deployed import review manifest survives without private drafts; local explicit status has precedence (34.343ms)
+✔ history uses saved question keys, deduplicates same-attempt records, and excludes unsubmitted math (3.0566ms)
+✔ attempts, unique students, first-attempt accuracy, and answer distribution remain distinct (11.4243ms)
+✔ mapped answer sheets retain their released snapshot and manual or pending grades (7.6856ms)
+✔ weakness rules require distinct question and assessment evidence; progression has counts (5.3781ms)
+✔ rule-based quotas exclude seen and assigned questions and report honest shortfalls (27.9036ms)
+✔ exact duplicate records are excluded without collapsing numeric variants; intentional review survives reorder (7.8479ms)
+✔ staff endpoints reject anonymous/student users and student assignments enforce ownership (58.0602ms)
+✔ user-editable role metadata cannot grant staff access to analytics or catalog mutation (35.0165ms)
+✔ student insights expose exact saved evidence and remaining inventory without invented values (40.34ms)
+✔ preview then assign uses existing assignments; saves, rejects stale writes, grades and preserves history (57.4537ms)
+✔ assignment filters remain exact and confirmation rejects changed student history (15.269ms)
+✔ remaining counts partition inventory and include difficulty/source breakdowns (13.6882ms)
+✔ aggregate refresh fetches only changed payloads, respects regrades, and includes legacy metadata history (33.5004ms)
+✔ storage failures are explicit rather than fabricated zero performance (2.1385ms)
+✔ submission retry repairs deferred sync without changing submitted responses or duplicating results (37.3417ms)
+✔ hosted HTTP metadata uses durable storage and never falls back to local files (29.308ms)
+✔ normal command-center modules have no AI clients, embeddings, or inference endpoints (1.4094ms)
+✔ content export publishes only canonical needs-editing IDs and preserves authored questions (92.0817ms)
+✔ production re-export without private drafts retains status; explicit local resolution clears it (97.9363ms)
+✔ malformed local status prevents export from silently dropping existing review flags (73.4558ms)
+ℹ tests 53
+ℹ suites 0
+ℹ pass 53
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1675.2581

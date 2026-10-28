@@ -1,5 +1,6 @@
 import { readTeacherLabels, saveTeacherLabels, teacherCatalog } from "./teacherLabels";
 import { saveMathTaxonomy } from "./mathTaxonomyManagement";
+import { readClassificationSkills, saveClassificationSkills } from './mathClassificationSkillsManagement';
 import fs from "node:fs";
 import path from "node:path";
 import { buildMathCommandCatalog, queryMathCommandCatalog, summarizeMathCommandCatalog, mathCatalogCsv, validateMathCatalogFilters } from "../shared/mathCommandCatalog";
@@ -26,6 +27,10 @@ export function handleMathCatalogRequest(input:{method:string;pathname:string;bo
     if(method === "POST") return saveTeacherLabels(root, actor, body);
   }
   if(pathname === "/taxonomy" && method === "POST") return saveMathTaxonomy(root, body);
+  if(pathname === '/classification-skills') {
+    if(method==='GET')return readClassificationSkills(root);
+    if(method==='POST')return saveClassificationSkills(root,body);
+  }
   const personalSnapshot = () => { const snapshot = mathCatalogSnapshot(root, performance); return {...snapshot, catalog: teacherCatalog(snapshot.catalog, root, actor)}; };
   if(method==="GET"&&pathname==="/overview"){
     const {catalog,taxonomy}=mathCatalogSnapshot(root,performance),state=readMathCommandState(root);

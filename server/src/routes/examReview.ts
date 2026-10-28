@@ -1,6 +1,7 @@
+import { assessmentAccessErrorHandler, resolveAssessmentAccess, resolveAssessmentAccessList } from '../lib/assessmentAccess';
 import { Router } from "express";
 import { createHash } from "node:crypto";
-import { findAssessmentForStudent, listTeacherAssessments, listStudentAssessments, updateAssessmentCorrectionsAccess } from "../config/assessments";
+import { findAssessmentForStudent as configuredFindAssessmentForStudent, listTeacherAssessments as configuredListTeacherAssessments, listStudentAssessments as configuredListStudentAssessments, updateAssessmentCorrectionsAccess } from "../config/assessments";
 import type { User } from "@supabase/supabase-js";
 import type { Response } from "express";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
@@ -9,6 +10,10 @@ import { supabase } from "../lib/supabase";
 import { createExamResult, getAllExamQuestions, type ExamResult, type SelectedAnswers } from "../shared/examGrading";
 import { reviewQuestions, validateCorrections, type CorrectionSubmission } from "../shared/examCorrections";
 import { getDatabaseProgress } from "./progress";
+const findAssessmentForStudent = (id: string, classes: string[]) => resolveAssessmentAccess(configuredFindAssessmentForStudent(id, classes));
+const listStudentAssessments = (classes: string[]) => resolveAssessmentAccessList(configuredListStudentAssessments(classes));
+const listTeacherAssessments = () => resolveAssessmentAccessList(configuredListTeacherAssessments());
+
 
 export const correctionPrefix = "__exam_corrections__:";
 export const examReviewRouter = Router();
@@ -29,7 +34,7 @@ examReviewRouter.use(async (request, response, next) => {
 examReviewRouter.get("/teacher/students/:studentId/results", async (request, response) => {
     const student = await previewStudent(response.locals.user, request.params.studentId, response); if (!student) return;
     const progress = await getDatabaseProgress(student);
-    response.json({ results: progress.examResults, assessments: listStudentAssessments(getEnrolledClassIds(student.app_metadata)) });
+    response.json({ results: progress.examResults, assessments: await listStudentAssessments(getEnrolledClassIds(student.app_metadata)) });
 });
 examReviewRouter.get("/teacher/:assessmentId/students/:studentId", async (request, response) => {
     const student = await previewStudent(response.locals.user, request.params.studentId, response); if (!student) return;
@@ -38,17 +43,17 @@ examReviewRouter.get("/teacher/:assessmentId/students/:studentId", async (reques
 });
 examReviewRouter.all("/teacher/:assessmentId/students/:studentId", (_request, response) => { response.status(405).json({ message: "Student previews are read only." }); });
 
-examReviewRouter.patch("/teacher/:assessmentId/access", (request, response) => {
+examReviewRouter.patch("/teacher/:assessmentId/access", async (request, response) => {
     if (!isStaff(getUserRole(response.locals.user))) { response.status(403).json({ message: "Teacher access is required." }); return; }
     if (typeof request.body?.open !== "boolean") { response.status(400).json({ message: "Choose open or locked." }); return; }
-    const assessment = updateAssessmentCorrectionsAccess(request.params.assessmentId, request.body.open);
+    const assessment = await updateAssessmentCorrectionsAccess(request.params.assessmentId, request.body.open);
     if (!assessment) { response.status(404).json({ message: "Exam not found." }); return; }
     response.json({ assessment });
 });
 
 examReviewRouter.get("/teacher/:assessmentId/submissions", async (request, response) => {
     if (!isStaff(getUserRole(response.locals.user))) { response.status(403).json({ message: "Teacher access is required." }); return; }
-    const assessment = listTeacherAssessments().find(item => item.id === request.params.assessmentId);
+    const assessment = (await listTeacherAssessments()).find(item => item.id === request.params.assessmentId);
     const content = assessment ? getExamContent(assessment.id) : null;
     if (!assessment || !content) { response.status(404).json({ message: "Exam content was not found." }); return; }
     const storagePrefix = `${correctionPrefix}${assessment.id}:`;
@@ -85,7 +90,7 @@ examReviewRouter.post("/teacher/:assessmentId/answers/:studentId", async (reques
     if (!isStaff(getUserRole(teacher))) { response.status(403).json({ message: "Teacher access is required." }); return; }
     const studentLookup = await supabase.auth.admin.getUserById(request.params.studentId);
     const student = studentLookup.data.user;
-    const assessment = listTeacherAssessments().find(item => item.id === request.params.assessmentId);
+    const assessment = (await listTeacherAssessments()).find(item => item.id === request.params.assessmentId);
     if (!student || getUserRole(student) !== "student" || !assessment || !getEnrolledClassIds(student.app_metadata).includes(assessment.classId)) {
         response.status(404).json({ message: "Choose a student enrolled in this exam's class." }); return;
     }
@@ -120,7 +125,7 @@ examReviewRouter.post("/teacher/:assessmentId/answers/:studentId", async (reques
 });
 
 async function loadCorrectionView(user: User, assessmentId: string, response: Response) {
-    const assessment = findAssessmentForStudent(assessmentId, getEnrolledClassIds(user.app_metadata));
+    const assessment = await findAssessmentForStudent(assessmentId, getEnrolledClassIds(user.app_metadata));
     if (!assessment) { response.status(404).json({ message: "Exam not found." }); return; }
     if (!assessment.correctionsOpen) { response.status(403).json({ message: "Your teacher has not opened corrections for this exam." }); return; }
     const progress = await getDatabaseProgress(user);
@@ -153,7 +158,7 @@ examReviewRouter.all("/student/:assessmentId", async (request, response) => {
     try { responses = validateCorrections(questions, request.body?.responses, { allowPartial: true }); }
     catch (error) { response.status(400).json({ message: error instanceof Error ? error.message : "Complete all required fields." }); return; }
     const submittedAt = new Date().toISOString();
-    if (!findAssessmentForStudent(assessment.id, getEnrolledClassIds(user.app_metadata))?.correctionsOpen) {
+    if (!(await findAssessmentForStudent(assessment.id, getEnrolledClassIds(user.app_metadata)))?.correctionsOpen) {
         response.status(403).json({ message: "Your teacher has locked corrections. Your draft is still available." }); return;
     }
     const responseByQuestionId = new Map(
@@ -174,3 +179,6 @@ examReviewRouter.all("/student/:assessmentId", async (request, response) => {
     response.status(existing.data ? 200 : 201).json({ submission });
 });
 
+
+
+examReviewRouter.use(assessmentAccessErrorHandler);

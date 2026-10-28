@@ -1,6 +1,7 @@
 import type { ExamSessionProgress } from "./api";
 import type { ExamContent } from "../content/exams";
 import type { ExamResult, SelectedAnswers } from "./examResults";
+import { normalizeExamNavigation, type ExamNavigation, type ExamPosition } from "../../../server/src/shared/examNavigation";
 
 const storagePrefix = "nathan-tutors:exam-session-progress:v1";
 export type ExamSection = "english" | "math";
@@ -20,7 +21,7 @@ export function loadLocalExamSession(userId: string, assessmentId: string): Exam
   try {
     const value = JSON.parse(window.localStorage.getItem(storageKey(userId, assessmentId)) ?? "null") as ExamSessionProgress | null;
     return value && Array.isArray(value.completedSections) && value.answers && typeof value.answers === "object"
-      ? { ...value, status: value.status === "submitted" ? "submitted" : "in_progress" }
+      ? { ...value, navigation: normalizeExamNavigation(value.navigation), status: value.status === "submitted" ? "submitted" : "in_progress" }
       : null;
   } catch {
     return null;
@@ -34,10 +35,12 @@ export function saveLocalExamSession(
   completedSections: ExamSection[],
   status: ExamSessionProgress["status"] = "in_progress",
   questionTimes?: Record<string, number>,
+  navigation?: ExamNavigation,
 ) {
   const savedAt = new Date().toISOString();
   const existing = loadLocalExamSession(userId, assessmentId);
   const progress: ExamSessionProgress = {
+    ...((navigation ?? existing?.navigation) ? { navigation: navigation ?? existing?.navigation } : {}),
     answers: { ...(existing?.answers ?? {}), ...answers },
     completedSections: [...new Set(completedSections)],
     ...((questionTimes && Object.keys(questionTimes).length) || existing?.questionTimes
@@ -50,6 +53,47 @@ export function saveLocalExamSession(
   try { window.localStorage.setItem(storageKey(userId, assessmentId), JSON.stringify(progress)); }
   catch { /* Cloud autosave remains available when device storage is full or blocked. */ }
   return progress;
+}
+
+/** IDs survive reordering; removed questions fall back to an unfinished question. */
+export function getExamResumePosition(content: ExamContent, subject: ExamSection, progress: ExamSessionProgress | null | undefined) {
+  const saved = normalizeExamNavigation(progress?.navigation)?.[subject];
+  const position = (screen: ExamPosition['screen'], passageIndex = 0, questionIndex = 0) => ({ screen, passageIndex, questionIndex });
+  const math = content.mathSection?.questions ?? [];
+  const standalone = content.standaloneSection?.questions ?? [];
+  if (saved) {
+    if (saved.screen === 'mathQuestion') {
+      const index = math.findIndex(q => q.id === saved.questionId);
+      if (index >= 0) return position(saved.screen, 0, index);
+    } else if (saved.screen === 'standaloneQuestion') {
+      const index = standalone.findIndex(q => q.id === saved.questionId);
+      if (index >= 0) return position(saved.screen, 0, index);
+    } else if (saved.passageSetId) {
+      const passageIndex = content.passageSets.findIndex(set => set.id === saved.passageSetId);
+      const questionIndex = content.passageSets[passageIndex]?.questions.findIndex(q => q.id === saved.questionId) ?? -1;
+      if (passageIndex >= 0 && (saved.screen !== 'passage' || questionIndex >= 0)) return position(saved.screen, passageIndex, Math.max(0, questionIndex));
+    } else if (!saved.screen.startsWith('standalone') || standalone.length) return position(saved.screen);
+  }
+  const answers = progress?.answers ?? {};
+  const hasAnswer = (id: string) => {
+    const answer = answers[id];
+    return answer !== undefined && answer !== null && answer !== '' &&
+      (typeof answer !== 'object' || Object.keys(answer).length > 0);
+  };
+  // A brand-new attempt still gets its directions. Legacy drafts skip to the first blank.
+  const ids = getExamSectionQuestionIds(content)[subject];
+  if (!ids.some(hasAnswer)) return position(subject === 'math' ? 'mathIntro' : 'directions');
+  if (subject === 'math') {
+    const index = math.findIndex(q => !hasAnswer(q.id));
+    return position('mathQuestion', 0, index >= 0 ? index : Math.max(0, math.length - 1));
+  }
+  for (const [index, set] of content.passageSets.entries()) {
+    const questionIndex = set.questions.findIndex(q => !hasAnswer(q.id));
+    if (questionIndex >= 0) return position('passage', index, questionIndex);
+  }
+  const standaloneIndex = standalone.findIndex(q => !hasAnswer(q.id));
+  if (standaloneIndex >= 0) return position('standaloneQuestion', 0, standaloneIndex);
+  return position('endSection');
 }
 
 export function clearLocalExamSession(userId: string, assessmentId: string) {

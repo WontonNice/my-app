@@ -36,7 +36,7 @@ test('coverage counts include zero inventory and report teacher-defined difficul
   const records=[record('q1'),record('q2',{metadata:{difficulty:'hard',reviewStatus:'reviewed'}}),record('q3',{metadata:{}})];
   const summary=summarizeMathCommandCatalog(buildMathCommandCatalog(records,taxonomy),taxonomy,{defaultPerDifficulty:2,overrides:[{category:'Algebra',subcategory:'Equations & Systems',difficulty:'hard',minimum:4}]});
   assert.equal(summary.total,3);assert.equal(summary.ready,2);assert.equal(summary.needsReview,1);
-  assert.equal(summary.categories,5);assert.equal(summary.subcategories,23);
+  assert.equal(summary.categories,taxonomy.categories.length);assert.equal(summary.subcategories,taxonomy.categories.reduce((sum,category)=>sum+category.topics.length,0));
   const row=summary.coverage.find(r=>r.category==='Algebra'&&r.subcategory==='Equations & Systems');
   assert.deepEqual(row.difficulties,{easy:0,medium:1,hard:1,expert:0,unclassified:1});
   assert.deepEqual(row.gaps.find(g=>g.difficulty==='hard'),{difficulty:'hard',available:1,target:4,shortage:3});

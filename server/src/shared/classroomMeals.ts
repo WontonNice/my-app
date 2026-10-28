@@ -6,8 +6,9 @@ export type MealMenu = { restaurant: string; restaurantUrl: string; taxBasisPoin
 export type MealSession = { id: string; title: string; menu: MealMenu; open: boolean; revision: number; created_at: string };
 export type MealQuote = { items: { id: string; name: string; quantity: number; unitCents: number; totalCents: number; restaurant?: string; buyOneGetOne?: boolean; estimatedTotalCents?: number | null; choices?: Record<string, string[]>; customizations?: { group: string; option: string; extraCents: number }[]; afterFeesCents?: number | null }[]; afterFeesTotalCents?: number | null; subtotalCents: number; taxCents: number; feeCents: number; totalCents: number; currency: 'USD'; pricing: 'teacher_estimate' };
 export type MealOrder = { session_id: string; student_id: string; revision: number; status: 'submitted' | 'ordered' | 'cancelled'; updated_at: string; data: { studentName: string; notes: string; quote: MealQuote; menuRevision: number; teacherDecision?: 'denied' | 'removed'; previousStatus?: 'submitted' | 'ordered' } };
-export type StudentMeals = { session: MealSession | null; order: MealOrder | null };
-export type TeacherMeals = { sessions: MealSession[]; session: MealSession | null; orders: MealOrder[] };
+export type MealOrderedRequest = Pick<MealOrder, 'session_id' | 'student_id' | 'revision' | 'updated_at' | 'data'>;
+export type StudentMeals = { session: MealSession | null; order: MealOrder | null; orderedHistory?: MealOrderedRequest[] };
+export type TeacherMeals = { sessions: MealSession[]; session: MealSession | null; orders: MealOrder[]; orderedHistory?: MealOrderedRequest[] };
 export const emptyMealMenu = (): MealMenu => ({ restaurant: '', restaurantUrl: 'https://www.ubereats.com/feed?diningMode=DELIVERY', taxBasisPoints: 0, feeCents: 0, items: [] });
 const fail = (message: string) => { throw Object.assign(new Error(message), { status: 400 }); };
 function integer(value: unknown, max: number, label: string) { if (!Number.isSafeInteger(value) || Number(value) < 0 || Number(value) > max) fail(`Enter a valid ${label}.`); return Number(value); }

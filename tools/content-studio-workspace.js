@@ -1297,7 +1297,7 @@ const studioUI = {
     if (stack) {
       const grid = stack.querySelector(".question-grid");
       const metadata = this.element("div", "studio-math-metadata");
-      ["topic", "subtopic"].forEach((key) => metadata.append(grid.querySelector(`[data-math-field='${key}']`).closest("label")));
+      ["topic", "subtopic", "skilled"].forEach((key) => metadata.append(grid.querySelector(`[data-math-field='${key}']`).closest(key==='skilled'?'.studio-skilled-field':'label')));
       const settings = this.element('details', 'studio-math-settings', '<summary>Question settings</summary><div></div>');
       ['type', 'points'].forEach(key => settings.querySelector('div').append(grid.querySelector(`[data-math-field='${key}']`).closest('label')));
       metadata.append(settings);
@@ -1363,7 +1363,10 @@ const studioUI = {
         this.filters.set('math-detail', specific.value);
       };
       detailOptions();
-      const filters = this.element('details', 'studio-math-outline-filters', '<summary>Filter questions</summary><div></div>'); filters.querySelector('div').append(category, specific);
+      const skilledFilter=this.element('select','studio-math-skilled-filter');skilledFilter.setAttribute('aria-label','Filter math Skilled');
+      const skilledOptions=()=>{const saved=this.filters.get('math-skilled')||'',skills=(app.state.mathManagement?.classificationSkills||[]).filter(skill=>(!category.value||skill.category===category.value)&&(!specific.value||skill.subcategory===specific.value));skilledFilter.innerHTML='<option value="">All Skilled</option><option value="TBD">TBD</option>'+skills.map(skill=>'<option value="'+escapeHtml(skill.id)+'">'+escapeHtml(skill.label)+'</option>').join('');skilledFilter.value=saved==='TBD'||skills.some(skill=>skill.id===saved)?saved:'';this.filters.set('math-skilled',skilledFilter.value);};
+      skilledOptions();
+      const filters = this.element('details', 'studio-math-outline-filters', '<summary>Filter questions</summary><div></div>'); filters.querySelector('div').append(category, specific,skilledFilter);
       const editingLabel = this.element('label', '', '<input type="checkbox"> Needs editing (red)');
       const needsEditing = editingLabel.querySelector('input'); needsEditing.checked = Boolean(this.filters.get('math-needs-editing'));
       filters.querySelector('div').append(editingLabel);
@@ -1375,16 +1378,17 @@ const studioUI = {
           const item = app.mathDraft.questions[Number(button.dataset.mathQuestionIndex)];
           const searchMatch = /^\d+$/.test(query)
             ? query !== String(Number(button.dataset.mathQuestionIndex) + 1)
-            : !`${item.prompt} ${item.type} ${item.topic} ${item.subtopic || 'unclassified'} ${this.teacherSearchText(item.id)}`.toLowerCase().includes(query);
-          button.hidden = searchMatch || needsEditing.checked && !item.importNeedsEditing || Boolean(category.value && item.topic !== category.value) || Boolean(specific.value && (specific.value === '__unclassified__' ? item.subtopic && item.subtopic !== 'Unclassified' : item.subtopic !== specific.value));
+            : !`${item.prompt} ${item.type} ${item.topic} ${item.subtopic || 'unclassified'} ${(app.state.mathManagement?.classificationSkills||[]).find(skill=>skill.id===item.skilled)?.label||'TBD'} ${this.teacherSearchText(item.id)}`.toLowerCase().includes(query);
+          button.hidden = Boolean(skilledFilter.value&&(item.skilled||'TBD')!==skilledFilter.value) || searchMatch || needsEditing.checked && !item.importNeedsEditing || Boolean(category.value && item.topic !== category.value) || Boolean(specific.value && (specific.value === '__unclassified__' ? item.subtopic && item.subtopic !== 'Unclassified' : item.subtopic !== specific.value));
         });
         let empty = questionNav.querySelector(".studio-search-empty");
         if (!empty) { empty = this.element("p", "field-note studio-search-empty", "No questions match. Clear the search to see all questions."); questionNav.append(empty); }
         empty.hidden = Boolean(questionNav.querySelector("[data-math-question-index]:not([hidden])"));
       };
       search.addEventListener("input", filter);
-      category.onchange = () => { this.filters.set('math-main', category.value); detailOptions(); filter(); };
-      specific.onchange = () => { this.filters.set('math-detail', specific.value); filter(); };
+      category.onchange = () => { this.filters.set('math-main', category.value); detailOptions();skilledOptions(); filter(); };
+      specific.onchange = () => { this.filters.set('math-detail', specific.value);skilledOptions(); filter(); };
+      skilledFilter.onchange=()=>{this.filters.set('math-skilled',skilledFilter.value);filter();};
       needsEditing.onchange = () => { this.filters.set('math-needs-editing', needsEditing.checked); filter(); };
       this.filterMathQuestions = filter;
       filter();
@@ -1466,6 +1470,7 @@ const studioUI = {
       const configuration = await api('/api/math-topics');
       this.mathTopicRevision = configuration.revision; this.mathTopicMoves = [];
       this.mathTopicDraft = configuration.categories.map(category => ({ ...category, original: category.label, topics: category.topics.map(topic => ({ ...topic, original: topic.label })) }));
+      this.mathTopicOriginalSignature=JSON.stringify(this.mathTopicDraft);
       this.mathTopicIndex = Math.max(0, this.mathTopicDraft.findIndex(category => category.label === app.mathDraft?.questions[app.selectedMathQuestionIndex]?.topic));
       this.mathTopicDialog ||= this.element('dialog', 'studio-math-topic-dialog');
       this.mathTopicDialog.setAttribute('aria-label', 'Math topic categories');
@@ -1478,7 +1483,7 @@ const studioUI = {
     const dialog = this.mathTopicDialog, categories = this.mathTopicDraft;
     this.mathTopicIndex = Math.max(0, Math.min(this.mathTopicIndex, categories.length - 1));
     const category = categories[this.mathTopicIndex];
-    dialog.innerHTML = `<header><div><span class="studio-eyebrow">Math taxonomy</span><h2>Topic categories</h2><p>Main categories organize questions. Specific topics reveal the skills behind each result.</p></div><button type="button" data-taxonomy-close aria-label="Close category manager">×</button></header><div class="studio-taxonomy-body"><aside><div class="studio-taxonomy-label">Main categories <button type="button" id="math-category-add">+ Add</button></div>${categories.map((item, index) => `<button type="button" data-taxonomy-category="${index}" aria-pressed="${index === this.mathTopicIndex}"><strong>${escapeHtml(item.label || 'New category')}</strong><small>${item.questionCount || 0} questions · ${item.topics.length} topics</small></button>`).join('')}</aside><section>${category ? `<div class="studio-taxonomy-category-name"><label class="field">Main category name<input id="math-category-name" maxlength="80" value="${escapeHtml(category.label)}"></label><button type="button" id="math-category-remove" title="Remove category and reassign its questions">Remove</button></div><div class="studio-taxonomy-label">Specific topics <button type="button" id="math-specific-add">+ Add topic</button></div><div class="studio-taxonomy-topics">${category.topics.map((topic, index) => `<div><label class="field"><span class="sr-only">Specific topic ${index + 1}</span><input data-taxonomy-topic="${index}" maxlength="80" value="${escapeHtml(topic.label)}"></label><small>${topic.questionCount || 0} used</small><button type="button" data-taxonomy-remove="${index}" aria-label="Remove ${escapeHtml(topic.label || 'new topic')}" >×</button></div>`).join('')}</div><p class="field-note">Renaming updates existing math questions and their assessment registry. Removing a used category lets you move its questions to another category and topic. Changes apply when you save. Older questions marked Unclassified still need review.</p>` : '<p>Add a main category to begin.</p>'}</section></div><footer><span role="status" id="math-taxonomy-status">${escapeHtml(message)}</span><button type="button" data-taxonomy-close>Cancel</button><button type="button" class="primary" id="math-taxonomy-save">Save categories</button></footer>`;
+    dialog.innerHTML = `<header><div><span class="studio-eyebrow">Math taxonomy</span><h2>Topic categories</h2><p>Main categories organize questions. Manage shared Skilled definitions within each specific topic.</p></div><button type="button" data-taxonomy-close aria-label="Close category manager">×</button></header><div class="studio-taxonomy-body"><aside><div class="studio-taxonomy-label">Main categories <button type="button" id="math-category-add">+ Add</button></div>${categories.map((item, index) => `<button type="button" data-taxonomy-category="${index}" aria-pressed="${index === this.mathTopicIndex}"><strong>${escapeHtml(item.label || 'New category')}</strong><small>${item.questionCount || 0} questions · ${item.topics.length} topics</small></button>`).join('')}</aside><section>${category ? `<div class="studio-taxonomy-category-name"><label class="field">Main category name<input id="math-category-name" maxlength="80" value="${escapeHtml(category.label)}"></label><button type="button" id="math-category-remove" title="Remove category and reassign its questions">Remove</button></div><div class="studio-taxonomy-label">Specific topics <button type="button" id="math-specific-add">+ Add topic</button></div><div class="studio-taxonomy-topics">${category.topics.map((topic, index) => `<div><label class="field"><span class="sr-only">Specific topic ${index + 1}</span><input data-taxonomy-topic="${index}" maxlength="80" value="${escapeHtml(topic.label)}"></label><small>${topic.questionCount || 0} used</small><button type="button" data-taxonomy-skills="${index}">Manage Skilled</button><button type="button" data-taxonomy-remove="${index}" aria-label="Remove ${escapeHtml(topic.label || 'new topic')}" >×</button></div>`).join('')}</div><p class="field-note">Renaming updates existing math questions and their assessment registry. Removing a used category lets you move its questions to another category and topic. Changes apply when you save. Older questions marked Unclassified still need review.</p>` : '<p>Add a main category to begin.</p>'}</section></div><footer><span role="status" id="math-taxonomy-status">${escapeHtml(message)}</span><button type="button" data-taxonomy-close>Cancel</button><button type="button" class="primary" id="math-taxonomy-save">Save categories</button></footer>`;
     dialog.querySelectorAll('[data-taxonomy-close]').forEach(button => button.onclick = () => dialog.close());
     dialog.querySelectorAll('[data-taxonomy-category]').forEach(button => button.onclick = () => { this.mathTopicIndex = Number(button.dataset.taxonomyCategory); this.renderMathTopicManager(); });
     dialog.querySelector('#math-category-add').onclick = () => { categories.push({ label: '', original: '', topics: [], questionCount: 0 }); this.mathTopicIndex = categories.length - 1; this.renderMathTopicManager(); dialog.querySelector('#math-category-name').focus(); };
@@ -1487,6 +1492,7 @@ const studioUI = {
       dialog.querySelector('#math-category-remove').onclick = () => this.removeMathTopic(category);
       dialog.querySelector('#math-specific-add').onclick = () => { category.topics.push({ label: '', original: '', questionCount: 0 }); this.renderMathTopicManager(); dialog.querySelectorAll('[data-taxonomy-topic]').item(category.topics.length - 1).focus(); };
       dialog.querySelectorAll('[data-taxonomy-topic]').forEach(input => input.oninput = event => { category.topics[Number(input.dataset.taxonomyTopic)].label = event.target.value; });
+      dialog.querySelectorAll('[data-taxonomy-skills]').forEach(button=>button.onclick=()=>{const topic=category.topics[Number(button.dataset.taxonomySkills)];if(JSON.stringify(categories)!==this.mathTopicOriginalSignature||!category.original||!topic.original||category.label!==category.original||topic.label!==topic.original){this.renderMathTopicManager('Save category and topic changes before managing their Skilled definitions.');return;}dialog.close();window.openSkilledManager?.(category.label,topic.label);});
       dialog.querySelectorAll('[data-taxonomy-remove]').forEach(button => button.onclick = () => { this.removeMathTopic(category, category.topics[Number(button.dataset.taxonomyRemove)]); });
     }
     dialog.onkeydown = event => { if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') { event.preventDefault(); dialog.querySelector('#math-taxonomy-save').click(); } };

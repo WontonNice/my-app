@@ -40,6 +40,23 @@
 .sa-focus > button > span:last-child { text-align: right; }
 .sa-focus > button strong { font-size: .71rem; }
 .sa-tabs { display: flex; flex-wrap: wrap; gap: 5px; }
+.sa-passage-shortcut { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 12px; border-block: 1px solid var(--sa-border); background: var(--dashboard-surface-subtle, #f7f9f8); }
+.sa-passage-shortcut strong { font-size: .875rem; }
+.sa-passage-shortcut small { margin-top: 4px; font-size: .75rem; }
+.sa-passage-shortcut button, .sa-passage-options button { min-height: 44px; font-size: .8125rem; }
+.sa-passage-options { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px; }
+.sa-passage-view { min-width: 0; scroll-margin-top: 96px; }
+.sa-workstation .sa-passage-view:focus-visible, .sa-workstation .sa-table-scroll:focus-visible { outline: 2px solid var(--sa-accent); outline-offset: 2px; }
+.sa-evidence-matrix > header { flex-wrap: wrap; }
+.sa-matrix-pagination { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.sa-workstation .sa-matrix-pagination button { min-height: 36px; }
+.sa-panel > footer > .sa-matrix-pagination { white-space: normal; }
+.sa-workstation .sa-passage-view table { min-width: 680px; }
+.sa-workstation .sa-passage-view table, .sa-workstation .sa-evidence-matrix table { font-size: .8125rem; }
+.sa-workstation .sa-passage-view th, .sa-workstation .sa-evidence-matrix th { font-size: .75rem; }
+.sa-workstation .sa-passage-view td small { font-size: .75rem; }
+.sa-evidence-matrix th:first-child { min-width: 160px; }
+.sa-workstation .sa-evidence-matrix h3, .sa-workstation .sa-passage-view h3 { font-size: .875rem; }
 .sa-tables-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
 .sa-table-scroll { overflow-x: auto; }
 .sa-workstation table { width: 100%; border-collapse: collapse; text-align: left; font-size: .69rem; font-variant-numeric: tabular-nums; }

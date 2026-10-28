@@ -22,11 +22,12 @@ classroomMealsRouter.get('/student', async (_request, response) => {
   const found = await supabase.from('classroom_meal_sessions').select(columns).eq('class_id', 'shsat').order('created_at', { ascending: false }).limit(1);
   check(found.error); const session = found.data?.[0] ?? null;
   const order = session ? await supabase.from('classroom_meal_orders').select('*').eq('session_id', session.id).eq('student_id', response.locals.user.id).maybeSingle() : null;
-  check(order?.error); response.json({ session, order: order?.data ?? null });
+  const history = session ? await supabase.from('classroom_meal_order_history').select('*').eq('session_id', session.id).eq('student_id', response.locals.user.id).order('revision') : null;
+  check(order?.error); check(history?.error); response.json({ session, order: order?.data ?? null, orderedHistory: history?.data ?? [] });
 });
 classroomMealsRouter.post('/student/orders', async (request, response) => {
-  const { sessionId, menuRevision, orderRevision, selections, notes = '', cancel = false } = request.body ?? {};
-  if (typeof sessionId !== 'string' || !uuid.test(sessionId) || !Number.isSafeInteger(menuRevision) || menuRevision < 1 || !Number.isSafeInteger(orderRevision) || orderRevision < 0 || typeof cancel !== 'boolean' || typeof notes !== 'string' || notes.length > 1000) throw fail('Reload the menu and enter a note under 1,000 characters.');
+  const { sessionId, menuRevision, orderRevision, selections, notes = '', cancel = false, newRequest = false } = request.body ?? {};
+  if (typeof sessionId !== 'string' || !uuid.test(sessionId) || !Number.isSafeInteger(menuRevision) || menuRevision < 1 || !Number.isSafeInteger(orderRevision) || orderRevision < 0 || typeof cancel !== 'boolean' || typeof newRequest !== 'boolean' || (cancel && newRequest) || typeof notes !== 'string' || notes.length > 1000) throw fail('Reload the menu and enter a note under 1,000 characters.');
   const found = await supabase.from('classroom_meal_sessions').select(columns).eq('class_id', 'shsat').eq('id', sessionId).maybeSingle(); check(found.error);
   const session = found.data as MealSession | null;
   if (!session || !session.open || session.revision !== menuRevision) throw fail('The menu changed or ordering closed. Reload before submitting.', 409);
@@ -35,15 +36,16 @@ classroomMealsRouter.post('/student/orders', async (request, response) => {
   if (previous.data?.data?.teacherDecision === 'denied') throw fail('Your teacher denied this request. Ask your teacher to restore it before submitting again.', 409);
   const data = cancel ? {} : { quote: quoteMeal(session.menu, selections), notes: notes.trim(), menuRevision,
     studentName: String(user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0] || 'Student').slice(0, 150) };
-  const saved = await supabase.rpc('save_classroom_meal_order', { p_session_id: sessionId, p_student_id: user.id, p_menu_revision: menuRevision, p_order_revision: orderRevision, p_data: data, p_cancel: cancel });
+  const saved = await supabase.rpc('save_classroom_meal_request', { p_session_id: sessionId, p_student_id: user.id, p_menu_revision: menuRevision, p_order_revision: orderRevision, p_data: data, p_cancel: cancel, p_new_request: newRequest });
   if (saved.error?.code === 'P0001') throw fail(saved.error.message, 409);
-  check(saved.error); response.json({ order: saved.data });
+  check(saved.error); response.json(saved.data);
 });
 classroomMealsRouter.get('/teacher', async (request, response) => {
   const found = await supabase.from('classroom_meal_sessions').select(columns).eq('class_id', 'shsat').order('created_at', { ascending: false }).limit(50); check(found.error);
   const sessions = found.data ?? [], session = sessions.find(item => item.id === request.query.sessionId) ?? sessions[0] ?? null;
   const orders = session ? await supabase.from('classroom_meal_orders').select('*').eq('session_id', session.id).order('updated_at').limit(1000) : null; check(orders?.error);
-  response.json({ sessions, session, orders: orders?.data ?? [] });
+  const history = session ? await supabase.from('classroom_meal_order_history').select('*').eq('session_id', session.id).order('updated_at') : null;
+  check(history?.error); response.json({ sessions, session, orders: orders?.data ?? [], orderedHistory: history?.data ?? [] });
 });
 classroomMealsRouter.post('/teacher/sessions', async (request, response) => {
   const { id, title } = request.body ?? {};
@@ -80,7 +82,7 @@ classroomMealsRouter.patch('/teacher/orders/:sessionId/:studentId', async (reque
     nextStatus = data.previousStatus === 'ordered' ? 'ordered' : 'submitted'; delete data.teacherDecision; delete data.previousStatus;
   } else { nextStatus = status; }
   // The revision condition makes teacher changes race safely with student submissions.
-  // The student RPC already prevents edits to ordered rows; denial also blocks resubmission above.
+  // New requests archive the ordered snapshot in the student RPC under the same row lock.
   const saved = await supabase.from('classroom_meal_orders').update({ status: nextStatus, data, revision: revision + 1, updated_at: new Date().toISOString() }).eq('session_id', request.params.sessionId).eq('student_id', request.params.studentId).eq('revision', revision).select('*').maybeSingle();
   check(saved.error); if (!saved.data) throw fail('This order changed. Reload before updating it.', 409);
   response.json({ order: saved.data });

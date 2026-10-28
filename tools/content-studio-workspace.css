@@ -930,7 +930,11 @@ body.studio-authoring:is([data-workspace="passages"],[data-workspace="part-a"],[
 .studio-authoring .math-editor-stack > .panel-head { border: 0; margin: 0; padding: 0; }
 .studio-authoring .math-editor-stack > .panel-head h2 { font-size: 19px; }
 .studio-authoring .math-editor-stack > .panel-head small { display: none; }
-.studio-authoring .studio-math-metadata { grid-template-columns: minmax(0,1fr) minmax(0,1.3fr) auto; align-items: end; gap: 12px; }
+.studio-authoring .studio-math-metadata { grid-template-columns: minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.3fr) auto; align-items: end; gap: 12px; }
+.studio-skilled-field { display:flex; align-items:end; gap:6px; min-width:0; }
+.studio-skilled-field > label { flex:1; min-width:0; }
+.studio-skilled-field > button { flex:none; min-height:38px; font-size:11px; }
+.studio-taxonomy-topics button[data-taxonomy-skills] { color:#245b49; font-size:11px; white-space:nowrap; }
 .studio-authoring .studio-math-metadata label > span { display: flex; justify-content: space-between; }
 .studio-authoring .studio-math-metadata label small { font-size: 10px; color: #86969c; font-weight: 400; }
 .studio-authoring .studio-math-settings { position: relative; }

@@ -29,7 +29,8 @@ var PartBBank = (() => {
     return /^Insert a comma after \w+\.?$/i.test(value) ? value.replace(/\.$/, '') : value;
   };
   function contentKey(q) {
-    const base = [q.type, rich(q, 'prompt'), rich(q, 'stimulus'), rich(q, 'instructions'), Number(q.points) || 1];
+    const instructions = rich(q, 'instructions').replace(/^Read (?:this|the) (?:paragraph|sentence)\.?$/i, '');
+    const base = [q.type, rich(q, 'prompt'), rich(q, 'stimulus'), instructions, Number(q.points) || 1];
     if (q.type === 'multiple_choice') base.push((q.choices || []).map(answerText));
     else if (q.type === 'category_sort') base.push((q.items || []).map(answerText), (q.categories || []).map(c => text(c.title)), q.categoryCapacity || 1, q.requiredPlacements || 1);
     else return '';
@@ -56,10 +57,18 @@ var PartBBank = (() => {
     const targets = q => JSON.stringify(['promptHtml', 'stimulusHtml', 'instructionsHtml'].map(field => [...String(q[field] || '').matchAll(/<(u|sup|sub)\b[^>]*>([\s\S]*?)<\/\1>/gi)].map(match => [match[1].toLowerCase(), text(match[2])])));
     const sameTargets = targets(a) === targets(b);
     const canCombine = Boolean(same && keyA && keyA === keyB && !hasMedia && sameTargets);
+    const correctContent = q => q.type === 'multiple_choice'
+      ? answerText((q.choices || []).find(c => c.id === q.correctChoiceId) || {})
+      : JSON.stringify(Object.entries(q.correctPlacements || {}).map(([item, category]) => [answerText((q.items || []).find(i => i.id === item) || {}), text((q.categories || []).find(c => c.id === category)?.title)]).sort());
+    // Imports can lose all underlining. A teacher may verify that copy against
+    // the formatted source, but two different sets of marked targets stay separate.
+    const hasTargets = q => ['promptHtml', 'stimulusHtml', 'instructionsHtml'].some(field => /<(?:u|sup|sub)\b/i.test(q[field] || ''));
+    const compatibleTargets = sameTargets || !hasTargets(a) || !hasTargets(b);
+    const canVerify = Boolean(a.type === b.type && keyA && keyB && !hasMedia && compatibleTargets && correctContent(a) && correctContent(a) === correctContent(b));
     return {
-      canCombine,
-      label: same ? keyA && keyB && keyA !== keyB ? 'Matching question · conflicting answers' : 'Matching question' : 'Shared paragraph · different question',
-      reason: hasMedia ? 'Compare the source images before deciding whether these are the same question.' : !same ? 'The paragraph is reused, but the prompt, choices or response setup differ. Keep separate questions.' : !sameTargets ? 'The underlined text or superscript/subscript targets differ. Check the source formatting before combining.' : !keyA || !keyB ? 'Complete and verify both answer keys before combining.' : keyA !== keyB ? 'The answer keys disagree. Correct the keys before combining.' : 'Same prompt, paragraph, answer choices and correct answer. Formatting, source tags, topics and explanations may differ.',
+      canCombine, canVerify,
+      label: same ? keyA && keyB && keyA !== keyB ? 'Matching question · conflicting answers' : !sameTargets ? 'Matching text · verify formatting' : 'Matching question' : canVerify ? 'Possible repeat · verify question' : 'Shared paragraph · different question',
+      reason: hasMedia ? 'Compare the source images before deciding whether these are the same question.' : !same ? canVerify ? 'The paragraph and keyed answer match, but some details differ. Verify the complete question before combining.' : 'The paragraph is reused, but the prompt, choices or answer differ. Keep separate questions.' : !sameTargets ? 'The underlined text or superscript/subscript targets differ. Check the source formatting before combining.' : !keyA || !keyB ? 'Complete and verify both answer keys before combining.' : keyA !== keyB ? 'The answer keys disagree. Correct the keys before combining.' : 'Same prompt, paragraph, answer choices and correct answer. Formatting, source tags, topics and explanations may differ.',
     };
   }
   function rootId(item, items) {
@@ -86,11 +95,13 @@ var PartBBank = (() => {
     }
     return result;
   }
-  function combine(items, keepId, removeId) {
+  function combine(items, keepId, removeId, { verifiedSameQuestion = false, additionalLabels = [] } = {}) {
     const keep = items.find(q => q.id === keepId), other = items.find(q => q.id === removeId);
     if (!keep || !other || keep === other || keep.duplicateOf || other.duplicateOf) throw new Error('Choose two current bank questions. Refresh the repeat checker.');
-    if (!match(keep, other)?.canCombine) throw new Error('These questions differ or have unresolved answer keys. Keep them separate until corrected.');
-    const combined = withLabels(keep, [...labels(keep), ...versions(other, items).flatMap(labels)]);
+    const comparison = match(keep, other);
+    if (!comparison?.canCombine && !(verifiedSameQuestion === true && comparison?.canVerify)) throw new Error('These questions differ or have unresolved answer keys. Keep them separate until corrected, or explicitly verify a compatible pair.');
+    if (!Array.isArray(additionalLabels) || additionalLabels.some(label => typeof label !== 'string')) throw new Error('Source tags must be an array of text labels.');
+    const combined = withLabels(keep, [...labels(keep), ...versions(other, items).flatMap(labels), ...additionalLabels]);
     if (!combined.explanation && other.explanation) {
       combined.explanation = other.explanation;
       if (other.explanationHtml) combined.explanationHtml = other.explanationHtml;

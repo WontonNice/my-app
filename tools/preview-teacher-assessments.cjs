@@ -5,7 +5,7 @@ const esbuild = require('esbuild');
 const express = require(require.resolve('express', { paths: [path.resolve(__dirname, '../server')] }));
 require(require.resolve('ts-node', { paths: [path.resolve(__dirname,'../server')] })).register({ transpileOnly: true, project: path.resolve(__dirname, '../server/tsconfig.json') });
 const { createExamResult, getAllExamQuestions } = require('../server/src/shared/examGrading.ts');
-const { defaultAchievementDesign } = require('../server/src/shared/achievements.ts');
+const { defaultAchievementDesign, defaultEnglishAchievementDesign, defaultLoginAchievementDesign } = require('../server/src/shared/achievements.ts');
 const contents = require('../server/data/exam-content.json');
 const assessments = require('../server/data/assessments.json').map((item,index) => ({ ...item, sectionAccess: { english: index === 1, math: index === 1 }, status: index === 1 ? 'open' : 'locked', allowCompletedAccess: false, correctionsOpen: index === 0, forms: item.forms ?? [], formAssignments: {} }));
 const first = assessments[0];
@@ -24,10 +24,10 @@ const students = names.map((fullName,index) => {
   } }] });
   const files=new Map(output.outputFiles.map(file=>['/'+path.basename(file.path),file.contents]));
   const app=express(); app.use(express.json({ limit: '1mb' }));
-  let achievementDesign = defaultAchievementDesign, achievementRevision = 0;
+  const achievementDesigns = { 'perfect-math': { design: defaultAchievementDesign, revision: 0 }, 'perfect-english': { design: defaultEnglishAchievementDesign, revision: 0 }, 'login-week': { design: defaultLoginAchievementDesign, revision: 0 } };
   const reentryGrants = {};
-  app.get('/api/achievements', (_req, res) => res.json({ design: achievementDesign, revision: achievementRevision }));
-  app.put('/api/achievements/perfect-math/design', (req, res) => { achievementDesign = req.body.design; achievementRevision++; res.json({ design: achievementDesign, revision: achievementRevision }); });
+  app.get('/api/achievements', (_req, res) => res.json({ ...achievementDesigns['perfect-math'], achievements: Object.entries(achievementDesigns).map(([id, data]) => ({ id, ...data })) }));
+  app.put('/api/achievements/:id/design', (req, res) => { if (!achievementDesigns[req.params.id]) return res.status(404).json({ message: 'Achievement not found.' }); const next = { design: req.body.design, revision: achievementDesigns[req.params.id].revision + 1 }; achievementDesigns[req.params.id] = next; res.json(next); });
   app.get('/api/assessments/teacher/:assessmentId/reentry/:studentId', (req, res) => {
     const student = students.find(item => item.id === req.params.studentId), result = student?.progress.examResults.find(item => item.assessmentId === req.params.assessmentId);
     res.json({ hasSubmission: Boolean(result), completedSections: result?.completedSections ?? [], grant: reentryGrants[req.params.studentId + ':' + req.params.assessmentId] ?? null });

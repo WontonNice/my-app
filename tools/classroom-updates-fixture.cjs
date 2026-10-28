@@ -2,14 +2,26 @@
 const { quoteMeal, emptyMealMenu, validateMealMenu } = require('../server/src/shared/classroomMeals.ts');
 let session = { id:'11111111-1111-1111-1111-111111111111', title:'Wednesday lunch', open:true, revision:1, created_at:new Date().toISOString(), menu:{ restaurant:'Classroom café · Preview', restaurantUrl:'https://www.ubereats.com/feed?diningMode=DELIVERY', taxBasisPoints:887.5, feeCents:125, items:[{id:'rice',name:'Chicken rice bowl',description:'Grilled chicken, rice, cucumber, and a side of sauce.',priceCents:1250,available:true},{id:'tofu',name:'Tofu & vegetable bowl',description:'Roasted tofu, seasonal vegetables, and brown rice.',priceCents:1125,available:true},{id:'water',name:'Bottled water',description:'Still water, 16 oz.',priceCents:200,available:true}]}};
 if(process.argv.includes('--empty-meals')) session=null;
-let order=null;
+let order=null,orderedHistory=[];
 const task={id:'22222222-2222-2222-2222-222222222222',studentId:'fictional',kind:'practice',contentId:'infinite-practice:inequalities',title:'One-step inequalities',instructions:'Build a streak of 5 correct answers.',status:'assigned',assignedAt:'2026-10-27T12:00:00Z',dueDate:null,plannedDate:null,completedAt:null,estimatedMinutes:15,questionTarget:null,streakTarget:5,practiceBaseline:null,createdAt:'2026-10-27T12:00:00Z',createdBy:'teacher',updatedAt:'2026-10-27T12:00:00Z',revision:1,completion:null};
 exports.mealFixture=async(req,res,url)=>{
  const name=url.pathname; const json=(body,status=200)=>{res.statusCode=status;res.setHeader('Content-Type','application/json');res.end(JSON.stringify(body));return true;};
- if(name==='/api/classroom-meals/student')return json({session,order});
- if(name==='/api/classroom-meals/teacher')return json({sessions:session?[session]:[],session,orders:order?[order]:[]});
+ if(name==='/api/classroom-meals/student')return json({session,order,orderedHistory});
+ if(name==='/api/classroom-meals/teacher')return json({sessions:session?[session]:[],session,orders:order?[order]:[],orderedHistory});
  if(name==='/api/classroom-meals/teacher/sessions'&&req.method==='POST'){let raw='';for await(const chunk of req)raw+=chunk;const body=JSON.parse(raw);session??={id:body.id,title:body.title,open:false,revision:1,created_at:new Date().toISOString(),menu:emptyMealMenu()};return json({session},201);}
- if(name==='/api/classroom-meals/student/orders'){let raw='';for await(const chunk of req)raw+=chunk;const body=JSON.parse(raw);if(order?.data.teacherDecision==='denied')return json({message:'Your teacher denied this request. Ask your teacher to restore it.'},409);if(order?.status==='ordered')return json({message:'Your teacher already placed this order.'},409);if(body.menuRevision!==session.revision||!session.open)return json({message:'Menu changed. Refresh before sending.'},409);order={session_id:session.id,student_id:'33333333-3333-3333-3333-333333333333',revision:(order?.revision??0)+1,status:body.cancel?'cancelled':'submitted',updated_at:new Date().toISOString(),data:body.cancel?order.data:{studentName:'QA Student',notes:body.notes,menuRevision:session.revision,quote:quoteMeal(session.menu,body.selections)}};return json({order});}
+ if(name==='/api/classroom-meals/student/orders'){
+  let raw='';for await(const chunk of req)raw+=chunk;const body=JSON.parse(raw);
+  if(order?.data.teacherDecision==='denied')return json({message:'Your teacher denied this request. Ask your teacher to restore it.'},409);
+  if(body.orderRevision!==(order?.revision??0))return json({message:'Request changed. Refresh before sending.'},409);
+  if(body.menuRevision!==session.revision||!session.open)return json({message:'Menu changed. Refresh before sending.'},409);
+  if(body.newRequest&&(order?.status!=='ordered'||body.cancel))return json({message:'This request changed. Refresh before starting another.'},409);
+  if(order?.status==='ordered'&&!body.newRequest)return json({message:'Start another request to order again.'},409);
+  if(body.cancel&&order?.status!=='submitted')return json({message:'There is no pending request to cancel.'},409);
+  const quote=body.cancel?null:quoteMeal(session.menu,body.selections);
+  if(!body.cancel&&(order?.status==='ordered'||order?.data.teacherDecision==='removed'&&order.data.previousStatus==='ordered'))orderedHistory.push(structuredClone(order));
+  order={session_id:session.id,student_id:'33333333-3333-3333-3333-333333333333',revision:(order?.revision??0)+1,status:body.cancel?'cancelled':'submitted',updated_at:new Date().toISOString(),data:body.cancel?order.data:{studentName:'QA Student',notes:body.notes,menuRevision:session.revision,quote}};
+  return json({order,orderedHistory});
+ }
  if(name.startsWith('/api/classroom-meals/teacher/sessions/')&&req.method==='PUT'){let raw='';for await(const chunk of req)raw+=chunk;const body=JSON.parse(raw);if(body.revision!==session.revision)return json({message:"Menu changed. Reload."},409);Object.assign(session,body,{menu:validateMealMenu(body.menu),revision:session.revision+1});return json({session});}
  if(name.startsWith('/api/classroom-meals/teacher/orders/')&&req.method==='PATCH'){let raw='';for await(const chunk of req)raw+=chunk;const body=JSON.parse(raw);if(body.revision!==order.revision)return json({message:'Request changed. Refresh.'},409);if(['denied','removed'].includes(body.status)){order.data.teacherDecision=body.status;order.data.previousStatus=order.status;order.status='cancelled';}else if(body.status==='restore'){order.status=order.data.previousStatus;delete order.data.teacherDecision;delete order.data.previousStatus;}else{order.status=body.status;}order.revision++;return json({order});}
  if(name==='/api/learning-plan/student')return json({catalog:[],schedule:[task],summary:{dueThisWeek:0,planned:0,assigned:1,inProgress:0,review:0,completed:0,overdue:0,upcoming:[task]}});

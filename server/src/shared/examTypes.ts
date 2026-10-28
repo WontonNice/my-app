@@ -135,6 +135,8 @@ export type ExamQuestionImage = {
 };
 
 export type ExamQuestion = {
+  /** Stable ID in the teacher-managed Skilled registry; absent means TBD. */
+  skilled?: string;
   /** Explicit text matching for captured answer sheets; legacy exams keep their existing defaults. */
   textMatchMode?: "exact" | "normalized";
   allowReuse?: boolean;

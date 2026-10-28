@@ -1,6 +1,7 @@
 import { getSupabaseClient, isSupabaseConfigured } from "./supabase";
 import type { AssignmentPage, ContentHistory, PlanClient, PlanOverview, PlanAssignment } from "./learningPlan";
 import type { ExamResult } from "./examResults";
+import type { ExamNavigation } from "../../../server/src/shared/examNavigation";
 
 export function teacherPlanClient(accessToken: string, studentId: string): PlanClient {
   const root = `/api/learning-plan/teacher/${encodeURIComponent(studentId)}`;
@@ -720,6 +721,7 @@ export async function registerStudent(input: RegisterStudentInput) {
 }
 
 export type ExamSessionProgress = {
+    navigation?: ExamNavigation;
     answers: Record<string, unknown>;
     completedSections: ("english" | "math")[];
     questionTimes?: Record<string, number>;
@@ -739,6 +741,7 @@ export async function saveExamSessionProgress(
   accessToken: string,
   assessmentId: string,
   input: Pick<ExamSessionProgress, "answers" | "completedSections"> & {
+    navigation?: ExamSessionProgress["navigation"];
     reentryGrantId?: string;
     status?: ExamSessionProgress["status"];
   },

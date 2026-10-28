@@ -1,3 +1,4 @@
+import { assessmentAccessErrorHandler, resolveAssessmentAccess, resolveAssessmentAccessList } from '../lib/assessmentAccess';
 import { contentForExamAttempt } from "../lib/examResume";
 import { preserveSubmittedSections } from "../shared/examResume";
 import { isFullExamResult, submittedExamSections } from "../shared/examCompletion";
@@ -11,9 +12,13 @@ import { supabase } from "../lib/supabase";
 import { recordPlanCompletion, recordPracticePlanCompletion } from "../lib/learningPlanStore";
 import { readExamReentries, withExamWriteLock } from "../lib/examReentry";
 import { examAttemptId } from "../shared/examReentry";
-import { findAssessmentForStudent, listTeacherAssessments } from "../config/assessments";
+import { normalizeExamNavigation, type ExamNavigation } from "../shared/examNavigation";
+import { findAssessmentForStudent as configuredFindAssessmentForStudent, listTeacherAssessments as configuredListTeacherAssessments } from "../config/assessments";
 import { hasAssignedContent } from "../lib/learningPlanStore";
 import { getExamContent } from "../lib/examContent";
+const findAssessmentForStudent = (id: string, classes: string[]) => resolveAssessmentAccess(configuredFindAssessmentForStudent(id, classes));
+const listTeacherAssessments = () => resolveAssessmentAccessList(configuredListTeacherAssessments());
+
 
 type JsonRecord = Record<string, unknown>;
 type LearningProgress = {
@@ -22,6 +27,7 @@ type LearningProgress = {
     practice: Record<string, JsonRecord>;
 };
 type ExamSessionProgress = {
+    navigation?: ExamNavigation;
     answers: JsonRecord;
     completedSections: ("english" | "math")[];
     status: "in_progress" | "submitted";
@@ -80,6 +86,7 @@ function normalizeExamSession(value: unknown): ExamSessionProgress | null {
     return {
         answers,
         completedSections,
+        navigation: normalizeExamNavigation(candidate.navigation),
         status: candidate.status === "submitted" ? "submitted" : "in_progress",
         ...(typeof candidate.submittedAt === "string" ? { submittedAt: candidate.submittedAt } : {}),
         updatedAt: typeof candidate.updatedAt === "string" ? candidate.updatedAt : new Date().toISOString(),
@@ -90,7 +97,7 @@ async function getExamSessions(user: User): Promise<Record<string, ExamSessionPr
     const [query, resultFallback] = await Promise.all([
         supabase
             .from("student_exam_sessions")
-            .select("assessment_id,answers,completed_sections,status,updated_at,submitted_at")
+            .select("assessment_id,answers,completed_sections,status,updated_at,submitted_at,navigation")
             .eq("user_id", user.id),
         supabase
             .from("student_exam_results")
@@ -109,9 +116,10 @@ async function getExamSessions(user: User): Promise<Record<string, ExamSessionPr
                 : [];
         }));
 
-    const dedicatedSessions = query.error ? {} : Object.fromEntries((query.data ?? []).map((row) => [
+    const dedicatedSessions: Record<string, ExamSessionProgress> = query.error ? {} : Object.fromEntries((query.data ?? []).map((row) => [
         row.assessment_id,
         {
+            navigation: normalizeExamNavigation(row.navigation),
             answers:
                 row.answers && typeof row.answers === "object" && !Array.isArray(row.answers)
                     ? row.answers as JsonRecord
@@ -126,7 +134,11 @@ async function getExamSessions(user: User): Promise<Record<string, ExamSessionPr
             updatedAt: typeof row.updated_at === "string" ? row.updated_at : new Date().toISOString(),
         },
     ]));
-    return { ...fallbackSessions, ...dedicatedSessions };
+    const sessions: Record<string, ExamSessionProgress> = { ...getMetadataExamSessions(user), ...fallbackSessions };
+    for (const [id, session] of Object.entries(dedicatedSessions)) {
+        if (!sessions[id] || Date.parse(session.updatedAt) >= Date.parse(sessions[id].updatedAt)) sessions[id] = session;
+    }
+    return sessions;
 }
 
 function getMetadataProgress(user: User): LearningProgress {
@@ -285,7 +297,7 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
     if (isReservedExamId(assessmentId) || (request.body?.assessmentId !== undefined && request.body.assessmentId !== assessmentId)) {
         response.status(400).json({ message: "The exam session must match the requested assessment." }); return;
     }
-    const configuredAssessment = listTeacherAssessments().find(assessment => assessment.id === assessmentId);
+    const configuredAssessment = (await listTeacherAssessments()).find(assessment => assessment.id === assessmentId);
     if (!configuredAssessment) { response.status(404).json({ message: "Assessment was not found." }); return; }
     if (getUserRole(user) === "student" && !getEnrolledClassIds(user.app_metadata).includes(configuredAssessment.classId)) {
         response.status(403).json({ message: "You are not enrolled for this assessment." }); return;
@@ -314,6 +326,12 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
         response.status(403).json({ message: "Your teacher has locked this exam." }); return;
     }
     const existingSession = (await getExamSessions(user))[request.params.assessmentId];
+    const navigation = normalizeExamNavigation(request.body?.navigation);
+    if (request.body?.navigation !== undefined && (!navigation ||
+        (request.body.navigation.english !== undefined && !navigation.english) ||
+        (request.body.navigation.math !== undefined && !navigation.math))) {
+        response.status(400).json({ message: "Valid exam resume positions are required." }); return;
+    }
     const submitted = records.get(request.params.assessmentId);
     const globalRetake = !suppliedGrantId && submitted && isFullExamResult(submitted) && configuredAssessment?.status === "open" && configuredAssessment.allowCompletedAccess;
     const protectedSections = submitted && !globalRetake ? submittedExamSections(submitted).filter(section => !reentry?.remainingSections.includes(section) && (!openExam || !configuredAssessment.sectionAccess[section])) : [];
@@ -333,7 +351,9 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
         ...Object.fromEntries(protectedIds.filter(id => submitted?.answers && Object.hasOwn(submitted.answers as object, id)).map(id => [id, (submitted!.answers as JsonRecord)[id]])),
     };
     const updatedAt = new Date().toISOString();
+    const nextNavigation = navigation ? { ...existingSession?.navigation, ...navigation } : existingSession?.navigation;
     const session: ExamSessionProgress = {
+        ...(nextNavigation ? { navigation: nextNavigation } : {}),
         answers: mergedAnswers,
         completedSections: [...new Set([...normalizedSections, ...protectedSections])],
         status,
@@ -341,6 +361,7 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
         updatedAt,
     };
     const saved = await supabase.from("student_exam_sessions").upsert({
+        ...(session.navigation ? { navigation: session.navigation } : {}),
         answers: mergedAnswers,
         assessment_id: request.params.assessmentId,
         completed_sections: session.completedSections,
@@ -556,12 +577,12 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
     if (getUserRole(user) === "student" && result.source !== undefined && result.source !== "digital") {
         response.status(403).json({ message: "Teacher-recorded scores must be entered by your teacher." }); return;
     }
-    if (!listTeacherAssessments().some(assessment => assessment.id === assessmentId)) {
+    if (!(await listTeacherAssessments()).some(assessment => assessment.id === assessmentId)) {
         response.status(404).json({ message: "Assessment was not found." }); return;
     }
     return withExamWriteLock(user.id, assessmentId, async () => {
     const { grants, records } = await readExamReentries(user.id);
-    const configuredAssessment = listTeacherAssessments().find(item => item.id === assessmentId)!;
+    const configuredAssessment = (await listTeacherAssessments()).find(item => item.id === assessmentId)!;
     const openExam = configuredAssessment.status === "open";
     const grant = openExam ? undefined : grants[assessmentId];
     const existing = records.get(assessmentId);
@@ -585,7 +606,7 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
     if (grant?.remainingSections.length && suppliedGrantId !== grant.id) {
         response.status(409).json({ message: "Your teacher reopened this exam. Reload it before submitting." }); return;
     }
-    const assessment = findAssessmentForStudent(assessmentId, getEnrolledClassIds(user.app_metadata));
+    const assessment = await findAssessmentForStudent(assessmentId, getEnrolledClassIds(user.app_metadata));
     if (getUserRole(user) === "student") {
         const personal = await hasAssignedContent(user.id, "exam", assessmentId, true);
         if (!assessment || (assessment.status !== "open" && !suppliedGrantId && !personal)) {
@@ -706,3 +727,6 @@ progressRouter.put("/practice/:topicSlug", async (request, response) => {
     await recordPracticePlanCompletion(user.id, request.params.topicSlug, topicProgress);
     response.json({ progress: await getDatabaseProgress(user) });
 });
+
+
+progressRouter.use(assessmentAccessErrorHandler);

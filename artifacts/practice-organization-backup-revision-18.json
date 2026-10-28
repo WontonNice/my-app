@@ -1,0 +1,862 @@
+{
+  "revision": 18,
+  "catalog": {
+    "videos": [
+      {
+        "id": "e5c3579a-9741-49ec-886b-cf0243e2c210",
+        "url": "https://www.youtube.com/watch?v=O5vRDwTE3pU",
+        "title": "Understanding Inequalities & Their Graphs",
+        "topic": "Inequalities",
+        "category": "Algebra",
+        "duration": "10:37",
+        "published": true,
+        "description": "In this video lesson we will learn how to graph an inequality using an open or closed circle and an arrow.  We will learn that the open circle represents less than or greater than since the value is NOT part of the solution set.  We will learn that a closed circle is used to represent greater than or equal to and less than or equal to.  We will graph inequalities and we will write inequalities from graphs.  We will also determine if a value is a solution of an inequality.  Student Practice is embedded in the lesson with modeled exemplar solutions.",
+        "channelTitle": "The Magic Of Math"
+      }
+    ],
+    "modules": [
+      {
+        "id": "foundation",
+        "title": "Foundation Building",
+        "topic": "Inequalities",
+        "category": "Algebra",
+        "parentId": null,
+        "published": true,
+        "includeAll": false,
+        "defaultType": "foundation",
+        "description": "Build confidence with one-step inequalities, including positive division and sign flips.",
+        "generatorIds": []
+      },
+      {
+        "id": "all",
+        "title": "General Practice",
+        "topic": "Inequalities",
+        "category": "Algebra",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Mix every available practice type in one session.",
+        "generatorIds": []
+      },
+      {
+        "id": "inequalities",
+        "title": "One-step Inequalities",
+        "topic": "Inequalities",
+        "category": "Algebra",
+        "parentId": "foundation",
+        "published": true,
+        "includeAll": false,
+        "description": "Practice positive and negative coefficients, strict inequalities, and sign flips.",
+        "generatorIds": [
+          "one-step-inequalities-v1"
+        ]
+      },
+      {
+        "id": "2022-2023-form-b-q70",
+        "title": "Inequalities: Variables on Both Sides",
+        "topic": "Inequalities",
+        "category": "Algebra",
+        "parentId": "foundation",
+        "published": true,
+        "includeAll": false,
+        "description": "Based on 2022–2023 Form B Q70. Collect variable terms and constants, then solve, reversing the sign when dividing by a negative number.",
+        "generatorIds": [
+          "variables-both-sides-inequalities-v1"
+        ]
+      },
+      {
+        "id": "2026-2027-form-d-math-item-26",
+        "title": "Writing Inequalities",
+        "topic": "Inequalities",
+        "category": "Algebra",
+        "parentId": "foundation",
+        "published": true,
+        "includeAll": false,
+        "description": "Based on 2026–2027 Form D, math item 26. Write a budget inequality using an hourly rental rate and a one-time fee.",
+        "generatorIds": [
+          "writing-inequalities-v1"
+        ]
+      },
+      {
+        "id": "2021-2022-form-a-q76",
+        "title": "Overlapping Groups",
+        "topic": "Set Relationships",
+        "category": "Statistics and Probability",
+        "parentId": "general-statistics-and-probability-overlapping-groups-e6op6z",
+        "published": true,
+        "includeAll": false,
+        "description": "Practice overlapping group percentages and survey totals, including both groups and neither group.",
+        "generatorIds": [
+          "overlapping-groups-v1",
+          "overlapping-survey-totals-v1"
+        ]
+      },
+      {
+        "id": "foundation-algebra-algebraic-expressions-rj42ee",
+        "title": "Foundation Building",
+        "topic": "Algebraic Expressions",
+        "category": "Algebra",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-algebra-algebraic-expressions-rj42ee",
+        "title": "General Practice",
+        "topic": "Algebraic Expressions",
+        "category": "Algebra",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-algebra-equations-systems-1iaob9y",
+        "title": "Foundation Building",
+        "topic": "Equations & Systems",
+        "category": "Algebra",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-algebra-equations-systems-1iaob9y",
+        "title": "General Practice",
+        "topic": "Equations & Systems",
+        "category": "Algebra",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-algebra-functions-graphs-w7fmwh",
+        "title": "Foundation Building",
+        "topic": "Functions & Graphs",
+        "category": "Algebra",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-algebra-functions-graphs-w7fmwh",
+        "title": "General Practice",
+        "topic": "Functions & Graphs",
+        "category": "Algebra",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-algebra-patterns-sequences-1f8v94i",
+        "title": "Foundation Building",
+        "topic": "Patterns & Sequences",
+        "category": "Algebra",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-algebra-patterns-sequences-1f8v94i",
+        "title": "General Practice",
+        "topic": "Patterns & Sequences",
+        "category": "Algebra",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-geometry-shapes-angles-y1d10t",
+        "title": "Foundation Building",
+        "topic": "Shapes & Angles",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-geometry-shapes-angles-y1d10t",
+        "title": "General Practice",
+        "topic": "Shapes & Angles",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-geometry-area-perimeter-1kz9wsp",
+        "title": "Foundation Building",
+        "topic": "Area & Perimeter",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-geometry-area-perimeter-1kz9wsp",
+        "title": "General Practice",
+        "topic": "Area & Perimeter",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-geometry-surface-area-volume-1l75wmt",
+        "title": "Foundation Building",
+        "topic": "Surface Area & Volume",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-geometry-surface-area-volume-1l75wmt",
+        "title": "General Practice",
+        "topic": "Surface Area & Volume",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-geometry-coordinate-geometry-1js46n",
+        "title": "Foundation Building",
+        "topic": "Coordinate Geometry",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-geometry-coordinate-geometry-1js46n",
+        "title": "General Practice",
+        "topic": "Coordinate Geometry",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-geometry-pythagorean-theorem-1qv40h7",
+        "title": "Foundation Building",
+        "topic": "Pythagorean Theorem",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-geometry-pythagorean-theorem-1qv40h7",
+        "title": "General Practice",
+        "topic": "Pythagorean Theorem",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-geometry-scale-transformations-1q4h9dr",
+        "title": "Foundation Building",
+        "topic": "Scale & Transformations",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-geometry-scale-transformations-1q4h9dr",
+        "title": "General Practice",
+        "topic": "Scale & Transformations",
+        "category": "Geometry",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-statistics-and-probability-data-displays-e3a8k7",
+        "title": "Foundation Building",
+        "topic": "Data Displays",
+        "category": "Statistics and Probability",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-statistics-and-probability-data-displays-e3a8k7",
+        "title": "General Practice",
+        "topic": "Data Displays",
+        "category": "Statistics and Probability",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-statistics-and-probability-probability-mzsbkv",
+        "title": "Foundation Building",
+        "topic": "Probability",
+        "category": "Statistics and Probability",
+        "parentId": null,
+        "published": true,
+        "includeAll": false,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-statistics-and-probability-probability-mzsbkv",
+        "title": "General Practice",
+        "topic": "Probability",
+        "category": "Statistics and Probability",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-statistics-and-probability-overlapping-groups-e6op6z",
+        "title": "Foundation Building",
+        "topic": "Set Relationships",
+        "category": "Statistics and Probability",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-statistics-and-probability-overlapping-groups-e6op6z",
+        "title": "General Practice",
+        "topic": "Set Relationships",
+        "category": "Statistics and Probability",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-statistics-and-probability-averages-spread-tscqx",
+        "title": "Foundation Building",
+        "topic": "Averages & Spread",
+        "category": "Statistics and Probability",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-statistics-and-probability-averages-spread-tscqx",
+        "title": "General Practice",
+        "topic": "Averages & Spread",
+        "category": "Statistics and Probability",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-ratios-and-proportional-relationships-ratios-proportions-r19h39",
+        "title": "Foundation Building",
+        "topic": "Ratios & Proportions",
+        "category": "Ratios and Proportional Relationships",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-ratios-and-proportional-relationships-ratios-proportions-r19h39",
+        "title": "General Practice",
+        "topic": "Ratios & Proportions",
+        "category": "Ratios and Proportional Relationships",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-ratios-and-proportional-relationships-rates-unit-rates-e78tk2",
+        "title": "Foundation Building",
+        "topic": "Rates & Unit Rates",
+        "category": "Ratios and Proportional Relationships",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-ratios-and-proportional-relationships-rates-unit-rates-e78tk2",
+        "title": "General Practice",
+        "topic": "Rates & Unit Rates",
+        "category": "Ratios and Proportional Relationships",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-ratios-and-proportional-relationships-percentages-4bd37f",
+        "title": "Foundation Building",
+        "topic": "Percentages",
+        "category": "Ratios and Proportional Relationships",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-ratios-and-proportional-relationships-percentages-4bd37f",
+        "title": "General Practice",
+        "topic": "Percentages",
+        "category": "Ratios and Proportional Relationships",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-arithmetic-number-sense-number-properties-1j4ekza",
+        "title": "Foundation Building",
+        "topic": "Number Properties",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-arithmetic-number-sense-number-properties-1j4ekza",
+        "title": "General Practice",
+        "topic": "Number Properties",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-arithmetic-number-sense-fractions-decimals-7j6qc9",
+        "title": "Foundation Building",
+        "topic": "Fractions & Decimals",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-arithmetic-number-sense-fractions-decimals-7j6qc9",
+        "title": "General Practice",
+        "topic": "Fractions & Decimals",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-arithmetic-number-sense-number-operations-27w2sd",
+        "title": "Foundation Building",
+        "topic": "Number Operations",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-arithmetic-number-sense-number-operations-27w2sd",
+        "title": "General Practice",
+        "topic": "Number Operations",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-arithmetic-number-sense-exponents-roots-scientific-notation-1pbgwsc",
+        "title": "Foundation Building",
+        "topic": "Exponents, Roots & Scientific Notation",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-arithmetic-number-sense-exponents-roots-scientific-notation-1pbgwsc",
+        "title": "General Practice",
+        "topic": "Exponents, Roots & Scientific Notation",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-arithmetic-number-sense-units-conversions-1qqbgus",
+        "title": "Foundation Building",
+        "topic": "Units & Conversions",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-arithmetic-number-sense-units-conversions-1qqbgus",
+        "title": "General Practice",
+        "topic": "Units & Conversions",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "foundation-arithmetic-number-sense-counting-sets-136amh8",
+        "title": "Foundation Building",
+        "topic": "Counting & Sets",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "foundation",
+        "description": "Build confidence with a focused selection of question types.",
+        "generatorIds": []
+      },
+      {
+        "id": "general-arithmetic-number-sense-counting-sets-136amh8",
+        "title": "General Practice",
+        "topic": "Counting & Sets",
+        "category": "Arithmetic & Number Sense",
+        "parentId": null,
+        "published": true,
+        "includeAll": true,
+        "defaultType": "general",
+        "description": "Practice every available question type in this topic.",
+        "generatorIds": []
+      },
+      {
+        "id": "2021-2022-form-a-q95",
+        "title": "Rates: Remaining Reading Time",
+        "topic": "Rates & Unit Rates",
+        "category": "Ratios and Proportional Relationships",
+        "parentId": "general-ratios-and-proportional-relationships-rates-unit-rates-e78tk2",
+        "published": true,
+        "includeAll": false,
+        "description": "Based on 2021–2022 Form A Q95. Use a constant reading rate to find additional time, expressed in hours.",
+        "generatorIds": [
+          "remaining-reading-time-v1"
+        ]
+      },
+      {
+        "id": "2021-2022-form-a-q114",
+        "title": "Ratios: Mixture Amounts",
+        "topic": "Ratios & Proportions",
+        "category": "Ratios and Proportional Relationships",
+        "parentId": "general-ratios-and-proportional-relationships-ratios-proportions-r19h39",
+        "published": true,
+        "includeAll": false,
+        "description": "Based on 2021–2022 Form A Q114. Find one ingredient’s share of a mixture needed for several projects.",
+        "generatorIds": [
+          "ratio-mixture-amounts-v1"
+        ]
+      },
+      {
+        "id": "probability-foundation",
+        "title": "Probability",
+        "topic": "Probability",
+        "category": "Statistics and Probability",
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "published": true,
+        "includeAll": false,
+        "description": "Build probability skills with number cubes, spinners, sample spaces, and draws with and without replacement.",
+        "generatorIds": [
+          "probability-cube-sum-counts-v1",
+          "probability-ratio-removal-v1",
+          "probability-ordered-draws-v1",
+          "probability-same-color-no-replacement-v1",
+          "probability-with-replacement-v1",
+          "probability-spinner-products-v1",
+          "probability-unordered-sample-spaces-v1",
+          "probability-specific-conditional-outcome-v1"
+        ]
+      },
+      {
+        "id": "e876c061-103a-4fbb-9b06-5858c33918f6",
+        "title": "Probability: Listing Outcomes",
+        "topic": "Probability",
+        "category": "Statistics and Probability",
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "published": true,
+        "includeAll": false,
+        "description": "",
+        "generatorIds": [
+          "probability-cube-sum-counts-v1",
+          "probability-spinner-products-v1",
+          "probability-unordered-sample-spaces-v1"
+        ]
+      }
+    ],
+    "generators": [
+      {
+        "id": "one-step-inequalities-v1",
+        "kind": "builtin",
+        "title": "One-Step Inequalities",
+        "topic": "Inequalities",
+        "enabled": true,
+        "category": "Algebra",
+        "builtinId": "one-step-inequalities-v1",
+        "description": "Positive and negative coefficients, including sign flips."
+      },
+      {
+        "id": "variables-both-sides-inequalities-v1",
+        "kind": "builtin",
+        "title": "Inequalities: Variables on Both Sides",
+        "topic": "Inequalities",
+        "enabled": true,
+        "category": "Algebra",
+        "builtinId": "variables-both-sides-inequalities-v1",
+        "description": "Based on 2022–2023 Form B Q70. Collect variable terms and constants, then solve, reversing the sign when dividing by a negative number."
+      },
+      {
+        "id": "writing-inequalities-v1",
+        "kind": "builtin",
+        "title": "Writing Inequalities",
+        "topic": "Inequalities",
+        "enabled": true,
+        "category": "Algebra",
+        "builtinId": "writing-inequalities-v1",
+        "description": "Based on 2026–2027 Form D, math item 26. Write a budget inequality using an hourly rental rate and a one-time fee."
+      },
+      {
+        "id": "overlapping-groups-v1",
+        "kind": "builtin",
+        "title": "Overlapping Groups",
+        "topic": "Set Relationships",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "builtinId": "overlapping-groups-v1",
+        "description": "Based on 2021–2022 Form A Q76. Use two overlapping group percentages to find the percentage in neither group."
+      },
+      {
+        "id": "overlapping-survey-totals-v1",
+        "kind": "builtin",
+        "title": "Overlapping Groups: Survey Totals",
+        "topic": "Set Relationships",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "builtinId": "overlapping-survey-totals-v1",
+        "description": "Based on 2025–2026 Form A math item 5. Subtract a survey overlap once and include those in neither group to find the total."
+      },
+      {
+        "id": "remaining-reading-time-v1",
+        "kind": "builtin",
+        "title": "Rates: Remaining Reading Time",
+        "topic": "Rates & Unit Rates",
+        "enabled": true,
+        "category": "Ratios and Proportional Relationships",
+        "builtinId": "remaining-reading-time-v1",
+        "description": "Based on 2021–2022 Form A Q95. Use a constant reading rate to find additional time, expressed in hours."
+      },
+      {
+        "id": "ratio-mixture-amounts-v1",
+        "kind": "builtin",
+        "title": "Ratios: Mixture Amounts",
+        "topic": "Ratios & Proportions",
+        "enabled": true,
+        "category": "Ratios and Proportional Relationships",
+        "builtinId": "ratio-mixture-amounts-v1",
+        "description": "Based on 2021–2022 Form A Q114. Find one ingredient’s share of a mixture needed for several projects."
+      },
+      {
+        "id": "probability-cube-sum-counts-v1",
+        "kind": "builtin",
+        "title": "Probability: Number-cube Sum Counts",
+        "topic": "Probability",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "builtinId": "probability-cube-sum-counts-v1",
+        "description": "Count the ordered outcomes of two six-sided number cubes that produce a specified sum."
+      },
+      {
+        "id": "probability-ratio-removal-v1",
+        "kind": "builtin",
+        "title": "Probability: Ratio Counts After Removal",
+        "topic": "Probability",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "builtinId": "probability-ratio-removal-v1",
+        "description": "Convert a color ratio to counts, remove the specified items, and update the probability."
+      },
+      {
+        "id": "probability-ordered-draws-v1",
+        "kind": "builtin",
+        "title": "Probability: Ordered Draws Without Replacement",
+        "topic": "Probability",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "builtinId": "probability-ordered-draws-v1",
+        "description": "Find the probability of two different colors in a specified order without replacement."
+      },
+      {
+        "id": "probability-same-color-no-replacement-v1",
+        "kind": "builtin",
+        "title": "Probability: Both Not Blue",
+        "topic": "Probability",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "builtinId": "probability-same-color-no-replacement-v1",
+        "description": "Use the complement color and reduce both the favorable and total counts after a draw."
+      },
+      {
+        "id": "probability-with-replacement-v1",
+        "kind": "builtin",
+        "title": "Probability: Repeated Draws With Replacement",
+        "topic": "Probability",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "builtinId": "probability-with-replacement-v1",
+        "description": "Multiply unchanged single-draw probabilities when the first item is returned."
+      },
+      {
+        "id": "probability-spinner-products-v1",
+        "kind": "builtin",
+        "title": "Probability: Spinner Products",
+        "topic": "Probability",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "builtinId": "probability-spinner-products-v1",
+        "description": "Count favorable ordered spinner pairs and divide by all equally likely outcomes."
+      },
+      {
+        "id": "probability-unordered-sample-spaces-v1",
+        "kind": "builtin",
+        "title": "Probability: Unordered Sample Spaces",
+        "topic": "Probability",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "builtinId": "probability-unordered-sample-spaces-v1",
+        "description": "List possible color pairs once each, allowing repeats only when enough items exist."
+      },
+      {
+        "id": "probability-specific-conditional-outcome-v1",
+        "kind": "builtin",
+        "title": "Probability: One Specific Conditional Outcome",
+        "topic": "Probability",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "builtinId": "probability-specific-conditional-outcome-v1",
+        "description": "Multiply an event probability by the conditional probability of one equally likely cause."
+      }
+    ]
+  }
+}

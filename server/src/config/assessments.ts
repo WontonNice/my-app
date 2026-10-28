@@ -195,6 +195,7 @@ export function listStudentAssessments(classIds: string[]) {
         .map(toAssessmentSummary);
 }
 
+/** Authored catalog only. Access-sensitive callers must resolve durable access settings. */
 export function listTeacherAssessments() {
     return readAssessments();
 }
@@ -256,80 +257,24 @@ export function createAssessment(input: CreateAssessmentInput) {
     return assessment;
 }
 
-export function updateAssessmentStatus(assessmentId: string, status: AssessmentStatus) {
-    let updatedAssessment: Assessment | null = null;
-    const timestamp = new Date().toISOString();
-    const assessments = readAssessments().map((assessment) => {
-        if (assessment.id !== assessmentId) {
-            return assessment;
-        }
-
-        updatedAssessment = {
-            ...assessment,
-            sectionAccess: {
-                english: status === "open",
-                math: status === "open",
-            },
-            status,
-            updatedAt: timestamp,
-        };
-
-        return updatedAssessment;
-    });
-
-    writeAssessments(assessments);
-
-    return updatedAssessment;
-}
-
-export function updateAssessmentSectionAccess(
-    assessmentId: string,
-    section: AssessmentSection,
-    open: boolean,
-) {
-    let updatedAssessment: Assessment | null = null;
-    const timestamp = new Date().toISOString();
-    const assessments = readAssessments().map((assessment) => {
-        if (assessment.id !== assessmentId) return assessment;
-        const sectionAccess = { ...assessment.sectionAccess, [section]: open };
-        updatedAssessment = {
-            ...assessment,
-            sectionAccess,
-            split: false,
-            status: sectionAccess.english || sectionAccess.math ? "open" : "locked",
-            updatedAt: timestamp,
-        };
-        return updatedAssessment;
-    });
-
-    writeAssessments(assessments);
-    return updatedAssessment;
-}
-
-export function updateAssessmentCompletedAccess(
-    assessmentId: string,
-    allowCompletedAccess: boolean,
-) {
-    let updatedAssessment: Assessment | null = null;
-    const timestamp = new Date().toISOString();
-    const assessments = readAssessments().map((assessment) => {
-        if (assessment.id !== assessmentId) return assessment;
-        updatedAssessment = { ...assessment, allowCompletedAccess, split: false, updatedAt: timestamp };
-        return updatedAssessment;
-    });
-
-    writeAssessments(assessments);
-    return updatedAssessment;
-}
-
-export function updateAssessmentCorrectionsAccess(assessmentId: string, open: boolean) {
-    const assessments = readAssessments();
-    const assessment = assessments.find((item) => item.id === assessmentId);
+// Access changes are stored separately from the generated/catalog JSON.
+async function saveAccess(assessmentId: string, patch: import('../lib/assessmentAccess').AssessmentAccessPatch) {
+    const assessment = readAssessments().find(item => item.id === assessmentId);
     if (!assessment) return null;
-    assessment.correctionsOpen = open;
-    assessment.updatedAt = new Date().toISOString();
-    writeAssessments(assessments);
-    return assessment;
+    const { setPersistentAssessmentAccess } = await import('../lib/assessmentAccess');
+    return setPersistentAssessmentAccess(assessment, patch);
+}
+export async function updateAssessmentStatus(assessmentId: string, status: AssessmentStatus) {
+    return saveAccess(assessmentId, { english_open: status === 'open', math_open: status === 'open' });
+}
+export async function updateAssessmentSectionAccess(assessmentId: string, section: AssessmentSection, open: boolean) {
+    return saveAccess(assessmentId, { [section === 'english' ? 'english_open' : 'math_open']: open });
+}
+export async function updateAssessmentCompletedAccess(assessmentId: string, allowCompletedAccess: boolean) {
+    return saveAccess(assessmentId, { allow_completed_access: allowCompletedAccess });
+}
+export async function updateAssessmentCorrectionsAccess(assessmentId: string, open: boolean) {
+    return saveAccess(assessmentId, { corrections_open: open });
 }
 
 function isAssessmentForm(value: unknown): value is AssessmentForm {

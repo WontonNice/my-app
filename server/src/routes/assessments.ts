@@ -1,8 +1,9 @@
+import { assessmentAccessErrorHandler, resolveAssessmentAccess, resolveAssessmentAccessList } from '../lib/assessmentAccess';
 import { Router } from "express";
 import {
-    findAssessmentForStudent,
-    listStudentAssessments,
-    listTeacherAssessments,
+    findAssessmentForStudent as configuredFindAssessmentForStudent,
+    listStudentAssessments as configuredListStudentAssessments,
+    listTeacherAssessments as configuredListTeacherAssessments,
     toStudentAssessmentDetail,
     type AssessmentSection,
     type AssessmentStatus,
@@ -21,6 +22,10 @@ import { contentForExamAttempt } from "../lib/examResume";
 import type { ExamContent } from "../shared/examTypes";
 import { submittedExamSections } from "../shared/examCompletion";
 import { preserveSubmittedSections } from "../shared/examResume";
+const findAssessmentForStudent = (id: string, classes: string[]) => resolveAssessmentAccess(configuredFindAssessmentForStudent(id, classes));
+const listStudentAssessments = (classes: string[]) => resolveAssessmentAccessList(configuredListStudentAssessments(classes));
+const listTeacherAssessments = () => resolveAssessmentAccessList(configuredListTeacherAssessments());
+
 
 function applyReentry<T extends { sectionAccess: Record<AssessmentSection, boolean>; status: AssessmentStatus; allowCompletedAccess: boolean }>(assessment: T, grant?: ExamReentryGrant, openForEveryone = assessment.status === "open") {
     if (openForEveryone) return { ...assessment, allowCompletedAccess: true, canEditSubmittedSections: true };
@@ -54,7 +59,7 @@ assessmentsRouter.get("/student", async (request, response) => {
 
     const personal = getUserRole(user) === "student" ? await assignedContentIds(user.id, "exam", true) : new Set<string>();
     const { grants } = await readExamReentries(user.id);
-    response.json({ assessments: listStudentAssessments(classIds).map(assessment => applyReentry(personal.has(assessment.id) ? { ...assessment, status: "open" as const, allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, grants[assessment.id], assessment.status === "open")) });
+    response.json({ assessments: (await listStudentAssessments(classIds)).map(assessment => applyReentry(personal.has(assessment.id) ? { ...assessment, status: "open" as const, allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, grants[assessment.id], assessment.status === "open")) });
 });
 
 assessmentsRouter.get("/student/:assessmentId", async (request, response) => {
@@ -67,7 +72,7 @@ assessmentsRouter.get("/student/:assessmentId", async (request, response) => {
 
     const isTeacher = getUserRole(user) === "teacher";
     const classIds = isTeacher ? ["shsat"] : getEnrolledClassIds(user.app_metadata);
-    const assessment = findAssessmentForStudent(request.params.assessmentId, classIds);
+    const assessment = await findAssessmentForStudent(request.params.assessmentId, classIds);
 
     if (!assessment) {
         response.status(404).json({ message: "Assessment was not found." });
@@ -97,7 +102,7 @@ assessmentsRouter.route("/teacher/:assessmentId/reentry/:studentId")
         response.locals.teacherId = user.id;
         const lookup = await supabase.auth.admin.getUserById(request.params.studentId);
         const student = lookup.data.user;
-        const assessment = student && getUserRole(student) === "student" ? findAssessmentForStudent(request.params.assessmentId, getEnrolledClassIds(student.app_metadata)) : null;
+        const assessment = student && getUserRole(student) === "student" ? await findAssessmentForStudent(request.params.assessmentId, getEnrolledClassIds(student.app_metadata)) : null;
         if (lookup.error || !student || !assessment) { response.status(404).json({ message: "This student is not enrolled for this assessment." }); return; }
         next();
     })
@@ -159,7 +164,7 @@ assessmentsRouter.get("/teacher", async (request, response) => {
         return;
     }
 
-    response.json({ assessments: listTeacherAssessments() });
+    response.json({ assessments: (await listTeacherAssessments()) });
 });
 
 assessmentsRouter.patch("/teacher/:assessmentId/status", async (request, response) => {
@@ -183,7 +188,7 @@ assessmentsRouter.patch("/teacher/:assessmentId/status", async (request, respons
         return;
     }
 
-    const assessment = updateAssessmentStatus(request.params.assessmentId, status);
+    const assessment = await updateAssessmentStatus(request.params.assessmentId, status);
 
     if (!assessment) {
         response.status(404).json({ message: "Assessment was not found." });
@@ -209,7 +214,7 @@ assessmentsRouter.patch("/teacher/:assessmentId/completed-access", async (reques
         response.status(400).json({ message: "Completed access must be true or false." });
         return;
     }
-    const assessment = updateAssessmentCompletedAccess(
+    const assessment = await updateAssessmentCompletedAccess(
         request.params.assessmentId,
         allowCompletedAccess,
     );
@@ -241,7 +246,7 @@ assessmentsRouter.patch("/teacher/:assessmentId/sections/:section", async (reque
         response.status(400).json({ message: "Section access must be true or false." });
         return;
     }
-    const assessment = updateAssessmentSectionAccess(
+    const assessment = await updateAssessmentSectionAccess(
         request.params.assessmentId,
         section,
         open,
@@ -272,5 +277,8 @@ assessmentsRouter.put("/teacher/:assessmentId/forms", async (request, response) 
         });
         return;
     }
-    response.json({ assessment });
+    response.json({ assessment: await resolveAssessmentAccess(assessment) });
 });
+
+
+assessmentsRouter.use(assessmentAccessErrorHandler);

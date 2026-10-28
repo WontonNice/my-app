@@ -33,6 +33,47 @@ test('generic prompts, changed tasks, conflicting keys, missing keys, emphasis t
   assert.equal(bank.match(question('a', { stimulus: '', stimulusHtml: '' }), question('b', { stimulus: '', stimulusHtml: '' })), null);
 });
 
+test('generic reading directions do not split identical questions, while meaningful directions remain distinct', () => {
+  const a = question('a');
+  assert.equal(bank.match(a, question('b', { instructionsHtml: '<p>Read this paragraph.</p>' })).canCombine, true);
+  assert.equal(bank.match(a, question('b', { instructions: 'Read the sentence' })).canCombine, true);
+  assert.equal(bank.match(a, question('b', { instructions: 'Select two answers.' })).canCombine, false);
+});
+
+test('teacher verification combines a compatible pair once, persists all source tags and preserves the chosen question', () => {
+  const a = question('a', { versionLabels: ['Form A'], points: 2 });
+  const b = question('b', { versionLabels: ['Form B'] });
+  const original = structuredClone([a, b]);
+  assert.equal(bank.match(a, b).canVerify, true);
+  assert.throws(() => bank.combine([a, b], 'b', 'a'), /explicitly verify/);
+  assert.throws(() => bank.combine([a, b], 'b', 'a', { verifiedSameQuestion: 'true' }), /explicitly verify/);
+  const items = bank.combine([a, b], 'b', 'a', { verifiedSameQuestion: true, additionalLabels: ['form a', 'Form C'] });
+  assert.deepEqual(items.filter(q => !q.duplicateOf), [bank.withLabels(b, ['Form B', 'Form A', 'Form C'])]);
+  assert.deepEqual(items.find(q => q.id === 'a'), { ...a, duplicateOf: 'b' });
+  assert.deepEqual([a, b], original);
+  assert.equal(bank.pairs(items).length, 0);
+  assert.throws(() => bank.combine([a, b], 'b', 'a', { verifiedSameQuestion: true, additionalLabels: 'Form C' }), /array/);
+});
+
+test('manual verification supports reordered choices but cannot bypass conflicting keys, source text or edit targets', () => {
+  const a = question('a'), b = question('b', { choices: [...a.choices].reverse() });
+  assert.equal(bank.match(a, b).canCombine, false);
+  assert.equal(bank.match(a, b).canVerify, true);
+  for (const other of [question('b', { correctChoiceId: 'B' }), question('b', { correctChoiceId: '' }), question('b', { stimulus: 'Other text.', stimulusHtml: '' }), question('b', { stimulusHtml: 'In 1962 the agile <u>athletic</u> player scored 100 points.' })]) {
+    assert.throws(() => bank.combine([a, other], 'a', 'b', { verifiedSameQuestion: true }), /differ/);
+  }
+});
+
+test('a copy that lost all underlining requires teacher verification and keeps the formatted copy', () => {
+  const source = question('source', { versionLabels: ['Form A'] });
+  const imported = question('import', { stimulusHtml: `<p>${source.stimulus}</p>`, instructions: 'Read this paragraph.', versionLabels: ['Form B'] });
+  assert.equal(bank.match(source, imported).canCombine, false);
+  assert.equal(bank.match(source, imported).canVerify, true);
+  const items = bank.combine([source, imported], source.id, imported.id, { verifiedSameQuestion: true });
+  assert.equal(items.find(q => !q.duplicateOf).stimulusHtml, source.stimulusHtml);
+  assert.deepEqual(items.find(q => !q.duplicateOf).versionLabels, ['Form A', 'Form B']);
+});
+
 test('combining produces one bank question with both source tags while preserving source versions and test references', () => {
   const a = question('old', { versionLabel: '2020-2021 Form A' });
   const b = question('new', { versionLabel: '2022-2023 Form A', explanation: 'Supplied explanation.', explanationHtml: '<strong>Supplied</strong> explanation.' });
@@ -78,4 +119,53 @@ test('tag edits and failed combines preserve question content, dirty edits and e
   app.standaloneDirty = false;
   await ui.combine(original, question('q2')); assert.equal(calls, 1);
   assert.equal(app.standaloneDraft, original); assert.equal(editor.inert, false); assert.equal(app.saving, false);
+});
+
+test('verified save updates the visible bank to one question, closes comparison and retains both tags', async () => {
+  const source = fs.readFileSync(path.join(__dirname, 'content-studio-part-b-tools.js'), 'utf8');
+  const left = question('left', { versionLabels: ['Form A'] }), right = question('right', { versionLabels: ['Form B'] });
+  const app = { standaloneDirty: false, state: { standaloneItems: [left, right], standaloneSourceHash: 'before' } };
+  let closed = false, status = '', renders = 0;
+  const dialog = { inert: false, close() { closed = true; } };
+  const ui = vm.runInNewContext(source + '\nPartBTools;', {
+    app, PartBBank: bank, document: { getElementById: () => dialog }, clone: structuredClone,
+    renderStandaloneList() { renders++; }, renderStandaloneEditor() { renders++; },
+    setStatus(value) { status = value; }, studioUI: { syncSaveState() {} },
+    api: async (url, options) => {
+      const body = JSON.parse(options.body);
+      assert.equal(body.verifiedSameQuestion, true);
+      assert.deepEqual(body.additionalLabels, ['Form A']);
+      const items = bank.combine([left, right], body.keepId, body.removeId, body);
+      return { items, item: items.find(q => q.id === body.keepId), sourceHash: 'after' };
+    },
+  });
+  await ui.combine(left, right, { verifiedSameQuestion: true, additionalLabels: ['Form A'] });
+  assert.equal(app.state.standaloneItems.filter(q => !q.duplicateOf).length, 1);
+  assert.deepEqual(app.standaloneDraft.versionLabels, ['Form A', 'Form B']);
+  assert.equal(app.state.standaloneSourceHash, 'after'); assert.equal(app.selectedStandaloneItemId, left.id);
+  assert.equal(closed, true); assert.equal(renders, 2); assert.equal(dialog.inert, false); assert.equal(app.saving, false);
+  assert.equal(status, 'Saved one bank question with 2 source tags.');
+});
+
+test('imported repeats offer verification immediately and submit unsaved draft edits with the draft version', async () => {
+  const source = fs.readFileSync(path.join(__dirname, 'content-studio-part-b-tools.js'), 'utf8');
+  const saved = question('saved', { versionLabels: ['Form A'] });
+  const draft = question('imported', { versionLabels: ['Form B'], importDraftId: 'draft', importVersion: 3, unsaved: true });
+  const app = { standaloneDirty: true, standaloneDraft: draft, state: { standaloneItems: [saved], standaloneImportDrafts: [{ id: 'draft', version: 3, question: draft }], standaloneSourceHash: 'current' } };
+  let submitted;
+  const dialog = { inert: false, querySelector: () => ({ textContent: '' }) };
+  const ui = vm.runInNewContext(source + '\nPartBTools;', {
+    app, PartBBank: bank, escapeHtml: value => String(value), document: { getElementById: () => dialog }, studioUI: { syncSaveState() {} },
+    api: async (url, options) => { submitted = JSON.parse(options.body); throw Error('Write failed'); },
+  });
+  const actions = ui.mergeActions({ left: saved, right: draft, canVerify: true }, 0);
+  assert.doesNotMatch(actions, /Finish & save|disabled/);
+  assert.match(actions, /Verify same · keep left/); assert.match(actions, /Verify same · keep right/);
+  await ui.combine(saved, draft, { verifiedSameQuestion: true });
+  assert.deepEqual(submitted.drafts, [{ id: 'draft', version: 3, question: draft }]);
+  assert.equal(submitted.verifiedSameQuestion, true);
+  assert.equal(app.standaloneDraft, draft); assert.equal(app.standaloneDirty, true);
+  assert.equal(app.state.standaloneImportDrafts.length, 1); assert.equal(app.saving, false); assert.equal(dialog.inert, false);
+  const records = ui.records();
+  assert.equal(records.find(item => item.id === draft.id).importVersion, 3);
 });

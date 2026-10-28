@@ -3,6 +3,7 @@ import { readFile, readdir, writeFile, rename, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import ts from 'typescript';
 import documentImport from './document-import.cjs';
+import mathCommand from './math-command-service.cjs';
 
 const fail = (message, status = 400) => Object.assign(new Error(message), { status });
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -58,6 +59,7 @@ export async function readMathTopicConfiguration(root) {
   const state = await snapshot(root), questions = state.files.flatMap(file => file.questions);
   return {
     revision: state.revision,
+    classificationSkills:state.management.classificationSkills??[],
     categories: state.categories.map(category => ({
       label: category.label,
       questionCount: questions.filter(question => question.topic === category.label).length,
@@ -74,10 +76,10 @@ export function validateMathClassification(question, configuration, previous) {
   const legacy = previous && previous.topic === topic && (!previous.subtopic || previous.subtopic === 'Unclassified');
   if (question.subtopic != null && typeof question.subtopic !== 'string') throw fail('Specific topic must be text.');
   const subtopic = question.subtopic?.trim() || (legacy ? 'Unclassified' : '');
-  if (legacy && subtopic === 'Unclassified') return { topic, subtopic };
+  if (legacy && subtopic === 'Unclassified') return { topic, subtopic, skilled:mathCommand.validateSkilled(question.skilled,topic,subtopic,configuration.classificationSkills??[]) };
   text(subtopic, `Specific topic for ${question.id || 'this question'}`);
   if (!category.topics.some(candidate => (typeof candidate === 'string' ? candidate : candidate.label) === subtopic)) throw fail(`Choose a specific topic under ${topic} for ${question.id || 'this question'}.`);
-  return { topic, subtopic };
+  return { topic, subtopic, skilled:mathCommand.validateSkilled(question.skilled,topic,subtopic,configuration.classificationSkills??[]) };
 }
 
 // Stage every edit, check original bytes again, then commit. If an I/O failure
@@ -197,6 +199,8 @@ export async function saveMathTopicConfiguration(root, input) {
       if(metadata) { if(metadata.category !== undefined) metadata.category = updated.topic; if(metadata.subcategory !== undefined) metadata.subcategory = updated.subtopic; }
     }
     management.skills = (management.skills || []).map(skill => { const updated = reclassify({topic: skill.category, subtopic: skill.subcategory}); return {...skill, category: updated.topic, subcategory: updated.subtopic}; });
+    management.classificationSkills=(management.classificationSkills||[]).map(skill=>{const updated=reclassify({topic:skill.category,subtopic:skill.subcategory});return {...skill,category:updated.topic,subcategory:updated.subtopic};});
+    mathCommand.validateClassificationSkills(management.classificationSkills,{categories:normalized.map(category=>({label:category.label,topics:category.topics.map(topic=>topic.label)}))});
     if(management.targets?.overrides) management.targets.overrides = management.targets.overrides.map(target => {const updated = reclassify({topic: target.category, subtopic: target.subcategory});return {...target,category:updated.topic,subcategory:updated.subtopic};});
     management.revision = randomBytes(16).toString('hex');
     changes.push({path: state.managementPath, source: state.managementSource, next: JSON.stringify(management, null, 2)+'\n'});

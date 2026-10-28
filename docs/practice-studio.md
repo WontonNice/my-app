@@ -1,8 +1,60 @@
-# Practice and video studio
+# Infinite Practice Studio
 
-Open **Teacher Study Hall → Practice & video studio**, or use **Manage practice & videos** on a math topic. The studio is at `/teacher/practice-studio`.
+Open **Math Center → Infinite Practice Studio** in the teacher app or local Content Studio. The same workspace is also available from **Teacher Study Hall → Practice & video studio**, **Manage practice & videos** on a math topic, and `/teacher/practice-studio`.
+
+## Create a custom code generator
+
+1. Browse Math Center's question bank or full exam player and choose **Create infinite practice**.
+2. Select the existing destination module, or name a new focused module under Foundation Building or General Practice. The brief preserves stable module and parent IDs, classification, the full source question, answer, explanation, and diagram references.
+3. Add any requirements for difficulty, variations, diagrams, or interactions. **Copy coding brief** and paste it into your coding chat in this repository. **View coding brief** provides a manual-copy fallback.
+4. The coding assistant implements a seeded TypeScript generator, checks its mathematics and rendering, and registers a disabled draft in the shared catalog. It uses the infinite-question-generator skill and the existing registration helpers. Copying the brief itself does not execute code, start a chat, or save a new generator.
+5. After implementation and registration, reload the studio, find the generator, and **Preview a generated question**. Review its questions and explanations, enable it, publish a new module when ready, then **Save changes**. Hosted code must also be deployed before students can run newly implemented families.
+
+Custom code can support diagrams and interactions through the existing question/player contracts, with renderer extensions when needed. It is not subject to the JSON template engine's 5,000-combination limit. Each family still needs an honest finite domain, repeat-cycle description, and tests appropriate to its mathematics.
+
+The library labels compiled generators **Custom code**. Existing JSON generators remain playable and editable through **Edit or export JSON template**; the creation workshop now uses coding briefs. No existing catalog entries are automatically converted or removed.
+
+The local Content Studio's practice adapter reads and writes the same `infinite_practice_catalog` table as the teacher app, using server-side Supabase configuration. It needs the same project and existing practice-catalog migration. A missing connection shows an error instead of creating a separate local practice library. Saves use revision checks and the editor's existing same-origin/edit-token protection.
+
+## Recommended organization
+
+Use the existing **category → subcategory → Skilled** taxonomy as the shared index for original questions and generators. Give focused modules short student-facing skill names, such as **Solving Two-Step Equations**. Keep source IDs as provenance rather than module names, and reuse several related generators within one skill module. One generator can serve more than one module without copying it.
+
+Use **Foundation Building** for deliberately curated prerequisite practice: turn off automatic inclusion and select the intended generators or contained modules. Existing automatic-inclusion settings are preserved. Use **General Practice** for the topic-wide enabled mix. Manage a generator through **Unreviewed → In review → Approved**, then enable it when ready; difficulty labels remain teacher judgments. The existing library filters expose unreviewed, disabled, and unassigned resources, while included generators appear first in each generation set with direct Edit and Preview actions.
+
+Useful next extensions are a review queue showing validation evidence beside each source, student practice recommendations drawn from the separate English/Math evidence matrices, and progress by skill across original and generated questions. These are follow-on recommendations, not automatic placement or mastery decisions implemented by this workflow.
 
 ## Organize practice
+
+### Shared Skilled classification
+
+Math questions now have three organization levels: **Main category → Specific topic → Skilled**. Skilled is a teacher-managed registry, separate from diagnostic skills and freeform skill tags. It starts empty; existing and unassigned questions display **TBD**. No question classifications or skill names are inferred from content.
+
+Open **Manage Skilled** beside a question’s Skilled selector, from a subcategory in **Manage categories**, from Math Command Center, or from Practice & video studio. Select the main category and specific topic, then add, rename, reorder, or delete skills. Changes are staged until **Save Skilled** and use revision checks to protect another window’s changes. Names must be unique within their own subcategory; TBD is reserved and always available.
+
+Assign a question or generator using its Skilled selector. Bulk question classification and question/generator library filters also support Skilled. Changing a question’s category or specific topic resets its Skilled selection to TBD. Existing question wording, keys, and practice generators are preserved.
+
+Module titles are editable independently of Skilled classification, including the two required topic groups. Editing a title records a custom name, which survives validation and taxonomy/skill reconciliation. Legacy modules that still follow a skill name keep that behavior until manually renamed. New modules start with an editable name and TBD classification. Names do not change resource IDs, assignments, hierarchy, or saved session snapshots. Deleting a skill returns linked classifications to TBD without deleting content or replacing custom titles. Deleted definition IDs cannot be reused to accidentally restore old assignments.
+
+Definitions persist in the existing Math Command management state and its durable metadata adapter, so no new database migration is required. Native source saves preserve the stable Skilled ID. The registry is shared by the local Content Studio and teacher app; returning focus refreshes definitions, while stale native question drafts require a reload before saving over newer classifications.
+
+### Generator library and focused skills
+
+In a practice module's **Generation set**, use **Show generators → Included only** to see its selected, inherited, or automatically included generators, or **All generators** to browse eligible additions. Category and subcategory filters combine with inclusion and text search without changing the module's selection. Required topic groups stay scoped to their own subcategory. The shown count is separate from the module's full enabled-generator count.
+
+**Preview example** beside any generator opens that generator in the floating question player directly from the Practice modules tab, including generators not currently selected. **Preview module question** uses the module's full effective draft generation set, including contained and automatic generators; list filters do not narrow the preview mix. Unpublished modules can be previewed, empty modules have the module-preview button disabled, and no preview saves catalog changes or student practice progress. Closing the player returns focus to the button that opened it.
+
+Use **Question generators** to search titles, descriptions, IDs, skill tags, prerequisite skills, source question IDs, programs, and subjects. Filter by category/subcategory, enabled state, review status, difficulty, program, or subject. **No focused module** finds generators without a curated module assignment; automatic topic groups do not count as focused assignments. Sort by manual order, title, or review status. The library renders 40 matching generators per page; **Select all matching generators** includes every page.
+
+Each generator has teacher-editable **Skills and review** metadata and a **Used in** list showing direct, automatic, and inherited module uses, including inactive and hidden uses. Program labels (SHSAT, SAT, PSAT, AP) and the subject are organizational metadata; they do not change enrollment, publication, or program routing. Difficulty starts **Unassigned** and review status starts **Unreviewed**. Prerequisites are planning notes, not access restrictions. Known built-ins receive their original source question IDs; unknown sources are left blank.
+
+Select generators for bulk enable/disable, review status, difficulty, topic placement, skill tags, program, or subject changes. Changes remain drafts until **Save changes**. Bulk disabling hides focused modules left without any enabled generators; re-enabling a generator does not republish a hidden module. Moving generators retains explicit focused-module references; automatic groups follow the new category/subcategory. **Set program** replaces program labels; individual editing supports multiple labels. Validation rejects unsupported statuses, duplicate tags, invalid source IDs, and oversized metadata.
+
+Probability uses five focused modules: **Listing Outcomes**, **Probability After Removal**, **Draws Without Replacement**, **Draws With Replacement**, and **Conditional Probability**. Each of the eight built-in probability generators belongs to one of these skill collections. General Practice supplies the topic-wide mix. These collections preserve the existing Foundation Building placement without asserting a difficulty progression.
+
+For existing saved catalogs, run `node tools/organize-practice-catalog.cjs` to preview, then append `--apply` to save one revision-checked migration. It reuses an existing matching Listing Outcomes module, preserves customized collections, stable resource IDs, visibility, videos, and running-session snapshots, and saves a local catalog backup before writing. Student choices for a split collection follow the new modules until the student configures them independently. Rerunning the preview after applying should report no changes. The catalog retains its existing limit of 1,000 generators and 1,000 modules.
+
+`node tools/preview-study-hall.cjs --port=4351 --generators=120` supplies an isolated fictional library for testing bulk actions and pagination. It never reads credentials or saves to the real catalog.
 
 - **Practice modules:** every category/subcategory starts with **Foundation Building** and **General Practice**. Empty topics show both defaults with Start disabled until generators are available. General Practice automatically includes every enabled generator in its own subcategory. Foundation Building supports a curated selection and contained modules. Existing selections, visibility, IDs, and running sessions are preserved.
 - The studio groups modules, generators, and videos by **category → subcategory**. Groups collapse independently, with resource counts. Use the Category/Subcategory filters and search by title, description, or ID. New resources inherit the current location. Reorder individual resources within a subcategory; default modules stay first. Catalogs support up to 1,000 modules and 1,000 generators.
@@ -15,7 +67,7 @@ Open **Teacher Study Hall → Practice & video studio**, or use **Manage practic
 - **Delete generator** removes it from the library and all module references. Empty individual modules are hidden. Deletion is staged until Save changes, with an Undo deletion option; running sessions retain their original snapshot.
 - **Save changes** saves the catalog centrally. Published modules appear in their topic's existing scrollable Infinite Practice box. Launching a module opens the existing exam player directly. The student home page now shows the same module box above the exam countdown. Per-student module/topic choices are stored on the current device and do not change the teacher catalog.
 
-The editable template library currently supports one-step and two-step linear inequalities. New mathematical families need a supported template; organizing modules, mixing existing generators, and adjusting supported templates require no code.
+The library supports existing inequality settings, custom code families, and previously imported JSON templates. Creating new families now uses a coding brief; organizing modules and mixing registered generators remains available in the studio.
 
 **Inequalities: Variables on Both Sides** is a built-in module under **Algebra → Inequalities**, based on `2022-2023-form-b-q70` (`2x + 11 > 3x + 9`). It varies both coefficients and constants, covers both strict inequality directions and sign flips, and provides four choices with worked explanations. Each seeded cycle contains 133,200 distinct stems with integer solution boundaries before repeating; practice continues across cycles. New catalogs include it automatically. For an existing saved catalog, run `node tools/register-q70-practice.cjs` to preview registration, then append `--apply` to add the generator and its module with a revision check. Registration preserves existing resources and is safe to rerun.
 
@@ -26,6 +78,8 @@ Generator previews open in a compact floating player within the studio, with a v
 **Overlapping Groups** is under **Statistics and Probability → Overlapping Groups**, based on `2021-2022-form-a-q76`. It gives two group percentages and their overlap, then asks for the percentage in neither group. Each cycle has 275,643 distinct stems across population, school, and library contexts. All four disjoint groups are nonnegative and sum to 100%; explanations show the overlap adjustment and check all four groups. The source example gives `100 − (45 + 60 − 21) = 16%`. It uses the existing exam player and feedback. New catalogs include it automatically; for an existing catalog, preview with `node tools/register-overlapping-groups.cjs`, then append `--apply` to save with a revision check.
 
 ## Curate references
+
+**Probability (Foundation Building)** uses the five focused skill modules described above under **Statistics and Probability → Probability**, containing eight built-in generators from `2020-2021-form-b-math-2`, `2020-2021-form-b-q102`, `2020-2021-form-b-q107`, `2021-2022-form-a-q78`, `2022-2023-form-a-q100`, `2022-2023-form-b-q100`, `2022-2023-form-b-q101`, and `2022-2023-form-b-q99`. It covers cube-sum outcome counts, ratios after removals, ordered draws, same-color draws without replacement, draws with replacement, spinner products, unordered color-pair sample spaces, and conditional probabilities. Cube counts retain short response; the other families use multiple choice. Sample-space wording explicitly says that order does not matter and each pair is listed once. All full cycles are checked for distinct stems and valid answers, including every original numerical example. `node tools/register-probability-practice.cjs` previews one batch registration; append `--apply` to save. Default module metadata supports explicit `placement: 'foundation'` while ordinary new modules remain in General Practice.
 
 The word-problem batch adds **Overlapping Groups: Survey Totals** (`2025-2026-form-a-math-5`, 1,234,800 stems), **Rates: Remaining Reading Time** (`2021-2022-form-a-q95`, 58,368 stems), and **Ratios: Mixture Amounts** (`2021-2022-form-a-q114`, 342,144 stems). The survey total uses numeric short response; reading time uses exact mixed-number hours; mixture amounts use multiple choice. Each includes worked feedback, the original source stem, deterministic full cycles, and the existing exam player. The generators are scoped to their named subcategories and join those topics’ General Practice automatically. `node tools/register-word-problem-practice.cjs` previews registration; append `--apply` to save all three in one revision while retaining teacher resources and selections.
 

@@ -9,6 +9,7 @@ import assessmentData from "../server/data/assessments.json";
 import "../client/src/styles/global.css";
 import { StudentAnalyticsWorkstation } from "../client/src/components/StudentAnalyticsWorkstation";
 import { StudentProgressRoster } from "../client/src/components/StudentProgressRoster";
+import type { ContentInventory } from "../client/src/lib/passageOrganization";
 
 const assessments = assessmentData as unknown as TeacherAssessment[];
 const assessment = assessments.find(item => item.id === "2020-2021-form-b") ?? assessments[0];
@@ -27,8 +28,19 @@ const results = Array.from({ length: 6 }, (_, index) => {
 const paper = { ...results[0], assessmentId: "manual-fixture", title: "QA Paper totals only", answers: {}, topics: [], questionTypes: [], source: "manual" };
 // Demonstration categories are confined to cloned QA content, never authored data.
 const categorizedContent = { ...content, passageSets: content.passageSets.map((set, index) => ({ ...set, passage: { ...set.passage, passageCategory: index % 3 === 0 ? "official_handbook" as const : index % 3 === 1 ? "prestige" as const : "miscellaneous" as const } })) };
+const passageInventory: ContentInventory = [
+  ["The Lighthouse", "2020-2021 Form B", "Never assigned", false],
+  ["The Lighthouse", "2024-2025 Form A", "Assigned", true],
+  ["A Walk Through the Wetlands", "Practice collection", "In progress", false],
+  ["The Invention of Paper", "Practice collection", "Planned", false],
+  ["An Afternoon at the Observatory", "2020-2021 Form B", "Completed", true],
+].map(([title, versionLabel, status, hasCompleted], index) => ({
+  content: { id: `qa-passage-${index}`, kind: "passage", title: String(title), versionLabel: String(versionLabel), subject: "English", passageCategory: "official_handbook", contentSource: "QA source", skills: [], aliases: [`qa-passage-${index}`], questionCount: 5, category: "Nonfiction", href: "#" },
+  status: status as ContentInventory[number]["status"], hasCompleted: Boolean(hasCompleted), lastCompletedAt: hasCompleted ? "2026-10-10T15:00:00Z" : null, priorCount: hasCompleted ? 1 : 0, lastActivity: null, dueDate: null, plannedDate: null, assignmentCount: status === "Never assigned" ? 0 : 1,
+}));
 function CategoryPreview() {
-  return <main style={{ padding: 20, maxWidth: 1440, margin: "auto" }}><p>Isolated QA · fictional student responses and illustrative categories · actual exam questions · no production writes</p><StudentAnalyticsWorkstation inputs={results.map(result => ({ result, content: categorizedContent, subjects: result.subjects, passages: result.passages }))} answerLabel={(_question, answer) => answer === undefined ? "Unanswered" : JSON.stringify(answer)} correctLabel={question => question.correctChoiceId ?? JSON.stringify(question.correctChoiceIds ?? question.correctTextAnswers)} renderExam={exam => <p>{exam.title}</p>} /></main>;
+  const matrixResults = Array.from({ length: 10 }, (_, index) => ({ ...results[index % results.length], completedAt: `2026-09-${String(1 + index * 2).padStart(2, "0")}T12:00:00Z`, title: `QA Practice ${index + 1}` }));
+  return <main className="teacher-panel" style={{ padding: 20, maxWidth: 1440, margin: "auto" }}><p>Isolated QA · fictional student responses and illustrative categories · actual exam questions · no production writes</p><StudentAnalyticsWorkstation passageInventory={passageInventory} preferenceKey="qa-subject-matrices" inputs={matrixResults.map(result => ({ result, content: categorizedContent, subjects: result.subjects, passages: result.passages }))} answerLabel={(_question, answer) => answer === undefined ? "Unanswered" : JSON.stringify(answer)} correctLabel={question => question.correctChoiceId ?? JSON.stringify(question.correctChoiceIds ?? question.correctTextAnswers)} renderExam={exam => <p>{exam.title}</p>} /></main>;
 }
 function Preview() {
   const [mode, setMode] = useState("Mixed");

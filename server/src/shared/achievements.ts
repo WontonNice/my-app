@@ -1,4 +1,5 @@
 import { submittedExamSections } from "./examCompletion";
+import { loginStreak } from "./accountPreferences";
 
 export type AchievementDesign = {
   title: string;
@@ -8,21 +9,93 @@ export type AchievementDesign = {
   frame: "classic" | "spotlight" | "minimal";
   image: string;
 };
+export type AchievementId = "perfect-math" | "perfect-english" | "login-week";
 export type AchievementProgress = {
-  id: "perfect-math";
+  id: AchievementId;
   percentage: number;
   correct: number;
   total: number;
   earnedAt: string | null;
   examTitle: string | null;
   attempts: number;
+  currentStreak?: number;
+  bestStreak?: number;
 };
 export type AchievementResponse = { design: AchievementDesign; revision: number; progress?: AchievementProgress };
+export type AchievementEntry = AchievementResponse & { id: AchievementId };
+export type AchievementCollectionResponse = AchievementResponse & { achievements: AchievementEntry[] };
 export const defaultAchievementDesign: AchievementDesign = {
   title: "Perfect on a math test",
   description: "Score 100% on a submitted math test or the complete Math section of an assessment.",
   accent: "#247565", icon: "trophy", frame: "classic", image: "",
 };
+export const defaultEnglishAchievementDesign: AchievementDesign = {
+  title: "Perfect on an English test",
+  description: "Score 100% on the complete English section of an official SHSAT practice test. Prestige tests do not count.",
+  accent: "#655082", icon: "medal", frame: "classic", image: "",
+};
+export const defaultLoginAchievementDesign: AchievementDesign = {
+  title: "Seven days in a row",
+  description: "Log in on seven consecutive days. Each day counts once, using New York time. Once earned, this badge stays unlocked.",
+  accent: "#995442", icon: "star", frame: "classic", image: "",
+};
+export type LoginAchievementProfile = {
+  login_streak?: number;
+  login_best?: number;
+  login_last_day?: string | null;
+  login_week_earned_at?: string | null;
+};
+export function weeklyLoginProgress(profile: LoginAchievementProfile | null, now = new Date()): AchievementProgress {
+  const streak = loginStreak(profile, now);
+  const best = Number.isSafeInteger(streak.best) && streak.best > 0 ? streak.best : 0;
+  const correct = Math.min(best, 7);
+  const earnedAt = best >= 7 && typeof profile?.login_week_earned_at === "string" && Number.isFinite(Date.parse(profile.login_week_earned_at)) ? profile.login_week_earned_at : null;
+  return { id: "login-week", percentage: correct / 7 * 100, correct, total: 7, earnedAt, examTitle: null, attempts: 0, currentStreak: streak.current, bestStreak: best };
+}
+
+// Explicit official handbook forms. Digital SHSAT Practice Tests are Prestige;
+// titles and passage categories cannot reliably identify an entire official test.
+export const officialPracticeTestIds: ReadonlySet<string> = new Set([
+  "2017-2018-form-a", "2017-2018-form-b", "2018-2019-form-a", "2018-2019-form-b",
+  "2019-2020-form-a", "2019-2020-form-b", "2020-2021-form-a", "2020-2021-form-b",
+  "2021-2022-form-a", "2021-2022-form-b", "2022-2023-form-a", "2022-2023-form-b",
+  "2023-2024-form-a", "2023-2024-form-b", "2024-2025-form-a", "2024-2025-form-b",
+  "2025-2026-form-a", "2025-2026-form-b", "2026-2027-form-a", "2026-2027-form-b",
+  "2026-2027-form-c", "2026-2027-form-d",
+]);
+
+/** The caller supplies question totals from the server's official exam catalog. */
+export function perfectEnglishProgress(results: Record<string, unknown>[], questionTotals: ReadonlyMap<string, number>): AchievementProgress {
+  const progress: AchievementProgress = { id: "perfect-english", percentage: 0, correct: 0, total: 0, earnedAt: null, examTitle: null, attempts: 0 };
+  const seen = new Set<string>();
+  for (const result of results) {
+    if (typeof result.assessmentId !== "string" || !officialPracticeTestIds.has(result.assessmentId) || result.source === "answer_sheet" || !submittedExamSections(result).includes("english")) continue;
+    const english = Array.isArray(result.subjects) ? result.subjects.find(value => value && typeof value === "object" && value.subject === "English Language Arts") : null;
+    if (!english || !Number.isInteger(english.total) || english.total <= 0 || !Number.isInteger(english.correct) || english.correct < 0 || english.correct > english.total) continue;
+    if (english.total !== questionTotals.get(result.assessmentId)) continue;
+    const snapshot = result.analysisContent as { passageSets?: { questions?: unknown[] }[]; standaloneSection?: { questions?: unknown[] } } | undefined;
+    if (snapshot) {
+      const total = (snapshot.passageSets ?? []).reduce((sum, set) => sum + (set.questions?.length ?? 0), 0) + (snapshot.standaloneSection?.questions?.length ?? 0);
+      if (english.total !== total) continue;
+    }
+    const key = `${result.assessmentId}:${result.attemptId ?? result.completedAt}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    progress.attempts++;
+    const percentage = english.correct / english.total * 100;
+    const sectionDates = result.sectionCompletedAt && typeof result.sectionCompletedAt === "object" ? result.sectionCompletedAt as Record<string, unknown> : {};
+    const completedAt = typeof sectionDates.english === "string" && Number.isFinite(Date.parse(sectionDates.english)) ? sectionDates.english : result.completedAt;
+    const earnsFirst = english.correct === english.total && typeof completedAt === "string" && Number.isFinite(Date.parse(completedAt)) && (!progress.earnedAt || Date.parse(completedAt) < Date.parse(progress.earnedAt));
+    if (!progress.total || percentage > progress.percentage || earnsFirst) {
+      progress.percentage = percentage;
+      progress.correct = english.correct;
+      progress.total = english.total;
+      progress.examTitle = typeof result.title === "string" ? result.title : "Official English practice test";
+    }
+    if (earnsFirst) progress.earnedAt = completedAt as string;
+  }
+  return progress;
+}
 
 /** Only submitted Math counts. A partial English result or unanswered Math never moves this bar. */
 export function perfectMathProgress(results: Record<string, unknown>[]): AchievementProgress {

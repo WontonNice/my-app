@@ -1,6 +1,6 @@
 const PartBTools = {
   records() {
-    const records = [...app.state.standaloneItems.filter(q => !q.duplicateOf), ...(app.state.standaloneImportDrafts || []).map(entry => ({ ...entry.question, importDraftId: entry.id }))];
+    const records = [...app.state.standaloneItems.filter(q => !q.duplicateOf), ...(app.state.standaloneImportDrafts || []).map(entry => ({ ...entry.question, importDraftId: entry.id, importVersion: entry.version }))];
     return app.standaloneDirty && app.standaloneDraft ? [...records.filter(q => q.id !== app.standaloneDraft.id), { ...app.standaloneDraft, unsaved: true }] : records;
   },
   tagsMarkup(item) {
@@ -49,7 +49,8 @@ const PartBTools = {
   card(item) {
     const usage = PartBBank.usage(item, app.state.standaloneItems, app.state.tests || []);
     const choices = item.choices || item.items || [];
-    return `<article class="studio-part-b-repeat-copy">${this.tagsMarkup(item)}<small>${item.unsaved ? 'Current unsaved question' : item.importDraftId ? 'Imported draft' : 'Saved source version'} · ${escapeHtml(item.topic || 'Unclassified')}</small><p><strong>${escapeHtml(PartBBank.text(item.promptHtml || item.prompt))}</strong></p><p>${escapeHtml(PartBBank.text(item.stimulusHtml || item.stimulus))}</p><ol type="A">${choices.map(choice => `<li>${escapeHtml(PartBBank.text(choice.html || choice.text))}${choice.id === item.correctChoiceId || item.correctPlacements?.[choice.id] ? ' ✓' : ''}</li>`).join('')}</ol>${item.explanation ? `<details><summary>Source explanation</summary><p>${escapeHtml(item.explanation).replaceAll('\n', '<br>')}</p></details>` : '<small>No explanation</small>'}<small>Saved exams: ${usage.map(test => escapeHtml(test.title)).join(', ') || 'Not assigned yet'}</small>${item.unsaved ? '' : `<button type="button" data-open-copy="${escapeHtml(item.id)}">Open in editor</button>`}</article>`;
+    const marked = ['promptHtml', 'stimulusHtml', 'instructionsHtml'].flatMap(field => [...String(item[field] || '').matchAll(/<(u|sup|sub)\b[^>]*>([\s\S]*?)<\/\1>/gi)].map(match => `${({u:"Underline",sup:"Superscript",sub:"Subscript"})[match[1].toLowerCase()]}: ${PartBBank.text(match[2])}`));
+    return `<article class="studio-part-b-repeat-copy">${this.tagsMarkup(item)}<small>${item.unsaved ? 'Current unsaved question' : item.importDraftId ? 'Imported draft' : 'Saved source version'} · ${escapeHtml(item.topic || 'Unclassified')}</small><p><strong>${escapeHtml(PartBBank.text(item.promptHtml || item.prompt))}</strong></p><p>${escapeHtml(PartBBank.text(item.stimulusHtml || item.stimulus))}</p><small>Source formatting: ${marked.length ? escapeHtml(marked.join(' · ')) : 'No underlining or superscript/subscript'}</small><ol type="A">${choices.map(choice => `<li>${escapeHtml(PartBBank.text(choice.html || choice.text))}${choice.id === item.correctChoiceId || item.correctPlacements?.[choice.id] ? ' ✓' : ''}</li>`).join('')}</ol>${item.explanation ? `<details><summary>Source explanation</summary><p>${escapeHtml(item.explanation).replaceAll('\n', '<br>')}</p></details>` : '<small>No explanation</small>'}<small>Saved exams: ${usage.map(test => escapeHtml(test.title)).join(', ') || 'Not assigned yet'}</small>${item.unsaved ? '' : `<button type="button" data-open-copy="${escapeHtml(item.id)}">Open in editor</button>`}</article>`;
   },
   openRepeats(focusId = '') {
     let dialog = document.getElementById('part-b-repeats-dialog');
@@ -58,6 +59,12 @@ const PartBTools = {
     this.renderRepeats();
     if (!dialog.open) dialog.showModal();
   },
+  mergeActions(pair, index) {
+    if (!pair.canCombine && !pair.canVerify) return '';
+    const blocked = app.standaloneDirty && (!app.standaloneDraft?.importDraftId || ![pair.left.id, pair.right.id].includes(app.standaloneDraft.id));
+    const untagged = !PartBBank.labels(pair.left).length || !PartBBank.labels(pair.right).length;
+    return `<div class="studio-part-b-merge-actions"><p><strong>Verified these are the same question?</strong> Keep one bank question with all source tags. Choose which copy’s wording, answer and topic to use.</p><label class="field"><span>${untagged ? 'Source test / version for the untagged copy (optional)' : 'Additional source tag (optional)'}</span><input data-repeat-source="${index}" placeholder="e.g. 2019–2020 Form A"></label>${untagged ? '<small>A copy has no source tag. Add its test/version above if known; existing tags are always kept.</small>' : ''}<div class="studio-part-b-add-tag"><button class="secondary" type="button" data-keep-pair="${index}:left" ${blocked ? 'disabled' : ''}>Verify same · keep left</button><button class="secondary" type="button" data-keep-pair="${index}:right" ${blocked ? 'disabled' : ''}>Verify same · keep right</button></div></div>`;
+  },
   renderRepeats(query = '') {
     const dialog = document.getElementById('part-b-repeats-dialog');
     const records = this.records(), pairs = PartBBank.pairs(records);
@@ -65,7 +72,7 @@ const PartBTools = {
     const sources = focused ? PartBBank.versions(focused, app.state.standaloneItems) : [];
     const search = query.toLowerCase();
     const matches = pairs.filter(pair => (!this.focusId || [pair.left.id, pair.right.id].includes(this.focusId)) && [pair.left, pair.right].some(q => `${q.prompt} ${q.stimulus} ${PartBBank.labels(q).join(' ')}`.toLowerCase().includes(search)));
-    dialog.innerHTML = `<section class="panel"><div class="panel-head"><div><h2>Part B repeats</h2><p>${pairs.filter(p => p.canCombine).length} matching pairs · ${pairs.filter(p => !p.canCombine).length} pairs to check</p></div><button type="button" id="part-b-repeats-close">Close</button></div><p>Compare saved content before combining. The chosen copy becomes the bank question with both sets of source tags. Existing exam question IDs and source versions stay intact.</p>${app.standaloneDirty ? '<p class="studio-part-b-repeat-alert">You have unsaved edits. Save them before combining copies.</p>' : ''}<div class="studio-part-b-add-tag"><input id="part-b-repeat-search" aria-label="Search repeats" placeholder="Search a sentence or source test" value="${escapeHtml(query)}">${this.focusId ? '<button type="button" id="part-b-show-all">Show all questions</button>' : ''}</div><p role="status" id="part-b-repeat-status"></p>${sources.length > 1 ? `<details open><summary>Retained source versions (${sources.length})</summary><p>One bank question, with the original versions kept for existing exam references.</p><div class="studio-part-b-repeat-grid">${sources.map(q => this.card(q)).join('')}</div></details>` : ''}${matches.slice(0, 100).map((pair, i) => `<section class="studio-part-b-repeat-group"><h3>${escapeHtml(pair.label)}</h3><p>${escapeHtml(pair.reason)}</p><div class="studio-part-b-repeat-grid">${this.card(pair.left)}${this.card(pair.right)}</div>${pair.canCombine && !pair.left.importDraftId && !pair.right.importDraftId ? `<div class="studio-part-b-add-tag"><button type="button" data-keep-pair="${i}:left" ${app.standaloneDirty ? 'disabled' : ''}>Keep left bank copy</button><button type="button" data-keep-pair="${i}:right" ${app.standaloneDirty ? 'disabled' : ''}>Keep right bank copy</button></div>` : pair.canCombine ? '<p>Finish & save the imported draft to reuse the matching bank question and combine its source tags.</p>' : ''}</section>`).join('') || '<p>No uncombined repeats match this view.</p>'}${matches.length > 100 ? '<p>Showing the first 100 pairs. Use search to narrow the results.</p>' : ''}</section>`;
+    dialog.innerHTML = `<section class="panel"><div class="panel-head"><div><h2>Part B repeats</h2><p>${pairs.filter(p => p.canCombine).length} matching pairs · ${pairs.filter(p => !p.canCombine).length} pairs to check</p></div><button type="button" id="part-b-repeats-close">Close</button></div><p>Compare saved content before combining. The chosen copy becomes the bank question with both sets of source tags. Existing exam question IDs and source versions stay intact.</p>${app.standaloneDirty ? `<p class="studio-part-b-repeat-alert">${app.standaloneDraft?.importDraftId ? 'Your current draft edits will be included when you verify this pair.' : 'You have unsaved edits. Save them before combining copies.'}</p>` : ''}<div class="studio-part-b-add-tag"><input id="part-b-repeat-search" aria-label="Search repeats" placeholder="Search a sentence or source test" value="${escapeHtml(query)}">${this.focusId ? '<button type="button" id="part-b-show-all">Show all questions</button>' : ''}</div><p role="status" id="part-b-repeat-status"></p>${sources.length > 1 ? `<details><summary>Source history · ${sources.length} references</summary><p>One bank question, with the original versions kept for existing exam references.</p><div class="studio-part-b-repeat-grid">${sources.map(q => this.card(q)).join('')}</div></details>` : ''}${matches.slice(0, 100).map((pair, i) => `<section class="studio-part-b-repeat-group"><h3>${escapeHtml(pair.label)}</h3><p>${escapeHtml(pair.reason)}</p><div class="studio-part-b-repeat-grid">${this.card(pair.left)}${this.card(pair.right)}</div>${this.mergeActions(pair, i)}</section>`).join('') || '<p>No uncombined repeats match this view.</p>'}${matches.length > 100 ? '<p>Showing the first 100 pairs. Use search to narrow the results.</p>' : ''}</section>`;
     dialog.querySelector('#part-b-repeats-close').onclick = () => dialog.close();
     dialog.querySelector('#part-b-show-all')?.addEventListener('click', () => { this.focusId = ''; this.renderRepeats(query); });
     dialog.querySelector('#part-b-repeat-search').oninput = event => {
@@ -81,20 +88,23 @@ const PartBTools = {
     });
     dialog.querySelectorAll('[data-keep-pair]').forEach(button => button.onclick = () => {
       const [index, side] = button.dataset.keepPair.split(':');
-      const pair = matches[Number(index)]; this.combine(pair[side], pair[side === 'left' ? 'right' : 'left']);
+      const pair = matches[Number(index)];
+      const label = dialog.querySelector(`[data-repeat-source="${index}"]`).value.trim();
+      this.combine(pair[side], pair[side === 'left' ? 'right' : 'left'], { verifiedSameQuestion: true, additionalLabels: label ? [label] : [] });
     });
   },
-  async combine(keep, other) {
-    if (app.saving || app.standaloneDirty) return;
-    if (!window.confirm(`Use the ${PartBBank.labels(keep).join(' / ') || 'selected'} copy as the bank question?\n\nSource tags will be combined. Existing exam questions retain their current wording, answers and IDs.`)) return;
+  async combine(keep, other, { verifiedSameQuestion = false, additionalLabels = [] } = {}) {
+    if (app.saving || app.standaloneDirty && (!app.standaloneDraft?.importDraftId || ![keep.id, other.id].includes(app.standaloneDraft.id))) return;
+    const drafts = [keep, other].filter(item => item.importDraftId).map(item => ({ id: item.importDraftId, version: item.importVersion, ...(item.unsaved ? { question: item } : {}) }));
     const dialog = document.getElementById('part-b-repeats-dialog');
     app.saving = true; dialog.inert = true;
     try {
-      const result = await api('/api/standalone-items/combine', { method: 'POST', body: JSON.stringify({ keepId: keep.id, removeId: other.id, sourceHash: app.state.standaloneSourceHash }) });
+      const result = await api('/api/standalone-items/combine', { method: 'POST', body: JSON.stringify({ keepId: keep.id, removeId: other.id, sourceHash: app.state.standaloneSourceHash, verifiedSameQuestion, additionalLabels, ...(drafts.length ? { drafts } : {}) }) });
       app.state.standaloneItems = result.items; app.state.standaloneSourceHash = result.sourceHash;
+      if (result.drafts) app.state.standaloneImportDrafts = result.drafts;
       app.selectedStandaloneItemId = result.item.id; app.standaloneDraft = clone(result.item); app.standaloneDirty = false;
-      renderStandaloneList(); renderStandaloneEditor(); this.focusId = result.item.id; this.renderRepeats();
-      setStatus('Repeated question combined. Both source tags and existing exam versions were kept.', 'success');
+      renderStandaloneList(); renderStandaloneEditor(); this.focusId = result.item.id; dialog.close();
+      setStatus(`Saved one bank question with ${PartBBank.labels(result.item).length} source tags.`, 'success');
     } catch (error) { dialog.querySelector('#part-b-repeat-status').textContent = error.message; }
     finally { app.saving = false; dialog.inert = false; studioUI.syncSaveState(); }
   },

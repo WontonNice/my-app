@@ -128,6 +128,7 @@ const assessment = { id: 'test-exam', title: 'Test exam', classId: 'shsat', corr
 const users = Object.fromEntries(['student', 'other', 'teacher', 'outsider'].map(id => [id, { id, app_metadata: { role: id === 'teacher' ? 'teacher' : 'student', class_ids: id === 'outsider' ? [] : ['shsat'] }, user_metadata: {} }]));
 function stub(relative, exports) { const filename = require.resolve(relative); require.cache[filename] = { id: filename, filename, loaded: true, exports }; }
 stub('../src/lib/auth.ts', { getAuthenticatedUser: async header => ({ user: users[header?.replace('Bearer ', '')] ?? null, error: 'Unauthorized' }), getUserRole: user => user.app_metadata.role, getEnrolledClassIds: metadata => metadata.class_ids, isStudentArchived: user => Boolean(user.app_metadata.student_archived_at) });
+stub('../src/lib/assessmentAccess.ts', {resolveAssessmentAccess:async value=>value,resolveAssessmentAccessList:async values=>values,assessmentAccessErrorHandler:(error,_request,_response,next)=>next(error)});
 stub('../src/config/assessments.ts', {
   findAssessmentForStudent: (id, classes) => id === assessment.id && classes.includes('shsat') ? assessment : undefined,
   listTeacherAssessments: () => [assessment],

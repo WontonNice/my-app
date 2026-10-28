@@ -1,3 +1,4 @@
+import { resolveAssessmentAccessList } from './assessmentAccess';
 import type { User } from "@supabase/supabase-js";
 import fs from "node:fs";
 import path from "node:path";
@@ -5,7 +6,7 @@ import { getEnrolledClassIds } from "./auth";
 import { supabase } from "./supabase";
 import { assignedContentIds, learningCatalog } from "./learningPlanStore";
 import { readQuestionBank } from "./questionBank";
-import { listTeacherAssessments, findAssessmentForStudent } from "../config/assessments";
+import { listTeacherAssessments } from "../config/assessments";
 import { getExamContent } from "./examContent";
 import type { BoardReference } from "../shared/boards";
 import { boardQuestion, type BoardContent } from "../shared/boardContent";
@@ -59,7 +60,7 @@ export async function boardContentCatalog(student: User, completedPassagesOnly =
     completedExams.set(row.assessment_id, ids);
   }
   const allPassages = learningCatalog().filter(item => item.kind === "passage");
-  const assessmentSources = listTeacherAssessments().map(assessment => ({ assessment, source: getExamContent(assessment.id) }));
+  const assessmentSources = (await resolveAssessmentAccessList(listTeacherAssessments())).map(assessment => ({ assessment, source: getExamContent(assessment.id) }));
   const completed = new Set(allPassages.filter(item => [item.id, ...item.aliases].some(id => completedBooks.has(id))).map(item => item.id));
   for (const { assessment, source } of assessmentSources) for (const set of source?.passageSets ?? []) {
     const ids = completedExams.get(assessment.id);
@@ -81,7 +82,7 @@ export async function boardContentCatalog(student: User, completedPassagesOnly =
   }
   for (const { assessment, source } of assessmentSources) {
     if (!source) continue;
-    const access = findAssessmentForStudent(assessment.id, getEnrolledClassIds(student.app_metadata));
+    const access = getEnrolledClassIds(student.app_metadata).includes(assessment.classId) ? assessment : undefined;
     const englishOpen = Boolean(access && (exams.has(assessment.id) || access.status === "open" && access.sectionAccess.english));
     const mathOpen = Boolean(access && (exams.has(assessment.id) || access.status === "open" && access.sectionAccess.math));
     for (const set of source.passageSets) {

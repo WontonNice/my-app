@@ -133,6 +133,10 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "stimulus": "(1) Flyby missions near Jupiter have been happening since 1973.\n\n\n\n(2) Flyby missions allow scientists to collect data about Jupiter and its moons.",
     "stimulusHtml": "(1) Flyby missions near Jupiter have been happening since 1973.\n<br>\n<br>(2) Flyby missions allow scientists to collect data about Jupiter and its moons.",
     "topic": "Sentence Structure",
+    "versionLabels": [
+      "2025-2026 Form B",
+      "2019-2020 Form A"
+    ],
     "versionLabel": "2025-2026 Form B",
     "choices": [
       {
@@ -232,7 +236,11 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
       }
     ],
     "correctChoiceId": "C",
-    "type": "multiple_choice"
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2025-2026 Form B",
+      "2019-2020 Form A"
+    ]
   },
   {
     "id": "part-b-question-8",
@@ -371,7 +379,11 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
       }
     ],
     "correctChoiceId": "A",
-    "type": "multiple_choice"
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2022-2023 Form A",
+      "2019-2020 Form A"
+    ]
   },
   {
     "id": "part-b-import-6ac23baedc82-90db8349",
@@ -652,7 +664,8 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "explanationHtml": "The question asks for the identification of the sentence that has an error in its construction and should be revised.<br><strong>E.</strong> Incorrect. There are no errors in the structure of sentence 1. The clause “who played in the Long Island area at the time” correctly modifies the noun “New York Nets.” “Who” is the correct relative pronoun to serve as the subject of the modifying clause because it refers to people rather than objects or things.<br><strong>F.</strong> <strong>CORRECT.</strong> Sentence 2 contains a structural error. The current placement of the clause “where the team played for thirty-five seasons” suggests that the clause is modifying the term “financial troubles,” which is illogical. The clause “where the team played for thirty-five seasons” should immediately follow the location, “New Jersey.” A revised version of the sentence might read, “After the team had financial troubles, the owner of the Nets decided to take the team to New Jersey, where the team played for thirty-five seasons.”<br><strong>G.</strong> Incorrect. There are no errors in the structure of sentence 3. The phrase “including two appearances in the NBA finals” is a nonrestrictive phrase that provides further detail about the team’s “sixteen playoff appearances.” The phrase is set off by a comma because it is not essential to understanding the meaning of the sentence.<br><strong>H.</strong> Incorrect. There are no errors in the structure of sentence 4. The clause “where the team now plays under the name the Brooklyn Nets” is a nonrestrictive clause that provides further detail about the team after its move back to New York in 2012. The clause is set off by a comma because it is not essential to understanding the meaning of the sentence.",
     "topic": "Modifiers",
     "versionLabels": [
-      "2022-2023 Form B"
+      "2022-2023 Form B",
+      "2019-2020 Form A"
     ],
     "versionLabel": "2022-2023 Form B",
     "choices": [
@@ -795,6 +808,77 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
       }
     ],
     "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-ae2365ec0e7f-bdcbc920",
+    "points": 1,
+    "prompt": "How should the paragraph be revised?",
+    "promptHtml": "How should the paragraph be revised?",
+    "stimulus": "(1) Danielle spent several hours preparing for an upcoming audition for a play at the community theater. (2) First she did vocal exercises to practice her diction and projection so that her words would carry clearly throughout the large auditorium. (3) Then she studies the text of the monologue to better understand the emotions, and motivations of the character she plans to portray. (4) Finally she recited her monologue in front of a mirror many times, making slight adjustments and improvements to her performance each time.",
+    "stimulusHtml": "<p>(1) Danielle spent several hours preparing for an upcoming audition for a play at the community theater. (2) First she did vocal exercises to practice her diction and projection so that her words would carry clearly throughout the large auditorium. (3) Then she studies the text of the monologue to better understand the emotions, and motivations of the character she plans to portray. (4) Finally she recited her monologue in front of a mirror many times, making slight adjustments and improvements to her performance each time.</p>",
+    "topic": "Sentence Structure",
+    "versionLabels": [],
+    "choices": [
+      {
+        "id": "A",
+        "html": "Sentence 1: Change <strong><em>spent</em></strong> to <strong>had spent</strong>, AND insert a comma after <strong><em>play</em></strong>.",
+        "text": "Sentence 1: Change spent to had spent, AND insert a comma after play."
+      },
+      {
+        "id": "B",
+        "html": "Sentence 2: Change <strong><em>did</em></strong> to <strong>does</strong>, AND insert a comma after <strong><em>projection</em></strong>.",
+        "text": "Sentence 2: Change did to does, AND insert a comma after projection."
+      },
+      {
+        "id": "C",
+        "html": "Sentence 3: Change <strong><em>studies</em></strong> to <strong>studied</strong>, AND delete the comma after <strong><em>emotions</em></strong>.",
+        "text": "Sentence 3: Change studies to studied, AND delete the comma after emotions."
+      },
+      {
+        "id": "D",
+        "html": "Sentence 4: Change <strong><em>recited</em></strong> to <strong>recites</strong>, AND delete the comma after <strong><em>times</em></strong>.",
+        "text": "Sentence 4: Change recited to recites, AND delete the comma after times."
+      }
+    ],
+    "correctChoiceId": "C",
+    "instructions": "Read this paragraph.",
+    "type": "multiple_choice",
+    "duplicateOf": "part-b-question-7"
+  },
+  {
+    "id": "part-b-import-08648a835822-af09c10f",
+    "points": 1,
+    "prompt": "Which sentence contains an error in its construction and should be revised?",
+    "promptHtml": "Which sentence contains an error in its construction and should be revised?",
+    "stimulus": "(1) In 1976 the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the Nets played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) Then in 2012, after a change in ownership, the team returned to New York and began playing under the name the Brooklyn Nets.",
+    "stimulusHtml": "<p>(1) In 1976 the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the Nets played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) Then in 2012, after a change in ownership, the team returned to New York and began playing under the name the Brooklyn Nets.</p>",
+    "topic": "Modifiers",
+    "versionLabels": [],
+    "choices": [
+      {
+        "id": "A",
+        "html": "sentence 1",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "sentence 2",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "sentence 3",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "sentence 4",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "B",
+    "instructions": "Read this paragraph.",
     "type": "multiple_choice"
   }
 ];

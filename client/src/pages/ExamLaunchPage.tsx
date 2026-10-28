@@ -113,9 +113,11 @@ export function ExamLaunchPage() {
           isExamResultCompleteForContent(savedResult, examContent);
         setIsComplete(complete);
         setHasSavedProgress(
-          Boolean(progress && (Object.keys(progress.answers).length > 0 || currentCompletedSections.length > 0)),
+          Boolean(progress && (progress.navigation || Object.keys(progress.answers).length > 0 || currentCompletedSections.length > 0)),
         );
-        const storedStartingSubject = getStoredStartingSubject(assessmentId);
+        const requestedSubject = new URLSearchParams(window.location.search).get("subject");
+        const storedStartingSubject = requestedSubject === "english" || requestedSubject === "math"
+          ? requestedSubject : progress?.navigation?.subject ?? getStoredStartingSubject(assessmentId);
         const preferredSubject = complete || nextAssessment.canEditSubmittedSections
           ? storedStartingSubject
           : getNextExamSubject(storedStartingSubject, currentCompletedSections);

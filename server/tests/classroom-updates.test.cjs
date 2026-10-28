@@ -15,11 +15,31 @@ stub('../src/lib/infiniteHomeworkCatalog.ts',{publishedPracticeCatalog:async()=>
 const menu={restaurant:'Test café',restaurantUrl:'https://www.ubereats.com/feed',taxBasisPoints:887.5,feeCents:125,items:[{id:'bowl',name:'Bowl',description:'Rice',priceCents:1250,available:true}]};
 let task,tables,rpcArgs;
 stub('../src/lib/learningPlanStore.ts',{assignmentDetail:async(studentId,taskId)=>studentId===student&&taskId===id?structuredClone(task):null,updateAssignment:async(old,changes)=>{if(old.revision!==task.revision)throw Object.assign(new Error('Changed'),{status:409});Object.assign(task,changes,{revision:task.revision+1});return structuredClone(task);}});
-stub('../src/lib/supabase.ts',{supabase:{from(table){const filters=[];let single=false,changes,addition,ignore=false,limit=1000;return{select(){return this;},eq(key,value){filters.push(row=>row[key]===value);return this;},neq(key,value){filters.push(row=>row[key]!==value);return this;},order(){return this;},limit(value){limit=value;return this;},maybeSingle(){single=true;return this;},update(value){changes=value;return this;},upsert(value,options){addition=value;ignore=options?.ignoreDuplicates;return this;},then(resolve,reject){const rows=tables[table]??=[];if(addition){const old=rows.find(row=>table==='infinite_homework_sessions'?row.assignment_id===addition.assignment_id:row.id===addition.id);if(!old)rows.push({...structuredClone(addition),revision:table==='infinite_homework_sessions'?0:1});else if(!ignore)Object.assign(old,addition);}const found=rows.filter(row=>filters.every(filter=>filter(row))).slice(0,limit);if(changes)found.forEach(row=>Object.assign(row,structuredClone(changes)));return Promise.resolve({data:structuredClone(single?found[0]??null:found),error:null}).then(resolve,reject);}};},rpc:async(name,args)=>{rpcArgs={name,...args};return{data:{data:args.p_data,status:'submitted',revision:1},error:null};}}});
+stub('../src/lib/supabase.ts',{supabase:{from(table){const filters=[];let single=false,changes,addition,ignore=false,limit=1000;return{select(){return this;},eq(key,value){filters.push(row=>row[key]===value);return this;},neq(key,value){filters.push(row=>row[key]!==value);return this;},order(){return this;},limit(value){limit=value;return this;},maybeSingle(){single=true;return this;},update(value){changes=value;return this;},upsert(value,options){addition=value;ignore=options?.ignoreDuplicates;return this;},then(resolve,reject){const rows=tables[table]??=[];if(addition){const old=rows.find(row=>table==='infinite_homework_sessions'?row.assignment_id===addition.assignment_id:row.id===addition.id);if(!old)rows.push({...structuredClone(addition),revision:table==='infinite_homework_sessions'?0:1});else if(!ignore)Object.assign(old,addition);}const found=rows.filter(row=>filters.every(filter=>filter(row))).slice(0,limit);if(changes)found.forEach(row=>Object.assign(row,structuredClone(changes)));return Promise.resolve({data:structuredClone(single?found[0]??null:found),error:null}).then(resolve,reject);}};},rpc:async(name,args)=>saveMealRequest(name,args)}});
+// In-memory persistence boundary follows the transaction's locking/CAS contract.
+// The SQL migration itself is verified separately on an isolated Postgres, when available.
+function saveMealRequest(name,args) {
+ rpcArgs={name,...args}; assert.equal(name,'save_classroom_meal_request');
+ const session=tables.classroom_meal_sessions.find(row=>row.id===args.p_session_id);
+ const previous=tables.classroom_meal_orders.find(row=>row.session_id===args.p_session_id&&row.student_id===args.p_student_id);
+ const fail=message=>({error:{code:'P0001',message},data:null});
+ if(!session?.open||session.revision!==args.p_menu_revision)return fail('Menu changed or ordering closed.');
+ if((previous?.revision??0)!==args.p_order_revision)return fail('Your request changed. Refresh before submitting.');
+ if(previous?.data.teacherDecision==='denied')return fail('Your teacher denied this request.');
+ if(args.p_new_request&&previous?.status!=='ordered')return fail('This request changed.');
+ if(previous?.status==='ordered'&&!args.p_new_request)return fail('Start another request to order again.');
+ if(args.p_cancel&&previous?.status!=='submitted')return fail('There is no pending request to cancel.');
+ if(!args.p_cancel&&(previous?.status==='ordered'||previous?.data.teacherDecision==='removed'&&previous.data.previousStatus==='ordered')) {
+   tables.classroom_meal_order_history.push(structuredClone(previous));
+ }
+ const saved={session_id:args.p_session_id,student_id:args.p_student_id,revision:(previous?.revision??0)+1,status:args.p_cancel?'cancelled':'submitted',updated_at:new Date().toISOString(),data:args.p_cancel?previous.data:args.p_data};
+ if(previous)Object.assign(previous,structuredClone(saved));else tables.classroom_meal_orders.push(structuredClone(saved));
+ return {data:{order:saved,orderedHistory:tables.classroom_meal_order_history.filter(row=>row.session_id===saved.session_id&&row.student_id===saved.student_id)},error:null};
+}
 let server,root;
 before(async()=>{const app=require('express')();app.use(require('express').json());app.use('/hw',require('../src/routes/infiniteHomework.ts').infiniteHomeworkRouter);app.use('/meals',require('../src/routes/classroomMeals.ts').classroomMealsRouter);server=await new Promise(resolve=>{const instance=app.listen(0,'127.0.0.1',()=>resolve(instance));});root=`http://127.0.0.1:${server.address().port}`;});
 after(()=>new Promise(resolve=>server.close(resolve)));
-beforeEach(()=>{task={id,studentId:student,kind:'practice',contentId:`infinite-practice:${catalog.modules[0].id}`,title:'Practice',assignedAt:new Date().toISOString(),status:'assigned',streakTarget:2,revision:1};tables={infinite_homework_sessions:[],classroom_meal_sessions:[{id,title:'Lunch',menu:structuredClone(menu),class_id:'shsat',open:true,revision:1}],classroom_meal_orders:[]};rpcArgs=null;});
+beforeEach(()=>{task={id,studentId:student,kind:'practice',contentId:`infinite-practice:${catalog.modules[0].id}`,title:'Practice',assignedAt:new Date().toISOString(),status:'assigned',streakTarget:2,revision:1};tables={infinite_homework_sessions:[],classroom_meal_sessions:[{id,title:'Lunch',menu:structuredClone(menu),class_id:'shsat',open:true,revision:1}],classroom_meal_orders:[],classroom_meal_order_history:[]};rpcArgs=null;});
 async function call(url,token='student',method='GET',body){const response=await fetch(root+url,{method,headers:{Authorization:`Bearer ${token}`,'Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{})});return{status:response.status,data:await response.json()};}
 function answer(question){if(question.correctChoiceId)return question.correctChoiceId;if(question.correctTextAnswers)return question.correctTextAnswers[0];if(question.numberLineResponse){const line=question.numberLineResponse;return JSON.stringify({value:line.correctValue,direction:line.correctDirection,endpoint:line.correctEndpoint});}throw new Error('Add answer fixture for this generator');}
 test('money includes fractional tax rate, rounds once, rejects unavailable or forged selections',()=>{
@@ -50,6 +70,52 @@ test('meal routes isolate identities and recompute prices before the locked data
 });
 const gallery = () => ({...menu,restaurant:'',items:[],restaurants:[{id:'cafe',name:'Lunch café',url:menu.restaurantUrl,image:'',rating:4.6,reviewCount:322,items:[{...menu.items[0],buyOneGetOne:true,image:''}]},{id:'bakery',name:'Bakery',url:menu.restaurantUrl,image:'',rating:null,reviewCount:null,items:[{id:'bread',name:'Bread',description:'',priceCents:400,available:true}]}]});
 function requestRow(){return {session_id:id,student_id:student,status:'submitted',revision:1,data:{studentName:'Student',notes:'Keep this note',menuRevision:1,quote:quoteMeal(menu,[{id:'bowl',quantity:1}])}};}
+test('students can order repeatedly while every ordered snapshot stays visible to the correct student and teacher',async()=>{
+ const body={sessionId:id,menuRevision:1,orderRevision:0,selections:[{id:'bowl',quantity:1}],notes:'First request'};
+ const teacherRoute='/meals/teacher/orders/'+id+'/'+student;
+ let saved=await call('/meals/student/orders','student','POST',body);assert.equal(saved.status,200);
+ await call(teacherRoute,'teacher','PATCH',{revision:1,status:'ordered'});
+ assert.equal((await call('/meals/student/orders','student','POST',{...body,orderRevision:2})).status,409);
+ saved=await call('/meals/student/orders','student','POST',{...body,orderRevision:2,newRequest:true,notes:'Second request',selections:[{id:'bowl',quantity:2}],orderedHistory:[{fake:true}]});
+ assert.equal(saved.status,200);assert.equal(saved.data.order.status,'submitted');assert.equal(saved.data.order.revision,3);
+ assert.equal(saved.data.orderedHistory.length,1);assert.equal(saved.data.orderedHistory[0].data.notes,'First request');assert.equal(saved.data.orderedHistory[0].data.quote.items[0].quantity,1);
+ assert.equal((await call('/meals/student','other')).data.orderedHistory.length,0);
+ assert.equal((await call('/meals/teacher','teacher')).data.orderedHistory[0].student_id,student);
+ assert.equal((await call('/meals/teacher','student')).status,403);
+ assert.equal((await call(teacherRoute,'teacher','PATCH',{revision:2,status:'submitted'})).status,409);
+ saved=await call('/meals/student/orders','student','POST',{...body,orderRevision:3,notes:'Edited second request'});
+ assert.equal(saved.data.orderedHistory.length,1);
+ await call(teacherRoute,'teacher','PATCH',{revision:4,status:'ordered'});
+ saved=await call('/meals/student/orders','student','POST',{...body,orderRevision:5,newRequest:true,notes:'Third request'});
+ assert.equal(saved.status,200);assert.equal(saved.data.orderedHistory.length,2);assert.equal(saved.data.orderedHistory[1].data.notes,'Edited second request');
+ saved=await call('/meals/student/orders','student','POST',{...body,orderRevision:6,cancel:true});
+ assert.equal(saved.data.order.status,'cancelled');assert.equal(saved.data.orderedHistory.length,2);
+ assert.equal((await call('/meals/student')).data.orderedHistory.length,2);
+});
+
+test('repeat requests respect closure, denial, explicit intent and revisions; duplicate submissions archive only once',async()=>{
+ const row=requestRow();row.status='ordered';tables.classroom_meal_orders.push(row);
+ const body={sessionId:id,menuRevision:1,orderRevision:1,selections:[{id:'bowl',quantity:1}],newRequest:true};
+ for(const invalid of [{...body,newRequest:'yes'},{...body,cancel:true}])assert.equal((await call('/meals/student/orders','student','POST',invalid)).status,400);
+ tables.classroom_meal_sessions[0].open=false;
+ assert.equal((await call('/meals/student/orders','student','POST',body)).status,409);assert.equal(tables.classroom_meal_order_history.length,0);
+ tables.classroom_meal_sessions[0].open=true;
+ const results=await Promise.all([call('/meals/student/orders','student','POST',body),call('/meals/student/orders','student','POST',body)]);
+ assert.deepEqual(results.map(result=>result.status).sort(),[200,409]);assert.equal(tables.classroom_meal_order_history.length,1);
+ assert.equal((await call('/meals/student/orders','student','POST',{...body,orderRevision:2})).status,409);
+ await call('/meals/teacher/orders/'+id+'/'+student,'teacher','PATCH',{revision:2,status:'denied'});
+ assert.equal((await call('/meals/student/orders','student','POST',{...body,orderRevision:3})).status,409);
+ assert.equal(tables.classroom_meal_order_history.length,1);
+});
+
+test('replacing a teacher-removed ordered request preserves that earlier meal',async()=>{
+ const row=requestRow();row.status='ordered';tables.classroom_meal_orders.push(row);
+ await call('/meals/teacher/orders/'+id+'/'+student,'teacher','PATCH',{revision:1,status:'removed'});
+ const saved=await call('/meals/student/orders','student','POST',{sessionId:id,menuRevision:1,orderRevision:2,selections:[{id:'bowl',quantity:2}]});
+ assert.equal(saved.status,200);assert.equal(saved.data.orderedHistory.length,1);assert.equal(saved.data.orderedHistory[0].data.quote.items[0].quantity,1);
+ assert.equal(saved.data.order.data.teacherDecision,undefined);
+});
+
 test('teacher can mark and undo ordered while the rest of the menu remains open',async()=>{
  tables.classroom_meal_orders.push(requestRow());const route='/meals/teacher/orders/'+id+'/'+student;
  assert.equal((await call(route,'student','PATCH',{revision:1,status:'ordered'})).status,403);
@@ -66,7 +132,7 @@ test('denial blocks student resubmission until restored; removal remains recover
  const restored=await call(route,'teacher','PATCH',{revision:2,status:'restore'});assert.equal(restored.status,200);assert.equal(restored.data.order.status,'submitted');assert.equal(restored.data.order.data.teacherDecision,undefined);
  const removed=await call(route,'teacher','PATCH',{revision:3,status:'removed'});assert.equal(removed.status,200);assert.equal(removed.data.order.data.teacherDecision,'removed');assert.equal(removed.data.order.data.quote.items[0].name,'Bowl');
  assert.equal((await call('/meals/student/orders','student','POST',{...body,orderRevision:4})).status,200);
- assert.equal((await call(route,'teacher','PATCH',{revision:4,status:'restore'})).data.order.status,'submitted');
+ assert.equal((await call(route,'teacher','PATCH',{revision:4,status:'restore'})).status,409);
 });
 test('removed ordered requests restore to ordered; cancelled student requests cannot be restored by these actions',async()=>{
  const row=requestRow();row.status='ordered';tables.classroom_meal_orders.push(row);const route='/meals/teacher/orders/'+id+'/'+student;

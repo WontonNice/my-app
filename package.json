@@ -12,6 +12,7 @@
     "scripts": {
         "dev": "concurrently --kill-others-on-fail \"node tools/wait-for-api.cjs && npm run dev --workspace client\" \"npm run dev --workspace server\"",
         "dev:client": "npm run dev --workspace client",
+        "dev:student": "npm run dev --workspace client -- --port 5174 --strictPort",
         "dev:server": "npm run dev --workspace server",
         "test:dev-startup": "node --test tools/dev-startup.test.cjs",
         "build": "npm run build --workspace client && npm run build --workspace server",
@@ -41,12 +42,12 @@
         "test:study-hall": "node --test server/tests/library-books.test.cjs server/tests/question-bank-routes.test.cjs tools/study-hall-view.test.cjs",
         "preview:study-hall": "node tools/preview-study-hall.cjs",
         "test:exam-review": "node --test server/tests/exam-review.test.cjs",
-        "test:student-analytics": "node --test server/tests/student-analytics.test.cjs server/tests/analytics-workspace.test.cjs server/tests/exam-section-progress.test.cjs",
+        "test:student-analytics": "node --test server/tests/student-analytics.test.cjs server/tests/analytics-workspace.test.cjs server/tests/exam-section-progress.test.cjs tools/student-evidence-matrix.test.cjs tools/passage-progress-view.test.cjs",
         "test:corrections": "node --test server/tests/exam-review.test.cjs server/tests/teacher-workflows.test.cjs server/tests/question-bank-routes.test.cjs server/tests/correction-navigation.test.cjs tools/corrections-view.test.cjs",
         "test:boards": "node --test server/tests/boards.test.cjs",
         "preview:boards": "node tools/preview-boards.cjs",
         "test:learning-plan": "node --test server/tests/learning-plan.test.cjs",
-        "test:math-command": "node --test server/tests/math-command-catalog.test.cjs server/tests/math-command-management.test.cjs server/tests/math-command-persistence.test.cjs server/tests/math-command.test.cjs tools/export-exam-content.test.cjs",
+        "test:math-command": "node --test server/tests/math-classification-skills.test.cjs server/tests/math-command-catalog.test.cjs server/tests/math-command-management.test.cjs server/tests/math-command-persistence.test.cjs server/tests/math-command.test.cjs tools/export-exam-content.test.cjs",
         "preview:math-command": "node tools/preview-math-command.cjs --port=4328",
         "seed:math-command": "node tools/seed-math-command.cjs",
         "test:question-bank": "node --test tools/question-bank.test.mjs tools/content-studio-bank.test.cjs extensions/shsatlab-ela-reader/reader.test.cjs extensions/shsatlab-ela-reader/automation.test.cjs extensions/shsatlab-ela-reader/popup.test.cjs extensions/shsatlab-ela-reader/bulk.test.cjs extensions/shsatlab-ela-reader/editor-sync.test.cjs server/tests/question-bank-routes.test.cjs",
@@ -60,7 +61,7 @@
         "test:document-import": "node tools/generate-document-prompt.mjs --check && node --test tools/document-import.test.mjs tools/document-render.test.cjs tools/math-import-batch.test.mjs",
         "content-editor:prompt": "node tools/generate-document-prompt.mjs",
         "test:passage-progress": "node --test server/tests/passage-organization.test.cjs server/tests/learning-plan.test.cjs tools/passage-progress-view.test.cjs",
-        "test:practice-studio": "node --test server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs"
+        "test:practice-studio": "node --test server/tests/generator-template.test.cjs server/tests/math-classification-skills.test.cjs tools/practice-organization.test.cjs server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/probability-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs"
     },
     "devDependencies": {
         "concurrently": "^9.1.2",

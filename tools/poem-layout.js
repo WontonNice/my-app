@@ -3,6 +3,12 @@ const plain = html => html.replace(/<[^>]*>/g, '').replace(/&nbsp;|&#160;/gi, ' 
 const words = text => text.replace(/\s+/g, ' ').trim();
 
 function balancedLines(html) {
+  // Pretty-printed HTML commonly puts a source-code newline beside each br.
+  // The br already supplies the verse break; displaying that newline inside
+  // break-spaces text adds a second row and moves the gutter number off-line.
+  // Keep horizontal indentation after the final newline and explicit br gaps.
+  html = html.replace(/(?:\r?\n[\t ]*)+(?=<br\s*\/?>)/gi, '')
+    .replace(/(<br\s*\/?>)(?:[\t ]*\r?\n)+/gi, '$1');
   const stack = [], lines = [];
   let line = '';
   const finish = () => { lines.push(line + [...stack].reverse().map(tag => `</${tag.name}>`).join('')); line = stack.map(tag => tag.html).join(''); };

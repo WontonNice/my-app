@@ -25,6 +25,7 @@ import satCrashCourse from './sat-crash-course-import.cjs';
 import { satCrashCourseImageImporter } from './sat-crash-course-assets.mjs';
 import partBBank from './part-b-bank.cjs';
 import mathCommand from './math-command-service.cjs';
+import practiceCatalogService from './practice-catalog-service.cjs';
 import { mathCommandAsset } from './math-command-bundle.mjs';
 import { openTeacherWorkspace } from './teacher-workspace.mjs';
 
@@ -1970,6 +1971,7 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
   const stimulusHtml = sanitizeRichText(question.stimulusHtml);
   const baseQuestion = {
     id,
+    skilled: typeof question.skilled === 'string' && question.skilled ? question.skilled : 'TBD',
     ...(typeof question.explanation === "string" ? { explanation: question.explanation } : {}),
     ...(normalizeMathImage(question.image, questionNumber)
       ? { image: normalizeMathImage(question.image, questionNumber) }
@@ -2543,7 +2545,7 @@ async function saveMath(input, { importedStatuses = {} } = {}) {
     importedStatuses[question.id] || importStatus[mathImportStatusKey(assessmentId, question.id)]?.needsEditing && question.importNeedsEditing !== false,
   ).map(question => question.id));
   const previousQuestions = new Map((existingSection?.questions || []).map(question => [question.id, question]));
-  if (Array.isArray(input.questions)) input = { ...input, questions: input.questions.map(question => incompleteQuestionIds.has(question.id) ? question : ({ ...question, ...validateMathClassification(question, configuration, previousQuestions.get(question.id)) })) };
+  if (Array.isArray(input.questions)) input = { ...input, questions: input.questions.map(question => incompleteQuestionIds.has(question.id) ? {...question,skilled:mathCommand.validateSkilled(question.skilled,question.topic,question.subtopic,configuration.classificationSkills??[])} : ({ ...question, ...validateMathClassification(question, configuration, previousQuestions.get(question.id)) })) };
   const section = normalizeMathSection(
     {
       ...input,
@@ -2975,6 +2977,7 @@ const partBImports = createPartBImports({
   workspaceRoot, sanitizeRichText, sanitizeInlineRichText,
   normalizeChoiceLabels: documentImport.normalizeChoiceLabels,
   listItems: listStandaloneItems, normalizeItem: normalizeStandaloneItem, saveItem: saveStandaloneItem,
+  combineItems: combineStandaloneItems,
   getTopics: () => topicsForPassageSection('revising_editing_b'),
 });
 
@@ -2990,13 +2993,28 @@ async function writeStandaloneItems(items) {
   await rename(standaloneItemsPath + '.tmp', standaloneItemsPath);
   return source;
 }
-async function combineStandaloneItems(input) {
+async function combineStandaloneItems(input, importedQuestions = []) {
   return mutateStandalone(async () => {
     const source = await readFile(standaloneItemsPath, 'utf8');
     if (!input.sourceHash || input.sourceHash !== hashSource(source)) throw new EditorError(409, 'The Part B bank changed. Refresh before combining repeats.');
-    let items;
-    try { items = partBBank.combine(await listStandaloneItems(), input.keepId, input.removeId); }
+    let items = await listStandaloneItems();
+    for (const question of importedQuestions) {
+      const existing = items.find(item => item.id === question.id);
+      if (existing) {
+        // Recover when the bank write succeeded but marking the draft published
+        // failed. A refreshed retry can finish without creating another question.
+        if (question.id !== input.keepId || existing.duplicateOf || !partBBank.match(existing, question)?.canCombine) throw new EditorError(409, 'This imported question is already in the bank. Refresh the editor.');
+        const other = items.find(item => item.id === input.removeId);
+        if (other?.duplicateOf && partBBank.rootId(other, items) === existing.id) return { item: existing, items, sourceHash: hashSource(source) };
+        continue;
+      }
+      items.push(question.id === input.keepId ? normalizeStandaloneItem(question) : question);
+    }
+    try { items = partBBank.combine(items, input.keepId, input.removeId, { verifiedSameQuestion: input.verifiedSameQuestion === true, additionalLabels: input.additionalLabels }); }
     catch (error) { throw new EditorError(400, error.message); }
+    // Unpublished drafts have no exam references. Their original source stays
+    // in the import archive, so only the chosen bank question needs exporting.
+    items = items.filter(item => !item.duplicateOf || !importedQuestions.some(question => question.id === item.id));
     const nextSource = await writeStandaloneItems(items);
     return { item: items.find(q => q.id === input.keepId), items, sourceHash: hashSource(nextSource) };
   });
@@ -3094,7 +3112,7 @@ async function getState() {
     section.questions = section.questions.map(question => {
       const status = importStatus[mathImportStatusKey(assessmentId, question.id)];
       const metadata = mathManagement.metadata[question.id] || {};
-      const managed = { ...question, ...(metadata.category !== undefined ? { topic: metadata.category } : {}), ...(metadata.subcategory !== undefined ? { subtopic: metadata.subcategory } : {}), commandMetadata: metadata };
+      const managed = { ...question, skilled:mathCommand.resolveSkilled(metadata.skilled??question.skilled,metadata.category??question.topic,metadata.subcategory??question.subtopic,mathManagement.classificationSkills??[]), ...(metadata.category !== undefined ? { topic: metadata.category } : {}), ...(metadata.subcategory !== undefined ? { subtopic: metadata.subcategory } : {}), commandMetadata: metadata };
       return status ? { ...managed, importNeedsEditing: status.needsEditing, importSource: status.source, importNotes: status.notes || [] } : managed;
     });
   }
@@ -3112,7 +3130,7 @@ async function getState() {
     mathSections,
     mathTopics,
     mathTopicConfiguration,
-    mathManagement: { revision: mathManagement.revision, skills: mathManagement.skills },
+    mathManagement: { revision: mathManagement.revision, skills: mathManagement.skills, classificationSkills:mathManagement.classificationSkills??[] },
     passageErrors,
     passageFormats,
     passageTypes,
@@ -3181,6 +3199,7 @@ function assessmentQuestionFrom(question) {
             : "",
     choices: Array.isArray(question.choices) ? question.choices.map((choice) => String(choice.text ?? "")) : [],
     id: String(question.id ?? ""),
+    ...(typeof question.skilled==='string'?{skilled:question.skilled}:{}),
     imageUrl: typeof question.image?.src === "string" ? question.image.src : "",
     points: Number.isFinite(Number(question.points)) ? Number(question.points) : 1,
     prompt: String(question.prompt ?? ""),
@@ -3489,6 +3508,11 @@ function verifyEditRequest(request) {
 async function handleRequest(request, response) {
   try {
     const url = new URL(request.url ?? "/", "http://127.0.0.1");
+    if (url.pathname === '/api/infinite-practice/catalog') {
+      if (request.method !== 'GET') verifyEditRequest(request);
+      const result = await practiceCatalogService.handlePracticeCatalogRequest({method:request.method,body:request.method==='GET'?undefined:await readJson(request),root:workspaceRoot});
+      sendJson(response,200,result);return;
+    }
     if (request.method === 'GET' && url.pathname.startsWith('/math-command/')) {
       const asset = await mathCommandAsset(workspaceRoot, url.pathname);
       if (!asset) throw new EditorError(404, 'Command Center asset not found.');
@@ -3515,7 +3539,8 @@ async function handleRequest(request, response) {
     }
     if (request.method === 'POST' && url.pathname === '/api/standalone-items/combine') {
       verifyEditRequest(request);
-      sendJson(response, 200, await combineStandaloneItems(await readJson(request))); return;
+      const input = await readJson(request);
+      sendJson(response, 200, Array.isArray(input.drafts) && input.drafts.length ? await partBImports.combine(input) : await combineStandaloneItems(input)); return;
     }
     if (request.method === 'GET' && url.pathname === '/api/standalone-import/prompt') {
       sendJson(response, 200, { prompt: partBImports.prompt() }); return;
@@ -3901,7 +3926,7 @@ async function handleRequest(request, response) {
     sendJson(response, 404, { message: "Not found." });
   } catch (error) {
     if (response.headersSent) { response.destroy(); return; }
-    const status = error instanceof EditorError || [400, 404, 409].includes(error.status) ? error.status : 500;
+    const status = error instanceof EditorError || [400, 404, 405, 409, 503].includes(error.status) ? error.status : 500;
     sendJson(response, status, {
       message: error instanceof Error ? error.message : "Unexpected Content Studio error.",
     });

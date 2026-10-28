@@ -6,7 +6,7 @@ import { evidenceSkillKey, buildStudentAnalytics, groupResponseEvidence, sortRes
 import type { ExamQuestion } from "../content/exams";
 import "../styles/student-analytics.css";
 import { PASSAGE_CATEGORIES, passageCategory, passageCategoryLabel } from "../../../server/src/shared/passageCategories";
-import { passageCompletionDate, passageSource, type ContentInventory } from "../lib/passageOrganization";
+import { contentHasCompleted, passageCompletionDate, passageSource, type ContentInventory, type PassageCompletionFilter } from "../lib/passageOrganization";
 import { StudentPassageProgress } from "./StudentPassageProgress";
 
 const pct = (value: number | null | undefined) => value == null ? "—" : `${value}%`;
@@ -33,6 +33,9 @@ export function StudentAnalyticsWorkstation({ inputs, preferenceKey = "student-a
   const [rowKeys, setRowKeys] = useState<Set<string> | null>(null);
   useEffect(() => { try { localStorage.setItem(preferenceKey, JSON.stringify(filters)); localStorage.setItem(preferenceKey+":views", JSON.stringify(views)); } catch { /* Optional preferences. */ } }, [filters, views, preferenceKey]);
   const [tab, setTab] = useState("analysis");
+  const [passageCompletion, setPassageCompletion] = useState<PassageCompletionFilter>("not_completed");
+  const [passageViewKey, setPassageViewKey] = useState(0);
+  const passageView = useRef<HTMLDivElement>(null);
   const [metric, setMetric] = useState<"overall" | "english" | "math">("overall");
   const [openExam, setOpenExam] = useState(() => initialAssessmentId ? buildStudentAnalytics(inputs).exams.find(exam => exam.result.assessmentId === initialAssessmentId)?.key ?? "" : "");
   const [skillSort, setSkillSort] = useState("weakest");
@@ -93,6 +96,8 @@ export function StudentAnalyticsWorkstation({ inputs, preferenceKey = "student-a
   const comparison = compare.map(key => data.exams.find(exam => exam.key === key)).filter((exam): exam is AnalyticsExam => Boolean(exam)).sort((a, b) => (Date.parse(a.date ?? "") || Infinity) - (Date.parse(b.date ?? "") || Infinity));
   const recentMistakes = chronologicalEvidence.filter(row => row.date && row.status === "Incorrect").slice(0, 5);
   // One indexed inventory fetch is shared with the learning plan, never one per passage.
+  const availablePassages = passageInventory?.filter(row => row.content.kind === "passage" && row.content.subject === "English");
+  const unfinishedPassages = availablePassages?.filter(row => !contentHasCompleted(row)).length;
   const passageStates = useMemo(() => new Map(passageInventory?.filter(row => row.content.kind === "passage").flatMap(row => row.content.aliases.map(id => [id, row.status] as const))), [passageInventory]);
   const passageMetadata = useMemo(() => new Map(passageInventory?.filter(row => row.content.kind === "passage").flatMap(row => [row.content.id, ...row.content.aliases].map(id => [id, row] as const))), [passageInventory]);
   const patternKind = filters.kind === "all" ? groupKind : filters.kind;
@@ -110,6 +115,13 @@ export function StudentAnalyticsWorkstation({ inputs, preferenceKey = "student-a
 
   return <div className={`sa-workstation${question ? " has-inspector" : ""}`}>
     <div className="sa-toolbar"><strong>Student analytics</strong><span>{data.exams.length} records · {data.evidence.length} verified response rows</span><button type="button" onClick={() => window.print()}>Print student summary</button></div>
+    <section className="sa-passage-shortcut" aria-label="Unfinished English passages">
+      <div><strong>{unfinishedPassages === undefined ? "English passage checklist" : `${unfinishedPassages} English ${unfinishedPassages === 1 ? "passage" : "passages"} not yet completed`}</strong><small>{availablePassages ? `${availablePassages.length - unfinishedPassages!} of ${availablePassages.length} completed · Includes passages never assigned` : "See completed and unfinished passages across the full library."}</small></div>
+      <button type="button" onClick={() => {
+        setPassageCompletion("not_completed"); setPassageViewKey(value => value + 1); setTab("passages");
+        requestAnimationFrame(() => { passageView.current?.focus({ preventScroll: true }); passageView.current?.scrollIntoView({ block: "start" }); });
+      }}>{unfinishedPassages ? "View unfinished passages" : "View passage checklist"}</button>
+    </section>
     <div className="sa-filters sa-global-filters"><label>Activity<select value={filters.kind} onChange={event=>setFilters({...filters,kind:event.target.value})}><option value="all">All activity types · grouped separately</option><option value="exam">Exams & sections</option><option value="practice">Question-bank practice</option><option value="passage">Library passages</option></select></label><label>Evidence source<select value={source} onChange={event=>{setSource(event.target.value);clear();setCompare([]);}}>{["All",...new Set(inputs.map(input=>input.sourceLabel??(input.result.source==="manual"?"Paper":input.result.source==="answer_sheet"?"Answer sheet":"Digital")))].map(value=><option key={value}>{value}</option>)}</select></label><label>Subject<select value={filters.section} onChange={event=>setFilters({...filters,section:event.target.value})}><option value="">English + Math</option><option value="english">English</option><option value="math">Math</option></select></label><label>From<input type="date" value={filters.from} onChange={event=>setFilters({...filters,from:event.target.value})} /></label><label>Through<input type="date" min={filters.from} value={filters.to} onChange={event=>setFilters({...filters,to:event.target.value})} /></label><label>Response-attempt basis<select value={filters.basis} onChange={event=>setFilters({...filters,basis:event.target.value})}><option value="all">All attempts</option><option value="first">First dated exposure</option><option value="latest">Latest dated exposure</option><option value="repeats">Repeated dated exposures only</option></select></label><label>Saved view<select value="" onChange={event=>{if(views[event.target.value])setFilters(views[event.target.value]);}}><option value="">Choose saved filters</option>{Object.keys(views).map(name=><option key={name}>{name}</option>)}</select></label><button type="button" onClick={()=>{const name=window.prompt("Name these analysis filters");if(name?.trim())setViews({...views,[name.trim()]:filters});}}>Save filters</button><button type="button" onClick={()=>{setFilters(defaultAnalysisFilters);clear();}}>Reset analysis</button></div>
     <p className="sa-data-note">Dates use America/New_York. Stored exam means exclude practice and passages. Attempt basis applies to response analysis, not historical test scores. Missing data stays unknown.</p>
     <div className="sa-snapshot">
@@ -138,9 +150,9 @@ export function StudentAnalyticsWorkstation({ inputs, preferenceKey = "student-a
       </section>
       <section className="sa-panel"><header><h3>Evidence coverage & definitions</h3></header><p>{data.evidence.length} verified response rows across {data.exams.length} records. {data.exams.filter(exam=>!exam.evidence.length).length} records provide no matching response rows under these filters.</p><p>Test accuracy includes verified blanks. Attempted accuracy excludes blanks. Full-exam averages include submitted English + Math exams; section-only scores stay in their subject.</p><p>Small samples remain visible in Detailed analysis. Inspect each question for its original response, recorded grade and content provenance.</p></section>
     </div>
-    <nav className="sa-tabs" aria-label="Analytics views">{[["analysis", "Detailed analysis"], ["overview", "Overview"], ["passages", "Passage progress"], ["skills", `Skills (${data.skills.length})`], ["groups", "Passages & question types"], ["history", `Assessment history (${data.exams.length})`], ["questions", `Question evidence (${data.evidence.length})`]].map(([id, label]) => <button aria-pressed={tab === id} key={id} onClick={() => setTab(id)} type="button">{label}</button>)}<button onClick={() => showEvidence("", "", "Incorrect")} type="button">Incorrect</button><button onClick={() => showEvidence("", "", "Unanswered")} type="button">Unanswered</button></nav>
+    <nav className="sa-tabs" aria-label="Analytics views">{[["analysis", "Detailed analysis"], ["overview", "Overview"], ["passages", `Passage checklist${unfinishedPassages === undefined ? "" : ` (${unfinishedPassages} unfinished)`}`], ["skills", `Skills (${data.skills.length})`], ["groups", "Passages & question types"], ["history", `Assessment history (${data.exams.length})`], ["questions", `Question evidence (${data.evidence.length})`]].map(([id, label]) => <button aria-pressed={tab === id} key={id} onClick={() => setTab(id)} type="button">{label}</button>)}<button onClick={() => showEvidence("", "", "Incorrect")} type="button">Incorrect</button><button onClick={() => showEvidence("", "", "Unanswered")} type="button">Unanswered</button></nav>
     {tab === "analysis" && <StudentAnalysisDetails evidence={data.evidence} exams={data.exams} basis={filters.basis} inspect={responses=>{ clear(); setRowKeys(new Set(responses.map(row=>row.key))); setTab("questions"); }} />}
-    {tab === "passages" && <StudentPassageProgress inventory={passageInventory} />}
+    {tab === "passages" && <div ref={passageView} tabIndex={-1} className="sa-passage-view"><StudentPassageProgress key={passageViewKey} inventory={passageInventory} completion={passageCompletion} onCompletionChange={setPassageCompletion} /></div>}
     {tab === "groups" && <section className="sa-panel">
       <header><h3>Response patterns</h3>{categoryDrilldown !== null && <button onClick={() => { setGroupBy("category"); setGroupCategory(categoryDrilldown); setCategoryDrilldown(null); }} type="button">← Back to categories</button>}</header>
       <div className="sa-filters">

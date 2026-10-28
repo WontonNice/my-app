@@ -22,6 +22,7 @@ export function saveMathTaxonomy(root: string, input: Record<string, unknown>) {
       if(original!==label)state.taxonomyTopicRenames=[...(state.taxonomyTopicRenames??[]),{category:categoryName,from:original,to:label}];
       for (const record of readMathCommandCatalog(root)) if (record.question.topic === categoryName && record.question.subtopic === original) state.metadata[record.id] = { ...state.metadata[record.id], subcategory: label };
       state.skills = state.skills.map(skill => skill.category === categoryName && skill.subcategory === original ? { ...skill, subcategory: label } : skill);
+      state.classificationSkills=state.classificationSkills?.map(skill=>skill.category===categoryName&&skill.subcategory===original?{...skill,subcategory:label}:skill);
       state.targets.overrides = state.targets.overrides?.map(target => target.category === categoryName && target.subcategory === original ? { ...target, subcategory: label } : target);
     } else throw fail('Choose a supported category action.');
   }
