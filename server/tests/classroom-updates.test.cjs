@@ -49,6 +49,19 @@ test('meal routes isolate identities and recompute prices before the locked data
  tables.classroom_meal_sessions[0].revision=1;tables.classroom_meal_sessions[0].open=false;assert.equal((await call('/meals/student/orders','student','POST',body)).status,409);
 });
 const gallery = () => ({...menu,restaurant:'',items:[],restaurants:[{id:'cafe',name:'Lunch café',url:menu.restaurantUrl,image:'',rating:4.6,reviewCount:322,items:[{...menu.items[0],buyOneGetOne:true,image:''}]},{id:'bakery',name:'Bakery',url:menu.restaurantUrl,image:'',rating:null,reviewCount:null,items:[{id:'bread',name:'Bread',description:'',priceCents:400,available:true}]}]});
+test('customizations enforce required/max choices, snapshot selections and use all-in estimates once',()=>{
+ const input=gallery();input.restaurants[0].items[0].estimatedTotalCents=1500;
+ input.restaurants[0].items[0].optionGroups=[{id:'rice',name:'Rice',required:true,maxChoices:1,options:[{id:'white',name:'White rice',extraCents:0},{id:'brown',name:'Brown rice',extraCents:100}]},{id:'extras',name:'Extras',required:false,maxChoices:2,options:[{id:'chicken',name:'Chicken',extraCents:450},{id:'salsa',name:'Salsa',extraCents:0}]}];
+ const valid=validateMealMenu(input);
+ for(const choices of [{},{rice:['white','brown']},{rice:['fake']},{rice:['white','white']},{rice:['white'],fake:[]},{rice:['white'],extras:['chicken','salsa','fake']}])assert.throws(()=>quoteMeal(valid,[{id:'bowl',quantity:1,choices}]));
+ const quote=quoteMeal(valid,[{id:'bowl',quantity:2,choices:{rice:['white'],extras:['chicken']},extraCents:0}]);
+ assert.equal(quote.items[0].customizations[0].option,'White rice');assert.equal(quote.items[0].customizations[1].extraCents,450);assert.equal(quote.afterFeesTotalCents,3980);assert.equal(quote.items[0].unitCents,1700);
+ assert.equal(quoteMeal(valid,[{id:'bowl',quantity:1,choices:{rice:['white']}}]).afterFeesTotalCents,1500);
+ assert.equal(quoteMeal(valid,[{id:'bread',quantity:1}]).afterFeesTotalCents,null);
+ assert.equal(quoteMeal(valid,[{id:'bowl',quantity:1,choices:{rice:['white']}},{id:'bread',quantity:1}]).afterFeesTotalCents,null);
+ input.restaurants[0].items[0].optionGroups[0].maxChoices=3;assert.throws(()=>validateMealMenu(input));
+ input.restaurants[0].items[0].optionGroups[0].maxChoices=1;input.restaurants[0].items[0].optionGroups[0].options[0].extraCents=-1;assert.throws(()=>validateMealMenu(input));
+});
 test('manual item totals default to N/A, persist in quotes, and reject invalid money',()=>{
  const input=gallery();let valid=validateMealMenu(input);assert.equal(valid.restaurants[0].items[0].estimatedTotalCents,null);
  input.restaurants[0].items[0].estimatedTotalCents=1599;valid=validateMealMenu(input);

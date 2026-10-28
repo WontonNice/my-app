@@ -1,0 +1,15 @@
+import { Plus, Trash2 } from 'lucide-react';
+import type { MealOptionGroup } from '../../../server/src/shared/classroomMeals';
+
+export function MealCustomizationEditor({ groups, onChange }: { groups: MealOptionGroup[]; onChange: (groups: MealOptionGroup[]) => void }) {
+  const update = (id: string, changes: Partial<MealOptionGroup>) => onChange(groups.map(group => group.id === id ? { ...group, ...changes } : group));
+  return <div className="meal-customization-editor"><h4>Customizations</h4><p className="meal-fineprint">Add groups such as Rice, Beans, or Protein. Included options cost $0; enter a surcharge for paid extras.</p>
+    {groups.map((group, index) => <fieldset className="meal-option-editor" key={group.id}><legend>Group {index + 1}</legend>
+      <div className="meal-fields"><label>Group name<input required maxLength={100} placeholder="e.g. Rice" value={group.name} onChange={event => update(group.id, { name: event.target.value })} /></label><label>Maximum choices<input required type="number" min="1" max={Math.max(1, group.options.length)} value={group.maxChoices} onChange={event => update(group.id, { maxChoices: Number(event.target.value) })} /></label></div>
+      <label className="meal-checkbox"><input type="checkbox" checked={group.required} onChange={event => update(group.id, { required: event.target.checked })} />Required — select at least one</label>
+      {group.options.map((option, optionIndex) => <div className="meal-option-row" key={option.id}><label>Option {optionIndex + 1}<input required maxLength={100} placeholder="e.g. Mexican rice" value={option.name} onChange={event => update(group.id, { options: group.options.map(entry => entry.id === option.id ? { ...entry, name: event.target.value } : entry) })} /></label><label>Extra cost ($)<input required type="number" min="0" max="1000" step="0.01" value={option.extraCents / 100} onChange={event => update(group.id, { options: group.options.map(entry => entry.id === option.id ? { ...entry, extraCents: Math.round(Number(event.target.value) * 100) } : entry) })} /></label><button type="button" disabled={group.options.length === 1} aria-label={`Remove option ${optionIndex + 1} from group ${index + 1}`} onClick={() => update(group.id, { options: group.options.filter(entry => entry.id !== option.id), maxChoices: Math.min(group.maxChoices, group.options.length - 1) })}><Trash2 size={16} /></button></div>)}
+      <div className="meal-actions"><button type="button" disabled={group.options.length >= 30} onClick={() => update(group.id, { options: [...group.options, { id: crypto.randomUUID(), name: '', extraCents: 0 }] })}><Plus size={16} />Add option</button><button type="button" onClick={() => onChange(groups.filter(entry => entry.id !== group.id))}>Remove group</button></div>
+    </fieldset>)}
+    <button type="button" disabled={groups.length >= 20} onClick={() => onChange([...groups, { id: crypto.randomUUID(), name: '', required: false, maxChoices: 1, options: [{ id: crypto.randomUUID(), name: '', extraCents: 0 }] }])}><Plus size={16} />Add customization group</button>
+  </div>;
+}

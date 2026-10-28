@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowLeft, Minus, Plus, RefreshCw, Search, Star, Utensils } from 'lucide-react';
-import { mealMoney, mealRestaurants, quoteMeal, type StudentMeals } from '../../../server/src/shared/classroomMeals';
+import { mealEstimate, mealMoney, mealRestaurants, quoteMeal, type MealItem, type StudentMeals } from '../../../server/src/shared/classroomMeals';
 import { StudentPortalShell } from '../components/StudentPortalShell';
 import { AppLink } from '../components/AppLink';
 import { useStudentPortalAccess } from '../hooks/useStudentPortalAccess';
 import { createAuthHeaders, requestApi } from '../lib/api';
 import { signOutCurrentAccount } from '../lib/accountSwitching';
+import { MealCustomizationDialog } from '../components/MealCustomizationDialog';
 import { MealPhoto } from '../components/MealPhoto';
 import { WontonSprite } from '../components/WontonSprite';
 import '../styles/classroom-meals.css';
@@ -14,6 +15,8 @@ export function ClassroomMealsPage() {
   const { accessToken, previewContext, studentName, isCheckingSession } = useStudentPortalAccess();
   const [data, setData] = useState<StudentMeals | null>(null);
   const [quantities, setQuantities] = useState<Record<string, number>>({});
+  const [choices, setChoices] = useState<Record<string, Record<string, string[]>>>({});
+  const [customizing, setCustomizing] = useState<{ item: MealItem; add: boolean } | null>(null);
   const [notes, setNotes] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -29,6 +32,7 @@ export function ClassroomMealsPage() {
       setData(next);
       setQuantities(Object.fromEntries((next.order?.status !== 'cancelled' ? next.order?.data.quote.items : [])?.map(item => [item.id, item.quantity]) ?? []));
       setNotes(next.order?.data.notes ?? '');
+      setChoices(Object.fromEntries((next.order?.status !== 'cancelled' ? next.order?.data.quote.items : [])?.map(item => [item.id, item.choices ?? {}]) ?? []));
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'Could not load the menu.'); }
     finally { setBusy(false); }
   }, [accessToken]);
@@ -38,7 +42,7 @@ export function ClassroomMealsPage() {
     void reload();
   }, [reload]);
   const session = data?.session;
-  const selections = Object.entries(quantities).filter(([, quantity]) => quantity > 0).map(([id, quantity]) => ({ id, quantity }));
+  const selections = Object.entries(quantities).filter(([, quantity]) => quantity > 0).map(([id, quantity]) => ({ id, quantity, choices: choices[id] ?? {} }));
   let quote = null;
   try { if (session && selections.length) quote = quoteMeal(session.menu, selections); } catch { /* A saved selection may have been removed from the menu. */ }
   const locked = !session?.open || data?.order?.status === 'ordered' || previewContext.isPreview;
@@ -82,20 +86,21 @@ export function ClassroomMealsPage() {
           <label className="meal-search"><Search size={19} /><span className="meal-sr-only">{restaurant ? 'Search menu items' : 'Search restaurants'}</span><input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder={restaurant ? 'Search this menu' : 'What sounds good?'} /></label>
           {!restaurant ? <div className="meal-restaurants">{matching.map(entry => <button className="meal-restaurant-card" type="button" key={entry.id} onClick={() => showRestaurant(entry.id)}><div className="meal-cover"><MealPhoto image={entry.image} name={entry.name} />{entry.items.some(item => item.available && item.buyOneGetOne) && <span className="meal-offer">Buy 1, get 1 free</span>}</div><div className="meal-card-info"><h3>{entry.name}</h3><span className="meal-rating">{entry.rating !== null && <><strong>{entry.rating.toFixed(1)}</strong><Star size={13} fill="currentColor" /></>}{entry.reviewCount !== null && <span>({entry.reviewCount.toLocaleString()} reviews)</span>}</span><small>{entry.items.filter(item => item.available).length} items available</small></div></button>)}{!matching.length && <p>{restaurants.length ? 'No restaurants match your search.' : 'Your teacher is preparing the restaurants. Check back soon.'}</p>}</div> : <>
             <h3 className="meal-items-heading">On the menu</h3><div className="meal-product-grid">{items.map(item => <article className="meal-product" key={item.id}>
-              <div className="meal-product-photo"><MealPhoto image={item.image} name={item.name} /><div className="meal-product-controls">{quantities[item.id] > 0 && <><button type="button" aria-label={'Remove one ' + item.name} disabled={locked || busy} onClick={() => changeQuantity(item.id, -1)}><Minus size={17} /></button><output aria-label={item.name + ' quantity'}>{quantities[item.id]}</output></>}<button type="button" aria-label={'Add one ' + item.name} disabled={locked || busy || quantities[item.id] >= 10} onClick={() => changeQuantity(item.id, 1)}><Plus size={19} /></button></div></div>
-              <h4>{item.name}</h4><p className="meal-product-price">{mealMoney(item.priceCents)}</p><p className="meal-product-description">After taxes &amp; fees: <strong>{item.estimatedTotalCents == null ? 'N/A' : mealMoney(item.estimatedTotalCents)}</strong> per item</p>{item.buyOneGetOne && <span className="meal-offer">Buy 1, get 1 free</span>}{item.description && <p className="meal-product-description">{item.description}</p>}
+              <div className="meal-product-photo"><MealPhoto image={item.image} name={item.name} /><div className="meal-product-controls">{quantities[item.id] > 0 && <><button type="button" aria-label={'Remove one ' + item.name} disabled={locked || busy} onClick={() => changeQuantity(item.id, -1)}><Minus size={17} /></button><output aria-label={item.name + ' quantity'}>{quantities[item.id]}</output></>}<button type="button" aria-label={'Add one ' + item.name} disabled={locked || busy || quantities[item.id] >= 10} onClick={() => item.optionGroups?.length ? setCustomizing({ item, add: true }) : changeQuantity(item.id, 1)}><Plus size={19} /></button></div></div>
+              <h4>{item.name}</h4>{!!item.optionGroups?.length && <button type="button" disabled={locked || busy} onClick={() => setCustomizing({ item, add: !quantities[item.id] })}>Customize {item.name}</button>}<p className="meal-product-price">{mealMoney(item.priceCents)}</p><p className="meal-product-description">After taxes &amp; fees: <strong>{item.estimatedTotalCents == null ? 'N/A' : mealMoney(item.estimatedTotalCents)}</strong> per item</p>{item.buyOneGetOne && <span className="meal-offer">Buy 1, get 1 free</span>}{item.description && <p className="meal-product-description">{item.description}</p>}
             </article>)}</div>{!items.length && <p>{search ? 'No items match your search.' : 'No items are available at this restaurant yet.'}</p>}
           </>}
-        </section>{(restaurant || selections.length > 0 || data?.order) && <aside className="meal-summary"><h2>Your selection <span>{selections.reduce((sum, item) => sum + item.quantity, 0)}</span></h2>{quote ? <><ul>{quote.items.map(item => <li key={item.id}><div><span>{item.name}</span>{item.restaurant && <small>{item.restaurant}</small>}<small>After taxes &amp; fees per item: {item.estimatedTotalCents == null ? 'N/A' : mealMoney(item.estimatedTotalCents)}</small><div className="meal-quantity"><button type="button" aria-label={'Decrease ' + item.name + ' in selection'} disabled={locked || busy} onClick={() => changeQuantity(item.id, -1)}><Minus size={14} /></button><output>{item.quantity}</output><button type="button" aria-label={'Increase ' + item.name + ' in selection'} disabled={locked || busy || item.quantity >= 10} onClick={() => changeQuantity(item.id, 1)}><Plus size={14} /></button></div></div><strong>{mealMoney(item.totalCents)}</strong></li>)}</ul><dl><div><dt>Subtotal</dt><dd>{mealMoney(quote.subtotalCents)}</dd></div><div><dt>Estimated tax ({session.menu.taxBasisPoints / 100}%)</dt><dd>{mealMoney(quote.taxCents)}</dd></div><div><dt>Estimated fees</dt><dd>{mealMoney(quote.feeCents)}</dd></div><div className="meal-total"><dt>Calculated estimate</dt><dd>{mealMoney(quote.totalCents)}</dd></div></dl></> : <p>{selections.length ? 'The menu changed. Clear your selection and choose available items.' : 'Find your next favorite. Add items from any restaurant.'}</p>}
-          <p className="meal-fineprint">Teacher-entered prices, tax, and fees. Offer tags are labels only; they do not add free items or change the total.</p>
+        </section>{(restaurant || selections.length > 0 || data?.order) && <aside className="meal-summary"><h2>Your selection <span>{selections.reduce((sum, item) => sum + item.quantity, 0)}</span></h2>{quote ? <><ul>{quote.items.map(item => <li key={item.id}><div><span>{item.name}</span>{item.restaurant && <small>{item.restaurant}</small>}<small>Base after taxes &amp; fees per item: {item.estimatedTotalCents == null ? 'N/A' : mealMoney(item.estimatedTotalCents)}</small>{item.customizations?.map((choice, index) => <small key={index}>{choice.group}: {choice.option} · {choice.extraCents ? '+' + mealMoney(choice.extraCents) : 'Included'}</small>)}{item.customizations?.length ? <button type="button" disabled={locked || busy} onClick={() => { const found = restaurants.flatMap(restaurant => restaurant.items).find(entry => entry.id === item.id); if (found) setCustomizing({ item: found, add: false }); }}>Edit choices</button> : null}<div className="meal-quantity"><button type="button" aria-label={'Decrease ' + item.name + ' in selection'} disabled={locked || busy} onClick={() => changeQuantity(item.id, -1)}><Minus size={14} /></button><output>{item.quantity}</output><button type="button" aria-label={'Increase ' + item.name + ' in selection'} disabled={locked || busy || item.quantity >= 10} onClick={() => changeQuantity(item.id, 1)}><Plus size={14} /></button></div></div><strong>{mealMoney(item.totalCents)}</strong></li>)}</ul><dl><div><dt>Menu subtotal with extras</dt><dd>{mealMoney(quote.subtotalCents)}</dd></div><div className="meal-total"><dt>Estimate after taxes &amp; fees</dt><dd>{mealEstimate(quote)}</dd></div></dl></> : <p>{selections.length ? 'The menu changed. Clear your selection and choose available items.' : 'Find your next favorite. Add items from any restaurant.'}</p>}
+          <p className="meal-fineprint">The estimate adds your teacher’s after-tax-and-fee item amounts, plus selected extras and their estimated tax. N/A means an item estimate is missing. Offer tags are labels only; they do not add free items or change the total.</p>
           <label>Notes for your teacher<textarea maxLength={1000} value={notes} disabled={locked || busy} onChange={event => setNotes(event.target.value)} placeholder="Changes, preferences, or dietary needs" /></label>
           <button className="meal-primary" type="button" disabled={locked || busy || !quote} onClick={() => void submit()}>{busy ? 'Saving…' : data?.order && data.order.status !== 'cancelled' ? 'Update meal request' : 'Send to teacher'}</button>
           <p className="meal-fineprint">Your teacher places the order. The final Uber Eats checkout total may differ.</p>
           {selections.length > 0 && <button type="button" disabled={locked || busy} onClick={() => setQuantities({})}>Clear selection</button>}
           {data?.order?.status === 'submitted' && <button type="button" disabled={locked || busy} onClick={() => void submit(true)}>Cancel saved request</button>}
-          {data?.order && data.order.status !== 'cancelled' && <section className="meal-saved" aria-label="Saved meal request"><h3>Saved with your teacher</h3><p>{data.order.data.quote.items.map(item => item.quantity + ' × ' + item.name).join(' · ')}</p><p>{mealMoney(data.order.data.quote.totalCents)} estimated · {data.order.status === 'ordered' ? 'Ordered by teacher' : 'Sent to teacher'}</p>{data.order.data.notes && <p>{data.order.data.notes}</p>}</section>}
+          {data?.order && data.order.status !== 'cancelled' && <section className="meal-saved" aria-label="Saved meal request"><h3>Saved with your teacher</h3><p>{data.order.data.quote.items.map(item => item.quantity + ' × ' + item.name).join(' · ')}</p><p>{mealEstimate(data.order.data.quote)} estimated · {data.order.status === 'ordered' ? 'Ordered by teacher' : 'Sent to teacher'}</p>{data.order.data.notes && <p>{data.order.data.notes}</p>}</section>}
         </aside>}</div>
       </>}
+      {customizing && <MealCustomizationDialog key={customizing.item.id} item={customizing.item} initial={choices[customizing.item.id] ?? {}} onClose={() => setCustomizing(null)} onConfirm={selected => { setChoices(current => ({ ...current, [customizing.item.id]: selected })); if (customizing.add) changeQuantity(customizing.item.id, 1); setCustomizing(null); }} />}
     </div>
   </StudentPortalShell>;
 }

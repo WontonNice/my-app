@@ -143,6 +143,28 @@ html:has(.meals-page), body:has(.meals-page) { background: #f4f0e7; }
 .meal-publish { background: #fffefa; padding: 18px; border-radius: 12px; border: 1px solid #d5dcd0; }
 .meal-publish > span { flex: 1; font-size: 13px; }
 .meal-order .meal-offer { margin-left: 8px; }
+.meal-customization-editor { grid-column: 1 / -1; min-width: 0; }
+.meal-customization-editor h4 { margin: 10px 0; font-size: 16px; }
+.meal-customization-editor .meal-option-editor { border: 1px solid #b8c6b9; padding: 16px; margin: 18px 0; border-radius: 10px; }
+.meal-option-editor legend { padding: 0 7px; font-size: 14px; font-weight: 600; }
+.meal-option-editor > .meal-checkbox { margin: 12px 0; }
+.meal-option-row { display: grid; grid-template-columns: minmax(0,1fr) 110px 42px; gap: 10px; align-items: end; margin: 14px 0; }
+.meal-customization-dialog { width: min(540px, calc(100vw - 40px)); max-height: calc(100dvh - 40px); padding: 24px; box-sizing: border-box; border: 0; border-radius: 16px; background: #fff; color: #171717; }
+.meal-customization-dialog::backdrop { background: #0007; }
+.meal-dialog-heading { display: flex; justify-content: space-between; gap: 16px; align-items: start; }
+.meal-dialog-heading h2 { font-size: 23px; margin-top: 0; }
+.meal-customization-dialog button { min-height: 42px; cursor: pointer; padding: 9px 14px; border: 1px solid #bbb; border-radius: 8px; background: #fff; color: #171717; font: inherit; }
+.meal-customization-dialog button:focus-visible { outline: 3px solid #6c9774; outline-offset: 3px; }
+.meal-customization-dialog .meal-primary { width: 100%; background: #111; color: #fff; margin-top: 18px; }
+.meal-customization-dialog button:disabled { opacity: .5; cursor: not-allowed; }
+.meal-option-choices { border: 0; padding: 20px 0 0; margin: 14px 0; border-top: 1px solid #ddd; min-width: 0; }
+.meal-option-choices legend { font-weight: 700; font-size: 19px; width: 100%; }
+.meal-option-choices legend span { float: right; font-size: 12px; font-weight: 500; background: #eee; border-radius: 12px; padding: 4px 8px; }
+.meal-option-choices > p { font-size: 13px; color: #555; margin: 6px 0 12px; }
+.meal-option-choices label { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid #ddd; font-size: 15px; cursor: pointer; }
+.meal-option-choices label small { display: block; margin-top: 5px; color: #555; font-size: 13px; }
+.meal-option-choices input { width: 22px; height: 22px; flex: none; accent-color: #111; }
+@media(max-width:540px) { .meal-option-row { grid-template-columns: minmax(0,1fr) 85px; } .meal-option-row > button { grid-column: 2; justify-self: end; } }
 @media (max-width:1100px) { .meal-product-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .meal-restaurants { grid-template-columns: repeat(2,minmax(0,1fr)); } .meal-storefront .meals-layout { gap: 22px; grid-template-columns: minmax(0,1fr) 275px; } }
 @media (max-width:800px) { .meal-storefront .meals-layout { grid-template-columns: 1fr; } .meal-storefront .meal-summary { position: static; } .meal-restaurant-fields { grid-template-columns: 1fr; } .meal-session-settings { grid-template-columns: 1fr 1fr; } .meal-session-settings > label:first-child { grid-column: 1 / -1; } .teacher-meals .meal-item-editor { grid-template-columns: 150px minmax(0,1fr); } .meal-item-fields { grid-template-columns: 1fr; } .meal-item-editor > button { grid-column: 2; justify-self: end; } }
 @media (max-width:540px) { .meal-restaurants, .meals-layout:has(.meal-summary) .meal-restaurants { grid-template-columns: 1fr; } .meal-cover { aspect-ratio: 2.3; } .meal-restaurant-hero { aspect-ratio: 2.2; } .meal-restaurant-title h2 { font-size: 26px; } .meal-storefront .meals-heading .wonton-pet { width: 68px; height: 68px; } .meal-store-status { align-items: start; } .meal-store-status > span { line-height: 1.8; } .teacher-meals .meal-item-editor { grid-template-columns: 1fr; } .meal-item-editor > button { grid-column: 1; } .meal-item-editor .meal-image-preview { aspect-ratio: 2; } .meal-session-settings { grid-template-columns: 1fr; } .meal-product-grid { gap: 24px 12px; } .meal-publish > span { flex-basis: 100%; } }
