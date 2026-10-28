@@ -113,7 +113,7 @@ html:has(.meals-page), body:has(.meals-page) { background: #f4f0e7; }
 .meal-product h4 { font-size: 15px; font-weight: 600; line-height: 1.4; margin: 12px 0 4px; overflow-wrap: anywhere; }
 .meal-product-price { margin: 0 0 6px; font-size: 14px; font-variant-numeric: tabular-nums; }
 .meal-product-description { font-size: 12px; color: #626262; margin-top: 8px; }
-.meal-session-settings { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin: 24px 0 12px; }
+.meal-session-settings { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; margin: 24px 0 12px; }
 .meal-restaurant-picker { display: flex; overflow-x: auto; gap: 12px; padding: 4px 3px 15px; scrollbar-color: #a6b4a5 #eef0eb; }
 .meal-restaurant-picker > button { min-width: 205px; max-width: 260px; text-align: left; flex: none; padding: 10px; justify-content: start; }
 .meal-restaurant-picker img, .meal-restaurant-picker .meal-photo-empty { width: 60px; height: 48px; min-height: 0; object-fit: cover; border-radius: 6px; flex: none; }
