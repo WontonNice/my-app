@@ -6,6 +6,8 @@ This follow-up replaces the overview's cropped Wonton image with a transparent a
 
 Open **Teacher → Classroom meals**. Create or select a session, add a restaurant, and enter its name, Uber Eats link, optional star rating and review count. Upload or paste a cover image. Each restaurant has its own items with name, description, price, availability, image and optional **Buy 1, get 1 free** tag. Save the menu, then open ordering. Photos can be pasted with the Paste button or Ctrl+V/⌘V while the image area is focused.
 
+When no session exists, the page opens a local first-restaurant draft immediately. The first Save menu creates the closed session and saves its restaurant details; it does not require a separate Create session step. Browser verification used the preview harness's `--empty-meals` option and confirmed the first save survives reload.
+
 The user explicitly selected display-only promotion tags. A tagged item does not receive a discount, multiply quantities or add a free item. Student and teacher views state that quantities/prices are unchanged. Submitted quotes retain restaurant names and promotion labels with the saved prices; subsequent menu changes do not rewrite historical requests.
 
 ## Data and limits

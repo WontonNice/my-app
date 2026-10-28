@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Plus, RefreshCw, Trash2 } from 'lucide-react';
-import { mealMoney, mealRestaurants, type MealRestaurant, type MealOrder, type MealSession, type TeacherMeals } from '../../../server/src/shared/classroomMeals';
+import { emptyMealMenu, mealMoney, mealRestaurants, type MealRestaurant, type MealOrder, type MealSession, type TeacherMeals } from '../../../server/src/shared/classroomMeals';
 import { CorporateDashboardShell } from '../components/CorporateDashboardShell';
 import { useStudentPortalAccess } from '../hooks/useStudentPortalAccess';
 import { createAuthHeaders, requestApi } from '../lib/api';
@@ -9,6 +9,11 @@ import { signOutCurrentAccount } from '../lib/accountSwitching';
 import { MealImageField } from '../components/MealImageField';
 import { MealPhoto } from '../components/MealPhoto';
 import '../styles/classroom-meals.css';
+
+function firstMealDraft(): MealSession {
+  return { id: crypto.randomUUID(), title: 'Classroom meals', open: false, revision: 1, created_at: new Date().toISOString(),
+    menu: { ...emptyMealMenu(), restaurants: [{ id: crypto.randomUUID(), name: '', url: 'https://www.ubereats.com/feed?diningMode=DELIVERY', image: '', rating: null, reviewCount: null, items: [] }] } };
+}
 
 export function TeacherMealsPage() {
   const { accessToken, studentName } = useStudentPortalAccess(true);
@@ -28,7 +33,7 @@ export function TeacherMealsPage() {
     setBusy(true); setError('');
     try {
       const next = await requestApi<TeacherMeals>('/api/classroom-meals/teacher' + (selected ? `?sessionId=${encodeURIComponent(selected)}` : ''), { headers: createAuthHeaders(accessToken) });
-      setData(next); setDraft(next.session);
+      setData(next); setDraft(next.session ?? firstMealDraft());
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'Could not load classroom meals.'); }
     finally { setBusy(false); }
   }, [accessToken, selected]);
@@ -51,8 +56,11 @@ export function TeacherMealsPage() {
     if (!draft || imageBusy) return;
     setBusy(true); setError(''); setMessage('');
     try {
+      if (!data?.sessions.some(session => session.id === draft.id)) {
+        await call('/sessions', 'POST', { id: draft.id, title: draft.title });
+      }
       const next = await call<{ session: MealSession }>(`/sessions/${draft.id}`, 'PUT', { ...draft, open });
-      setDraft(next.session); setData(current => current && ({ ...current, session: next.session, sessions: current.sessions.map(session => session.id === next.session.id ? next.session : session) }));
+      setDraft(next.session); setData(current => current && ({ ...current, session: next.session, sessions: current.sessions.some(session => session.id === next.session.id) ? current.sessions.map(session => session.id === next.session.id ? next.session : session) : [next.session, ...current.sessions] }));
       setMessage(open ? 'Menu saved. Students can send their requests.' : 'Menu saved. Ordering is closed.');
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'Could not save the menu.'); }
     finally { setBusy(false); }
@@ -84,7 +92,7 @@ export function TeacherMealsPage() {
     <div className="meals-page teacher-meals"><header className="meals-heading"><div><h1>Classroom meals</h1><p>Your restaurants, your menu. Collect everyone’s choices in one place.</p></div><button type="button" disabled={disabled} onClick={() => { if (discard()) void reload(); }}><RefreshCw size={16} /> Refresh saved menu & requests</button></header>
       {error && <p role="alert" className="meals-notice">{error} Refresh to recover the latest saved version.</p>}{message && <p role="status" className="meals-notice">{message}</p>}
       <form className="meals-toolbar" onSubmit={event => { event.preventDefault(); if (discard()) void create(); }}><label>New meal session<input required maxLength={120} placeholder="Friday lunch" disabled={disabled} value={title} onChange={event => { setTitle(event.target.value); createId.current = null; }} /></label><button type="submit" disabled={disabled || !title.trim()}><Plus size={16} /> Create session</button></form>
-      {data?.sessions.length ? <label className="meal-session-select">View session<select value={draft?.id ?? ''} disabled={disabled} onChange={event => { if (discard()) { setSelected(event.target.value); setMessage(''); setRestaurantId(''); } }}>{data.sessions.map(session => <option key={session.id} value={session.id}>{session.title} · {session.open ? 'Open' : 'Closed'}</option>)}</select></label> : !busy && <p>No meal sessions yet. Create one to get started.</p>}
+      {data?.sessions.length ? <label className="meal-session-select">View session<select value={draft?.id ?? ''} disabled={disabled} onChange={event => { if (discard()) { setSelected(event.target.value); setMessage(''); setRestaurantId(''); } }}>{data.sessions.map(session => <option key={session.id} value={session.id}>{session.title} · {session.open ? 'Open' : 'Closed'}</option>)}</select></label> : data && <p className="meals-notice">Build your first restaurant below. Add its photo and details, then click Save menu. Open ordering when you’re ready for students.</p>}
       {draft && <><form className="meal-editor" onSubmit={event => { event.preventDefault(); void save(); }}><fieldset disabled={disabled}>
         <div className="meal-session-settings"><label>Session title<input required maxLength={120} value={draft.title} onChange={event => setDraft({ ...draft, title: event.target.value })} /></label><label>Estimated tax (%)<input type="number" min="0" max="25" step="0.001" required value={draft.menu.taxBasisPoints / 100} onChange={event => setMenu({ taxBasisPoints: Number(event.target.value) * 100 })} /></label><label>Estimated fees per student ($)<input type="number" min="0" max="100" step="0.01" required value={draft.menu.feeCents / 100} onChange={event => setMenu({ feeCents: Math.round(Number(event.target.value) * 100) })} /></label></div>
         <p className="meal-fineprint">Tax and fees apply to each student’s whole selection. All totals are estimates; enter the amounts you expect at checkout.</p>
