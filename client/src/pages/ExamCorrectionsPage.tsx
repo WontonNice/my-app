@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ExamReviewQuestion } from "../components/ExamReviewQuestion";
+import { CorrectionExamPlayer } from "../components/CorrectionExamPlayer";
 import { CorrectionCanvas } from "../components/CorrectionCanvas";
 import { getExamCorrectionView, submitExamCorrections } from "../lib/api";
 import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
@@ -129,7 +129,7 @@ export function ExamCorrectionsPage() {
           {question && <div key={question.question.id}>
             <article className="exam-correction-viewer">
               <div className="exam-correction-question-heading"><strong>{question.section === "english" ? "English" : "Math"} · Question {question.number}</strong><div className="exam-correction-question-actions"><span className={question.isCorrect ? "is-correct" : "is-incorrect"}>{question.isCorrect ? "Correct answer" : "Incorrect answer"}</span><button type="button" aria-pressed={revealedQuestionIds.has(question.question.id)} onClick={() => setRevealedQuestionIds(current => { const next = new Set(current); if (next.has(question.question.id)) next.delete(question.question.id); else next.add(question.question.id); return next; })}>{revealedQuestionIds.has(question.question.id) ? "Hide answer" : "Show answer"}</button></div></div>
-              <ExamReviewQuestion answerPresentation="correction" item={question} showAnswers={revealedQuestionIds.has(question.question.id)} variant="exam" />
+              <CorrectionExamPlayer key={`${view.resultVersion}:${question.question.id}`} item={question} title={view.result.title} studentName={studentName} showAnswers={revealedQuestionIds.has(question.question.id)} readOnly={readOnly} canPrevious={active > 0} canNext={active < view.questions.length - 1} onPrevious={() => goToQuestion(active - 1)} onNext={() => goToQuestion(active + 1)} />
             </article>
 
             {!question.isCorrect ? <section className="exam-correction-response-panel" aria-labelledby={`correction-response-${question.question.id}`}>

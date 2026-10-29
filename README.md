@@ -55,6 +55,20 @@ npm.cmd run start
 
 Copy `.env.example` to `.env` for local server configuration.
 
+Check the database tables required by exams and classroom meals before releasing:
+
+```powershell
+npm.cmd run check:classroom-storage
+```
+
+This read-only check uses the server environment, fetches no student records, and
+reports missing tables or columns with the required migration filenames. Run the
+reported SQL migrations in Supabase, in dependency order, then repeat the check.
+Exam navigation requires `202607230001_exam_answer_records.sql` before
+`202610280004_exam_navigation.sql`; repeat meal requests require
+`202610280002_classroom_meals.sql` before `202610280005_repeat_meal_requests.sql`.
+The ordinary health endpoint does not verify these feature tables.
+
 ## Auth
 
 The browser auth flow uses Supabase email/password auth.

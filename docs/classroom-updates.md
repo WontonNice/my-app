@@ -13,6 +13,37 @@ Status: deployed to production on October 28, 2026. Render release `20f09ebf` su
 
 Rollback: redeploy the previous application commit; retain the additive database schema and saved records. Do not drop feature tables to roll back code.
 
+## October 29 database repair
+
+The updated app was querying tables whose migrations had not been applied:
+`assessment_access` blocked the student exam list; `classroom_meal_order_history`
+blocked loading the existing meal session. Supabase returned `PGRST205` for both.
+The dedicated `student_exam_sessions` table was also missing, leaving exam drafts
+on the application's existing fallback storage.
+
+The repair installs these existing migrations in order:
+
+1. `202607230001_exam_answer_records.sql`
+2. `202610280003_persistent_exam_access.sql`
+3. `202610280004_exam_navigation.sql`
+4. `202610280005_repeat_meal_requests.sql`
+
+They add the missing storage and functions without rewriting exam results,
+saved meal requests, or configured exam availability. Verify with
+`npm run check:classroom-storage`: all six table/column checks must pass.
+The check uses zero-row GET requests because HEAD requests can report a
+misleading 204 for a missing relation. It checks storage shape and connectivity;
+it does not exercise database writes or replace authenticated page checks.
+
+All four migrations were applied successfully to the configured Nathan Tutors
+Supabase project on October 29, 2026. All six storage checks then passed. The
+signed-in student at localhost:5174 loaded the restaurant menu and existing
+ordered request, listed all 28 exams, and opened the available exam's launch
+screen without starting an attempt. The two new functions permit service-role
+execution and deny execution to anon/authenticated roles. All 38 targeted
+exam-access, reentry, progress, homework, and meal tests passed. No deployment or
+Git commit was needed for the database repair.
+
 ## Behavior and limits
 
 - Explicit subject choice travels in the exam URL. Optional device storage failures cannot interrupt the updated exam launch/save paths.

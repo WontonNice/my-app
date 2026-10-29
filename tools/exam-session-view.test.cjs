@@ -20,13 +20,13 @@ async function loadRenderer() {
           export { resolveExamContent };
           import assessments from './server/data/assessments.json';
           export { assessments };
-          export function renderExam(id, screen, transform = content => content) {
+          export function renderExam(id, screen, transform = content => content, sessionOptions = {}) {
             const assessment = { ...assessments.find(item => item.id === id), sectionAccess: { english: true, math: true } };
             const content = transform(resolveExamContent(assessment));
             return renderToStaticMarkup(<ExamSessionPage gameSession={{
               assessment, content, screen, studentName: 'QA Student', answers: {},
               onAnswersChange() {}, onSubmit: async () => true,
-              timerText: '3:00:00', subjectPosition: { current: 1, total: 57 },
+              timerText: '3:00:00', subjectPosition: { current: 1, total: 57 }, ...sessionOptions,
             }} />);
           }
         `,
@@ -90,5 +90,26 @@ test('registered exams render their available section introductions', async () =
     const content = resolveExamContent(assessment);
     if (content.mathSection?.questions.length) assert.doesNotThrow(() => renderExam(assessment.id, 'mathIntro'), assessment.id);
     if (content.passageSets.length) assert.doesNotThrow(() => renderExam(assessment.id, 'passageIntro'), assessment.id);
+  }
+});
+
+
+test('corrections use the live player for all three question layouts with bounded review navigation and no exam submission', async () => {
+  const { renderExam } = await loadRenderer();
+  const question = { id: 'correction-q', type: 'multiple_choice', prompt: 'Review this authored question', topic: 'Inference', choices: [{id:'A',text:'Original answer'}, {id:'B',text:'Another answer'}], correctChoiceId: 'B' };
+  const directions = { subject: 'English', title: 'Directions', body: 'Read', notes: [] };
+  for (const screen of ['passage', 'standaloneQuestion', 'mathQuestion']) {
+    const html = renderExam('2021-2022-form-a', screen, content => ({ ...content,
+      passageSets: screen === 'passage' ? [{ id:'p', passage:{id:'p',title:'Passage',format:'prose',lines:[{text:'Preserved passage text.'}]}, directions, questions:[question], questionCount:1 }] : [],
+      standaloneSection: {id:'s',label:'English',directions,questions:[question],questionCount:1},
+      mathSection: {id:'m',label:'Math',directions,questions:[question],questionCount:1},
+    }), { answers:{'correction-q':'A'}, hideTimer:true, correctionReview:{number:12,canPrevious:true,canNext:false,onPrevious(){},onNext(){}} });
+    assert.match(html, /CORRECTIONS/);
+    assert.match(html, /QUESTION 12/);
+    assert.match(html, /Review this authored question/);
+    assert.match(html, /Original answer/);
+    assert.match(html, /<button[^>]*aria-disabled="true"[^>]*aria-label="Next item"/);
+    assert.doesNotMatch(html, /Show timer|Submit section|Questions answered/);
+    if (screen === 'passage') assert.match(html, /Preserved passage text/);
   }
 });

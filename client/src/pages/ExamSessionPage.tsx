@@ -1092,6 +1092,7 @@ export type ExamGameSession = {
   answers: SelectedAnswers; onAnswersChange: (answers: SelectedAnswers) => void;
   onSubmit: (answers: SelectedAnswers) => Promise<boolean>; timerText: string;
   hideTimer?: boolean;
+  correctionReview?: { number: number; canNext: boolean; canPrevious: boolean; onNext: () => void; onPrevious: () => void };
   subjectPosition: { current: number; total: number };
   sharedTools?: SharedExamTools;
   lockedQuestionIds?: string[];
@@ -2617,6 +2618,18 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     unansweredCount,
   };
 
+  // Corrections navigate their saved snapshot without entering exam submission screens.
+  const correctionToolbarProps = gameSession?.correctionReview ? {
+    breadcrumbCurrent: `QUESTION ${gameSession.correctionReview.number}`,
+    breadcrumbMiddle: "CORRECTIONS",
+    isNextActive: gameSession.correctionReview.canNext,
+    isPreviousActive: gameSession.correctionReview.canPrevious,
+    onNext: gameSession.correctionReview.onNext,
+    onPrevious: gameSession.correctionReview.onPrevious,
+    showReviewTools: false, showStatusIcon: false, showTimer: false,
+    questionProgress: { answered: 0, total: 0 },
+  } : {};
+
   const moduleHeaderProps = {
     onTimeExpiredSubmit,
     isUserMenuOpen,
@@ -2725,6 +2738,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           showExhibits
           canEliminate={['multiple_choice', 'multi_select', 'graph_point_select'].includes(activeMathQuestion.type)}
           studentName={studentName}
+          {...correctionToolbarProps}
         />
 
         <ExamMathQuestion
@@ -2935,6 +2949,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           onSelectTool={handleSelectTool}
           showExhibits
           studentName={studentName}
+          {...correctionToolbarProps}
         />
 
         <section
@@ -3436,6 +3451,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           onPrevious={handlePassagePrevious}
           showExhibits
           studentName={studentName}
+          {...correctionToolbarProps}
         />
 
         <section
