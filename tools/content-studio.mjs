@@ -10,10 +10,13 @@ import { gunzipSync, gzipSync } from "node:zlib";
 import ts from "typescript";
 import documentImport from "./document-import.cjs";
 import passageExamAssignment from "./passage-exam-assignment.cjs";
+import passageVersions from "./passage-versions.cjs";
 import mathBatches from "./math-import-batch.cjs";
 import { documentDraftStore, publicationContent } from "./document-drafts.mjs";
+import { retainSourcePackage } from './source-packages.mjs';
 import examExporter from "./export-exam-content.cjs";
 import learningExporter from "./export-learning-catalog.cjs";
+import sourceWriter from "./write-export-file.cjs";
 import { readBank, mutateBank, importCaptures, previewCaptureBatch, applyCaptureBatch, publishQuestion, publishQuestions, createBankSet, labTopics } from "./question-bank.mjs";
 import { createGlossaryRichText } from "./content-studio-glossary.js";
 import { passageCategories, normalizePassageCategory as normalizeCategory, patchPassageCategory } from "./passage-category-editor.mjs";
@@ -28,6 +31,8 @@ import mathCommand from './math-command-service.cjs';
 import practiceCatalogService from './practice-catalog-service.cjs';
 import { mathCommandAsset } from './math-command-bundle.mjs';
 import { openTeacherWorkspace } from './teacher-workspace.mjs';
+import { projectExamPresentation } from './exam-presentation-projection.mjs';
+import { reconcileExamQuestionOrder, selectionOrderChanged } from './exam-order-reconcile.mjs';
 
 const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const passageSetsRoot = join(workspaceRoot, "client", "src", "content", "exams", "passageSets");
@@ -374,75 +379,12 @@ function requiredText(value, label, { preserve = false } = {}) {
   return preserve ? normalized : normalized.trim();
 }
 
-const allowedRichTags = new Set([
-  "figure",
-  "figcaption",
-  "span",
-  "h2",
-  "h3",
-  "p",
-  "div",
-  "blockquote",
-  "br",
-  "strong",
-  "b",
-  "em",
-  "i",
-  "u",
-  "s",
-  "strike",
-  "sub",
-  "sup",
-  "ul",
-  "ol",
-  "li",
-]);
-
 function sanitizeRichText(value) {
-  if (typeof value !== "string" || !value.trim()) return "";
-  return value
-    .replace(/<!--[\s\S]*?-->/g, "")
-    .replace(/<(script|style|iframe|object|embed|svg|math)[^>]*>[\s\S]*?<\/\1>/gi, "")
-    .replace(/<\/?([a-z0-9-]+)(?:\s[^>]*)?>/gi, (match, rawTag) => {
-      const tag = rawTag.toLowerCase();
-      if (tag === 'img' && !match.startsWith('</')) {
-        const attribute = name => new RegExp(`\\b${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, 'i').exec(match);
-        const source = attribute('src'), src = source?.[1] ?? source?.[2] ?? '';
-        if (!/^\/exam-images\/[a-zA-Z0-9._-]+$/.test(src)) return '';
-        const description = attribute('alt'), alt = (description?.[1] ?? description?.[2] ?? '').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        const size = attribute('width'), width = Math.round(Number(size?.[1] ?? size?.[2]));
-        return `<img src="${src}" alt="${alt}"${width >= 40 && width <= 1200 ? ` width="${width}"` : ''}>`;
-      }
-      if (!allowedRichTags.has(tag)) return "";
-      const isClosing = match.startsWith("</");
-      if (tag === "span") {
-        if (isClosing) return "</span>";
-        const definition = /\bdata-glossary-definition\s*=\s*(?:"([^"]*)"|'([^']*)')/i.exec(match);
-        // Keep only an escaped, bounded plain-text definition and generated accessibility attrs.
-        // The regex captures the original encoded value: decoding/re-encoding here would double-escape it.
-        const encoded = (definition?.[1] ?? definition?.[2] ?? "").trim().slice(0, 4000)
-          .replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        return encoded ? `<span data-glossary-definition="${encoded}" role="link" tabindex="0">` : "<span>";
-      }
-      if (tag === "br") return "<br>";
-      const normalizedTag = tag === "b" ? "strong" : tag === "i" ? "em" : tag === "strike" ? "s" : tag;
-      if (!isClosing && ["p", "div"].includes(tag)) {
-        const numbered = /\bdata-numbered\s*=\s*["'](true|false)["']/i.exec(match)?.[1];
-        const align = /\bdata-align\s*=\s*["'](indent|left|center)["']/i.exec(match)?.[1];
-        return `<${normalizedTag}${numbered ? ` data-numbered="${numbered.toLowerCase()}"` : ""}${align ? ` data-align="${align.toLowerCase()}"` : ""}>`;
-      }
-      return `<${isClosing ? "/" : ""}${normalizedTag}>`;
-    })
-    .trim();
+  return documentImport.sanitizeRichText(value);
 }
 
 function sanitizeInlineRichText(value) {
-  return sanitizeRichText(value)
-    .replace(/<(p|div)(?:\s[^>]*)?>/gi, "<br>")
-    .replace(/<\/(p|div)>/gi, "")
-    .replace(/(?:<br>){2,}/gi, "<br>")
-    .replace(/^(?:<br>)+|(?:<br>)+$/gi, "")
-    .trim();
+  return sanitizeRichText(value);
 }
 
 function propertyName(node) {
@@ -611,6 +553,8 @@ async function parsePassageFile(filePath) {
     questions,
     richText: typeof passageInput.richText === "string" ? passageInput.richText :
       Array.isArray(passageInput.glossary) ? createGlossaryRichText(String(passageInput.text || ""), passageInput.glossary, format) : "",
+    source: documentImport.sourceMetadata(passageInput.source),
+    ...Object.fromEntries(["titleHtml","blurbHtml","bylineHtml","sourceNoteHtml"].filter(key=>passageInput[key]).map(key=>[key,sanitizeRichText(passageInput[key])])),
     sourceHash: hashSource(source),
     sourceNote: typeof passageInput.sourceNote === "string" ? passageInput.sourceNote : "",
     section,
@@ -620,6 +564,8 @@ async function parsePassageFile(filePath) {
     text: typeof passageInput.text === "string" ? passageInput.text : "",
     title: typeof passageInput.title === "string" ? passageInput.title : "",
     versionLabel: typeof passageInput.versionLabel === "string" ? passageInput.versionLabel : "",
+    versionLabels: passageVersions.labels({versionLabel: passageInput.versionLabel, versionLabels: objectProperty(exported.initializer, 'versionLabels') ? valueFromNode(objectProperty(exported.initializer, 'versionLabels').initializer, environment) : []}),
+    duplicateOf: objectProperty(exported.initializer, 'duplicateOf') ? valueFromNode(objectProperty(exported.initializer, 'duplicateOf').initializer, environment) : undefined,
   };
 }
 
@@ -823,6 +769,7 @@ function normalizeChoice(choice, index, { allowIncomplete = false } = {}) {
 }
 
 function normalizeQuestion(question, passageId, index, { allowIncomplete = false } = {}) {
+  if (['math_drag_drop','inline_dropdown','graph_point_select','number_line_response','numeric_entry','expression_entry','grid_in'].includes(question?.type)) return normalizeMathQuestion(question,passageId,index,{allowIncomplete});
   if (!question || typeof question !== "object" || Array.isArray(question)) {
     throw new EditorError(400, `Question ${index + 1} is invalid.`);
   }
@@ -838,8 +785,10 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
   const explanationHtml = sanitizeRichText(question.explanationHtml);
   const promptHtml = sanitizeRichText(question.promptHtml);
   const instructionsHtml = sanitizeInlineRichText(question.instructionsHtml);
+  const stimulusHtml = sanitizeRichText(question.stimulusHtml);
   const baseQuestion = {
     id,
+    ...(documentImport.sourceMetadata(question.source) ? {source: documentImport.sourceMetadata(question.source)} : {}),
     ...(explanation ? { explanation } : {}),
     ...(explanationHtml ? { explanationHtml } : {}),
     points: Number.isFinite(Number(question.points)) ? Math.max(1, Number(question.points)) : 1,
@@ -847,8 +796,11 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
     ...(question.instructions ? { instructions: question.instructions } : {}),
     ...(instructionsHtml ? { instructionsHtml } : {}),
     ...(question.stimulus ? { stimulus: question.stimulus } : {}),
+    ...(stimulusHtml ? { stimulusHtml } : {}),
     ...(question.image ? { image: normalizePassageImage(question.image, `Question ${index + 1}`) } : {}),
     ...(promptHtml ? { promptHtml } : {}),
+    ...(question.selectionHtml ? {selectionHtml:sanitizeRichText(question.selectionHtml)} : {}),
+    ...Object.fromEntries(["dragDropContentHtml","dropdownContentHtml"].filter(key=>question[key]).map(key=>[key,sanitizeRichText(question[key])])),
     topic: allowIncomplete ? String(question.topic || "") : requiredText(question.topic, `Question ${index + 1} topic`),
   };
 
@@ -1022,10 +974,10 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
         );
       }
     }
-    if (isSingleCategoryMultiAnswer && Object.keys(correctPlacements).length < 2) {
+    if (isSingleCategoryMultiAnswer && Object.keys(correctPlacements).length < 1) {
       throw new EditorError(
         400,
-        `Question ${index + 1} needs at least two correct answer cards for its single category box.`,
+        `Question ${index + 1} needs at least one correct answer card for its single category box.`,
       );
     }
     return {
@@ -1035,7 +987,10 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
       ...(categoryCapacity ? { categoryCapacity } : {}),
       correctPlacements,
       instructions:
-        typeof question.instructions === "string" && question.instructions.trim()
+        question.source?.sourceFormat === "testnav" &&
+        (typeof question.instructions !== "string" || !question.instructions.trim() || String(question.prompt || '').split(/\r?\n/).some(line => line.trim() === question.instructions.trim()))
+          ? ""
+          : typeof question.instructions === "string" && question.instructions.trim()
           ? question.instructions.trim()
           : isMatrixChoice
             ? "Select one answer in each row."
@@ -1184,6 +1139,8 @@ function normalizePassage(input, { requireExamSection = false, allowIncomplete =
     passageType,
     questions,
     richText: sanitizeRichText(input.richText),
+    source: documentImport.sourceMetadata(input.source),
+    ...Object.fromEntries(["titleHtml","blurbHtml","bylineHtml","sourceNoteHtml"].filter(key=>input[key]).map(key=>[key,sanitizeRichText(input[key])])),
     sourceHash: typeof input.sourceHash === "string" ? input.sourceHash : "",
     sourceNote: typeof input.sourceNote === "string" ? input.sourceNote.trim() : "",
     ...(requireExamSection ? { section } : {}),
@@ -1193,6 +1150,8 @@ function normalizePassage(input, { requireExamSection = false, allowIncomplete =
     images: Array.isArray(input.images) ? input.images.map(image => normalizePassageImage(image, "Source visual")) : [],
     title,
     versionLabel,
+    versionLabels: passageVersions.labels(input),
+    ...(input.duplicateOf ? {duplicateOf: slugify(input.duplicateOf)} : {}),
   };
 }
 
@@ -1208,6 +1167,8 @@ function buildPassageSource(passage) {
   const passageOptions = [
     `    id: ${quote(passage.id)},`,
     ...(passage.preserveSourceLayout ? [`    preserveSourceLayout: true,`, `    format: ${quote(passage.format)},`, `    images: ${JSON.stringify(passage.images || [])},`] : []),
+    ...["titleHtml","blurbHtml","bylineHtml","sourceNoteHtml"].filter(key=>passage[key]).map(key=>`    ${key}: ${quote(passage[key])},`),
+    ...(passage.source ? [`    source: ${JSON.stringify(passage.source)},`] : []),
     `    title: ${quote(passage.title)},`,
     ...(passage.author ? [`    author: ${quote(passage.author)},`] : []),
     ...(passage.byline ? [`    byline: ${quote(passage.byline)},`] : []),
@@ -1233,6 +1194,8 @@ function buildPassageSource(passage) {
     "",
     `export const ${passage.exportName}: ExamPassageSet = {`,
     `  id: ${quote(passage.passageSetId)},`,
+    `  versionLabels: ${JSON.stringify(passageVersions.labels(passage))},`,
+    ...(passage.duplicateOf ? [`  duplicateOf: ${quote(passage.duplicateOf)},`] : []),
     ...(passage.label ? [`  label: ${quote(passage.label)},`] : []),
     `  section: ${quote(passage.section)},`,
     `  questionCount: ${questionsName}.length,`,
@@ -1248,7 +1211,34 @@ function buildPassageSource(passage) {
 
 async function savePassage(input) {
   const imported = await verifyDocumentPublication(input, "passage");
-  const passage = normalizePassage(imported.content, { requireExamSection: true, allowIncomplete: Boolean(imported.entry && input.publishNow === true || input.preserveSourceLayout && input.sourceHash) });
+  let passage = normalizePassage(imported.content, { requireExamSection: true, allowIncomplete: Boolean(imported.entry && input.publishNow === true || input.preserveSourceLayout && input.sourceHash) });
+  if (imported.entry && !passage.sourceHash) {
+    const { passages } = await listPassages();
+    const sourceLabels = passageVersions.labels(passage);
+    const candidates = passages.filter(candidate => !candidate.duplicateOf).sort((a,b) =>
+      Number(passageVersions.labels(b).some(label=>sourceLabels.includes(label))) - Number(passageVersions.labels(a).some(label=>sourceLabels.includes(label))));
+    const same = candidates.find(candidate => passageVersions.identical(passage, normalizePassage(candidate, {requireExamSection:true,allowIncomplete:true})));
+    if (same) {
+      const target = join(passageSetsRoot, same.fileName);
+      const source = await readFile(target, 'utf8');
+      if (hashSource(source) !== same.sourceHash) throw new EditorError(409, 'The saved passage changed during publication. Retry publishing.');
+      const tags = passageVersions.labels({versionLabels:[...passageVersions.labels(same),...passageVersions.labels(passage)]});
+      // Change only source tags; never replace the saved passage or its questions.
+      const tree = ts.createSourceFile(target, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+      const exported = exportedObject(tree, collectEnvironment(tree), node => Boolean(objectProperty(node,'passage')));
+      const property = objectProperty(exported.initializer, 'versionLabels');
+      const next = property ? source.slice(0,property.initializer.getStart(tree)) + JSON.stringify(tags) + source.slice(property.initializer.end)
+        : source.slice(0,exported.initializer.getStart(tree)+1) + `\n  versionLabels: ${JSON.stringify(tags)},` + source.slice(exported.initializer.getStart(tree)+1);
+      if (next !== source) sourceWriter.writeExportFile(target, next);
+      const saved = await parsePassageFile(target);
+      // A previous attempt may have written the passage but failed before
+      // registering it. Repair that step before completing the draft receipt.
+      await ensureExamPassageRegistration(saved);
+      await documentDrafts.published(imported.entry.id, {...input,...saved});
+      return saved;
+    }
+    if (passages.some(candidate => candidate.id === passage.id || candidate.fileName === passage.fileName || candidate.exportName === passage.exportName)) passage = passageVersions.distinct(passage, passages);
+  }
   const seenImages = new Set();
   const extraImages = [];
   for (const image of [...(passage.image ? [passage.image] : []), ...passage.images]) {
@@ -1268,7 +1258,8 @@ async function savePassage(input) {
     // A new file has no source hash.
   }
   if (existingSource) {
-    if (!passage.sourceHash || hashSource(existingSource) !== passage.sourceHash) {
+    if (!passage.sourceHash) throw new EditorError(409, "A saved passage already uses this version. Open the saved passage to update it, or choose a distinct version label for this draft.");
+    if (hashSource(existingSource) !== passage.sourceHash) {
       throw new EditorError(409, "This passage file changed after it was loaded. Refresh the editor before saving.");
     }
   } else {
@@ -1278,10 +1269,11 @@ async function savePassage(input) {
     }
   }
 
-  await writeFile(filePath, buildPassageSource(passage), "utf8");
+  sourceWriter.writeExportFile(filePath, buildPassageSource(passage));
   const savedPassage = await parsePassageFile(filePath);
   await ensureExamPassageRegistration(savedPassage);
-  if (imported.entry) await documentDrafts.published(imported.entry.id, { ...input, ...savedPassage, teacherSource: input.teacherSource, review: input.review, visuals: input.visuals, questions: input.questions });
+  if (imported.entry) await documentDrafts.published(imported.entry.id, { ...input, ...savedPassage, teacherSource: input.teacherSource, review: input.review, visuals: input.visuals,
+    questions: savedPassage.questions.map((question,index)=>({...input.questions[index],...question})) });
   return savedPassage;
 }
 
@@ -1351,7 +1343,7 @@ async function ensureExamPassageRegistration(passage) {
   if (!new RegExp(`\\b${passage.exportName}\\b`).test(registeredSource)) {
     source = `${source.slice(0, closingIndex).trimEnd()}\n  ${passage.exportName},\n${source.slice(closingIndex)}`;
   }
-  await writeFile(examPassageLibraryPath, source, "utf8");
+  sourceWriter.writeExportFile(examPassageLibraryPath, source);
 }
 
 function escapeRegularExpression(value) {
@@ -1966,11 +1958,14 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
   const id = slugify(requiredText(question.id, `Math question ${questionNumber} ID`));
   if (!id) throw new EditorError(400, `Math question ${questionNumber} needs a valid ID.`);
   const type = requiredText(question.type, `Math question ${questionNumber} type`);
+  if (['matrix_choice','table_match','category_sort'].includes(type)) return normalizeQuestion(question,assessmentId,index,{allowIncomplete});
   const instructionsHtml = sanitizeRichText(question.instructionsHtml);
   const promptHtml = sanitizeRichText(question.promptHtml);
   const stimulusHtml = sanitizeRichText(question.stimulusHtml);
   const baseQuestion = {
     id,
+    ...(documentImport.sourceMetadata(question.source) ? {source: documentImport.sourceMetadata(question.source)} : {}),
+    ...(question.explanationHtml ? {explanationHtml:sanitizeRichText(question.explanationHtml)} : {}),
     skilled: typeof question.skilled === 'string' && question.skilled ? question.skilled : 'TBD',
     ...(typeof question.explanation === "string" ? { explanation: question.explanation } : {}),
     ...(normalizeMathImage(question.image, questionNumber)
@@ -1983,6 +1978,8 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
     points: Number.isFinite(Number(question.points)) ? Math.max(1, Number(question.points)) : 1,
     prompt: allowIncomplete ? String(question.prompt || "") : requiredText(question.prompt, `Math question ${questionNumber}`, { preserve: true }),
     ...(promptHtml ? { promptHtml } : {}),
+    ...(question.selectionHtml ? {selectionHtml:sanitizeRichText(question.selectionHtml)} : {}),
+    ...Object.fromEntries(["dragDropContentHtml","dropdownContentHtml"].filter(key=>question[key]).map(key=>[key,sanitizeRichText(question[key])])),
     ...(typeof question.stimulus === "string" && question.stimulus.trim()
       ? { stimulus: question.stimulus.trim() }
       : {}),
@@ -2125,6 +2122,7 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
       id: requiredText(point?.id, `Math question ${questionNumber} point ${pointIndex + 1} ID`),
       x: numberValue(point?.x, 0),
       y: numberValue(point?.y, 0),
+      ...(Number.isFinite(point?.sourceX) && Number.isFinite(point?.sourceY) ? {sourceX:point.sourceX,sourceY:point.sourceY} : {}),
     }));
     if (new Set(points.map((point) => point.id)).size !== points.length) {
       throw new EditorError(400, `Math question ${questionNumber} graph point IDs must be unique.`);
@@ -2140,6 +2138,7 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
       correctPointIds,
       graph: {
         points,
+        ...(graph.sourceImage && Number(graph.sourceImage.width) > 0 && Number(graph.sourceImage.height) > 0 ? {sourceImage:{...normalizeMathImage(graph.sourceImage,questionNumber),width:Number(graph.sourceImage.width),height:Number(graph.sourceImage.height)}} : {}),
         ...(typeof graph.title === "string" && graph.title.trim() ? { title: graph.title.trim() } : {}),
         xLabel: requiredText(graph.xLabel || "x", `Math question ${questionNumber} graph x-axis label`),
         xMax: numberValue(graph.xMax, 10),
@@ -2321,7 +2320,7 @@ async function previewMathImport(input) {
   const assessment = state.assessments.find((candidate) => candidate.id === assessmentId);
   if (!assessment) throw new EditorError(404, "The selected assessment was not found.");
   const parsed = parseMathImportSource(input.source);
-  const question = normalizeMathQuestion(parsed.question, assessmentId, 0);
+  const question = normalizeMathQuestion(documentImport.formatImportedMathChoices(parsed.question), assessmentId, 0);
   const test = state.tests.find((candidate) => candidate.assessmentId === assessmentId);
   const registeredSection = test?.mathSectionFileName
     ? state.mathSections.find((candidate) => candidate.fileName === test.mathSectionFileName)
@@ -2358,9 +2357,10 @@ async function previewMathImport(input) {
 function sanitizeDocumentDraft(content) {
   const p = JSON.parse(JSON.stringify(content));
   p.richText = sanitizeRichText(p.richText);
+  for (const key of ["titleHtml","blurbHtml","bylineHtml","sourceNoteHtml"]) if(p[key]) p[key]=sanitizeRichText(p[key]);
   p.questions = p.questions.map(q => {
     q = documentImport.withoutSectionDirections(q);
-    for (const field of ["promptHtml", "instructionsHtml", "stimulusHtml", "explanationHtml"]) if (q[field]) q[field] = sanitizeRichText(q[field]);
+    for (const field of ["promptHtml", "instructionsHtml", "stimulusHtml", "explanationHtml", "selectionHtml", "dragDropContentHtml", "dropdownContentHtml"]) if (q[field]) q[field] = sanitizeRichText(q[field]);
     for (const choice of q.choices || []) if (choice.html) choice.html = sanitizeInlineRichText(choice.html);
     return q;
   });
@@ -2368,13 +2368,28 @@ function sanitizeDocumentDraft(content) {
 }
 
 async function previewPassageImport(input) {
+  let decoded;
+  try { decoded=satCrashCourse.decode(input.source); } catch { /* Shared importer reports invalid JSON. */ }
+  if (satCrashCourse.isReader(decoded)) {
+    const originalPackageId=await retainSourcePackage(workspaceRoot,input.source,{sourceFamily:'sat_crash_course'});
+    const converted=await satCrashCourse.ela(decoded,importSatCrashCourseImage);
+    converted.source={...converted.source,originalPackageId};
+    const options=input.importOptions || {};
+    for (const passage of converted.passages) {
+      passage.source={...passage.source,originalPackageId};
+      if (options.versionLabel) passage.versionLabel=options.versionLabel;
+      if (options.topic) passage.questions=passage.questions.map(question=>({...question,topic:options.topic}));
+      if (converted.passages.length===1) for (const key of ['title','section','format','passageType']) if(options[key])passage[key]=options[key];
+    }
+    input={...input,source:JSON.stringify(converted)};
+  }
   const entries = mathBatches.parse(input.source).map(entry => ({ ...entry, content: sanitizeDocumentDraft(entry.content) }));
   const warnings = entries.flatMap(entry => documentImport.issues(entry, importTaxonomy()).map(issue => `${issue.scope}: ${issue.message}`));
   const { passages } = await listPassages();
   for (const entry of entries) {
-    if (entry.kind === "passage" && passages.some(p => p.id === entry.content.id)) throw new EditorError(409, "That passage version already exists. Open it in the library.");
+    if (entry.kind === "passage" && passages.some(p => p.id === entry.content.id)) warnings.push("This title already exists. Identical ordered questions can share source tags; changed questions will be retained as a distinct version.");
   }
-  return { format: passageImportFormat, entries, passage: entries[0].content, normalizedJson: JSON.stringify(entries, null, 2), warnings };
+  return { format: passageImportFormat, importSource:input.source, entries, passage: entries[0].content, normalizedJson: JSON.stringify(entries, null, 2), warnings };
 }
 
 async function verifyDocumentPublication(input, kind, destination = "exam") {
@@ -2643,7 +2658,12 @@ async function importMathIntoTest(input) {
     // editor retains their original input as a recoverable draft.
     try { source = satCrashCourse.decode(input.source); } catch { /* handled by the draft importer */ }
     if (satCrashCourse.isReader(source)) {
-      try { input = { ...input, source: await satCrashCourse.math(source, importSatCrashCourseImage) }; }
+      try {
+        const originalPackageId=await retainSourcePackage(workspaceRoot,input.source,{sourceFamily:'sat_crash_course'});
+        const converted=await satCrashCourse.math(source, importSatCrashCourseImage);
+        converted.source={...converted.source,originalPackageId};
+        input = { ...input, source: converted };
+      }
       catch (error) { throw new EditorError(400, error.message); }
     }
   }
@@ -2812,6 +2832,9 @@ function parseTestFile(filePath, passages, mathSections) {
       revisingEditingPartAPassageIds,
       sourceHash: hashSource(source),
       standaloneItemIds,
+      presentationOverrides: objectProperty(exported.initializer,"presentationOverrides") ? valueFromNode(objectProperty(exported.initializer,"presentationOverrides").initializer,environment) : undefined,
+      questionOrder: objectProperty(exported.initializer,"questionOrder") ? valueFromNode(objectProperty(exported.initializer,"questionOrder").initializer,environment) : undefined,
+      source: objectProperty(exported.initializer,"source") ? valueFromNode(objectProperty(exported.initializer,"source").initializer,environment) : undefined,
       title: String(valueFromNode(objectProperty(exported.initializer, "title").initializer, environment)),
     };
   });
@@ -2862,6 +2885,9 @@ function normalizeStandaloneItem(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Part B question data is invalid.");
   }
+  if (documentImport.sourceMetadata(input.source)) {
+    return {...normalizeQuestion(input,'passage',0,{allowIncomplete:true}),versionLabels:partBBank.labels(input),...(partBBank.labels(input)[0] ? {versionLabel:partBBank.labels(input)[0]} : {})};
+  }
   const id = slugify(requiredText(input.id, "Question ID"));
   if (!id) throw new EditorError(400, "Question ID must contain letters or numbers.");
   const promptHtml = sanitizeInlineRichText(input.promptHtml);
@@ -2872,6 +2898,8 @@ function normalizeStandaloneItem(input) {
     points: Number.isFinite(Number(input.points)) ? Math.max(1, Number(input.points)) : 1,
     prompt: requiredText(input.prompt, "Question prompt", { preserve: true }),
     ...(promptHtml ? { promptHtml } : {}),
+    ...(input.selectionHtml ? {selectionHtml:sanitizeRichText(input.selectionHtml)} : {}),
+    ...(documentImport.sourceMetadata(input.source) ? {source:documentImport.sourceMetadata(input.source)} : {}),
     stimulus: requiredText(input.stimulus, "Question paragraph", { preserve: true }),
     ...(stimulusHtml ? { stimulusHtml } : {}),
     ...(typeof input.explanation === "string" && input.explanation.trim() ? { explanation: input.explanation.trim() } : {}),
@@ -3021,6 +3049,38 @@ async function combineStandaloneItems(input, importedQuestions = []) {
 }
 async function saveStandaloneItem(input) {
   return mutateStandalone(() => saveStandaloneItemNow(input));
+}
+async function publishDocumentStandalone(input) {
+  return documentDrafts.publishStandalone(input, async entry => {
+    const verified = await verifyDocumentPublication(entry.content, 'standalone');
+    let state = await getState();
+    const assessment = state.assessments.find(a => a.id === input.assessmentId);
+    if (!assessment) throw new EditorError(400, 'Choose a destination exam.');
+    const savedIds = [];
+    for (const question of verified.content.questions) {
+      state = await getState();
+      const item = normalizeStandaloneItem({...question, source: {...entry.content.source, ...question.source}, versionLabels: [assessment.title, ...(question.versionLabels || [])]});
+      const old = state.standaloneItems.find(q => q.id === item.id);
+      if (old) {
+        const signature = q => documentImport.fingerprint({kind:'standalone', content:{questions:[normalizeStandaloneItem(q)]}});
+        if (signature(old) !== signature(item)) throw new EditorError(409, `Question ${item.id} already has different content. Its saved version was preserved.`);
+        const canonical = state.standaloneItems.find(q => q.id === (old.duplicateOf || old.id));
+        if (!canonical) throw new EditorError(409, 'The shared English question could not be loaded. Refresh before publishing.');
+        if (!partBBank.labels(canonical).includes(assessment.title)) {
+          await saveStandaloneItem({item:{...canonical,versionLabels:[...partBBank.labels(canonical),assessment.title]},originalId:canonical.id,sourceHash:state.standaloneSourceHash});
+        }
+        savedIds.push(canonical.id);
+      } else {
+        const saved = await saveStandaloneItem({item, originalId:'', sourceHash:state.standaloneSourceHash});
+        savedIds.push(saved.item.id);
+      }
+    }
+    state = await getState();
+    const test = state.tests.find(t => t.assessmentId === assessment.id);
+    if (!test) throw new EditorError(400, 'Destination exam could not be loaded.');
+    await saveTest({...test, questionOrder:undefined, standaloneItemIds:[...new Set([...(test.standaloneItemIds || []), ...savedIds])]});
+    return {questionIds:savedIds, publishedAt:new Date().toISOString()};
+  });
 }
 async function saveStandaloneItemNow(input) {
   const source = await readFile(standaloneItemsPath, "utf8");
@@ -3271,11 +3331,38 @@ async function saveTest(input) {
   const existingMathSection = existingTest?.mathSectionFileName
     ? state.mathSections.find((candidate) => candidate.fileName === existingTest.mathSectionFileName)
     : undefined;
-  const selectedQuestionIds = [
+  const englishQuestionIds = [
     ...selectedPassages.flatMap(passage => passage.questions.map(question => question.id)),
     ...selectedStandaloneItems.map(question => question.id),
-    ...(existingMathSection?.questions ?? []).map(question => question.id),
   ];
+  const mathQuestionIds = (existingMathSection?.questions ?? []).map(question => question.id);
+  const selectedQuestionIds = [...englishQuestionIds, ...mathQuestionIds];
+  const sourceRank = new Map((existingTest?.questionOrder || []).map((id,index)=>[id,index]));
+  const reorderedEnglishGroups = [];
+  for (const [field, ids] of [['readingPassageIds',readingPassageIds],['revisingEditingPartAPassageIds',revisingEditingPartAPassageIds]]) {
+    if (selectionOrderChanged(existingTest?.[field], ids)) reorderedEnglishGroups.push(ids.map(id=>selectedPassages.find(passage=>passage.id===id).questions.map(question=>question.id).sort((a,b)=>(sourceRank.get(a)??Number.MAX_SAFE_INTEGER)-(sourceRank.get(b)??Number.MAX_SAFE_INTEGER))));
+  }
+  if (selectionOrderChanged(existingTest?.standaloneItemIds,standaloneItemIds)) reorderedEnglishGroups.push(standaloneItemIds.map(id=>[id]));
+  let questionOrder;
+  try { questionOrder = reconcileExamQuestionOrder({requestedOrder:input.questionOrder,existingOrder:existingTest?.questionOrder,englishIds:englishQuestionIds,mathIds:mathQuestionIds,reorderedEnglishGroups}); }
+  catch(error) { throw new EditorError(400,error.message); }
+  const source = documentImport.sourceMetadata(input.source || existingTest?.source);
+  const rawPresentation=input.presentationOverrides || existingTest?.presentationOverrides;
+  const cleanDisplay = value => {
+    if(Array.isArray(value))return value.map(cleanDisplay);
+    if(!value || typeof value!=='object')return value;
+    return Object.fromEntries(Object.entries(value).map(([key,item])=>[key,typeof item==='string' && (key==='html' || key==='richText' || key.endsWith('Html')) ? sanitizeRichText(item) : cleanDisplay(item)]));
+  };
+  const presentationOverrides=rawPresentation ? projectExamPresentation({
+    questions:Object.fromEntries(Object.entries(rawPresentation.questions || {}).filter(([id])=>selectedQuestionIds.includes(id)).map(([id,override])=>{
+      if(override?.base?.id!==id || override?.question?.id!==id)throw new EditorError(400,'Source question presentation must retain its canonical question ID.');
+      return [id,{base:override.base,question:cleanDisplay(override.question)}];
+    })),
+    passages:Object.fromEntries(Object.entries(rawPresentation.passages || {}).filter(([id])=>selectedPassages.some(passage=>passage.id===id)).map(([id,override])=>{
+      if(!Array.isArray(override?.baseLines) || override?.passage?.id!==id || !Array.isArray(override?.passage?.lines))throw new EditorError(400,'Source passage presentation must retain its canonical passage ID and lines.');
+      return [id,{baseLines:override.baseLines,passage:cleanDisplay(override.passage)}];
+    })),
+  }) : undefined;
   const duplicateId = selectedQuestionIds.find((id, index) => selectedQuestionIds.indexOf(id) !== index);
   if (duplicateId) throw new EditorError(400, `Selected questions share the ID "${duplicateId}". Give each question a unique ID before saving this exam.`);
   const importBlock = selectedPassages
@@ -3336,6 +3423,9 @@ async function saveTest(input) {
     `  assessmentId: ${quote(assessmentId)},`,
     `  title: ${quote(String(assessment.title ?? assessmentId))},`,
     ...(existingMathSection ? [`  mathSection: ${existingMathSection.exportName},`] : []),
+    ...(presentationOverrides ? [`  presentationOverrides: ${JSON.stringify(presentationOverrides)},`] : []),
+    ...(questionOrder ? [`  questionOrder: ${JSON.stringify(questionOrder)},`] : []),
+    ...(source ? [`  source: ${JSON.stringify(source)},`] : []),
     `  passageSections: ${JSON.stringify(passageSections, null, 2)},`,
     passageIdentifiers.length <= 1
       ? `  passageSets: [${passageIdentifiers.join(", ")}],`
@@ -3369,6 +3459,7 @@ async function saveTest(input) {
     ],
     updatedAt: timestamp,
   };
+  if (questionOrder) { const position=new Map(questionOrder.map((id,index)=>[id,index])); updatedAssessment.questions.sort((a,b)=>(position.get(a.id) ?? 1e9)-(position.get(b.id) ?? 1e9)); }
   const updatedAssessments = state.assessments.map((candidate) =>
     candidate.id === assessmentId ? updatedAssessment : candidate,
   );
@@ -3768,6 +3859,11 @@ async function handleRequest(request, response) {
       sendJson(response, 201, await importMathIntoTest(await readJson(request)));
       return;
     }
+    if (request.method === 'POST' && url.pathname === '/api/document-publish-english') {
+      verifyEditRequest(request);
+      sendJson(response, 201, await publishDocumentStandalone(await readJson(request)));
+      return;
+    }
     if (request.method === "POST" && url.pathname === "/api/document-publish-math") {
       verifyEditRequest(request);
       const input = await readJson(request);
@@ -3829,6 +3925,13 @@ async function handleRequest(request, response) {
       await documentDrafts.published(entry.id, entry.content, assessment.id);
       sendJson(response, 201, { math: result });
       return;
+    }
+    if (request.method === "GET" && /^\/api\/source-packages\/[a-f0-9]{64}$/.test(url.pathname)) {
+      verifyEditRequest(request);
+      const packageId = url.pathname.split('/').pop();
+      const original = await readFile(join(workspaceRoot,'tools','.content-drafts','source-packages',packageId,'original.json'),'utf8');
+      response.writeHead(200, {'Content-Type':'application/json; charset=utf-8','Content-Disposition':`attachment; filename="import-${packageId.slice(0,12)}.json"`,'Cache-Control':'no-store'});
+      response.end(original); return;
     }
     if (url.pathname === "/api/document-drafts") {
       verifyEditRequest(request);

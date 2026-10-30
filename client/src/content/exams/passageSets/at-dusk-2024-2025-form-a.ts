@@ -224,6 +224,7 @@ const atDusk20242025FormAQuestions: ExamQuestion[] = [
 ];
 
 export const atDusk20242025FormAPassageSet: ExamPassageSet = {
+  duplicateOf: "at-dusk-2024-form-a",
   id: "ela-at-dusk-2024-2025-form-a",
   section: "reading",
   questionCount: atDusk20242025FormAQuestions.length,

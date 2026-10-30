@@ -33,7 +33,7 @@ function StudentPreview() {
     return () => window.removeEventListener('message', receive);
   }, []);
   if (!preview) return <p role="status">Loading student player…</p>;
-  return <main className="exam-session-shell is-math-session">
+  return <main className="exam-session-shell is-math-session" data-player-profile={preview.question.source?.playerProfile || 'testnav'}>
     <ExamToolbar assessmentLabel={preview.title} breadcrumbMiddle="MATH" breadcrumbCurrent={`${preview.index + 1} OF ${preview.count}`} studentName="Preview"
       showReviewTools={false} showExhibits activeTool={tool} canEliminate={['multiple_choice','multi_select','graph_point_select'].includes(preview.question.type)} isPreviousActive={preview.index > 0} isNextActive={preview.index + 1 < preview.count}
       onPrevious={() => parent.postMessage({ type: 'studio:math-preview-navigate', delta: -1 }, editorOrigin)}

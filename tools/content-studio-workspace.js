@@ -9,7 +9,7 @@ const studioUI = {
     return passage?.format === 'sentence_prose' || String(passage?.directions?.title || '').toLowerCase().includes('revising/editing') ? 'revising_editing_a' : 'reading';
   },
   passagesForLibrary(mode = app.passageMode, library = app.passageLibrary || 'reading') {
-    return mode === 'advanced' ? app.state.advancedPassages : app.state.passages.filter(passage => this.passageLibrarySection(passage) === library);
+    return mode === 'advanced' ? app.state.advancedPassages : app.state.passages.filter(passage => !passage.duplicateOf && this.passageLibrarySection(passage) === library);
   },
   selectedQuestionId: "",
   selectedQuestionIndex: 0,
@@ -374,6 +374,7 @@ const studioUI = {
       <label class="field"><span>2. Quoted excerpt</span><textarea data-excerpt-field="excerpt" rows="5" placeholder="Paste only the quoted sentences or poem lines." required></textarea></label>
       <label class="field"><span>3. Follow-up question</span><textarea data-excerpt-field="followUp" rows="3" placeholder="How do these lines…?" required></textarea></label></div>
       <label class="studio-excerpt-bold"><input type="checkbox" data-excerpt-bold> Bold quoted excerpt (TestNav style)</label>
+      <label class="studio-excerpt-bold"><input type="checkbox" data-excerpt-boxed> Border around excerpt (as printed in source)</label>
       <details><summary>Original question</summary><pre class="studio-excerpt-original"></pre></details>
       <h3>Preview</h3><div class="studio-excerpt-preview" aria-live="polite"></div>
       <footer><button type="button" class="secondary" data-excerpt-cancel>Cancel</button><button class="primary" type="submit">Apply formatting</button></footer></form>`;
@@ -381,12 +382,13 @@ const studioUI = {
     const fields = [...dialog.querySelectorAll('[data-excerpt-field]')];
     fields.forEach(field => { field.value = parts?.[field.dataset.excerptField] || (!parts && field.dataset.excerptField === 'followUp' ? question.prompt : ''); });
     const bold = dialog.querySelector('[data-excerpt-bold]'); bold.checked = parts?.bold !== false;
-    const read = () => Object.fromEntries([...fields.map(field => [field.dataset.excerptField, field.value]), ['bold', bold.checked]]);
+    const boxed = dialog.querySelector('[data-excerpt-boxed]'); boxed.checked = parts?.boxed === true;
+    const read = () => Object.fromEntries([...fields.map(field => [field.dataset.excerptField, field.value]), ['bold', bold.checked], ['boxed', boxed.checked]]);
     const preview = () => {
       const formatted = DocumentImport.formatQuestionExcerpt(read());
       dialog.querySelector('.studio-excerpt-preview').innerHTML = formatted?.promptHtml || '<p>Fill all three fields to preview the question.</p>';
     };
-    fields.forEach(field => field.addEventListener('input', preview)); bold.addEventListener('change', preview);
+    fields.forEach(field => field.addEventListener('input', preview)); bold.addEventListener('change', preview); boxed.addEventListener('change', preview);
     const opener = document.getElementById('studio-format-excerpt');
     const close = () => { dialog.close(); dialog.remove(); opener?.focus(); };
     dialog.querySelectorAll('[data-excerpt-cancel]').forEach(button => { button.onclick = close; });
@@ -396,6 +398,10 @@ const studioUI = {
       const formatted = DocumentImport.formatQuestionExcerpt(read());
       if (!formatted) return;
       Object.assign(question, formatted);
+      if (parts?.separateFields) {
+        delete question.instructions; delete question.instructionsHtml;
+        delete question.stimulus; delete question.stimulusHtml;
+      }
       delete question.promptParts;
       markDirty();
       this.captureExamPosition();
@@ -595,7 +601,7 @@ const studioUI = {
     if (!words.length) return passages;
     return passages.map((passage, index) => {
       const title = normalize(passage.title), identity = normalize(`${passage.id} ${passage.versionLabel || ''}`);
-      const text = normalize([passage.title, passage.id, passage.versionLabel, passage.teacherSource, passage.advancedId, passage.genre, passage.fileName, ...(passage.questions || []).flatMap(question => [question.topic, question.prompt, this.teacherSearchText?.(question.id) || ""])].join(' '));
+      const text = normalize([passage.title, passage.id, passage.versionLabel, ...(passage.versionLabels || []), passage.teacherSource, passage.advancedId, passage.genre, passage.fileName, ...(passage.questions || []).flatMap(question => [question.topic, question.prompt, this.teacherSearchText?.(question.id) || ""])].join(' '));
       const score = words.reduce((sum, word) => sum + (title.includes(word) ? 4 : identity.includes(word) ? 2 : 0), 0);
       return { passage, index, score, matches: words.every(word => text.includes(word)) };
     }).filter(item => item.matches).sort((a, b) => b.score - a.score || a.index - b.index).map(item => item.passage);

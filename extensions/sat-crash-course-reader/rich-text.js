@@ -46,7 +46,13 @@
       if (node.nodeType === 3) return escape(node.textContent);
       if (node.nodeType !== 1) return '';
       const tag = node.tagName.toLowerCase();
-      if (['script', 'style', 'svg', 'math', 'annotation', 'button', 'img', 'iframe', 'input', 'select', 'textarea', 'math-field'].includes(tag)) return '';
+      if (['script', 'style', 'svg', 'math', 'annotation', 'button', 'iframe', 'input', 'select', 'textarea', 'math-field'].includes(tag)) return '';
+      if (tag === 'img') {
+        const src = node.currentSrc || node.getAttribute?.('src') || '';
+        if (!/^(?:https?:\/\/|\/)/i.test(src)) return '';
+        const width = Number(node.getAttribute?.('width') || node.width);
+        return `<img src="${escape(src)}" alt="${escape(node.getAttribute?.('alt') || '')}"${width > 0 ? ` width="${Math.round(width)}"` : ''}>`;
+      }
       if (node.classList?.contains('shsat-paragraph')) return '<br><br>';
       if (node.classList?.contains('newline')) return '<br>';
       if (tag === 'br') return '<br>';
@@ -67,6 +73,14 @@
       if (['em', 'i'].includes(tag) || node.classList?.contains('textit') || italic(current.fontStyle) && !italic(parent.fontStyle)) html = `<em>${html}</em>`;
       if (tag === 'u' || /underline/.test(current.textDecorationLine || '') && !/underline/.test(parent.textDecorationLine || '')) html = `<u>${html}</u>`;
       if (['sup', 'sub', 's'].includes(tag)) html = `<${tag}>${html}</${tag}>`;
+      if (['table','caption','thead','tbody','tfoot','tr','th','td','ul','ol','li','blockquote'].includes(tag)) {
+        const attrs = ['colspan','rowspan','scope'].map(name => node.getAttribute?.(name) ? ` ${name}="${escape(node.getAttribute(name))}"` : '').join('');
+        return `<${tag}${attrs}>${html}</${tag}>`;
+      }
+      if (tag === 'a') {
+        const href = node.getAttribute?.('href') || '';
+        if (/^https?:\/\//i.test(href)) return `<a href="${escape(href)}">${html}</a>`;
+      }
       if (['p', 'div', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)) html = `<p>${html}</p>`;
       return html;
     }

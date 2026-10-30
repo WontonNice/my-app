@@ -137,3 +137,55 @@ test('module preview snapshots the complete effective draft mix and allows unpub
   catalog.generators[0].title='Changed after opening';assert.notEqual(preview.generators[0].title,'Changed after opening');
   assert.throws(()=>modulePreviewCatalog({...module,id:'empty-preview',defaultType:undefined,includeAll:false,generatorIds:[]},catalog),/Include at least one enabled/);
 });
+
+test('Skill is the module name; legacy classifications never replace it on reads or saves',()=>{
+  const {reconcilePracticeSkilled,studentPracticeCatalog}=require('../server/src/shared/practiceCatalog.ts');
+  const catalog=defaultPracticeCatalog(taxonomy),module=catalog.modules.find(item=>item.skillId==='probability-after-removal');
+  Object.assign(module,{title:'Probability After Removal',titleMode:'custom',skilled:'legacy-registry-skill'});
+  const before=structuredClone(module),snapshot=createPracticeState(module.id,'before-rename',catalog);
+  for(const skills of [[],[{id:module.skilled,label:'Different registry label',category:module.category,subcategory:module.topic}]]){
+    const result=validatePracticeCatalog(reconcilePracticeSkilled(catalog,skills),{...taxonomy,classificationSkills:skills});
+    const saved=result.modules.find(item=>item.id===module.id);
+    assert.equal(saved.title,before.title);assert.deepEqual(saved.generatorIds,before.generatorIds);assert.equal(saved.parentId,before.parentId);
+  }
+  module.title='Removal Probability';
+  const result=validatePracticeCatalog(catalog,{...taxonomy,classificationSkills:[]});
+  assert.equal(studentPracticeCatalog(result).modules.find(item=>item.id===module.id).title,'Removal Probability');
+  assert.deepEqual(managedGeneratorIds(result.modules.find(item=>item.id===module.id),result),before.generatorIds);
+  assert.deepEqual(parsePracticeState(JSON.stringify(snapshot)),snapshot);
+});
+
+test('library Skill filtering uses module membership, including hidden modules and disabled generators',()=>{
+  const catalog=defaultPracticeCatalog(taxonomy),module=catalog.modules.find(item=>item.skillId==='probability-listing-outcomes');
+  module.published=false;
+  catalog.generators.find(item=>item.id===module.generatorIds[0]).enabled=false;
+  const expected=[...module.generatorIds].sort();
+  for(const generator of catalog.generators)generator.skilled='unrelated-registry-skill';
+  assert.deepEqual(filterStudioGenerators(catalog,'','','',{...filters,moduleId:module.id}).map(item=>item.id).sort(),expected);
+  module.title='Listing Possible Outcomes';
+  assert.deepEqual(filterStudioGenerators(catalog,'','','',{...filters,moduleId:module.id}).map(item=>item.id).sort(),expected);
+  assert.equal(filterStudioGenerators(catalog,'','','',{...filters,moduleId:'missing'}).length,0);
+});
+
+test('choosing a shared skill binds its name while keeping module IDs, generators, placement and running sessions',()=>{
+  const {assignPracticeModuleSkill,reconcilePracticeSkilled}=require('../server/src/shared/practiceCatalog.ts');
+  const catalog=defaultPracticeCatalog(taxonomy),module=catalog.modules.find(item=>item.skillId==='probability-after-removal');
+  const snapshot=createPracticeState(module.id,'before-skill-choice',catalog);
+  const skill={id:'removal-skill',label:'Probability After Removing Items',category:module.category,subcategory:module.topic};
+  const assigned=assignPracticeModuleSkill(catalog,module.id,skill),linked=assigned.modules.find(item=>item.id===module.id);
+  assert.equal(linked.skilled,skill.id);assert.equal(linked.title,skill.label);assert.equal(linked.titleMode,'skill');
+  assert.deepEqual(linked.generatorIds,module.generatorIds);assert.equal(linked.parentId,module.parentId);
+  const renamed={...skill,label:'Removal Probability'};
+  assert.equal(reconcilePracticeSkilled(assigned,[renamed]).modules.find(item=>item.id===module.id).title,renamed.label);
+  assert.equal(validatePracticeCatalog(assigned,{...taxonomy,classificationSkills:[renamed]}).modules.find(item=>item.id===module.id).title,renamed.label);
+  const deleted=reconcilePracticeSkilled(assigned,[]).modules.find(item=>item.id===module.id);
+  assert.equal(deleted.skilled,'TBD');assert.equal(deleted.title,skill.label);assert.deepEqual(deleted.generatorIds,module.generatorIds);
+  assert.deepEqual(parsePracticeState(JSON.stringify(snapshot)),snapshot);
+  assert.throws(()=>assignPracticeModuleSkill(catalog,module.id,{...skill,category:'Geometry',subcategory:'Shapes & Angles'}),/Category and Subcategory/);
+  const empty={...module,id:'empty-module',generatorIds:[],published:false};
+  const other={...skill,category:'Geometry',subcategory:'Shapes & Angles'};
+  const moved=assignPracticeModuleSkill({...catalog,modules:[...catalog.modules,empty]},empty.id,other);
+  const destination=moved.modules.find(item=>item.id===empty.id);
+  assert.equal(destination.category,other.category);assert.equal(destination.topic,other.subcategory);
+  assert.equal(practiceModuleKind(moved.modules.find(item=>item.id===destination.parentId)),'foundation');
+});

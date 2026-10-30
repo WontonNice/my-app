@@ -82,6 +82,32 @@ test('passage and question-type patterns drill down to response evidence only', 
   assert.equal(types.reduce((sum, item) => sum + item.total, 0), 4);
 });
 
+test('identical passages in different exams retain independent scores, dates and repeat evidence', () => {
+  const sharedAttemptId = 'same-session-id';
+  const make = (assessmentId, answers, completedAt) => {
+    const exam = { ...structuredClone(content), assessmentId, title: assessmentId };
+    const result = { ...createExamResult(exam, answers, ['english']), attemptId: sharedAttemptId, completedAt };
+    return { result, content: exam, subjects: result.subjects, passages: result.passages };
+  };
+  const first = make('form-a', { a: 'B', b: 'B', c: 'B' }, '2026-09-01T12:00:00Z');
+  const second = make('form-b', { a: 'A', b: 'A', c: 'A' }, '2026-09-08T12:00:00Z');
+  const data = buildStudentAnalytics([first, structuredClone(first), second]);
+  assert.equal(data.exams.length, 2, 'Only the mirror of Form A is deduplicated');
+  assert.deepEqual(data.exams.map(exam => [exam.title, exam.english, exam.date]), [
+    ['form-a', 0, first.result.completedAt], ['form-b', 100, second.result.completedAt],
+  ]);
+  assert.equal(new Set(data.evidence.map(row => row.key)).size, 6);
+  const passage = groupResponseEvidence(data.evidence, 'passage')[0];
+  assert.equal(passage.assessments.size, 2);
+  assert.equal(passage.total, 6);
+  assert.equal(passage.correct, 3);
+  assert.ok(buildStudentAnalytics([first, second], 'first').evidence.every(row => row.examTitle === 'form-a'));
+  assert.ok(buildStudentAnalytics([first, second], 'repeats').evidence.every(row => row.examTitle === 'form-b'));
+  assert.ok(buildStudentAnalytics([first, second], 'latest').evidence.every(row => row.examTitle === 'form-b'));
+  second.content.passageSets[0].questions = []; // Stored snapshots still reconstruct both attempts.
+  assert.equal(buildStudentAnalytics([first, second]).evidence.length, 6);
+});
+
 test('changed exam membership cannot invent historical unanswered questions', () => {
   const entry = input({ a: 'A', b: 'B' });
   delete entry.result.analysisContent; // Legacy results have no frozen content snapshot.

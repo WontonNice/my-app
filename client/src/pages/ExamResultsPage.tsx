@@ -1,3 +1,4 @@
+import { hasFullyAnsweredExam } from "../../../server/src/shared/examCorrectionAccess";
 import { useEffect, useState } from "react";
 import { getLearningProgress, getStudentAssessments, getStudentPreviewResults } from "../lib/api";
 import { getExamResult, replaceExamResults, type ExamResult } from "../lib/examResults";
@@ -89,7 +90,7 @@ export function ExamResultsPage() {
         <a href={sectionOnly ? getAssessmentHref(result.assessmentId) : getDashboardHref()}>
           {sectionOnly ? "Continue assessment" : "Return to assessments"}
         </a>
-        {correctionsOpen ? <a href={examCorrectionsHref(result.assessmentId)}>Corrections →</a> : <button type="button" disabled>Corrections locked by your teacher</button>}
+        {(correctionsOpen || hasFullyAnsweredExam(result)) ? <a href={examCorrectionsHref(result.assessmentId)}>Corrections →</a> : <button type="button" disabled>Corrections locked by your teacher</button>}
       </section>
     </main>
   );

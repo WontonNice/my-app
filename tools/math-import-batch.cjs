@@ -103,10 +103,10 @@ var MathImportBatch = (() => {
     if (data.format && ![contract.format, contract.mathFormat].includes(data.format)) throw new Error(`Expected ${contract.format}.`);
     if (!Array.isArray(math)) throw new Error('mathQuestions must be an array.');
     const info = metadata(data.batch);
-    const entries = data.passage || data.passages ? contract.parse({ ...data, mathQuestions: [], batch: undefined }) : [];
+    const entries = data.passage || data.passages || data.englishQuestions?.length ? contract.parse({ ...data, mathQuestions: [], batch: undefined }) : [];
     if (!math.length && !data.batch && entries.length) return entries;
     if (!math.length && !data.batch && !entries.length) throw new Error('Include Math questions, or a named batch continuation manifest.');
-    const envelope = { ...data, passage: undefined, passages: undefined, mathQuestions: [] };
+    const envelope = { ...data, passage: undefined, passages: undefined, englishQuestions: undefined, mathQuestions: [] };
     // Validate shared metadata even if every question fails independently.
     const rootReview = contract.review(data.review || {}, true);
     const rootVisuals = contract.visuals(data.visuals || [], true);
@@ -116,7 +116,7 @@ var MathImportBatch = (() => {
       if (q.id) ids.set(q.id, (ids.get(q.id) || 0) + 1);
       if (q.review?.sourceQuestion) sourceNumbers.set(q.review.sourceQuestion, (sourceNumbers.get(q.review.sourceQuestion) || 0) + 1);
     }
-    const content = { id: 'imported-math-questions', title: info.sourceLabel || 'Imported Math questions', questions: [], review: rootReview, visuals: [] };
+    const content = { id: 'imported-math-questions', title: info.sourceLabel || 'Imported Math questions', source:contract.sourceMetadata(data.source), questions: [], review: rootReview, visuals: [] };
     const items = math.map((raw, index) => {
       const item = { raw: clone(raw), sourceQuestion: typeof raw?.review?.sourceQuestion === 'string' ? raw.review.sourceQuestion : '', position: index, publications: {} };
       try {

@@ -1,13 +1,16 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtemp,mkdir,writeFile,readFile,rm} from 'node:fs/promises';
-import {join} from 'node:path';
-import {tmpdir} from 'node:os';
+import {join,dirname,resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
 import {readEnglishTopicSections,englishTopicConfiguration,saveEnglishSectionTopics} from './english-topic-sections.mjs';
 
 async function fixture(t) {
-  const root=await mkdtemp(join(tmpdir(),'english-topic-libraries-'));t.after(()=>rm(root,{recursive:true,force:true}));
+  const fixtureRoot=join(dirname(fileURLToPath(import.meta.url)),'.content-drafts');
+  await mkdir(fixtureRoot,{recursive:true});
+  const root=await mkdtemp(join(fixtureRoot,'english-topic-libraries-'));
+  t.after(()=>{assert.equal(dirname(resolve(root)),resolve(fixtureRoot));return rm(root,{recursive:true,force:true});});
   await mkdir(join(root,'tools'),{recursive:true});await mkdir(join(root,'server/data'),{recursive:true});
   const reading=['Shared topic',...Array.from({length:7},(_,i)=>'Reading '+i)],editing=['Shared topic','Punctuation'];
   await writeFile(join(root,'tools/content-topics.json'),JSON.stringify([...reading,...editing]));
@@ -42,6 +45,52 @@ test('topic saves reject stale edits, removing used topics and duplicate names b
   const before=await readFile(sources[1].path,'utf8');await writeFile(sources[1].path,before+'// newer edit\n');
   await assert.rejects(saveEnglishSectionTopics(root,request,sources),/changed/);
   assert.equal(await readFile(sources[1].path,'utf8'),before+'// newer edit\n');
+});
+
+test('unclassified source questions do not become empty topics or block adding valid topics',async t=>{
+  const {root,sources}=await fixture(t);
+  const questions=[{id:'empty',topic:''},{id:'spaces',topic:' \t '},{id:'missing'},{id:'null',topic:null},{id:'provisional',topic:'Uncategorized'}];
+  const path=join(root,'imported-questions.ts');
+  const source='export const questions = '+JSON.stringify(questions)+';\n';
+  await writeFile(path,source);
+  sources.push({section:'revising_editing_a',path,questions});
+  const registryPath=join(root,'server/data/assessments.json');
+  const registry=JSON.stringify([{id:'exam',questions:sources.flatMap(item=>item.questions)}]);
+  await writeFile(registryPath,registry);
+  const configuration=await englishTopicConfiguration(root,sources);
+  const details=configuration.topicDetailsBySection.revising_editing_a;
+  assert.ok(details.every(topic=>typeof topic.label==='string' && topic.label.trim()));
+  assert.equal(configuration.unclassifiedCountBySection.revising_editing_a,4);
+  assert.equal(configuration.unclassifiedCountBySection.reading,0);
+  assert.equal(details.find(topic=>topic.label==='Uncategorized').questionCount,1);
+  const request={section:'revising_editing_a',revision:configuration.revision,topics:[...details.map(({label})=>({label,original:label})),{label:'New valid topic',original:''}]};
+  await assert.rejects(saveEnglishSectionTopics(root,{...request,topics:request.topics.filter(topic=>topic.label!=='Uncategorized')},sources),/Uncategorized is used by 1 questions/);
+  await assert.rejects(saveEnglishSectionTopics(root,{...request,topics:[...request.topics,{label:'',original:''}]},sources),/topic names/);
+  await saveEnglishSectionTopics(root,request,sources);
+  const after=await englishTopicConfiguration(root,sources);
+  assert.ok(after.sections.revising_editing_a.includes('New valid topic'));
+  assert.equal(after.unclassifiedCountBySection.revising_editing_a,4);
+  assert.equal(await readFile(path,'utf8'),source,'unclassified source records stay byte-for-byte unchanged');
+  assert.equal(await readFile(registryPath,'utf8'),registry,'exam registry questions are not reclassified');
+});
+
+test('the topic manager retains configured and used named topics, with deletion protection and no empty row',async()=>{
+  const html=await readFile(new URL('./content-studio.html',import.meta.url),'utf8');
+  const start=html.indexOf('    function renderContentTopicManager('),end=html.indexOf('    function closeContentTopicManager(',start);
+  const configuration={revision:'fixture',topicDetailsBySection:{revising_editing_a:[{label:'Configured',questionCount:1},{label:'Uncategorized',questionCount:2},{label:'',questionCount:4}]}};
+  const app={state:{partATopics:['Configured','Unused'],topicConfiguration:configuration}};
+  const list={innerHTML:''},title={},dialog={opened:false,showModal(){this.opened=true;}};
+  const elements={'#content-topic-list':list,'#content-topic-dialog-title':title,'#content-topic-dialog':dialog};
+  const open=vm.runInNewContext(html.slice(start,end)+'\nopenContentTopicManager;',{app,document:{body:{dataset:{workspace:'part-a'}}},currentPassageQuestionSection:()=> 'revising_editing_a',questionTopicsForSection:()=>app.state.partATopics,$:selector=>elements[selector],escapeHtml:String,setStatus:()=>assert.fail('No unsaved edits should block this fixture')});
+  open();
+  assert.equal(dialog.opened,true);
+  assert.equal(app.contentTopicRevision,'fixture');
+  assert.deepEqual(JSON.parse(JSON.stringify(app.contentTopicDrafts)),[{label:'Configured',original:'Configured',questionCount:1},{label:'Unused',original:'Unused',questionCount:0},{label:'Uncategorized',original:'Uncategorized',questionCount:2}]);
+  const rows=[...list.innerHTML.matchAll(/<article\b[\s\S]*?<\/article>/g)].map(match=>match[0]);
+  assert.equal(rows.length,3);
+  assert.match(rows.find(row=>row.includes('value="Uncategorized"')),/data-content-topic-action="remove" disabled/);
+  assert.doesNotMatch(rows.find(row=>row.includes('value="Unused"')),/data-content-topic-action="remove" disabled/);
+  assert.deepEqual(app.state.partATopics,['Configured','Unused'],'opening the manager must not modify taxonomy');
 });
 test('Reading can grow past eight topics without shifting Part A, and simultaneous writers are rejected',async t=>{
   const {root,sources}=await fixture(t),configuration=await englishTopicConfiguration(root,sources);

@@ -65,7 +65,10 @@
         "test:practice-studio": "node --test server/tests/generator-template.test.cjs server/tests/math-classification-skills.test.cjs tools/practice-organization.test.cjs server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/probability-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs"
     },
     "devDependencies": {
+        "@tesseract.js-data/eng": "^1.0.0",
+        "cheerio": "^1.2.0",
         "concurrently": "^9.1.2",
-        "mathlive": "0.110.0"
+        "mathlive": "0.110.0",
+        "tesseract.js": "^7.0.0"
     }
 }

@@ -1,3 +1,4 @@
+import { InlineTextSelection } from "./InlineTextSelection";
 import type { ExamQuestion } from "../content/exams/types";
 import { ExamText } from "./ExamReviewQuestion";
 import { libraryAnswer } from "../../../server/src/shared/libraryBooks";
@@ -10,6 +11,7 @@ export function LibraryQuestionResponse({ question, value, onChange }: { questio
   const place = (id: string, value: string) => { const next = { ...placements }; if (value) next[id] = value; else delete next[id]; onChange(JSON.stringify(next)); };
   const toggle = (id: string) => onChange(JSON.stringify(selected.includes(id) ? selected.filter(value => value !== id) : [...selected, id]));
   const text = typeof answer === "string" ? answer : "";
+  if (question.selectionHtml) return <InlineTextSelection question={question} answer={answer} onChange={next => onChange(typeof next === 'string' ? next : JSON.stringify(next))} />;
   if (question.type === 'transition_drop') return <div className="library-response">{(question.instructions || question.instructionsHtml) && <p><ExamText text={question.instructions} html={question.instructionsHtml} /></p>}{(question.stimulus || question.stimulusHtml) && <p><ExamText text={question.stimulus} html={question.stimulusHtml} /></p>}{question.image && <img src={question.image.src} alt={question.image.alt} />}<SentenceDragDrop key={question.id} question={question} answer={answer} onChange={next => onChange(typeof next === 'string' ? next : JSON.stringify(next))} /></div>;
   return <div className="library-response">
     {(question.instructions || question.instructionsHtml) && <p><ExamText text={question.instructions} html={question.instructionsHtml} /></p>}

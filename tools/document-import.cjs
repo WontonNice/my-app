@@ -3,7 +3,7 @@ var DocumentImport = (() => {
   const format = "nathan-tutors-official-passage-v1";
   const mathFormat = "nathan-tutors-math-question-v1";
   const warningCodes = ["IMAGE_REQUIRED", "ANSWER_KEY_MISSING", "EXPLANATION_MISSING", "LOW_CONFIDENCE_QUESTION_TYPE", "UNCERTAIN_TEXT_EXTRACTION", "POSSIBLE_MISSING_QUESTION", "POSSIBLE_FORMATTING_LOSS", "SOURCE_TYPO_SUSPECTED", "TABLE_REVIEW_REQUIRED", "UNRESOLVED_VISUAL", "SOURCE_KEY_AMBIGUOUS", "UNSUPPORTED_RESPONSE_TYPE", "COUNT_MISMATCH"];
-  const mathResponseTypes = ["multiple_choice", "multi_select", "numeric_entry", "expression_entry", "short_response", "grid_in", "inline_dropdown", "math_drag_drop", "graph_point_select", "number_line_response"];
+  const mathResponseTypes = ["multiple_choice", "multi_select", "numeric_entry", "expression_entry", "short_response", "grid_in", "inline_dropdown", "math_drag_drop", "graph_point_select", "number_line_response", "matrix_choice"];
   const responseTypes = [...mathResponseTypes, "category_sort", "matrix_choice", "table_match", "transition_drop", "essay"];
   function normalizeResponseType(type) {
     const value = str(type).trim().toLowerCase().replace(/[ -]+/g, '_');
@@ -13,10 +13,10 @@ var DocumentImport = (() => {
     format,
     version: 1,
     extension: "Optional passages/mathQuestions batches and teacher-only review metadata; legacy passage envelopes remain accepted.",
-    root: { format, passage: "One passage object OR omit and use passages", passages: "Ordered passage objects (optional)", question: "Optional single Math question instead of mathQuestions; no batch metadata required. The Content Editor also accepts a bare Math question object and assigns a stable ID if omitted for a single question.", mathQuestions: "Ordered Math question objects (optional); imported directly into the selected Math test and marked red for editing", batch: "Optional MathBatch metadata for matching source questions across chunks and retries", review: "Optional Review for this complete chunk; expectedQuestionCount counts only this payload", reviewNotes: "string[]", visuals: "Visual[]; legacy scope/description objects are accepted" },
+    root: { format, source: "Optional provenance: sourceFamily (official_shsat or sat_crash_course), sourceFormat (pdf or testnav or web), playerProfile (testnav or sat_crash_course), sourceId, label, year, form, url. PDF and TestNav are delivery formats of the SAME official source; year/form defines exam identity.", passage: "One passage object OR omit and use passages", passages: "Ordered passage objects (optional)", question: "Optional single Math question instead of mathQuestions; no batch metadata required. The Content Editor also accepts a bare Math question object and assigns a stable ID if omitted for a single question.", mathQuestions: "Ordered Math question objects (optional); imported directly into the selected Math test and marked red for editing", batch: "Optional MathBatch metadata for matching source questions across chunks and retries", review: "Optional Review for this complete chunk; expectedQuestionCount counts only this payload", reviewNotes: "string[]", visuals: "Visual[]; legacy scope/description objects are accepted" },
     mathBatch: { sourceId:"stable source identity including exam/form/version, supplied by teacher; never a question number alone",jobId:"stable job identifier within this source; use the same value on continuation chunks; requires sourceId",sourceLabel:"source exam/form/version display label",section:"math",requestedScope:"teacher request: selected question numbers, range, 1-based PDF pages, or full section",expectedQuestions:"unique original source question strings in source order; known inventory, not just this chunk",expectedTotal:"nonnegative integer or null if unknown; job-wide total",inventoryConfirmed:"boolean; true only if the complete inventory was established from source",chunkId:"distinct identifier for this complete chunk; repeat unchanged on exact retry",completedQuestions:"source question strings captured in complete chunks so far",unresolvedQuestions:"source question strings still requiring extraction or correction",nextScope:"exact next source question/page scope; blank only if none remains" },
-    passage: { title: "string; blank allowed in draft, teacher title required to publish", author: "string", byline: "optional exact printed author/byline, including its prefix", subtitle: "optional exact subtitle displayed below title", blurb: "string", format: ["prose", "poem", "sentence_prose"], passageType: ["informational", "literary", "poem", "long_reading"], passageCategory: ["official_handbook", "prestige", "miscellaneous"], section: ["reading", "revising_editing_a"], label: "string", versionLabel: "string", sourceNote: "student-visible string", teacherSource: "teacher-only string", text: "complete passage body; exclude vocabulary footnote definitions and their markers; empty for independent questions", richText: "complete faithful HTML when formatting or vocabulary is present: p, div, br, strong, em, u, s, sup, sub, h2, h3, ul, ol, li, span; text remains the plain-text copy; h2/h3 are unnumbered subheadings; p data-numbered=false excludes a paragraph, true explicitly numbers it; span data-glossary-definition=SOURCE_DEFINITION role=link tabindex=0 wraps the exact defined term occurrence and activates the existing vocabulary popup; HTML-escape definitions, then JSON-escape richText", questions: "ordered Question[]", review: "Review", visuals: "Visual[]" },
-    question: { id: "unique lowercase letters/numbers/hyphens", type: responseTypes, topic: "exact section topic; for math, the main sorting category; empty when uncertain", subtopic: "math only: exact specific topic under topic in mathSpecificTopics; empty when uncertain", points: "positive number; default 1 (platform scoring, not source difficulty)", prompt: "exact source text", promptHtml: "optional faithful HTML preserving source emphasis; prompt stays plain text", instructionsHtml: "optional faithful rich source directions", stimulusHtml: "optional faithful rich supporting text", instructions: "optional exact source directions", stimulus: "optional exact supporting text", choices: "ordered {id:string,text:string,html?:string,math?:string}[]; 2–8 when present; IDs normalized by position: A, B, C, D (then E, F for additional choices)", correctChoiceId: "multiple_choice: exact choice ID, or empty string/null if no unambiguous supplied key", correctChoiceIds: "multi_select: choice IDs from key, or [] if unknown", requiredSelections: "multi_select: source selection count, or null if unknown", correctTextAnswers: "numeric_entry/expression_entry/short_response: source keyed strings, or []", entryLayout: "numeric_entry/expression_entry: plain, fraction, x_equals", entryVariable: "numeric_entry/expression_entry/grid_in: optional single letter displayed before = for x_equals; defaults to x; preserve the source variable, e.g. w", explanation: "exact supplied explanation or empty string/null", review: "Review", visuals: "Visual[]" },
+    passage: { title: "string; blank allowed in draft, teacher title required to publish", author: "string", byline: "optional exact printed author/byline, including its prefix", subtitle: "optional exact subtitle displayed below title", blurb: "string", format: ["prose", "poem", "sentence_prose"], passageType: ["informational", "literary", "poem", "long_reading"], passageCategory: ["official_handbook", "prestige", "miscellaneous"], section: ["reading", "revising_editing_a"], label: "string", versionLabel: "string", sourceNote: "student-visible string", teacherSource: "teacher-only string", text: "complete passage body; exclude vocabulary footnote definitions and their markers; empty for independent questions", richText: "complete faithful HTML when formatting or vocabulary is present: p, div, br, strong, em, u, s, sup, sub, h2, h3, ul, ol, li, span, a, figure, figcaption, table, caption, thead, tbody, tr, th, td; preserve links with href, cell colspan/rowspan/scope, images in their source position, data-align left/center/right/justify/indent, and blockquote data-boxed=true; text remains the plain-text copy; h2/h3 are unnumbered subheadings; p data-numbered=false excludes a paragraph, true explicitly numbers it; span data-glossary-definition=SOURCE_DEFINITION role=link tabindex=0 wraps the exact defined term occurrence and activates the existing vocabulary popup; HTML-escape definitions, then JSON-escape richText", questions: "ordered Question[]", review: "Review", visuals: "Visual[]" },
+    question: { id: "unique lowercase letters/numbers/hyphens", type: responseTypes, topic: "exact section topic; for math, the main sorting category; empty when uncertain", subtopic: "math only: exact specific topic under topic in mathSpecificTopics; empty when uncertain", points: "positive number; default 1 (platform scoring, not source difficulty)", prompt: "exact source text", promptHtml: "complete faithful HTML for EVERY question, including ordinary questions; preserve all source emphasis, including a single bold word such as best, most, least, NOT or EXCEPT; prompt stays plain text", instructionsHtml: "optional faithful rich source directions", stimulusHtml: "optional faithful rich supporting text", instructions: "optional exact source directions", stimulus: "optional exact supporting text", choices: "ordered {id:string,text:string,html?:string,math?:string}[]; include html for EVERY textual choice, preserving all source styling; 2–8 when present; IDs normalized by position: A, B, C, D (then E, F for additional choices)", correctChoiceId: "multiple_choice: exact choice ID, or empty string/null if no unambiguous supplied key", correctChoiceIds: "multi_select: choice IDs from key, or [] if unknown", requiredSelections: "multi_select: source selection count, or null if unknown", correctTextAnswers: "numeric_entry/expression_entry/short_response: source keyed strings, or []", entryLayout: "numeric_entry/expression_entry: plain, fraction, x_equals", entryVariable: "numeric_entry/expression_entry/grid_in: optional single letter displayed before = for x_equals; defaults to x; preserve the source variable, e.g. w", explanation: "exact supplied explanation or empty string/null", review: "Review", visuals: "Visual[]" },
     sentenceBlanks: { type: 'transition_drop', choices: 'Shared ordered word bank: {id,text,html?}[]', dragDropContent: ['Sentence text with {{blank-1}} and {{blank-2}}.'], dragDropSlots: [{ id: 'blank-1', correctItemId: 'verified choice ID or blank' }, { id: 'blank-2', correctItemId: 'verified choice ID or blank' }], allowReuse: 'false unless the source allows the same word in several blanks', legacy: 'Existing one-blank questions may retain transitionBlankBefore, transitionBlankAfter, and correctChoiceId. Use dragDropContent/dragDropSlots for multiple blanks. Keep all source blanks and never guess their keys.' },
     mathInteractions: {
       inline_dropdown: { dropdownContent: ['Text before {{answer-1}} and after. Multiple {{ids}} can share a line.'], dropdowns: [{ id: 'answer-1', options: [{ id: 'option-1', text: 'exact label', math: 'optional LaTeX' }, { id: 'option-2', text: 'exact label' }], correctChoiceId: 'verified option ID or blank' }] },
@@ -24,6 +24,7 @@ var DocumentImport = (() => {
       graph_point_select: { graph: { xMin: 'number', xMax: 'number greater than xMin', xStep: 'positive number', yMin: 'number', yMax: 'number greater than yMin', yStep: 'positive number', xLabel: 'string', yLabel: 'string', points: [{id:'point-1', x:'number', y:'number'}] }, correctPointIds: ['verified point IDs'], requiredSelections: 'source selection count' },
       number_line_response: { numberLineResponse: { min:'number', max:'number', tickStep:'positive number', labelStep:'positive number', correctValue:'verified number or null', correctEndpoint:'open or closed', correctDirection:'left or right' } },
       richText: 'promptHtml, stimulusHtml, instructionsHtml are optional faithful rich HTML with LaTeX delimiters. Uploaded images may appear between paragraphs as img with src=/exam-images/existing-file, alt, and optional width. Never invent asset references.',
+      choiceFormatting: 'Format mathematics in every answer choice as faithfully as the prompt. Keep text as the readable source wording. For a formula-only choice use math with bare LaTeX; for prose containing mathematics use html with inline LaTeX delimiters. Preserve fractions, mixed numbers, exponents, roots, variables, units, emphasis and visuals. Do not put a whole sentence in math or leave printed stacked fractions as plain slash text.',
     },
     review: { sourceFile: "string", sourcePages: "1-based PDF page number[]", printedPages: "string (optional)", sourceQuestion: "original printed number as string (question only)", sourceChoiceIds: "optional original printed choice IDs in order; teacher-only", answerSource: "{sourceFile,sourcePages} or null", explanationSource: "{sourceFile,sourcePages} or null", topicSource: ["source", "inferred", "unknown", "teacher"], topicConfidence: "number 0..1 or null", difficulty: "source label or empty string; not required by passage/exam model", difficultySource: ["source", "inferred", "unknown", "teacher"], difficultyConfidence: "number 0..1 or null", expectedQuestionCount: "nonnegative integer or null (passage)", expectedChoiceCount: "nonnegative integer or null (question)", warnings: "{code:one warning code,message:string,state:unresolved|acknowledged|resolved}[]", classificationReviewed: "false on extraction", completenessReviewed: "false on extraction", sourceReviewed: "false on extraction" },
     visual: { scope: "Passage or original Question number / choice label", questionId: "exact output question id, or empty string for passage", choiceId: "exact choice id, or empty string", sourceFile: "string", sourcePage: "1-based PDF page number or null", location: "approximate page location", description: "concise faithful description of the required visual", state: "unresolved on extraction; resolved only by teacher after upload", image: "omit unless an actual existing /exam-images/ uploaded image {src,alt,caption?} was supplied; never invent URLs" },
@@ -31,9 +32,18 @@ var DocumentImport = (() => {
   };
   const copy = value => JSON.parse(JSON.stringify(value));
   const str = value => typeof value === "string" ? value : "";
+  schema.root.englishQuestions='Ordered independent English question objects; use stimulus/stimulusHtml for their supporting paragraphs instead of creating one-question library passages.';
+  Object.assign(schema.question, {
+    explanationHtml:'Faithful HTML of the supplied explanation; explanation keeps the plain text. Never generate missing explanations.',
+    selectionHtml:'For selectable source words or phrases: preserve the full paragraph and wrap each selectable phrase in span data-choice-id="A" (matching choices). Use multiple_choice or multi_select and retain keyed IDs. Do not flatten these into detached answer options.',
+    dragDropContentHtml:'Optional faithful HTML around {{slot-id}} placeholders, including source tables, emphasis and inline mathematics. Keep dragDropContent as the readable copy and dragDropSlots as the response contract.',
+    dropdownContentHtml:'Optional faithful HTML around {{dropdown-id}} placeholders. Retain source tables and sentence placement, plus dropdownContent and dropdowns with their original option order.',
+  });
+  for(const name of ['title','blurb','byline','sourceNote'])schema.passage[`${name}Html`]=`Optional faithful HTML for ${name}; keep its plain text field as well.`;
+  schema.passage.richText+=' For poems, mark only actual verse lines with data-poetry-line="true"; introductions and dates are not verse lines. Preserve distinct leading spaces and blank stanza lines.';
   schema.question.matrixStyle = 'matrix_choice: use evidence for Passage/Table Evidence with bold centered statement rows, square checkboxes and Passage only / Table only / Both passage and table columns. evidence_matrix is accepted as an alias for this question type.';
   schema.evidenceMatrix = { type: 'evidence_matrix (stored as matrix_choice with matrixStyle=evidence)', categories: [{id:'passage',title:'Passage only'},{id:'table',title:'Table only'},{id:'both',title:'Both passage and table'}], items: 'Ordered {id,text,html?}[]; each item is one exact source statement', correctPlacements: '{statement-id: column-id} from the supplied key only; leave missing answers blank', tableHeaders: {row:'',answer:'Answer'}, instructions: 'Select one answer in each row.', requiredPlacements: 'number of statement rows' };
-  schema.question.promptParts = { introduction: 'Exact Read these sentences/lines instruction', excerpt: 'Exact quoted text; actual newlines between poem lines and blank lines between stanzas', followUp: 'Exact follow-up question', bold: 'true for the bold TestNav excerpt; false only when the source quote is regular weight. Optional structured alternative to promptHtml; keep prompt as the same complete plain wording. **bold** and *italics* are supported within these strings.' };
+  schema.question.promptParts = { introduction: 'Exact Read these sentences/lines instruction', excerpt: 'Exact quoted text; actual newlines between poem lines and blank lines between stanzas', followUp: 'Exact follow-up question', bold: 'true for a bold source excerpt; false when the source quote is regular weight. Optional structured alternative to promptHtml; keep prompt as the same complete plain wording. **bold** and *italics* are supported within these strings.', boxed: 'true only when the source draws a border around the excerpt. For sentence-insertion questions include the complete new sentence here, even when it does not occur in the passage. Keep introduction, excerpt, and followUp together in promptParts, not in separate instructions/stimulus fields.' };
   const excerptIntro = /^Read\s+(?:(?:this|these|the following)\s+)?(?:sentences?|lines?|stanzas?|paragraphs?|excerpt|quotation|selection)\b[^.\n]*\./i;
   const excerptFollowUp = /^(?:How\b|What\b|Which\b|Why\b|Where\b|This (?:remark|paragraph|sentence|statement)\b|The (?:sensory language|words?\b|phrases?\b|sentences?\b|lines?\b|quotation\b|excerpt\b|description\b|imagery\b|personification\b|simile\b|metaphor\b|author\b|poet\b|speaker\b))/i;
   const escapeExcerpt = value => str(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -58,7 +68,7 @@ var DocumentImport = (() => {
     const quote = excerptMarkup(excerpt);
     return {
       prompt: [introduction, excerpt, followUp].map(text => excerptText(excerptMarkup(text))).join('\n\n'),
-      promptHtml: `<p>${excerptMarkup(introduction)}</p><blockquote>${parts.bold === false ? quote : `<strong>${quote}</strong>`}</blockquote><p>${excerptMarkup(followUp)}</p>`,
+      promptHtml: `<p>${excerptMarkup(introduction)}</p><blockquote${parts.boxed === true ? ' data-boxed="true"' : ''}>${parts.bold === false ? quote : `<strong>${quote}</strong>`}</blockquote><p>${excerptMarkup(followUp)}</p>`,
     };
   }
   function readQuestionExcerpt(question, passage = {}) {
@@ -72,9 +82,11 @@ var DocumentImport = (() => {
       let quote = block[2].trim();
       const bold = /^<(?:strong|b)>[\s\S]*<\/(?:strong|b)>$/i.test(quote);
       if (bold) quote = quote.replace(/^<(?:strong|b)>|<\/(?:strong|b)>$/gi, '');
-      const parts = { introduction: excerptEditable(block[1]), excerpt: excerptEditable(quote), followUp: excerptEditable(block[3]), bold };
+      const parts = { introduction: excerptEditable(block[1]), excerpt: excerptEditable(quote), followUp: excerptEditable(block[3]), bold, ...(/<blockquote\b[^>]*\bdata-boxed=["']true["']/i.test(html) ? { boxed: true } : {}) };
       if (formatQuestionExcerpt(parts)) return parts;
     }
+    const separate = readSeparateQuestionExcerpt(question);
+    if (separate) return separate;
     // Rich legacy imports commonly use br between all three pieces. Keep their emphasis.
     const text = html ? excerptEditable(html) : str(question.prompt).replace(/\r\n?/g, '\n');
     const intro = excerptIntro.exec(excerptWords(text.split('\n')[0]));
@@ -106,12 +118,29 @@ var DocumentImport = (() => {
     return parts;
   }
   function normalizeQuestionExcerpt(question, passage = {}) {
+    const separate = !question.promptParts && readSeparateQuestionExcerpt(question);
+    if (separate) {
+      const { instructions, instructionsHtml, stimulus, stimulusHtml, ...rest } = question;
+      const block = (html, text) => html ? (/^\s*<(?:p|div)\b/i.test(html) ? html : `<p>${html}</p>`) : `<p>${excerptMarkup(text)}</p>`;
+      return { ...rest, prompt: [separate.introduction, separate.excerpt, separate.followUp].map(text => excerptText(excerptMarkup(text))).join('\n\n'),
+        promptHtml: `${block(instructionsHtml, instructions)}<blockquote>${stimulusHtml || excerptMarkup(stimulus)}</blockquote>${block(question.promptHtml, question.prompt)}` };
+    }
     const parts = readQuestionExcerpt(question, passage);
     if (!parts || question.promptHtml && /<blockquote\b/i.test(question.promptHtml) && !question.promptParts) return question;
     // Existing complex rich text stays available for manual formatting rather than losing its markup.
     if (question.promptHtml && /<(?:u|sup|sub|img|span)\b/i.test(question.promptHtml) && !question.promptParts) return question;
     const { promptParts: _parts, ...rest } = question;
     return { ...rest, ...formatQuestionExcerpt(parts) };
+  }
+  function readSeparateQuestionExcerpt(question) {
+    const introduction = question.instructionsHtml ? excerptEditable(question.instructionsHtml) : str(question.instructions).trim();
+    const excerpt = question.stimulusHtml ? excerptEditable(question.stimulusHtml) : str(question.stimulus).trim();
+    const followUp = question.promptHtml ? excerptEditable(question.promptHtml) : str(question.prompt).trim();
+    const intro = excerptIntro.exec(excerptWords(introduction));
+    // Only join a complete, unambiguous Read cue + supplied excerpt + question.
+    // Ordinary selection directions and unrelated supporting data stay separate.
+    if (!intro || intro[0] !== excerptWords(introduction) || !excerpt || !excerptFollowUp.test(excerptWords(followUp))) return null;
+    return { introduction, excerpt, followUp, bold: false, separateFields: true };
   }
   // Section boilerplate is not part of an individual question. Match the
   // complete directions paragraph, never prompts, passages or local task cues.
@@ -133,6 +162,121 @@ var DocumentImport = (() => {
     return result;
   }
   const slug = value => str(value).normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  // Convert source typography to the semantic tags understood by every player.
+  // Do this before sanitizing attributes; otherwise CSS-only emphasis disappears.
+  function preserveTextStyles(html) {
+    const stack = [];
+    return str(html).replace(/<(?:[^>"']|"[^"]*"|'[^']*')*>/g, token => {
+      const match = /^<(\/?)([a-z][\w-]*)\b/i.exec(token);
+      if (!match) return token;
+      const tag = match[2].toLowerCase();
+      if (match[1]) {
+        const index = stack.findLastIndex(item => item.tag === tag);
+        if (index < 0) return token;
+        const closed = stack.splice(index);
+        return closed.reverse().map(item => item.close).join('') + token;
+      }
+      if (/\/\s*>$/.test(token) || ['br','img','hr','input','meta','link','wbr','area','base','col','embed','param','source','track'].includes(tag)) return token;
+      const style = /\sstyle\s*=\s*(?:"([^"]*)"|'([^']*)')/i.exec(token);
+      const rules = Object.fromEntries((style?.[1] ?? style?.[2] ?? '').split(';').map(rule => rule.split(':').map(value => value.trim().toLowerCase())).filter(pair => pair.length === 2));
+      const wrappers = [];
+      if (/^(?:bold|bolder|[6-9]00)(?:\s*!important)?$/.test(rules['font-weight'] || '') && !['strong','b'].includes(tag)) wrappers.push('strong');
+      if (/^(?:italic|oblique)(?:\s*!important)?$/.test(rules['font-style'] || '') && !['em','i'].includes(tag)) wrappers.push('em');
+      const decoration = (rules['text-decoration'] || '') + ' ' + (rules['text-decoration-line'] || '');
+      if (/\bunderline\b/.test(decoration) && tag !== 'u') wrappers.push('u');
+      if (/\bline-through\b/.test(decoration) && !['s','strike'].includes(tag)) wrappers.push('s');
+      if (rules['vertical-align'] === 'super' && tag !== 'sup') wrappers.push('sup');
+      if (rules['vertical-align'] === 'sub' && tag !== 'sub') wrappers.push('sub');
+      stack.push({ tag, close: [...wrappers].reverse().map(name => `</${name}>`).join('') });
+      let opening = token.replace(/\sstyle\s*=\s*(?:"[^"]*"|'[^']*')/i, '');
+      if (!/\bdata-align\s*=/.test(opening) && /^(left|center|right|justify)$/.test(rules['text-align'] || '')) opening = opening.replace(/>$/, ` data-align="${rules['text-align']}">`);
+      if (!/\bdata-align\s*=/.test(opening) && /^(?:[1-9]\d*(?:\.\d+)?)(?:px|pt|em|rem)$/.test(rules['margin-left'] || rules['padding-left'] || '')) opening = opening.replace(/>$/, ' data-align="indent">');
+      return opening + wrappers.map(name => `<${name}>`).join('');
+    });
+  }
+  // One import-safe vocabulary for source JSON, editor saves, and review. Source
+  // scripts/CSS are never executed; meaningful typography becomes semantic HTML.
+  function sanitizeRichText(value) {
+    const allowed = new Set('figure figcaption span h2 h3 p div blockquote br strong b em i u s strike sub sup ul ol li a table caption thead tbody tfoot tr th td hr'.split(' '));
+    const escape = value => value.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return preserveTextStyles(str(value)).replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/<(script|style|iframe|object|embed|svg|math)\b[^>]*>[\s\S]*?<\/\1>/gi, '')
+      .replace(/<\/?([a-z0-9-]+)(?:\s[^>]*)?>/gi, (token, raw) => {
+        const tag = raw.toLowerCase(), closing = token.startsWith('</');
+        const attr = name => { const match = new RegExp(`\\b${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, 'i').exec(token); return match?.[1] ?? match?.[2] ?? ''; };
+        if (tag === 'img' && !closing) {
+          const src = attr('src'), width = Math.round(Number(attr('width')));
+          return /^\/exam-images\/[a-zA-Z0-9._-]+$/.test(src) ? `<img src="${src}" alt="${escape(attr('alt'))}"${width >= 1 && width <= 1600 ? ` width="${width}"` : ''}>` : '';
+        }
+        if (!allowed.has(tag)) return '';
+        const name = {b:'strong',i:'em',strike:'s'}[tag] || tag;
+        if (closing) return ['br','hr'].includes(name) ? '' : `</${name}>`;
+        const attributes = [];
+        const align = attr('data-align');
+        if (['left','center','right','justify','indent'].includes(align)) attributes.push(`data-align="${align}"`);
+        if (['p','div'].includes(tag) && /^(true|false)$/.test(attr('data-numbered'))) attributes.push(`data-numbered="${attr('data-numbered')}"`);
+        if (['p','div'].includes(tag) && /^(true|false)$/.test(attr('data-poetry-line'))) attributes.push(`data-poetry-line="${attr('data-poetry-line')}"`);
+        if (tag === 'blockquote' && attr('data-boxed') === 'true') attributes.push('data-boxed="true"');
+        if (tag === 'span' && attr('data-glossary-definition')) attributes.push(`data-glossary-definition="${escape(attr('data-glossary-definition').slice(0,4000))}"`, 'role="link"', 'tabindex="0"');
+        if (tag === 'span' && /^[A-Z]$/.test(attr('data-choice-id'))) attributes.push(`data-choice-id="${attr('data-choice-id')}"`);
+        if (tag === 'span' && attr('data-small-caps') === 'true') attributes.push('data-small-caps="true"');
+        if (tag === 'span' && attr('data-no-break') === 'true') attributes.push('data-no-break="true"');
+        if (tag === 'span' && /^(60|90|150|210|270)$/.test(attr('data-dropdown-width'))) attributes.push(`data-dropdown-width="${attr('data-dropdown-width')}"`);
+        if (tag === 'a' && /^(https?:\/\/|mailto:|#[a-zA-Z])/i.test(attr('href')) && !/[\u0000-\u0020]/.test(attr('href'))) attributes.push(`href="${escape(attr('href'))}"`, 'rel="noopener noreferrer"');
+        if (['th','td'].includes(tag)) {
+          for (const key of ['colspan','rowspan']) { const n = Number(attr(key)); if (Number.isInteger(n) && n >= 1 && n <= 100) attributes.push(`${key}="${n}"`); }
+          if (tag === 'th' && /^(row|col|rowgroup|colgroup)$/.test(attr('scope'))) attributes.push(`scope="${attr('scope')}"`);
+        }
+        if (tag === 'ol' && /^-?\d{1,4}$/.test(attr('start'))) attributes.push(`start="${attr('start')}"`);
+        return `<${name}${attributes.length ? ' ' + attributes.join(' ') : ''}>`;
+      }).trim();
+  }
+  function sourceMetadata(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
+    const keys = ['sourceFamily','sourceFormat','playerProfile','sourceId','label','url','year','form','edition','section','sourceQuestion','moduleQuestion','passageId','packageId','originalPackageId'];
+    const result = Object.fromEntries(keys.filter(key => value[key] !== undefined).map(key => [key, String(value[key]).slice(0,2000)]));
+    if (Array.isArray(value.pages)) result.pages = value.pages.filter(n => Number.isInteger(n) && n > 0);
+    return Object.keys(result).length ? result : undefined;
+  }
+  function normalizeTextFormatting(content) {
+    const pair = (target, plain, rich) => {
+      if (target[rich]) target[rich] = preserveTextStyles(target[rich]);
+      else if (!/\\[([]|\$/.test(str(target[plain])) && /(?<![\w*])\*\*(?=\S)[^*]+(?<=\S)\*\*|(?<![\w*])\*(?=\S)[^*\n]+(?<=\S)\*(?!\*)/.test(str(target[plain]))) {
+        target[rich] = excerptMarkup(target[plain]);
+        target[plain] = excerptText(target[rich]);
+      }
+    };
+    const result = copy(content);
+    pair(result, 'text', 'richText');
+    for (const q of result.questions || []) {
+      for (const field of ['prompt','instructions','stimulus','explanation']) pair(q, field, field + 'Html');
+      for (const choice of [...(q.choices || []), ...(q.items || [])]) pair(choice, 'text', 'html');
+    }
+    return result;
+  }
+  // Add display markup at import time; retain the source text for accessibility
+  // and editing. Never reinterpret an explicitly authored formula or visual.
+  function formatImportedMathChoice(choice) {
+    if (choice.math || choice.image || choice.numberLine) return choice;
+    const escape = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const source = choice.html || escape(str(choice.text));
+    const fractions = { '¼': [1,4], '½': [1,2], '¾': [3,4], '⅐': [1,7], '⅑': [1,9], '⅒': [1,10], '⅓': [1,3], '⅔': [2,3], '⅕': [1,5], '⅖': [2,5], '⅗': [3,5], '⅘': [4,5], '⅙': [1,6], '⅚': [5,6], '⅛': [1,8], '⅜': [3,8], '⅝': [5,8], '⅞': [7,8] };
+    const latex = (whole, numerator, denominator) => `\\(${whole || ''}\\frac{${numerator}}{${denominator}}\\)`;
+    // Only process text, leaving HTML attributes, existing TeX, URLs, and
+    // entities alone. In particular, a slash inside an image URL is not math.
+    const protectedParts = /(<(?:[^>"']|"[^"]*"|'[^']*')*>|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]|\$\$[\s\S]*?\$\$|\$[^$\n]+\$|https?:\/\/[^\s<>]+|&(?:#\d+|#x[\da-f]+|\w+);)/gi;
+    const html = source.split(protectedParts).map((part, index) => {
+      if (index % 2) return part;
+      return part.replace(/(?<![\p{L}\p{N}_./\\])([−-]?)(?:(\d+)[ \t\u00a0]+)?(\d+)[ \t]*[/⁄][ \t]*(\d+)(?![\p{L}\p{N}_/\\]|\.\d)/gu,
+        (match, sign, whole, numerator, denominator) => Number(denominator) === 0 ? match : latex(sign.replace('−', '-') + (whole || ''), numerator, denominator))
+        .replace(/(?<![\p{L}\p{N}_./\\])([−-]?\d+[ \t\u00a0]*)?([¼½¾⅐⅑⅒⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])(?![\p{L}\p{N}_])/gu,
+          (_, whole, fraction) => latex(whole?.trim().replace('−', '-'), ...fractions[fraction]));
+    }).join('');
+    return html === source ? choice : { ...choice, html };
+  }
+  function formatImportedMathChoices(question) {
+    return Array.isArray(question?.choices) ? { ...question, choices: question.choices.map(formatImportedMathChoice) } : question;
+  }
   function normalizeChoiceLabels(question) {
     const evidenceAlias = str(question.type).toLowerCase().replace(/[ -]+/g, '_') === 'evidence_matrix';
     question = { ...question, type: normalizeResponseType(question.type), ...(evidenceAlias ? {matrixStyle:'evidence'} : {}) };
@@ -147,6 +291,7 @@ var DocumentImport = (() => {
       choices: question.choices.map((choice, index) => ({ ...choice, id: String.fromCharCode(65 + index) })),
       ...(question.correctChoiceId !== undefined ? { correctChoiceId: unknownKeys.length ? "" : mapped(question.correctChoiceId) } : {}),
       ...(question.correctChoiceIds ? { correctChoiceIds: unknownKeys.length ? [] : question.correctChoiceIds.map(mapped) } : {}),
+      ...(question.selectionHtml ? {selectionHtml:question.selectionHtml.replace(/data-choice-id\s*=\s*(["'])(.*?)\1/gi,(_attribute,quote,id)=>`data-choice-id=${quote}${mapped(id)}${quote}`)} : {}),
       ...(question.type === 'transition_drop' && question.dragDropSlots ? { dragDropSlots: question.dragDropSlots.map(slot => ({ ...slot, correctItemId: mapped(slot.correctItemId) })) } : {}),
       ...(question.visuals ? { visuals: question.visuals.map(v => ({ ...v, ...(v.choiceId ? { choiceId: mapped(v.choiceId) } : {}) })) } : {}),
       ...(changed ? { review: { ...question.review, sourceChoiceIds: question.review?.sourceChoiceIds || sourceIds,
@@ -154,6 +299,7 @@ var DocumentImport = (() => {
     };
   }
   function normalizeEntryChoices(content) {
+    content = normalizeTextFormatting(content);
     const maps = new Map(content.questions.map(q => [q.id, new Map((q.choices || []).map((c, i) => [str(c.id).toUpperCase(), String.fromCharCode(65 + i)]))]));
     return { ...content, questions: content.questions.map(q => normalizeChoiceLabels(normalizeQuestionExcerpt(withoutSectionDirections(q), content))), visuals: (content.visuals || []).map(v => ({ ...v,
       ...(v.questionId && v.choiceId ? { choiceId: maps.get(v.questionId)?.get(str(v.choiceId).toUpperCase()) || v.choiceId } : {}) })) };
@@ -183,16 +329,20 @@ var DocumentImport = (() => {
     if (!data || typeof data !== "object" || Array.isArray(data)) throw new Error("Import one JSON object.");
     if (data.format && ![format, mathFormat, "prose", "poem", "sentence_prose"].includes(data.format)) throw new Error(`Expected ${format}.`);
     if (data.passage && data.passages) throw new Error("Use passage or passages, not both.");
-    if (Object.hasOwn(data, "question") && (Object.hasOwn(data, "mathQuestions") || data.passage || data.passages)) throw new Error("Use question for one Math question, or mathQuestions for a batch or mixed document, not both.");
+    if (Object.hasOwn(data, "question") && (Object.hasOwn(data, "mathQuestions") || Object.hasOwn(data, "englishQuestions") || data.passage || data.passages)) throw new Error("Use question for one Math question, or question arrays for a batch or mixed document, not both.");
     const input = data.passages || (data.passage ? [data.passage] : data.text !== undefined ? [data] : []);
     if (!Array.isArray(input)) throw new Error("passages must be an array.");
-    const entries = input.map(p => ({ kind: "passage", content: copy(p) }));
+    const entries = input.map(p => ({ kind: "passage", content: normalizeTextFormatting(p) }));
+    const english = data.englishQuestions ?? [];
+    if (!Array.isArray(english)) throw new Error("englishQuestions must be an array.");
+    if (english.length) entries.push({ kind: "standalone", content: normalizeTextFormatting({ title: "Imported independent English questions", section: "revising_editing_a", questions: copy(english), review: { ...data.review, expectedQuestionCount: english.length }, visuals: [] }) });
     const math = data.mathQuestions ?? (Object.hasOwn(data, "question") ? [data.question] : []);
     if (!Array.isArray(math)) throw new Error("mathQuestions must be an array.");
-    if (math.length) entries.push({ kind: "math", content: { title: "Imported Math questions", questions: copy(math), review: data.review || {}, visuals: [] } });
-    if (!entries.length) throw new Error("Include passage, passages, or mathQuestions.");
+    if (math.length) entries.push({ kind: "math", content: normalizeTextFormatting({ title: "Imported Math questions", questions: copy(math), review: data.review || {}, visuals: [] }) });
+    if (!entries.length) throw new Error("Include passage, passages, englishQuestions, or mathQuestions.");
     for (const [index, entry] of entries.entries()) {
       const p = entry.content;
+      p.source = sourceMetadata(p.source || data.source);
       if (!p || typeof p !== "object" || !Array.isArray(p.questions)) throw new Error(`Item ${index + 1} needs an ordered questions array.`);
       p.id = slug(`${p.title || "untitled-import"}${p.versionLabel ? ` ${p.versionLabel}` : ""}`);
       p.review = review(p.review, true);
@@ -202,6 +352,7 @@ var DocumentImport = (() => {
       p.questions = p.questions.map((q, i) => {
         if (!q || typeof q !== "object") throw new Error(`Question ${i + 1} is invalid.`);
         const next = { ...q, ...(str(q.type).toLowerCase().replace(/[ -]+/g, '_') === 'evidence_matrix' ? {matrixStyle:'evidence'} : {}), type: normalizeResponseType(q.type), id: str(q.id) || `passage-${i + 1}`, prompt: str(q.prompt), topic: str(q.topic), explanation: str(q.explanation), review: review(q.review, true), visuals: visuals(q.visuals, true) };
+        if (p.source || q.source) next.source = sourceMetadata({...p.source,...q.source,sourceQuestion:q.source?.sourceQuestion || q.review?.sourceQuestion, pages:q.source?.pages || q.review?.sourcePages});
         if (!/^[a-z0-9][a-z0-9-]*$/.test(next.id)) throw new Error(`Question ${i + 1} needs a lowercase hyphenated ID.`);
         if (next.type === "multiple_choice") next.correctChoiceId = str(q.correctChoiceId);
         if (next.type === "multi_select") next.correctChoiceIds = q.correctChoiceIds || [];
@@ -212,7 +363,7 @@ var DocumentImport = (() => {
           next.choices = next.choices.map((c, ci) => ({ ...c, id: str(c.id) || String.fromCharCode(65 + ci), text: str(c.text) }));
           if (new Set(next.choices.map(c => c.id)).size !== next.choices.length) throw new Error(`Question ${i + 1} has duplicate choice IDs.`);
         }
-        return normalizeChoiceLabels(entry.kind === 'passage' ? normalizeQuestionExcerpt(withoutSectionDirections(next), p) : withoutSectionDirections(next));
+        return normalizeChoiceLabels(entry.kind !== 'math' ? normalizeQuestionExcerpt(withoutSectionDirections(next), p) : formatImportedMathChoices(withoutSectionDirections(next)));
       });
       if (new Set(p.questions.map(q => q.id)).size !== p.questions.length) throw new Error("Question IDs must be unique within each passage or Math batch.");
       if (entry.kind === "passage") Object.assign(p, { author: str(p.author), byline: str(p.byline), subtitle: str(p.subtitle), blurb: str(p.blurb), text: str(p.text), title: str(p.title), sourceNote: str(p.sourceNote), teacherSource: str(p.teacherSource), versionLabel: str(p.versionLabel), label: str(p.label), format: p.format || "prose", passageType: p.passageType || "informational", passageCategory: p.passageCategory || "miscellaneous", section: p.section || "reading" });
@@ -284,8 +435,9 @@ var DocumentImport = (() => {
     return result;
   }
   function fingerprint(entry) {
-    const normalized = value => str(value).normalize("NFKC").replace(/\s+/g, " ").trim();
-    return JSON.stringify({ kind: entry.kind, text: normalized(entry.content.text), visuals: (entry.content.visuals || []).map(v => normalized(v.description)), image: entry.content.image?.src, questions: entry.content.questions.map(q => ({ type: q.type, prompt: normalized(q.prompt), stimulus: normalized(q.stimulus), visuals: (q.visuals || []).map(v => normalized(v.description)), image: q.image?.src, choices: q.choices?.map(c => ({ id: c.id, text: normalized(c.text), math: c.math || "", image: c.image?.src })) })) });
+    const ignored = new Set(['id','importDraftId','sourceHash','source','sourcePackages','teacherSource','review','versionLabel','versionLabels','title','label','topic','subtopic','skilled','createdAt','updatedAt']);
+    const canonical = value => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).filter(k => !ignored.has(k)).sort().map(k => [k,canonical(value[k])])) : value;
+    return JSON.stringify({ kind: entry.kind, content: canonical(entry.content) });
   }
   function prompt(taxonomy, options = {}) {
     const englishOnly = options.subject === "english";
@@ -293,11 +445,12 @@ var DocumentImport = (() => {
     const selectedTaxonomy = englishOnly ? { reading: taxonomy.reading, revising_editing_a: taxonomy.revising_editing_a } : taxonomy;
     if (englishOnly) {
       delete selectedSchema.mathBatch;
+      selectedSchema.interactiveLayouts=Object.fromEntries(Object.entries(selectedSchema.mathInteractions).filter(([key])=>['inline_dropdown','math_drag_drop','richText','choiceFormatting'].includes(key)));
       delete selectedSchema.mathInteractions;
       for (const key of ["question", "mathQuestions", "batch"]) delete selectedSchema.root[key];
       for (const key of ["subtopic", "entryLayout", "entryVariable"]) delete selectedSchema.question[key];
       selectedSchema.extension = "English passages and teacher-only review metadata; existing passage format version 1.";
-      selectedSchema.question.type = ["multiple_choice", "multi_select", "short_response", "essay", "category_sort", "matrix_choice", "table_match", "transition_drop"];
+      selectedSchema.question.type = ["multiple_choice", "multi_select", "short_response", "essay", "category_sort", "matrix_choice", "table_match", "transition_drop", "inline_dropdown", "math_drag_drop"];
       selectedSchema.question.topic = "exact English section topic; empty when uncertain";
       selectedSchema.question.correctTextAnswers = "short_response: source keyed strings, or []";
     }
@@ -308,10 +461,10 @@ This is a user-provided document transcription and structured transformation tas
 
 SCOPE
 ${options.target || (englishOnly ? "Process the English Language Arts section only: all Reading Comprehension passages and Revising/Editing questions. Exclude Mathematics and administrative test instructions. If I specify a narrower English scope, use that scope." : "Process the scope I specify in my message. If I specify no narrower scope, process the entire supplied student document.")}
-${englishOnly ? "ENGLISH IMPORT MODE: use passage or passages. Do not output mathQuestions, question, or Math batch metadata. A source section called Revising/Editing Part B still uses section=\"revising_editing_a\"; sentence-numbered passages use format=\"sentence_prose\". Keep each Reading or Revising/Editing passage separate. Independent editing questions belong in a separate passage object with text=\"\"." : ""}
+${englishOnly ? "ENGLISH IMPORT MODE: use passage/passages for shared passages and englishQuestions for independent questions. Do not output mathQuestions, question, or Math batch metadata. A source section called Revising/Editing Part B still uses section=\"revising_editing_a\"; sentence-numbered passages use format=\"sentence_prose\". Keep each Reading or Revising/Editing passage separate. Independent editing questions belong in englishQuestions, with stimulus/stimulusHtml for their supporting text." : ""}
 Source/version information supplied by me: ${options.sourceLabel || "Use only information actually present in the files; leave unknown labels blank."}
 Key/guide information: ${options.answerGuideLabel || "Use any answer key and explanation guide supplied alongside the student document; never assume they exist."}
-Include the WHOLE passage associated with requested questions, even when it spans multiple pages. Include every requested passage, every associated question, every choice, instructions, supplied answer, supplied explanation, metadata and visual dependency. Never stop after a sample, first page or first question. Keep source order across passages and within questions and choices. Do not organize by topic or difficulty. For multiple passages use the optional passages array. For independent English questions use a passage with text="" and the source section title (or title="" if absent); do not invent a passage. ${englishOnly ? "" : "Math questions use mathQuestions and the existing Math question model. Mixed documents may include both arrays."}
+Include the WHOLE passage associated with requested questions, even when it spans multiple pages. Include every requested passage, every associated question, every choice, instructions, supplied answer, supplied explanation, metadata and visual dependency. Never stop after a sample, first page or first question. Keep source order across passages and within questions and choices. Do not organize by topic or difficulty. For multiple passages use the optional passages array. For independent English questions use englishQuestions and preserve their supporting text in stimulus/stimulusHtml; do not invent one-question library passages. Legacy empty-text passage envelopes remain accepted. ${englishOnly ? "" : "Math questions use mathQuestions and the existing Math question model. Mixed documents may include both arrays."}
 
 READ THE SOURCE BEFORE TRANSCRIBING
 First establish the page range, passage titles, original question ranges, vocabulary footnotes and required figures. PDF page numbers are 1-based file pages, not printed handbook pages. Check the visible cover/section labels instead of inferring the edition from the filename. A blank or failed text extraction does NOT mean a blank PDF: inspect rendered page images and use OCR/visual transcription for scanned pages. Verify OCR against the page image, including punctuation, italics, apostrophes, superscript footnote markers and easily confused characters. If page images cannot be read, identify the exact unreadable scope; do not invent text or return an empty passage as though complete.
@@ -363,13 +516,13 @@ ${JSON.stringify(selectedTaxonomy, null, 2)}
 Use multiple_choice for one keyed choice, multi_select only when source instructions require multiple choices, numeric_entry for the basic Math numeric keypad, expression_entry for Calculator Input (Advanced) with arithmetic, fractions, roots, powers, inequalities, pi, parentheses and absolute value, short_response for a plain typed short answer in either Math or English. short_answer is accepted as an alias, but emit short_response. To change numeric_entry to short_response keep correctTextAnswers, prompt, classification, and explanation; omit entryLayout and entryVariable. Retain extended writing as essay with UNSUPPORTED_RESPONSE_TYPE: essays remain drafts because the existing publication/grading workflow does not support them. For Math also support inline_dropdown, math_drag_drop, graph_point_select, and number_line_response using the exact fields below. These types publish and run in the student player. Other unsupported interactions must be retained with their actual type and source fields plus UNSUPPORTED_RESPONSE_TYPE; they remain drafts until manually authored. Do not transform a static diagram into an interactive graph question. Keep choice wording and order unchanged, but use the editor’s A, B, C, D labels for the first four choices. Map source E→A, F→B, G→C, H→D by position, including supplied single/multi-select answer keys and visual choiceId references. Additional choices continue E, F, and so on. Retain original labels privately in review.sourceChoiceIds. Never guess an answer during this mapping. There is no mandatory difficulty field. Never fabricate a key to satisfy publication checks. All extracted warnings start unresolved and all review booleans start false. Do not put teacher-only source references into prompt, text or sourceNote. Source attribution printed for students belongs in sourceNote.
 
 OUTPUT EXAMPLE (structure only; replace ALL sample content with the actual complete source, not a sample of it)
-${JSON.stringify({ format, passages: [{ title: "", author: "", byline: "", subtitle: "", blurb: "", format: "prose", passageType: "informational", passageCategory: "miscellaneous", section: "reading", label: "", versionLabel: "", sourceNote: "", teacherSource: "", text: "", richText: "", questions: [{ id: "passage-1", type: "multiple_choice", topic: "", points: 1, prompt: "", choices: [{ id: "A", text: "" }, { id: "B", text: "" }], correctChoiceId: "", explanation: "", review: { sourceFile: "", sourcePages: [], sourceQuestion: "", answerSource: null, explanationSource: null, topicSource: "unknown", topicConfidence: null, difficulty: "", difficultySource: "unknown", difficultyConfidence: null, expectedChoiceCount: null, classificationReviewed: false, warnings: [] }, visuals: [] }], review: { sourceFile: "", sourcePages: [], expectedQuestionCount: null, sourceReviewed: false, completenessReviewed: false, warnings: [] }, visuals: [] }], ...(englishOnly ? {} : { mathQuestions: [] }), reviewNotes: [], visuals: [] }, null, 2)}
+${JSON.stringify({ format, passages: [{ title: "", author: "", byline: "", subtitle: "", blurb: "", format: "prose", passageType: "informational", passageCategory: "miscellaneous", section: "reading", label: "", versionLabel: "", sourceNote: "", teacherSource: "", text: "", richText: "", questions: [{ id: "passage-1", type: "multiple_choice", topic: "", points: 1, prompt: "", promptHtml: "", choices: [{ id: "A", text: "", html: "" }, { id: "B", text: "", html: "" }], correctChoiceId: "", explanation: "", review: { sourceFile: "", sourcePages: [], sourceQuestion: "", answerSource: null, explanationSource: null, topicSource: "unknown", topicConfidence: null, difficulty: "", difficultySource: "unknown", difficultyConfidence: null, expectedChoiceCount: null, classificationReviewed: false, warnings: [] }, visuals: [] }], review: { sourceFile: "", sourcePages: [], expectedQuestionCount: null, sourceReviewed: false, completenessReviewed: false, warnings: [] }, visuals: [] }], ...(englishOnly ? {} : { mathQuestions: [] }), reviewNotes: [], visuals: [] }, null, 2)}
 
 FINAL INTERNAL AUDIT
 Count questions in the requested source and account for every one across complete chunks. For Math, put the whole requested count/inventory in batch.expectedTotal/expectedQuestions, and the count of this complete chunk in review.expectedQuestionCount. For a passage set expectedQuestionCount to that passage's source count. Count every choice and set expectedChoiceCount. Check original order, complete passage, title/author, headings, stanzas, paragraph divisions, footnotes, every prompt/choice/number/unit/punctuation mark, source-only answers and explanations, source-file attribution, visual coverage and classification provenance/confidence. Flag actual missing/unreadable source content specifically; planned bounded continuation is tracked by the manifest rather than presented as a transcription error. Review the entire requested range, including the final question. Use complete file attachments when available; otherwise stop at complete question boundaries and record completed, unresolved, and remaining source identities in the continuation ledger. Never claim completeness from a partial output.
 
 Return ONLY the exact importable JSON object, or its complete .json attachment when necessary. Double quotes, valid escaping, exact enums, no comments/trailing commas/undefined, no Markdown fences, no introduction/conclusion or prose outside data. Use format="${format}" (version 1); do not invent a schemaVersion field. Blank strings/arrays are valid draft values; null is accepted for unknown answer/explanation and nullable metadata, not for required arrays. Nothing is published automatically. The teacher can explicitly publish passages with unresolved review notes and complete them in the editor afterward. Do not invent missing data or mark warnings resolved to enable publication. Teacher review is final.`;
   }
-  return { format, mathFormat, schema, warningCodes, responseTypes, mathResponseTypes, normalizeResponseType, parse, issues, fingerprint, prompt, review, visuals, normalizeChoiceLabels, normalizeEntryChoices, withoutSectionDirections, readQuestionExcerpt, formatQuestionExcerpt, normalizeQuestionExcerpt };
+  return { format, mathFormat, schema, warningCodes, responseTypes, mathResponseTypes, normalizeResponseType, sourceMetadata, sanitizeRichText, preserveTextStyles, normalizeTextFormatting, parse, issues, fingerprint, prompt, review, visuals, normalizeChoiceLabels, normalizeEntryChoices, withoutSectionDirections, readQuestionExcerpt, formatQuestionExcerpt, normalizeQuestionExcerpt, formatImportedMathChoices };
 })();
 if (typeof module !== "undefined") module.exports = DocumentImport;

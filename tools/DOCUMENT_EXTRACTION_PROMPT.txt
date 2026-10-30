@@ -8,7 +8,7 @@ Process the scope I specify in my message. If I specify no narrower scope, proce
 
 Source/version information supplied by me: Use only information actually present in the files; leave unknown labels blank.
 Key/guide information: Use any answer key and explanation guide supplied alongside the student document; never assume they exist.
-Include the WHOLE passage associated with requested questions, even when it spans multiple pages. Include every requested passage, every associated question, every choice, instructions, supplied answer, supplied explanation, metadata and visual dependency. Never stop after a sample, first page or first question. Keep source order across passages and within questions and choices. Do not organize by topic or difficulty. For multiple passages use the optional passages array. For independent English questions use a passage with text="" and the source section title (or title="" if absent); do not invent a passage. Math questions use mathQuestions and the existing Math question model. Mixed documents may include both arrays.
+Include the WHOLE passage associated with requested questions, even when it spans multiple pages. Include every requested passage, every associated question, every choice, instructions, supplied answer, supplied explanation, metadata and visual dependency. Never stop after a sample, first page or first question. Keep source order across passages and within questions and choices. Do not organize by topic or difficulty. For multiple passages use the optional passages array. For independent English questions use englishQuestions and preserve their supporting text in stimulus/stimulusHtml; do not invent one-question library passages. Legacy empty-text passage envelopes remain accepted. Math questions use mathQuestions and the existing Math question model. Mixed documents may include both arrays.
 
 READ THE SOURCE BEFORE TRANSCRIBING
 First establish the page range, passage titles, original question ranges, vocabulary footnotes and required figures. PDF page numbers are 1-based file pages, not printed handbook pages. Check the visible cover/section labels instead of inferring the edition from the filename. A blank or failed text extraction does NOT mean a blank PDF: inspect rendered page images and use OCR/visual transcription for scanned pages. Verify OCR against the page image, including punctuation, italics, apostrophes, superscript footnote markers and easily confused characters. If page images cannot be read, identify the exact unreadable scope; do not invent text or return an empty passage as though complete.
@@ -58,6 +58,7 @@ EXACT CONTRACT
   "extension": "Optional passages/mathQuestions batches and teacher-only review metadata; legacy passage envelopes remain accepted.",
   "root": {
     "format": "nathan-tutors-official-passage-v1",
+    "source": "Optional provenance: sourceFamily (official_shsat or sat_crash_course), sourceFormat (pdf or testnav or web), playerProfile (testnav or sat_crash_course), sourceId, label, year, form, url. PDF and TestNav are delivery formats of the SAME official source; year/form defines exam identity.",
     "passage": "One passage object OR omit and use passages",
     "passages": "Ordered passage objects (optional)",
     "question": "Optional single Math question instead of mathQuestions; no batch metadata required. The Content Editor also accepts a bare Math question object and assigns a stable ID if omitted for a single question.",
@@ -65,7 +66,8 @@ EXACT CONTRACT
     "batch": "Optional MathBatch metadata for matching source questions across chunks and retries",
     "review": "Optional Review for this complete chunk; expectedQuestionCount counts only this payload",
     "reviewNotes": "string[]",
-    "visuals": "Visual[]; legacy scope/description objects are accepted"
+    "visuals": "Visual[]; legacy scope/description objects are accepted",
+    "englishQuestions": "Ordered independent English question objects; use stimulus/stimulusHtml for their supporting paragraphs instead of creating one-question library passages."
   },
   "mathBatch": {
     "sourceId": "stable source identity including exam/form/version, supplied by teacher; never a question number alone",
@@ -112,10 +114,14 @@ EXACT CONTRACT
     "sourceNote": "student-visible string",
     "teacherSource": "teacher-only string",
     "text": "complete passage body; exclude vocabulary footnote definitions and their markers; empty for independent questions",
-    "richText": "complete faithful HTML when formatting or vocabulary is present: p, div, br, strong, em, u, s, sup, sub, h2, h3, ul, ol, li, span; text remains the plain-text copy; h2/h3 are unnumbered subheadings; p data-numbered=false excludes a paragraph, true explicitly numbers it; span data-glossary-definition=SOURCE_DEFINITION role=link tabindex=0 wraps the exact defined term occurrence and activates the existing vocabulary popup; HTML-escape definitions, then JSON-escape richText",
+    "richText": "complete faithful HTML when formatting or vocabulary is present: p, div, br, strong, em, u, s, sup, sub, h2, h3, ul, ol, li, span, a, figure, figcaption, table, caption, thead, tbody, tr, th, td; preserve links with href, cell colspan/rowspan/scope, images in their source position, data-align left/center/right/justify/indent, and blockquote data-boxed=true; text remains the plain-text copy; h2/h3 are unnumbered subheadings; p data-numbered=false excludes a paragraph, true explicitly numbers it; span data-glossary-definition=SOURCE_DEFINITION role=link tabindex=0 wraps the exact defined term occurrence and activates the existing vocabulary popup; HTML-escape definitions, then JSON-escape richText For poems, mark only actual verse lines with data-poetry-line=\"true\"; introductions and dates are not verse lines. Preserve distinct leading spaces and blank stanza lines.",
     "questions": "ordered Question[]",
     "review": "Review",
-    "visuals": "Visual[]"
+    "visuals": "Visual[]",
+    "titleHtml": "Optional faithful HTML for title; keep its plain text field as well.",
+    "blurbHtml": "Optional faithful HTML for blurb; keep its plain text field as well.",
+    "bylineHtml": "Optional faithful HTML for byline; keep its plain text field as well.",
+    "sourceNoteHtml": "Optional faithful HTML for sourceNote; keep its plain text field as well."
   },
   "question": {
     "id": "unique lowercase letters/numbers/hyphens",
@@ -130,6 +136,7 @@ EXACT CONTRACT
       "math_drag_drop",
       "graph_point_select",
       "number_line_response",
+      "matrix_choice",
       "category_sort",
       "matrix_choice",
       "table_match",
@@ -140,12 +147,12 @@ EXACT CONTRACT
     "subtopic": "math only: exact specific topic under topic in mathSpecificTopics; empty when uncertain",
     "points": "positive number; default 1 (platform scoring, not source difficulty)",
     "prompt": "exact source text",
-    "promptHtml": "optional faithful HTML preserving source emphasis; prompt stays plain text",
+    "promptHtml": "complete faithful HTML for EVERY question, including ordinary questions; preserve all source emphasis, including a single bold word such as best, most, least, NOT or EXCEPT; prompt stays plain text",
     "instructionsHtml": "optional faithful rich source directions",
     "stimulusHtml": "optional faithful rich supporting text",
     "instructions": "optional exact source directions",
     "stimulus": "optional exact supporting text",
-    "choices": "ordered {id:string,text:string,html?:string,math?:string}[]; 2–8 when present; IDs normalized by position: A, B, C, D (then E, F for additional choices)",
+    "choices": "ordered {id:string,text:string,html?:string,math?:string}[]; include html for EVERY textual choice, preserving all source styling; 2–8 when present; IDs normalized by position: A, B, C, D (then E, F for additional choices)",
     "correctChoiceId": "multiple_choice: exact choice ID, or empty string/null if no unambiguous supplied key",
     "correctChoiceIds": "multi_select: choice IDs from key, or [] if unknown",
     "requiredSelections": "multi_select: source selection count, or null if unknown",
@@ -155,12 +162,17 @@ EXACT CONTRACT
     "explanation": "exact supplied explanation or empty string/null",
     "review": "Review",
     "visuals": "Visual[]",
+    "explanationHtml": "Faithful HTML of the supplied explanation; explanation keeps the plain text. Never generate missing explanations.",
+    "selectionHtml": "For selectable source words or phrases: preserve the full paragraph and wrap each selectable phrase in span data-choice-id=\"A\" (matching choices). Use multiple_choice or multi_select and retain keyed IDs. Do not flatten these into detached answer options.",
+    "dragDropContentHtml": "Optional faithful HTML around {{slot-id}} placeholders, including source tables, emphasis and inline mathematics. Keep dragDropContent as the readable copy and dragDropSlots as the response contract.",
+    "dropdownContentHtml": "Optional faithful HTML around {{dropdown-id}} placeholders. Retain source tables and sentence placement, plus dropdownContent and dropdowns with their original option order.",
     "matrixStyle": "matrix_choice: use evidence for Passage/Table Evidence with bold centered statement rows, square checkboxes and Passage only / Table only / Both passage and table columns. evidence_matrix is accepted as an alias for this question type.",
     "promptParts": {
       "introduction": "Exact Read these sentences/lines instruction",
       "excerpt": "Exact quoted text; actual newlines between poem lines and blank lines between stanzas",
       "followUp": "Exact follow-up question",
-      "bold": "true for the bold TestNav excerpt; false only when the source quote is regular weight. Optional structured alternative to promptHtml; keep prompt as the same complete plain wording. **bold** and *italics* are supported within these strings."
+      "bold": "true for a bold source excerpt; false when the source quote is regular weight. Optional structured alternative to promptHtml; keep prompt as the same complete plain wording. **bold** and *italics* are supported within these strings.",
+      "boxed": "true only when the source draws a border around the excerpt. For sentence-insertion questions include the complete new sentence here, even when it does not occur in the passage. Keep introduction, excerpt, and followUp together in promptParts, not in separate instructions/stimulus fields."
     }
   },
   "sentenceBlanks": {
@@ -262,7 +274,8 @@ EXACT CONTRACT
         "correctDirection": "left or right"
       }
     },
-    "richText": "promptHtml, stimulusHtml, instructionsHtml are optional faithful rich HTML with LaTeX delimiters. Uploaded images may appear between paragraphs as img with src=/exam-images/existing-file, alt, and optional width. Never invent asset references."
+    "richText": "promptHtml, stimulusHtml, instructionsHtml are optional faithful rich HTML with LaTeX delimiters. Uploaded images may appear between paragraphs as img with src=/exam-images/existing-file, alt, and optional width. Never invent asset references.",
+    "choiceFormatting": "Format mathematics in every answer choice as faithfully as the prompt. Keep text as the readable source wording. For a formula-only choice use math with bare LaTeX; for prose containing mathematics use html with inline LaTeX delimiters. Preserve fractions, mixed numbers, exponents, roots, variables, units, emphasis and visuals. Do not put a whole sentence in math or leave printed stacked fractions as plain slash text."
   },
   "review": {
     "sourceFile": "string",
@@ -443,14 +456,17 @@ OUTPUT EXAMPLE (structure only; replace ALL sample content with the actual compl
           "topic": "",
           "points": 1,
           "prompt": "",
+          "promptHtml": "",
           "choices": [
             {
               "id": "A",
-              "text": ""
+              "text": "",
+              "html": ""
             },
             {
               "id": "B",
-              "text": ""
+              "text": "",
+              "html": ""
             }
           ],
           "correctChoiceId": "",

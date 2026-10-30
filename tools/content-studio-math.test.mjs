@@ -175,11 +175,16 @@ test("the virtual keyboard has a visible close control that hides it without edi
 });
 
 test("student dropdown sentences render display math while preserving answer values and plain menu labels", async () => {
+  const templateSource = await readFile(new URL('../client/src/lib/inlineDropdownTemplate.ts', import.meta.url), 'utf8');
+  const templateJs = ts.transpileModule(templateSource, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
+  const templateExports = {};
+  vm.runInNewContext(templateJs, { exports: templateExports });
   const page = await readFile(new URL("../client/src/components/ExamMathQuestion.tsx", import.meta.url), "utf8");
   const start = page.indexOf("function renderInlineDropdownText(");
   const finish = page.indexOf("type Props =", start);
   const js = ts.transpileModule(page.slice(start, finish), { compilerOptions: { jsx: ts.JsxEmit.React, target: ts.ScriptTarget.ES2022 } }).outputText;
   const render = vm.runInNewContext(`${js}\nrenderInlineDropdownText;`, {
+    parseInlineDropdownTemplate: templateExports.parseInlineDropdownTemplate,
     React: { createElement: (tag, props, ...children) => ({ tag, props, children }) },
     selectedAnswers: { q1: { answer: "b" } },
     placements: (value) => value,

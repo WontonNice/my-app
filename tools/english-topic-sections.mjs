@@ -43,16 +43,22 @@ async function snapshot(root,sources) {
   const registryPath=join(root,'server/data/assessments.json'), registrySource=await read(registryPath);
   const sections=await readEnglishTopicSections(root);
   const revision=hash([configSource,legacySource,registrySource,files.map(file=>[file.path,file.source])]);
+  const unclassifiedCountBySection=Object.fromEntries(englishSections.map(section=>[section,0]));
   const topicDetailsBySection=Object.fromEntries(englishSections.map(section=>{
     const counts=new Map(sections[section].map(label=>[label,0]));
-    for(const file of files.filter(file=>file.section===section)) for(const question of file.questions) counts.set(question.topic,(counts.get(question.topic)||0)+1);
+    for(const file of files.filter(file=>file.section===section)) for(const question of file.questions) {
+      // An unfinished classification is not an editable topic name. Keep the
+      // question untouched while tracking it separately from named-topic use.
+      if(typeof question.topic!=='string'||!question.topic.trim()) {unclassifiedCountBySection[section]++;continue;}
+      counts.set(question.topic,(counts.get(question.topic)||0)+1);
+    }
     return [section,[...counts].map(([label,questionCount])=>({label,questionCount}))];
   }));
-  return {sections,revision,topicDetailsBySection,configPath,configSource,files,registryPath,registrySource};
+  return {sections,revision,topicDetailsBySection,unclassifiedCountBySection,configPath,configSource,files,registryPath,registrySource};
 }
 export async function englishTopicConfiguration(root,sources) {
-  const {sections,revision,topicDetailsBySection}=await snapshot(root,sources);
-  return {sections,revision,topicDetailsBySection};
+  const {sections,revision,topicDetailsBySection,unclassifiedCountBySection}=await snapshot(root,sources);
+  return {sections,revision,topicDetailsBySection,unclassifiedCountBySection};
 }
 export async function saveEnglishSectionTopics(root,input,sources) {
   const lockPath=join(root,'tools/content-topic-sections.json.lock');

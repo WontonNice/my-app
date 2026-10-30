@@ -42,13 +42,25 @@ export function reconcilePracticeTaxonomy(catalog:PracticeCatalog,taxonomy:Pract
 export function practiceModuleKind(module:ManagedPracticeModule) {
   return module.defaultType ?? (module.id==='foundation'?'foundation':module.id==='all'?'general':undefined);
 }
-/** Resolve shared names on reads; a deleted or relocated skill becomes TBD. */
+/** Explicitly linked modules follow the selected shared skill; legacy names remain intact. */
 export function reconcilePracticeSkilled(catalog:PracticeCatalog,skills:MathClassificationSkill[]):PracticeCatalog {
   return {...catalog,generators:catalog.generators.map(generator=>({...generator,skilled:resolveSkilled(generator.skilled,generator.category??'Algebra',generator.topic??'Inequalities',skills)})),
     modules:catalog.modules.map(module=>{
-      const skilled=resolveSkilled(module.skilled,module.category,module.topic,skills),definition=skills.find(skill=>skill.id===skilled);
-      return {...module,skilled,...(module.titleMode!=='custom'&&!practiceModuleKind(module)&&(definition||module.skilled&&module.skilled!==skilledTbd)?{title:definition?.label??skilledTbd}:{})};
+      const skilled=resolveSkilled(module.skilled,module.category,module.topic,skills);
+      const definition=skills.find(skill=>skill.id===skilled);
+      return {...module,skilled,...(module.titleMode==='skill'&&definition&&!practiceModuleKind(module)?{title:definition.label}:{})};
     })};
+}
+/** Assign a shared skill without replacing the module, its generators, or its history. */
+export function assignPracticeModuleSkill(catalog:PracticeCatalog,moduleId:string,skill:MathClassificationSkill):PracticeCatalog {
+  const module=catalog.modules.find(item=>item.id===moduleId);
+  if(!module||practiceModuleKind(module))throw new Error('Choose an individual module to assign a skill.');
+  if((module.includeAll||module.generatorIds.length>0)&&(module.category!==skill.category||module.topic!==skill.subcategory))throw new Error('Choose a skill in this module’s Category and Subcategory so its existing generators stay in the same practice group.');
+  const next=ensureTopicPracticeModules(catalog,{categories:[{label:skill.category,topics:[skill.subcategory]}]});
+  const currentParent=next.modules.find(item=>item.id===module.parentId);
+  const kind=currentParent?practiceModuleKind(currentParent)??'general':'general';
+  const parent=next.modules.find(item=>practiceModuleKind(item)===kind&&item.category===skill.category&&item.topic===skill.subcategory)!;
+  return {...next,modules:next.modules.map(item=>item.id===moduleId?{...item,title:skill.label,titleMode:'skill',skilled:skill.id,category:skill.category,topic:skill.subcategory,parentId:parent.id}:item)};
 }
 const sameTopic=(first:{category?:string;topic?:string},second:{category?:string;topic?:string})=>(first.category??'Algebra')===(second.category??'Algebra')&&(first.topic??'Inequalities')===(second.topic??'Inequalities');
 export function topicPracticeModuleId(category:string,topic:string,kind:'foundation'|'general') {
@@ -205,7 +217,11 @@ export function validatePracticeCatalog(value:unknown,topics?:PracticeTaxonomy):
   for(const [label,items]of [['Module',modules],['Video',videos]] as const)if(new Set(items.map(item=>item.id)).size!==items.length)fail(`${label} IDs must be unique.`);
   if(topics?.classificationSkills){
     for(const generator of generators)if(generator.skilled!==undefined)validateSkilled(generator.skilled,generator.category??'Algebra',generator.topic??'Inequalities',topics.classificationSkills);
-    for(const module of modules)if(module.skilled!==undefined){validateSkilled(module.skilled,module.category,module.topic,topics.classificationSkills);const skill=topics.classificationSkills.find(skill=>skill.id===module.skilled);if(skill&&module.titleMode!=='custom'&&!practiceModuleKind(module))module.title=skill.label;}
+    for(const module of modules)if(module.skilled!==undefined){
+      module.skilled=resolveSkilled(module.skilled,module.category,module.topic,topics.classificationSkills);
+      const skill=topics.classificationSkills.find(skill=>skill.id===module.skilled);
+      if(module.titleMode==='skill'&&skill&&!practiceModuleKind(module))module.title=skill.label;
+    }
   }
   return ensureTopicPracticeModules({modules,generators,videos},topics);
 }

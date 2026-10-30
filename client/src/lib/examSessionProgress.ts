@@ -2,6 +2,7 @@ import type { ExamSessionProgress } from "./api";
 import type { ExamContent } from "../content/exams";
 import type { ExamResult, SelectedAnswers } from "./examResults";
 import { normalizeExamNavigation, type ExamNavigation, type ExamPosition } from "../../../server/src/shared/examNavigation";
+import { orderedEnglishQuestions, orderByQuestionIds } from "../../../server/src/shared/examQuestionOrder";
 
 const storagePrefix = "nathan-tutors:exam-session-progress:v1";
 export type ExamSection = "english" | "math";
@@ -65,7 +66,7 @@ export function getExamResumePosition(content: ExamContent, subject: ExamSection
     if (saved.screen === 'mathQuestion') {
       const index = math.findIndex(q => q.id === saved.questionId);
       if (index >= 0) return position(saved.screen, 0, index);
-    } else if (saved.screen === 'standaloneQuestion') {
+    } else if (saved.screen.startsWith('standalone') && saved.questionId) {
       const index = standalone.findIndex(q => q.id === saved.questionId);
       if (index >= 0) return position(saved.screen, 0, index);
     } else if (saved.passageSetId) {
@@ -87,12 +88,9 @@ export function getExamResumePosition(content: ExamContent, subject: ExamSection
     const index = math.findIndex(q => !hasAnswer(q.id));
     return position('mathQuestion', 0, index >= 0 ? index : Math.max(0, math.length - 1));
   }
-  for (const [index, set] of content.passageSets.entries()) {
-    const questionIndex = set.questions.findIndex(q => !hasAnswer(q.id));
-    if (questionIndex >= 0) return position('passage', index, questionIndex);
+  for (const location of orderedEnglishQuestions(content)) {
+    if (!hasAnswer(location.question.id)) return position(location.kind === 'passage' ? 'passage' : 'standaloneQuestion', location.passageIndex, location.questionIndex);
   }
-  const standaloneIndex = standalone.findIndex(q => !hasAnswer(q.id));
-  if (standaloneIndex >= 0) return position('standaloneQuestion', 0, standaloneIndex);
   return position('endSection');
 }
 
@@ -106,11 +104,8 @@ function hasSavedAnswer(answers: Record<string, unknown>, questionId: string) {
 
 export function getExamSectionQuestionIds(examContent: ExamContent) {
   return {
-    english: [
-      ...examContent.passageSets.flatMap((passageSet) => passageSet.questions.map((question) => question.id)),
-      ...(examContent.standaloneSection?.questions.map((question) => question.id) ?? []),
-    ],
-    math: examContent.mathSection?.questions.map((question) => question.id) ?? [],
+    english: orderedEnglishQuestions(examContent).map(location => location.question.id),
+    math: orderByQuestionIds(examContent.mathSection?.questions ?? [], examContent.questionOrder).map(question => question.id),
   };
 }
 

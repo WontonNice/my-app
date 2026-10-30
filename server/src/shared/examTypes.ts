@@ -23,16 +23,39 @@ export type ExamPassageSection =
 
 export type ExamPassageType = "informational" | "literary" | "long_reading" | "poem";
 
+export type ExamSource = {
+  sourceFamily?: string;
+  sourceFormat?: string;
+  /** Original source presentation metadata only. Every exam renders in the shared TestNav player. */
+  playerProfile?: string;
+  sourceId?: string;
+  label?: string;
+  url?: string;
+  year?: string;
+  form?: string;
+  edition?: string;
+  section?: string;
+  sourceQuestion?: string;
+  moduleQuestion?: string;
+  passageId?: string;
+  packageId?: string;
+  originalPackageId?: string;
+  pages?: number[];
+};
+
 export type ExamPassageLine = {
-  align?: "left" | "center" | "indent";
+  align?: "left" | "center" | "right" | "justify" | "indent";
   html?: string;
   image?: ExamQuestionImage;
   kind?: "intro" | "title" | "byline" | "heading" | "list" | "image";
   lineNumber?: string;
+  numbered?: boolean;
+  poetryLine?: boolean;
   text: string;
 };
 
 export type ExamPassage = {
+  source?: ExamSource;
   passageCategory?: PassageCategory;
   versionLabel?: string;
   coverImage?: ExamQuestionImage;
@@ -41,6 +64,7 @@ export type ExamPassage = {
   lines: ExamPassageLine[];
   passageType?: ExamPassageType;
   sourceNote?: string;
+  sourceNoteHtml?: string;
   title: string;
 };
 
@@ -69,11 +93,14 @@ export type ExamNumberLineResponse = {
 
 export type ExamGraphPoint = {
   id: string;
+  sourceX?: number;
+  sourceY?: number;
   x: number;
   y: number;
 };
 
 export type ExamPointGraph = {
+  sourceImage?: ExamQuestionImage & {width:number; height:number};
   points: ExamGraphPoint[];
   title?: string;
   xLabel: string;
@@ -135,6 +162,7 @@ export type ExamQuestionImage = {
 };
 
 export type ExamQuestion = {
+  source?: ExamSource;
   /** Stable ID in the teacher-managed Skilled registry; absent means TBD. */
   skilled?: string;
   /** Explicit text matching for captured answer sheets; legacy exams keep their existing defaults. */
@@ -149,12 +177,16 @@ export type ExamQuestion = {
   correctPlacements?: Record<string, string>;
   correctTextAnswers?: string[];
   dragDropContent?: string[];
+  dragDropContentHtml?: string;
   /** Compact black tiles or blue outlined tiles; independent of answer reuse. */
   dragDropStyle?: "compact" | "outlined";
   dragDropSlots?: ExamMathDragSlot[];
   dropdownContent?: string[];
+  dropdownContentHtml?: string;
   dropdowns?: ExamInlineDropdown[];
   entryLayout?: "fraction" | "plain" | "x_equals";
+  /** Source input appearance for compatible string answers; never changes grading type. */
+  entryControl?: "numeric" | "expression" | "text";
   /** Letter displayed before = in the calculator input; defaults to x. */
   entryVariable?: string;
   explanation?: string;
@@ -171,6 +203,8 @@ export type ExamQuestion = {
   points?: number;
   prompt: string;
   promptHtml?: string;
+  /** Selectable source phrases stay inside their original paragraph. */
+  selectionHtml?: string;
   requiredPlacements?: number;
   requiredSelections?: number;
   stimulus?: string;
@@ -193,6 +227,8 @@ export type ExamPassageDirections = {
 };
 
 export type ExamPassageSet = {
+  duplicateOf?: string;
+  versionLabels?: string[];
   directions: ExamPassageDirections;
   id: string;
   label?: string;
@@ -229,6 +265,13 @@ export type ExamMathSection = {
 
 export type ExamContent = {
   assessmentId: string;
+  source?: ExamSource;
+  questionOrder?: string[];
+  /** Source-specific display snapshots; canonical library records and IDs remain intact. */
+  presentationOverrides?: {
+    questions?: Record<string, {base:ExamQuestion; question:ExamQuestion}>;
+    passages?: Record<string, {baseLines:ExamPassageLine[]; passage:ExamPassage}>;
+  };
   mathSection?: ExamMathSection;
   passageSections?: Record<string, ExamPassageSection>;
   passageSets: ExamPassageSet[];

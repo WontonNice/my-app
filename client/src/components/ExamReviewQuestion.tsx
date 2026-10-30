@@ -1,3 +1,6 @@
+import { EXAM_PLAYER_PROFILE } from "../content/exams/playerPresentation";
+import { InlineTextSelection } from "./InlineTextSelection";
+import { RichResponseTemplate } from "./RichResponseTemplate";
 import { correctExamAnswer } from "../lib/examReviewAnswer";
 import { useMemo } from "react";
 import katex from "katex";
@@ -89,6 +92,7 @@ export function ExamAnswer({ question, answer }: { question: ExamQuestion; answe
 }
 
 export function ExamReviewPassage({ passage }: { passage: ExamPassage }) {
+  const hasExplicitVerse = passage.lines.some(line => line.poetryLine === true);
   const format = passage.format === "sentence_prose" ? "sentence_prose" : passage.format === "prose" ? "prose" : "poem";
 
   return <div className="exam-question-passage">
@@ -105,18 +109,18 @@ export function ExamReviewPassage({ passage }: { passage: ExamPassage }) {
           if (!line.text && !line.html) return <p aria-hidden="true" className="exam-prose-line is-spacer" key={index} />;
           const isFullWidth = Boolean(line.kind) || line.align === "center";
           const ProseLine = line.kind === "list" ? "div" : "p";
-          return <ProseLine role={line.kind === "heading" ? "heading" : undefined} aria-level={line.kind === "heading" ? 2 : undefined} className={`exam-prose-line ${line.kind ? `is-${line.kind}` : line.align === "center" ? "is-title" : ""}`} key={index}>
+          return <ProseLine data-align={line.align} role={line.kind === "heading" ? "heading" : undefined} aria-level={line.kind === "heading" ? 2 : undefined} className={`exam-prose-line ${line.kind ? `is-${line.kind}` : line.align === "center" ? "is-title" : ""}`} key={index}>
             {!isFullWidth && line.lineNumber ? <span className="exam-paragraph-number">{line.lineNumber}</span> : null}
             <ExamText html={line.html} text={line.text} />
           </ProseLine>;
         }
 
-        return <p className={`exam-poem-line ${line.align === "center" ? "is-centered" : line.align === "indent" ? "is-indented" : ""} ${line.kind ? `is-${line.kind}` : ""} ${line.text || line.html ? "" : "is-spacer"}`} key={index}>
+        return <p className={`exam-poem-line ${hasExplicitVerse && line.poetryLine !== true && !line.kind && line.text ? "is-context" : ""} ${line.align === "center" ? "is-centered" : line.align === "indent" ? "is-indented" : ""} ${line.kind ? `is-${line.kind}` : ""} ${line.text || line.html ? "" : "is-spacer"}`} key={index}>
           <span>{line.lineNumber}</span>
           <ExamText html={line.html} text={line.text} />
         </p>;
       })}
-      {passage.sourceNote ? <p className="exam-passage-source-note">{passage.sourceNote}</p> : null}
+      {passage.sourceNote ? <p className="exam-passage-source-note"><ExamText html={passage.sourceNoteHtml} text={passage.sourceNote} /></p> : null}
       {passage.lines.filter(line => line.kind === "image" && line.image).map((line, index) => line.image ? <figure className="exam-passage-image" key={`${line.image.src}-${index}`}>
         <img src={line.image.src} alt={line.image.alt} />
         {line.image.caption ? <figcaption>{line.image.caption}</figcaption> : null}
@@ -135,20 +139,26 @@ export function ReviewQuestionBody({ answerPresentation, item, showAnswers, view
     : {};
 
   return <>
-    {!viewer && passage && <details className="exam-review-passage"><summary>Read passage: {passage.title}</summary>{passage.lines.map((line, index) => <p key={index}>{line.lineNumber && <small>{line.lineNumber} </small>}<ExamText html={line.html} text={line.text} />{line.image && <img src={line.image.src} alt={line.image.alt} />}</p>)}{passage.sourceNote && <small>{passage.sourceNote}</small>}</details>}
+    {!viewer && passage && <details className="exam-review-passage"><summary>Read passage: {passage.title}</summary>{passage.lines.map((line, index) => <p key={index}>{line.lineNumber && <small>{line.lineNumber} </small>}<ExamText html={line.html} text={line.text} />{line.image && <img src={line.image.src} alt={line.image.alt} />}</p>)}{passage.sourceNote && <small><ExamText html={passage.sourceNoteHtml} text={passage.sourceNote} /></small>}</details>}
     {(question.instructions || question.instructionsHtml) && <p className={viewer ? "exam-question-instructions" : undefined}><ExamText html={question.instructionsHtml} text={question.instructions} /></p>}
     {(question.stimulus || question.stimulusHtml) && <p className={viewer ? "exam-question-instructions" : undefined}><ExamText html={question.stimulusHtml} text={question.stimulus} /></p>}
     {viewer ? <h1>{prompt}</h1> : <h2>{prompt}</h2>}
     {question.image && <figure className={viewer ? "exam-question-image" : undefined}><img src={question.image.src} alt={question.image.alt} /><figcaption>{question.image.caption}</figcaption></figure>}
-    {question.graph && <svg viewBox="0 0 400 300" role="img" aria-label={question.graph.title ?? "Question coordinate graph"}>
+    {question.graph?.sourceImage && <div className="exam-source-hotspots" style={{position:'relative',width:question.graph.sourceImage.width,maxWidth:'100%'}}>
+      <img src={question.graph.sourceImage.src} alt={question.graph.sourceImage.alt} style={{display:'block',width:'100%',height:'auto'}} />
+      {question.graph.points.map(point=><button type="button" disabled key={point.id} className={`exam-source-hotspot${answerIncludesChoice(item.submittedAnswer,point.id) ? ' is-selected' : ''}`} aria-label={`Point ${point.x}, ${point.y}`} aria-pressed={answerIncludesChoice(item.submittedAnswer,point.id)} style={{left:`${100*(point.sourceX ?? 0)/question.graph!.sourceImage!.width}%`,top:`${100*(point.sourceY ?? 0)/question.graph!.sourceImage!.height}%`}} />)}
+    </div>}
+    {question.graph && !question.graph.sourceImage && <svg viewBox="0 0 400 300" role="img" aria-label={question.graph.title ?? "Question coordinate graph"}>
       <rect x="35" y="15" width="340" height="250" fill="#fafafa" stroke="#bbb" />
       {question.graph.points.map(point => <g key={point.id}><circle cx={35 + (point.x - question.graph!.xMin) / (question.graph!.xMax - question.graph!.xMin) * 340} cy={265 - (point.y - question.graph!.yMin) / (question.graph!.yMax - question.graph!.yMin) * 250} r="4" /><text x={40 + (point.x - question.graph!.xMin) / (question.graph!.xMax - question.graph!.xMin) * 340} y={260 - (point.y - question.graph!.yMin) / (question.graph!.yMax - question.graph!.yMin) * 250} fontSize="11">({point.x}, {point.y})</text></g>)}
       <text x="175" y="290" fontSize="12">{question.graph.xLabel}</text><text x="0" y="140" fontSize="12">{question.graph.yLabel}</text>
     </svg>}
-    {question.dropdownContent && <p><ExamText text={templateText(question, question.dropdownContent)} /></p>}
-    {question.dragDropContent && <p><ExamText text={templateText(question, question.dragDropContent)} /></p>}
+    {question.dropdownContentHtml ? <RichResponseTemplate html={question.dropdownContentHtml} renderText={(text,key)=><ExamText key={key} text={templateText(question,[text])} />} /> : question.dropdownContent && <p><ExamText text={templateText(question, question.dropdownContent)} /></p>}
+    {question.dragDropContentHtml ? <RichResponseTemplate html={question.dragDropContentHtml} renderText={(text,key)=><ExamText key={key} text={templateText(question,[text])} />} /> : question.dragDropContent && <p><ExamText text={templateText(question, question.dragDropContent)} /></p>}
+    {question.items?.length && ['category_sort','table_match','math_drag_drop'].includes(question.type) ? <div className="exam-review-response-bank" aria-label="All answer cards"><ul>{question.items.map(card=><li key={card.id} aria-label={card.text}><ExamText text={card.text} html={card.html} /></li>)}</ul>{question.categories?.map(category=><p key={category.id}><strong>{category.title}</strong></p>)}</div> : null}
     {answerPresentation === "comparison" && question.type === "matrix_choice" && question.items && question.categories ? <div className={`exam-matrix-choice-wrap${question.matrixStyle === 'evidence' ? ' is-evidence-matrix' : ''}`}><table className="exam-matrix-choice-table"><thead><tr><th scope="col">{question.matrixStyle === 'evidence' ? '' : question.tableHeaders?.row ?? "Sentence"}</th>{question.categories.map(category => <th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(matrixItem => <tr key={matrixItem.id}><th scope="row"><ExamText html={matrixItem.html} text={matrixItem.text} /></th>{question.categories!.map(category => <td key={category.id}><label className="exam-matrix-choice-option"><input aria-label={`${matrixItem.text}: ${category.title}`} checked={submittedPlacements[matrixItem.id] === category.id} disabled readOnly type={question.matrixStyle === 'evidence' ? 'checkbox' : 'radio'} /><span aria-hidden="true" /></label></td>)}</tr>)}</tbody></table></div> : null}
-    {question.choices?.length && (answerPresentation === "comparison" || isStandardChoiceQuestion(question)) ? <div className={viewer ? "exam-choice-list exam-review-viewer-choices" : "exam-review-choices"}>{question.choices.map(choice => {
+    {question.selectionHtml && <InlineTextSelection question={question} answer={item.submittedAnswer} correctIds={showAnswers ? typeof correctAnswer === "string" ? [correctAnswer] : Array.isArray(correctAnswer) ? correctAnswer : [] : []} />}
+    {!question.selectionHtml && question.choices?.length && (answerPresentation === "comparison" || isStandardChoiceQuestion(question)) ? <div className={viewer ? "exam-choice-list exam-review-viewer-choices" : "exam-review-choices"}>{question.choices.map(choice => {
       const submitted = highlightsChoices && !item.isCorrect && answerIncludesChoice(item.submittedAnswer, choice.id);
       const correct = highlightsChoices && showAnswers && answerIncludesChoice(correctAnswer, choice.id);
       return <div className={`${viewer ? "exam-choice" : ""}${submitted ? " is-submitted-answer" : ""}${correct ? " is-correct-answer" : ""}`} key={choice.id}>{viewer ? <span className="exam-review-choice-marker" aria-hidden="true" /> : null}<b>{choice.id}.</b><span className="exam-review-choice-content"><ChoiceContent choice={choice} /></span>{submitted ? <span className="exam-review-choice-status">Your answer</span> : null}{correct ? <span className="exam-review-choice-status">Correct answer</span> : null}</div>;
@@ -165,7 +175,7 @@ export function ExamReviewQuestion({ answerPresentation = "comparison", item, sh
   if (variant === "exam") {
     const panelClassName = item.passage ? "exam-question-panel" : "exam-standalone-panel exam-math-panel";
     const documentClassName = item.passage ? "exam-question-document is-expanded-layout" : "exam-standalone-document exam-math-document";
-    return <div className={`exam-review-question-content is-exam-viewer ${documentClassName}`}>
+    return <div data-player-profile={EXAM_PLAYER_PROFILE} className={`exam-review-question-content is-exam-viewer ${documentClassName}`}>
       {item.passage ? <ExamReviewPassage passage={item.passage} /> : null}
       <div className={panelClassName}>
         <ReviewQuestionBody answerPresentation={answerPresentation} item={item} showAnswers={showAnswers} viewer />
@@ -173,7 +183,7 @@ export function ExamReviewQuestion({ answerPresentation = "comparison", item, sh
     </div>;
   }
 
-  return <div className="exam-review-question-content">
+  return <div data-player-profile={EXAM_PLAYER_PROFILE} className="exam-review-question-content">
     <ReviewQuestionBody answerPresentation={answerPresentation} item={item} showAnswers={showAnswers} viewer={false} />
   </div>;
 }

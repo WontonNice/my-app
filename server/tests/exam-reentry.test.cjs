@@ -9,13 +9,15 @@ const users = {
   outsider: { id: 'outsider', app_metadata: { role: 'student', class_ids: [] }, user_metadata: {} },
 };
 const assessment = { id: 'exam', classId: 'shsat', title: 'Test exam', status: 'locked', allowCompletedAccess: false, sectionAccess: { english: false, math: false } };
+let secondAssessment = null;
+const configuredAssessments = () => secondAssessment ? [assessment, secondAssessment] : [assessment];
 const tables = { student_exam_results: [], student_exam_sessions: [], student_practice_progress: [] };
 function stub(relative, exports) { const id = require.resolve(relative); require.cache[id] = { id, filename: id, loaded: true, exports }; }
 stub('../src/lib/auth.ts', { getAuthenticatedUser: async header => { const user = users[header?.replace('Bearer ', '')]; return { user, error: user ? null : 'Sign in required' }; }, getEnrolledClassIds: metadata => metadata.class_ids ?? [], getUserRole: user => user.app_metadata.role, isStudentArchived: () => false });
 stub('../src/lib/assessmentAccess.ts', {resolveAssessmentAccess:async value=>value,resolveAssessmentAccessList:async values=>values,assessmentAccessErrorHandler:(error,_request,_response,next)=>next(error)});
 stub('../src/config/assessments.ts', {
-  listTeacherAssessments: () => [assessment], listStudentAssessments: classes => classes.includes('shsat') ? [assessment] : [],
-  findAssessmentForStudent: (id, classes) => id === 'exam' && classes.includes('shsat') ? assessment : undefined, toStudentAssessmentDetail: value => value,
+  listTeacherAssessments: configuredAssessments, listStudentAssessments: classes => classes.includes('shsat') ? configuredAssessments() : [],
+  findAssessmentForStudent: (id, classes) => classes.includes('shsat') ? configuredAssessments().find(item => item.id === id) : undefined, toStudentAssessmentDetail: value => value,
 });
 stub('../src/lib/learningPlanStore.ts', { hasAssignedContent: async () => false, assignedContentIds: async () => new Set(), recordPlanCompletion: async () => {}, recordPracticePlanCompletion: async () => {} });
 stub('../src/lib/supabase.ts', { supabase: { auth: { admin: { listUsers: async () => ({ data: { users: Object.values(users) }, error: null }), getUserById: async id => ({ data: { user: users[id] }, error: null }) } }, from(table) {
@@ -29,7 +31,7 @@ const { createExamResult } = require('../src/shared/examGrading.ts');
 const { restoredReentryTimer } = require('../src/shared/examReentry.ts');
 const content = { assessmentId: 'exam', title: 'Exam', passageSets: [{ id: 'p', passage: { id: 'p', title: 'Passage', lines: [] }, questions: [{ id: 'e', type: 'multiple_choice', topic: 'Inference', choices: [{ id: 'A', text: 'Yes' }], correctChoiceId: 'A' }] }], mathSection: { id: 'math', questions: [{ id: 'm', type: 'numeric_entry', topic: 'Algebra', correctTextAnswers: ['5'] }] } };
 let publishedContent=content;
-stub('../src/lib/examContent.ts',{getExamContent:id=>id==='exam'?publishedContent:null});
+stub('../src/lib/examContent.ts',{getExamContent:id=>id==='exam'?publishedContent:id===secondAssessment?.id?{...content,assessmentId:id,title:secondAssessment.title}:null});
 let server, root;
 before(async () => { const express = require('express'), app = express(); app.use(express.json()); app.use('/api/progress', require('../src/routes/progress.ts').progressRouter); app.use('/api/assessments', require('../src/routes/assessments.ts').assessmentsRouter); server = await new Promise(resolve => { const instance = app.listen(0, '127.0.0.1', () => resolve(instance)); }); root = `http://127.0.0.1:${server.address().port}/api`; });
 after(async () => new Promise(resolve => server.close(resolve)));
@@ -37,6 +39,23 @@ beforeEach(() => { Object.values(tables).forEach(rows => rows.splice(0)); const 
 async function call(path, token = 'teacher', method = 'GET', body) { const response = await fetch(root + path, { method, headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, ...(body ? { body: JSON.stringify(body) } : {}) }); return { status: response.status, data: await response.json() }; }
 const permissionPath = '/assessments/teacher/exam/reentry/student';
 const latest = () => tables.student_exam_results.find(row => row.user_id === 'student' && row.assessment_id === 'exam').result;
+
+test('saving an identical passage in another exam preserves each exam result and snapshot', async () => {
+  const original = structuredClone(latest());
+  secondAssessment = { ...assessment, id: 'exam-two', title: 'Second exam', status: 'open', sectionAccess: { english: true, math: true } };
+  try {
+    const secondContent = { ...content, assessmentId: secondAssessment.id, title: secondAssessment.title };
+    const result = { ...createExamResult(secondContent, { e: 'B', m: '5' }, ['english', 'math']), attemptId: original.attemptId };
+    assert.equal((await call('/progress/exam-results/exam-two', 'student', 'PUT', { result })).status, 200);
+    assert.deepEqual(latest(), original);
+    const saved = tables.student_exam_results.find(row => row.assessment_id === 'exam-two').result;
+    assert.equal(saved.answers.e, 'B');
+    assert.equal(saved.analysisContent.assessmentId, 'exam-two');
+    const progress = (await call('/progress/', 'student')).data.progress;
+    assert.deepEqual(progress.examResults.map(row => row.assessmentId).sort(), ['exam', 'exam-two']);
+    assert.equal(progress.examHistory.length, 0, 'The other exam is independent, not a replacement attempt');
+  } finally { secondAssessment = null; }
+});
 function revision(grant, answers = { e: 'A', m: '5' }, sections = ['english', 'math']) { return { ...createExamResult(content, answers, sections), attemptId: 'original', reentryGrantId: grant.id }; }
 
 test('re-entry resumed on another device uses elapsed time from the latest revised section', () => {

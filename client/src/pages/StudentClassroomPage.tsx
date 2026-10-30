@@ -4,6 +4,7 @@ import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
 import { getStudentClassAccess, joinStudentClass, type StudentClassJoinRequest } from "../lib/api";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
 import { cacheStudentClasses, peekActiveSession } from "../lib/sessionCache";
+import { ClassAccessError } from "../components/ClassAccessError";
 
 export function StudentClassroomPage() {
   const { accessToken, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
@@ -11,6 +12,8 @@ export function StudentClassroomPage() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(!previewContext.isPreview);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [accessFailed, setAccessFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
   const [pendingRequest, setPendingRequest] = useState<StudentClassJoinRequest | null>(null);
 
   useEffect(() => {
@@ -25,13 +28,13 @@ export function StudentClassroomPage() {
         return;
       }
       setPendingRequest(access.pendingRequests.find((request) => request.classroom.id === "shsat") ?? null);
-    }).catch((nextError) => {
-      if (isMounted) setError(nextError instanceof Error ? nextError.message : "Classroom access could not be loaded.");
+    }).catch(() => {
+      if (isMounted) setAccessFailed(true);
     }).finally(() => {
       if (isMounted) setIsLoading(false);
     });
     return () => { isMounted = false; };
-  }, [accessToken, previewContext.isPreview]);
+  }, [accessToken, previewContext.isPreview, attempt]);
 
   async function handleJoin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -61,6 +64,11 @@ export function StudentClassroomPage() {
   }
 
   if (isCheckingSession || isLoading) return <main className="loading-shell">Checking classroom access…</main>;
+  if (accessFailed) return <ClassAccessError onRetry={() => {
+    setAccessFailed(false);
+    setIsLoading(true);
+    setAttempt(value => value + 1);
+  }} />;
 
   return (
     <main className="student-classroom-page">

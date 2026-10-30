@@ -175,6 +175,7 @@ const martialArtsForTheMindAndBody2023FormAQuestions: ExamQuestion[] = [
 ];
 
 export const martialArtsForTheMindAndBody2023FormAPassageSet: ExamPassageSet = {
+  versionLabels: ["2022-2023 Form A","2026-2027 Form D"],
   id: "ela-martial-arts-for-the-mind-and-body-2023-form-a",
   section: "revising_editing_a",
   questionCount: martialArtsForTheMindAndBody2023FormAQuestions.length,

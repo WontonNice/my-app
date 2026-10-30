@@ -1,3 +1,5 @@
+import { EXAM_PLAYER_PROFILE } from "../content/exams/playerPresentation";
+import { RichResponseTemplate } from "./RichResponseTemplate";
 // One math question renderer for the student player and Content Studio preview.
 /* eslint react-refresh/only-export-components: ["error", { "allowExportNames": ["renderKatexExpression", "renderInlineMathText", "getBoldFormattedText", "renderMathAuthoredText", "renderMathRichText"] }] */
 import { parseInlineDropdownTemplate } from '../lib/inlineDropdownTemplate';
@@ -362,7 +364,7 @@ function MathDragDropResponse({
           </button>
         ))}
       </div>
-      {table ? (
+      {question.dragDropContentHtml ? <RichResponseTemplate html={question.dragDropContentHtml} renderText={(text,key)=>renderLine(text,key)} /> : table ? (
         <div className="exam-math-drag-table-wrap">
           <table className="exam-math-drag-table">
             {table.caption && <caption>{renderInteractionMath(table.caption, "drag-caption")}</caption>}
@@ -454,6 +456,10 @@ function GraphPointResponse({
 }) {
   const graph = question.graph;
   if (!graph) return null;
+  if (graph.sourceImage) return <div className="exam-source-hotspots" style={{position:'relative',width:graph.sourceImage.width,maxWidth:'100%'}}>
+    <img src={graph.sourceImage.src} alt={graph.sourceImage.alt} style={{display:'block',width:'100%',height:'auto'}} />
+    {graph.points.map(point => <button key={point.id} type="button" className={`exam-source-hotspot${selectedIds.includes(point.id) ? ' is-selected' : ''}${eliminatedIds.includes(point.id) ? ' is-eliminated' : ''}`} aria-label={`Point ${point.x}, ${point.y}`} aria-pressed={selectedIds.includes(point.id)} onClick={() => onToggle(point.id)} style={{left:`${100 * (point.sourceX ?? 0) / graph.sourceImage!.width}%`,top:`${100 * (point.sourceY ?? 0) / graph.sourceImage!.height}%`}} />)}
+  </div>;
   const layout = pointGraphLayout(graph);
   if (!layout) return <p role="status">Set valid graph bounds and positive tick spacing to display the graph.</p>;
   const { left: axisLeft, right: axisRight, top: axisTop, bottom: axisBottom, xFor, yFor, xTicks, yTicks, width, height } = layout;
@@ -798,7 +804,7 @@ export function renderMathRichText(html: string | undefined, text: string, highl
     return <span className="exam-rich-text" dangerouslySetInnerHTML={{ __html: container.innerHTML }} />;
   }
 
-function renderInlineDropdownText(question: ExamQuestion, template: string, templateIndex: number, answer: SelectedAnswer | undefined, onChange: (value: SelectedAnswer) => void) {
+function renderInlineDropdownText(question: ExamQuestion, template: string, templateIndex: number | string, answer: SelectedAnswer | undefined, onChange: (value: SelectedAnswer) => void) {
     const dropdownAnswers = placements(answer);
 
     return parseInlineDropdownTemplate(template).map((token, partIndex) => {
@@ -853,13 +859,15 @@ type Props = {
   onTextSelection?: (event: MouseEvent<HTMLElement>) => void; children?: ReactNode;
   renderText?: (html: string | undefined, text: string, key: string) => ReactNode;
   answerFeedback?: 'correct' | 'incorrect';
+  responseOnly?: boolean;
 };
 const placements = (answer: SelectedAnswer | undefined): CategoryPlacements => answer && typeof answer === 'object' && !Array.isArray(answer) ? answer : {};
 const isTextEntryQuestion = (q: ExamQuestion) => ['short_response','numeric_entry','expression_entry','grid_in'].includes(q.type);
-const usesMathEntryKeypad = (q: ExamQuestion) => ['numeric_entry','expression_entry','grid_in'].includes(q.type);
+const textEntryControl = (q: ExamQuestion) => isTextEntryQuestion(q) ? q.entryControl || (q.type==='short_response' ? 'text' : q.type==='expression_entry' ? 'expression' : 'numeric') : undefined;
 const isInlineDropdownQuestion = (q: ExamQuestion) => q.type === 'inline_dropdown';
-export function ExamMathQuestion({question, answer, onChange, onSelectChoice, onTogglePoint, onEliminatePoint, allowExtraSelections = false, eliminatedIds = [], onChoiceLabelClick, onTextSelection, children, renderText = renderMathRichText, answerFeedback}: Props) {
+export function ExamMathQuestion({question, answer, onChange, onSelectChoice, onTogglePoint, onEliminatePoint, allowExtraSelections = false, eliminatedIds = [], onChoiceLabelClick, onTextSelection, children, renderText = renderMathRichText, answerFeedback, responseOnly = false}: Props) {
   const [selectionWarning, setSelectionWarning] = useState(false);
+  const Panel = responseOnly ? "div" : "form";
   const choices = question.choices || [], selectedIds = Array.isArray(answer) ? answer : typeof answer === 'string' && answer ? [answer] : [];
   const textAnswer = typeof answer === 'string' ? answer : '';
   const maxChoices = question.requiredSelections ?? question.correctPointIds?.length ?? question.correctChoiceIds?.length ?? 2;
@@ -872,8 +880,9 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
     else onChange(id);
   };
   return (<section
+          data-player-profile={EXAM_PLAYER_PROFILE}
           aria-labelledby={`math-title-${question.id}`}
-          className={`exam-standalone-document exam-math-document ${
+          className={`${responseOnly ? "exam-inline-response" : "exam-standalone-document exam-math-document"} ${
             isTextEntryQuestion(question) ? "is-text-entry" : ""
           } ${isInlineDropdownQuestion(question) ? "is-inline-dropdown" : ""} ${question.type === "graph_point_select" ? "is-point-graph" : ""} ${question.type === "number_line_response" ? "is-number-line-response" : ""} ${
             question.image ? "is-image-question" : ""
@@ -881,8 +890,9 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
           } ${answerFeedback ? `has-answer-feedback is-${answerFeedback}` : ''}`}
           onMouseUp={onTextSelection}
         >
-          <form key={question.id} className="exam-standalone-panel exam-math-panel" onSubmit={event => event.preventDefault()}>
+          <Panel key={question.id} className="exam-standalone-panel exam-math-panel" onSubmit={event => event.preventDefault()}>
             {children}
+            {!responseOnly && <>
             {question.image ? (
               <figure className="exam-question-image">
                 <img alt={question.image.alt} src={question.image.src} />
@@ -930,7 +940,8 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
               </p>
             ) : null}
 
-            {question.type === "short_response" ? (
+            </>}
+            {textEntryControl(question) === "text" ? (
               <label className="exam-math-text-entry is-short-response">
                 <span className="sr-only">Answer</span>
                 <input
@@ -942,10 +953,10 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
                   value={textAnswer}
                 />
               </label>
-            ) : usesMathEntryKeypad(question) ? (
+            ) : textEntryControl(question) ? (
               <MathEntryResponse
                 key={question.id}
-                advanced={question.type === "expression_entry"}
+                advanced={textEntryControl(question) === "expression"}
                 layout={question.entryLayout ?? "plain"}
                 variable={question.entryVariable}
                 onChange={(value) => onChange(value)}
@@ -972,6 +983,8 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
                 onChange={(value) => onChange(value)}
                 question={question}
               />
+            ) : isInlineDropdownQuestion(question) && question.dropdownContentHtml ? (
+              <RichResponseTemplate html={question.dropdownContentHtml} renderText={(text,key)=>renderInlineDropdownText(question,text,key,answer,onChange)} />
             ) : isInlineDropdownQuestion(question) && question.dropdownContent ? (
               <div className="exam-inline-dropdown-content">
                 {question.dropdownContent.map((line, index) => (
@@ -980,6 +993,8 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
                   </p>
                 ))}
               </div>
+            ) : question.type === 'matrix_choice' && question.items && question.categories ? (
+              <div className="exam-matrix-choice-wrap"><table className="exam-matrix-choice-table"><thead><tr><th>{question.tableHeaders?.row || ''}</th>{question.categories.map(category=><th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(item=><tr key={item.id}><th scope="row">{renderInteractionMath(item.text,item.id)}</th>{question.categories!.map(category=><td key={category.id}><label><input type="radio" name={question.id+'-'+item.id} aria-label={item.text+': '+category.title} checked={placements(answer)[item.id]===category.id} onChange={()=>onChange({...placements(answer),[item.id]:category.id})}/></label></td>)}</tr>)}</tbody></table></div>
             ) : choices.length > 0 ? (
               <div className="exam-choice-list exam-standalone-choice-list">
                 {choices.map((choice) => (
@@ -1054,7 +1069,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
             ) : (
               <p className="exam-question-placeholder">This math question type is not ready in the player yet.</p>
             )}
-          </form>
+          </Panel>
           {selectionWarning && <section aria-label="Choice limit warnings" aria-live="polite" className="exam-choice-warning-stack"><article className="exam-choice-warning"><button aria-label="Close warning" type="button" onClick={() => setSelectionWarning(false)}>x</button><p>You are permitted a <strong>maximum of {maxChoices} choices</strong> for this question.</p><p>Please unselect one of your choices before making another choice.</p></article></section>}
         </section>);
 }

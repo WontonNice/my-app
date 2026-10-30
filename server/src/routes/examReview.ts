@@ -10,6 +10,7 @@ import { supabase } from "../lib/supabase";
 import { createExamResult, getAllExamQuestions, type ExamResult, type SelectedAnswers } from "../shared/examGrading";
 import { reviewQuestions, validateCorrections, type CorrectionSubmission } from "../shared/examCorrections";
 import { getDatabaseProgress } from "./progress";
+import { hasFullyAnsweredExam } from "../shared/examCorrectionAccess";
 const findAssessmentForStudent = (id: string, classes: string[]) => resolveAssessmentAccess(configuredFindAssessmentForStudent(id, classes));
 const listStudentAssessments = (classes: string[]) => resolveAssessmentAccessList(configuredListStudentAssessments(classes));
 const listTeacherAssessments = () => resolveAssessmentAccessList(configuredListTeacherAssessments());
@@ -127,11 +128,11 @@ examReviewRouter.post("/teacher/:assessmentId/answers/:studentId", async (reques
 async function loadCorrectionView(user: User, assessmentId: string, response: Response) {
     const assessment = await findAssessmentForStudent(assessmentId, getEnrolledClassIds(user.app_metadata));
     if (!assessment) { response.status(404).json({ message: "Exam not found." }); return; }
-    if (!assessment.correctionsOpen) { response.status(403).json({ message: "Your teacher has not opened corrections for this exam." }); return; }
     const progress = await getDatabaseProgress(user);
     const result = progress.examResults.find(item => item.assessmentId === assessment.id) as ExamResult | undefined;
     if (!result || !result.answers) { response.status(409).json({ message: "Individual submitted answers are needed before corrections can open." }); return; }
     const content = result.analysisContent ?? getExamContent(assessment.id);
+    if (!assessment.correctionsOpen && !hasFullyAnsweredExam(result, content ?? undefined)) { response.status(403).json({ message: "Corrections open automatically after you submit a fully answered exam, or when your teacher opens them." }); return; }
     if (!content) { response.status(409).json({ message: "The exam content is unavailable. Ask your teacher to save the exam." }); return; }
     const questions = reviewQuestions(content, result);
     const resultVersion = createHash("sha256").update(JSON.stringify({ result, questions })).digest("hex");
@@ -158,7 +159,8 @@ examReviewRouter.all("/student/:assessmentId", async (request, response) => {
     try { responses = validateCorrections(questions, request.body?.responses, { allowPartial: true }); }
     catch (error) { response.status(400).json({ message: error instanceof Error ? error.message : "Complete all required fields." }); return; }
     const submittedAt = new Date().toISOString();
-    if (!(await findAssessmentForStudent(assessment.id, getEnrolledClassIds(user.app_metadata)))?.correctionsOpen) {
+    const currentAssessment = await findAssessmentForStudent(assessment.id, getEnrolledClassIds(user.app_metadata));
+    if (!currentAssessment || (!currentAssessment.correctionsOpen && !hasFullyAnsweredExam(loaded.view.result, loaded.view.result.analysisContent ?? getExamContent(assessment.id) ?? undefined))) {
         response.status(403).json({ message: "Your teacher has locked corrections. Your draft is still available." }); return;
     }
     const responseByQuestionId = new Map(

@@ -19,8 +19,10 @@ export function generatorModuleUsage(generator: PracticeGeneratorDefinition, cat
   });
 }
 
-export type GeneratorFilters={status:string;difficulty:string;program:string;subject:string;skilled?:string};
+export type GeneratorFilters={status:string;difficulty:string;program:string;subject:string;moduleId?:string};
 export function filterStudioGenerators(catalog:PracticeCatalog,query:string,category:string,topic:string,filters:GeneratorFilters) {
+  const skillModule=filters.moduleId?catalog.modules.find(module=>module.id===filters.moduleId&&!practiceModuleKind(module)):undefined;
+  const skillGeneratorIds=new Set(skillModule?.generatorIds??[]);
   const focusedIds=new Set<string>();
   if(filters.status==='unused')for(const module of catalog.modules){
     const kind=practiceModuleKind(module);
@@ -28,7 +30,7 @@ export function filterStudioGenerators(catalog:PracticeCatalog,query:string,cate
     if(!kind&&module.includeAll)for(const generator of catalog.generators)focusedIds.add(generator.id);
   }
   return catalog.generators.filter(generator=>studioMatches(generator,query,category,topic)
-    && (!filters.skilled||(generator.skilled??'TBD')===filters.skilled)
+    && (!filters.moduleId||skillModule&&(skillModule.includeAll||skillGeneratorIds.has(generator.id)))
     && (!filters.difficulty||(generator.difficulty??'unassigned')===filters.difficulty)
     && (!filters.program||(generator.programs??['SHSAT']).includes(filters.program))
     && (!filters.subject||(generator.subject??'Math')===filters.subject)

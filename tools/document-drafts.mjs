@@ -3,6 +3,9 @@ import { readFile, mkdir, writeFile, rename } from 'node:fs/promises';
 import { join } from 'node:path';
 import contract from './document-import.cjs';
 import batches from './math-import-batch.cjs';
+import { retainSourcePackage } from './source-packages.mjs';
+import sourceWriter from './write-export-file.cjs';
+import versions from './passage-versions.cjs';
 
 const digest = value => createHash('sha256').update(typeof value === 'string' ? value : JSON.stringify(batches.canonical(value))).digest('hex');
 const copy = value => JSON.parse(JSON.stringify(value));
@@ -103,9 +106,7 @@ export function documentDraftStore(root, sanitize = content => content) {
       await operation(state);
       state.revision++;
       await mkdir(directory, { recursive: true });
-      const temporary = file + '.tmp';
-      await writeFile(temporary, JSON.stringify(state, null, 2), 'utf8');
-      await rename(temporary, file);
+      sourceWriter.writeExportFile(file, JSON.stringify(state, null, 2));
       return state;
     });
     pending = task.catch(() => {});
@@ -116,6 +117,7 @@ export function documentDraftStore(root, sanitize = content => content) {
     async import(source, revision, published = [], destination = 'exam', options = {}) {
       if (!['exam', 'advanced'].includes(destination)) throw new Error('Choose Exam passages or SAT passages as the import destination.');
       let entries;
+      const packageId = await retainSourcePackage(root, source);
       try {
         const data = batches.decode(source);
         if (options.batch) data.batch = {...data.batch,...options.batch};
@@ -132,12 +134,28 @@ export function documentDraftStore(root, sanitize = content => content) {
       return mutate(revision, state => {
         state.lastImport={entryIds:[]};
         for (const entry of entries) {
-          if (entry.batch) { state.lastImport.entryIds.push(mergeMathBatch(state,entry,sanitize,options.publishedMath,{ replaceUnpublished:options.directImport === true })); continue; }
+          const sourcePackages=[packageId,...(/^[a-f0-9]{64}$/.test(entry.content.source?.originalPackageId || '') ? [entry.content.source.originalPackageId] : [])];
+          entry.content.source = {...(entry.content.source || {}),packageId};
+          if (entry.batch) {
+            const entryId=mergeMathBatch(state,entry,sanitize,options.publishedMath,{ replaceUnpublished:options.directImport === true });
+            const saved=state.entries.find(candidate=>candidate.id===entryId);
+            saved.sourcePackages=[...new Set([...(saved.sourcePackages || []),...sourcePackages])];
+            state.lastImport.entryIds.push(entryId);
+            continue;
+          }
           entry.destination = entry.kind === 'passage' ? destination : 'exam';
           const fingerprint = createHash('sha256').update((entry.destination === 'advanced' ? 'advanced:' : '') + contract.fingerprint(entry)).digest('hex');
-          if (state.entries.some(e => e.fingerprint === fingerprint)) continue;
-          if (published.some(p => contract.fingerprint({ kind: 'passage', content: p }) === contract.fingerprint(entry))) throw new Error('This content is already published. Open the existing passage instead.');
-          if (entry.kind === 'passage' && [...state.entries.filter(e => e.kind === 'passage' && (e.destination || 'exam') === destination).map(e => e.content), ...published].some(p => p.id === entry.content.id)) throw new Error('A passage with this title/version already exists. Review the existing content or supply its distinct source version.');
+          const existing = state.entries.find(e => e.kind === entry.kind && (e.destination || 'exam') === entry.destination && (e.fingerprint === fingerprint || contract.fingerprint(e) === contract.fingerprint(entry)));
+          if (existing) {
+            existing.content.versionLabels = versions.labels({...existing.content, versionLabels:[...versions.labels(existing.content),...versions.labels(entry.content)]});
+            existing.sourcePackages = [...new Set([...(existing.sourcePackages || []),...sourcePackages])];
+            state.lastImport.entryIds.push(existing.id);
+            continue;
+          }
+          if (entry.kind === 'passage') {
+            const occupied = [...state.entries.filter(e => e.kind === 'passage' && (e.destination || 'exam') === destination).map(e => e.content), ...published];
+            if (occupied.some(p => p.id === entry.content.id)) entry.content = versions.distinct(entry.content, occupied);
+          }
           if (entry.destination === 'advanced') {
             const p = entry.content;
             p.advancedId ||= p.id;
@@ -149,6 +167,7 @@ export function documentDraftStore(root, sanitize = content => content) {
           entry.content = sanitize(entry.content);
           entry.id = `import-${fingerprint.slice(0, 20)}-${randomUUID().slice(0, 8)}`;
           entry.fingerprint = fingerprint;
+          entry.sourcePackages = sourcePackages;
           entry.status = 'draft';
           entry.content.importDraftId = entry.id;
           entry.createdAt = new Date().toISOString();
@@ -167,6 +186,7 @@ export function documentDraftStore(root, sanitize = content => content) {
       });
     },
     async save(input) {
+      input = copy(input);
       return mutate(input.revision, state => {
         const current = state.entries.find(e => e.id === input.entry.id);
         if (!current) throw new Error('Import draft not found.');
@@ -187,6 +207,13 @@ export function documentDraftStore(root, sanitize = content => content) {
               if(old.get(q.id).review?.[flag]===true)q.review={...q.review,[flag]:false};
             }
           });
+        }
+        if (!current.batch && contract.fingerprint(current) !== contract.fingerprint(input.entry)) {
+          input.entry.content.review = {...input.entry.content.review,sourceReviewed:false,completenessReviewed:false};
+          for (const question of input.entry.content.questions) {
+            const previous = current.content.questions.find(q => q.id === question.id);
+            if (!previous || contract.fingerprint({kind:'question',content:{questions:[previous]}}) !== contract.fingerprint({kind:'question',content:{questions:[question]}})) question.review = {...question.review,sourceReviewed:false,completenessReviewed:false};
+          }
         }
         current.content = sanitize(input.entry.content);
         current.content.importDraftId = current.id;
@@ -246,6 +273,17 @@ export function documentDraftStore(root, sanitize = content => content) {
         if (!items.length) throw new Error('Select questions to publish.');
         await publish(entry,items);
         entry.status=entry.batch.items.every(i=>i.skipped || Object.keys(i.publications || {}).length) ? 'published' : 'draft';
+      });
+    },
+    async publishStandalone(input, publish) {
+      if (!Number.isInteger(input.revision)) throw new Error('Reload the draft before publishing these English questions.');
+      return mutate(input.revision, async state => {
+        const entry = state.entries.find(e => e.id === input.entryId && e.kind === 'standalone');
+        if (!entry) throw new Error('Independent English draft not found.');
+        const publication = await publish(entry);
+        entry.publications = {...entry.publications, [input.assessmentId]: publication};
+        entry.status = 'published';
+        entry.publishedAt = new Date().toISOString();
       });
     },
     async published(id, content, assessmentId) {

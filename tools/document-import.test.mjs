@@ -254,9 +254,13 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     const vocabularyFixture = structuredClone(fixture);
     vocabularyFixture.passages[1].richText = '<div>The gate stood still,<br>&nbsp;&nbsp;the rain came through;</div><div>I kept one seed,<br>and planted two.</div>';
     vocabularyFixture.passages[0].questions[1].promptParts = { introduction: 'Read this sentence from paragraph 1.', excerpt: 'A *source* sentence.', followUp: 'What does it suggest?', bold: true };
-    const quotedPrompt = '<p>Read these lines.</p><blockquote><strong>First source line<br>Second source line</strong><br><br><em>Final stanza</em></blockquote><p>What do they convey?</p>';
-    vocabularyFixture.passages[0].questions[0].prompt = 'Read these lines.\n\nFirst source line\nSecond source line\n\nFinal stanza\n\nWhat do they convey?';
+    const quotedPrompt = '<p>Read these lines.</p><blockquote><strong>First source line<br>Second source line</strong><br><br><em>Final stanza</em></blockquote><p>What do they <strong>best</strong> convey?</p>';
+    vocabularyFixture.passages[0].questions[0].prompt = 'Read these lines.\n\nFirst source line\nSecond source line\n\nFinal stanza\n\nWhat do they best convey?';
     vocabularyFixture.passages[0].questions[0].promptHtml = quotedPrompt;
+    const styledChoice = vocabularyFixture.passages[0].questions[0].choices[0];
+    styledChoice.html = `<strong><em><u>${styledChoice.text}</u></em></strong>`;
+    vocabularyFixture.passages[0].questions[2].stimulus = 'A supporting detail.';
+    vocabularyFixture.passages[0].questions[2].stimulusHtml = '<p>A <strong><em>supporting</em></strong> detail.</p>';
     const glossaryDefinition = 'a record of &quot;items&quot; &amp; totals';
     vocabularyFixture.passages[0].richText = fixture.passages[0].text.split('\n\n')
       .map(paragraph => `<p>${paragraph.replace('ledger', `<span data-glossary-definition="${glossaryDefinition}" role="link" tabindex="0">ledger</span>`)}</p>`).join('');
@@ -290,15 +294,18 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     const resavedQuote = await call('/api/passages', reopened);
     assert.equal(resavedQuote.status, 201);
     assert.equal(resavedQuote.data.passage.questions[0].promptHtml, quotedPrompt);
-    assert.deepEqual(reopened.questions.map(q => q.choices), fixture.passages[0].questions.map(q => q.choices.map((c,i) => ({...c,id:String.fromCharCode(65+i)}))));
+    assert.deepEqual(reopened.questions.map(q => q.choices), vocabularyFixture.passages[0].questions.map(q => q.choices.map((c,i) => ({...c,id:String.fromCharCode(65+i)}))));
+    assert.equal(reopened.questions[2].stimulusHtml, vocabularyFixture.passages[0].questions[2].stimulusHtml);
     assert.deepEqual(reopened.questions.map(q => q.explanation), fixture.passages[0].questions.map(q => q.explanation));
     const books = JSON.parse(await readFile(join(dir, 'server/data/library-books.json'), 'utf8'));
     const student = books.find(b => b.id === prose.content.id).passageSet;
     assert.ok(student.passage.lines.some(line => line.text === fixture.passages[0].text.split('\n\n')[0]));
     assert.equal(student.questions[0].correctChoiceId, 'B');
     assert.equal(student.questions[0].promptHtml, quotedPrompt);
+    assert.equal(student.questions[0].choices[0].html, styledChoice.html);
+    assert.equal(student.questions[2].stimulusHtml, vocabularyFixture.passages[0].questions[2].stimulusHtml);
     // Publish directly into an existing exam; preserve its other English sections and Math source.
-    const destinationTest = state.tests.find(t=>t.mathSectionFileName && t.readingPassageIds.length && t.revisingEditingPartAPassageIds.length && t.standaloneItemIds.length) || state.tests.find(t=>t.mathSectionFileName);
+    const destinationTest = state.tests.find(t=>t.questionOrder?.length && t.mathSectionFileName && t.readingPassageIds.length && t.revisingEditingPartAPassageIds.length && t.standaloneItemIds.length) || state.tests.find(t=>t.mathSectionFileName && t.readingPassageIds.length && t.revisingEditingPartAPassageIds.length && t.standaloneItemIds.length) || state.tests.find(t=>t.mathSectionFileName);
     assert.ok(destinationTest, 'Fixture includes an existing exam with Math content');
     const mathSourcePath = join(dir,'client/src/content/exams/mathSets',destinationTest.mathSectionFileName);
     const originalMathSource = await readFile(mathSourcePath,'utf8');
@@ -310,6 +317,10 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.deepEqual(afterDirectPublish.readingPassageIds,[...destinationTest.readingPassageIds,prose.content.id]);
     assert.deepEqual(afterDirectPublish.revisingEditingPartAPassageIds,destinationTest.revisingEditingPartAPassageIds);
     assert.deepEqual(afterDirectPublish.standaloneItemIds,destinationTest.standaloneItemIds);
+    if (destinationTest.questionOrder?.length) {
+      const mathIds=new Set(state.mathSections.find(section=>section.fileName===destinationTest.mathSectionFileName).questions.map(question=>question.id));
+      assert.deepEqual(afterDirectPublish.questionOrder,[...destinationTest.questionOrder.filter(id=>!mathIds.has(id)),...student.questions.map(question=>question.id),...destinationTest.questionOrder.filter(id=>mathIds.has(id))]);
+    }
     assert.equal(await readFile(mathSourcePath,'utf8'),originalMathSource);
     const directRetry = await call('/api/passages',{...directPublish.data.passage,publishToExamId:destinationTest.assessmentId});
     assert.equal(directRetry.data.examAssignment.added,false);
@@ -458,6 +469,23 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.equal(numberingReloaded.richText, numberedSaved.data.passage.richText);
     const numberingBook = JSON.parse(await readFile(join(dir, 'server/data/library-books.json'), 'utf8')).find(b => b.id === numberedSettings.id);
     assert.deepEqual(numberingBook.passageSet.passage.lines.filter(l => l.lineNumber).map(l => [l.lineNumber, l.text]), [['1', 'First body.'], ['2', 'Bold body'], ['3', 'Last body.']]);
+    // An identical ordered question set shares source tags; reordering creates
+    // a separate version and never overwrites the previously published file.
+    const existingVersion = numberingReloaded;
+    const versionPath = join(dir,'client/src/content/exams/passageSets',existingVersion.fileName);
+    const versionBefore = await readFile(versionPath,'utf8');
+    const repeated = {...existingVersion,sourceHash:'',fileName:'',exportName:'',versionLabel:'Second source form',versionLabels:[],importDraftId:immediateEntry.id,publishNow:true};
+    const reused = await call('/api/passages',repeated);
+    assert.equal(reused.status,201,JSON.stringify(reused.data));
+    assert.equal(reused.data.passage.id,existingVersion.id);
+    assert.ok(reused.data.passage.versionLabels.includes('Second source form'));
+    const tagsOnly = await readFile(versionPath,'utf8');
+    assert.equal(tagsOnly.replace(/versionLabels: \[[^\n]*\]/,versionBefore.match(/versionLabels: \[[^\n]*\]/)[0]),versionBefore);
+    const reordered = await call('/api/passages',{...repeated,questions:[...repeated.questions].reverse()});
+    assert.equal(reordered.status,201,JSON.stringify(reordered.data));
+    assert.notEqual(reordered.data.passage.id,existingVersion.id);
+    assert.deepEqual(reordered.data.passage.questions.map(q=>q.prompt),repeated.questions.map(q=>q.prompt).reverse());
+    assert.equal(await readFile(versionPath,'utf8'),tagsOnly);
     const mathCategory=state.mathTopicConfiguration.categories[0];
     const mathPayload = { format: contract.format, mathQuestions: [{ id: 'fixture-math-1', type: 'numeric_entry', topic: mathCategory.label, subtopic: mathCategory.topics[0].label, prompt: 'What number appears in the supplied table?', correctTextAnswers: [], explanation: '', entryLayout: 'plain' }] };
     let maths = (await call('/api/document-drafts', { source: JSON.stringify(mathPayload) })).data;
@@ -532,10 +560,16 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.notEqual(reimport.lastImport.entryIds[0], deletionId);
     // Part A topic management persists independently and publication enforces its library.
     const topicState=await studio.getState(),partATopic='Part A source development';
-    const topicRequest={section:'revising_editing_a',revision:topicState.topicConfiguration.revision,topics:[...topicState.partATopics.map(label=>({label,original:label})),{label:partATopic,original:''}]};
+    // Existing imported content may use a provisional topic absent from the
+    // configured list. Keep every baseline usage when adding this fixture topic.
+    const baselinePartATopics=topicState.topicConfiguration.topicDetailsBySection.revising_editing_a;
+    assert.ok(baselinePartATopics.every(topic=>typeof topic.label==='string' && topic.label.trim()),'Unclassified source questions must not become empty editable topic names');
+    const topicRequest={section:'revising_editing_a',revision:topicState.topicConfiguration.revision,topics:[...baselinePartATopics.map(({label})=>({label,original:label})),{label:partATopic,original:''}]};
     await browserApi('/api/topics',{method:'PUT',body:JSON.stringify(topicRequest)});
     const withPartATopic=await studio.getState();
     assert.ok(withPartATopic.partATopics.includes(partATopic));
+    for (const {label,questionCount} of baselinePartATopics) assert.equal(withPartATopic.topicConfiguration.topicDetailsBySection.revising_editing_a.find(topic=>topic.label===label)?.questionCount,questionCount);
+    assert.equal(withPartATopic.topicConfiguration.unclassifiedCountBySection.revising_editing_a,topicState.topicConfiguration.unclassifiedCountBySection.revising_editing_a);
     assert.deepEqual(withPartATopic.readingTopics,topicState.readingTopics);
     assert.deepEqual(withPartATopic.partBTopics,topicState.partBTopics);
     await assert.rejects(browserApi('/api/topics',{method:'PUT',body:JSON.stringify(topicRequest)}),/changed/);

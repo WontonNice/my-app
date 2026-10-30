@@ -32,7 +32,8 @@ export function poemRichBlocks(blocks, sourceText = '') {
     const lines = balancedLines(block.html || '');
     // Adjacent multi-line blocks are stanzas. One-div-per-line imports remain consecutive lines.
     const previous = blocks[index - 1];
-    if (previous && plain(previous.html || '').trim() && plain(block.html || '').trim() &&
+    if (previous && previous.poetryLine !== true && block.poetryLine !== true &&
+        plain(previous.html || '').trim() && plain(block.html || '').trim() &&
         (/<br\s*\/?>/i.test(previous.html || '') || lines.length > 1)) result.push({ html: '', text: '' });
     result.push(...lines.map(html => ({ ...block, html, text: plain(html).trimEnd() })));
   });

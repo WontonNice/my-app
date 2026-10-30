@@ -15,13 +15,13 @@ export function GeneratorOrganizationPanel({generator,catalog,onChange,onOpenMod
   return <>
     {!!generator.sourceQuestionIds?.length&&<section className="ps-usage" aria-label="Source questions"><h3>Source questions</h3>{generator.sourceQuestionIds.map(id=><div className="ps-usage-row" key={id}><strong>{id}</strong>{onOpenSource?<button type="button" onClick={()=>onOpenSource(id)}>Open in Math Center</button>:<AppLink href={'/teacher/math-command?tab=bank&questionId='+encodeURIComponent(id)}>Open in Math Center</AppLink>}</div>)}</section>}
     <section className="ps-organization" aria-label="Generator organization">
-      <h3>Skills and review</h3>
-      <p className="ps-note">Describe the reasoning this generator practices. Difficulty and review status are teacher classifications.</p>
+      <h3>Generator details and review</h3>
+      <p className="ps-note">The modules below assign this generator to skills. Search tags and prerequisites are optional planning notes.</p>
       <div className="ps-fields">
         <label>Difficulty<select value={generator.difficulty??'unassigned'} onChange={event=>onChange({difficulty:event.target.value as PracticeGeneratorDefinition['difficulty']})}>{practiceDifficulties.map(value=><option key={value} value={value}>{label(value)}</option>)}</select></label>
         <label>Review status<select value={generator.reviewStatus??'unreviewed'} onChange={event=>onChange({reviewStatus:event.target.value as PracticeGeneratorDefinition['reviewStatus']})}>{practiceReviewStatuses.map(value=><option key={value} value={value}>{label(value)}</option>)}</select></label>
       </div>
-      <MetadataListField key={`skills-${generator.id}`} name="Skill tags" value={generator.skills??[]} onChange={skills=>onChange({skills})} placeholder="For example: sample spaces, ordered outcomes" help="Separate skills with commas. Included in library search."/>
+      <MetadataListField key={`skills-${generator.id}`} name="Search tags" value={generator.skills??[]} onChange={skills=>onChange({skills})} placeholder="For example: sample spaces, ordered outcomes" help="Separate tags with commas. Tags help search; they do not assign a Skill."/>
       <MetadataListField key={`prerequisites-${generator.id}`} name="Prerequisite skills" value={generator.prerequisites??[]} onChange={prerequisites=>onChange({prerequisites})} placeholder="For example: fraction multiplication" help="Planning notes for teachers; these do not block student access."/>
       <MetadataListField key={`sources-${generator.id}`} name="Source question IDs" value={generator.sourceQuestionIds??[]} onChange={sourceQuestionIds=>onChange({sourceQuestionIds})} placeholder="For example: 2022-2023-form-b-q70"/>
       <details className="ps-program-details"><summary>Programs and subject</summary>
@@ -33,7 +33,7 @@ export function GeneratorOrganizationPanel({generator,catalog,onChange,onOpenMod
     <section className="ps-usage" aria-label="Modules using this generator"><h3>Used in {usage.length} module{usage.length===1?'':'s'}</h3>
       <p className="ps-note">Includes automatic topic groups and hidden modules. Disabling a generator affects every active use below.</p>
       {usage.map(({module,reason,active})=><div className="ps-usage-row" key={module.id}><div><strong>{module.title}</strong><small>{module.category} / {module.topic} · {reason} · {active?'Active':'Inactive'}</small></div><button onClick={()=>onOpenModule(module)}>Open module</button></div>)}
-      {!usage.some(item=>item.focused)&&<p className="ps-note">No focused module selects this generator. Automatic topic groups may still include it.</p>}
+      {!usage.some(item=>item.focused)&&<p className="ps-note">No Skill module selects this generator. Open a module and include it in that skill’s generation set. Automatic practice groups may still include it.</p>}
     </section>
   </>;
 }

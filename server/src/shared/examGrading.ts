@@ -1,5 +1,6 @@
 import type { ExamContent, ExamQuestion } from "./examTypes";
 import { isMathAnswerComplete, normalizeMathAnswer } from "./mathAnswer";
+import { orderByQuestionIds, orderedEnglishQuestions } from "./examQuestionOrder";
 export type CategoryPlacements = Record<string, string>;
 export type SelectedAnswer = string | string[] | CategoryPlacements;
 export type SelectedAnswers = Record<string, SelectedAnswer>;
@@ -59,11 +60,11 @@ export type ExamResult = {
 };
 
 export function getAllExamQuestions(examContent: ExamContent) {
-  return [
+  return orderByQuestionIds([
     ...examContent.passageSets.flatMap((passageSet) => passageSet.questions),
     ...(examContent.standaloneSection?.questions ?? []),
     ...(examContent.mathSection?.questions ?? []),
-  ];
+  ], examContent.questionOrder);
 }
 
 function normalizeText(value: string) {
@@ -220,11 +221,8 @@ export function createExamResult(
   completedSections: ("english" | "math")[] = ["english", "math"],
   questionTimes: Record<string, number> = {},
 ): ExamResult {
-  const englishQuestions = [
-    ...examContent.passageSets.flatMap((passageSet) => passageSet.questions),
-    ...(examContent.standaloneSection?.questions ?? []),
-  ];
-  const mathQuestions = examContent.mathSection?.questions ?? [];
+  const englishQuestions = orderedEnglishQuestions(examContent).map(location => location.question);
+  const mathQuestions = orderByQuestionIds(examContent.mathSection?.questions ?? [], examContent.questionOrder);
   const questions = [
     ...(completedSections.includes("english") ? englishQuestions : []),
     ...(completedSections.includes("math") ? mathQuestions : []),

@@ -184,8 +184,13 @@ async function request(user, url, method = 'GET', body) {
 test('API enforces access and lets students submit or update one completed correction at a time', async () => {
   assert.equal((await request('none', '/student/test-exam')).status, 401);
   assert.equal((await request('student', '/teacher/test-exam/access', 'PATCH', { open: true })).status, 403);
+  const savedMathAnswer = result.answers['math-1'];
+  result.answers['math-1'] = '';
   assert.equal((await request('student', '/student/test-exam')).status, 403);
   assert.equal((await request('student', '/student/test-exam', 'POST', {})).status, 403);
+  result.answers['math-1'] = savedMathAnswer;
+  assert.equal((await request('student', '/student/test-exam')).status, 200, 'A fully answered exam opens automatically for this student');
+  assert.equal(assessment.correctionsOpen, false, 'Automatic access does not open the exam for classmates');
   assert.equal((await request('teacher', '/teacher/test-exam/access', 'PATCH', { open: true })).status, 200);
   assert.equal((await request('outsider', '/student/test-exam')).status, 404);
   assert.equal((await request('other', '/student/test-exam')).status, 409);
@@ -214,12 +219,12 @@ test('API enforces access and lets students submit or update one completed corre
   assert.deepEqual((await request('student','/student/test-exam')).data.submission.responses[1].drawing,drawing);
   assert.deepEqual((await request('teacher','/teacher/test-exam/submissions')).data.submissions[0].responses[1].drawing,drawing);
   await request('teacher', '/teacher/test-exam/access', 'PATCH', { open: false });
-  assert.equal((await request('student', '/student/test-exam')).status, 403);
-  assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: completeResponses })).status, 403);
+  assert.equal((await request('student', '/student/test-exam')).status, 200);
+  assert.equal((await request('student', '/student/test-exam', 'POST', { resultVersion: view.data.resultVersion, responses: completeResponses })).status, 200);
 });
 
 test('student-view results and corrections use the selected student, stay read only, and retain locks', async () => {
-  const previewResult={...result,title:'Selected student result',answers:{'ela-1':'B','math-1':'4'}};
+  const previewResult={...createExamResult(content, {'ela-1':'B'}, ['english']),title:'Selected student result'};
   rows.push({user_id:'other',assessment_id:'test-exam',result:previewResult});
   assert.equal((await request('student','/teacher/students/other/results')).status,403);
   assert.equal((await request('teacher','/teacher/students/outsider/results')).status,404);

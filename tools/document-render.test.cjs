@@ -2,10 +2,11 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { resolve } = require('node:path');
 const { build } = require('esbuild');
+const reactAliases = require('./react-build-aliases.cjs');
 const fixture = require('./fixtures/document-import/expected-import.json');
 
 test('shared math renderer preserves emphasis, formulas, short answers and interaction state', async () => {
-  const result = await build({ stdin: { contents: `
+  const result = await build({ alias:reactAliases(resolve(__dirname,'..')), stdin: { contents: `
     import React from 'react'; import {renderToStaticMarkup} from 'react-dom/server';
     import {ExamMathQuestion} from './client/src/components/ExamMathQuestion';
     const base = {id:'qa',topic:'Algebra',prompt:'First line\\nSelect **two** and *only* two.',points:1,explanation:''};
@@ -44,7 +45,7 @@ class FixtureDOMParser {
 }
 
 test('actual student passage/answer components render source structure, every choice and visual without teacher metadata', async () => {
-  const result = await build({ stdin: { contents: `
+  const result = await build({ alias:reactAliases(resolve(__dirname,'..')), stdin: { contents: `
     import React from 'react'; import {renderToStaticMarkup} from 'react-dom/server';
     import {createSourcePassage} from './client/src/content/exams/formatters';
     import {ExamReviewPassage} from './client/src/components/ExamReviewQuestion';

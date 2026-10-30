@@ -286,6 +286,7 @@ const dothemnoharmQuestions: ExamQuestion[] = [
 ];
 
 export const dothemnoharmPassageSet: ExamPassageSet = {
+  versionLabels: ["2025-2026 Form A","2024-2025 Form B"],
   id: "ela-dothemnoharm",
   section: "reading",
   questionCount: dothemnoharmQuestions.length,

@@ -1,7 +1,7 @@
 const state = {
   data: null,
 };
-const READER_VERSION = "0.7.1";
+const READER_VERSION = "0.8.0";
 
 const elements = {
   scan: document.querySelector("#scan"),
@@ -151,7 +151,12 @@ async function scanPage() {
     });
 
     if (!response?.ok) throw new Error(response?.error || "The page did not respond.");
-    if (response.data?.readerVersion !== READER_VERSION) {
+    // 0.7.1 already supports passage, Part B and Math batch exports. Keep those
+    // complete captures downloadable while the page still has that script.
+    const compatibleLegacyBatch = response.data?.readerVersion === '0.7.1'
+      && elements.captureMode.value !== 'ela-all'
+      && Array.isArray(response.data?.testPreview?.questions);
+    if (response.data?.readerVersion !== READER_VERSION && !compatibleLegacyBatch) {
       throw new Error("This test tab is using an older reader script. Reload SAT Crash Course Reader in chrome://extensions, then refresh the test tab and scan again.");
     }
 
@@ -205,9 +210,10 @@ elements.scan.addEventListener("click", scanPage);
 elements.captureMode.addEventListener('change', () => {
   const mode = elements.captureMode.value;
   document.querySelector('#question-range-field').hidden = mode !== 'part-b';
-  document.querySelector('#capture-help').hidden = mode !== 'math-all';
+  document.querySelector('#capture-help').hidden = !['math-all','ela-all'].includes(mode);
+  document.querySelector('#capture-help').textContent = `Select ${mode === 'ela-all' ? 'English Language Arts' : 'Mathematics'} on the test page first. The reader captures the complete module and restores your starting question. Keep this popup open.`;
   elements.includePassageQuestions.closest('label').hidden = mode !== 'passage';
-  elements.scan.textContent = mode === 'math-all' ? 'Read all 50 math questions' : mode === 'part-b' ? 'Read Part B questions' : 'Read current page';
+  elements.scan.textContent = mode === 'math-all' ? 'Read all 50 math questions' : mode === 'ela-all' ? 'Read all ELA questions' : mode === 'part-b' ? 'Read Part B questions' : 'Read current page';
 });
 
 elements.copy.addEventListener("click", async () => {

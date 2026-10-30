@@ -1,4 +1,6 @@
 import { createPlainTextPassage } from "./formatters";
+import { testnavPartADirections, testnavPartBDirections, testnavMathDirections } from "./testnavDirections";
+import { applyExamPresentation } from '../../../../server/src/shared/examPresentation';
 import { digitalShsatPracticeTest6Content } from "./tests/digital-shsat-practice-test-6";
 import { digitalShsatPracticeTest5Content } from "./tests/digital-shsat-practice-test-5";
 import { digitalShsatPracticeTest4Content } from "./tests/digital-shsat-practice-test-4";
@@ -194,7 +196,7 @@ function createFallbackExamContent(assessment: AssessmentContentSource): ExamCon
 }
 
 export function resolveExamContent(assessment: AssessmentContentSource) {
-  const content = examContentByAssessmentId[assessment.id] ?? createFallbackExamContent(assessment);
+  const content = applyExamPresentation(examContentByAssessmentId[assessment.id] ?? createFallbackExamContent(assessment));
   const sectionFor = (passageSet: ExamPassageSet): ExamPassageSection =>
     content.passageSections?.[passageSet.passage.id] ??
     content.passageSections?.[passageSet.id] ??
@@ -236,11 +238,16 @@ export function resolveExamContent(assessment: AssessmentContentSource) {
   const revisingEditingPartA = fixedSection(
     "revising_editing_a",
     "REVISING/EDITING PART A",
-    "ELA REV/EDIT A DIRECTIONS",
-    "Read each text and answer the related questions. You will be asked to recognize and correct errors so that the text follows the conventions of standard written English.",
+    "ELA Rev/Edit A Directions",
+    testnavPartADirections,
   );
   return {
     ...content,
+    ...(content.mathSection ? {mathSection: {...content.mathSection, directions: testnavMathDirections}} : {}),
+    ...(content.standaloneSection ? {standaloneSection: {
+      ...content.standaloneSection, label: 'ELA - Stand Alone Items',
+      directions: {...content.standaloneSection.directions, subject: 'English Language Arts', title: 'REVISING/EDITING PART B', breadcrumbLabel: 'ELA Rev/Edit B Directions', body: testnavPartBDirections},
+    }} : {}),
     passageSets: [
       ...orderedReadingPassageSets,
       ...revisingEditingPartA,

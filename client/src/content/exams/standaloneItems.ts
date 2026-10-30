@@ -880,6 +880,1154 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "correctChoiceId": "B",
     "instructions": "Read this paragraph.",
     "type": "multiple_choice"
+  },
+  {
+    "id": "part-b-import-11fdbe8f497f-4770de9a",
+    "points": 1,
+    "prompt": "What is the most precise revision for the words The engineers tried some other things?",
+    "promptHtml": "What is the <strong>most</strong> precise revision for the words <strong><em>The engineers tried some other things</em></strong>?",
+    "stimulus": "The engineers tried some other things in the hope of finding a more effective insulation for the compartment.",
+    "stimulusHtml": "<p><u>The engineers tried some other things</u> in the hope of finding a more effective insulation for the compartment.</p>",
+    "topic": "Word Choice & Precision",
+    "versionLabels": [],
+    "choices": [
+      {
+        "id": "A",
+        "html": "The engineers did experiments with several new materials",
+        "text": "The engineers did experiments with several new materials"
+      },
+      {
+        "id": "B",
+        "html": "The engineers tested foam and fiberglass",
+        "text": "The engineers tested foam and fiberglass"
+      },
+      {
+        "id": "C",
+        "html": "The engineers examined two new materials",
+        "text": "The engineers examined two new materials"
+      },
+      {
+        "id": "D",
+        "html": "The engineers worked with foam and fiberglass",
+        "text": "The engineers worked with foam and fiberglass"
+      }
+    ],
+    "correctChoiceId": "B",
+    "instructions": "Read this sentence.",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "official-shsat-2026-a-48",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "A",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "48",
+      "packageId": "76fee9b98b5287a323dc4cd289be8f2dbbf515ff712be6756ebc6db349edb9dc"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-a-92d4945b7be3ff3372c6.png\" alt=\"Official explanation for question 48\">",
+    "points": 1,
+    "prompt": "Which sentence of the paragraph should be revised to correct a vague pronoun?\n(1) Eliza and Brianna have been singing in their school chorus since they were in fourth grade. (2) The girls always sing a duet at the school talent show, and they take turns singing the national anthem before school sporting events. (3) Outside of school, she also sings in a choir made up of young and old members of her community. (4) Both girls hope that they will be able to continue singing for many more years.",
+    "promptHtml": "<p><span><span>Which</span> <span>sentence</span> of the <span>paragraph</span> should be revised to correct a vague pronoun?</span></p> <blockquote data-boxed=\"true\"><span><span>(1) Eliza</span> and Brianna have been singing in their school chorus since they were in fourth grade. &nbsp;<span>(2) The</span> girls always sing a duet at the school talent show, and they take turns singing the national anthem before school sporting events. &nbsp;<span>(3) Outside</span> of school, she also sings in a choir made up of young and old members of her community. &nbsp;<span>(4) Both</span> girls hope that they will be able to continue singing for many more years.</span></blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p><span><span>sentence</span> 1</span></p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p><span><span>sentence</span> 2</span></p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p><span><span>sentence</span> 3</span></p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p><span><span>sentence</span> 4</span></p>",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2026-2027 Form A"
+    ],
+    "versionLabel": "2026-2027 Form A"
+  },
+  {
+    "id": "official-shsat-2026-a-49",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "A",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "49",
+      "packageId": "76fee9b98b5287a323dc4cd289be8f2dbbf515ff712be6756ebc6db349edb9dc"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-a-f7a2663845793eb48cdd.png\" alt=\"Official explanation for question 49\">",
+    "points": 1,
+    "prompt": "Which pair of revisions is needed to correct the errors in the paragraph?\n(1) Yalina, Michael, and Malcolm love making pancakes with their granddad on Saturday mornings. (2) Yalina’s job is to open the box and pour the pancake mix into a bowl, slowly adding water, eggs, melted butter, and blueberries. (3) Michael uses a wooden spoon to vigorously stir the mixture until it is smooth, and Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time. (4) Granddad turns each pancake when they start to bubble, while all three siblings get the table ready for a sweet delicious breakfast.",
+    "promptHtml": "<p><span><span>Which</span> pair of revisions is needed to correct the errors in the <span>paragraph</span>?</span></p> <blockquote data-boxed=\"true\"><span>(1) <span><u>Yalina,</u></span> Michael, and Malcolm love making pancakes with <span><u>their</u></span> granddad on Saturday mornings.&nbsp; <span>(2) Yalina’s</span> job <span><u>is</u></span> to open the box and pour the pancake mix into a <span><u>bowl,</u></span> slowly adding water, eggs, melted butter, and blueberries.&nbsp; <span>(3) Michael</span> uses a wooden spoon to vigorously stir the mixture until <span><u>it is</u></span> <span><u>smooth,</u></span> and Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time.&nbsp; <span>(4) Granddad</span> turns each pancake when <span><u>they start</u></span> to bubble, while all three siblings get the table ready for a <span><u>sweet</u></span> delicious breakfast.</span></blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p><span><span>Sentence</span> 1: Delete the <span>comma</span> after <strong><em>Yalina</em></strong>, AND change <em><strong>their</strong></em> to <strong>her</strong>.</span></p>",
+        "text": "Sentence 1: Delete the comma after Yalina, AND change their to her."
+      },
+      {
+        "id": "B",
+        "html": "<p><span><span>Sentence</span> 2: Change <em><strong>is</strong></em> to <strong>are</strong>, AND delete the <span>comma</span> after&nbsp;<em><strong>bowl</strong></em>.</span></p>",
+        "text": "Sentence 2: Change is to are, AND delete the comma after bowl."
+      },
+      {
+        "id": "C",
+        "html": "<p><span><span>Sentence</span> 3: Change <em><strong>it is</strong></em> to <strong>they are</strong>, AND delete the <span>comma</span> after <em><strong>smooth</strong></em>.</span></p>",
+        "text": "Sentence 3: Change it is to they are, AND delete the comma after smooth."
+      },
+      {
+        "id": "D",
+        "html": "<p><span><span>Sentence</span> 4: Change <em><strong>they start</strong></em> to <strong>it starts</strong>, AND insert a <span>comma</span> after <em><strong>sweet</strong></em>.</span></p>",
+        "text": "Sentence 4: Change they start to it starts, AND insert a comma after sweet."
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2026-2027 Form A"
+    ],
+    "versionLabel": "2026-2027 Form A"
+  },
+  {
+    "id": "official-shsat-2026-a-50",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "A",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "50",
+      "packageId": "76fee9b98b5287a323dc4cd289be8f2dbbf515ff712be6756ebc6db349edb9dc"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-a-9a1d5b75473231601302.png\" alt=\"Official explanation for question 50\">",
+    "points": 1,
+    "prompt": "Which sentence in the paragraph contains an error in construction?\n(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink, gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.\nMove the answer to the box. There is only one error in construction.",
+    "promptHtml": "<p><span><span>Which</span> <span>sentence</span> in the <span>paragraph</span> contains an error in construction?</span></p> <blockquote data-boxed=\"true\"><span>(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink, gelatinous flesh.&nbsp; <span>(2) Because</span> it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. &nbsp;<span>(3) It</span> must wait patiently for whatever edible matter might float by its mouth. &nbsp;<span>(4) The</span> blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.</span></blockquote> <p><span>Move the <span>answer</span> to the box. There is only one error in construction.</span></p>",
+    "topic": "",
+    "categories": [
+      {
+        "id": "category-1",
+        "title": "Contains an error in construction"
+      }
+    ],
+    "correctPlacements": {
+      "item-4": "category-1"
+    },
+    "instructions": "Move the correct answers to the box.",
+    "items": [
+      {
+        "html": "<p><span>Sentence 1</span></p>",
+        "id": "item-1",
+        "text": "Sentence 1"
+      },
+      {
+        "html": "<p><span>Sentence 2</span></p>",
+        "id": "item-2",
+        "text": "Sentence 2"
+      },
+      {
+        "html": "<p><span>Sentence 3</span></p>",
+        "id": "item-3",
+        "text": "Sentence 3"
+      },
+      {
+        "html": "<p><span>Sentence 4</span></p>",
+        "id": "item-4",
+        "text": "Sentence 4"
+      }
+    ],
+    "requiredPlacements": 1,
+    "type": "category_sort",
+    "versionLabels": [
+      "2026-2027 Form A"
+    ],
+    "versionLabel": "2026-2027 Form A"
+  },
+  {
+    "id": "official-shsat-2026-b-47",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "B",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "47",
+      "packageId": "3ef2ecb7f99ed0aa245fb8a7fdab4a86cabf4579d29860c10ac8f9a8d03da78a"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-b-1d0e191a1f44b2abc36f.png\" alt=\"Official explanation for question 47\">",
+    "points": 1,
+    "prompt": "Which part of the paragraph contains an error in sentence structure?\nSelect the one error.",
+    "promptHtml": "<p><span><span>Which</span> part of the <span>paragraph</span> contains an error in <span>sentence</span> structure?</span></p> <p><span>Select the one error.</span></p>",
+    "selectionHtml": "<blockquote data-boxed=\"true\"><span>In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian&nbsp;</span><span data-choice-id=\"A\"><span>Institution, the</span></span><span> museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a </span><span data-choice-id=\"B\"><span>year. The</span></span><span> museum features more than 30,000 </span><span data-choice-id=\"C\"><span>objects, including</span></span><span> Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation </span><span data-choice-id=\"D\"><span>Proclamation, written</span></span><span> in </span><span>1863</span><span> during the presidency of Abraham Lincoln, is also on display at the museum.</span></blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<span>Institution, the</span>",
+        "text": "Institution, the"
+      },
+      {
+        "id": "B",
+        "html": "<span>year. The</span>",
+        "text": "year. The"
+      },
+      {
+        "id": "C",
+        "html": "<span>objects, including</span>",
+        "text": "objects, including"
+      },
+      {
+        "id": "D",
+        "html": "<span>Proclamation, written</span>",
+        "text": "Proclamation, written"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2026-2027 Form B"
+    ],
+    "versionLabel": "2026-2027 Form B"
+  },
+  {
+    "id": "official-shsat-2026-b-48",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "B",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "48",
+      "packageId": "3ef2ecb7f99ed0aa245fb8a7fdab4a86cabf4579d29860c10ac8f9a8d03da78a"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-b-c1b6f7a1858869678ce9.png\" alt=\"Official explanation for question 48\">",
+    "points": 1,
+    "prompt": "Read these sentences.\n(1) Flyby missions near Jupiter have been happening since 1973.\n(2) Flyby missions allow scientists to collect data about Jupiter and its moons.\n\nWhat is the best way to combine the sentences to clarify the relationship between the ideas?",
+    "promptHtml": "<p><span><span>Read</span> these <span>sentences</span>.</span></p> <blockquote data-boxed=\"true\"> <p><span>(1) Flyby missions near Jupiter have been happening since&nbsp;</span><span>1973.</span></p> <p><span>(2) Flyby missions allow scientists to collect data about Jupiter and its moons.</span></p> </blockquote> <p>&nbsp;<span><br><span>What</span> is the <span>best</span> way to combine the sentences to clarify the relationship between the ideas?</span></p>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p><span>While flyby missions near Jupiter have been happening since </span><span>1973,</span><span> scientists collect data about the planet and its moons.</span></p>",
+        "text": "While flyby missions near Jupiter have been happening since 1973, scientists collect data about the planet and its moons."
+      },
+      {
+        "id": "B",
+        "html": "<p><span>Although there have been flyby missions near Jupiter since </span><span>1973,</span><span> they have allowed scientists to collect data about the planet and its moons.</span></p>",
+        "text": "Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons."
+      },
+      {
+        "id": "C",
+        "html": "<p><span>Flyby missions near Jupiter, <span>which</span> allow scientists to collect data about the planet and its moons, have been happening since </span><span>1973.</span></p>",
+        "text": "Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973."
+      },
+      {
+        "id": "D",
+        "html": "<p><span>Flyby missions have been happening near Jupiter, but scientists have been collecting data about the planet and its moons since </span><span>1973.</span></p>",
+        "text": "Flyby missions have been happening near Jupiter, but scientists have been collecting data about the planet and its moons since 1973."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2026-2027 Form B"
+    ],
+    "versionLabel": "2026-2027 Form B"
+  },
+  {
+    "id": "official-shsat-2026-b-49",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "B",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "49",
+      "packageId": "3ef2ecb7f99ed0aa245fb8a7fdab4a86cabf4579d29860c10ac8f9a8d03da78a"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-b-ef3122c6fbb3d75307c8.png\" alt=\"Official explanation for question 49\">",
+    "points": 1,
+    "prompt": "Which sentence in the paragraph contains an error in construction and should be revised?\n(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City. (2) Leaving approximately 73,000 residents without electricity for three long hours, lights did not function, refrigerators did not stay cold, and air conditioners did not work. (3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier—on the exact same day! (4) The famous New York City Blackout of 1977, which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.\nMove the answer to the box. There is only one error in construction.",
+    "promptHtml": "<p><span><span>Which</span> <span>sentence</span> in the <span>paragraph</span> contains an error in construction and should be revised?</span></p> <blockquote data-boxed=\"true\"><span>(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City. &nbsp;(2) Leaving approximately 73,000 residents without electricity for three long </span><span>hours,</span><span> lights did not function, refrigerators did not stay cold, and air conditioners did not work. &nbsp;(3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier</span><span>—</span><span>on the exact same day! &nbsp;(4) The famous New York City Blackout of </span><span>1977,</span><span> which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.</span></blockquote> <p><span>Move the <span>answer</span> to the box. There is only one error in construction.</span></p>",
+    "topic": "",
+    "categories": [
+      {
+        "id": "category-1",
+        "title": "Contains an error in construction"
+      }
+    ],
+    "correctPlacements": {
+      "item-2": "category-1"
+    },
+    "instructions": "Move the correct answers to the box.",
+    "items": [
+      {
+        "html": "<p><span>Sentence 1</span></p>",
+        "id": "item-1",
+        "text": "Sentence 1"
+      },
+      {
+        "html": "<p><span>Sentence 2</span></p>",
+        "id": "item-2",
+        "text": "Sentence 2"
+      },
+      {
+        "html": "<p><span>Sentence 3</span></p>",
+        "id": "item-3",
+        "text": "Sentence 3"
+      },
+      {
+        "html": "<p><span>Sentence 4</span></p>",
+        "id": "item-4",
+        "text": "Sentence 4"
+      }
+    ],
+    "requiredPlacements": 1,
+    "type": "category_sort",
+    "versionLabels": [
+      "2026-2027 Form B"
+    ],
+    "versionLabel": "2026-2027 Form B"
+  },
+  {
+    "id": "official-shsat-2026-b-50",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "B",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "50",
+      "packageId": "3ef2ecb7f99ed0aa245fb8a7fdab4a86cabf4579d29860c10ac8f9a8d03da78a"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-b-5b84eeef78e9a3179cba.png\" alt=\"Official explanation for question 50\">",
+    "points": 1,
+    "prompt": "How should the paragraph be revised?\n(1) Danielle spent several hours preparing for an upcoming audition for a play at the community theater. (2) First she did vocal exercises to practice her diction and projection so that her words would carry clearly throughout the large auditorium. (3) Then she studies the text of the monologue to better understand the emotions, and motivations of the character she plans to portray. (4) Finally she recited her monologue in front of a mirror many times, making slight adjustments and improvements to her performance each time.",
+    "promptHtml": "<p><span><span>How</span> should the <span>paragraph</span> be revised?</span></p> <blockquote data-boxed=\"true\"><span>(1) Danielle <span><u>spent</u></span> several hours preparing for an upcoming audition for a <span><u>play</u></span> at the community theater. &nbsp;<span>(2) First</span> she <span><u>did</u></span> vocal exercises to practice her diction and <span><u>projection</u></span> so that her words would carry clearly throughout the large auditorium. &nbsp;<span>(3) Then</span> she <span><u>studies</u></span> the text of the monologue to better understand the <span><u>emotions,</u></span> and motivations of the character she plans to portray. &nbsp;<span>(4) Finally</span> she <span><u>recited</u></span> her monologue in front of a mirror many <span><u>times,</u></span> making slight adjustments and improvements to her performance each time.</span></blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p><span><span>Sentence</span> 1: Change <em><strong>spent</strong></em> to <strong>had spent</strong>, AND insert a comma after <em><strong>play</strong></em>.</span></p>",
+        "text": "Sentence 1: Change spent to had spent, AND insert a comma after play."
+      },
+      {
+        "id": "B",
+        "html": "<p><span><span>Sentence</span> 2: Change <em><strong>did</strong></em> to <strong>does</strong>, AND insert a <span>comma</span> after <em><strong>projection</strong></em>.</span></p>",
+        "text": "Sentence 2: Change did to does, AND insert a comma after projection."
+      },
+      {
+        "id": "C",
+        "html": "<p><span><span>Sentence</span> 3: Change <em><strong>studies</strong></em> to <strong>studied</strong>, AND delete the <span>comma</span> after <em><strong>emotions</strong></em>.</span></p>",
+        "text": "Sentence 3: Change studies to studied, AND delete the comma after emotions."
+      },
+      {
+        "id": "D",
+        "html": "<p><span><span>Sentence</span> 4: Change <em><strong>recited</strong></em> to <strong>recites</strong>, AND delete the <span>comma</span> after <em><strong>times</strong></em>.</span></p>",
+        "text": "Sentence 4: Change recited to recites, AND delete the comma after times."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2026-2027 Form B"
+    ],
+    "versionLabel": "2026-2027 Form B"
+  },
+  {
+    "id": "official-shsat-2026-c-48",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "C",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "48",
+      "packageId": "1d3aab9b1274d11ac80b939c0963aefd68b31d07458185d7f9af34cebce34ced"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-c-c16127e3dff0b706195d.png\" alt=\"Official explanation for question 48\">",
+    "points": 1,
+    "prompt": "Which sentence contains an error in its construction and should be revised?\n(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) In 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.",
+    "promptHtml": "<p><span>Which sentence contains an error in its construction and should be revised?</span></p> <blockquote data-boxed=\"true\"><span>(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time.&nbsp; <span>(2) The</span> owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons.&nbsp; <span>(3) The</span> New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals.&nbsp; <span>(4) In</span> 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.</span></blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p><span>sentence 1</span></p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p><span>sentence 2</span></p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p><span>sentence 3</span></p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p><span>sentence 4</span></p>",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2026-2027 Form C"
+    ],
+    "versionLabel": "2026-2027 Form C"
+  },
+  {
+    "id": "official-shsat-2026-c-49",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "C",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "49",
+      "packageId": "1d3aab9b1274d11ac80b939c0963aefd68b31d07458185d7f9af34cebce34ced"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-c-950629d02746d145b9a3.png\" alt=\"Official explanation for question 49\">",
+    "points": 1,
+    "prompt": "Read these sentences.\n(1) Jordan rehearsed his role for weeks.\n(2) He delivered his lines with ease.\n(3) His performance was met with a burst of applause from the audience.\nWhat is the best way to combine the sentences to clarify the relationship between ideas?",
+    "promptHtml": "<p><span>Read these sentences.</span></p> <blockquote data-boxed=\"true\"><span>(1) Jordan rehearsed his role for weeks.<br>(2) He delivered his lines with ease.<br>(3) His performance was met with a burst of applause from the audience. &nbsp;&nbsp;</span></blockquote> <p><span>What is the best way to combine the sentences to clarify the relationship between ideas?&nbsp;</span></p>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p><span>Though Jordan had rehearsed his role for weeks, when he delivered his lines with ease, his performance was met with a burst of applause from the audience.</span></p>",
+        "text": "Though Jordan had rehearsed his role for weeks, when he delivered his lines with ease, his performance was met with a burst of applause from the audience."
+      },
+      {
+        "id": "B",
+        "html": "<p><span>Jordan had rehearsed his role for weeks, yet he delivered his lines with ease, so his performance was met with a burst of applause from the audience.</span></p>",
+        "text": "Jordan had rehearsed his role for weeks, yet he delivered his lines with ease, so his performance was met with a burst of applause from the audience."
+      },
+      {
+        "id": "C",
+        "html": "<p><span>Because Jordan had rehearsed his role for weeks, he delivered his lines with ease, and his performance was met with a burst of applause from the audience.</span></p>",
+        "text": "Because Jordan had rehearsed his role for weeks, he delivered his lines with ease, and his performance was met with a burst of applause from the audience."
+      },
+      {
+        "id": "D",
+        "html": "<p><span>Jordan had rehearsed his role for weeks, so he delivered his lines with ease, but his performance was met with a burst of applause from the audience.</span></p>",
+        "text": "Jordan had rehearsed his role for weeks, so he delivered his lines with ease, but his performance was met with a burst of applause from the audience."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2026-2027 Form C"
+    ],
+    "versionLabel": "2026-2027 Form C"
+  },
+  {
+    "id": "official-shsat-2026-c-50",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "C",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "50",
+      "packageId": "1d3aab9b1274d11ac80b939c0963aefd68b31d07458185d7f9af34cebce34ced"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-c-1562ed08d04a78a50e68.png\" alt=\"Official explanation for question 50\">",
+    "points": 1,
+    "prompt": "Which pair of revisions need to be made in this paragraph?\n(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.",
+    "promptHtml": "<p><span>Which pair of revisions need to be made in this paragraph?</span></p> <blockquote data-boxed=\"true\"><span>(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people <span><u>wonder:</u></span> what <span><u>is</u></span> the difference between the two?&nbsp; <span>(2) To</span> start <span><u>with,</u></span> the butterfat content is much higher in ice cream than <span><u>it is</u></span> in gelato, making the Italian treat a wiser decision for people looking to make healthier choices.&nbsp; <span>(3) Additionally,</span> the mixing <span><u>process,</u></span> which adds less air to the frozen treat, <span><u>makes</u></span> gelato denser than ice cream.&nbsp; <span>(4) Finally,</span> gelato is served 10 to <span>15 degrees</span> warmer than ice cream, which enhances the texture and flavor of the <span><u>gelato,</u></span> and <span><u>allow</u></span> it to melt more quickly.</span></blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p><span>Sentence 1: Delete the colon after <em><strong>wonder</strong> </em>AND change <strong><em>is</em></strong> to <strong>are</strong>.</span></p>",
+        "text": "Sentence 1: Delete the colon after wonder AND change is to are."
+      },
+      {
+        "id": "B",
+        "html": "<p><span>Sentence 2: Delete the comma after <em><strong>with</strong></em> AND change <strong><em>it is</em></strong> to <strong>they are</strong>.</span></p>",
+        "text": "Sentence 2: Delete the comma after with AND change it is to they are."
+      },
+      {
+        "id": "C",
+        "html": "<p><span>Sentence 3: Delete the comma after <em><strong>process</strong></em> AND change <strong><em>makes</em></strong> to <strong>make</strong>.</span></p>",
+        "text": "Sentence 3: Delete the comma after process AND change makes to make."
+      },
+      {
+        "id": "D",
+        "html": "<p><span>Sentence 4: Delete the comma after <em><strong>gelato</strong></em> AND change <em><strong>allow</strong></em> to <strong>allows</strong>.</span></p>",
+        "text": "Sentence 4: Delete the comma after gelato AND change allow to allows."
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2026-2027 Form C"
+    ],
+    "versionLabel": "2026-2027 Form C"
+  },
+  {
+    "id": "official-shsat-2026-d-47",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "D",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "47",
+      "packageId": "6381201a9e7f6d4c4f526c78e047b0a19fe2852a98a1518bd61ca3594b7470d9"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-d-60df9044c8390c0d9b6f.png\" alt=\"Official explanation for question 47\">",
+    "points": 1,
+    "prompt": "Which sentence contains an error in its construction and should be revised?\n(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.",
+    "promptHtml": "<p><span>Which sentence contains an error in its construction and should be revised?</span></p> <blockquote data-boxed=\"true\"><span><span>(1) Walking</span> dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the </span><span>pet-adoption</span><span> process, the animal shelter is looking for volunteers to help with a variety of tasks. &nbsp;<span>(2) Working</span> at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. &nbsp;<span>(3) In</span> addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. &nbsp;<span>(4) Caring</span> for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings&nbsp;of others.</span></blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p><span>sentence 1</span></p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p><span>sentence 2</span></p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p><span>sentence 3</span></p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p><span>sentence 4</span></p>",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2026-2027 Form D"
+    ],
+    "versionLabel": "2026-2027 Form D"
+  },
+  {
+    "id": "official-shsat-2026-d-48",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "D",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "48",
+      "packageId": "6381201a9e7f6d4c4f526c78e047b0a19fe2852a98a1518bd61ca3594b7470d9"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-d-4722231079614280b539.png\" alt=\"Official explanation for question 48\">",
+    "skilled": "TBD",
+    "explanation": "",
+    "points": 1,
+    "prompt": "Read this sentence.\nIn the Whispering Gallery of Grand Central Terminal, people whispering a message in one corner can be clearly heard in the opposite corner, regardless of surrounding noise, because the tiled archways send the sound through the environment.\nWhich revision to the words send the sound through the environment uses the most precise language?\nDrag the correct phrase into the box.",
+    "promptHtml": "<p><span>Read this sentence.</span></p> <blockquote data-boxed=\"true\"><span>In the Whispering Gallery of Grand Central Terminal, people whispering a message in one corner can be clearly heard in the opposite corner, regardless of surrounding noise, because the tiled archways <span><u>send the sound through the environment</u></span>.</span></blockquote> <p><span>Which revision to the words <em><strong>send the sound through the environment</strong></em> uses the most precise language?</span></p><p><span>Drag the correct phrase into the box.&nbsp;</span></p>",
+    "dragDropContentHtml": "<p><span>In the Whispering Gallery of Grand Central Terminal, people whispering a message in one corner can be clearly heard in the opposite corner, regardless of surrounding noise, because the tiled archways </span>{{slot-1}}<span>.</span></p>",
+    "topic": "Uncategorized",
+    "allowReuse": false,
+    "dragDropStyle": "outlined",
+    "dragDropContent": [
+      "In the Whispering Gallery of Grand Central Terminal, people whispering a message in one corner can be clearly heard in the opposite corner, regardless of surrounding noise, because the tiled archways {{slot-1}}."
+    ],
+    "dragDropSlots": [
+      {
+        "correctItemId": "item-3",
+        "id": "slot-1"
+      }
+    ],
+    "items": [
+      {
+        "id": "item-1",
+        "text": "guide the sound waves in a specific direction"
+      },
+      {
+        "id": "item-2",
+        "text": "focus the sound waves to travel through the space"
+      },
+      {
+        "id": "item-3",
+        "text": "direct the sound waves to move along the curves of the arches"
+      },
+      {
+        "id": "item-4",
+        "text": "transfer the sound waves to a variety of different locations"
+      }
+    ],
+    "type": "math_drag_drop",
+    "versionLabels": [
+      "2026-2027 Form D"
+    ],
+    "versionLabel": "2026-2027 Form D"
+  },
+  {
+    "id": "official-shsat-2026-d-49",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "D",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "49",
+      "packageId": "6381201a9e7f6d4c4f526c78e047b0a19fe2852a98a1518bd61ca3594b7470d9"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-d-615120363a49890347b5.png\" alt=\"Official explanation for question 49\">",
+    "points": 1,
+    "prompt": "Read this sentence.\nRobert Cornelius is credited with taking the first, official selfie as a daguerreotype, an image recorded on a copper plate coated in silver, using a process that was more complicated than photos of today which are digitized or printed from film and do not require subjects to sit for nearly fifteen minutes to avoid blurring the image.\nWhich two edits should be made to correct the sentence?\nSelect the two correct answers.",
+    "promptHtml": "<p><span>Read this sentence.</span></p> <blockquote data-boxed=\"true\"><span>Robert Cornelius is credited with taking the <span><u>first</u></span>, official selfie as a <span><u>daguerreotype</u></span>, an image recorded on a copper plate coated in&nbsp;<span><u>silver</u></span>, using a process that was more complicated than photos of&nbsp;<span><u>today</u></span> which are digitized or printed from <span><u>film</u></span> and do not require subjects to sit for nearly fifteen minutes to avoid blurring the image. &nbsp;</span></blockquote> <p><span>Which <strong>two</strong> edits should be made to correct the sentence?&nbsp;</span></p><p><span>Select the <strong>two</strong> correct answers.&nbsp;</span></p>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p><span>Delete the comma after <strong><em>first</em></strong>.</span></p>",
+        "text": "Delete the comma after first."
+      },
+      {
+        "id": "B",
+        "html": "<p><span>Delete the comma after <em><strong>daguerreotype</strong></em>.</span></p>",
+        "text": "Delete the comma after daguerreotype."
+      },
+      {
+        "id": "C",
+        "html": "<p><span>Delete the comma after <strong><em>silver</em></strong>.</span></p>",
+        "text": "Delete the comma after silver."
+      },
+      {
+        "id": "D",
+        "html": "<p><span>Add a comma after <em><strong>today</strong></em>.</span></p>",
+        "text": "Add a comma after today."
+      },
+      {
+        "id": "E",
+        "html": "<p><span>Add a comma after <em><strong>film</strong></em>.&nbsp;</span></p>",
+        "text": "Add a comma after film."
+      }
+    ],
+    "correctChoiceIds": [
+      "A",
+      "D"
+    ],
+    "requiredSelections": 2,
+    "type": "multi_select",
+    "versionLabels": [
+      "2026-2027 Form D"
+    ],
+    "versionLabel": "2026-2027 Form D"
+  },
+  {
+    "id": "official-shsat-2026-d-50",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "D",
+      "section": "ELA - Stand alone items",
+      "sourceQuestion": "50",
+      "packageId": "6381201a9e7f6d4c4f526c78e047b0a19fe2852a98a1518bd61ca3594b7470d9"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-d-c3147b4fd6b842e90797.png\" alt=\"Official explanation for question 50\">",
+    "points": 1,
+    "prompt": "What is the best way to combine the sentences?\n(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.\n(2) One of Jupiter’s moons is named Io.\n(3) Io has the greatest number of active volcanoes in the solar system.",
+    "promptHtml": "<p><span>What is the <strong>best</strong> way to combine the sentences?</span></p> <blockquote data-boxed=\"true\"> <p><span>(1) Scientists now believe that Jupiter may have as many as <span>seventy-nine</span> moons.</span></p> <p><span>(2) One of Jupiter’s moons is named Io.</span></p> <p><span>(3) Io has the greatest number of active volcanoes in the solar system.</span></p> </blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p><span>Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as <span>seventy-nine</span> moons.</span></p>",
+        "text": "Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons."
+      },
+      {
+        "id": "B",
+        "html": "<p><span>Scientists now believe that Jupiter may have as many as <span>seventy-nine</span> moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.</span></p>",
+        "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system."
+      },
+      {
+        "id": "C",
+        "html": "<p><span>Scientists now believe that Jupiter may have as many as <span>seventy-nine</span> moons, including one named Io, which has the greatest number of active volcanoes in the solar system.</span></p>",
+        "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system."
+      },
+      {
+        "id": "D",
+        "html": "<p><span>Io, a moon with the greatest number of active volcanoes in the solar system, is one&nbsp;of Jupiter’s moons, and scientists now believe that Jupiter may have as many as <span>seventy-nine</span> moons.</span></p>",
+        "text": "Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2026-2027 Form D"
+    ],
+    "versionLabel": "2026-2027 Form D"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q001",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2024-2025-form-b",
+      "label": "2024-2025 Form B",
+      "year": "2024-2025",
+      "form": "B",
+      "sourceQuestion": "1",
+      "packageId": "0db5163b54b18f0ba34f108d400ce64e5641ece9d2b287117493ae2eea27aa6e",
+      "pages": [
+        3
+      ]
+    },
+    "explanation": "The question asks for the best way to combine the sentences.\n\nA. Incorrect. Although the option combines the sentences in a way that accurately reflects the meaning of each individual sentence, the combined sentence is a string of clauses that do not effectively cohere. Because it is poorly structured, the combined sentence does not clarify the relationship of ideas as effectively as the correct response does. The sentence incorrectly uses “but tourists,” and “which cost” modifies “the space station” but does not modify the trip. Compared with the correct response, the combined sentence in this option is also imprecise and unnecessarily wordy.\n\nB. CORRECT. The option uses a complex sentence to present ideas clearly and precisely, and it shows the relationship between the ideas in the original sentences. In the first part of the sentence, the conjunction “and” correctly joins the first and second sentences by indicating a relationship, rather than a contrast, between the two. In the second part of the sentence, the conjunction “but” adds additional emphasis to the fact that while tourists will be allowed to visit the space station, the cost of the trip will likely prohibit most people from visiting.\n\nC. Incorrect. Although the option combines the sentences in a way that accurately reflects the meaning of each individual sentence, the combined sentence is a string of clauses that do not effectively cohere. Because it is poorly structured, the combined sentence does not clarify the relationship of ideas as effectively as the correct response does. Compared with the correct response, the combined sentence in this option is also imprecise and unnecessarily wordy.\n\nD. Incorrect. The combination of the sentences creates an illogical relationship between ideas with the statement that tourists will be allowed to visit the space station because the cost is $52–$58 million round trip. The connection between the idea that “tourists will soon be allowed to pay for visits” and the subsequent “therefore few people will be able to take advantage of the opportunity” is also illogical.",
+    "explanationHtml": "<p>The question asks for the best way to combine the sentences.</p><p>A. Incorrect. Although the option combines the sentences in a way that accurately reflects the meaning of each individual sentence, the combined sentence is a string of clauses that do not effectively cohere. Because it is poorly structured, the combined sentence does not clarify the relationship of ideas as effectively as the correct response does. The sentence incorrectly uses “but tourists,” and “which cost” modifies “the space station” but does not modify the trip. Compared with the correct response, the combined sentence in this option is also imprecise and unnecessarily wordy.</p><p>B. CORRECT. The option uses a complex sentence to present ideas clearly and precisely, and it shows the relationship between the ideas in the original sentences. In the first part of the sentence, the conjunction “and” correctly joins the first and second sentences by indicating a relationship, rather than a contrast, between the two. In the second part of the sentence, the conjunction “but” adds additional emphasis to the fact that while tourists will be allowed to visit the space station, the cost of the trip will likely prohibit most people from visiting.</p><p>C. Incorrect. Although the option combines the sentences in a way that accurately reflects the meaning of each individual sentence, the combined sentence is a string of clauses that do not effectively cohere. Because it is poorly structured, the combined sentence does not clarify the relationship of ideas as effectively as the correct response does. Compared with the correct response, the combined sentence in this option is also imprecise and unnecessarily wordy.</p><p>D. Incorrect. The combination of the sentences creates an illogical relationship between ideas with the statement that tourists will be allowed to visit the space station because the cost is $52–$58 million round trip. The connection between the idea that “tourists will soon be allowed to pay for visits” and the subsequent “therefore few people will be able to take advantage of the opportunity” is also illogical.</p>",
+    "points": 1,
+    "prompt": "What is the best way to combine these sentences to clarify the relationship between ideas?\n\n(1) The International Space Station has been inhabited by crew members since 2000. (2) Tourists will soon be allowed to pay for visits to the space station. (3) Because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space.",
+    "promptHtml": "<p>What is the <strong>best </strong>way to combine these sentences to clarify the relationship between ideas?</p><blockquote data-boxed=\"true\">(1) The International Space Station has been inhabited by crew members since 2000.<br>(2) Tourists will soon be allowed to pay for visits to the space station.<br>(3) Because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, which cost $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space.</p>",
+        "text": "The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, which cost $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space."
+      },
+      {
+        "id": "B",
+        "html": "<p>The International Space Station has been inhabited by crew members since 2000 and will soon allow tourists to pay for visits, but because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space.</p>",
+        "text": "The International Space Station has been inhabited by crew members since 2000 and will soon allow tourists to pay for visits, but because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space."
+      },
+      {
+        "id": "C",
+        "html": "<p>The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, though the cost is $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space.</p>",
+        "text": "The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, though the cost is $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space."
+      },
+      {
+        "id": "D",
+        "html": "<p>The International Space Station has been inhabited by crew members since 2000, and tourists will soon be allowed to pay for visits to the space station because the cost is $52–$58 million round trip, therefore few people will be able to take advantage of the opportunity to have a vacation in outer space.</p>",
+        "text": "The International Space Station has been inhabited by crew members since 2000, and tourists will soon be allowed to pay for visits to the space station because the cost is $52–$58 million round trip, therefore few people will be able to take advantage of the opportunity to have a vacation in outer space."
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2024-2025 Form B"
+    ],
+    "versionLabel": "2024-2025 Form B"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q002",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2024-2025-form-b",
+      "label": "2024-2025 Form B",
+      "year": "2024-2025",
+      "form": "B",
+      "sourceQuestion": "2",
+      "packageId": "0db5163b54b18f0ba34f108d400ce64e5641ece9d2b287117493ae2eea27aa6e",
+      "pages": [
+        4
+      ]
+    },
+    "explanation": "The question asks for the identification of the sentence that has an error in its construction and\n\nshould be revised.\n\nA. Incorrect. There are no errors in the structure of sentence 1. The clause “who played in the Long Island area at the time” correctly modifies the noun “New York Nets.” “Who” is the correct relative pronoun to serve as the subject of the modifying clause because it refers to people rather than objects or things. B. CORRECT. Sentence 2 contains a structural error. The current placement of the clause “where the team played for thirty-five seasons” suggests that the clause is modifying the term “financial troubles,” which is illogical. The clause “where the team played for thirty-five seasons” should immediately follow the location, “New Jersey.” A revised version of the sentence might read, “After the team had financial troubles, the owner of the Nets decided to take the team to New Jersey, where the team played for thirty-five seasons.” C. Incorrect. There are no errors in the structure of sentence 3. The phrase “including two appearances in the NBA finals” is a nonrestrictive phrase that provides further detail about the team’s “sixteen playoff appearances.” The phrase is set off by a comma because it is not essential to understanding the meaning of the sentence. D. Incorrect. There are no errors in the structure of sentence 4. The clause “where the team now plays under the name the Brooklyn Nets” is a nonrestrictive clause that provides further detail about the team after its move back to New York in 2012. The clause is set off by a comma because it is not essential to understanding the meaning of the sentence.",
+    "explanationHtml": "<p><strong>2. </strong>The question asks for the identification of the sentence that has an error in its construction and</p><p>should be revised.</p><p><strong>A. </strong>Incorrect. There are no errors in the structure of sentence 1. The clause “who played in the Long Island area at the time” correctly modifies the noun “New York Nets.” “Who” is the correct relative pronoun to serve as the subject of the modifying clause because it refers to people rather than objects or things. <strong>B. CORRECT. </strong>Sentence 2 contains a structural error. The current placement of the clause “where the team played for thirty-five seasons” suggests that the clause is modifying the term “financial troubles,” which is illogical. The clause “where the team played for thirty-five seasons” should immediately follow the location, “New Jersey.” A revised version of the sentence might read, “After the team had financial troubles, the owner of the Nets decided to take the team to New Jersey, where the team played for thirty-five seasons.” <strong>C. </strong>Incorrect. There are no errors in the structure of sentence 3. The phrase “including two appearances in the NBA finals” is a nonrestrictive phrase that provides further detail about the team’s “sixteen playoff appearances.” The phrase is set off by a comma because it is not essential to understanding the meaning of the sentence. <strong>D. </strong>Incorrect. There are no errors in the structure of sentence 4. The clause “where the team now plays under the name the Brooklyn Nets” is a nonrestrictive clause that provides further detail about the team after its move back to New York in 2012. The clause is set off by a comma because it is not essential to understanding the meaning of the sentence.</p>",
+    "points": 1,
+    "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) In 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.",
+    "promptHtml": "<p>Which sentence contains an error in its construction and should be revised?</p><blockquote data-boxed=\"true\">(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time.<br>(2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons.<br>(3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals.<br>(4) In 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>sentence 1</p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p>sentence 2</p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p>sentence 3</p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p>sentence 4</p>",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2024-2025 Form B"
+    ],
+    "versionLabel": "2024-2025 Form B"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q003",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2024-2025-form-b",
+      "label": "2024-2025 Form B",
+      "year": "2024-2025",
+      "form": "B",
+      "sourceQuestion": "3",
+      "packageId": "0db5163b54b18f0ba34f108d400ce64e5641ece9d2b287117493ae2eea27aa6e",
+      "pages": [
+        4
+      ]
+    },
+    "explanation": "The question asks for the revision of the sentence that uses the most precise language.\n\nA. Incorrect. The word “extremely” does not specify the precise length of the trail (2,200 miles); “millions” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking). B. Incorrect. While the revision specifies the precise length of the trail and the verb “hike” precisely describes the purpose of visiting the trail, “more than a million” is less precise than the specific number of people who hike the trail each year (two million). C. CORRECT. The length of the trail (2,200 miles), the specific number of people who hike the trail each year (two million), and the action of the visitors (hiking) are clear and precise in this revision of the sentence. D. Incorrect. The word “lengthy” is less precise than specifying the actual length of the trail (2,200 miles); “a couple million” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking).",
+    "explanationHtml": "<p><strong>3. </strong>The question asks for the revision of the sentence that uses the <strong>most </strong>precise language.</p><p><strong>A. </strong>Incorrect. The word “extremely” does not specify the precise length of the trail (2,200 miles); “millions” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking). <strong>B. </strong>Incorrect. While the revision specifies the precise length of the trail and the verb “hike” precisely describes the purpose of visiting the trail, “more than a million” is less precise than the specific number of people who hike the trail each year (two million). <strong>C. CORRECT. </strong>The length of the trail (2,200 miles), the specific number of people who hike the trail each year (two million), and the action of the visitors (hiking) are clear and precise in this revision of the sentence. <strong>D. </strong>Incorrect. The word “lengthy” is less precise than specifying the actual length of the trail (2,200 miles); “a couple million” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking).</p>",
+    "points": 1,
+    "prompt": "Read this sentence.\n\nThe Appalachian Trail is a really long trail that a lot of people do each year.\n\nWhich revision of the sentence uses the most precise language?",
+    "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\">The Appalachian Trail is a really long trail that a lot of people do each year.</blockquote><p>Which revision of the sentence uses the <strong>most </strong>precise language?</p>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>The Appalachian Trail is an extremely long trail that millions of people do each year.</p>",
+        "text": "The Appalachian Trail is an extremely long trail that millions of people do each year."
+      },
+      {
+        "id": "B",
+        "html": "<p>The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year.</p>",
+        "text": "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year."
+      },
+      {
+        "id": "C",
+        "html": "<p>The Appalachian Trail is a 2,200-mile trail that two million people hike each year.</p>",
+        "text": "The Appalachian Trail is a 2,200-mile trail that two million people hike each year."
+      },
+      {
+        "id": "D",
+        "html": "<p>The Appalachian Trail is a lengthy trail that a couple million people do each year.</p>",
+        "text": "The Appalachian Trail is a lengthy trail that a couple million people do each year."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2024-2025 Form B"
+    ],
+    "versionLabel": "2024-2025 Form B"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q004",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2024-2025-form-b",
+      "label": "2024-2025 Form B",
+      "year": "2024-2025",
+      "form": "B",
+      "sourceQuestion": "4",
+      "packageId": "0db5163b54b18f0ba34f108d400ce64e5641ece9d2b287117493ae2eea27aa6e",
+      "pages": [
+        5
+      ]
+    },
+    "explanation": "The question asks for the pair of revisions needed to correct the errors in the paragraph, which\n\nappear in sentence 2 and sentence 3.\n\nA. Incorrect. The comma after the word “homes” in sentence 1 is necessary for separating the subordinate clause “When coal was used to heat homes” from the main clause. The only edit needed in this pair is in sentence 3, which incorrectly shifts the verb into the present tense. The clause “as natural gas becomes more common” should be “as natural gas became more common.” B. Incorrect. The comma after the word “homes” in sentence 1 is necessary for separating the subordinate clause “When coal was used to heat homes” from the main clause. In sentence 4, the word “remarketed” is in the past tense established in the paragraph and should not change to the past perfect tense “had remarketed.” C. CORRECT. This option is the only choice that revises the errors in both sentence 2 and sentence 3. In sentence 2, a comma needs to follow the word “company” to set off the phrase “who owned a cleaning product company.” A comma is necessary because the phrase is a nonrestrictive clause: the phrase provides extra information about Cleo and Noah McVicker’s line of work, but the phrase is not necessary in order to understand the meaning of the sentence. The second error is in sentence 3, which incorrectly shifts the verb into the present tense. The clause “as natural gas becomes more common” should be “as natural gas became more common.” D. Incorrect. In sentence 2, a comma needs to follow the word “company” to set off the phrase “who owned a cleaning product company.” In sentence 4, the word “remarketed” is in the past tense established in the paragraph and should not change to the past perfect tense “had remarketed.”",
+    "explanationHtml": "<p><strong>4. </strong>The question asks for the pair of revisions needed to correct the errors in the paragraph, which</p><p>appear in sentence 2 and sentence 3.</p><p><strong>A. </strong>Incorrect. The comma after the word “homes” in sentence 1 is necessary for separating the subordinate clause “When coal was used to heat homes” from the main clause. The only edit needed in this pair is in sentence 3, which incorrectly shifts the verb into the present tense. The clause “as natural gas becomes more common” should be “as natural gas became more common.” <strong>B. </strong>Incorrect. The comma after the word “homes” in sentence 1 is necessary for separating the subordinate clause “When coal was used to heat homes” from the main clause. In sentence 4, the word “remarketed” is in the past tense established in the paragraph and should not change to the past perfect tense “had remarketed.” <strong>C. CORRECT. </strong>This option is the only choice that revises the errors in both sentence 2 and sentence 3. In sentence 2, a comma needs to follow the word “company” to set off the phrase “who owned a cleaning product company.” A comma is necessary because the phrase is a nonrestrictive clause: the phrase provides extra information about Cleo and Noah McVicker’s line of work, but the phrase is not necessary in order to understand the meaning of the sentence. The second error is in sentence 3, which incorrectly shifts the verb into the present tense. The clause “as natural gas becomes more common” should be “as natural gas became more common.” <strong>D. </strong>Incorrect. In sentence 2, a comma needs to follow the word “company” to set off the phrase “who owned a cleaning product company.” In sentence 4, the word “remarketed” is in the past tense established in the paragraph and should not change to the past perfect tense “had remarketed.”</p>",
+    "points": 1,
+    "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.",
+    "promptHtml": "<p>Which pair of revisions need to be made in this paragraph?</p><blockquote data-boxed=\"true\">(1) When coal was used to heat homes, it frequently left soot stains on the walls.<br>(2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot.<br>(3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business.<br>(4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 3: Change <em><strong>becomes </strong></em>to <strong>became</strong>.</p>",
+        "text": "Sentence 1: Delete the comma after homes. Sentence 3: Change becomes to became."
+      },
+      {
+        "id": "B",
+        "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 4: Change <em><strong>remarketed </strong></em>to <strong>had remarketed</strong>.</p>",
+        "text": "Sentence 1: Delete the comma after homes. Sentence 4: Change remarketed to had remarketed."
+      },
+      {
+        "id": "C",
+        "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 3: Change <em><strong>becomes </strong></em>to <strong>became</strong>.</p>",
+        "text": "Sentence 2: Insert a comma after company. Sentence 3: Change becomes to became."
+      },
+      {
+        "id": "D",
+        "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 4: Change <em><strong>remarketed </strong></em>to <strong>had remarketed</strong>.</p>",
+        "text": "Sentence 2: Insert a comma after company. Sentence 4: Change remarketed to had remarketed."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2024-2025 Form B"
+    ],
+    "versionLabel": "2024-2025 Form B"
+  },
+  {
+    "id": "satcc-digital-shsat-practice-test-5-v2-ela-47",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-digital-shsat-practice-test-5-v2",
+      "label": "Digital SHSAT Practice Test 5",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%205%20v2",
+      "form": "5 v2",
+      "section": "revising_editing_b",
+      "sourceQuestion": "47",
+      "packageId": "45089cf14eeaf7319d3d5fe8d1ede638ce65bc38d8d6bcb05369a6c828850d14"
+    },
+    "explanation": "Correct Answer: D\nExplanation: the stem asks which sentence contains a construction error\nA. Incorrect: Sentence 3 is a complete sentence describing Coach Ibarra splitting the runners into two lines.\nB. Incorrect: Sentence 4 is a complete sentence describing the rule for advancing to the second round.\nC. Incorrect: Sentence 1 is a complete compound sentence correctly joined with \"and.\"\nD. Correct: Sentence 2 begins with \"Because\" and never completes an independent clause, leaving it a sentence fragment attached to no main clause.",
+    "explanationHtml": "<p>Correct Answer: D</p><p>Explanation: the stem asks which sentence contains a construction error</p><p>A. Incorrect: Sentence 3 is a complete sentence describing Coach Ibarra splitting the runners into two lines.</p><p>B. Incorrect: Sentence 4 is a complete sentence describing the rule for advancing to the second round.</p><p>C. Incorrect: Sentence 1 is a complete compound sentence correctly joined with &quot;and.&quot;</p><p>D. Correct: Sentence 2 begins with &quot;Because&quot; and never completes an independent clause, leaving it a sentence fragment attached to no main clause.</p>",
+    "points": 1,
+    "prompt": "Which sentence of the paragraph contains an error in its construction and should be revised?",
+    "stimulus": "(1) The tryouts for the winter track team started on a Tuesday, and almost forty students showed up before the gym doors even opened. (2) Because the gym had only one working clock, and the assistant coaches needed a second one to keep both lines moving on schedule. (3) Coach Ibarra split the runners into two lines, one for sprinters and one for distance athletes, and reminded everyone to stretch first. (4) Anyone who finished in the top fifteen would be invited back for a second round of drills the following week, along with a short conditioning test.",
+    "stimulusHtml": "<p>(1) The tryouts for the winter track team started on a Tuesday, and almost forty students showed up before the gym doors even opened. (2) Because the gym had only one working clock, and the assistant coaches needed a second one to keep both lines moving on schedule. (3) Coach Ibarra split the runners into two lines, one for sprinters and one for distance athletes, and reminded everyone to stretch first. (4) Anyone who finished in the top fifteen would be invited back for a second round of drills the following week, along with a short conditioning test.</p>",
+    "promptHtml": "<p>Which sentence of the paragraph contains an error in its construction and should be revised?</p>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>sentence 3</p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "B",
+        "html": "<p>sentence 4</p>",
+        "text": "sentence 4"
+      },
+      {
+        "id": "C",
+        "html": "<p>sentence 1</p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "D",
+        "html": "<p>sentence 2</p>",
+        "text": "sentence 2"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "Digital SHSAT Practice Test 5"
+    ],
+    "versionLabel": "Digital SHSAT Practice Test 5"
+  },
+  {
+    "id": "satcc-digital-shsat-practice-test-5-v2-ela-48",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-digital-shsat-practice-test-5-v2",
+      "label": "Digital SHSAT Practice Test 5",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%205%20v2",
+      "form": "5 v2",
+      "section": "revising_editing_b",
+      "sourceQuestion": "48",
+      "packageId": "45089cf14eeaf7319d3d5fe8d1ede638ce65bc38d8d6bcb05369a6c828850d14"
+    },
+    "explanation": "Correct Answers: A, D\nExplanation: the stem asks which two sentences contain a comma splice\nA. Correct: Sentence 1 joins two independent clauses, \"used to be a storage closet\" and \"the custodians cleared it out,\" with only a comma.\nB. Incorrect: Sentence 2 opens with an introductory phrase followed by a single independent clause; the comma after the introductory phrase is grammatically correct.\nC. Incorrect: Sentence 3 properly joins its clauses using the coordinating conjunctions \"so\" and \"and,\" not a bare comma.\nD. Correct: Sentence 4 joins two independent clauses, \"Practice usually runs an hour\" and \"some weeks it stretches closer to ninety minutes,\" with only a comma.\nE. Incorrect: Sentence 5 opens with a subordinate clause correctly separated by a comma from the single independent clause that follows.",
+    "explanationHtml": "<p>Correct Answers: A, D</p><p>Explanation: the stem asks which two sentences contain a comma splice</p><p>A. Correct: Sentence 1 joins two independent clauses, &quot;used to be a storage closet&quot; and &quot;the custodians cleared it out,&quot; with only a comma.</p><p>B. Incorrect: Sentence 2 opens with an introductory phrase followed by a single independent clause; the comma after the introductory phrase is grammatically correct.</p><p>C. Incorrect: Sentence 3 properly joins its clauses using the coordinating conjunctions &quot;so&quot; and &quot;and,&quot; not a bare comma.</p><p>D. Correct: Sentence 4 joins two independent clauses, &quot;Practice usually runs an hour&quot; and &quot;some weeks it stretches closer to ninety minutes,&quot; with only a comma.</p><p>E. Incorrect: Sentence 5 opens with a subordinate clause correctly separated by a comma from the single independent clause that follows.</p>",
+    "points": 1,
+    "prompt": "Select the two sentences that contain a comma splice.",
+    "stimulus": "(1) The debate team’s new practice room used to be a storage closet, the custodians cleared it out and added folding chairs over winter break. (2) Every Thursday afternoon, four students meet there to run through timed rebuttals against a stopwatch app on someone’s phone. (3) The room has no windows, so somebody always brings a desk lamp for extra light, and the door stays propped open for ventilation. (4) Practice usually runs an hour, some weeks it stretches closer to ninety minutes depending on how contentious that week’s topic turns out to be. (5) By the time state qualifiers arrive each spring, the team has usually logged well over sixty hours inside that converted closet.",
+    "stimulusHtml": "<p>(1) The debate team’s new practice room used to be a storage closet, the custodians cleared it out and added folding chairs over winter break. (2) Every Thursday afternoon, four students meet there to run through timed rebuttals against a stopwatch app on someone’s phone. (3) The room has no windows, so somebody always brings a desk lamp for extra light, and the door stays propped open for ventilation. (4) Practice usually runs an hour, some weeks it stretches closer to ninety minutes depending on how contentious that week’s topic turns out to be. (5) By the time state qualifiers arrive each spring, the team has usually logged well over sixty hours inside that converted closet.</p>",
+    "promptHtml": "<p>Select the two sentences that contain a comma splice.</p>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>sentence 1</p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p>sentence 2</p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p>sentence 3</p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p>sentence 4</p>",
+        "text": "sentence 4"
+      },
+      {
+        "id": "E",
+        "html": "<p>sentence 5</p>",
+        "text": "sentence 5"
+      }
+    ],
+    "correctChoiceIds": [
+      "A",
+      "D"
+    ],
+    "requiredSelections": 2,
+    "type": "multi_select",
+    "versionLabels": [
+      "Digital SHSAT Practice Test 5"
+    ],
+    "versionLabel": "Digital SHSAT Practice Test 5"
+  },
+  {
+    "id": "satcc-digital-shsat-practice-test-5-v2-ela-49",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-digital-shsat-practice-test-5-v2",
+      "label": "Digital SHSAT Practice Test 5",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%205%20v2",
+      "form": "5 v2",
+      "section": "revising_editing_b",
+      "sourceQuestion": "49",
+      "packageId": "45089cf14eeaf7319d3d5fe8d1ede638ce65bc38d8d6bcb05369a6c828850d14"
+    },
+    "explanation": "Correct Answer: A\nExplanation: the stem asks for the best combination of sentences 1 and 2\nA. Correct: The participial phrase \"wanting at least one picture\" clearly shows that collecting photos was done in pursuit of that goal, without adding any illogical connector.\nB. Incorrect: \"But\" wrongly implies a contrast between collecting photos and wanting a complete set, when the two ideas are entirely compatible.\nC. Incorrect: \"Or\" wrongly presents the two ideas as alternatives, when the second describes the purpose of the first.\nD. Incorrect: Adding \"before that\" after \"since\" creates a confusing, illogical time relationship between the two ideas.",
+    "explanationHtml": "<p>Correct Answer: A</p><p>Explanation: the stem asks for the <strong>best</strong> combination of sentences 1 and 2</p><p>A. Correct: The participial phrase &quot;wanting at least one picture&quot; clearly shows that collecting photos was done in pursuit of that goal, without adding any illogical connector.</p><p>B. Incorrect: &quot;But&quot; wrongly implies a contrast between collecting photos and wanting a complete set, when the two ideas are entirely compatible.</p><p>C. Incorrect: &quot;Or&quot; wrongly presents the two ideas as alternatives, when the second describes the purpose of the first.</p><p>D. Incorrect: Adding &quot;before that&quot; after &quot;since&quot; creates a confusing, illogical time relationship between the two ideas.</p>",
+    "points": 1,
+    "prompt": "What is the best way to combine sentences 1 and 2 to clarify the relationship between the ideas?",
+    "stimulus": "(1) The yearbook committee spent three weeks collecting photos from every club. (2) They wanted at least one picture of every student by the deadline. (3) Some students never submitted a photo despite repeated reminders sent through homeroom announcements and email. (4) The committee used old ID photos instead, even though a few of those images were several years out of date and barely recognizable. (5) Next year’s editors have already discussed moving the deadline earlier to avoid the same last-minute scramble.",
+    "stimulusHtml": "<p>(1) The yearbook committee spent three weeks collecting photos from every club. (2) They wanted at least one picture of every student by the deadline. (3) Some students never submitted a photo despite repeated reminders sent through homeroom announcements and email. (4) The committee used old ID photos instead, even though a few of those images were several years out of date and barely recognizable. (5) Next year’s editors have already discussed moving the deadline earlier to avoid the same last-minute scramble.</p>",
+    "promptHtml": "<p>What is the <strong>best</strong> way to combine sentences 1 and 2 to clarify the relationship between the ideas?</p>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>The yearbook committee spent three weeks collecting photos from every club, wanting at least one picture of every student by the deadline.</p>",
+        "text": "The yearbook committee spent three weeks collecting photos from every club, wanting at least one picture of every student by the deadline."
+      },
+      {
+        "id": "B",
+        "html": "<p>The yearbook committee spent three weeks collecting photos from every club, but they wanted at least one picture of every student by the deadline.</p>",
+        "text": "The yearbook committee spent three weeks collecting photos from every club, but they wanted at least one picture of every student by the deadline."
+      },
+      {
+        "id": "C",
+        "html": "<p>The yearbook committee spent three weeks collecting photos from every club, or they wanted at least one picture of every student by the deadline.</p>",
+        "text": "The yearbook committee spent three weeks collecting photos from every club, or they wanted at least one picture of every student by the deadline."
+      },
+      {
+        "id": "D",
+        "html": "<p>The yearbook committee spent three weeks collecting photos from every club, since they wanted at least one picture of every student by the deadline before that.</p>",
+        "text": "The yearbook committee spent three weeks collecting photos from every club, since they wanted at least one picture of every student by the deadline before that."
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "Digital SHSAT Practice Test 5"
+    ],
+    "versionLabel": "Digital SHSAT Practice Test 5"
+  },
+  {
+    "id": "satcc-digital-shsat-practice-test-5-v2-ela-50",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-digital-shsat-practice-test-5-v2",
+      "label": "Digital SHSAT Practice Test 5",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%205%20v2",
+      "form": "5 v2",
+      "section": "revising_editing_b",
+      "sourceQuestion": "50",
+      "packageId": "45089cf14eeaf7319d3d5fe8d1ede638ce65bc38d8d6bcb05369a6c828850d14"
+    },
+    "explanation": "Sentences 1, 2, and 4 all describe the garden club itself: its schedule, what members grow, and where the produce goes. Sentence 3 shifts to an unrelated fact about the cafeteria's lunch shifts and should be deleted as off-topic.",
+    "explanationHtml": "<p>Sentences 1, 2, and 4 all describe the garden club itself: its schedule, what members grow, and where the produce goes. Sentence 3 shifts to an unrelated fact about the cafeteria's lunch shifts and should be deleted as off-topic.</p>",
+    "points": 1,
+    "prompt": "Sort each sentence of the paragraph into the correct category based on whether it belongs in the paragraph about the garden club or should be deleted as off-topic.",
+    "stimulus": "(1) The school’s new garden club meets behind the cafeteria every Wednesday after last period, rain or shine. (2) Members have planted three raised beds of vegetables, including tomatoes, peppers, and lettuce, along with a small herb border. (3) The cafeteria serves lunch in two separate shifts because the room is too small for the whole school to eat at once. (4) Whatever the beds produce gets donated to the school’s weekly food pantry drive, along with any extra seedlings members grow at home.",
+    "stimulusHtml": "<p>(1) The school’s new garden club meets behind the cafeteria every Wednesday after last period, rain or shine. (2) Members have planted three raised beds of vegetables, including tomatoes, peppers, and lettuce, along with a small herb border. (3) The cafeteria serves lunch in two separate shifts because the room is too small for the whole school to eat at once. (4) Whatever the beds produce gets donated to the school’s weekly food pantry drive, along with any extra seedlings members grow at home.</p>",
+    "promptHtml": "<p>Sort each sentence of the paragraph into the correct category based on whether it belongs in the paragraph about the garden club or should be deleted as off-topic.</p>",
+    "topic": "",
+    "categories": [
+      {
+        "id": "belongs",
+        "title": "Belongs in the paragraph"
+      },
+      {
+        "id": "off-topic",
+        "title": "Should be deleted as off-topic"
+      }
+    ],
+    "correctPlacements": {
+      "sentence-1": "belongs",
+      "sentence-2": "belongs",
+      "sentence-3": "off-topic",
+      "sentence-4": "belongs"
+    },
+    "instructions": "Move each answer to the correct box.",
+    "items": [
+      {
+        "id": "sentence-1",
+        "text": "1. The school's new garden club meets behind the cafeteria every Wednesday after last period, rain or shine."
+      },
+      {
+        "id": "sentence-2",
+        "text": "2. Members have planted three raised beds of vegetables, including tomatoes, peppers, and lettuce, along with a small herb border."
+      },
+      {
+        "id": "sentence-3",
+        "text": "3. The cafeteria serves lunch in two separate shifts because the room is too small for the whole school to eat at once."
+      },
+      {
+        "id": "sentence-4",
+        "text": "4. Whatever the beds produce gets donated to the school's weekly food pantry drive, along with any extra seedlings members grow at home."
+      }
+    ],
+    "requiredPlacements": 4,
+    "type": "category_sort",
+    "versionLabels": [
+      "Digital SHSAT Practice Test 5"
+    ],
+    "versionLabel": "Digital SHSAT Practice Test 5"
   }
 ];
 

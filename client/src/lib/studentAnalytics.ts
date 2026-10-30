@@ -111,15 +111,20 @@ export function evidenceSkillKey(row: Pick<Evidence,"kind"|"section"|"question">
 
 export function buildStudentAnalytics(inputs: AnalyticsInput[], basis = "all") {
   const richness = (input: AnalyticsInput) => (input.responses?.length ?? 0) + Object.keys(input.result.answers ?? {}).length;
+  // Shared passages may appear in several exams. Only mirrors of the same
+  // assessment attempt should collapse into one history entry.
+  const attemptIdentity = (input: AnalyticsInput) => {
+    const id = input.result.attemptId ?? input.result.submissionId;
+    return id ? JSON.stringify([input.kind ?? "exam", input.result.assessmentId ?? input.content?.assessmentId ?? "exam", String(id)]) : null;
+  };
   const preferred = new Map<string, AnalyticsInput>();
   for (const input of inputs) {
-    const id = input.result.attemptId ?? input.result.submissionId;
+    const id = attemptIdentity(input);
     if (id && (!preferred.has(String(id)) || richness(input) > richness(preferred.get(String(id))!))) preferred.set(String(id), input);
   }
   const seen = new Set<string>();
   const exams: AnalyticsExam[] = inputs.filter(input => {
-    const result = input.result;
-    const id = result.attemptId ?? result.submissionId;
+    const id = attemptIdentity(input);
     if (!id) return true;
     const identity = String(id);
     if (preferred.get(identity) !== input) return false;
@@ -130,7 +135,7 @@ export function buildStudentAnalytics(inputs: AnalyticsInput[], basis = "all") {
     const snapshot = result.analysisContent as ExamContent | undefined;
     const content = sheetResult?.analysisContent ?? snapshot ?? input.content;
     const date = typeof result.completedAt === "string" && Number.isFinite(Date.parse(result.completedAt)) ? result.completedAt : null;
-    const key = String(result.attemptId ?? result.submissionId ?? `${String(result.assessmentId ?? "exam")}:${date ?? "undated"}:${index}`);
+    const key = attemptIdentity(input) ?? `${String(result.assessmentId ?? "exam")}:${date ?? "undated"}:${index}`;
     const title = String(result.title ?? content?.title ?? "Assessment");
     const source = input.sourceLabel ?? (result.source === "manual" ? "Paper" : result.source === "answer_sheet" ? "Answer sheet" : "Digital");
     const complete = (input.kind ?? "exam") === "exam" && isFullExamResult(result);

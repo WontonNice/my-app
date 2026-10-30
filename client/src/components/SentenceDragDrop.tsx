@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { ExamQuestion } from '../content/exams/types';
 import type { SelectedAnswer } from '../lib/examResults';
 import { ExamText } from './ExamReviewQuestion';
+import { RichResponseTemplate } from './RichResponseTemplate';
 
 /** Existing single-blank questions retain their string answers. New layouts use slot IDs. */
 export function SentenceDragDrop({ question, answer, onChange }: { question: ExamQuestion; answer?: SelectedAnswer; onChange: (answer: SelectedAnswer) => void }) {
@@ -19,16 +20,17 @@ export function SentenceDragDrop({ question, answer, onChange }: { question: Exa
     next[slot] = id; save(next);
   };
   const remove = (slot: string) => { const next = { ...values }; delete next[slot]; save(next); };
+  const renderParts = (line: string, prefix: string) => line.split(/(\{\{[\w-]+\}\})/g).map((part, index) => {
+    const key = `${prefix}-${index}`, id = /^\{\{([\w-]+)\}\}$/.exec(part)?.[1];
+    if (!id) return <ExamText key={key} text={part} />;
+    const choice = choices.find(choice => choice.id === values[id]);
+    return <button key={key} type="button" className={`exam-transition-blank${choice ? ' is-filled' : ''}`} aria-label={`Blank ${slots.findIndex(slot => slot.id === id) + 1}${choice ? `: ${choice.text}. Click to clear` : ''}`} draggable={Boolean(choice)} onClick={() => selected ? place(id, selected) : remove(id)} onKeyDown={event => { if (event.key === 'Delete' || event.key === 'Backspace') { event.preventDefault(); remove(id); } }} onDragOver={event => event.preventDefault()} onDragStart={event => { if (choice) event.dataTransfer.setData('text/plain', choice.id); }} onDrop={event => { event.preventDefault(); place(id, event.dataTransfer.getData('text/plain')); }}><ExamText text={choice?.text || ''} html={choice?.html} /></button>;
+  });
   return <div className="exam-transition-drop">
     <div className="exam-transition-bank" aria-label="Drag-and-drop answer bank" onDragOver={event => event.preventDefault()} onDrop={event => { event.preventDefault(); const id = event.dataTransfer.getData('text/plain'); save(Object.fromEntries(Object.entries(values).filter(([, value]) => value !== id))); }}>
       {choices.map(choice => <button key={choice.id} type="button" className="exam-transition-chip" draggable aria-pressed={selected === choice.id} hidden={!question.allowReuse && Object.values(values).includes(choice.id)} onClick={() => slots.length === 1 ? place(slots[0].id, choice.id) : setSelected(choice.id)} onDragStart={event => { event.dataTransfer.setData('text/plain', choice.id); setSelected(choice.id); }}><ExamText text={choice.text} html={choice.html} /></button>)}
     </div>
     <small className="exam-transition-help" role="status">{selected ? 'Choose a blank for the selected word.' : 'Drag a word into each blank, or choose a word and then a blank. Click a filled blank to clear it.'}</small>
-    {lines.map((line, lineIndex) => <p className="exam-transition-sentence" key={lineIndex}>{lineIndex === 0 && question.transitionSentenceNumber ? <span>{question.transitionSentenceNumber} </span> : null}{line.split(/(\{\{[\w-]+\}\})/g).map((part, index) => {
-      const id = /^\{\{([\w-]+)\}\}$/.exec(part)?.[1];
-      if (!id) return <ExamText key={index} text={part} />;
-      const choice = choices.find(choice => choice.id === values[id]);
-      return <button key={index} type="button" className={`exam-transition-blank${choice ? ' is-filled' : ''}`} aria-label={`Blank ${slots.findIndex(slot => slot.id === id) + 1}${choice ? `: ${choice.text}. Click to clear` : ''}`} draggable={Boolean(choice)} onClick={() => selected ? place(id, selected) : remove(id)} onKeyDown={event => { if (event.key === 'Delete' || event.key === 'Backspace') { event.preventDefault(); remove(id); } }} onDragOver={event => event.preventDefault()} onDragStart={event => { if (choice) event.dataTransfer.setData('text/plain', choice.id); }} onDrop={event => { event.preventDefault(); place(id, event.dataTransfer.getData('text/plain')); }}><ExamText text={choice?.text || ''} html={choice?.html} /></button>;
-    })}</p>)}
+    {modern && question.dragDropContentHtml ? <RichResponseTemplate html={question.dragDropContentHtml} renderText={renderParts} /> : lines.map((line, lineIndex) => <p className="exam-transition-sentence" key={lineIndex}>{lineIndex === 0 && question.transitionSentenceNumber ? <span>{question.transitionSentenceNumber} </span> : null}{renderParts(line,String(lineIndex))}</p>)}
   </div>;
 }

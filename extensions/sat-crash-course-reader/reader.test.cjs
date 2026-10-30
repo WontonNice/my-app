@@ -132,6 +132,14 @@ test('single-question opt-out does not navigate', async () => {
   assert.ok(!page.state.clicks.includes('BACK') && !page.state.clicks.includes('NEXT'));
 });
 
+test('complete ELA mode crosses passage boundaries and restores the starting controls', async () => {
+  const page=fixture({count:10,start:4,groupEnd:7,visible:true,explanationVisible:true});
+  const result=(await page.scan({captureMode:'ela-all',includeAnswer:true,includeExplanations:true})).data.testPreview;
+  assert.deepEqual(Array.from(result.questions,q=>q.number),Array.from({length:10},(_,i)=>i+1));
+  assert.equal(result.capture.mode,'ela-all');assert.equal(result.capture.complete,true);assert.equal(result.capture.missingNumbers.length,0);
+  assert.equal(page.state.number,4);assert.equal(page.state.visible,true);assert.equal(page.state.explanationVisible,true);
+});
+
 test('answer opt-out does not click Show answer', async () => {
   const page = fixture();
   const result = (await page.scan({ includeAnswer: false })).data.testPreview;
@@ -329,4 +337,19 @@ test('updated popup rejects old page scripts instead of claiming single-question
   assert.equal(popup.elements.get('#status').className, 'status error');
   assert.equal(popup.elements.get('#results').hidden, true);
   assert.equal(vm.runInContext('state.data', popup.context), null);
+});
+
+test('popup retains compatible legacy batch exports but does not claim all-ELA support', async () => {
+  const data = (await fixture().scan()).data;
+  data.readerVersion = '0.7.1';
+  const popup = popupFixture(data);
+  popup.elements.get('#capture-mode').value = 'math-all';
+  await vm.runInContext('scanPage()', popup.context);
+  assert.equal(popup.elements.get('#results').hidden, false);
+  assert.equal(popup.elements.get('#question-count').textContent, '7');
+  assert.equal(vm.runInContext('state.data', popup.context), data);
+  popup.elements.get('#capture-mode').value = 'ela-all';
+  await vm.runInContext('scanPage()', popup.context);
+  assert.match(popup.elements.get('#status').textContent, /older reader script/);
+  assert.equal(popup.elements.get('#results').hidden, true);
 });

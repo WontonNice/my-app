@@ -1,5 +1,13 @@
 # SAT Crash Course Reader
 
+## Version 0.8.0 — complete ELA and source fidelity
+
+The **All ELA questions** mode captures the entire selected English module across passage boundaries. Existing current-passage, Part B range, and all-Math exports remain compatible. Exports identify SAT Crash Course as their source family and player profile; they are not labeled as official SHSAT content.
+
+Rich exports retain tables, links, figure positions, image dimensions, explanation media, and inline hot-text selection markup. `tools/sat-crash-course-import.cjs` exposes `ela(data, resolveImage)` for passage-grouped full ELA conversion. Hot-text uses inline `selectionHtml` with source-ordered choice IDs; sentence blanks retain every target and source word-bank item. The old `partB(data)` behavior is preserved for existing JSON upload workflows.
+
+When an extension export is unavailable, `tools/sat-source-capture.js` is a read-only DOM serializer for a documented browser evaluate API. Capture the original and source-revealed states separately, checkpoint each small batch locally, and run `node tools/sat-source-normalize.cjs rendered-capture.json reader-export.json` to normalize with the same reader. It never executes archived markup, reads credentials or private application state, or submits an answer. The normalizer reports missing question numbers rather than claiming a partial capture is complete.
+
 ## Version 0.7.1: Math and TEI imports
 
 Select **Mathematics** on the source page, then **All 50 math questions** in the

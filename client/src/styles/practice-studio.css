@@ -109,6 +109,23 @@
 .practice-studio .ps-skilled-field label { flex:1; min-width:0; margin:0; }
 .ps-skilled-field > button { flex:none; min-height:40px; }
 .ps-manage-skilled { margin-bottom:16px; }
+.ps-skill-picker { margin-bottom:22px; min-width:0; }
+.ps-skill-label { display:block; margin-bottom:8px; font-size:.8rem; font-weight:700; }
+.practice-studio .ps-skill-trigger { width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:56px; padding:12px 16px; text-align:left; background:#fff; }
+.ps-skill-trigger span { min-width:0; overflow-wrap:anywhere; }
+.ps-skill-trigger small { display:block; margin-top:5px; color:var(--student-muted); font-size:.73rem; line-height:1.5; }
+.ps-skill-trigger svg { flex:none; }
+.ps-skill-panel { margin-top:12px; padding:18px; border:1px solid var(--student-line); border-radius:10px; background:var(--student-paper); }
+.ps-skill-panel fieldset { border:0; padding:0; margin:0; min-width:0; }
+.ps-skill-search { position:relative; }
+.ps-skill-search svg { position:absolute; top:50%; left:12px; transform:translateY(-50%); color:var(--student-muted); pointer-events:none; }
+.practice-studio .ps-skill-search input[type=search] { padding-left:38px; }
+.practice-studio .ps-skill-panel select[size] { min-height:96px; height:auto; padding:4px; }
+.ps-skill-panel option { padding:9px; }
+.ps-skill-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+.ps-skill-create,.ps-skill-confirm { margin-top:18px; padding-top:18px; border-top:1px solid var(--student-line); }
+.ps-skill-confirm p { font-size:.8rem; line-height:1.6; }
+@media(max-width:600px) { .ps-skill-panel { padding:12px; } .ps-skill-actions > button { flex:1 1 140px; } }
 @media(max-width:600px) { .ps-generation-filters { grid-template-columns:1fr; gap:0; } .ps-generator-option { flex-wrap:wrap; } .practice-studio .ps-generator-option .ps-generator-check { flex-basis:100%; } .ps-generator-example { margin-left:24px; } }
 .ps-savebar { position:sticky; bottom:12px; display:flex; justify-content:space-between; align-items:center; gap:18px; margin-top:24px; padding:14px 18px; border:1px solid var(--student-line); border-radius:10px; background:var(--student-paper); box-shadow:0 4px 20px #24382f12; z-index:5; }
 .ps-savebar span { color:var(--student-muted); font-size:.72rem; }

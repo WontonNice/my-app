@@ -23,17 +23,17 @@ test('the shared Skilled registry starts empty and existing questions are TBD wi
   const page=f.request('GET','/catalog',undefined,{filters:{skilled:['TBD']}});
   assert.equal(page.total,2);assert.ok(page.items.every(row=>row.skilled==='TBD'&&row.skilledLabel==='TBD'));
 });
-test('manual assignment, rename, filtering, and module names use one stable definition without changing question content',t=>{
+test('question classifications can change without renaming teacher-assigned module skills',t=>{
   const f=fixture(t),bytes=fs.readFileSync(f.contentPath);f.save([definition]);
   const preview=store.previewMathMetadata(f.root,{questionIds:['q-1'],patch:{skilled:definition.id},revision:f.read().revision},'teacher');store.applyMathMetadata(f.root,preview.token,'teacher');
   assert.equal(f.request('GET','/catalog',undefined,{filters:{skilled:[definition.id]}}).total,2);
   const catalog=defaultPracticeCatalog(f.taxonomy),module=catalog.modules.find(item=>item.id==='inequalities');module.skilled=definition.id;
   const generator=catalog.generators.find(item=>item.id==='one-step-inequalities-v1');generator.skilled=definition.id;
   assert.equal(generateCatalogQuestion(generator,0,'manual-skill').skilled,definition.id);
-  assert.equal(validatePracticeCatalog(catalog,{...f.taxonomy,classificationSkills:[definition]}).modules.find(item=>item.id===module.id).title,definition.label);
+  assert.equal(validatePracticeCatalog(catalog,{...f.taxonomy,classificationSkills:[definition]}).modules.find(item=>item.id===module.id).title,module.title);
   const renamed={...definition,label:'Isolating a Variable'};f.save([renamed]);
   assert.equal(f.request('GET','/catalog/q-1').row.skilledLabel,renamed.label);
-  assert.equal(reconcilePracticeSkilled(catalog,[renamed]).modules.find(item=>item.id===module.id).title,renamed.label);
+  assert.equal(reconcilePracticeSkilled(catalog,[renamed]).modules.find(item=>item.id===module.id).title,module.title);
   assert.deepEqual(fs.readFileSync(f.contentPath),bytes);
 });
 test('delete resets native and metadata assignments to TBD and cannot silently reattach a reused ID',t=>{
@@ -43,7 +43,7 @@ test('delete resets native and metadata assignments to TBD and cannot silently r
   assert.equal(store.readMathCommandState(f.root).metadata['q-2'].skilled,'TBD');
   assert.throws(()=>f.save([definition]),/cannot be reused/);
   const catalog=defaultPracticeCatalog(f.taxonomy),module=catalog.modules.find(item=>item.id==='inequalities');module.skilled=definition.id;module.title=definition.label;
-  const next=reconcilePracticeSkilled(catalog,[]);assert.equal(next.modules.find(item=>item.id===module.id).title,'TBD');assert.equal(next.modules.find(item=>item.id===module.id).skilled,'TBD');
+  const next=reconcilePracticeSkilled(catalog,[]);assert.equal(next.modules.find(item=>item.id===module.id).title,definition.label);assert.equal(next.modules.find(item=>item.id===module.id).skilled,'TBD');
   assert.equal(next.generators.length,catalog.generators.length);
 });
 test('scopes, reserved names, duplicates, malformed definitions, and stale saves are rejected',t=>{

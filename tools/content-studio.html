@@ -250,18 +250,19 @@
     }
     .student-preview-modal > header {
       display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      min-width: 0;
       min-height: 62px; border-bottom: 1px solid #0f2941; background: var(--navy); color: #fff; padding: 10px 18px;
       box-shadow: 0 5px 18px rgb(20 36 53 / 18%);
     }
     .student-preview-modal > header > div:first-child { display: grid; gap: 2px; }
     .student-preview-modal > header strong { font-size: .83rem; }
     .student-preview-modal > header small { color: #c6d5e1; font-size: .65rem; }
-    .student-preview-controls { display: flex; align-items: center; gap: 8px; }
-    .student-preview-controls label { display: flex; align-items: center; gap: 7px; color: #dce7f0; font-size: .66rem; font-weight: 700; }
+    .student-preview-controls { display: flex; align-items: center; gap: 8px; min-width: 0; }
+    .student-preview-controls label { display: flex; align-items: center; gap: 7px; min-width: 0; color: #dce7f0; font-size: .66rem; font-weight: 700; }
     .student-preview-controls select { width: auto; min-width: 160px; border-color: rgb(255 255 255 / 24%); background: #fff; }
     .student-preview-controls .secondary { border-color: rgb(255 255 255 / 30%); background: rgb(255 255 255 / 10%); color: #fff; }
     .student-preview-controls .secondary:hover { border-color: #fff; color: #fff; }
-    .student-preview-frame { width: 100%; height: 100%; border: 0; background: #f8f8f8; }
+    .student-preview-frame { width: 100%; min-width: 0; height: 100%; border: 0; background: #f8f8f8; }
     .test-shell { padding: 26px; }
     .test-shell > header { margin-bottom: 18px; }
     .test-grid { display: grid; grid-template-columns: minmax(230px, .7fr) minmax(380px, 1.4fr); gap: 16px; align-items: start; }
@@ -735,8 +736,9 @@
       .order-actions { grid-column: 2; }
       .student-preview-modal > header { align-items: stretch; flex-direction: column; }
       .student-preview-controls { align-items: stretch; }
-      .student-preview-controls label { flex: 1; }
-      .student-preview-controls select { min-width: 0; }
+      .student-preview-controls label { display: grid; flex: 1; }
+      .student-preview-controls select { min-width: 0; width: 100%; max-width: 100%; }
+      .student-preview-controls .secondary { flex-shrink: 0; }
       .field-input-action { grid-template-columns: 1fr; }
       .math-dropdown-option-heading, .math-dropdown-option-row { grid-template-columns: 44px minmax(0, 1fr); }
       .math-dropdown-option-row > .danger { grid-column: 2; justify-self: start; }
@@ -1237,48 +1239,7 @@ Why D is wrong."></textarea>
     }
 
     function sanitizePastedRichText(html, inline = false) {
-      const source = document.createElement("div");
-      source.innerHTML = html;
-      function serialize(node) {
-        if (node.nodeType === Node.TEXT_NODE) return escapeHtml(node.textContent || "");
-        if (!(node instanceof HTMLElement)) return "";
-        const tag = node.tagName.toLowerCase();
-        if (["script", "style", "iframe", "object", "embed", "svg", "math"].includes(tag)) return "";
-        if (tag === 'img') {
-          const src = node.getAttribute('src') || '';
-          if (!/^\/exam-images\/[a-zA-Z0-9._-]+$/.test(src)) return '';
-          const width = Math.round(Number(node.getAttribute('width')));
-          return '<img src="' + escapeHtml(src) + '" alt="' + escapeHtml(node.alt || '') + '"' + (width >= 40 && width <= 1200 ? ' width="' + width + '"' : '') + '>';
-        }
-        let content = Array.from(node.childNodes, serialize).join("");
-        const weight = node.style.fontWeight;
-        const numericWeight = Number(weight);
-        const isExplicitlyNormalWeight =
-          weight === "normal" || (Number.isFinite(numericWeight) && numericWeight > 0 && numericWeight < 600);
-        if (
-          !isExplicitlyNormalWeight &&
-          (tag === "strong" || tag === "b" || weight === "bold" || numericWeight >= 600)
-        ) {
-          content = `<strong>${content}</strong>`;
-        }
-        if (tag === "em" || tag === "i" || node.style.fontStyle === "italic") content = `<em>${content}</em>`;
-        if (tag === "u" || node.style.textDecoration.includes("underline")) content = `<u>${content}</u>`;
-        if (tag === "s" || tag === "strike" || node.style.textDecoration.includes("line-through")) content = `<s>${content}</s>`;
-        if (tag === "sub") content = `<sub>${content}</sub>`;
-        if (tag === "sup") content = `<sup>${content}</sup>`;
-        const definition = node.getAttribute("data-glossary-definition");
-        if (tag === "span" && definition?.trim()) {
-          content = `<span data-glossary-definition="${escapeHtml(definition.trim().slice(0, 4000))}" role="link" tabindex="0">${content}</span>`;
-        }
-        if (tag === "br") return "<br>";
-        if (tag === "blockquote") return `<blockquote>${content}</blockquote>`;
-        if (tag === "li") return inline ? `${content}<br>` : `<li>${content}</li>`;
-        if (tag === "ul" || tag === "ol") return inline ? content : `<${tag}>${content}</${tag}>`;
-        if (/^h[1-6]$/.test(tag)) return inline ? `${content}<br>` : `<h2>${content}</h2>`;
-        if (tag === "p" || tag === "div") return inline ? `${content}<br>` : `<p${["true", "false"].includes(node.dataset.numbered) ? ` data-numbered="${node.dataset.numbered}"` : ""}>${content}</p>`;
-        return content;
-      }
-      return Array.from(source.childNodes, serialize).join("").replace(/(?:<br>){3,}/g, "<br><br>");
+      return DocumentImport.sanitizeRichText(html);
     }
 
     function plainTextToRich(value, format = "prose") {
@@ -1820,7 +1781,7 @@ Why D is wrong."></textarea>
     }
 
     function passageVersionText(passage) {
-      return String(passage?.versionLabel || "").trim() || "Original / unlabeled";
+      return PartBBank.labels(passage).join(' · ') || "Original / unlabeled";
     }
 
     function teacherPassageTitle(passage) {
@@ -2155,17 +2116,17 @@ Why D is wrong."></textarea>
       app.passageImportReview = null;
       renderOfficialPassageImportReview();
       try {
-        const converted = studioUI.convertSatCrashCourseImport($("#sat-passage-import-source").value, {
+        const importOptions = {
           title: $("#sat-passage-title").value.trim(), versionLabel: $("#sat-passage-version").value.trim(),
           section: $("#sat-passage-section").value, topic: $("#sat-passage-topic").value,
           format: $("#sat-passage-format").value, passageType: $("#sat-passage-type").value,
-        });
-        app.passageImportSource = JSON.stringify(converted);
+        };
         app.passageImportReview = await api("/api/passages/import-preview", {
-          method: "POST", body: JSON.stringify({ source: JSON.stringify(converted) }),
+          method: "POST", body: JSON.stringify({ source: $("#sat-passage-import-source").value, importOptions }),
         });
+        app.passageImportSource = app.passageImportReview.importSource;
         renderOfficialPassageImportReview();
-        setStatus(`Validated ${app.passageImportReview.passage.questions.length} captured questions. Review warnings and answers before creating the draft.`, "success");
+        setStatus(`Validated ${app.passageImportReview.entries.reduce((total,entry)=>total+entry.content.questions.length,0)} captured questions. Review warnings and answers before creating the draft.`, "success");
       } catch (error) {
         setStatus(error.message, "error");
       } finally {
@@ -2286,6 +2247,7 @@ Why D is wrong."></textarea>
         : `
             <label class="field"><span>Exam section <small>Required</small></span><select data-field="section" required>${passageSectionOptions(passage.section)}</select><small class="field-note">Controls whether the passage is filed under Reading or Revising/Editing.</small></label>
             <label class="field"><span>Passage version <small>Teacher only</small></span><input data-field="versionLabel" value="${escapeHtml(passage.versionLabel || "")}" placeholder="Version 1, Form A, 2026 edition"><small class="field-note">Use a different label for each version of the same passage.</small></label>
+            <label class="field wide"><span>Source tests / version tags <small>Teacher only</small></span><div class="studio-part-b-tags">${PartBBank.labels(passage).map(label=>`<span class="passage-version-tag">${escapeHtml(label)}</span>`).join('')}</div><input data-field="versionLabels" aria-label="Source tests / version tags" value="${escapeHtml(PartBBank.labels(passage).join(', '))}" placeholder="2024-2025 Form A, 2022-2023 Form B"><small class="field-note">Separate tags with commas. Identical passages with identical questions in the same order share tags across exams.</small></label>
             <label class="field wide"><span>Passage source <small>Teacher only</small></span><textarea data-field="teacherSource" placeholder="URL, book, test form, file name, page number, or private sourcing notes">${escapeHtml(passage.teacherSource || "")}</textarea><small class="field-note">Stored for your records and omitted from the student passage.</small></label>
           `;
       $("#passage-editor").innerHTML = `
@@ -2445,7 +2407,7 @@ Why D is wrong."></textarea>
     function bindPassageFields() {
       $$("[data-field]", $("#passage-editor")).forEach((element) => {
         element.addEventListener("input", () => {
-          app.passageDraft[element.dataset.field] = element.value;
+          app.passageDraft[element.dataset.field] = element.dataset.field === 'versionLabels' ? element.value.split(',').map(value=>value.trim()).filter(Boolean) : element.value;
           if (
             app.passageMode !== "advanced" &&
             !app.passageDraft.sourceHash &&
@@ -2975,7 +2937,7 @@ Why D is wrong."></textarea>
     function passagePreviewDocument(passage) {
       const format = passage.format === "poem" ? "poem" : passage.format === "sentence_prose" ? "sentence-prose" : "prose";
       const styles = app.studentStyles.replace(/<\/style/gi, "<\\/style");
-      return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${styles}</style><style>html,body{margin:0;min-height:0;background:#fff}.exam-session-shell{min-height:0;padding:0}.exam-question-passage{width:100%;border:0}.exam-question-passage-scroll{height:auto;max-height:none;overflow:visible}</style></head><body><main class="exam-session-shell"><div class="exam-question-passage"><div class="exam-question-passage-scroll is-${format}"><div class="exam-passage-pencil-surface">${studentPassageMarkup(passage)}</div></div></div></main></body></html>`;
+      return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${styles}</style><style>html,body{margin:0;min-height:0;background:#fff}.exam-session-shell{min-height:0;padding:0}.exam-question-passage{width:100%;border:0}.exam-question-passage-scroll{height:auto;max-height:none;overflow:visible}</style></head><body><main class="exam-session-shell" data-player-profile="testnav"><div class="exam-question-passage"><div class="exam-question-passage-scroll is-${format}"><div class="exam-passage-pencil-surface">${studentPassageMarkup(passage)}</div></div></div></main></body></html>`;
     }
 
     function renderPreview() {
@@ -3030,10 +2992,11 @@ Why D is wrong."></textarea>
         flushInline();
         const text = element.textContent.trimEnd();
         const numbered = element.dataset.numbered;
+        const poetryLine = element.dataset.poetryLine;
         const heading = /^H[1-6]$/.test(element.tagName) || (numbered === undefined && /^\s*<(strong|b)>[\s\S]*<\/\1>\s*$/i.test(element.innerHTML) && text.trim().length <= 100 && !/[.!?]$/.test(text.trim()));
         const list = /^(UL|OL)$/.test(element.tagName);
         const align = element.dataset.align === "indent" || element.classList.contains("poem-indent") ? "indent" : "";
-        blocks.push({ html: list ? element.outerHTML : element.innerHTML, text, align, kind: heading ? "heading" : list ? "list" : "", ...(numbered !== undefined ? { numbered: numbered === "true" } : {}) });
+        blocks.push({ html: list ? element.outerHTML : element.innerHTML, text, align, kind: heading ? "heading" : list ? "list" : "", ...(numbered !== undefined ? { numbered: numbered === "true" } : {}), ...(poetryLine !== undefined ? { poetryLine: poetryLine === "true" } : {}) });
       });
       flushInline();
       const result = blocks.length ? blocks : [{ html: wrapper.innerHTML, text: wrapper.textContent.trimEnd() }];
@@ -3126,22 +3089,24 @@ Why D is wrong."></textarea>
               return lines.map((html, lineIndex) => {
                 const wrapper = document.createElement("div");
                 wrapper.innerHTML = html;
-                const isIndented = block.align === "indent" || /^\s{8,}\S/.test(wrapper.textContent);
-                const normalizedHtml = isIndented
+                const isIndented = block.align === "indent" || (block.poetryLine !== true && /^\s{8,}\S/.test(wrapper.textContent));
+                const normalizedHtml = isIndented && block.poetryLine !== true
                   ? html.replace(/^(\s*<(?:em|i)>)(?:(?:&nbsp;)|\s){4,}/i, "$1").replace(/^(?:(?:&nbsp;)|\s){4,}/i, "")
                   : html;
                 wrapper.innerHTML = normalizedHtml;
-                return { html: normalizedHtml, text: wrapper.textContent.trimEnd(), align: isIndented ? "indent" : "", blockIndex, lineIndex };
+                return { html: normalizedHtml, text: wrapper.textContent.trimEnd(), align: isIndented ? "indent" : "", numbered: block.numbered, poetryLine: block.poetryLine, kind: block.kind, blockIndex, lineIndex };
               });
             })
           : (text || (authoring ? "" : "Passage content has not been added for this assessment yet."))
               .split(/\r?\n/)
               .map((line, blockIndex) => ({ html: "", text: line, blockIndex }));
+        const explicitPoemLines = sourceLines.some(line => line.poetryLine === true);
         const contentLines = sourceLines.map((line) => {
             if (!line.text.trim()) return `<p class="exam-poem-line is-spacer"${editBlock(line.blockIndex, line.lineIndex)}><span></span><span></span></p>`;
-            const lineNumber = contentLine % Math.max(1, passage.lineNumberInterval || 5) === 0 ? String(contentLine) : "";
-            contentLine += 1;
-            return `<p class="exam-poem-line${line.align === "indent" ? " is-indented" : ""}"${editBlock(line.blockIndex, line.lineIndex)}><span>${lineNumber}</span><span>${line.html || escapeHtml(line.text.replace(/\s+$/, ""))}</span></p>`;
+            const isVerse = line.numbered !== false && (explicitPoemLines ? line.poetryLine === true : !line.kind);
+            const lineNumber = isVerse && contentLine % Math.max(1, passage.lineNumberInterval || 5) === 0 ? String(contentLine) : "";
+            if (isVerse) contentLine += 1;
+            return `<p class="exam-poem-line${!isVerse && !line.kind ? " is-context" : ""}${line.align === "indent" ? " is-indented" : ""}"${editBlock(line.blockIndex, line.lineIndex)}><span>${lineNumber}</span><span>${line.html || escapeHtml(line.text.replace(/\s+$/, ""))}</span></p>`;
           });
         return [
           blurb,
@@ -3372,7 +3337,7 @@ Why D is wrong."></textarea>
           </style>
         </head>
         <body>
-          <main class="exam-session-shell">
+          <main class="exam-session-shell" data-player-profile="testnav">
             <header class="exam-session-toolbar" aria-label="Exam controls">
               <div class="exam-session-toolbar-inner">
                 <div class="exam-session-toolbar-cluster">
@@ -3446,7 +3411,10 @@ Why D is wrong."></textarea>
             });
             var selectedCategoryItem = null;
             document.querySelectorAll("[data-preview-category-item]").forEach(function (item) {
-              item.addEventListener("click", function () {
+              item.addEventListener("click", function (event) {
+                // Selecting a placed card must not bubble into its current
+                // target and immediately place it again / clear selection.
+                event.stopPropagation();
                 document.querySelectorAll("[data-preview-category-item]").forEach(function (candidate) {
                   candidate.classList.remove("is-selected");
                 });
@@ -3475,6 +3443,12 @@ Why D is wrong."></textarea>
                 selectedCategoryItem = null;
               }
               target.addEventListener("click", function () { placeItem(selectedCategoryItem); });
+              target.tabIndex = 0;
+              target.addEventListener("keydown", function (event) {
+                if (event.target === target && (event.key === "Enter" || event.key === " ")) {
+                  event.preventDefault(); placeItem(selectedCategoryItem);
+                }
+              });
               target.addEventListener("dragover", function (event) { event.preventDefault(); });
               target.addEventListener("drop", function (event) {
                 event.preventDefault();
@@ -3491,6 +3465,12 @@ Why D is wrong."></textarea>
               }
               categoryBank.addEventListener("click", function (event) {
                 if (event.target === categoryBank) returnToBank(selectedCategoryItem);
+              });
+              categoryBank.tabIndex = 0;
+              categoryBank.addEventListener("keydown", function (event) {
+                if (event.target === categoryBank && (event.key === "Enter" || event.key === " ")) {
+                  event.preventDefault(); returnToBank(selectedCategoryItem);
+                }
               });
               categoryBank.addEventListener("dragover", function (event) { event.preventDefault(); });
               categoryBank.addEventListener("drop", function (event) {
@@ -6880,7 +6860,9 @@ WRONG D:`;
       const configuration = app.state.topicConfiguration;
       app.contentTopicRevision = configuration.revision;
       const usageByTopic = new Map((configuration.topicDetailsBySection[app.contentTopicSection] || []).map((topic) => [topic.label, topic.questionCount]));
-      app.contentTopicDrafts = questionTopicsForSection(app.contentTopicSection).map((label) => ({
+      const namedTopics = [...new Set([...questionTopicsForSection(app.contentTopicSection), ...usageByTopic.keys()])]
+        .filter(label => typeof label === 'string' && label.trim());
+      app.contentTopicDrafts = namedTopics.map((label) => ({
         label,
         original: label,
         questionCount: Number(usageByTopic.get(label)) || 0,

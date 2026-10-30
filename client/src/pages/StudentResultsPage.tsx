@@ -1,3 +1,4 @@
+import { hasFullyAnsweredExam } from "../../../server/src/shared/examCorrectionAccess";
 import { useEffect, useMemo, useState } from "react";
 import { BarChart3, CheckCircle2 } from "lucide-react";
 import { StudentPortalShell } from "../components/StudentPortalShell";
@@ -72,7 +73,7 @@ export function StudentResultsPage() {
                 <div className="student-result-score"><strong>{result.percentage}%</strong><span>{result.correct} of {result.total}</span></div>
                 <div><small>{result.completionStatus === "complete" ? "Complete" : "Section submitted"}</small><h2>{result.title}</h2><p>Submitted <time dateTime={result.completedAt}>{Number.isFinite(Date.parse(result.completedAt)) ? new Date(result.completedAt).toLocaleString('en-US', { timeZone: 'America/New_York', dateStyle: 'medium', timeStyle: 'short' }) : 'Date unavailable'}</time></p></div>
                 <div className="student-result-subjects">{(Array.isArray(result.subjects) ? result.subjects : []).map((subject) => <span key={subject.subject}><small>{subject.subject === "Mathematics" ? "Math" : "English"}</small><strong>{subject.correct} / {subject.total}</strong></span>)}</div>
-                <div className="student-result-correction-action"><CheckCircle2 size={20} />{result.source === "answer_sheet" && (result as ExamResult & { answerSheet?: { assignmentId?: string } }).answerSheet?.assignmentId ? <AppLink href={`/answer-sheets/${(result as ExamResult & { answerSheet: { assignmentId: string } }).answerSheet.assignmentId}`}>Answer-sheet results →</AppLink> : assessments.find(item => item.id === result.assessmentId)?.correctionsOpen ? <AppLink href={examCorrectionsHref(result.assessmentId, previewContext)}>Corrections →</AppLink> : <button type="button" disabled title="Your teacher must open corrections first">Corrections locked</button>}</div>
+                <div className="student-result-correction-action"><CheckCircle2 size={20} />{result.source === "answer_sheet" && (result as ExamResult & { answerSheet?: { assignmentId?: string } }).answerSheet?.assignmentId ? <AppLink href={`/answer-sheets/${(result as ExamResult & { answerSheet: { assignmentId: string } }).answerSheet.assignmentId}`}>Answer-sheet results →</AppLink> : (assessments.find(item => item.id === result.assessmentId)?.correctionsOpen || hasFullyAnsweredExam(result)) ? <AppLink href={examCorrectionsHref(result.assessmentId, previewContext)}>Corrections →</AppLink> : <button type="button" disabled title="Your teacher must open corrections first">Corrections locked</button>}</div>
               </article>
             ))}
           </section>

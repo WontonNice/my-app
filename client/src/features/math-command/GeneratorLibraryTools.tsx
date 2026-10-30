@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import type { PracticeCatalog, PracticeGeneratorDefinition } from '../../../../server/src/shared/practiceCatalog';
+import { practiceModuleKind, type PracticeCatalog, type PracticeGeneratorDefinition } from '../../../../server/src/shared/practiceCatalog';
 import { practiceDifficulties, practicePrograms } from '../../../../server/src/shared/practiceOrganization';
 import type { GeneratorFilters } from './studioOrganization';
-import type { MathClassificationSkill } from '../../../../server/src/shared/mathClassificationSkills';
 
 type Taxonomy={label:string;topics:string[]}[];
 const title=(value:string)=>value[0].toUpperCase()+value.slice(1);
-export function GeneratorLibraryTools({catalog,filters,onFilters,sort,onSort,classificationSkills=[]}:{catalog:PracticeCatalog;filters:GeneratorFilters;onFilters:(filters:GeneratorFilters)=>void;sort:string;onSort:(sort:string)=>void;classificationSkills?:MathClassificationSkill[]}) {
+export function GeneratorLibraryTools({catalog,filters,onFilters,sort,onSort}:{catalog:PracticeCatalog;filters:GeneratorFilters;onFilters:(filters:GeneratorFilters)=>void;sort:string;onSort:(sort:string)=>void}) {
   return <div className="ps-library-filters" aria-label="Generator library filters">
-    <label>Skilled<select value={filters.skilled??''} onChange={event=>onFilters({...filters,skilled:event.target.value})}><option value="">All Skilled</option><option value="TBD">TBD</option>{classificationSkills.map(skill=><option key={skill.id} value={skill.id}>{skill.label} · {skill.subcategory}</option>)}</select></label>
+    <label>Skill (module)<select value={filters.moduleId??''} onChange={event=>onFilters({...filters,moduleId:event.target.value})}><option value="">All skills</option>{catalog.modules.filter(module=>!practiceModuleKind(module)).map(module=><option key={module.id} value={module.id}>{module.title} · {module.category} / {module.topic} · {catalog.modules.find(parent=>parent.id===module.parentId)?.title}</option>)}</select></label>
     <label>Status<select value={filters.status} onChange={event=>onFilters({...filters,status:event.target.value})}>
       <option value="">All statuses</option><option value="enabled">Enabled</option><option value="disabled">Disabled</option><option value="unreviewed">Unreviewed</option><option value="in-review">In review</option><option value="approved">Approved</option><option value="unused">No focused module</option>
     </select></label>
@@ -29,11 +28,11 @@ export function GeneratorBulkActions({count,taxonomy,onApply,onClear}:{count:num
     onApply(patch);
   }
   return <div className="ps-bulk" aria-label="Bulk generator actions"><strong>{count} selected</strong>
-    <label>Action<select value={action} onChange={event=>{setAction(event.target.value);setValue('');}}><option value="enable">Enable</option><option value="disable">Disable</option><option value="approve">Mark approved</option><option value="review">Mark unreviewed</option><option value="difficulty">Set difficulty</option><option value="move">Move to topic</option><option value="skill">Add skill tag</option><option value="program">Set program</option><option value="subject">Set subject</option></select></label>
+    <label>Action<select value={action} onChange={event=>{setAction(event.target.value);setValue('');}}><option value="enable">Enable</option><option value="disable">Disable</option><option value="approve">Mark approved</option><option value="review">Mark unreviewed</option><option value="difficulty">Set difficulty</option><option value="move">Move to subcategory</option><option value="skill">Add search tag</option><option value="program">Set program</option><option value="subject">Set subject</option></select></label>
     {action==='difficulty'&&<label>New difficulty<select value={difficulty} onChange={event=>setDifficulty(event.target.value)}>{practiceDifficulties.map(value=><option key={value} value={value}>{title(value)}</option>)}</select></label>}
     {action==='program'&&<label>New program<select value={program} onChange={event=>setProgram(event.target.value)}>{practicePrograms.map(value=><option key={value}>{value}</option>)}</select></label>}
-    {action==='move'&&<><label>New category<select value={category} onChange={event=>{setCategory(event.target.value);setTopic(taxonomy.find(item=>item.label===event.target.value)?.topics[0]??'');}}>{taxonomy.map(item=><option key={item.label}>{item.label}</option>)}</select></label><label>New topic<select value={topic} onChange={event=>setTopic(event.target.value)}>{taxonomy.find(item=>item.label===category)?.topics.map(value=><option key={value}>{value}</option>)}</select></label></>}
-    {['skill','subject'].includes(action)&&<label>{action==='skill'?'Skill tag':'New subject'}<input value={value} maxLength={action==='skill'?120:80} onChange={event=>setValue(event.target.value)}/></label>}
+    {action==='move'&&<><label>New category<select value={category} onChange={event=>{setCategory(event.target.value);setTopic(taxonomy.find(item=>item.label===event.target.value)?.topics[0]??'');}}>{taxonomy.map(item=><option key={item.label}>{item.label}</option>)}</select></label><label>New subcategory<select value={topic} onChange={event=>setTopic(event.target.value)}>{taxonomy.find(item=>item.label===category)?.topics.map(value=><option key={value}>{value}</option>)}</select></label></>}
+    {['skill','subject'].includes(action)&&<label>{action==='skill'?'Search tag':'New subject'}<input value={value} maxLength={action==='skill'?120:80} onChange={event=>setValue(event.target.value)}/></label>}
     <button disabled={!count||!valid} onClick={apply}>Apply to selected</button><button onClick={onClear}>Clear selection</button>
     <p>Changes are staged until Save changes.{action==='program'?' Set program replaces existing program labels.':''}{action==='move'?' Existing focused module references are retained; automatic topic groups follow the new location.':''}</p>
   </div>;

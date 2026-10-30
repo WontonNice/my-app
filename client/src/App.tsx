@@ -1,8 +1,7 @@
 import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
-import { getStudentClasses } from "./lib/api";
+import { ClassAccessGate } from "./components/ClassAccessGate";
 import { rememberAccountSession } from "./lib/accountSwitching";
-import { getUserRole } from "./lib/auth";
-import { cacheActiveSession, cacheStudentClasses, getActiveSession } from "./lib/sessionCache";
+import { cacheActiveSession } from "./lib/sessionCache";
 import { getSupabaseClient, isSupabaseConfigured } from "./lib/supabase";
 import { StudentDashboardPage } from "./pages/StudentDashboardPage";
 import { StudentAssignmentsPage } from "./pages/StudentAssignmentsPage";
@@ -62,39 +61,6 @@ const InfiniteHomeworkPage = lazy(() => import("./features/math-command/Infinite
 const TopicPracticePage = lazy(() =>
   import("./pages/TopicPracticePage").then((module) => ({ default: module.TopicPracticePage })),
 );
-
-function ClassAccessGate({ children }: { children: ReactNode }) {
-  const [isChecking, setIsChecking] = useState(isSupabaseConfigured);
-  const isTeacherPreview = new URLSearchParams(window.location.search).get("preview") === "student";
-
-  useEffect(() => {
-    if (!isSupabaseConfigured) return;
-    getActiveSession().then(async (session) => {
-      if (!session) {
-        window.location.assign("/login");
-        return;
-      }
-      if (getUserRole(session.user) !== "student" || isTeacherPreview) {
-        setIsChecking(false);
-        return;
-      }
-      try {
-        const classes = await getStudentClasses(session.access_token);
-        cacheStudentClasses(session.user.id, classes);
-        if (!classes.some((studentClass) => studentClass.id === "shsat")) {
-          window.location.assign("/study-hall/classroom");
-          return;
-        }
-        setIsChecking(false);
-      } catch {
-        cacheStudentClasses(session.user.id, []);
-        window.location.assign("/study-hall/classroom");
-      }
-    });
-  }, [isTeacherPreview]);
-
-  return isChecking ? <main className="loading-shell">Checking class access...</main> : children;
-}
 
 function withClassAccess(page: ReactNode) {
   return <ClassAccessGate>{page}</ClassAccessGate>;

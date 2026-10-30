@@ -493,7 +493,7 @@
       }
     }
   ],
-  "revision": "5ab226cf-af61-4ac4-90b4-31c3741683cb",
+  "revision": "8fe92c94-f283-48f7-a4a5-2595463aaa74",
   "taxonomy": {
     "categories": [
       {
@@ -553,5 +553,26 @@
       "from": "Overlapping Groups",
       "to": "Set Relationships"
     }
-  ]
+  ],
+  "classificationSkills": [
+    {
+      "id": "057217b6-5a0d-4c3e-aef9-be5e38a5d0e9",
+      "label": "Angles",
+      "category": "Geometry",
+      "subcategory": "Shapes & Angles"
+    },
+    {
+      "id": "6ef8aa5f-caf0-4820-9d24-eaf0e4b2c21e",
+      "label": "Consecutive Integers",
+      "category": "Arithmetic & Number Sense",
+      "subcategory": "Number Properties"
+    },
+    {
+      "id": "9abd5350-a5f2-4fad-9822-c1e064977942",
+      "label": "Simplifying Expressions",
+      "category": "Algebra",
+      "subcategory": "Algebraic Expressions"
+    }
+  ],
+  "retiredClassificationSkillIds": []
 }

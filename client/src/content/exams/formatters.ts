@@ -1,4 +1,4 @@
-import type { ExamPassage, ExamPassageLine, ExamPassageType, ExamQuestionImage } from "./types";
+import type { ExamPassage, ExamPassageLine, ExamPassageType, ExamQuestionImage, ExamSource } from "./types";
 import { createGlossaryRichText } from "../../../../tools/content-studio-glossary.js";
 import { poemRichBlocks } from "../../../../tools/poem-layout.js";
 import { passageCategory as normalizeCategory, type PassageCategory } from "../../../../server/src/shared/passageCategories";
@@ -13,14 +13,15 @@ export function createSourcePassage(input: PlainTextPassageInput & {
 }): ExamPassage {
   const escape = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const lines: ExamPassageLine[] = [];
-  if (input.blurb) lines.push({ kind: "intro", text: input.blurb });
-  lines.push({ kind: "title", text: input.title, align: "center" });
+  if (input.blurb) lines.push({ kind: "intro", text: input.blurb, html:input.blurbHtml });
+  lines.push({ kind: "title", text: input.title, html:input.titleHtml, align: "center" });
   if (input.subtitle) lines.push({ kind: "heading", text: input.subtitle, align: "center" });
-  if (input.byline || input.author) lines.push({ kind: "byline", text: input.byline || `by ${input.author}`, align: "center" });
+  if (input.byline || input.author) lines.push({ kind: "byline", text: input.byline || `by ${input.author}`, html:input.bylineHtml, align: "center" });
   const blocks: RichTextBlock[] = input.richText ? (input.format === "poem" ? richTextLines(input.richText, input.text) : richTextBlocks(input.richText))
     : input.text.split(input.format === "poem" ? /\r?\n/ : /\r?\n\r?\n/).map(text => ({ text, html: escape(text).replace(/\n/g, "<br>").replace(/ {2}/g, " &nbsp;") }));
   let paragraphNumber = 1;
   let poemLineNumber = 1;
+  const explicitPoemLines = blocks.some(block=>block.poetryLine===true);
   const bodyParagraphs = blocks.filter(block => !block.kind && block.numbered !== false && block.text.trim());
   const printedLabels = bodyParagraphs.flatMap((block, index) => {
     const match = /^\s*(\d{1,3})\s+/.exec(block.text);
@@ -28,7 +29,7 @@ export function createSourcePassage(input: PlainTextPassageInput & {
   });
   const usePrintedLabels = printedLabels.length >= 2 && printedLabels.every(label => label.value === label.expected);
   lines.push(...blocks.map(block => {
-    if (input.format === "poem" && block.text.trim()) {
+    if (input.format === "poem" && block.text.trim() && (!explicitPoemLines || block.poetryLine===true)) {
       const lineNumber = poemLineNumber++;
       return { ...block, lineNumber: lineNumber % Math.max(1, input.lineNumberInterval || 5) === 0 ? String(lineNumber) : "" };
     }
@@ -41,10 +42,15 @@ export function createSourcePassage(input: PlainTextPassageInput & {
   for (const image of [...(input.image ? [input.image] : []), ...(input.images || [])]) lines.push({ kind: "image", text: "", image });
   return { id: input.id, title: input.title, format: input.format || "prose", passageType: input.passageType,
     passageCategory: normalizeCategory(input.passageCategory), versionLabel: input.versionLabel,
-    coverImage: input.coverImage, sourceNote: input.sourceNote, lines };
+    coverImage: input.coverImage, sourceNote: input.sourceNote, sourceNoteHtml:input.sourceNoteHtml, source: input.source, lines };
 }
 
 type PlainTextPassageInput = {
+  source?: ExamSource;
+  titleHtml?: string;
+  blurbHtml?: string;
+  bylineHtml?: string;
+  sourceNoteHtml?: string;
   passageCategory?: PassageCategory;
   author?: string;
   blurb?: string;
@@ -68,6 +74,7 @@ type RichTextBlock = {
   kind?: "heading" | "list";
   text: string;
   numbered?: boolean;
+  poetryLine?: boolean;
 };
 
 function codePointFromEntity(value: string, radix: number) {
@@ -94,20 +101,23 @@ function plainTextFromHtml(value: string) {
 function richTextBlocks(value: string): RichTextBlock[] {
   const blocks: RichTextBlock[] = [];
   const normalized = value.trim();
-  const blockPattern = /<(p|div|h[1-6]|ul|ol)([^>]*)>([\s\S]*?)<\/\1>/gi;
+  const blockPattern = /<(p|div|h[1-6]|ul|ol|figure|table|blockquote)([^>]*)>([\s\S]*?)<\/\1>/gi;
   let cursor = 0;
   for (const match of normalized.matchAll(blockPattern)) {
     const prefix = normalized.slice(cursor, match.index);
-    if (plainTextFromHtml(prefix).trim()) blocks.push({ html: prefix, text: plainTextFromHtml(prefix).trimEnd() });
+    if (plainTextFromHtml(prefix).trim() || /<img\b/i.test(prefix)) blocks.push({ html: prefix, text: plainTextFromHtml(prefix).trimEnd(), ...(/<img\b/i.test(prefix) ? {kind:'list' as const,numbered:false} : {}) });
     const tag = match[1].toLowerCase();
     const attributes = match[2];
     const body = match[3];
     const rawText = plainTextFromHtml(body).trimEnd();
+    const poetryLine = /\bdata-poetry-line\s*=\s*["'](true|false)["']/i.exec(attributes)?.[1];
     const isIndented =
       /data-align\s*=\s*["']indent["']/i.test(attributes) ||
       /class\s*=\s*["'][^"']*\bpoem-indent\b/i.test(attributes) ||
-      /^\s{8,}\S/.test(rawText);
-    const html = isIndented
+      (poetryLine !== "true" && /^\s{8,}\S/.test(rawText));
+    // Explicit source verse keeps its authored indentation depths. The poem
+    // renderer already uses break-spaces; legacy inferred indents stay intact.
+    const html = isIndented && poetryLine !== "true"
       ? body
           .replace(/^(\s*<(?:em|i)>)(?:(?:&nbsp;)|\s){4,}/i, "$1")
           .replace(/^(?:(?:&nbsp;)|\s){4,}/i, "")
@@ -117,19 +127,21 @@ function richTextBlocks(value: string): RichTextBlock[] {
     const isHeading = /^h[1-6]$/.test(tag) || (numbering === undefined &&
       /^\s*<(strong|b)>[\s\S]*<\/\1>\s*$/i.test(html) && text.trim().length <= 100 && !/[.!?]$/.test(text.trim())
     );
-    const isList = tag === "ul" || tag === "ol";
+    const isList = ['ul','ol','figure','table','blockquote'].includes(tag);
+    const alignment = /data-align\s*=\s*["'](left|center|right|justify)["']/i.exec(attributes)?.[1] as ExamPassageLine['align'];
     blocks.push({
-      ...(isIndented ? { align: "indent" as const } : {}),
+      ...(isIndented ? { align: "indent" as const } : alignment ? {align:alignment} : {}),
       html: isList ? match[0] : isHeading ? `<strong>${html}</strong>` : html,
       text,
       ...(numbering ? { numbered: numbering === "true" } : {}),
+      ...(poetryLine ? {poetryLine:poetryLine==='true'} : {}),
       ...(isHeading ? { kind: "heading" } : isList ? { kind: "list" } : {}),
     });
     cursor = match.index + match[0].length;
   }
   if (blocks.length) {
     const suffix = normalized.slice(cursor);
-    if (plainTextFromHtml(suffix).trim()) blocks.push({ html: suffix, text: plainTextFromHtml(suffix).trimEnd() });
+    if (plainTextFromHtml(suffix).trim() || /<img\b/i.test(suffix)) blocks.push({ html: suffix, text: plainTextFromHtml(suffix).trimEnd(), ...(/<img\b/i.test(suffix) ? {kind:'list' as const,numbered:false} : {}) });
     return blocks;
   }
   return normalized.split(/<br\s*\/?>/gi).map((html) => ({

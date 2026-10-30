@@ -2,7 +2,7 @@
   const MAX_PAGE_TEXT_LENGTH = 250_000;
   const MAX_ITEM_TEXT_LENGTH = 10_000;
   const MAX_PASSAGE_QUESTIONS = 50;
-  const READER_VERSION = "0.7.1";
+  const READER_VERSION = "0.8.0";
   let scanInProgress = false;
 
   function cleanText(value) {
@@ -221,6 +221,10 @@
         type: "image",
         url: absoluteUrl(image.currentSrc || image.getAttribute("src")),
         alt: cleanText(image.getAttribute("alt")),
+        width: image.width || null,
+        height: image.height || null,
+        naturalWidth: image.naturalWidth || null,
+        naturalHeight: image.naturalHeight || null,
       })),
       (item) => `${item.type}\n${item.url}\n${item.alt}`,
     );
@@ -293,6 +297,7 @@
     } : hotWords.length ? {
       type: 'hot_text',
       text: textOf(preview.querySelector('.testSHSATPreview__questionHelperText')),
+      contentHtml: NathanSatRichText.fromElement(helper, getComputedStyle, null, node => hotWords.includes(node) ? `<span data-source-option="word-${hotWords.indexOf(node) + 1}">${rich(node)}</span>` : undefined),
       options: hotWords.map((node, i) => ({ id: `word-${i + 1}`, text: textOf(node), html: rich(node), isCorrect: answerShown && node.classList.contains('correct') })),
     } : blankHelper ? {
       type: 'sentence_blank',
@@ -311,6 +316,7 @@
         ? {
             id: passageId,
             text: richPassage.text || textOf(passage),
+            html: richPassage.format === 'poem' ? richPassage.formattedBlocks.map(block => `<p>${block.html}</p>`).join('') : rich(passage),
             ...(richPassage.format ? { format: richPassage.format } : {}),
             formattedBlocks: richPassage.formattedBlocks,
             glossaryTerms: [...new Set(
@@ -329,6 +335,7 @@
         : null,
       explanation: textOf(explanation),
       explanationHtml: NathanSatRichText.fromElement(explanation, getComputedStyle),
+      explanationMedia: readMedia(explanation),
       media: readMedia(questionRoot),
     };
   }
@@ -505,11 +512,12 @@
     const originalModule = previewModule();
     const originalAnswerVisible = Boolean(previewButton("Hide answer"));
     const originalExplanationVisible = explanationVisible();
-    const batchMode = ['part-b', 'math-all'].includes(options.captureMode) ? options.captureMode : null;
+    const batchMode = ['part-b', 'math-all', 'ela-all'].includes(options.captureMode) ? options.captureMode : null;
     if (batchMode === 'math-all' && !/math/i.test(originalModule)) throw new Error('Select Mathematics on the test page, then read all 50 math questions.');
     if (batchMode === 'part-b' && !/english/i.test(originalModule)) throw new Error('Select English Language Arts on the test page, then read Part B.');
+    if (batchMode === 'ela-all' && !/english/i.test(originalModule)) throw new Error('Select English Language Arts on the test page, then read all ELA questions.');
     const expected = batchMode === 'part-b' ? requestedNumbers(options.questionRange, originalQuestion.total)
-      : batchMode === 'math-all' ? Array.from({ length: originalQuestion.total }, (_, i) => i + 1) : null;
+      : ['math-all','ela-all'].includes(batchMode) ? Array.from({ length: originalQuestion.total }, (_, i) => i + 1) : null;
     if (batchMode === 'math-all' && originalQuestion.total !== 50) throw new Error(`This Math module reports ${originalQuestion.total} questions, not 50. Select the intended 50-question module.`);
 
     const title = [...document.querySelectorAll("h1")]
@@ -656,6 +664,9 @@
       readerVersion: READER_VERSION,
       capturedAt: new Date().toISOString(),
       source: {
+        sourceFamily: 'sat_crash_course',
+        sourceFormat: 'web',
+        playerProfile: 'sat_crash_course',
         title: document.title,
         url: location.href,
         origin: location.origin,
@@ -672,6 +683,12 @@
     };
   }
 
+  // Inert rendered-DOM archives can be normalized with the same extractor.
+  // This branch exposes readers only; it never executes archived markup.
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { readCurrentPreviewQuestion, readTestPreview, readPage };
+    return;
+  }
   chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     if (message?.type !== "SAT_READER_SCAN") return false;
     if (scanInProgress) {

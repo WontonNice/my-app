@@ -1,3 +1,9 @@
+import { ExamGeneralDirections } from "../components/ExamGeneralDirections";
+import { InlineTextSelection } from "../components/InlineTextSelection";
+import { EXAM_PLAYER_PROFILE } from "../content/exams/playerPresentation";
+import { testnavPartADirections, testnavPartBDirections, testnavMathDirections } from "../content/exams/testnavDirections";
+import { hasFullyAnsweredExam } from "../../../server/src/shared/examCorrectionAccess";
+import { examCorrectionsHref } from "../lib/correctionNavigation";
 import { toolSetter, mergeToolLists, type SharedExamTools } from "../features/games/useTeamTools";
 import { SharedToolNotes } from "../features/games/SharedToolNotes";
 import { SentenceDragDrop } from '../components/SentenceDragDrop';
@@ -74,7 +80,7 @@ import {
 } from "../content/exams";
 import { getExamSessionProgress, getLearningProgress, getStudentAssessment, getTeacherStudentProgress, saveCloudExamResult, saveExamSessionProgress, type TeacherAssessment } from "../lib/api";
 import { getUserRole } from "../lib/auth";
-import { formatDuration, getAssessmentIdFromPath, getDisplayName } from "../lib/exam";
+import { getAssessmentIdFromPath, getDisplayName } from "../lib/exam";
 import {
   getExamTimerDisplay,
   isExamTimeExpired,
@@ -110,6 +116,7 @@ import {
 } from "../lib/examResults";
 import { appendStudentPreview, getStudentPreviewContext } from "../lib/studentPreview";
 import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
+import { orderedEnglishQuestions, orderedEnglishSegments, type EnglishQuestionLocation } from "../../../server/src/shared/examQuestionOrder";
 
 type SessionScreen =
   | "directions"
@@ -734,6 +741,7 @@ export function ExamToolbar({
   reviewItems = [],
   reviewQuestionCount = 0,
   questionProgress,
+  showProgress = false,
   showExhibits = false,
   showReviewTools = true,
   showStatusIcon = true,
@@ -786,6 +794,7 @@ export function ExamToolbar({
   reviewItems?: ReviewItem[];
   reviewQuestionCount?: number;
   questionProgress?: { answered: number; total: number };
+  showProgress?: boolean;
   showExhibits?: boolean;
   showReviewTools?: boolean;
   showStatusIcon?: boolean;
@@ -1069,7 +1078,7 @@ export function ExamToolbar({
                 <span>{breadcrumbCurrent}</span>
               </>
             ) : null}
-            {progress.total > 0 && <span className="exam-session-progress"><progress aria-label="Questions answered" max={progress.total} value={progress.answered} /><span>{Math.round(progress.answered / progress.total * 100)}%</span></span>}
+            {showProgress && progress.total > 0 && <span className="exam-session-progress"><progress aria-label="Questions answered" max={progress.total} value={progress.answered} /><span>{Math.round(progress.answered / progress.total * 100)}%</span></span>}
           </div>
           {showStatusIcon ? (
             <span className="exam-session-status-icon" aria-label="Current battery level 100%">
@@ -1295,7 +1304,8 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         const isReopeningCompletedAttempt =
           !isTeacherPreview && hasCompletedAttempt && nextAssessment.allowCompletedAccess && !nextAssessment.canEditSubmittedSections && !reentry;
         attemptIdRef.current = isReopeningCompletedAttempt ? crypto.randomUUID() : savedResult ? savedResult.attemptId ?? `legacy:${assessmentId}:${savedResult.completedAt}` : attemptIdRef.current;
-        if (nextAssessment.resumeContent) setAttemptContent(nextAssessment.resumeContent);
+        if (isTeacherPreview) setAttemptContent(null);
+        else if (nextAssessment.resumeContent) setAttemptContent(nextAssessment.resumeContent);
         else if (!isReopeningCompletedAttempt && savedResult?.analysisContent) setAttemptContent(savedResult.analysisContent);
         const effectiveSectionAccess = getExamSectionAccess(
           examContent,
@@ -1356,7 +1366,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
       screen: sessionScreen,
       ...(sessionScreen.startsWith("passage") || sessionScreen === "readingDirections" ? { passageSetId: passage?.id, questionId: passage?.questions[activeQuestionIndex]?.id } : {}),
       ...(sessionScreen === "mathQuestion" ? { questionId: content.mathSection?.questions[activeMathQuestionIndex]?.id } : {}),
-      ...(sessionScreen === "standaloneQuestion" ? { questionId: content.standaloneSection?.questions[activeStandaloneQuestionIndex]?.id } : {}),
+      ...(sessionScreen.startsWith("standalone") ? { questionId: content.standaloneSection?.questions[activeStandaloneQuestionIndex]?.id } : {}),
     } });
     if (position?.[subject]) navigationRef.current = { ...navigationRef.current, ...position };
     saveLocalExamSession(studentId, assessment.id, selectedAnswers, completedSections, "in_progress", getQuestionTimesSnapshot(), navigationRef.current);
@@ -1492,9 +1502,18 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     : [];
   const standaloneSection = examContent.standaloneSection;
   const activePassageSet = examContent.passageSets.at(activePassageSetIndex) ?? examContent.passageSets.at(0);
+  const passageHasExplicitVerse = activePassageSet?.passage.lines.some(line => line.poetryLine === true);
   const activeQuestion = activePassageSet?.questions.at(activeQuestionIndex) ?? activePassageSet?.questions.at(0);
   const activeStandaloneQuestion =
     standaloneSection?.questions[activeStandaloneQuestionIndex] ?? standaloneSection?.questions[0];
+  const playerProfile = EXAM_PLAYER_PROFILE;
+  const englishSequence = orderedEnglishQuestions(examContent);
+  const mathDirections = testnavMathDirections;
+  const standaloneSectionLabel = 'ELA - Stand Alone Items';
+  const englishSegments = orderedEnglishSegments(examContent);
+  const usesSourceOrder = !gameSession && Boolean(examContent.questionOrder?.length);
+  const activePassageSegment = englishSegments.find(segment => segment.kind === "passage" && segment.questions.some(item => item.question.id === activeQuestion?.id));
+  const activeStandaloneSegment = englishSegments.find(segment => segment.kind === "standalone" && segment.questions.some(item => item.question.id === activeStandaloneQuestion?.id));
   const activeStandaloneQuestionChoices = activeStandaloneQuestion?.choices ?? [];
   const activeStandaloneQuestionCategoryPlacements = getCategoryPlacements(
     activeStandaloneQuestion ? selectedAnswers[activeStandaloneQuestion.id] : undefined,
@@ -1549,6 +1568,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const shouldShowPassageDirections = Boolean(activePassageSet && (activePassageSetIndex === 0 || activePassageSet.showDirectionsBefore));
   const reviewItems: ReviewItem[] = [];
   const isTeacherTestView = isTeacherPreviewSession && getStudentPreviewContext().mode === "teacher";
+  const canReviewStandaloneItems = isTeacherTestView || isFastForwardEnabled;
   const accessibleQuestions: ExamQuestion[] = [];
   const addReviewQuestion = (
     id: ReviewItemId,
@@ -1569,16 +1589,11 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (isTeacherTestView) {
     let englishNumber = 0;
-    examContent.passageSets.forEach((set, passageSetIndex) => {
-      set.questions.forEach((question, questionIndex) => {
-        addReviewQuestion(`review:passage:${passageSetIndex}:${questionIndex}`, question,
-          `English ${++englishNumber} · ${set.passage.title}`,
-          { kind: "passage", passageSetIndex, questionIndex });
-      });
-    });
-    standaloneSection?.questions.forEach((question, questionIndex) => {
-      addReviewQuestion(`review:standalone:${questionIndex}`, question,
-        `English ${++englishNumber} · Revising / editing`, { kind: "standalone", questionIndex });
+    englishSequence.forEach(({kind,passageIndex,questionIndex,question}) => {
+      if(kind === "passage") addReviewQuestion(`review:passage:${passageIndex}:${questionIndex}`,question,
+        `English ${++englishNumber} · ${examContent.passageSets[passageIndex].passage.title}`,{kind:"passage",passageSetIndex:passageIndex,questionIndex});
+      else addReviewQuestion(`review:standalone:${questionIndex}`,question,
+        `English ${++englishNumber} · Revising / editing`,{kind:"standalone",questionIndex});
     });
     mathQuestions.forEach((question, questionIndex) => {
       addReviewQuestion(`review:math:${questionIndex}`, question, `Math ${questionIndex + 1}`,
@@ -1599,12 +1614,13 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
       reviewItems.push({
         id: `review:directions:passage:${activePassageSetIndex}`,
         kind: "directions",
-        label: activePassageSet.directions.breadcrumbLabel ?? "ELA Rdg Comp Directions",
+        label: activePassageSet.directions.title === "READING COMPREHENSION" ? "ELA Rdg Comp Directions" : activePassageSet.directions.title === "REVISING/EDITING PART A" ? "ELA Rev/Edit A Directions" : activePassageSet.directions.breadcrumbLabel ?? "ELA Rdg Comp Directions",
       });
     }
 
-    const accessibleQuestionCount = sessionScreen === "readingDirections" ? 0 : activePassageSet.questions.length;
-    activePassageSet.questions.slice(0, accessibleQuestionCount).forEach((question, questionIndex) => {
+    const passageReviewQuestions = usesSourceOrder ? activePassageSegment?.questions ?? [] : activePassageSet.questions.map((question,questionIndex)=>({question,questionIndex}));
+    const accessibleQuestionCount = sessionScreen === "readingDirections" ? 0 : passageReviewQuestions.length;
+    passageReviewQuestions.slice(0, accessibleQuestionCount).forEach(({question,questionIndex}) => {
       addReviewQuestion(
         `review:passage:${activePassageSetIndex}:${questionIndex}`,
         question,
@@ -1631,11 +1647,11 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     reviewItems.push({
       id: "review:directions:standalone",
       kind: "directions",
-      label: standaloneSection.directions.breadcrumbLabel ?? "ELA Rev/Edit B Directions",
+      label: "ELA Rev/Edit B Directions",
     });
   } else if (sessionScreen === "standaloneQuestion" && standaloneSection && activeStandaloneQuestion) {
-    standaloneSection.questions
-      .forEach((question, questionIndex) => {
+    (usesSourceOrder ? activeStandaloneSegment?.questions ?? [] : standaloneSection.questions.map((question,questionIndex)=>({question,questionIndex})))
+      .forEach(({question,questionIndex}) => {
         addReviewQuestion(
           `review:standalone:${questionIndex}`,
           question,
@@ -1647,7 +1663,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     reviewItems.push({
       id: "review:directions:math",
       kind: "directions",
-      label: mathSection.directions.breadcrumbLabel ?? "Math Directions",
+      label: mathDirections.breadcrumbLabel ?? "Math Directions",
     });
   } else if (sessionScreen === "mathQuestion" && activeMathQuestion) {
     mathQuestions
@@ -1696,7 +1712,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     currentReviewItemId && bookmarkedQuestionIds.includes(currentReviewItemId),
   );
   const directionsBreadcrumbLabel = activePassageSet
-    ? activePassageSet.directions.breadcrumbLabel ??
+    ? activePassageSet.directions.title === "READING COMPREHENSION" ? "ELA Rdg Comp Directions" : activePassageSet.directions.title === "REVISING/EDITING PART A" ? "ELA Rev/Edit A Directions" : activePassageSet.directions.breadcrumbLabel ??
       `${activePassageSet.directions.title.split(" ").slice(0, 3).join(" ")} DIRECTIONS`
     : "";
 
@@ -1836,6 +1852,24 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     ]);
   }
 
+  function showEnglishLocation(location: EnglishQuestionLocation | undefined, introduction = true) {
+    setActiveTool("pointer"); clearTransientExamUi(); setIsNotepadOpen(false);
+    setIsReviewOpen(false); setIsUnansweredModalOpen(false); setReviewFilter("all"); setSelectedCategoryItemId("");
+    if (!location) { setSessionScreen("endSection"); return; }
+    if (location.kind === "passage") {
+      setActivePassageSetIndex(location.passageIndex); setActiveQuestionIndex(location.questionIndex);
+      setSessionScreen(introduction ? "passageIntro" : "passage");
+    } else {
+      setActiveStandaloneQuestionIndex(location.questionIndex);
+      setSessionScreen(introduction ? "standaloneIntro" : "standaloneQuestion");
+    }
+  }
+
+  function nextEnglishSegment(questionId: string) {
+    const index = englishSegments.findIndex(segment => segment.questions.some(item => item.question.id === questionId));
+    showEnglishLocation(englishSegments[index + 1]?.questions[0]);
+  }
+
   function handlePassageNext() {
     if (!activePassageSet || !activeQuestion) return;
     if (!isFastForwardEnabled && !isQuestionAnswered(activeQuestion, selectedAnswers)) {
@@ -1844,6 +1878,16 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     }
 
     if (gameSession?.teamNavigation) { gameSession.teamNavigation.onNext(); return; }
+
+    if (usesSourceOrder && activePassageSegment) {
+      const index=activePassageSegment.questions.findIndex(item=>item.question.id===activeQuestion.id);
+      const next=activePassageSegment.questions[index+1];
+      if(next) {showEnglishLocation(next,false);return;}
+      if(!isFastForwardEnabled && activePassageSegment.questions.some(item=>!isQuestionAnswered(item.question,selectedAnswers))) {
+        setReviewFilter("notAnswered");setIsReviewOpen(true);return;
+      }
+      clearTransientExamUi();setIsReviewOpen(false);setReviewFilter("all");setSessionScreen("passageEnd");return;
+    }
 
     if (activeQuestionIndex < activePassageSet.questions.length - 1) {
       setSelectedCategoryItemId("");
@@ -1868,6 +1912,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   function handlePassageEndNext() {
     if (gameSession) { void gameSession.onSubmit(selectedAnswers); return; }
+    if (usesSourceOrder && activeQuestion) {nextEnglishSegment(activeQuestion.id);return;}
     if (!hasNextPassageSet) {
       if (standaloneSection) {
         setActiveStandaloneQuestionIndex(0);
@@ -1899,6 +1944,12 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   function handlePassagePrevious() {
     if (gameSession?.teamNavigation) { gameSession.teamNavigation.onReview(Math.max(0, activeQuestionIndex - 1)); return; }
     if (gameSession && activeQuestionIndex === 0) return;
+    if (usesSourceOrder && activePassageSegment && activeQuestion) {
+      const index=activePassageSegment.questions.findIndex(item=>item.question.id===activeQuestion.id);
+      if(index>0)showEnglishLocation(activePassageSegment.questions[index-1],false);
+      else if(shouldShowPassageDirections || isFastForwardEnabled)setSessionScreen(shouldShowPassageDirections?"readingDirections":"passageIntro");
+      return;
+    }
     if (activeQuestionIndex === 0 && !shouldShowPassageDirections && !isFastForwardEnabled) {
       return;
     }
@@ -2376,6 +2427,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   function handleReviewItemSelect(itemId: ReviewItemId) {
+    if (sessionScreen === "standaloneQuestion" && !canReviewStandaloneItems) return;
     const item = reviewItems.find((candidate) => candidate.id === itemId);
     if (!item) return;
     if (gameSession?.teamNavigation) {
@@ -2439,6 +2491,16 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     }
     if (gameSession) { void gameSession.onSubmit(selectedAnswers); return; }
 
+    if (usesSourceOrder && activeStandaloneSegment) {
+      const index=activeStandaloneSegment.questions.findIndex(item=>item.question.id===activeStandaloneQuestion.id);
+      const next=activeStandaloneSegment.questions[index+1];
+      if(next) {showEnglishLocation(next,false);return;}
+      if(!isFastForwardEnabled && activeStandaloneSegment.questions.some(item=>!isQuestionAnswered(item.question,selectedAnswers))) {
+        setReviewFilter("notAnswered");setIsReviewOpen(true);return;
+      }
+      nextEnglishSegment(activeStandaloneQuestion.id);return;
+    }
+
     if (activeStandaloneQuestionIndex < standaloneSection.questions.length - 1) {
       setSelectedCategoryItemId("");
       clearTransientExamUi();
@@ -2463,7 +2525,14 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   function handleStandalonePrevious() {
+    if (!canReviewStandaloneItems) return;
     if (gameSession && activeStandaloneQuestionIndex === 0) return;
+    if(usesSourceOrder && activeStandaloneSegment && activeStandaloneQuestion) {
+      const index=activeStandaloneSegment.questions.findIndex(item=>item.question.id===activeStandaloneQuestion.id);
+      if(index>0)showEnglishLocation(activeStandaloneSegment.questions[index-1],false);
+      else setSessionScreen("standaloneDirections");
+      return;
+    }
     clearTransientExamUi();
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
@@ -2564,7 +2633,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const onTimeExpiredSubmit = !isGameSession && !isTeacherPreviewSession && !(assessment?.canEditSubmittedSections && hasSubmittedAttempt) && timerState && timerState.pausedAt === null && sessionScreen !== "testOver" && sessionScreen !== "sectionComplete" && isExamTimeExpired(timerState, timerNow)
     ? async () => { await saveCompletedExam(selectedAnswers); setSessionScreen("testOver"); }
     : undefined;
-  const submissionQuestions = activeSubmissionSection === "math" ? mathQuestions : [...examContent.passageSets.flatMap(set => set.questions), ...(standaloneSection?.questions ?? [])];
+  const submissionQuestions = activeSubmissionSection === "math" ? mathQuestions : englishSequence.map(item=>item.question);
   const timerToolbarProps = {
     showTimer: !gameSession?.hideTimer,
     onTimeExpiredSubmit,
@@ -2589,6 +2658,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   };
 
   const reviewToolbarProps = {
+    showProgress: false,
     activeTool,
     bookmarkCount,
     currentReviewItemId,
@@ -2640,7 +2710,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   if (sessionScreen === "sectionComplete") {
     const next = submittedSection === "math" ? "english" : "math";
     const mayContinue = next === "math" ? canAccessMath : canAccessEnglish;
-    return <main className="exam-session-shell"><section className="exam-end-section-card"><h1>{submittedSection === "math" ? "Math" : "English"} submitted</h1><p>Your teacher can now review this section. {assessment.canEditSubmittedSections ? "You can continue to the next section or return to any open section later." : <>{next === "math" ? "Math" : "English"} remains unfinished and has not been graded.</>}</p><p>The shared three-hour exam timer is paused. Time remaining: {timerDisplay.text}.</p><div className="exam-test-over-actions"><button className="exam-end-section-submit" onClick={() => window.location.assign(getAssessmentDashboardHref())} type="button">Save & exit</button>{mayContinue && <button className="exam-end-section-submit" onClick={() => continueExamSection(next)} type="button">Continue {next === "math" ? "Math" : "English"}</button>}</div></section></main>;
+    return <main className="exam-session-shell" data-player-profile={playerProfile}><section className="exam-end-section-card"><h1>{submittedSection === "math" ? "Math" : "English"} submitted</h1><p>Your teacher can now review this section. {assessment.canEditSubmittedSections ? "You can continue to the next section or return to any open section later." : <>{next === "math" ? "Math" : "English"} remains unfinished and has not been graded.</>}</p><p>The shared three-hour exam timer is paused. Time remaining: {timerDisplay.text}.</p><div className="exam-test-over-actions"><button className="exam-end-section-submit" onClick={() => window.location.assign(getAssessmentDashboardHref())} type="button">Save & exit</button>{mayContinue && <button className="exam-end-section-submit" onClick={() => continueExamSection(next)} type="button">Continue {next === "math" ? "Math" : "English"}</button>}</div></section></main>;
   }
 
   if (isExamPaused && sessionScreen !== "testOver") {
@@ -2679,10 +2749,10 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "mathDirections") {
     return (
-      <main className="exam-session-shell">
+      <main className="exam-session-shell" data-player-profile={playerProfile}>
         <ExamToolbar
           assessmentLabel={assessmentLabel}
-          breadcrumbCurrent={mathSection.directions.breadcrumbLabel ?? "MATH DIRECTIONS"}
+          breadcrumbCurrent={mathDirections.breadcrumbLabel ?? "Math Directions"}
           breadcrumbMiddle={mathSection.label.toUpperCase()}
           {...reviewToolbarProps}
           isNotepadOpen={isNotepadOpen}
@@ -2700,18 +2770,18 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         <section className="exam-math-directions-document" aria-labelledby="math-directions-title">
           <article className="exam-math-directions-page">
             <header>
-              <p>{mathSection.directions.subject}</p>
-              <h1 id="math-directions-title">{mathSection.directions.title}</h1>
+              <p>{mathDirections.subject}</p>
+              <h1 id="math-directions-title">{mathDirections.title}</h1>
             </header>
 
             <ol>
-              {mathSection.directions.notes.map((note) => (
-                <li key={note}>{note}</li>
+              {mathDirections.notes.map((note, index) => (
+                <li key={note}>{index < 2 ? <>{note.slice(0, note.indexOf('not'))}<strong>not</strong>{note.slice(note.indexOf('not') + 3)}</> : note}</li>
               ))}
             </ol>
 
             <h2>DIRECTIONS:</h2>
-            <p>{mathSection.directions.body}</p>
+            <p>{mathDirections.body}</p>
           </article>
         </section>
       </main>
@@ -2722,7 +2792,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     const mathNoteKey = mathSection.id;
 
     return (
-      <main className="exam-session-shell is-math-session">
+      <main className="exam-session-shell is-math-session" data-player-profile={playerProfile}>
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={gameSession?.practice ? `QUESTION ${gameSession.subjectPosition.current}` : gameSession ? `${gameSession.subjectPosition.current} OF ${gameSession.subjectPosition.total}` : `${activeMathQuestionIndex + 1} OF ${mathQuestions.length}`}
@@ -2867,7 +2937,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         <section className="exam-passage-intro-card" aria-labelledby="standalone-intro-title">
           <div className="exam-passage-intro-panel">
             <div className="exam-passage-intro-copy">
-              <h1 id="standalone-intro-title">{standaloneSection.label}</h1>
+              <h1 id="standalone-intro-title">{standaloneSectionLabel}</h1>
               <p>{standaloneSection.questionCount} Questions</p>
             </div>
             <div className="exam-passage-intro-actions">
@@ -2877,7 +2947,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                   setHighlightToolbar(null);
                   setIsReviewOpen(false);
                   setReviewFilter("all");
-                  setActiveStandaloneQuestionIndex(0);
+                  if (!usesSourceOrder) setActiveStandaloneQuestionIndex(0);
                   setSessionScreen("standaloneDirections");
                 }}
               >
@@ -2892,18 +2962,19 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "standaloneDirections" && standaloneSection) {
     return (
-      <main className="exam-session-shell">
+      <main className="exam-session-shell" data-player-profile={playerProfile}>
         <ExamToolbar
           assessmentLabel={assessmentLabel}
-          breadcrumbCurrent={standaloneSection.directions.breadcrumbLabel ?? "ELA REV/EDIT B DIRECTIONS"}
-          breadcrumbMiddle={standaloneSection.label.toUpperCase()}
+          breadcrumbCurrent="ELA Rev/Edit B Directions"
+          breadcrumbMiddle={standaloneSectionLabel?.toUpperCase()}
           {...reviewToolbarProps}
+          showReviewTools={canReviewStandaloneItems}
           isNotepadOpen={isNotepadOpen}
           onNext={() => {
             setHighlightToolbar(null);
             setIsReviewOpen(false);
             setReviewFilter("all");
-            setActiveStandaloneQuestionIndex(0);
+            if (!usesSourceOrder) setActiveStandaloneQuestionIndex(0);
             setSessionScreen("standaloneQuestion");
           }}
           onPrevious={() => {
@@ -2915,7 +2986,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           studentName={studentName}
         />
 
-        <section className="exam-reading-directions-document" aria-labelledby="standalone-directions-title">
+        <section className="exam-reading-directions-document is-revising-directions" aria-labelledby="standalone-directions-title">
           <article className="exam-reading-directions-page">
             <div className="exam-reading-directions-content">
               <header>
@@ -2923,7 +2994,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 <h1 id="standalone-directions-title">{standaloneSection.directions.title}</h1>
               </header>
               <p>
-                <strong>DIRECTIONS:</strong> {standaloneSection.directions.body}
+                <strong>DIRECTIONS:</strong>{" "}{testnavPartBDirections.split(/\b(best)\b/).map((part,index) => part === 'best' ? <strong key={index}>best</strong> : part)}
               </p>
             </div>
           </article>
@@ -2936,14 +3007,15 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     const standaloneNoteKey = standaloneSection.id;
 
     return (
-      <main className="exam-session-shell">
+      <main className="exam-session-shell" data-player-profile={playerProfile}>
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={`${activeStandaloneQuestionIndex + 1} OF ${standaloneSection.questions.length}`}
-          breadcrumbMiddle={standaloneSection.label.toUpperCase()}
+          breadcrumbMiddle={standaloneSectionLabel?.toUpperCase()}
           {...reviewToolbarProps}
           isNotepadOpen={isNotepadOpen}
-          isPreviousActive
+          isPreviousActive={canReviewStandaloneItems}
+          showReviewTools={canReviewStandaloneItems}
           onNext={handleStandaloneNext}
           onPrevious={handleStandalonePrevious}
           onSelectTool={handleSelectTool}
@@ -2954,10 +3026,18 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
         <section
           aria-labelledby={`standalone-title-${activeStandaloneQuestion.id}`}
-          className="exam-standalone-document"
+          className={activeStandaloneQuestion.selectionHtml ? "exam-question-document is-text-selection-layout" : `exam-standalone-document${activeStandaloneQuestion.type === 'category_sort' && activeStandaloneQuestion.categories?.length === 1 ? ' is-category-sort' : ''}`}
           onMouseUp={handleExamTextSelection}
         >
-          <form key={activeStandaloneQuestion.id} className="exam-standalone-panel" onSubmit={event => event.preventDefault()}>
+          {activeStandaloneQuestion.selectionHtml && <div className="exam-question-passage">
+            <div className="exam-question-passage-scroll is-text-selection" aria-label="Question paragraph" tabIndex={0}>
+              <div className="exam-passage-pencil-surface">
+                <PencilWorkspace active={activeTool === 'pencil'} contained drawingKey={`standalone:${activeStandaloneQuestion.id}`} storage={pencilStorage} onDeactivate={() => handleSelectTool('pointer')} />
+                <InlineTextSelection question={activeStandaloneQuestion} answer={selectedAnswers[activeStandaloneQuestion.id]} onChange={answer => setSelectedAnswers(current => ({...current,[activeStandaloneQuestion.id]:answer}))} />
+              </div>
+            </div>
+          </div>}
+          <form key={activeStandaloneQuestion.id} className={activeStandaloneQuestion.selectionHtml ? "exam-question-panel" : "exam-standalone-panel"} onSubmit={event => event.preventDefault()}>
             <QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeStandaloneQuestion.id} />
             <h1
               className="exam-highlightable"
@@ -2996,7 +3076,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
               </p>
             ) : null}
 
-            {activeStandaloneQuestion.type === 'transition_drop' ? <SentenceDragDrop key={activeStandaloneQuestion.id} question={activeStandaloneQuestion} answer={selectedAnswers[activeStandaloneQuestion.id]} onChange={answer => setSelectedAnswers(current => ({ ...current, [activeStandaloneQuestion.id]: answer }))} /> : activeStandaloneQuestion.type === "matrix_choice" &&
+            {activeStandaloneQuestion.selectionHtml ? null : activeStandaloneQuestion.type === 'transition_drop' ? <SentenceDragDrop key={activeStandaloneQuestion.id} question={activeStandaloneQuestion} answer={selectedAnswers[activeStandaloneQuestion.id]} onChange={answer => setSelectedAnswers(current => ({ ...current, [activeStandaloneQuestion.id]: answer }))} /> : activeStandaloneQuestion.type === "matrix_choice" &&
             activeStandaloneQuestion.items &&
             activeStandaloneQuestion.categories ? (
               <MatrixChoiceResponse
@@ -3015,6 +3095,14 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 <div
                   aria-label="Answer choice bank. Drop an answer here to undo a selection."
                   className="exam-standalone-category-bank"
+                  role="group"
+                  tabIndex={0}
+                  onKeyDown={event => {
+                    if (event.target === event.currentTarget && (event.key === "Enter" || event.key === " ")) {
+                      event.preventDefault();
+                      handleCategoryBankClick(activeStandaloneQuestion);
+                    }
+                  }}
                   onDragOver={(event) => event.preventDefault()}
                   onDrop={(event) => handleCategoryBankDrop(activeStandaloneQuestion, event)}
                 >
@@ -3039,7 +3127,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                         }}
                         type="button"
                       >
-                        {item.text}
+                        {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
                       </button>
                     ))}
                 </div>
@@ -3053,6 +3141,15 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                     return (
                       <section
                         className="exam-standalone-category-target"
+                        role="group"
+                        aria-label={`${category.title}. Select an answer, then press Enter here to place it.`}
+                        tabIndex={0}
+                        onKeyDown={event => {
+                          if (event.target === event.currentTarget && (event.key === "Enter" || event.key === " ")) {
+                            event.preventDefault();
+                            handleCategoryClick(activeStandaloneQuestion, category.id);
+                          }
+                        }}
                         key={category.id}
                         onClick={() => handleCategoryClick(activeStandaloneQuestion, category.id)}
                         onDragOver={(event) => event.preventDefault()}
@@ -3075,7 +3172,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                               }}
                               type="button"
                             >
-                              {item.text}
+                              {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
                             </button>
                           ))}
                         </div>
@@ -3238,10 +3335,10 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   if (sessionScreen === "endSection") {
-    const endSectionLabel = standaloneSection?.label ?? "ELA - Revising/Editing Part B";
+    const endSectionLabel = usesSourceOrder ? "English Language Arts" : standaloneSection?.label ?? "ELA - Revising/Editing Part B";
 
     return (
-      <main className="exam-session-shell">
+      <main className="exam-session-shell" data-player-profile={playerProfile}>
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent=""
@@ -3276,7 +3373,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "testOver") {
     return (
-      <main className="exam-session-shell">
+      <main className="exam-session-shell" data-player-profile={playerProfile}>
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent=""
@@ -3298,6 +3395,9 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           <p>Your answers have been submitted.</p>
           <p className="exam-end-section-copy">Your teacher can view your score from the teacher dashboard.</p>
           <div className="exam-test-over-actions">
+            {!isTeacherPreviewSession && studentId && (assessment?.correctionsOpen || hasFullyAnsweredExam(getExamResult(studentId, currentAssessmentId))) && (
+              <a className="exam-end-section-submit" href={examCorrectionsHref(currentAssessmentId)}>Open Corrections</a>
+            )}
             <button
               className="exam-end-section-submit"
               onClick={() => window.location.assign(getAssessmentDashboardHref())}
@@ -3329,7 +3429,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                   setHighlightToolbar(null);
                   setIsReviewOpen(false);
                   setReviewFilter("all");
-                  setActiveQuestionIndex(0);
+                  if (!usesSourceOrder) setActiveQuestionIndex(0);
                   setSessionScreen(shouldShowPassageDirections ? "readingDirections" : "passage");
                 }}
               >
@@ -3344,7 +3444,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "readingDirections" && activePassageSet) {
     return (
-      <main className="exam-session-shell">
+      <main className="exam-session-shell" data-player-profile={playerProfile}>
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={directionsBreadcrumbLabel}
@@ -3354,7 +3454,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
             setHighlightToolbar(null);
             setIsReviewOpen(false);
             setReviewFilter("all");
-            setActiveQuestionIndex(0);
+            if (!usesSourceOrder) setActiveQuestionIndex(0);
             setSessionScreen("passage");
           }}
           onPrevious={() => {
@@ -3365,7 +3465,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           studentName={studentName}
         />
 
-        <section className="exam-reading-directions-document" aria-labelledby="reading-directions-title">
+        <section className={`exam-reading-directions-document${activePassageSet.directions.title === 'REVISING/EDITING PART A' ? ' is-revising-directions' : ''}`} aria-labelledby="reading-directions-title">
           <article className="exam-reading-directions-page">
             <div className="exam-reading-directions-content">
               <header>
@@ -3373,7 +3473,10 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 <h1 id="reading-directions-title">{activePassageSet.directions.title}</h1>
               </header>
               <p>
-                <strong>DIRECTIONS:</strong> {activePassageSet.directions.body}
+                <strong>DIRECTIONS:</strong>{" "}
+                {activePassageSet.directions.title === "READING COMPREHENSION" ? <>
+                  Read each of the following texts and answer the related questions. As needed, you may use the online notepad tool or write on the scrap paper given to you to take notes. You should reread relevant parts of each text, while being mindful of time, before selecting the <strong>best</strong> answer for each question. Base your answers only on the content within the text.
+                </> : activePassageSet.directions.title === 'REVISING/EDITING PART A' ? testnavPartADirections.split(/\b(best)\b/).map((part,index) => part === 'best' ? <strong key={index}>best</strong> : part) : activePassageSet.directions.body}
               </p>
             </div>
           </article>
@@ -3384,7 +3487,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "passageEnd" && activePassageSet) {
     return (
-      <main className="exam-session-shell">
+      <main className="exam-session-shell" data-player-profile={playerProfile}>
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent="PASSAGE END DIRECTIONS"
@@ -3396,7 +3499,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
             if (gameSession?.teamNavigation) { gameSession.teamNavigation.onReview(activePassageSet.questions.length - 1); return; }
             setHighlightToolbar(null);
             setIsReviewOpen(false);
-            setActiveQuestionIndex(activePassageSet.questions.length - 1);
+            setActiveQuestionIndex(usesSourceOrder ? activePassageSegment?.questions.at(-1)?.questionIndex ?? activeQuestionIndex : activePassageSet.questions.length - 1);
             setSessionScreen("passage");
           }}
           studentName={studentName}
@@ -3440,7 +3543,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "passage" && activePassageSet && activeQuestion) {
     return (
-      <main className="exam-session-shell">
+      <main className="exam-session-shell" data-player-profile={playerProfile}>
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={`${activeQuestionIndex + 1} OF ${activePassageSet.questions.length}`}
@@ -3472,7 +3575,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
               <PencilWorkspace active={activeTool === "pencil"} contained drawingKey={`passage:${activePassageSet.id}`} storage={pencilStorage} onDeactivate={() => handleSelectTool("pointer")} />
               <PassageGlossary contextKey={activeQuestion.id}>
               {activePassageSet.passage.lines.filter((line) => line.kind !== "image").map((line, index) =>
-                isSentenceProsePassage && !line.text ? (
+                isSentenceProsePassage && !line.text && !line.html ? (
                   <p
                     aria-hidden="true"
                     className="exam-sentence-prose-line is-spacer"
@@ -3492,7 +3595,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                       {renderAuthoredText(line.html, line.text, `passage:${activePassageSet.id}:line-${index}`)}
                     </span>
                   </p>
-                ) : isProsePassage && !line.text ? (
+                ) : isProsePassage && !line.text && !line.html ? (
                   <p
                     aria-hidden="true"
                     className="exam-prose-line is-spacer"
@@ -3514,6 +3617,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                     return (
                       <ProseLine
                         className={proseLineClassName}
+                        data-align={line.align}
                         role={line.kind === "heading" ? "heading" : undefined}
                         aria-level={line.kind === "heading" ? 2 : undefined}
                         key={`${line.lineNumber}-${line.text}-${index}`}
@@ -3549,7 +3653,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                   })()
                 ) : (
                   <p
-                    className={`exam-poem-line ${line.align === "center" ? "is-centered" : line.align === "indent" ? "is-indented" : ""} ${
+                    className={`exam-poem-line ${passageHasExplicitVerse && line.poetryLine !== true && !line.kind && line.text ? "is-context" : ""} ${line.align === "center" ? "is-centered" : line.align === "indent" ? "is-indented" : ""} ${
                       line.kind ? `is-${line.kind}` : ""
                     } ${
                       line.text ? "" : "is-spacer"
@@ -3567,7 +3671,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 ),
               )}
               {activePassageSet.passage.sourceNote ? (
-                <p className="exam-passage-source-note">{activePassageSet.passage.sourceNote}</p>
+                <p className="exam-passage-source-note">{renderAuthoredText(activePassageSet.passage.sourceNoteHtml,activePassageSet.passage.sourceNote,`source:${activePassageSet.id}`)}</p>
               ) : null}
               {activePassageSet.passage.lines
                 .filter((line) => line.kind === "image" && line.image)
@@ -3600,13 +3704,15 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 className="exam-question-instructions exam-highlightable"
                 data-highlight-key={`instructions:${activeQuestion.id}`}
               >
-                {renderHighlightedText(
-                  activeQuestion.instructions,
+                {renderAuthoredText(
+                  activeQuestion.instructionsHtml, activeQuestion.instructions,
                   `instructions:${activeQuestion.id}`,
                 )}
               </p>
             ) : null}
-            {activeQuestion.type === "matrix_choice" && activeQuestion.items && activeQuestion.categories ? (
+            {["math_drag_drop","inline_dropdown","graph_point_select","number_line_response","numeric_entry","expression_entry","grid_in"].includes(activeQuestion.type) ? (
+              <ExamMathQuestion responseOnly question={activeQuestion} answer={activePassageAnswer} onChange={answer=>setSelectedAnswers(current=>({...current,[activeQuestion.id]:answer}))} />
+            ) : activeQuestion.type === "matrix_choice" && activeQuestion.items && activeQuestion.categories ? (
               <MatrixChoiceResponse
                 answer={activeQuestionCategoryPlacements}
                 onChange={(answer) => handleChangeStructuredAnswer(activeQuestion.id, answer)}
@@ -3807,6 +3913,8 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                   })}
                 </div>
               </div>
+            ) : activeQuestion.selectionHtml ? (
+              <InlineTextSelection question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({...current,[activeQuestion.id]:answer}))} />
             ) : activeQuestion.type === "transition_drop" && activeQuestionChoices.length > 0 ? (
               <SentenceDragDrop key={activeQuestion.id} question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({ ...current, [activeQuestion.id]: answer }))} />
             ) : (
@@ -4027,7 +4135,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   return (
-    <main className="exam-session-shell">
+    <main className="exam-session-shell" data-player-profile={playerProfile}>
       <ExamToolbar
         assessmentLabel={assessmentLabel}
         breadcrumbCurrent="GENERAL DIRECTIONS"
@@ -4035,6 +4143,15 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         {...reviewToolbarProps}
         onNext={() => {
           setHighlightToolbar(null);
+          if (getStoredStartingSubject(currentAssessmentId) === 'math' && mathQuestionCount > 0) {
+            setSessionScreen('mathIntro');
+            return;
+          }
+          if (usesSourceOrder) {
+            if(englishSequence.length)showEnglishLocation(englishSequence[0]);
+            else setSessionScreen("mathIntro");
+            return;
+          }
           setActivePassageSetIndex(0);
           setActiveQuestionIndex(0);
           setSessionScreen(activePassageSet ? "passageIntro" : standaloneQuestionCount > 0 ? "standaloneIntro" : "mathIntro");
@@ -4042,62 +4159,8 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         studentName={studentName}
       />
 
-      <section className="exam-session-document" aria-labelledby="exam-session-title">
-        <article className="exam-session-page">
-          <header className="exam-session-page-header">
-            <h1 id="exam-session-title">SHSAT Practice Test</h1>
-            <p>Grade 8</p>
-          </header>
+      <ExamGeneralDirections english={englishQuestionCount} math={mathQuestionCount} total={totalExamQuestionCount} durationMinutes={assessment.durationMinutes} firstSubject={getStoredStartingSubject(currentAssessmentId)} />
 
-          <section className="exam-session-content-block">
-            <h2>General Directions</h2>
-            <p>
-              This test consists of {totalExamQuestionCount} questions in {[englishQuestionCount > 0 ? "English Language Arts" : "", mathQuestionCount > 0 ? "Mathematics" : ""].filter(Boolean).join(" and ")}.
-            </p>
-
-            <div className="exam-session-section-list">
-              {englishQuestionCount > 0 && <><p>
-                <strong>PART 1 - ENGLISH LANGUAGE ARTS</strong>
-                <strong>{englishQuestionCount} QUESTIONS</strong>
-              </p>
-              <p className="exam-session-question-range">Questions 1-{englishQuestionCount}</p></>}
-
-              {mathQuestionCount > 0 && <><p>
-                <strong>PART {englishQuestionCount > 0 ? 2 : 1} - MATHEMATICS</strong>
-                <strong>{mathQuestionCount} QUESTIONS</strong>
-              </p>
-              <p className="exam-session-question-range">
-                Questions {englishQuestionCount + 1}-{totalExamQuestionCount}
-              </p></>}
-            </div>
-          </section>
-
-          <hr />
-
-          <section className="exam-session-content-block">
-            <h2>Planning Your Time</h2>
-            <ul>
-              <li>
-                {assessment.canEditSubmittedSections ? <>The first timed attempt allows {formatDuration(assessment.durationMinutes)}. You can revisit submitted work while your teacher keeps the exam open.</> : <>If the timer is enabled, your session will end after {formatDuration(assessment.durationMinutes)}.</>}
-              </li>
-              <li>
-                Answer every question. Use Previous, Next, or Review to navigate within your current passage set or section.
-              </li>
-              <li>
-                For each ELA passage set, you may return to questions in that set until you advance past the final
-                question in the set.
-              </li>
-              <li>
-                Do not spend too much time on any one question. If you are unsure, choose the response you think
-                is best.
-              </li>
-              <li>
-                {assessment.canEditSubmittedSections ? "Your answers stay saved after submission. You can return to and revise any section your teacher keeps open." : "Complete the subject area you started before moving to the next subject area. Once submitted, that subject area will be locked."}
-              </li>
-            </ul>
-          </section>
-        </article>
-      </section>
     </main>
   );
 }

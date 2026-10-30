@@ -21,9 +21,7 @@ import { atDusk20252026FormBPassageSet } from "./passageSets/at-dusk-2025-2026-f
 import { usingFireToKeepAPrairieHealthyPassageSet } from "./passageSets/using-fire-to-keep-a-prairie-healthy";
 import { letterFromBrooklyn20252026FormBPassageSet } from "./passageSets/letter-from-brooklyn-2025-2026-form-b";
 import { theEndOfAnEraPassageSet } from "./passageSets/the-end-of-an-era";
-import { excerptFromImpressionsOfAnIndianChildhood20242025FormAPassageSet } from "./passageSets/excerpt-from-impressions-of-an-indian-childhood-2024-2025-form-a";
 import { atDusk20242025FormAPassageSet } from "./passageSets/at-dusk-2024-2025-form-a";
-import { championOfTheChannelPassageSet } from "./passageSets/champion-of-the-channel";
 import { massachusettsLowellNationalHistoricalPark20202021FormBPassageSet } from "./passageSets/massachusetts-lowell-national-historical-park-2020-2021-form-b";
 import { excerptFromATrampAbroad20202021ShsatSampleTestFormBPassageSet } from "./passageSets/excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b";
 import { excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFormBPassageSet } from "./passageSets/excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b";
@@ -72,6 +70,51 @@ import { excerptFromHowWeMadeTheFirstFlight20192020FormAPassageSet } from "./pas
 import { excerptFromInSearchOfTheUnknown20192020FormAPassageSet } from "./passageSets/excerpt-from-in-search-of-the-unknown-2019-2020-form-a";
 import { isItTimeForTermLimits20192020FormAPassageSet } from "./passageSets/is-it-time-for-term-limits-2019-2020-form-a";
 import { excerptFromResearchRiddleResolved20192020FormAPassageSet } from "./passageSets/excerpt-from-research-riddle-resolved-2019-2020-form-a";
+import { theFreeCollegeDebate20242025FormAPassageSet } from "./passageSets/the-free-college-debate-2024-2025-form-a";
+import { excerptFromImpressionsOfAnIndianChildhood20242025FormAVersion2PassageSet } from "./passageSets/excerpt-from-impressions-of-an-indian-childhood-2024-2025-form-a-version-2";
+import { atDusk2024FormAPassageSet } from "./passageSets/at-dusk-2024-form-a";
+import { championOfTheChannel20242025FormAPassageSet } from "./passageSets/champion-of-the-channel-2024-2025-form-a";
+import { content5ReasonsPhysicalBooksMightBeBetterThanEBooks20242025FormAPassageSet } from "./passageSets/5-reasons-physical-books-might-be-better-than-e-books-2024-2025-form-a";
+import { excerptFromTheHighestTide2024FormAPassageSet } from "./passageSets/excerpt-from-the-highest-tide-2024-form-a";
+import { excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvil20242025FormAPassageSet } from "./passageSets/excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-2024-2025-form-a";
+import { snowyMountains20262027FormAPassageSet } from "./passageSets/snowy-mountains-2026-2027-form-a";
+import { theBestLaidPlansOfRavens20262027FormAPassageSet } from "./passageSets/the-best-laid-plans-of-ravens-2026-2027-form-a";
+import { excerptFromAVoiceInTheWilderness20262027FormAPassageSet } from "./passageSets/excerpt-from-a-voice-in-the-wilderness-2026-2027-form-a";
+import { championOfTheChannel20262027FormAPassageSet } from "./passageSets/champion-of-the-channel-2026-2027-form-a";
+import { excerptFromTheSpiritOfTheHerd20262027FormAPassageSet } from "./passageSets/excerpt-from-the-spirit-of-the-herd-2026-2027-form-a";
+import { theBenefitsOfIndoorPlants20262027FormAPassageSet } from "./passageSets/the-benefits-of-indoor-plants-2026-2027-form-a";
+import { excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20262027FormBPassageSet } from "./passageSets/excerpt-from-the-past-and-the-future-of-the-earth-s-oldest-trees-2026-2027-form-b";
+import { aMiracleMile20262027FormBPassageSet } from "./passageSets/a-miracle-mile-2026-2027-form-b";
+import { excerptFromInSearchOfTheUnknown20262027FormBPassageSet } from "./passageSets/excerpt-from-in-search-of-the-unknown-2026-2027-form-b";
+import { lookingForTheSmallestSparkOfEverything20262027FormBPassageSet } from "./passageSets/looking-for-the-smallest-spark-of-everything-2026-2027-form-b";
+import { usingFireToKeepAPrairieHealthy20262027FormBPassageSet } from "./passageSets/using-fire-to-keep-a-prairie-healthy-2026-2027-form-b";
+import { letterFromBrooklyn20262027FormBPassageSet } from "./passageSets/letter-from-brooklyn-2026-2027-form-b";
+import { theEndOfAnEra20262027FormBPassageSet } from "./passageSets/the-end-of-an-era-2026-2027-form-b";
+import { inventionOfTheTelegraph20262027FormCPassageSet } from "./passageSets/invention-of-the-telegraph-2026-2027-form-c";
+import { excerptFromNiagaraFalls20262027FormCPassageSet } from "./passageSets/excerpt-from-niagara-falls-2026-2027-form-c";
+import { excerptFromImpressionsOfAnIndianChildhood20262027FormCPassageSet } from "./passageSets/excerpt-from-impressions-of-an-indian-childhood-2026-2027-form-c";
+import { birdTalk20262027FormCPassageSet } from "./passageSets/bird-talk-2026-2027-form-c";
+import { serpentMound20262027FormCPassageSet } from "./passageSets/serpent-mound-2026-2027-form-c";
+import { excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormCPassageSet } from "./passageSets/excerpt-from-growing-peppers-on-the-iss-is-just-the-start-of-space-farming-2026-2027-form-c";
+import { newYorkCityAndTheHudsonValleyBrickmakingIndustry20262027FormCPassageSet } from "./passageSets/new-york-city-and-the-hudson-valley-brickmaking-industry-2026-2027-form-c";
+import { aMemoryRevolution20262027FormDPassageSet } from "./passageSets/a-memory-revolution-2026-2027-form-d";
+import { excerptFromHowWeMadeTheFirstFlight20262027FormDPassageSet } from "./passageSets/excerpt-from-how-we-made-the-first-flight-2026-2027-form-d";
+import { wolvesOfTheSea20262027FormDPassageSet } from "./passageSets/wolves-of-the-sea-2026-2027-form-d";
+import { odeToFireworks20262027FormDPassageSet } from "./passageSets/ode-to-fireworks-2026-2027-form-d";
+import { excerptFromTheHighestTide20262027FormDPassageSet } from "./passageSets/excerpt-from-the-highest-tide-2026-2027-form-d";
+import { movingThroughMountains20262027FormDPassageSet } from "./passageSets/moving-through-mountains-2026-2027-form-d";
+import { findTimeToVolunteer20242025FormBPassageSet } from "./passageSets/find-time-to-volunteer-2024-2025-form-b";
+import { excerptFromHowExerciseCouldHelpYouLearnANewLanguage20242025FormBPassageSet } from "./passageSets/excerpt-from-how-exercise-could-help-you-learn-a-new-language-2024-2025-form-b";
+import { inventionOfTheTelegraph20242025FormBPassageSet } from "./passageSets/invention-of-the-telegraph-2024-2025-form-b";
+import { snowyMountains20242025FormBPassageSet } from "./passageSets/snowy-mountains-2024-2025-form-b";
+import { excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20242025FormBPassageSet } from "./passageSets/excerpt-from-the-past-and-the-future-of-the-earth-s-oldest-trees-2024-2025-form-b";
+import { excerptFromRipVanWinkleDigitalShsatPracticeTest5PassageSet } from "./passageSets/excerpt-from-rip-van-winkle-digital-shsat-practice-test-5";
+import { excerptFromRoomToRoamDigitalShsatPracticeTest5PassageSet } from "./passageSets/excerpt-from-room-to-roam-digital-shsat-practice-test-5";
+import { excerptFromMessageAtTheSpeedOfAirDigitalShsatPracticeTest5PassageSet } from "./passageSets/excerpt-from-message-at-the-speed-of-air-digital-shsat-practice-test-5";
+import { excerptFromFirstIceDigitalShsatPracticeTest5PassageSet } from "./passageSets/excerpt-from-first-ice-digital-shsat-practice-test-5";
+import { howAMountainBecomesAVolcanoDigitalShsatPracticeTest5PassageSet } from "./passageSets/how-a-mountain-becomes-a-volcano-digital-shsat-practice-test-5";
+import { excerptFromToAutumnDigitalShsatPracticeTest5PassageSet } from "./passageSets/excerpt-from-to-autumn-digital-shsat-practice-test-5";
+import { theScienceOfSourdoughDigitalShsatPracticeTest5PassageSet } from "./passageSets/the-science-of-sourdough-digital-shsat-practice-test-5";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -94,9 +137,7 @@ export const examPassageLibrary: ExamPassageSet[] = [
   usingFireToKeepAPrairieHealthyPassageSet,
   letterFromBrooklyn20252026FormBPassageSet,
   theEndOfAnEraPassageSet,
-  excerptFromImpressionsOfAnIndianChildhood20242025FormAPassageSet,
   atDusk20242025FormAPassageSet,
-  championOfTheChannelPassageSet,
   massachusettsLowellNationalHistoricalPark20202021FormBPassageSet,
   excerptFromATrampAbroad20202021ShsatSampleTestFormBPassageSet,
   excerptFromImpressionsOfAnIndianChildhood20202021ShsatSampleTestFormBPassageSet,
@@ -145,6 +186,51 @@ export const examPassageLibrary: ExamPassageSet[] = [
   excerptFromInSearchOfTheUnknown20192020FormAPassageSet,
   isItTimeForTermLimits20192020FormAPassageSet,
   excerptFromResearchRiddleResolved20192020FormAPassageSet,
+  theFreeCollegeDebate20242025FormAPassageSet,
+  excerptFromImpressionsOfAnIndianChildhood20242025FormAVersion2PassageSet,
+  atDusk2024FormAPassageSet,
+  championOfTheChannel20242025FormAPassageSet,
+  content5ReasonsPhysicalBooksMightBeBetterThanEBooks20242025FormAPassageSet,
+  excerptFromTheHighestTide2024FormAPassageSet,
+  excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvil20242025FormAPassageSet,
+  snowyMountains20262027FormAPassageSet,
+  theBestLaidPlansOfRavens20262027FormAPassageSet,
+  excerptFromAVoiceInTheWilderness20262027FormAPassageSet,
+  championOfTheChannel20262027FormAPassageSet,
+  excerptFromTheSpiritOfTheHerd20262027FormAPassageSet,
+  theBenefitsOfIndoorPlants20262027FormAPassageSet,
+  excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20262027FormBPassageSet,
+  aMiracleMile20262027FormBPassageSet,
+  excerptFromInSearchOfTheUnknown20262027FormBPassageSet,
+  lookingForTheSmallestSparkOfEverything20262027FormBPassageSet,
+  usingFireToKeepAPrairieHealthy20262027FormBPassageSet,
+  letterFromBrooklyn20262027FormBPassageSet,
+  theEndOfAnEra20262027FormBPassageSet,
+  inventionOfTheTelegraph20262027FormCPassageSet,
+  excerptFromNiagaraFalls20262027FormCPassageSet,
+  excerptFromImpressionsOfAnIndianChildhood20262027FormCPassageSet,
+  birdTalk20262027FormCPassageSet,
+  serpentMound20262027FormCPassageSet,
+  excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormCPassageSet,
+  newYorkCityAndTheHudsonValleyBrickmakingIndustry20262027FormCPassageSet,
+  aMemoryRevolution20262027FormDPassageSet,
+  excerptFromHowWeMadeTheFirstFlight20262027FormDPassageSet,
+  wolvesOfTheSea20262027FormDPassageSet,
+  odeToFireworks20262027FormDPassageSet,
+  excerptFromTheHighestTide20262027FormDPassageSet,
+  movingThroughMountains20262027FormDPassageSet,
+  findTimeToVolunteer20242025FormBPassageSet,
+  excerptFromHowExerciseCouldHelpYouLearnANewLanguage20242025FormBPassageSet,
+  inventionOfTheTelegraph20242025FormBPassageSet,
+  snowyMountains20242025FormBPassageSet,
+  excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20242025FormBPassageSet,
+  excerptFromRipVanWinkleDigitalShsatPracticeTest5PassageSet,
+  excerptFromRoomToRoamDigitalShsatPracticeTest5PassageSet,
+  excerptFromMessageAtTheSpeedOfAirDigitalShsatPracticeTest5PassageSet,
+  excerptFromFirstIceDigitalShsatPracticeTest5PassageSet,
+  howAMountainBecomesAVolcanoDigitalShsatPracticeTest5PassageSet,
+  excerptFromToAutumnDigitalShsatPracticeTest5PassageSet,
+  theScienceOfSourdoughDigitalShsatPracticeTest5PassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);
