@@ -1,4 +1,5 @@
 import { getSupabaseClient, isSupabaseConfigured } from "./supabase";
+import { RequestTimeoutError, withRequestDeadline } from "./requestDeadline";
 import type { AssignmentPage, ContentHistory, PlanClient, PlanOverview, PlanAssignment } from "./learningPlan";
 import type { ExamResult } from "./examResults";
 import type { ExamNavigation } from "../../../server/src/shared/examNavigation";
@@ -553,7 +554,6 @@ type ApiErrorBody = {
   requestId?: string;
 };
 
-const requestTimeoutMs = 15_000;
 const readRetryDelaysMs = [300, 900];
 const retryableReadStatuses = new Set([408, 425, 429, 500, 502, 503, 504]);
 let sessionRefreshPromise: Promise<string | null> | null = null;
@@ -612,36 +612,18 @@ async function refreshAccessToken() {
   }
 }
 
-async function fetchWithTimeout(url: string, init: RequestInit, headers: Headers) {
-  const controller = new AbortController();
-  let timedOut = false;
-  const abortFromCaller = () => controller.abort(init.signal?.reason);
-
-  if (init.signal?.aborted) {
-    abortFromCaller();
-  } else {
-    init.signal?.addEventListener("abort", abortFromCaller, { once: true });
-  }
-
-  const timeout = globalThis.setTimeout(() => {
-    timedOut = true;
-    controller.abort();
-  }, requestTimeoutMs);
-
+export async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
   try {
-    return await fetch(url, { ...init, headers, signal: controller.signal });
+    return await withRequestDeadline(init.signal, signal => requestApiWithinDeadline<TResponse>(path, { ...init, signal }));
   } catch (error) {
-    if (timedOut) {
-      throw new Error("The server took too long to respond.");
+    if (error instanceof RequestTimeoutError && !["GET", "HEAD"].includes((init.method ?? "GET").toUpperCase())) {
+      throw new Error("The server took too long to respond. The change was not confirmed; refresh before trying it again.");
     }
     throw error;
-  } finally {
-    globalThis.clearTimeout(timeout);
-    init.signal?.removeEventListener("abort", abortFromCaller);
   }
 }
 
-export async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
+async function requestApiWithinDeadline<TResponse>(path: string, init: RequestInit) {
   const method = (init.method ?? "GET").toUpperCase();
   const isReadOnly = method === "GET" || method === "HEAD";
   let url = `${apiBaseUrl}${path}`;
@@ -651,8 +633,9 @@ export async function requestApi<TResponse>(path: string, init: RequestInit = {}
   let response: Response | null = null;
 
   while (!response) {
+    init.signal?.throwIfAborted();
     try {
-      response = await fetchWithTimeout(url, init, headers);
+      response = await fetch(url, { ...init, headers });
     } catch (error) {
       if (init.signal?.aborted) throw error;
 
@@ -681,6 +664,7 @@ export async function requestApi<TResponse>(path: string, init: RequestInit = {}
       authRetryUsed = true;
       const refreshedToken = await refreshAccessToken();
       if (refreshedToken) {
+        init.signal?.throwIfAborted();
         headers.set("Authorization", `Bearer ${refreshedToken}`);
         response = null;
         continue;

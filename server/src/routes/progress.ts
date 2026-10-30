@@ -9,6 +9,7 @@ import { randomUUID } from "node:crypto";
 import type { User } from "@supabase/supabase-js";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { supabase } from "../lib/supabase";
+import { loadStudentProgressRows, type ProgressRows } from "../lib/studentProgressRows";
 import { recordPlanCompletion, recordPracticePlanCompletion } from "../lib/learningPlanStore";
 import { readExamReentries, withExamWriteLock } from "../lib/examReentry";
 import { examAttemptId } from "../shared/examReentry";
@@ -105,6 +106,10 @@ async function getExamSessions(user: User): Promise<Record<string, ExamSessionPr
             .eq("user_id", user.id)
             .like("assessment_id", `${examSessionResultPrefix}%`),
     ]);
+    return mergeExamSessions(user, query, resultFallback);
+}
+
+function mergeExamSessions(user: User, query: ProgressRows, resultFallback: ProgressRows): Record<string, ExamSessionProgress> {
     if (query.error && resultFallback.error) return getMetadataExamSessions(user);
 
     const fallbackSessions = resultFallback.error
@@ -117,7 +122,7 @@ async function getExamSessions(user: User): Promise<Record<string, ExamSessionPr
         }));
 
     const dedicatedSessions: Record<string, ExamSessionProgress> = query.error ? {} : Object.fromEntries((query.data ?? []).map((row) => [
-        row.assessment_id,
+        String(row.assessment_id),
         {
             navigation: normalizeExamNavigation(row.navigation),
             answers:
@@ -159,6 +164,10 @@ export async function getDatabaseProgress(user: User): Promise<LearningProgress>
         supabase.from("student_practice_progress").select("topic_slug,progress").eq("user_id", user.id),
     ]);
 
+    return mergeDatabaseProgress(user, examQuery, practiceQuery);
+}
+
+function mergeDatabaseProgress(user: User, examQuery: ProgressRows, practiceQuery: ProgressRows): LearningProgress {
     const metadataProgress = getMetadataProgress(user);
     if (examQuery.error || practiceQuery.error) return metadataProgress;
 
@@ -254,11 +263,20 @@ progressRouter.get("/students", async (request, response) => {
     const students = listed.data.users.filter(
         (candidate) => getUserRole(candidate) === "student" && !isStudentArchived(candidate),
     );
-    const snapshots = await Promise.all(students.map(async (student) => {
-        const [progress, examSessions] = await Promise.all([
-            getDatabaseProgress(student),
-            getExamSessions(student),
-        ]);
+    let rows: Awaited<ReturnType<typeof loadStudentProgressRows>>;
+    try {
+        rows = await loadStudentProgressRows(students.map(student => student.id));
+    } catch {
+        response.status(503).json({ message: "Student progress is temporarily unavailable. Please try again." });
+        return;
+    }
+    const snapshots = students.map((student) => {
+        const exams = rows.exams(student.id);
+        const progress = mergeDatabaseProgress(student, exams, rows.practice(student.id));
+        const examSessions = mergeExamSessions(student, rows.sessions(student.id), {
+            ...exams,
+            data: exams.data?.filter(row => String(row.assessment_id).startsWith(examSessionResultPrefix)) ?? null,
+        });
         return {
             classes: getEnrolledClassIds(student.app_metadata),
             dismissal: getDismissal(student),
@@ -271,7 +289,7 @@ progressRouter.get("/students", async (request, response) => {
             progress,
             username: typeof student.user_metadata.username === "string" ? student.user_metadata.username : student.email?.split("@")[0] ?? "student",
         };
-    }));
+    });
 
     response.json({ students: snapshots.sort((left, right) => left.fullName.localeCompare(right.fullName)) });
 });

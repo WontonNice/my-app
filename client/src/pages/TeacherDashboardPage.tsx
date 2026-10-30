@@ -1,4 +1,6 @@
 import { teacherNavItems } from '../lib/teacherNavigation';
+import { loadDashboardResource, type DashboardResourceState } from "../lib/dashboardResource";
+import { withRequestDeadline } from "../lib/requestDeadline";
 import { AccountActivity, useAccountActivity } from "../features/account/AccountActivity";
 import { isFullExamResult } from "../../../server/src/shared/examCompletion";
 import { Fragment, useEffect, useMemo, useState, type FormEvent } from "react";
@@ -1059,6 +1061,13 @@ export function TeacherDashboardPage() {
     initialDashboardCache?.students ?? [],
   );
   const [studentAccounts, setStudentAccounts] = useState<StudentAccount[]>([]);
+  const [loadVersion, setLoadVersion] = useState(0);
+  const [resources, setResources] = useState<Record<"assessments" | "students" | "accounts" | "requests", DashboardResourceState>>({
+    assessments: { status: initialDashboardCache ? "ready" : "loading" },
+    students: { status: initialDashboardCache ? "ready" : "loading" },
+    accounts: { status: "loading" },
+    requests: { status: "loading" },
+  });
   const [accountView, setAccountView] = useState<"current" | "archived">("current");
   const [selectedStudentId, setSelectedStudentId] = useState(() => new URLSearchParams(window.location.search).get("student") ?? "");
   const [planRoster, setPlanRoster] = useState<Record<string, PlanOverview["summary"]>>({});
@@ -1093,44 +1102,50 @@ export function TeacherDashboardPage() {
 
   useEffect(() => {
     if (!isSupabaseConfigured) return;
+    let active = true;
     async function loadTeacherDashboard() {
-      const { data } = await getSupabaseClient().auth.getSession();
-      if (!data.session) { window.location.assign("/login"); return; }
-      const userRole = getUserRole(data.session.user);
-      const metadata = data.session.user.user_metadata as { full_name?: string; name?: string };
-      setTeacherName(metadata.full_name ?? metadata.name ?? "Teacher");
-      if (userRole !== "teacher") { window.location.assign(getDashboardPath(userRole)); return; }
-      setTeacherUserId(data.session.user.id);
-      setAccessToken(data.session.access_token);
-      const cachedDashboard = getCachedTeacherDashboard(data.session.user.id);
-      if (cachedDashboard) {
-        setAssessments(cachedDashboard.assessments);
-        setStudents(cachedDashboard.students);
-        setIsCheckingSession(false);
-      }
       try {
-        const [nextAssessments, nextStudents, nextStudentAccounts, nextClassJoinRequests] = await Promise.all([
-          getTeacherAssessments(data.session.access_token),
-          getTeacherStudentProgress(data.session.access_token),
-          getTeacherStudentAccounts(data.session.access_token),
-          getTeacherClassJoinRequests(data.session.access_token),
+        const { data } = await withRequestDeadline(undefined, () => getSupabaseClient().auth.getSession());
+        if (!active) return;
+        if (!data.session) { window.location.assign("/login"); return; }
+        const userRole = getUserRole(data.session.user);
+        const metadata = data.session.user.user_metadata as { full_name?: string; name?: string };
+        setTeacherName(metadata.full_name ?? metadata.name ?? "Teacher");
+        if (userRole !== "teacher") { window.location.assign(getDashboardPath(userRole)); return; }
+        setTeacherUserId(data.session.user.id);
+        setAccessToken(data.session.access_token);
+        const cachedDashboard = getCachedTeacherDashboard(data.session.user.id);
+        if (cachedDashboard) {
+          setAssessments(cachedDashboard.assessments);
+          setStudents(cachedDashboard.students);
+        }
+        setIsCheckingSession(false);
+        const token = data.session.access_token;
+        const load = <T,>(key: keyof typeof resources, fetchData: () => Promise<T>, publish: (value: T) => void) =>
+          loadDashboardResource(fetchData, value => { if (active) publish(value); }, state => {
+            if (active) setResources(previous => ({ ...previous, [key]: state }));
+          });
+        await Promise.all([
+          load("assessments", () => getTeacherAssessments(token), setAssessments),
+          load("students", () => getTeacherStudentProgress(token), setStudents),
+          load("accounts", () => getTeacherStudentAccounts(token), setStudentAccounts),
+          load("requests", () => getTeacherClassJoinRequests(token), setClassJoinRequests),
         ]);
-        setAssessments(nextAssessments);
-        setStudents(nextStudents);
-        setStudentAccounts(nextStudentAccounts);
-        setClassJoinRequests(nextClassJoinRequests);
-        cacheTeacherDashboard(data.session.user.id, nextAssessments, nextStudents);
       } catch (error) {
-        setMessage(error instanceof Error ? error.message : "Could not load the teacher dashboard.");
-      } finally { setIsCheckingSession(false); }
+        if (active) {
+          const errorMessage = error instanceof Error ? error.message : "Could not load the teacher dashboard.";
+          setResources({ assessments: { status: "error", error: errorMessage }, students: { status: "error", error: errorMessage }, accounts: { status: "error", error: errorMessage }, requests: { status: "error", error: errorMessage } });
+        }
+      } finally { if (active) setIsCheckingSession(false); }
     }
-    loadTeacherDashboard();
-  }, []);
+    void loadTeacherDashboard();
+    return () => { active = false; };
+  }, [loadVersion]);
 
   useEffect(() => {
-    if (!teacherUserId || isCheckingSession) return;
+    if (!teacherUserId || isCheckingSession || resources.assessments.status !== "ready" || resources.students.status !== "ready") return;
     cacheTeacherDashboard(teacherUserId, assessments, students);
-  }, [assessments, isCheckingSession, students, teacherUserId]);
+  }, [assessments, isCheckingSession, students, teacherUserId, resources.assessments.status, resources.students.status]);
 
   const selectedStudent = students.find((student) => student.id === selectedStudentId);
   const shsatStudents = useMemo(() => students.filter((student) => student.classes.includes("shsat")), [students]);
@@ -1505,6 +1520,12 @@ export function TeacherDashboardPage() {
     { icon: BookOpen, label: "Open exams", value: String(assessments.filter((assessment) => assessment.status === "open").length) },
   ];
   const activeWorkspace = getTeacherWorkspace(window.location.pathname);
+  const workspaceResources: (keyof typeof resources)[] = activeWorkspace === "accounts" ? ["accounts"]
+    : activeWorkspace === "enrollment" ? ["requests"]
+    : ["overview", "students", "assessments"].includes(activeWorkspace) ? ["assessments", "students"]
+    : activeWorkspace === "boards" ? ["students"] : [];
+  const workspaceError = workspaceResources.map(key => resources[key].error).find(Boolean);
+  const workspaceLoading = workspaceResources.some(key => resources[key].status === "loading");
   const insightAssessmentId = getInsightAssessmentId(window.location.pathname);
   const selectedClassInsight = classAssessmentInsights.find((insight) => insight.assessmentId === insightAssessmentId);
   const navItems = teacherNavItems;
@@ -1565,6 +1586,10 @@ export function TeacherDashboardPage() {
       {activeWorkspace === "achievements" && accessToken && <Achievements accessToken={accessToken} teacher />}
       {activeWorkspace === "games" && accessToken && <GameRooms accessToken={accessToken} teacher />}
       {message && <p className="teacher-message corporate-message">{message}</p>}
+
+      {workspaceError ? <section className="teacher-panel" role="alert"><p>{workspaceError}</p><button type="button" onClick={() => setLoadVersion(value => value + 1)}>Try again</button></section>
+        : workspaceLoading ? <section className="teacher-panel" role="status">Loading {activeWorkspace === "accounts" ? "student accounts" : "this section"}…</section> : null}
+      {!workspaceError && !workspaceLoading && <>
 
       {activeWorkspace === "overview" ? (
         <>
@@ -1761,6 +1786,7 @@ export function TeacherDashboardPage() {
         </div>
       </section>
       ) : null}
+      </>}
     </CorporateDashboardShell>
   );
 }

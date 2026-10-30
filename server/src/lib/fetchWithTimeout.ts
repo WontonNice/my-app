@@ -14,7 +14,11 @@ export async function fetchWithTimeout(
 
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
     try {
-        return await fetch(input, { ...init, signal: controller.signal });
+        const response = await fetch(input, { ...init, signal: controller.signal });
+        // Keep the deadline active while reading the body as well as headers.
+        // These server integrations return JSON; none stream to the caller.
+        const body = response.body ? await response.arrayBuffer() : null;
+        return new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers });
     } finally {
         clearTimeout(timeout);
         init.signal?.removeEventListener("abort", abortFromCaller);

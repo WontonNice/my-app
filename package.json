@@ -44,6 +44,7 @@
         "preview:study-hall": "node tools/preview-study-hall.cjs",
         "test:exam-review": "node --test server/tests/exam-review.test.cjs",
         "test:student-analytics": "node --test server/tests/student-analytics.test.cjs server/tests/analytics-workspace.test.cjs server/tests/exam-section-progress.test.cjs tools/student-evidence-matrix.test.cjs tools/passage-progress-view.test.cjs",
+        "test:dashboard-loading": "node --test server/tests/dashboard-loading.test.cjs server/tests/student-progress-loading.test.cjs server/tests/fetch-timeout.test.cjs server/tests/exam-section-progress.test.cjs",
         "test:corrections": "node --test server/tests/exam-review.test.cjs server/tests/teacher-workflows.test.cjs server/tests/question-bank-routes.test.cjs server/tests/correction-navigation.test.cjs tools/corrections-view.test.cjs",
         "test:boards": "node --test server/tests/boards.test.cjs",
         "preview:boards": "node tools/preview-boards.cjs",
