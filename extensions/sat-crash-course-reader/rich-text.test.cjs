@@ -10,6 +10,29 @@ function el(tag, children = [], classes = [], style = {}) {
   node.childNodes.forEach(child => { child.parentElement = node; }); return node;
 }
 const style = node => node.style || {};
+test('real KaTeX prose preserves emphasis without exposing math markup', () => {
+  const { parse } = require('./dom-fixture.cjs');
+  const katex = require('katex');
+  const source = parse(`<p>${katex.renderToString('\\textbf{A title}', {output:'html'})} ${katex.renderToString('\\textit{by An Author}', {output:'html'})}</p>`);
+  const html = rich.fromElement(source, style);
+  assert.match(html, /<strong>A title<\/strong>/);
+  assert.match(html, /<em>by An Author<\/em>/);
+  assert.doesNotMatch(html, /\\\(|\\text/);
+  assert.equal(rich.proseHtml('Before \\(\\text{some prose}\\) after'), 'Before some prose after');
+  assert.equal(rich.proseHtml('\\(x + \\text{units}\\)'), '\\(x + \\text{units}\\)');
+});
+
+test('real KaTeX poem table is omitted from metadata and each verse is captured once', () => {
+  const { parse } = require('./dom-fixture.cjs');
+  const katex = require('katex');
+  const verse = ['First verse', 'Second verse', 'Third verse', 'Fourth verse', 'Fifth verse', 'Sixth verse'];
+  const tex = `\\begin{array}{rl}${verse.map((line,i) => `${i === 2 ? 3 : i === 5 ? 6 : ''} & \\text{${line}}`).join(' \\\\ ')}\\end{array}`;
+  const source = parse(`<p>Title<br>by Author<br>${katex.renderToString(tex,{output:'html'})}</p>`);
+  const result = rich.passage(source, style);
+  assert.equal(result.format, 'poem');
+  assert.deepEqual(result.formattedBlocks.map(b=>b.text), ['Title','by Author',...verse]);
+  assert.doesNotMatch(result.text, /\\begin|\\text/);
+});
 test('HTML-only source math preserves fractions and exponents in helper prompts', () => {
   const {parse} = require('./dom-fixture.cjs');
   const katex = require('katex');

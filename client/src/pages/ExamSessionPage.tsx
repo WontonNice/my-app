@@ -3038,6 +3038,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
             </div>
           </div>}
           <form key={activeStandaloneQuestion.id} className={activeStandaloneQuestion.selectionHtml ? "exam-question-panel" : "exam-standalone-panel"} onSubmit={event => event.preventDefault()}>
+            <PassageGlossary contextKey={activeStandaloneQuestion.id}>
             <QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeStandaloneQuestion.id} />
             <h1
               className="exam-highlightable"
@@ -3230,6 +3231,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 ))}
               </div>
             )}
+            </PassageGlossary>
           </form>
         </section>
 
@@ -3689,6 +3691,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
           </div>
 
           <form key={activeQuestion.id} className="exam-question-panel" onSubmit={event => event.preventDefault()}>
+            <PassageGlossary contextKey={activeQuestion.id}>
             <AnswerLock {...(gameSession ? { className: "game-answer-lock", disabled: gameSession.lockedQuestionIds?.includes(activeQuestion.id) } : {})}>
             {gameSession?.lockedQuestionIds?.includes(activeQuestion.id) && <p className="game-locked-answer-note">Answer locked · Your result is shown above. You can still use tools and review the passage.</p>}
             <QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeQuestion.id} />
@@ -3997,6 +4000,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
               </div>
             )}
           </AnswerLock>
+            </PassageGlossary>
           </form>
         </section>
 

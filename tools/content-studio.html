@@ -3654,7 +3654,7 @@ Why D is wrong."></textarea>
         const isCategoryQuestion = question.type === "category_sort" || isTableQuestion || isMatrixQuestion;
         if (!isChoiceQuestion && !isCategoryQuestion) {
           return `
-            <article class="question-card">
+            <article class="question-card" data-question-index="${index}">
               <header><div><span class="question-number">${index + 1}</span><strong>${escapeHtml(question.prompt || question.id)}</strong></div></header>
               <div class="unsupported">This existing <strong>${escapeHtml(question.type)}</strong> question is preserved exactly in code. The friendly editor supports multiple choice, multi-select, category sort, matrix choice, and table match.</div>
             </article>

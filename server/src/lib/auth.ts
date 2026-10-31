@@ -21,6 +21,33 @@ type AuthenticatedUserResult =
           user: User;
       };
 
+// Enrollment needs current account metadata, so skip getClaims (which can itself
+// call getUser) and verify the token and account in one authoritative request.
+export async function getCurrentAuthenticatedUser(
+    authorizationHeader: string | undefined,
+): Promise<AuthenticatedUserResult & { status: number }> {
+    const token = getBearerToken(authorizationHeader);
+    if (!token) return { error: "Log in to continue.", user: null, status: 401 };
+    try {
+        const { data, error } = await supabase.auth.getUser(token);
+        if (error) {
+            const unavailable = !error.status || error.status === 429 || error.status >= 500;
+            return {
+                error: unavailable ? "Sign-in verification is temporarily unavailable. Please try again." : "Your session expired. Log in again.",
+                user: null,
+                status: unavailable ? 503 : 401,
+            };
+        }
+        if (!data.user) return { error: "Your session expired. Log in again.", user: null, status: 401 };
+        if (getUserRole(data.user) === "student" && isStudentArchived(data.user)) {
+            return { error: "This student account is archived. Ask your teacher to restore access.", user: null, status: 403 };
+        }
+        return { error: null, user: data.user, status: 200 };
+    } catch {
+        return { error: "Sign-in verification is temporarily unavailable. Please try again.", user: null, status: 503 };
+    }
+}
+
 function getBearerToken(authorizationHeader: string | undefined) {
     const [scheme, token] = authorizationHeader?.split(" ") ?? [];
 

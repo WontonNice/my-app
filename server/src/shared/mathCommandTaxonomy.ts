@@ -1,4 +1,5 @@
 import type { MathDiagnosticSkill, MathTaxonomy } from "./mathCommandTypes";
+import { migratedMathSkillLocation } from './mathSubcategoryMigration';
 
 export const mathStandardsReferenceUrl = "https://www.nysed.gov/sites/default/files/programs/standards-instruction/nys-next-generation-mathematics-p-12-standards.pdf";
 
@@ -19,7 +20,7 @@ export const mathStandardsReferences = [
 
 const skill=(id:string,label:string,category:string,subcategory:string,prerequisiteIds:string[]=[]):MathDiagnosticSkill=>({id,label,category,subcategory,prerequisiteIds,standardReferences:[]});
 
-// A manageable starting vocabulary below the existing 23 subtopics. No question
+// Existing diagnostic vocabulary, rehomed under the current subcategories. No question
 // is assigned a diagnostic skill here. Teachers maintain these definitions and
 // prerequisite relationships; links suggest where to inspect evidence only.
 export const defaultMathDiagnosticSkills:MathDiagnosticSkill[] = [
@@ -64,7 +65,7 @@ export const defaultMathDiagnosticSkills:MathDiagnosticSkill[] = [
   skill("unit-rates","Unit Rates","Ratios and Proportional Relationships","Rates & Unit Rates"),
   skill("percent-amounts","Percent Amounts","Ratios and Proportional Relationships","Percentages",["rational-conversions"]),
   skill("percent-change","Percent Change","Ratios and Proportional Relationships","Percentages",["percent-amounts"]),
-];
+].map(item => ({ ...item, ...migratedMathSkillLocation(item) }));
 
 export function validateMathDiagnosticSkills(skills:MathDiagnosticSkill[],taxonomy:MathTaxonomy) {
   if(!Array.isArray(skills)||skills.length>200)throw new Error("Use at most 200 diagnostic skills.");

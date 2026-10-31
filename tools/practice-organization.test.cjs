@@ -8,7 +8,8 @@ const {filterStudioGenerators,generatorModuleUsage,studioMatches,updateStudioGen
 const {practiceChildIsHidden,changePracticeChild}=require('../client/src/features/math-command/practiceChoices.ts');
 const {generationSetEntries}=require('../client/src/features/math-command/generationSet.ts');
 const {modulePreviewCatalog}=require('../client/src/features/math-command/generatorPreview.ts');
-const taxonomy=require('./math-topics.json');
+// This suite exercises the earlier Probability collection migration.
+const taxonomy={categories:[{label:'Algebra',topics:['Inequalities']},{label:'Statistics and Probability',topics:['Probability','Overlapping Groups']},{label:'Ratios and Proportional Relationships',topics:['Rates & Unit Rates','Ratios & Proportions']}]};
 const filters={status:'',difficulty:'',program:'',subject:''};
 function legacy(){
   const catalog=defaultPracticeCatalog(taxonomy),ids=probabilityPractice.map(item=>item.id);

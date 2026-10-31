@@ -1,5 +1,53 @@
 # SAT Crash Course Reader
 
+## Version 0.8.5 — standalone English routing
+
+The digital 50-question English profile marks questions 47–50 as standalone, including
+questions with their own supporting paragraph. Content Studio creates independent
+English drafts with that supporting text in stimulus/stimulusHtml instead of creating
+one-question passages. Legacy digital SHSAT exports, explicit Part B captures and
+questions without a passage use the same standalone import path. Shared reading
+passages remain passages even when only one of their questions was captured.
+
+## Version 0.8.4 — matrix table questions
+
+Source checkbox tables are imported as matrix-choice questions, retaining every
+statement, category heading, and source-revealed row answer. Checks entered before
+Show answer are never treated as answer keys. Reload the extension and refresh the
+source page to scan these tables.
+
+## Version 0.8.3 — glossary and styling
+
+Source-marked vocabulary retains its exact available definition as an inline clickable
+glossary term, including emphasis inside the term. The reader checks source attributes
+and opens the source glossary popup; unavailable definitions remain review warnings.
+The annotated definition layer is used for passage capture. Bold, italic, underline,
+strikethrough, superscript and subscript survive passages, question prompts, choices,
+and explanations. Title/byline rich HTML is retained as well. Reload the extension,
+refresh the source page, and recapture older exports to recover styling/definitions
+that the earlier capture did not contain.
+
+## Version 0.8.2 — English formatting
+
+Ordinary English text rendered by KaTeX is captured as editable prose, including bold
+and italic emphasis. Poem verse is no longer duplicated into its metadata. The Content
+Studio importer also repairs older exports: it restores passage breaks, separates
+printed titles/bylines/introductions, and removes only verified duplicate verse tables.
+Reload the extension and refresh the source page for future scans. Restart Content
+Studio to load the importer update; existing 0.8.0 exports do not need rescanning.
+
+## Version 0.8.1 — restore completed scans
+
+Closing and reopening the extension restores the last completed scan, export buttons,
+capture settings, question range, and preview expansion. Results are saved locally in
+Chrome and are replaced only by another successful scan. A failed rescan preserves
+the previous saved export. If Chrome cannot save a capture, the popup asks you to
+download it before closing.
+
+Reload the extension in `chrome://extensions` to install this update. This version adds
+Chrome's `storage` permission for local saved results. Keep the popup open while a
+scan is still running; once it finishes, you can close it and return without rescanning.
+
 ## Version 0.8.0 — complete ELA and source fidelity
 
 The **All ELA questions** mode captures the entire selected English module across passage boundaries. Existing current-passage, Part B range, and all-Math exports remain compatible. Exports identify SAT Crash Course as their source family and player profile; they are not labeled as official SHSAT content.

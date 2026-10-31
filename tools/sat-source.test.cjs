@@ -7,13 +7,33 @@ const {normalize}=require('./sat-source-normalize.cjs');
 const source={url:'https://tutor.thesatcrashcourse.com/tests/fixture',label:'Fixture source'};
 const q=(number,extra={})=>({number,total:50,sourceNumber:number,prompt:'Choose the answer.',promptHtml:'Choose the <strong>answer</strong>.',choices:[{label:'A',text:'One',html:'One',isCorrect:true},{label:'B',text:'Two',html:'Two'}],correctAnswer:{label:'A',text:'One'},explanation:'Source explanation.',explanationHtml:'Source <em>explanation</em>.',...extra});
 const reader=questions=>({source,testPreview:{testTitle:'Fixture source',module:'English Language Arts',questions,capture:{mode:'ela-all',warnings:[]}}});
+
+test('digital SHSAT standalone section and legacy exports create standalone drafts with their individual stimuli',async()=>{
+  const shared={id:'shared',title:'Shared reading',text:'Reading body.',html:'<p>Reading body.</p>'};
+  const data=reader([q(41,{passage:shared}),...Array.from({length:4},(_,i)=>q(47+i,{passage:{id:`stimulus-${i}`,text:`Supporting text ${i}.`,html:`<p>Supporting <strong>text ${i}</strong>.</p>`}}))]);
+  data.source.url='https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-test-v2';
+  const result=await ela(data);
+  assert.equal(result.passages.length,1,'a partial shared-passage capture remains a passage');
+  assert.equal(result.passages[0].questions[0].source.questionNumber,41);
+  assert.equal(result.englishQuestions.length,4);
+  result.englishQuestions.forEach((item,i)=>{
+    assert.equal(item.stimulus,`Supporting text ${i}.`);
+    assert.equal(item.stimulusHtml,data.testPreview.questions[i+1].passage.html);
+    assert.equal(item.correctChoiceId,'A');assert.equal(item.explanationHtml,'Source <em>explanation</em>.');
+  });
+  const entries=require('./document-import.cjs').parse(result);
+  assert.deepEqual(entries.map(e=>e.kind),['passage','standalone']);
+  assert.equal(entries[1].content.questions.length,4);
+  const explicit=await ela(reader([q(8,{contentRole:'standalone',passage:shared}),q(9)]));
+  assert.equal(explicit.passages.length,0);assert.equal(explicit.englishQuestions.length,2);
+});
 test('full ELA preserves source grouping, rich passage, native inline selections and every blank',async()=>{
   const passage={id:'p-1',text:'First paragraph. Second paragraph.',html:'<p>First <strong>paragraph</strong>.</p><p>Second paragraph.</p>'};
   const data=reader([q(1,{passage}),q(2,{passage}),q(3,{choices:[],interaction:{type:'hot_text',text:'Fix this word.',contentHtml:'Fix <span data-source-option="word-1">this</span> <span data-source-option="word-2">word</span>.',options:[{id:'word-1',text:'this',html:'this',isCorrect:false},{id:'word-2',text:'word',html:'<u>word</u>',isCorrect:true}]}}),q(4,{choices:[],interaction:{type:'sentence_blank',contentHtml:'A {{blank-1}} and B {{blank-2}}.',options:[{id:'x',text:'first',html:'<em>first</em>'},{id:'y',text:'second',html:'second'}],slots:[{id:'blank-1',answer:'second'},{id:'blank-2',answer:'first'}]}})]);
   const result=await ela(data);
   assert.equal(result.source.sourceFamily,'sat_crash_course');assert.equal(result.source.playerProfile,'sat_crash_course');
-  assert.equal(result.passages.length,2);assert.deepEqual(result.passages.map(p=>p.questions.length),[2,2]);assert.equal(result.passages[0].richText,passage.html);
-  const [hot,blank]=result.passages[1].questions;assert.equal(hot.correctChoiceId,'B');assert.equal(hot.selectionHtml,'Fix <span data-choice-id="A">this</span> <span data-choice-id="B">word</span>.');
+  assert.equal(result.passages.length,1);assert.deepEqual(result.passages.map(p=>p.questions.length),[2]);assert.equal(result.passages[0].richText,passage.html);
+  const [hot,blank]=result.englishQuestions;assert.equal(hot.correctChoiceId,'B');assert.equal(hot.selectionHtml,'Fix <span data-choice-id="A">this</span> <span data-choice-id="B">word</span>.');
   assert.equal(blank.type,'transition_drop');assert.deepEqual(blank.dragDropSlots.map(s=>s.correctItemId),['y','x']);assert.equal(blank.sourceInteraction.type,'sentence_blank');
 });
 test('rich HTML preserves tables, links and figure position without event handlers',()=>{

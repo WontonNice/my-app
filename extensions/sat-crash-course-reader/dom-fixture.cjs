@@ -12,6 +12,7 @@ class Element {
   get textContent() {return this.childNodes.map(n=>n.textContent).join('');}
   get innerText() {return this.textContent;}
   get disabled() {return Object.hasOwn(this.attributes,'disabled');}
+  get checked() {return Object.hasOwn(this.attributes,'checked');}
   getAttribute(name) {return this.attributes[name] ?? null;}
   getClientRects() {return [{}];}
   contains(node) {return node === this || this.children.some(n=>n.contains(node));}

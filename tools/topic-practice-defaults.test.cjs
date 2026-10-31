@@ -12,7 +12,7 @@ test('every topic receives exactly one Foundation Building and General Practice,
   for(const kind of ['foundation','general'])assert.equal(modules.filter(module=>practiceModuleKind(module)===kind).length,1,category.label+' / '+topic+' / '+kind);
  }
  assert.deepEqual(ensureTopicPracticeModules(catalog,taxonomy),catalog);
- const empty=catalog.modules.find(module=>module.topic==='Fractions & Decimals'&&practiceModuleKind(module)==='general');
+ const empty=catalog.modules.find(module=>module.topic==='Fractions'&&practiceModuleKind(module)==='general');
  assert.equal(empty.published,true);assert.deepEqual(managedGeneratorIds(empty,catalog),[]);
  assert.throws(()=>createPracticeState(empty.id,'empty',catalog));
  assert.equal(catalog.modules.find(module=>module.id==='all').title,'General Practice');
@@ -31,7 +31,7 @@ test('migration retains legacy IDs, nested modules, curated selections, hidden s
 });
 
 test('General Practice automatically follows enabled generators only in its own topic',()=>{
- const catalog=defaultPracticeCatalog(taxonomy),general=catalog.modules.find(module=>module.topic==='Overlapping Groups'&&practiceModuleKind(module)==='general');
+ const catalog=defaultPracticeCatalog(taxonomy),general=catalog.modules.find(module=>module.topic==='Set Relationships'&&practiceModuleKind(module)==='general');
  const startingIds=catalog.generators.filter(generator=>generator.category===general.category&&generator.topic===general.topic&&generator.enabled).map(generator=>generator.id);
  assert.deepEqual(managedGeneratorIds(general,catalog),startingIds);
  catalog.generators.push({...catalog.generators.find(generator=>generator.id==='overlapping-groups-v1'),id:'extra-overlap'});
@@ -45,7 +45,7 @@ test('General Practice automatically follows enabled generators only in its own 
 });
 
 test('each foundation accepts only its own topic modules and empty defaults remain available',()=>{
- const catalog=defaultPracticeCatalog(taxonomy),foundation=catalog.modules.find(module=>module.topic==='Overlapping Groups'&&practiceModuleKind(module)==='foundation');
+ const catalog=defaultPracticeCatalog(taxonomy),foundation=catalog.modules.find(module=>module.topic==='Set Relationships'&&practiceModuleKind(module)==='foundation');
  const moved=movePracticeModule(catalog,'2021-2022-form-a-q76',foundation.id);
  assert.equal(moved.modules.find(module=>module.id==='2021-2022-form-a-q76').parentId,foundation.id);
  const groupedIds=catalog.modules.find(module=>module.id==='2021-2022-form-a-q76').generatorIds;
@@ -76,11 +76,11 @@ test('individual modules default to their own General Practice and keep explicit
  const catalog=defaultPracticeCatalog(taxonomy);
  for(const module of catalog.modules.filter(module=>!practiceModuleKind(module))){
   const parent=catalog.modules.find(item=>item.id===module.parentId);
-  assert.equal(practiceModuleKind(parent),module.topic==='Probability'?'foundation':'general');assert.equal(parent.category,module.category);assert.equal(parent.topic,module.topic);
+  assert.equal(practiceModuleKind(parent),module.generatorIds.some(id=>id.startsWith('probability-'))?'foundation':'general');assert.equal(parent.category,module.category);assert.equal(parent.topic,module.topic);
  }
  const legacy=structuredClone(catalog);legacy.modules.find(item=>item.id==='2021-2022-form-a-q76').parentId=null;
  legacy.modules.push({...legacy.modules.find(item=>item.id==='2021-2022-form-a-q76'),id:'2025-2026-form-a-math-5',generatorIds:['overlapping-survey-totals-v1']});
- const foundation=legacy.modules.find(module=>module.topic==='Overlapping Groups'&&practiceModuleKind(module)==='foundation');
+ const foundation=legacy.modules.find(module=>module.topic==='Set Relationships'&&practiceModuleKind(module)==='foundation');
  const assigned=ensureTopicPracticeModules(movePracticeModule(legacy,'2025-2026-form-a-math-5',foundation.id),taxonomy);
  assert.equal(assigned.modules.find(item=>item.id==='2025-2026-form-a-math-5').parentId,foundation.id);
  assert.equal(practiceModuleKind(assigned.modules.find(item=>item.id===assigned.modules.find(module=>module.id==='2021-2022-form-a-q76').parentId)),'general');
@@ -90,7 +90,7 @@ test('individual modules default to their own General Practice and keep explicit
 });
 
 test('General Practice settings honor selected and unpublished nested modules',()=>{
- const catalog=defaultPracticeCatalog(taxonomy),general=catalog.modules.find(module=>module.topic==='Overlapping Groups'&&practiceModuleKind(module)==='general');
+ const catalog=defaultPracticeCatalog(taxonomy),general=catalog.modules.find(module=>module.topic==='Set Relationships'&&practiceModuleKind(module)==='general');
  const child=catalog.modules.find(module=>module.id==='2021-2022-form-a-q76');
  assert.deepEqual(managedGeneratorIds(general,catalog,{childModuleIds:[child.id]}),child.generatorIds);
  assert.deepEqual(managedGeneratorIds(general,catalog,{childModuleIds:[]}),[]);

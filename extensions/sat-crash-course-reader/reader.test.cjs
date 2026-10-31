@@ -7,6 +7,12 @@ const vm = require('node:vm');
 const contentCode = readFileSync(join(__dirname, 'content.js'), 'utf8');
 const popupCode = readFileSync(join(__dirname, 'popup.js'), 'utf8');
 
+test('reader labels the digital English standalone section even when it has supporting paragraph text',async()=>{
+  const result=await fixture({count:50,start:47}).scan({includeAnswer:true,includePassageQuestions:false,includeExplanations:false});
+  assert.equal(result.ok,true);
+  assert.equal(result.data.testPreview.question.contentRole,'standalone');
+});
+
 // Synthetic DOM fixtures use the selectors and BACK/NEXT behavior observed on the live preview.
 // No site content, cookies, React state, or private endpoints are needed for these regressions.
 function fixture({ count = 10, start = 1, visible = false, groupEnd = 7,
@@ -254,15 +260,23 @@ test('concurrent scan is rejected', async () => {
   assert.equal((await running).ok, true);
 });
 
-function popupFixture(data) {
+function popupFixture(data, storage = {}, { failWrites = false, failReads = false } = {}) {
   const elements = new Map();
   let sent;
   const context = vm.createContext({
     document: { querySelector: (selector) => {
-      if (!elements.has(selector)) elements.set(selector, { checked: true, addEventListener() {} });
+      if (!elements.has(selector)) elements.set(selector, {
+        checked: true, value: selector === '#capture-mode' ? 'passage' : selector === '#question-range' ? '47-50' : '',
+        hidden: selector === '#results', open: false, listeners: {},
+        closest() { return {}; },
+        addEventListener(type, listener) { (this.listeners[type] ??= []).push(listener); },
+      });
       return elements.get(selector);
     } },
-    chrome: { tabs: {
+    chrome: { storage: { local: {
+      get: async () => { if (failReads) throw new Error('Storage unavailable'); return structuredClone(storage); },
+      set: async values => { if (failWrites) throw new Error('Quota exceeded'); Object.assign(storage, structuredClone(values)); },
+    } }, tabs: {
       query: async () => [{ id: 1, url: 'https://tutor.thesatcrashcourse.com/tests/example' }],
       sendMessage: async (_id, message) => { sent = message; return { ok: true, data }; },
     } },
@@ -352,4 +366,67 @@ test('popup retains compatible legacy batch exports but does not claim all-ELA s
   await vm.runInContext('scanPage()', popup.context);
   assert.match(popup.elements.get('#status').textContent, /older reader script/);
   assert.equal(popup.elements.get('#results').hidden, true);
+});
+
+test('closing and reopening restores the complete scan and CSV without contacting the source tab', async () => {
+  const data = (await fixture().scan()).data;
+  const storage = {};
+  const first = popupFixture(data, storage);
+  await vm.runInContext('scanPage()', first.context);
+  const originalCsv = vm.runInContext('toCsv(state.data)', first.context);
+  const reopened = popupFixture(undefined, storage);
+  await vm.runInContext('ready', reopened.context);
+  assert.equal(reopened.sent, undefined, 'reopening must never start another scan');
+  assert.equal(reopened.elements.get('#results').hidden, false);
+  assert.equal(reopened.elements.get('#question-count').textContent, '7');
+  assert.equal(reopened.elements.get('#preview').textContent, JSON.stringify(data, null, 2));
+  assert.equal(vm.runInContext('toCsv(state.data)', reopened.context), originalCsv);
+  assert.match(reopened.elements.get('#status').textContent, /Restored saved scan/);
+});
+
+test('capture mode, question range, unchecked settings, and expanded preview survive reopening', async () => {
+  const storage = {};
+  const first = popupFixture(undefined, storage);
+  await vm.runInContext('ready', first.context);
+  first.elements.get('#capture-mode').value = 'part-b';
+  first.elements.get('#question-range').value = '42-46';
+  first.elements.get('#include-explanations').checked = false;
+  first.elements.get('#include-answer').checked = false;
+  first.elements.get('#results details').open = true;
+  await first.elements.get('#question-range').listeners.input[0]();
+  const reopened = popupFixture(undefined, storage);
+  await vm.runInContext('ready', reopened.context);
+  assert.equal(reopened.elements.get('#capture-mode').value, 'part-b');
+  assert.equal(reopened.elements.get('#question-range').value, '42-46');
+  assert.equal(reopened.elements.get('#include-explanations').checked, false);
+  assert.equal(reopened.elements.get('#include-answer').checked, false);
+  assert.equal(reopened.elements.get('#question-range-field').hidden, false);
+  assert.equal(reopened.elements.get('#scan').textContent, 'Read Part B questions');
+  assert.equal(reopened.elements.get('#results details').open, true);
+});
+
+test('a failed rescan preserves the previous saved export, while a successful rescan replaces it', async () => {
+  const data = (await fixture().scan()).data;
+  const storage = {};
+  const first = popupFixture(data, storage);
+  await vm.runInContext('scanPage()', first.context);
+  const stale = popupFixture({ ...data, readerVersion: 'stale' }, storage);
+  await vm.runInContext('scanPage()', stale.context);
+  assert.equal(storage.satReaderCapture.data.readerVersion, data.readerVersion);
+  const replacement = (await fixture({ start: 9 }).scan()).data;
+  const second = popupFixture(replacement, storage);
+  await vm.runInContext('scanPage()', second.context);
+  const reopened = popupFixture(undefined, storage);
+  await vm.runInContext('ready', reopened.context);
+  assert.equal(reopened.elements.get('#preview').textContent, JSON.stringify(replacement, null, 2));
+});
+
+test('storage failures preserve downloadable scan results and explain that they are not saved', async () => {
+  const data = (await fixture().scan()).data;
+  const popup = popupFixture(data, {}, { failWrites: true, failReads: true });
+  await vm.runInContext('scanPage()', popup.context);
+  assert.equal(popup.elements.get('#results').hidden, false);
+  assert.match(popup.elements.get('#status').textContent, /Download JSON before closing/);
+  assert.match(vm.runInContext('toCsv(state.data)', popup.context), /Explanation 7/);
+  assert.equal(popup.elements.get('#scan').disabled, false);
 });

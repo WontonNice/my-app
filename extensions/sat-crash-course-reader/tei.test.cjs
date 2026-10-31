@@ -98,3 +98,21 @@ test('positioned MathLive answers remain blank instead of flattening a fraction 
   assert.equal(rich.expressionAnswer(parse('<span>30x+45,45+30x</span>')),'30x+45,45+30x');
 });
 module.exports={fixture};
+
+test('source matrix tables retain every row, column and revealed key; attempted checks are never imported as keys',async()=>{
+  const columns=['Rules out an explanation','Explains a mechanism','Shows a limitation'];
+  const keys=[0,1,2,1,0,2];
+  const render=(n,shown)=>h('testSHSATPreview__questionQuestion','Classify each statement.','span')+`<table class="digitalSHSATReview__tableGrid${shown?'ShowAnswer':''}"><tbody><tr><th></th>${columns.map(c=>`<th>${c}</th>`).join('')}</tr>${keys.map((key,i)=>`<tr><th><p><em>Statement ${i+1}</em></p></th>${columns.map((_,j)=>`<td><input type="checkbox" ${j===(shown?key:2)?'checked':''}></td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  const f=fixture({render});
+  const captured=await f.scan({includeAnswer:true,includeExplanations:false,includePassageQuestions:false});
+  const q=captured.data.testPreview.question;
+  assert.equal(q.interaction.type,'matrix_choice');
+  assert.equal(q.interaction.items.length,6);assert.equal(q.interaction.categories.length,3);
+  assert.match(q.interaction.items[0].html,/<em>Statement 1<\/em>/);assert.doesNotMatch(q.interaction.items[0].html,/<th>/);
+  assert.deepEqual(Object.values(q.interaction.correctPlacements),keys.map(i=>`column-${i+1}`));
+  const imported=await importer.math({...captured.data,testPreview:{...captured.data.testPreview,questions:[q]}},async()=>{});
+  assert.equal(imported.mathQuestions[0].type,'matrix_choice');
+  assert.deepEqual(imported.mathQuestions[0].correctPlacements,JSON.parse(JSON.stringify(q.interaction.correctPlacements)));
+  const unkeyed=await fixture({render}).scan({includeAnswer:false,includeExplanations:false,includePassageQuestions:false});
+  assert.deepEqual(Object.keys(unkeyed.data.testPreview.question.interaction.correctPlacements),[]);
+});

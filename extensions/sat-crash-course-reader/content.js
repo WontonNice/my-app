@@ -2,7 +2,7 @@
   const MAX_PAGE_TEXT_LENGTH = 250_000;
   const MAX_ITEM_TEXT_LENGTH = 10_000;
   const MAX_PASSAGE_QUESTIONS = 50;
-  const READER_VERSION = "0.8.0";
+  const READER_VERSION = "0.8.5";
   let scanInProgress = false;
 
   function cleanText(value) {
@@ -241,7 +241,7 @@
     const navigatorText = textOf(preview.querySelector(".testSHSATPreview__navigatorToggle"));
     const progress = navigatorText.match(/Question\s+(\d+)\s*\/\s*(\d+)/i);
     const questionRoot = preview.querySelector(".testSHSATPreview__question");
-    const passage =
+    const passage = preview.querySelector('.testSHSATPreview__Definition') ||
       preview.querySelector(".testSHSATPreview__passageTextPassage") ||
       preview.querySelector(".testSHSATPreview__passageText") ||
       preview.querySelector(".testSHSATPreview__passage");
@@ -280,7 +280,18 @@
     const promptText = textOf(primaryPrompt) || NathanSatRichText.plain(promptHtml);
     const selectionCount = promptText.match(/\b(?:select|choose)\s+(two|three|four|five|six|seven|eight|[2-8])\b/i)?.[1]?.toLowerCase();
     const requiredSelections = selectionCount ? ({two:2,three:3,four:4,five:5,six:6,seven:7,eight:8}[selectionCount] || Number(selectionCount)) : null;
-    const interaction = entries.length ? {
+    const matrix = [...preview.querySelectorAll('table')].find(table => table.className.includes('digitalSHSATReview__tableGrid') && table.querySelector('input[type="checkbox"]'));
+    const matrixRows = matrix ? [...matrix.querySelectorAll('tr')] : [];
+    const matrixCategories = matrixRows.length ? [...matrixRows[0].children].slice(1).map((cell, i) => ({id:`column-${i + 1}`,title:textOf(cell)})) : [];
+    const matrixItems = matrixRows.slice(1).map((row, i) => ({id:`row-${i + 1}`,text:textOf(row.children[0]),html:[...row.children[0].childNodes].map(rich).join('')}));
+    const matrixKeys = {};
+    if (answerShown) matrixRows.slice(1).forEach((row, i) => {
+      const selected = [...row.querySelectorAll('input[type="checkbox"]')].map((input, j) => input.checked ? j : -1).filter(j => j >= 0);
+      if (selected.length === 1 && matrixCategories[selected[0]]) matrixKeys[matrixItems[i].id] = matrixCategories[selected[0]].id;
+    });
+    const interaction = matrixItems.length && matrixCategories.length > 1 ? {
+      type:'matrix_choice',items:matrixItems,categories:matrixCategories,correctPlacements:matrixKeys,
+    } : entries.length ? {
       type: 'short_response',
       contentHtml: NathanSatRichText.fromElement(helper, getComputedStyle, null, node => entries.includes(node) ? `{{answer-${entries.indexOf(node) + 1}}}` : undefined),
       // Never read an input's value: it may be a teacher's attempted answer.
@@ -309,6 +320,7 @@
     return {
       number: progress ? Number(progress[1]) : Number(textOf(preview.querySelector(".testSHSATPreview__questionNumber"))) || null,
       total: progress ? Number(progress[2]) : null,
+      ...(/english/i.test(previewModule()) && (!passage || progress && Number(progress[2])===50 && Number(progress[1])>=47) ? {contentRole:'standalone'} : {}),
       sourceNumber: Number(textOf(preview.querySelector('.testSHSATPreview__questionNumber'))) || null,
       ...(interaction ? { interaction } : {}),
       ...(choices.length && (requiredSelections || /\b(?:select|choose)\s+all\b/i.test(promptText)) ? {responseType:'multi_select', requiredSelections} : {}),
@@ -430,6 +442,7 @@
   }
 
   async function captureQuestion(options, warnings) {
+    const definitionWarnings = [];
     const wasVisible = Boolean(previewButton("Hide answer"));
     const wasExplanationVisible = explanationVisible();
     let question = readCurrentPreviewQuestion();
@@ -441,6 +454,8 @@
       const unkeyed = question;
       if (options.includeAnswer) await setAnswerVisible(true);
       await waitForStableQuestion(question.number, module);
+      await captureDefinitions(definitionWarnings, question.number);
+      warnings.push(...definitionWarnings);
       let explanation = "";
       const requested = options.includeExplanations !== false;
       if (requested) {
@@ -459,6 +474,7 @@
           : captured.interaction.type === 'inline_dropdown'
             ? captured.interaction.dropdowns.flatMap(menu => menu.options.filter(item => item.isCorrect).map(item => item.text))
             : captured.interaction.type === 'expression_entry' ? [captured.interaction.answer].filter(Boolean)
+            : captured.interaction.type === 'matrix_choice' ? Object.values(captured.interaction.correctPlacements)
             : (captured.interaction.slots || []).map(slot => slot.answer).filter(Boolean);
         captured.correctAnswer = answers.length ? { label: '', text: answers.join(' | ') } : null;
       }
@@ -469,10 +485,43 @@
       if (!captured.prompt) warnings.push(`Question ${question.number}: Source prompt could not be read. Record retained for manual review.`);
       if (!captured.choices.length && !captured.interaction) warnings.push(`Question ${question.number}: Unrecognized source response. Question retained for manual setup.`);
       if (options.includeAnswer && !captured.correctAnswer) warnings.push(`Question ${question.number}: No verified source answer was captured; its key is blank.`);
-      return { ...captured, explanation, explanationHtml: explanation ? captured.explanationHtml : "", explanationStatus: requested ? explanation ? "captured" : "missing" : "not-requested" };
+      return { ...captured, ...(definitionWarnings.length ? {reviewNotes:[...(captured.reviewNotes || []),...definitionWarnings]} : {}), explanation, explanationHtml: explanation ? captured.explanationHtml : "", explanationStatus: requested ? explanation ? "captured" : "missing" : "not-requested" };
     } finally {
       if (!await setExplanationVisible(wasExplanationVisible)) warnings.push(`Question ${question.number || "?"}: Could not restore its explanation panel visibility.`);
       await setAnswerVisible(wasVisible);
+    }
+  }
+
+  async function captureDefinitions(warnings, number) {
+    const preview = document.querySelector('.testSHSATPreview');
+    const marks = [...(preview?.querySelectorAll('.testSHSATPreview__definitionMark, [data-glossary-definition]') || [])];
+    const popup = () => preview?.querySelector('#definitionDrag');
+    const wasOpen = popup() && isVisible(popup()) && !popup().className.includes('--hidden');
+    // Do not change a glossary panel the user already has open.
+    try {
+      for (const mark of marks) {
+        if (NathanSatRichText.definitionFor(mark)) continue;
+        if (!wasOpen) {
+          const before = textOf(preview.querySelector('.testSHSATPreview__popupDefinition'));
+          mark.click?.();
+          if (typeof MouseEvent !== 'undefined') mark.dispatchEvent?.(new MouseEvent('mouseover', { bubbles: true }));
+          const deadline = Date.now() + 600;
+          while (Date.now() < deadline) {
+            await nextPaint();
+            const panel = popup(), body = preview.querySelector('.testSHSATPreview__popupDefinition');
+            const value = textOf(body);
+            if (panel && !panel.className.includes('--hidden') && isVisible(panel) && value && value !== before) {
+              NathanSatRichText.rememberDefinition(mark, value);
+              break;
+            }
+          }
+          const close = popup()?.querySelector('.testSHSATPreview__popupHeaderCloseBig');
+          if (popup() && !popup().className.includes('--hidden')) close?.dispatchEvent?.(new MouseEvent('click', { bubbles: true }));
+        }
+        if (!NathanSatRichText.definitionFor(mark)) warnings.push(`Question ${number}: Definition for "${textOf(mark)}" was unavailable. Recapture its exact source definition before publishing.`);
+      }
+    } finally {
+      if (!wasOpen && popup() && !popup().className.includes('--hidden') && typeof MouseEvent !== 'undefined') popup().querySelector('.testSHSATPreview__popupHeaderCloseBig')?.dispatchEvent?.(new MouseEvent('click', { bubbles: true }));
     }
   }
 
@@ -686,7 +735,7 @@
   // Inert rendered-DOM archives can be normalized with the same extractor.
   // This branch exposes readers only; it never executes archived markup.
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { readCurrentPreviewQuestion, readTestPreview, readPage };
+    module.exports = { readCurrentPreviewQuestion, readTestPreview, readPage, captureDefinitions };
     return;
   }
   chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {

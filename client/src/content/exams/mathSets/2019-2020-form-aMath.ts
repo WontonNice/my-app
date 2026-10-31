@@ -21,7 +21,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Ms. Li opened a retirement account with a deposit of $2,500. This account earns 4% simple interest annually. How many years will it take her to earn $500 on her $2,500 deposit?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "correctTextAnswers": [
       "5"
     ],
@@ -33,7 +33,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[6-9\\div|-3|+(-2)^3\\times1\\frac{1}{2}\\]\nWhat is the value of the expression shown above?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Order of Operations",
     "correctTextAnswers": [
       "-9"
     ],
@@ -58,7 +58,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, line \\(l\\) is perpendicular to line \\(n\\). What is the value of \\(x\\)?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q61-1822cf8bc2c7622a.png\" alt=\"Math diagram\" width=\"250\">In the figure above, line \\(l\\) is perpendicular to line \\(n\\). What is the value of \\(x\\)?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Lines & Angles",
     "correctTextAnswers": [
       "55"
     ],
@@ -82,7 +82,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[3^4+7^4=\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Exponents, Roots & Scientific Notation",
     "choices": [
       {
         "id": "A",
@@ -110,7 +110,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In one week, \\(1\\frac{3}{4}\\) inches of rain fell on Monday, \\(2\\frac{2}{3}\\) inches fell on Tuesday, and \\(\\frac{7}{8}\\) inch fell on Wednesday. How many inches of rain fell during those three days?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -197,8 +197,8 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "explanation": "The diagram shows \\(W=0\\) and \\(X=2\\). Since X is the midpoint of WY, Y is at 4. As Y is the midpoint of WZ, Z is at 8.",
     "points": 1,
     "prompt": "Points Y and Z are not shown on the number line above. If X is the midpoint of \\(\\overline{WY}\\), and Y is the midpoint of \\(\\overline{WZ}\\), where on the number line would point Z be located?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "topic": "Geometry",
+    "subtopic": "Coordinates & Segment Relationships",
     "choices": [
       {
         "id": "A",
@@ -256,7 +256,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(n\\) is an integer and \\(3n+3\\) is an even number, which expression must also represent an even number?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -288,7 +288,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The product of two positive integers is 65. Which number could be the sum of the two integers?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -317,7 +317,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "If \\(n\\) is an odd integer that is less than −3.25, what is the greatest possible value of \\(n\\)?",
     "promptHtml": "If \\(n\\) is an odd integer that is less than −3.25, what is the <strong>greatest</strong> possible value of \\(n\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -373,7 +373,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Between which two consecutive integers is the fraction \\(\\frac{29}{7}\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -429,7 +429,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "explanation": "Convert both heights to inches: Joseph is \\(5(12)+9=69\\), Roberto is \\(6(12)+4.5=76.5\\). The difference is \\(76.5-69=7.5\\) inches.",
     "points": 1,
     "prompt": "Joseph is 5 feet 9 inches tall, and Roberto is 6 feet 4.5 inches tall. What is the difference in height, in inches, between Roberto and Joseph?",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Arithmetic & Number Sense",
     "subtopic": "Units & Conversions",
     "choices": [
       {
@@ -486,7 +486,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[\\frac{3^2+(-8)^2+2^2}{(3-8+2)^2}=\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -572,7 +572,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[\\{0.1,0.01,0.001,0.0001,0.00001\\}\\]\nIf a person chooses a number at random from the set above, what is the probability that the number is less than 0.005?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "choices": [
       {
         "id": "A",
@@ -633,7 +633,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "Lines \\(j\\) and \\(k\\) intersect at point Q, and \\(h\\) is a straight line. What is the value of \\(x\\)?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q82-f1efc7c8ab733c16.png\" alt=\"Math diagram\" width=\"320\">Lines \\(j\\) and \\(k\\) intersect at point Q, and \\(h\\) is a straight line. What is the value of \\(x\\)?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Lines & Angles",
     "choices": [
       {
         "id": "A",
@@ -661,7 +661,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which statement must be true if \\(x\\) is a whole number greater than or equal to 1?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -693,7 +693,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A basket contains red balls, green balls, and white balls. There are 12 red balls in the basket. The probability of randomly choosing a red ball is 1 in 3. If the probability of randomly choosing a green ball is 1 in 4, how many green balls are in the basket?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "choices": [
       {
         "id": "A",
@@ -750,7 +750,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Integer \\(x\\) is evenly divisible by 3. Which expression below is also evenly divisible by 3?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -783,7 +783,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "Lamel has a jar containing 6 red chips, 10 blue chips, and 4 yellow chips. If he removes one chip at random, what is the probability that it will not be red?",
     "promptHtml": "Lamel has a jar containing 6 red chips, 10 blue chips, and 4 yellow chips. If he removes one chip at random, what is the probability that it will <strong>not</strong> be red?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "choices": [
       {
         "id": "A",
@@ -815,8 +815,8 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The arrow starts on Space P and moves clockwise around the circle. It moves through one space each minute. What space will the arrow point to in 100 minutes?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q88-191a6d731ed2f380.png\" alt=\"Math diagram\" width=\"150\">The arrow starts on Space P and moves clockwise around the circle. It moves through one space each minute. What space will the arrow point to in 100 minutes?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "topic": "Algebra",
+    "subtopic": "Patterns & Sequences",
     "choices": [
       {
         "id": "A",
@@ -844,7 +844,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Mei-Ling is one of 6 members of a committee. If 2 members of that committee are selected to go to a conference, how many of the possible pairs of members would include Mei-Ling?",
     "topic": "Statistics and Probability",
-    "subtopic": "Counting & Sets",
+    "subtopic": "Counting & Combinations",
     "choices": [
       {
         "id": "A",
@@ -871,8 +871,8 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "explanation": "Substitute m=5 and t=−1. Numerator: \\(6-8(3)=-18\\). Denominator: \\(10+4(-2)=2\\). Thus \\(-18/2=-9\\).",
     "points": 1,
     "prompt": "If \\(m=5\\) and \\(t=-1\\), what is the value of \\(\\frac{6-8(2-t)}{2m+4(3-m)}\\)?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "topic": "Algebra",
+    "subtopic": "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -901,7 +901,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "In the parallelogram above, what is the value of \\(x+y\\)?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q91-8764efa58ce707c2.png\" alt=\"Math diagram\" width=\"300\">In the parallelogram above, what is the value of \\(x+y\\)?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Triangles & Polygons",
     "choices": [
       {
         "id": "A",
@@ -930,7 +930,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, point L (not shown) is located on line segment \\(\\overline{JK}\\) so that \\(\\overline{JL}=\\frac{2}{3}\\overline{LK}\\). What is the position of point L?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q92-ee2c5ae34c09e077.png\" alt=\"Math diagram\" width=\"360\">On the number line above, point L (not shown) is located on line segment \\(\\overline{JK}\\) so that \\(\\overline{JL}=\\frac{2}{3}\\overline{LK}\\). What is the position of point L?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Coordinates & Segment Relationships",
     "choices": [
       {
         "id": "A",
@@ -987,7 +987,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "The shaded sector of the circle shown above has an area of \\(18\\pi\\) square feet. What is the circumference of the circle?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q94-8a7ee85fea3ad0ce.png\" alt=\"Math diagram\" width=\"250\">The shaded sector of the circle shown above has an area of \\(18\\pi\\) square feet. What is the circumference of the circle?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Circles",
     "choices": [
       {
         "id": "A",
@@ -1119,7 +1119,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Ken has \\(k\\) video games, and Jeff has \\(j\\) video games. If Ken gives 6 video games to Jeff, Ken will have twice as many video games as Jeff. Which equation shows the relationship between \\(k\\) and \\(j\\)?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "choices": [
       {
         "id": "A",
@@ -1184,7 +1184,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "\\[\\{1,2,3,4,5,\\ldots,198,199,200\\}\\]\nHow many members of the set shown above are multiples of 6 but not multiples of 9?",
     "promptHtml": "\\[\\{1,2,3,4,5,\\ldots,198,199,200\\}\\]<br>How many members of the set shown above are multiples of 6 but <strong>not </strong>multiples of 9?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1273,7 +1273,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "The diagram above shows line segment \\(\\overline{RS}\\) intersecting a rectangle. What is the measure of angle \\(y\\)?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q102-6b068134d26f0f99.png\" alt=\"Math diagram\" width=\"300\">The diagram above shows line segment \\(\\overline{RS}\\) intersecting a rectangle. What is the measure of angle \\(y\\)?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Lines & Angles",
     "choices": [
       {
         "id": "A",
@@ -1302,7 +1302,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "All 150 students in Grade 8 at a school are assigned to write an essay on the same topic. A teacher records the number of words in a random sample of the essays, as shown in the table above. Based on this sample, how many students in the entire grade would be expected to write essays with at least 100 words?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q103-8812fdf097e9dc49.png\" alt=\"Math diagram\" width=\"250\">All 150 students in Grade 8 at a school are assigned to write an essay on the same topic. A teacher records the number of words in a random sample of the essays, as shown in the table above. Based on this sample, how many students in the entire grade would be expected to write essays with <strong>at least</strong> 100 words?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Sampling & Predictions",
     "choices": [
       {
         "id": "A",
@@ -1387,7 +1387,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, the shaded rectangle is similar to the outer rectangle. The length of the outer rectangle is 4 feet, and the perimeter of the outer rectangle is 14 feet. If the width of the shaded rectangle is 2 feet, what is the area of the shaded rectangle?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q106-ea21fdab7a73d409.png\" alt=\"Math diagram\" width=\"300\">In the figure above, the shaded rectangle is similar to the outer rectangle. The length of the outer rectangle is 4 feet, and the perimeter of the outer rectangle is 14 feet. If the width of the shaded rectangle is 2 feet, what is the area of the shaded rectangle?",
     "topic": "Geometry",
-    "subtopic": "Scale & Transformations",
+    "subtopic": "Similarity & Scale Drawings",
     "choices": [
       {
         "id": "A",
@@ -1419,7 +1419,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A rectangular concrete driveway is 30 feet long, 8 feet wide, and 6 inches thick. What is the volume of the concrete?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -1447,7 +1447,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The greatest common factor of 24 and \\(x\\) is 8. How many possible values for \\(x\\) are greater than 10 and less than 70?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1507,7 +1507,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At West College, students are randomly assigned to one of 20 dormitories and one of 6 dining rooms. Kharleen likes 6 of the dormitories and 2 of the dining rooms. What is the probability that she is assigned to both a dormitory and a dining room that she likes?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",
@@ -1565,7 +1565,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "What is the least of four consecutive integers whose sum is 58?",
     "promptHtml": "What is the <strong>least</strong> of four consecutive integers whose sum is 58?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "choices": [
       {
         "id": "A",
@@ -1594,7 +1594,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "If all possible values of \\(x\\) are indicated by the shaded part of the number line above, which number line best shows all possible values of \\(\\frac1x\\)?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q113-419b1c27c30f5f44.png\" alt=\"Math diagram\" width=\"300\">If all possible values of \\(x\\) are indicated by the shaded part of the number line above, which number line best shows all possible values of \\(\\frac1x\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -1663,7 +1663,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "Chanelle selects a marble from a container and then returns it to the container. When she does this 3 times, the probability of choosing a red marble all 3 times is \\(\\frac1{216}\\). Based on this information, what is the probability of Chanelle choosing a red marble the first time she selects a marble?",
     "promptHtml": "Chanelle selects a marble from a container and then returns it to the container. When she does this 3 times, the probability of choosing a red marble all 3 times is \\(\\frac1{216}\\). Based on this information, what is the probability of Chanelle choosing a red marble the <strong>first</strong> time she selects a marble?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",

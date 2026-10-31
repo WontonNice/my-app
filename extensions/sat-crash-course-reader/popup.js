@@ -1,7 +1,7 @@
 const state = {
   data: null,
 };
-const READER_VERSION = "0.8.0";
+const READER_VERSION = "0.8.5";
 
 const elements = {
   scan: document.querySelector("#scan"),
@@ -23,6 +23,51 @@ const elements = {
   csv: document.querySelector("#csv"),
   preview: document.querySelector("#preview"),
 };
+
+const optionElements = {
+  captureMode: elements.captureMode,
+  questionRange: elements.questionRange,
+  includePageText: elements.includePageText,
+  includeAnswer: elements.includeAnswer,
+  includeExplanations: elements.includeExplanations,
+  includePassageQuestions: elements.includePassageQuestions,
+};
+const previewDetails = document.querySelector("#results details");
+
+function readOptions() {
+  return Object.fromEntries(Object.entries(optionElements).map(([key, element]) => [key,
+    key.startsWith("include") ? element.checked : element.value]));
+}
+
+async function savePreferences() {
+  try {
+    await chrome.storage.local.set({ satReaderPreferences: { ...readOptions(), previewOpen: previewDetails.open } });
+  } catch {
+    // Capturing and downloading remain usable when Chrome cannot save preferences.
+  }
+}
+
+async function restoreState() {
+  elements.scan.disabled = true;
+  try {
+    const { satReaderPreferences: preferences, satReaderCapture: capture } = await chrome.storage.local.get(["satReaderPreferences", "satReaderCapture"]);
+    for (const [key, element] of Object.entries(optionElements)) {
+      const value = preferences?.[key];
+      if (key.startsWith("include") && typeof value === "boolean") element.checked = value;
+      else if (typeof value === "string" && (key !== "captureMode" || ["passage", "part-b", "ela-all", "math-all"].includes(value))) element.value = value;
+    }
+    updateCaptureMode();
+    if (capture?.data && Array.isArray(capture.data.tests) && Array.isArray(capture.data.tables) && Array.isArray(capture.data.links)) {
+      renderCapture(capture.data, capture.options ?? {});
+      setStatus(`Restored saved scan from ${capture.data.source?.title || capture.data.source?.path || "the previous page"}. ${elements.status.textContent}`, elements.status.className.includes("error") ? "error" : "success");
+    }
+    previewDetails.open = preferences?.previewOpen === true;
+  } catch {
+    setStatus("Saved results could not be restored. You can still scan this page.", "error");
+  } finally {
+    elements.scan.disabled = false;
+  }
+}
 
 function setStatus(message, kind = "") {
   elements.status.textContent = message;
@@ -124,7 +169,46 @@ async function currentTab() {
   return tab;
 }
 
+function renderCapture(data, options) {
+  state.data = data;
+  elements.testCount.textContent = String(state.data.tests.length);
+  const questions = state.data.testPreview?.questions ||
+    (state.data.testPreview?.question ? [state.data.testPreview.question] : []);
+  elements.questionCount.textContent = String(questions.length);
+  const explanations = questions.filter(question => question.explanation?.trim()).length;
+  elements.explanationCount.textContent = questions.length
+    ? options.includeExplanations ? `Explanations captured: ${explanations} of ${questions.length}` : "Explanations were not requested."
+    : "";
+  elements.tableCount.textContent = String(state.data.tables.length);
+  elements.linkCount.textContent = String(state.data.links.length);
+  elements.preview.textContent = JSON.stringify(state.data, null, 2);
+  elements.results.hidden = false;
+
+  if (!state.data.signedInLikely) {
+    setStatus("This looks like the sign-in page. Sign in, open Tests, and scan again.", "error");
+  } else if (state.data.testPreview?.question) {
+    const question = questions[0] || state.data.testPreview.question;
+    const answerNote = questions.every((item) => item.correctAnswer) ? " with correct answers" : "";
+    const explanationNote = options.includeExplanations ? ` ${explanations} of ${questions.length} explanations captured.` : "";
+    const warnings = state.data.testPreview.capture?.warnings || [];
+    const range = questions.length > 1
+      ? `Questions ${question.number}–${questions.at(-1).number}`
+      : `Question ${question.number || "?"}`;
+    const batch = state.data.testPreview.capture;
+    const countNote = batch.expectedNumbers ? `${questions.length}/${batch.expectedNumbers.length} requested questions. ${batch.complete ? 'Complete.' : 'PARTIAL EXPORT.'} ` : '';
+    setStatus(
+      `${countNote}Captured ${range} of ${question.total || "?"}${answerNote}.${explanationNote} ${warnings.join(" ") || "Starting question restored."}`,
+      warnings.length ? "error" : "success",
+    );
+  } else if (state.data.testPreview?.capture?.warnings.length) {
+    setStatus(state.data.testPreview.capture.warnings.join(" "), "error");
+  } else {
+    setStatus("Page read successfully. Nothing was sent off your computer.", "success");
+  }
+}
+
 async function scanPage() {
+  await ready;
   elements.scan.disabled = true;
   state.data = null;
   elements.results.hidden = true;
@@ -138,16 +222,11 @@ async function scanPage() {
       throw new Error("Open a tutor.thesatcrashcourse.com page first.");
     }
 
+    const options = readOptions();
+    await savePreferences();
     const response = await chrome.tabs.sendMessage(tab.id, {
       type: "SAT_READER_SCAN",
-      options: {
-        captureMode: elements.captureMode.value,
-        questionRange: elements.questionRange.value,
-        includePageText: elements.includePageText.checked,
-        includeAnswer: elements.includeAnswer.checked,
-        includeExplanations: elements.includeExplanations.checked,
-        includePassageQuestions: elements.includePassageQuestions.checked,
-      },
+      options,
     });
 
     if (!response?.ok) throw new Error(response?.error || "The page did not respond.");
@@ -160,41 +239,14 @@ async function scanPage() {
       throw new Error("This test tab is using an older reader script. Reload SAT Crash Course Reader in chrome://extensions, then refresh the test tab and scan again.");
     }
 
-    state.data = response.data;
-    elements.testCount.textContent = String(state.data.tests.length);
-    const questions = state.data.testPreview?.questions ||
-      (state.data.testPreview?.question ? [state.data.testPreview.question] : []);
-    elements.questionCount.textContent = String(questions.length);
-    const explanations = questions.filter(question => question.explanation?.trim()).length;
-    elements.explanationCount.textContent = questions.length
-      ? elements.includeExplanations.checked ? `Explanations captured: ${explanations} of ${questions.length}` : "Explanations were not requested."
-      : "";
-    elements.tableCount.textContent = String(state.data.tables.length);
-    elements.linkCount.textContent = String(state.data.links.length);
-    elements.preview.textContent = JSON.stringify(state.data, null, 2);
-    elements.results.hidden = false;
-
-    if (!state.data.signedInLikely) {
-      setStatus("This looks like the sign-in page. Sign in, open Tests, and scan again.", "error");
-    } else if (state.data.testPreview?.question) {
-      const question = questions[0] || state.data.testPreview.question;
-      const answerNote = questions.every((item) => item.correctAnswer) ? " with correct answers" : "";
-      const explanationNote = elements.includeExplanations.checked ? ` ${explanations} of ${questions.length} explanations captured.` : "";
-      const warnings = state.data.testPreview.capture?.warnings || [];
-      const range = questions.length > 1
-        ? `Questions ${question.number}–${questions.at(-1).number}`
-        : `Question ${question.number || "?"}`;
-      const batch = state.data.testPreview.capture;
-      const countNote = batch.expectedNumbers ? `${questions.length}/${batch.expectedNumbers.length} requested questions. ${batch.complete ? 'Complete.' : 'PARTIAL EXPORT.'} ` : '';
-      setStatus(
-        `${countNote}Captured ${range} of ${question.total || "?"}${answerNote}.${explanationNote} ${warnings.join(" ") || "Starting question restored."}`,
-        warnings.length ? "error" : "success",
-      );
-    } else if (state.data.testPreview?.capture?.warnings.length) {
-      setStatus(state.data.testPreview.capture.warnings.join(" "), "error");
-    } else {
-      setStatus("Page read successfully. Nothing was sent off your computer.", "success");
+    let saved = true;
+    try {
+      await chrome.storage.local.set({ satReaderCapture: { data: response.data, options } });
+    } catch {
+      saved = false;
     }
+    renderCapture(response.data, options);
+    if (!saved) setStatus("Scan completed, but Chrome could not save it. Download JSON before closing this popup.", "error");
   } catch (error) {
     const detail = error instanceof Error ? error.message : "The page could not be read.";
     const message = /Receiving end does not exist|Extension context invalidated/i.test(detail)
@@ -207,14 +259,15 @@ async function scanPage() {
 }
 
 elements.scan.addEventListener("click", scanPage);
-elements.captureMode.addEventListener('change', () => {
+function updateCaptureMode() {
   const mode = elements.captureMode.value;
   document.querySelector('#question-range-field').hidden = mode !== 'part-b';
   document.querySelector('#capture-help').hidden = !['math-all','ela-all'].includes(mode);
   document.querySelector('#capture-help').textContent = `Select ${mode === 'ela-all' ? 'English Language Arts' : 'Mathematics'} on the test page first. The reader captures the complete module and restores your starting question. Keep this popup open.`;
   elements.includePassageQuestions.closest('label').hidden = mode !== 'passage';
   elements.scan.textContent = mode === 'math-all' ? 'Read all 50 math questions' : mode === 'ela-all' ? 'Read all ELA questions' : mode === 'part-b' ? 'Read Part B questions' : 'Read current page';
-});
+}
+elements.captureMode.addEventListener('change', updateCaptureMode);
 
 elements.copy.addEventListener("click", async () => {
   if (!state.data) return;
@@ -235,3 +288,8 @@ elements.csv.addEventListener("click", () => {
   downloadFile(`${name}-${Date.now()}.csv`, toCsv(state.data), "text/csv;charset=utf-8");
   setStatus("CSV download started.", "success");
 });
+
+for (const element of Object.values(optionElements)) element.addEventListener("change", savePreferences);
+elements.questionRange.addEventListener("input", savePreferences);
+previewDetails.addEventListener("toggle", savePreferences);
+const ready = restoreState();

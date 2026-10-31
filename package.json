@@ -45,6 +45,7 @@
         "test:exam-review": "node --test server/tests/exam-review.test.cjs",
         "test:student-analytics": "node --test server/tests/student-analytics.test.cjs server/tests/analytics-workspace.test.cjs server/tests/exam-section-progress.test.cjs tools/student-evidence-matrix.test.cjs tools/passage-progress-view.test.cjs",
         "test:dashboard-loading": "node --test server/tests/dashboard-loading.test.cjs server/tests/student-progress-loading.test.cjs server/tests/fetch-timeout.test.cjs server/tests/exam-section-progress.test.cjs",
+        "test:class-access": "node --test server/tests/class-access.test.cjs tools/class-access.test.cjs",
         "test:corrections": "node --test server/tests/exam-review.test.cjs server/tests/teacher-workflows.test.cjs server/tests/question-bank-routes.test.cjs server/tests/correction-navigation.test.cjs tools/corrections-view.test.cjs",
         "test:boards": "node --test server/tests/boards.test.cjs",
         "preview:boards": "node tools/preview-boards.cjs",
@@ -63,7 +64,7 @@
         "test:document-import": "node tools/generate-document-prompt.mjs --check && node --test tools/document-import.test.mjs tools/document-render.test.cjs tools/math-import-batch.test.mjs",
         "content-editor:prompt": "node tools/generate-document-prompt.mjs",
         "test:passage-progress": "node --test server/tests/passage-organization.test.cjs server/tests/learning-plan.test.cjs tools/passage-progress-view.test.cjs",
-        "test:practice-studio": "node --test server/tests/generator-template.test.cjs server/tests/math-classification-skills.test.cjs tools/practice-organization.test.cjs server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/probability-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs"
+        "test:practice-studio": "node --test tools/math-subcategory-migration.test.cjs server/tests/generator-template.test.cjs server/tests/math-classification-skills.test.cjs tools/practice-organization.test.cjs server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/probability-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs"
     },
     "devDependencies": {
         "@tesseract.js-data/eng": "^1.0.0",

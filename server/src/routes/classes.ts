@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { findClassroomByCode, getPublicClassrooms } from "../config/classes";
-import { classIdsKey, classJoinRequestsKey, getAuthenticatedUser, getClassJoinRequests, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
+import { classIdsKey, classJoinRequestsKey, getAuthenticatedUser, getCurrentAuthenticatedUser, getClassJoinRequests, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { supabase } from "../lib/supabase";
 
 type JoinClassBody = {
@@ -14,15 +14,13 @@ type ReviewClassRequestBody = {
 export const classesRouter = Router();
 
 classesRouter.get("/mine", async (request, response) => {
-    const { error, user } = await getAuthenticatedUser(request.headers.authorization);
+    const { error, user: currentUser, status } = await getCurrentAuthenticatedUser(request.headers.authorization);
 
-    if (error || !user) {
-        response.status(401).json({ message: error });
+    if (error || !currentUser) {
+        response.status(status).json({ message: error });
         return;
     }
 
-    const authoritativeResult = await supabase.auth.admin.getUserById(user.id);
-    const currentUser = authoritativeResult.data.user ?? user;
     const classIds = getEnrolledClassIds(currentUser.app_metadata);
     const pendingRequests = getClassJoinRequests(currentUser.app_metadata).flatMap((joinRequest) => {
         const classroom = getPublicClassrooms([joinRequest.classId])[0];
@@ -33,15 +31,12 @@ classesRouter.get("/mine", async (request, response) => {
 });
 
 classesRouter.post("/join", async (request, response) => {
-    const { error, user } = await getAuthenticatedUser(request.headers.authorization);
+    const { error, user: currentUser, status } = await getCurrentAuthenticatedUser(request.headers.authorization);
 
-    if (error || !user) {
-        response.status(401).json({ message: error });
+    if (error || !currentUser) {
+        response.status(status).json({ message: error });
         return;
     }
-
-    const authoritativeResult = await supabase.auth.admin.getUserById(user.id);
-    const currentUser = authoritativeResult.data.user ?? user;
 
     if (getUserRole(currentUser) !== "student") {
         response.status(403).json({ message: "Only student accounts can request class access." });

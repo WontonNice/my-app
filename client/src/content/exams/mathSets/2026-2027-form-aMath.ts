@@ -20,8 +20,8 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "explanation": "",
     "points": 1,
     "prompt": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
-    "topic": "Geometry",
-    "subtopic": "Scale & Transformations",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -195,7 +195,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives 8 of his stamps to Kevin. Liam now has 12 more stamps than Kevin.\n\nHow many stamps did Liam start with?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "dropdownContent": [
       "An equation that relates the number of stamps originally in Liam’s and Kevin’s collections is \\(L={{answer-1}}K\\).",
       "After Liam gives 8 stamps to Kevin, the equation becomes \\(L-8={{answer-2}}\\).",
@@ -266,7 +266,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, PQRS is a parallelogram. What is the value of \\(x\\)?",
     "promptHtml": "<img src=\"/exam-images/2026-2027-form-a-2026-2027-form-a-math-item-9-01bd04354d77d92e.png\" alt=\"Math diagram\" width=\"250\">In the figure above, PQRS is a parallelogram. What is the value of \\(x\\)?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Triangles & Polygons",
     "correctTextAnswers": [
       "162"
     ],
@@ -429,7 +429,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "The sum of two consecutive integers is −15. If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?",
     "promptHtml": "The sum of two consecutive integers is −15. If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the <strong>product</strong> of the two resulting integers?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "correctTextAnswers": [
       "63"
     ],
@@ -442,7 +442,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
     "promptHtml": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are <strong>not</strong> red?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "choices": [
       {
         "id": "A",
@@ -500,7 +500,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Consider this expression:\n\n\\[|(-8)-(-3)+6|-|6-11|\\]\n\nCreate an equivalent expression.",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Integers & Absolute Value",
     "allowReuse": false,
     "dragDropContent": [
       "|{{slot-1}}| − |{{slot-2}}|"
@@ -575,7 +575,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
     "promptHtml": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are <strong>not</strong> blue?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",
@@ -692,7 +692,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
     "topic": "Geometry",
-    "subtopic": "Scale & Transformations",
+    "subtopic": "Similarity & Scale Drawings",
     "choices": [
       {
         "id": "A",
@@ -767,7 +767,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "choices": [
       {
         "id": "A",
@@ -861,7 +861,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\]\n\nWhat is the value of the expression shown above?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -892,8 +892,8 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "explanation": "",
     "points": 1,
     "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Counting & Sets",
+    "topic": "Statistics and Probability",
+    "subtopic": "Counting & Combinations",
     "choices": [
       {
         "id": "A",
@@ -950,7 +950,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, \\(\\overline{LN}=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
     "promptHtml": "<img src=\"/exam-images/2026-2027-form-a-2026-2027-form-a-math-item-31-5e9a1d8781b336b6.png\" alt=\"Math diagram\" width=\"200\">On the number line above, \\(\\overline{LN}=\\frac{1}{8}\\). Point M (<strong>not</strong> shown) is located between point L and point N. Which value below is a possible value for M?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -1064,7 +1064,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of neither 2 nor 3?",
     "promptHtml": "In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of <strong>neither</strong> 2 nor 3?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1093,7 +1093,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "If \\(3n\\) is a positive even number, how many odd numbers are in the range from \\(3n\\) up to and including \\(3n+5\\)?",
     "promptHtml": "If \\(3n\\) is a positive even number, how many <strong>odd</strong> numbers are in the range from \\(3n\\) up to and including \\(3n+5\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1123,7 +1123,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "When a student buys 4 notebooks, the total cost is $12. Each notebook costs the same amount. Select each point on the graph that best represents \\(y\\), the total cost of \\(x\\) notebooks.",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Rates & Unit Rates",
+    "subtopic": "Proportional Relationships",
     "correctPointIds": [
       "point-2",
       "point-5",
@@ -1186,7 +1186,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[\\frac{w}{x}=\\frac{y}{z}\\]\n\nIn the equation above, \\(w\\), \\(x\\), \\(y\\), and \\(z\\) are positive numbers. Which of these is equal to \\(z\\)?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Formulas & Rearranging Equations",
     "choices": [
       {
         "id": "A",
@@ -1352,7 +1352,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A sports store has a container of handballs: 4 blue, 5 red, 8 yellow, 9 white, and 11 green. If one ball is picked from the container at random, what is the probability that it will be yellow?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "choices": [
       {
         "id": "A",
@@ -1384,7 +1384,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Each week, Leon has fixed expenses of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he sells each chair for $275. What is Leon’s profit if he makes and sells 25 chairs in 1 week?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -1439,8 +1439,8 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "explanation": "",
     "points": 1,
     "prompt": "On the number line above, \\(\\overline{JK}=3\\frac{1}{2}\\), \\(\\overline{JM}=9\\frac{3}{4}\\), and \\(\\overline{LM}=1\\frac{1}{8}\\). What is the position of point L?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "topic": "Geometry",
+    "subtopic": "Coordinates & Segment Relationships",
     "choices": [
       {
         "id": "A",
@@ -1472,7 +1472,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(4x-3y=12\\), what is \\(x\\) in terms of \\(y\\)?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Formulas & Rearranging Equations",
     "choices": [
       {
         "id": "A",
@@ -1534,8 +1534,8 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "instructions": "Enter only your fraction.",
     "points": 1,
     "prompt": "Let \\(b=3\\), \\(c=4\\), and \\(d=5\\). Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\).",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "topic": "Algebra",
+    "subtopic": "Algebraic Expressions",
     "correctTextAnswers": [
       "7/5",
       "\\frac{7}{5}"

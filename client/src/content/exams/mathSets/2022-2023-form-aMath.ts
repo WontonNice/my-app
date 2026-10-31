@@ -22,7 +22,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "The figure below shows a circle with a hole in the middle. The outer diameter of the circle is \\(1\\frac{1}{4}\\) inches. The diameter of the hole is \\(\\frac{1}{4}\\) inch.\nWhat is the area of the shaded region, to the nearest hundredth of a square inch?",
     "promptHtml": "The figure below shows a circle with a hole in the middle. The outer diameter of the circle is \\(1\\frac{1}{4}\\) inches. The diameter of the hole is \\(\\frac{1}{4}\\) inch.<br><img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q58-51b3eb7f6d29e538.png\" alt=\"Math diagram\" width=\"270\">What is the area of the shaded region, to the nearest hundredth of a square inch?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Circles",
     "correctTextAnswers": [
       "1.18"
     ],
@@ -47,7 +47,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The list shows the daily low temperatures in a city during six days in the winter.\n\n\\(7^\\circ\\text{ F},\\ 4^\\circ\\text{ F},\\ 1^\\circ\\text{ F},\\ -2^\\circ\\text{ F},\\ -5^\\circ\\text{ F},\\ 3^\\circ\\text{ F}\\)\n\nWhat is the difference between the lowest and highest temperatures, in degrees Fahrenheit, for the six days?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Integers & Absolute Value",
     "correctTextAnswers": [
       "12"
     ],
@@ -84,7 +84,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the prime factorization of 756?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -202,7 +202,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A person buys a used car with a down payment of $1,200 and makes monthly payments of $275 for 3 years. What is the total amount the person pays for the car?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -231,7 +231,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "In the parallelogram above, what is the value of \\(x\\)?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q68-43f1dddf0dac144a.png\" alt=\"Math diagram\" width=\"220\">In the parallelogram above, what is the value of \\(x\\)?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Triangles & Polygons",
     "choices": [
       {
         "id": "A",
@@ -352,7 +352,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(5(x-6y)=50y\\), what is the value of \\(x\\) in terms of \\(y\\)?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Formulas & Rearranging Equations",
     "choices": [
       {
         "id": "A",
@@ -385,7 +385,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "A scale drawing of a new pool is shown above. All the corners are right angles. What is the perimeter of the actual pool?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q73-f36a69c56a7b9ceb.png\" alt=\"Math diagram\" width=\"220\">A scale drawing of a new pool is shown above. All the corners are right angles. What is the perimeter of the actual pool?",
     "topic": "Geometry",
-    "subtopic": "Scale & Transformations",
+    "subtopic": "Similarity & Scale Drawings",
     "choices": [
       {
         "id": "A",
@@ -443,7 +443,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, \\(n\\parallel p\\). Straight line \\(m\\) intersects both line \\(n\\) and line \\(p\\). What is the value of \\(r\\)?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q75-8f10c4dd9756d0b6.png\" alt=\"Math diagram\" width=\"360\">In the figure above, \\(n\\parallel p\\). Straight line \\(m\\) intersects both line \\(n\\) and line \\(p\\). What is the value of \\(r\\)?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Lines & Angles",
     "choices": [
       {
         "id": "A",
@@ -500,7 +500,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Allison has 5 stamp albums with 576 stamps in each album. If she transfers her stamp collection to 6 albums, each holding 378 stamps, how many stamps will be left over?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -528,7 +528,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Start with the number 135.28 and perform the following steps in order:\n\n• Step 1: Multiply by 10.\n• Step 2: Add 0.5 to the result of Step 1.\n• Step 3: Drop the digits after the decimal point.\n• Step 4: Divide by 10.\n\nWhat is the result?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Decimals",
     "choices": [
       {
         "id": "A",
@@ -555,8 +555,8 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "explanation": "",
     "points": 1,
     "prompt": "If \\(x=-2\\), what is the value of \\(\\left|x+x^2+x^3\\right|-\\left|x+2x+3x\\right|\\)?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "topic": "Algebra",
+    "subtopic": "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -584,7 +584,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[\\frac{3+(-3)}{3-(-3)}=\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -613,7 +613,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[12.96\\div 0.08=\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Decimals",
     "choices": [
       {
         "id": "A",
@@ -641,8 +641,8 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the distance between the midpoints of \\(\\overline{MN}\\) and \\(\\overline{RS}\\)?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q82-07f5aef82cae8571.png\" alt=\"Math diagram\" width=\"360\">What is the distance between the midpoints of \\(\\overline{MN}\\) and \\(\\overline{RS}\\)?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "topic": "Geometry",
+    "subtopic": "Coordinates & Segment Relationships",
     "choices": [
       {
         "id": "A",
@@ -701,7 +701,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of \\(\\left(-\\frac{3}{4}\\right)\\left(-\\frac{2}{5}\\right)\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -734,7 +734,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "The table shows the income and expenses in a bicycle shop on one day.\nThe sum of all transactions was $70. What is the value of \\(p\\)?",
     "promptHtml": "The table shows the income and expenses in a bicycle shop on one day.<br><img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q85-afbf4efeb1264871.png\" alt=\"Math diagram\" width=\"320\">The sum of all transactions was $70. What is the value of \\(p\\)?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "choices": [
       {
         "id": "A",
@@ -879,7 +879,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "Which straight line is the graph of a proportional relationship?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q90-e71c56d5a5e0a5a7.png\" alt=\"Math diagram\" width=\"320\">Which straight line is the graph of a proportional relationship?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Ratios & Proportions",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",
@@ -912,7 +912,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "Some friends are buying bags of ice for a picnic. The graph shows the cost of the ice, in dollars, in relation to the weight, in pounds. Which statement about a point on the graph is true?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q91-6e5aa8d232caf965.png\" alt=\"Math diagram\" width=\"320\">Some friends are buying bags of ice for a picnic. The graph shows the cost of the ice, in dollars, in relation to the weight, in pounds. Which statement about a point on the graph is true?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Ratios & Proportions",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",
@@ -941,7 +941,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "A clerk enters information on a computer. The graph shows the relationship between time, in hours, and the number of keystrokes the clerk makes. What is the meaning of the point (1.5, 10500) on the graph?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q92-6228f3a4868d3ccd.png\" alt=\"Math diagram\" width=\"300\">A clerk enters information on a computer. The graph shows the relationship between time, in hours, and the number of keystrokes the clerk makes. What is the meaning of the point (1.5, 10500) on the graph?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Rates & Unit Rates",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",
@@ -970,7 +970,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "When the three-digit whole number \\(27\\underline{\\phantom{0}}\\) is divided by 3 or by 4, the remainder is zero. What is the missing digit?",
     "promptHtml": "When the three-digit whole number \\(27\\underline{\\phantom{0}}\\) is divided by 3 or by 4, the remainder is zero. What is the missing digit?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1084,7 +1084,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A bag contains 40 tiles that are either red, green, or blue. A tile is selected at random, the color is recorded, and the tile is put back in the bag. This process is carried out 120 times, and 18 of those times a red tile is selected. Based on the information, what is the most likely number of red tiles in the bag?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Sampling & Predictions",
     "choices": [
       {
         "id": "A",
@@ -1113,7 +1113,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "If 100 individuals will attend the museum next week, what is the best estimate (based on last year’s attendance) of the number of children who will be in that group?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q98-646a8ad0e6104307.png\" alt=\"Math diagram\" width=\"200\">If 100 individuals will attend the museum next week, what is the best estimate (based on last year’s attendance) of the number of children who will be in that group?",
     "topic": "Statistics and Probability",
-    "subtopic": "Data Displays",
+    "subtopic": "Sampling & Predictions",
     "choices": [
       {
         "id": "A",
@@ -1142,7 +1142,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "A teacher will randomly select 3 students to be on a school committee. He will choose either a student from Classroom A or a student from Classroom B with each selection. This tree diagram shows the selection possibilities.\n\nWhat is the probability that the teacher will select 2 students from Classroom A and 1 student from Classroom B (in any order) for the committee?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q99-90f7ec13a12a1de5.png\" alt=\"Math diagram\" width=\"250\">A teacher will randomly select 3 students to be on a school committee. He will choose either a student from Classroom A or a student from Classroom B with each selection. This tree diagram shows the selection possibilities.<br><br>What is the probability that the teacher will select 2 students from Classroom A and 1 student from Classroom B (in any order) for the committee?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",
@@ -1175,7 +1175,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "A bag contains 15 marbles: 11 blue marbles and 4 red marbles. Sarah picks one marble randomly, returns it to the bag, and then randomly picks one marble again. What is the probability that she picks a red marble both times?",
     "promptHtml": "A bag contains 15 marbles: 11 blue marbles and 4 red marbles. Sarah picks one marble randomly, returns it to the bag, and then randomly picks one marble again. What is the probability that she picks a red marble <strong>both</strong> times?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",
@@ -1207,8 +1207,8 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Anita is assigned to report on 1 topic in each of the 4 subjects shown in the table above. How many different sets of 4 reports are possible, according to the choices available to her?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q101-632dde21ee41c5e6.png\" alt=\"Math diagram\" width=\"250\">Anita is assigned to report on 1 topic in each of the 4 subjects shown in the table above. How many different sets of 4 reports are possible, according to the choices available to her?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Counting & Sets",
+    "topic": "Statistics and Probability",
+    "subtopic": "Counting & Combinations",
     "choices": [
       {
         "id": "A",
@@ -1236,7 +1236,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A deck of 52 playing cards contains 13 hearts. Sara has 12 cards from this deck in her hand, 3 of which are hearts. The other cards remain in the deck. What is the probability that a card drawn at random from the remainder of the deck will be a heart?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",
@@ -1269,7 +1269,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "The table shows the probability of randomly picking each flavor of candy from a bowl.\nWhich flavor is most likely to be randomly picked?",
     "promptHtml": "The table shows the probability of randomly picking each flavor of candy from a bowl.<br><img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q103-4351a9cc29dd3ae3.png\" alt=\"Math diagram\" width=\"220\">Which flavor is most likely to be randomly picked?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "choices": [
       {
         "id": "A",
@@ -1297,7 +1297,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "This formula can be used to determine \\(p\\), the number of pages that will be in a book that contains \\(w\\) words, with an average of \\(r\\) words per page, and \\(f\\) extra pages in the front for the title and publishing information.\n\n\\[p=\\frac{1}{r}w+f\\]\n\nIf the formula is solved for \\(w\\), it can be used to find the number of words in a book with \\(p\\) pages. What will the formula be if it is solved for \\(w\\)?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Formulas & Rearranging Equations",
     "choices": [
       {
         "id": "A",
@@ -1330,7 +1330,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "A shipment contains 170 small boxes of medical supplies. In a random sample of 20 of these boxes, 8 have damage and the others are undamaged. Based on this sample, what is the best prediction of the number of undamaged boxes in the shipment, not including the boxes in the random sample?",
     "promptHtml": "A shipment contains 170 small boxes of medical supplies. In a random sample of 20 of these boxes, 8 have damage and the others are undamaged. Based on this sample, what is the best prediction of the number of undamaged boxes in the shipment, <strong>not</strong> including the boxes in the random sample?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Sampling & Predictions",
     "choices": [
       {
         "id": "A",
@@ -1390,7 +1390,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Nadia paid $1.00 to mail a letter. The cost to mail a letter is $0.55 for the first ounce of weight plus $0.15 for each additional ounce. What was the weight, in ounces, of the letter Nadia mailed?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "choices": [
       {
         "id": "A",
@@ -1447,7 +1447,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A softball player bought bottles of water for her team to have at practice. The total number of bottles she bought, \\(b\\), is proportional to \\(n\\), the number of players at practice. Which equation represents the relationship between \\(b\\) and \\(n\\)? The constant of proportionality is \\(p\\).",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Ratios & Proportions",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",
@@ -1479,7 +1479,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Malik earns $10 per hour at his job. He wants to change to a job that will pay $12 per hour. What will be the percent increase in Malik’s hourly pay if he makes this job change?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "choices": [
       {
         "id": "A",
@@ -1535,7 +1535,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The height of a plant, in millimeters, is proportional to the number of days the plant has grown. The plant has grown 20 millimeters in 8 days. What is the constant of proportionality, in millimeters per day?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Rates & Unit Rates",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",
@@ -1563,7 +1563,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which table shows a proportional relationship?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Ratios & Proportions",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",
@@ -1595,7 +1595,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Terry wants to pour cement around the edge of the circular patio in her backyard. The patio has a radius of 5 feet. What is the distance, in feet, around the edge of the patio? Use 3.14 for \\(\\pi\\).",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Circles",
     "choices": [
       {
         "id": "A",

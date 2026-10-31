@@ -14,7 +14,7 @@ export type MathManagementState = {
   classificationSkills?: import('../shared/mathClassificationSkills').MathClassificationSkill[];
   retiredClassificationSkillIds?: string[];
   revision: string;
-  taxonomyTopicRenames?: {category:string;from:string;to:string}[];
+  taxonomyTopicRenames?: {category:string;from:string;to:string;toCategory?:string}[];
   teacherLabels?: Record<string, import("../shared/teacherLabels").TeacherLabels>;
   taxonomy?: MathTaxonomy;
   metadata: Record<string, MathQuestionMetadata & { category?: string; subcategory?: string }>;

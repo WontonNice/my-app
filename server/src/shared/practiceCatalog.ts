@@ -3,6 +3,7 @@ import type { ExamQuestion } from './examTypes';
 import { organizePracticeCatalog, practiceDifficulties, practicePrograms, practiceReviewStatuses, type GeneratorOrganization } from './practiceOrganization';
 import { resolveSkilled, skilledTbd, validateSkilled, type MathClassificationSkill } from './mathClassificationSkills';
 import { generateTemplateQuestion, validateGeneratorTemplate, type GeneratorTemplate } from './generatorTemplate';
+import { migratedMathLocation, probabilityPracticeTopics } from './mathSubcategoryMigration';
 
 export type GeneratorSettings = { minCoefficient:number; maxCoefficient:number; minBoundary:number; maxBoundary:number; minOffset:number; maxOffset:number; negativeCoefficients:boolean; inclusive:boolean };
 export type PracticeGeneratorDefinition = GeneratorOrganization & { skilled?:string; id:string; title:string; description:string; enabled:boolean; kind:'builtin'|'one-step'|'two-step'|'template'; builtinId?:string; settings?:GeneratorSettings; template?:GeneratorTemplate; category?:string; topic?:string };
@@ -16,28 +17,57 @@ export function defaultPracticeCatalog(topics?:PracticeTaxonomy):PracticeCatalog
     generators:practiceGenerators.map(generator=>({id:generator.id,title:generator.title,description:generator.description??(generator.foundation?'Small positive coefficients and exact division.':'Positive and negative coefficients, including sign flips.'),enabled:true,kind:'builtin',builtinId:generator.id,category:generator.category??'Algebra',topic:generator.topic??'Inequalities'})),
     modules:practiceModules.map(module=>({id:module.id,title:module.title,description:module.id==='foundation'?'Build confidence with one-step inequalities, including positive division and sign flips.':module.description,category:module.category??'Algebra',topic:module.topic??'Inequalities',published:true,includeAll:module.selection==='all',generatorIds:module.id==='foundation'?practiceGenerators.filter(generator=>(generator.category??'Algebra')==='Algebra'&&(generator.topic??'Inequalities')==='Inequalities').map(generator=>generator.id):Array.isArray(module.selection)?module.selection:[]})),
     videos:[],
-  },topics);
+  });
   for(const definition of practiceModules.filter(module=>module.placement==='foundation')){
     const module=catalog.modules.find(module=>module.id===definition.id)!;
     const parent=catalog.modules.find(parent=>practiceModuleKind(parent)==='foundation'&&sameTopic(parent,module))!;
     catalog=movePracticeModule(catalog,module.id,parent.id);
   }
-  return organizePracticeCatalog(catalog);
+  const organized = organizePracticeCatalog(catalog);
+  return topics ? ensureTopicPracticeModules(reconcilePracticeTaxonomy(organized, topics), topics) : organized;
 }
 export type PracticeSelection = { childModuleIds?:string[]; topics?:string[] };
 export const generatorTopicKey=(generator:PracticeGeneratorDefinition)=>`${generator.category??'Algebra'} / ${generator.topic??'Inequalities'}`;
 export type PracticeTaxonomy = {categories:{label:string;topics:string[]}[];classificationSkills?:MathClassificationSkill[]};
-export type PracticeTopicRename = {category:string;from:string;to:string};
+export type PracticeTopicRename = {category:string;from:string;to:string;toCategory?:string};
 /** Follow explicit taxonomy renames without guessing destinations or changing stable IDs. */
 export function reconcilePracticeTaxonomy(catalog:PracticeCatalog,taxonomy:PracticeTaxonomy,renames:PracticeTopicRename[]=[]):PracticeCatalog {
+  const valid=(category:string,topic:string)=>taxonomy.categories.some(item=>item.label===category&&item.topics.includes(topic));
   const location=<T extends {category?:string;topic?:string}>(resource:T):T=>{
     const category=resource.category??'Algebra',topic=resource.topic??'Inequalities';
-    if(taxonomy.categories.some(item=>item.label===category&&item.topics.includes(topic)))return {...resource};
-    let renamed=topic;
-    for(const rename of renames)if(rename.category===category&&rename.from===renamed)renamed=rename.to;
-    return {...resource,...(renamed!==topic?{topic:renamed}:{})};
+    if(valid(category,topic))return {...resource};
+    let destination={category,topic};
+    for(const rename of renames)if(rename.category===destination.category&&rename.from===destination.topic)destination={category:rename.toCategory??destination.category,topic:rename.to};
+    if(!valid(destination.category,destination.topic)){
+      const known=migratedMathLocation(destination.category,destination.topic);
+      if(valid(known.category,known.topic))destination=known;
+    }
+    return {...resource,...(destination.category!==category||destination.topic!==topic?destination:{})};
   };
-  return {...catalog,modules:catalog.modules.map(location),generators:catalog.generators.map(location),videos:catalog.videos.map(location)};
+  const generators=catalog.generators.map(generator=>{
+    const next=location(generator),topic=probabilityPracticeTopics[generator.builtinId??generator.id];
+    return generator.category==='Statistics and Probability'&&generator.topic==='Probability'&&!valid(generator.category,generator.topic)&&topic&&valid(generator.category,topic)?{...next,topic}:next;
+  });
+  const modules=catalog.modules.map(module=>{
+    const next=location(module);
+    if(practiceModuleKind(module)||valid(module.category,module.topic)||!module.generatorIds.length)return next;
+    const destinations=generators.filter(generator=>module.generatorIds.includes(generator.id));
+    const first=destinations[0];
+    return first&&destinations.length===module.generatorIds.length&&destinations.every(generator=>sameTopic(generator,first))?{...next,category:first.category??'Algebra',topic:first.topic??'Inequalities'}:next;
+  });
+  const next={...catalog,modules,generators,videos:catalog.videos.map(location)};
+  const moved=modules.some((module,index)=>!sameTopic(module,catalog.modules[index]));
+  if(!moved)return next;
+  // Preserve Foundation/General placement when a focused collection changes topic.
+  const ensured=ensureTopicPracticeModules(next);
+  for(const module of ensured.modules){
+    if(practiceModuleKind(module))continue;
+    const previous=catalog.modules.find(item=>item.id===module.id);
+    const parent=catalog.modules.find(item=>item.id===previous?.parentId);
+    const kind=parent&&practiceModuleKind(parent);
+    if(kind)module.parentId=ensured.modules.find(item=>practiceModuleKind(item)===kind&&sameTopic(item,module))!.id;
+  }
+  return ensured;
 }
 export function practiceModuleKind(module:ManagedPracticeModule) {
   return module.defaultType ?? (module.id==='foundation'?'foundation':module.id==='all'?'general':undefined);

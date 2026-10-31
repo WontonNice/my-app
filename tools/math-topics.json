@@ -5,6 +5,8 @@
       "topics": [
         "Algebraic Expressions",
         "Equations & Systems",
+        "Formulas & Rearranging Equations",
+        "Algebraic Word Problems",
         "Inequalities",
         "Functions & Graphs",
         "Patterns & Sequences"
@@ -13,21 +15,25 @@
     {
       "label": "Geometry",
       "topics": [
-        "Shapes & Angles",
+        "Lines & Angles",
+        "Triangles & Polygons",
+        "Circles",
         "Area & Perimeter",
         "Surface Area & Volume",
-        "Coordinate Geometry",
-        "Pythagorean Theorem",
-        "Scale & Transformations"
+        "Coordinates & Segment Relationships",
+        "Similarity & Scale Drawings"
       ]
     },
     {
       "label": "Statistics and Probability",
       "topics": [
         "Data Displays",
-        "Probability",
-        "Overlapping Groups",
-        "Averages & Spread"
+        "Averages & Spread",
+        "Sampling & Predictions",
+        "Counting & Combinations",
+        "Basic Probability",
+        "Compound Probability",
+        "Set Relationships"
       ]
     },
     {
@@ -35,18 +41,21 @@
       "topics": [
         "Ratios & Proportions",
         "Rates & Unit Rates",
-        "Percentages"
+        "Proportional Relationships",
+        "Percentages",
+        "Percent Change & Applications"
       ]
     },
     {
       "label": "Arithmetic & Number Sense",
       "topics": [
-        "Number Properties",
-        "Fractions & Decimals",
-        "Number Operations",
+        "Number Types & Properties",
+        "Integers & Absolute Value",
+        "Fractions",
+        "Decimals",
+        "Order of Operations",
         "Exponents, Roots & Scientific Notation",
-        "Units & Conversions",
-        "Counting & Sets"
+        "Units & Conversions"
       ]
     }
   ]

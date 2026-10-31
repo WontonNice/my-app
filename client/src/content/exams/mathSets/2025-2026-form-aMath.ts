@@ -20,8 +20,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
     "promptHtml": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
-    "topic": "Geometry",
-    "subtopic": "Scale & Transformations",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -226,7 +226,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives \n8\n8\n of his stamps to Kevin. Liam now has \n12\n12\n more stamps than Kevin.\n\n\nHow many stamps did Liam start with?",
     "promptHtml": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives&nbsp;<strong>8</strong>&nbsp;of his stamps to Kevin. Liam now has&nbsp;<strong>12</strong>&nbsp;more stamps than Kevin.<div><br><div>How many stamps did Liam start with?</div></div><div><br></div>",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "dropdownContent": [
       "An equation that relates the number of stamps originally in Liam's and Kevin's collections is L ={{answer-1}}K.",
       "After Liam gives 8 stamps to Kevin, the equation becomes L − 8 ={{answer-2}}.",
@@ -300,7 +300,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, PQRS is a parallelogram. What is the value of x?\n\nEnter your answer in the space.",
     "promptHtml": "<div><p>In the figure above,&nbsp;\\(PQRS\\)&nbsp;is a parallelogram. What is the value of&nbsp;\\(x\\)?</p></div><div><p>Enter your answer in the space.</p></div>",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Triangles & Polygons",
     "correctTextAnswers": [
       "162"
     ],
@@ -464,7 +464,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "The sum of two consecutive integers is \\(-15\\). If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?\n\nEnter your answer in the space.",
     "promptHtml": "<p>The&nbsp;sum&nbsp;of&nbsp;two&nbsp;consecutive&nbsp;integers&nbsp;is&nbsp;\\(-15\\).&nbsp;If&nbsp;1&nbsp;is&nbsp;added&nbsp;to&nbsp;the&nbsp;smaller&nbsp;integer&nbsp;and&nbsp;2&nbsp;is&nbsp;subtracted&nbsp;from&nbsp;the&nbsp;larger&nbsp;integer,&nbsp;what&nbsp;is&nbsp;the&nbsp;<strong>product</strong>&nbsp;of&nbsp;the&nbsp;two&nbsp;resulting&nbsp;integers?</p><p></p><p></p><p>Enter&nbsp;your&nbsp;answer&nbsp;in&nbsp;the&nbsp;space.<br></p>",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "correctTextAnswers": [
       "63"
     ],
@@ -476,7 +476,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
     "promptHtml": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are <strong>not </strong>red?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "choices": [
       {
         "id": "A",
@@ -575,7 +575,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "Consider this expression:",
     "stimulus": "\\[\\left|(-8)-(-3)+6\\right|-\\left|6-11\\right|\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Integers & Absolute Value",
     "allowReuse": false,
     "dragDropContent": [
       "\\(\\lvert\\){{left-value}}\\(\\rvert-\\lvert\\){{right-value}}\\(\\rvert\\)"
@@ -648,7 +648,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
     "promptHtml": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are <strong>not</strong> blue?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",
@@ -772,7 +772,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which of the following numbers has factors that include the smallest factor (other than 1) of 91?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -803,7 +803,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
     "topic": "Geometry",
-    "subtopic": "Scale & Transformations",
+    "subtopic": "Similarity & Scale Drawings",
     "choices": [
       {
         "id": "A",
@@ -875,7 +875,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "choices": [
       {
         "id": "A",
@@ -966,7 +966,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of the expression shown above?\n\n\\(2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\)",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -997,7 +997,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "An unmarked straight stick will be laid end over end to measure a distance of exactly 72 feet. The same stick will be used in the same way to measure a distance of exactly 30 feet. What is the length of the longest possible stick that can be used for both measurements?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1023,8 +1023,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "id": "choose-pairs-of-cookies",
     "points": 1,
     "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Counting & Sets",
+    "topic": "Statistics and Probability",
+    "subtopic": "Counting & Combinations",
     "choices": [
       {
         "id": "A",
@@ -1090,7 +1090,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On the number line above, \\(LN=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -1167,7 +1167,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "When a student buys 4 notebooks, the total cost is $12. Each notebook costs the same amount. Select each point on the graph that best represents \\(y\\), the total cost of \\(x\\) notebooks.",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Rates & Unit Rates",
+    "subtopic": "Proportional Relationships",
     "correctPointIds": [
       "point-1-3",
       "point-3-9",
@@ -1248,8 +1248,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Let \\(b=3\\), \\(c=4\\), and \\(d=5\\). Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\).",
     "promptHtml": "Let \\(b=3\\), \\(c=4\\), and \\(d=5\\). Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\).",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "topic": "Algebra",
+    "subtopic": "Algebraic Expressions",
     "correctTextAnswers": [
       "16/15"
     ],

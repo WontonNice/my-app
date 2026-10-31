@@ -21,7 +21,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the prime factorization of 3,575?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -53,7 +53,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of \\(z\\) in \\(\\frac{x}{10}+\\frac{y-x}{5}=\\frac{z}{10}\\)?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Formulas & Rearranging Equations",
     "choices": [
       {
         "id": "A",
@@ -115,8 +115,8 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "explanation": "(C) The first step is to substitute the value for x into the expression to get \\(\\frac{2}{2-\\frac{1}{4}}\\).\nThen, evaluate the denominator and finally divide the numerator by the denominator.\n\\[\\frac{2}{2-\\frac{1}{4}}=2\\div\\frac{7}{4}=2\\left(\\frac{4}{7}\\right)=\\frac{8}{7}=1\\frac{1}{7}\\]",
     "points": 1,
     "prompt": "If \\(x=\\frac{1}{4}\\), what is the value of \\(\\frac{2}{2-x}\\)?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "topic": "Algebra",
+    "subtopic": "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -149,7 +149,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a school raffle, 1 out of every 25 students wins a prize. Each prize includes a randomly selected trading card from a set of 100 different cards, labeled C1 through C100, with each card equally likely to be chosen. If one student is selected at random, what is the probability that the student both wins a prize and receives Card C17?\n\nWrite an expression that represents the probability that a student wins the prize and receives Card C17.",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "correctTextAnswers": [
       "1/25*1/100",
       "(1/25)*(1/100)",
@@ -201,7 +201,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "A middle school library has a shelf with 40 books, each labeled with a different number from 201 to 240. One book is selected at random. What is the probability, as a percentage, of selecting book number 223?",
     "promptHtml": "A middle school library has a shelf with 40 books, each labeled with a different number from 201 to 240. One book is selected at random. What is the probability, as a <strong>percentage</strong>, of selecting book number 223?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "correctTextAnswers": [
       "2.5%",
       "2.5"
@@ -230,7 +230,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "Let \\(m\\) be a negative integer and \\(k\\) be a positive integer.\n\nWhich of the expressions below must result in a positive value?\n\nSelect the three correct answers.",
     "promptHtml": "Let \\(m\\) be a negative integer and \\(k\\) be a positive integer.<br><br>Which of the expressions below must result in a <strong>positive</strong> value?<br><br>Select the <strong>three</strong> correct answers.",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Integers & Absolute Value",
     "choices": [
       {
         "id": "A",
@@ -304,7 +304,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a scale drawing of a triangular park, the sides measure 5 inches, 7 inches, and 8 inches. The perimeter of the actual park is 25 miles. What is the actual length of the shortest side of the park?",
     "topic": "Geometry",
-    "subtopic": "Scale & Transformations",
+    "subtopic": "Similarity & Scale Drawings",
     "choices": [
       {
         "id": "A",
@@ -333,7 +333,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "\\(P\\) is the center of the circle above, and \\(R\\), \\(S\\), and \\(T\\) are points on the circle. What is the value of \\(x\\)?",
     "promptHtml": "<img src=\"/exam-images/2026-2027-form-d-2026-2027-form-d-math-item-12-59edeee54d299410.png\" alt=\"Math diagram\" width=\"180\">\\(P\\) is the center of the circle above, and \\(R\\), \\(S\\), and \\(T\\) are points on the circle. What is the value of \\(x\\)?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Lines & Angles",
     "choices": [
       {
         "id": "A",
@@ -362,7 +362,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "In the right triangle shown above, what is the measure of the smallest angle?",
     "promptHtml": "<img src=\"/exam-images/2026-2027-form-d-2026-2027-form-d-math-item-13-a2a97944a0b21b25.png\" alt=\"Math diagram\" width=\"200\">In the right triangle shown above, what is the measure of the smallest angle?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Triangles & Polygons",
     "choices": [
       {
         "id": "A",
@@ -391,7 +391,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "James must read 84 pages of a book for a class assignment. If he reads \\(\\frac{1}{4}\\) of the pages in the morning and \\(\\frac{1}{3}\\) of the remaining pages in the afternoon, how many pages will he still need to read?",
     "promptHtml": "James must read 84 pages of a book for a class assignment. If he reads \\(\\frac{1}{4}\\) of the pages in the morning and \\(\\frac{1}{3}\\) of the <strong>remaining</strong> pages in the afternoon, how many pages will he still need to read?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -419,7 +419,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[\\frac{1}{11}+\\frac{1}{22}+\\frac{1}{33}\\]\n\nWhat is the value of the expression shown above?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -454,7 +454,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "The table shows the proportional relationship between x cups of oatmeal and y ounces of raisins in a bread recipe.\nWhat is the constant of proportionality of the number of ounces of raisins to the number of cups of oatmeal?",
     "promptHtml": "The table shows the proportional relationship between x cups of oatmeal and y ounces of raisins in a bread recipe.<br><img src=\"/exam-images/2026-2027-form-d-2026-2027-form-d-math-item-16-cbcf802a85e4761f.png\" alt=\"Math diagram\" width=\"280\">What is the constant of proportionality of the number of ounces of raisins to the number of cups of oatmeal?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Ratios & Proportions",
+    "subtopic": "Proportional Relationships",
     "correctTextAnswers": [
       "0.5",
       "1/2"
@@ -467,8 +467,8 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At Midville High School, 64 students are members of either the orchestra or the choir, or both. Of these students, 38 are members of the orchestra, and 46 are members of the choir. What fraction of the total is the number of students who are members of both the orchestra and the choir?",
     "promptHtml": "At Midville High School, 64 students are members of either the orchestra or the choir, or both. Of these students, 38 are members of the orchestra, and 46 are members of the choir. What fraction of the total is the number of students who are members of <strong>both</strong> the orchestra and the choir?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Counting & Sets",
+    "topic": "Statistics and Probability",
+    "subtopic": "Set Relationships",
     "choices": [
       {
         "id": "A",
@@ -500,7 +500,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which of the following decimals is equivalent to \\(1\\frac{2}{3}+2\\frac{4}{9}\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -532,7 +532,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A store manager purchases a piece of furniture for $456.00. To determine the selling price, the manager increases the purchase cost by 125%. A customer buys the furniture and pays an additional 8% sales tax. How much does the customer pay for the furniture?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "choices": [
       {
         "id": "A",
@@ -560,7 +560,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of \\(\\frac{-9(-4)^2+36(-4)+304}{-4}\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -588,7 +588,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Maxie borrowed $7.75 from her mother, $11.00 from her father, and $4.50 from her brother to purchase a video game. Her grandmother gave her $25.00 as a gift. How much money will Maxie have left or still owe if she uses the money her grandmother gave her to pay back the money she borrowed?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Integers & Absolute Value",
     "choices": [
       {
         "id": "A",
@@ -616,7 +616,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Seth grows strawberries in his garden.\n\n• He picked \\(2\\frac{1}{2}\\) cups of strawberries on Monday.\n• He picked 4 cups of strawberries on Tuesday.\n• He ate \\(\\frac{3}{4}\\) cup of strawberries for breakfast each day on Wednesday, Thursday, and Friday.\n\nHow many cups of strawberries did Seth have left?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -646,7 +646,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which situation involves quantities that combine to equal zero?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Integers & Absolute Value",
     "choices": [
       {
         "id": "A",
@@ -780,7 +780,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A graph shows the relationship between the number of gallons of water, \\(y\\), that has been added to a tank and the number of hours, \\(x\\), that water has been added to the tank at a constant rate. What does the ordered pair \\((3,24)\\) represent?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Rates & Unit Rates",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",
@@ -808,7 +808,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Karl has one red spinner and one blue spinner. Each spinner is divided into 4 equal sections, numbered 1 through 4. He spins each spinner once and writes down the number that each lands on. What is the probability that the two numbers, when multiplied together, will have 4 as a product?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",
@@ -872,7 +872,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A box contains an unknown number of green marbles. An experimenter adds 100 red marbles to the box, mixes the marbles thoroughly, and then draws out 10 marbles at random. Assume that this sample is representative of the proportion in the box. If there are 2 red marbles and 8 green marbles in this sample, approximately how many green marbles are in the box?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Sampling & Predictions",
     "choices": [
       {
         "id": "A",
@@ -931,7 +931,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A car costing $24,000 is subject to a sales tax of 8%. If Bindu made a $10,000 down payment on this car, what is the total amount she has left to pay?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "choices": [
       {
         "id": "A",
@@ -959,7 +959,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Last week, Emily rode the bus to school on 3 of the 5 mornings and rode the bus home on 4 of the 5 afternoons. Based on last week’s events, what is the probability that Emily will ride the bus in the morning and the afternoon next Monday?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",
@@ -991,8 +991,8 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "XYZ Corporation hired 6 people as summer workers. Of these 6 people, 3 will be hired as permanent employees in the fall. If 2 of the 6 people are male, how many of the possible groups of 3 people hired in the fall will include only 1 male?",
     "promptHtml": "XYZ Corporation hired 6 people as summer workers. Of these 6 people, 3 will be hired as permanent employees in the fall. If 2 of the 6 people are male, how many of the possible groups of 3 people hired in the fall will include <strong>only</strong> 1 male?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Counting & Sets",
+    "topic": "Statistics and Probability",
+    "subtopic": "Counting & Combinations",
     "choices": [
       {
         "id": "A",
@@ -1037,7 +1037,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What 3-digit number between 630 and 650 is divisible by both 5 and 8?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "correctTextAnswers": [
       "640"
     ],
@@ -1049,7 +1049,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Melissa has a bag of marbles that are all the same size. The bag contains three red (R) marbles, three green (G) marbles, and two white (W) marbles. For an experiment, she will take two marbles out of the bag without looking. Which list shows the sample space for Melissa’s experiment?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Counting & Combinations",
     "choices": [
       {
         "id": "A",
@@ -1078,7 +1078,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "The table shows the probabilities of a hockey team scoring different numbers of goals in a game.\nWhat is the probability that the team will score three or more goals in the next game?",
     "promptHtml": "The table shows the probabilities of a hockey team scoring different numbers of goals in a game.<br><img src=\"/exam-images/2026-2027-form-d-2026-2027-form-d-math-item-39-4e587a1167b72626.png\" alt=\"Math diagram\" width=\"200\">What is the probability that the team will score three or more goals in the next game?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "choices": [
       {
         "id": "A",
@@ -1138,7 +1138,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The distance an eagle flies is proportional to the time the eagle spends flying. An eagle flies 90 miles in 3 hours. What is the constant of proportionality for this relationship?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Rates & Unit Rates",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",
@@ -1282,7 +1282,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "A bakery charges $1.25 for each cupcake and $2.50 for a serving tray. The equation describes \\(p\\), the price of \\(c\\) cupcakes and a serving tray, not including tax.\n\n\\[p=2.50+1.25c\\]\n\nIf Samantha bought some cupcakes and a serving tray for a total of $22.50, not including tax, how many cupcakes did she buy?",
     "promptHtml": "A bakery charges $1.25 for each cupcake and $2.50 for a serving tray. The equation describes \\(p\\), the price of \\(c\\) cupcakes and a serving tray, <strong>not</strong> including tax.<br><br>\\[p=2.50+1.25c\\]<br><br>If Samantha bought some cupcakes and a serving tray for a total of $22.50, <strong>not</strong> including tax, how many cupcakes did she buy?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "choices": [
       {
         "id": "A",
@@ -1313,7 +1313,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "Marcus and Isla are saving money to buy concert tickets.\n\n• They decide to save the same amount each week.\n\n• \n\nThey already have $8 saved.\n• After 3 weeks, the two have $26 saved in total.\n\nHow much money, in dollars, is being saved by Marcus and Isla each week?",
     "promptHtml": "Marcus and Isla are saving money to buy concert tickets.<br><br>• They decide to save the same amount each week.<div>\n\n•&nbsp;\n\nThey already have $8 saved.<br>• After 3 weeks, the two have $26 saved in total.<br><br>How much money, in dollars, is being saved by Marcus and Isla each week?</div>",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "correctTextAnswers": [
       "6"
     ],
@@ -1397,7 +1397,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "What shape will result from a horizontal slice of the figure above?",
     "promptHtml": "<img src=\"/exam-images/2026-2027-form-d-2026-2027-form-d-math-item-47-28963a74fb488971.png\" alt=\"Math diagram\" width=\"130\">What shape will result from a horizontal slice of the figure above?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -1454,7 +1454,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "Anise has a piece of cloth measuring 45 inches by 75 inches. She wants to cut it into squares of equal size, without any cloth left over. What is the greatest possible side length, in inches, of one of those squares?",
     "promptHtml": "Anise has a piece of cloth measuring 45 inches by 75 inches. She wants to cut it into squares of equal size, without any cloth left over. What is the <strong>greatest</strong> possible side length, in inches, of one of those squares?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1483,7 +1483,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "This table shows the number of birds that came to a bird feeder on Monday and Tuesday.\nWhat was the percent decrease in the number of birds from Monday to Tuesday?",
     "promptHtml": "This table shows the number of birds that came to a bird feeder on Monday and Tuesday.<br><img src=\"/exam-images/2026-2027-form-d-2026-2027-form-d-math-item-50-24bc617231e91e6a.png\" alt=\"Math diagram\" width=\"180\">What was the percent decrease in the number of birds from Monday to Tuesday?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "choices": [
       {
         "id": "A",

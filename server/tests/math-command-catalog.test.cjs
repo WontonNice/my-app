@@ -40,7 +40,7 @@ test('coverage counts include zero inventory and report teacher-defined difficul
   const row=summary.coverage.find(r=>r.category==='Algebra'&&r.subcategory==='Equations & Systems');
   assert.deepEqual(row.difficulties,{easy:0,medium:1,hard:1,expert:0,unclassified:1});
   assert.deepEqual(row.gaps.find(g=>g.difficulty==='hard'),{difficulty:'hard',available:1,target:4,shortage:3});
-  assert.equal(summary.coverage.find(r=>r.subcategory==='Pythagorean Theorem').total,0);
+  assert.equal(summary.coverage.find(r=>r.subcategory==='Triangles & Polygons').total,0);
 });
 
 test('review queue distinguishes absent metadata, answer errors, explicitly required diagrams and unsafe formatting',()=>{

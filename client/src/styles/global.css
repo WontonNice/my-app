@@ -5640,6 +5640,16 @@ button {
   text-align: left;
 }
 
+/* Three or more answer columns need room for full category headings. */
+.exam-matrix-choice-wrap:not(.is-evidence-matrix) .exam-matrix-choice-table:has(thead th:nth-child(4)) thead th:first-child,
+.exam-matrix-choice-wrap:not(.is-evidence-matrix) .exam-matrix-choice-table:has(thead th:nth-child(4)) tbody th {
+  width: 40%;
+}
+
+.exam-matrix-choice-table thead th {
+  overflow-wrap: anywhere;
+}
+
 .exam-matrix-choice-table tbody td {
   height: 62px;
   background: #ffffff;

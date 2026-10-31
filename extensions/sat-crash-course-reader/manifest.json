@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "SAT Crash Course Reader",
-  "version": "0.8.0",
+  "version": "0.8.5",
   "description": "Read structured test information from the SAT Crash Course tutor site and export it locally.",
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "storage"],
   "host_permissions": ["https://tutor.thesatcrashcourse.com/*"],
   "action": {
     "default_title": "Read this SAT Crash Course page",

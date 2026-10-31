@@ -115,6 +115,13 @@ import { excerptFromFirstIceDigitalShsatPracticeTest5PassageSet } from "./passag
 import { howAMountainBecomesAVolcanoDigitalShsatPracticeTest5PassageSet } from "./passageSets/how-a-mountain-becomes-a-volcano-digital-shsat-practice-test-5";
 import { excerptFromToAutumnDigitalShsatPracticeTest5PassageSet } from "./passageSets/excerpt-from-to-autumn-digital-shsat-practice-test-5";
 import { theScienceOfSourdoughDigitalShsatPracticeTest5PassageSet } from "./passageSets/the-science-of-sourdough-digital-shsat-practice-test-5";
+import { excerptFromMowgliSBrothersDigitalShsatPracticeTest4PassageSet } from "./passageSets/excerpt-from-mowgli-s-brothers-digital-shsat-practice-test-4";
+import { excerptFromTheHallThatLearnedToListenDigitalShsatPracticeTest4PassageSet } from "./passageSets/excerpt-from-the-hall-that-learned-to-listen-digital-shsat-practice-test-4";
+import { excerptFromExcerptFromTheVoyageOfTheBeagleDigitalShsatPracticeTest4PassageSet } from "./passageSets/excerpt-from-excerpt-from-the-voyage-of-the-beagle-digital-shsat-practice-test-4";
+import { excerptFromStoppingByWoodsOnASnowyEveningDigitalShsatPracticeTest4PassageSet } from "./passageSets/excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4";
+import { excerptFromTheGripThatShouldnTWorkDigitalShsatPracticeTest4PassageSet } from "./passageSets/excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4";
+import { excerptFromFormationDigitalShsatPracticeTest4PassageSet } from "./passageSets/excerpt-from-formation-digital-shsat-practice-test-4";
+import { excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4PassageSet } from "./passageSets/excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -231,6 +238,13 @@ export const examPassageLibrary: ExamPassageSet[] = [
   howAMountainBecomesAVolcanoDigitalShsatPracticeTest5PassageSet,
   excerptFromToAutumnDigitalShsatPracticeTest5PassageSet,
   theScienceOfSourdoughDigitalShsatPracticeTest5PassageSet,
+  excerptFromMowgliSBrothersDigitalShsatPracticeTest4PassageSet,
+  excerptFromTheHallThatLearnedToListenDigitalShsatPracticeTest4PassageSet,
+  excerptFromExcerptFromTheVoyageOfTheBeagleDigitalShsatPracticeTest4PassageSet,
+  excerptFromStoppingByWoodsOnASnowyEveningDigitalShsatPracticeTest4PassageSet,
+  excerptFromTheGripThatShouldnTWorkDigitalShsatPracticeTest4PassageSet,
+  excerptFromFormationDigitalShsatPracticeTest4PassageSet,
+  excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4PassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);

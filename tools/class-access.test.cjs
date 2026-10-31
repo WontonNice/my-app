@@ -43,7 +43,7 @@ function fixture(page = false) {
   function load(relative) {
     const code = ts.transpileModule(readFileSync(resolve(__dirname, '../client/src', relative), 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022 } }).outputText;
     const module = { exports: {} };
-    runInNewContext(code, { exports: module.exports, module, window, require: id => stubs[id] ?? (id.endsWith('/ClassAccessError') ? load('components/ClassAccessError.tsx') : require(id)) });
+    runInNewContext(code, { exports: module.exports, module, window, Error, AbortController, setTimeout, clearTimeout, require: id => stubs[id] ?? (id.endsWith('/ClassAccessError') ? load('components/ClassAccessError.tsx') : id.endsWith('/requestDeadline') ? load('lib/requestDeadline.ts') : require(id)) });
     return module.exports;
   }
   const Component = page ? load('pages/StudentClassroomPage.tsx').StudentClassroomPage : load('components/ClassAccessGate.tsx').ClassAccessGate;
@@ -64,6 +64,7 @@ test('failed enrollment lookup neither redirects nor clears cached enrollment; r
   const f = fixture(); f.state.failure = true;
   const failed = await f.settle();
   assert.match(failed, /Retry classroom access/);
+  assert.match(failed, /API unavailable/);
   assert.doesNotMatch(failed, /Protected dashboard/);
   assert.deepEqual(f.state.redirects, []); assert.deepEqual(f.state.cached, []);
   f.state.failure = false; f.retry();
@@ -94,6 +95,7 @@ test('class-code page hides enrollment form on lookup failure and retry restores
   const f = fixture(true); f.state.failure = true;
   const failed = await f.settle();
   assert.match(failed, /Retry classroom access/); assert.doesNotMatch(failed, /Request access|student-class-code/);
+  assert.match(failed, /API unavailable/);
   assert.deepEqual(f.state.cached, []);
   f.state.failure = false; f.retry(); await f.settle();
   assert.deepEqual(f.state.redirects, ['/study-hall/shsat']); assert.equal(f.state.calls, 2);

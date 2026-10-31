@@ -22,7 +22,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, PQRS is a parallelogram. What is the value of \\(x\\)?",
     "promptHtml": "<img src=\"/exam-images/2021-2022-form-a-2021-2022-form-a-q58-d4aa60d453b3b8f9.png\" alt=\"Math diagram\" width=\"330\">In the figure above, PQRS is a parallelogram. What is the value of \\(x\\)?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Triangles & Polygons",
     "correctTextAnswers": [
       "162"
     ],
@@ -59,8 +59,8 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "explanation": "",
     "points": 1,
     "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true.\n\n• 20 students have cats.\n• 23 students have dogs.\n• 3 students have both dogs and cats.\n• 5 students have no dogs or cats.\n\nHow many students were surveyed?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Counting & Sets",
+    "topic": "Statistics and Probability",
+    "subtopic": "Set Relationships",
     "correctTextAnswers": [
       "45"
     ],
@@ -72,8 +72,8 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The sum of two consecutive integers is \\(-15\\). If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?",
     "promptHtml": "The sum of two consecutive integers is \\(-15\\). If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the <strong>product</strong> of the two resulting integers?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "topic": "Algebra",
+    "subtopic": "Algebraic Word Problems",
     "correctTextAnswers": [
       "63"
     ],
@@ -177,7 +177,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Jenny starts a game with twice as many marbles as Keiko. Jenny gives Keiko 5 marbles, but she still has 10 more than Keiko. How many marbles did Jenny have to start with?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "choices": [
       {
         "id": "A",
@@ -380,7 +380,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
     "promptHtml": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are <strong>not</strong> red?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "choices": [
       {
         "id": "A",
@@ -465,8 +465,8 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In Centerville, 45% of the population is female, and 60% of the population commutes to work daily. Of the total Centerville population, 21% are females who commute to work daily. What percentage of the total Centerville population are males who do not commute to work daily?",
     "promptHtml": "In Centerville, 45% of the population is female, and 60% of the population commutes to work daily. Of the total Centerville population, 21% are females who commute to work daily. What percentage of the total Centerville population are males who do <strong>not</strong> commute to work daily?",
-    "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "topic": "Statistics and Probability",
+    "subtopic": "Set Relationships",
     "choices": [
       {
         "id": "A",
@@ -523,7 +523,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
     "promptHtml": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are <strong>not</strong> blue?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",
@@ -640,7 +640,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which of the following numbers has factors that include the smallest factor (other than 1) of 91?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -668,7 +668,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
     "topic": "Geometry",
-    "subtopic": "Scale & Transformations",
+    "subtopic": "Similarity & Scale Drawings",
     "choices": [
       {
         "id": "A",
@@ -790,7 +790,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "choices": [
       {
         "id": "A",
@@ -818,7 +818,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "How many positive even factors of 48 are greater than 24 and less than 48?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -846,7 +846,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\)\n\nWhat is the value of the expression shown above?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -878,7 +878,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "An unmarked straight stick will be laid end over end to measure a distance of exactly 72 feet. The same stick will be used in the same way to measure a distance of exactly 30 feet. What is the length of the longest possible stick that can be used for both measurements?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -905,8 +905,8 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "explanation": "",
     "points": 1,
     "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Counting & Sets",
+    "topic": "Statistics and Probability",
+    "subtopic": "Counting & Combinations",
     "choices": [
       {
         "id": "A",
@@ -964,7 +964,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, \\(LN=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
     "promptHtml": "<img src=\"/exam-images/2021-2022-form-a-2021-2022-form-a-q93-f57d76bc2bf33e4b.png\" alt=\"Math diagram\" width=\"250\">On the number line above, \\(LN=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -992,7 +992,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Johan leased a car for three years. He paid a one-time fee of $1,000, and an additional $300 per month for the full three years. At the end of the three years, what is the total amount Johan paid for leasing this car?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -1086,7 +1086,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of neither 2 nor 3?",
     "promptHtml": "In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of <strong>neither</strong> 2 nor 3?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Counting & Sets",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1115,7 +1115,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "If \\(3n\\) is a positive even number, how many odd numbers are in the range from \\(3n\\) up to and including \\(3n+5\\)?",
     "promptHtml": "If \\(3n\\) is a positive even number, how many <strong>odd</strong> numbers are in the range from \\(3n\\) up to and including \\(3n+5\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1144,7 +1144,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "A box contains 5 strawberry candies, 3 banana candies, and 2 orange candies. If Braden selects 2 candies at random from this box, without replacement, what is the probability that both candies are not banana?",
     "promptHtml": "A box contains 5 strawberry candies, 3 banana candies, and 2 orange candies. If Braden selects 2 candies at random from this box, without replacement, what is the probability that both candies are <strong>not</strong> banana?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",
@@ -1175,8 +1175,8 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "explanation": "",
     "points": 1,
     "prompt": "\\[\\frac{w}{x}=\\frac{y}{z}\\]\n\nIn the equation above, \\(w\\), \\(x\\), \\(y\\), and \\(z\\) are positive numbers. Which of these is equal to \\(z\\)?",
-    "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Ratios & Proportions",
+    "topic": "Algebra",
+    "subtopic": "Formulas & Rearranging Equations",
     "choices": [
       {
         "id": "A",
@@ -1238,7 +1238,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "A metal square used in an electronic device must have a thickness of 0.02 inch, with an allowable error of 1 percent. What is the greatest allowable thickness of the metal square?",
     "promptHtml": "A metal square used in an electronic device must have a thickness of 0.02 inch, with an allowable error of 1 percent. What is the <strong>greatest</strong> allowable thickness of the metal square?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "choices": [
       {
         "id": "A",
@@ -1408,7 +1408,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A sports store has a container of handballs: 4 blue, 5 red, 8 yellow, 9 white, and 11 green. If one ball is picked from the container at random, what is the probability that it will be yellow?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "choices": [
       {
         "id": "A",
@@ -1441,7 +1441,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "Each week, Leon has fixed expenses of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he sells each chair for $275. What is Leon’s profit if he makes and sells 25 chairs in 1 week?",
     "promptHtml": "Each week, Leon has fixed expenses of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he sells each chair for $275. What is Leon’s <strong>profit</strong> if he makes and sells 25 chairs in 1 week?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -1497,8 +1497,8 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On the number line above, \\(JK=3\\frac{1}{2}\\), \\(JM=9\\frac{3}{4}\\), and \\(LM=1\\frac{1}{8}\\). What is the position of point L?",
     "promptHtml": "<img src=\"/exam-images/2021-2022-form-a-2021-2022-form-a-q111-50e916e61bbcb82c.png\" alt=\"Math diagram\" width=\"330\">On the number line above, \\(JK=3\\frac{1}{2}\\), \\(JM=9\\frac{3}{4}\\), and \\(LM=1\\frac{1}{8}\\). What is the position of point L?",
-    "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "topic": "Geometry",
+    "subtopic": "Coordinates & Segment Relationships",
     "choices": [
       {
         "id": "A",
@@ -1530,7 +1530,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(4x-3y=12\\), what is \\(x\\) in terms of \\(y\\)?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Formulas & Rearranging Equations",
     "choices": [
       {
         "id": "A",

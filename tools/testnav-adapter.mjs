@@ -68,6 +68,36 @@ export function plain(html) {
  const $=load(html||'',null,false);$('br').replaceWith('\n');$('p,div,blockquote,h2,h3,tr,li').append('\n');$('td,th').append(' ');
  return $.root().text().replace(/\u00a0/g,' ').replace(/[ \t]+/g,' ').replace(/ *\n */g,'\n').replace(/\n{3,}/g,'\n\n').trim();
 }
+export function passagePresentation(html, assets=new Map()) {
+ const $=load(html||'',null,false);hydrateGlossary($);
+ const title=$('.passage-title').first(),byline=$('.author').first();
+ // Source order, rather than italics or paragraph wording, identifies a blurb.
+ // Keep nested wrappers and all blocks before the first passage title together.
+ const takeBeforeTitle=parent=>{
+  const parts=[];
+  for(const node of parent.contents().toArray()) {
+   if(node===title[0])break;
+   const child=$(node);
+   if(child.find('.passage-title').toArray().includes(title[0])) {
+    const prefix=takeBeforeTitle(child);
+    if(prefix)parts.push($.html(child.clone().empty().append(prefix)));
+    break;
+   }
+   parts.push($.html(node));child.remove();
+  }
+  return parts.join('');
+ };
+ const blurbHtml=title.length?cleanHtml(takeBeforeTitle($.root()),assets):'';
+ const result={title:title.text().trim(),titleHtml:cleanHtml(title.html(),assets),
+  byline:byline.text().trim(),bylineHtml:cleanHtml(byline.html(),assets),
+  blurb:plain(blurbHtml),blurbHtml,
+  poem:$('.poem_body,[class^="count_"]').length>0,
+  sourceNote:$('.copyright-tm').text().trim()};
+ title.remove();byline.remove();$('.copyright-tm').remove();
+ result.richText=cleanHtml($.root().html(),assets);
+ result.text=plain(result.richText);
+ return result;
+}
 function optionsJson(script) {
  const m=script.match(/var interaction_RESPONSE_options = (\{[^\n]*?\});/);
  if(!m)throw new Error('Missing custom-interaction configuration');
@@ -186,15 +216,10 @@ export async function convertPackage(folder) {
    const q=convertItem(data,item,{assets,source,key:keys[item.number]});questions.push(q);
    if(!passage&&section.title.includes('Passage Set')) {
     const $=load(data.itemBodyHtml,null,false);hydrateGlossary($);const stimulus=$('.stimulus .passageContent').first().clone();
-    const title=stimulus.find('.passage-title').first().text().trim(),byline=stimulus.find('.author').first().text().trim();
-    const titleHtml=cleanHtml(stimulus.find('.passage-title').first().html(),assets),bylineHtml=cleanHtml(stimulus.find('.author').first().html(),assets);
-    const poem=stimulus.find('.poem_body,[class^="count_"]').length>0;
-    stimulus.find('.passage-title').first().remove();stimulus.find('.author').first().remove();
-    const copyright=stimulus.find('.copyright-tm').text().trim();stimulus.find('.copyright-tm').remove();
+    const {poem,...presentation}=passagePresentation(stimulus.html(),assets);
     const sectionName=entry.id.startsWith('EW')?'revising_editing_a':'reading';
-    passage={title,titleHtml,author:byline.replace(/^by\s+/i,''),byline,bylineHtml,preserveSourceLayout:true,format:poem?'poem':sectionName==='revising_editing_a'?'sentence_prose':'prose',passageType:poem?'poem':'long_reading',passageCategory:'official_handbook',section:sectionName,
-     richText:cleanHtml(stimulus.html(),assets),text:'',sourceNote:copyright,teacherSource:inv.sourceUrl,versionLabel:`SHSAT 2026 Practice Test ${inv.form}`,source:{sourceFamily:'official_shsat',sourceFormat:'testnav',playerProfile:'testnav',year:2026,form:inv.form,section:section.title},questions:[],review:{expectedQuestionCount:qs.length,warnings:[]}};
-    passage.text=plain(passage.richText);
+    passage={...presentation,author:presentation.byline.replace(/^by\s+/i,''),preserveSourceLayout:true,format:poem?'poem':sectionName==='revising_editing_a'?'sentence_prose':'prose',passageType:poem?'poem':'long_reading',passageCategory:'official_handbook',section:sectionName,
+     teacherSource:inv.sourceUrl,versionLabel:`SHSAT 2026 Practice Test ${inv.form}`,source:{sourceFamily:'official_shsat',sourceFormat:'testnav',playerProfile:'testnav',year:2026,form:inv.form,section:section.title},questions:[],review:{expectedQuestionCount:qs.length,warnings:[]}};
    }
   }
   if(section.title==='Math')result.mathQuestions.push(...questions);

@@ -28,8 +28,11 @@ export function StudentClassroomPage() {
         return;
       }
       setPendingRequest(access.pendingRequests.find((request) => request.classroom.id === "shsat") ?? null);
-    }).catch(() => {
-      if (isMounted) setAccessFailed(true);
+    }).catch((reason) => {
+      if (isMounted) {
+        setError(reason instanceof Error ? reason.message : "Classroom access is temporarily unavailable. Please try again.");
+        setAccessFailed(true);
+      }
     }).finally(() => {
       if (isMounted) setIsLoading(false);
     });
@@ -64,7 +67,8 @@ export function StudentClassroomPage() {
   }
 
   if (isCheckingSession || isLoading) return <main className="loading-shell">Checking classroom access…</main>;
-  if (accessFailed) return <ClassAccessError onRetry={() => {
+  if (accessFailed) return <ClassAccessError message={error} onRetry={() => {
+    setError("");
     setAccessFailed(false);
     setIsLoading(true);
     setAttempt(value => value + 1);

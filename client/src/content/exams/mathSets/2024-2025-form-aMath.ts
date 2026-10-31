@@ -22,7 +22,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Simplify:\n\\[-3.8+2.3-(-1.1)\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Integers & Absolute Value",
     "correctTextAnswers": [
       "-0.4",
       "-.4"
@@ -36,7 +36,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Angle M and angle R are supplementary. The measure of angle R is 5 times the measure of angle M. What is the measure of angle R, in degrees?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Lines & Angles",
     "correctTextAnswers": [
       "150"
     ],
@@ -89,7 +89,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Mr. Jones has 550 goats, which is 10% more than Mr. King has. How many more goats does Mr. Jones have than Mr. King?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "choices": [
       {
         "id": "A",
@@ -118,7 +118,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(\\frac{2y}{x}-\\frac{y}{2x}=\\frac{\\square}{2x}\\) and \\(x\\ne0\\), what expression is represented by \\(\\square\\)?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -152,7 +152,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, PQRS is a square. Point S is the center of the circle, and points P and R are on the circle. If the area of the square is 4 square centimeters, what is the area, in square centimeters, of the shaded quarter of the circle?",
     "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q65-462850127733b234.png\" alt=\"Math diagram\" width=\"250\">In the figure above, PQRS is a square. Point S is the center of the circle, and points P and R are on the circle. If the area of the square is 4 square centimeters, what is the area, in square centimeters, of the shaded quarter of the circle?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Circles",
     "choices": [
       {
         "id": "A",
@@ -185,7 +185,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A list of consecutive integers begins with \\(m\\) and ends with \\(n\\). If \\(n-m=66\\), how many integers are in the list?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Properties",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -247,7 +247,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Jar 1 and Jar 2 each contain \\(\\frac12\\) cup of water. If \\(\\frac14\\) of the water in Jar 1 is poured into Jar 2, how much water is now in Jar 2?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -280,7 +280,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(n\\) is a whole number, and 0.01 is between \\(\\frac1n\\) and \\(\\frac1{n+2}\\), what is the value of \\(n\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -339,7 +339,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A museum has a room in the shape of a rectangle. The area of the floor is 960 square feet. In a scale drawing of the museum, 1 inch = 20 feet. If the length of the room is 2 inches in the scale drawing, what is the width of this room in the scale drawing?",
     "topic": "Geometry",
-    "subtopic": "Scale & Transformations",
+    "subtopic": "Similarity & Scale Drawings",
     "choices": [
       {
         "id": "A",
@@ -370,7 +370,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A program on a computer randomly generates a sequence of whole numbers from 1 to 9, inclusive. If the computer generates a sequence of 300 numbers, what is the best prediction of the number of odd numbers in the sequence?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Sampling & Predictions",
     "choices": [
       {
         "id": "A",
@@ -399,7 +399,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A truck rental company charges a one-time fee of $40 plus $1 per mile driven. Dalia rented a truck and used a coupon for 20% off the total rental cost. After the coupon was applied, she spent a total of $60. How many miles did she drive?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "choices": [
       {
         "id": "A",
@@ -428,7 +428,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The probability of drawing a red candy at random from a bag of 25 candies is \\(\\frac25\\). After 5 red candies are removed from the bag, what is the probability of randomly drawing a red candy from the bag?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Compound Probability",
     "choices": [
       {
         "id": "A",
@@ -460,7 +460,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Each number in a sequence is formed by doubling the previous number and then adding 1. If the 9th number in the sequence is 63, what is the 10th number minus the 7th number?",
     "topic": "Algebra",
-    "subtopic": "Algebraic Expressions",
+    "subtopic": "Patterns & Sequences",
     "choices": [
       {
         "id": "A",
@@ -580,7 +580,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "explanation": "For 86°F, \\(C=(86-32)\\frac59=30\\). For 68°F, \\(C=(68-32)\\frac59=20\\). The difference is 10°C.",
     "points": 1,
     "prompt": "\\[F=\\frac95 C+32\\]\n\nYesterday in Centerville, the highest Fahrenheit temperature, F, was 86°, and the lowest was 68°. What was the difference between these temperatures, in degrees Celsius, C?",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Arithmetic & Number Sense",
     "subtopic": "Units & Conversions",
     "choices": [
       {
@@ -643,7 +643,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In 1991, the total public debt of the United States was about $3,600,000,000,000. In that year, there were about 250,000,000 people in the United States. Which amount is the best estimate of the public debt per person for that year?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -673,7 +673,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, N is the midpoint of \\(\\overline{MQ}\\). Which segment has length \\(2x-y\\) centimeters?",
     "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q82-72e7a9312c5129ed.png\" alt=\"Math diagram\" width=\"320\">In the figure above, N is the midpoint of \\(\\overline{MQ}\\). Which segment has length \\(2x-y\\) centimeters?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Coordinates & Segment Relationships",
     "choices": [
       {
         "id": "A",
@@ -736,7 +736,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On Wednesday, a baker produced 100 more loaves of bread than were produced on Tuesday. On Thursday, the baker produced 50 fewer loaves than were produced on Tuesday. If the total number of loaves produced on all three days was 230, how many loaves were produced on Wednesday?",
     "topic": "Algebra",
-    "subtopic": "Equations & Systems",
+    "subtopic": "Algebraic Word Problems",
     "choices": [
       {
         "id": "A",
@@ -868,7 +868,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The reciprocal of \\(\\frac14\\) is added to the reciprocal of 3. What is the reciprocal of this sum?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -997,7 +997,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a certain state, the sales tax rate increased from 7.0% to 7.5%. What was the increase in the sales tax on a $200 item?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "choices": [
       {
         "id": "A",
@@ -1026,7 +1026,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Evaluate:\n\\[\\left|(-8)-12+(-17)-(-31)\\right|-\\left|24\\right|\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Integers & Absolute Value",
     "choices": [
       {
         "id": "A",
@@ -1086,7 +1086,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, the distance between X and Y is 1 unit, and the distance between Y and Z is 2 units. What is the distance, in units, between Y and the midpoint of X and Z?",
     "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q94-e7e9a4316c6fd542.png\" alt=\"Math diagram\" width=\"300\">On the number line above, the distance between X and Y is 1 unit, and the distance between Y and Z is 2 units. What is the distance, in units, between Y and the midpoint of X and Z?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Coordinates & Segment Relationships",
     "choices": [
       {
         "id": "A",
@@ -1117,7 +1117,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "By what percent did the price of a cup of coffee increase if its price was increased from $1.25 to $1.35?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "choices": [
       {
         "id": "A",
@@ -1147,7 +1147,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "Raquel is cutting out pieces of cardboard to make a pyramid. She will use a square piece for the base and identical triangular pieces for the sides. The figure above shows the dimensions of the triangle for each side. What will be the total surface area, in square inches, of the pyramid, including the square base?",
     "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q96-4fdc761a7f760cbe.png\" alt=\"Math diagram\" width=\"250\">Raquel is cutting out pieces of cardboard to make a pyramid. She will use a square piece for the base and identical triangular pieces for the sides. The figure above shows the dimensions of the triangle for each side. What will be the total surface area, in square inches, of the pyramid, including the square base?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -1176,7 +1176,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The price of a sandwich was raised from $6.25 to $6.75. What was the percent increase in the price?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "choices": [
       {
         "id": "A",
@@ -1263,7 +1263,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[3.6\\div0.018=\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Decimals",
     "choices": [
       {
         "id": "A",
@@ -1350,7 +1350,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A graph shows the proportional relationship between the number of test questions a student gets correct, \\(x\\), and the student’s test score, \\(y\\). The ordered pair \\(\\left(1,1\\frac14\\right)\\) is on the graph. What does the y-coordinate of the ordered pair represent in this relationship?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Rates & Unit Rates",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",
@@ -1382,7 +1382,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "In a survey of 200 adults in the town of Waskegon, 45 reported reading the online version of the Waskegon Bulletin the previous day. If 25,000 adults live in Waskegon, which number is the best estimate of the number of adults who read the online version of the Waskegon Bulletin the previous day?",
     "promptHtml": "In a survey of 200 adults in the town of Waskegon, 45 reported reading the online version of the <em>Waskegon Bulletin</em> the previous day. If 25,000 adults live in Waskegon, which number is the best estimate of the number of adults who read the online version of the <em>Waskegon Bulletin</em> the previous day?",
     "topic": "Statistics and Probability",
-    "subtopic": "Data Displays",
+    "subtopic": "Sampling & Predictions",
     "choices": [
       {
         "id": "A",
@@ -1411,7 +1411,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A hiker plans on hiking 17 miles in 3 days. Which equation describes the relationship between the number of days hiked, \\(x\\), and the number of miles traveled, \\(y\\)?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Rates & Unit Rates",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",
@@ -1444,7 +1444,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Carolyn walked 3 miles from her house to the library and then \\(2\\frac12\\) miles farther to the grocery store. Returning home by the same route, she walked \\(1\\frac23\\) miles before stopping at a friend’s house. How many miles did Carolyn have left to walk home?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -1510,7 +1510,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[3(0.01)-3(0.1)=\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Number Operations",
+    "subtopic": "Decimals",
     "choices": [
       {
         "id": "A",
@@ -1539,7 +1539,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of \\(10\\frac12+\\left(-5\\frac13\\right)-\\left(-2\\frac34\\right)\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions & Decimals",
+    "subtopic": "Fractions",
     "choices": [
       {
         "id": "A",
@@ -1572,7 +1572,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Carlos has $350 in a savings account that earns 5% simple interest each year. How much will he have in the account after 1 year, if there is no money withdrawn?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percentages",
+    "subtopic": "Percent Change & Applications",
     "choices": [
       {
         "id": "A",
@@ -1601,7 +1601,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The probability of an event occurring is 0.05. What is the chance that the event will occur?",
     "topic": "Statistics and Probability",
-    "subtopic": "Probability",
+    "subtopic": "Basic Probability",
     "choices": [
       {
         "id": "A",
@@ -1631,7 +1631,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "The table below shows the number of cups of red paint and blue paint used to make a purple paint mixture.\nBased on the relationship between the number of cups of red paint and the number of cups of blue paint, what is the value of \\(y\\)?",
     "promptHtml": "The table below shows the number of cups of red paint and blue paint used to make a purple paint mixture.<br><img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q112-04437b696fff44c8.png\" alt=\"Math diagram\" width=\"250\">Based on the relationship between the number of cups of red paint and the number of cups of blue paint, what is the value of \\(y\\)?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Ratios & Proportions",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",
@@ -1661,7 +1661,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, what is the distance, in units, between the midpoint of \\(\\overline{PQ}\\) and the midpoint of \\(\\overline{QR}\\)?",
     "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q113-b2c1a1fd34c48c4d.png\" alt=\"Math diagram\" width=\"360\">On the number line above, what is the distance, in units, between the midpoint of \\(\\overline{PQ}\\) and the midpoint of \\(\\overline{QR}\\)?",
     "topic": "Geometry",
-    "subtopic": "Shapes & Angles",
+    "subtopic": "Coordinates & Segment Relationships",
     "choices": [
       {
         "id": "A",
@@ -1690,7 +1690,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "An ice cream shop sells 16 cups of ice cream for $48 and 4 cups for $12. There is a proportional relationship between the number of cups of ice cream and the cost. What is the constant of proportionality for this relationship?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Rates & Unit Rates",
+    "subtopic": "Proportional Relationships",
     "choices": [
       {
         "id": "A",

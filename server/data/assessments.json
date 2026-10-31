@@ -1006,7 +1006,7 @@
         "points": 1,
         "prompt": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives \n8\n8\n of his stamps to Kevin. Liam now has \n12\n12\n more stamps than Kevin.\n\n\nHow many stamps did Liam start with?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "inline_dropdown"
       },
       {
@@ -1017,7 +1017,7 @@
         "points": 1,
         "prompt": "In the figure above, PQRS is a parallelogram. What is the value of x?\n\nEnter your answer in the space.",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Triangles & Polygons",
         "type": "short_response"
       },
       {
@@ -1094,7 +1094,7 @@
         "points": 1,
         "prompt": "The sum of two consecutive integers is \\(-15\\). If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?\n\nEnter your answer in the space.",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "short_response"
       },
       {
@@ -1110,7 +1110,7 @@
         "points": 1,
         "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -1153,7 +1153,7 @@
         "points": 1,
         "prompt": "Consider this expression:",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "math_drag_drop"
       },
       {
@@ -1185,7 +1185,7 @@
         "points": 1,
         "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -1249,7 +1249,7 @@
         "points": 1,
         "prompt": "Which of the following numbers has factors that include the smallest factor (other than 1) of 91?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -1265,7 +1265,7 @@
         "points": 1,
         "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
         "topic": "Geometry",
-        "subtopic": "Scale & Transformations",
+        "subtopic": "Similarity & Scale Drawings",
         "type": "multiple_choice"
       },
       {
@@ -1308,7 +1308,7 @@
         "points": 1,
         "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "multiple_choice"
       },
       {
@@ -1335,7 +1335,7 @@
         "points": 1,
         "prompt": "What is the value of the expression shown above?\n\n\\(2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\)",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -1351,7 +1351,7 @@
         "points": 1,
         "prompt": "An unmarked straight stick will be laid end over end to measure a distance of exactly 72 feet. The same stick will be used in the same way to measure a distance of exactly 30 feet. What is the length of the longest possible stick that can be used for both measurements?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -1366,8 +1366,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "topic": "Statistics and Probability",
+        "subtopic": "Counting & Combinations",
         "type": "multiple_choice"
       },
       {
@@ -1399,7 +1399,7 @@
         "points": 1,
         "prompt": "On the number line above, \\(LN=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -1437,7 +1437,7 @@
         "points": 1,
         "prompt": "When a student buys 4 notebooks, the total cost is $12. Each notebook costs the same amount. Select each point on the graph that best represents \\(y\\), the total cost of \\(x\\) notebooks.",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "graph_point_select"
       },
       {
@@ -1458,8 +1458,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Let \\(b=3\\), \\(c=4\\), and \\(d=5\\). Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\).",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
         "type": "numeric_entry"
       }
     ],
@@ -3214,7 +3214,7 @@
         "points": 1,
         "prompt": "Two number cubes have sides labeled 1\nthrough 6. Both number cubes are rolled.\nHow many different outcomes will have a\nsum of 6?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Counting & Combinations",
         "type": "short_response"
       },
       {
@@ -3225,7 +3225,7 @@
         "points": 1,
         "prompt": "The figure above shows a scale drawing of\na garden, where 1 centimeter represents\n2.5 meters. What is the perimeter of the\nactual garden in meters?",
         "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "subtopic": "Similarity & Scale Drawings",
         "type": "short_response"
       },
       {
@@ -3236,7 +3236,7 @@
         "points": 1,
         "prompt": "At one location, the temperature increased from \\(-7^\\circ\\text{ F}\\) to \\(4^\\circ\\text{ F}\\) between 5:00 a.m. and 9:00 a.m. By 11:00 a.m., the temperature was \\(3.5\\) times greater than the 9:00 a.m. temperature. What was the total increase in temperature between 5:00 a.m. and 11:00 a.m., in degrees Fahrenheit?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "short_response"
       },
       {
@@ -3279,7 +3279,7 @@
         "points": 1,
         "prompt": "The number line shows points E, F, G, and H.\nWhich point represents the sum of \\(2.5+(-4.5)\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "multiple_choice"
       },
       {
@@ -3310,8 +3310,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "A car dealership is having a sale where all cars have a 12% discount. What is the discounted price of a car that originally cost $15,600?",
-        "topic": "Geometry",
-        "subtopic": "Surface Area & Volume",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -3326,8 +3326,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "\\[4\\frac{2}{3}\\div 2\\frac{1}{2}=\\]",
-        "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -3342,8 +3342,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "In a sports league each team has 36 players and 3 coaches. There are also a number of team assistants. The ratio of team assistants to players is \\(\\frac{1}{6}\\). What is the ratio of coaches to assistants?",
-        "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Ratios & Proportions",
         "type": "multiple_choice"
       },
       {
@@ -3358,8 +3358,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Lena is building a fence. She will need to dig holes to help support the posts that hold up the fence. The holes need to have a depth of \\(3\\frac{1}{3}\\) feet below the ground. Each post is 10 feet long. What is the height of the part of the post that is above the ground?",
-        "topic": "Algebra",
-        "subtopic": "Algebraic Expressions",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -3374,8 +3374,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "\\[p+2r=r(p+1)+1\\]\n\nIn the equation above, if \\(r=2\\), what is the value of \\(p\\)?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
         "type": "multiple_choice"
       },
       {
@@ -3390,8 +3390,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Karen reads at the rate of 60 pages per day. Martina reads 25 percent more pages per day than Karen. If the two students begin 1,500-page reading assignments on the same day, how many days sooner will Martina complete the assignment than Karen?",
-        "topic": "Geometry",
-        "subtopic": "Pythagorean Theorem",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Rates & Unit Rates",
         "type": "multiple_choice"
       },
       {
@@ -3407,7 +3407,7 @@
         "points": 1,
         "prompt": "Claire is running on a circular track. She has already run 650 meters. Each lap around the track is a distance of 120 meters. Her goal is to run at least 2,500 meters in all. How many more laps does she need to complete in order to reach her goal?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Inequalities",
         "type": "multiple_choice"
       },
       {
@@ -3422,8 +3422,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "A company with 200 employees grew in size by 25% between 2005 and 2010. The company grew again by 10% between 2010 and 2015. What was the total number of employees in 2015?",
-        "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -3439,7 +3439,7 @@
         "points": 1,
         "prompt": "A bowl contains 12 green candies, 4 yellow candies, and some red candies. The probability of choosing a green candy at random is twice as great as the probability of choosing a red candy at random. What is the probability of choosing a yellow candy at random?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -3471,7 +3471,7 @@
         "points": 1,
         "prompt": "Serena was studying the number of water stations for different lengths of races. The table below shows the data she collected.\nWhich equation represents the relationship between the length of the race, \\(x\\) miles, and the number of water stations, \\(y\\)?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -3487,7 +3487,7 @@
         "points": 1,
         "prompt": "Centerville will hold a vote on whether to build a new park. The town council surveyed a random sample of 200 residents to determine whether they would be in favor of building this park. The table shows the results of the survey.\nThe mayor estimates that half the undecided voters will vote in favor of building the park. Based on the survey results, if the mayor is correct, how many of the 24,100 voters will be in favor of building the park?",
         "topic": "Statistics and Probability",
-        "subtopic": "Data Displays",
+        "subtopic": "Sampling & Predictions",
         "type": "multiple_choice"
       },
       {
@@ -3503,7 +3503,7 @@
         "points": 1,
         "prompt": "\\[-\\frac{1}{49}, -49, -\\frac{1}{7}, -1\\]\n\nWhich number shown above is the greatest?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -3519,7 +3519,7 @@
         "points": 1,
         "prompt": "What decimal is equivalent to \\(\\frac{13}{-11}\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -3535,7 +3535,7 @@
         "points": 1,
         "prompt": "Each loaf of bread a baker makes requires \\(\\frac{1}{5}\\) ounce of salt. How many loaves can be made if 40 ounces of salt are used?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -3551,7 +3551,7 @@
         "points": 1,
         "prompt": "What is the value of \\[\\frac{\\left(1\\frac{5}{7}-1\\frac{6}{7}\\right)}{\\left(3\\frac{4}{7}-3\\frac{6}{7}\\right)}\\]",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -3631,7 +3631,7 @@
         "points": 1,
         "prompt": "Jar Q contains 12 balls, and Jar R contains 8 balls. The probability of drawing a yellow ball at random from Jar Q is \\(\\frac{1}{3}\\). The probability of drawing a yellow ball at random from Jar R is \\(\\frac{3}{4}\\). All the balls are poured into an empty jar, Jar S. What is the probability of drawing a yellow ball at random from Jar S?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -3647,7 +3647,7 @@
         "points": 1,
         "prompt": "Gia and her friends counted the numbers of pretzels and raisins in their bags of snack mix. The table above shows the numbers in Gia’s bag. Which other snack mix bag has a ratio of pretzels to raisins in the same proportional relationship as Gia’s bag?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -3679,7 +3679,7 @@
         "points": 1,
         "prompt": "Two circular plates have the dimensions shown.\nWhat is the difference between the areas of the two plates, in square inches?",
         "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "subtopic": "Circles",
         "type": "multiple_choice"
       },
       {
@@ -3727,7 +3727,7 @@
         "points": 1,
         "prompt": "The high temperature on Monday was \\(x^\\circ\\text{ F}\\). On Tuesday, the high temperature was \\(84^\\circ\\text{ F}\\), which was a 5% increase from Monday’s high temperature. On Wednesday, the high temperature was 10% lower than it was on Monday. How much lower was the high temperature on Wednesday than the high temperature on Monday?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -3743,7 +3743,7 @@
         "points": 1,
         "prompt": "The integers \\((n-1)\\), \\(n\\), and \\((n+1)\\) are factors of 168. What is the greatest possible value of \\(n\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -3758,8 +3758,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Raoul gave two musical performances. His second performance occurred 86 days after his first performance. If Raoul’s second performance was on a Tuesday, on what day of the week was his first performance?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "topic": "Algebra",
+        "subtopic": "Patterns & Sequences",
         "type": "multiple_choice"
       },
       {
@@ -3823,7 +3823,7 @@
         "points": 1,
         "prompt": "A bag contains 2 green, 4 blue, and 3 yellow disks. Alana selects 4 disks from the bag at random, one at a time, without replacing them. What is the probability that she selects all 4 blue disks?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -3855,7 +3855,7 @@
         "points": 1,
         "prompt": "A community garden had 50 members in 2001. In each of the next three years, the number of members increased by 40% over the number of members from the previous year. How many members were there in 2004? (Round to the nearest whole number.)",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -3887,7 +3887,7 @@
         "points": 1,
         "prompt": "A box contains a total of 30 paper clips with colors in the ratio red:white:blue = 2:5:3. Suppose that one paper clip of each color is removed from the box and not replaced. What is the probability that the next paper clip chosen will be blue?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -3903,7 +3903,7 @@
         "points": 1,
         "prompt": "The least positive integer evenly divisible by the first 6 positive integers is 60. What is the least positive integer evenly divisible by the first 8 positive integers?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -3918,8 +3918,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Three different colors of paint are available to paint the window frame, the door, and the wall of a house. If no two parts of the house may be painted the same color, how many different ways are there to paint the three parts of the house?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "topic": "Statistics and Probability",
+        "subtopic": "Counting & Combinations",
         "type": "multiple_choice"
       },
       {
@@ -3935,7 +3935,7 @@
         "points": 1,
         "prompt": "Triangle MNP is similar to triangle XYZ, and \\(MN=NP\\). What is the perimeter of triangle MNP?",
         "topic": "Geometry",
-        "subtopic": "Scale & Transformations",
+        "subtopic": "Similarity & Scale Drawings",
         "type": "multiple_choice"
       },
       {
@@ -3951,7 +3951,7 @@
         "points": 1,
         "prompt": "Suppose that \\(w\\), \\(x\\), \\(y\\), and \\(z\\) are integers, none of which are zero. Under which set of conditions would the product \\(x^2yz^3|w|\\) always be positive?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -3967,7 +3967,7 @@
         "points": 1,
         "prompt": "Chris has 1 red shirt, 2 white shirts, and 3 black shirts. Chris picks a shirt at random. Without putting the first shirt back, he picks a second shirt at random. What is the probability that the first shirt is black and the second shirt is red?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -3999,7 +3999,7 @@
         "points": 1,
         "prompt": "Five numbered balls are placed in two boxes as shown in the figure above. Davina picks one ball at random from Box B and places it in Box A. Then Yusuf picks one ball from Box A without looking. What is the probability that Yusuf will pick a ball with an odd number?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -4063,7 +4063,7 @@
         "points": 1,
         "prompt": "A rectangular field had a length of 80 meters and a width of 50 meters. The field was recently enlarged, with the length increased by 15% and the width increased by 10 meters. By what percentage was the area of the field increased?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -4079,7 +4079,7 @@
         "points": 1,
         "prompt": "If \\(x\\) and \\(y\\) are both negative integers with \\(x<y\\), which expression has the least value?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       }
     ],
@@ -4929,7 +4929,7 @@
         "points": 1,
         "prompt": "In the figure above, PQRS is a parallelogram. What is the value of \\(x\\)?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Triangles & Polygons",
         "type": "short_response"
       },
       {
@@ -4961,8 +4961,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true.\n\n• 20 students have cats.\n• 23 students have dogs.\n• 3 students have both dogs and cats.\n• 5 students have no dogs or cats.\n\nHow many students were surveyed?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "topic": "Statistics and Probability",
+        "subtopic": "Set Relationships",
         "type": "short_response"
       },
       {
@@ -4972,8 +4972,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The sum of two consecutive integers is \\(-15\\). If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Word Problems",
         "type": "short_response"
       },
       {
@@ -5037,7 +5037,7 @@
         "points": 1,
         "prompt": "Jenny starts a game with twice as many marbles as Keiko. Jenny gives Keiko 5 marbles, but she still has 10 more than Keiko. How many marbles did Jenny have to start with?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "multiple_choice"
       },
       {
@@ -5149,7 +5149,7 @@
         "points": 1,
         "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -5196,8 +5196,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "In Centerville, 45% of the population is female, and 60% of the population commutes to work daily. Of the total Centerville population, 21% are females who commute to work daily. What percentage of the total Centerville population are males who do not commute to work daily?",
-        "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "topic": "Statistics and Probability",
+        "subtopic": "Set Relationships",
         "type": "multiple_choice"
       },
       {
@@ -5229,7 +5229,7 @@
         "points": 1,
         "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -5293,7 +5293,7 @@
         "points": 1,
         "prompt": "Which of the following numbers has factors that include the smallest factor (other than 1) of 91?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -5309,7 +5309,7 @@
         "points": 1,
         "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
         "topic": "Geometry",
-        "subtopic": "Scale & Transformations",
+        "subtopic": "Similarity & Scale Drawings",
         "type": "multiple_choice"
       },
       {
@@ -5373,7 +5373,7 @@
         "points": 1,
         "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "multiple_choice"
       },
       {
@@ -5389,7 +5389,7 @@
         "points": 1,
         "prompt": "How many positive even factors of 48 are greater than 24 and less than 48?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -5405,7 +5405,7 @@
         "points": 1,
         "prompt": "\\(2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\)\n\nWhat is the value of the expression shown above?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -5421,7 +5421,7 @@
         "points": 1,
         "prompt": "An unmarked straight stick will be laid end over end to measure a distance of exactly 72 feet. The same stick will be used in the same way to measure a distance of exactly 30 feet. What is the length of the longest possible stick that can be used for both measurements?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -5436,8 +5436,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "topic": "Statistics and Probability",
+        "subtopic": "Counting & Combinations",
         "type": "multiple_choice"
       },
       {
@@ -5469,7 +5469,7 @@
         "points": 1,
         "prompt": "On the number line above, \\(LN=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -5485,7 +5485,7 @@
         "points": 1,
         "prompt": "Johan leased a car for three years. He paid a one-time fee of $1,000, and an additional $300 per month for the full three years. At the end of the three years, what is the total amount Johan paid for leasing this car?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Order of Operations",
         "type": "multiple_choice"
       },
       {
@@ -5533,7 +5533,7 @@
         "points": 1,
         "prompt": "In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of neither 2 nor 3?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -5549,7 +5549,7 @@
         "points": 1,
         "prompt": "If \\(3n\\) is a positive even number, how many odd numbers are in the range from \\(3n\\) up to and including \\(3n+5\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -5565,7 +5565,7 @@
         "points": 1,
         "prompt": "A box contains 5 strawberry candies, 3 banana candies, and 2 orange candies. If Braden selects 2 candies at random from this box, without replacement, what is the probability that both candies are not banana?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -5580,8 +5580,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "\\[\\frac{w}{x}=\\frac{y}{z}\\]\n\nIn the equation above, \\(w\\), \\(x\\), \\(y\\), and \\(z\\) are positive numbers. Which of these is equal to \\(z\\)?",
-        "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "topic": "Algebra",
+        "subtopic": "Formulas & Rearranging Equations",
         "type": "multiple_choice"
       },
       {
@@ -5613,7 +5613,7 @@
         "points": 1,
         "prompt": "A metal square used in an electronic device must have a thickness of 0.02 inch, with an allowable error of 1 percent. What is the greatest allowable thickness of the metal square?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -5709,7 +5709,7 @@
         "points": 1,
         "prompt": "A sports store has a container of handballs: 4 blue, 5 red, 8 yellow, 9 white, and 11 green. If one ball is picked from the container at random, what is the probability that it will be yellow?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -5725,7 +5725,7 @@
         "points": 1,
         "prompt": "Each week, Leon has fixed expenses of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he sells each chair for $275. What is Leon’s profit if he makes and sells 25 chairs in 1 week?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Order of Operations",
         "type": "multiple_choice"
       },
       {
@@ -5756,8 +5756,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "On the number line above, \\(JK=3\\frac{1}{2}\\), \\(JM=9\\frac{3}{4}\\), and \\(LM=1\\frac{1}{8}\\). What is the position of point L?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "topic": "Geometry",
+        "subtopic": "Coordinates & Segment Relationships",
         "type": "multiple_choice"
       },
       {
@@ -5773,7 +5773,7 @@
         "points": 1,
         "prompt": "If \\(4x-3y=12\\), what is \\(x\\) in terms of \\(y\\)?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Formulas & Rearranging Equations",
         "type": "multiple_choice"
       },
       {
@@ -7615,7 +7615,7 @@
         "points": 1,
         "prompt": "The figure below shows a circle with a hole in the middle. The outer diameter of the circle is \\(1\\frac{1}{4}\\) inches. The diameter of the hole is \\(\\frac{1}{4}\\) inch.\nWhat is the area of the shaded region, to the nearest hundredth of a square inch?",
         "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "subtopic": "Circles",
         "type": "short_response"
       },
       {
@@ -7637,7 +7637,7 @@
         "points": 1,
         "prompt": "The list shows the daily low temperatures in a city during six days in the winter.\n\n\\(7^\\circ\\text{ F},\\ 4^\\circ\\text{ F},\\ 1^\\circ\\text{ F},\\ -2^\\circ\\text{ F},\\ -5^\\circ\\text{ F},\\ 3^\\circ\\text{ F}\\)\n\nWhat is the difference between the lowest and highest temperatures, in degrees Fahrenheit, for the six days?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "short_response"
       },
       {
@@ -7675,7 +7675,7 @@
         "points": 1,
         "prompt": "What is the prime factorization of 756?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -7739,7 +7739,7 @@
         "points": 1,
         "prompt": "A person buys a used car with a down payment of $1,200 and makes monthly payments of $275 for 3 years. What is the total amount the person pays for the car?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Order of Operations",
         "type": "multiple_choice"
       },
       {
@@ -7755,7 +7755,7 @@
         "points": 1,
         "prompt": "In the parallelogram above, what is the value of \\(x\\)?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Triangles & Polygons",
         "type": "multiple_choice"
       },
       {
@@ -7819,7 +7819,7 @@
         "points": 1,
         "prompt": "If \\(5(x-6y)=50y\\), what is the value of \\(x\\) in terms of \\(y\\)?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Formulas & Rearranging Equations",
         "type": "multiple_choice"
       },
       {
@@ -7835,7 +7835,7 @@
         "points": 1,
         "prompt": "A scale drawing of a new pool is shown above. All the corners are right angles. What is the perimeter of the actual pool?",
         "topic": "Geometry",
-        "subtopic": "Scale & Transformations",
+        "subtopic": "Similarity & Scale Drawings",
         "type": "multiple_choice"
       },
       {
@@ -7867,7 +7867,7 @@
         "points": 1,
         "prompt": "In the figure above, \\(n\\parallel p\\). Straight line \\(m\\) intersects both line \\(n\\) and line \\(p\\). What is the value of \\(r\\)?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Lines & Angles",
         "type": "multiple_choice"
       },
       {
@@ -7899,7 +7899,7 @@
         "points": 1,
         "prompt": "Allison has 5 stamp albums with 576 stamps in each album. If she transfers her stamp collection to 6 albums, each holding 378 stamps, how many stamps will be left over?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Order of Operations",
         "type": "multiple_choice"
       },
       {
@@ -7915,7 +7915,7 @@
         "points": 1,
         "prompt": "Start with the number 135.28 and perform the following steps in order:\n\n• Step 1: Multiply by 10.\n• Step 2: Add 0.5 to the result of Step 1.\n• Step 3: Drop the digits after the decimal point.\n• Step 4: Divide by 10.\n\nWhat is the result?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Decimals",
         "type": "multiple_choice"
       },
       {
@@ -7930,8 +7930,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "If \\(x=-2\\), what is the value of \\(\\left|x+x^2+x^3\\right|-\\left|x+2x+3x\\right|\\)?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
         "type": "multiple_choice"
       },
       {
@@ -7947,7 +7947,7 @@
         "points": 1,
         "prompt": "\\[\\frac{3+(-3)}{3-(-3)}=\\]",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Order of Operations",
         "type": "multiple_choice"
       },
       {
@@ -7963,7 +7963,7 @@
         "points": 1,
         "prompt": "\\[12.96\\div 0.08=\\]",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Decimals",
         "type": "multiple_choice"
       },
       {
@@ -7978,8 +7978,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "What is the distance between the midpoints of \\(\\overline{MN}\\) and \\(\\overline{RS}\\)?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "topic": "Geometry",
+        "subtopic": "Coordinates & Segment Relationships",
         "type": "multiple_choice"
       },
       {
@@ -8011,7 +8011,7 @@
         "points": 1,
         "prompt": "What is the value of \\(\\left(-\\frac{3}{4}\\right)\\left(-\\frac{2}{5}\\right)\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -8027,7 +8027,7 @@
         "points": 1,
         "prompt": "The table shows the income and expenses in a bicycle shop on one day.\nThe sum of all transactions was $70. What is the value of \\(p\\)?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "multiple_choice"
       },
       {
@@ -8107,7 +8107,7 @@
         "points": 1,
         "prompt": "Which straight line is the graph of a proportional relationship?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -8123,7 +8123,7 @@
         "points": 1,
         "prompt": "Some friends are buying bags of ice for a picnic. The graph shows the cost of the ice, in dollars, in relation to the weight, in pounds. Which statement about a point on the graph is true?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -8139,7 +8139,7 @@
         "points": 1,
         "prompt": "A clerk enters information on a computer. The graph shows the relationship between time, in hours, and the number of keystrokes the clerk makes. What is the meaning of the point (1.5, 10500) on the graph?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -8155,7 +8155,7 @@
         "points": 1,
         "prompt": "When the three-digit whole number \\(27\\underline{\\phantom{0}}\\) is divided by 3 or by 4, the remainder is zero. What is the missing digit?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -8219,7 +8219,7 @@
         "points": 1,
         "prompt": "A bag contains 40 tiles that are either red, green, or blue. A tile is selected at random, the color is recorded, and the tile is put back in the bag. This process is carried out 120 times, and 18 of those times a red tile is selected. Based on the information, what is the most likely number of red tiles in the bag?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Sampling & Predictions",
         "type": "multiple_choice"
       },
       {
@@ -8235,7 +8235,7 @@
         "points": 1,
         "prompt": "If 100 individuals will attend the museum next week, what is the best estimate (based on last year’s attendance) of the number of children who will be in that group?",
         "topic": "Statistics and Probability",
-        "subtopic": "Data Displays",
+        "subtopic": "Sampling & Predictions",
         "type": "multiple_choice"
       },
       {
@@ -8251,7 +8251,7 @@
         "points": 1,
         "prompt": "A teacher will randomly select 3 students to be on a school committee. He will choose either a student from Classroom A or a student from Classroom B with each selection. This tree diagram shows the selection possibilities.\n\nWhat is the probability that the teacher will select 2 students from Classroom A and 1 student from Classroom B (in any order) for the committee?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -8267,7 +8267,7 @@
         "points": 1,
         "prompt": "A bag contains 15 marbles: 11 blue marbles and 4 red marbles. Sarah picks one marble randomly, returns it to the bag, and then randomly picks one marble again. What is the probability that she picks a red marble both times?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -8282,8 +8282,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Anita is assigned to report on 1 topic in each of the 4 subjects shown in the table above. How many different sets of 4 reports are possible, according to the choices available to her?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "topic": "Statistics and Probability",
+        "subtopic": "Counting & Combinations",
         "type": "multiple_choice"
       },
       {
@@ -8299,7 +8299,7 @@
         "points": 1,
         "prompt": "A deck of 52 playing cards contains 13 hearts. Sara has 12 cards from this deck in her hand, 3 of which are hearts. The other cards remain in the deck. What is the probability that a card drawn at random from the remainder of the deck will be a heart?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -8315,7 +8315,7 @@
         "points": 1,
         "prompt": "The table shows the probability of randomly picking each flavor of candy from a bowl.\nWhich flavor is most likely to be randomly picked?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -8331,7 +8331,7 @@
         "points": 1,
         "prompt": "This formula can be used to determine \\(p\\), the number of pages that will be in a book that contains \\(w\\) words, with an average of \\(r\\) words per page, and \\(f\\) extra pages in the front for the title and publishing information.\n\n\\[p=\\frac{1}{r}w+f\\]\n\nIf the formula is solved for \\(w\\), it can be used to find the number of words in a book with \\(p\\) pages. What will the formula be if it is solved for \\(w\\)?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Formulas & Rearranging Equations",
         "type": "multiple_choice"
       },
       {
@@ -8347,7 +8347,7 @@
         "points": 1,
         "prompt": "A shipment contains 170 small boxes of medical supplies. In a random sample of 20 of these boxes, 8 have damage and the others are undamaged. Based on this sample, what is the best prediction of the number of undamaged boxes in the shipment, not including the boxes in the random sample?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Sampling & Predictions",
         "type": "multiple_choice"
       },
       {
@@ -8379,7 +8379,7 @@
         "points": 1,
         "prompt": "Nadia paid $1.00 to mail a letter. The cost to mail a letter is $0.55 for the first ounce of weight plus $0.15 for each additional ounce. What was the weight, in ounces, of the letter Nadia mailed?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "multiple_choice"
       },
       {
@@ -8411,7 +8411,7 @@
         "points": 1,
         "prompt": "A softball player bought bottles of water for her team to have at practice. The total number of bottles she bought, \\(b\\), is proportional to \\(n\\), the number of players at practice. Which equation represents the relationship between \\(b\\) and \\(n\\)? The constant of proportionality is \\(p\\).",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -8427,7 +8427,7 @@
         "points": 1,
         "prompt": "Malik earns $10 per hour at his job. He wants to change to a job that will pay $12 per hour. What will be the percent increase in Malik’s hourly pay if he makes this job change?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -8459,7 +8459,7 @@
         "points": 1,
         "prompt": "The height of a plant, in millimeters, is proportional to the number of days the plant has grown. The plant has grown 20 millimeters in 8 days. What is the constant of proportionality, in millimeters per day?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -8475,7 +8475,7 @@
         "points": 1,
         "prompt": "Which table shows a proportional relationship?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -8491,7 +8491,7 @@
         "points": 1,
         "prompt": "Terry wants to pour cement around the edge of the circular patio in her backyard. The patio has a radius of 5 feet. What is the distance, in feet, around the edge of the patio? Use 3.14 for \\(\\pi\\).",
         "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "subtopic": "Circles",
         "type": "multiple_choice"
       }
     ],
@@ -9423,7 +9423,7 @@
         "points": 1,
         "prompt": "Beth makes a bead in the shape of a cube with side length 18 millimeters. She cuts a hole in the shape of a square prism out of the center of the cube so that the bead will fit on a string. The base of the square prism has a side length of 6 millimeters. After the hole is cut out, what is the volume of the bead in cubic millimeters?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Surface Area & Volume",
         "type": "short_response"
       },
       {
@@ -9434,7 +9434,7 @@
         "points": 1,
         "prompt": "The table shows the proportional relationship between x cups of oatmeal and y ounces of raisins in a bread recipe.\nWhat is the constant of proportionality of the number of ounces of raisins to the number of cups of oatmeal?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "subtopic": "Proportional Relationships",
         "type": "short_response"
       },
       {
@@ -9445,7 +9445,7 @@
         "points": 1,
         "prompt": "Kelly had 7.3 grams of sugar. She used 2.7 grams in her coffee. How many grams of sugar does she have left?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Decimals",
         "type": "short_response"
       },
       {
@@ -9456,7 +9456,7 @@
         "points": 1,
         "prompt": "The total cost of a book is given by the expression \\(1.08x\\), where \\(x\\) is the price of the book before tax. The tax rate is \\(m\\)%. What is the value of \\(m\\)?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "short_response"
       },
       {
@@ -9467,7 +9467,7 @@
         "points": 1,
         "prompt": "A row of seats in a theater contains 20 seats numbered from 101 to 120. The probability that a randomly chosen seat in this row will be numbered 104 is \\(x\\)%. What is the value of \\(x\\)?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "short_response"
       },
       {
@@ -9483,7 +9483,7 @@
         "points": 1,
         "prompt": "What is the prime factorization of 3,575?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -9499,7 +9499,7 @@
         "points": 1,
         "prompt": "If \\(\\frac{x+2y}{5}=3y\\), what is the value of \\(x\\) in terms of \\(y\\)?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Formulas & Rearranging Equations",
         "type": "multiple_choice"
       },
       {
@@ -9515,7 +9515,7 @@
         "points": 1,
         "prompt": "What is the value of \\(z\\) in \\(\\frac{x}{10}+\\frac{y-x}{5}=\\frac{z}{10}\\)?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Formulas & Rearranging Equations",
         "type": "multiple_choice"
       },
       {
@@ -9546,8 +9546,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "If \\(x=\\frac{1}{4}\\), what is the value of \\(\\frac{2}{2-x}\\)?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
         "type": "multiple_choice"
       },
       {
@@ -9611,7 +9611,7 @@
         "points": 1,
         "prompt": "In a scale drawing of a triangular park, the sides measure 5 inches, 7 inches, and 8 inches. The perimeter of the actual park is 25 miles. What is the actual length of the shortest side of the park?",
         "topic": "Geometry",
-        "subtopic": "Scale & Transformations",
+        "subtopic": "Similarity & Scale Drawings",
         "type": "multiple_choice"
       },
       {
@@ -9627,7 +9627,7 @@
         "points": 1,
         "prompt": "\\(P\\) is the center of the circle above, and \\(R\\), \\(S\\), and \\(T\\) are points on the circle. What is the value of \\(x\\)?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Lines & Angles",
         "type": "multiple_choice"
       },
       {
@@ -9643,7 +9643,7 @@
         "points": 1,
         "prompt": "In the right triangle shown above, what is the measure of the smallest angle?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Triangles & Polygons",
         "type": "multiple_choice"
       },
       {
@@ -9659,7 +9659,7 @@
         "points": 1,
         "prompt": "James must read 84 pages of a book for a class assignment. If he reads \\(\\frac{1}{4}\\) of the pages in the morning and \\(\\frac{1}{3}\\) of the remaining pages in the afternoon, how many pages will he still need to read?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -9675,7 +9675,7 @@
         "points": 1,
         "prompt": "\\[\\frac{1}{11}+\\frac{1}{22}+\\frac{1}{33}\\]\n\nWhat is the value of the expression shown above?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -9690,8 +9690,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "At Midville High School, 64 students are members of either the orchestra or the choir, or both. Of these students, 38 are members of the orchestra, and 46 are members of the choir. What fraction of the total is the number of students who are members of both the orchestra and the choir?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "topic": "Statistics and Probability",
+        "subtopic": "Set Relationships",
         "type": "multiple_choice"
       },
       {
@@ -9707,7 +9707,7 @@
         "points": 1,
         "prompt": "Which of the following decimals is equivalent to \\(1\\frac{2}{3}+2\\frac{4}{9}\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -9739,7 +9739,7 @@
         "points": 1,
         "prompt": "What is the value of \\(\\frac{-9(-4)^2+36(-4)+304}{-4}\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Order of Operations",
         "type": "multiple_choice"
       },
       {
@@ -9755,7 +9755,7 @@
         "points": 1,
         "prompt": "Maxie borrowed $7.75 from her mother, $11.00 from her father, and $4.50 from her brother to purchase a video game. Her grandmother gave her $25.00 as a gift. How much money will Maxie have left or still owe if she uses the money her grandmother gave her to pay back the money she borrowed?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "multiple_choice"
       },
       {
@@ -9771,7 +9771,7 @@
         "points": 1,
         "prompt": "Seth grows strawberries in his garden.\n\n• He picked \\(2\\frac{1}{2}\\) cups of strawberries on Monday.\n• He picked 4 cups of strawberries on Tuesday.\n• He ate \\(\\frac{3}{4}\\) cup of strawberries for breakfast each day on Wednesday, Thursday, and Friday.\n\nHow many cups of strawberries did Seth have left?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -9787,7 +9787,7 @@
         "points": 1,
         "prompt": "Which situation involves quantities that combine to equal zero?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "multiple_choice"
       },
       {
@@ -9803,7 +9803,7 @@
         "points": 1,
         "prompt": "\\[\\frac{\\left(\\frac{2}{3}-\\frac{4}{5}\\times\\frac{1}{3}\\right)}{\\left(\\frac{5}{3}+\\frac{1}{4}\\div\\frac{3}{4}\\right)}=\\]",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -9963,7 +9963,7 @@
         "points": 1,
         "prompt": "A box contains an unknown number of green marbles. An experimenter adds 100 red marbles to the box, mixes the marbles thoroughly, and then draws out 10 marbles at random. Assume that this sample is representative of the proportion in the box. If there are 2 red marbles and 8 green marbles in this sample, approximately how many green marbles are in the box?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Sampling & Predictions",
         "type": "multiple_choice"
       },
       {
@@ -9979,7 +9979,7 @@
         "points": 1,
         "prompt": "A car costing $24,000 is subject to a sales tax of 8%. If Bindu made a $10,000 down payment on this car, what is the total amount she has left to pay?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -10027,7 +10027,7 @@
         "points": 1,
         "prompt": "Last week, Emily rode the bus to school on 3 of the 5 mornings and rode the bus home on 4 of the 5 afternoons. Based on last week’s events, what is the probability that Emily will ride the bus in the morning and the afternoon next Monday?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -10042,8 +10042,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "XYZ Corporation hired 6 people as summer workers. Of these 6 people, 3 will be hired as permanent employees in the fall. If 2 of the 6 people are male, how many of the possible groups of 3 people hired in the fall will include only 1 male?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "topic": "Statistics and Probability",
+        "subtopic": "Counting & Combinations",
         "type": "multiple_choice"
       },
       {
@@ -10059,7 +10059,7 @@
         "points": 1,
         "prompt": "At any given time, one person out of every 20 people has the common cold. Assume that the common cold can be caused by any one of 200 different viruses, each of which is equally likely to cause the cold. One of these 200 viruses is cold virus V144. What is the probability that a randomly selected person is suffering from a cold caused by virus V144?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -10075,7 +10075,7 @@
         "points": 1,
         "prompt": "Karl has one red spinner and one blue spinner. Each spinner is divided into 4 equal sections, numbered 1 through 4. He spins each spinner once and writes down the number that each lands on. What is the probability that the two numbers, when multiplied together, will have 4 as a product?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -10091,7 +10091,7 @@
         "points": 1,
         "prompt": "Melissa has a bag of marbles that are all the same size. The bag contains three red (R) marbles, three green (G) marbles, and two white (W) marbles. For an experiment, she will take two marbles out of the bag without looking. Which list shows the sample space for Melissa’s experiment?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Counting & Combinations",
         "type": "multiple_choice"
       },
       {
@@ -10107,7 +10107,7 @@
         "points": 1,
         "prompt": "A graph shows the relationship between the number of gallons of water, \\(y\\), that has been added to a tank and the number of hours, \\(x\\), that water has been added to the tank at a constant rate. What does the ordered pair \\((3,24)\\) represent?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -10123,7 +10123,7 @@
         "points": 1,
         "prompt": "The table shows the probabilities of a hockey team scoring different numbers of goals in a game.What is the probability that the team will score three or more goals in the next game?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -10139,7 +10139,7 @@
         "points": 1,
         "prompt": "This graph shows points that represent a proportional relationship between \\(x\\) and \\(y\\).What is the constant of proportionality for this relationship?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -10155,7 +10155,7 @@
         "points": 1,
         "prompt": "The distance an eagle flies is proportional to the time the eagle spends flying. An eagle flies 90 miles in 3 hours. What is the constant of proportionality for this relationship?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -10171,7 +10171,7 @@
         "points": 1,
         "prompt": "A machine part is supposed to be 0.38 millimeters thick. The manufacturer allows a variation of −2.5% to +2.5%. Which interval shows the range of acceptable thicknesses, in millimeters, for the part?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -10187,7 +10187,7 @@
         "points": 1,
         "prompt": "A bakery charges $1.25 for each cupcake and $2.50 for a serving tray. The equation describes \\(p\\), the price of \\(c\\) cupcakes and a serving tray, not including tax.\n\n\\[p=2.50+1.25c\\]\n\nIf Samantha bought some cupcakes and a serving tray for a total of $22.50, not including tax, how many cupcakes did she buy?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "multiple_choice"
       },
       {
@@ -10203,7 +10203,7 @@
         "points": 1,
         "prompt": "A clothing store buys shirts for a cost of \\(m\\) dollars each. To determine the selling price of the shirts, the manager increases the purchase cost by 55%. Which expression represents the selling price of each shirt?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -10219,7 +10219,7 @@
         "points": 1,
         "prompt": "A farmer has 100 apples and will eat 2 apples per day. Is there a proportional relationship between the number of apples remaining and the number of days that have passed?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -10235,7 +10235,7 @@
         "points": 1,
         "prompt": "What shape will result from a horizontal slice of the figure above?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Surface Area & Volume",
         "type": "multiple_choice"
       },
       {
@@ -10251,7 +10251,7 @@
         "points": 1,
         "prompt": "Anise has a piece of cloth measuring 45 inches by 75 inches. She wants to cut it into squares of equal size, without any cloth left over. What is the greatest possible side length, in inches, of one of those squares?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -10267,7 +10267,7 @@
         "points": 1,
         "prompt": "This table shows the number of birds that came to a bird feeder on Monday and Tuesday.\nWhat was the percent decrease in the number of birds from Monday to Tuesday?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -10299,7 +10299,7 @@
         "points": 1,
         "prompt": "A store manager purchases a piece of furniture for $456.00. To determine the selling price, the manager increases the purchase cost by 125%. A customer buys the furniture and pays an additional 8% sales tax. How much does the customer pay for the furniture?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       }
     ],
@@ -11426,7 +11426,7 @@
         "points": 1,
         "prompt": "Ms. Li opened a retirement account with a deposit of $2,500. This account earns 4% simple interest annually. How many years will it take her to earn $500 on her $2,500 deposit?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "short_response"
       },
       {
@@ -11438,7 +11438,7 @@
         "points": 1,
         "prompt": "\\[6-9\\div|-3|+(-2)^3\\times1\\frac{1}{2}\\]\nWhat is the value of the expression shown above?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Order of Operations",
         "type": "short_response"
       },
       {
@@ -11462,7 +11462,7 @@
         "points": 1,
         "prompt": "In the figure above, line \\(l\\) is perpendicular to line \\(n\\). What is the value of \\(x\\)?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Lines & Angles",
         "type": "short_response"
       },
       {
@@ -11491,7 +11491,7 @@
         "points": 1,
         "prompt": "\\[3^4+7^4=\\]",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Exponents, Roots & Scientific Notation",
         "type": "multiple_choice"
       },
       {
@@ -11508,7 +11508,7 @@
         "points": 1,
         "prompt": "In one week, \\(1\\frac{3}{4}\\) inches of rain fell on Monday, \\(2\\frac{2}{3}\\) inches fell on Tuesday, and \\(\\frac{7}{8}\\) inch fell on Wednesday. How many inches of rain fell during those three days?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -11558,8 +11558,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Points Y and Z are not shown on the number line above. If X is the midpoint of \\(\\overline{WY}\\), and Y is the midpoint of \\(\\overline{WZ}\\), where on the number line would point Z be located?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "topic": "Geometry",
+        "subtopic": "Coordinates & Segment Relationships",
         "type": "multiple_choice"
       },
       {
@@ -11593,7 +11593,7 @@
         "points": 1,
         "prompt": "If \\(n\\) is an integer and \\(3n+3\\) is an even number, which expression must also represent an even number?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -11610,7 +11610,7 @@
         "points": 1,
         "prompt": "The product of two positive integers is 65. Which number could be the sum of the two integers?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -11627,7 +11627,7 @@
         "points": 1,
         "prompt": "If \\(n\\) is an odd integer that is less than −3.25, what is the greatest possible value of \\(n\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -11661,7 +11661,7 @@
         "points": 1,
         "prompt": "Between which two consecutive integers is the fraction \\(\\frac{29}{7}\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -11694,7 +11694,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Joseph is 5 feet 9 inches tall, and Roberto is 6 feet 4.5 inches tall. What is the difference in height, in inches, between Roberto and Joseph?",
-        "topic": "Ratios and Proportional Relationships",
+        "topic": "Arithmetic & Number Sense",
         "subtopic": "Units & Conversions",
         "type": "multiple_choice"
       },
@@ -11729,7 +11729,7 @@
         "points": 1,
         "prompt": "\\[\\frac{3^2+(-8)^2+2^2}{(3-8+2)^2}=\\]",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Order of Operations",
         "type": "multiple_choice"
       },
       {
@@ -11780,7 +11780,7 @@
         "points": 1,
         "prompt": "\\[\\{0.1,0.01,0.001,0.0001,0.00001\\}\\]\nIf a person chooses a number at random from the set above, what is the probability that the number is less than 0.005?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -11814,7 +11814,7 @@
         "points": 1,
         "prompt": "Lines \\(j\\) and \\(k\\) intersect at point Q, and \\(h\\) is a straight line. What is the value of \\(x\\)?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Lines & Angles",
         "type": "multiple_choice"
       },
       {
@@ -11831,7 +11831,7 @@
         "points": 1,
         "prompt": "Which statement must be true if \\(x\\) is a whole number greater than or equal to 1?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -11848,7 +11848,7 @@
         "points": 1,
         "prompt": "A basket contains red balls, green balls, and white balls. There are 12 red balls in the basket. The probability of randomly choosing a red ball is 1 in 3. If the probability of randomly choosing a green ball is 1 in 4, how many green balls are in the basket?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -11882,7 +11882,7 @@
         "points": 1,
         "prompt": "Integer \\(x\\) is evenly divisible by 3. Which expression below is also evenly divisible by 3?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -11899,7 +11899,7 @@
         "points": 1,
         "prompt": "Lamel has a jar containing 6 red chips, 10 blue chips, and 4 yellow chips. If he removes one chip at random, what is the probability that it will not be red?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -11915,8 +11915,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "The arrow starts on Space P and moves clockwise around the circle. It moves through one space each minute. What space will the arrow point to in 100 minutes?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "topic": "Algebra",
+        "subtopic": "Patterns & Sequences",
         "type": "multiple_choice"
       },
       {
@@ -11933,7 +11933,7 @@
         "points": 1,
         "prompt": "Mei-Ling is one of 6 members of a committee. If 2 members of that committee are selected to go to a conference, how many of the possible pairs of members would include Mei-Ling?",
         "topic": "Statistics and Probability",
-        "subtopic": "Counting & Sets",
+        "subtopic": "Counting & Combinations",
         "type": "multiple_choice"
       },
       {
@@ -11949,8 +11949,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "If \\(m=5\\) and \\(t=-1\\), what is the value of \\(\\frac{6-8(2-t)}{2m+4(3-m)}\\)?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
         "type": "multiple_choice"
       },
       {
@@ -11967,7 +11967,7 @@
         "points": 1,
         "prompt": "In the parallelogram above, what is the value of \\(x+y\\)?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Triangles & Polygons",
         "type": "multiple_choice"
       },
       {
@@ -11984,7 +11984,7 @@
         "points": 1,
         "prompt": "On the number line above, point L (not shown) is located on line segment \\(\\overline{JK}\\) so that \\(\\overline{JL}=\\frac{2}{3}\\overline{LK}\\). What is the position of point L?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Coordinates & Segment Relationships",
         "type": "multiple_choice"
       },
       {
@@ -12018,7 +12018,7 @@
         "points": 1,
         "prompt": "The shaded sector of the circle shown above has an area of \\(18\\pi\\) square feet. What is the circumference of the circle?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Circles",
         "type": "multiple_choice"
       },
       {
@@ -12069,7 +12069,7 @@
         "points": 1,
         "prompt": "Ken has \\(k\\) video games, and Jeff has \\(j\\) video games. If Ken gives 6 video games to Jeff, Ken will have twice as many video games as Jeff. Which equation shows the relationship between \\(k\\) and \\(j\\)?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "multiple_choice"
       },
       {
@@ -12103,7 +12103,7 @@
         "points": 1,
         "prompt": "\\[\\{1,2,3,4,5,\\ldots,198,199,200\\}\\]\nHow many members of the set shown above are multiples of 6 but not multiples of 9?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -12154,7 +12154,7 @@
         "points": 1,
         "prompt": "The diagram above shows line segment \\(\\overline{RS}\\) intersecting a rectangle. What is the measure of angle \\(y\\)?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Lines & Angles",
         "type": "multiple_choice"
       },
       {
@@ -12171,7 +12171,7 @@
         "points": 1,
         "prompt": "All 150 students in Grade 8 at a school are assigned to write an essay on the same topic. A teacher records the number of words in a random sample of the essays, as shown in the table above. Based on this sample, how many students in the entire grade would be expected to write essays with at least 100 words?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Sampling & Predictions",
         "type": "multiple_choice"
       },
       {
@@ -12222,7 +12222,7 @@
         "points": 1,
         "prompt": "In the figure above, the shaded rectangle is similar to the outer rectangle. The length of the outer rectangle is 4 feet, and the perimeter of the outer rectangle is 14 feet. If the width of the shaded rectangle is 2 feet, what is the area of the shaded rectangle?",
         "topic": "Geometry",
-        "subtopic": "Scale & Transformations",
+        "subtopic": "Similarity & Scale Drawings",
         "type": "multiple_choice"
       },
       {
@@ -12239,7 +12239,7 @@
         "points": 1,
         "prompt": "A rectangular concrete driveway is 30 feet long, 8 feet wide, and 6 inches thick. What is the volume of the concrete?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Surface Area & Volume",
         "type": "multiple_choice"
       },
       {
@@ -12256,7 +12256,7 @@
         "points": 1,
         "prompt": "The greatest common factor of 24 and \\(x\\) is 8. How many possible values for \\(x\\) are greater than 10 and less than 70?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -12290,7 +12290,7 @@
         "points": 1,
         "prompt": "At West College, students are randomly assigned to one of 20 dormitories and one of 6 dining rooms. Kharleen likes 6 of the dormitories and 2 of the dining rooms. What is the probability that she is assigned to both a dormitory and a dining room that she likes?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -12324,7 +12324,7 @@
         "points": 1,
         "prompt": "What is the least of four consecutive integers whose sum is 58?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "multiple_choice"
       },
       {
@@ -12341,7 +12341,7 @@
         "points": 1,
         "prompt": "If all possible values of \\(x\\) are indicated by the shaded part of the number line above, which number line best shows all possible values of \\(\\frac1x\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -12358,7 +12358,7 @@
         "points": 1,
         "prompt": "Chanelle selects a marble from a container and then returns it to the container. When she does this 3 times, the probability of choosing a red marble all 3 times is \\(\\frac1{216}\\). Based on this information, what is the probability of Chanelle choosing a red marble the first time she selects a marble?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       }
     ],
@@ -13253,7 +13253,7 @@
         "points": 1,
         "prompt": "Simplify:\n\\[-3.8+2.3-(-1.1)\\]",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "short_response"
       },
       {
@@ -13265,7 +13265,7 @@
         "points": 1,
         "prompt": "Angle M and angle R are supplementary. The measure of angle R is 5 times the measure of angle M. What is the measure of angle R, in degrees?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Lines & Angles",
         "type": "short_response"
       },
       {
@@ -13318,7 +13318,7 @@
         "points": 1,
         "prompt": "Mr. Jones has 550 goats, which is 10% more than Mr. King has. How many more goats does Mr. Jones have than Mr. King?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -13335,7 +13335,7 @@
         "points": 1,
         "prompt": "If \\(\\frac{2y}{x}-\\frac{y}{2x}=\\frac{\\square}{2x}\\) and \\(x\\ne0\\), what expression is represented by \\(\\square\\)?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Expressions",
         "type": "multiple_choice"
       },
       {
@@ -13352,7 +13352,7 @@
         "points": 1,
         "prompt": "In the figure above, PQRS is a square. Point S is the center of the circle, and points P and R are on the circle. If the area of the square is 4 square centimeters, what is the area, in square centimeters, of the shaded quarter of the circle?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Circles",
         "type": "multiple_choice"
       },
       {
@@ -13369,7 +13369,7 @@
         "points": 1,
         "prompt": "A list of consecutive integers begins with \\(m\\) and ends with \\(n\\). If \\(n-m=66\\), how many integers are in the list?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -13403,7 +13403,7 @@
         "points": 1,
         "prompt": "Jar 1 and Jar 2 each contain \\(\\frac12\\) cup of water. If \\(\\frac14\\) of the water in Jar 1 is poured into Jar 2, how much water is now in Jar 2?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -13420,7 +13420,7 @@
         "points": 1,
         "prompt": "If \\(n\\) is a whole number, and 0.01 is between \\(\\frac1n\\) and \\(\\frac1{n+2}\\), what is the value of \\(n\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -13454,7 +13454,7 @@
         "points": 1,
         "prompt": "A museum has a room in the shape of a rectangle. The area of the floor is 960 square feet. In a scale drawing of the museum, 1 inch = 20 feet. If the length of the room is 2 inches in the scale drawing, what is the width of this room in the scale drawing?",
         "topic": "Geometry",
-        "subtopic": "Scale & Transformations",
+        "subtopic": "Similarity & Scale Drawings",
         "type": "multiple_choice"
       },
       {
@@ -13471,7 +13471,7 @@
         "points": 1,
         "prompt": "A program on a computer randomly generates a sequence of whole numbers from 1 to 9, inclusive. If the computer generates a sequence of 300 numbers, what is the best prediction of the number of odd numbers in the sequence?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Sampling & Predictions",
         "type": "multiple_choice"
       },
       {
@@ -13488,7 +13488,7 @@
         "points": 1,
         "prompt": "A truck rental company charges a one-time fee of $40 plus $1 per mile driven. Dalia rented a truck and used a coupon for 20% off the total rental cost. After the coupon was applied, she spent a total of $60. How many miles did she drive?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -13505,7 +13505,7 @@
         "points": 1,
         "prompt": "The probability of drawing a red candy at random from a bag of 25 candies is \\(\\frac25\\). After 5 red candies are removed from the bag, what is the probability of randomly drawing a red candy from the bag?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -13522,7 +13522,7 @@
         "points": 1,
         "prompt": "Each number in a sequence is formed by doubling the previous number and then adding 1. If the 9th number in the sequence is 63, what is the 10th number minus the 7th number?",
         "topic": "Algebra",
-        "subtopic": "Algebraic Expressions",
+        "subtopic": "Patterns & Sequences",
         "type": "multiple_choice"
       },
       {
@@ -13589,7 +13589,7 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "\\[F=\\frac95 C+32\\]\n\nYesterday in Centerville, the highest Fahrenheit temperature, F, was 86°, and the lowest was 68°. What was the difference between these temperatures, in degrees Celsius, C?",
-        "topic": "Ratios and Proportional Relationships",
+        "topic": "Arithmetic & Number Sense",
         "subtopic": "Units & Conversions",
         "type": "multiple_choice"
       },
@@ -13624,7 +13624,7 @@
         "points": 1,
         "prompt": "In 1991, the total public debt of the United States was about $3,600,000,000,000. In that year, there were about 250,000,000 people in the United States. Which amount is the best estimate of the public debt per person for that year?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Order of Operations",
         "type": "multiple_choice"
       },
       {
@@ -13641,7 +13641,7 @@
         "points": 1,
         "prompt": "In the figure above, N is the midpoint of \\(\\overline{MQ}\\). Which segment has length \\(2x-y\\) centimeters?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Coordinates & Segment Relationships",
         "type": "multiple_choice"
       },
       {
@@ -13675,7 +13675,7 @@
         "points": 1,
         "prompt": "On Wednesday, a baker produced 100 more loaves of bread than were produced on Tuesday. On Thursday, the baker produced 50 fewer loaves than were produced on Tuesday. If the total number of loaves produced on all three days was 230, how many loaves were produced on Wednesday?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "multiple_choice"
       },
       {
@@ -13726,7 +13726,7 @@
         "points": 1,
         "prompt": "The reciprocal of \\(\\frac14\\) is added to the reciprocal of 3. What is the reciprocal of this sum?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -13794,7 +13794,7 @@
         "points": 1,
         "prompt": "In a certain state, the sales tax rate increased from 7.0% to 7.5%. What was the increase in the sales tax on a $200 item?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -13811,7 +13811,7 @@
         "points": 1,
         "prompt": "Evaluate:\n\\[\\left|(-8)-12+(-17)-(-31)\\right|-\\left|24\\right|\\]",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "multiple_choice"
       },
       {
@@ -13845,7 +13845,7 @@
         "points": 1,
         "prompt": "On the number line above, the distance between X and Y is 1 unit, and the distance between Y and Z is 2 units. What is the distance, in units, between Y and the midpoint of X and Z?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Coordinates & Segment Relationships",
         "type": "multiple_choice"
       },
       {
@@ -13862,7 +13862,7 @@
         "points": 1,
         "prompt": "By what percent did the price of a cup of coffee increase if its price was increased from $1.25 to $1.35?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -13879,7 +13879,7 @@
         "points": 1,
         "prompt": "Raquel is cutting out pieces of cardboard to make a pyramid. She will use a square piece for the base and identical triangular pieces for the sides. The figure above shows the dimensions of the triangle for each side. What will be the total surface area, in square inches, of the pyramid, including the square base?",
         "topic": "Geometry",
-        "subtopic": "Area & Perimeter",
+        "subtopic": "Surface Area & Volume",
         "type": "multiple_choice"
       },
       {
@@ -13896,7 +13896,7 @@
         "points": 1,
         "prompt": "The price of a sandwich was raised from $6.25 to $6.75. What was the percent increase in the price?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -13947,7 +13947,7 @@
         "points": 1,
         "prompt": "\\[3.6\\div0.018=\\]",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Decimals",
         "type": "multiple_choice"
       },
       {
@@ -13998,7 +13998,7 @@
         "points": 1,
         "prompt": "A graph shows the proportional relationship between the number of test questions a student gets correct, \\(x\\), and the student’s test score, \\(y\\). The ordered pair \\(\\left(1,1\\frac14\\right)\\) is on the graph. What does the y-coordinate of the ordered pair represent in this relationship?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -14015,7 +14015,7 @@
         "points": 1,
         "prompt": "In a survey of 200 adults in the town of Waskegon, 45 reported reading the online version of the Waskegon Bulletin the previous day. If 25,000 adults live in Waskegon, which number is the best estimate of the number of adults who read the online version of the Waskegon Bulletin the previous day?",
         "topic": "Statistics and Probability",
-        "subtopic": "Data Displays",
+        "subtopic": "Sampling & Predictions",
         "type": "multiple_choice"
       },
       {
@@ -14032,7 +14032,7 @@
         "points": 1,
         "prompt": "A hiker plans on hiking 17 miles in 3 days. Which equation describes the relationship between the number of days hiked, \\(x\\), and the number of miles traveled, \\(y\\)?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -14049,7 +14049,7 @@
         "points": 1,
         "prompt": "Carolyn walked 3 miles from her house to the library and then \\(2\\frac12\\) miles farther to the grocery store. Returning home by the same route, she walked \\(1\\frac23\\) miles before stopping at a friend’s house. How many miles did Carolyn have left to walk home?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -14083,7 +14083,7 @@
         "points": 1,
         "prompt": "\\[3(0.01)-3(0.1)=\\]",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Decimals",
         "type": "multiple_choice"
       },
       {
@@ -14100,7 +14100,7 @@
         "points": 1,
         "prompt": "What is the value of \\(10\\frac12+\\left(-5\\frac13\\right)-\\left(-2\\frac34\\right)\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -14117,7 +14117,7 @@
         "points": 1,
         "prompt": "Carlos has $350 in a savings account that earns 5% simple interest each year. How much will he have in the account after 1 year, if there is no money withdrawn?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -14134,7 +14134,7 @@
         "points": 1,
         "prompt": "The probability of an event occurring is 0.05. What is the chance that the event will occur?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -14151,7 +14151,7 @@
         "points": 1,
         "prompt": "The table below shows the number of cups of red paint and blue paint used to make a purple paint mixture.\nBased on the relationship between the number of cups of red paint and the number of cups of blue paint, what is the value of \\(y\\)?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -14168,7 +14168,7 @@
         "points": 1,
         "prompt": "On the number line above, what is the distance, in units, between the midpoint of \\(\\overline{PQ}\\) and the midpoint of \\(\\overline{QR}\\)?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Coordinates & Segment Relationships",
         "type": "multiple_choice"
       },
       {
@@ -14185,7 +14185,7 @@
         "points": 1,
         "prompt": "An ice cream shop sells 16 cups of ice cream for $48 and 4 cups for $12. There is a proportional relationship between the number of cups of ice cream and the cost. What is the constant of proportionality for this relationship?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       }
     ],
@@ -16910,7 +16910,7 @@
         "points": 1,
         "prompt": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives 8 of his stamps to Kevin. Liam now has 12 more stamps than Kevin.\n\nHow many stamps did Liam start with?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "inline_dropdown"
       },
       {
@@ -16922,7 +16922,7 @@
         "points": 1,
         "prompt": "In the figure above, PQRS is a parallelogram. What is the value of \\(x\\)?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Triangles & Polygons",
         "type": "short_response"
       },
       {
@@ -17004,7 +17004,7 @@
         "points": 1,
         "prompt": "The sum of two consecutive integers is −15. If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "short_response"
       },
       {
@@ -17021,7 +17021,7 @@
         "points": 1,
         "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -17050,7 +17050,7 @@
         "points": 1,
         "prompt": "Consider this expression:\n\n\\[|(-8)-(-3)+6|-|6-11|\\]\n\nCreate an equivalent expression.",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "math_drag_drop"
       },
       {
@@ -17084,7 +17084,7 @@
         "points": 1,
         "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -17152,7 +17152,7 @@
         "points": 1,
         "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
         "topic": "Geometry",
-        "subtopic": "Scale & Transformations",
+        "subtopic": "Similarity & Scale Drawings",
         "type": "multiple_choice"
       },
       {
@@ -17198,7 +17198,7 @@
         "points": 1,
         "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "multiple_choice"
       },
       {
@@ -17227,7 +17227,7 @@
         "points": 1,
         "prompt": "\\[2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\]\n\nWhat is the value of the expression shown above?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -17243,8 +17243,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "topic": "Statistics and Probability",
+        "subtopic": "Counting & Combinations",
         "type": "multiple_choice"
       },
       {
@@ -17278,7 +17278,7 @@
         "points": 1,
         "prompt": "On the number line above, \\(\\overline{LN}=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -17341,7 +17341,7 @@
         "points": 1,
         "prompt": "In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of neither 2 nor 3?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -17358,7 +17358,7 @@
         "points": 1,
         "prompt": "If \\(3n\\) is a positive even number, how many odd numbers are in the range from \\(3n\\) up to and including \\(3n+5\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -17370,7 +17370,7 @@
         "points": 1,
         "prompt": "When a student buys 4 notebooks, the total cost is $12. Each notebook costs the same amount. Select each point on the graph that best represents \\(y\\), the total cost of \\(x\\) notebooks.",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "graph_point_select"
       },
       {
@@ -17387,7 +17387,7 @@
         "points": 1,
         "prompt": "\\[\\frac{w}{x}=\\frac{y}{z}\\]\n\nIn the equation above, \\(w\\), \\(x\\), \\(y\\), and \\(z\\) are positive numbers. Which of these is equal to \\(z\\)?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Formulas & Rearranging Equations",
         "type": "multiple_choice"
       },
       {
@@ -17484,7 +17484,7 @@
         "points": 1,
         "prompt": "A sports store has a container of handballs: 4 blue, 5 red, 8 yellow, 9 white, and 11 green. If one ball is picked from the container at random, what is the probability that it will be yellow?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -17501,7 +17501,7 @@
         "points": 1,
         "prompt": "Each week, Leon has fixed expenses of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he sells each chair for $275. What is Leon’s profit if he makes and sells 25 chairs in 1 week?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Order of Operations",
         "type": "multiple_choice"
       },
       {
@@ -17534,8 +17534,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "On the number line above, \\(\\overline{JK}=3\\frac{1}{2}\\), \\(\\overline{JM}=9\\frac{3}{4}\\), and \\(\\overline{LM}=1\\frac{1}{8}\\). What is the position of point L?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "topic": "Geometry",
+        "subtopic": "Coordinates & Segment Relationships",
         "type": "multiple_choice"
       },
       {
@@ -17552,7 +17552,7 @@
         "points": 1,
         "prompt": "If \\(4x-3y=12\\), what is \\(x\\) in terms of \\(y\\)?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Formulas & Rearranging Equations",
         "type": "multiple_choice"
       },
       {
@@ -17580,8 +17580,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "Let \\(b=3\\), \\(c=4\\), and \\(d=5\\). Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\).",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
         "type": "short_response"
       }
     ],
@@ -21513,7 +21513,7 @@
         "points": 1,
         "prompt": "What is the prime factorization of 3,575?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -21530,7 +21530,7 @@
         "points": 1,
         "prompt": "What is the value of \\(z\\) in \\(\\frac{x}{10}+\\frac{y-x}{5}=\\frac{z}{10}\\)?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Formulas & Rearranging Equations",
         "type": "multiple_choice"
       },
       {
@@ -21563,8 +21563,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "If \\(x=\\frac{1}{4}\\), what is the value of \\(\\frac{2}{2-x}\\)?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
         "type": "multiple_choice"
       },
       {
@@ -21576,7 +21576,7 @@
         "points": 1,
         "prompt": "In a school raffle, 1 out of every 25 students wins a prize. Each prize includes a randomly selected trading card from a set of 100 different cards, labeled C1 through C100, with each card equally likely to be chosen. If one student is selected at random, what is the probability that the student both wins a prize and receives Card C17?\n\nWrite an expression that represents the probability that a student wins the prize and receives Card C17.",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "expression_entry"
       },
       {
@@ -21605,7 +21605,7 @@
         "points": 1,
         "prompt": "A middle school library has a shelf with 40 books, each labeled with a different number from 201 to 240. One book is selected at random. What is the probability, as a percentage, of selecting book number 223?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "short_response"
       },
       {
@@ -21635,7 +21635,7 @@
         "points": 1,
         "prompt": "Let \\(m\\) be a negative integer and \\(k\\) be a positive integer.\n\nWhich of the expressions below must result in a positive value?\n\nSelect the three correct answers.",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "multi_select"
       },
       {
@@ -21669,7 +21669,7 @@
         "points": 1,
         "prompt": "In a scale drawing of a triangular park, the sides measure 5 inches, 7 inches, and 8 inches. The perimeter of the actual park is 25 miles. What is the actual length of the shortest side of the park?",
         "topic": "Geometry",
-        "subtopic": "Scale & Transformations",
+        "subtopic": "Similarity & Scale Drawings",
         "type": "multiple_choice"
       },
       {
@@ -21686,7 +21686,7 @@
         "points": 1,
         "prompt": "\\(P\\) is the center of the circle above, and \\(R\\), \\(S\\), and \\(T\\) are points on the circle. What is the value of \\(x\\)?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Lines & Angles",
         "type": "multiple_choice"
       },
       {
@@ -21703,7 +21703,7 @@
         "points": 1,
         "prompt": "In the right triangle shown above, what is the measure of the smallest angle?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Triangles & Polygons",
         "type": "multiple_choice"
       },
       {
@@ -21720,7 +21720,7 @@
         "points": 1,
         "prompt": "James must read 84 pages of a book for a class assignment. If he reads \\(\\frac{1}{4}\\) of the pages in the morning and \\(\\frac{1}{3}\\) of the remaining pages in the afternoon, how many pages will he still need to read?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -21737,7 +21737,7 @@
         "points": 1,
         "prompt": "\\[\\frac{1}{11}+\\frac{1}{22}+\\frac{1}{33}\\]\n\nWhat is the value of the expression shown above?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -21749,7 +21749,7 @@
         "points": 1,
         "prompt": "The table shows the proportional relationship between x cups of oatmeal and y ounces of raisins in a bread recipe.\nWhat is the constant of proportionality of the number of ounces of raisins to the number of cups of oatmeal?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Ratios & Proportions",
+        "subtopic": "Proportional Relationships",
         "type": "short_response"
       },
       {
@@ -21765,8 +21765,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "At Midville High School, 64 students are members of either the orchestra or the choir, or both. Of these students, 38 are members of the orchestra, and 46 are members of the choir. What fraction of the total is the number of students who are members of both the orchestra and the choir?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "topic": "Statistics and Probability",
+        "subtopic": "Set Relationships",
         "type": "multiple_choice"
       },
       {
@@ -21783,7 +21783,7 @@
         "points": 1,
         "prompt": "Which of the following decimals is equivalent to \\(1\\frac{2}{3}+2\\frac{4}{9}\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -21800,7 +21800,7 @@
         "points": 1,
         "prompt": "A store manager purchases a piece of furniture for $456.00. To determine the selling price, the manager increases the purchase cost by 125%. A customer buys the furniture and pays an additional 8% sales tax. How much does the customer pay for the furniture?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -21817,7 +21817,7 @@
         "points": 1,
         "prompt": "What is the value of \\(\\frac{-9(-4)^2+36(-4)+304}{-4}\\)?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Order of Operations",
         "type": "multiple_choice"
       },
       {
@@ -21834,7 +21834,7 @@
         "points": 1,
         "prompt": "Maxie borrowed $7.75 from her mother, $11.00 from her father, and $4.50 from her brother to purchase a video game. Her grandmother gave her $25.00 as a gift. How much money will Maxie have left or still owe if she uses the money her grandmother gave her to pay back the money she borrowed?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "multiple_choice"
       },
       {
@@ -21851,7 +21851,7 @@
         "points": 1,
         "prompt": "Seth grows strawberries in his garden.\n\n• He picked \\(2\\frac{1}{2}\\) cups of strawberries on Monday.\n• He picked 4 cups of strawberries on Tuesday.\n• He ate \\(\\frac{3}{4}\\) cup of strawberries for breakfast each day on Wednesday, Thursday, and Friday.\n\nHow many cups of strawberries did Seth have left?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Fractions & Decimals",
+        "subtopic": "Fractions",
         "type": "multiple_choice"
       },
       {
@@ -21868,7 +21868,7 @@
         "points": 1,
         "prompt": "Which situation involves quantities that combine to equal zero?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Operations",
+        "subtopic": "Integers & Absolute Value",
         "type": "multiple_choice"
       },
       {
@@ -21948,7 +21948,7 @@
         "points": 1,
         "prompt": "A graph shows the relationship between the number of gallons of water, \\(y\\), that has been added to a tank and the number of hours, \\(x\\), that water has been added to the tank at a constant rate. What does the ordered pair \\((3,24)\\) represent?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -21965,7 +21965,7 @@
         "points": 1,
         "prompt": "Karl has one red spinner and one blue spinner. Each spinner is divided into 4 equal sections, numbered 1 through 4. He spins each spinner once and writes down the number that each lands on. What is the probability that the two numbers, when multiplied together, will have 4 as a product?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -21999,7 +21999,7 @@
         "points": 1,
         "prompt": "A box contains an unknown number of green marbles. An experimenter adds 100 red marbles to the box, mixes the marbles thoroughly, and then draws out 10 marbles at random. Assume that this sample is representative of the proportion in the box. If there are 2 red marbles and 8 green marbles in this sample, approximately how many green marbles are in the box?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Sampling & Predictions",
         "type": "multiple_choice"
       },
       {
@@ -22033,7 +22033,7 @@
         "points": 1,
         "prompt": "A car costing $24,000 is subject to a sales tax of 8%. If Bindu made a $10,000 down payment on this car, what is the total amount she has left to pay?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       },
       {
@@ -22050,7 +22050,7 @@
         "points": 1,
         "prompt": "Last week, Emily rode the bus to school on 3 of the 5 mornings and rode the bus home on 4 of the 5 afternoons. Based on last week’s events, what is the probability that Emily will ride the bus in the morning and the afternoon next Monday?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Compound Probability",
         "type": "multiple_choice"
       },
       {
@@ -22066,8 +22066,8 @@
         "imageUrl": "",
         "points": 1,
         "prompt": "XYZ Corporation hired 6 people as summer workers. Of these 6 people, 3 will be hired as permanent employees in the fall. If 2 of the 6 people are male, how many of the possible groups of 3 people hired in the fall will include only 1 male?",
-        "topic": "Arithmetic & Number Sense",
-        "subtopic": "Counting & Sets",
+        "topic": "Statistics and Probability",
+        "subtopic": "Counting & Combinations",
         "type": "multiple_choice"
       },
       {
@@ -22091,7 +22091,7 @@
         "points": 1,
         "prompt": "What 3-digit number between 630 and 650 is divisible by both 5 and 8?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "short_response"
       },
       {
@@ -22108,7 +22108,7 @@
         "points": 1,
         "prompt": "Melissa has a bag of marbles that are all the same size. The bag contains three red (R) marbles, three green (G) marbles, and two white (W) marbles. For an experiment, she will take two marbles out of the bag without looking. Which list shows the sample space for Melissa’s experiment?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Counting & Combinations",
         "type": "multiple_choice"
       },
       {
@@ -22125,7 +22125,7 @@
         "points": 1,
         "prompt": "The table shows the probabilities of a hockey team scoring different numbers of goals in a game.\nWhat is the probability that the team will score three or more goals in the next game?",
         "topic": "Statistics and Probability",
-        "subtopic": "Probability",
+        "subtopic": "Basic Probability",
         "type": "multiple_choice"
       },
       {
@@ -22159,7 +22159,7 @@
         "points": 1,
         "prompt": "The distance an eagle flies is proportional to the time the eagle spends flying. An eagle flies 90 miles in 3 hours. What is the constant of proportionality for this relationship?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Rates & Unit Rates",
+        "subtopic": "Proportional Relationships",
         "type": "multiple_choice"
       },
       {
@@ -22205,7 +22205,7 @@
         "points": 1,
         "prompt": "A bakery charges $1.25 for each cupcake and $2.50 for a serving tray. The equation describes \\(p\\), the price of \\(c\\) cupcakes and a serving tray, not including tax.\n\n\\[p=2.50+1.25c\\]\n\nIf Samantha bought some cupcakes and a serving tray for a total of $22.50, not including tax, how many cupcakes did she buy?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "multiple_choice"
       },
       {
@@ -22217,7 +22217,7 @@
         "points": 1,
         "prompt": "Marcus and Isla are saving money to buy concert tickets.\n\n• They decide to save the same amount each week.\n\n• \n\nThey already have $8 saved.\n• After 3 weeks, the two have $26 saved in total.\n\nHow much money, in dollars, is being saved by Marcus and Isla each week?",
         "topic": "Algebra",
-        "subtopic": "Equations & Systems",
+        "subtopic": "Algebraic Word Problems",
         "type": "short_response"
       },
       {
@@ -22246,7 +22246,7 @@
         "points": 1,
         "prompt": "What shape will result from a horizontal slice of the figure above?",
         "topic": "Geometry",
-        "subtopic": "Shapes & Angles",
+        "subtopic": "Surface Area & Volume",
         "type": "multiple_choice"
       },
       {
@@ -22280,7 +22280,7 @@
         "points": 1,
         "prompt": "Anise has a piece of cloth measuring 45 inches by 75 inches. She wants to cut it into squares of equal size, without any cloth left over. What is the greatest possible side length, in inches, of one of those squares?",
         "topic": "Arithmetic & Number Sense",
-        "subtopic": "Number Properties",
+        "subtopic": "Number Types & Properties",
         "type": "multiple_choice"
       },
       {
@@ -22297,7 +22297,7 @@
         "points": 1,
         "prompt": "This table shows the number of birds that came to a bird feeder on Monday and Tuesday.\nWhat was the percent decrease in the number of birds from Monday to Tuesday?",
         "topic": "Ratios and Proportional Relationships",
-        "subtopic": "Percentages",
+        "subtopic": "Percent Change & Applications",
         "type": "multiple_choice"
       }
     ],
@@ -23882,9 +23882,1584 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-10-27T17:11:40.667Z",
-    "updatedAt": "2026-10-27T17:11:41.531Z",
-    "passages": [],
-    "questions": [],
+    "updatedAt": "2026-10-31T12:53:05.412Z",
+    "passages": [
+      {
+        "id": "excerpt-from-mowgli-s-brothers-digital-shsat-practice-test-4",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"Mowgli’s Brothers\"",
+        "versionLabel": "Digital SHSAT Practice Test 4"
+      },
+      {
+        "id": "excerpt-from-the-hall-that-learned-to-listen-digital-shsat-practice-test-4",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"The Hall That Learned to Listen\"",
+        "versionLabel": "Digital SHSAT Practice Test 4"
+      },
+      {
+        "id": "excerpt-from-excerpt-from-the-voyage-of-the-beagle-digital-shsat-practice-test-4",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"Excerpt from \"The Voyage of the Beagle\"\"",
+        "versionLabel": "Digital SHSAT Practice Test 4"
+      },
+      {
+        "id": "excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"Stopping by Woods on a Snowy Evening\"",
+        "versionLabel": "Digital SHSAT Practice Test 4"
+      },
+      {
+        "id": "excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"The Grip That Shouldn’t Work\"",
+        "versionLabel": "Digital SHSAT Practice Test 4"
+      },
+      {
+        "id": "excerpt-from-formation-digital-shsat-practice-test-4",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"Formation\"",
+        "versionLabel": "Digital SHSAT Practice Test 4"
+      },
+      {
+        "id": "excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"The Case for More Bike Parking at Alder Hollow\"",
+        "versionLabel": "Digital SHSAT Practice Test 4"
+      }
+    ],
+    "questions": [
+      {
+        "answer": "B",
+        "choices": [
+          "the beasts remain unaware that humans are regarded as the weakest creatures in the entire jungle.",
+          "the animals prefer a flattering story about honor to the self-serving truth that explains their real caution.",
+          "the Law of the Jungle offers two explanations that directly contradict each other about the same rule.",
+          "no creature besides Shere Khan rejects both justifications offered for the ban."
+        ],
+        "id": "excerpt-from-mowgli-s-brothers-digital-shsat-practice-test-4-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The distinction the narrator draws between the \"real reason\" for the Law's ban on man-killing and the reason \"the beasts give among themselves\" most strongly suggests that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Creatures in the jungle tend to submit to whichever animal proves the most physically dominant.",
+          "Family loyalty often leads animals to abandon the established laws that normally govern their behavior.",
+          "Predators like Shere Khan mainly fear other predators rather than parents defending their young.",
+          "Bravery driven by love for family can overpower a threat that is larger and stronger."
+        ],
+        "id": "excerpt-from-mowgli-s-brothers-digital-shsat-practice-test-4-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What does the confrontation between Mother Wolf and Shere Khan mainly convey about courage and protection?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B,D",
+        "choices": [
+          "\"The whine had changed to a sort of humming purr that seemed to come from every quarter of the compass.\" (paragraph 1)",
+          "\"It was the noise that bewilders woodcutters and gypsies sleeping in the open, and makes them run sometimes into the very mouth of the tiger.\" (paragraph 1)",
+          "\"Man! Faugh! Are there not enough beetles and frogs in the tanks that he must eat Man, and on our ground too!\" (paragraph 1)",
+          "\"The real reason for this is that man-killing means, sooner or later, the arrival of white men on elephants, with guns.\" (paragraph 1)"
+        ],
+        "id": "excerpt-from-mowgli-s-brothers-digital-shsat-practice-test-4-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Select the two sentences from paragraph 1 in which the narrator pauses the story's action to explain background information directly to the reader, rather than continuing the scene's action or dialogue.",
+        "topic": "Central Idea & Theme",
+        "type": "multi_select"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\"The man's cub is mine, Lungri--mine to me! He shall not be killed.\" (paragraph 9)",
+          "\"How little! How naked, and--how bold!\" said Mother Wolf softly. (paragraph 5)",
+          "\"Is that a man's cub? I have never seen one. Bring it here.\" (paragraph 5)",
+          "\"Something is coming uphill,\" said Mother Wolf, twitching one ear. \"Get ready.\" (paragraph 3)"
+        ],
+        "id": "excerpt-from-mowgli-s-brothers-digital-shsat-practice-test-4-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage best supports the idea that Mother Wolf regards the man's cub as one of her own to protect?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "shift the setting from the wolves' den to a distant part of the jungle entirely.",
+          "explain in advance why the tiger arrives at the wolves' cave already in a foul temper.",
+          "reveal that Shere Khan has permanently lost his ability to hunt any prey again.",
+          "introduce a new conflict between Shere Khan and the jackal Tabaqui that grows throughout the excerpt."
+        ],
+        "id": "excerpt-from-mowgli-s-brothers-digital-shsat-practice-test-4-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The brief paragraphs describing Shere Khan's failed hunt and burned feet mainly serve to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Her eyes have physically changed color because of her sudden fear of the tiger.",
+          "Her eyes reflect calm detachment as she prepares to retreat from the confrontation.",
+          "Her eyes glow only because the moonlight is shining directly into the cave.",
+          "Her eyes appear strikingly bright and fierce, matching the intensity of her defiance."
+        ],
+        "id": "excerpt-from-mowgli-s-brothers-digital-shsat-practice-test-4-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What does the simile comparing Mother Wolf's eyes to \"two green moons in the darkness\" mainly suggest about her as she confronts Shere Khan?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Genuine authority in the jungle depends on law and courage, not on size or force.",
+          "The jungle's law exists mainly to prevent any predator from ever going hungry during difficult seasons.",
+          "Wolves and tigers share an unspoken respect that generally keeps violent conflict between them rare.",
+          "Human beings pose no real threat to the animals living within the boundaries of the jungle."
+        ],
+        "id": "excerpt-from-mowgli-s-brothers-digital-shsat-practice-test-4-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "From the wolves' discussion of the Law of the Jungle through Mother Wolf's final challenge to Shere Khan, what central idea does the excerpt develop?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [
+          "expensive imported materials",
+          "careful testing and measurement",
+          "guidance from European architects",
+          "untested theory",
+          "the orchestra's advice",
+          "sheer luck"
+        ],
+        "id": "excerpt-from-the-hall-that-learned-to-listen-digital-shsat-practice-test-4-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Complete the sentence below so that it correctly states the passage's central idea. Drag two words or phrases from the word bank into the blanks.",
+        "topic": "Central Idea & Theme",
+        "type": "transition_drop"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "improving steadily only after the carpet runner was laid down the center aisle that season.",
+          "matching almost exactly the reverberation time recorded on the orchestra floor before any renovations began.",
+          "remaining livelier than the rest of the hall even after every fix had been tried.",
+          "benefiting most directly from the ridged wooden panel installed along the hall's rear wall."
+        ],
+        "id": "excerpt-from-the-hall-that-learned-to-listen-digital-shsat-practice-test-4-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The table records a reverberation time of 2.8 seconds for the seats under the overhang, longer than any other section — a number that best confirms the passage's description of that area as",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It can be achieved by adopting expensive, specialized equipment that only trained engineers may operate.",
+          "It can be achieved by strictly following architectural traditions passed down from earlier centuries in Europe.",
+          "It can be achieved by relying on plain luck rather than any deliberate, repeatable method.",
+          "It can be achieved through patient observation and honest record-keeping, without a guiding theory."
+        ],
+        "id": "excerpt-from-the-hall-that-learned-to-listen-digital-shsat-practice-test-4-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What does the passage suggest about how meaningful scientific understanding can sometimes be achieved?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "The renovation process itself became a kind of careful, responsive listening on the building's part.",
+          "The hall's engineer was more skilled at listening than the architects who designed the building.",
+          "The touring orchestras adjusted their performances once they learned how the hall's acoustics behaved.",
+          "The hall's original architects had ignored complaints from audience members during the opening season."
+        ],
+        "id": "excerpt-from-the-hall-that-learned-to-listen-digital-shsat-practice-test-4-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the title, the hall is described as one that 'learned to listen.' What does this phrase best convey?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The author wants to criticize the hall's engineer for not adopting more advanced methods sooner.",
+          "The author wants to explain why the renovations described earlier in the passage ultimately failed.",
+          "The author wants to emphasize how much the staff accomplished using only patient observation and honest records.",
+          "The author wants to suggest that later architects viewed the Whitcombe's acoustic fixes as crude and unnecessary."
+        ],
+        "id": "excerpt-from-the-hall-that-learned-to-listen-digital-shsat-practice-test-4-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Why does the author most likely mention Sabine's formula, a tool that did not exist during the Whitcombe's renovation?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "a room's shape and proportions matter less to its sound than the materials lining its surfaces.",
+          "the European models the architects copied were a poor fit and should have been abandoned entirely.",
+          "the Whitcombe's architects deliberately ignored the acoustic needs of the audience to save money.",
+          "carpenters and upholsterers understood acoustics better than trained architects did in the 1880s."
+        ],
+        "id": "excerpt-from-the-hall-that-learned-to-listen-digital-shsat-practice-test-4-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The contrast between what the Whitcombe's original architects copied from European halls and what the later renovations actually changed most likely suggests that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It introduces a brand-new problem that the hall's staff had not yet noticed or attempted to fix.",
+          "It pauses the narrative to contrast the Whitcombe's hands-on methods with the formal science that arrived later.",
+          "It summarizes every renovation step described in paragraphs two through four in chronological order again.",
+          "It shifts the passage's focus away from the Whitcombe toward concert halls built in other decades."
+        ],
+        "id": "excerpt-from-the-hall-that-learned-to-listen-digital-shsat-practice-test-4-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the primary function of paragraph 5 within the passage as a whole?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "argue that religious buildings survive the passage of time better than military structures do.",
+          "explain why the hired guide had trouble locating the original entrance to the town's harbor.",
+          "prove that the climate of Cape Verde is far more humid than most travelers expect.",
+          "suggest that the town's importance has faded considerably since it once served as the island's main settlement."
+        ],
+        "id": "excerpt-from-excerpt-from-the-voyage-of-the-beagle-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-15",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The author most likely describes the ruined fort and cathedral at Ribeira Grande mainly to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\"...the reckless destruction of which has caused here, as at St. Helena...almost entire sterility.\" (paragraph 3)",
+          "\"The volcanic fires of a past age have in most places rendered the soil unfit for vegetation.\" (paragraph 2)",
+          "\"It rains very seldom, but during a short portion of the year heavy torrents fall.\" (paragraph 3)",
+          "\"The country rises in successive steps of table-land, interspersed with some truncate conical hills.\" (paragraph 2)"
+        ],
+        "id": "excerpt-from-excerpt-from-the-voyage-of-the-beagle-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-16",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage best supports the idea that human activity contributed to the island's bareness near Porto Praya?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "St. Jago's volcanic terrain makes it less welcoming to travelers than most other islands in the archipelago.",
+          "The kingfisher's habits show that St. Jago's wildlife adapted more successfully than its plant life to drought.",
+          "The island's barren surface actually records a long history of human and natural change, visible on close observation.",
+          "Porto Praya's ruined buildings show that Portuguese settlers managed the island's resources worse than other colonizers did."
+        ],
+        "id": "excerpt-from-excerpt-from-the-voyage-of-the-beagle-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-17",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What central idea connects the passage's description of St. Jago's barren landscape with its geological history?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Bitterly critical, faulting the island's soil for being unsuitable for growing any real crops.",
+          "Wistfully appreciative, finding genuine beauty in a landscape that at first appears entirely barren.",
+          "Coldly clinical, cataloguing the island's physical features without expressing any real personal reaction.",
+          "Anxiously uncertain, questioning whether the island will prove safe for further scientific exploration."
+        ],
+        "id": "excerpt-from-excerpt-from-the-voyage-of-the-beagle-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-18",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What tone do the words \"desolate,\" \"utterly sterile,\" and \"grandeur\" together create in paragraph 2?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "The area that is now dry land was once located underwater before being raised above sea level.",
+          "The lava stream destroyed most of the marine shells before they could become fossilized.",
+          "The volcanic activity on St. Jago has continued steadily from ancient times to the present day.",
+          "The shellfish species found in the white stratum no longer live anywhere near St. Jago's coast."
+        ],
+        "id": "excerpt-from-excerpt-from-the-voyage-of-the-beagle-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-19",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What can most likely be inferred from the fact that a bed of shells now found forty-five feet above the water was once covered by a stream of lava that entered the sea?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "St. Jago has experienced several volcanic eruptions since Europeans first settled the island centuries ago.",
+          "Red cindery hills appear to be more common on St. Jago than on neighboring islands in the archipelago.",
+          "Physical clues, such as cliff height, let observers estimate the relative order and age of past lava flows.",
+          "The absence of visible craters proves that early accounts of the island's volcanic origins were mistaken."
+        ],
+        "id": "excerpt-from-excerpt-from-the-voyage-of-the-beagle-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-20",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the central idea of paragraph 6's discussion of St. Jago's lava streams and cindery hills?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It signals that the speaker gives in to exhaustion and falls asleep before finishing the journey.",
+          "It stresses how heavily obligation weighs against the speaker's wish to stay among the trees.",
+          "It shows that the horse becomes restless and eager to leave the woods behind.",
+          "It fills out the final stanza's rhyme scheme, which shifts from AABA to AAAA."
+        ],
+        "id": "excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-21",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 13-16 from the poem. What is the most likely reason the speaker repeats its final line?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\"My little horse must think it queer / To stop without a farmhouse near\" (lines 5-6)",
+          "\"He gives his harness bells a shake / To ask if there is some mistake.\" (lines 9-10)",
+          "\"The woods are lovely, dark and deep, / But I have promises to keep,\" (lines 13-14)",
+          "\"Whose woods these are I think I know. / His house is in the village though;\" (lines 1-2)"
+        ],
+        "id": "excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-22",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which lines from the poem best support the idea that the speaker is torn between staying in the woods and continuing on his way?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "suggest that the snowstorm has grown dangerous enough to genuinely worry the speaker and horse.",
+          "hint that the horse has become frightened by the sound of the rising wind.",
+          "emphasize how heavy and difficult the snowfall has made the road still ahead.",
+          "reinforce the poem's hushed, soothing atmosphere as the speaker quietly pauses in the falling snow."
+        ],
+        "id": "excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-23",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 9-12 from the poem. The word \"downy,\" used to describe the falling flake, mainly works to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It creates a sense of closure by resolving the rhyme that earlier stanzas had left dangling.",
+          "It signals that the speaker has become confused about where the road actually leads.",
+          "It shows that the horse's harness bells have finally stopped ringing in the cold air.",
+          "It introduces a new setting, moving the poem from the snowy woods to the village."
+        ],
+        "id": "excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-24",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 13-16 from the poem. What effect does the final stanza's shift from an AABA rhyme scheme to an AAAA rhyme scheme most likely create?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "a warning that the speaker's horse will soon collapse from exhaustion on the road.",
+          "a reference to the responsibilities and unfinished business that remain in the speaker's life.",
+          "a description of the village where the woods' owner is currently sleeping soundly.",
+          "a complaint about the late hour and the speaker's wish to return home quickly."
+        ],
+        "id": "excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-25",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 13-16 from the poem. Beyond its literal meaning of physical rest, the phrase \"before I sleep,\" repeated at the poem's end, most likely also figures as",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Winter travel is dangerous for anyone who stops to rest in an unfamiliar place.",
+          "Genuine appreciation of nature requires setting aside worldly duties and responsibilities for good.",
+          "The quiet pull of beauty and rest sometimes has to yield to duties still unfulfilled.",
+          "Horses are more attentive to danger than the humans who are guiding them."
+        ],
+        "id": "excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-26",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Taking the poem's four stanzas together, what central idea does the speaker's overall experience most directly convey to the reader?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "a force too faint to matter alone becomes powerful once it multiplies on an enormous scale.",
+          "a substance produced by geckos allows their feet to bond briefly with glass.",
+          "air pressure inside a sealed chamber pushes each toe pad flat against a surface.",
+          "specialized muscles inside each toe tighten and loosen thousands of tiny suction cups."
+        ],
+        "id": "excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-27",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The author describes the true explanation for the gecko's grip as “stranger than either guess” in paragraph 1. Given what paragraphs 2 and 3 reveal about the explanation, this description most likely prepares readers for the idea that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "The sensors would register forces exceeding the gecko's body weight, matching the results measured on glass.",
+          "The sensors would likely register a much weaker pulling force before the grip gave way.",
+          "The sensors would record no measurable force, since sand offers nothing for the foot to grip.",
+          "The sensors would show identical readings, since spatulae respond to electron activity rather than surface texture."
+        ],
+        "id": "excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-28",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The passage explains in paragraph 5 that loosely packed sand keeps “shifting and breaking the contact before the van der Waals force has a chance to build.” Considering this together with the force-sensor experiment described in paragraph 3, what can be reasonably inferred about a gecko's foot pulled by force sensors while gripping sand instead of glass?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "geckos evolved specialized foot structures because glue and suction proved too heavy for climbing lizards.",
+          "engineers have already surpassed nature by building adhesives that outperform a gecko's own foot.",
+          "an extremely weak force becomes powerful and controllable once multiplied across countless structures and precisely engaged.",
+          "researchers recently confirmed that gecko feet secrete no residue and require no air pressure to grip."
+        ],
+        "id": "excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-29",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Across the passage as a whole, the author's central point about the gecko's grip is that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "suggest that geckos struggle to survive in habitats covered mostly in sand and dust.",
+          "compare the strength of a gecko's grip to that of manufactured tape and robot footpads.",
+          "explain why researchers had earlier tested gecko feet inside a sealed, airless chamber.",
+          "show that the van der Waals explanation predicts exactly where the gecko's grip should weaken."
+        ],
+        "id": "excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-30",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The author most likely includes the discussion of sand and loose dust in paragraph 5 primarily to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Explanations involving very weak or very small forces are inherently more reliable than visible mechanisms.",
+          "A strong explanation should make predictions that hold up even in new, untested situations.",
+          "The simplest explanation for a phenomenon is usually correct, even when early evidence seems to contradict it.",
+          "Explanations become trustworthy once they are checked against several different alternatives and situations."
+        ],
+        "id": "excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-31",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Considering the experiments in paragraph 1 that rule out glue and suction, together with the sand-versus-glass comparison in paragraph 5, what broader theme about scientific explanations does the passage develop?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It corrects an earlier claim in the passage that no physical structures are involved in the grip.",
+          "It suggests that setae function as tiny claws that puncture the surface with each step.",
+          "It helps readers picture a repeated, mechanical action without implying that the gecko's toes contain literal hooks.",
+          "It signals that the electron-based explanation given earlier needed an additional physical mechanism."
+        ],
+        "id": "excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-32",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In paragraph 4, the author describes the gecko as “attaching and detaching millions of microscopic hooks” with every step. Given that paragraph 2 explains the grip actually depends on van der Waals attraction rather than physical hooks, what effect does this figurative description most likely have on readers?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-33",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Each row below restates a detail from the passage. For each one, identify whether it primarily rules out an incorrect explanation for the gecko's grip, explains a step in how the grip physically works, or shows a situation where the grip is less effective.",
+        "topic": "Central Idea & Theme",
+        "type": "matrix_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "“these countless weak pulls add up to an adhesive force many times the gecko's body weight” (paragraph 3).",
+          "“the electrons orbiting its atoms and the electrons in the surface's atoms begin to tug at one another” (paragraph 2).",
+          "“Setae grip smooth glass with ease since spatulae can settle into close, uninterrupted contact” (paragraph 5).",
+          "“the surface keeps shifting and breaking contact before the van der Waals force can build” (paragraph 5)."
+        ],
+        "id": "excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-34",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage best supports the idea that the same need for close, stable contact explains both why a gecko grips glass well and why it struggles on sand?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "contradict the claim in stanza 2 that the geese fly without a designated leader.",
+          "introduce a new comparison between the geese and the town that stanza 4 develops.",
+          "undercut the earlier claim that the formation helps the geese conserve energy.",
+          "extend the explanation in stanza 2 by showing the cooperative pattern actually in motion."
+        ],
+        "id": "excerpt-from-formation-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-35",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The description in stanza 3 of the geese trading the lead without any spoken signal mainly serves to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The sky itself is torn open by the sound of the geese's honking calls.",
+          "The speaker feels a quiet relief now that the noisy geese have finally departed.",
+          "The gap the geese leave in the sky closes over so completely that it soon looks ordinary.",
+          "The townspeople begin mending the damage the storm caused earlier that same evening."
+        ],
+        "id": "excerpt-from-formation-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-36",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 33–36 from the poem. What does the metaphor of the sky stitching itself back together most likely suggest?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Coordinated effort among individuals can accomplish more than any one of them could manage alone.",
+          "Competition among individuals for leadership ultimately strengthens the resolve of an entire group.",
+          "Formal rules and a single designated leader are necessary for any group to succeed.",
+          "Individual sacrifice tends to occur before a group can achieve a lasting sense of harmony."
+        ],
+        "id": "excerpt-from-formation-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-37",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What theme about cooperation does the poem develop through its depiction of the geese's formation?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "The poem shows that migrating birds communicate through honking to coordinate their flight patterns.",
+          "The speaker mourns the arrival of colder weather and the loss of summer visitors.",
+          "The poem argues that small towns depend on wildlife to mark the changing seasons.",
+          "Watching the geese leads the speaker to reinterpret their departure as instinct rather than as abandonment."
+        ],
+        "id": "excerpt-from-formation-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-38",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the central idea that the poem develops through the speaker's changing view of the migrating geese?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "The early hint of unease gives way to a calmer tone as the sky returns to normal.",
+          "The bruised sky foreshadows a violent storm that the closing lines finally describe.",
+          "Both images build a tone of growing anger that peaks in the final stanza.",
+          "The two images together suggest that the speaker's initial dread deepens further by the poem's end."
+        ],
+        "id": "excerpt-from-formation-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-39",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read lines 1–3 and lines 35–36 from the poem. How does the tone established by the phrase the color of a bruise relate to the closing image of the sky?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\"how each pair of wings behind the leader / rides the lift of the one ahead\" (lines 11–12)",
+          "\"porch lights blink on one street at a time / like someone going down a list\" (lines 23–24)",
+          "\"the tired one dropping back a length, / another sliding up to cut the wind\" (lines 17–18)",
+          "\"I used to think the geese were leaving us, / the way the summer people leave in September\" (lines 25–26)"
+        ],
+        "id": "excerpt-from-formation-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-40",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which line from the poem best supports the idea that leadership within the geese's formation constantly shifts?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "They spoke with the office staff about the fence, and the office staff never got a clear answer.",
+          "They spoke with the office staff about the fence, and the parent group never got a clear answer.",
+          "The group spoke with the office staff about the fence, and they never got a clear answer.",
+          "They spoke with the staff members about the fence, and they never got a clear answer."
+        ],
+        "id": "excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-41",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In sentence (2), the pronoun they appears twice, and its second use could refer to either the parent group or the office staff. Which revision best fixes this unclear pronoun reference?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "and",
+          "but",
+          "which",
+          "so"
+        ],
+        "id": "excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-42",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Sentences (7) and (8) can be combined into a single, smoother sentence. Click the word that best joins the two ideas without changing their meaning.",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "bike ridership there have already doubled since",
+          "bike ridership there having nearly doubled since",
+          "bike ridership there has nearly doubled since",
+          "bike riders there have nearly doubled since"
+        ],
+        "id": "excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-43",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In sentence (9), which revision corrects the subject-verb agreement error in the phrase bike ridership there have nearly doubled?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Other students point out that biking is not for everyone students living far from school or on busy roads may reasonably prefer the bus.",
+          "Other students point out that biking is not for everyone, however students living far from school or on busy roads may reasonably prefer the bus.",
+          "Other students point out that biking is not for everyone, and, students living far from school or on busy roads may reasonably prefer the bus.",
+          "Other students point out that biking is not for everyone; students living far from school or on busy roads may reasonably prefer the bus."
+        ],
+        "id": "excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-44",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision best corrects the comma splice in sentence (14)?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "the gym doors themselves are painted dark green to match the school's colors.",
+          "leaning their bikes against the fence because there is nowhere else to put them.",
+          "they never got a clear answer about whether the request was even being considered.",
+          "two more bikes were knocked over and damaged during a windstorm the same month."
+        ],
+        "id": "excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-45",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The sentence that should be deleted from paragraph 1 because it does not support the paragraph's focus on bike theft and damage is",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "For example, some administrators worry that a bike rack is an expense the school cannot justify right now.",
+          "In fact, some administrators worry that a bike rack is an expense the school cannot justify right now.",
+          "Similarly, some administrators worry that a bike rack is an expense the school cannot justify right now.",
+          "However, some administrators worry that a bike rack is an expense the school cannot justify right now."
+        ],
+        "id": "excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-46",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which transition, added to the beginning of sentence (10), would most clearly signal the shift from Riverbend Elementary's success to the concern raised in the sentences that follow?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(70\\)",
+          "\\(95\\)",
+          "\\(110\\)",
+          "\\(120\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-1",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "On Monday, a bakery produced \\(40\\) more muffins than it did on Tuesday. On Wednesday, it produced \\(15\\) fewer muffins than on Tuesday. If the total number of muffins produced over the three days was \\(265\\), how many muffins were produced on Monday?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(6.75\\pi \\)",
+          "\\(9\\pi \\)",
+          "\\(27\\pi \\)",
+          "\\(36\\pi \\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-2",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A square with side length \\(6\\) cm has a circle inscribed inside it, touching all four sides. A smaller circle is then drawn inside the inscribed circle such that the smaller circle's diameter equals the radius of the larger circle. What is the area of the region inside the larger circle but outside the smaller circle, in square centimeters?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "15",
+        "choices": [],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-3",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Printer A can print \\(840\\) pages in \\(12\\) minutes. Printer B prints at a constant rate that is \\(20\\)% faster than Printer A. Printer A starts printing a \\(1\\),\\(470\\)-page document alone at 10:00 AM. At 10:10 AM, Printer B joins Printer A, and both printers work together until the entire document is finished. How many total minutes does it take to print the entire document from start to finish?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "short_response"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(d = 2.50p + 0.75n\\)",
+          "\\(d = 0.75p + 2.50n\\)",
+          "\\(d = 0.75p - 2.50n\\)",
+          "\\(d = 3.25(p + n)\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-4",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A school store sells pens for \\(\\$0.75\\) each and notebooks for \\(\\$2.50\\) each. A student buys some pens and some notebooks and spends a total of \\(d\\). If the student buys \\(p\\) pens and \\(n\\) notebooks, which equation best represents this situation?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(90\\)",
+          "\\(270\\)",
+          "\\(540\\)",
+          "\\(1,080\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-5",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "On a scale drawing of a mural, \\(1\\) inch represents \\(6\\) feet. The drawing shows the mural as a rectangle that is \\(5\\) inches long and \\(3\\) inches wide. What is the actual area of the mural, in square feet?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(8\\)",
+          "\\(16\\)",
+          "\\(19\\)",
+          "\\(22\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-6",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A contractor writes the perimeter of a rectangular deck as \\(2(2w + 3) + 2w\\), where \\(w\\) is the deck's width, in feet, and its length is \\(3\\) feet more than twice its width. If the perimeter is \\(54\\) feet, what is the length of the deck, in feet?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B,D",
+        "choices": [
+          "Prism A",
+          "Prism B",
+          "Prism C",
+          "Prism D",
+          "Prism E"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-7",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which \\(\\text{two}\\) rectangular prisms each have a volume of exactly \\(96\\) cubic inches? Click both correct figures.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multi_select"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(4\\)",
+          "\\(5\\)",
+          "\\(6\\)",
+          "\\(7\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-8",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A company ships products in closed rectangular boxes. One box has dimensions \\(8\\) inches long, \\(5\\) inches wide, and \\(3\\) inches tall. The company wants to wrap the outside of each box completely with decorative paper, with no overlap. A roll of paper covers \\(200\\) square inches. How many complete rolls of paper are needed to wrap exactly \\(7\\) boxes?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(22\\)",
+          "\\(38\\)",
+          "\\(54\\)",
+          "\\(60\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-9",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the value of \\(80 - 4 \\times  (3 + 5)^{2} \\div  8 + 6\\)?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Order of Operations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(85.5\\)",
+          "\\(90\\)",
+          "\\(94.5\\)",
+          "\\(99\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-10",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A student took six tests. The mean score of all six tests was \\(84\\). The mean score of the first four tests was \\(81\\). The scores on the fifth and sixth tests differed by \\(9\\) points, with the sixth test score being higher. What was the score on the sixth test?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A,D",
+        "choices": [
+          "The probability of spinning an odd number on both spins is \\(\\frac{1}{4}\\).",
+          "The probability of spinning a number greater than \\(4\\) on both spins is \\(\\frac{1}{6}\\).",
+          "The probability of spinning a multiple of \\(3\\) on at least one of the two spins is \\(\\frac{1}{3}\\).",
+          "The probability of spinning a multiple of \\(3\\) on at least one of the two spins is \\(\\frac{5}{9}\\).",
+          "The probability of spinning a \\(6\\) on both spins is \\(\\frac{1}{12}\\).",
+          "The probability of spinning an odd number on the first spin and a number greater than \\(4\\) on the second spin is \\(\\frac{1}{4}\\)."
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-11",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A spinner is divided into \\(6\\) equal sections numbered \\(1\\) through \\(6\\). The spinner is spun twice, with each spin independent of the other. Select the \\(\\text{two}\\) statements that are true about this experiment.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multi_select"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(6\\)",
+          "\\(12\\)",
+          "\\(18\\)",
+          "\\(24\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-12",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A fruit punch recipe combines pineapple juice, orange juice, and cranberry juice in the ratio \\(5 : 4 : 3\\) by volume. If a batch of the punch contains \\(72\\) cups total, how many more cups of pineapple juice than cranberry juice does the batch contain?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(2\\)",
+          "\\(3\\)",
+          "\\(5\\)",
+          "\\(7\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-13",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The dot plot below shows the number of siblings for 12 students in a class. How many more students have exactly \\(2\\) siblings than have \\(0\\) siblings?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(6\\)",
+          "\\(12\\)",
+          "\\(18\\)",
+          "\\(24\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-14",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The box plot below shows the number of minutes 24 students spent volunteering last month. About how many of the 24 students volunteered for a number of minutes between the median and the maximum?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(32^{∘}\\)",
+          "\\(52^{∘}\\)",
+          "\\(96^{∘}\\)",
+          "\\(108^{∘}\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-15",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a triangle, the largest angle is \\(3\\) times the smallest angle. The third angle is \\(20^{∘}\\) more than the smallest angle. What is the measure, in degrees, of the largest angle?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "35%",
+          "37%",
+          "38%",
+          "42%"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-16",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A school's enrollment was \\(840\\) students in \\(2022\\). By \\(2024\\), the enrollment had increased by 20%. In \\(2025\\), it is projected to increase by another 15% from the \\(2024\\) level. What is the total percent increase from \\(2022\\) to \\(2025\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-17",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A data set has a minimum of \\(12\\), Q1 of \\(18\\), a median of \\(27\\), Q3 of \\(35\\), and a maximum of \\(48\\). Use the word bank to complete each statement about this box plot.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "math_drag_drop"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(\\frac{21}{128}\\)",
+          "\\(\\frac{7}{40}\\)",
+          "\\(\\frac{49}{256}\\)",
+          "\\(\\frac{7}{60}\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-18",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A box contains \\(7\\) yellow gems, \\(6\\) black gems, and \\(3\\) silver gems. Two gems are drawn one at a time without replacement. What is the probability that both gems drawn are yellow?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(24\\)",
+          "\\(32\\)",
+          "\\(36\\)",
+          "\\(40\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-19",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A container is \\(\\frac{3}{8}\\) full. After \\(12\\) liters are added, it is 75% full. What is the capacity of the container in liters?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(124\\)",
+          "\\(310\\)",
+          "\\(558\\)",
+          "\\(589\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-20",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A closed rectangular box has a length of \\(10\\) cm, a width of \\(6\\) cm, and a height of \\(4\\) cm. A second closed rectangular box has dimensions that are all 50% greater than those of the first box. By how many square centimeters is the surface area of the second box greater than the surface area of the first box?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "224",
+        "choices": [],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-21",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A square pyramid has a square base with side length \\(8\\) cm. Each triangular face has a slant height (the distance from the midpoint of a base edge up to the pyramid's apex, measured along the face) of \\(10\\) cm. What is the total surface area, in square centimeters, of the pyramid?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "short_response"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(12\\)",
+          "\\(15\\)",
+          "\\(18\\)",
+          "\\(20\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-22",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure, lines ℓ and m are parallel. A transversal crosses both lines. One angle measures (\\(5x + 10\\))\\(^{∘}\\) and the alternate interior angle measures (\\(3x + 40\\))\\(^{∘}\\). What is the value of \\(x\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(-17\\)",
+          "\\(-7\\)",
+          "\\(7\\)",
+          "\\(17\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-23",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(x^{2} = 144\\) and \\(y^{2} = 25\\), where \\(x > 0\\) and \\(y < 0\\), what is the value of \\(x + y\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-24",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The number of words a typist types, \\(y\\), is proportional to the number of minutes elapsed, \\(x\\). If the typist types \\(195\\) words in \\(3\\) minutes (\\(x = 3\\), \\(y = 195\\)), use the word bank to complete the two statements about this proportional relationship.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "math_drag_drop"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(\\frac{38}{13}\\)",
+          "\\(\\frac{19}{10}\\)",
+          "\\(\\frac{76}{21}\\)",
+          "\\(\\frac{152}{105}\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-25",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the value of the expression below?\n\n(\\(\\frac{3}{4}\\) + \\(\\frac{5}{6}\\)) ÷ (\\(\\frac{7}{8}\\) − \\(\\frac{1}{3}\\))",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(0.717\\), \\(\\frac{5}{7}\\), \\(\\frac{11}{15}\\), \\(0.72\\)",
+          "\\(\\frac{5}{7}\\), \\(0.717\\), \\(0.72\\), \\(\\frac{11}{15}\\)",
+          "\\(0.717\\), \\(\\frac{5}{7}\\), \\(0.72\\), \\(\\frac{11}{15}\\)",
+          "\\(\\frac{5}{7}\\), \\(0.717\\), \\(\\frac{11}{15}\\), \\(0.72\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-26",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Given the four values listed below, arrange them in order from the least value to the greatest value. Be sure to carefully compare all decimal and fractional forms before selecting your answer. \n\n\\(0.72, \\frac{5}{7}\\),   \\(0.717, \\frac{11}{15}\\)",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\$41.60\\)",
+          "\\(\\$48.75\\)",
+          "\\(\\$49.40\\)",
+          "\\(\\$52.00\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-27",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A backpack originally priced \\(\\$65\\) is discounted 20%. A store membership card then takes an additional 5% off the discounted price. What is the final price of the backpack?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(10\\pi \\)",
+          "\\(20\\pi \\)",
+          "\\(25\\pi \\)",
+          "\\(100\\pi \\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-28",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A circle has a diameter of \\(10\\) centimeters. What is the area of the circle, in square centimeters, in terms of \\(\\pi \\) ?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(3\\)",
+          "\\(6\\)",
+          "\\(7\\)",
+          "\\(13\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-29",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The scores on a math quiz for seven students are \\(65\\), \\(91\\), \\(78\\), \\(91\\), \\(84\\), \\(70\\), and \\(88\\). What is the positive difference between the median score and the mode score?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A,C",
+        "choices": [
+          "\\(9\\) cups of flour to \\(6\\) cups of sugar",
+          "\\(6\\) cups of flour to \\(5\\) cups of sugar",
+          "\\(15\\) cups of flour to \\(10\\) cups of sugar",
+          "\\(4\\) cups of flour to \\(3\\) cups of sugar",
+          "\\(12\\) cups of flour to \\(9\\) cups of sugar",
+          "\\(18\\) cups of flour to \\(13\\) cups of sugar"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-30",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A recipe uses \\(3\\) cups of flour for every \\(2\\) cups of sugar. Select the \\(\\text{two}\\) ratios that are equivalent to this flour-to-sugar ratio.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multi_select"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(4s + 7\\)(s + \\(3\\)) = \\(168\\)",
+          "\\(4\\)(s + \\(3\\)) + \\(7s = 168\\)",
+          "\\(4s + 7s + 3 = 168\\)",
+          "\\(7s + 4\\)(s - \\(3\\)) = \\(168\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-31",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Tickets to a school play cost \\(\\$4\\) for students and \\(\\$7\\) for adults. On opening night, \\(3\\) more adult tickets than student tickets were sold, and the total revenue was \\(\\$168\\). Which equation could be used to find s, the number of student tickets sold?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Bag A",
+          "Bag B",
+          "Bag C",
+          "Bag B and Bag C have the same lowest cost per ounce"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-32",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The table below shows the cost and weight of three bags of trail mix at a grocery store. Which bag has the lowest cost per ounce?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A,C",
+        "choices": [
+          "\\(x + y^{2}\\)",
+          "\\(x^{2} - y\\)",
+          "\\(2x + 3y\\)",
+          "\\(x^{2} + y\\)",
+          "\\(xy\\)",
+          "\\(3x + y\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-33",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(x = 1\\) and \\(y = 4\\), select the \\(\\text{two}\\) expressions that have a value greater than \\(10\\).",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multi_select"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(\\sqrt{49}\\)",
+          "\\(\\sqrt{50}\\)",
+          "\\(0.\\overline{45}\\)",
+          "\\(\\frac{5}{9}\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-34",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following numbers is irrational?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(7.0\\text{ feet}\\)",
+          "\\(17.5\\text{ feet}\\)",
+          "\\(21.0\\text{ feet}\\)",
+          "\\(42.0\\text{ feet}\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-35",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A blueprint uses a scale where a rectangle representing a room has a width of \\(3.5\\text{ inches}\\) and a height of \\(2\\text{ inches}\\), as shown in the figure. If the actual height of the room is \\(12\\text{ feet}\\), what is the actual width of the room in feet?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(5\\)",
+          "\\(9\\)",
+          "\\(13\\)",
+          "\\(-13\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-36",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the value of \\(∣5 - 14∣ + ∣-6 + 2∣\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(33\\)",
+          "\\(93\\)",
+          "\\(105\\)",
+          "\\(87\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-37",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Evaluate the following expression \n60 − 3 × (−2)³ + (18 ÷ 6)²",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(-16\\)",
+          "\\(-6\\)",
+          "\\(-10\\)",
+          "\\(4\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-38",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(∣3x + 9∣ = 21\\), what is the sum of all possible values of \\(x\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "A square with side length \\(4\\)",
+          "A square with side length \\(5\\)",
+          "A square with side length \\(6\\)",
+          "A square with side length \\(7\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-39",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which figure shows a square whose area is equal to the area of a right triangle with legs of length \\(6\\) and \\(12\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(x = -3\\)",
+          "\\(x = 0\\)",
+          "\\(x = 2\\)",
+          "\\(x = 4\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-40",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following is a solution to the inequality \\(-4x + 7 \\ge  19\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(82\\)",
+          "\\(88\\)",
+          "\\(90\\)",
+          "\\(92\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-41",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Mia took six math quizzes. Her mean score on the first five quizzes was \\(78\\). After taking the sixth quiz, her mean score for all six quizzes increased to \\(80\\). What score did she receive on the sixth quiz?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(7\\)",
+          "\\(20\\)",
+          "\\(26\\)",
+          "\\(15\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-42",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A triangular garden bed has one side that is \\(10\\) feet long and another side that is \\(16\\) feet long. Which of the following could \\(\\text{NOT}\\) be the length of the third side, in feet?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(\\$54\\)",
+          "\\(\\$60\\)",
+          "\\(\\$67.50\\)",
+          "\\(\\$75\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-43",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A store marked up the price of a jacket by 40% above its wholesale cost. During a sale, the store then discounted the marked-up price by 25%. If the final sale price is \\(\\$63\\), what was the original wholesale cost of the jacket?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(0.6\\)",
+          "\\(1.0\\)",
+          "\\(1.2\\)",
+          "\\(1.5\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-44",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A rectangular aquarium has a base that measures \\(24\\) inches by \\(15\\) inches and is filled with water to a depth of \\(10\\) inches. A solid cube with an edge length of \\(6\\) inches is completely submerged in the aquarium. By how many inches does the water level rise?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(275\\)",
+          "\\(325\\)",
+          "\\(375\\)",
+          "\\(425\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-45",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A freight company charges a flat fee of \\(\\$45\\) plus \\(\\$0.12\\) per pound for shipping. A competitor charges a flat fee of \\(\\$15\\) plus \\(\\$0.20\\) per pound. For what weight, in pounds, will the two companies charge the same total amount?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(12\\)",
+          "\\(18\\)",
+          "\\(24\\)",
+          "\\(48\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-46",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In a science class, the ratio of students who prefer lab work to students who prefer lectures is \\(5 : 3\\). After \\(6\\) students who prefer lab work transfer to a different class (and no other students change), the ratio becomes \\(1 : 1\\). How many students were in the class originally?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(8\\)",
+          "\\(10\\)",
+          "\\(12\\)",
+          "\\(15\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-47",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure, lines \\(ℓ\\) and \\(m\\) are parallel and are cut by transversal \\(t\\). One angle measures \\((7x - 8)^{∘}\\) and its corresponding angle measures \\((5x + 12)^{∘}\\). What is the value of \\(x\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\frac{1}{3}\\)",
+          "\\(\\frac{1}{6}\\)",
+          "\\(\\frac{1}{9}\\)",
+          "\\(\\frac{1}{36}\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-48",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A fair six-sided number cube is rolled twice. What is the probability that both rolls show a number greater than \\(4\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(13\\)",
+          "\\(17\\)",
+          "\\(19\\)",
+          "\\(21\\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-49",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(3a - b = 10\\) and \\(a + 2b = 7\\), what is the value of \\(4a + b\\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(196 - 49\\pi \\)",
+          "\\(49\\pi  - 196\\)",
+          "\\(196 - 196\\pi \\)",
+          "\\(196 - 7\\pi \\)"
+        ],
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-50",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A circular fountain has a diameter of \\(14\\) feet. A square patio surrounds the fountain, and each side of the square is equal to the diameter of the fountain. What is the area, in square feet, of the patio that lies outside the fountain, in terms of \\(\\pi \\)?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      }
+    ],
     "forms": [],
     "formAssignments": {},
     "status": "locked",

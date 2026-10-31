@@ -1,8 +1,28 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mathMLToLatex,cleanHtml,convertItem,responseSchema} from './testnav-adapter.mjs';
+import {mathMLToLatex,cleanHtml,convertItem,responseSchema,passagePresentation} from './testnav-adapter.mjs';
 const source={form:'A'},item={number:1,itemId:1,id:'source-id',section:'Math',url:'https://example.test/public/item/1',sha256:'source-hash'};
 function data(type,html,cardinality='single'){return {item_id:1,itemBodyHtml:html,itemBodyExtraScript:`var responseSchema=${JSON.stringify([{identifier:'RESPONSE',interactionType:type,cardinality}])};`}}
+
+test('pre-title introductory blocks become a formatted blurb without shifting numbered paragraphs',()=>{
+ const p=passagePresentation('<div class="abbi-richtext"><p><em>First introduction.</em></p></div><div class="abbi-richtext"><p>Second introduction.</p><p class="passage-title">Excerpt from <em>Book</em></p><p class="author">by Author</p></div><div class="abbi-richtext"><p><span class="badge">1</span>Body one.</p><h3 class="passage-title">Table heading</h3><p><span class="badge">2</span>Body two.</p></div>');
+ assert.equal(p.blurb,'First introduction.\nSecond introduction.');
+ assert.match(p.blurbHtml,/<em>First introduction\.<\/em>/);
+ assert.equal(p.title,'Excerpt from Book');assert.equal(p.byline,'by Author');
+ assert.equal(p.text,'Body one.\nTable heading\nBody two.');
+ assert.equal((p.richText.match(/data-numbered="true"/g)||[]).length,2);
+ assert.doesNotMatch(p.richText,/introduction|by Author/);
+});
+
+test('post-title prose, poem introductions and missing-title content are never guessed into blurbs',()=>{
+ const prose=passagePresentation('<p class="passage-title">Title</p><p><em>Italic body paragraph.</em></p>');
+ assert.equal(prose.blurb,'');assert.equal(prose.text,'Italic body paragraph.');
+ const poem=passagePresentation('<p><em>Source introduction.</em></p><p class="passage-title">Poem</p><div class="poem_body">First line</div><div class="poem_body">Second line</div>');
+ assert.equal(poem.blurb,'Source introduction.');assert.equal(poem.poem,true);
+ assert.equal(poem.text,'First line\nSecond line');
+ const untitled=passagePresentation('<p><em>Keep all content.</em></p>');
+ assert.equal(untitled.blurb,'');assert.equal(untitled.text,'Keep all content.');
+});
 test('mixed fractions, negative powers and symbols remain valid LaTeX',()=>{
  assert.equal(mathMLToLatex('<math><mn>4</mn><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>≤</mo><msup><mi>x</mi><mn>2</mn></msup></math>'),'4\\frac{1}{3}\\le {x}^{2}');
  assert.equal(mathMLToLatex('<math><mtext>$50&nbsp;±4%</mtext></math>'),'\\text{\\$50 \\pm 4\\%}');

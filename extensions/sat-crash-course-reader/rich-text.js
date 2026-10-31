@@ -1,6 +1,20 @@
 (function (root) {
+  const definitions = new WeakMap();
+  function definitionFor(node) {
+    return definitions.get(node) || ['data-glossary-definition', 'data-definition', 'data-tooltip', 'title']
+      .map(name => node.getAttribute?.(name)?.trim()).find(value => value && value !== '?' && value !== node.textContent?.trim()) || '';
+  }
+  function rememberDefinition(node, definition) { if (definition?.trim()) definitions.set(node, definition.trim()); }
   const escape = value => String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   const plain = html => html.replace(/<br\s*\/?>|<\/p>/gi, '\n').replace(/<[^>]*>/g, '').replace(/&quot;/g, '"').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&').trim();
+  // Old captures encoded ordinary prose as a single TeX text command. Only
+  // unwrap that exact form: mixed expressions must remain mathematical.
+  function proseHtml(html) {
+    return String(html || '').replace(/\\\(([\s\S]*?)\\\)/g, (original, tex) => {
+      const match = tex.match(/^\\text\{((?:\\[\\$%&#_{}]|[^\\{}])*)\}$/);
+      return match ? match[1].replace(/\\([\\$%&#_{}])/g, '$1') : original;
+    });
+  }
   function expressionAnswer(content) {
     // Only flat rendered expressions can be read as text without losing position
     // (e.g. turning a fraction or exponent into concatenated digits).
@@ -43,7 +57,7 @@
       if (node === omit) return '';
       const replacement = replace(node);
       if (replacement !== undefined) return replacement;
-      if (node.nodeType === 3) return escape(node.textContent);
+      if (node.nodeType === 3) return escape(node.textContent.replace(/\u00a0/g, ' '));
       if (node.nodeType !== 1) return '';
       const tag = node.tagName.toLowerCase();
       if (['script', 'style', 'svg', 'math', 'annotation', 'button', 'iframe', 'input', 'select', 'textarea', 'math-field'].includes(tag)) return '';
@@ -57,11 +71,25 @@
       if (node.classList?.contains('newline')) return '<br>';
       if (tag === 'br') return '<br>';
       if (node.classList?.contains('katex')) {
+        // When extracting poem metadata, do not serialize the omitted verse
+        // table through its enclosing KaTeX node a second time.
+        let containsOmitted = false;
+        for (let ancestor = omit; ancestor; ancestor = ancestor.parentElement) {
+          if (ancestor === node) { containsOmitted = true; break; }
+        }
         const tex = node.querySelector('annotation[encoding="application/x-tex"]')?.textContent;
-        if (tex) return escape(`\\(${tex}\\)`);
         const rendered = Array.from(node.children || []).find(child => child.classList?.contains('katex-html'));
-        if (rendered && rendered.querySelector('.newline') && !renderedMath(rendered).trim()) return '<br>';
-        if (rendered) return escape(`\\(${renderedMath(rendered)}\\)`);
+        if (!containsOmitted) {
+          const math = tex || (rendered && renderedMath(rendered));
+          if (math !== undefined && math !== null) {
+            const encoded = escape(`\\(${math}\\)`);
+            // Traverse text-only rendered nodes to retain bold/italic styles.
+            const renderedEncoded = rendered && escape(`\\(${renderedMath(rendered)}\\)`);
+            if (proseHtml(encoded) !== encoded || renderedEncoded && proseHtml(renderedEncoded) !== renderedEncoded) return rendered ? visit(rendered) : proseHtml(encoded);
+            if (rendered && rendered.querySelector('.newline') && !math.trim()) return '<br>';
+            return encoded;
+          }
+        }
       }
       if (!node.childNodes) return escape(node.innerText || node.textContent || '');
       let html = Array.from(node.childNodes, visit).join('');
@@ -73,6 +101,11 @@
       if (['em', 'i'].includes(tag) || node.classList?.contains('textit') || italic(current.fontStyle) && !italic(parent.fontStyle)) html = `<em>${html}</em>`;
       if (tag === 'u' || /underline/.test(current.textDecorationLine || '') && !/underline/.test(parent.textDecorationLine || '')) html = `<u>${html}</u>`;
       if (['sup', 'sub', 's'].includes(tag)) html = `<${tag}>${html}</${tag}>`;
+      if (tag === 'del') html = `<s>${html}</s>`;
+      const definition = definitionFor(node);
+      if (definition && (tag === 'mark' || node.classList?.contains('testSHSATPreview__definitionMark') || node.getAttribute?.('data-glossary-definition'))) {
+        html = `<span data-glossary-definition="${escape(definition)}" role="link" tabindex="0">${html}</span>`;
+      }
       if (['table','caption','thead','tbody','tfoot','tr','th','td','ul','ol','li','blockquote'].includes(tag)) {
         const attrs = ['colspan','rowspan','scope'].map(name => node.getAttribute?.(name) ? ` ${name}="${escape(node.getAttribute(name))}"` : '').join('');
         return `<${tag}${attrs}>${html}</${tag}>`;
@@ -105,7 +138,7 @@
       const labels = numberRows.length ? numberRows : numberLabels;
       const rows = Array.from(verseColumn.querySelector('.vlist')?.children || []).map(row => ({
         html: fromElement(row, style),
-        text: (row.textContent || '').replace(/[\u200b\u2060]/g, '').trimEnd(),
+        text: (row.textContent || '').replace(/[\u200b\u2060]/g, '').replace(/\u00a0/g, ' ').trimEnd(),
         top: Number.parseFloat(row.style?.top),
       })).filter(row => row.text.trim());
       if (labels.length < 2 || labels.some(label => !/^\d+$/.test(label)) || rows.length < 5 ||
@@ -125,7 +158,7 @@
     }
     return { formattedBlocks: blocks(element, style) };
   }
-  const api = { fromElement, blocks, passage, renderedMath, plain, expressionAnswer };
+  const api = { fromElement, blocks, passage, renderedMath, plain, expressionAnswer, proseHtml, definitionFor, rememberDefinition };
   if (typeof module !== 'undefined') module.exports = api;
   else root.NathanSatRichText = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

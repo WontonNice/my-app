@@ -393,36 +393,45 @@ TOPIC TAXONOMY (exact values)
     "Algebra": [
       "Algebraic Expressions",
       "Equations & Systems",
+      "Formulas & Rearranging Equations",
+      "Algebraic Word Problems",
       "Inequalities",
       "Functions & Graphs",
       "Patterns & Sequences"
     ],
     "Geometry": [
-      "Shapes & Angles",
+      "Lines & Angles",
+      "Triangles & Polygons",
+      "Circles",
       "Area & Perimeter",
       "Surface Area & Volume",
-      "Coordinate Geometry",
-      "Pythagorean Theorem",
-      "Scale & Transformations"
+      "Coordinates & Segment Relationships",
+      "Similarity & Scale Drawings"
     ],
     "Statistics and Probability": [
       "Data Displays",
-      "Probability",
-      "Overlapping Groups",
-      "Averages & Spread"
+      "Averages & Spread",
+      "Sampling & Predictions",
+      "Counting & Combinations",
+      "Basic Probability",
+      "Compound Probability",
+      "Set Relationships"
     ],
     "Ratios and Proportional Relationships": [
       "Ratios & Proportions",
       "Rates & Unit Rates",
-      "Percentages"
+      "Proportional Relationships",
+      "Percentages",
+      "Percent Change & Applications"
     ],
     "Arithmetic & Number Sense": [
-      "Number Properties",
-      "Fractions & Decimals",
-      "Number Operations",
+      "Number Types & Properties",
+      "Integers & Absolute Value",
+      "Fractions",
+      "Decimals",
+      "Order of Operations",
       "Exponents, Roots & Scientific Notation",
-      "Units & Conversions",
-      "Counting & Sets"
+      "Units & Conversions"
     ]
   }
 }
