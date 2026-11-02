@@ -352,7 +352,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(5(x-6y)=50y\\), what is the value of \\(x\\) in terms of \\(y\\)?",
     "topic": "Algebra",
-    "subtopic": "Formulas & Rearranging Equations",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -528,7 +528,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Start with the number 135.28 and perform the following steps in order:\n\n• Step 1: Multiply by 10.\n• Step 2: Add 0.5 to the result of Step 1.\n• Step 3: Drop the digits after the decimal point.\n• Step 4: Divide by 10.\n\nWhat is the result?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Decimals",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -613,7 +613,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[12.96\\div 0.08=\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Decimals",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -701,7 +701,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of \\(\\left(-\\frac{3}{4}\\right)\\left(-\\frac{2}{5}\\right)\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -734,7 +734,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "The table shows the income and expenses in a bicycle shop on one day.\nThe sum of all transactions was $70. What is the value of \\(p\\)?",
     "promptHtml": "The table shows the income and expenses in a bicycle shop on one day.<br><img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q85-afbf4efeb1264871.png\" alt=\"Math diagram\" width=\"320\">The sum of all transactions was $70. What is the value of \\(p\\)?",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -879,7 +879,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "Which straight line is the graph of a proportional relationship?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q90-e71c56d5a5e0a5a7.png\" alt=\"Math diagram\" width=\"320\">Which straight line is the graph of a proportional relationship?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -912,7 +912,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "Some friends are buying bags of ice for a picnic. The graph shows the cost of the ice, in dollars, in relation to the weight, in pounds. Which statement about a point on the graph is true?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q91-6e5aa8d232caf965.png\" alt=\"Math diagram\" width=\"320\">Some friends are buying bags of ice for a picnic. The graph shows the cost of the ice, in dollars, in relation to the weight, in pounds. Which statement about a point on the graph is true?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -941,7 +941,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "A clerk enters information on a computer. The graph shows the relationship between time, in hours, and the number of keystrokes the clerk makes. What is the meaning of the point (1.5, 10500) on the graph?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q92-6228f3a4868d3ccd.png\" alt=\"Math diagram\" width=\"300\">A clerk enters information on a computer. The graph shows the relationship between time, in hours, and the number of keystrokes the clerk makes. What is the meaning of the point (1.5, 10500) on the graph?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -999,7 +999,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "Based on the circle graph, how many pounds of milk and eggs does the average American consume each year?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q94-3d9dd5280d4497ee.png\" alt=\"Math diagram\" width=\"300\">Based on the circle graph, how many pounds of milk and eggs does the average American consume each year?",
     "topic": "Statistics and Probability",
-    "subtopic": "Data Displays",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1056,7 +1056,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "The table above shows the number of people who visited Brookside Zoo in one day. The largest of the four groups made up what percentage of all visitors on that day?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q96-95c26733acdb57e1.png\" alt=\"Math diagram\" width=\"250\">The table above shows the number of people who visited Brookside Zoo in one day. The largest of the four groups made up what percentage of all visitors on that day?",
     "topic": "Statistics and Probability",
-    "subtopic": "Data Displays",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1084,7 +1084,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A bag contains 40 tiles that are either red, green, or blue. A tile is selected at random, the color is recorded, and the tile is put back in the bag. This process is carried out 120 times, and 18 of those times a red tile is selected. Based on the information, what is the most likely number of red tiles in the bag?",
     "topic": "Statistics and Probability",
-    "subtopic": "Sampling & Predictions",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1113,7 +1113,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "If 100 individuals will attend the museum next week, what is the best estimate (based on last year’s attendance) of the number of children who will be in that group?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q98-646a8ad0e6104307.png\" alt=\"Math diagram\" width=\"200\">If 100 individuals will attend the museum next week, what is the best estimate (based on last year’s attendance) of the number of children who will be in that group?",
     "topic": "Statistics and Probability",
-    "subtopic": "Sampling & Predictions",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1142,7 +1142,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "A teacher will randomly select 3 students to be on a school committee. He will choose either a student from Classroom A or a student from Classroom B with each selection. This tree diagram shows the selection possibilities.\n\nWhat is the probability that the teacher will select 2 students from Classroom A and 1 student from Classroom B (in any order) for the committee?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q99-90f7ec13a12a1de5.png\" alt=\"Math diagram\" width=\"250\">A teacher will randomly select 3 students to be on a school committee. He will choose either a student from Classroom A or a student from Classroom B with each selection. This tree diagram shows the selection possibilities.<br><br>What is the probability that the teacher will select 2 students from Classroom A and 1 student from Classroom B (in any order) for the committee?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1175,7 +1175,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "A bag contains 15 marbles: 11 blue marbles and 4 red marbles. Sarah picks one marble randomly, returns it to the bag, and then randomly picks one marble again. What is the probability that she picks a red marble both times?",
     "promptHtml": "A bag contains 15 marbles: 11 blue marbles and 4 red marbles. Sarah picks one marble randomly, returns it to the bag, and then randomly picks one marble again. What is the probability that she picks a red marble <strong>both</strong> times?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1208,7 +1208,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "Anita is assigned to report on 1 topic in each of the 4 subjects shown in the table above. How many different sets of 4 reports are possible, according to the choices available to her?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q101-632dde21ee41c5e6.png\" alt=\"Math diagram\" width=\"250\">Anita is assigned to report on 1 topic in each of the 4 subjects shown in the table above. How many different sets of 4 reports are possible, according to the choices available to her?",
     "topic": "Statistics and Probability",
-    "subtopic": "Counting & Combinations",
+    "subtopic": "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -1236,7 +1236,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A deck of 52 playing cards contains 13 hearts. Sara has 12 cards from this deck in her hand, 3 of which are hearts. The other cards remain in the deck. What is the probability that a card drawn at random from the remainder of the deck will be a heart?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1269,7 +1269,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "The table shows the probability of randomly picking each flavor of candy from a bowl.\nWhich flavor is most likely to be randomly picked?",
     "promptHtml": "The table shows the probability of randomly picking each flavor of candy from a bowl.<br><img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q103-4351a9cc29dd3ae3.png\" alt=\"Math diagram\" width=\"220\">Which flavor is most likely to be randomly picked?",
     "topic": "Statistics and Probability",
-    "subtopic": "Basic Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1297,7 +1297,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "This formula can be used to determine \\(p\\), the number of pages that will be in a book that contains \\(w\\) words, with an average of \\(r\\) words per page, and \\(f\\) extra pages in the front for the title and publishing information.\n\n\\[p=\\frac{1}{r}w+f\\]\n\nIf the formula is solved for \\(w\\), it can be used to find the number of words in a book with \\(p\\) pages. What will the formula be if it is solved for \\(w\\)?",
     "topic": "Algebra",
-    "subtopic": "Formulas & Rearranging Equations",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -1330,7 +1330,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "A shipment contains 170 small boxes of medical supplies. In a random sample of 20 of these boxes, 8 have damage and the others are undamaged. Based on this sample, what is the best prediction of the number of undamaged boxes in the shipment, not including the boxes in the random sample?",
     "promptHtml": "A shipment contains 170 small boxes of medical supplies. In a random sample of 20 of these boxes, 8 have damage and the others are undamaged. Based on this sample, what is the best prediction of the number of undamaged boxes in the shipment, <strong>not</strong> including the boxes in the random sample?",
     "topic": "Statistics and Probability",
-    "subtopic": "Sampling & Predictions",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1390,7 +1390,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Nadia paid $1.00 to mail a letter. The cost to mail a letter is $0.55 for the first ounce of weight plus $0.15 for each additional ounce. What was the weight, in ounces, of the letter Nadia mailed?",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -1447,7 +1447,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A softball player bought bottles of water for her team to have at practice. The total number of bottles she bought, \\(b\\), is proportional to \\(n\\), the number of players at practice. Which equation represents the relationship between \\(b\\) and \\(n\\)? The constant of proportionality is \\(p\\).",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1479,7 +1479,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Malik earns $10 per hour at his job. He wants to change to a job that will pay $12 per hour. What will be the percent increase in Malik’s hourly pay if he makes this job change?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1535,7 +1535,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The height of a plant, in millimeters, is proportional to the number of days the plant has grown. The plant has grown 20 millimeters in 8 days. What is the constant of proportionality, in millimeters per day?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1563,7 +1563,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which table shows a proportional relationship?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",

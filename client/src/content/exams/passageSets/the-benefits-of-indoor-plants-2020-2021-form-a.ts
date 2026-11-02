@@ -9,6 +9,7 @@ const theBenefitsOfIndoorPlants20202021FormAQuestions: ExamQuestion[] = [
     "explanation": "11. The question asks which sentence should follow sentence 3 to best introduce the topic of the passage.\n\nA. CORRECT. The sentence introduces the overall topic by previewing the main ideas in the passage. It introduces the connection between natural elements and well-being (“a healthy bridge”) and sets up the main argument of the passage (“Placing plants in homes and offices” can increase people’s well-being).\n\nB. Incorrect. Although sentence 3 mentions the connection between “people and nature,” this sentence references the importance of spending time near plants while both indoors and outdoors. However, the passage focuses specifically on the benefits of having indoor plants.\n\nC. Incorrect: Though the sentence describes a reason why indoor plants are important (“For [people’s] personal health and well-being”), the topic of the passage is related to the need for indoor plants, not the need for people to spend more time outdoors.\n\nD. Incorrect. While the sentence refers to how time away from nature can affect health and well-being, the vague wording (“little connection to nature”) makes this sentence too broad to introduce the topic of the passage, and thus, it should not follow sentence 3.",
     "points": 1,
     "prompt": "Which sentence should follow sentence 3 to best introduce the topic of the passage?",
+    "promptHtml": "Which sentence should follow sentence 3 to <strong>best </strong>introduce the topic of the passage?",
     "topic": "Topic & Transitions",
     "choices": [
       {
@@ -63,6 +64,7 @@ const theBenefitsOfIndoorPlants20202021FormAQuestions: ExamQuestion[] = [
     "explanation": "13. The question asks for the sentence that could best follow sentence 13 to support the ideas in the third paragraph (sentences 11–14).\n\nA. CORRECT. The sentence could best follow sentence 13 because it directly supports the main idea of the third paragraph that indoor plants provide “psychological benefits” (sentence 11) by presenting the findings of a relevant research study. The details about the study provide a concrete example of the mental benefits of indoor plants: the employees in the study who worked near plants “were more creative” and accomplished more than those who worked in spaces without plants.\n\nB. Incorrect. Although the sentence describes a study in which indoor plants were found to have a positive effect, it does not clearly support the ideas in sentences 11–14, because the sentence focuses on the popularity of the hotel rather than psychological benefits. Therefore, this sentence does not best follow sentence 13 to support the ideas in the third paragraph.\n\nC. Incorrect. Although the sentence suggests that being “routinely exposed to natural elements” can increase the positive emotion of compassion, it could not best follow sentence 13, because the reference to “natural elements” is too vague to sufficiently support the ideas in the third paragraph. The sentence does not logically follow the idea from sentence 13, which refers specifically to “encountering natural elements while indoors.”\n\nD. Incorrect. The sentence develops the idea that indoor plants are helpful by comparing them to carpeting and stating that they can reduce the amount of noise that people perceive. Noise cancellation, though convenient, is irrelevant to the topic of the third paragraph, which is specific to the psychological benefits of indoor plants. Therefore, this sentence does not best follow sentence 13 to support the ideas in the third paragraph.",
     "points": 1,
     "prompt": "Which sentence could best follow sentence 13 to support the ideas in the third paragraph (sentences 11–14)?",
+    "promptHtml": "Which sentence could <strong>best </strong>follow sentence 13 to support the ideas in the third paragraph (sentences 11–14)?",
     "topic": "Relevance & Conclusion",
     "choices": [
       {
@@ -117,6 +119,7 @@ const theBenefitsOfIndoorPlants20202021FormAQuestions: ExamQuestion[] = [
     "explanation": "15. The question asks for the concluding sentence that should follow sentence 17 to best support the information presented in the passage.\n\nA. Incorrect. Although the sentence describes plants as “vital to our wholeness and wellness,” the detail about the absorption of carbon dioxide from the air is overly specific and does not capture the broader argument presented in the passage (that placing plants indoors “is a significant factor in a person’s well-being” [sentence 15]).\n\nB. Incorrect. The sentence’s reference to particular types of plants suitable for indoor spaces supports the idea of incorporating nature into a home or office, but the sentence does not address the benefits people can experience for doing so and thus does not present a logical conclusion for the information in the passage.\n\nC. CORRECT. The sentence directly presents the argument of the passage (“More people should consider bringing natural elements inside”) and supports the central ideas in the second and third paragraphs relating to the health and psychological benefits of having indoor plants.\n\nD. Incorrect. Although the sentence notes the positive impact that houseplants can have on air quality, the sentence does not logically follow the preceding information about the overall benefits to a person’s health and well-being.",
     "points": 1,
     "prompt": "Which concluding sentence should follow sentence 17 to best support the information presented in the passage?",
+    "promptHtml": "Which concluding sentence should follow sentence 17 to <strong>best </strong>support the information presented in the passage?",
     "topic": "Relevance & Conclusion",
     "choices": [
       {
@@ -143,6 +146,7 @@ const theBenefitsOfIndoorPlants20202021FormAQuestions: ExamQuestion[] = [
 
 export const theBenefitsOfIndoorPlants20202021FormAPassageSet: ExamPassageSet = {
   id: "ela-the-benefits-of-indoor-plants-2020-2021-form-a",
+  versionLabels: ["2020–2021 Form A","2023-2024 Form A"],
   label: "Revising/Editing Part A",
   section: "revising_editing_a",
   questionCount: theBenefitsOfIndoorPlants20202021FormAQuestions.length,

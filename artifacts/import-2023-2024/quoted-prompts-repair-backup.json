@@ -1,0 +1,100 @@
+[
+  {
+    "passageId": "excerpt-from-winter-wheat-2023-2024-form-a",
+    "question": {
+      "id": "excerpt-from-winter-wheat-2023-2024-form-a-pdf-shsat-2023-2024-a-q049",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "49",
+        "pages": [
+          35
+        ]
+      },
+      "explanation": "The question asks how the sentences from paragraph 1 and paragraph 19 help develop a\n\ncentral idea of the excerpt.\n\nA. CORRECT. The sentences illustrate a practical aspect of Ellen’s mother’s personality and show that she is concerned with an immediate task that needs to be completed. The details in these sentences help develop the central idea that practical people focus on current needs—such as preparing food for the following day—rather than worrying about the future. B. Incorrect. These sentences do not show Ellen’s mother focusing on her daughter’s needs before her own, and the idea that parents consider their own needs only after considering those of their children is not a central idea of the excerpt. C. Incorrect. Although the sentence from paragraph 19 shows Ellen’s mother planning a few hours ahead by preparing the next morning’s breakfast, the idea that it is sometimes important to plan ahead is not a central idea of the excerpt, nor is it supported by the sentence from paragraph 1. D. Incorrect. The details in the sentences do not show that it is a waste of time to dream about the future. The sentences highlight the tendency of Ellen’s mother to focus her attention on the practical necessities of the moment, but the idea that dreaming about the future is a waste of time is not a central idea of the excerpt.",
+      "explanationHtml": "<p>The question asks how the sentences from paragraph 1 and paragraph 19 help develop a</p><p>central idea of the excerpt.</p><p><strong>A. CORRECT. </strong>The sentences illustrate a practical aspect of Ellen’s mother’s personality and show that she is concerned with an immediate task that needs to be completed. The details in these sentences help develop the central idea that practical people focus on current needs—such as preparing food for the following day—rather than worrying about the future. <strong>B. </strong>Incorrect. These sentences do not show Ellen’s mother focusing on her daughter’s needs before her own, and the idea that parents consider their own needs only after considering those of their children is not a central idea of the excerpt. <strong>C. </strong>Incorrect. Although the sentence from paragraph 19 shows Ellen’s mother planning a few hours ahead by preparing the next morning’s breakfast, the idea that it is sometimes important to plan ahead is not a central idea of the excerpt, nor is it supported by the sentence from paragraph 1. <strong>D. </strong>Incorrect. The details in the sentences do not show that it is a waste of time to dream about the future. The sentences highlight the tendency of Ellen’s mother to focus her attention on the practical necessities of the moment, but the idea that dreaming about the future is a waste of time is not a central idea of the excerpt.</p>",
+      "points": 1,
+      "prompt": "Read these sentences from the excerpt.\n\nMom seems to think of nothing farther away than today or perhaps yesterday or\n\ntomorrow morning. (paragraph 1)\n\nMom was fixing oatmeal for tomorrow morning. (paragraph 19)\n\nThe sentences help develop a central idea of the excerpt by",
+      "promptHtml": "<p>Read these sentences from the excerpt.</p><blockquote><strong>Mom seems to think of nothing farther away than today or perhaps yesterday or</strong></blockquote><p><strong>tomorrow morning. </strong>(paragraph 1)</p><p><strong>Mom was fixing oatmeal for tomorrow morning. </strong>(paragraph 19)</p><p>The sentences help develop a central idea of the excerpt by</p>",
+      "topic": "Central Idea & Theme",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>suggesting that practical people focus on current needs rather than worrying about the future.</p>",
+          "text": "suggesting that practical people focus on current needs rather than worrying about the future."
+        },
+        {
+          "id": "B",
+          "html": "<p>showing that parents tend to consider the needs of their children before thinking of themselves.</p>",
+          "text": "showing that parents tend to consider the needs of their children before thinking of themselves."
+        },
+        {
+          "id": "C",
+          "html": "<p>revealing that it is sometimes important to plan ahead.</p>",
+          "text": "revealing that it is sometimes important to plan ahead."
+        },
+        {
+          "id": "D",
+          "html": "<p>illustrating that dreaming about the future is a waste of time.</p>",
+          "text": "illustrating that dreaming about the future is a waste of time."
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice"
+    }
+  },
+  {
+    "passageId": "cross-purposes-2023-2024-form-b",
+    "question": {
+      "id": "cross-purposes-2023-2024-form-b-pdf-shsat-2023-2024-b-q037",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "37",
+        "pages": [
+          27
+        ]
+      },
+      "explanation": "The question asks how lines 2–4 and 12–14 contribute to the development of a central idea\n\nin the poem.\n\nA. Incorrect. Although the phrases “remain[ing] at the apex of the leap” in line 3 and “I catch everything” in line 13 suggest the idea of endurance and control, the lines do not establish that both the structure and the water have endurance and control, because the water also states, “I pool / and flow wherever gravity takes me” (lines 10–11). B. CORRECT. The lines “I am what every athlete / wants” (lines 2–3) and “I am the blood flowing in the runner’s chest” (line 12) communicate that each speaker is an object of admiration and a powerful force. C. Incorrect. The lines describe opposing characteristics: the structure’s description conveys stillness—remaining “up in the air” (line 4)—while the water’s description conveys movement—“flowing in the runner’s chest” (line 12). D. Incorrect. The first speaker states, “I am what every athlete / wants” in lines 2–3, and the second speaker states, “I am the blood flowing in the runner’s chest” in line 12. The similarity of these metaphors may seem to suggest interrelationship, but the structures do not reveal surprise that they are interrelated.",
+      "explanationHtml": "<p>The question asks how lines 2–4 and 12–14 contribute to the development of a central idea</p><p>in the poem.</p><p><strong>A. </strong>Incorrect. Although the phrases “remain[ing] at the apex of the leap” in line 3 and “<em>I catch</em> <em>everything</em>” in line 13 suggest the idea of endurance and control, the lines do not establish that both the structure and the water have endurance and control, because the water also states, “<em>I pool </em>/ <em>and flow wherever gravity takes me</em>” (lines 10–11). <strong>B. CORRECT. </strong>The lines “I am what every athlete / wants” (lines 2–3) and “<em>I am the blood</em> <em>flowing in the runner’s chest</em>” (line 12) communicate that each speaker is an object of admiration and a powerful force. <strong>C. </strong>Incorrect. The lines describe opposing characteristics: the structure’s description conveys stillness—remaining “up in the air” (line 4)—while the water’s description conveys movement—“<em>flowing in the runner’s chest</em>” (line 12). <strong>D. </strong>Incorrect. The first speaker states, “I am what every athlete / wants” in lines 2–3, and the second speaker states, “<em>I am the blood flowing in the runner’s chest</em>” in line 12. The similarity of these metaphors may seem to suggest interrelationship, but the structures do not reveal surprise that they are interrelated.</p>",
+      "points": 1,
+      "prompt": "Read lines 2–4 and lines 12–14 from the poem.\n\nI am what every athlete\nwants: to remain at the apex of the leap,\nup in the air.\nI am the blood flowing in the runner’s chest,\nand I catch everything: from the hills,\nthe mountains.\n\nHow do the lines contribute to the development of a central idea of the poem?",
+      "promptHtml": "<p>Read lines 2–4 and lines 12–14 from the poem.</p><blockquote><strong>I am what every athlete</strong><br><strong>wants: to remain at the apex of the leap,</strong><br><strong>up in the air.</strong><br><em><strong>I am the blood flowing in the runner’s chest,</strong></em><br><em><strong>and I catch everything: from the hills,</strong></em><br><em><strong>the mountains.</strong></em></blockquote><p>How do the lines contribute to the development of a central idea of the poem?</p>",
+      "topic": "Central Idea & Theme",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>They establish that both the structure and the water have endurance and control.</p>",
+          "text": "They establish that both the structure and the water have endurance and control."
+        },
+        {
+          "id": "B",
+          "html": "<p>They highlight that both the structure and the water are powerful and impressive.</p>",
+          "text": "They highlight that both the structure and the water are powerful and impressive."
+        },
+        {
+          "id": "C",
+          "html": "<p>They suggest that the structure and the water are unaware of how similar they are.</p>",
+          "text": "They suggest that the structure and the water are unaware of how similar they are."
+        },
+        {
+          "id": "D",
+          "html": "<p>They reveal that the structure and the water are surprised that they are interrelated.</p>",
+          "text": "They reveal that the structure and the water are surprised that they are interrelated."
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice"
+    }
+  }
+]

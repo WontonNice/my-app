@@ -1,0 +1,11 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const Module = require('node:module');
+const filename = path.resolve('tools/preview-exam-session.cjs');
+let source = fs.readFileSync(filename, 'utf8');
+source = source.replace('const content = [', "const { content20262027FormCContent } = require('../client/src/content/exams/tests/2026-2027-form-c.ts');\nconst content = [content20262027FormCContent, ");
+source = source.replaceAll('4322', '4333');
+const moduleInstance = new Module(filename, module);
+moduleInstance.filename = filename;
+moduleInstance.paths = Module._nodeModulePaths(path.dirname(filename));
+moduleInstance._compile(source, filename);

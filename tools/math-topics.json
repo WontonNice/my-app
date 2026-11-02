@@ -5,8 +5,6 @@
       "topics": [
         "Algebraic Expressions",
         "Equations & Systems",
-        "Formulas & Rearranging Equations",
-        "Algebraic Word Problems",
         "Inequalities",
         "Functions & Graphs",
         "Patterns & Sequences"
@@ -27,13 +25,10 @@
     {
       "label": "Statistics and Probability",
       "topics": [
-        "Data Displays",
+        "Data Displays & Sampling",
         "Averages & Spread",
-        "Sampling & Predictions",
-        "Counting & Combinations",
-        "Basic Probability",
-        "Compound Probability",
-        "Set Relationships"
+        "Counting & Sets",
+        "Probability"
       ]
     },
     {
@@ -41,9 +36,7 @@
       "topics": [
         "Ratios & Proportions",
         "Rates & Unit Rates",
-        "Proportional Relationships",
-        "Percentages",
-        "Percent Change & Applications"
+        "Percentages"
       ]
     },
     {
@@ -51,8 +44,7 @@
       "topics": [
         "Number Types & Properties",
         "Integers & Absolute Value",
-        "Fractions",
-        "Decimals",
+        "Fractions & Decimals",
         "Order of Operations",
         "Exponents, Roots & Scientific Notation",
         "Units & Conversions"

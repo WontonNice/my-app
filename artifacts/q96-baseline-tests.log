@@ -1,0 +1,235 @@
+✔ every variant has the independently computed answer and explanation, with a complete deterministic cycle (12.4867ms)
+✔ constraints guard division before derived values and exact fractions work for short response (1.2513ms)
+✔ invalid domains, code, unknown fields, placeholders, and inconsistent stems are rejected (2.1543ms)
+✔ numeric-equivalent choices and undefined fractions cannot pass validation (0.728ms)
+✖ import adds source-linked drafts without changing existing resources; sessions retain their version (3.9014ms)
+✖ custom names survive classification reconciliation and topic group normalization (0.8437ms)
+✖ adding a Foundation child preserves the group’s existing practice selection (0.7503ms)
+✔ creation prompt retains the full source and destination without asking for executable code (0.3629ms)
+✔ local Content Studio shares durable saves, rejects stale revisions and validates before writes (13.8948ms)
+✔ the shared Skilled registry starts empty and existing questions are TBD without inferred assignments (36.5324ms)
+✔ question classifications can change without renaming teacher-assigned module skills (77.0143ms)
+✔ delete resets native and metadata assignments to TBD and cannot silently reattach a reused ID (50.643ms)
+✔ scopes, reserved names, duplicates, malformed definitions, and stale saves are rejected (22.1164ms)
+✔ subcategory renames move Skilled definitions while preserving their IDs and question assignments (24.5774ms)
+✔ Q70 is published under Inequalities, snapshots its generator, and registers safely in saved catalogs (24.9683ms)
+✔ moving a module makes it a Foundation child and settings exclude its generators from a session (2.0603ms)
+✔ deleting either built-in generator cleans references and preserves sessions already running (1.8237ms)
+✔ General Practice includes all enabled generators in its own topic and snapshots student choices (1.9878ms)
+✔ teachers can add a two-step generator, mix it into Foundation Building, and preserve order and placement (1.7229ms)
+✔ generated one-step and two-step keys solve the displayed inequality, including negative coefficients and inclusive endpoints (47.1649ms)
+✔ invalid generators and empty published modules cannot be saved (3.1831ms)
+✔ YouTube references accept video links only and normalize safe hosts (1.5964ms)
+✔ optional video details persist and reject invalid durations, counts and dates (7.2371ms)
+✔ catalog permissions, durable saves, conflicts and student publication filtering (113.5077ms)
+✔ renaming a subcategory keeps studio GET, saves, student reads and generated tags consistent (12.6756ms)
+✔ unmapped stale taxonomy returns a repairable conflict instead of an unexpected server error (1.82ms)
+✔ deleting individual modules keeps generators, other resources and running snapshots (2.7243ms)
+✔ Overlapping Groups is one module using both generators and legacy split modules merge without losing settings (1.1741ms)
+✔ all 1,056 stems are distinct, calculator-free, and have exactly one equivalent answer (18.7886ms)
+✔ a seed reproduces a question, cycles are explicit, and invalid indices fail (1.6534ms)
+✔ Q70 generates distinct variables-on-both-sides stems with exactly one correct answer throughout its cycle (1054.2403ms)
+✔ Q70 seeds reproduce questions, repeat only after a complete cycle, and reject invalid indices (0.3905ms)
+✔ teacher login returns to its same-origin destination and rejects external redirects (0.4147ms)
+✔ teacher launcher preserves a local or configured origin and fixes the destination path (2.8762ms)
+✔ teacher previews snapshot unsaved and disabled generators without changing their catalog (4.675ms)
+✔ modules expose all registered types, foundation stays easy, and targeted practice stays focused (8.4759ms)
+✔ session metrics distinguish answering, feedback, unfinished questions and longest streak (0.6917ms)
+✔ module generator selection is snapshotted for a running session (0.2605ms)
+✔ session storage preserves typed and structured responses for future generators (0.2824ms)
+✖ Math Study Hall follows the managed hierarchy and reserves topic resource sections (620.9154ms)
+✔ student practice lists show parent modules while nested modules remain part of their generation set (456.9105ms)
+✔ YouTube references render in-site play buttons with thumbnails and optional metadata (273.4175ms)
+✔ subcategory migration retains practice IDs, content, selections and Foundation placement (19.8467ms)
+✔ existing skills are only rehomed, retaining IDs, labels, prerequisites and question assignments (1.649ms)
+✔ consolidation merges default parents and preserves focused practice and skill assignments (3.1643ms)
+✔ every overlapping-groups variant has a valid population, distinct stem and exactly one correct choice (1632.311ms)
+✔ overlapping-group sequences are deterministic, cycle explicitly and validate indices (0.4968ms)
+✖ Overlapping Groups is a statistics topic and catalog registration preserves existing resources (208.7666ms)
+✔ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (10.7602ms)
+✔ customized broad modules, hidden state, disabled generators, and reviewed metadata survive migration (1.8061ms)
+✔ registration restores a generator to its skill even when migration reused legacy module IDs (18.464ms)
+✔ metadata is validated and survives saves and session snapshots without changing the generated questions (2.248ms)
+✔ search, facets, focused usage, and bulk changes work across a 1000-generator library (18.662ms)
+✔ bulk disabling the last generators hides empty focused modules and remains saveable (1.766ms)
+✔ generation set filters combine inclusion, category, subcategory, and search without changing selections (1.7515ms)
+✔ included-only respects automatic groups, inherited selections, hidden children, and disabled generators (1.9681ms)
+✔ module preview snapshots the complete effective draft mix and allows unpublished modules without publishing edits (2.442ms)
+✔ Skill is the module name; legacy classifications never replace it on reads or saves (3.7172ms)
+✔ library Skill filtering uses module membership, including hidden modules and disabled generators (1.0533ms)
+✔ choosing a shared skill binds its name while keeping module IDs, generators, placement and running sessions (1.8989ms)
+✔ answer feedback distinguishes correct/incorrect results and retains best streak after a miss (1226.7553ms)
+✔ checked choices identify the correct answer and a wrong selection without coloring an unanswered question (24.2085ms)
+✔ generator preview renders the existing exam toolbar, question, drawing tool and streak statistics (20.0136ms)
+✔ mini preview retains the exam controls in a bounded nonmodal region (9.8095ms)
+✔ Probability: Number-cube Sum Counts: every stem is valid, unique, and includes its source example (17.2888ms)
+✔ Probability: Ratio Counts After Removal: every stem is valid, unique, and includes its source example (35.6941ms)
+✔ Probability: Ordered Draws Without Replacement: every stem is valid, unique, and includes its source example (43.994ms)
+✔ Probability: Both Not Blue: every stem is valid, unique, and includes its source example (6.9357ms)
+✔ Probability: Repeated Draws With Replacement: every stem is valid, unique, and includes its source example (16.428ms)
+✔ Probability: Spinner Products: every stem is valid, unique, and includes its source example (7.4413ms)
+✔ Probability: Unordered Sample Spaces: every stem is valid, unique, and includes its source example (57.8439ms)
+✔ Probability: One Specific Conditional Outcome: every stem is valid, unique, and includes its source example (114.997ms)
+✔ all eight probability sequences reproduce, complete explicit cycles and validate safe indices (5.0722ms)
+✖ Probability uses five focused Foundation Building children with eight generators, preserving other topics and snapshots (23.67ms)
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (1553.0235ms)
+✔ every topic receives exactly one Foundation Building and General Practice, including empty topics (10.3407ms)
+✔ migration retains legacy IDs, nested modules, curated selections, hidden state and resources (2.6892ms)
+✔ General Practice automatically follows enabled generators only in its own topic (2.2887ms)
+✔ each foundation accepts only its own topic modules and empty defaults remain available (3.7546ms)
+✔ studio grouping and filters remain usable with hundreds of resources (7.8587ms)
+✔ individual modules default to their own General Practice and keep explicit Foundation placement (4.6835ms)
+✔ General Practice settings honor selected and unpublished nested modules (1.3986ms)
+✔ all survey total stems subtract overlap once and include neither, including zero-size cells (2497.4867ms)
+✔ every remaining-reading stem asks for additional time and has one exact hours answer (243.092ms)
+✔ every mixture stem uses all ratio parts and all projects with one correct choice (1403.9095ms)
+✔ new word-problem sequences reproduce, cycle explicitly, and reject invalid indices (0.8535ms)
+✖ batch registration preserves teacher resources and snapshots all three generators in their own topics (16.8394ms)
+✔ Writing Inequalities visits every stem and includes the original Form D item 26 (1099.0563ms)
+✔ typed budgets accept both orientations, term orders and notation, and reject modelling errors (425.7681ms)
+✔ Writing Inequalities sequences are reproducible, cycle explicitly, and validate indices (1.0829ms)
+✔ Writing Inequalities registers in saved catalogs without changing nesting or existing resources (184.6592ms)
+ℹ tests 91
+ℹ suites 0
+ℹ pass 83
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5703.9803
+
+✖ failing tests:
+
+test at server\tests\generator-template.test.cjs:55:1
+✖ import adds source-linked drafts without changing existing resources; sessions retain their version (3.9014ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:173:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:239:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:56:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\generator-template.test.cjs:66:1
+✖ custom names survive classification reconciliation and topic group normalization (0.8437ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:173:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:239:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:67:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\generator-template.test.cjs:73:1
+✖ adding a Foundation child preserves the group’s existing practice selection (0.7503ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:173:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:239:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:74:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\math-study-hall.test.cjs:8:1
+✖ Math Study Hall follows the managed hierarchy and reserves topic resource sections (620.9154ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /No practice modules yet/. Input:
+  
+  '<section class="math-study-hall" aria-labelledby="math-study-title"><nav class="math-study-breadcrumbs" aria-label="Math topic navigation"><a href="/study-hall/shsat/materials?subject=math&amp;preview=student&amp;teacherTools=1">Math categories</a><span aria-hidden="true">/</span><a href="/study-hall/shsat/materials?subject=math&amp;category=Algebra&amp;preview=student&amp;teacherTools=1">Algebra</a><span aria-hidden="true">/</span><span aria-current="page">Algebraic Expressions</span></nav><header class="study-hall-section-heading"><div><p>Algebra</p><h2 id="math-study-title">Algebraic Expressions</h2><span>Worksheets and practice for this topic, together in one place.</span></div></header><div class="math-study-resources"><section aria-labelledby="math-worksheets-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg><div><h3 id="math-worksheets-title">Worksheets</h3><p>Work through a focused set at your own pace.</p></div></header><div class="math-study-resource-empty"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg><strong>No worksheets yet</strong><p>Worksheets from your teacher will appear here.</p></div></section><section aria-labelledby="math-infinite-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-infinity" aria-hidden="true"><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8"></path></svg><div><h3 id="math-infinite-title">Infinite practice</h3><p>Keep practicing with fresh questions.</p></div></header><div class="math-study-modules practice-module-list" role="region" aria-label="Infinite practice modules" tabindex="0"><article class="practice-module-group"><div class="practice-module-heading"><div><h4>Foundation Building</h4><p>Build confidence with a focused selection of question types.</p><small>0 generators · No calculator</small></div><button disabled="" type="button" aria-label="Start Foundation Building">Start <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button></div><button class="practice-module-settings-toggle" aria-expanded="false" aria-label="Foundation Building settings" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings2 lucide-settings-2" aria-hidden="true"><path d="M14 17H5"></path><path d="M19 7h-9"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg> Settings</button></article><article class="practice-module-group"><div class="practice-module-heading"><div><h4>General Practice</h4><p>Practice every available question type in this topic.</p><small>0 generators · No calculator</small></div><button disabled="" type="button" aria-label="Start General Practice">Start <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button></div><button class="practice-module-settings-toggle" aria-expanded="false" aria-label="General Practice settings" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings2 lucide-settings-2" aria-hidden="true"><path d="M14 17H5"></path><path d="M19 7h-9"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg> Settings</button></article></div></section><section aria-labelledby="math-videos-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg><div><h3 id="math-videos-title">YouTube videos</h3><p>Educational references for this topic.</p></div></header><div class="math-study-resource-empty"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg><strong>No videos yet</strong><p>Video references selected by your teacher will appear here.</p></div></section></div></section>'
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\math-study-hall.test.cjs:41:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<section class="math-study-hall" aria-labelledby="math-study-title"><nav class="math-study-breadcrumbs" aria-label="Math topic navigation"><a href="/study-hall/shsat/materials?subject=math&amp;preview=student&amp;teacherTools=1">Math categories</a><span aria-hidden="true">/</span><a href="/study-hall/shsat/materials?subject=math&amp;category=Algebra&amp;preview=student&amp;teacherTools=1">Algebra</a><span aria-hidden="true">/</span><span aria-current="page">Algebraic Expressions</span></nav><header class="study-hall-section-heading"><div><p>Algebra</p><h2 id="math-study-title">Algebraic Expressions</h2><span>Worksheets and practice for this topic, together in one place.</span></div></header><div class="math-study-resources"><section aria-labelledby="math-worksheets-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg><div><h3 id="math-worksheets-title">Worksheets</h3><p>Work through a focused set at your own pace.</p></div></header><div class="math-study-resource-empty"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg><strong>No worksheets yet</strong><p>Worksheets from your teacher will appear here.</p></div></section><section aria-labelledby="math-infinite-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-infinity" aria-hidden="true"><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8"></path></svg><div><h3 id="math-infinite-title">Infinite practice</h3><p>Keep practicing with fresh questions.</p></div></header><div class="math-study-modules practice-module-list" role="region" aria-label="Infinite practice modules" tabindex="0"><article class="practice-module-group"><div class="practice-module-heading"><div><h4>Foundation Building</h4><p>Build confidence with a focused selection of question types.</p><small>0 generators · No calculator</small></div><button disabled="" type="button" aria-label="Start Foundation Building">Start <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button></div><button class="practice-module-settings-toggle" aria-expanded="false" aria-label="Foundation Building settings" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings2 lucide-settings-2" aria-hidden="true"><path d="M14 17H5"></path><path d="M19 7h-9"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg> Settings</button></article><article class="practice-module-group"><div class="practice-module-heading"><div><h4>General Practice</h4><p>Practice every available question type in this topic.</p><small>0 generators · No calculator</small></div><button disabled="" type="button" aria-label="Start General Practice">Start <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button></div><button class="practice-module-settings-toggle" aria-expanded="false" aria-label="General Practice settings" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings2 lucide-settings-2" aria-hidden="true"><path d="M14 17H5"></path><path d="M19 7h-9"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg> Settings</button></article></div></section><section aria-labelledby="math-videos-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg><div><h3 id="math-videos-title">YouTube videos</h3><p>Educational references for this topic.</p></div></header><div class="math-study-resource-empty"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg><strong>No videos yet</strong><p>Video references selected by your teacher will appear here.</p></div></section></div></section>',
+    expected: /No practice modules yet/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tools\overlapping-groups.test.cjs:40:1
+✖ Overlapping Groups is a statistics topic and catalog registration preserves existing resources (208.7666ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(taxonomy.categories.find(c=>c.label==='Statistics and Probability').topics.includes('Overlapping Groups'))
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\overlapping-groups.test.cjs:45:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\probability-practice.test.cjs:88:1
+✖ Probability uses five focused Foundation Building children with eight generators, preserving other topics and snapshots (23.67ms)
+  Error: A module contains duplicate or unavailable generators.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:173:57)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:222
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:43)
+      at addBuiltinPractice (C:\Users\Nathan Im\Desktop\my-app-main\tools\register-practice-generator.cjs:23:3)
+      at Array.reduce (<anonymous>)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\probability-practice.test.cjs:95:85)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18) {
+    status: 400
+  }
+
+test at tools\study-hall-view.test.cjs:6:1
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (1553.0235ms)
+  AssertionError [ERR_ASSERTION]: Practice is visible above the countdown on the student home
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\study-hall-view.test.cjs:14:164)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\word-problem-practice.test.cjs:59:1
+✖ batch registration preserves teacher resources and snapshots all three generators in their own topics (16.8394ms)
+  Error: Individual modules can only be contained in Foundation Building or General Practice in the same topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:173:57)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:255:97)
+      at addBuiltinPractice (C:\Users\Nathan Im\Desktop\my-app-main\tools\register-practice-generator.cjs:23:3)
+      at Array.reduce (<anonymous>)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:65:60)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12) {
+    status: 400
+  }

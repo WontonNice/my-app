@@ -1,0 +1,3223 @@
+[
+  {
+    "number": 1,
+    "page": 1,
+    "box": [
+      49.9299,
+      348.68039999999996,
+      580,
+      725
+    ],
+    "prompt": "Read this sentence.\nThe Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World,\nis the largest amphitheater ever built and could hold more than 50,000 spectators.\nWhich edit should be made to correct the sentence?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Delete the comma after Rome."
+      },
+      {
+        "id": "B",
+        "text": "Insert a comma after Italy."
+      },
+      {
+        "id": "C",
+        "text": "Delete the comma after World."
+      },
+      {
+        "id": "D",
+        "text": "Insert a comma after built."
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "page": 2,
+    "box": [
+      48.9204,
+      65.06319999999994,
+      580,
+      326.73687
+    ],
+    "prompt": "Read this paragraph.\nIn September 2016 the National Museum of African American History and Culture opened as\npart of the Smithsonian Institution, the museum is already the Smithsonian’s third most\npopular site. Experts say that they expect this newest Smithsonian facility to welcome nearly\n4 million visitors a year. The museum features more than 30,000 objects, including Muhammad\nAli’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation\nProclamation, written in 1863 during the presidency of Abraham Lincoln, is also on display at\nthe museum.\nWhich revision corrects the error in sentence structure in the paragraph?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Institution, and the"
+      },
+      {
+        "id": "F",
+        "text": "year, and the"
+      },
+      {
+        "id": "G",
+        "text": "objects, which include"
+      },
+      {
+        "id": "H",
+        "text": "Proclamation, which was written"
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "page": 2,
+    "box": [
+      48.92177,
+      327.73687,
+      580,
+      725
+    ],
+    "prompt": "Read this sentence.\nTo promote their club, a bake sale will be sponsored by members of the debate team on\nWednesday.\nHow should the sentence be revised?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the\ndebate team."
+      },
+      {
+        "id": "B",
+        "text": "On Wednesday to promote their club, a bake sale will be sponsored by members of the\ndebate team."
+      },
+      {
+        "id": "C",
+        "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday."
+      },
+      {
+        "id": "D",
+        "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale."
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "page": 3,
+    "box": [
+      49.0373,
+      64.57937500000003,
+      580,
+      725
+    ],
+    "prompt": "Read this paragraph.\n(1) Devon spent several hours preparing for an upcoming audition for a play at the community\ntheater. (2) First he did vocal exercises to practice his diction and projection so that his words\nwould carry clearly throughout the large auditorium. (3) Then he studies the text of the\nmonologue to better understand the emotions, and motivations of the character he plans to\nportray. (4) Finally he recited his monologue in front of a mirror many times, making slight\nadjustments and improvements to his performance each time.\nHow should the paragraph be revised?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Sentence 1: Change spent to had spent, AND insert a comma after play."
+      },
+      {
+        "id": "F",
+        "text": "Sentence 2: Change did to does, AND insert a comma after projection."
+      },
+      {
+        "id": "G",
+        "text": "Sentence 3: Change studies to studied, AND delete the comma after emotions."
+      },
+      {
+        "id": "H",
+        "text": "Sentence 4: Change recited to recites, AND delete the comma after times."
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "page": 6,
+    "box": [
+      48.8749,
+      64.91157500000008,
+      580,
+      229.93933500000003
+    ],
+    "prompt": "Which sentence should replace sentence 4 to best introduce the main claim of the passage?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "In this age of smartphones and search engines, the public library is a valuable resource that all\nmembers of a community should use."
+      },
+      {
+        "id": "B",
+        "text": "Finding information is easier than ever, but going to the public library is still a valuable\nlearning experience."
+      },
+      {
+        "id": "C",
+        "text": "Though today’s computers are highly advanced, the resources available at a public library are\nmore useful for students."
+      },
+      {
+        "id": "D",
+        "text": "Despite the proliferation of social networking sites, a public library is a great place for people who\nare interested in improving their community."
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "page": 6,
+    "box": [
+      48.8749,
+      230.93933500000003,
+      580,
+      395.967085
+    ],
+    "prompt": "Which sentence would best follow and support sentence 8?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Libraries, which have been around for centuries and are found throughout the world today, help\npreserve the history of a community."
+      },
+      {
+        "id": "F",
+        "text": "The public library is often used as a place for community leaders and organizers to host\ncommunity events, such as hearings or town halls."
+      },
+      {
+        "id": "G",
+        "text": "Libraries rely on a combination of local, state, and federal dollars to provide the kinds of services\nand programs that community members have come to expect."
+      },
+      {
+        "id": "H",
+        "text": "At a public library, people can interact with others through a variety of programs, including teen\nbook clubs, toddler story times, and senior-citizen exercise classes."
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "page": 6,
+    "box": [
+      48.8749,
+      396.967085,
+      580,
+      725
+    ],
+    "prompt": "Which revision of sentence 12 best maintains the formal style established in the passage?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The free resources available at the library can help people accomplish many tasks."
+      },
+      {
+        "id": "B",
+        "text": "All the free materials you can get at the library can help you do many different tasks."
+      },
+      {
+        "id": "C",
+        "text": "Everything that is free at the library can help people work on a lot of different things."
+      },
+      {
+        "id": "D",
+        "text": "The free resources you can find at the library can help you do whatever you need to do."
+      }
+    ]
+  },
+  {
+    "number": 8,
+    "page": 7,
+    "box": [
+      48.9546,
+      65.17807500000004,
+      580,
+      193.35787500000004
+    ],
+    "prompt": "Where should sentence 17 be moved in order to improve the organization of the fourth paragraph\n(sentences 13–17)?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "to the beginning of the paragraph (before sentence 13)"
+      },
+      {
+        "id": "F",
+        "text": "between sentences 13 and 14"
+      },
+      {
+        "id": "G",
+        "text": "between sentences 14 and 15"
+      },
+      {
+        "id": "H",
+        "text": "between sentences 15 and 16"
+      }
+    ]
+  },
+  {
+    "number": 9,
+    "page": 7,
+    "box": [
+      48.9546,
+      194.35787500000004,
+      580,
+      725
+    ],
+    "prompt": "Which concluding sentence should be added after sentence 19 to support the argument presented in\nthe passage?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Therefore, patrons of the public library can grow in both their social life and their level of\ncommunity engagement."
+      },
+      {
+        "id": "B",
+        "text": "Clearly, it is in the best interest of community members to maintain, support, and use their\npublic library."
+      },
+      {
+        "id": "C",
+        "text": "After all, the public library has been a part of American communities since the first library was\nfounded in 1833."
+      },
+      {
+        "id": "D",
+        "text": "In fact, community leaders must work together to find ways to generate more involvement in\nevents at the public library."
+      }
+    ]
+  },
+  {
+    "number": 10,
+    "page": 10,
+    "box": [
+      48.9638,
+      65.207675,
+      580,
+      181.56438500000002
+    ],
+    "prompt": "What evidence best indicated the location of the blast?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "a lake formed from a crater"
+      },
+      {
+        "id": "F",
+        "text": "tremors recorded at a seismic station"
+      },
+      {
+        "id": "G",
+        "text": "damage caused to buildings"
+      },
+      {
+        "id": "H",
+        "text": "the position of the trunks of fallen trees"
+      }
+    ]
+  },
+  {
+    "number": 11,
+    "page": 10,
+    "box": [
+      48.9638,
+      182.56438500000002,
+      580,
+      298.921105
+    ],
+    "prompt": "The June 30 date of the Tunguska event was significant to some scientists because it",
+    "choices": [
+      {
+        "id": "A",
+        "text": "suggested that the explosion may have been caused by a comet."
+      },
+      {
+        "id": "B",
+        "text": "highlighted why tree resin from the time of the blast contained high-proton elements."
+      },
+      {
+        "id": "C",
+        "text": "indicated that the blast may have resulted from Earth’s impact with a black hole."
+      },
+      {
+        "id": "D",
+        "text": "explained why debris from outer space would have burned up in the atmosphere."
+      }
+    ]
+  },
+  {
+    "number": 12,
+    "page": 10,
+    "box": [
+      48.9638,
+      299.921105,
+      580,
+      416.277815
+    ],
+    "prompt": "What did Galli’s analysis of tree resin at the site reveal?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Certain elements were unusually abundant around the time of the blast."
+      },
+      {
+        "id": "F",
+        "text": "Particles from outer space can add carbon atoms to trees."
+      },
+      {
+        "id": "G",
+        "text": "Spruce trees were able to survive the Tunguska explosion."
+      },
+      {
+        "id": "H",
+        "text": "Meteorites are composed of gold, copper, and other high-proton elements."
+      }
+    ]
+  },
+  {
+    "number": 13,
+    "page": 10,
+    "box": [
+      48.9638,
+      417.277815,
+      580,
+      725
+    ],
+    "prompt": "Based on the passage, what is the most likely reason it took nineteen years from the date of the\nexplosion before scientists first visited the Tunguska site?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The scientists feared radioactivity from a nuclear explosion."
+      },
+      {
+        "id": "B",
+        "text": "The site was far from civilization and difficult to reach."
+      },
+      {
+        "id": "C",
+        "text": "Scientists hoped to establish a cause before exploring the site."
+      },
+      {
+        "id": "D",
+        "text": "Craters from the explosion hampered travel to the area."
+      }
+    ]
+  },
+  {
+    "number": 14,
+    "page": 11,
+    "box": [
+      48.954,
+      65.17582500000003,
+      580,
+      180.24472500000002
+    ],
+    "prompt": "What is the primary role of paragraph 1 in the structure of the passage?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "It explains the scientific importance of the explosion."
+      },
+      {
+        "id": "F",
+        "text": "It indicates the magnitude of the explosion."
+      },
+      {
+        "id": "G",
+        "text": "It provides possible causes of the explosion."
+      },
+      {
+        "id": "H",
+        "text": "It describes the human suffering caused by the explosion."
+      }
+    ]
+  },
+  {
+    "number": 15,
+    "page": 11,
+    "box": [
+      48.954,
+      181.24472500000002,
+      580,
+      725
+    ],
+    "prompt": "The author includes a series of questions at the end of the last paragraph most likely to",
+    "choices": [
+      {
+        "id": "A",
+        "text": "encourage further study of the Tunguska event."
+      },
+      {
+        "id": "B",
+        "text": "suggest that the Tunguska event had multiple causes."
+      },
+      {
+        "id": "C",
+        "text": "reflect a personal curiosity about the Tunguska event."
+      },
+      {
+        "id": "D",
+        "text": "emphasize that the Tunguska event has not yet been fully explained."
+      }
+    ]
+  },
+  {
+    "number": 16,
+    "page": 14,
+    "box": [
+      48.9006,
+      521.9737250000001,
+      580,
+      725
+    ],
+    "prompt": "In paragraph 2, how does the phrase “when all three had taken the trouble to tell her” affect the tone\nin the first part of the excerpt?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "It creates an accusatory tone by suggesting that Margaret believes that others are responsible for\nher problem."
+      },
+      {
+        "id": "F",
+        "text": "It introduces a defiant tone by suggesting that Margaret left the train early to prove a point."
+      },
+      {
+        "id": "G",
+        "text": "It suggests a frustrated tone by showing that Margaret feels confused by the inconsistent help\noffered by the railroad employees."
+      },
+      {
+        "id": "H",
+        "text": "It establishes an appreciative tone by showing that Margaret feels cared for by the\nrailroad employees."
+      }
+    ]
+  },
+  {
+    "number": 17,
+    "page": 15,
+    "box": [
+      48.9296,
+      65.09472500000004,
+      580,
+      245.48584500000004
+    ],
+    "prompt": "Which sentence from the excerpt best supports the idea that traveling to new places by train is\nunfamiliar to Margaret?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "“With a lurch the train came to a dead stop and Margaret Earle, hastily gathering up her\nbelongings, hurried down the aisle and got out into the night.” (paragraph 1)"
+      },
+      {
+        "id": "B",
+        "text": "“Perhaps something was the matter with the engine that detained them and they had forgotten\nher for the moment.” (paragraph 2)"
+      },
+      {
+        "id": "C",
+        "text": "“Did they not have platforms in this wild Western land, or was the train so long that her car had\nstopped before reaching it?” (paragraph 3)"
+      },
+      {
+        "id": "D",
+        "text": "“She could dimly see moving figures away up near the engine, and each one evidently carried a\nlantern.” (paragraph 4)"
+      }
+    ]
+  },
+  {
+    "number": 18,
+    "page": 15,
+    "box": [
+      48.9296,
+      246.48584500000004,
+      580,
+      463.903285
+    ],
+    "prompt": "Read this sentence from paragraph 4.\nYet if the train started before she found the conductor she might be carried on\nsomewhere and he justly blame her for a fool.\nHow does the sentence contribute to the development of the plot?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "It shows how Margaret’s reliance on the guidance of others leads to the external conflict\nshe faces."
+      },
+      {
+        "id": "F",
+        "text": "It reveals how Margaret’s concern about the opinions of others causes the external conflict\nshe faces."
+      },
+      {
+        "id": "G",
+        "text": "It highlights how Margaret’s indecision results in the external conflict being prolonged."
+      },
+      {
+        "id": "H",
+        "text": "It illustrates how Margaret’s confusion makes it difficult for her to fully understand the\nexternal conflict."
+      }
+    ]
+  },
+  {
+    "number": 19,
+    "page": 15,
+    "box": [
+      48.9296,
+      464.903285,
+      580,
+      725
+    ],
+    "prompt": "Read this sentence from paragraph 4.\nShe strained her eyes into the darkness, and tried to make out things from the two or\nthree specks of light that danced about like fireflies in the distance.\nThe simile used in the sentence affects the tone of the paragraph by emphasizing a",
+    "choices": [
+      {
+        "id": "A",
+        "text": "feeling of comfort as Margaret connects her unfamiliar surroundings with familiar images."
+      },
+      {
+        "id": "B",
+        "text": "sense of lonesomeness as Margaret realizes that she is on her own in the wilderness."
+      },
+      {
+        "id": "C",
+        "text": "sense of tranquility as Margaret is distracted from the urgency of her situation by the beauty of\nthe night."
+      },
+      {
+        "id": "D",
+        "text": "feeling of dread as Margaret regards the desolation of the land that surrounds her."
+      }
+    ]
+  },
+  {
+    "number": 20,
+    "page": 16,
+    "box": [
+      48.8466,
+      64.81714999999997,
+      580,
+      252.14141999999993
+    ],
+    "prompt": "Read paragraph 9 from the excerpt.\nA moment of useless screaming, running, trying to attract some one’s attention, a\nsickening sense of terror and failure, and the last car slatted itself past with a\nmocking clatter, as if it enjoyed her discomfort.\nThe imagery in this sentence conveys the",
+    "choices": [
+      {
+        "id": "E",
+        "text": "growing irritation Margaret feels as she is ignored by people on the train."
+      },
+      {
+        "id": "F",
+        "text": "effort Margaret is making despite being physically unable to keep up with the train."
+      },
+      {
+        "id": "G",
+        "text": "anger that Margaret is experiencing as she watches the train leave without her."
+      },
+      {
+        "id": "H",
+        "text": "vulnerability Margaret feels as the train leaves her behind."
+      }
+    ]
+  },
+  {
+    "number": 21,
+    "page": 16,
+    "box": [
+      48.8466,
+      253.14141999999993,
+      580,
+      366.02865
+    ],
+    "prompt": "How does Margaret’s experience in paragraph 9 emphasize a theme of the excerpt?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "It confirms Margaret’s understanding that she cannot rely on help from anyone else."
+      },
+      {
+        "id": "B",
+        "text": "It leads Margaret to realize that her efforts to change her situation are ineffective."
+      },
+      {
+        "id": "C",
+        "text": "It causes Margaret to believe that her own actions led to an unfavorable outcome."
+      },
+      {
+        "id": "D",
+        "text": "It reinforces Margaret’s frustration about her lack of control over her surroundings."
+      }
+    ]
+  },
+  {
+    "number": 22,
+    "page": 16,
+    "box": [
+      48.8466,
+      367.02865,
+      580,
+      725
+    ],
+    "prompt": "Read paragraph 10 from the excerpt.\nMargaret stood dazed, reaching out helpless hands, then dropped them at her sides\nand gazed after the fast-retreating train, the light on its last car swinging tauntingly,\nblinking now and then with a leer in its eye, rapidly vanishing from her sight into\nthe depth of the night.\nWhat does the figurative language in this sentence emphasize?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "the sense of doubt that Margaret experiences when she is deciding what to do next"
+      },
+      {
+        "id": "F",
+        "text": "the anger that Margaret feels toward the people on the train who she expected to help her"
+      },
+      {
+        "id": "G",
+        "text": "the embarrassment that Margaret feels when she imagines what others will think of her"
+      },
+      {
+        "id": "H",
+        "text": "the hopelessness that Margaret feels when she accepts that the train is continuing on"
+      }
+    ]
+  },
+  {
+    "number": 23,
+    "page": 17,
+    "box": [
+      48.9079,
+      65.02229999999997,
+      580,
+      178.73810000000003
+    ],
+    "prompt": "How does paragraph 11 contribute to the plot of the excerpt?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "It reveals that the reality of the situation is different from Margaret’s assumptions."
+      },
+      {
+        "id": "B",
+        "text": "It illustrates that Margaret’s main problem is her own imagination."
+      },
+      {
+        "id": "C",
+        "text": "It shows that Margaret is surprised by the unexpected adventure she is about to undertake."
+      },
+      {
+        "id": "D",
+        "text": "It provides additional insight into how Margaret reacts to stressful situations."
+      }
+    ]
+  },
+  {
+    "number": 24,
+    "page": 17,
+    "box": [
+      48.9079,
+      179.73810000000003,
+      580,
+      725
+    ],
+    "prompt": "How do the details in paragraphs 12–13 about the setting help support the theme of the excerpt?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "They show that Margaret is overwhelmed by the darkness that surrounds her."
+      },
+      {
+        "id": "F",
+        "text": "They suggest that the situation is frustrating but that Margaret is hopeful."
+      },
+      {
+        "id": "G",
+        "text": "They reveal that the landscape is beautiful and that Margaret is alone."
+      },
+      {
+        "id": "H",
+        "text": "They demonstrate that Margaret is easily discouraged and frightened."
+      }
+    ]
+  },
+  {
+    "number": 25,
+    "page": 20,
+    "box": [
+      48.9283,
+      376.51545,
+      580,
+      504.82345999999995
+    ],
+    "prompt": "The central idea that the Falls communicate a feeling of “unintelligible disaster” (paragraph 1) is\nconveyed in paragraph 2 through a description of",
+    "choices": [
+      {
+        "id": "A",
+        "text": "the glow of the precious stones visible within the water."
+      },
+      {
+        "id": "B",
+        "text": "the dynamic flow of the colors that are visible in the water."
+      },
+      {
+        "id": "C",
+        "text": "the sudden appearance and disappearance of rainbows."
+      },
+      {
+        "id": "D",
+        "text": "the sounds associated with a sense of falling."
+      }
+    ]
+  },
+  {
+    "number": 26,
+    "page": 20,
+    "box": [
+      48.9283,
+      505.82345999999995,
+      580,
+      725
+    ],
+    "prompt": "Read this sentence from paragraph 2.\nThey are extraordinarily level, one long curtain of lacework and woven foam.\nWhat is the effect of comparing the American Falls to a “long curtain of lacework and woven foam”?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "It demonstrates the timelessness of the American Falls."
+      },
+      {
+        "id": "F",
+        "text": "It conveys the secretive nature of the American Falls."
+      },
+      {
+        "id": "G",
+        "text": "It illustrates the elegant uniformity of the American Falls."
+      },
+      {
+        "id": "H",
+        "text": "It communicates the intense strength of the American Falls."
+      }
+    ]
+  },
+  {
+    "number": 27,
+    "page": 21,
+    "box": [
+      48.9372,
+      65.12012499999992,
+      580,
+      256.89604499999996
+    ],
+    "prompt": "Read this sentence from paragraph 3.\nThese are the lower rapids, a sight more terrifying than the Falls, because\nless intelligible.\nWhich statement best describes how the sentence fits into the overall structure of the excerpt?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "It signals a change from the positive aspects of the Falls to the negative aspects."
+      },
+      {
+        "id": "B",
+        "text": "It indicates a progression from the literal description of the water to a discussion of\ntimeless truths."
+      },
+      {
+        "id": "C",
+        "text": "It highlights a shift from the qualities of the Falls to the qualities of the river."
+      },
+      {
+        "id": "D",
+        "text": "It introduces a contrast between the obvious and the hidden features of the rapids."
+      }
+    ]
+  },
+  {
+    "number": 28,
+    "page": 21,
+    "box": [
+      48.9372,
+      257.89604499999996,
+      580,
+      438.63934500000005
+    ],
+    "prompt": "Which sentence from the excerpt best supports the idea that the essence of the Falls lies in their\nemotional impact?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "“If that were taken away, there would be little visible change, but the heart would be gone.”\n(paragraph 1)"
+      },
+      {
+        "id": "F",
+        "text": "“By comparison their beauty is almost delicate and fragile.” (paragraph 2)"
+      },
+      {
+        "id": "G",
+        "text": "“One is drawn back, strangely, to a contemplation of the Falls, at every hour, and especially by\nnight, when the cloud of spray becomes an immense visible ghost, straining and wavering high\nabove the river, white and pathetic and translucent.” (paragraph 4)"
+      },
+      {
+        "id": "H",
+        "text": "“A man’s life is of many flashing moments, and yet one stream; a nation’s flows through all its\ncitizens, and yet is more than they.” (paragraph 4)"
+      }
+    ]
+  },
+  {
+    "number": 29,
+    "page": 21,
+    "box": [
+      48.9372,
+      439.63934500000005,
+      580,
+      725
+    ],
+    "prompt": "Read this sentence from paragraph 4.\nThere one can sit and let great cloudy thoughts of destiny and the passage of\nempires drift through the mind; for such dreams are at home by Niagara.\nThe sentence most contributes to the development of ideas in the excerpt by",
+    "choices": [
+      {
+        "id": "A",
+        "text": "suggesting that viewing the Falls can be a life-changing experience."
+      },
+      {
+        "id": "B",
+        "text": "showing that the cliffs of the Falls are a good place for self-examination."
+      },
+      {
+        "id": "C",
+        "text": "emphasizing that the grandeur of the Falls seems impossible to grasp."
+      },
+      {
+        "id": "D",
+        "text": "highlighting the type of reflection that is inspired by a visit to the Falls."
+      }
+    ]
+  },
+  {
+    "number": 30,
+    "page": 22,
+    "box": [
+      48.9602,
+      65.19567500000005,
+      580,
+      220.769545
+    ],
+    "prompt": "In paragraph 4, the idea that human life and history travel toward the same ending is illustrated\nmainly through",
+    "choices": [
+      {
+        "id": "E",
+        "text": "the discussion of how the rainbows visible in the Falls are like the art and beauty created\nby humankind."
+      },
+      {
+        "id": "F",
+        "text": "the comparison between the movement of water in the Falls and the human experience."
+      },
+      {
+        "id": "G",
+        "text": "the inclusion of details that show that every observer’s experience with the Falls is different."
+      },
+      {
+        "id": "H",
+        "text": "the acknowledgment that contemplating the Falls at night sparks an awareness of\nhumankind’s destiny."
+      }
+    ]
+  },
+  {
+    "number": 31,
+    "page": 22,
+    "box": [
+      48.9602,
+      221.769545,
+      580,
+      725
+    ],
+    "prompt": "With which statement would the author of this excerpt most likely agree?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A sense of ease and assurance comes with accepting one’s fate."
+      },
+      {
+        "id": "B",
+        "text": "No matter where one’s path goes in life, one will always have regrets."
+      },
+      {
+        "id": "C",
+        "text": "The best way to overcome fear is to recognize it and then defy it."
+      },
+      {
+        "id": "D",
+        "text": "Reason will die out with humanity, but art will remain immortal."
+      }
+    ]
+  },
+  {
+    "number": 32,
+    "page": 24,
+    "box": [
+      48.9547,
+      64.66925000000003,
+      580,
+      180.68378000000007
+    ],
+    "prompt": "Which of the following best describes the goal of modern archaeology?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "to use science to learn how people lived in the past"
+      },
+      {
+        "id": "F",
+        "text": "to find artwork from ancient civilizations"
+      },
+      {
+        "id": "G",
+        "text": "to search for evidence of ancient settlements"
+      },
+      {
+        "id": "H",
+        "text": "to uncover precious objects for display in museums"
+      }
+    ]
+  },
+  {
+    "number": 33,
+    "page": 24,
+    "box": [
+      48.9547,
+      181.68378000000007,
+      580,
+      297.69964999999996
+    ],
+    "prompt": "What would a traditional archaeologist be most interested in finding at a site like Kourion?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "a human skeleton"
+      },
+      {
+        "id": "B",
+        "text": "beautiful jewelry or ceramics"
+      },
+      {
+        "id": "C",
+        "text": "evidence of foods eaten"
+      },
+      {
+        "id": "D",
+        "text": "the remains of animals"
+      }
+    ]
+  },
+  {
+    "number": 34,
+    "page": 24,
+    "box": [
+      48.9506,
+      298.69964999999996,
+      580,
+      414.71495
+    ],
+    "prompt": "What role does paragraph 2 play in the structure of the passage?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "It provides a contrast to the topic discussed in the first paragraph."
+      },
+      {
+        "id": "F",
+        "text": "It details examples that support the central idea of the first paragraph."
+      },
+      {
+        "id": "G",
+        "text": "It states a theory that will be explained further in the third paragraph."
+      },
+      {
+        "id": "H",
+        "text": "It summarizes the information found in the rest of the passage."
+      }
+    ]
+  },
+  {
+    "number": 35,
+    "page": 24,
+    "box": [
+      48.9526,
+      415.71495,
+      580,
+      725
+    ],
+    "prompt": "Which conclusion is best supported by the information in paragraph 4?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Forensic anthropologists specialize in the excavation of ancient theaters and temples."
+      },
+      {
+        "id": "B",
+        "text": "Forensic anthropologists can obtain a variety of information by examining teeth."
+      },
+      {
+        "id": "C",
+        "text": "Forensic anthropologists believe that people in the past were smaller than people are today."
+      },
+      {
+        "id": "D",
+        "text": "Forensic anthropologists primarily investigate ancient crimes."
+      }
+    ]
+  },
+  {
+    "number": 36,
+    "page": 25,
+    "box": [
+      48.958,
+      65.18932499999994,
+      580,
+      181.38435500000003
+    ],
+    "prompt": "As described in paragraphs 4–5, what did the archaeological team learn about life in Kourion?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "People in Kourion had a better diet than people have today."
+      },
+      {
+        "id": "F",
+        "text": "People in Kourion kept a wide variety of domesticated animals."
+      },
+      {
+        "id": "G",
+        "text": "People in Kourion had a shorter life expectancy than people have today."
+      },
+      {
+        "id": "H",
+        "text": "People in Kourion made bread from various domesticated grains."
+      }
+    ]
+  },
+  {
+    "number": 37,
+    "page": 25,
+    "box": [
+      48.958,
+      182.38435500000003,
+      580,
+      725
+    ],
+    "prompt": "What is the most likely reason the author mentions the zooarchaeologist (paragraph 5)?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "to introduce the topic of other artifacts discovered near Camelia"
+      },
+      {
+        "id": "B",
+        "text": "to contrast this position with that of the paleobotanist"
+      },
+      {
+        "id": "C",
+        "text": "to complete the list of archaeological specialists"
+      },
+      {
+        "id": "D",
+        "text": "to provide an example of a particular field in modern archaeology"
+      }
+    ]
+  },
+  {
+    "number": 38,
+    "page": 27,
+    "box": [
+      48.9271,
+      557.395975,
+      580,
+      725
+    ],
+    "prompt": "The description in the first stanza (lines 1–7) helps establish a central idea of the poem by",
+    "choices": [
+      {
+        "id": "E",
+        "text": "comparing the length of time the mountains have existed with the length of time the city\nhas existed."
+      },
+      {
+        "id": "F",
+        "text": "contrasting the grandeur of the mountains with the structures in the city below them."
+      },
+      {
+        "id": "G",
+        "text": "implying that the mountains are a source of inspiration to the people in the city below."
+      },
+      {
+        "id": "H",
+        "text": "suggesting that the mountains are larger than the people in the city realize."
+      }
+    ]
+  },
+  {
+    "number": 39,
+    "page": 28,
+    "box": [
+      48.9397,
+      65.12737500000003,
+      580,
+      295.12879499999997
+    ],
+    "prompt": "Read line 1 and line 15 from the poem.\nHigher and still more high,\nVaster and still more vast,\nThe parallel structure of the two lines",
+    "choices": [
+      {
+        "id": "A",
+        "text": "emphasizes how the sense of wonder the speaker has at the beginning of the poem changes to a\nfear of the mountains."
+      },
+      {
+        "id": "B",
+        "text": "reinforces the sense of awe the speaker experiences when considering the magnificence of the\nexpansive mountains."
+      },
+      {
+        "id": "C",
+        "text": "reveals that the mountains are continually expanding both in height and land mass."
+      },
+      {
+        "id": "D",
+        "text": "stresses a contrast between the height of the mountains and the area of land the\nmountains cover."
+      }
+    ]
+  },
+  {
+    "number": 40,
+    "page": 28,
+    "box": [
+      48.9397,
+      296.12879499999997,
+      580,
+      461.93096499999996
+    ],
+    "prompt": "Read line 5 from the poem.\nPillars of the sky at rest\nThe line helps develop the theme of the poem by suggesting that the mountains",
+    "choices": [
+      {
+        "id": "E",
+        "text": "serve a noble and supportive purpose in the world."
+      },
+      {
+        "id": "F",
+        "text": "attract the clouds with their strength and permanence."
+      },
+      {
+        "id": "G",
+        "text": "remain untamed through the ages."
+      },
+      {
+        "id": "H",
+        "text": "provide protection for the people."
+      }
+    ]
+  },
+  {
+    "number": 41,
+    "page": 28,
+    "box": [
+      48.9397,
+      462.93096499999996,
+      580,
+      725
+    ],
+    "prompt": "How does isolating the word “Uprise” in line 7 affect the meaning of the poem?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "It creates a contrast between the great plateau and the city buildings."
+      },
+      {
+        "id": "B",
+        "text": "It reveals the similarity between the tall buildings in the city and the tall mountains on\nthe horizon."
+      },
+      {
+        "id": "C",
+        "text": "It creates a vision of the region before people developed the land."
+      },
+      {
+        "id": "D",
+        "text": "It emphasizes that the mountains dominate the landscape."
+      }
+    ]
+  },
+  {
+    "number": 42,
+    "page": 29,
+    "box": [
+      48.9271,
+      65.08647499999995,
+      580,
+      192.36767499999996
+    ],
+    "prompt": "How does the poet develop the speaker’s point of view in the second stanza (lines 8–14)?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "by describing images of the mountains’ awe-inspiring size and strength"
+      },
+      {
+        "id": "F",
+        "text": "by illustrating the differences among the various ways humans can impact the\nnatural environment"
+      },
+      {
+        "id": "G",
+        "text": "by criticizing society for taking careless, destructive courses of action against nature"
+      },
+      {
+        "id": "H",
+        "text": "by demonstrating how the mountains and the people are able to benefit from each other"
+      }
+    ]
+  },
+  {
+    "number": 43,
+    "page": 29,
+    "box": [
+      48.9271,
+      193.36767499999996,
+      580,
+      321.647365
+    ],
+    "prompt": "Which line from the poem best supports the idea that people have forfeited priceless natural beauty\nin order to make a profit?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "“Above the dingy city-roofs” (line 3)"
+      },
+      {
+        "id": "B",
+        "text": "“The world makes war on them,” (line 10)"
+      },
+      {
+        "id": "C",
+        "text": "“Tunnels their granite cliffs,” (line 11)"
+      },
+      {
+        "id": "D",
+        "text": "“Plasters their cliffs with soap-advertisements,” (line 13)"
+      }
+    ]
+  },
+  {
+    "number": 44,
+    "page": 29,
+    "box": [
+      48.9271,
+      322.647365,
+      580,
+      450.927065
+    ],
+    "prompt": "Which detail from the poem reflects the speaker’s view that people often fail to appreciate what\nis familiar?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "“The mountains from the great plateau” (line 6)"
+      },
+      {
+        "id": "F",
+        "text": "“They have been here now for too long a time.” (line 9)"
+      },
+      {
+        "id": "G",
+        "text": "“Splits down their shining sides,” (line 12)"
+      },
+      {
+        "id": "H",
+        "text": "“To which the future is as was the past,” (line 18)"
+      }
+    ]
+  },
+  {
+    "number": 45,
+    "page": 29,
+    "box": [
+      48.9271,
+      451.927065,
+      580,
+      725
+    ],
+    "prompt": "How do the details in the third stanza (lines 15–26) contribute to the development of the theme of\nthe poem?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "by reflecting nature’s capacity to resist change"
+      },
+      {
+        "id": "B",
+        "text": "by showing that nature is capable of influencing human will"
+      },
+      {
+        "id": "C",
+        "text": "by exposing how a lack of awareness leads to nature’s ruin"
+      },
+      {
+        "id": "D",
+        "text": "by explaining why people must respect nature"
+      }
+    ]
+  },
+  {
+    "number": 46,
+    "page": 30,
+    "box": [
+      48.9274,
+      65.08647499999995,
+      580,
+      268.369815
+    ],
+    "prompt": "Read lines 21–22 from the poem.\nBarrier broken down by those who do not need\nThe joy of time-resisting storm-worn stone,\nHow do the lines help convey the speaker’s point of view?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "They suggest that the speaker wants to remove the obstacles that prevent others from\nexperiencing the wonders of nature."
+      },
+      {
+        "id": "F",
+        "text": "They reveal the speaker’s opinion that some people are too busy to appreciate natural beauty."
+      },
+      {
+        "id": "G",
+        "text": "They suggest the speaker’s dismay that people destroy the natural landscape without\nunderstanding the ramifications of their actions."
+      },
+      {
+        "id": "H",
+        "text": "They explain that the speaker is confident that nature will never be fully destroyed by people."
+      }
+    ]
+  },
+  {
+    "number": 47,
+    "page": 30,
+    "box": [
+      48.9274,
+      269.369815,
+      580,
+      725
+    ],
+    "prompt": "Read lines 23–26 from the poem.\nThe mountains swing along\nThe south horizon of the sky;\nWelcoming with wide floors of blue-green ice\nThe mists that dance and drive before the sun.\nThe personification in these concluding lines of the poem suggests that the mountains are",
+    "choices": [
+      {
+        "id": "A",
+        "text": "gracious hosts who are untroubled by the actions of people."
+      },
+      {
+        "id": "B",
+        "text": "unaware of their coming destruction."
+      },
+      {
+        "id": "C",
+        "text": "lively entertainers who are not bothered by the everyday concerns of people."
+      },
+      {
+        "id": "D",
+        "text": "too proud to reveal their pain."
+      }
+    ]
+  },
+  {
+    "number": 48,
+    "page": 34,
+    "box": [
+      48.9546,
+      65.17714999999998,
+      580,
+      272.89874
+    ],
+    "prompt": "Which statement describes how the author’s use of problem-solution in paragraph 2 contributes to\nthe development of ideas in the passage?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Morse’s discussion on a ship about Faraday’s electromagnet reminded him of the Yale College\nlectures on electricity, which he had enjoyed but had not fully understood, inspiring him to learn\nmore about electricity from his colleague Gale."
+      },
+      {
+        "id": "F",
+        "text": "Morse’s discouragement over his lack of knowledge of electricity prompted him to experiment\nwith batteries, magnets, and wires, which led to the development of a new long-distance\ncommunication system."
+      },
+      {
+        "id": "G",
+        "text": "Morse’s difficulty in understanding how Faraday’s electromagnet worked was frustrating, and it\npushed him to create a system for sending signals over wires."
+      },
+      {
+        "id": "H",
+        "text": "Morse’s longtime fascination was not enough to make up for his lack of knowledge about\nelectricity, so he eventually sought help from Gale."
+      }
+    ]
+  },
+  {
+    "number": 49,
+    "page": 34,
+    "box": [
+      48.9546,
+      273.89874,
+      580,
+      429.25227
+    ],
+    "prompt": "Which statement describes how the author’s use of sequencing in paragraph 3 contributes to the\noverall structure of the passage?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "It shows that several people were simultaneously attempting to create an electric telegraph."
+      },
+      {
+        "id": "B",
+        "text": "It shows how the invention of the electric telegraph depended on information and techniques\ndiscovered by others."
+      },
+      {
+        "id": "C",
+        "text": "It shows that multiple means of long-distance communication were being used at the same time."
+      },
+      {
+        "id": "D",
+        "text": "It shows how quickly long-distance communication changed from visual signals to\nelectrical signals."
+      }
+    ]
+  },
+  {
+    "number": 50,
+    "page": 34,
+    "box": [
+      48.9546,
+      430.25227,
+      580,
+      725
+    ],
+    "prompt": "Read this sentence from paragraph 7.\nThe desperate Morse gave the go-ahead, and the line was completed in time for the\ndramatic and spectacularly successful link between the Supreme Court chamber of\nthe Capitol building and the railroad station in Baltimore.\nThe words “dramatic” and “spectacularly” in the sentence convey a",
+    "choices": [
+      {
+        "id": "E",
+        "text": "sense of relief and fulfillment that the line was finished."
+      },
+      {
+        "id": "F",
+        "text": "sense of wonder and of celebration that the telegraph line was completed on time."
+      },
+      {
+        "id": "G",
+        "text": "feeling of excitement about the future possibilities of the telegraph."
+      },
+      {
+        "id": "H",
+        "text": "feeling of confidence about being able to continue the work."
+      }
+    ]
+  },
+  {
+    "number": 51,
+    "page": 35,
+    "box": [
+      48.9517,
+      65.16814999999997,
+      580,
+      233.49566000000004
+    ],
+    "prompt": "Which excerpt from the passage supports the idea that Morse was aware of his limitations?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "“After sporadic attempts to work with batteries, magnets, and wires, he finally turned for help to\na colleague.” (paragraph 2)"
+      },
+      {
+        "id": "B",
+        "text": "“Gale’s help and his knowledge of this article proved crucial to Morse’s telegraph system.”\n(paragraph 3)"
+      },
+      {
+        "id": "C",
+        "text": "“Henry’s experiments, Gale’s assistance, and, soon after, hiring the young technician Alfred Vail\nwere keys to Morse’s success.” (paragraph 3)"
+      },
+      {
+        "id": "D",
+        "text": "“Morse had hired the ingenious construction engineer Ezra Cornell to lay the pipe carrying the\nwire.” (paragraph 7)"
+      }
+    ]
+  },
+  {
+    "number": 52,
+    "page": 35,
+    "box": [
+      48.9517,
+      234.49566000000004,
+      580,
+      389.74271
+    ],
+    "prompt": "The details of the section “The Growth of an Idea” convey a central idea of the passage by\nsuggesting that",
+    "choices": [
+      {
+        "id": "E",
+        "text": "the collaborative efforts of colleagues resulted in successful communication over a wire."
+      },
+      {
+        "id": "F",
+        "text": "a great deal of interest and work was devoted to understanding how to use electricity to\nsend signals."
+      },
+      {
+        "id": "G",
+        "text": "Faraday’s invention of the electromagnet inspired the invention of the telegraph."
+      },
+      {
+        "id": "H",
+        "text": "colleges like Yale played a great role in making new discoveries about electricity and\nits applications."
+      }
+    ]
+  },
+  {
+    "number": 53,
+    "page": 35,
+    "box": [
+      48.9517,
+      390.74271,
+      580,
+      725
+    ],
+    "prompt": "How does the graph support the ideas in paragraph 8?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "It indicates how welcome the improvement of long-distance communication was in the\nUnited States."
+      },
+      {
+        "id": "B",
+        "text": "It provides evidence of the dramatic increase in the number of telegraph messages as Morse’s\nsystem expanded across the United States."
+      },
+      {
+        "id": "C",
+        "text": "It reveals that by the twentieth century millions of people had used the telegraph despite earlier\nhesitations about the system."
+      },
+      {
+        "id": "D",
+        "text": "It shows how improvements that allowed Morse code to be read in real time made relaying\ntelegraph messages faster and increased the system’s usage."
+      }
+    ]
+  },
+  {
+    "number": 54,
+    "page": 36,
+    "box": [
+      48.9314,
+      65.09960000000001,
+      580,
+      258.58092999999997
+    ],
+    "prompt": "Which sentence is the best summary of how Morse obtained the funding necessary to build his\ntelegraph system?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Morse applied for a federal grant that was delayed until 1843, so he spent time traveling in\nEurope, where he concentrated on obtaining a patent for his system."
+      },
+      {
+        "id": "F",
+        "text": "Morse applied for a government grant that required both houses of Congress and the president to\npass a bill awarding him $30,000 for his telegraph project."
+      },
+      {
+        "id": "G",
+        "text": "Morse applied for a government appropriation and conducted telegraph demonstrations to show\nthat his system could work, and after a delay caused by a financial depression, Congress\napproved the $30,000 appropriation in 1843."
+      },
+      {
+        "id": "H",
+        "text": "Working with Gale and Vail allowed Morse to find flaws in Henry’s work and to develop his own\nideas before applying for the federal government appropriation."
+      }
+    ]
+  },
+  {
+    "number": 55,
+    "page": 36,
+    "box": [
+      48.9314,
+      259.58092999999997,
+      580,
+      414.01464
+    ],
+    "prompt": "How does the map provide additional support for a central idea of the passage?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "by demonstrating that Morse’s telegraph system greatly exceeded the limitations of previous\nlong-distance communication systems"
+      },
+      {
+        "id": "B",
+        "text": "by indicating that Morse was lacking foresight by seeking a patent only in North America"
+      },
+      {
+        "id": "C",
+        "text": "by proving that Gale’s advice helped Morse extend the telegraph’s range much farther than first\nthought possible"
+      },
+      {
+        "id": "D",
+        "text": "by providing a graphic that shows the surprisingly immense influence Morse’s telegraph had\nacross the world"
+      }
+    ]
+  },
+  {
+    "number": 56,
+    "page": 36,
+    "box": [
+      48.9314,
+      415.01464,
+      580,
+      582.46072
+    ],
+    "prompt": "The idea that, in the mid-nineteenth century, the United States was mostly unaware of the\npossibilities of electricity is illustrated in the passage mainly through the",
+    "choices": [
+      {
+        "id": "E",
+        "text": "description of the government’s initial desire to expand a semaphore signaling system that used\neither flags or lights along the Atlantic Coast."
+      },
+      {
+        "id": "F",
+        "text": "delay by the House of Representatives to pass the bill funding Morse’s telegraph line six years\nafter he first applied for the appropriation."
+      },
+      {
+        "id": "G",
+        "text": "discussions of the newly invented electromagnet that sparked the idea of sending codes\nthrough wires."
+      },
+      {
+        "id": "H",
+        "text": "description of how an electric circuit could be closed to ring a bell at a distance."
+      }
+    ]
+  },
+  {
+    "number": 57,
+    "page": 36,
+    "box": [
+      48.9314,
+      583.46072,
+      580,
+      725
+    ],
+    "prompt": "With which statement would the author most likely agree?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Morse’s telegraph was successful because the wires were strung aboveground rather than\nunderground as originally planned."
+      },
+      {
+        "id": "B",
+        "text": "Understanding the importance of Morse’s telegraph requires detailed knowledge of\nelectrical systems."
+      },
+      {
+        "id": "C",
+        "text": "The implementation of Morse’s telegraph system was overly influenced by economic factors."
+      },
+      {
+        "id": "D",
+        "text": "Morse’s invention of the telegraph made a great stride toward better connecting people across the\nUnited States and across the world."
+      }
+    ]
+  },
+  {
+    "number": 58,
+    "page": 38,
+    "box": [
+      48.9262,
+      191.56517500000007,
+      303,
+      318.2214550000001
+    ],
+    "prompt": "How many 5-digit numbers can be created\nusing the digits 2, 3, 5, 7, and 8 without\nrepeating any digits within that 5-digit\nnumber?\n147−x",
+    "choices": []
+  },
+  {
+    "number": 59,
+    "page": 38,
+    "box": [
+      48.9262,
+      319.2214550000001,
+      303,
+      458.4994750000001
+    ],
+    "prompt": "1 47−x = 12\n12\nWhat is the value of x in the equation shown\nabove?\n(−6) − (−5) + 4.2 − 3 − 9.6 =",
+    "choices": []
+  },
+  {
+    "number": 60,
+    "page": 38,
+    "box": [
+      48.9262,
+      459.4994750000001,
+      303,
+      725
+    ],
+    "prompt": "(−6) − (−5) + 4.2 − 3 − 9.6 =",
+    "choices": []
+  },
+  {
+    "number": 61,
+    "page": 38,
+    "box": [
+      318.6848,
+      191.56497500000012,
+      580,
+      318.2212550000001
+    ],
+    "prompt": "Tyler has completed 60 pages in his French\nworkbook. This is 20% of the total number of\npages in the workbook. How many pages are\nin the workbook?",
+    "choices": []
+  },
+  {
+    "number": 62,
+    "page": 38,
+    "box": [
+      318.6848,
+      319.2212550000001,
+      580,
+      725
+    ],
+    "prompt": "30°\ny° 60°\nP\n25°\nFour straight lines intersect at point P as\nshown above. What is the value of y ?",
+    "choices": []
+  },
+  {
+    "number": 63,
+    "page": 39,
+    "box": [
+      48.921,
+      185.92477500000007,
+      303,
+      303.5134550000001
+    ],
+    "prompt": "If x = 9 and y = −7 , what is the value of\nx(x − 2y) ?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "18"
+      },
+      {
+        "id": "B",
+        "text": "45"
+      },
+      {
+        "id": "C",
+        "text": "144"
+      },
+      {
+        "id": "D",
+        "text": "207"
+      }
+    ]
+  },
+  {
+    "number": 64,
+    "page": 39,
+    "box": [
+      48.91963,
+      304.5134550000001,
+      303,
+      725
+    ],
+    "prompt": "Q R\n50°\n70°\nP T S\nIn the figure above, PQRS is a parallelogram.\nThe measure of ∠PQT is 50°, and the\nmeasure of ∠PTQ is 70°. What is the\nmeasure of ∠QRS?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "60°"
+      },
+      {
+        "id": "F",
+        "text": "70°"
+      },
+      {
+        "id": "G",
+        "text": "80°"
+      },
+      {
+        "id": "H",
+        "text": "120°"
+      }
+    ]
+  },
+  {
+    "number": 65,
+    "page": 39,
+    "box": [
+      318.48109,
+      185.92002500000012,
+      580,
+      360.4217650000001
+    ],
+    "prompt": "M = 3N = P = Q + 5 = R > 0\n4 7\nBased on the statement above, which variable\nhas the greatest value?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "M"
+      },
+      {
+        "id": "B",
+        "text": "N"
+      },
+      {
+        "id": "C",
+        "text": "P"
+      },
+      {
+        "id": "D",
+        "text": "R"
+      }
+    ]
+  },
+  {
+    "number": 66,
+    "page": 39,
+    "box": [
+      318.48303,
+      361.4217650000001,
+      580,
+      513.954185
+    ],
+    "prompt": "A roofing contractor uses shingles at a rate of\n3 bundles for every 96 square feet of roof\ncovered. At this rate, how many bundles of\nshingles will he need in order to cover a roof\nthat is 416 square feet?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "5"
+      },
+      {
+        "id": "F",
+        "text": "12"
+      },
+      {
+        "id": "G",
+        "text": "13"
+      },
+      {
+        "id": "H",
+        "text": "14"
+      }
+    ]
+  },
+  {
+    "number": 67,
+    "page": 39,
+    "box": [
+      318.48303,
+      514.954185,
+      580,
+      725
+    ],
+    "prompt": "To make party invitations, Macie could buy a\npackage of paper for $10.50, or she could buy\nx individual sheets of the same paper for\n$0.15 each. What is the largest value of x that\nwould make buying the individual sheets less\nexpensive than buying the package?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "60"
+      },
+      {
+        "id": "B",
+        "text": "65"
+      },
+      {
+        "id": "C",
+        "text": "69"
+      },
+      {
+        "id": "D",
+        "text": "70"
+      }
+    ]
+  },
+  {
+    "number": 68,
+    "page": 40,
+    "box": [
+      47.73630000000006,
+      77.43347500000004,
+      303,
+      264.527065
+    ],
+    "prompt": "At 1:00 p.m. one day, the temperature was\n8 degrees above zero. During the rest of the\nday, the temperature fell 3 degrees per hour.\nWhat was the temperature at 7:00 p.m. that\nday?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "−13°"
+      },
+      {
+        "id": "F",
+        "text": "−10°"
+      },
+      {
+        "id": "G",
+        "text": "−7°"
+      },
+      {
+        "id": "H",
+        "text": "5°"
+      }
+    ]
+  },
+  {
+    "number": 69,
+    "page": 40,
+    "box": [
+      47.73630000000006,
+      265.527065,
+      303,
+      725
+    ],
+    "prompt": "A bag contains 75 marbles that are red, blue,\nor green. The ratio of red to blue marbles is\n15:7, and the ratio of blue to green marbles is\n7:3. If 2 blue marbles are removed and\nreplaced with 2 green marbles, what will be\nthe new ratio of red to green marbles?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3:1"
+      },
+      {
+        "id": "B",
+        "text": "5:1"
+      },
+      {
+        "id": "C",
+        "text": "15:3"
+      },
+      {
+        "id": "D",
+        "text": "45:11"
+      }
+    ]
+  },
+  {
+    "number": 70,
+    "page": 40,
+    "box": [
+      318.1872000000001,
+      77.43347500000004,
+      580,
+      428.42807500000015
+    ],
+    "prompt": "DESSERT CHOICES\nDessert Number of Times Ordered\nCookies 42\nPie 23\nCake 47\nIce Cream 48\nThe table above shows the number of times\nthat different desserts were ordered at a\nrestaurant. Based on this information, what is\nthe probability of a customer ordering ice\ncream as a dessert?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "25%"
+      },
+      {
+        "id": "F",
+        "text": "30%"
+      },
+      {
+        "id": "G",
+        "text": "40%"
+      },
+      {
+        "id": "H",
+        "text": "48%"
+      }
+    ]
+  },
+  {
+    "number": 71,
+    "page": 40,
+    "box": [
+      318.18840000000006,
+      429.42807500000015,
+      580,
+      546.4047650000001
+    ],
+    "prompt": "What is the least common multiple of 24, 6,\nand 18?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "36"
+      },
+      {
+        "id": "B",
+        "text": "48"
+      },
+      {
+        "id": "C",
+        "text": "72"
+      },
+      {
+        "id": "D",
+        "text": "144"
+      }
+    ]
+  },
+  {
+    "number": 72,
+    "page": 40,
+    "box": [
+      318.18840000000006,
+      547.4047650000001,
+      580,
+      725
+    ],
+    "prompt": "One day, the Early Bird Restaurant used\n15 dozen eggs for 200 breakfast customers. At\nthis rate, approximately how many dozen eggs\nare needed for 300 breakfast customers?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "20"
+      },
+      {
+        "id": "F",
+        "text": "23"
+      },
+      {
+        "id": "G",
+        "text": "25"
+      },
+      {
+        "id": "H",
+        "text": "30"
+      }
+    ]
+  },
+  {
+    "number": 73,
+    "page": 41,
+    "box": [
+      48.92840000000006,
+      77.14954999999998,
+      303,
+      298.61516
+    ],
+    "prompt": "A cooler contains three types of beverages:\n5 bottles of apple juice, 3 bottles of grape juice,\nand 6 bottles of orange juice. What is the\nprobability that a bottle chosen at random\nfrom this cooler is not apple juice?\n1",
+    "choices": [
+      {
+        "id": "A",
+        "text": "9\n5"
+      },
+      {
+        "id": "B",
+        "text": "14\n9"
+      },
+      {
+        "id": "C",
+        "text": "14\n2"
+      },
+      {
+        "id": "D",
+        "text": "3"
+      }
+    ]
+  },
+  {
+    "number": 74,
+    "page": 41,
+    "box": [
+      48.92840000000006,
+      299.61516,
+      303,
+      725
+    ],
+    "prompt": "A large circular dinner plate has a radius of\n20 centimeters. A smaller circular plate with a\ncircumference of 20(cid:31) centimeters is placed in\nthe center of the larger dinner plate. What is\nthe area of the part of the larger dinner plate\nthat is not covered by the smaller plate?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "20(cid:31) sq cm"
+      },
+      {
+        "id": "F",
+        "text": "100(cid:31) sq cm"
+      },
+      {
+        "id": "G",
+        "text": "200(cid:31) sq cm"
+      },
+      {
+        "id": "H",
+        "text": "300(cid:31) sq cm"
+      }
+    ]
+  },
+  {
+    "number": 75,
+    "page": 41,
+    "box": [
+      319.02020000000005,
+      77.14954999999998,
+      580,
+      515.53845
+    ],
+    "prompt": "PRICES FOR NEWSPAPER\nADVERTISING\nPage Space Price\n1\npage $200\n4\n1\npage $350\n2\nfull page $600\nThe table above shows prices for newspaper\n1\nadvertising. A store purchased pages,\n4\n1\npages, and full pages of page space in equal\n2\nnumbers for a total of $11,500. What is the\ntotal amount of page space the store\npurchased?\n3",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1 pages\n4"
+      },
+      {
+        "id": "B",
+        "text": "10 pages\n1"
+      },
+      {
+        "id": "C",
+        "text": "16 pages\n2\n1"
+      },
+      {
+        "id": "D",
+        "text": "17 pages\n2"
+      }
+    ]
+  },
+  {
+    "number": 76,
+    "page": 41,
+    "box": [
+      319.02010000000007,
+      516.53845,
+      580,
+      725
+    ],
+    "prompt": "How many positive odd numbers satisfy the\ninequality 3x + 8 ≤ 92?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "13"
+      },
+      {
+        "id": "F",
+        "text": "14"
+      },
+      {
+        "id": "G",
+        "text": "17"
+      },
+      {
+        "id": "H",
+        "text": "28"
+      }
+    ]
+  },
+  {
+    "number": 77,
+    "page": 42,
+    "box": [
+      48.922,
+      77.107125,
+      303,
+      201.71742500000005
+    ],
+    "prompt": "If 36 = 4x , what is the value of x when\ny\ny = 3 ?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3"
+      },
+      {
+        "id": "B",
+        "text": "4"
+      },
+      {
+        "id": "C",
+        "text": "9"
+      },
+      {
+        "id": "D",
+        "text": "12"
+      }
+    ]
+  },
+  {
+    "number": 78,
+    "page": 42,
+    "box": [
+      48.92711,
+      202.71742500000005,
+      303,
+      367.266725
+    ],
+    "prompt": "Points X , Y , and Z are on a straight line, and\n3\nY is between X and Z. Length YZ = XY ,\n5\nand length XY = 20 centimeters. What is the\nlength of XZ ?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "12 cm"
+      },
+      {
+        "id": "F",
+        "text": "24 cm"
+      },
+      {
+        "id": "G",
+        "text": "30 cm"
+      },
+      {
+        "id": "H",
+        "text": "32 cm\n3"
+      }
+    ]
+  },
+  {
+    "number": 79,
+    "page": 42,
+    "box": [
+      48.922,
+      368.266725,
+      303,
+      725
+    ],
+    "prompt": "Bryana bought 1 3 yards of cloth at $8.00 per\n4\nyard. If there was an 8% sales tax, what was\nthe total cost of the cloth?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "$12.96"
+      },
+      {
+        "id": "B",
+        "text": "$14.08"
+      },
+      {
+        "id": "C",
+        "text": "$15.12"
+      },
+      {
+        "id": "D",
+        "text": "$16.08"
+      }
+    ]
+  },
+  {
+    "number": 80,
+    "page": 42,
+    "box": [
+      318.56651,
+      77.12000499999999,
+      580,
+      382.188785
+    ],
+    "prompt": "M N\n1\n1\n3\n5\nOn the number line above, MN = 5 . What\n6\nis the position of point M?\n1",
+    "choices": [
+      {
+        "id": "E",
+        "text": "−7\n6\n1"
+      },
+      {
+        "id": "F",
+        "text": "−4\n2\n1"
+      },
+      {
+        "id": "G",
+        "text": "4\n2\n1"
+      },
+      {
+        "id": "H",
+        "text": "7\n6"
+      }
+    ]
+  },
+  {
+    "number": 81,
+    "page": 42,
+    "box": [
+      318.56393,
+      383.188785,
+      580,
+      547.744985
+    ],
+    "prompt": "A United States presidential coin is made\nfrom an alloy of four metals—copper, zinc,\nmanganese, and nickel—with weights in the\nratio of 177:12:7:4, respectively. The coin\nweighs a total of 8 grams. What is the weight\nof the zinc in this coin?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "0.28 g"
+      },
+      {
+        "id": "B",
+        "text": "0.48 g"
+      },
+      {
+        "id": "C",
+        "text": "0.96 g"
+      },
+      {
+        "id": "D",
+        "text": "48 g"
+      }
+    ]
+  },
+  {
+    "number": 82,
+    "page": 42,
+    "box": [
+      318.56393,
+      548.744985,
+      580,
+      725
+    ],
+    "prompt": "Jack scored a mean of 15 points per game in\nhis first 3 basketball games. In his 4th game,\nhe scored 27 points. What is his mean score for\nthe first 4 games?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "15"
+      },
+      {
+        "id": "F",
+        "text": "17"
+      },
+      {
+        "id": "G",
+        "text": "18"
+      },
+      {
+        "id": "H",
+        "text": "21"
+      }
+    ]
+  },
+  {
+    "number": 83,
+    "page": 43,
+    "box": [
+      48.94830000000006,
+      77.276925,
+      303,
+      263.05941500000006
+    ],
+    "prompt": "A cylindrical oil drum can hold 4,320 liters\nwhen it is completely full. Currently, the drum\n1\nis full of oil. How many kiloliters of oil\n3\nneed to be added in order to fill the drum\ncompletely?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1.44"
+      },
+      {
+        "id": "B",
+        "text": "2.88"
+      },
+      {
+        "id": "C",
+        "text": "4.32"
+      },
+      {
+        "id": "D",
+        "text": "14.10"
+      }
+    ]
+  },
+  {
+    "number": 84,
+    "page": 43,
+    "box": [
+      48.949430000000056,
+      264.05941500000006,
+      303,
+      393.54152500000004
+    ],
+    "prompt": "Nicole’s age now is three times Carmen’s age.\nIf Carmen will be 17 in two years, how old was\nNicole 5 years ago?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "38 yr"
+      },
+      {
+        "id": "F",
+        "text": "40 yr"
+      },
+      {
+        "id": "G",
+        "text": "45 yr"
+      },
+      {
+        "id": "H",
+        "text": "50 yr"
+      }
+    ]
+  },
+  {
+    "number": 85,
+    "page": 43,
+    "box": [
+      48.949430000000056,
+      394.54152500000004,
+      303,
+      725
+    ],
+    "prompt": "A chemical decays in such a way that the\namount left at the end of each week is 20%\nless than the amount at the beginning of that\nsame week. What percent of the original\namount is left after two weeks?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "40%"
+      },
+      {
+        "id": "B",
+        "text": "60%"
+      },
+      {
+        "id": "C",
+        "text": "64%"
+      },
+      {
+        "id": "D",
+        "text": "80%"
+      }
+    ]
+  },
+  {
+    "number": 86,
+    "page": 43,
+    "box": [
+      320.41013000000004,
+      77.28440499999999,
+      580,
+      229.879325
+    ],
+    "prompt": "If w − 1 is an odd integer, which one of the\nfollowing must be an even integer?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "w + 1"
+      },
+      {
+        "id": "F",
+        "text": "2w − 1"
+      },
+      {
+        "id": "G",
+        "text": "2w − 2"
+      },
+      {
+        "id": "H",
+        "text": "2w + 1"
+      }
+    ]
+  },
+  {
+    "number": 87,
+    "page": 43,
+    "box": [
+      320.40850000000006,
+      230.879325,
+      580,
+      420.686035
+    ],
+    "prompt": "Three students stand at the starting line of a\nrunning track and begin running laps at the\nsame time. Ann completes 1 lap every\n2 minutes, Jack completes 1 lap every\n3 minutes, and Lee completes 1 lap every\n4 minutes. How many laps does Ann complete\nbefore all three runners are once again at the\nstarting line at the same time?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4"
+      },
+      {
+        "id": "B",
+        "text": "6"
+      },
+      {
+        "id": "C",
+        "text": "12"
+      },
+      {
+        "id": "D",
+        "text": "20"
+      }
+    ]
+  },
+  {
+    "number": 88,
+    "page": 43,
+    "box": [
+      320.40850000000006,
+      421.686035,
+      580,
+      725
+    ],
+    "prompt": "Simplify this expression:\n4(7 − 3x)−(5 − x)",
+    "choices": [
+      {
+        "id": "E",
+        "text": "23 − 4x"
+      },
+      {
+        "id": "F",
+        "text": "23 −11x"
+      },
+      {
+        "id": "G",
+        "text": "28 − 4x"
+      },
+      {
+        "id": "H",
+        "text": "28 −12x"
+      }
+    ]
+  },
+  {
+    "number": 89,
+    "page": 44,
+    "box": [
+      47.75100000000011,
+      77.27702499999998,
+      303,
+      482.5195250000002
+    ],
+    "prompt": "PET SURVEY\nNumber of Pets Number of Students\n0 12\n1 16\n2 7\n3 or more 5\nAmy surveyed students at her school about\nthe number of pets they have. What is the\nprobability that a student who participated in\nthe survey has at least 2 pets?\n7",
+    "choices": [
+      {
+        "id": "A",
+        "text": "40\n1"
+      },
+      {
+        "id": "B",
+        "text": "12\n1"
+      },
+      {
+        "id": "C",
+        "text": "8\n3"
+      },
+      {
+        "id": "D",
+        "text": "10"
+      }
+    ]
+  },
+  {
+    "number": 90,
+    "page": 44,
+    "box": [
+      47.75100000000011,
+      483.5195250000002,
+      303,
+      725
+    ],
+    "prompt": "A large container is partially filled with\nn liters of water. Ito adds 10 liters of water to\nthe container, making it 60% full. If Ignacio\nadds 6 more liters of water, the container will\nbe 75% full. What is the value of n ?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "14"
+      },
+      {
+        "id": "F",
+        "text": "15"
+      },
+      {
+        "id": "G",
+        "text": "26"
+      },
+      {
+        "id": "H",
+        "text": "30"
+      }
+    ]
+  },
+  {
+    "number": 91,
+    "page": 44,
+    "box": [
+      319.21210000000013,
+      77.27702500000021,
+      580,
+      220.83122500000025
+    ],
+    "prompt": "5 x3 + 3x + 9 + 1\n2\nx\nIf x = 10, what is the value of the expression\nabove?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2,539.01"
+      },
+      {
+        "id": "B",
+        "text": "5,039.01"
+      },
+      {
+        "id": "C",
+        "text": "5,039.1"
+      },
+      {
+        "id": "D",
+        "text": "5,139"
+      }
+    ]
+  },
+  {
+    "number": 92,
+    "page": 44,
+    "box": [
+      319.21210000000013,
+      221.83122500000025,
+      580,
+      577.3593250000001
+    ],
+    "prompt": "N S P\nR 6 cm\nM T Q\nR, S, and T are midpoints of the sides of\nsquare MNPQ, as shown above. What is the\nsum of the areas of the shaded triangles?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "9 sq cm"
+      },
+      {
+        "id": "F",
+        "text": "12 sq cm"
+      },
+      {
+        "id": "G",
+        "text": "18 sq cm"
+      },
+      {
+        "id": "H",
+        "text": "36 sq cm"
+      }
+    ]
+  },
+  {
+    "number": 93,
+    "page": 44,
+    "box": [
+      319.2121,
+      578.3593250000001,
+      580,
+      725
+    ],
+    "prompt": "The Chens spend $5 of every $8 they earn on\nplanned expenses. If the family earns $29,600\nin one year, how much will they spend on\nplanned expenses that year?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "$1,850"
+      },
+      {
+        "id": "B",
+        "text": "$3,700"
+      },
+      {
+        "id": "C",
+        "text": "$5,920"
+      },
+      {
+        "id": "D",
+        "text": "$18,500"
+      }
+    ]
+  },
+  {
+    "number": 94,
+    "page": 45,
+    "box": [
+      48.915400000000055,
+      75.85104999999987,
+      303,
+      251.99459999999988
+    ],
+    "prompt": "A pizza shop offers a choice of 3 sizes (small,\nmedium, and large) and 7 different toppings.\nDifferent pizzas can be created by changing\nthe size and/or the choice of toppings. If Cody\nwants to order a pizza with exactly 2 different\ntoppings, how many different pizzas can he\ncreate?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "6"
+      },
+      {
+        "id": "F",
+        "text": "21"
+      },
+      {
+        "id": "G",
+        "text": "63"
+      },
+      {
+        "id": "H",
+        "text": "126"
+      }
+    ]
+  },
+  {
+    "number": 95,
+    "page": 45,
+    "box": [
+      48.915400000000055,
+      252.99459999999988,
+      303,
+      725
+    ],
+    "prompt": "SURVEY OF CATS PER FAMILY\nNumber of Cats Number of Families\n0 15\n1 42\n2 35\n3 or more 8\nThe table above shows the number of cats per\nfamily in 100 households in the Blaine\nneighborhood. By what percentage is the\nnumber of families with 1 cat greater than the\nnumber of families with 2 cats?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "7%"
+      },
+      {
+        "id": "B",
+        "text": "10%"
+      },
+      {
+        "id": "C",
+        "text": "17%"
+      },
+      {
+        "id": "D",
+        "text": "20%"
+      }
+    ]
+  },
+  {
+    "number": 96,
+    "page": 45,
+    "box": [
+      317.9494000000001,
+      75.85104999999987,
+      580,
+      216.12347999999986
+    ],
+    "prompt": "A wooden box has a square base. The height of\nthis box is 3 times the length of one side of the\nbase. If one side of the base is 3 feet long, what\nis the volume of this box?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "9 cu ft"
+      },
+      {
+        "id": "F",
+        "text": "27 cu ft"
+      },
+      {
+        "id": "G",
+        "text": "36 cu ft"
+      },
+      {
+        "id": "H",
+        "text": "81 cu ft"
+      }
+    ]
+  },
+  {
+    "number": 97,
+    "page": 45,
+    "box": [
+      317.9494000000001,
+      217.12347999999986,
+      580,
+      369.3529499999999
+    ],
+    "prompt": "On a bike trip, Rajiv traveled 65 kilometers in\n5 hours, while Shaina traveled 72 kilometers\nin 4 hours. How much less was Rajiv’s mean\nspeed, in kilometers per hour (kph), than\nShaina’s?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1"
+      },
+      {
+        "id": "B",
+        "text": "5"
+      },
+      {
+        "id": "C",
+        "text": "7"
+      },
+      {
+        "id": "D",
+        "text": "9"
+      }
+    ]
+  },
+  {
+    "number": 98,
+    "page": 45,
+    "box": [
+      317.9494000000001,
+      370.3529499999999,
+      580,
+      513.60736
+    ],
+    "prompt": "Points P, Q, R, and S represent − 3, −1, 0, and 2,\nrespectively, on a number line. How many\nunits is the midpoint of PQ from the midpoint\nof RS ?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "1"
+      },
+      {
+        "id": "F",
+        "text": "2"
+      },
+      {
+        "id": "G",
+        "text": "3"
+      },
+      {
+        "id": "H",
+        "text": "4"
+      }
+    ]
+  },
+  {
+    "number": 99,
+    "page": 45,
+    "box": [
+      317.95195000000007,
+      514.60736,
+      580,
+      725
+    ],
+    "prompt": "There are 1,000 cubic centimeters in 1 liter,\nand 1,000 cubic millimeters in 1 milliliter.\nHow many cubic millimeters are there in\n1,000 cubic centimeters?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1,000"
+      },
+      {
+        "id": "B",
+        "text": "10,000"
+      },
+      {
+        "id": "C",
+        "text": "100,000"
+      },
+      {
+        "id": "D",
+        "text": "1,000,000"
+      }
+    ]
+  },
+  {
+    "number": 100,
+    "page": 46,
+    "box": [
+      48.946400000000054,
+      78.46302500000013,
+      303,
+      725
+    ],
+    "prompt": "1\n+\nx\ny 2\nIn the quarter circle above, what is y in terms\nof x?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "x −1"
+      },
+      {
+        "id": "F",
+        "text": "x + 1\nx+1"
+      },
+      {
+        "id": "G",
+        "text": "2\n(x+1)2"
+      },
+      {
+        "id": "H",
+        "text": "2"
+      }
+    ]
+  },
+  {
+    "number": 101,
+    "page": 46,
+    "box": [
+      320.2560000000001,
+      76.45342500000004,
+      580,
+      365.15742500000016
+    ],
+    "prompt": "M R T\n1 5\n−\n4 8\nThe hash marks on the number line above are\nevenly spaced. What is the coordinate of\npoint R?\n7",
+    "choices": [
+      {
+        "id": "A",
+        "text": "40\n9"
+      },
+      {
+        "id": "B",
+        "text": "40\n11"
+      },
+      {
+        "id": "C",
+        "text": "40\n21"
+      },
+      {
+        "id": "D",
+        "text": "40"
+      }
+    ]
+  },
+  {
+    "number": 102,
+    "page": 46,
+    "box": [
+      320.2560000000001,
+      366.15742500000016,
+      580,
+      725
+    ],
+    "prompt": "Phan chose an Internet service that charges\n$18.00 per month plus $0.024 per minute.\nDeion chose an Internet service that charges\n$30.00 per month for unlimited usage. At the\nend of the month, Phan’s and Deion’s charges\nwere identical. For how many minutes did\nPhan use the Internet service that month?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "50"
+      },
+      {
+        "id": "F",
+        "text": "60"
+      },
+      {
+        "id": "G",
+        "text": "100"
+      },
+      {
+        "id": "H",
+        "text": "500"
+      }
+    ]
+  },
+  {
+    "number": 103,
+    "page": 47,
+    "box": [
+      50.1197,
+      77.07892499999991,
+      303,
+      333.830705
+    ],
+    "prompt": "In a sample of 50 cars at a local dealership,\nthere are 12 red cars and 10 cars with backup\ncameras. Of the 12 red cars, 4 have backup\ncameras. If a car is selected at random from\nthe given sample, what is the probability\nthat both of the following are true: the car is\nnot red and does not have a backup camera?\n3",
+    "choices": [
+      {
+        "id": "A",
+        "text": "5\n16"
+      },
+      {
+        "id": "B",
+        "text": "25\n19"
+      },
+      {
+        "id": "C",
+        "text": "25\n4"
+      },
+      {
+        "id": "D",
+        "text": "5"
+      }
+    ]
+  },
+  {
+    "number": 104,
+    "page": 47,
+    "box": [
+      50.1197,
+      334.830705,
+      303,
+      725
+    ],
+    "prompt": "The decimal 0.06 can be written as the\nx\nfraction . What is the value of x ?\n50",
+    "choices": [
+      {
+        "id": "E",
+        "text": "3"
+      },
+      {
+        "id": "F",
+        "text": "6"
+      },
+      {
+        "id": "G",
+        "text": "12"
+      },
+      {
+        "id": "H",
+        "text": "30"
+      }
+    ]
+  },
+  {
+    "number": 105,
+    "page": 47,
+    "box": [
+      319.4531,
+      77.07892499999991,
+      580,
+      725
+    ],
+    "prompt": "y\n4\nx\nO\nm n\nWhat is the area of the shaded triangle shown\nabove?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "m + n"
+      },
+      {
+        "id": "B",
+        "text": "n − m"
+      },
+      {
+        "id": "C",
+        "text": "2(n − m)"
+      },
+      {
+        "id": "D",
+        "text": "4(n − m)"
+      }
+    ]
+  },
+  {
+    "number": 106,
+    "page": 48,
+    "box": [
+      48.92380000000006,
+      74.70335000000011,
+      303,
+      440.0580000000002
+    ],
+    "prompt": "ANIMAL CARDS\nNumber of Cards Picture on Card\n8 cat\n6 dog\n5 bird\n4 fish\n1 horse\nThe cards in the table above are mixed in a\nbox. Which animal pictured on a card has\nexactly a 1 in 4 chance of being picked at\nrandom from the box?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "cat"
+      },
+      {
+        "id": "F",
+        "text": "dog"
+      },
+      {
+        "id": "G",
+        "text": "fish"
+      },
+      {
+        "id": "H",
+        "text": "horse"
+      }
+    ]
+  },
+  {
+    "number": 107,
+    "page": 48,
+    "box": [
+      48.93262000000004,
+      441.0580000000002,
+      303,
+      725
+    ],
+    "prompt": "Which number line below shows the solution\nset for 2x − 2 ≤ y ≤ 4x + 10 when y = 1?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "–3 –2 –1 0 1 2 3"
+      },
+      {
+        "id": "B",
+        "text": "–3 –2 –1 0 1 2 3"
+      },
+      {
+        "id": "C",
+        "text": "–3 –2 –1 0 1 2 3"
+      },
+      {
+        "id": "D",
+        "text": "–3 –2 –1 0 1 2 3"
+      }
+    ]
+  },
+  {
+    "number": 108,
+    "page": 48,
+    "box": [
+      318.51920000000007,
+      84.31785000000025,
+      580,
+      287.09273000000024
+    ],
+    "prompt": "14 = p\n21 7\nIn the equation above, what is the value of p ?\n2",
+    "choices": [
+      {
+        "id": "E",
+        "text": "3"
+      },
+      {
+        "id": "F",
+        "text": "3\n14"
+      },
+      {
+        "id": "G",
+        "text": "3"
+      },
+      {
+        "id": "H",
+        "text": "14"
+      }
+    ]
+  },
+  {
+    "number": 109,
+    "page": 48,
+    "box": [
+      318.51811000000004,
+      288.09273000000024,
+      580,
+      497.16714000000024
+    ],
+    "prompt": "A ball is selected at random from a box that\ncontains 7 black balls, 14 green balls, and 21\nred balls. What is the probability that the ball\nselected is black?\n1",
+    "choices": [
+      {
+        "id": "A",
+        "text": "6\n1"
+      },
+      {
+        "id": "B",
+        "text": "5\n1"
+      },
+      {
+        "id": "C",
+        "text": "3\n5"
+      },
+      {
+        "id": "D",
+        "text": "6"
+      }
+    ]
+  },
+  {
+    "number": 110,
+    "page": 48,
+    "box": [
+      318.51811000000004,
+      498.16714000000024,
+      580,
+      725
+    ],
+    "prompt": "At North High School, a survey asked two\nquestions, Question A and Question B. For\neach question, students could answer either\n“yes” or “no.” Of the 800 students who\nresponded to the survey, 720 answered “yes” to\nQuestion A, and 640 answered “yes” to\nQuestion B. What is the least possible number\nof these students who could have answered\n“yes” to both questions?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "80"
+      },
+      {
+        "id": "F",
+        "text": "160"
+      },
+      {
+        "id": "G",
+        "text": "560"
+      },
+      {
+        "id": "H",
+        "text": "640"
+      }
+    ]
+  },
+  {
+    "number": 111,
+    "page": 49,
+    "box": [
+      48.92390000000006,
+      75.1205500000001,
+      303,
+      252.75395000000003
+    ],
+    "prompt": "Raoul is at least 3 years older than Vahn.\nWhich of the following inequalities gives the\nrelationship between Raoul’s age ( r ) and\nVahn’s age ( v) ?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "r − v ≥ 3"
+      },
+      {
+        "id": "B",
+        "text": "r − v ≤ 3"
+      },
+      {
+        "id": "C",
+        "text": "3 − v ≤ r"
+      },
+      {
+        "id": "D",
+        "text": "3 − r ≤ v"
+      }
+    ]
+  },
+  {
+    "number": 112,
+    "page": 49,
+    "box": [
+      48.92390000000006,
+      253.75395000000003,
+      303,
+      725
+    ],
+    "prompt": "1 sind = 5.6 ricks\n1 sind = 12.88 dalts\nUsing the conversion above, how many dalts\nare equal to 1 rick?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "0.43"
+      },
+      {
+        "id": "F",
+        "text": "2.30"
+      },
+      {
+        "id": "G",
+        "text": "7.28"
+      },
+      {
+        "id": "H",
+        "text": "18.48"
+      }
+    ]
+  },
+  {
+    "number": 113,
+    "page": 49,
+    "box": [
+      318.70250000000004,
+      75.1205500000001,
+      580,
+      218.77855
+    ],
+    "prompt": "There are now x cans stacked on a shelf that\nholds 36 cans when full. If 4 of these cans\nwere removed, the shelf would be half full.\nWhat is the value of x?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "14"
+      },
+      {
+        "id": "B",
+        "text": "16"
+      },
+      {
+        "id": "C",
+        "text": "18"
+      },
+      {
+        "id": "D",
+        "text": "22"
+      }
+    ]
+  },
+  {
+    "number": 114,
+    "page": 49,
+    "box": [
+      318.7037000000001,
+      219.77855,
+      580,
+      725
+    ],
+    "prompt": "Carlos tossed a paper cup in the air 50 times\nand found that the probability of it landing on\nits side was 72%. If he tosses the cup in the air\n150 more times, what is the total number of\ntimes he can expect the cup to land on its\nside?",
+    "choices": [
+      {
+        "id": "E",
+        "text": "72"
+      },
+      {
+        "id": "F",
+        "text": "108"
+      },
+      {
+        "id": "G",
+        "text": "144"
+      },
+      {
+        "id": "H",
+        "text": "158\nTHIS IS THE END OF THE TEST.\nIF TIME REMAINS, YOU SHOULD CHECK\nYOUR ANSWERS. BE SURE THAT THERE\nARE NO STRAY MARKS, PARTIALLY\nFILLED ANSWER CIRCLES, OR\nINCOMPLETE ERASURES ON YOUR"
+      }
+    ]
+  }
+]

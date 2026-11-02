@@ -16,6 +16,7 @@ export type MathManagementState = {
   revision: string;
   taxonomyTopicRenames?: {category:string;from:string;to:string;toCategory?:string}[];
   teacherLabels?: Record<string, import("../shared/teacherLabels").TeacherLabels>;
+  generatorPlanners?: Record<string, import('../shared/generatorPlanner').GeneratorPlannerState>;
   taxonomy?: MathTaxonomy;
   metadata: Record<string, MathQuestionMetadata & { category?: string; subcategory?: string }>;
   savedViews: { id: string; name: string; filters: MathCatalogFilters }[];

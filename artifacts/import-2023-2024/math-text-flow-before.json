@@ -1,0 +1,1333 @@
+[
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q064",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "64",
+        "pages": [
+          44
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q064-explanation-1.png\" alt=\"Official Form A explanation for question 64; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(E) To solve, add the three given\n\nfractions:\n\n1 \\(\\frac{3}{4}\\) + 2 \\(\\frac{2}{3}\\) + \\(\\frac{7}{8}\\)\n\nThe common denominator is 24:\n\n= 1 \\(\\frac{18}{24}\\) + 2 \\(\\frac{16}{24}\\) + \\(\\frac{21}{24}\\)\n\n= 4 \\(\\frac{10}{24}\\) + \\(\\frac{21}{24}\\)\n\n= 5 \\(\\frac{7}{24}\\)",
+      "points": 1,
+      "prompt": "In one week, 1 \\(\\frac{3}{4}\\) inches of rain fell on\n\nMonday, 2 \\(\\frac{2}{3}\\) inches fell on Tuesday, and\n\n\\(\\frac{7}{8}\\) inch fell on Wednesday. How many\n\ninches of rain fell during those three days?",
+      "promptHtml": "<p>In one week, 1 \\(\\frac{3}{4}\\) inches of rain fell on</p><p>Monday, 2 \\(\\frac{2}{3}\\) inches fell on Tuesday, and</p><p>\\(\\frac{7}{8}\\) inch fell on Wednesday. How many</p><p>inches of rain fell during those three days?</p>",
+      "topic": "Arithmetic & Number Sense",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>5 \\(\\frac{7}{24}\\)</p>",
+          "text": "5 \\(\\frac{7}{24}\\)"
+        },
+        {
+          "id": "B",
+          "html": "<p>5 \\(\\frac{1}{24}\\)</p>",
+          "text": "5 \\(\\frac{1}{24}\\)"
+        },
+        {
+          "id": "C",
+          "html": "<p>3 \\(\\frac{4}{5}\\)</p>",
+          "text": "3 \\(\\frac{4}{5}\\)"
+        },
+        {
+          "id": "D",
+          "html": "<p>3 \\(\\frac{1}{2}\\)</p>",
+          "text": "3 \\(\\frac{1}{2}\\)"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 64 · PDF pages 44",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q067",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "67",
+        "pages": [
+          45
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q067-explanation-1.png\" alt=\"Official Form A explanation for question 67; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(D) First, find where Y is located on the\n\nnumber line. Point X is the midpoint of\n\n‾WY. Since there are 2 units between W\n\nand X, there must also be 2 units between\n\nX and Y. Thus, Y is located at 4 on the\n\nnumber line.\n\nPoint Y is the midpoint of ‾WZ. Use the\n\nsame reasoning as above. Since there are\n\n4 units between W and Y, there must be\n\n4 units between Y and Z. So, Z is located\n\nat 8 on the number line.",
+      "points": 1,
+      "prompt": "Points Y and Z are not shown on the\n\nnumber line above. If X is the midpoint of\n\n‾WY, and Y is the midpoint of ‾WZ, where\n\non the number line would point Z\n\nbe located?",
+      "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q067-figure-1.png\" alt=\"Original source figure for Form A, question 67\" width=\"276\"></p><p>Points Y and Z are not shown on the</p><p>number line above. If X is the midpoint of</p><p>‾WY, and Y is the midpoint of ‾WZ, where</p><p>on the number line would point Z</p><p>be located?</p>",
+      "topic": "Geometry",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>2</p>",
+          "text": "2"
+        },
+        {
+          "id": "B",
+          "html": "<p>4</p>",
+          "text": "4"
+        },
+        {
+          "id": "C",
+          "html": "<p>6</p>",
+          "text": "6"
+        },
+        {
+          "id": "D",
+          "html": "<p>8</p>",
+          "text": "8"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 67 · PDF pages 45",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q069",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "69",
+        "pages": [
+          45
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q069-explanation-1.png\" alt=\"Official Form A explanation for question 69; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(A) The expression 3n + 3 is equal to\n\n3(n + 1), and it is given that this is an\n\neven number. The expression (n + 1)\n\nmust also represent an even number,\n\nbecause 3 is an odd number and the\n\nproduct of an odd number and an even\n\nnumber is an even number. If (n + 1) is\n\nan even number, then n must be an odd\n\nnumber. Choose an odd number to\n\nsubstitute for n in the answer options to\n\nfind which expression represents an\n\neven number:\n\nLet n = 3.\n\nOption A:\n\n5n + 1 = 5(3) + 1 = 16\n\nOption B:\n\n4n + 5 = 4(3) + 5 = 17\n\nOption C:\n\n2n + 3 = 2(3) + 3 = 9\n\nOption D:\n\nn + 2 = 3 + 2 = 5\n\nSince 16 is the only even number, the\n\ncorrect answer is option A.",
+      "points": 1,
+      "prompt": "If n is an integer and 3n + 3 is an even\n\nnumber, which expression must also\n\nrepresent an even number?",
+      "promptHtml": "<p>If <em>n </em>is an integer and 3<em>n </em>+ 3 is an even</p><p>number, which expression must also</p><p>represent an even number?</p>",
+      "topic": "Algebra",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>5<em>n </em>+ 1</p>",
+          "text": "5n + 1"
+        },
+        {
+          "id": "B",
+          "html": "<p>4<em>n </em>+ 5</p>",
+          "text": "4n + 5"
+        },
+        {
+          "id": "C",
+          "html": "<p>2<em>n </em>+ 3</p>",
+          "text": "2n + 3"
+        },
+        {
+          "id": "D",
+          "html": "<p><em>n </em>+ 2</p>",
+          "text": "n + 2"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 69 · PDF pages 45",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q071",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "71",
+        "pages": [
+          46
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q071-explanation-1.png\" alt=\"Official Form A explanation for question 71; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(D) The two greatest integers less than −3.25 are −4 and −5. Since −4 is even,\n\nthe answer is −5.",
+      "points": 1,
+      "prompt": "If n is an odd integer that is less than −3.25, what is the greatest possible\n\nvalue of n?",
+      "promptHtml": "<p>If <em>n </em>is an odd integer that is less than −3.25, what is the <strong>greatest </strong>possible</p><p>value of <em>n</em>?</p>",
+      "topic": "Arithmetic & Number Sense",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>−1</p>",
+          "text": "−1"
+        },
+        {
+          "id": "B",
+          "html": "<p>−2</p>",
+          "text": "−2"
+        },
+        {
+          "id": "C",
+          "html": "<p>−3</p>",
+          "text": "−3"
+        },
+        {
+          "id": "D",
+          "html": "<p>−5</p>",
+          "text": "−5"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 71 · PDF pages 46",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q073",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "73",
+        "pages": [
+          46
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q073-explanation-1.png\" alt=\"Official Form A explanation for question 73; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(C) First, convert \\(\\frac{29}{7}\\) to a mixed number:\n\n\\(\\frac{29}{7}\\) = 4 \\(\\frac{1}{7}\\) . The two consecutive integers\n\non either side of 4 \\(\\frac{1}{7}\\) are 4 and 5.",
+      "points": 1,
+      "prompt": "Between which two consecutive integers is\n\nthe fraction \\(\\frac{29}{7}\\)?",
+      "promptHtml": "<p>Between which two consecutive integers is</p><p>the fraction \\(\\frac{29}{7}\\)?</p>",
+      "topic": "Arithmetic & Number Sense",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>2 and 3</p>",
+          "text": "2 and 3"
+        },
+        {
+          "id": "B",
+          "html": "<p>3 and 4</p>",
+          "text": "3 and 4"
+        },
+        {
+          "id": "C",
+          "html": "<p>4 and 5</p>",
+          "text": "4 and 5"
+        },
+        {
+          "id": "D",
+          "html": "<p>5 and 6</p>",
+          "text": "5 and 6"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 73 · PDF pages 46",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q079",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "79",
+        "pages": [
+          48
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q079-explanation-1.png\" alt=\"Official Form A explanation for question 79; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(C) Substitute each answer option for p to\n\nsee which value will work:\n\nOption A:\n\nIf p = 2, then \\(\\frac{1}{2}\\) n = 2, so n = 4. This\n\ncannot be the answer, because n\n\ncannot equal 4.\n\nOption B:\n\nIf p = 3, then 6q = 3, so q = 0.5. This\n\ncannot be the answer, because q cannot\n\nequal 0.5.\n\nOption C:\n\nIf p = 6, then 2m = 6, so m = 3;\n\n6q = 6, so q = 1; and \\(\\frac{1}{2}\\) n = 6, so\n\nn = 12. This is the correct answer.\n\nOption D:\n\nIf p = 12, then \\(\\frac{1}{2}\\) n = 12, so n = 24.\n\nThis cannot be the answer, because n\n\ncannot equal 24.",
+      "points": 1,
+      "prompt": "The numbers m, n, p, and q are different,\n\nand each is equal to one of the numbers\n\n1, 2, 3, 6, or 12. If 2m = 6q = \\(\\frac{1}{2}\\) n = p,\n\nwhat is the value of p?",
+      "promptHtml": "<p>The numbers <em>m</em>, <em>n</em>, <em>p</em>, and <em>q </em>are different,</p><p>and each is equal to one of the numbers</p><p>1, 2, 3, 6, or 12. If 2<em>m </em>= 6<em>q </em>= \\(\\frac{1}{2}\\) <em>n </em>= <em>p</em>,</p><p>what is the value of <em>p</em>?</p>",
+      "topic": "Ratios and Proportional Relationships",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>2</p>",
+          "text": "2"
+        },
+        {
+          "id": "B",
+          "html": "<p>3</p>",
+          "text": "3"
+        },
+        {
+          "id": "C",
+          "html": "<p>6</p>",
+          "text": "6"
+        },
+        {
+          "id": "D",
+          "html": "<p>12</p>",
+          "text": "12"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 79 · PDF pages 48",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q089",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "89",
+        "pages": [
+          50
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q089-explanation-1.png\" alt=\"Official Form A explanation for question 89; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(A) Call the 6 members A, B, C, D, E, and\n\nM (for Mei-Ling). The possible\n\ncombinations are AB, AC, AD, AE, AM, BC,\n\nBD, BE, BM, CD, CE, CM, DE, DM, and EM.\n\nOf those pairs, 5 include Mei-Ling.",
+      "points": 1,
+      "prompt": "Mei-Ling is one of 6 members of a committee. If 2 members of that committee are selected to go to a conference, how many of the possible\n\npairs of members would include Mei-Ling?",
+      "promptHtml": "<p>Mei-Ling is one of 6 members of a committee. If 2 members of that committee are selected to go to a conference, how many of the possible</p><p>pairs of members would include Mei-Ling?</p>",
+      "topic": "Statistics and Probability",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>5</p>",
+          "text": "5"
+        },
+        {
+          "id": "B",
+          "html": "<p>6</p>",
+          "text": "6"
+        },
+        {
+          "id": "C",
+          "html": "<p>10</p>",
+          "text": "10"
+        },
+        {
+          "id": "D",
+          "html": "<p>12</p>",
+          "text": "12"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 89 · PDF pages 50",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q091",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "91",
+        "pages": [
+          51
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q091-explanation-1.png\" alt=\"Official Form A explanation for question 91; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(D) In a parallelogram, opposite angles\n\nare congruent, so the measure of the\n\nunmarked angle is 56°. The sum of the\n\ninterior angles of a parallelogram is equal\n\nto 360°. Use that information to solve\n\nthe problem:\n\nx + y + 56 + 56 = 360 x + y + 112 = 360 x + y = 248",
+      "points": 1,
+      "prompt": "In the parallelogram above, what is the\n\nvalue of x + y?",
+      "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q091-figure-1.png\" alt=\"Original source figure for Form A, question 91\" width=\"241\"></p><p>In the parallelogram above, what is the</p><p>value of <em>x </em>+ <em>y</em>?</p>",
+      "topic": "Geometry",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>112</p>",
+          "text": "112"
+        },
+        {
+          "id": "B",
+          "html": "<p>124</p>",
+          "text": "124"
+        },
+        {
+          "id": "C",
+          "html": "<p>148</p>",
+          "text": "148"
+        },
+        {
+          "id": "D",
+          "html": "<p>248</p>",
+          "text": "248"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 91 · PDF pages 51",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q092",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "92",
+        "pages": [
+          51
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q092-explanation-1.png\" alt=\"Official Form A explanation for question 92; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(F) JK = 6 − (−4) = 10 units. Let\n\nx = JL. Then LK = 10 − x. Substitute\n\nthese expressions in the given equation:\n\nx = \\(\\frac{2}{3}\\)(10 − x)\n\nSolve for x:\n\nx = \\(\\frac{2}{3}\\)(10 − x) Apply the multiplicative inverse property; multiply both sides of the equation by 3.\n\n3x = 2(10 − x) Apply the distributive property; multiply the 2 by 10 and x.\n\n3x = 20 − 2x Apply the additive inverse property; add 2x to both sides of the equation.\n\n5x = 20 Apply the multiplicative inverse property; divide both sides of the equation by 5.\n\nx = 4\n\nSo, point L is 4 units to the right of point J: −4 + 4 = 0. Point L is located\n\nat 0 on the number line.",
+      "points": 1,
+      "prompt": "On the number line above, point L (not\n\nshown) is located on line segment JK so\n\nthat JL = \\(\\frac{2}{3}\\) LK. What is the position\n\nof point L?",
+      "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q092-figure-1.png\" alt=\"Original source figure for Form A, question 92\" width=\"271\"></p><p>On the number line above, point L (not</p><p>shown) is located on line segment JK so</p><p>that JL = \\(\\frac{2}{3}\\) LK. What is the position</p><p>of point L?</p>",
+      "topic": "Geometry",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>−2</p>",
+          "text": "−2"
+        },
+        {
+          "id": "B",
+          "html": "<p>0</p>",
+          "text": "0"
+        },
+        {
+          "id": "C",
+          "html": "<p>2</p>",
+          "text": "2"
+        },
+        {
+          "id": "D",
+          "html": "<p>4</p>",
+          "text": "4"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 92 · PDF pages 51",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q093",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "93",
+        "pages": [
+          51
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q093-explanation-1.png\" alt=\"Official Form A explanation for question 93; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(C) Let j be the number of stamps Josef\n\nhas. Then Mai has j − 500 stamps. The\n\ntotal number of stamps is\n\nj + (j − 500) = 2j − 500. Since Josef\n\nhas 60% of the stamps, set up an\n\nequation to solve for j:\n\n\\(\\frac{j}{2j−500}\\) = \\(\\frac{60}{100}\\) Cross multiply.\n\n100j = 60(2j − 500) Apply the distributive property; multiply the 60 by 2j and 500.\n\n100j = 120j − 30,000 Apply the additive inverse property; subtract 120j from both sides of the equation.\n\n−20j = −30,000 Apply the\n\nmultiplicative\n\ninverse property\n\ndivide both side\n\nof the equation by −20\n\nj = 1,500",
+      "points": 1,
+      "prompt": "Josef and Mai divided some stamps between themselves. Josef got 60% of the stamps. If Josef received 500 more stamps than Mai, how many stamps did\n\nJosef receive?",
+      "promptHtml": "<p>Josef and Mai divided some stamps between themselves. Josef got 60% of the stamps. If Josef received 500 more stamps than Mai, how many stamps did</p><p>Josef receive?</p>",
+      "topic": "Ratios and Proportional Relationships",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>300</p>",
+          "text": "300"
+        },
+        {
+          "id": "B",
+          "html": "<p>800</p>",
+          "text": "800"
+        },
+        {
+          "id": "C",
+          "html": "<p>1,500</p>",
+          "text": "1,500"
+        },
+        {
+          "id": "D",
+          "html": "<p>2,500</p>",
+          "text": "2,500"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 93 · PDF pages 51",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q094",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "94",
+        "pages": [
+          52
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q094-explanation-1.png\" alt=\"Official Form A explanation for question 94; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "2 (F) The area of the entire circle is π r .\n\nThe fraction of the circle that is shaded is\n\n\\(\\frac{45}{360}\\) = \\(\\frac{1}{8}\\). So, the area of the sector is\n\n2 \\(\\frac{1}{8}\\) π r . Use that information to find r:\n\n2 \\(\\frac{1}{8}\\) π r = 18π\n\n2 r = 144 r = 12\n\nUse r to calculate the circumference of\n\nthe circle:\n\nc = 2πr = 2π(12) = 24π\n\nThe circumference is 24π feet.",
+      "points": 1,
+      "prompt": "The shaded sector of the circle shown\n\nabove has an area of 18π square feet.\n\nWhat is the circumference of the circle?",
+      "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q094-figure-1.png\" alt=\"Original source figure for Form A, question 94\" width=\"152\"></p><p>The shaded sector of the circle shown</p><p>above has an area of 18π square feet.</p><p>What is the <strong>circumference </strong>of the circle?</p>",
+      "topic": "Geometry",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>144π ft</p>",
+          "text": "144π ft"
+        },
+        {
+          "id": "B",
+          "html": "<p>24π ft</p>",
+          "text": "24π ft"
+        },
+        {
+          "id": "C",
+          "html": "<p>18π ft</p>",
+          "text": "18π ft"
+        },
+        {
+          "id": "D",
+          "html": "<p>9π ft</p>",
+          "text": "9π ft"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 94 · PDF pages 52",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q096",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "96",
+        "pages": [
+          52
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q096-explanation-1.png\" alt=\"Official Form A explanation for question 96; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(H) First, set up the equations based on\n\nthe information in the question.\n\nR = 3S T = \\(\\frac{1}{6}\\) S\n\nSo, the ratio of R:T is\n\n3S:\\(\\frac{1}{6}\\) S\n\nDivide both sides by S to eliminate the\n\nvariable. Then, multiply both sides by 6 to\n\neliminate the fraction. The resulting\n\nratio is 18:1.",
+      "points": 1,
+      "prompt": "A scientist mixed three chemicals, R, S,\n\nand T, in a glass container. The amount of\n\nR is 3 times the amount of S, and the\n\namount of T is \\(\\frac{1}{6}\\) the amount of S. What is\n\nthe ratio of the amount of R to the\n\namount of T?",
+      "promptHtml": "<p>A scientist mixed three chemicals, R, S,</p><p>and T, in a glass container. The amount of</p><p>R is 3 times the amount of S, and the</p><p>amount of T is \\(\\frac{1}{6}\\) the amount of S. What is</p><p>the ratio of the amount of R to the</p><p>amount of T?</p>",
+      "topic": "Ratios and Proportional Relationships",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>1:18</p>",
+          "text": "1:18"
+        },
+        {
+          "id": "B",
+          "html": "<p>2:1</p>",
+          "text": "2:1"
+        },
+        {
+          "id": "C",
+          "html": "<p>3:1</p>",
+          "text": "3:1"
+        },
+        {
+          "id": "D",
+          "html": "<p>18:1</p>",
+          "text": "18:1"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 96 · PDF pages 52",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q101",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "101",
+        "pages": [
+          53
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q101-explanation-1.png\" alt=\"Official Form A explanation for question 101; original answer labels retained.\" width=\"328\"></p><p><img src=\"/exam-images/pdf-2023-2024-a-q101-explanation-2.png\" alt=\"Official Form A explanation for question 101; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(B)\n\n\\(\\frac{x}{5}\\) − 4 = 3(4 − 2x) − 1 Apply the\n\ndistributive\n\nproperty;\n\nmultiply the 3 by 4 and −2x\n\n\\(\\frac{x}{5}\\) − 4 = 12 − 6x − 1 Combine like terms.\n\n\\(\\frac{x}{5}\\) − 4 = 11 − 6x Apply the additive inver property; add 6x and 4 to both sides of the equation.\n\n\\(\\frac{x}{5}\\) + 6x = 15 Get a commo denominator.\n\nApply the \\(\\frac{x+30x}{5}\\) = 15 multiplicative inverse property; multiply both sides of the equation by 5\n\nproperty; divide both sides of the equation by 3\n\nx = \\(\\frac{75}{31}\\)",
+      "points": 1,
+      "prompt": "For what value of x is the equation\n\n\\(\\frac{x}{5}\\) − 4 = 3(4 − 2x) − 1 true?",
+      "promptHtml": "<p>For what value of <em>x </em>is the equation</p><p>\\(\\frac{x}{5}\\) − 4 = 3(4 − 2<em>x</em>) − 1 true?</p>",
+      "topic": "Algebra",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>\\(\\frac{75}{11}\\)</p>",
+          "text": "\\(\\frac{75}{11}\\)"
+        },
+        {
+          "id": "B",
+          "html": "<p>\\(\\frac{75}{31}\\)</p>",
+          "text": "\\(\\frac{75}{31}\\)"
+        },
+        {
+          "id": "C",
+          "html": "<p>\\(\\frac{15}{7}\\)</p>",
+          "text": "\\(\\frac{15}{7}\\)"
+        },
+        {
+          "id": "D",
+          "html": "<p>\\(\\frac{65}{31}\\)</p>",
+          "text": "\\(\\frac{65}{31}\\)"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 101 · PDF pages 53",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q113",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "113",
+        "pages": [
+          58
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q113-explanation-1.png\" alt=\"Official Form A explanation for question 113; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(D) The shaded region goes from \\(\\frac{1}{2}\\) to \\(\\frac{3}{2}\\).\n\nSo, the possible values of \\(\\frac{1}{x}\\) would be\n\nbetween the reciprocal of \\(\\frac{1}{2}\\) and the\n\nreciprocal of \\(\\frac{3}{2}\\), which are 2 and \\(\\frac{2}{3}\\),\n\nrespectively. Find the number line in the\n\nanswer options that has a shaded region\n\nthat ranges from \\(\\frac{2}{3}\\) to 2, which is\n\noption D.",
+      "points": 1,
+      "prompt": "If all possible values of x are indicated by\n\nthe shaded part of the number line above,\n\nwhich number line best shows all possible\n\nvalues of \\(\\frac{1}{x}\\)?",
+      "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q113-figure-1.png\" alt=\"Original source figure for Form A, question 113\" width=\"251\"></p><p>If all possible values of <em>x </em>are indicated by</p><p>the shaded part of the number line above,</p><p>which number line best shows all possible</p><p>values of \\(\\frac{1}{x}\\)?</p>",
+      "topic": "Arithmetic & Number Sense",
+      "choices": [
+        {
+          "id": "A",
+          "image": {
+            "alt": "Original source figure for Form A, question 113, choice A.",
+            "src": "/exam-images/pdf-2023-2024-a-q113-figure-2.png"
+          },
+          "text": ""
+        },
+        {
+          "id": "B",
+          "image": {
+            "alt": "Original source figure for Form A, question 113, choice B.",
+            "src": "/exam-images/pdf-2023-2024-a-q113-figure-3.png"
+          },
+          "text": ""
+        },
+        {
+          "id": "C",
+          "image": {
+            "alt": "Original source figure for Form A, question 113, choice C.",
+            "src": "/exam-images/pdf-2023-2024-a-q113-figure-4.png"
+          },
+          "text": ""
+        },
+        {
+          "id": "D",
+          "image": {
+            "alt": "Original source figure for Form A, question 113, choice D.",
+            "src": "/exam-images/pdf-2023-2024-a-q113-figure-5.png"
+          },
+          "text": ""
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 113 · PDF pages 58",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "a",
+    "question": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q114",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "114",
+        "pages": [
+          58
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q114-explanation-1.png\" alt=\"Official Form A explanation for question 114; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(H) Let \\(\\frac{1}{x}\\) be the probability of Chanelle\n\nselecting a red marble the first time. The\n\nprobability of selecting a red marble three\n\ntimes is \\(\\frac{1}{x}\\) × \\(\\frac{1}{x}\\) × \\(\\frac{1}{x}\\), which is given\n\nas \\(\\frac{1}{216}\\). Since 216 = 6 × 6 × 6, the\n\nvalue of x is 6, and the probability of\n\nChanelle selecting a red marble the first\n\ntime is \\(\\frac{1}{6}\\).",
+      "points": 1,
+      "prompt": "Chanelle selects a marble from a container\n\nand then returns it to the container. When\n\nshe does this 3 times, the probability of\n\nchoosing a red marble all 3 times is \\(\\frac{1}{216}\\).\n\nBased on this information, what is the\n\nprobability of Chanelle choosing a red\n\nmarble the first time she\n\nselects a marble?",
+      "promptHtml": "<p>Chanelle selects a marble from a container</p><p>and then returns it to the container. When</p><p>she does this 3 times, the probability of</p><p>choosing a red marble all 3 times is \\(\\frac{1}{216}\\).</p><p>Based on this information, what is the</p><p>probability of Chanelle choosing a red</p><p>marble the <strong>first </strong>time she</p><p>selects a marble?</p>",
+      "topic": "Statistics and Probability",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>\\(\\frac{1}{72}\\)</p>",
+          "text": "\\(\\frac{1}{72}\\)"
+        },
+        {
+          "id": "B",
+          "html": "<p>\\(\\frac{1}{36}\\)</p>",
+          "text": "\\(\\frac{1}{36}\\)"
+        },
+        {
+          "id": "C",
+          "html": "<p>\\(\\frac{1}{8}\\)</p>",
+          "text": "\\(\\frac{1}{8}\\)"
+        },
+        {
+          "id": "D",
+          "html": "<p>\\(\\frac{1}{6}\\)</p>",
+          "text": "\\(\\frac{1}{6}\\)"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 114 · PDF pages 58",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "b",
+    "question": {
+      "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q064",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "64",
+        "pages": [
+          43
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-b-q064-explanation-1.png\" alt=\"Official Form B explanation for question 64; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(G) Let x represent the distance, in\n\nkilometers, between Fran’s house and\n\nBryant State Park. Set up a proportion to\n\nsolve for x:\n\n\\(\\frac{x}{4.5}\\) = \\(\\frac{3}{2}\\) Cross multiply.\n\n2x = 3(4.5) Apply the multiplicative inverse property; divide both sides of the equation by 2.\n\nx = \\(\\frac{13.5}{2}\\) = 6 \\(\\frac{3}{4}\\) ≈ 7",
+      "points": 1,
+      "prompt": "On Fran’s map, 2 centimeters represents 3 kilometers. The points on this map that represent Fran’s home and Bryant State\n\nPark are 4.5 centimeters apart. How many kilometers apart are Fran’s home and Bryant State Park, to the nearest kilometer?",
+      "promptHtml": "<p>On Fran’s map, 2 centimeters represents 3 kilometers. The points on this map that represent Fran’s home and Bryant State</p><p>Park are 4.5 centimeters apart. How many kilometers apart are Fran’s home and Bryant State Park, to the nearest kilometer?</p>",
+      "topic": "Ratios and Proportional Relationships",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>3</p>",
+          "text": "3"
+        },
+        {
+          "id": "B",
+          "html": "<p>5</p>",
+          "text": "5"
+        },
+        {
+          "id": "C",
+          "html": "<p>7</p>",
+          "text": "7"
+        },
+        {
+          "id": "D",
+          "html": "<p>9</p>",
+          "text": "9"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form B · Question 64 · PDF pages 43",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "b",
+    "question": {
+      "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q069",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "69",
+        "pages": [
+          44
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-b-q069-explanation-1.png\" alt=\"Official Form B explanation for question 69; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(A) Let x represent the length of one of\n\nthe 10 remaining sides:\n\n25 + 35 + 10x = 100 60 + 10x = 100 10x = 40 x = 4",
+      "points": 1,
+      "prompt": "The perimeter of a 12-sided polygon is 100 centimeters. The length of one side is 25 centimeters. The length of another side is 35 centimeters. The remaining sides are equal in length to one another. What is the length of each of the remaining sides,\n\nin centimeters?",
+      "promptHtml": "<p>The perimeter of a 12-sided polygon is 100 centimeters. The length of one side is 25 centimeters. The length of another side is 35 centimeters. The remaining sides are equal in length to one another. What is the length of each of the remaining sides,</p><p>in centimeters?</p>",
+      "topic": "Ratios and Proportional Relationships",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>4</p>",
+          "text": "4"
+        },
+        {
+          "id": "B",
+          "html": "<p>5</p>",
+          "text": "5"
+        },
+        {
+          "id": "C",
+          "html": "<p>20</p>",
+          "text": "20"
+        },
+        {
+          "id": "D",
+          "html": "<p>40</p>",
+          "text": "40"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form B · Question 69 · PDF pages 44",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "b",
+    "question": {
+      "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q075",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "75",
+        "pages": [
+          46
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-b-q075-explanation-1.png\" alt=\"Official Form B explanation for question 75; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(C) First, find the area of the rectangle, in\n\nsquare feet:\n\n16 × 8 = 128\n\nThen, find the area of the triangle:\n\n\\(\\frac{1}{2}\\) × 4 × 16 = 32\n\nTo find the area of the shaded region,\n\nsubtract the area of the triangle from the\n\narea of the rectangle:\n\n128 − 32 = 96 sq ft",
+      "points": 1,
+      "prompt": "The diagram above shows a rectangle with an inscribed triangle. The triangle’s vertex\n\nand base touch the sides of the rectangle as shown. What is the total area of the shaded portion?",
+      "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q075-figure-1.png\" alt=\"Original source figure for Form B, question 75\" width=\"246\"></p><p>The diagram above shows a rectangle with an inscribed triangle. The triangle’s vertex</p><p>and base touch the sides of the rectangle as shown. What is the total area of the shaded portion?</p>",
+      "topic": "Geometry",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>32 sq ft</p>",
+          "text": "32 sq ft"
+        },
+        {
+          "id": "B",
+          "html": "<p>64 sq ft</p>",
+          "text": "64 sq ft"
+        },
+        {
+          "id": "C",
+          "html": "<p>96 sq ft</p>",
+          "text": "96 sq ft"
+        },
+        {
+          "id": "D",
+          "html": "<p>128 sq ft</p>",
+          "text": "128 sq ft"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form B · Question 75 · PDF pages 46",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "b",
+    "question": {
+      "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q088",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "88",
+        "pages": [
+          50
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-b-q088-explanation-1.png\" alt=\"Official Form B explanation for question 88; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(F) Solve xy = 30, the given\n\nequation, for x:\n\nxy = 30\n\nx = \\(\\frac{30}{y}\\)\n\nThen:\n\n10 ÷ x = 10 ÷ \\(\\frac{30}{y}\\) = 10 × \\(\\frac{y}{30}\\) = \\(\\frac{1}{3}\\) y",
+      "points": 1,
+      "prompt": "If xy = 30, what is the value of 10 ÷ x in\n\nterms of y?",
+      "promptHtml": "<p>If <em>xy </em>= 30, what is the value of 10 ÷ <em>x </em>in</p><p>terms of <em>y</em>?</p>",
+      "topic": "Algebra",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>\\(\\frac{1}{10}\\) <em>y</em></p>",
+          "text": "\\(\\frac{1}{10}\\) y"
+        },
+        {
+          "id": "B",
+          "html": "<p>\\(\\frac{1}{3}\\) <em>y</em></p>",
+          "text": "\\(\\frac{1}{3}\\) y"
+        },
+        {
+          "id": "C",
+          "html": "<p>3<em>y</em></p>",
+          "text": "3y"
+        },
+        {
+          "id": "D",
+          "html": "<p>10<em>y</em></p>",
+          "text": "10y"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form B · Question 88 · PDF pages 50",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "b",
+    "question": {
+      "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q089",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "89",
+        "pages": [
+          50
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-b-q089-explanation-1.png\" alt=\"Official Form B explanation for question 89; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(B) First, find the lengths of the\n\ngiven segments:\n\nQR = 5 \\(\\frac{1}{6}\\) − 3 = 2 \\(\\frac{1}{6}\\)\n\nPQ = 3 − 1 \\(\\frac{1}{3}\\) = 1 \\(\\frac{2}{3}\\)\n\nThen, find the difference:\n\n2 \\(\\frac{1}{6}\\) − 1 \\(\\frac{2}{3}\\) =\n\n\\(\\frac{13}{6}\\) − \\(\\frac{5}{3}\\) =\n\n\\(\\frac{13}{6}\\) − \\(\\frac{10}{6}\\) =\n\n\\(\\frac{3}{6}\\) = \\(\\frac{1}{2}\\)",
+      "points": 1,
+      "prompt": "On the number line above, how many\n\nunits longer is ‾QR than ‾PQ?",
+      "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q089-figure-1.png\" alt=\"Original source figure for Form B, question 89\" width=\"276\"></p><p>On the number line above, how many</p><p>units longer is ‾QR than ‾PQ?</p>",
+      "topic": "Geometry",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>\\(\\frac{1}{6}\\)</p>",
+          "text": "\\(\\frac{1}{6}\\)"
+        },
+        {
+          "id": "B",
+          "html": "<p>\\(\\frac{1}{2}\\)</p>",
+          "text": "\\(\\frac{1}{2}\\)"
+        },
+        {
+          "id": "C",
+          "html": "<p>\\(\\frac{2}{3}\\)</p>",
+          "text": "\\(\\frac{2}{3}\\)"
+        },
+        {
+          "id": "D",
+          "html": "<p>3</p>",
+          "text": "3"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form B · Question 89 · PDF pages 50",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "b",
+    "question": {
+      "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q095",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "95",
+        "pages": [
+          52
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-b-q095-explanation-1.png\" alt=\"Official Form B explanation for question 95; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(A) \\(\\frac{1}{x}\\) − \\(\\frac{1}{2x}\\) = \\(\\frac{2}{2x}\\) − \\(\\frac{1}{2x}\\) = \\(\\frac{1}{2x}\\)",
+      "points": 1,
+      "prompt": "How is \\(\\frac{1}{x}\\) − \\(\\frac{1}{2x}\\) written as a single\n\nfraction? (Assume x ≠ 0.)",
+      "promptHtml": "<p>How is \\(\\frac{1}{x}\\) − \\(\\frac{1}{2x}\\) written as a single</p><p>fraction? (Assume <em>x </em>≠ 0.)</p>",
+      "topic": "Algebra",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>\\(\\frac{1}{2x}\\)</p>",
+          "text": "\\(\\frac{1}{2x}\\)"
+        },
+        {
+          "id": "B",
+          "html": "<p>\\(\\frac{1}{3x}\\)</p>",
+          "text": "\\(\\frac{1}{3x}\\)"
+        },
+        {
+          "id": "C",
+          "html": "<p>− \\(\\frac{1}{x}\\)</p>",
+          "text": "− \\(\\frac{1}{x}\\)"
+        },
+        {
+          "id": "D",
+          "html": "<p>− \\(\\frac{1}{2x}\\)</p>",
+          "text": "− \\(\\frac{1}{2x}\\)"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form B · Question 95 · PDF pages 52",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "b",
+    "question": {
+      "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q105",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "105",
+        "pages": [
+          55
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-b-q105-explanation-1.png\" alt=\"Official Form B explanation for question 105; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(A) First, recognize that the temperature\n\ndecreased. This means that the order of\n\nsubtraction matters and that the result is\n\na negative number:\n\n−0.7 − 4.2 = −4.9\n\nThe temperature decreased 4.9 degrees.\n\nDivide by 3.5 to get the average\n\nchange per hour:\n\n−4.9 ÷ 3.5 = −1.4",
+      "points": 1,
+      "prompt": "The outdoor temperature was 4.2° F at\n\n10 p.m. After 3 \\(\\frac{1}{2}\\) hours, the outdoor\n\ntemperature was −0.7° F. Which value\n\nbest represents the average change in\n\ntemperature per hour?",
+      "promptHtml": "<p>The outdoor temperature was 4.2° F at</p><p>10 p.m. After 3 \\(\\frac{1}{2}\\) hours, the outdoor</p><p>temperature was −0.7° F. Which value</p><p>best represents the average change in</p><p>temperature per hour?</p>",
+      "topic": "Ratios and Proportional Relationships",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>−1.4° F</p>",
+          "text": "−1.4° F"
+        },
+        {
+          "id": "B",
+          "html": "<p>−1.0° F</p>",
+          "text": "−1.0° F"
+        },
+        {
+          "id": "C",
+          "html": "<p>1.0° F</p>",
+          "text": "1.0° F"
+        },
+        {
+          "id": "D",
+          "html": "<p>1.4° F</p>",
+          "text": "1.4° F"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form B · Question 105 · PDF pages 55",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "b",
+    "question": {
+      "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q114",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "114",
+        "pages": [
+          58
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-b-q114-explanation-1.png\" alt=\"Official Form B explanation for question 114; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(H) Let w represent the number of\n\nadditional white marbles.\n\nSet the probability of drawing a white\n\nmarble equal to \\(\\frac{3}{5}\\) and solve the\n\nequation for w:\n\n_____1 _+__w_____ \\(\\frac{6}{0}\\) = \\(\\frac{3}{5}\\) 14 + 1 + 16 + w\n\n\\(\\frac{16+w}{40+w}\\) = \\(\\frac{3}{5}\\)\n\n5(16 + w) = 3(40 + w) 80 + 5w = 120 + 3w 2w = 40 w = 20",
+      "points": 1,
+      "prompt": "A box contains 14 red marbles, 10 black\n\nmarbles, and 16 white marbles. How\n\nmany more white marbles need to be\n\nadded to the box so that the probability of\n\nrandomly drawing a white marble is \\(\\frac{3}{5}\\)?",
+      "promptHtml": "<p>A box contains 14 red marbles, 10 black</p><p>marbles, and 16 white marbles. How</p><p>many more white marbles need to be</p><p>added to the box so that the probability of</p><p>randomly drawing a white marble is \\(\\frac{3}{5}\\)?</p>",
+      "topic": "Statistics and Probability",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>8</p>",
+          "text": "8"
+        },
+        {
+          "id": "B",
+          "html": "<p>10</p>",
+          "text": "10"
+        },
+        {
+          "id": "C",
+          "html": "<p>14</p>",
+          "text": "14"
+        },
+        {
+          "id": "D",
+          "html": "<p>20</p>",
+          "text": "20"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form B · Question 114 · PDF pages 58",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  }
+]

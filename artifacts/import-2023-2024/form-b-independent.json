@@ -1,0 +1,345 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "id": "pdf-shsat-2023-2024-b-q001",
+      "type": "multiple_choice",
+      "topic": "Punctuation",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Which revision should be made to correct the sentence?",
+      "promptHtml": "<p>Which revision should be made to correct the sentence?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Delete the comma after Friday.",
+          "html": "<p>Delete the comma after <em><strong>Friday</strong></em>.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Insert a comma after tempting.",
+          "html": "<p>Insert a comma after <em><strong>tempting</strong></em>.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Insert a comma after deli.",
+          "html": "<p>Insert a comma after <em><strong>deli</strong></em>.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Delete the comma after neighborhood.",
+          "html": "<p>Delete the comma after <em><strong>neighborhood</strong>.</em></p>"
+        }
+      ],
+      "explanation": "The question asks which edit should be made to correct the sentence.\n\nA. Incorrect. A comma is needed to separate the introductory infinitive phrase “to surprise her dad for his birthday on Friday,” which modifies Yolanda’s action, from the remainder of the sentence. B. CORRECT. A comma is needed between two adjectives of equal importance preceding a noun. In this case, the adjectives “tempting” and “savory” are of equal importance, modifying the noun “sandwiches.” Their equal importance can be determined by inserting the word “and” between them (“tempting and savory sandwiches”). C. Incorrect. This edit would introduce an error into the sentence by needlessly breaking up the two prepositional phrases “from a deli” and “in her neighborhood” with a comma. No comma is needed when prepositional phrases are joined together in this way to indicate a singular idea. In this sentence, these two phrases work together to show where the sandwiches are from. D. Incorrect. Deleting this comma would introduce an error into the sentence. A comma is needed to separate the first and second items in the series of three actions Yolanda undertook: “ordered tempting savory sandwiches from a deli in her neighborhood,” “prepared his favorite chocolate cake,” and “invited his best friends over for the evening.”",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20232024_form_b.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "1",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20232024_form_b.pdf",
+          "sourcePages": [
+            107
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20232024_form_b.pdf",
+          "sourcePages": [
+            59
+          ],
+          "regions": [
+            {
+              "page": 59,
+              "box": [
+                48,
+                178.64999999999998,
+                564,
+                451.65
+              ]
+            }
+          ]
+        },
+        "topicConfidence": 0.8,
+        "difficultyConfidence": null
+      },
+      "correctChoiceId": "B",
+      "stimulus": "To surprise her dad for his birthday on Friday, Yolanda ordered tempting savory sandwiches from a deli in her neighborhood, prepared his favorite chocolate cake, and invited his best friends over for the evening.",
+      "stimulusHtml": "<p>To surprise her dad for his birthday on <u>Friday,</u> Yolanda ordered <u>tempting</u> savory sandwiches from a <u>deli</u> in her <u>neighborhood,</u> prepared his favorite chocolate cake, and invited his best friends over for the evening.</p>",
+      "explanationHtml": "<p>The question asks which edit should be made to correct the sentence.</p><p><strong>A. </strong>Incorrect. A comma is needed to separate the introductory infinitive phrase “to surprise her dad for his birthday on Friday,” which modifies Yolanda’s action, from the remainder of the sentence. <strong>B. CORRECT. </strong>A comma is needed between two adjectives of equal importance preceding a noun. In this case, the adjectives “tempting” and “savory” are of equal importance, modifying the noun “sandwiches.” Their equal importance can be determined by inserting the word “and” between them (“tempting and savory sandwiches”). <strong>C. </strong>Incorrect. This edit would introduce an error into the sentence by needlessly breaking up the two prepositional phrases “from a deli” and “in her neighborhood” with a comma. No comma is needed when prepositional phrases are joined together in this way to indicate a singular idea. In this sentence, these two phrases work together to show where the sandwiches are from. <strong>D. </strong>Incorrect. Deleting this comma would introduce an error into the sentence. A comma is needed to separate the first and second items in the series of three actions Yolanda undertook: “ordered tempting savory sandwiches from a deli in her neighborhood,” “prepared his favorite chocolate cake,” and “invited his best friends over for the evening.”</p>",
+      "sourceQuestion": "1",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2023-2024 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceFile": "20232024_form_b.pdf",
+        "sha256": "b43755f78750c0ea7f80fda1e552bd4dac953cf106adbdfefb2f964f18a841a0",
+        "sourceQuestion": "1",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20232024_form_b.pdf; PDF page 2; original question 1."
+      ]
+    },
+    {
+      "id": "pdf-shsat-2023-2024-b-q002",
+      "type": "multiple_choice",
+      "topic": "Modifiers",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Which sentence in the paragraph contains an error in its construction and should be revised?",
+      "promptHtml": "<p>Which sentence in the paragraph contains an error in its construction and should be revised?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "sentence 1",
+          "html": "<p>sentence 1</p>"
+        },
+        {
+          "id": "B",
+          "text": "sentence 2",
+          "html": "<p>sentence 2</p>"
+        },
+        {
+          "id": "C",
+          "text": "sentence 3",
+          "html": "<p>sentence 3</p>"
+        },
+        {
+          "id": "D",
+          "text": "sentence 4",
+          "html": "<p>sentence 4</p>"
+        }
+      ],
+      "explanation": "The question asks for the identification of the sentence in the paragraph that contains an error.\n\nE. Incorrect. This sentence has an appropriate construction. An introductory prepositional phrase is correctly punctuated and describes when the power outage occurred. Similarly, the direct object, “the Upper West Side of Manhattan in New York City,” is presented clearly in terms of what area was “affected” by the power outage. F. CORRECT. “Leaving approximately 73,000 residents without electricity for three long hours” is a dangling modifier because it is not clearly modifying any word or words in this sentence. It actually further describes the “power outage” in sentence 1. In clear and correct construction, all modifiers should be near the words they describe in order to avoid confusion. G. Incorrect. Sentence 3 has a correct construction. A dash is used appropriately to show a break in thought and to introduce the phrase “on the exact same day.” H. Incorrect. Correct construction is used in this sentence. Two commas are used correctly to set off the nonessential clause “which lasted for 25 hours” from the rest of the sentence. Similarly, one comma is used to set off the nonessential appositive “an odd coincidence to say the least.” Both of these elements are nonessential to the sentence’s overall meaning and are thus correctly separated from the sentence by the use of commas.",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20232024_form_b.pdf",
+        "sourcePages": [
+          3
+        ],
+        "sourceQuestion": "2",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20232024_form_b.pdf",
+          "sourcePages": [
+            107
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20232024_form_b.pdf",
+          "sourcePages": [
+            59
+          ],
+          "regions": [
+            {
+              "page": 59,
+              "box": [
+                48,
+                460.65,
+                564,
+                721
+              ]
+            }
+          ]
+        },
+        "topicConfidence": 0.8,
+        "difficultyConfidence": null
+      },
+      "correctChoiceId": "B",
+      "stimulus": "(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City. (2) Leaving approximately 73,000 residents without electricity for three long hours, lights did not function, refrigerators did not stay cold, and air conditioners did not work. (3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier—on the exact same day! (4) The famous New York City Blackout of 1977, which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.",
+      "stimulusHtml": "<p>(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City. (2) Leaving approximately 73,000 residents without electricity for three long hours, lights did not function, refrigerators did not stay cold, and air conditioners did not work. (3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier—on the exact same day! (4) The famous New York City Blackout of 1977, which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.</p>",
+      "explanationHtml": "<p>The question asks for the identification of the sentence in the paragraph that contains an error.</p><p><strong>E. </strong>Incorrect. This sentence has an appropriate construction. An introductory prepositional phrase is correctly punctuated and describes when the power outage occurred. Similarly, the direct object, “the Upper West Side of Manhattan in New York City,” is presented clearly in terms of what area was “affected” by the power outage. <strong>F. CORRECT. </strong>“Leaving approximately 73,000 residents without electricity for three long hours” is a dangling modifier because it is not clearly modifying any word or words in this sentence. It actually further describes the “power outage” in sentence 1. In clear and correct construction, all modifiers should be near the words they describe in order to avoid confusion. <strong>G. </strong>Incorrect. Sentence 3 has a correct construction. A dash is used appropriately to show a break in thought and to introduce the phrase “on the exact same day.” <strong>H. </strong>Incorrect. Correct construction is used in this sentence. Two commas are used correctly to set off the nonessential clause “which lasted for 25 hours” from the rest of the sentence. Similarly, one comma is used to set off the nonessential appositive “an odd coincidence to say the least.” Both of these elements are nonessential to the sentence’s overall meaning and are thus correctly separated from the sentence by the use of commas.</p>",
+      "sourceQuestion": "2",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2023-2024 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceFile": "20232024_form_b.pdf",
+        "sha256": "b43755f78750c0ea7f80fda1e552bd4dac953cf106adbdfefb2f964f18a841a0",
+        "sourceQuestion": "2",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Supplied 20232024_form_b.pdf; PDF page 3; original question 2.",
+        "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order."
+      ]
+    },
+    {
+      "id": "pdf-shsat-2023-2024-b-q003",
+      "type": "multiple_choice",
+      "topic": "Pronouns",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Which pair of revisions is needed to correct the errors in the paragraph?",
+      "promptHtml": "<p>Which pair of revisions is needed to correct the errors in the paragraph?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Sentence 1: Delete the comma after Yalina, AND change their to her.",
+          "html": "<p>Sentence 1: Delete the comma after <em><strong>Yalina</strong></em>, AND change <em><strong>their </strong></em>to <strong>her</strong>.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Sentence 2: Change is to are, AND delete the comma after bowl.",
+          "html": "<p>Sentence 2: Change <em><strong>is </strong></em>to <strong>are</strong>, AND delete the comma after <em><strong>bowl</strong></em>.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Sentence 3: Change it is to they are, AND delete the comma after smooth.",
+          "html": "<p>Sentence 3: Change <em><strong>it is </strong></em>to <strong>they are</strong>, AND delete the comma after <em><strong>smooth</strong></em>.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Sentence 4: Change they start to it starts, AND insert a comma after sweet.",
+          "html": "<p>Sentence 4: Change <em><strong>they start </strong></em>to <strong>it starts</strong>, AND insert a comma after <em><strong>sweet</strong></em>.</p>"
+        }
+      ],
+      "explanation": "The question asks which two revisions are needed to correct the paragraph.\n\nA. Incorrect. The comma is needed after “Yalina” to separate the first and second names in the series of three names (Yalina, Michael, and Malcolm). The possessive determiner “their” is also correct as written because it refers back to “Yalina, Michael, and Malcolm,” a plural group of people. B. Incorrect. Changing “is” to “are” would introduce an error in subject-verb agreement into the sentence; the singular subject “Yalina’s job” requires the singular verb “is.” The comma after “bowl” is required because it separates the phrase “slowly adding water, eggs, melted butter, and blueberries,” which modifies how Yalina prepares the batter, from the remainder of the sentence. C. Incorrect. “It is” refers to the singular noun “mixture,” so this singular pronoun and verb form is correct. The comma after “smooth” is necessary because this is a compound sentence where two independent clauses (“Michael uses a wooden spoon to vigorously stir the mixture until it is smooth” and “Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time”) are joined using a coordinating conjunction, which requires a comma. D. CORRECT. The plural pronoun “they” refers incorrectly to a singular antecedent, “each pancake.” The pronoun should be changed to a singular one to match its antecedent. A comma is needed between two adjectives of equal importance that modify the noun “breakfast.” Because “sweet” and “delicious” could be written as “sweet and delicious,” they are of equal importance, and a comma is needed.",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20232024_form_b.pdf",
+        "sourcePages": [
+          3
+        ],
+        "sourceQuestion": "3",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20232024_form_b.pdf",
+          "sourcePages": [
+            107
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20232024_form_b.pdf",
+          "sourcePages": [
+            60
+          ],
+          "regions": [
+            {
+              "page": 60,
+              "box": [
+                48,
+                90.64999999999998,
+                564,
+                721
+              ]
+            }
+          ]
+        },
+        "topicConfidence": 0.8,
+        "difficultyConfidence": null
+      },
+      "correctChoiceId": "D",
+      "stimulus": "(1) Yalina, Michael, and Malcolm love making pancakes with their granddad on Saturday mornings. (2) Yalina’s job is to open the box and pour the pancake mix into a bowl, slowly adding water, eggs, melted butter, and blueberries. (3) Michael uses a wooden spoon to vigorously stir the mixture until it is smooth, and Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time. (4) Granddad turns each pancake when they start to bubble, while all three siblings get the table ready for a sweet delicious breakfast.",
+      "stimulusHtml": "<p>(1) <u>Yalina,</u> Michael, and Malcolm love making pancakes with <u>their</u> granddad on Saturday mornings. (2) Yalina’s job <u>is</u> to open the box and pour the pancake mix into a <u>bowl,</u> slowly adding water, eggs, melted butter, and blueberries. (3) Michael uses a wooden spoon to vigorously stir the mixture until <u>it is</u> <u>smooth,</u> and Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time. (4) Granddad turns each pancake when <u>they start</u> to bubble, while all three siblings get the table ready for a <u>sweet</u> delicious breakfast.</p>",
+      "explanationHtml": "<p>The question asks which two revisions are needed to correct the paragraph.</p><p><strong>A. </strong>Incorrect. The comma is needed after “Yalina” to separate the first and second names in the series of three names (Yalina, Michael, and Malcolm). The possessive determiner “their” is also correct as written because it refers back to “Yalina, Michael, and Malcolm,” a plural group of people. <strong>B. </strong>Incorrect. Changing “is” to “are” would introduce an error in subject-verb agreement into the sentence; the singular subject “Yalina’s job” requires the singular verb “is.” The comma after “bowl” is required because it separates the phrase “slowly adding water, eggs, melted butter, and blueberries,” which modifies how Yalina prepares the batter, from the remainder of the sentence. <strong>C. </strong>Incorrect. “It is” refers to the singular noun “mixture,” so this singular pronoun and verb form is correct. The comma after “smooth” is necessary because this is a compound sentence where two independent clauses (“Michael uses a wooden spoon to vigorously stir the mixture until it is smooth” and “Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time”) are joined using a coordinating conjunction, which requires a comma. <strong>D. CORRECT. </strong>The plural pronoun “they” refers incorrectly to a singular antecedent, “each pancake.” The pronoun should be changed to a singular one to match its antecedent. A comma is needed between two adjectives of equal importance that modify the noun “breakfast.” Because “sweet” and “delicious” could be written as “sweet and delicious,” they are of equal importance, and a comma is needed.</p>",
+      "sourceQuestion": "3",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2023-2024 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceFile": "20232024_form_b.pdf",
+        "sha256": "b43755f78750c0ea7f80fda1e552bd4dac953cf106adbdfefb2f964f18a841a0",
+        "sourceQuestion": "3",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Supplied 20232024_form_b.pdf; PDF page 3; original question 3."
+      ]
+    }
+  ]
+}

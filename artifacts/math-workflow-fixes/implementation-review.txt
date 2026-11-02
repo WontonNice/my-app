@@ -1,0 +1,27 @@
+Math workflow fixes — 2026-11-02
+
+Implemented the issues from artifacts/andrew-workflow-review/review.txt.
+
+1. Infinite-practice actions now open the native assignment workspace with student, category, topic, source question, and optional module/generator retained. Fixed-question sets are separately labeled and explain readiness exclusions.
+2. Native module selection previews the actual published, enabled generator mix, sample questions, answers, and worked explanations. The assignment editor defaults to a streak target of 10 and retains teacher-only evidence.
+3. Needs-attention ordering places classified weaknesses with sufficient evidence before sparse results. Missing classifications have a source-question review queue. No classifications or diagnoses were invented.
+4. The personal planner retains optional rationale and original recorded response references. These fields persist privately and are excluded from standard build prompts/plans; recovery backups retain the full batch.
+5. Reuse suggestions include exact sources and clearly labeled related-topic candidates, with preview, destination, extension, and native assignment actions.
+6. Infinite module rows show unlimited variants and included families, with focused/group labels. Math no longer shows English-only passage controls. Search and sorting use the relevant math metadata.
+7. Each planner row shows export readiness. Failed export selects the incomplete row and focuses its missing field; saved versus unsaved recovery labels are accurate.
+8. Recorded evidence renders math, answers, saved timing when available, and worked explanations. Official explanation HTML/images take precedence over plain text.
+9. Full Student Insights and return-to-original-evidence links select the correct student and recorded response.
+10. Published focused modules and their family mix are visible in the practice shelf and assignment flow, allowing narrow assignments rather than an entire topic group.
+
+Verification
+- Client and server typechecks passed.
+- Math Command Center suite: 58/58 passed.
+- Focused workflow, planner, and classroom suites: 29/29 passed (overlap with the suite above).
+- Student-practice and passage organization checks: 16/16 passed.
+- Learning-plan suite: 14/15 passed. Existing combined-book prior-work fixture mismatch (expected 2, actual 5) also appears in the pre-change baseline logs; unrelated to these changes.
+- Browser walkthrough with Andrew: weakness → filtered infinite modules → sample → native assignment editor; default streak 10; closed without assigning.
+- Browser walkthrough with synthetic data: created an infinite assignment using the existing homework API; saved private planner context; invalid export focused module name; valid export excluded private rationale/student reference; original evidence link reopened the saved response.
+- Planner layout checked at 390px with no horizontal overflow.
+
+Scope
+No production assignment was created, no existing review batch was edited, and no deployment was performed. Test assignments and planner edits were isolated to temporary synthetic fixtures.

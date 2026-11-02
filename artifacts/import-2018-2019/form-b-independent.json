@@ -1,0 +1,389 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "id": "pdf-shsat-2018-2019-b-q001",
+      "type": "multiple_choice",
+      "topic": "Punctuation",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Read this sentence.\n\nThe Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and could hold more than 50,000 spectators.\n\nWhich edit should be made to correct the sentence?",
+      "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\"><p>The Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and could hold more than 50,000 spectators.</p></blockquote><p>Which edit should be made to correct the sentence?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Delete the comma after Rome.",
+          "html": "<p>Delete the comma after Rome.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Insert a comma after Italy.",
+          "html": "<p>Insert a comma after Italy.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Delete the comma after World.",
+          "html": "<p>Delete the comma after World.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Insert a comma after built.",
+          "html": "<p>Insert a comma after built.</p>"
+        }
+      ],
+      "explanation": "1. (B) The question asks for the correction needed for an error in the sentence. The sentence needs a comma to set off the clause “which is considered one of the ‘new’ Seven Wonders of the World,” because the clause is not essential to the meaning of the sentence (nonrestrictive clause). Option B is correct because it places a comma where it is needed, after “Italy,” to set off the nonrestrictive clause that follows. Option A is incorrect because when a name has more than one element, a comma is used to separate the elements for clarity. Option C is incorrect because it would remove the comma at the end of the nonrestrictive clause, which should be set off by commas at the beginning and the end. Option D is incorrect because a comma after “built” would separate the phrase “could hold more than 50,000 spectators,” which is a dependent clause that uses the subject from the main clause and so needs to stay connected to the rest of the sentence.",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20182019_form_b.pdf",
+        "sourcePages": [
+          1
+        ],
+        "sourceQuestion": "1",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20182019_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20182019_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "topicConfidence": 0.75
+      },
+      "correctChoiceId": "B",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2018-2019-b-answers-q001-explanation-1.png\" width=\"351\" alt=\"Supplied Form B explanation for question 1\"></p>",
+      "sourceQuestion": "1",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2018-2019 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "year": "2018-2019",
+        "form": "B",
+        "label": "2018-2019 Form B",
+        "sourceFile": "20182019_form_b.pdf",
+        "sourceSha256": "46ef41d25706bf59f014ac05c3a0095edbaf8ea261bdbc06bf3d58984a749a2f",
+        "sourceQuestion": "1",
+        "pages": [
+          1
+        ]
+      },
+      "notes": [
+        "Supplied 20182019_form_b.pdf; PDF page 1; original question 1."
+      ]
+    },
+    {
+      "id": "pdf-shsat-2018-2019-b-q002",
+      "type": "multiple_choice",
+      "topic": "Sentence Structure",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Read this paragraph.\n\nIn September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation Proclamation, written in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.\n\nWhich revision corrects the error in sentence structure in the paragraph?",
+      "promptHtml": "<p>Read this paragraph.</p><blockquote data-boxed=\"true\"><p>In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian <u>Institution, the</u> museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a <u>year. The</u> museum features more than 30,000 <u>objects, including</u> Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation <u>Proclamation, written</u> in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.</p></blockquote><p>Which revision corrects the error in sentence structure in the paragraph?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Institution, and the",
+          "html": "<p>Institution, and the</p>"
+        },
+        {
+          "id": "B",
+          "text": "year, and the",
+          "html": "<p>year, and the</p>"
+        },
+        {
+          "id": "C",
+          "text": "objects, which include",
+          "html": "<p>objects, which include</p>"
+        },
+        {
+          "id": "D",
+          "text": "Proclamation, which was written",
+          "html": "<p>Proclamation, which was written</p>"
+        }
+      ],
+      "explanation": "2. (E) The question asks for the correction of an error in sentence structure in the paragraph. The first sentence is a run-on sentence because both clauses—“In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution” and “the museum is already the Smithsonian’s third most popular site”—are independent clauses, and independent clauses should not be combined without the use of a conjunction and a comma. The revision in Option E adds the word “and” before the comma, which corrects the run-on. Option F, Option G, Option H are incorrect responses because the corresponding underlined portions in the paragraph are not structural errors. No edits are needed to correct those portions of the text.",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20182019_form_b.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "2",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20182019_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20182019_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "topicConfidence": 0.75
+      },
+      "correctChoiceId": "A",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2018-2019-b-answers-q002-explanation-1.png\" width=\"351\" alt=\"Supplied Form B explanation for question 2\"></p>",
+      "sourceQuestion": "2",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2018-2019 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "year": "2018-2019",
+        "form": "B",
+        "label": "2018-2019 Form B",
+        "sourceFile": "20182019_form_b.pdf",
+        "sourceSha256": "46ef41d25706bf59f014ac05c3a0095edbaf8ea261bdbc06bf3d58984a749a2f",
+        "sourceQuestion": "2",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20182019_form_b.pdf; PDF page 2; original question 2."
+      ]
+    },
+    {
+      "id": "pdf-shsat-2018-2019-b-q003",
+      "type": "multiple_choice",
+      "topic": "Modifiers",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Read this sentence.\n\nTo promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.\n\nHow should the sentence be revised?",
+      "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\"><p>To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</p></blockquote><p>How should the sentence be revised?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.",
+          "html": "<p>To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.</p>"
+        },
+        {
+          "id": "B",
+          "text": "On Wednesday to promote their club, a bake sale will be sponsored by members of the debate team.",
+          "html": "<p>On Wednesday to promote their club, a bake sale will be sponsored by members of the debate team.</p>"
+        },
+        {
+          "id": "C",
+          "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday.",
+          "html": "<p>To promote their club, members of the debate team will sponsor a bake sale on Wednesday.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.",
+          "html": "<p>Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.</p>"
+        }
+      ],
+      "explanation": "3. (C) The question asks for the correct revision of the sentence in the box. The sentence is incorrect because, as written, the phrase “to promote their club” refers to the closest noun to the phrase, which is “a bake sale,” and that does not match logically. Option C is correct because the revision has the phrase “to promote their club” clearly modifying “members of the debate team” and adds the idea that the bake sale is on Wednesday to the end of the sentence. Option A and Option B are incorrect because the revisions do not fix the error that “to promote their club” modifies “a bake sale.” Option D is incorrect; while the revision clarifies that “to promote their club” relates to the “members of the debate team,” the rest of the sentence is poorly written because the insertion of “on Wednesday to promote their club” in the middle of the sentence interrupts the main clause, “Members of the debate team will sponsor a bake sale.”",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20182019_form_b.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "3",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20182019_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20182019_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "topicConfidence": 0.75
+      },
+      "correctChoiceId": "C",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2018-2019-b-answers-q003-explanation-1.png\" width=\"351\" alt=\"Supplied Form B explanation for question 3\"></p>",
+      "sourceQuestion": "3",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2018-2019 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "year": "2018-2019",
+        "form": "B",
+        "label": "2018-2019 Form B",
+        "sourceFile": "20182019_form_b.pdf",
+        "sourceSha256": "46ef41d25706bf59f014ac05c3a0095edbaf8ea261bdbc06bf3d58984a749a2f",
+        "sourceQuestion": "3",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20182019_form_b.pdf; PDF page 2; original question 3."
+      ]
+    },
+    {
+      "id": "pdf-shsat-2018-2019-b-q004",
+      "type": "multiple_choice",
+      "topic": "Sentence Structure",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Read this paragraph.\n\n(1) Devon spent several hours preparing for an upcoming audition for a play at the community theater. (2) First he did vocal exercises to practice his diction and projection so that his words would carry clearly throughout the large auditorium. (3) Then he studies the text of the monologue to better understand the emotions, and motivations of the character he plans to portray. (4) Finally he recited his monologue in front of a mirror many times, making slight adjustments and improvements to his performance each time.\n\nHow should the paragraph be revised?",
+      "promptHtml": "<p>Read this paragraph.</p><blockquote data-boxed=\"true\"><p>(1) Devon spent several hours preparing for an upcoming audition for a play at the community theater. (2) First he did vocal exercises to practice his diction and projection so that his words would carry clearly throughout the large auditorium. (3) Then he studies the text of the monologue to better understand the emotions, and motivations of the character he plans to portray. (4) Finally he recited his monologue in front of a mirror many times, making slight adjustments and improvements to his performance each time.</p></blockquote><p>How should the paragraph be revised?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Sentence 1: Change spent to had spent, AND insert a comma after play.",
+          "html": "<p>Sentence 1: Change spent to had spent, AND insert a comma after play.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Sentence 2: Change did to does, AND insert a comma after projection.",
+          "html": "<p>Sentence 2: Change did to does, AND insert a comma after projection.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Sentence 3: Change studies to studied, AND delete the comma after emotions.",
+          "html": "<p>Sentence 3: Change studies to studied, AND delete the comma after emotions.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Sentence 4: Change recited to recites, AND delete the comma after times.",
+          "html": "<p>Sentence 4: Change recited to recites, AND delete the comma after times.</p>"
+        }
+      ],
+      "explanation": "4. (G) The question asks for the necessary revisions to the paragraph. Option G is correct because the errors appear in sentence 3 of the paragraph. The word “studies” is in the present tense, but it should be changed to “studied” to match the past tense established in the paragraph (“spent,” “recited”). Additionally, the comma after the word “emotions” needs to be removed because the words “emotions and motivations” are part of a group (series) of two elements, and when there are only two elements in a series, a comma is not used. Option E is incorrect because sentence 1 does not need to be revised. The word “spent” is correct in the past tense, and there is no need to insert a comma after the word “play.” Option F is incorrect because sentence 2 does not need to be revised. The word “did” is correct as written in the past tense, and there is no comma needed after the word “projection” because “so” is not functioning as a conjunction but rather as part of the conjunction phrase “so that,” which does not take a comma. Option H is incorrect because sentence 4 does not need to be revised. The word “recited” is correct as written in the past tense, and the comma after “times” is needed in order to separate the modifying phrase “making slight adjustments and improvements to his performance each time” from the main clause.\n\nREVISING/EDITING PART B\n\nThe Local Library",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20182019_form_b.pdf",
+        "sourcePages": [
+          3
+        ],
+        "sourceQuestion": "4",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20182019_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20182019_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "topicConfidence": 0.75
+      },
+      "correctChoiceId": "C",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2018-2019-b-answers-q004-explanation-1.png\" width=\"348\" alt=\"Supplied Form B explanation for question 4\"></p>",
+      "sourceQuestion": "4",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2018-2019 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "year": "2018-2019",
+        "form": "B",
+        "label": "2018-2019 Form B",
+        "sourceFile": "20182019_form_b.pdf",
+        "sourceSha256": "46ef41d25706bf59f014ac05c3a0095edbaf8ea261bdbc06bf3d58984a749a2f",
+        "sourceQuestion": "4",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Supplied 20182019_form_b.pdf; PDF page 3; original question 4."
+      ]
+    }
+  ]
+}

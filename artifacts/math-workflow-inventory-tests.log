@@ -1,0 +1,24 @@
+✔ specific math topic evidence keeps parent categories separate and preserves wrong versus blank answers (1.6206ms)
+✔ all passage formats preserve source category and version without changing lines (0.9502ms)
+✔ source, genre, subject, status, skill and search filters combine per student (10.5534ms)
+✔ inventory counts distinct sources and historical completion independently of repeat state (1.3795ms)
+✔ category aggregation retains exact metrics, distinct IDs, dates and assessment sets (0.2694ms)
+✔ all pattern sort fields support both directions with deterministic ties and missing dates last (0.3615ms)
+✔ summary-only assessments never invent passage or category response performance (0.7759ms)
+✔ completion filters retain earlier completed work during repeat assignments and include planned/unstarted versions as not done (7.9995ms)
+✔ completion dates use actual completed records, never assignment/update dates, and tolerate undated history (0.4012ms)
+✔ explicit numbering controls skip subheadings and unnumbered paragraphs, and can number a bold body paragraph (1.7555ms)
+✔ source paragraph labels do not duplicate number badges, while stored text and meaningful numbers remain intact (0.3582ms)
+✔ ten correct per generator unlocks independently, wrong answers reset only that type, checking twice is inert (4.6201ms)
+✔ unlock persists after a later miss; unfinished current questions cannot be hidden (0.3818ms)
+✔ saved sessions survive reopening with answers, streaks and snapshots; accounts and modules are isolated (1.301ms)
+✔ passage scores retain zero, ignore invalid/missing scores, and choose latest scored evidence (2.4391ms)
+✔ editor links resolve exact stable question IDs, prefer assessment context, and do not guess missing questions (0.2357ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 589.6538

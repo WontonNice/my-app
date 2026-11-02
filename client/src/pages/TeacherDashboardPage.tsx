@@ -878,8 +878,8 @@ export function StudentDetail({
   onAddPaperScore: (studentId: string, input: ManualExamScoreInput) => Promise<void>;
   student: StudentProgressSnapshot;
 }) {
-  const [workspaceView, setWorkspaceView] = useState<"progress" | "boards" | PlanView>(() => new URLSearchParams(window.location.search).get("workspace") === "boards" ? "boards" : "progress");
-  const [planSkill, setPlanSkill] = useState("");
+  const [workspaceView, setWorkspaceView] = useState<"progress" | "boards" | PlanView>(() => new URLSearchParams(window.location.search).get("workspace") === "boards" ? "boards" : new URLSearchParams(window.location.search).get("workspace") === "content" ? "content" : "progress");
+  const [planSkill, setPlanSkill] = useState(() => new URLSearchParams(window.location.search).get("practice") === "infinite" ? new URLSearchParams(window.location.search).get("topic") || "" : "");
   const [planFocus, setPlanFocus] = useState(0);
   const [planCategory, setPlanCategory] = useState("");
   const [passageInventory, setPassageInventory] = useState<import("../lib/passageOrganization").ContentInventory>();
@@ -964,10 +964,10 @@ export function StudentDetail({
       {accessToken && <><nav className="lp-record-tabs" aria-label="Student record workspaces">{([["progress", "Progress & insights"], ["plan", "Learning plan"], ["content", "Available content"], ["schedule", "Weekly schedule"], ["history", "Homework history"], ["boards", "Boards"]] as const).map(([value, label]) => <button key={value} aria-pressed={workspaceView === value} onClick={() => { setWorkspaceView(value); setPlanSkill(""); }} type="button">{label}</button>)}</nav><div hidden={workspaceView === "progress"}>{workspaceView === "boards" ? <BoardLibrary accessToken={accessToken} studentId={student.id} studentName={student.fullName} teacher /> : <TeacherLearningPlan client={planClient} key={planFocus} sourceCategory={planCategory} onSourceCategory={setPlanCategory} onInventory={setPassageInventory} accessToken={accessToken} studentId={student.id} studentName={student.fullName} view={workspaceView === "progress" ? "summary" : workspaceView} onView={setWorkspaceView} skillFilter={planSkill} onSkillFilter={setPlanSkill} />}</div></>}
       <div hidden={workspaceView !== "progress"}>
       {accessToken && <p className="sa-data-note"><AppLink href={`/teacher/math-command?studentId=${encodeURIComponent(student.id)}&tab=students`}>Open math evidence, remaining questions, and targeted assignments →</AppLink></p>}
-      <StudentAnalyticsWorkstation inputs={[...analyticsInputs.map(input => ({ ...input, corrections: examCorrections.find(item => item.assessmentId === input.result.assessmentId && item.completedAt === input.result.completedAt)?.responses })), ...additionalEvidence]} preferenceKey={`teacher-analysis:${student.id}`} initialAssessmentId={initialAnalyticsAssessmentId}
+      <StudentAnalyticsWorkstation studentId={student.id} canEditQuestions inputs={[...analyticsInputs.map(input => ({ ...input, corrections: examCorrections.find(item => item.assessmentId === input.result.assessmentId && item.completedAt === input.result.completedAt)?.responses })), ...additionalEvidence]} preferenceKey={`teacher-analysis:${student.id}`} initialAssessmentId={initialAnalyticsAssessmentId}
         passageInventory={passageInventory}
         onBrowseCategory={accessToken ? category => { setPlanCategory(category); setPlanSkill(""); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
-        onAssignMathSkill={accessToken ? (category, subcategory) => navigateTo(`/teacher/math-command?${new URLSearchParams({ tab: "bank", studentId: student.id, category, ...(subcategory && subcategory !== "Unclassified" ? { subcategory } : {}), history: "never_seen" })}`) : undefined}
+        onAssignMathSkill={accessToken ? (category, subcategory) => window.location.assign(`/teacher/students?${new URLSearchParams({ student: student.id, workspace: "content", practice: "infinite", category, ...(subcategory && subcategory !== "Unclassified" ? { topic: subcategory } : {}) })}`) : undefined}
         onAssignSkill={accessToken ? skill => { setPlanCategory(""); setPlanSkill(skill); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
         answerLabel={studentAnswerLabel} correctLabel={correctAnswerLabel}
         renderExam={exam => {
@@ -1069,7 +1069,7 @@ export function TeacherDashboardPage() {
     requests: { status: "loading" },
   });
   const [accountView, setAccountView] = useState<"current" | "archived">("current");
-  const [selectedStudentId, setSelectedStudentId] = useState(() => new URLSearchParams(window.location.search).get("student") ?? "");
+  const [selectedStudentId, setSelectedStudentId] = useState(() => new URLSearchParams(window.location.search).get("student") ?? window.location.pathname.match(/^\/teacher\/students\/([a-f0-9-]{36})$/i)?.[1] ?? "");
   const [planRoster, setPlanRoster] = useState<Record<string, PlanOverview["summary"]>>({});
   const [isCheckingSession, setIsCheckingSession] = useState(
     isSupabaseConfigured && !initialDashboardCache,
@@ -1619,7 +1619,7 @@ export function TeacherDashboardPage() {
       <section className={`teacher-panel teacher-roster-panel${selectedStudent ? " sa-selected-workspace" : ""}`} id="students">
           {selectedStudent ? <div className="sa-student-picker"><button onClick={() => setSelectedStudentId("")} type="button"><ArrowLeft size={14} /> All students</button><label>Student <select value={selectedStudentId} onChange={event => setSelectedStudentId(event.target.value)}>{shsatStudents.map(student => <option key={student.id} value={student.id}>{student.fullName}</option>)}</select></label><span>{shsatStudents.length} enrolled</span></div> : <div className="teacher-panel-header"><div><span>Roster</span><h2>SHSAT student progress</h2></div><p>Select a student to review progression and question evidence.</p></div>}
           {!selectedStudent && <StudentProgressRoster plans={planRoster} students={shsatStudents} inputsFor={student => buildTeacherAnalyticsInputs(student, assessments)} onSelect={setSelectedStudentId} />}
-          {selectedStudent && <StudentDetail key={selectedStudent.id} accessToken={accessToken} assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={selectedStudent} />}
+          {selectedStudent && <StudentDetail key={selectedStudent.id+":"+(new URLSearchParams(window.location.search).get("exam")??"")} accessToken={accessToken} assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={selectedStudent} />}
 
       </section>
       ) : null}

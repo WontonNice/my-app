@@ -1,0 +1,342 @@
+1 [{'score': 1.0, 'parent': 'standalone', 'id': 'part-b-question-9'}]
+Which edit should be made to correct this sentence? In 1962 the agile athletic Wilt Chamberlain became the first and only professional basketball player in the United States to score 100 points in a single game.
+A: Insert a comma after agile. | B: Insert a comma after first. | C: Insert a comma after only. | D: Insert a comma after States.
+2 [{'score': 0.7805, 'parent': 'standalone', 'id': 'part-b-import-11fdbe8f497f-4770de9a'}]
+Read this sentence. The engineers tried some other things in the hope of finding a more effective insulation for the compartment. What is the most precise revision for the words The engineers tried some other things?
+E: The engineers did experiments with several new materials | F: The engineers tested foam and fiberglass | G: The engineers examined two new materials | H: The engineers worked with foam and fiberglass
+3 [{'score': 1.0, 'parent': 'standalone', 'id': 'part-b-import-f1c057628986-c19ffcec'}]
+Which revision corrects the error in sentence structure in the paragraph? In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name, at that time, only men were permitted to officially register and receive a number for the legendary race. Once officials realized a woman was attempting to run in the race, they made efforts to remove her from the competition. Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women. In 2017, to mark the fiftieth anniversary of this pioneering event, a seventy-year-old Switzer repeated her run, wearing the number 261, the same number she had worn in that first run in 1967,
+A: name. At | B: race. They | C: hours. Paving | D: 261. The
+4 [{'score': 1.0, 'parent': 'standalone', 'id': 'part-b-import-f2325dca51de-51707498'}]
+Which sentence contains an error in its construction and should be revised? (1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink, gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.
+E: sentence 1 | F: sentence 2 | G: sentence 3 | H: sentence 4
+5 [{'score': 1.0, 'parent': 'cracking-the-code-2019-2020-form-a', 'id': 'cracking-the-code-2019-2020-form-a-2019-form-a-ela-q05'}]
+What is the best way to combine sentences 3 through 5 to clarify the relationship between ideas?
+A: People who code have to learn this language because they can construct programs that will perform detailed and complex tasks. | B: People who code have to learn this language so they can construct programs that will perform detailed or complex tasks. | C: When people who code have to learn this language, it is so they can construct programs that will perform detailed and complex tasks. | D: If people who code have to learn this language, then they can construct programs that will perform detailed as well as complex tasks.
+6 [{'score': 1.0, 'parent': 'cracking-the-code-2019-2020-form-a', 'id': 'cracking-the-code-2019-2020-form-a-2019-form-a-ela-q06'}]
+Which sentence should follow sentence 5 to best state the main claim in the passage?
+E: People should take advantage of opportunities to study and learn basic coding because of its many valuable benefits. | F: People should attempt to understand how code can be used to design programs that are beneficial for a variety of industries and businesses. | G: Schools should offer coding classes because knowing how to code will help students succeed in many types of businesses. | H: Students should prepare for the future job market by studying code and learning how to code programs.
+7 [{'score': 1.0, 'parent': 'cracking-the-code-2022-2023-form-a', 'id': 'cracking-the-code-2022-2023-form-a-3'}]
+Which revision of sentence 10 provides the best transition to the argument in the third paragraph (sentences 10-13)?
+A: Learning a coding language may be difficult, but coding skills are becoming important in many occupational fields. | B: Learning a coding language is useful because coding skills are becoming important in many occupational fields, | C: Employers in most industries realize that people with coding skills can demand higher salaries in many occupational fields. | D: Even though programming is its own unique field, coding skills are becoming important in many occupational fields.
+8 [{'score': 1.0, 'parent': 'cracking-the-code-2019-2020-form-a', 'id': 'cracking-the-code-2019-2020-form-a-2019-form-a-ela-q08'}]
+Which sentence would best follow sentence 13 and support the ideas in the third paragraph (sentences 10-13)?
+E: Experienced programmers, software engineers, and system administrators at large companies can earn well over $100,000 a year. | F: Hospitals, physicians’ offices, and pharmaceutical companies are frequently looking to hire people who code to help with a variety of tasks. | G: Many companies are eager to hire employees who have experience in a specific industry as well as knowledge of basic coding. | H: According to a report from a job market analytics firm, almost half of today’s jobs paying more than $58,000 a year call for some level of coding ability.
+9 [{'score': 1.0, 'parent': 'cracking-the-code-2022-2023-form-a', 'id': 'cracking-the-code-2022-2023-form-a-5'}]
+Which concluding sentence would best follow sentence 20 and support the argument presented in the passage?
+A: People should understand that knowing how to code is becoming an essential requirement for most high-paying jobs. | B: By understanding basic coding concepts, people can participate in an increasingly digital job market. | C: Students who want to secure a high-paying job in the technology industry should become proficient in coding. | D: Since coding is a valuable marketplace skill, today’s students should begin to write their own computer programs.
+10 [{'score': 0.2648, 'parent': 'a-memory-revolution-2023-2024-form-a', 'id': 'a-memory-revolution-2023-2024-form-a-pdf-shsat-2023-2024-a-q017'}]
+How does paragraph 1 introduce the ideas that ravens may perceive time and plan for the future?
+E: It mentions a poem that considers whether a raven can see the future and then discusses why people have traditionally doubted that ravens have the ability to plan. | F: It references a poem about a raven that seems to have insight into the future and then mentions new information that suggests ravens have the ability to plan. | G: It mentions a poem that led people to believe that ravens are aware of the future and then explains that this belief prompted scientists to study ravens’ ability to plan. | H: It references a poem about a raven that predicts the future and then describes the importance of differentiating ravens’ instincts from their ability to plan.
+11 [{'score': 1.0, 'parent': 'the-best-laid-plans-of-ravens-2026-2027-form-a', 'id': 'the-best-laid-plans-of-ravens-2026-2027-form-a-official-shsat-2026-a-8'}]
+Read this sentence from paragraph 1. At Lund University in Sweden, researchers argue that ravens may be able to think ahead and even plan for the future. Which sentence from paragraph 4 provides support for this argument?
+A: “Once the ravens learned the behavior, the researchers presented the birds with four stones.” | B: “A researcher would trade the ravens a large treat for a bottle cap.” | C: “Later, the researchers presented the ravens with a group of items, including small treats and the bottle cap.” | D: “The ravens chose the bottle cap over the treats and waited for the original researcher to trade with them again so that they could get more treats.”
+12 [{'score': 1.0, 'parent': 'the-best-laid-plans-of-ravens-2026-2027-form-a', 'id': 'the-best-laid-plans-of-ravens-2026-2027-form-a-official-shsat-2026-a-9'}]
+Read these sentences from paragraph 2. For example, many animals hoard food so that they will not run out later, but scientists who study animals would not call hoarding a decision to plan for the future. This action is merely instinctual. Which statement describes the effect of the phrase “merely instinctual” in the passage?
+E: It implies that animals are skilled at finding and saving food for later consumption. | F: It conveys that many animals will usually prioritize gathering food over other activities. | G: It suggests that animals often store more food than they will be able to consume. | H: It emphasizes that many animals collect food automatically rather than with true intention.
+13 [{'score': 1.0, 'parent': 'the-best-laid-plans-of-ravens-2026-2027-form-a', 'id': 'the-best-laid-plans-of-ravens-2026-2027-form-a-official-shsat-2026-a-10'}]
+In the first experiment described in paragraph 4, which of the ravens’ behaviors provides the strongest evidence for the claim that the birds are capable of planning?
+A: They accepted treats from the box. | B: They set aside the stone that would open the box. | C: They learned which stone could open the box. | D: They waited for researchers to bring the box.
+14 [{'score': 0.36, 'parent': 'excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b', 'id': 'excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b-3'}]
+Read this sentence from paragraph 4. In both experiments, the ravens waited patiently for up to seventeen hours for the researcher to return. How does this sentence fit into the overall structure of the passage and contribute to the development of ideas?
+E: It concludes the description of the experiments, supporting the idea that ravens can make decisions for the future. | F: It establishes the timeline required in experiments designed to determine learned behaviors in ravens. | G: It reveals how the ravens solved the problems posed in the experiments, proving that ravens have the ability to plan ahead. | H: It indicates that hoarding food is both an instinctual and a learned behavior among ravens.
+15 [{'score': 1.0, 'parent': 'the-best-laid-plans-of-ravens-2026-2027-form-a', 'id': 'the-best-laid-plans-of-ravens-2026-2027-form-a-official-shsat-2026-a-11'}]
+How does paragraph 5 fit into the overall structure of the passage and contribute to the development of ideas?
+A: It introduces a problem with the results of the study at Lund University, suggesting that some scientists believe that further research will not lead to a clear answer. | B: It summarizes the final steps of the study at Lund University, emphasizing the difficulties researchers had in differentiating between true planning and practiced actions. | C: It provides a conclusion to the information about the Lund University study, indicating that some scientists think further research is needed in order to prove the idea. | D: It lists the effects of the study at Lund University, implying that researchers should have designed experiments that better differentiated between planning and instinct.
+16 [{'score': 1.0, 'parent': 'the-best-laid-plans-of-ravens-2026-2027-form-a', 'id': 'the-best-laid-plans-of-ravens-2026-2027-form-a-official-shsat-2026-a-12'}]
+The author conveys a point of view on the study of animal intelligence mainly by
+E: sharing details about experiments that tested the ability of an animal to plan for the future. | F: comparing the results of different experiments that were designed to test animal intelligence. | G: critiquing experiments that aimed to demonstrate that certain animals are capable of planning for the future. | H: explaining how modern experiments show that previously held beliefs about animal intelligence are inaccurate.
+17 [{'score': 1.0, 'parent': 'the-best-laid-plans-of-ravens-2026-2027-form-a', 'id': 'the-best-laid-plans-of-ravens-2026-2027-form-a-official-shsat-2026-a-13'}]
+With which statement would the author of the passage most likely agree?
+A: Scientists are unlikely to be able to conduct an experiment that can genuinely distinguish between instinctual and learned behaviors in animals. | B: Scientists should continue researching to determine whether or not animals can demonstrate advanced intelligence. | C: Scientists should be careful about making conclusions about animal intelligence based on experiments that rely on training animals. | D: Scientists can confirm data on whether animals have the ability to plan by performing experiments on additional species known for their intelligence.
+18 [{'score': 1.0, 'parent': 'excerpt-from-winter-wheat-2023-2024-form-a', 'id': 'excerpt-from-winter-wheat-2023-2024-form-a-pdf-shsat-2023-2024-a-q044'}]
+Read these sentences from paragraph 2. Dad always said Mom could make all the dishes he’d had back in Vermont as well as though she were a New Englander herself, instead of a Russian. All of a sudden, I realized that tomorrow when those beans would be ready to eat I’d be going away. It gave me a funny feeling. The sentences help develop a theme of the excerpt by
+E: suggesting that life presents people with many challenges. | F: implying that the stress of major life events can cause confusion. | G: demonstrating that moving on from the familiar is a common human experience. | H: emphasizing the idea that people can easily learn the routines of being part of a new culture.
+19 [{'score': 1.0, 'parent': 'excerpt-from-winter-wheat-2023-2024-form-a', 'id': 'excerpt-from-winter-wheat-2023-2024-form-a-pdf-shsat-2023-2024-a-q045'}]
+Read this sentence from paragraph 3. “I'll be taking the train tomorrow night,” I said aloud, more to hear it myself. This remark contributes to the conflict in the excerpt by
+A: revealing Dad’s reasons for wanting to drive to the city. | B: causing tension between Mom and Dad. | C: leading Ellen to distance herself from both Mom and Dad. | D: showing Mom’s reluctance to plan that far in advance.
+20 [{'score': 1.0, 'parent': 'excerpt-from-winter-wheat-2023-2024-form-a', 'id': 'excerpt-from-winter-wheat-2023-2024-form-a-pdf-shsat-2023-2024-a-q046'}]
+Read this sentence from paragraph 9. I tried to, and then I just sat still and looked straight at it. How does the phrase “looked straight at it” contribute to the meaning of the excerpt?
+E: It shows that Ellen is willing to deal with a problem directly instead of ignoring it. | F: It suggests that Ellen studies all parts of an issue and not just its surface. | G: It illustrates that Ellen examines both sides of an argument. | H: It implies that Ellen is eager to seek wisdom from past experiences.
+21 [{'score': 1.0, 'parent': 'excerpt-from-winter-wheat-2023-2024-form-a', 'id': 'excerpt-from-winter-wheat-2023-2024-form-a-pdf-shsat-2023-2024-a-q047'}]
+The words “cold” and “dark” affect the tone in paragraph 10 by
+A: highlighting the feeling of unpredictability among the family members. | B: showing the feelings of anger and resentment Ellen directs toward her parents. | C: exaggerating the feeling of regret Dad experiences when leaving his family. | D: emphasizing the feelings of separation and loss that Ellen feels.
+22 [{'score': 1.0, 'parent': 'excerpt-from-winter-wheat-2023-2024-form-a', 'id': 'excerpt-from-winter-wheat-2023-2024-form-a-pdf-shsat-2023-2024-a-q048'}]
+Which sentence from the excerpt provides evidence that Ellen has a lot in common with her father?
+E: “He’s the one who gets excited when I do about spring coming or a serial running in the magazine we’re both reading. . . .” (paragraph 1) | F: “ ‘We can drive you into town in the afternoon,’ Dad said, dropping his paper on the floor.” (paragraph 4) | G: “Well, we don’t have to decide tonight,’ Dad said, but I knew he wanted to go into Clark City.” (paragraph 6) | H: “I wondered how they would get along without me.” (paragraph 25)
+23 [{'score': 1.0, 'parent': 'excerpt-from-winter-wheat-2023-2024-form-a', 'id': 'excerpt-from-winter-wheat-2023-2024-form-a-pdf-shsat-2023-2024-a-q049'}]
+Read these sentences from the excerpt. Mom seems to think of nothing farther away than today or perhaps yesterday or tomorrow morning. (paragraph 1) Mom was fixing oatmeal for tomorrow morning. (paragraph 19) The sentences help develop a central idea of the excerpt by
+A: suggesting that practical people focus on current needs rather than worrying about the future. | B: showing that parents tend to consider the needs of their children before thinking of themselves. | C: revealing that it is sometimes important to plan ahead. | D: illustrating that dreaming about the future is a waste of time.
+24 [{'score': 1.0, 'parent': 'excerpt-from-winter-wheat-2023-2024-form-a', 'id': 'excerpt-from-winter-wheat-2023-2024-form-a-pdf-shsat-2023-2024-a-q050'}]
+The flashback in paragraphs 10-24 affects the plot by
+E: showing that the departure of one member of the family makes extra work for those left on the farm. | F: showing that the bond within the family persists even when its members are apart. | G: explaining why Ellen fears that leaving her parents will be too difficult. | H: illustrating the close connection Ellen has with both of her parents.
+25 [{'score': 1.0, 'parent': 'excerpt-from-winter-wheat-2023-2024-form-a', 'id': 'excerpt-from-winter-wheat-2023-2024-form-a-pdf-shsat-2023-2024-a-q051'}]
+Which sentence from the excerpt provides evidence that Mom wants Ellen to understand the family’s heritage?
+A: “Mom folded the ironing board and put it inside their bedroom that was just off the kitchen.” (paragraph 2) | B: “ ‘There’s no need to go to town; she can catch the train at Gotham just as well.’ ” (paragraph 5) | C: “We'd go in right after dinner and go around to the stores, Dad going one way and Mom and I another.” (paragraph 7) | D: “ ‘Why, Yeléna, you know that; Anna Petrovna.’ ” (paragraph 22)
+26 [{'score': 1.0, 'parent': 'massachusetts-lowell-national-historical-park-2020-2021-form-b', 'id': 'massachusetts-lowell-national-historical-park-2020-2021-form-b-1'}]
+Read this sentence from paragraph 1. As one Scottish traveler observed during his visit to America, “Niagara and Lowell are the two objects I will longest remember in my American journey, the one the glory of American scenery, the other of American industry.” The author most likely includes the quotation from the Scottish traveler in order to
+E: suggest that people around the world saw the direct contribution of nature and industry to the United States. | F: compare the natural and industrial attractions in the United States at that time. | G: convey the idea that the United States offered both natural and industrial attractions. | H: imply that the natural resources in the United States contributed to the development of industry.
+27 [{'score': 1.0, 'parent': 'massachusetts-lowell-national-historical-park-2020-2021-form-b', 'id': 'massachusetts-lowell-national-historical-park-2020-2021-form-b-3'}]
+A central idea that Lowell was “one of America’s most significant industrial cities” (paragraph 1) is conveyed in the passage primarily through a description of the
+A: canals, mills, and boardinghouses that were built by immigrants. | B: mill girls and immigrants who comprised Lowell's workforce. | C: development of the mills and the workforce established to support them. | D: cultural diversity of the people who lived in the area.
+28 [{'score': 1.0, 'parent': 'massachusetts', 'id': 'massachusetts-3'}]
+Which sentence from paragraph 2 best supports the idea that Lowell became “a bustling industrial city” (paragraph 1) in a short period of time?
+E: “The Boston merchants who founded Lowell in 1821 and named it after Francis Cabot Lowell chose to locate the town along Massachusetts’s Merrimack River to take advantage of the kinetic energy offered by the Pawtucket waterfalls.” | F: “Over six miles of canals powered the waterwheels of Lowell’s mills, whose massive five- and six-story brick buildings dominated the city’s landscape.” | G: “The most recognized of these buildings are the Lowell Manufacturing Company chartered in 1821, the Suffolk or Wannalancit Mill completed around the 1880s, the Boott Mill Company established in 1835, and the Boott Mill Boardinghouse that opened in 1838.” | H: “By the 1850s, 40 textile mills employing over 10,000 workers stretched for about a mile along the river.”
+29 [{'score': 1.0, 'parent': 'massachusetts-lowell-national-historical-park-2020-2021-form-b', 'id': 'massachusetts-lowell-national-historical-park-2020-2021-form-b-4'}]
+Read this sentence from paragraph 3. From the early to mid-1800s, women left the constricted lifestyle of small rural towns and rural areas for independent industrial city life. Which statement best describes how the sentence fits into the overall structure of the passage?
+A: It provides a transition from a description of the mills to a description of the workforce in those mills. | B: It indicates a shift in tone from positive and hopeful to negative and dissatisfied with working conditions at the mill. | C: It summarizes a challenge that led many women to leave their hometown and seek work in urban areas. | D: It begins a comparison of the mill workforce between the mid-1800s and the late 1800s.
+30 [{'score': 1.0, 'parent': 'massachusetts-lowell-national-historical-park-2020-2021-form-b', 'id': 'massachusetts-lowell-national-historical-park-2020-2021-form-b-5'}]
+Read this sentence from paragraph 5. Although Lowell received an influx of Irish families during this time, the Irish were a part of the city’s history from its birth, and before the “mill girls” arrived, they built Lowell's historic canals, mills, and boardinghouses. How does this sentence contribute to the development of ideas in the passage?
+E: It implies that Lowell was founded by early Irish immigrants. | F: It emphasizes the important role Irish immigrants played in Lowell's history. | G: It suggests that the new Irish immigrants were readily accepted into the community. | H: It highlights the working relationship between the mill girls and the new Irish immigrants.
+31 [{'score': 1.0, 'parent': 'massachusetts-lowell-national-historical-park-2020-2021-form-b', 'id': 'massachusetts-lowell-national-historical-park-2020-2021-form-b-6'}]
+Which sentence best summarizes the mill girls’ experience as the dominant workforce in Lowell?
+A: The mill girls were eager to leave their domestic duties and small towns behind, so they went to work in the mills of Lowell. | B: Originally, the mill girls were satisfied to work in Lowell, but as they left their jobs at the Lowell mills, immigrants arrived to fill the empty positions. | C: Young women left home to work in the Lowell mills, but the mill girls soon became dissatisfied with the working conditions and rigid boardinghouse rules. | D: The mill girls embraced city life when they came to work in Lowell’s mills, but when their protests about unfavorable working conditions went unanswered, they left.
+32 [{'score': 1.0, 'parent': 'massachusetts-lowell-national-historical-park-2020-2021-form-b', 'id': 'massachusetts-lowell-national-historical-park-2020-2021-form-b-7'}]
+The reason Lowell lost its status as an industrial leader is best illustrated through the
+E: description of poor living and working conditions. | F: explanation for why some immigrant groups struggled to live together. | G: comparison with other mills that used modern methods. | H: information about the mills opening temporarily during World War II.
+33 [{'score': 1.0, 'parent': 'ode-to-fireworks-2019-2020-form-a', 'id': 'ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q19'}]
+The comparison in lines 8-9 of the poem is used to convey
+A: the muffled pounding of explosions in the distance. | B: the way lightning streaks through the clouds. | C: the echoes of thunder on an autumn night. | D: the glow of sparks falling from the sky.
+34 [{'score': 1.0, 'parent': 'ode-to-fireworks-2019-2020-form-a', 'id': 'ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q20'}]
+Read lines 22-23 from the poem. the sky at night written upon with those jewels. What does the word choice in these lines convey about the speaker?
+E: The speaker values material possessions. | F: The speaker imagines that the fireworks are magical. | G: The speaker believes that the country setting is distinctive. | H: The speaker cherishes the memory of seeing fireworks as a child.
+35 [{'score': 1.0, 'parent': 'ode-to-fireworks-2019-2020-form-a', 'id': 'ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q21'}]
+The use of italics on the word “night” in line 24 is most likely intended to emphasize the
+A: sense of mystery in the darkness. | B: sense of absolute darkness. | C: speaker’s fear of night. | D: speaker’s certainty about that night.
+36 [{'score': 1.0, 'parent': 'ode-to-fireworks-2019-2020-form-a', 'id': 'ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q22'}]
+What is the purpose of the repeated words “rising and falling” in lines 26 and 37?
+E: to create a distinction between solitude and meaningful interaction | F: to demonstrate a connection between the speaker’s past and present | G: to emphasize the speaker’s attention to the surrounding sounds | H: to compare the fireworks to common sights and sounds
+37 [{'score': 1.0, 'parent': 'ode-to-fireworks-2019-2020-form-a', 'id': 'ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q23'}]
+What impact does the phrase “Everything is a constant celebration” (line 33) have in the poem?
+A: It reveals that the speaker finds the city more pleasurable than the country. | B: It suggests that the persistent brightness of the city can be overwhelming to the speaker. | C: It implies that what is normal in the city was unusual in the country. | D: It emphasizes the hectic pace of daily life in the city.
+38 [{'score': 1.0, 'parent': 'ode-to-fireworks-2019-2020-form-a', 'id': 'ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q24'}]
+Read lines 41-42 from the poem. I kept waiting for those childhood bursts, watching as they escorted us home. How does this memory affect the speaker?
+E: The speaker believes it is impossible to ever return to a place in the past. | F: The speaker is still amused by the impatience felt during fireworks displays. | G: The speaker now regrets abandoning the rural way of life. | H: The speaker feels a sense of comfort when reflecting on the past.
+39 [{'score': 1.0, 'parent': 'ode-to-fireworks-2019-2020-form-a', 'id': 'ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q18'}]
+The fireworks in the poem represent the speaker's
+A: wish to return to a simpler way of living. | B: bittersweet feelings about leaving the past behind. | C: high expectations for everyday life. | D: reflections on past interactions with relatives.
+40 [{'score': 1.0, 'parent': 'excerpt-from-in-search-of-the-unknown-2023-2024-form-b', 'id': 'excerpt-from-in-search-of-the-unknown-2023-2024-form-b-pdf-shsat-2023-2024-b-q018'}]
+Read paragraph 2 from the excerpt. To the proprietors of .. . mangy lynxes, moth-eaten coyotes, and dancing bears I returned courteous but uncompromising refusals—of course, first submitting all such letters, together with my replies, to Professor Farrago. This paragraph helps develop the plot by establishing that the narrator
+E: dislikes writing refusal letters for the animals offered to the zoological society. | F: attempts to predict what the professor would say in the refusal letters. | G: believes that many of the animals offered are not acceptable for the zoological society. | H: resents the professor’s insistence on reviewing the refusal letters.
+41 [{'score': 1.0, 'parent': 'excerpt-from-in-search-of-the-unknown-2019-2020-form-a', 'id': 'excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q41'}]
+Read this sentence from paragraph 3. The professor, who was sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his glasses down and looked over them at me with a whimsical smile that suggested amusement, impatience, annoyance, and perhaps a faint trace of apology. What does the phrase “a faint trace of apology” convey about the professor?
+A: It indicates that the professor feels bad that he has to call the narrator to his office after work. | B: It shows that the professor is hesitant to share his opinions with the narrator. | C: It implies that the professor is uncomfortable criticizing the narrator's work. | D: It suggests that the professor knows that the conversation will be frustrating for the narrator.
+42 [{'score': 1.0, 'parent': 'excerpt-from-in-search-of-the-unknown-2023-2024-form-b', 'id': 'excerpt-from-in-search-of-the-unknown-2023-2024-form-b-pdf-shsat-2023-2024-b-q020'}]
+How does the exchange between the professor and the narrator in paragraphs 8-11 contribute to the development of the characters?
+E: It establishes the conflict between the professor and the narrator concerning the validity of the letter. | F: It suggests a theme of collaboration because the narrator and the professor regularly work together. | G: It reveals the characters’ traits by contrasting the narrator’s distrust with how easily the professor is deceived by what he reads. | H: It hints that the resolution will involve the narrator accepting the professor’s opinion about the content of the letter.
+43 [{'score': 1.0, 'parent': 'excerpt-from-in-search-of-the-unknown-2019-2020-form-a', 'id': 'excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q43'}]
+The professor’s observations in paragraphs 15-17 create tension in the excerpt by causing the narrator to feel
+A: flustered by the professor’s criticism of his logic. | B: annoyed by the professor’s sarcasm about his inexperience. | C: confused by the professor’s lack of respect for his opinion. | D: frustrated by the professor’s lack of interest in his theory.
+44 [{'score': 1.0, 'parent': 'excerpt-from-in-search-of-the-unknown-2019-2020-form-a', 'id': 'excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q44'}]
+How does the interaction between the narrator and the professor in paragraphs 26-28 contribute to the development of the theme?
+E: It illustrates the professor’s patience as the narrator argues against making the expedition. | F: It reveals the narrator’s frustration with his limited role in making decisions for the zoological society. | G: It emphasizes the professor's desire to acquire new specimens for the zoological society at any cost. | H: It shows the narrator’s acceptance of his assignment despite his personal objections.
+45 [{'score': 1.0, 'parent': 'excerpt-from-in-search-of-the-unknown-2023-2024-form-b', 'id': 'excerpt-from-in-search-of-the-unknown-2023-2024-form-b-pdf-shsat-2023-2024-b-q023'}]
+Which sentence from the excerpt best explains why the professor is eager to send the narrator on an expedition?
+A: “I believe now that Professor Farrago perfectly interpreted my thoughts, but he betrayed neither resentment nor impatience.” (paragraph 25) | B: “Together we made out a list of articles necessary for me and itemized the expenses I might incur, and I set a date for my return, allowing no margin for a successful termination to the expedition.” (paragraph 26) | C: “‘What I want you to do is to get those birds here safely.’ ” (paragraph 27) | D: “ ‘I can’t get away from the idea that we are on the eve of acquiring the rarest of living creatures.’ ” (paragraph 33)
+46 [{'score': 1.0, 'parent': 'excerpt-from-in-search-of-the-unknown-2023-2024-form-b', 'id': 'excerpt-from-in-search-of-the-unknown-2023-2024-form-b-pdf-shsat-2023-2024-b-q024'}]
+How does paragraph 34 help develop the plot of the excerpt?
+E: It shows that the narrator is beginning to consider the possibility of finding the great auks. | F: It demonstrates that the narrator is struggling to understand why the professor thinks the great auks exist. | G: It establishes that the narrator is willing to let the professor overrule him about the great auks, | H: It emphasizes that the narrator feels a sense of urgency to complete the expedition to locate the great auks.
+47 [{'score': 1.0, 'parent': 'excerpt-from-in-search-of-the-unknown-2023-2024-form-b', 'id': 'excerpt-from-in-search-of-the-unknown-2023-2024-form-b-pdf-shsat-2023-2024-b-q025'}]
+Which sentence best demonstrates the professional relationship between the narrator and the professor?
+A: “He disengaged the sheet of paper and handed it to me.” (paragraph 4) | B: “Clearly, Professor Farrago was on the verge of dotage—ah, what a loss to the world!” (paragraph 24) | C: “I drew a chair up beside his desk—there was nothing to do but to obey, and this fool’s errand was none of my conceiving.” (paragraph 25) | D: “ ‘Very well,’ said Professor Farrago, good-humoredly, ‘you shall have all the assistance you may require.’ ” (paragraph 29)
+48 [{'score': 1.0, 'parent': 'excerpt-from-in-search-of-the-unknown-2019-2020-form-a', 'id': 'excerpt-from-in-search-of-the-unknown-2019-2020-form-a-2019-form-a-ela-q45'}]
+How does the author develop the contrast between the narrator’s point of view and the professor’s point of view?
+E: by providing both the narrator’s and professor’s thoughts on how age and experience influence each other’s reasoning | F: by using the conversation between the narrator and the professor to emphasize their reactions to the letter | G: by describing the professor's persistent efforts to change the narrator’s mind about the letter | H: by including dialogue that explains why the professor is the supervisor and the narrator is his subordinate
+49 [{'score': 1.0, 'parent': 'excerpt-from-research-riddle-resolved-2019-2020-form-a', 'id': 'excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q25'}]
+Read this sentence from paragraph 2. But cuteness and weirdness aside, the platypus research results are a gold mine for medical researchers. The sentence contributes to the overall structure of the excerpt by
+A: shifting the focus of the excerpt from the platypus’s unique appearance to its physiology. | B: highlighting how the platypus’s unusual appearance has attracted scientists’ attention. | C: revealing current ideas about the genetic background of the platypus. | D: introducing the platypus’s scientific significance that the rest of the excerpt develops.
+50 [{'score': 1.0, 'parent': 'excerpt-from-research-riddle-resolved-2019-2020-form-a', 'id': 'excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q26'}]
+The phrase “evolutionary DNA tapestry” in paragraph 3 conveys the idea that the platypus
+E: has a rich and diverse genetic history linked to reptiles, birds, and other mammals. | F: was able to develop its mammalian and reptilian traits at different points in time. | G: continues to be the best resource for studying the evolution of animal genomes. | H: is especially useful to researchers because its genes have never been altered.
+51 [{'score': 0.4125, 'parent': 'excerpt-from-how-exercise-could-help-you-learn-a-new-language-2023-form-b', 'id': 'excerpt-from-how-exercise-could-help-you-learn-a-new-language-2023-form-b-2023-form-b-q33'}]
+How do paragraphs 4-6 contribute to the development of ideas in the excerpt?
+A: They summarize the evidence that the platypus genome is an evolutionary peculiarity. | B: They provide a transition from the discussion about the study of the platypus to a discussion about the study of the human genome. | C: They highlight the idea that mammals share several significant similarities even though the group is diverse. | D: They explain why the platypus’s genetic material is interesting to researchers who are trying to understand humans and other mammals.
+52 [{'score': 0.8886, 'parent': 'excerpt-from-research-riddle-resolved-2019-2020-form-a', 'id': 'excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q27'}]
+How does paragraph 8 fit into the overall structure of the excerpt?
+E: It provides a transition from the discussion of the platypus genome to a discussion on comparative genomics. | F: It introduces the way that scientists study the evolution of genetic material within a particular species of animal. | G: It contrasts the efforts made to study the different parts of the human genome with the efforts made to study certain animal genomes. | H: It elaborates on the idea that deciphering genetic signals is a rigorous research challenge.
+53 [{'score': 0.9452, 'parent': 'excerpt-from-research-riddle-resolved-2019-2020-form-a', 'id': 'excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q28'}]
+Which sentence gives the best summary of the section “Same and Different” (paragraphs 9-11)?
+A: The platypus is the most recent of several species whose genomes have been compared with the human genome. | B: Comparative genomics is an effective way to examine a variety of different species, from single-celled organisms to large mammals. | C: Comparing human and animal genes and studying which genes are the same across species may lead to a greater understanding of human diseases. | D: Scientists are able to use computers in order to compare and examine evolutionary changes in genes across a number of species, including humans.
+54 [{'score': 0.973, 'parent': 'excerpt-from-research-riddle-resolved-2019-2020-form-a', 'id': 'excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q29'}]
+The details in paragraphs 12-14 about the platypus’s different abilities convey a central idea of the excerpt by
+E: showing that the platypus has a gene that allows it to produce milk that is rich in nutrients, as humans do. | F: proving that the platypus, whose DNA is made up of DNA from several other species, has developed venom to defend itself. | G: suggesting that the platypus, while gaining traits in common with mammals and reptiles, has lost some bird-like traits. | H: demonstrating that the platypus has a rare evolutionary background that includes bird, reptile, and mammal DNA.
+55 [{'score': 1.0, 'parent': 'excerpt-from-research-riddle-resolved-2019-2020-form-a', 'id': 'excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q32'}]
+Which sentence from the excerpt best supports the idea that the same DNA material results in the same traits even in different classes of animals?
+A: “The findings cement what may have seemed totally obvious but turned out to be a bit of a scientific surprise: platypus DNA is a patchwork of genes from reptiles, birds, and mammals.” (paragraph 2) | B: “In other words, the platypus heritage is laid out in an evolutionary DNA tapestry that marks the time, hundreds of millions of years ago, when reptiles and mammals branched off the evolutionary tree.” (paragraph 3) | C: “The platypus is nothing like a human, so what can its DNA tell us about people and the diseases we get?” (paragraph 4) | D: “The evolutionary reason for maintaining such molecular weaponry isn’t yet clear, but what is fascinating is that it appears nature mixed and matched together DNA pieces separately to create the venom genes in reptiles and monotremes like the platypus.” (paragraph 14)
+56 [{'score': 0.9737, 'parent': 'excerpt-from-research-riddle-resolved-2019-2020-form-a', 'id': 'excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q31'}]
+How can researching the genomes of other animals inform scientists’ understanding of human health and disease?
+E: Tracking how other animals evolved over millions of years helps researchers preserve and sustain nature, | F: Finding ways that animal genomes are similar to the human genome helps researchers find signals that control genes. | G: Observing that all living things evolved from a common ancestor helps researchers pinpoint certain genetic traits. | H: Understanding how other animals are similar to one another helps researchers understand how humans evolved.
+57 [{'score': 1.0, 'parent': 'excerpt-from-research-riddle-resolved-2019-2020-form-a', 'id': 'excerpt-from-research-riddle-resolved-2019-2020-form-a-2019-form-a-ela-q30'}]
+The author elaborates on the idea that creating a full analysis of platypus DNA was an important scientific endeavor mainly through
+A: a description of the type of information about human genetics that specialized research can yield. | B: a comparison of the platypus with its closest bird and reptile relatives on the evolutionary tree. | C: the discussion of how unusual the platypus genome is in the animal kingdom. | D: the explanation of how genetics can be aligned to physiological function.
+58 [{'score': 0.9217, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q58'}]
+CO R Ale P Ss In the figure above, PQRS is a parallelogram. What is the value of x ?
+
+59 [{'score': 0.9907, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q59'}]
+The owner of a tree farm plants pine trees and oak trees in a ratio of 8:3. How many oak trees are planted if 264 pine trees are P P planted?
+
+60 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q60'}]
+For what value of w is 4w = 2w-8?
+
+61 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q61'}]
+A survey asked students what pets they have. Based on the results, the following statements are all true. ¢ 20 students have cats. « 23 students have dogs. ¢ 3 students have both dogs and cats. « 5 students have no dogs or cats. How many students were surveyed?
+
+62 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q62'}]
+The sum of two consecutive integers is -15. If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?
+
+63 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q63'}]
+The set of possible values of m is {5, 7, 9}. What is the set of possible values of k if 2k = m+3?
+A: {3, 4, 5} | B: {4, 5, 6} | C: {8, 10, 12} | D: {10, 14, 18}
+64 [{'score': 0.0698, 'parent': '5-reasons-physical-books-might-be-better-than-e-books-2024-2025-form-a', 'id': '5-reasons-physical-books-might-be-better-than-e-books-2024-2025-form-a-4'}]
+7+ (3n+ 6) -(4n+ 8) =
+E: 5-n | F: Sin | G: 21-n | H: 21+n
+65 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q65'}]
+Ina certain school, course grades range from 0 to 100. Adrianna took 4 courses and her mean course grade was 90. Roberto took 5 courses. If both students have the same sum of course grades, what was Roberto’s mean?
+A: 72 | B: 80 | C: 90 | D: 92
+66 [{'score': 0.9965, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q66'}]
+Jenny starts a game with twice as many marbles as Keiko. Jenny gives Keiko 5 marbles, but she still has 10 more than F Keiko. How many marbles did Jenny have to start with?
+E: 25 | F: 30 | G: 35 | H: 40
+67 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q67'}]
+Inascale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?
+A: 0.001 | B: 0.01 | C: 0.1 | D: 0.12
+68 [{'score': 0.8692, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q68'}]
+PEOPLE PER VEHICLE AT CHECKPOINT Number of People | Percent of in Vehicle Vehicles po 9 A researcher recorded the number of people in each vehicle that passed through a checkpoint. The table above shows the percent distribution for the 420 vehicles that passed through the checkpoint yesterday morning. How many . . of the 420 vehicles contained at least 3 people?
+E: 42 | F: 63 | G: 105 | H: 315
+69 [{'score': 0.8773, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q69'}]
+R M P eo iS} Q In the pyramid above, each triangular face has the same area, and the base MNPQ is a square that measures 8 centimeters on —_ each side. If the length of RS = 6 centimeters, what is the surface area of
+B: 96 sqcm | D: 160 sq cm
+70 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q70'}]
+The perimeter of a rectangle is | | 510 centimeters. The ratio of the length to the width is 3:2. What are the dimensions | of this rectangle?
+E: 150 cm by 105 cm | F: 153 cm by 102 cm | G: 158 cm by 97 cm | H: 165 cm by 90 cm
+71 [{'score': 0.8889, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q71'}]
+Which number line below shows the solution to the inequality —4 < > <2? << A 190 = 0 10 5 5 Be -10 -5 (0) 5 10 <Re Cc -10° -5 0 5 10 <HR> DP -10 = -5 OO 5 10
+
+72 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q72'}]
+The sum of the numbers x, y, and z is 50. The ratio of x to y is 1:4, and the ratio of y to z is 4:5. What is the value of y?
+E: 4 | F: 8 | G: 10 | H: 20
+73 [{'score': 0.9781, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q73'}]
+A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is Z. How many of the pencils in the box are not red? AS
+B: 15 | C: 21 | D: 30
+74 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q74'}]
+1 dollar = 7 lorgs 1 dollar = 0.5 dalt Kevin has 140 lorgs and 16 dalts. If he exchanges the lorgs and dalts for dollars according to the rates above, how many dollars will he receive?
+E: $28 | F: $52 | G: $182 | H: $282
+75 [{'score': 0.9691, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q75'}]
+y 2 1 oa 2 * What is the area of the shaded region in the graph above?
+A: 0.25 square unit | B: 0.5 square unit | C: 1 square unit | D: 1.5 square units
+76 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q76'}]
+In Centerville, 45% of the population is female, and 60% of the population commutes to work daily. Of the total Centerville population, 21% are females who commute to work daily. What percentage of the total Centerville population are males who do not commute to work daily?
+E: 15% | F: 16% | G: 24% | H: 39%
+77 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q77'}]
+Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, not including tax. What was the price per pound of the meat?
+A: $2.80 | B: $3.25 | C: $14.40 | D: $22.40
+78 [{'score': 0.9742, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q78'}]
+Inasample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?
+E: = —s 25 | G: > | H: 1 3
+79 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q79'}]
+1 sind = 4 lorgs 2 plunks = 5 dalts 5 sinds = 2 harps 1 plunk = 3 harps A nation has five types of coins: sinds, dalts, lorgs, harps, and plunks. The relationship between the coins is shown above. Which coin is most valuable?
+A: sind | B: dalt | C: harp | D: plunk
+80 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q80'}]
+The faculty of a certain four-year college consists of 179 teachers. There are 663 first-year students. The student-to- faculty ratio for the entire college is 15 to 1. What is the total number of second-, third-, and fourth-year students?
+E: 1,989 | F: 2.022 | G: 2,652 | H: 2,685
+81 [{'score': 0.6022, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q81'}]
+HOW PEOPLE GET TO WORK IN CENTER CITY Bicycle 4% Car Pool 15% Bus 10% Drive Alone 49% Total number of people working in Center City = 15,000 How many more people in Center City walk to work than ride their bicycle to work?
+A: 2,500 | B: 2,700 © 2,800 | D: 3,000
+82 [{'score': 0.9762, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q82'}]
+Which of the following numbers has factors that include the smallest factor (other than 1) of 91?
+E: 30 | G: 39
+83 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q83'}]
+Ina scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?
+A: 16 ft | B: 32 ft | C: 40 ft | D: 48 ft
+84 [{'score': 0.75, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q84'}]
+SCORES ON MATH QUIZ “Score, Students Number of 4 What is the mean score of the 10 students in the table above?
+E: 22.5 | F: 75 | G: 77 | H: 85
+85 [{'score': 0.9286, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q85'}]
+The least of 5 consecutive integers is /, and the greatest is g. What is the value of I+ — in terms of /? i I?
+A: 2/ | B: 3/ | C: /+2 | D: /+5
+86 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q86'}]
+Acar is traveling 55 miles per hour, and 1 mile = 5,280 feet. Which of the following calculations would give the car's speed in feet per second?
+E: 55 -5,280 1 | F: 55:5,280 * 3,600 55 + 3,600 5,280 | H: 55:5,280 60
+87 [{'score': 0.9833, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q87'}]
+Today, Tien’s age is + of Jordan’s age. In 2 years, Tien’s age will be $ of Jordan’s age. How old is Jordan today?
+A: 4 years old | B: 6 years old | C: 12 years old | D: 16 years old
+88 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q88'}]
+How many positive even factors of 48 are greater than 24 and less than 48?
+E: 0 | F: 1 | G: 2 | H: 12
+89 [{'score': 0.8451, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q89'}]
+oi + 33. + 42 + si 5 10 5 2 What is the value of the expression shown above? 5
+A: 144 20 | B: 142 5 ce. is 20 | D: 152 5
+90 [{'score': 0.9891, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q90'}]
+An unmarked straight stick will be laid end over end to measure a distance of exactly 72 feet. The same stick will be used in the same way to measure 2 distance of exactly 30 feet. What is the length of the longest possible stick that can be used for 2 both measurements?
+E: 3 ft FL 4 ft | G: 6 ft | H: 8 ft
+91 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q91'}]
+There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?
+A: 12 | B: 15 | C: 30 | D: 36
+92 [{'score': 0.9923, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q92'}]
+Fora presentation, Deion can create 5 slides in 20 minutes, working at a constant rate. Kyra can create 3 slides in 10 minutes, working at her own constant rate. What is the total number of slides the two of them can create in one hour?
+E: 16 | F: 30 6.33 He 55
+93 [{'score': 0.9702, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q93'}]
+=< 4 vy 43 On the number line above, LN = : . Point M (not shown) is located between point L and point N. Which value below is a possible value for M?
+A: 4.26 | B: 4.31 | C: 4.35 | D: 4.58
+94 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q94'}]
+Johan leased a car for three years. He paid a one-time fee of $1,000, and an additional $300 per month for the full three years. At the end of the three years, what is the total amount Johan paid for leasing this car?
+E: $1,900 | F: $4,600 | G: $10,800 | H: $11,800
+95 [{'score': 0.9226, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q95'}]
+Ryan must read 150 pages for school this weekend. It took him 30 minutes to read the first 20 pages. At this rate, how much additional time will it take him to finish the reading?
+A: 24 hr 6 1 | B: 3= hr 4 | C: 33 br 4 p. 74 br 2
+96 [{'score': 0.8514, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q96'}]
+Suppose M=“, w=, and w,x,y,and x Zz Zz do not equal 0. What is * in terms of w,x,y,and z? gE. “x yz Fr. wy xXZ Gg. xy
+H: *% wz
+97 [{'score': 0.9868, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q97'}]
+Inthe set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of neither 2 nor 3? ALS
+B: 6 | C: 13 | D: 15
+98 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q98'}]
+If 3n is a positive even number, how many odd numbers are in the range from 3n up to and including 3n+5?
+E: 2 | F: 3 | G: 4 | H: 5
+99 [{'score': 0.9783, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q99'}]
+A box contains 5 strawberry candies, 3 banana candies, and 2 orange candies. If Braden selects 2 candies at random from this box, without replacement, what is the probability that both candies are not banana? aA. 15
+B: 2 100 c 2 15 | D: 49 100
+100 [{'score': 0.9548, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q100'}]
+wy x Zz In the equation above, w, x, y, and z are positive numbers. Which of these is equal to z?
+E: x | F: xy 6 & xy | H: X% “
+101 [{'score': 0.9364, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q101'}]
+Ww x Y Z te 10 0 8 On the number line above, points W, X, Y, and Z are integers, and WX:XY:YZ = 4:2:3, What is the value of WY ?
+A: 8 | B: 11 | C: 12 | D: 18
+102 [{'score': 0.997, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q102'}]
+A metal square used in an electronic device must have a thickness of 0.02 inch, with an allowable error of 1 percent. What P is the greatest allowable thickness of the metal square?
+E: 0.0002 in. | F: 0.02 in. | G: 0.0202 in. | H: 0.03 in.
+103 [{'score': 0.8977, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q103'}]
+SCORES ON BIOLOGY TEST Section Lowest Range ec Score 9 I is I Mr. Blake’s biology class is divided into three sections. The same test was given to each section. The table above shows both the lowest score and the range of scores on this test for each section. What . ; is the overall range of all scores in all three sections?
+A: 25 | B: 27 | C: 28 | D: 31
+104 [{'score': 0.8725, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q104'}]
+NUMBER OF SCHOOLS IN FIVE CITIES 10 9 8 7 Number ° of 4 Schools 3 2 1 ° MN P Q R City The graph above shows the number of schools per city for five small cities. Cities ‘ 7 aa iti M and N each have 500 students per school. City P has 400 students per school. Cities Q and R each have 700 students per school. Which of the five cities has the greatest number of students?
+E: CityM | F: City . i) y | G: City Q . | H: CityR
+105 [{'score': 0.9677, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q105'}]
+10 _ 0.769230 13 In the infinitely repeating decimal above, 7 is the first digit in the repeating pattern. . “ity What is the 391st digit?
+A: 0 | B: 3 | C: 6 | D: 7
+106 [{'score': 0.9714, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q106'}]
+A car travels at 4,400 feet per minute. The radius of each tire on the car is 1 foot. How many revolutions does one of these . . . tires make in 1 minute? 22 (Use the approximation << for 7.) 7
+E: 700 | F: 1,925 | G: 13,828 | H: 15,400
+107 [{'score': 0.0125, 'parent': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a', 'id': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-29'}]
+100(2 + 0.1)? - 100 =
+A: 101 | B: 200 | C: 301 | D: 341
+108 [{'score': 0.9657, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q108'}]
+A sports store has a container of handballs: 4 blue, 5 red, 8 yellow, 9 white, and 11 green. If one ball is picked from the container at random, what is the probability that it will be yellow? eB 37 1 Foo 8 6. & 37 4 3 29
+
+109 [{'score': 0.9944, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q109'}]
+Each week, Leon has fixed expenses of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he oe sells each chair for $275. What is Leon’s profit if he makes and sells 25 chairs in 1 week?
+A: $1,875 | B: $2,500 | C: $3,125 | D: $4,375
+110 [{'score': 1.0, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q110'}]
+Using the approximation 2.54 centimeters = 1 inch, how many centimeters are in 4 feet 7 inches?
+E: 21.65 | F: 119.38 | G: 121.92 | H: 139.70
+111 [{'score': 0.8645, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q111'}]
+J K L M <—+—_+—__+—_+—> 3 8 On the number line above, JK = 35 1 JM = 93 ,and LM= 1. What is the position of point L?
+A: 54 8 | B: 54 4 | C: 5st 2 p. 64 4
+112 [{'score': 0.8542, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q112'}]
+If 4x -3y =12 , whatis x in terms of y?
+E: x= 3y +12 4 3 FL. x=-=y+12 4 | G: x=3y43 3 | H: x=-~y+3 4
+113 [{'score': 0.9233, 'parent': '2026-2027-form-aMath.ts', 'id': '2026-2027-form-a-math-item-49'}]
+SERVINGS OF FRUITS AND VEGETABLES Number of Servings of Number of Fruits and Students Vegetables es po 5 1 There are 20 students in a class. The frequency table above shows the number of students in this class who ate 0, 1, 2, 3, 4, or 5 servings of fruits and vegetables yesterday. What is the mean number of servings of fruits and vegetables eaten yesterday per student in this class? a. it 2
+B: 3 | C: 34 3 | D: 4
+114 [{'score': 0.7517, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q114'}]
+A paste used to cover a billboard is made by mixing the following ingredients by weight: , 4 parts powder, 3 parts water, 2 parts resin, and 1 part hardener. To cover one billboard requires 30 pounds of this paste. How many total pounds of resin are required to cover @pilboards?
+F: 8 | G: 24 | H: 48 THIS IS THE END OF THE TEST. IF TIME REMAINS, YOU SHOULD CHECK YOUR ANSWERS. BE SURE THAT THERE ARE NO STRAY MARKS, PARTIALLY FILLED ANSWER CIRCLES, OR INCOMPLETE ERASURES ON YOUR

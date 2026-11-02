@@ -1,0 +1,50 @@
+
+> nathantutors@0.0.0 test:generator-planner
+> node --test server/tests/generator-planner.test.cjs
+
+✔ personal batches retain source snapshots, deduplicate additions and protect ownership/revisions (52.5324ms)
+✖ batch export carries all sources, exact module IDs, instructions and refuses stale destinations (6.8422ms)
+✔ renaming remains independent of skill assignment, reconciliation and validation (4.5973ms)
+✔ authenticated endpoints reject students and save teacher changes durably without assignments (71.6672ms)
+✔ remote persistence rejects failed writes and simultaneous stale saves (8.476ms)
+✔ studio handoff opens the account planner and carries only the source selection (6.7221ms)
+✔ planner notifications refresh visible tabs without sharing data and clean up subscriptions (4.3565ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1095.3535
+
+✖ failing tests:
+
+test at server\tests\generator-planner.test.cjs:50:1
+✖ batch export carries all sources, exact module IDs, instructions and refuses stale destinations (6.8422ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /destination module changed/. Input:
+  
+  'Error: qa-math-003: The destination changed. Choose its current module.'
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-planner.test.cjs:67:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: qa-math-003: The destination changed. Choose its current module.
+        at C:\Users\Nathan Im\Desktop\my-app-main\client\src\features\math-command\generatorBatchExport.ts:21:22
+        at Array.map (<anonymous>)
+        at generatorBatchExport (C:\Users\Nathan Im\Desktop\my-app-main\client\src\features\math-command\generatorBatchExport.ts:19:28)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-planner.test.cjs:67:21
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-planner.test.cjs:67:10)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1306:25)
+        at processTicksAndRejections (node:internal/process/task_queues:104:5),
+    expected: /destination module changed/,
+    operator: 'throws',
+    diff: 'simple'
+  }

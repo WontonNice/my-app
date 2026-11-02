@@ -1,0 +1,15 @@
+{
+  "baselineFailures": 8,
+  "currentFailures": 8,
+  "newFailures": [],
+  "unchangedFailures": [
+    "✖ import adds source-linked drafts without changing existing resources; sessions retain their version",
+    "✖ custom names survive classification reconciliation and topic group normalization",
+    "✖ adding a Foundation child preserves the group’s existing practice selection",
+    "✖ Math Study Hall follows the managed hierarchy and reserves topic resource sections",
+    "✖ Overlapping Groups is a statistics topic and catalog registration preserves existing resources",
+    "✖ Probability uses five focused Foundation Building children with eight generators, preserving other topics and snapshots",
+    "✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters",
+    "✖ batch registration preserves teacher resources and snapshots all three generators in their own topics"
+  ]
+}

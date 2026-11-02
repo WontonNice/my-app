@@ -254,7 +254,7 @@ const wolvesOfTheSea20262027FormDQuestions: ExamQuestion[] = [
 
 export const wolvesOfTheSea20262027FormDPassageSet: ExamPassageSet = {
   id: "ela-wolves-of-the-sea-2026-2027-form-d",
-  versionLabels: ["2026-2027 Form D"],
+  versionLabels: ["2026-2027 Form D","2021-2022 Form B"],
   section: "reading",
   questionCount: wolvesOfTheSea20262027FormDQuestions.length,
   directions: {

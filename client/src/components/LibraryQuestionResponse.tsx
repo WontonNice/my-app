@@ -3,12 +3,13 @@ import type { ExamQuestion } from "../content/exams/types";
 import { ExamText } from "./ExamReviewQuestion";
 import { libraryAnswer } from "../../../server/src/shared/libraryBooks";
 import { SentenceDragDrop } from './SentenceDragDrop';
+import { placeCategoryItem } from '../lib/categoryPlacement';
 
 export function LibraryQuestionResponse({ question, value, onChange }: { question: ExamQuestion; value: string; onChange: (value: string) => void }) {
   const answer = libraryAnswer(value);
   const selected = Array.isArray(answer) ? answer : [];
   const placements = answer && typeof answer === "object" && !Array.isArray(answer) ? answer : {};
-  const place = (id: string, value: string) => { const next = { ...placements }; if (value) next[id] = value; else delete next[id]; onChange(JSON.stringify(next)); };
+  const place = (id: string, value: string) => { if (value && question.type === 'category_sort') { onChange(JSON.stringify(placeCategoryItem(question, placements, id, value))); return; } const next = { ...placements }; if (value) next[id] = value; else delete next[id]; onChange(JSON.stringify(next)); };
   const toggle = (id: string) => onChange(JSON.stringify(selected.includes(id) ? selected.filter(value => value !== id) : [...selected, id]));
   const text = typeof answer === "string" ? answer : "";
   if (question.selectionHtml) return <InlineTextSelection question={question} answer={answer} onChange={next => onChange(typeof next === 'string' ? next : JSON.stringify(next))} />;

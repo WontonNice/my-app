@@ -1,0 +1,2005 @@
+=== PDF PAGE 1 ===
+REVISING/EDITING PART A
+1. The question asks which edit should be made to correct the sentence.
+
+A. CORRECT. The sentence in the box needs a comma to separate the coordinate adjectives.
+Coordinate adjectives describe characteristics of the same noun or subject and are connected
+with a comma or “and.” This option is the only one that places a comma where it is needed,
+between the coordinate adjectives “agile” and “athletic.”
+
+B. Incorrect. The option incorrectly adds a comma in the middle of the phrase “first and only,”
+which modifies, or gives additional information about, “professional basketball player.”
+
+C. Incorrect. The option incorrectly adds a comma between two adjectives that are not
+coordinate adjectives. “Only” is part of the phrase “first and only” and is modifying
+“professional basketball player.”
+
+D. Incorrect. The option is incorrect because a comma is not needed to set off the phrase “to
+score 100 points in a single game.”
+
+2. The question asks for the most precise revision for the words “The engineers tried some
+
+other things.”
+
+E. Incorrect. This revision uses the word “materials” rather than precisely identifying what the
+engineers used.
+
+F. CORRECT. This option revises the words to be more precise by using the specific words
+“tested” for the verb and “foam and fiberglass” for the materials.
+
+G. Incorrect. This revision uses the word “examined” rather than a word indicating a process of
+experimental trial and error. The sentence also uses the word “materials” rather than
+precisely identifying what the engineers used.
+
+H. Incorrect. This revision identifies the materials, but the imprecise verb “worked with” does
+not specify what the engineers were doing.
+
+90
+
+
+=== PDF PAGE 2 ===
+3. The question asks for the revision that corrects the error in sentence structure in the paragraph.
+
+A. CORRECT. As written, the first sentence (“In 1967 Katherine Switzer . . . legendary race.”) is
+a run-on sentence because a comma is used to combine two independent clauses.
+Independent clauses are complete sentences with a subject and a verb. The clauses—“In
+1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials
+instead of her full name” and “at that time, only men were permitted to officially register and
+receive a number for the legendary race”—should be separated with a period instead. This
+revision correctly places a period after the word “name” and capitalizes the word “At” to
+separate the two independent clauses into two sentences.
+
+B. Incorrect. The revision introduces an error into the paragraph and does not revise the run-on
+in the first sentence. The clause “Once officials realized a woman was attempting to run in
+the race” is a dependent clause functioning as an adverb of the independent clause that
+follows it. Changing the comma after the word “race” to a period would incorrectly separate
+the adverbial dependent clause from the independent clause.
+
+C. Incorrect. The revision introduces an error into the paragraph and does not revise the run-on
+in the first sentence. The sentence “Switzer prevailed and finished in just over four hours,
+paving the way for the official rule change that allowed for the inclusion of women” is a
+complex sentence, which combines an independent clause (“Switzer prevailed and finished in
+just over four hours”) and a dependent clause (“paving the way for the official rule change
+that allowed for the inclusion of women”). The clause “paving the way for the official rule
+change that allowed for the inclusion of women” is not a complete sentence and must stay
+connected to the first part of the sentence. Changing the comma after “hours” to a period
+would incorrectly separate the dependent clause from the independent clause.
+
+D. Incorrect. The revision introduces an error into the paragraph and does not revise the run-on
+in the first sentence. Changing the comma after “261” to a period would incorrectly separate
+the modifying clause “the same number she had worn in that first run in 1967” from the
+words it describes (“number 261”). Additionally, the clause “the same number she had worn
+in that first run in 1967” is not a complete sentence.
+
+91
+
+
+=== PDF PAGE 3 ===
+4. The question asks for the identification of the sentence that contains an error in its construction
+and should be revised.
+
+E. Incorrect. There are no errors in sentence 1. The singular pronoun “its” matches the number
+of the word it refers to, the singular noun “blobfish.” Additionally, the clause “a creature that
+certainly resembles its name” is correctly set off by commas to provide an additional, but not
+essential, detail about the blobfish. The comma separating “pink” and “gelatinous” is correct
+because these are coordinate adjectives.
+
+F. Incorrect. There are no errors in sentence 2. The singular pronouns “it” and “its” match the
+number of the word they refer to, the singular noun “blobfish.” Additionally, the structure of
+the sentence correctly shows that the clause “Because it has very few muscles and its density
+is close to that of water” modifies the words “the blobfish.”
+
+G. Incorrect. There are no errors in sentence 3. The “it” and “its” in the sentence refer to “the
+blobfish” mentioned in the previous sentence. The use of singular pronouns in sentence 3 is
+consistent with the rest of the paragraph.
+
+H. CORRECT. Sentence 4 contains an error because the sentence uses the plural pronoun
+“them” to refer to “The blobfish’s,” which is singular in number. The word “them” should be
+changed to “it.” The paragraph refers to the blobfish as a singular species in each of the four
+sentences, and sentence 4 should be revised to match.
+
+92
+
+
+=== PDF PAGE 4 ===
+REVISING/EDITING PART B
+
+Cracking the Code
+
+5. The question asks for the best way to combine sentences 3 through 5 to clarify the relationship
+between ideas.
+
+A. Incorrect. While this sentence shows a relationship between the ideas, it does not clarify the
+relationship accurately. Learning the language of code does not depend on people's previous
+ability to construct programs that will perform detailed and complex tasks. The word
+"because" incorrectly indicates that people can already construct complex programs prior to
+learning the coding language that would allow them to do so,
+
+B. CORRECT. This sentence accurately shows the relationship between the ideas of the
+sentences. Before people can construct programs that will perform detailed and complex
+tasks, they have to learn a coding language. Knowing that language will, in turn, allow them
+to build programs that can perform detailed and complex tasks.
+
+C. Incorrect. This sentence does not accurately express the relationship between ideas because
+the sentence implies that some people who code do not have to learn the language to
+perform their job functions. The passage clearly states that “computer code is part of every
+electronic interaction” (sentence 1) and that “programmers use it to instruct computers to
+perform different tasks” (sentence 2).
+
+D. Incorrect. The conditional (If . . . then) construction of the sentence in Option D does not
+convey the intended relationship of the ideas in the sentences. The “then” statement (“they
+can construct programs that will perform detailed as well as complex tasks”) does not follow
+the condition of the “if” statement (“people who code have to learn this language”).
+
+6. The question asks for the sentence that should follow sentence 5 to best state the main claim in
+the passage.
+
+E. CORRECT. This sentence logically follows sentence 5 and introduces the main idea of the
+passage: that due to the high demand for coding skills across a wide range of industries and
+disciplines, learning basic coding skills can provide a range of opportunities for personal
+growth,
+
+F. Incorrect, While this sentence incorporates a point made in the passage about how coding
+can benefit many occupational fields (sentence 10), this idea alone does not address the
+entire argument in the passage. This sentence does not capture the passage’s emphasis on
+the variety of ways people can learn how to code (sentence 14).
+
+G. Incorrect. While this sentence incorporates ideas about opportunities to learn coding skills in
+school (fourth paragraph), the larger claim presented in the passage is not about
+opportunities schools should offer in order to help students learn to code. The passage
+primarily focuses on the opportunities offered to people who take on the challenge of learning
+to code.
+
+H. Incorrect. Although the passage discusses the opportunities that are available to some
+students to learn coding skills in school (sentences 15-16), this point is a supporting detail of
+the passage, not the main claim of the passage.
+
+93
+
+
+=== PDF PAGE 5 ===
+7. The question asks for the best revision of sentence 10 to provide a transition to the argument in
+the third paragraph.
+
+A. Incorrect. Some readers may choose this option because the second paragraph does discuss
+the complexities of coding; however, it does not discuss the difficulties of learning coding.
+The third paragraph demonstrates some of the complex ways coding is used in specific fields
+but does not illustrate how difficult learning coding may be.
+
+B. CORRECT. This sentence provides the best revision of the transition sentence. The second
+paragraph ends with “the possibilities for applying them are infinite” (sentence 9), which
+supports the idea that people in “many occupational fields” (sentence 10) can benefit from
+having coding skills. The third paragraph illustrates this idea by providing specific examples
+of occupations that benefit from coding (stock market traders and doctors).
+
+Cc. Incorrect. While sentence 13 suggests that employers recognize the value of coding skills,
+sentences 11 and 12 give examples of different industries that employ people who know how
+to code. The transition sentence should introduce the idea that coding skills are valuable to
+potential employees.
+
+D. Incorrect. Some readers may choose this option because the second paragraph provides a
+brief definition of coding—“A coding language uses letters, numbers, and symbols that are
+arranged in a way that makes sense to a computer” (sentence 6)—which shows how this
+element of programming works, but the second paragraph does not specifically discuss what
+makes the field of computer programming unique. The third paragraph discusses how coding
+can be used in a variety of occupational fields (sentence 10).
+
+8. The question asks which sentence would best follow sentence 13 and support the ideas in the
+third paragraph.
+
+E. Incorrect. While this sentence provides an example of a high salary, which is mentioned in
+the paragraph (sentence 13), the reference to “Experienced programmers, software
+engineers, and system administrators at large companies” focuses on specific occupations
+that may use coding, as opposed to the range of diverse occupations discussed in the third
+paragraph.
+
+F. Incorrect. While sentence 12 does mention coding skills in the medical field as an example,
+the information provided in this answer supports only that idea and not the other ideas
+expressed in the third paragraph.
+
+G. Incorrect. This sentence generally discusses employers looking for two things: “experience in
+a specific industry” and “knowledge of basic coding.” The third paragraph, however, discusses
+the possibilities of using coding skills in a variety of occupations. The words “experience in a
+specific industry” do not connect to the idea the paragraph develops.
+
+H. CORRECT. This sentence provides specific evidence of the job market favoring potential
+employees who have coding ability. It supports what is stated in sentence 13, that “jobs that
+require coding skills are typically higher paying.”
+
+94
+
+
+=== PDF PAGE 6 ===
+9. The question asks which concluding sentence would best follow sentence 20 and support the
+argument presented in the passage.
+
+A. Incorrect. While the passage does state that “jobs that require coding skills are typically
+higher paying” (sentence 13), it does not say or imply that coding skills are needed for most
+high-paying jobs.
+
+B. CORRECT. The sentence successfully summarizes the main argument of the passage, which
+is that coding is involved in all electronic interaction (sentence 1) and is a useful skill to
+master, especially in many occupational fields (sentence 10).
+
+C. Incorrect. In the fourth paragraph, the passage does promote students taking advantage of
+opportunities to learn coding; however, this information is a supporting detail and would not
+serve as a strong conclusion to the argument presented in the passage.
+
+D. Incorrect. Some readers may choose this sentence because the fourth paragraph discusses
+how “some students may become interested in learning how to create programs, such as
+games and apps” (sentence 18), but this detail is only one part of the overall argument in
+the passage.
+
+READING COMPREHENSION
+
+The Best Laid Plans of Ravens
+
+10. The question asks how paragraph 1 introduces the ideas that ravens may perceive time and plan
+for the future.
+
+E. Incorrect. In the poem referenced in paragraph 1, the narrator does not consider whether a
+raven can see the future but believes it is actually happening. Additionally, the discussion in
+paragraph 1 is about how people have historically doubted animals’ ability to plan, not about
+why people have doubted this ability in ravens specifically.
+
+F. CORRECT. Edgar Allan Poe’s poem features a raven that speaks in a prophetic way. Since
+prophecies are a prediction of the future, the statement suggests that the raven has a sense
+of time. This reference is then tied to a modern study where “researchers argue that ravens
+may be able to think ahead and even plan for the future” (paragraph 1).
+
+G. Incorrect. Although the idea of a raven being aware of the future in the poem is tied to a
+study that “hints that one particular idea behind the poem might not be as far-fetched as it
+seems” (paragraph 1), this connection does not prove that the poem is what prompted
+scientists to conduct such a study.
+
+H. Incorrect. Paragraph 1 introduces the idea “that ravens may be able to think ahead and even
+plan for the future” but does not explain in detail the importance of differentiating between
+whether ravens act on instinct or have the ability to plan.
+
+95
+
+
+=== PDF PAGE 7 ===
+11. The question asks which sentence from paragraph 4 supports the argument presented in the
+
+sentence from paragraph 1.
+
+A. Incorrect. This sentence from paragraph 4 refers to the ravens’ ability to adapt and learn but
+not to plan and think ahead.
+
+B. Incorrect. This sentence from paragraph 4 relates the actions of the researcher rather than
+the actions of the ravens and does not provide evidence in support of the argument that
+ravens have the ability to think and plan ahead.
+
+Cc. Incorrect. This sentence from paragraph 4 does not describe a behavior of the ravens that
+would support the argument in the sentence from paragraph 1; instead it relates the actions
+of the researchers without giving any information about the ravens’ responses.
+
+D. CORRECT. This sentence from paragraph 4 shows that the ravens seem to make a decision,
+which involves a thought process. The ravens chose to wait for the researcher rather than
+take the treats, suggesting that the ravens understood that the researcher would trade a
+larger treat for the bottle cap.
+
+12. The question asks which statement describes the effect in the passage of the phrase “merely
+
+instinctual” from paragraph 2.
+
+E. Incorrect. The passage does not question animals’ ability to find and save food but rather
+whether this or other behavior involves thought and planning for the future.
+
+F. Incorrect. While the sentence states that “many animals hoard food,” the passage does not
+suggest that they give priority of thought to this activity; they hoard food out of instinct.
+
+G. Incorrect. Although the passage discusses animals’ tendency to store a great deal of food, it
+does not suggest that their hoarding goes beyond their needs.
+
+H. CORRECT. The passage suggests that in order for an animal’s actions to qualify as planning
+for the future, “the animal must use specific decision-making skills to solve a problem”
+(paragraph 2). The behavior of hoarding food is based on instinct and done automatically
+without real thought.
+
+96
+
+
+=== PDF PAGE 8 ===
+13. The question asks which of the ravens’ behaviors in the first experiment described in
+paragraph 4 most strongly supports the claim that the birds are capable of planning.
+
+A. Incorrect. While “the researchers showed the birds how to use a small stone to open a box
+and get treats” (paragraph 4), the acceptance of the treats does not demonstrate planning.
+
+B. CORRECT. Once the ravens learned which stone would open the box, they consistently
+selected only that stone.
+
+C. Incorrect. Although the birds learned which stone opened the box, this behavior
+demonstrates not their ability to plan but rather their intelligence.
+
+D. Incorrect. The birds’ patience shows their anticipation for and understanding of the future
+gain of a treat but does not provide the strongest evidence of their ability to plan.
+
+14. The question asks how the sentence from paragraph 4 fits into the overall structure of the
+passage and contributes to the development of ideas.
+
+E. CORRECT. The patience the ravens demonstrated in the sentence from paragraph 4 while
+waiting for the return of the researcher in both experiments shows their understanding that
+the researcher's return holds a benefit for them.
+
+F. Incorrect. The passage does not state that there was a set timeline for the researcher’s
+return; the seventeen hours, mentioned in the sentence from paragraph 4, was just the
+longest time measured.
+
+G. Incorrect. The experiment did involve the ravens solving a problem. The ravens’ patience
+demonstrated an understanding that there would be future gain for them by waiting for
+the researcher, but the sentence from paragraph 4 does not demonstrate the ravens’ ability
+to plan.
+
+H. Incorrect. The way the ravens obtained the food from the researcher required far more
+than instinct; in order to get the maximum amount of food, a number of learned skills,
+such as selecting a stone that would open the box and choosing the bottle cap over the
+immediate treat, were necessary. The ravens’ ability to wait, as demonstrated in the
+sentence from paragraph 4, does not influence or affect a learned behavior or a possible
+instinct to hoard food.
+
+97
+
+
+=== PDF PAGE 9 ===
+15. The question asks how paragraph 5 fits into the overall structure of the passage and contributes
+to the development of ideas.
+
+A. Incorrect. While paragraph 5 states that “more evidence needs to be gathered before
+scientists can fully conclude that ravens can plan for the future,” this statement suggests that
+more research is needed, not that the results of the Lund University study are problematic.
+
+B. Incorrect. Paragraph 5 does not discuss steps of the study or emphasize difficulties in
+determining whether the behaviors shown in the study were planned or practiced; instead it
+simply suggests that more study is required to make such a determination.
+
+C. CORRECT. Paragraph 5 notes that some doubt remains (“Some scientists argue that the
+ravens might be choosing the stone and bottle cap because the ravens have been trained to
+do so, not necessarily because the ravens are thinking ahead”) and that more
+experimentation is needed; the author concludes that there is reason to believe the originally
+stated theory that ravens are quite smart and can give thought to how future events may
+affect them.
+
+D. Incorrect. Paragraph 5 does not list the effects of the study or criticize the experiment for not
+differentiating between planning and instinct. The paragraph explains why the results of the
+experiments are not conclusive and emphasizes that more research is needed.
+
+16. The question asks how the author conveys a point of view on the study of animal intelligence.
+
+E. CORRECT. Paragraphs 3 and 4 focus on the process and details of the experiments that
+scientists conducted. This detailed information from the author provides a sense of how the
+ravens demonstrated planning abilities beyond natural instinct. The author supports the
+claims from the experiments, calling the findings “exciting” and stating in the conclusion that
+“these experiments show that ravens could be much smarter than first believed”
+
+(paragraph 5).
+
+F. Incorrect. Although two experiments are described in the passage, the description presents
+the experiments as building on each other and does not compare their results. The passage
+states that “these experiments show that ravens could be much smarter than first believed,
+and scientists now believe that ravens do actually think about their own future”
+
+(paragraph 5).
+
+G. Incorrect. The author presents information from the experiments and the results that were
+gathered from them; while there is an admission that “more evidence needs to be gathered
+before scientists can fully conclude that ravens can plan for the future” (paragraph 5), the
+author does not criticize the experiments that are presented.
+
+H. Incorrect. While the author does discuss some previously held beliefs about animal
+intelligence in paragraph 1, the focus of the passage is that experiments indicate that there
+is reason to question these beliefs, since “these experiments show that ravens could be
+much smarter than first believed”(paragraph 5). The previously held beliefs are not
+considered inaccurate by the discussion in the passage because only one example—the
+raven—is provided. The passage does not state that beliefs about animal intelligence as a
+whole are inaccurate.
+
+98
+
+
+=== PDF PAGE 10 ===
+17. The question asks the reader to choose the statement with which the author of the passage
+would most likely agree.
+
+A. Incorrect. It is very likely that additional experiments or changes to the experiments
+presented can help scientists tell the difference between the types of behavior that the
+animals are showing. The current research supports “other recent advances in animal
+science” and also shows that ravens are “much smarter” (paragraph 5) than previously
+believed, making them excellent candidates for further research.
+
+B. CORRECT. As paragraph 5 notes, “more evidence needs to be gathered before scientists can
+fully conclude that ravens can plan for the future.” The evidence is not yet considered
+definitive because “some scientists argue that the ravens might be choosing the stone and
+bottle cap because the ravens have been trained to do so, not necessarily because the ravens
+are thinking ahead” (paragraph 5). Therefore, more research is needed in order to draw a
+complete conclusion as to whether or not the animals are demonstrating advanced
+intelligence or simply the results of training.
+
+C. Incorrect. The passage shows that the scientists did not draw conclusions based on one
+experiment alone. The passage also states in paragraph 5 that additional research and
+experiments are necessary in order to obtain conclusive evidence of ravens’ abilities to think
+and plan ahead.
+
+D. Incorrect. The passage claims that more evidence must be gathered in order to make a
+claim that animals can definitely plan for the future. The evidence presented helps
+scientists “believe that ravens do actually think about their own future” (paragraph 5), but
+more confirmation is needed. The passage does not discuss performing experiments on
+additional species.
+
+Excerpt from Winter Wheat
+18. The question asks how the sentences in paragraph 2 help develop a theme of the excerpt.
+
+E. Incorrect. Although the sentences from paragraph 2 describe Ellen’s “funny feeling” upon
+realizing that she will no longer be home when the beans that her mother is making are
+ready to eat, the details do not show that life presents many challenges. Additionally, the
+theme that life presents people with many challenges is not a theme found in the excerpt.
+
+F. Incorrect. The sentences from paragraph 2 state that Ellen has “a funny feeling” while
+awaiting a major life event, but they do not indicate that she is confused or stressed. The
+details in the sentences convey a sense of wistfulness, but the theme that the stress of major
+life events causes confusion is not found in the excerpt.
+
+G. CORRECT. The sentences from paragraph 2 show that Ellen’s mother has moved on from the
+familiar and left her childhood home behind, just as Ellen is about to do. This information
+links the experiences of parent and child and helps develop the theme that moving beyond
+the familiar is a common human experience.
+
+H. Incorrect. Although the sentences from paragraph 2 show that Ellen’s mother has learned to
+cook New England food very well (“as though she were a New Englander herself”), they do
+not provide information about how easy or difficult it was for Ellen’s mother to learn a new
+way of cooking. The theme that people can easily learn the routines of a new culture is not a
+theme found in the excerpt.
+
+99
+
+
+=== PDF PAGE 11 ===
+19. The question asks how the sentence from paragraph 3 contributes to the conflict in the excerpt.
+
+A. Incorrect. Although Ellen's father does want to drive to the city, this sentence does not reveal
+his reasons for wanting to do so. Ellen’s father’s wish to drive to the city is important to the
+conflict of the excerpt not because of his underlying reasons but because his wish differs
+from Ellen’s mother’s wish to take Ellen to the train at Gotham—a difference of opinion that
+introduces tension between the parents.
+
+B. CORRECT. The sentence causes Ellen’s parents to propose competing options for taking her
+to the train, and the resulting conversation recalls fraught memories of an earlier leave-
+taking in the family. The disagreement between Ellen’s mother and father over where to take
+Ellen to catch the train heightens the tension between them. Because the primary conflict of
+the excerpt is Ellen’s anxiety about the effect her leaving will have on the relationship
+between her parents, this remark contributes to the conflict by bringing her parents’
+disagreement into view.
+
+C. Incorrect. Although Ellen will put physical distance between herself and her parents on the
+following day, the remark she makes does not lead her to emotionally distance herself from
+her parents. Moreover, the emotional distance between Ellen and her parents is not the
+primary source of conflict in the excerpt.
+
+D. Incorrect. While paragraph 1 states that Ellen’s mother “seems to think of nothing farther
+away than today or perhaps yesterday or tomorrow morning,” the sentence in paragraph 3
+does not show any reluctance to plan far in advance. Moreover, planning for the future is not
+a source of conflict in the excerpt.
+
+20. The question asks how the phrase “looked straight at it” in paragraph 9 contributes to the
+meaning of the excerpt.
+
+E. CORRECT. The phrase shows Ellen deciding to directly confront the memory even though
+she initially wanted to ignore it (“I couldn’t keep from thinking of that time Dad went back
+East. I tried to” [paragraph 9]). Though the memory is emotionally fraught for Ellen, the
+phrase “looked straight at it” shows that she is willing to face problems—such as a painful
+family memory—head on,
+
+F. Incorrect. The phrase in paragraph 9 does not show Ellen studying all parts of an issue but
+rather forcing herself to focus on something she would have preferred not to think about.
+
+G. Incorrect. In looking “straight at” the memory, Ellen is not considering both sides of an
+argument. Instead, she is making herself think about an uncomfortable memory that she had
+been trying to avoid revisiting. The phrase indicates that she is finally willing to directly
+confront an unsettling recollection.
+
+H. Incorrect. Given the detail in paragraph 9 that Ellen initially attempted to keep from thinking
+about her father’s trip to Vermont, the phrase “looked straight at it” indicates a willingness,
+but not an eagerness, to seek wisdom from reflecting on past experiences.
+
+100
+
+
+=== PDF PAGE 12 ===
+21. The question asks how the words “cold” and “dark” affect the tone in paragraph 10.
+
+A. Incorrect. The mood of paragraph 10 is primarily one of sadness as Ellen says goodbye to her
+father at the train station. The words “cold” and “dark” do not convey unpredictability but
+rather emphasize Ellen’s feeling of loss over the departure of her father.
+
+B. Incorrect. Although the father’s departure causes tension with his wife (“ ‘I'll manage,’
+
+Mom snapped back” [paragraph 11]), Ellen does not display anger or resentment toward
+her parents.
+
+C. Incorrect. Although Ellen's father states that he wishes his family could come with him on the
+trip to Vermont (“ ‘I wish you could go, Anna,’ Dad said to Mom, ‘and we could take Ellen’ ”
+[paragraph 12]), the words “cold” and “dark” describe Ellen’s perspective on her father’s
+departure. They create a tone of sadness from Ellen at being left behind rather than a tone of
+regret from her father because he has to leave.
+
+D. CORRECT. In paragraph 10, Ellen states, “I could feel how cold and dark it was.” The words
+“cold” and “dark” highlight her emotional response to the departure of her father,
+emphasizing the almost physical sense of grief she feels at being separated from someone so
+precious to her.
+
+22. The question asks which sentence from the excerpt provides evidence that Ellen has a lot in
+common with her father.
+
+E. CORRECT. This sentence from paragraph 1 shows that Ellen and her father both get excited
+about the coming of spring and share an interest in reading magazine serials (stories
+published in serial installments). The sentence implies that Ellen and her father have shared
+likes and interests, and therefore, it provides clear evidence that they have a lot in common.
+
+F. Incorrect. While this sentence from paragraph 4 highlights the warm relationship between
+Ellen and her father and shows that he would like to take her to the train station in town, it
+does not provide clear evidence that they share a lot in common.
+
+G. Incorrect. Although this sentence from paragraph 6 implies that Ellen understands her father
+well enough to intuit his preference to go to the train station in town (“but I knew he wanted
+to go into Clark City”), their closeness is not clear evidence that Ellen and her father have a
+lot in common.
+
+H. Incorrect. While this sentence from paragraph 25 shows Ellen's concern about the effect that
+her leaving the farm will have on her parents, it does not provide clear evidence that Ellen
+and her father have a lot in common.
+
+101
+
+
+=== PDF PAGE 13 ===
+23. The question asks how the sentences from paragraph 1 and paragraph 19 help develop a central
+idea of the excerpt.
+
+A. CORRECT. The sentences illustrate a practical aspect of Ellen’s mother’s personality and
+show that she is concerned with an immediate task that needs to be completed. The details
+in these sentences help develop the central idea that practical people focus on current
+needs—such as preparing food for the following day—rather than worrying about the future.
+
+B. Incorrect. These sentences do not show Ellen’s mother focusing on her daughter’s needs
+before her own, and the idea that parents consider their own needs only after considering
+those of their children is not a central idea of the excerpt.
+
+C. Incorrect. Although the sentence from paragraph 19 shows Ellen’s mother planning a few
+hours ahead by preparing the next morning's breakfast, the idea that it is sometimes
+important to plan ahead is not a central idea of the excerpt, nor is it supported by the
+sentence from paragraph 1.
+
+D. Incorrect. The details in the sentences do not show that it is a waste of time to dream about
+the future. The sentences highlight the tendency of Ellen’s mother to focus her attention on
+the practical necessities of the moment, but the idea that dreaming about the future is a
+waste of time is not a central idea of the excerpt.
+
+24. The question asks how the flashback in paragraphs 10-24 affects the plot of the excerpt.
+
+E. Incorrect. The flashback does not show that Ellen and her mother faced extra work as a
+result of the father’s trip to Vermont. Although paragraph 19 describes Ellen’s mother making
+oatmeal for the next day’s breakfast, this task was not extra work.
+
+F. Incorrect. Although the flashback highlights Ellen’s fondness for each of her parents, it
+describes her father’s initial departure only and does not show what happened to the familial
+bond while he is away.
+
+G. Incorrect. Although Ellen describes the memory of her father’s departure as something she
+wanted to avoid thinking about, she does not fear that it will be too difficult to leave her
+parents. Instead, she is concerned about what will happen to her parents’ relationship when
+she is no longer there.
+
+H. CORRECT. The flashback illustrates the close connection that Ellen has with her parents by
+describing her sadness over the departure of her father (“My throat ached all the way”
+[paragraph 15]) and presenting a moment of comfort and reassurance between Ellen and her
+mother (“She laid her hand against my face and it felt rough and hard but firm”
+
+[paragraph 20]).
+102
+
+
+=== PDF PAGE 14 ===
+25. The question asks which sentence from the excerpt provides evidence that Mom wants Ellen to
+understand the family’s heritage.
+
+A. Incorrect. Although this sentence from paragraph 2 describes a domestic moment that takes
+place within the family home, it does not relate to the heritage of either parent and therefore
+does not provide evidence that her mother wants Ellen to understand the family’s heritage.
+
+B. Incorrect. Although this sentence from paragraph 5 provides the name of the train station
+closest to Ellen’s family’s farm, the train stop at Gotham is not related to the family’s
+heritage. Therefore, this sentence does not provide clear evidence that her mother wants
+Ellen to understand the family’s heritage.
+
+C. Incorrect. Although this sentence from paragraph 7 describes an aspect of the family
+dynamic (Ellen predicts that while browsing in stores in town, “Dad [would go] one way and
+Mom and I another”), their shopping habits do not provide clear evidence that her mother
+wants Ellen to understand the family’s heritage.
+
+D. CORRECT. In this sentence from paragraph 22, Ellen’s mother addresses her by the Russian
+version of her name (Yeléna) and repeats her own Russian name (Anna Petrovna). The choice
+to call her daughter Yeléna instead of Ellen follows immediately after Ellen asks, “Mom, was
+that really your name—what Dad called you?” (paragraph 21), and the mother's surprised
+response provides evidence that she both wants and expects Ellen to understand the family's
+Russian heritage.
+
+Massachusetts: Lowell National Historical Park
+26. The question asks why the author includes the quotation from the Scottish traveler in
+
+paragraph 1 of the passage.
+
+E. Incorrect. While it is likely that people outside the United States recognized that both the
+natural landscape and the bustling industry were significant, the quotation from the Scottish
+traveler is meant to convey the variety of the types of attractions in the U.S., not to make a
+general statement about their contribution.
+
+F. Incorrect. The Scottish traveler mentions both “American scenery” and “American industry” in
+the quotation, but the intent is to highlight that they are each points of interest. The
+quotation does not provide a comparison of the two attractions.
+
+G. CORRECT. The quotation emphasizes the idea that the United States offers different
+attractions. The Scottish traveler highlights the two places in the United States that he will
+most remember: first, the beautiful natural formation of Niagara Falls (“ ‘the glory of
+American scenery’ ”) and second, the industrial city of Lowell (“ ‘the glory . . . of American
+industry’ ”).
+
+H. Incorrect. The Scottish traveler mentions both “American scenery” and “American industry” in
+the quotation but does not imply that the natural resources contributed to the development
+of industry.
+
+103
+
+
+=== PDF PAGE 15 ===
+27. The question asks which description conveys the central idea that Lowell was “one of America’s
+
+most significant industrial cities” (paragraph 1).
+
+A. Incorrect. While the passage does state that the city’s canals, mills, and boardinghouses were
+built by early immigrants from Ireland, these details do not contribute to the development of
+the overall idea that Lowell was a significant industrial city.
+
+B. Incorrect. The details about the women and immigrants who worked in the mills is
+important to the passage, but these details alone do not show that Lowell was a
+significant industrial city.
+
+Cc. CORRECT. The details throughout the passage about the development of the mills and the
+people who worked in them convey the significance of Lowell in early American industry.
+Paragraph 2 shares details about the businesses that started in the early 1800s and
+contributed to the development of industry in the region (“The most recognized of these
+buildings are the Lowell Manufacturing Company chartered in 1821, the Suffolk or
+Wannalancit Mill completed around the 1880s, the Boott Mill Company established in 1835,
+and the Boott Mill Boardinghouse that opened in 1838”). Then paragraphs 3-6 provide
+specific details about the people who worked in the mills at different points in time.
+
+D. Incorrect. Although the passage references Lowell's culturally diverse community (“Young
+Yankee women, immigrant families, and European tourists all flocked to Lowell to find work at
+one of the many textile mills” [paragraph 1]), these groups alone are not what marked Lowell
+as a significant industrial city.
+
+28. The question asks for the sentence in paragraph 2 that best supports the idea that Lowell
+became “a bustling industrial city” (paragraph 1) in a short period of time.
+
+E. Incorrect. While the sentence provides details on when the town of Lowell was founded and
+the natural features of the area, it does not support the idea that the city became “a bustling
+industrial city” in a short period of time.
+
+F. Incorrect. Although this sentence indicates that the mill buildings were a noticeable feature of
+the city and provides details on how the mills worked, it does not specifically show that
+Lowell had become “a bustling industrial city” in a short period of time.
+
+G. Incorrect. While this sentence lists some recognizable mill buildings along the river and notes
+when their associated businesses were established, it does not support the idea that Lowell
+had become “a bustling industrial city” in a short period of time.
+
+H. CORRECT. This sentence indicates that within only a few decades of the city’s founding, it
+experienced massive industrial growth, with “40 textile mills employing over 10,000
+workers,” supporting the idea that Lowell became “a bustling industrial city” in a short period
+of time.
+
+104
+
+
+=== PDF PAGE 16 ===
+29. The question asks which statement best describes how the sentence in paragraph 3 fits into the
+overall structure of the passage.
+
+A. CORRECT. The sentence in paragraph 3 provides a transition from the overall description of
+the city and the mills to a description of the women who made up the workforce in the mills.
+The idea that women left domestic life in favor of working in the mills is important in the
+passage, and the sentence serves to connect that idea to the previous discussion about the
+mills.
+
+B. Incorrect. While the mill girls’ dissatisfaction with their working conditions is addressed later
+in the passage (“These wage cuts, deteriorating working conditions, and long workdays led
+the ‘mill girls’ to protest and organize strikes” [paragraph 4]), the sentence in paragraph 3
+does not indicate a shift in tone from positive to negative. The sentence provides a transition
+to the discussion of the women who worked in the mills.
+
+C. Incorrect. Although the sentence in paragraph 3 mentions that women became interested in
+working in the mills because of the “constricted lifestyle of small rural towns,” structurally the
+sentence does not function as a summary because, instead of expanding on the idea of the
+difficulties or challenges of life in small rural towns and rural areas, the paragraph goes on to
+describe the advantages and disadvantages of life in the city for these women.
+
+D. Incorrect. The sentence in paragraph 3 focuses on the choices women made to leave rural
+towns to work in the city in the early to mid-1800s, not the mid-1800s to the late 1800s. The
+sentence does not create a comparison between the workforce in the mid-1800s and that in
+the late 1800s.
+
+30. The question asks how the sentence in paragraph 5 contributes to the development of ideas in
+the passage.
+
+E. Incorrect. The sentence from paragraph 5 does not imply that Lowell was founded by early
+Irish immigrants. The sentence explains how Irish immigrants had been settling in Lowell
+since the city was established and that they contributed to the construction of the city, which
+allowed it to become an industrial center several decades later.
+
+F, CORRECT. The sentence from paragraph 5 shows that early Irish immigrants were critical to
+the success of Lowell as an industrial city. This information supports the development of the
+idea that the work of Irish immigrants and immigrants from other places is an important
+element in the historical significance of industry in Lowell.
+
+G. Incorrect. The sentence from paragraph 5 does not suggest that new Irish immigrants were
+readily accepted into the community. Paragraph 5 states that “initially, Lowell’s Protestant
+community was slow to welcome Irish immigrants, but the hostility between Yankee
+Protestants and Irish Catholics eventually disappeared.”
+
+H. Incorrect. The sentence from paragraph 5 does not highlight the relationship between the
+mill girls and the new Irish immigrants. Paragraph 4 explains how the mill girls left Lowell,
+and paragraph 5 states that the mill girls were replaced by “predominantly Irish Catholics,
+who traveled to America during the Great Potato Famine” but does not discuss a relationship
+between them.
+
+105
+
+
+=== PDF PAGE 17 ===
+31. The question asks for the sentence that best summarizes the mill girls’ time as the dominant
+workforce in Lowell.
+
+A. Incorrect. While the passage explains that mill girls were initially eager to leave the domestic
+duties of life in rural areas, the summary sentence does not address the details about the mill
+girls’ time working in the mills or the changes that led the mill girls to leave the industry.
+
+B. Incorrect. Mill girls initially found satisfaction in the mill work and lifestyle, and when they did
+leave, immigrants filled the empty jobs. This summary sentence, however, does not address
+the details about the mill girls’ time as the primary workforce in Lowell or the circumstances
+that led them to leave their jobs in the mid-1800s.
+
+C. Incorrect. Mill girls did leave home to work in the Lowell mills, and they did grow dissatisfied
+over time, but this summary sentence does not include details about the mill girls’ actions to
+improve the working conditions.
+
+D. CORRECT. This sentence summary best captures the mill girls’ experience as outlined in
+paragraphs 3 and 4. The sentence concisely summarizes both the women’s initial excitement
+about the opportunity to live independently (“Women found that Lowell's mills offered
+monthly wages for their services and provided them room and board” [paragraph 3]) and
+their eventual inability to secure better working conditions (“When their demands went
+unheard, the women left Lowell, and immigrant groups replaced them in the workforce”
+[paragraph 4]).
+
+32. The question asks for the reason that best illustrates why Lowell lost its status as an
+
+industrial leader.
+
+E. Incorrect. While the passage discusses the “long work hours, low wages, and poor living
+conditions in the city’s crowded tenements” (paragraph 6) in Lowell, these details highlight
+the living and working conditions of immigrant groups. The author does not state that poor
+living and working conditions are the reason Lowell lost its status as a “model of industry.”
+
+F. Incorrect. Paragraph 5 in the passage acknowledges that there was some tension between
+the different ethnic and religious groups in Lowell, but this idea is not what led to Lowell’s
+decline as a “model of industry.”
+
+G. CORRECT. When Lowell was initially established, the mills in the city thrived because of their
+advanced manufacturing methods (“gaining global recognition for its state-of-the-art
+technology, innovative canal and dam system, [and] mill architecture” [paragraph 1]).
+However, manufacturing technology changed and improved over time, and many mill owners
+chose to close the mills rather than modernize them, resulting in Lowell's loss of status as a
+“model of industry” (“The city officially began to close down its mills in the 1920s and 30s
+after Lowell’s outdated mills could no longer compete against the state-of-the-art cotton mills
+in other communities” [paragraph 6]).
+
+H. Incorrect. The details about the temporary revival of the mills during World War II do not
+show why Lowell is no longer considered a “model of industry.” The mills were used briefly
+during wartime because of an increased need for supplies, but this use of the mills was
+short-lived.
+
+106
+
+
+=== PDF PAGE 18 ===
+Ode to Fireworks
+33. The question asks what the comparison in lines 8-9 of the poem is used to convey.
+
+A. CORRECT. In lines 8-9 the speaker compares the deep thumping noises at the start of a
+fireworks show to the muffled thumping sound made when beating a rug to clean it. The
+imagery of “low, dull thwumps” (line 8) (onomatopoeia) describes a sound that is not clear or
+powerful. To the speaker, these low, distant explosions are the signal that the fireworks
+display is starting and that the loud, cracking sound of fireworks will be heard soon (“Then
+we counted the seconds between the lightning / and thunder” [lines 10-11]).
+
+B. Incorrect. The comparison in lines 8-9 deals with the low sound of the first fireworks
+shooting off rather than the streaks of light they emit. To the speaker, the low thwumps
+(onomatopoeia) are the signal that fireworks are about to explode overhead, much like the
+way a Streak of lightning during a storm indicates that a crash of thunder will follow in a
+few seconds.
+
+Cc. Incorrect. The thwump (onomatopoeia) sounds are the start of the fireworks show, not
+thunder. As a comparison, the speaker says the initial thwumps of the fireworks signal
+anticipation for the full explosion that will come, much like the way the speaker would watch
+for lightning and count the seconds before an impending thunderclap (lines 10-11).
+
+D. Incorrect. The muffled thwump (onomatopoeia) sounds occur before the dazzling explosion of
+lights and before sparks start to fall from the sky. The comparison focuses on the sounds of
+the experience, not the sight of the experience.
+
+34. The question asks what the word choice in lines 22-23 of the poem conveys about the speaker,
+
+E. Incorrect. The word “jewels” is used figuratively to indicate the sentimental value that the
+experience of watching the fireworks holds for the speaker. There is no indication in the poem
+that the speaker values material possessions.
+
+F. Incorrect. The use of the word “jewels” highlights the importance of the memory in the
+speaker’s mind. The imagery in the words “written upon” expresses the way the bright
+streaks of light curve and fly across the night sky, not that the speaker views the fireworks
+display as magical.
+
+G. Incorrect. The speaker describes the elements of the fireworks display that stand out most
+clearly. The view of the bright, colorful fireworks streaking across the sky is distinct, but it is
+not unique to the country setting.
+
+H. CORRECT. The word “jewels” creates a picture of watching shining and sparkling explosions
+in the night sky and suggests that this experience holds sentimental and emotional value for
+the speaker. The speaker cherishes the memory of the experience.
+
+107
+
+
+=== PDF PAGE 19 ===
+35. The question asks what the use of italics on the word “night” in line 24 is most likely intended to
+emphasize.
+
+A. Incorrect. The purpose of italicizing the word “night” is not to convey mystery. While the
+speaker refers to not knowing the exact location where the firework viewing took place (“in
+the stubble of what had been / somebody’s cornfield” [lines 25-26]), the emphasis on “night”
+is meant to highlight the darkness and contrast the bright light from the fireworks soaring
+across the sky.
+
+B. CORRECT. The italics are intended to place emphasis on one key aspect of nighttime—total
+darkness. The speaker is making a point that night in the country was truly dark, unlike the
+night the speaker currently experiences in a city, where light emitted from buildings and
+vehicles prevents complete darkness.
+
+C. Incorrect. The tone in the second stanza is positive, showing admiration for the beauty visible
+in true darkness rather than fear: “But it was another thing to see / the sky at night written
+upon / with those jewels” (lines 21-23).
+
+D. Incorrect. The speaker is talking about the general experience of watching fireworks on
+several occasions, not focusing on the events of a specific night. The use of italics on the
+word “night” emphasizes the speaker's memory of the persistent darkness.
+
+36. The question asks what the purpose is of the repeated words “rising and falling” in lines 26
+
+and 37.
+
+E. Incorrect. These lines do not provide insight into the speaker's interactions or feelings of
+solitude. The speaker mentions the emptiness of the country and the crowds in the city, but
+these repeated words are meant to draw a connection between the locations rather than
+show differences between them.
+
+F. CORRECT. The first mention of these words occurs during a recollection of the speaker's
+past, and the second takes place during a description of the speaker’s present. The speaker
+looks to the connections between the country setting (“All around us, crickets / stridulated in
+the stubble of what had been / somebody’s cornfield, their song rising and falling”
+
+[lines 24-26]) and the city setting (“And the music around me is the music of people, / their
+voices rising and falling in a hundred languages” [lines 36-37]) as a source of comfort.
+
+G. Incorrect. Even though the lines call out specific sounds, the purpose of the repetition of the
+words in the two parts of the poem is to show how the speaker connects the two settings.
+The “rising and falling” of the sounds is one detail the speaker highlights.
+
+H. Incorrect. The repetition of the words “rising and falling” is used to compare the different
+locations in the speaker's life, not to compare fireworks to the sounds of crickets in the
+country or to the sounds of people moving and talking in the city.
+
+108
+
+
+=== PDF PAGE 20 ===
+37. The question asks what impact the phrase “Everything is a constant celebration” (line 33) has in
+the poem.
+
+A. Incorrect. The speaker describes a sense of happiness and contentment in both the city and
+the country and does not indicate that one setting is more pleasurable than the other.
+
+B. Incorrect. The word “celebration” has a positive association and does not imply that the
+speaker is overwhelmed in the city. Throughout the third stanza (lines 28-42), the speaker
+conveys appreciation for the elements of the city that make it different from the country
+(“And the music around me is the music of people, / their voices rising and falling in a
+hundred languages” [lines 36-37]).
+
+C. CORRECT. From the speaker's perspective, the constant light (“awash in light” [line 32])
+contributes to the speaker's feeling that, in the city, celebratory fireworks are ever present.
+In comparison, fireworks lit up the country sky only for celebratory occasions or annual
+events (“In autumn my mother drove us to the edge of the field / where the fair was set up
+year after year” [lines 1-2]).
+
+D. Incorrect. While the speaker observes many things going on in the city at a given moment,
+the “constant celebration” in line 33 is intended to convey a comparison to the speaker’s
+previous experience in the country rather than emphasize the hectic pace of life in the city.
+The continual light and sounds in the city remind the speaker of lights and sounds
+experienced only on occasion in the country.
+
+38. The question asks how the memory in lines 41-42 affects the speaker.
+
+E. Incorrect. The speaker does not express concern in these lines about the impossibility of
+returning to childhood or the past. For the speaker, the past and the memories associated
+with it are a source of comfort and a way to remember simpler times (“I remember the feel
+of the pickup truck bumping / across the ridged field” [lines 40-41]).
+
+F. Incorrect. While the speaker recalls anticipation before the start of a fireworks display, there
+is no hint that the speaker is impatient. Particularly in lines 41-42, the speaker is reminded
+of the expectation of hearing and seeing fireworks and the sense of simple contentment felt
+in the experience (“I find myself / craning my neck upward at odd moments” [lines 29-30]).
+
+G. Incorrect. The speaker is reflecting on past experiences and pointing out the elements of the
+city that remind the speaker of these past experiences. The speaker acknowledges the
+differences between the country and city settings but does not convey regret for leaving the
+rural area (“This is where we live now, / and it is how we live now, awash in light / of every
+hue” [lines 31-33]).
+
+H. CORRECT. The memory of watching the fireworks on the way home creates a sense of
+comfort that stays with the speaker (“escorted us home”). The speaker looks forward to
+moments when the youthful experience (“childhood bursts”) of being excited by something
+like a fireworks display can be a source of happiness.
+
+109
+
+
+=== PDF PAGE 21 ===
+39. The question asks what the fireworks in the poem represent about the speaker.
+
+A. Incorrect. While the speaker misses elements of the past, the speaker is also positive about
+the present, with comparisons to a “constant celebration” (line 33) and descriptions of “the
+music of people” (line 36). The speaker does not indicate a desire to return to a simpler way
+of living.
+
+B. CORRECT. The speaker misses the experience of watching the fireworks display with family
+and friends but understands that time has progressed and that life is now different. The lines
+“This was a treat we waited / all year for” (lines 6-7) highlight the significance of the
+memory of waiting for and watching the fireworks. In the speaker's present, the lines “I
+remember the feel of the pickup truck bumping / across the ridged field” (lines 40-41)
+emphasize the key details from the experience that stand out in the speaker’s mind when
+something in the current environment reminds the speaker of the past.
+
+C. Incorrect. While the speaker does share details about the present and the tone is generally
+positive, the fireworks do not suggest that the speaker has high expectations for how
+everyday life should be. The third stanza (lines 28-42) describes some of the speaker’s
+imaginings about the aspects of going about one’s daily life, but the speaker does not form
+expectations from these fantasies.
+
+D. Incorrect. While the speaker does mention discussing cloud shapes with a family member in
+lines 19-20, the fireworks serve as a more general reminder of the speaker's past life.
+Viewing the bright lights of the city makes the speaker recall memories of the speaker’s past
+and the feelings of anticipation before the fireworks show.
+
+Excerpt from In Search of the Unknown
+40. The question asks how paragraph 2 helps develop the plot.
+
+E. Incorrect. As paragraph 1 indicates, writing such letters is one of the main parts of the
+narrator’s job (“and I was always busy, part of the day, in dictating answers to
+correspondents”), and he shows no indication of disliking this work. The letters are to inform
+people whether the zoo will accept their animals.
+
+F. Incorrect. Paragraph 2 indicates that the narrator offers his letters to the professor merely for
+official approval. At the start of the excerpt, the narrator is confident in his reply and does
+not anticipate that his response will differ from that of the professor, so he has no need to
+“predict what the professor would say.”
+
+G. CORRECT. The phrase “uncompromising refusals” in paragraph 2 indicates the confidence
+that the narrator initially has in his belief that the animals described in the letters are not of
+value to the society. This confidence is badly shaken as the plot unfolds, as when
+Professor Farrago states that “ ‘I am daring to believe that it is the great auk itself’ ”
+(paragraph 23). The narrator’s transition from an attitude of dismissive doubt to one of
+budding hopefulness is a major part of the plot (“But I was not shocked; on the contrary, I
+was conscious that the same strange hope that Professor Farrago cherished was beginning, in
+spite of me, to stir my pulses, too” [paragraph 34]).
+
+H. Incorrect. The narrator does not resent the professor’s review of the letters; instead, the
+phrase “of course” in paragraph 2 shows that he expects to submit the letters to the
+professor as part of his job.
+
+110
+
+
+=== PDF PAGE 22 ===
+41. The question asks what the phrase “a faint trace of apology” in paragraph 3 conveys about
+
+the professor.
+
+A. Incorrect. The fact that the narrator had intended to leave the office for the day is not the
+source of the professor's faintly apologetic manner, which is instead caused by the professor's
+understanding that their conversation about the letter and the expedition is likely to cause an
+argument (“with a whimsical smile that suggested amusement, impatience, annoyance”
+[paragraph 3]). In paragraph 29, the professor asks the narrator if he can leave on an
+expedition that same evening, which indicates that the professor does not feel bad about
+taking up the narrator's time after work.
+
+B. Incorrect. The paragraphs that follow the sentence from paragraph 3 show the professor
+sharing his opinions without pause, even when his opinion of the narrator is unflattering
+(“ ‘Like swimming squirrels, you navigate with the help of Heaven and a stiff breeze, but you
+never land where you hope to—do you?’ ” [paragraph 17]).
+
+C. Incorrect. The professor knows that the narrator will push back regarding the letter, but the
+professor is not uncomfortable challenging the narrator. Professor Farrago seems perfectly at
+ease and comfortable as he begins the discussion with the narrator.
+
+D. CORRECT. The professor is both amused and annoyed by the narrator’s dismissal of the
+possibility that great auks still exist, and the professor knows that the narrator is likely to
+react negatively to being sent on what the narrator considers a “fool’s errand”
+
+(paragraph 25).
+42. The question asks how the exchange between the professor and the narrator in paragraphs 8-11
+contributes to the development of the characters.
+
+E. CORRECT. Paragraphs 8-11 help develop the characters by revealing the difference between
+the opinions of the narrator and the professor. The narrator believes without any doubts that
+Halyard, the man who wrote the letter about the auks, is either “ ‘a liar or a fool’ ”
+(paragraph 9), while the professor believes in the possibility that the writer of the letter could
+actually be telling the truth (“I said as much to Professor Farrago, but, to my surprise, he
+appeared to waver.” [paragraph 8]).
+
+F. Incorrect. In paragraph 8, the narrator reacts to the letter writer with "a contemptuous
+tolerance," and he is shocked to learn that the professor actually agrees with the man
+(paragraph 11) whom the narrator has bluntly condemned as a liar or a fool (" 'In my
+opinion,’ said I, 'he's one or the other.’ " [paragraph 10]). The exchange presents an
+emphatic disagreement between the narrator and the professor, and it does not show them
+working together in a collaborative manner.
+
+G. Incorrect. Although the narrator initially distrusts the contents of the letter and shows
+“contemptuous tolerance for the writer” (paragraph 8), the excerpt portrays the professor as
+experienced and intelligent, not as one who is easily deceived.
+
+H. Incorrect. While the narrator does begin to consider the professor’s perspective at the end of
+the excerpt, paragraphs 8-11 primarily serve to establish the difference of opinion between
+the narrator and the professor about the writer of the letter.
+
+111
+
+
+=== PDF PAGE 23 ===
+43. The question asks how the professor’s observations in paragraphs 15-17 create tension in
+
+the excerpt.
+
+A. CORRECT. The professor criticizes “ ‘you young fellows’ ” (paragraph 15), suggesting that
+the ideas of young scientists like the narrator are unsupported (“ ‘like swimming squirrels,’ ”
+[paragraph 17]) and inaccurate (“ ‘but you never land where you hope to—do you?’ ”
+[paragraph 17]; “ ‘you embark on a theory for destinations that don’t exist’ ”
+
+[paragraph 15]). The narrator then becomes “red in the face” (paragraph 18), indicating that
+the narrator is upset by the professor’s criticism, and asks the professor about the great auk
+in an attempt to defend himself.
+
+B. Incorrect. While the narrator does experience a negative reaction to the professor’s words,
+the professor is being genuine, not sarcastic. In fact, the sarcasm comes from the narrator in
+paragraph 14 (“‘It is generally accepted,’ I replied, sarcastically, ‘that the great auk has been
+extinct for years. Therefore I may be pardoned for doubting that our correspondent
+possesses a pair of them alive’ ”), not from the professor.
+
+C. Incorrect. The professor's observations cause the narrator to blush with embarrassment
+(“rather red in the face” [paragraph 18]), but the narrator understands the point that the
+professor is making about the narrator’s acceptance of the idea that great auks do not exist.
+The narrator recognizes that the professor is criticizing his youthful ideas, not his opinion.
+
+D. Incorrect. The professor shows amusement with the narrator’s perspective. The narrator is
+embarrassed and upset by the professor’s words, but the narrator does not display
+frustration with the professor’s lack of interest in a commonly held view of the existence of a
+certain species of bird.
+
+44. The question asks how the interaction between the narrator and the professor in
+
+paragraphs 26-28 contributes to the development of the theme.
+
+E. Incorrect. Paragraphs 26-28 do not show the narrator arguing against making the
+expedition. He instead argues that it is unnecessary for the professor to pay to send extra
+men on the expedition. The narrator points out that he can ask for assistance if he does, in
+fact, find great auks (“ ‘None,’ I replied, bluntly; ‘it’s a useless expense, unless there is
+something to bring back. If there is I'll wire you, you may be sure’ ” [paragraph 28]).
+
+F. Incorrect. When the professor criticizes the narrator's blind acceptance of the theory about
+the existence of the auks, the narrator is frustrated and embarrassed. This frustration does
+not stem from his inability to make decisions for the zoological society.
+
+G. Incorrect. The professor states that “ ‘what I want you to do is to get those birds here
+safely’ " (paragraph 27), which indicates that his main priority is the birds’ safety rather than
+acquiring specimens regardless of the consequences (i.e., at any cost).
+
+H. CORRECT. Paragraph 26 describes the professor and the narrator making practical plans for
+the expedition (“we made out a list of articles necessary for me and itemized the expenses I
+might incur”), indicating the narrator’s acceptance of his assignment while also revealing that
+he does not anticipate a “successful termination to the expedition.” Paragraph 28 further
+describes the personal objections of the narrator, who believes that adding extra men to the
+expedition is pointless (“ ‘a useless expense’ ”), since he does not expect to find any great
+auks to bring back.
+
+112
+
+
+=== PDF PAGE 24 ===
+45. The question asks which sentence from the excerpt best explains why the professor is eager to
+send the narrator on an expedition.
+
+A. Incorrect. In the sentence from paragraph 25, the narrator suspects the professor is losing
+his ability to reason because his request (to secure the great auk for the society) seems
+impossible. The professor is excited about the discovery, but the narrator doubts whether the
+discovery is real. The sentence does not explain why the professor is excited, however.
+
+B. Incorrect. Paragraph 26 shows the professor and the narrator planning the logistics of the
+trip, but it does not explain why the professor is eager to send the narrator on the
+expedition.
+
+Cc. Incorrect. Although the sentence from paragraph 27 expresses the professor's interest in
+having the narrator bring the birds back safely, it does not show the underlying reason why
+the safety of the birds is so crucial, which is that the great auk is extremely rare.
+
+D. CORRECT. The sentence from paragraph 33 reveals the professor’s excitement to get “ ‘the
+rarest of living creatures,’ ” the great auk. In paragraph 14, the narrator states that “it is
+generally accepted . . . that the great auk has been extinct for years,” which would make a
+living auk incredibly rare and explains the professor’s eagerness for the narrator to go on the
+expedition.
+
+46. The question asks how paragraph 34 helps develop the plot of the excerpt.
+
+E. CORRECT. Despite his initial disbelief, the narrator admits in paragraph 34 that he is starting
+to feel the “same strange hope” the professor feels, which is to find the great
+auks (paragraph 33).
+
+F. Incorrect. While the narrator does make an effort in paragraphs 11-22 to understand the
+professor's thinking, paragraph 34 reveals that the narrator has been affected by the
+professor’s “strange hope” for the auks and is beginning to share this hope
+“in spite of” himself.
+
+G. Incorrect. The narrator describes a feeling of hope in paragraph 34 that would not be
+present if he had simply been overruled by the professor and did not share any of the
+professor's belief in the possibility that the auks exist. In addition, it was established before
+paragraph 34 that the narrator was willing to be overruled ("I drew a chair up beside his
+desk—there was nothing to do but to obey, and this fool’s errand was none of my conceiving"
+[paragraph 25]).
+
+H. Incorrect. The narrator does not express a sense of urgency in paragraph 34 to complete the
+expedition. Instead, he expresses hope that the great auks might really exist.
+
+113
+
+
+=== PDF PAGE 25 ===
+47. The question asks which sentence best demonstrates the professional relationship between the
+narrator and the professor.
+
+A. Incorrect. Although the professor’s handing of the paper to the narrator indicates that they
+are beginning to discuss the letter about the great auk, the sentence from paragraph 4 does
+not convey the relationship between a subordinate employee (the narrator) and a superior
+(the professor).
+
+B. Incorrect. The sentence from paragraph 24 presents the narrator’s immediate internal
+reaction to the professor’s words. The sentence emphasizes that the professor’s belief in the
+great auk’s existence is so outrageous that the narrator initially thinks the professor is
+starting to lose touch with reality. This is a momentary reaction to the professor’s words, not
+a demonstration of the professional relationship between the two.
+
+Cc. CORRECT. The sentence from paragraph 25 reveals that while the narrator disagrees with
+the professor (“this fool’s errand was none of my conceiving”), he obeys because he works
+for the professor (“there was nothing to do but to obey”).
+
+D. Incorrect. The professor’s good-humored offer of assistance in the sentence from
+paragraph 29 does not best demonstrate the underlying employer-employee relationship
+between the professor and the narrator. The narrator has to go on the expedition because the
+professor, his boss, told him to.
+
+48. The question asks how the author develops the contrast between the narrator’s point of view and
+the professor's point of view.
+
+E. Incorrect. The excerpt does not describe the narrator’s thoughts about how age and
+experience influence the professor’s reasoning in enough detail to fully contrast them against
+the thoughts about the narrator that the professor expresses in paragraphs 15-17. The
+narrator’s idea that the professor might be “on the verge of dotage” (paragraph 24) is meant
+in a humorous way.
+
+F. CORRECT. The primary conflict of the excerpt revolves around the narrator’s disagreement
+with the professor about whether the letter about the great auks could be true. As the two
+men converse, their contrasting attitudes toward the letter become clear: the narrator
+dismisses the possibility of great auks out of hand (“ ‘of course the man is mistaken’ ”
+[paragraph 5]; “ ‘here is aman... who wants you to send somebody to take charge of a
+bird that doesn’t exist!’ ” [paragraph 12]), while the professor calmly admits that although
+“‘nine hundred and ninety-nine men in a thousand would throw that letter aside and
+condemn the writer’ ” (paragraph 9), he himself believes that the writer could be telling the
+truth (“ ‘How do you know,’ asked Professor Farrago, ‘that the bird in question does not
+exist?’ ” [paragraph 13]).
+
+G. Incorrect. The professor explains why he disagrees with the narrator (paragraphs 19-21), but
+he does not make persistent efforts to convince the narrator to change his mind about the
+letter. Instead he states that the narrator will go on an expedition to retrieve “ ‘whatever it is
+that our correspondent has’ ” (paragraph 23), thereby requiring the narrator to go collect the
+great auks whether the narrator believes in them or not.
+
+H. Incorrect. The point of the dialogue is not to explain the subordinate-supervisor relationship
+between the narrator and the professor but rather to contrast what each character believes
+about the contents of the letter.
+
+114
+
+
+=== PDF PAGE 26 ===
+Excerpt from “Research Riddle Resolved”
+49. The question asks how the sentence from paragraph 2 contributes to the overall structure of
+the excerpt.
+
+A. Incorrect. While the sentence from paragraph 2 does mention the platypus’s unique
+appearance, the remainder of the excerpt does not focus on the physiology of the platypus
+but instead focuses on the significance of scientists’ platypus research and what it can “tell us
+about people” (paragraph 4).
+
+B. Incorrect. Paragraph 1 discusses the platypus as the “duck-billed” animal that “still captures
+our imagination anew and irresistibly attracts the attention of science writers everywhere,”
+but highlighting the idea that the platypus’s unusual appearance has attracted scientists’
+attention is not how the sentence from paragraph 2 fits into the overall structure of the
+excerpt.
+
+Cc. Incorrect. Paragraph 1 states that “the May 2008 Nature report detailing the DNA insides of
+the duckbilled platypus invited colorful tales from just about every mainstream media outlet,”
+but it does not discuss current ideas in the field. Paragraph 2 focuses on the “scientific
+surprise” of the platypus.
+
+D. CORRECT. The sentence from paragraph 2 serves as a transition from the introductory idea
+that “the animal still captures our imagination anew and irresistibly attracts the attention of
+science writers everywhere” (paragraph 1) to the central idea that the platypus has great
+scientific significance.
+
+50. The question asks what the phrase “evolutionary DNA tapestry” in paragraph 3 conveys about
+the platypus.
+
+E. CORRECT. In the excerpt, the term “tapestry” conveys the sense of a rich history; the
+“platypus heritage” described in paragraph 3 is woven together with “threads” from
+mammals, birds, and reptiles in its genetic background.
+
+F. Incorrect. While paragraph 3 does mention mammals and reptiles, it does not discuss when
+the platypus developed traits from those classifications. Rather, it refers in general to
+“hundreds of millions of years ago, when reptiles and mammals branched off the evolutionary
+tree,”
+
+G. Incorrect. The excerpt never claims that, compared with other animals, the platypus is the
+best resource for studying the evolution of animal genomes. The excerpt indicates that the
+platypus’s status as a “scientific oddity” provides “a window into a time in history when
+mammals became unique—gaining the ability to bear live young, produce milk for them, and
+grow a warm, furry coat” (paragraph 6).
+
+H. Incorrect. The excerpt states that the platypus genome is a “scientific oddity” (paragraph 6)
+that is useful to researchers, but the reason it is useful is because of DNA evidence that
+shows “a window into a time in history when mammals became unique” (paragraph 6), not
+because its genes have never been altered. Because the platypus genome, like that of all
+animals, has evolved over time, the statement that platypus genes have never been altered
+is inaccurate ("They learned that the platypus lost most of its genetic ability to produce egg
+yolk—as compared to chicken genes. This suggests its departure from 'chicken-ness' "
+[paragraph 12]).
+
+115
+
+
+=== PDF PAGE 27 ===
+51. The question asks how paragraphs 4-6 contribute to the development of ideas in the excerpt.
+
+A. Incorrect. Although paragraph 6 states that the “platypus genome results are far more than
+confirmation of a scientific oddity,” the paragraphs do not summarize the evidence that the
+platypus is an evolutionary peculiarity, an idea which is primarily described in
+paragraphs 12-14. Rather, paragraphs 4-6 indicate why researchers are interested in
+platypus genetics as a way to deepen their understanding of humans and other mammals.
+
+B. Incorrect. Although the paragraphs suggest that research on platypus DNA can provide useful
+information about humans (“what can its DNA tell us about people and the diseases we get?”
+[paragraph 4]; “Plenty, says an international team of scientists who did this work”
+[paragraph 5]), they do not provide a transition to the study of the human genome. Instead,
+they explain that researchers are interested in the genetic material of the platypus because it
+helps them understand the evolutionary development of mammals (“The platypus genome
+results . . . provide researchers a window into a time in history when mammals became
+unique” [paragraph 6]). Mammals are a group that includes humans and many other species,
+and the researchers are interested in learning more about the evolutionary development of
+the larger group (mammals), not a single species of mammal (humans).
+
+C. Incorrect. Although paragraph 6 refers to unique features of mammal species (“the ability to
+bear live young, produce milk for them, and grow a warm, furry coat”), the paragraphs
+primarily focus on the scientific relevance of the platypus genome results and do not highlight
+the idea that mammals are a diverse group with some similarities.
+
+D. CORRECT. The paragraphs explain why the genetic material of the platypus (or their
+“genome results” [paragraph 6]) are interesting to scientists who study mammals, a group
+that includes human beings. Paragraph 4 asks “what can [platypus] DNA tell us about people
+and the diseases we get?” Paragraphs 5 and 6 answer the question posed in paragraph 4,
+stating that scientists believe we can learn “plenty” from platypus DNA because it provides
+researchers “a window into a time in history when mammals became unique—gaining the
+ability to bear live young, produce milk for them, and grow a warm, furry coat.”
+
+52. The question asks how paragraph 8 fits into the overall structure of the excerpt.
+
+E. CORRECT. Paragraph 8 acts as a transition from the discussion of how “our own, modern-
+day genomes are still a big mystery” (paragraph 7) to the discussion of how scientists use
+comparative genomics to compare “human genes with those from animals” (paragraph 8).
+
+F. Incorrect. Paragraph 8 describes scientists’ primary interest in understanding the genetic
+evolution of humans, not animals, by comparing “human genes with those from animals.”
+The paragraph does not clarify or provide details about how scientists study gradual changes
+in the genetic material of a given animal species.
+
+G. Incorrect. Rather than contrasting the effort of the study of the human genome with the
+effort of a separate study of animal genomes, paragraph 8 discusses a study that is
+comparing human and animal genomes “to see what has been kept the same and what has
+evolved to be different.”
+
+H. Incorrect. While the mention in paragraph 8 of “3 billion DNA ‘letters’ ” certainly highlights
+the enormous challenge of fully analyzing the human genome, the point of paragraph 8 is
+to transition the excerpt to the topic of how comparative genomics can shed light on the
+human genome.
+
+116
+
+
+=== PDF PAGE 28 ===
+53. The question asks for the best summary of the section “Same and Different” (paragraphs 9-11).
+
+A. Incorrect. The fact that the platypus is the latest species whose genome is being compared
+with the human genome is just a detail of this section. The focus of the section is on the
+fact that comparing genomes can teach us about human diseases. Paragraph 9 reveals this
+when it states that “scientists compare the genome sequences of several species: human,
+mouse, and a wide variety of other organisms from single-celled fungi to elephants and, now,
+the platypus.”
+
+B. Incorrect. While comparative genomics is a way to examine many different species, this
+detail is not the main point of this section. Paragraph 10 notes that the “goal of this research”
+focuses on the fact that comparing genomes can teach us about human diseases.
+
+C. CORRECT. This sentence describes the most important idea of the section: the discovery of
+genes that humans have in common with other species that can yield information about
+human diseases. As stated in paragraph 10, “The goal of this research is to find regions of
+similarity and difference in order to better understand the structure and function of human
+genes.”
+
+D. Incorrect. While this section does mention the use of computers in comparative genomics,
+this information is a detail about how the research is carried out; the computers are a tool in
+discovering whether “this information may translate into ways to understand, treat, and
+prevent human diseases” (paragraph 11).
+
+54. The question asks how the details in paragraphs 12-14 about the platypus’s different abilities
+convey a central idea of the excerpt.
+
+E. Incorrect. The fact that “platypuses have genes that make the milk protein casein”
+(paragraph 13) just like humans do is an important supporting detail, but it is not a central
+idea of the excerpt.
+
+F. Incorrect. While paragraph 14 explains that the platypus produces venom “like its ancestral
+snake and lizard cousins,” which suggests the platypus has the ability to defend itself, this
+information is a supporting detail and not a central idea of the excerpt.
+
+G. Incorrect. Paragraphs 12-14 do state that the platypus has lost some of its “chicken-ness”
+(paragraph 12) while gaining traits in common with mammals and reptiles, but this
+information is a supporting detail and not a central idea of the excerpt.
+
+H. CORRECT. In describing the platypus’s different abilities, paragraph 12 states that “the
+findings traced the evolutionary path from birds and reptiles to mammals.” Paragraphs 12-14
+elaborate on the findings to support a central idea of the excerpt, which is that the platypus
+is rare in having bird, reptile, and mammal DNA.
+
+117
+
+
+=== PDF PAGE 29 ===
+55. The question asks which sentence from the excerpt best supports the idea that the same DNA
+material results in the same traits even in different classes of animals.
+
+A. Incorrect. The sentence from paragraph 2 describes the combination of DNA material from
+several classes of animals that makes up platypus DNA; however, the sentence does not
+address whether any of those different animals share traits or whether they share some of
+the same DNA.
+
+B. Incorrect. The sentence from paragraph 3 emphasizes the relationship between two different
+classes of animals—reptiles and mammals—by discussing when they branched off the same
+evolutionary tree. However, the sentence does not address whether those classes of animals
+share any traits.
+
+C. Incorrect. The sentence from paragraph 4 questions whether platypus DNA can teach people
+something about humans and human disease, which implies that there must be something in
+common between these two animals. However, it does not state that these two animals
+actually share traits or DNA.
+
+D. CORRECT. The sentence from paragraph 14 describes two different classes of animals—
+reptiles and monotremes—that have the ability to create venom, a trait that resulted from
+the same DNA material “mixed and matched together.”
+
+56. The question asks how researching the genomes of other animals can inform scientists’
+understanding of human health and disease.
+
+E. Incorrect. Although tracking how other animals evolved helps researchers better understand
+our “rich and diverse planet” (paragraph 18) through understanding genes, the potential
+benefits to human health will not necessarily preserve or sustain nature.
+
+F. CORRECT. Paragraph 11 explains that finding ways that animal genomes are similar to the
+human genome helps researchers “locate signals that control how genes work.”
+
+G. Incorrect. While paragraph 11 does point out that all living things share an ancestor, the idea
+that they, therefore, share genetic traits is only implied. This idea does not contribute to the
+main focus of the research.
+
+H. Incorrect. The statement that “understanding how other animals are similar to one another
+helps researchers understand how humans evolved” is too general to provide support for the
+main focus of the genetic research described in the excerpt. To learn more about human
+health and disease, scientists need to understand the similarities between the genetic
+material of different animal species. These scientists are interested in learning more about
+issues that currently affect humans, not understanding their evolutionary history.
+
+118
+
+
+=== PDF PAGE 30 ===
+57. The question asks how the author elaborates on the idea that creating a full analysis of platypus
+
+DNA was an important scientific endeavor.
+
+A. CORRECT. The importance of the research into platypus DNA is explained in the excerpt
+through descriptions of what this research can teach us about human genetics and disease.
+The question is raised directly in paragraph 4 and begins to be answered in paragraph 6
+(“The platypus genome results . . . provide researchers a window into a time in history when
+mammals became unique—gaining the ability to bear live young, produce milk for them, and
+grow a warm, furry coat”). This importance is also addressed in the “Same and Different”
+section (paragraphs 9-11) and in paragraphs 15 and 16.
+
+B. Incorrect. The comparison of the platypus with its bird and reptile relatives in
+paragraphs 12-15 is important to locating the platypus on its evolutionary family tree and in
+showing the connection between DNA and functionality. This comparison does not, however,
+explain the excerpt’s main reason for asserting that the analysis of platypus DNA was an
+important scientific endeavor.
+
+C. Incorrect. Although the excerpt mentions that part of the platypus's appeal is its
+"cuteness and weirdness" (paragraph 2) and describes it as having a "patchwork of genes"
+(paragraph 2), the scientific importance of analyzing the platypus genome is not derived from
+its unusualness but rather from its ability to shed light on the human genome through
+comparative genomics ("One thing is clear—the stunning blend of reptile, bird, and mammal
+puts the platypus in a class of its own, and it gives researchers much more: information
+about how mammals like us came about" [paragraph 17]).
+
+D. Incorrect. The excerpt briefly explains the connection between genes and some of the
+platypus's physiological functions, such as producing milk and venom
+(paragraphs 13 and 14). Although paragraph 15 mentions the scientific value of
+understanding these genetic connections ("Such investigations may help medical researchers
+understand health issues related to reproduction and lactation"), paragraph 16 indicates that
+there is even greater value in studying the platypus genome through comparative genomics
+("More generally, though, studying how nature cuts and pastes gene modules gives scientists
+an inside scoop on how genetic changes relate to health and disease risk"). The full analysis
+of the platypus DNA was an important scientific endeavor primarily because it furthers the
+ability of scientists to understand "millions of years of evolution" and offers "vital information
+to understanding the role of genes in the health and disease of mammals like us"
+
+(paragraph 18). The discussion of physiological function itself is not the real importance of
+the scientific endeavor.
+119
+
+
+=== PDF PAGE 31 ===
+Forma  SAMPLE TEST - MATHEMATICS EXPLANATIONS
+OF CORRECT ANSWERS
+58. (162) To find angle x, first find the                61. (45) Let x = number of students with
+measure of angle PQR by finding the                    only cats as pets. Let y = number of
+measure of angle PSR.                                     students with only dogs as pets.
+mZPSR = mMZPQR                                 Calculate x and y using the given
+mZPSR = 180 - 72                                             information:
+mZPSR = 108
+There are 20 students who have cats, and
+The measure of angle PQR is also 108.                  of those 20 students, 3 have both cats
+and dogs.
+Find the measure of angle x:
+If 3 out of 20 students also have dogs,
+108 + 90 + x = 360                    then x = 20-3=17
+198 + x = 360
+x = 162                                                   There are 23 students who have dogs, and
+of those 23 students, 3 have both cats
+and dogs.
+59. (99) Let x be the number of oak trees                   If 3 out of 23 students also have cats,
+when 264 pine trees are planted.                        then y = 23-3 =20
+Set up a proportion and solve for x:                        To find the total number of students
+x     3                                                     surveyed, add the number of students
+264 ~ 8                                                  who only have cats (x ), the number of
+8x = 762                                                    students who only have dogs (y ), the
+x =99                                                 number of students who have both (3),
+and the number of students who have
+neither (5):
+60. (-4) 4w=2w-8
+ow =-8                     34+5+x+y=8+17+20=45
+w=-4
+120
+
+
+=== PDF PAGE 32 ===
+62. (63) If x is the smaller consecutive                64. (E) 7+3n+6-4n-8=
+integer, then x +1 is the larger                                  (7 #6- 8) + (3n 7 4n) =
+consecutive integer. Use their sum (~15)                    S_n
+to find x:
+X+(x+1)=-15
+2x+1=-15
+2x = -16                                             65. (A) The sum of Adrianna’s course grades
+x=-8                                                   equals 4 times the mean (average) of her
+grades:
+The two consecutive integers are —-8 and
+90 x 4 = 360
+=7i
+One is added to the smaller integer:                      Roberto has the same sum (360) as
+-8+1-=~-7,and 2 is subtracted from the               Adrianna. Find the mean of his course
+larger integer: -7 -2 = -9.                             grades:
+360+5=72
+Find the product: ~7 x -9 = 63                                *
+63. (B) 2k =m+3sok= +3.
+Substitute each value of m to find the
+values of k:
+k= 543-8 4
+2       2
+k= 743-10 _5
+2       2
+k= 243-12 6
+2       v4
+The set k is {4, 5, 6}.
+121
+
+
+=== PDF PAGE 33 ===
+66. (H) Set up some equations.                      67. (A) Let x be the number of inches
+representing 1 foot. Set up a proportion
+Jenny (J) has twice as many marbles as               and solve for x:
+Keiko (K ): J = 2K
+xX _ 0.125
+Jenny gives Keiko 5 marbles, so now they               1     125
+each have: J-5 and K+5 marbles.                x = 0,001 in.
+Jenny still has 10 more than Keiko:
+J-5=(K+5)+10
+To find how many marbles Jenny had to
+start with, solve J = 2K for K and                68. (G) To find the percentage of cars that
+substitute that into the second equation:                contain at least 3 people, add the
+percentage of cars containing 3 people,
+In equation J = 2K , solve for K: K = 3               4 people, and 5 or more people:
+J                                         15% +7% + 3% = 25%
+Substitute 3 in for K.
+Thus, 25% of the cars contained at least
+J-5=(K+5)+10                                         3 people. Use 25% to calculate the
+J                                                 number of cars with at least 3 people.
+y-5=(3+5}+10
+420 x 0.25 = 105 cars.
+g-5=2415
+2
+J= ot 20
+JL 20                                      69. (B) Line segment RS is the altitude, or
+2                                                      height, of triangle QRP. The length of QP
+J = 40 marbles                                       .
+is 8 cm.
+J = 40 marbles
+Use the information to find the area of
+triangle QRP:
+A=+bn = 4(8)(6) = 24 sqm.
+2       2
+There are 4 congruent triangles in the
+pyramid, so the surface area of the
+pyramid excluding the base is
+4x 24 = 96 sqcm.
+122
+
+
+=== PDF PAGE 34 ===
+70. (F) Let 2x = the width and 3x = the             72. (H) Since both ratios have y in common,
+length. Draw the rectangle to help                   solve for x and z in terms of y in both
+visualize.                                                 equations,
+
+————-_ 3x ——>|                    Using y:x = 1:4, solve for x in terms
+ofy.
+XL
+y 4
+2x
+1
+xet
+a
+Using the ratio y:z = 4:5, solve for z in
+terms of y:
+Since 2 times width + 2 times length =                y_4
+perimeter, we get                                       Zz 5
+z= By
+2(2x) + 2(3x) = 510                                           4
+4x + 6x = 510
+10x +510                                               The question states x +y+z=50.
+x=51                                                   Substitute from the two equations above
+2x = 102m and 3x = 153cm                           and solve for y.
+1          5
+—yty+=y=50
+4 yty    4 y
+10
+10) 50
+a’
+
+71. (D) Multiply each term by 2 to eliminate               10y = 200
+the fraction, and isolate x :                           y =20
+~4(2) < (sJe < 2(2)
+
+“8<x<4
+Therefore, x must be between -8 and 4.
+123
+
+
+=== PDF PAGE 35 ===
+73. (B) Let x be the total number of colored        75. (B) The shaded region is a right triangle.
+pencils in the box.                                    Each leg is 1 unit in length.
+Set up a proportion to find x :                          So the area is A = Soh = soa) = $
+2_6                                            or 0.5 sq unit
+7 x
+2x = 42                                           76. (F) Create a table with the information
+x=21                                               provided in the problem and use
+subtraction to fill in the rest of the table:
+If there are 6 red pencils, then the
+TOTAL
+number of pencils that are not red is                [| Femate [Mate |
+-6=                                               Commutes to                39%
+cos Ot      24%       16%       40%
+74. (F) Use proportions to make the                            work       (41-21) | (40-24) | (100 - 60)
+Lorgs to dollars:                                        16% of the population is male and does
+140 _7                                              not commute to work.
+x     1
+7x = 140                                        77. (A) Let x be the price per pound for the
+x = $20                                               meat. Set up an equation to show what
+Mrs. Cranston spent:
+Dalts to dollars:
+5(0.90) + 8x = 26.90
+16 _ 0.5
+x 4                                               4.50 + 8x = 26.90
+0.5x = 16                                            8x = 22.40
+x = $32                                              x = 2.80
+Total dollars = 20 + 32 = $52                         The price per pound for the meat is $2.80
+124
+
+
+=== PDF PAGE 36 ===
+78. (E) The probability that both cards are           80. (F) Let x be the number of second-,
+not blue is the same as the probability                  third-, and fourth-year students. Then the
+that both cards are red.                                 total number of students in the college is
+
+663 + x
+There are 4 red cards out of the 10, so
+the probability of the first card being red                Set up a proportion and solve for x :
+is +,
+10                                               15 _ 663+x
+1       179
+Now there are 9 cards left, and 3 of those              663 + x = 179(15)
+are red, so the probability of the second                  663 + x = 2,685
+card being red is 2.                                x = 2,022
+Multiply the two probabilities to find the
+81.    B) According to the chart, 22% of people
+probability that both cards are red (not                (8)         9                ° OF PEOP
+walk to work and 4% ride a bicycle.
+blue):
+4 x 3_12_ 2                                Subtract to find the percentage of how
+10 9 90 15                                    many more people walk than bicycle:
+22% — 4% = 18%
+79. (D) 1 sind = 4 lorgs, so 1 sind > 1 lorg.
+To find the exact number of people,
+2 harps = 5 sinds, so 1 harp > 1 sind.                 multiply 18% (0.18) by the number of
+1 plunk = 3 harps, so 1 plunk > 1 harp,               people working in Center City (15,000):
+meaning that 1 plunk > 1 sind and 1 lorg.             15,000 x 0.18 = 2,700
+2 plunks = 5 dalts, so 1 plunk > 1 dalt.
+82. (F) To find the smallest factor of 91, list
+Therefe the plunk is th  t valuable.
+ererore, the plunik 's the most valuable             the factors: 1, 7, 13, and 91.
+The smallest factor (other than 1) is 7.
+Of the options listed (30, 35, 39, and 44),
+only 35 is a multiple of 7.
+125
+
+
+=== PDF PAGE 37 ===
+83. (D) Let x be the remaining side of the          85. (C) The first integer is /, so the second is
+actual banner.                                              /+1,the third is /+ 2, then /+3, and
+.                                          finally / +4.
+Set up a proportion:
+x _ 36                                              Since g is the fifth and greatest of the
+16 «12                                             integers, g=/+4
+xX = 48 ft
+Substitute /+4 for g and simplify:
+f+g _ /+/+4 _ 21+4 =142
+84. (G) For each row, multiply the number of               2    2 2
+students by the score.
+Add the products together and divide by          86. (F) Divide the rate by the number of
+the total number of students to find the                seconds in an hour. (Find the number of
+mean (average) of the 10 students.                    seconds in an hour. There are 60 minutes
+85(4) + 75(4) + 65(2                                  in an hour and 60 seconds in a minute:
++       +          340 + 300 + 130
+sae               60 x 60 = 3,600 seconds in an hour.):
+10                     10
+55      A
+770                                     >= miles per second
+077”                               3,600        p
+Multiply by the number of feet in a mile
+(5,280):
+55x 5,280 feet per second
+3,600
+126
+
+
+=== PDF PAGE 38 ===
+87. (D) Set up an equation to express Tien’s         88. (E) List the factors of 48:
+age (T ) and Jordan's age (J) today:
+1 and 48, 2 and 24, 3 and 16, 4 and 12, 6
+Tat)                                                 and 8
+4
+There are no factors greater than 24 and
+Two years from now, Tien’s age will be                   less than 48.
+T +2 and Jordan's age will be J+2 Set
+up an equation about the relationship                          1      3     2     1
+between Tien’s age and Jordan’s age in            89. (D) 25 + 350 + 45 + 55
+two years:
+1                                                 Convert all the fractions to a common
+T+2= 37 +2)                                            denominator (10):
+2      3      4      5
+Solve the above equation for T:                         210 +305 +450 +355
+T=40+42)-2                     =(@+34+405)+(2435448)
+3                                                                               10
+=14+14 2152
+Now set the two equations equal to each                                 10       5
+other and solve for J:
+y = $0 +2)-2                                    90. (G) The length of the stick must be the
+1 j    1 74                                            greatest common factor of 72 and 30. The
+4° 3° 3                                      factors of 30 are 1, 2, 3, 5, 6, 10, 15, and
+-1 ,_-4                                          30. Of those, only 1, 2, 3, and 6 are also
+12       3                                                factors of 72, The greatest of these is 6,
+y= -4(-2)
+3    1
+J=16
+127
+
+
+=== PDF PAGE 39 ===
+91. (B) Create a list of the possible pairs. Let        92. (G) Set up proportions to figure out how
+the cookies be named A, B, C, D, E, and F.              many slides Deion and Kyra can create in
+1 hour:
+AB, AC, AD, AE, AF
+Deion
+BC, BD, BE, BF
+32x
+CD, CE, CF                                             20    60
+20x = 300
+DE, DF                                                x =15
+EF
+Deion can create 15 slides in 1 hour.
+There are a total of 15 possible pairs of
+Kyra
+cookies that Aiden can choose.
+32x
+10 +60
+10x = 180
+x=18
+Kyra can create 18 slides in 1 hour.
+Add Deion and Kyra to figure out how
+many slides they can create together
+in 1 hour:
+15+18 = 33
+93. (C) Since LN = : point N is located at
+454147.
+16 8     16
+So M must be between point L, aS ,and
+point N, 4 .
+16
+Point L can also be written as 4.3125, and
+point N can be written as 4.4375.
+The only option given that lies between
+those two points is 4.35.
+128
+
+
+=== PDF PAGE 40 ===
+94. (H) Three years is 36 months (12 x 3).           97. (B) The question asks for integers from
+Set up an expression to find the total                    12 to 30 that are not divisible by 2 or 3.
+amount Johan paid:
+
+The set of consecutive integers is {12, 13,
+1,000 + 300(36) = $11,800                           14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+
+25, 26, 27, 28, 29, 30}.
+
+Since all even numbers are divisible by 2,
+
+95. (B) Ryan has 130 pages left to read                    a.                          -
+
+eliminate all even numbers, leaving the
+(150 - 20). He read 20 pages in 30                                 .
+odd numbers in the set: {13, 15, 17, 19,
+minutes, which means he read at a rate of
+21, 23, 25, 27, 29}.
+40 pages per 1 hour. To find out how
+much longer it will take him to finish the                 Eliminate those integers that are multiples
+assignment, divide the total number of                of 3 (15, 21, and 27), The remaining
+pages remaining (130) by the number of              integers are: {13, 17, 19, 23, 25, 29}.
+pages he is able to read per hour (40):                 Therefore, there are 6 numbers in the set
+130 31                                                that are multiples of neither 2 nor 3.
+40      4
+98. (F) Since 3n is even, then 3n+1 must
+M                           be odd. If 3n +1 is odd, then 3n+3 and
+
+96. (G) It is easier to rewrite N as M+N                 3n+5 are also odd. So there are a total
+since they are both fractions.                           of 3 numbers in this range that are odd.
+M+=N=“.Y¥ Wy Zz _ We
+
+xX Z XxX YY Ky
+129
+
+
+=== PDF PAGE 41 ===
+99. (C) The total number of candies in the            101. (C) Convert the ratios into fractions of
+box is 5+3+2-=10. The number of                    WZ. Use the sum of the ratios for the
+candies that are not banana is 5+ 2 = 7.                denominator.
+
+The probability of the first candy not being              WX:XY:YZ = 4:2:3
+banana is 2, Now, out of 9 candies,                            4       4
+10                                         Wx = —t—_ = 4
+there are 6 candies left that are not                             4+2+3 9
+banana. The probability of the second                  xy =— 2. = 2
+6                                       44+24+3    9
+candy not being banana is —. Multiply
+a        9          ;                 The part of WZ that is WY is the sum of
+these two probabilities to get the solution:
+those fractions:
+7,6 4 _7
+10° 9 90 15                wy - 442-62
+9 9 9 3
+Find the length of WZ:
+100. (H) Solve the equation for z:
+WZ = 8-(-10) =18
+wiy
+x Zz                                               The value of WY is 2.(18) = 12.
+Wz = xy                                                                      3
+ze Xd
+w
+102. (G) Find 1% of 0.02:
+0.02 x + = 0.0002
+100
+The greatest allowable thickness would be
+0.02 + 0.0002 = 0.0202 inch.
+130
+
+
+=== PDF PAGE 42 ===
+103. (D) Calculate the highest score for each          105. (D) There are 6 digits in the repeating
+section by adding the lowest score to the               decimal (769230), so 7 would be the first,
+range:                                                   seventh, thirteenth digit and so on. To find
+
+the 391st digit, divide 391 by 6.
+Section I: 65 + 28 = 93
+
+391+6=65R1
+Section II: 62 + 25 = 87
+
+Since the remainder is 1, that means the
+Section III: 67 + 22 = 89                             391st digit is the same as the 1st digit,
+The overall highest score is 93, and the                 which is 7.
+overall lowest score is 62.
+Subtract the lowest score from the               106. (E) One revolution is equal to the
+highest score to find the overall range:                   circumference of the tire:
+99° 62 = 31                            C = 2ar = 2122) = 44
+
+7      7
+
+The car travels at 4,400 ft per minute. To
+
+104. (G) Take each city’s number of schools                  calculate the number of revolutions, divide
+and multiply by the number of students. It              the speed by the circumference:
+is not necessary to calculate all 5 of these.
+
+Cities M and N have the same number of               4,400 = 4 = 4,400 x a = 700
+students, so just calculate the number of                revolutions.
+students in City M because it has more
+schools than City N. The same goes for Q
+and R — only Q needs to be calculated
+because it has more schools than R.
+M = 8 x 500 = 4,000
+P = 9x 400 = 3,600
+Q=6x 700 = 4,200
+City Q has the greatest number of
+students.
+131
+
+
+=== PDF PAGE 43 ===
+107. (D)  100(2 + 0.1)? -100 = 100(2.1?) —~100        109. (A) Each chair costs Leon $150 to make,
+and he sells the chair for $275. His profit
+= 100(4.41) - 100 = 441 - 100 = 341
+is found by subtracting the cost from the
+price:
+$275 — $150 = $125 per chair
+108. (G) The total number of handballs in the               If Leon makes and sells 25 chairs in a
+container is 4+5+8+9+11= 37,               eo    a
+week, his initial profit is
+25 x $125 = $3,125. However, Leon has
+Since there are 8 yellow handballs, the                     x$       $3,               ’
+additional fixed expenses of $1,250 per
+probability of selecting a yellow handball                            .
+8                                                    week, so this cost must also be subtracted
+6 37°                                                     to arrive at the profit. His final profit is
+$3,125 — $1,250 = $1,875.
+110. (H) Convert 4 ft 7 in. to inches.
+Since 12 in. =1 ft
+4(12) +7 = 55 inches
+Multiply that by the conversion:
+254 cm =1in.
+55 x 2.54 = 139.70 cm
+132
+
+
+=== PDF PAGE 44 ===
+111. (C) Find the location of J by using               112. (G)  4x-3y=12
+K=32:                          4x = 3y +12
+2
+3     12
+3         1                                                   x= 3y,12
+37 J= 35                                                        44
+y= 3-31 2-31                      x=3y43
+8 2     8                                        4
+Find the location of M by using JM = 93 :
+u-(-32] =92
+8     4
+M+34-93
+8     4
+m=92-34-65
+4    8     8
+Use LM = 1 to find the location of L:
+62-L=12t
+8       8
+L=62-1t-54-5h
+8    8     8     2
+133
+
+
+=== PDF PAGE 45 ===
+113. (A) Determine the total number of               114. (G) The ratio is 4:3:2:1, so the total parts
+servings of fruits and vegetables that the                 is 10.
+students ate by multiplying the number of
+servings by the number of students in                   Since there are two parts resin, the
+each row of the table. Then add that                    fraction of resin is * = +
+column to get the total number of
+servings:                                                  So the amount of resin in 30 |b of paste
+(for 1 billboard) is =x 30 = 6 |b.
+Number of                    “Servings.                         ;
+Servings of | Number of         x                       For 4 billboards, that would be
+Fruits and | Students. | wumber of     6x4 24,
+Students
+poo
+po 2 fT
+po 4 fF
+Calculate the mean by dividing the total
+number of servings of fruits and
+vegetables by the total number of
+students:
+20°12
+134
+
+
+=== PDF PAGE 46 ===
+SAMPLE TEST -
+ANSWER KEY
+Answer Key for Sample Form A
+
+1.A          14.E         27.C         40.G         53.C         66.H         79. D        92.G         105. D
+2.F          15.C         28.H        41.D        54.H        67.A         80. F         93. C         106. E
+3.A          16.E         29.A        42.E         55.D        68.G        81.B         94.H         107.D
+4.H          17.B         30. F         43.A         56. F         69.B         82. F         95.B         108. G
+5.B          18.G        31.D        44.H        57.A         70. F         83. D        96.G         109.A
+6.E          19.B        32.6        45.D        58.162 71.D        84.G        97.B        110.H
+7.B          20.£         33.A        46.         59. 99       72.H        85.C        98. F         111.
+8.H          21.D        34.H        47.C         60. -4        73.B         86. F         99. C         112.G
+9.B          22.E         35.B        48.F         61.45       74. F         87.D        100. H       113.4
+10. F        23.A        36. F        49.D        62. 63       75.B        88. E         101.       114.G
+11.D        24.H        37.C         50. E         63.B         76. F         89. D        102.G
+12.H        25.D        38.H        51.D        64.E         77.A        90. G        103. D
+13.B        26.G        39.B        52.E        65.A        78. E        91.B        104.G

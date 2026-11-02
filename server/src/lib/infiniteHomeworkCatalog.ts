@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import { defaultPracticeCatalog, managedGeneratorIds, reconcilePracticeSkilled, studentPracticeCatalog, type PracticeCatalog } from '../shared/practiceCatalog';
+import { defaultPracticeCatalog, managedGeneratorIds, practiceModuleKind, reconcilePracticeSkilled, studentPracticeCatalog, type PracticeCatalog } from '../shared/practiceCatalog';
 import { mathCommandRoot, readMathCommandTaxonomy } from './mathCommandCatalogStore';
 import { withMathCommandPersistence } from './mathCommandPersistence';
 import type { PlanContent } from '../shared/learningPlan';
@@ -10,10 +10,13 @@ export async function publishedPracticeCatalog(): Promise<PracticeCatalog> {
   return withMathCommandPersistence(mathCommandRoot,()=>studentPracticeCatalog(reconcilePracticeSkilled(result.data?.catalog??defaultPracticeCatalog(),readMathCommandTaxonomy().classificationSkills??[])));
 }
 export async function infiniteHomeworkCatalog(): Promise<PlanContent[]> {
-  const catalog = await publishedPracticeCatalog();
+  return practiceHomeworkContents(await publishedPracticeCatalog());
+}
+export function practiceHomeworkContents(input: PracticeCatalog): PlanContent[] {
+  const catalog = studentPracticeCatalog(input);
   return catalog.modules.filter(module => managedGeneratorIds(module, catalog).length).map(module => ({
     id: `infinite-practice:${module.id}`, kind: 'practice', practiceMode: 'infinite', title: module.title,
     href: '/study-hall/shsat/infinite-practice', subject: 'Math', category: module.category,
-    skills: [module.topic], questionCount: 0, aliases: [], classId: 'shsat', contentSource: 'Infinite modules',
+    skills: [module.topic], description: module.description, moduleKind: practiceModuleKind(module) || 'focused', generators: catalog.generators.filter(generator => managedGeneratorIds(module, catalog).includes(generator.id)), questionCount: 0, aliases: [], classId: 'shsat', contentSource: 'Infinite modules',
   }));
 }

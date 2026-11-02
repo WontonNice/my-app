@@ -1,0 +1,94 @@
+{
+  "batchId": "2ca3a5eb-8f03-4fb6-a034-56f1ae82edfd",
+  "name": "Today",
+  "codeImplemented": true,
+  "catalog": {
+    "registered": true,
+    "revision": 26,
+    "singleBatchWrite": true,
+    "secondDryRunChanged": false,
+    "existingResourcesUnchanged": true
+  },
+  "deployed": false,
+  "published": false,
+  "studentWorkAssigned": false,
+  "requests": [
+    {
+      "requestId": "1f92fd4c-997f-4d6d-8a2a-259869107999",
+      "sourceQuestionId": "2021-2022-form-a-q105",
+      "generatorId": "repeating-decimal-digit-position-v1",
+      "title": "Repeating Decimals: Digit Positions",
+      "moduleId": "foundation-algebra-patterns-sequences-1f8v94i",
+      "category": "Algebra",
+      "subcategory": "Patterns & Sequences",
+      "group": "foundation",
+      "enabled": false,
+      "reviewStatus": "unreviewed",
+      "distinctStemsPerCycle": 136800,
+      "validation": {
+        "fullDomain": true,
+        "originalKeyedExample": true,
+        "determinismAndCycle": true,
+        "gradingAndDistractors": true,
+        "explanations": true,
+        "savedSessions": true,
+        "playerPreview": true
+      },
+      "unfinishedWork": []
+    },
+    {
+      "requestId": "4bca692b-55f0-40d4-ab9f-c6af1eaed5c7",
+      "sourceQuestionId": "2020-2021-form-b-q113",
+      "generatorId": "rectangle-area-percent-increase-v1",
+      "title": "Rectangular Area: Percent Increase",
+      "moduleId": "general-ratios-and-proportional-relationships-percentages-4bd37f",
+      "category": "Ratios and Proportional Relationships",
+      "subcategory": "Percentages",
+      "group": "general",
+      "enabled": false,
+      "reviewStatus": "unreviewed",
+      "distinctStemsPerCycle": 2064,
+      "validation": {
+        "fullDomain": true,
+        "originalKeyedExample": true,
+        "determinismAndCycle": true,
+        "gradingAndDistractors": true,
+        "explanations": true,
+        "savedSessions": true,
+        "playerPreview": true
+      },
+      "unfinishedWork": []
+    }
+  ],
+  "validation": {
+    "focusedTests": 5,
+    "focusedPassed": 5,
+    "clientTypecheck": "passed",
+    "serverTypecheck": "passed",
+    "practiceRegression": {
+      "baselineFailures": 18,
+      "currentFailures": 12,
+      "newFailures": [],
+      "summary": [
+        "ℹ tests 112\r",
+        "ℹ pass 100\r",
+        "ℹ fail 12\r"
+      ],
+      "remainingFailures": [
+        "import adds source-linked drafts without changing existing resources; sessions retain their version",
+        "custom names survive classification reconciliation and topic group normalization",
+        "adding a Foundation child preserves the group’s existing practice selection",
+        "Math Study Hall follows the managed hierarchy and reserves topic resource sections",
+        "every overlapping-groups variant has a valid population, distinct stem and exactly one correct choice",
+        "Overlapping Groups is a statistics topic and catalog registration preserves existing resources",
+        "Probability uses five focused Foundation Building children with eight generators, preserving other topics and snapshots",
+        "English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters",
+        "source example, all seed offsets, repeat cycle, determinism, and safe indices",
+        "every remaining-reading stem asks for additional time and has one exact hours answer",
+        "every mixture stem uses all ratio parts and all projects with one correct choice",
+        "batch registration preserves teacher resources and snapshots all three generators in their own topics"
+      ]
+    }
+  },
+  "preview": "Infinite Practice Studio > Question generators > search the title or source ID > Preview a generated question"
+}

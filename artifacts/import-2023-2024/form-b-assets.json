@@ -1,0 +1,990 @@
+[
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 44,
+    "sourceBox": [
+      101.186,
+      284.62,
+      280.164,
+      359.653
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q067-figure-1.png",
+    "sha256": "91db0ab4338bd58746ce79dc4fe0089d72a95775e87d45e9a34af35be5f7bec3",
+    "url": "/exam-images/pdf-2023-2024-b-q067-figure-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 44,
+    "sourceBox": [
+      101.186,
+      373.654,
+      280.164,
+      448.687
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q067-figure-2.png",
+    "sha256": "80f94a337553b27eef26e0ecbdcfb927d7c07ccd4fd6cf5649d50b30fe5fa488",
+    "url": "/exam-images/pdf-2023-2024-b-q067-figure-2.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 44,
+    "sourceBox": [
+      101.186,
+      462.687,
+      280.164,
+      537.72
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q067-figure-3.png",
+    "sha256": "8bb7939efa50789b0085d8d39bd5953445ae4862c52cba6d514006f132f23e39",
+    "url": "/exam-images/pdf-2023-2024-b-q067-figure-3.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 44,
+    "sourceBox": [
+      101.186,
+      551.72,
+      280.164,
+      626.7529999999999
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q067-figure-4.png",
+    "sha256": "3776b832a5c5b8fd0a8707b4a0eca181f19ea149164fc95a421776e45df11352",
+    "url": "/exam-images/pdf-2023-2024-b-q067-figure-4.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 45,
+    "sourceBox": [
+      394.975,
+      356.52000000000004,
+      487.026,
+      448.564
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q073-figure-1.png",
+    "sha256": "35ff8822a7fdc36fc31e17907af9428c4cb1510030d99978709f1c95c8cc0629",
+    "url": "/exam-images/pdf-2023-2024-b-q073-figure-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 46,
+    "sourceBox": [
+      77.194,
+      365.02,
+      261.806,
+      458.313
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q075-figure-1.png",
+    "sha256": "511b9be004a0ae2013166570e57e8c8560e67986fff7b886c1dbbcfd1ce04277",
+    "url": "/exam-images/pdf-2023-2024-b-q075-figure-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 48,
+    "sourceBox": [
+      101.186,
+      290.62,
+      261.976,
+      371.319
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q079-figure-1.png",
+    "sha256": "6d5b62951c69bf26fc84db0a7416fa63eda64d1251d9f30392de06e0b814ac13",
+    "url": "/exam-images/pdf-2023-2024-b-q079-figure-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 48,
+    "sourceBox": [
+      101.186,
+      385.31899999999996,
+      261.975,
+      466.018
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q079-figure-2.png",
+    "sha256": "65a30fb887f34d56d5e09202e8932d7ff0fb5193e0f059ee033cf9fb10b700cb",
+    "url": "/exam-images/pdf-2023-2024-b-q079-figure-2.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 48,
+    "sourceBox": [
+      101.186,
+      480.01800000000003,
+      261.975,
+      560.717
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q079-figure-3.png",
+    "sha256": "50b5fc9279613bc0d29eb5816e35c4794a3daa4b4121d3f14debbd6aab642d8c",
+    "url": "/exam-images/pdf-2023-2024-b-q079-figure-3.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 48,
+    "sourceBox": [
+      101.186,
+      574.716,
+      261.976,
+      655.415
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q079-figure-4.png",
+    "sha256": "69405ddebee0419d508b4eb3fd56cff11591a985fd3ac3c49b04d0aa459661e4",
+    "url": "/exam-images/pdf-2023-2024-b-q079-figure-4.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 49,
+    "sourceBox": [
+      67.397,
+      410.519,
+      274.601,
+      454.235
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q083-figure-1.png",
+    "sha256": "f61321c7fced26440358b68bb7d0ab4a40d78f89c853a9ed6b1021c8f7e390f3",
+    "url": "/exam-images/pdf-2023-2024-b-q083-figure-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 50,
+    "sourceBox": [
+      335.988,
+      401.48699999999997,
+      543.01,
+      442.873
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q089-figure-1.png",
+    "sha256": "15596a763b5aed834238ca625d33a07d47295888cdd5a034fefec255e68c8b44",
+    "url": "/exam-images/pdf-2023-2024-b-q089-figure-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 51,
+    "sourceBox": [
+      105.859,
+      107.51999999999998,
+      236.14100000000002,
+      133.30200000000002
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q090-figure-1.png",
+    "sha256": "7f19dd5e3e8c49e87dd66c9dec0ada561c2ef3a047ab7a21b36f9651f154a7ff",
+    "url": "/exam-images/pdf-2023-2024-b-q090-figure-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 54,
+    "sourceBox": [
+      394.586,
+      299.02,
+      484.414,
+      424.68
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q104-figure-1.png",
+    "sha256": "01b2636b8eb4672cd20f2724215b29a9428c24c22720c853f26824efe98ec9b2",
+    "url": "/exam-images/pdf-2023-2024-b-q104-figure-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 56,
+    "sourceBox": [
+      120.702,
+      107.01999999999998,
+      218.298,
+      196.23900000000003
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q109-figure-1.png",
+    "sha256": "767465f68aee7d9160da6bde10b459ffb839b2dd5eb66ac2ebc891e96ec1145b",
+    "url": "/exam-images/pdf-2023-2024-b-q109-figure-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 58,
+    "sourceBox": [
+      91.716,
+      107.01999999999998,
+      247.28300000000002,
+      286.016
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q113-figure-1.png",
+    "sha256": "d2e689f353f8a650559c49f6338730f6e212495b181a775a0dd7e554b37f97cc",
+    "url": "/exam-images/pdf-2023-2024-b-q113-figure-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 91,
+    "sourceBox": [
+      48.0,
+      154.64999999999998,
+      294,
+      308.60803
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q058-explanation-1.png",
+    "sha256": "c506562ceb5d95b6278958391cbea2f59e0486efe9384313a9f680372f959f61",
+    "url": "/exam-images/pdf-2023-2024-b-q058-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 91,
+    "sourceBox": [
+      48.0,
+      367.933,
+      294,
+      498.55703
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q059-explanation-1.png",
+    "sha256": "65ccab5288824f999c787ad9a023c257d9e98f749495e9d81df8ff195ff2d3d5",
+    "url": "/exam-images/pdf-2023-2024-b-q059-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 91,
+    "sourceBox": [
+      318.0,
+      154.64999999999998,
+      564,
+      359.767
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q060-explanation-1.png",
+    "sha256": "e8608035524bfa9e21ef28dc6d853890f6bddaae88d458df76a7f01b7337f6b5",
+    "url": "/exam-images/pdf-2023-2024-b-q060-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 91,
+    "sourceBox": [
+      318.0,
+      408.481,
+      564,
+      562.046
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q061-explanation-1.png",
+    "sha256": "167f41cc2ea563e4e1bba703b31fc0e9ab5559bd9c9a20193168ededdb57907e",
+    "url": "/exam-images/pdf-2023-2024-b-q061-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 92,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      255.33000000000004
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q062-explanation-1.png",
+    "sha256": "7942058278e9052523360b8770530c67411034c0ffb572bbcc8792c45ec14115",
+    "url": "/exam-images/pdf-2023-2024-b-q062-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 92,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      609.84903
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q063-explanation-1.png",
+    "sha256": "b2fa885b9bc7da4091b0c9afdca6a499349297e0e1c88de835d367a1a70669f9",
+    "url": "/exam-images/pdf-2023-2024-b-q063-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 93,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      336.97303
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q064-explanation-1.png",
+    "sha256": "52faf1efdae8b7300aa66df1be02d060db4249e913291df657b9779fe36f2bc9",
+    "url": "/exam-images/pdf-2023-2024-b-q064-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 93,
+    "sourceBox": [
+      48.0,
+      390.96999999999997,
+      294,
+      572.06903
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q065-explanation-1.png",
+    "sha256": "1ec3df4a6234bb908bb435cd683071df0c34d48b467fba739e6f5e153828e74b",
+    "url": "/exam-images/pdf-2023-2024-b-q065-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 93,
+    "sourceBox": [
+      48.0,
+      630.066,
+      294,
+      718.352
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q066-explanation-1.png",
+    "sha256": "e08e45794cf71e5d4502e49063b4d959e1fbe3211b3631f3378af385e2626cd0",
+    "url": "/exam-images/pdf-2023-2024-b-q066-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 93,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      514.15
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q067-explanation-1.png",
+    "sha256": "f018d293443047bbc128b8224257c5dbc42f5777d646c3aac531ed9cefde4cd6",
+    "url": "/exam-images/pdf-2023-2024-b-q067-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 93,
+    "sourceBox": [
+      318.0,
+      565.15,
+      564,
+      680.42803
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q068-explanation-1.png",
+    "sha256": "8db067b99fec9e494ea653b7a902c0f46b1006abc1f6c1324d43e3ba714b8034",
+    "url": "/exam-images/pdf-2023-2024-b-q068-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 94,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      194.269
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q069-explanation-1.png",
+    "sha256": "2b729904163cc490e7d010b092c599e5e2198b6e0ed786a27535b00c29774d16",
+    "url": "/exam-images/pdf-2023-2024-b-q069-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 94,
+    "sourceBox": [
+      48.0,
+      249.49900000000002,
+      294,
+      393.69531600000005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q070-explanation-1.png",
+    "sha256": "544a1cab5ff88ccad1d08099bd4a1a6f6e609044c34e81cf9ca97222419c3227",
+    "url": "/exam-images/pdf-2023-2024-b-q070-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 94,
+    "sourceBox": [
+      48.0,
+      449.44599999999997,
+      294,
+      579.566
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q071-explanation-1.png",
+    "sha256": "aac45d185d1fb560511c9c7f4fea51512ff126dd538e55200d809f7acc7775e7",
+    "url": "/exam-images/pdf-2023-2024-b-q071-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 94,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      215.12503000000004
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q072-explanation-1.png",
+    "sha256": "579612b504247afc03d43ba23ddea8ebebd815f14c0617573463a1914463e7d5",
+    "url": "/exam-images/pdf-2023-2024-b-q072-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 94,
+    "sourceBox": [
+      318.0,
+      276.63800000000003,
+      564,
+      347.19903
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q073-explanation-1.png",
+    "sha256": "a90075b829ee8d11fd340df577fc5fcd993b4b0fbbc502a3ac713f35d77b3a11",
+    "url": "/exam-images/pdf-2023-2024-b-q073-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 94,
+    "sourceBox": [
+      318.0,
+      389.638,
+      564,
+      633.924
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q074-explanation-1.png",
+    "sha256": "e897e3251ea948481f48d7ef77e84390319f89a6066a2335f6927236ab8973a7",
+    "url": "/exam-images/pdf-2023-2024-b-q074-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 95,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      359.577
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q075-explanation-1.png",
+    "sha256": "dafa0c30dd2d90dfcfb6898c0fb7b990be1b73dc42eb2c884e9175692ae2724d",
+    "url": "/exam-images/pdf-2023-2024-b-q075-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 95,
+    "sourceBox": [
+      48.0,
+      417.291,
+      294,
+      594.198
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q076-explanation-1.png",
+    "sha256": "4e84a57b3186477154b6ed596d4f43e14b50bae084757f2ef3fc7d4a65bba918",
+    "url": "/exam-images/pdf-2023-2024-b-q076-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 95,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      276.67600000000004
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q077-explanation-1.png",
+    "sha256": "c7aea5044acfb60a005b13cb3fd0d5da162f2b1b7a8f2107a9e48c1c8b5c6621",
+    "url": "/exam-images/pdf-2023-2024-b-q077-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 95,
+    "sourceBox": [
+      318.0,
+      334.39,
+      564,
+      600.39
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q078-explanation-1.png",
+    "sha256": "7c1d01535a5d9c0e0af4593214ca57c30983550912f78f0e678a667254afb0e5",
+    "url": "/exam-images/pdf-2023-2024-b-q078-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 96,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      454.15
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q079-explanation-1.png",
+    "sha256": "c70aef5bbb3d806a7644514ab1fba5db699bab5ae721d7100af0853d1fd14730",
+    "url": "/exam-images/pdf-2023-2024-b-q079-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 96,
+    "sourceBox": [
+      318,
+      97.94002999999998,
+      564,
+      440.96899999999994
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q079-explanation-2.png",
+    "sha256": "b8406ec75092f4989062244edbb806b5adef4a1a259051a33dd6bf3dfd5e8c4f",
+    "url": "/exam-images/pdf-2023-2024-b-q079-explanation-2.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 97,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      263.3580300000001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q080-explanation-1.png",
+    "sha256": "52e269096f391ff3197409885f23246d9b079277bfca7d2d9bc579dda907aa62",
+    "url": "/exam-images/pdf-2023-2024-b-q080-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 97,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      585.4801
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q081-explanation-1.png",
+    "sha256": "7a15378bad50ce8e7caad2eeb458e762c0a2075f3e2d7e5a3c4ec5b0d19ff3c6",
+    "url": "/exam-images/pdf-2023-2024-b-q081-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 98,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      324.05699999999996
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q082-explanation-1.png",
+    "sha256": "05b23a6819d62739d907d9c66f107c438a533291f5902a193eafb7e1621eb891",
+    "url": "/exam-images/pdf-2023-2024-b-q082-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 98,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      528.848
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q083-explanation-1.png",
+    "sha256": "20c4f891e07a8fd1920d4de9ab65e6ca041e5911e8e1ada297a9b763f4026569",
+    "url": "/exam-images/pdf-2023-2024-b-q083-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 99,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      282.15
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q084-explanation-1.png",
+    "sha256": "242eeaa554324e3ac4bb2bea5eda9e8e1c66e8fddc6f3927606b36b943750593",
+    "url": "/exam-images/pdf-2023-2024-b-q084-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 99,
+    "sourceBox": [
+      48.0,
+      332.32303,
+      294,
+      612.971
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q085-explanation-1.png",
+    "sha256": "aec368cff7f0723bb914bf267f13eb5d9e00b27a6b595f71281b720d0fcce69e",
+    "url": "/exam-images/pdf-2023-2024-b-q085-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 99,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      714.15
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q086-explanation-1.png",
+    "sha256": "0c5064cd3d1628cc82db078b52a84bf4ee1c4423fa62e2c23fb3aaa9774bf046",
+    "url": "/exam-images/pdf-2023-2024-b-q086-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 100,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      178.14999999999998
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q087-explanation-1.png",
+    "sha256": "acb92dacf4c16aac3a04f40929aff0459cfd15121297d20e0c8ec27a73117728",
+    "url": "/exam-images/pdf-2023-2024-b-q087-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 100,
+    "sourceBox": [
+      48.0,
+      229.14999999999998,
+      294,
+      401.18103
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q088-explanation-1.png",
+    "sha256": "7b9d5f43222b80e2f9fd4f47bd46ae5e4e43c3ec100bd5536f97a260c1c83d44",
+    "url": "/exam-images/pdf-2023-2024-b-q088-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 100,
+    "sourceBox": [
+      48.0,
+      443.491,
+      294,
+      718.10903
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q089-explanation-1.png",
+    "sha256": "678403a9242fbd5ce29f783f92e25bbeb6c6d1aeaa1ba80e1c954a64b094e915",
+    "url": "/exam-images/pdf-2023-2024-b-q089-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 100,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      300.077
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q090-explanation-1.png",
+    "sha256": "ac3b3e7036c2c7a4ade11fd6d5ee2b5c62aaa008b5602fd26d1fe05f997636cd",
+    "url": "/exam-images/pdf-2023-2024-b-q090-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 100,
+    "sourceBox": [
+      318.0,
+      348.791,
+      564,
+      421.077
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q091-explanation-1.png",
+    "sha256": "a69771f8ba6a512c32e71281e8006616a340a1e43ab3310e93257764d013274a",
+    "url": "/exam-images/pdf-2023-2024-b-q091-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 101,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      494.99699999999996
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q092-explanation-1.png",
+    "sha256": "e59555da36d4b10408ec9c469982d8692f03c62470d6d905f42831a0f7bbf948",
+    "url": "/exam-images/pdf-2023-2024-b-q092-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 101,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      363.147
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q093-explanation-1.png",
+    "sha256": "1462f37abec7c1eefb2e7ba9c62d6a233e1789dc677e243c1032dec8eb8eb93d",
+    "url": "/exam-images/pdf-2023-2024-b-q093-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 102,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      422.46903
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q094-explanation-1.png",
+    "sha256": "aa99df6937c6396c61156c05c4e194ee73aba5dd54f6b9d9ed8f94ba774abf88",
+    "url": "/exam-images/pdf-2023-2024-b-q094-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 102,
+    "sourceBox": [
+      48.0,
+      479.15503,
+      294,
+      506.67203
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q095-explanation-1.png",
+    "sha256": "e649eb1c50bdbb93e62d1dade0da0df0ccf19ec6ee6e75c70aea77148b827b2d",
+    "url": "/exam-images/pdf-2023-2024-b-q095-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 102,
+    "sourceBox": [
+      48.0,
+      548.982,
+      294,
+      691.38613
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q096-explanation-1.png",
+    "sha256": "c5761284baaf6fb9fa8c789b9a1b26ecd8db840b5a5ffee0201d3ad7a60194f1",
+    "url": "/exam-images/pdf-2023-2024-b-q096-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 102,
+    "sourceBox": [
+      318.0,
+      88.14999999999998,
+      564,
+      361.81699999999995
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q097-explanation-1.png",
+    "sha256": "171ad846b2b206e23c105a1cbc26f2b873d1b7e3896fb86a0f5f3845715b5058",
+    "url": "/exam-images/pdf-2023-2024-b-q097-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 102,
+    "sourceBox": [
+      318.0,
+      417.19699999999995,
+      564,
+      539.9710299999999
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q098-explanation-1.png",
+    "sha256": "c5f8f28de319619ae30ab812bf2927e258d8058b530a8a500b084ca3f7d03302",
+    "url": "/exam-images/pdf-2023-2024-b-q098-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 103,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      274.317
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q099-explanation-1.png",
+    "sha256": "f381535422180183aa5d22c8cda6b861cdf706028d5bc505e25d16db3bba593f",
+    "url": "/exam-images/pdf-2023-2024-b-q099-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 103,
+    "sourceBox": [
+      48.0,
+      323.03099999999995,
+      294,
+      449.03099999999995
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q100-explanation-1.png",
+    "sha256": "a3cf44787955192ecabb8d4de880065f8aaf251b87046ca360f84cb306cb9915",
+    "url": "/exam-images/pdf-2023-2024-b-q100-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 103,
+    "sourceBox": [
+      48.0001,
+      500.03099999999995,
+      294,
+      711.937
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q101-explanation-1.png",
+    "sha256": "e0edeeae7a4f10833e82698d3d06a5c44e6be39872fcb7b97923d8f8920a8946",
+    "url": "/exam-images/pdf-2023-2024-b-q101-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 103,
+    "sourceBox": [
+      318.0,
+      88.14999999999998,
+      564,
+      408.332
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q102-explanation-1.png",
+    "sha256": "651e7804b4f09ed640e3d3ba874cce22770c3b7107f5d6a52de1a71b50ed76f0",
+    "url": "/exam-images/pdf-2023-2024-b-q102-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 103,
+    "sourceBox": [
+      318.0,
+      459.335,
+      564,
+      565.63203
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q103-explanation-1.png",
+    "sha256": "3a584b71c8647d7b9096a9e893ab9d5136f8a2deb42d855b6aac9aa5e913f315",
+    "url": "/exam-images/pdf-2023-2024-b-q103-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 104,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      278.15
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q104-explanation-1.png",
+    "sha256": "8c50b54713de569761eb202715189e1504ba18df3a2ba2d0031ad93f11b51fa9",
+    "url": "/exam-images/pdf-2023-2024-b-q104-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 104,
+    "sourceBox": [
+      48.0,
+      329.15,
+      294,
+      558.436
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q105-explanation-1.png",
+    "sha256": "3afcd6895514e6396c684331a7c25a4febe0dc6f1b0e05cb26fb76cfe62ac3a9",
+    "url": "/exam-images/pdf-2023-2024-b-q105-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 104,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      245.279
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q106-explanation-1.png",
+    "sha256": "71f883ea6698ca119f3db85a5af37cfe69b9974360b8c1a33bebcc5bbbc68c55",
+    "url": "/exam-images/pdf-2023-2024-b-q106-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 104,
+    "sourceBox": [
+      318.0,
+      302.993,
+      564,
+      545.30803
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q107-explanation-1.png",
+    "sha256": "dde7d8a1418968b44300ba59f435779e1ad760284a87a25e7e380f89db20b44a",
+    "url": "/exam-images/pdf-2023-2024-b-q107-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 104,
+    "sourceBox": [
+      318.0,
+      587.6179999999999,
+      564,
+      669.37503
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q108-explanation-1.png",
+    "sha256": "5dbd1ae094f865de5b91f2c76cf22bb5d10d6f9c175835c9c68ca27c15aa8043",
+    "url": "/exam-images/pdf-2023-2024-b-q108-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 105,
+    "sourceBox": [
+      48.0,
+      88.14999999999998,
+      294,
+      199.54999999999995
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q109-explanation-1.png",
+    "sha256": "39dc17a788080f619c041fbf9c8d20318f85f2fd56d8b5369b589f9ff22eb849",
+    "url": "/exam-images/pdf-2023-2024-b-q109-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 105,
+    "sourceBox": [
+      48.0,
+      253.14999999999998,
+      294,
+      387.28303
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q110-explanation-1.png",
+    "sha256": "39ac1701aa8365fa6cc7f997e87beb09c1cad92b56df777b5984939e05cd430e",
+    "url": "/exam-images/pdf-2023-2024-b-q110-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 105,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      176.5070300000001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q111-explanation-1.png",
+    "sha256": "a23645fc866797a6044904957adc2f877e44e9c02f21aea67b64b4f8ba441d59",
+    "url": "/exam-images/pdf-2023-2024-b-q111-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 105,
+    "sourceBox": [
+      318.0,
+      293.1096,
+      564,
+      529.85803
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q112-explanation-1.png",
+    "sha256": "23048b8ba2ceb0fae6408beb074403ce1c3b927ce9e1c4763c7f194301fb8082",
+    "url": "/exam-images/pdf-2023-2024-b-q112-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 106,
+    "sourceBox": [
+      48.0,
+      84.14999999999998,
+      294,
+      517.717
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q113-explanation-1.png",
+    "sha256": "663974b79b770603968502d60bc90a72e1dba25d922cd35e35f6d047f00e3f03",
+    "url": "/exam-images/pdf-2023-2024-b-q113-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 106,
+    "sourceBox": [
+      318.0,
+      84.14999999999998,
+      564,
+      335.65799999999996
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-q114-explanation-1.png",
+    "sha256": "3c5cd0808f0959123b8efe48a8966adad5c532d1d3bc0b78ff9b212e1408058a",
+    "url": "/exam-images/pdf-2023-2024-b-q114-explanation-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      48,
+      76,
+      565,
+      444
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-passage-2-figure-1.png",
+    "sha256": "a9e09e605fc33c536f9501a273efd13bb4c961ca4a7664dbfa3de98d90c501d8",
+    "url": "/exam-images/pdf-2023-2024-b-passage-2-figure-1.png"
+  },
+  {
+    "sourceFile": "20232024_form_b.pdf",
+    "sourcePage": 32,
+    "sourceBox": [
+      203,
+      77,
+      407,
+      341
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-2023-2024\\b-assets\\pdf-2023-2024-b-passage-6-figure-1.png",
+    "sha256": "2d7114cbf9796a46c565451ee1eb92a569f14d4c501ba5fc869cb1dc3ce6038e",
+    "url": "/exam-images/pdf-2023-2024-b-passage-6-figure-1.png"
+  }
+]

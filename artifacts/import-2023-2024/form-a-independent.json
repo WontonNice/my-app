@@ -1,0 +1,463 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "id": "pdf-shsat-2023-2024-a-q001",
+      "type": "multiple_choice",
+      "topic": "Punctuation",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Which edit should be made in the sentence?",
+      "promptHtml": "<p>Which edit should be made in the sentence?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Delete the comma after 2018.",
+          "html": "<p>Delete the comma after <em><strong>2018</strong></em>.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Insert a comma after student.",
+          "html": "<p>Insert a comma after <em><strong>student</strong></em>.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Delete the comma after lacrosse balls.",
+          "html": "<p>Delete the comma after <em><strong>lacrosse balls</strong></em>.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Insert a comma after joggling.",
+          "html": "<p>Insert a comma after <em><strong>joggling</strong></em>.</p>"
+        }
+      ],
+      "explanation": "The question asks which edit should be made to correct the sentence.\n\nA. Incorrect. This edit incorrectly deletes the comma that is necessary to set off the year in a date from the remainder of the sentence. B. Incorrect. This edit introduces an unnecessary comma into the sentence by needlessly separating the adjective phrase “Boston University student” from the noun it modifies, “Zach Prescott.” C. Incorrect. This edit would delete the comma needed to separate the participle phrase “breaking the 32-year-old world record in joggling” and its companion appositive “a sport that combines jogging and juggling” from the rest of the sentence. This complete element is nonessential, which means it requires separation from the rest of the sentence with a comma because its removal would not fundamentally change the meaning of the sentence. D. CORRECT. The appositive “a sport that combines jogging and juggling” further describes the word “joggling.” An appositive requires separation with a comma because it is nonessential, meaning that its removal would not change the overall meaning of the sentence.",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20232024_form_a (1).pdf",
+        "sourcePages": [
+          3
+        ],
+        "sourceQuestion": "1",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20232024_form_a (1).pdf",
+          "sourcePages": [
+            115
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20232024_form_a (1).pdf",
+          "sourcePages": [
+            59
+          ],
+          "regions": [
+            {
+              "page": 59,
+              "box": [
+                48,
+                185.64999999999998,
+                564,
+                721
+              ]
+            }
+          ]
+        },
+        "topicConfidence": 0.8,
+        "difficultyConfidence": null
+      },
+      "correctChoiceId": "D",
+      "stimulus": "On May 8, 2018, Boston University student Zach Prescott ran a mile in 4 minutes 43.2 seconds while juggling three lacrosse balls, breaking the 32-year-old world record in joggling a sport that combines jogging and juggling.",
+      "stimulusHtml": "<p>On May 8, <u>2018,</u> Boston University <u>student</u> Zach Prescott ran a mile in 4 minutes 43.2 seconds while juggling three <u>lacrosse balls,</u> breaking the 32-year-old world record in <u>joggling</u> a sport that combines jogging and juggling.</p>",
+      "explanationHtml": "<p>The question asks which edit should be made to correct the sentence.</p><p><strong>A. </strong>Incorrect. This edit incorrectly deletes the comma that is necessary to set off the year in a date from the remainder of the sentence. <strong>B. </strong>Incorrect. This edit introduces an unnecessary comma into the sentence by needlessly separating the adjective phrase “Boston University student” from the noun it modifies, “Zach Prescott.” <strong>C. </strong>Incorrect. This edit would delete the comma needed to separate the participle phrase “breaking the 32-year-old world record in joggling” and its companion appositive “a sport that combines jogging and juggling” from the rest of the sentence. This complete element is nonessential, which means it requires separation from the rest of the sentence with a comma because its removal would not fundamentally change the meaning of the sentence. <strong>D. CORRECT. </strong>The appositive “a sport that combines jogging and juggling” further describes the word “joggling.” An appositive requires separation with a comma because it is nonessential, meaning that its removal would not change the overall meaning of the sentence.</p>",
+      "sourceQuestion": "1",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2023-2024 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceFile": "20232024_form_a (1).pdf",
+        "sha256": "5ee85242f723fee8289fb7d68e6b1db5924504c4cf267cd88e87e1fb54637bba",
+        "sourceQuestion": "1",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Supplied 20232024_form_a (1).pdf; PDF page 3; original question 1."
+      ]
+    },
+    {
+      "id": "pdf-shsat-2023-2024-a-q002",
+      "type": "multiple_choice",
+      "topic": "Verbs",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "How should the paragraph be revised?",
+      "promptHtml": "<p>How should the paragraph be revised?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Sentence 1: Change spent to had spent, AND insert a comma after play.",
+          "html": "<p>Sentence 1: Change <em><strong>spent </strong></em>to <strong>had spent</strong>, AND insert a comma after <em><strong>play</strong></em>.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Sentence 2: Change did to does, AND insert a comma after projection.",
+          "html": "<p>Sentence 2: Change <em><strong>did </strong></em>to <strong>does</strong>, AND insert a comma after <em><strong>projection</strong></em>.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Sentence 3: Change studies to studied, AND delete the comma after emotions.",
+          "html": "<p>Sentence 3: Change <em><strong>studies </strong></em>to <strong>studied</strong>, AND delete the comma after <em><strong>emotions</strong></em>.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Sentence 4: Change recited to recites, AND delete the comma after times.",
+          "html": "<p>Sentence 4: Change <em><strong>recited </strong></em>to <strong>recites</strong>, AND delete the comma after <em><strong>times</strong></em>.</p>"
+        }
+      ],
+      "explanation": "The question asks how the paragraph should be revised.\n\nE. Incorrect. The revisions in this option introduce new errors. The word “spent” is correct in the simple past tense because it encompasses the actions described throughout the rest of the paragraph, all of which happened during those “several hours.” Additionally, adding a comma after the word “play” would be incorrect because it would unnecessarily separate the prepositional phrase “at the community theater” from the rest of the sentence. F. Incorrect. The revisions in this option introduce new errors. The word “did” is correct as written in the past tense because the past tense is used throughout the paragraph. There is no comma needed after the word “projection” because “so” is functioning not as a conjunction but rather as part of the conjunction phrase “so that,” which does not take a comma. G. CORRECT. Changing the word “studies” from the present tense to the past tense “studied” is necessary to match the past tense established in the paragraph (“spent,” “recited”). Additionally, the comma after the word “emotions” needs to be removed because the words “emotions and motivations” are part of a group (series) of two elements, and when there are only two elements in a series, a comma is not used. H. Incorrect. The revisions in this option introduce new errors. The word “recited” is correct as written in the past tense because the past tense is used throughout the paragraph. Also, removing the comma after “times” is incorrect because the comma is needed in order to separate the modifying phrase “making slight adjustments and improvements to her performance each time” from the main clause.",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20232024_form_a (1).pdf",
+        "sourcePages": [
+          3
+        ],
+        "sourceQuestion": "2",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20232024_form_a (1).pdf",
+          "sourcePages": [
+            115
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20232024_form_a (1).pdf",
+          "sourcePages": [
+            60
+          ],
+          "regions": [
+            {
+              "page": 60,
+              "box": [
+                48,
+                66.64999999999998,
+                564,
+                391.65
+              ]
+            }
+          ]
+        },
+        "topicConfidence": 0.8,
+        "difficultyConfidence": null
+      },
+      "correctChoiceId": "C",
+      "stimulus": "(1) Danielle spent several hours preparing for an upcoming audition for a play at the community theater. (2) First she did vocal exercises to practice her diction and projection so that her words would carry clearly throughout the large auditorium. (3) Then she studies the text of the monologue to better understand the emotions, and motivations of the character she plans to portray. (4) Finally she recited her monologue in front of a mirror many times, making slight adjustments and improvements to her performance each time.",
+      "stimulusHtml": "<p>(1) Danielle <u>spent</u> several hours preparing for an upcoming audition for a <u>play</u> at the community theater. (2) First she <u>did</u> vocal exercises to practice her diction and <u>projection</u> so that her words would carry clearly throughout the large auditorium. (3) Then she <u>studies</u> the text of the monologue to better understand the <u>emotions,</u> and motivations of the character she plans to portray. (4) Finally she <u>recited</u> her monologue in front of a mirror many <u>times,</u> making slight adjustments and improvements to her performance each time.</p>",
+      "explanationHtml": "<p>The question asks how the paragraph should be revised.</p><p><strong>E. </strong>Incorrect. The revisions in this option introduce new errors. The word “spent” is correct in the simple past tense because it encompasses the actions described throughout the rest of the paragraph, all of which happened during those “several hours.” Additionally, adding a comma after the word “play” would be incorrect because it would unnecessarily separate the prepositional phrase “at the community theater” from the rest of the sentence. <strong>F. </strong>Incorrect. The revisions in this option introduce new errors. The word “did” is correct as written in the past tense because the past tense is used throughout the paragraph. There is no comma needed after the word “projection” because “so” is functioning not as a conjunction but rather as part of the conjunction phrase “so that,” which does not take a comma. <strong>G. CORRECT. </strong>Changing the word “studies” from the present tense to the past tense “studied” is necessary to match the past tense established in the paragraph (“spent,” “recited”). Additionally, the comma after the word “emotions” needs to be removed because the words “emotions and motivations” are part of a group (series) of two elements, and when there are only two elements in a series, a comma is not used. <strong>H. </strong>Incorrect. The revisions in this option introduce new errors. The word “recited” is correct as written in the past tense because the past tense is used throughout the paragraph. Also, removing the comma after “times” is incorrect because the comma is needed in order to separate the modifying phrase “making slight adjustments and improvements to her performance each time” from the main clause.</p>",
+      "sourceQuestion": "2",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2023-2024 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceFile": "20232024_form_a (1).pdf",
+        "sha256": "5ee85242f723fee8289fb7d68e6b1db5924504c4cf267cd88e87e1fb54637bba",
+        "sourceQuestion": "2",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Supplied 20232024_form_a (1).pdf; PDF page 3; original question 2.",
+        "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order."
+      ]
+    },
+    {
+      "id": "pdf-shsat-2023-2024-a-q003",
+      "type": "multiple_choice",
+      "topic": "Modifiers",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "How should this sentence be revised?",
+      "promptHtml": "<p>How should this sentence be revised?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.",
+          "html": "<p>To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.</p>"
+        },
+        {
+          "id": "B",
+          "text": "On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.",
+          "html": "<p>On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.</p>"
+        },
+        {
+          "id": "C",
+          "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday.",
+          "html": "<p>To promote their club, members of the debate team will sponsor a bake sale on Wednesday.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.",
+          "html": "<p>Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.</p>"
+        }
+      ],
+      "explanation": "The question asks for the correct revision of the sentence in the box.\n\nA. Incorrect. The revisions do not fix the error that “to promote their club” modifies “a bake sale.” B. Incorrect. The revisions do not fix the error that “to promote their club” modifies “a bake sale.” C. CORRECT. The revision is correct because it includes the phrase “to promote their club” clearly modifying “members of the debate team.” D. Incorrect. While the revision clarifies that “to promote their club” relates to the “members of the debate team,” the rest of the sentence is poorly written because the insertion of “on Wednesday to promote their club” in the middle of the sentence interrupts the main clause, “Members of the debate team will sponsor a bake sale.”",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20232024_form_a (1).pdf",
+        "sourcePages": [
+          4
+        ],
+        "sourceQuestion": "3",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20232024_form_a (1).pdf",
+          "sourcePages": [
+            115
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20232024_form_a (1).pdf",
+          "sourcePages": [
+            60
+          ],
+          "regions": [
+            {
+              "page": 60,
+              "box": [
+                48,
+                400.65,
+                564,
+                721
+              ]
+            }
+          ]
+        },
+        "topicConfidence": 0.8,
+        "difficultyConfidence": null
+      },
+      "correctChoiceId": "C",
+      "stimulus": "To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.",
+      "stimulusHtml": "<p>To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</p>",
+      "explanationHtml": "<p>The question asks for the correct revision of the sentence in the box.</p><p><strong>A. </strong>Incorrect. The revisions do not fix the error that “to promote their club” modifies “a bake sale.” <strong>B. </strong>Incorrect. The revisions do not fix the error that “to promote their club” modifies “a bake sale.” <strong>C. CORRECT. </strong>The revision is correct because it includes the phrase “to promote their club” clearly modifying “members of the debate team.” <strong>D. </strong>Incorrect. While the revision clarifies that “to promote their club” relates to the “members of the debate team,” the rest of the sentence is poorly written because the insertion of “on Wednesday to promote their club” in the middle of the sentence interrupts the main clause, “Members of the debate team will sponsor a bake sale.”</p>",
+      "sourceQuestion": "3",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2023-2024 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceFile": "20232024_form_a (1).pdf",
+        "sha256": "5ee85242f723fee8289fb7d68e6b1db5924504c4cf267cd88e87e1fb54637bba",
+        "sourceQuestion": "3",
+        "pages": [
+          4
+        ]
+      },
+      "notes": [
+        "Supplied 20232024_form_a (1).pdf; PDF page 4; original question 3."
+      ]
+    },
+    {
+      "id": "pdf-shsat-2023-2024-a-q004",
+      "type": "multiple_choice",
+      "topic": "Sentence Structure",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Which revision corrects the error in sentence structure in the paragraph?",
+      "promptHtml": "<p>Which revision corrects the error in sentence structure in the paragraph?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Institution, and the",
+          "html": "<p>Institution, and the</p>"
+        },
+        {
+          "id": "B",
+          "text": "year, and the",
+          "html": "<p>year, and the</p>"
+        },
+        {
+          "id": "C",
+          "text": "objects, which include",
+          "html": "<p>objects, which include</p>"
+        },
+        {
+          "id": "D",
+          "text": "Proclamation, which was written",
+          "html": "<p>Proclamation, which was written</p>"
+        }
+      ],
+      "explanation": "The question asks for the correction of an error in sentence structure in the paragraph.\n\nE. CORRECT. The first sentence is a run-on sentence because both clauses—“In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution” and “the museum is already the Smithsonian’s third most popular site”—are independent clauses, and independent clauses should not be combined without the use of a conjunction and a comma. The revision in this option adds the word “and” before the comma, which corrects the run-on. F. Incorrect. The revision does not correct an error in sentence structure, since there are independent clauses on both sides of the period. G. Incorrect. Adding the words “which include” rather than the word “including” after the comma does not correct an error in sentence structure. The sentence is correct as written. H. Incorrect. Revising the wording in the underlined portion of the sentence to “which was written” from “written” does not correct a structural error. No edits are needed to correct the wording in the sentence.",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20232024_form_a (1).pdf",
+        "sourcePages": [
+          4
+        ],
+        "sourceQuestion": "4",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20232024_form_a (1).pdf",
+          "sourcePages": [
+            115
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20232024_form_a (1).pdf",
+          "sourcePages": [
+            61
+          ],
+          "regions": [
+            {
+              "page": 61,
+              "box": [
+                48,
+                66.64999999999998,
+                564,
+                721
+              ]
+            }
+          ]
+        },
+        "topicConfidence": 0.8,
+        "difficultyConfidence": null
+      },
+      "correctChoiceId": "A",
+      "stimulus": "In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation Proclamation, written in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.",
+      "stimulusHtml": "<p>In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian <u>Institution, the</u> museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a <u>year. The</u> museum features more than 30,000 <u>objects, including</u> Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation <u>Proclamation, written</u> in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.</p>",
+      "explanationHtml": "<p>The question asks for the correction of an error in sentence structure in the paragraph.</p><p><strong>E. CORRECT. </strong>The first sentence is a run-on sentence because both clauses—“In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution” and “the museum is already the Smithsonian’s third most popular site”—are independent clauses, and independent clauses should not be combined without the use of a conjunction and a comma. The revision in this option adds the word “and” before the comma, which corrects the run-on. <strong>F. </strong>Incorrect. The revision does not correct an error in sentence structure, since there are independent clauses on both sides of the period. <strong>G. </strong>Incorrect. Adding the words “which include” rather than the word “including” after the comma does not correct an error in sentence structure. The sentence is correct as written. <strong>H. </strong>Incorrect. Revising the wording in the underlined portion of the sentence to “which was written” from “written” does not correct a structural error. No edits are needed to correct the wording in the sentence.</p>",
+      "sourceQuestion": "4",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2023-2024 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceFile": "20232024_form_a (1).pdf",
+        "sha256": "5ee85242f723fee8289fb7d68e6b1db5924504c4cf267cd88e87e1fb54637bba",
+        "sourceQuestion": "4",
+        "pages": [
+          4
+        ]
+      },
+      "notes": [
+        "Supplied 20232024_form_a (1).pdf; PDF page 4; original question 4.",
+        "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order."
+      ]
+    }
+  ]
+}

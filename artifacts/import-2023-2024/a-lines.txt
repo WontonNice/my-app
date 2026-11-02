@@ -1,0 +1,1716 @@
+=== PAGE 1 ===
+57.0,-77.5,-57.5: SAMPLE TEST A
+76.0,-32.0,-20.0: General Directions
+787.6,55.6,71.6: GENERAL DIRECTIONS, continued
+53.4,64.4,96.4: GRADE 8 A
+660.0,81.1,90.1: Print your test booklet letter and numbers, and your name, first name first, in the spaces provided at the top of
+660.0,92.1,101.1: Side 2 of the answer sheet.
+660.0,110.0,122.0: Marking Your Answers
+167.0,116.3,128.3: The New York City Department of Education
+660.0,129.1,138.1: • Mark each of your answers on the answer sheet in the row of circles matching the question number printed in
+90.1,140.1,156.6: 2023 Specialized High Schools Admissions Test the test booklet.
+660.0,154.1,163.1: • Use only a Number 2 pencil.
+186.4,168.1,189.9: GENERAL DIRECTIONS • If you change an answer, be sure to erase it completely.
+660.0,182.1,191.1: • Be careful to avoid making any stray pencil marks on your answer sheet. Do not make any marks on your
+672.0,193.1,202.1: answer sheet other than filling in your answer choices.
+660.0,207.1,216.1: • Each question has only one correct answer. If you mark more than one circle in any answer row, that question
+672.0,218.1,227.1: will be scored as incorrect.
+137.2,222.2,231.2: Student Name: ______________________________________
+41.8,248.8,260.3: Identifying Information SAMPLE ANSWER MARKS
+41.8,266.2,276.7: Turn to Side 1 of the answer sheet. A B C D RIGHT
+41.8,282.8,293.7: Notify the proctor immediately if you are ill or should not be taking this test. Do not sign the A B C D WRONG
+41.8,295.7,304.7: statement or begin the test. Return your answer sheet to the proctor.
+859.8,300.7,310.0: A B C D WRONG
+41.8,312.7,321.7: Line 1: Read the statement and sign your name in the space following the word “signature.” Do not print your
+859.8,318.1,327.3: A B C D WRONG
+41.8,323.7,332.7: name.
+859.8,335.8,345.1: A B C D WRONG
+41.8,340.7,349.7: Line 2: Print today’s date, using the numbers of the month, the day, and the year. For example, the date
+41.8,351.7,360.7: September 21, 2023, would be 9-21-23.
+660.0,364.3,373.3: • You can use your test booklet or the provided scrap paper to take notes or solve questions; however, your
+41.8,368.7,377.7: Line 3: Print your birth date, using the numbers of the month, the day, and the year. For example, a birth date
+672.0,375.3,384.3: answers must be recorded on the answer sheet in order to be counted.
+41.8,379.7,388.7: of March 1, 2006, would be 3-1-06.
+660.0,389.3,398.3: • You will not be able to mark your answers on the answer sheet after time is up, and answers left in
+41.8,396.7,405.7: Grid 4: Print the letters of your fi rst name, or as many as will fi t, in the boxes. If you have a middle initial, print
+672.0,400.3,409.3: the test booklet will not be scored.
+41.8,407.7,416.7: it in the box labeled “MI.” Then print the letters of your last name, or as much as will fi t, in the boxes provided.
+41.8,418.2,430.2: Below each box, fi ll in the circle that contains the same letter as the box. If there is a space or a hyphen in your Planning Your Time
+41.8,429.7,438.7: name, fi ll in the circle under the appropriate blank or hyphen.
+660.0,437.3,446.3: • You have 180 minutes to complete the entire test. How you divide the time between the English
+41.8,446.7,457.3: Make dark marks that completely fi ll the circles. If you change a mark, be sure to erase the fi rst mark Language Arts and Mathematics sections is up to you.
+41.8,457.7,466.7: completely.
+660.0,462.3,471.3: • If you begin with the English Language Arts section, you may go on to the Mathematics section as soon as you
+41.8,473.3,483.7: Grid 5: are ready. Likewise, if you begin with the Mathematics section, you may go on to the English Language Arts
+672.0,484.3,493.3: section as soon as you are ready.
+41.8,491.7,500.7: 1. Print the name of the school where you are now enrolled in the space at the top of the grid.
+660.0,498.3,507.3: • Be sure to read the directions for each section carefully.
+41.8,508.7,517.7: 2. In the boxes marked “SCHOOL CODE,” print the six-digit code that identifi es your school. Below each box, fi ll
+660.0,512.3,521.3: • Each question has only one correct answer. Choose the best answer for each question.
+53.8,519.7,528.7: in the circle that contains the same letter or number as the box. (You can fi nd your school code on your Test
+660.0,526.3,535.3: • When you finish a question, go on to the next, until you have completed the last question or run out of time.
+53.8,530.7,539.7: Ticket. If it is not there, tell the proctor, and the proctor will get the school code for you.)
+660.0,540.3,549.3: • Your score is determined by the number of questions you answer correctly. Answer every question, even if
+41.8,547.7,556.7: 3. If you attend a private or parochial school, fi ll in the circle marked “P.”
+672.0,551.3,560.3: you may not be certain which answer is correct.
+41.8,564.7,574.3: Grid 6: Complete the grid with your date of birth. Print the fi rst three letters of the month in the fi rst box, the • Don’t spend too much time on a difficult question. Come back to it later if you have time.
+41.8,575.7,584.7: number of the day in the next box, and the year in the last box. Then fi ll in the corresponding circles.
+660.0,579.3,588.3: • If you complete the test before the test time (180 minutes) is over, you may go back to review questions in
+41.8,590.3,601.7: Grid 7: Print your student ID number in Grid 7. You can fi nd your student ID number on your Test Ticket. In the either section.
+41.8,603.7,613.3: boxes, print your nine-digit student ID number. Below each box, fi ll in the circle containing the same number as • Students must stay for the entire test session (180 minutes).
+41.8,614.7,623.7: in the box.
+761.5,621.3,630.3: DO NOT OPEN THIS BOOKLET UNTIL YOU ARE TOLD TO DO SO
+41.8,631.7,640.7: Grid 8: In most cases, Grid 8 is already fi lled in for you. If it is not, copy the letter and numbers shown in the
+41.8,642.7,651.7: upper-right corner of your test booklet into the boxes. Below each box, fi ll in the circle containing the same letter
+41.8,650.8,710.8: or number as the box. A
+41.8,670.7,679.7: Now review Side 1 to make sure you have completed all lines and grids correctly. Review each column to see
+41.8,681.7,690.7: that the fi lled-in circles correspond to the letters or numbers in the boxes above them.
+41.8,698.7,709.2: Turn your answer sheet to Side 2 and fl ip this booklet over to continue with General Directions. Copyright © 2023 Pearson. All rights
+660.0,710.8,718.8: reserved. No part of this document may
+660.0,720.4,728.4: be copied, reproduced, modified, or
+660.0,728.2,738.0: transmitted by any means, electronic or 1145734 1 2 3 4 5 A B C D E Printed in the USA ISD36942
+660.0,739.6,747.6: mechanical.
+=== PAGE 2 ===
+175.6,55.6,71.6: GENERAL DIRECTIONS, continued
+48.0,81.1,90.1: Print your test booklet letter and numbers, and your name, fi rst name fi rst, in the spaces provided at the top of
+48.0,92.1,101.1: Side 2 of the answer sheet.
+48.0,110.0,122.0: Marking Your Answers
+48.0,129.1,138.1: • Mark each of your answers on the answer sheet in the row of circles matching the question number printed in
+60.0,140.1,149.1: the test booklet.
+48.0,154.1,163.1: • Use only a Number 2 pencil.
+48.0,168.1,177.1: • If you change an answer, be sure to erase it completely.
+48.0,182.1,191.1: • Be careful to avoid making any stray pencil marks on your answer sheet. Do not make any marks on your
+60.0,193.1,202.1: answer sheet other than fi lling in your answer choices.
+48.0,207.1,216.1: • Each question has only one correct answer. If you mark more than one circle in any answer row, that question
+60.0,218.1,227.1: will be scored as incorrect.
+238.2,248.8,258.8: SAMPLE ANSWER MARKS
+247.8,266.2,275.6: A B C D RIGHT
+247.8,282.8,292.3: A B C D WRONG
+247.8,300.7,310.0: A B C D WRONG
+247.8,318.1,327.3: A B C D WRONG
+247.8,335.8,345.1: A B C D WRONG
+48.0,364.3,373.3: • You can use your test booklet or the provided scrap paper to take notes or solve questions; however, your
+60.0,375.3,384.3: answers must be recorded on the answer sheet in order to be counted.
+48.0,389.3,398.3: • You will not be able to mark your answers on the answer sheet after time is up, and answers left in
+60.0,400.3,409.3: the test booklet will not be scored.
+48.0,418.2,430.2: Planning Your Time
+48.0,437.3,446.3: • You have 180 minutes to complete the entire test. How you divide the time between the English
+60.0,448.3,457.3: Language Arts and Mathematics sections is up to you.
+48.0,462.3,471.3: • If you begin with the English Language Arts section, you may go on to the Mathematics section as soon as you
+60.0,473.3,482.3: are ready. Likewise, if you begin with the Mathematics section, you may go on to the English Language Arts
+60.0,484.3,493.3: section as soon as you are ready.
+48.0,498.3,507.3: • Be sure to read the directions for each section carefully.
+48.0,512.3,521.3: • Each question has only one correct answer. Choose the best answer for each question.
+48.0,526.3,535.3: • When you fi nish a question, go on to the next, until you have completed the last question or run out of time.
+48.0,540.3,549.3: • Your score is determined by the number of questions you answer correctly. Answer every question, even if
+60.0,551.3,560.3: you may not be certain which answer is correct.
+48.0,565.3,574.3: • Don’t spend too much time on a diffi cult question. Come back to it later if you have time.
+48.0,579.3,588.3: • If you complete the test before the test time (180 minutes) is over, you may go back to review questions in
+60.0,590.3,599.3: either section.
+48.0,604.3,613.3: • Students must stay for the entire test session (180 minutes).
+149.5,621.3,630.3: DO NOT OPEN THIS BOOKLET UNTIL YOU ARE TOLD TO DO SO
+282.7,650.8,710.8: A
+48.0,701.2,709.2: Copyright © 2023 Pearson. All rights
+48.0,710.8,718.8: reserved. No part of this document may
+48.0,720.4,728.4: be copied, reproduced, modified, or
+48.0,728.2,738.0: transmitted by any means, electronic or 1145734 1 2 3 4 5 A B C D E Printed in the USA ISD36942
+48.0,739.6,747.6: mechanical.
+=== PAGE 3 ===
+81.4,-31.7,-19.7: Sample Test
+102.8,53.1,77.1: PART 1 — ENGLISH LANGUAGE ARTS
+256.9,83.5,97.5: 57 QUESTIONS
+205.0,118.9,138.9: REVISING/EDITING
+170.0,144.5,158.5: QUESTIONS 1-9 (PART A AND PART B)
+227.6,172.2,182.2: REVISING/EDITING PART A
+48.0,190.2,200.2: DIRECTIONS: Read and answer the following questions. You will be asked to recognize and correct
+48.0,202.2,212.2: errors so that the sentences or short paragraphs follow the conventions of standard written English.
+48.0,214.2,224.2: You may write in your test booklet as needed to take notes. You should reread relevant parts of the
+48.0,226.2,236.2: sentences or paragraphs, while being mindful of time, before marking the best answer for each
+48.0,238.2,248.2: question.
+48.0,279.1,289.1: 1. Which edit should be made in the sentence?
+83.5,309.7,319.7: On May 8, 2018, Boston University student Zach Prescott ran a mile in
+83.5,322.7,332.7: 4 minutes 43.2 seconds while juggling three lacrosse balls, breaking the 32- year- old world
+83.5,335.7,345.7: record in joggling a sport that combines jogging and juggling.
+78.0,371.2,381.2: A. Delete the comma after 2018.
+78.0,387.2,397.2: B. Insert a comma after student.
+78.0,403.2,413.2: C. Delete the comma after lacrosse balls.
+78.0,419.2,429.2: D. Insert a comma after joggling.
+48.0,470.2,480.2: 2. How should the paragraph be revised?
+83.5,500.8,510.8: (1) Danielle spent several hours preparing for an upcoming audition for a play at the
+83.5,513.8,523.8: community theater. (2) First she did vocal exercises to practice her diction and projection
+83.5,526.8,536.8: so that her words would carry clearly throughout the large auditorium. (3) Then she studies
+83.5,539.8,549.8: the text of the monologue to better understand the emotions, and motivations of the
+83.5,552.8,562.8: character she plans to portray. (4) Finally she recited her monologue in front of a mirror
+83.5,565.8,575.8: many times, making slight adjustments and improvements to her performance each time.
+78.0,601.2,611.2: E. Sentence 1: Change spent to had spent, AND insert a comma after play.
+78.0,617.2,627.2: F. Sentence 2: Change did to does, AND insert a comma after projection.
+78.0,633.2,643.2: G. Sentence 3: Change studies to studied, AND delete the comma after emotions.
+78.0,649.2,659.2: H. Sentence 4: Change recited to recites, AND delete the comma after times.
+48.0,731.2,743.3: FORM A 2 CONTINUE TO THE NEXT PAGE
+=== PAGE 4 ===
+48.0,84.1,94.1: 3. How should this sentence be revised?
+83.5,114.7,124.7: To promote their club, a bake sale will be sponsored by members of the debate team on
+83.5,127.7,137.7: Wednesday.
+78.0,163.2,173.2: A. To promote their club, on Wednesday a bake sale will be sponsored by members of the
+96.0,176.2,186.2: debate team.
+78.0,192.2,202.2: B. On Wednesday, to promote their club, a bake sale will be sponsored by members of the
+96.0,205.2,215.2: debate team.
+78.0,221.2,231.2: C. To promote their club, members of the debate team will sponsor a bake sale on Wednesday.
+78.0,237.2,247.2: D. Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.
+48.0,288.2,298.2: 4. Which revision corrects the error in sentence structure in the paragraph?
+83.5,318.8,328.8: In September 2016 the National Museum of African American History and Culture opened as
+83.5,331.8,341.8: part of the Smithsonian Institution, the museum is already the Smithsonian’s third most
+83.5,344.8,354.8: popular site. Experts say that they expect this newest Smithsonian facility to welcome
+83.5,357.8,367.8: nearly 4 million visitors a year. The museum features more than 30,000 objects, including
+83.5,370.8,380.8: Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of
+83.5,383.8,393.8: the Emancipation Proclamation, written in 1863 during the presidency of Abraham Lincoln,
+83.5,396.8,406.8: is also on display at the museum.
+78.0,432.2,442.2: E. Institution, and the
+78.0,448.2,458.2: F. year, and the
+78.0,464.2,474.2: G. objects, which include
+78.0,480.2,490.2: H. Proclamation, which was written
+48.0,731.2,743.3: FORM A 3 CONTINUE TO THE NEXT PAGE
+=== PAGE 5 ===
+227.7,77.2,87.2: REVISING/EDITING PART B
+48.0,95.2,105.2: DIRECTIONS: Read the text below and answer the questions following it. You will be asked to
+48.0,107.2,117.2: improve the writing quality of the text and to correct errors so that the text follows the conventions
+48.0,119.2,129.2: of standard written English. You should reread relevant parts of the text, while being mindful of time,
+48.0,131.2,141.2: before marking the best answer for each question.
+193.4,162.5,177.5: The Benefits of Indoor Plants
+48.0,191.0,201.0: (1) In an age of endless media content, it is easy to see why people might prefer to stay inside.
+48.0,204.0,214.0: (2) According to a study sponsored by the Environmental Protection Agency, Americans spend an
+48.0,217.0,227.0: average of 87 percent of their time indoors. (3) Scientists say that this separation between people
+48.0,230.0,240.0: and nature puts people at risk for physical and psychological issues.
+48.0,249.0,259.0: (4) During the process of photosynthesis, plants convert carbon dioxide into oxygen and remove
+48.0,262.0,272.0: many harmful toxins from the air. (5) Spending prolonged periods of time indoors, away from
+48.0,275.0,285.0: plants, deprives people of these benefits. (6) Air that is not regularly detoxified can lead to a
+48.0,288.0,298.0: condition known as sick building syndrome. (7) This disorder first came to light in the 1970s when
+48.0,301.0,311.0: many office workers in the United States began to complain of unexplained flu- like symptoms.
+48.0,314.0,324.0: (8) Researchers determined the cause to be volatile organic compounds, or VOCs. (9) VOCs are
+48.0,327.0,337.0: harmful chemicals that are emitted by everyday objects such as carpet, furniture, cleaning products,
+48.0,340.0,350.0: and computers. (10) The NASA Clean Air Study found a simple way to remove a significant number
+48.0,353.0,363.0: of VOCs within a 24- hour period: add plants to indoor spaces.
+48.0,372.0,382.0: (11) Adding plants to indoor spaces has psychological benefits too. (12) Research has long linked
+48.0,385.0,395.0: time spent in natural environments with increased energy and feelings of contentment. (13) While
+48.0,398.0,408.0: being outdoors is an excellent option for improving a person’s mental health, recent research has
+48.0,411.0,421.0: indicated that encountering natural elements while indoors can also help. (14) To experience the
+48.0,424.0,434.0: maximum benefit of natural elements, experts suggest placing at least one live plant per 100 square
+48.0,437.0,447.0: feet of home or office space.
+48.0,456.0,466.0: (15) Connecting with nature, even just by being near an indoor plant, is a significant factor in a
+48.0,469.0,479.0: person’s well- being. (16) Sitting in front of an electronic screen all day isn’t natural, and today’s
+48.0,482.0,492.0: workers need to get up and get outdoors. (17) Richard Ryan, a psychology professor at the
+48.0,495.0,505.0: University of Rochester, puts it this way: “Nature is something within which we flourish, so having it
+48.0,508.0,518.0: be more a part of our lives is critical, especially when we live and work in built environments.”
+48.0,731.2,743.3: FORM A 4 CONTINUE TO THE NEXT PAGE
+=== PAGE 6 ===
+48.0,84.1,94.1: 5. Which sentence should follow sentence 3 to best introduce the topic of the passage?
+78.0,109.1,119.1: A. Placing plants in homes and offices can provide a healthy bridge between nature and
+96.0,122.1,132.1: the indoors.
+78.0,138.1,148.1: B. It is important for people to realize that they need to spend more time near plants, whether
+96.0,151.1,161.1: indoors or out in nature.
+78.0,167.1,177.1: C. For their personal health and well- being, people need to spend more time outdoors or bring
+96.0,180.1,190.1: the outdoors in.
+78.0,196.1,206.1: D. Individuals with little connection to nature can experience illness, depression, and higher
+96.0,209.1,219.1: levels of stress.
+48.0,260.1,270.1: 6. Which transition word or phrase should be added to the beginning of sentence 5?
+78.0,285.1,295.1: E. As a result,
+78.0,301.1,311.1: F. Primarily,
+78.0,317.1,327.1: G. In contrast,
+78.0,333.1,343.1: H. Unfortunately,
+48.0,384.1,394.1: 7. Which sentence could best follow sentence 13 to support the ideas in the third paragraph
+78.0,402.1,412.1: (sentences 11– 14)?
+78.0,427.1,437.1: A. A global study of 7,600 workers from sixteen countries revealed that employees who worked
+96.0,440.1,450.1: in spaces with natural elements, such as indoor plants, were more creative and productive
+96.0,453.1,463.1: than employees who worked in spaces without natural elements.
+78.0,469.1,479.1: B. Specifically, a study suggests that one well- known hotel is popular among guests because
+96.0,482.1,492.1: its owners have made a significant investment in landscaping and indoor plants known to
+96.0,495.1,505.1: have a relaxing effect.
+78.0,511.1,521.1: C. In fact, one recent study suggested that people who are routinely exposed to natural
+96.0,524.1,534.1: elements seem to increase their compassion for others, perhaps because that exposure
+96.0,537.1,547.1: generates compassion for the environment in which they live.
+78.0,553.1,563.1: D. According to a study that was conducted in 2003, plants can reduce the amount of noise
+96.0,566.1,576.1: that people perceive in indoor spaces with hard surfaces, just as adding carpet can make a
+96.0,579.1,589.1: room seem quieter.
+48.0,731.2,743.3: FORM A 5 CONTINUE TO THE NEXT PAGE
+=== PAGE 7 ===
+48.0,84.1,94.1: 8. Which sentence presents ideas irrelevant to the topic of the passage and should be deleted?
+78.0,109.1,119.1: E. sentence 11
+78.0,125.1,135.1: F. sentence 14
+78.0,141.1,151.1: G. sentence 15
+78.0,157.1,167.1: H. sentence 16
+48.0,208.1,218.1: 9. Which concluding sentence should follow sentence 17 to best support the information
+78.0,226.1,236.1: presented in the passage?
+78.0,251.1,261.1: A. Because indoor plants absorb the carbon dioxide in our air and release the oxygen we need
+96.0,264.1,274.1: to breathe, they are vital to our wholeness and wellness.
+78.0,280.1,290.1: B. Experts say that adding a Boston fern, a spider plant, or an aloe vera plant is a good place
+96.0,293.1,303.1: to start if you want to begin to incorporate nature into your home or office.
+78.0,309.1,319.1: C. More people should consider bringing natural elements inside to improve general wellness
+96.0,322.1,332.1: and reverse some of the negative effects of an indoor- centered society.
+78.0,338.1,348.1: D. As one study has confirmed, houseplants are a wise investment because they can remove
+96.0,351.1,361.1: almost 90 percent of the toxins in the air within the span of 24 hours.
+48.0,731.2,743.3: FORM A 6 CONTINUE TO THE NEXT PAGE
+=== PAGE 8 ===
+170.0,77.9,97.9: READING COMPREHENSION
+243.5,102.9,116.9: QUESTIONS 10–57
+49.3,126.2,136.2: DIRECTIONS: Read each of the following six texts and answer the related questions. You may write
+49.3,137.2,147.2: in your test booklet as needed to take notes. You should reread relevant parts of each text, while
+49.3,148.2,158.2: being mindful of time, before marking the best answer for each question. Base your answers only on
+49.3,159.2,169.2: the content within the text.
+213.2,386.2,397.2: CONTINUE TO THE NEXT PAGE
+48.0,731.2,743.3: FORM A 7 CONTINUE TO THE NEXT PAGE
+=== PAGE 9 ===
+227.3,78.5,93.5: A Memory Revolution
+57.6,107.0,117.0: 1 A high school senior logs on to a computer at the library to double- check the application due date
+69.0,120.0,130.0: listed on a college admissions website. Nearby, a librarian helps a group of biology students use a
+69.0,133.0,143.0: database to search for recent studies about mammals. In the past few decades, the Internet has
+69.0,146.0,156.0: become an integral component of daily life for many people. The seemingly limitless power of
+69.0,159.0,169.0: search engines made the Internet search extremely common, and today people increasingly rely
+69.0,172.0,182.0: on the Internet’s vast accumulation of sources to access all types of information. Scientists are
+69.0,185.0,195.0: beginning to examine how this reliance is modifying the strategies people use to store and
+69.0,198.0,208.0: prioritize information in their mind.
+69.0,217.0,227.0: A Dependable and Valuable Asset
+57.6,236.0,246.0: 2 Psychologist Benjamin Storm from the University of California, Santa Cruz, and researchers Sean
+69.0,249.0,259.0: Stone and Aaron Benjamin devised an experiment to study students’ tendency to depend on the
+69.0,262.0,272.0: Internet for facts. To begin, the scientists divided sixty participants into multiple groups, including
+69.0,275.0,285.0: an “Internet” group and a “memory” group, and placed them in front of computers. The Internet
+69.0,288.0,298.0: group was required to use the search engine Google to answer eight challenging trivia questions.
+69.0,301.0,311.0: In contrast, participants in the memory group were permitted to use only their personal
+69.0,314.0,324.0: knowledge to answer the questions. In the second round, the researchers administered notably
+69.0,327.0,337.0: easier questions. This time, they allowed each group the option of using Google as they
+69.0,340.0,350.0: answered. Their results showed that 83 percent of the Internet group continued to consult Google
+69.0,353.0,363.0: in the second round, while only 63 percent of the memory group chose to do so.
+57.6,378.0,388.0: 3 People’s growing inclination to rely on the Internet in order to retrieve information, particularly
+69.0,391.0,401.0: facts and figures, is called cognitive offloading. Canadian researcher Evan F. Risko and British
+69.0,404.0,414.0: researcher Sam Gilbert, who have written extensively about the topic, say a similar process has
+69.0,417.0,427.0: been taking place for centuries. In the past, people used resources like encyclopedias to assist
+69.0,430.0,440.0: their memories; however, today the Internet, serving as a vast extended memory, allows people
+69.0,443.0,453.0: to digitally access and retrieve much larger volumes of information. Consequently, people’s minds
+69.0,456.0,466.0: are free for other cognitive feats, such as connecting data, learning new information, or
+69.0,469.0,479.0: solving problems.
+69.0,488.0,498.0: Filing Information Away
+57.6,507.0,517.0: 4 The use of the Internet also appears to be modifying the strategies people use to store
+69.0,520.0,530.0: information in their mind. Researchers Betsy Sparrow from Columbia University, Jenny Liu from
+69.0,533.0,543.0: the University of Wisconsin- Madison, and Daniel Wegner from Harvard University conducted
+69.0,546.0,556.0: several studies to discover how people efficiently manage their information intake.
+57.6,571.0,581.0: 5 To begin, the researchers examined how people evaluate which information deserves their effort
+69.0,584.0,594.0: to remember. For this experiment, participants read forty trivia facts, such as “An ostrich’s eye is
+69.0,597.0,607.0: bigger than its brain,” and typed the statements into a computer file. Half the participants had
+69.0,610.0,620.0: been previously told the file would be saved, while half believed it would be erased. Next, the
+69.0,623.0,633.0: participants wrote down every fact they could recall. Those who believed the information would
+69.0,636.0,646.0: be erased and no longer available could recall 40 percent more facts than those who thought the
+69.0,649.0,659.0: information would be saved.
+57.6,674.0,684.0: 6 In another experiment, the same researchers tested the ability of study participants to remember
+69.0,687.0,697.0: where to access information. For this trial, participants read and typed trivia statements, which
+69.0,700.0,710.0: they saved in folders with generic names such as “Facts” and “Items.” After spending ten
+48.0,731.2,743.3: FORM A 8 CONTINUE TO THE NEXT PAGE
+=== PAGE 10 ===
+69.0,78.2,88.2: minutes writing down all the facts they could recall from memory, participants were asked which
+69.0,91.2,101.2: folder contained a particular fact based on a keyword. For example, “Which folder has the fact
+69.0,104.2,114.2: about ostriches?” Overall, participants recalled the information’s location more often than the
+69.0,117.2,127.2: content itself, correctly identifying 49 percent of the folders for specific facts while remembering
+69.0,130.2,140.2: only 23 percent of the actual trivia. The researchers concluded that our memory is adapting to
+69.0,143.2,153.2: the Internet age by prioritizing where to locate information even when the specific details are
+69.0,156.2,166.2: forgotten. According to Sparrow, the Internet has become an important form of transactive
+69.0,169.2,179.2: memory, an external source of the recollections and associative networks that
+69.0,182.2,192.2: constitute memory.
+57.6,207.2,217.2: 7 As the Internet’s resources continue to expand our “external” memory, some question whether
+69.0,220.2,230.2: the process may cause people to depend too heavily on technology. However, Steven Pinker, a
+69.0,233.2,243.2: professor of psychology at Harvard University, says, “Knowledge is increasing exponentially;
+69.0,246.2,256.2: human brainpower and waking hours are not. Fortunately, the Internet and information
+69.0,259.2,269.2: technologies are helping us manage, search and retrieve our collective intellectual output at
+69.0,272.2,282.2: different scales, from Twitter and previews to e- books and online encyclopedias. Far from making
+69.0,285.2,295.2: us stupid, these technologies are the only things that will keep us smart.”
+259.8,316.7,326.7: HOW MEMORY WORKS
+322.8,335.9,345.9: Information is
+309.9,347.9,357.9: maintained through
+331.1,359.9,369.9: repetition.
+330.0,382.9,392.9: Rehearsal
+95.0,406.4,418.4: New Information Sensory Attention Short-Term Storage Long-Term
+192.5,420.4,430.4: Memory Memory Memory
+404.4,459.4,469.4: Retrieval
+321.6,469.2,479.2: Unrehearsed Some information
+320.8,481.2,491.2: information is may be forgotten
+329.8,493.2,503.2: forgotten. over time.
+48.0,574.4,584.4: 10. The details in paragraph 3 about cognitive offloading convey a central idea of the passage by
+78.0,599.4,609.4: E. suggesting that reliance on the Internet for information is inevitable.
+78.0,615.4,625.4: F. demonstrating how the methods used to store and find information have changed over time.
+78.0,631.4,641.4: G. explaining how encyclopedias and the Internet are similar sources of information.
+78.0,647.4,657.4: H. implying that more information can be understood now than ever before.
+48.0,731.2,743.3: FORM A 9 CONTINUE TO THE NEXT PAGE
+=== PAGE 11 ===
+48.0,84.1,94.1: 11. How do the details about the experiment described in paragraph 5 convey a central idea of
+78.0,102.1,112.1: the passage?
+78.0,127.1,137.1: A. They suggest that the act of repeating information by typing it on a keyboard may improve
+96.0,140.1,150.1: a person’s memory.
+78.0,156.1,166.1: B. They explain that a person will forget information faster if the information is considered
+96.0,169.1,179.1: unimportant.
+78.0,185.1,195.1: C. They indicate that a person may start to forget details when the amount of information
+96.0,198.1,208.1: becomes overwhelming.
+78.0,214.1,224.1: D. They suggest that memory is affected by whether a person expects to have access to the
+96.0,227.1,237.1: information in the future.
+48.0,278.1,288.1: 12. Read this sentence from paragraph 7.
+99.0,303.1,313.1: As the Internet’s resources continue to expand our “external” memory, some
+99.0,316.1,326.1: question whether the process may cause people to depend too heavily on
+99.0,329.1,339.1: technology.
+78.0,354.1,364.1: How does the sentence contribute to the structure and development of ideas in the passage?
+78.0,379.1,389.1: E. It presents a claim about the risks of relying on the Internet that prompted the research
+96.0,392.1,402.1: described in paragraphs 2 and 6.
+78.0,408.1,418.1: F. It contrasts a disadvantage of relying on the Internet with the benefits of Internet use that
+96.0,421.1,431.1: are described in paragraphs 2 and 6.
+78.0,437.1,447.1: G. It signals a shift from a neutral viewpoint in paragraphs 2 and 6 to a presentation of an
+96.0,450.1,460.1: argument and a counterargument.
+78.0,466.1,476.1: H. It introduces a counterargument and marks a transition from an optimistic tone in
+96.0,479.1,489.1: paragraphs 2 and 6 to a cautious tone as the counterargument is developed.
+48.0,731.2,743.3: FORM A 10 CONTINUE TO THE NEXT PAGE
+=== PAGE 12 ===
+48.0,84.1,94.1: 13. The study described in paragraph 6 influenced researchers’ ideas about memory in the
+78.0,102.1,112.1: digital age by
+78.0,127.1,137.1: A. highlighting instances when organizing detailed information made it easier to remember.
+78.0,143.1,153.1: B. confirming that keywords can be remembered more easily than large amounts of
+96.0,156.1,166.1: information.
+78.0,172.1,182.1: C. identifying a shift in focus from remembering specific information to knowing where
+96.0,185.1,195.1: to find it.
+78.0,201.1,211.1: D. emphasizing that remembering a basic idea is more important than storing detailed
+96.0,214.1,224.1: information.
+48.0,265.1,275.1: 14. Which evidence from the passage is most relevant to the claim in paragraph 7 that “ ‘far from
+78.0,283.1,293.1: making us stupid, these technologies are the only things that will keep us smart’ ”?
+78.0,308.1,318.1: E. the revelation that most people opted to use the Internet to answer relatively easy trivia
+96.0,321.1,331.1: questions rather than relying on their own brainpower (paragraph 2)
+78.0,337.1,347.1: F. the assertion that the storage of information on the Internet frees people to focus on
+96.0,350.1,360.1: higher- order tasks such as problem solving (paragraph 3)
+78.0,366.1,376.1: G. the connection between how people organize information in their mind and their ability to
+96.0,379.1,389.1: recall that information (paragraph 5)
+78.0,395.1,405.1: H. the description of transactive memory as an expansive external source that people can use
+96.0,408.1,418.1: to store information (paragraph 6)
+48.0,731.2,743.3: FORM A 11 CONTINUE TO THE NEXT PAGE
+=== PAGE 13 ===
+48.0,84.1,94.1: 15. Which sentence from the passage suggests that using Internet search engines may lead people
+78.0,102.1,112.1: to rely less on their own ability to recall information?
+78.0,127.1,137.1: A. “In the past few decades, the Internet has become an integral component of daily life for
+96.0,140.1,150.1: many people.” (paragraph 1)
+78.0,156.1,166.1: B. “The Internet group was required to use the search engine Google to answer eight
+96.0,169.1,179.1: challenging trivia questions.” (paragraph 2)
+78.0,185.1,195.1: C. “Their results showed that 83 percent of the Internet group continued to consult Google in
+96.0,198.1,208.1: the second round, while only 63 percent of the memory group chose to do so.”
+96.0,211.1,221.1: (paragraph 2)
+78.0,227.1,237.1: D. “For this experiment, participants read forty trivia facts, such as ‘An ostrich’s eye is bigger
+96.0,240.1,250.1: than its brain,’ and typed the statements into a computer file.” (paragraph 5)
+48.0,291.1,301.1: 16. The effect of the Internet on a person’s memory is illustrated in the passage through the
+78.0,309.1,319.1: presentation of studies that
+78.0,334.1,344.1: E. examine how the use of search engines changes the way people evaluate and store
+96.0,347.1,357.1: information for future access.
+78.0,363.1,373.1: F. highlight the difference between the capacity of the Internet and the ability of the human
+96.0,376.1,386.1: brain to locate information.
+78.0,392.1,402.1: G. compare the type of information that can be obtained from the Internet with the type of
+96.0,405.1,415.1: information that is stored in the human brain.
+78.0,421.1,431.1: H. emphasize the ease of obtaining information through search engines rather than
+96.0,434.1,444.1: remembering it without assistance.
+48.0,485.1,495.1: 17. How does the diagram provide additional support for the topic presented in the passage?
+78.0,510.1,520.1: A. It reveals why human brains must adapt to obtaining information from the Internet as
+96.0,523.1,533.1: opposed to other sources.
+78.0,539.1,549.1: B. It indicates how people can use the Internet to help improve their long- term recollection of
+96.0,552.1,562.1: information.
+78.0,568.1,578.1: C. It shows how study participants’ brains distinguished between important and
+96.0,581.1,591.1: unimportant details.
+78.0,597.1,607.1: D. It depicts the idea that repetition and rehearsal are necessary to recall information when
+96.0,610.1,620.1: tools such as search engines are unavailable.
+48.0,731.2,743.3: FORM A 12 CONTINUE TO THE NEXT PAGE
+=== PAGE 14 ===
+213.2,391.8,402.8: CONTINUE TO THE NEXT PAGE
+48.0,731.2,743.3: FORM A 13 CONTINUE TO THE NEXT PAGE
+=== PAGE 15 ===
+229.1,78.5,93.5: Letter from Brooklyn
+265.3,110.0,120.0: by Jacob Scheier
+69.0,135.0,145.0: I can already see how this will end.
+69.0,148.0,158.0: How I will grow tired of the bridge’s
+69.0,161.0,171.0: steep incline, and the absent- minded tourists
+69.0,174.0,184.0: wandering into the bicycle path.
+57.6,187.0,197.0: 5 The weather will turn cold.
+69.0,200.0,210.0: But that all happens later.
+69.0,213.0,223.0: For now it is the early edge of fall,
+69.0,226.0,236.0: leaves green still while the air narrows,
+69.0,239.0,249.0: is slightly crisp, almost grazing
+51.3,252.0,262.0: 10 the hair of my arm like a passing stranger,
+69.0,265.0,275.0: as though the air has been forced into intimacy
+69.0,275.4,288.0: by the brevity1 of daylight.
+69.0,291.0,301.0: But when it starts darkening at 4,
+69.0,304.0,314.0: this closeness, I know, will be a felt distance,
+51.3,317.0,327.0: 15 like someone drawing your attention
+69.0,330.0,340.0: to their lack of intimacy.
+69.0,340.4,353.0: These days I am still walking at a cathedral2 pace
+69.0,356.0,366.0: beneath the branches bending across avenues,
+69.0,366.4,379.0: brownstones like rows of lived- in chapels,3
+51.3,382.0,392.0: 20 like a pop- up picture book I could have had as a child,
+69.0,392.4,405.0: but didn’t. How Brooklyn makes me nostalgic4
+69.0,408.0,418.0: for the moment I am walking inside of.
+69.0,421.0,431.0: These late afternoons filled
+69.0,434.0,444.0: with a loneliness that makes me feel
+51.3,447.0,457.0: 25 distinctly myself, and an awareness
+69.0,460.0,470.0: of how rare that is.
+69.0,495.5,504.5: “Letter from Brooklyn” from LETTER FROM BROOKLYN: POEMS by Jacob Scheier, published by ECW Press.
+69.0,506.3,515.3: Copyright © 2013 by Jacob Scheier. All rights reserved.
+69.0,527.0,539.6: 1 brevity: briefness
+69.0,545.0,557.6: 2 cathedral: meditative
+69.0,563.0,575.6: 3 chapels: private places of prayer or worship
+69.0,581.0,593.6: 4 nostalgic: yearning for the past
+48.0,731.2,743.3: FORM A 14 CONTINUE TO THE NEXT PAGE
+=== PAGE 16 ===
+48.0,84.1,94.1: 18. How does the structure of the poem affect the poem’s meaning?
+78.0,109.1,119.1: E. The lack of a rhyming pattern suggests that the beauty of each passing day is unique.
+78.0,125.1,135.1: F. The lengths of the sentences represent the complexity of the thoughts being represented.
+78.0,141.1,151.1: G. The use of complete sentences implies the speaker’s appreciation for the clear beginning
+96.0,154.1,164.1: and ending of each season.
+78.0,170.1,180.1: H. The single long stanza reflects the continuous flow of the speaker’s thoughts.
+48.0,221.1,231.1: 19. Which lines support the idea that a change in the weather will lessen the speaker’s appreciation
+78.0,239.1,249.1: for the city?
+78.0,264.1,274.1: A. “as though the air has been forced into intimacy / by the brevity of daylight.” (lines 11– 12)
+78.0,280.1,290.1: B. “But when it starts darkening at 4, / this closeness, I know, will be a felt distance,”
+96.0,293.1,303.1: (lines 13– 14)
+78.0,309.1,319.1: C. “like someone drawing your attention / to their lack of intimacy.” (lines 15– 16)
+78.0,325.1,335.1: D. “These days I am still walking . . . / beneath the branches bending across avenues,”
+96.0,338.1,348.1: (lines 17– 18)
+48.0,389.1,399.1: 20. Read lines 5– 6 from the poem.
+99.0,414.1,424.1: The weather will turn cold.
+99.0,427.1,437.1: But that all happens later.
+78.0,452.1,462.1: How do the lines develop a central theme of the poem?
+78.0,477.1,487.1: E. They highlight a contrast between the different seasons.
+78.0,493.1,503.1: F. They show the sequence of the changes that are expected to occur.
+78.0,509.1,519.1: G. They warn about a problem that requires thoughtful preparation.
+78.0,525.1,535.1: H. They emphasize the importance of valuing the present.
+48.0,731.2,743.3: FORM A 15 CONTINUE TO THE NEXT PAGE
+=== PAGE 17 ===
+48.0,84.1,94.1: 21. Read lines 7– 9 from the poem.
+99.0,109.1,119.1: For now it is the early edge of fall,
+99.0,122.1,132.1: leaves green still while the air narrows,
+99.0,135.1,145.1: is slightly crisp,
+78.0,160.1,170.1: The word choice in the lines helps convey the speaker’s belief that
+78.0,185.1,195.1: A. the beauty of the current season should still be appreciated.
+78.0,201.1,211.1: B. the changes in the weather signify the end of the most pleasant season.
+78.0,217.1,227.1: C. the transition from one season to another happens swiftly and without warning.
+78.0,233.1,243.1: D. the change in the weather is so subtle that people rarely observe or feel it.
+48.0,284.1,294.1: 22. The details in lines 9– 12 convey a central idea of the poem by
+78.0,309.1,319.1: E. showing that the cool weather makes the speaker reflect more deeply on life.
+78.0,325.1,335.1: F. suggesting that the speaker feels uncomfortable with what the coming weather signifies.
+78.0,341.1,351.1: G. implying that the sensations the speaker experiences during the fall season are fleeting.
+78.0,357.1,367.1: H. suggesting that the thought of fall approaching increases the loneliness the speaker feels.
+48.0,408.1,418.1: 23. Which idea does the comparison of the brownstone houses to “a pop- up picture book I could
+78.0,426.1,436.1: have had as a child, / but didn’t” in lines 20– 21 convey?
+78.0,451.1,461.1: A. It reveals that some people are still influenced by powerful images from childhood.
+78.0,467.1,477.1: B. It indicates that the neighborhood the speaker is walking through is charming and
+96.0,480.1,490.1: appealing.
+78.0,496.1,506.1: C. It suggests that the speaker has wanted to live in the neighborhood since childhood.
+78.0,512.1,522.1: D. It suggests that people often experience lingering regret from their past.
+48.0,731.2,743.3: FORM A 16 CONTINUE TO THE NEXT PAGE
+=== PAGE 18 ===
+48.0,84.1,94.1: 24. Read these lines from the poem.
+99.0,109.1,119.1: I can already see how this will end. (line 1)
+99.0,134.1,144.1: How Brooklyn makes me nostalgic
+99.0,147.1,157.1: for the moment I am walking inside of. (lines 21– 22)
+78.0,172.1,182.1: The lines develop a central idea of the poem by
+78.0,197.1,207.1: E. suggesting the speaker’s desire to find a way to break free from the repetitive pattern of
+96.0,210.1,220.1: daily life.
+78.0,226.1,236.1: F. revealing the speaker’s feelings of disappointment over the predictable change in season.
+78.0,242.1,252.1: G. emphasizing the speaker’s awareness of the future significance of the present moment in
+96.0,255.1,265.1: the setting.
+78.0,271.1,281.1: H. showing the speaker’s anticipation of specific emotions caused by an intimate knowledge of
+96.0,284.1,294.1: the setting.
+48.0,335.1,345.1: 25. The speaker’s thoughts throughout the poem develop a theme by showing that
+78.0,360.1,370.1: A. although people may hold expectations for the future, some people long for present
+96.0,373.1,383.1: experiences while they are still happening.
+78.0,389.1,399.1: B. though people come from different places, most people feel drawn to the special charm a
+96.0,402.1,412.1: city holds.
+78.0,418.1,428.1: C. although people can make decisions about their life, there will always be some things
+96.0,431.1,441.1: beyond their control.
+78.0,447.1,457.1: D. though general expectations exist, people have no way of knowing what a given day will
+96.0,460.1,470.1: actually bring.
+48.0,511.1,521.1: 26. The poet develops the speaker’s point of view by
+78.0,536.1,546.1: E. providing details about the speaker’s longing to be in a different place.
+78.0,552.1,562.1: F. showing the speaker’s sense of unease about the passing seasons.
+78.0,568.1,578.1: G. including details about the speaker’s hope that life will remain unchanged.
+78.0,584.1,594.1: H. showing the speaker’s desire to treasure and appreciate the changes taking place.
+48.0,731.2,743.3: FORM A 17 CONTINUE TO THE NEXT PAGE
+=== PAGE 19 ===
+69.0,65.7,75.7: This narrative is about the Nez Perce, an American Indian tribe, in what is now northern Idaho.
+57.6,77.7,87.7: The tribe is preparing for a gathering before the coming winter.
+186.0,118.2,133.2: Excerpt from Do Them No Harm!
+265.4,149.7,159.7: by Zoa L. Swayne
+57.6,174.7,184.7: 1 In the moon of Ta-Y um, the hottest days of summer, when salmon spawn in the little streams
+57.6,186.7,196.7: and
+69.0,200.2,210.2: huckleberries ripen in the high mountains, people from many villages of the Chopunnish Nation
+69.0,210.6,223.2: gathered in the Oyaip Prairie for the work and festivities of their annual camas1 harvest.
+57.6,238.2,248.2: 2 From far and near The People came. . . .
+57.6,263.2,273.2: 3 Should a stranger enter their homeland and ask, “Where are you from?” the reply was always,
+69.0,276.2,286.2: “We are Nee- mee- poo, The People who live here in this place.”
+57.6,301.2,311.2: 4 It was a time of Lawtiwa- mah- ton— a time of being friends together— when The People came for
+69.0,314.2,324.2: this last chance to enjoy being together before the Cold Moons kept them close to their fires. The
+69.0,327.2,337.2: visiting and trading, the foot racing and horse racing, and the gambling and stick games would be
+69.0,340.2,350.2: remembered and talked about long after they had forgotten the drudgery of digging and roasting
+69.0,353.2,363.2: camas, picking berries, or drying meat and fish. Lawtiwa- mah- ton! It was good to be
+69.0,366.2,376.2: friends together.
+57.7,391.2,401.2: 5 As was their custom since wahk- kee- ma, a time far back beyond the memory of man, they set up
+69.0,404.2,414.2: their camps in the same locations their parents and grandparents had occupied before them. Red
+69.0,417.2,427.2: Bear’s people, from Kamiah, made their camp near the trail that came out of the mountains.
+69.0,430.2,440.2: Their neighbors in Kamiah Valley, The People from Tee- e- lap- a-l o, had their camp close by. Across
+69.0,443.2,453.2: the wide meadow, by the great roasting pits, the camps of the Te- wap- poo and Ask- kah- poo were
+69.0,456.2,466.2: located. The tepees and ish- nash, brush shelters, of other groups nestled in their accustomed
+69.0,469.2,479.2: areas in and among the pines in such numbers that they encircled the entire meadow land.
+57.7,494.2,504.2: 6 Red Bear’s people had traveled all summer with neighboring bands, gathering and preparing
+69.0,507.2,517.2: roots, picking and drying berries, drying and smoking meat and fish for their winter food supply.
+69.0,520.2,530.2: Now they were at the Oyaip camp. The women worked hard to dig and cure as many bags of
+69.0,533.2,543.2: roots as they could during the warm, sunny days, for the sharp night air brought warnings that
+69.0,546.2,556.2: WARM was going and COLD was coming.
+57.7,571.2,581.2: 7 Everyone helped in some way. Most of the men fished or hunted for meat. While many of the
+69.0,584.2,594.2: women dug and roasted camas, other women and older children picked and dried berries.
+57.7,609.2,619.2: 8 And the younger children played. They played at hunting. They played with the babies. They
+69.0,622.2,632.2: played with their horses and puppies. They learned how to live through their play.
+57.7,647.2,657.2: 9 This sun, happiness, peace, and quiet blessed the Red Bear camp. All were busy with their daily
+69.0,660.2,670.2: tasks, until sudden cries came from the children playing by the trail.
+69.0,703.9,716.5: 1 camas: a wild, edible plant
+48.0,731.2,743.3: FORM A 18 CONTINUE TO THE NEXT PAGE
+=== PAGE 20 ===
+51.3,78.2,88.2: 10 “People coming! People coming! People coming on the trail from the high mountains!” they called
+69.0,91.2,101.2: as they ran to their elders, who looked sharply at the figures of approaching horsemen.
+51.3,116.2,126.2: 11 Were they friends or enemies? Did they bring good news or bad?
+51.3,141.2,151.2: 12 “Who can it be? What brings them here?” were the questions in every mind.
+51.3,166.2,176.2: 13 “Could they be the four hunters who had gone to Buffalo Country two summers past? Would they
+69.0,179.2,189.2: have news of the families who had gone long ago to Buffalo Country and never returned?”
+51.3,204.2,214.2: 14 It was customary for a hunting party to be gone for more than one season.
+51.3,229.2,239.2: 15 “Looks like hunters,” the older men agreed. “Looks like they had good hunting. Maybe our four
+69.0,242.2,252.2: hunters. [They have] been gone many moons.”
+51.3,267.2,277.2: 16 “Looks like five people— not four,” others observed.
+51.3,292.2,302.2: 17 Excitement grew as the riders came close enough to be recognized.
+51.3,317.2,327.2: 18 “A- a- a- a- a, they are our four hunters! But who is the fifth person?” they asked.
+51.3,342.2,352.2: 19 “Looks like a woman. Who is she?”
+51.3,367.2,377.2: 20 The hunters rode up to the welcoming crowd, proud to show off the loads of meat, hides, and
+69.0,380.2,390.2: other trophies of their hunt. They paraded around the encampment for all to see how strong their
+69.0,393.2,403.2: Hunting Power had been— what great hunters they, themselves, were.
+51.3,418.2,428.2: 21 Red Bear’s people rejoiced at their hunters’ success. Good hunters brought good to everybody.
+69.0,431.2,441.2: The meat meant plenty of food and the hides meant soft- tanned robes to give comfort through
+69.0,444.2,454.2: the Cold Moons. But it was the sight of the frail figure of the woman that aroused their curiosity.
+69.0,457.2,467.2: Who was she? Where had she come from? . . .
+51.3,482.2,492.2: 22 “Belongs to Red Bear people. Gone then come back,” the hunters said, as they dismounted and
+69.0,495.2,505.2: unloaded their packs. . . .
+51.3,520.2,530.2: 23 Now they could see! She was the daughter of the family gone so long ago! The girl-c hild who had
+69.0,533.2,543.2: left came back now— a grown woman.
+51.3,558.2,568.2: 24 “Wat- ku- ese!” the women cried. “Gone- from- Home- then- Come- Back. Wat- ku- ese!” And
+69.0,571.2,581.2: Wat- ku- ese was her name from that time on.
+51.3,596.2,606.2: 25 Gentle arms lifted Wat- ku- ese from her horse. The women brought her food and made a place for
+69.0,609.2,619.2: her to rest. For many suns they cared for her until she became stronger.
+51.3,634.2,644.2: 26 One evening Wat- ku- ese told her story for all to hear.
+69.0,669.7,678.7: From DO THEM NO HARM!: Lewis and Clark Among the Nez Perce by Zoa L. Swayne. Published by Caxton
+69.0,680.5,689.5: Press. Copyright © 1990 by Zoa L. Swayne Orofino, Idaho and Legacy House, Inc. Orofino, Idaho. All
+69.0,691.3,700.3: rights reserved.
+48.0,731.2,743.3: FORM A 19 CONTINUE TO THE NEXT PAGE
+=== PAGE 21 ===
+48.0,84.1,94.1: 27. Paragraph 1 contributes to the setting of the excerpt by establishing that
+78.0,109.1,119.1: A. the story’s location is a plentiful place that allows The People to enjoy a comfortable
+96.0,122.1,132.1: gathering.
+78.0,138.1,148.1: B. the events in the story occurred in the past and are being remembered by The People.
+78.0,154.1,164.1: C. the camp in the story is changing and that the changes are causing problems for
+96.0,167.1,177.1: The People.
+78.0,183.1,193.1: D. the story’s plot begins as The People are observing their land and what it offers them.
+48.0,234.1,244.1: 28. In paragraphs 4 and 6, the beginning of the change in seasons affects the characters mainly by
+78.0,259.1,269.1: E. causing them to collect their bounty and feel eager to celebrate before it becomes cold.
+78.0,275.1,285.1: F. making them want to rest and relax before the challenging work of the harvest begins.
+78.0,291.1,301.1: G. forcing them to give up leisure time to prepare their camp for the coming winter.
+78.0,307.1,317.1: H. allowing them to trade the goods they have prepared during the warm months.
+48.0,358.1,368.1: 29. How do paragraphs 7 and 9 convey a central idea of the excerpt?
+78.0,383.1,393.1: A. by explaining that The People often explore different areas, which shows the value of trying
+96.0,396.1,406.1: new things
+78.0,412.1,422.1: B. by revealing that The People must complete many tasks, which shows the necessity of
+96.0,425.1,435.1: being organized
+78.0,441.1,451.1: C. by suggesting that The People are influenced by the weather, which shows their close
+96.0,454.1,464.1: relationship with nature
+78.0,470.1,480.1: D. by demonstrating that The People work together, which shows the importance of
+96.0,483.1,493.1: contributing to the community
+48.0,534.1,544.1: 30. In paragraph 8, the author repeats the word “played” most likely to
+78.0,559.1,569.1: E. emphasize how much the adults enjoy observing the children.
+78.0,575.1,585.1: F. show how everyone finds a way to enjoy being at the gathering.
+78.0,591.1,601.1: G. indicate the variety of activities available at the gathering.
+78.0,607.1,617.1: H. characterize the manner in which the children master the work of adults.
+48.0,731.2,743.3: FORM A 20 CONTINUE TO THE NEXT PAGE
+=== PAGE 22 ===
+48.0,84.1,94.1: 31. How do paragraphs 11– 13 affect the plot of the excerpt?
+78.0,109.1,119.1: A. They establish a feeling of mystery by presenting different points of view about the
+96.0,122.1,132.1: arriving people.
+78.0,138.1,148.1: B. They contribute to the rising action by developing the idea that the arriving people could
+96.0,151.1,161.1: present a problem.
+78.0,167.1,177.1: C. They lead to a turning point by describing the moment that the crowd realizes why the
+96.0,180.1,190.1: strangers have come.
+78.0,196.1,206.1: D. They explain the cause of the main conflict by providing background information about
+96.0,209.1,219.1: the strangers.
+48.0,260.1,270.1: 32. In paragraph 20, the phrases “trophies of their hunt” and “paraded around” affect the
+78.0,278.1,288.1: paragraph by
+78.0,303.1,313.1: E. suggesting that the hunters are rewarded for their leadership.
+78.0,319.1,329.1: F. emphasizing that The People are dependent on the hunters for food.
+78.0,335.1,345.1: G. revealing that the hunters are pleased with their success.
+78.0,351.1,361.1: H. indicating that The People have gathered specifically to welcome the hunters.
+48.0,402.1,412.1: 33. Which quotation from the excerpt best supports the idea that The People feel a connection to
+78.0,420.1,430.1: members of their group in spite of distance?
+78.0,445.1,455.1: A. “As was their custom since wahk- kee- ma, a time far back beyond the memory of man, they
+96.0,458.1,468.1: set up their camps in the same locations their parents and grandparents had occupied
+96.0,471.1,481.1: before them.” (paragraph 5)
+78.0,487.1,497.1: B. “ ‘Would they have news of the families who had gone long ago to Buffalo Country and
+96.0,500.1,510.1: never returned?’ ” (paragraph 13)
+78.0,516.1,526.1: C. “ ‘Looks like hunters,’ the older men agreed. ‘Looks like they had good hunting.’ ”
+96.0,529.1,539.1: (paragraph 15)
+78.0,545.1,555.1: D. “But it was the sight of the frail figure of the woman that aroused their curiosity.”
+96.0,558.1,568.1: (paragraph 21)
+48.0,731.2,743.3: FORM A 21 CONTINUE TO THE NEXT PAGE
+=== PAGE 23 ===
+48.0,84.1,94.1: 34. Read these sentences from paragraph 22.
+99.0,109.1,119.1: “Belongs to Red Bear people. Gone then come back.”
+78.0,134.1,144.1: How does this statement affect the villagers in the excerpt?
+78.0,159.1,169.1: E. It increases their concern about why the woman is in their camp.
+78.0,175.1,185.1: F. It makes them hopeful that more lost members will return before the winter.
+78.0,191.1,201.1: G. It causes shock, leading them to grieve for the loss of the woman and her family.
+78.0,207.1,217.1: H. It inspires amazement, making them want to reconnect with their returned family member.
+48.0,258.1,268.1: 35. The details in paragraph 5 about the locations of the camps and the details in
+78.0,276.1,286.1: paragraphs 23–2 4 about the reaction to the woman convey a theme of the excerpt by
+78.0,301.1,311.1: A. revealing the difficulties posed by moving often each year.
+78.0,317.1,327.1: B. showing the connectedness among The People through the years.
+78.0,333.1,343.1: C. indicating the value to The People of retelling stories about the past.
+78.0,349.1,359.1: D. demonstrating the importance of choosing appropriate names.
+48.0,731.2,743.3: FORM A 22 CONTINUE TO THE NEXT PAGE
+=== PAGE 24 ===
+213.2,391.8,402.8: CONTINUE TO THE NEXT PAGE
+48.0,731.2,743.3: FORM A 23 CONTINUE TO THE NEXT PAGE
+=== PAGE 25 ===
+173.4,78.5,93.5: Using Fire to Keep a Prairie Healthy
+57.6,107.0,117.0: 1 Inside the 40,000- acre Joseph H. Williams Tallgrass Prairie Preserve in northern Oklahoma, herds
+69.0,120.0,130.0: of bison roam on the scenic land that is home to hundreds of different species of plants and
+69.0,133.0,143.0: animals. While one of the greatest threats to the prairie is wildfire, the use of controlled fires is
+69.0,146.0,156.0: actually an effective way to protect this idyllic landscape.
+57.6,171.0,181.0: 2 Fires that are started by lightning or other natural circumstances are inevitable, and the results
+69.0,184.0,194.0: can be disastrous. However, hundreds of years ago the American Indian people who inhabited the
+69.0,197.0,207.0: Great Plains area between Minnesota and Texas realized that these fires could also be helpful.
+69.0,210.0,220.0: The bison in the area seemed to prefer grazing on tender new grass on the recently burned land
+69.0,223.0,233.0: rather than on grass in the unburned areas. The American Indian people began to deliberately
+69.0,236.0,246.0: burn areas of land for bison to graze on, which enticed the herds away from the people’s crops.
+57.6,261.0,271.0: 3 Today conservationists at the Tallgrass Prairie Preserve and farmers in the Great Plains continue
+69.0,274.0,284.0: to use controlled burns for land management. Intentionally burning a portion of land can
+69.0,287.0,297.0: dramatically improve the quality of the vegetation that regrows there. The fires burn away weedy
+69.0,300.0,310.0: undergrowth and help limit the overcrowding of shrubs and trees in the burn area, creating less
+69.0,313.0,323.0: competition for water and nutrients. Additionally, the process of burning excess plant matter adds
+69.0,326.0,336.0: nitrogen, an essential element for plant growth, to the soil.
+57.6,351.0,361.0: 4 One common target of controlled burns at the preserve and the surrounding area is the invasive
+69.0,364.0,374.0: red cedar tree. A single red cedar tree can consume up to 40 gallons of water per day, taking this
+69.0,377.0,387.0: vital resource away from other plant life. These tall trees also cast shade that prevents sunlight
+69.0,390.0,400.0: from reaching the plants beneath them. The fast- growing red cedar trees tend to crowd out
+69.0,403.0,413.0: prairie grasses, the primary food source for wild and domestic animals that make the prairie their
+69.0,416.0,426.0: home. An imbalance in one component of the prairie’s ecosystem affects the entire web of life.
+69.0,429.0,439.0: Controlled burns help maintain this ecosystem’s delicate balance.
+57.6,454.0,464.0: 5 Of course, these controlled fires are intended to burn only a portion of an area. A total burn,
+69.0,467.0,477.0: which is a risk with an uncontrolled wildfire, would destroy all wildlife as well as the crops farmers
+69.0,480.0,490.0: plant for income. The key to using controlled fires is knowing which areas of land to burn and
+69.0,493.0,503.0: when. Conservation experts at the preserve employ the “patch- burn” approach, meaning they
+69.0,506.0,516.0: rotate which portion of land is burned each year. They study the land to find out which areas
+69.0,519.0,529.0: would most benefit from being burned, and then they arrange about a dozen burns over one-t hird
+69.0,532.0,542.0: of the land. This patch burning contains the fire within a specific area and allows animals in the
+69.0,545.0,555.0: burn area to safely relocate. The following year, conservationists will burn a different section of
+69.0,558.0,568.0: the preserve, while the land burned the previous year regrows healthier than before.
+57.6,583.0,593.0: 6 Researchers have tracked and studied the variety of plant species and animals that live on the
+69.0,596.0,606.0: preserve, and their studies show that the patch- burn approach has restored biodiversity to the
+69.0,609.0,619.0: area by promoting the growth of species that were at risk of being crowded out. The patch- burn
+69.0,622.0,632.0: system is so successful that the conservationists at the preserve provide training to prairie
+69.0,635.0,645.0: farmers about conducting controlled burns on their own land. Burning land to make it healthy
+69.0,648.0,658.0: may seem counterintuitive, but strategic controlled fires have helped the prairie sustain life for
+69.0,661.0,671.0: hundreds of years and, with careful management, will continue to do so.
+48.0,731.2,743.3: FORM A 24 CONTINUE TO THE NEXT PAGE
+=== PAGE 26 ===
+211.6,93.3,103.3: OVERVIEW OF THE PATCH-BURN METHOD
+101.2,117.3,127.3: By using a patch-burn method, conservationists and farmers can reduce the risk of
+101.2,129.3,139.3: unintentional fires and control where grazing animals, such as bison, roam.
+298.5,174.3,184.3: Unburned Area
+245.3,221.0,234.5: Stream
+366.0,251.3,261.3: Recently Burned Area
+157.5,284.8,294.8: Previously Burned Area
+101.2,389.3,399.3: The unburned area is overrun with weeds and has the greatest risk of catching fire.
+101.2,413.3,423.3: The previously burned area is cleared of weeds, and young trees and crops grow freely and
+101.2,425.3,435.3: thrive.
+101.2,449.3,459.3: The recently burned area has been cleared of all plants. Bison prefer to eat the fresh grass that
+101.2,461.3,471.3: will begin to grow in the recently burned area, and they will generally remain in that area until
+101.2,473.3,483.3: newer, fresher grass is available elsewhere.
+48.0,562.8,572.8: 36. According to the passage, how did fires started by natural causes prompt American Indians to
+78.0,580.8,590.8: begin practicing controlled burns?
+78.0,605.8,615.8: E. by drawing animals in to the area to feed on the new growth sprouting from the burned land
+78.0,621.8,631.8: F. by destroying tall trees and reducing the shade that had hindered the growth of
+96.0,634.8,644.8: planted crops
+78.0,650.8,660.8: G. by burning off excess vegetation and increasing the availability of nutrients for the
+96.0,663.8,673.8: remaining plants
+78.0,679.8,689.8: H. by causing changes to the bison’s migration habits as bison herds fled from the wildfires on
+96.0,692.8,702.8: the prairie
+48.0,731.2,743.3: FORM A 25 CONTINUE TO THE NEXT PAGE
+=== PAGE 27 ===
+48.0,84.1,94.1: 37. Targeting red cedar trees in controlled burns affects the animals that live on the
+78.0,102.1,112.1: prairie mostly by
+78.0,127.1,137.1: A. ensuring that the animals’ main food source has the conditions needed for it to thrive.
+78.0,143.1,153.1: B. endangering the animals that live near the trees scheduled for removal.
+78.0,159.1,169.1: C. making sure that the water supply for the animals is sufficient.
+78.0,175.1,185.1: D. reducing the animals’ natural source of shade and protection from the elements.
+48.0,226.1,236.1: 38. Read this sentence from paragraph 6.
+99.0,251.1,261.1: The patch- burn system is so successful that the conservationists at the preserve
+99.0,264.1,274.1: provide training to prairie farmers about conducting controlled burns on
+99.0,277.1,287.1: their own land.
+78.0,302.1,312.1: The author includes this sentence to show that
+78.0,327.1,337.1: E. the conservationists are better qualified to lead preservation efforts than farmers are.
+78.0,343.1,353.1: F. the conservationists are eager to involve others in the preservation of the prairie.
+78.0,359.1,369.1: G. the conservationists’ efforts will restore the original beauty and biodiversity of the region.
+78.0,375.1,385.1: H. the conservationists’ training program should serve as a model for other conservation
+96.0,388.1,398.1: organizations.
+48.0,439.1,449.1: 39. Which details from the passage best convey the central idea that using the patch- burn method
+78.0,457.1,467.1: is an effective way to protect and manage prairie land?
+78.0,482.1,492.1: A. the explanation that conservationists use the alternating burn pattern of the patch- burn
+96.0,495.1,505.1: method in order to allow the animals in the area to avoid the fire
+78.0,511.1,521.1: B. the information that conservationists evaluate which land would most benefit from a
+96.0,524.1,534.1: controlled burn before applying the patch- burn method
+78.0,540.1,550.1: C. the information that conservationists have determined that the patch- burn method has
+96.0,553.1,563.1: promoted the growth of species that were at risk of being crowded out
+78.0,569.1,579.1: D. the explanation that conservationists are able to control the fire in the patch- burn method
+96.0,582.1,592.1: by arranging separate burns across the designated portion of land
+48.0,731.2,743.3: FORM A 26 CONTINUE TO THE NEXT PAGE
+=== PAGE 28 ===
+48.0,84.1,94.1: 40. Which sentence supports the idea that farmers and people who manage land may be concerned
+78.0,102.1,112.1: about using fire as a way to benefit the land?
+78.0,127.1,137.1: E. “While one of the greatest threats to the prairie is wildfire, the use of controlled fires is
+96.0,140.1,150.1: actually an effective way to protect this idyllic landscape.” (paragraph 1)
+78.0,156.1,166.1: F. “The American Indian people began to deliberately burn areas of land for bison to graze on,
+96.0,169.1,179.1: which enticed the herds away from the people’s crops.” (paragraph 2)
+78.0,185.1,195.1: G. “This patch burning contains the fire within a specific area and allows animals in the burn
+96.0,198.1,208.1: area to safely relocate.” (paragraph 5)
+78.0,214.1,224.1: H. “The following year, conservationists will burn a different section of the preserve, while the
+96.0,227.1,237.1: land burned the previous year regrows healthier than before.” (paragraph 5)
+48.0,278.1,288.1: 41. Read this sentence from paragraph 6.
+99.0,303.1,313.1: Burning land to make it healthy may seem counterintuitive, but strategic
+99.0,316.1,326.1: controlled fires have helped the prairie sustain life for hundreds of years and, with
+99.0,329.1,339.1: careful management, will continue to do so.
+78.0,354.1,364.1: The words “counterintuitive” and “strategic” in the sentence convey the idea that
+78.0,379.1,389.1: A. the safest methods are sometimes the least effective at solving complex challenges.
+78.0,395.1,405.1: B. thorough investigation of uncommon methodologies can lead to beneficial results.
+78.0,411.1,421.1: C. detailed planning can ensure that a potentially destructive action has a positive impact.
+78.0,427.1,437.1: D. plans that entail a certain amount of risk almost always result in success.
+48.0,731.2,743.3: FORM A 27 CONTINUE TO THE NEXT PAGE
+=== PAGE 29 ===
+48.0,84.1,94.1: 42. With which statement would the author most likely agree?
+78.0,109.1,119.1: E. It is important to explain the purposes and the risks of controlled burns to the people living
+96.0,122.1,132.1: near a proposed burn area.
+78.0,138.1,148.1: F. It is necessary to thoroughly examine a particular region in order to plan and execute a
+96.0,151.1,161.1: successful controlled burn.
+78.0,167.1,177.1: G. Monitoring animals’ reactions after a controlled burn on the prairie is a minor part of
+96.0,180.1,190.1: scientists’ research.
+78.0,196.1,206.1: H. Conservationists should consider the helpful aspects of invasive species before executing a
+96.0,209.1,219.1: controlled burn.
+48.0,260.1,270.1: 43. How do the diagram and its text provide additional support for the topic presented in
+78.0,278.1,288.1: the passage?
+78.0,303.1,313.1: A. by depicting how the landscape in a given area changes as the patch-b urn method is applied
+78.0,319.1,329.1: B. by indicating that patch- burn fires are best suited for use in areas with certain features
+78.0,335.1,345.1: C. by revealing that the patch- burn method is used primarily on uninhabited areas of land
+78.0,351.1,361.1: D. by comparing the size of the area burned by the patch- burn method with that of
+96.0,364.1,374.1: unburned areas
+48.0,731.2,743.3: FORM A 28 CONTINUE TO THE NEXT PAGE
+=== PAGE 30 ===
+213.2,391.8,402.8: CONTINUE TO THE NEXT PAGE
+48.0,731.2,743.3: FORM A 29 CONTINUE TO THE NEXT PAGE
+=== PAGE 31 ===
+69.0,65.7,75.7: Ellen, the narrator, is preparing to leave her parents and the family farm for college the next
+69.0,77.7,87.7: day.
+204.6,100.7,115.7: Excerpt from Winter Wheat
+262.6,132.2,142.2: by Mildred Walker
+57.6,157.2,167.2: 1 I love Dad’s way of talking that makes him seem different from other ranchers. He’s lived here
+69.0,170.2,180.2: twenty-t hree years, but he still says “back East where I come from.” He’s the one who gets
+69.0,180.6,193.2: excited when I do about spring coming or a serial1 running in the magazine we’re both reading,
+69.0,196.2,206.2: but it’s what Mom says that I depend on. When Mom used to say “Don’t worry” about my pet
+69.0,209.2,219.2: chicken or dog or new calf, it always got well. Dad is always talking of going some place, not now,
+69.0,222.2,232.2: but next year, maybe. Mom seems to think of nothing farther away than today or perhaps
+69.0,235.2,245.2: yesterday or tomorrow morning.
+57.6,260.2,270.2: 2 Mom folded the ironing board and put it inside their bedroom that was just off the kitchen. She
+69.0,273.2,283.2: carried in the freshly ironed clothes. Dad went back to his paper. When Mom came back she took
+69.0,286.2,296.2: beans from the cupboard to soak for tomorrow. Dad always said Mom could make all the dishes
+69.0,299.2,309.2: he’d had back in Vermont as well as though she were a New Englander herself, instead of a
+69.0,312.2,322.2: Russian. All of a sudden, I realized that tomorrow when those beans would be ready to eat I’d be
+69.0,325.2,335.2: going away. It gave me a funny feeling.
+57.6,350.2,360.2: 3 “I’ll be taking the train tomorrow night,” I said aloud, more to hear it myself.
+57.6,375.2,385.2: 4 “We can drive you into town in the afternoon,” Dad said, dropping his paper on the floor.
+57.6,400.2,410.2: 5 “There’s no need to go to town; she can catch the train at Gotham just as well. We haven’t
+69.0,413.2,423.2: nothing to take us into town for,” Mom said.
+57.6,438.2,448.2: 6 “Well, we don’t have to decide tonight,” Dad said, but I knew he wanted to go into Clark City. It
+69.0,451.2,461.2: wouldn’t be so flat as just seeing me go off on the train from Gotham. My going away was hard
+69.0,464.2,474.2: on both of them; they were so different— and I was part of them both. It made me uncomfortable
+69.0,477.2,487.2: to think of leaving them.
+57.6,502.2,512.2: 7 While I was getting ready for bed in my room that’s off the front room, I saw how it would be if I
+69.0,515.2,525.2: left from town. We’d go in right after dinner and go around to the stores, Dad going one way and
+69.0,528.2,538.2: Mom and I another. Dad would probably have his hair cut at the barbershop and stop in the bank
+69.0,541.2,551.2: and meet someone he knew to talk to. Then we’d meet at the big store on the corner and go to
+69.0,554.2,564.2: the cafeteria for supper. The train stops ten minutes or so at the station in town and there are
+69.0,567.2,577.2: other people and excitement and you have time to wave from the platform and then again from
+69.0,580.2,590.2: your window by your seat. We went to the station in Clark City to see the Goodals off when they
+69.0,593.2,603.2: went back to Iowa.
+57.6,618.2,628.2: 8 If I left from Gotham, we’d just drive down in the truck and wait till the train came. It only stops
+69.0,631.2,641.2: long enough for you to get on and you hardly have time to taste the flavor of going away.
+69.0,703.9,716.5: 1 serial: story published in short segments at regular intervals
+48.0,731.2,743.3: FORM A 30 CONTINUE TO THE NEXT PAGE
+=== PAGE 32 ===
+57.6,78.2,88.2: 9 I sat on the bed in my pyjamas with my arms around my knees. I couldn’t keep from thinking of
+69.0,91.2,101.2: that time Dad went back East. I tried to, and then I just sat still and looked straight at it.
+69.0,104.2,114.2: Sometimes that’s better than working so hard to keep from looking at what’s in your mind.
+51.3,129.2,139.2: 10 Dad went all the way back to Vermont. . . . It was in November and it was already dark when the
+69.0,142.2,152.2: train came through Gotham. Even now, I could feel how cold and dark it was. I held Mom’s hand.
+69.0,155.2,165.2: Dad was so dressed-u p he seemed strange. . . . We stood there without saying anything until Dad
+69.0,168.2,178.2: told Mom to remember to call Mr. Bardich, our neighbor, if the cow didn’t calve tomorrow.
+51.3,193.2,203.2: 11 “I’ll manage,” Mom snapped back.
+51.3,218.2,228.2: 12 “I wish you could go, Anna,” Dad said to Mom, “and we could take Ellen.” . . .
+51.3,243.2,253.2: 13 “Good- by, Anna Petrovna,” he said, looking at Mom. I had never heard him call her by two
+69.0,256.2,266.2: names before.
+51.3,281.2,291.2: 14 “Good- by,” Mom said, standing still, without smiling.
+51.3,306.2,316.2: 15 Then he was gone and the crossroads were darker than ever. The train light shone on the high
+69.0,319.2,329.2: window in the top of the grain elevator for a moment and then that too was dark. We got into our
+69.0,332.2,342.2: old Ford and Mom drove back to the house. My throat ached all the way. The name Dad had
+69.0,345.2,355.2: called Mom kept saying itself in my ears: “Anna Petrovna, Anna Petrovna.” . . .
+51.3,367.6,380.2: 16 Our house seemed lonely when we came back to it. It seemed to be hiding under the coulee.2 I
+69.0,383.2,393.2: went with Mom to put the truck in the barn that was bigger than the house. I think Mom was
+69.0,396.2,406.2: prouder of our barn than the house, anyway. We walked back to look at the cow that was going
+69.0,409.2,419.2: to calve. She was just a big light blob in the dark, waiting. I had thought she was exciting this
+69.0,422.2,432.2: morning, but now she seemed sad, too.
+51.3,447.2,457.2: 17 The wind blew when we walked across the open space to the house and I couldn’t help shivering
+69.0,460.2,470.2: with the cold. Inside the house it was warm, but empty.
+51.3,485.2,495.2: 18 “Bring your nightgown in here and I heat you some milk,” Mom said.
+51.3,510.2,520.2: 19 I drank the milk sitting on a stool in front of the stove. It tasted good, but the lonely ache in my
+69.0,523.2,533.2: throat was still there. I picked up my clothes and hung them neatly behind the stove and put my
+69.0,536.2,546.2: cup on the sink board. Mom was fixing oatmeal for tomorrow morning.
+51.3,561.2,571.2: 20 “Good night, Mom,” I said almost timidly, standing beside her. She seemed wrapped around in a
+69.0,574.2,584.2: kind of strangeness. Then she turned around and drew me to her. The front of her dress was
+69.0,587.2,597.2: warm from the stove. I felt the comfortable heat through my gown. She laid her hand against my
+69.0,600.2,610.2: face and it felt rough and hard but firm. I dared ask her something I wanted to know.
+51.3,625.2,635.2: 21 “Mom, was that really your name— what Dad called you?”
+51.3,650.2,660.2: 22 Her voice sounded surprised. “Why, Yeléna, you know that; Anna Petrovna. You know I am born
+69.0,663.2,673.2: in Russia, in Seletskoe.”
+69.0,703.9,716.5: 2 coulee: small gulch or ravine
+48.0,731.2,743.3: FORM A 31 CONTINUE TO THE NEXT PAGE
+=== PAGE 33 ===
+51.3,78.2,88.2: 23 “Yes, but I didn’t know your other name,” I said.
+51.3,103.2,113.2: 24 “Anna Petrovna Webb.” She pronounced it slowly. “Once I think what a funny name Ben Webb
+69.0,116.2,126.2: is!” She laughed. Her laugh was warm and low like our kitchen, and comfortable. The house
+69.0,129.2,139.2: seemed natural and right again. . . .
+51.3,154.2,164.2: 25 But now that I am grown, I feel the wall of strangeness between them, more than when I was a
+69.0,167.2,177.2: child. I wondered how they would get along without me.
+69.0,202.7,211.7: From WINTER WHEAT by Mildred Walker, published by University of Nebraska Press. Copyright © 1944 by
+69.0,213.5,222.5: Harcourt, Brace and Company, Inc. Copyright renewed 1971 by Mildred Walker. All rights reserved.
+48.0,286.9,296.9: 44. Read these sentences from paragraph 2.
+99.0,311.9,321.9: Dad always said Mom could make all the dishes he’d had back in Vermont as well
+99.0,324.9,334.9: as though she were a New Englander herself, instead of a Russian. All of a
+99.0,337.9,347.9: sudden, I realized that tomorrow when those beans would be ready to eat I’d be
+99.0,350.9,360.9: going away. It gave me a funny feeling.
+78.0,375.9,385.9: The sentences help develop a theme of the excerpt by
+78.0,400.9,410.9: E. suggesting that life presents people with many challenges.
+78.0,416.9,426.9: F. implying that the stress of major life events can cause confusion.
+78.0,432.9,442.9: G. demonstrating that moving on from the familiar is a common human experience.
+78.0,448.9,458.9: H. emphasizing the idea that people can easily learn the routines of being part of a
+96.0,461.9,471.9: new culture.
+48.0,512.9,522.9: 45. Read this sentence from paragraph 3.
+99.0,537.9,547.9: “I’ll be taking the train tomorrow night,” I said aloud, more to hear it myself.
+78.0,562.9,572.9: This remark contributes to the conflict in the excerpt by
+78.0,587.9,597.9: A. revealing Dad’s reasons for wanting to drive to the city.
+78.0,603.9,613.9: B. causing tension between Mom and Dad.
+78.0,619.9,629.9: C. leading Ellen to distance herself from both Mom and Dad.
+78.0,635.9,645.9: D. showing Mom’s reluctance to plan that far in advance.
+48.0,731.2,743.3: FORM A 32 CONTINUE TO THE NEXT PAGE
+=== PAGE 34 ===
+48.0,84.1,94.1: 46. Read this sentence from paragraph 9.
+99.0,109.1,119.1: I tried to, and then I just sat still and looked straight at it.
+78.0,134.1,144.1: How does the phrase “looked straight at it” contribute to the meaning of the excerpt?
+78.0,159.1,169.1: E. It shows that Ellen is willing to deal with a problem directly instead of ignoring it.
+78.0,175.1,185.1: F. It suggests that Ellen studies all parts of an issue and not just its surface.
+78.0,191.1,201.1: G. It illustrates that Ellen examines both sides of an argument.
+78.0,207.1,217.1: H. It implies that Ellen is eager to seek wisdom from past experiences.
+48.0,258.1,268.1: 47. The words “cold” and “dark” affect the tone in paragraph 10 by
+78.0,283.1,293.1: A. highlighting the feeling of unpredictability among the family members.
+78.0,299.1,309.1: B. showing the feelings of anger and resentment Ellen directs toward her parents.
+78.0,315.1,325.1: C. exaggerating the feeling of regret Dad experiences when leaving his family.
+78.0,331.1,341.1: D. emphasizing the feelings of separation and loss that Ellen feels.
+48.0,382.1,392.1: 48. Which sentence from the excerpt provides evidence that Ellen has a lot in common with
+78.0,400.1,410.1: her father?
+78.0,425.1,435.1: E. “He’s the one who gets excited when I do about spring coming or a serial running in the
+96.0,438.1,448.1: magazine we’re both reading. . . .” (paragraph 1)
+78.0,454.1,464.1: F. “ ‘We can drive you into town in the afternoon,’ Dad said, dropping his paper on the floor.”
+96.0,467.1,477.1: (paragraph 4)
+78.0,483.1,493.1: G. “ ‘Well, we don’t have to decide tonight,’ Dad said, but I knew he wanted to go into Clark
+96.0,496.1,506.1: City.” (paragraph 6)
+78.0,512.1,522.1: H. “I wondered how they would get along without me.” (paragraph 25)
+48.0,731.2,743.3: FORM A 33 CONTINUE TO THE NEXT PAGE
+=== PAGE 35 ===
+48.0,84.1,94.1: 49. Read these sentences from the excerpt.
+99.0,109.1,119.1: Mom seems to think of nothing farther away than today or perhaps yesterday or
+99.0,122.1,132.1: tomorrow morning. (paragraph 1)
+99.0,147.1,157.1: Mom was fixing oatmeal for tomorrow morning. (paragraph 19)
+78.0,172.1,182.1: The sentences help develop a central idea of the excerpt by
+78.0,197.1,207.1: A. suggesting that practical people focus on current needs rather than worrying about
+96.0,210.1,220.1: the future.
+78.0,226.1,236.1: B. showing that parents tend to consider the needs of their children before thinking of
+96.0,239.1,249.1: themselves.
+78.0,255.1,265.1: C. revealing that it is sometimes important to plan ahead.
+78.0,271.1,281.1: D. illustrating that dreaming about the future is a waste of time.
+48.0,322.1,332.1: 50. The flashback in paragraphs 10– 24 affects the plot by
+78.0,347.1,357.1: E. showing that the departure of one member of the family makes extra work for those left
+96.0,360.1,370.1: on the farm.
+78.0,376.1,386.1: F. showing that the bond within the family persists even when its members are apart.
+78.0,392.1,402.1: G. explaining why Ellen fears that leaving her parents will be too difficult.
+78.0,408.1,418.1: H. illustrating the close connection Ellen has with both of her parents.
+48.0,459.1,469.1: 51. Which sentence from the excerpt provides evidence that Mom wants Ellen to understand the
+78.0,477.1,487.1: family’s heritage?
+78.0,502.1,512.1: A. “Mom folded the ironing board and put it inside their bedroom that was just off the kitchen.”
+96.0,515.1,525.1: (paragraph 2)
+78.0,531.1,541.1: B. “ ‘There’s no need to go to town; she can catch the train at Gotham just as well.’ ”
+96.0,544.1,554.1: (paragraph 5)
+78.0,560.1,570.1: C. “We’d go in right after dinner and go around to the stores, Dad going one way and Mom and
+96.0,573.1,583.1: I another.” (paragraph 7)
+78.0,589.1,599.1: D. “ ‘Why, Yeléna, you know that; Anna Petrovna.’ ” (paragraph 22)
+48.0,731.2,743.3: FORM A 34 CONTINUE TO THE NEXT PAGE
+=== PAGE 36 ===
+213.2,391.8,402.8: CONTINUE TO THE NEXT PAGE
+48.0,731.2,743.3: FORM A 35 CONTINUE TO THE NEXT PAGE
+=== PAGE 37 ===
+239.7,78.5,93.5: Wolves of the Sea
+57.6,107.0,117.0: 1 The cool and misty landscape of the Great Bear Rainforest can be found along the coast of British
+69.0,120.0,130.0: Columbia, Canada, and its nearby islands, from Vancouver Island to the Alaskan border. Within
+69.0,133.0,143.0: this protected area, wolves roam the forests, islands, and beaches. When biologist Chris Darimont
+69.0,146.0,156.0: began to study these wolves, he wanted to confer with local First Nations groups, as aboriginal
+69.0,159.0,169.0: Canadians are known, in order to learn what they knew about these wolves. He spoke with
+69.0,172.0,182.0: Chester Starr, an elder of the Heiltsuk Nation that has occupied the Great Bear Rainforest for
+69.0,185.0,195.0: thousands of years. What Starr had to say about the wolves changed Darimont’s perception of
+69.0,198.0,208.0: the animals.
+57.6,223.0,233.0: 2 Starr asked Darimont which wolves he and his team were going to study— the timber wolves
+69.0,236.0,246.0: (mainland wolves) or the coastal wolves on the islands. The question took Darimont by surprise.
+69.0,249.0,259.0: Biologists had always believed that the wolves that are sometimes spotted swimming between
+69.0,262.0,272.0: islands and eating salmon are the same wolves that live on the mainland. Darimont was intrigued
+69.0,275.0,285.0: by Starr’s classification of the wolves as two different groups. At first, he was hesitant to accept
+69.0,288.0,298.0: the idea. The distances between the mainland and the islands are small, less than a mile. Why
+69.0,301.0,311.0: would the wolves on the islands be any different from the wolves on the mainland? To find out,
+69.0,314.0,324.0: Darimont and his research team studied the wolves on the islands and in the densely forested
+69.0,327.0,337.0: territory of the Great Bear Rainforest for ten years.
+57.6,352.0,362.0: 3 Throughout the study, Darimont recorded several significant, observable differences between the
+69.0,365.0,375.0: “sea wolves,” as they are nicknamed, and the mainland wolves. Compared with the mainland
+69.0,378.0,388.0: wolves, the sea wolves are smaller in size and are strong swimmers. In 1996 sea wolves were
+69.0,391.0,401.0: spotted on an island nearly eight miles from any other land formation. While mainland wolves
+69.0,404.0,414.0: almost exclusively eat meat, such as deer and elk, and teach their young to hunt for land
+69.0,417.0,427.0: animals, sea wolves get as much as 90 percent of their nutrition from the sea and teach their
+69.0,430.0,440.0: young to dig for clams and to catch fish. Sea wolves regularly swim between islands and have
+69.0,443.0,453.0: been known to sneak up on a seal sunning itself on a rock and make a leaping attack from the
+69.0,456.0,466.0: water. Some salmon- eating mainland wolves come and go from the islands with the fish-
+69.0,469.0,479.0: spawning season, but the sea wolves are full- time island residents. Darimont suspects that some
+69.0,482.0,492.0: sea wolves live their entire life on the islands.
+57.6,507.0,517.0: 4 The sea wolves displayed not only physical and behavioral differences but also genetic variations
+69.0,520.0,530.0: from the mainland wolves. After collecting and analyzing the DNA in 800 samples of gray fur and
+69.0,533.0,543.0: wolf waste, researchers could produce hard biological evidence that sea wolves had genetic
+69.0,546.0,556.0: markers that made them distinct from the mainland wolves. A genetic marker is a variation in a
+69.0,559.0,569.0: DNA sequence that can be used to identify individuals or a species because it is passed down to
+69.0,572.0,582.0: offspring. Darimont hypothesizes that a change in habitat led to the eventual genetic differences
+69.0,585.0,595.0: between sea wolves and mainland wolves. Many years ago, loss of habitat and food sources
+69.0,598.0,608.0: forced some mainland wolves out to the islands. They learned to eat everything from kelp and
+69.0,611.0,621.0: fish eggs to the remains of sea creatures that washed up on the beach. Wolves living on the
+69.0,624.0,634.0: islands and mainland wolves became more isolated and rarely mated with each other. Over time
+69.0,637.0,647.0: the two types of wolves became more distinct.
+57.6,662.0,672.0: 5 It turned out that Chester Starr was right all along. “It sounded totally bizarre at first,” admits
+69.0,675.0,685.0: Darimont, “that there could be two versions of the species.” But he now realizes that this
+69.0,688.0,698.0: skepticism “definitely reflected my ignorance of indigenous knowledge at the time.” Learning to
+48.0,731.2,743.3: FORM A 36 CONTINUE TO THE NEXT PAGE
+=== PAGE 38 ===
+69.0,78.2,88.2: trust the wisdom of the Heiltsuk people opened Darimont up to knowledge accumulated over
+69.0,91.2,101.2: millennia and positioned him so that he could gather new scientific evidence about one of British
+69.0,104.2,114.2: Columbia’s most elusive species, the sea wolf.
+48.0,178.3,188.3: 52. The details in paragraph 1 contribute to a central idea of the passage by showing that Darimont
+78.0,203.3,213.3: E. believed the Great Bear Rainforest was an ideal location to study wolves in their natural
+96.0,216.3,226.3: habitat because it is a protected area.
+78.0,232.3,242.3: F. values different perspectives, because the information that Starr provided influenced the
+96.0,245.3,255.3: focus of Darimont’s research.
+78.0,261.3,271.3: G. thought the Great Bear Rainforest would provide opportunities to study different groups of
+96.0,274.3,284.3: wolves because the area includes forests and islands.
+78.0,290.3,300.3: H. understands the importance of respecting local community members, because Darimont
+96.0,303.3,313.3: sought permission from an elder of the Heiltsuk Nation before starting his research.
+48.0,354.3,364.3: 53. Why does the author include details about the conversation between Starr and Darimont in
+78.0,372.3,382.3: paragraph 2?
+78.0,397.3,407.3: A. to explain why Starr had closely observed the relationship between the two groups of
+96.0,410.3,420.3: wolves Darimont wanted to study
+78.0,426.3,436.3: B. to show that Darimont was hoping to work with Starr and to study both groups of wolves
+96.0,439.3,449.3: in the area
+78.0,455.3,465.3: C. to highlight that Darimont was unfamiliar with the area and expected Starr to help him find
+96.0,468.3,478.3: wolves to study
+78.0,484.3,494.3: D. to emphasize that the question asked by Starr caused Darimont to review his initial
+96.0,497.3,507.3: assumption about the wolves
+48.0,731.2,743.3: FORM A 37 CONTINUE TO THE NEXT PAGE
+=== PAGE 39 ===
+48.0,84.1,94.1: 54. Read this sentence from paragraph 4.
+99.0,109.1,119.1: After collecting and analyzing the DNA in 800 samples of gray fur and wolf waste,
+99.0,122.1,132.1: researchers could produce hard biological evidence that sea wolves had genetic
+99.0,135.1,145.1: markers that made them distinct from the mainland wolves.
+78.0,160.1,170.1: The phrase “hard biological evidence” conveys that the goal of the research team was to
+78.0,185.1,195.1: E. develop a procedure in order to ensure their study yielded plentiful data about the wolves.
+78.0,201.1,211.1: F. seek definitive scientific proof of the number of wolf species present in the area of the study.
+78.0,217.1,227.1: G. conduct a study to evaluate multiple theories about the diets of different wolf species.
+78.0,233.1,243.1: H. discover if the new data would provide information different from that of previous studies.
+48.0,284.1,294.1: 55. The author uses the word “admits” in paragraph 5 most likely to
+78.0,309.1,319.1: A. note that Darimont’s genetic research verified a theory based solely on field observations.
+78.0,325.1,335.1: B. imply that Darimont’s study was disappointing because the conclusion that he reached was
+96.0,338.1,348.1: not original.
+78.0,354.1,364.1: C. emphasize that Darimont’s study ultimately confirmed an idea that he had initially doubted.
+78.0,370.1,380.1: D. highlight that Darimont’s results led him to draw a conclusion from his research that his
+96.0,383.1,393.1: team did not agree with.
+48.0,731.2,743.3: FORM A 38 CONTINUE TO THE NEXT PAGE
+=== PAGE 40 ===
+48.0,84.1,94.1: 56. Which sentence from the passage best supports the idea that sea wolves had successfully
+78.0,102.1,112.1: adapted to living on the islands?
+78.0,127.1,137.1: E. “While mainland wolves almost exclusively eat meat, such as deer and elk, and teach their
+96.0,140.1,150.1: young to hunt for land animals, sea wolves get as much as 90 percent of their nutrition from
+96.0,153.1,163.1: the sea and teach their young to dig for clams and to catch fish.” (paragraph 3)
+78.0,169.1,179.1: F. “Sea wolves regularly swim between islands and have been known to sneak up on a seal
+96.0,182.1,192.1: sunning itself on a rock and make a leaping attack from the water.” (paragraph 3)
+78.0,198.1,208.1: G. “Darimont suspects that some sea wolves live their entire life on the islands.” (paragraph 3)
+78.0,214.1,224.1: H. “Darimont hypothesizes that a change in habitat led to the eventual genetic differences
+96.0,227.1,237.1: between sea wolves and mainland wolves.” (paragraph 4)
+48.0,278.1,288.1: 57. How did a change in habitat most affect the wolf population of the Great Bear Rainforest
+78.0,296.1,306.1: over time?
+78.0,321.1,331.1: A. It caused some of the wolves to learn new hunting techniques in order to catch increasingly
+96.0,334.1,344.1: scarce prey.
+78.0,350.1,360.1: B. It caused the wolves to form smaller packs and eventually separate, establishing distinct
+96.0,363.1,373.1: territories.
+78.0,379.1,389.1: C. It caused some of the wolves to gradually become a new, genetically distinct species as they
+96.0,392.1,402.1: adapted behaviorally.
+78.0,408.1,418.1: D. It caused the wolves to adapt their diet as different food sources became available in
+96.0,421.1,431.1: the area.
+48.0,731.2,743.3: FORM A 39 CONTINUE TO THE NEXT PAGE
+=== PAGE 41 ===
+167.6,56.1,80.1: PART 2 — MATHEMATICS
+256.9,86.5,100.5: 57 QUESTIONS
+251.8,121.0,131.0: IMPORTANT NOTES
+48.0,139.0,149.0: (1)Formulas and defi nitions of mathematical terms and symbols are not provided.
+48.0,157.0,167.0: (2)Diagrams other than graphs are not necessarily drawn to scale. Do not assume any relationship
+66.0,169.0,179.0: in a diagram unless it is specifi cally stated or can be determined from the information given.
+48.0,187.0,197.0: (3)Assume that a diagram is in one plane unless the question specifi cally states that it is not.
+48.0,205.0,215.0: (4)Graphs are drawn to scale. Unless stated otherwise, you can assume relationships according
+66.0,217.0,227.0: to appearance. For example, lines on a graph that appear to be parallel can be assumed to be
+66.0,229.0,239.0: parallel. This is also true for concurrent lines, straight lines, collinear points, right angles, etc.
+48.0,247.0,257.0: (5)Reduce (simplify) all fractions to lowest terms.
+229.9,281.0,291.0: GRID-IN QUESTION NOTES
+48.0,299.0,309.0: (1)For each grid-in question, write your answer at the top of the grid.
+48.0,317.0,327.0: (2)Begin recording your answer in the columns on the far left.
+48.0,335.0,345.0: (3)Fill in the circle under the box that matches the number or symbol you wrote. Leave the negative
+66.0,347.0,357.0: sign bubble blank if your answer is positive.
+171.7,374.7,385.6: (Answer: –1.5) (Answer: 3.2)
+123.1,410.5,418.5: Negative Decimal Negative Decimal
+123.1,420.1,428.1: sign point sign point
+213.2,645.1,656.1: CONTINUE TO THE NEXT PAGE
+48.0,734.2,746.3: FORM A 40 CONTINUE TO THE NEXT PAGE
+=== PAGE 42 ===
+199.7,76.4,96.4: GRID-IN QUESTIONS
+243.5,102.4,116.4: QUESTIONS 58–62
+48.0,123.7,133.7: DIRECTIONS: Solve each problem. On the answer sheet, write your answer in the boxes at the top
+48.0,135.7,145.7: of the grid. Start on the left side of each grid. Print only one number or symbol in each box. Under
+48.0,147.7,157.7: each box, fi ll in the circle that matches the number or symbol you wrote above.
+48.0,165.7,175.7: • Do not fi ll in a circle under an unused box.
+48.0,183.7,193.7: • Do not leave a box blank in the middle of an answer.
+48.0,217.9,234.2: 58. Ms. Li opened a retirement account with a 59. 6 − 9 ÷ | − 3| + ( − 2) 3 × 1 _ 1
+531.2,231.5,241.5: 2
+78.0,240.1,250.1: deposit of $2,500. This account earns 4%
+78.0,258.1,268.1: simple interest annually. How many years
+348.0,261.8,271.8: What is the value of the expression
+78.0,276.1,286.1: will it take her to earn $500 on her
+348.0,279.8,289.8: shown above?
+78.0,294.1,304.1: $2,500 deposit?
+318.0,395.8,405.8: 60. Solve for x:
+384.1,424.3,437.4: 7x + 3 − 2( 2x + 1) = 13
+48.0,731.2,743.3: FORM A 41 CONTINUE TO THE NEXT PAGE
+=== PAGE 43 ===
+48.0,84.1,94.2: 61. 62. The mean value of 8 numbers is 17. Three
+348.0,102.2,112.2: of these numbers (9, 11, and 20) are
+135.6,112.3,122.3: l
+209.1,117.5,130.2: m discarded. What is the mean of the 5
+348.0,138.2,148.2: remaining numbers?
+206.1,143.1,153.1: x°
+258.0,151.9,161.9: n
+121.9,255.6,265.6: 35°
+78.0,319.5,329.5: In the figure above, line l is perpendicular
+78.0,337.5,347.5: to line n. What is the value of x?
+48.0,731.2,743.3: FORM A 42 CONTINUE TO THE NEXT PAGE
+=== PAGE 44 ===
+151.6,77.9,97.9: MULTIPLE CHOICE QUESTIONS
+239.1,102.9,116.9: QUESTIONS 63–114
+48.0,125.2,135.2: DIRECTIONS: Solve each problem. Select the answer from the choices given. Mark the letter of
+48.0,137.2,147.2: your answer on the answer sheet. When you are solving problems, you can write in the test booklet
+48.0,149.2,159.2: or on the scrap paper given to you.
+48.0,184.8,199.4: 63. 3 4 + 7 4 = 65. Jamel works at a computer store. He is
+348.0,205.6,215.6: paid an hourly rate plus a 15%
+78.0,222.0,233.6: A. 40 commission on all computer products he
+78.0,238.0,248.0: B. 370
+348.0,241.6,251.6: sells. Last week, Jamel was paid $802.50
+78.0,254.0,264.0: C. 2,482
+348.0,259.6,269.6: for working 30 hours and selling
+78.0,270.0,280.0: D. 10,000
+348.0,277.6,287.6: $1,250.00 worth of computer products.
+348.0,295.6,305.6: What is Jamel’s hourly rate?
+348.0,320.6,330.6: A. $20.50/hr
+348.0,336.6,346.6: B. $26.75/hr
+348.0,352.6,362.6: C. $33.00/hr
+348.0,368.6,378.6: D. $37.65/hr
+154.8,375.1,386.3: _3
+48.0,380.0,390.0: 64. In one week, 1 inches of rain fell on
+155.8,388.6,398.6: 4
+131.4,399.2,410.3: _2
+78.0,404.0,414.0: Monday, 2 inches fell on Tuesday, and
+132.4,412.7,422.7: 3
+78.1,423.2,434.3: _7
+90.0,428.0,438.0: inch fell on Wednesday. How many
+79.1,436.8,446.8: 8
+78.0,452.0,462.0: inches of rain fell during those three days?
+318.0,472.6,482.6: 66. A revolving sign makes 1 complete
+103.6,489.7,500.8: _7 revolution every 90 minutes. If the sign
+78.0,494.5,504.5: E. 5
+104.6,503.2,513.2: 24
+348.0,508.6,518.6: starts moving at 2:30 p.m., at what time
+103.6,526.6,538.8: _1 will the sign complete 8 revolutions?
+78.0,532.5,542.5: F. 5
+104.6,541.2,551.2: 24
+348.0,551.6,561.6: E. 1:00 a.m.
+78.0,565.7,580.5: G. 3 _ 4 F. 2:30 a.m.
+104.6,579.0,589.0: 5
+348.0,583.6,593.6: G. 4:00 p.m.
+348.0,599.6,609.6: H. 12:00 midnight
+103.6,603.7,614.8: _1
+78.0,608.5,618.5: H. 3
+104.6,617.2,627.2: 2
+48.0,731.2,743.3: FORM A 43 CONTINUE TO THE NEXT PAGE
+=== PAGE 45 ===
+46.5,83.6,97.0: 67. 69. If n is an integer and 3n + 3 is an even
+346.5,105.6,115.6: number, which expression must also
+95.1,111.5,120.8: W X
+346.5,125.6,135.6: represent an even number?
+95.7,132.7,141.7: 0 1 2 3 4 5 6 7 8 9 10
+346.5,157.6,169.0: A. 5n + 1
+76.5,170.7,180.7: Points Y and Z are not shown on the
+346.5,183.6,195.0: B. 4n + 5
+76.5,190.7,200.7: number line above. If X is the midpoint of
+76.5,209.6,221.0: ‾WY , and Y is the midpoint of ‾W Z , where C. 2n + 3
+76.5,230.7,240.7: on the number line would point Z
+346.5,235.6,247.0: D. n + 2
+76.5,250.7,260.7: be located?
+76.5,275.7,285.7: A. 2
+76.5,291.7,301.7: B. 4
+76.5,307.7,317.7: C. 6
+76.5,323.7,333.7: D. 8
+316.5,345.6,355.6: 70. The product of two positive integers is 65.
+346.5,363.6,373.6: Which number could be the sum of the
+346.5,381.6,391.6: two integers?
+346.5,406.6,416.6: E. 5
+46.5,427.7,437.7: 68.
+165.2,422.2,433.5: _81
+186.3,429.1,439.1: =
+199.5,422.6,434.0: _9 F. 18
+166.2,434.6,448.6: 10 n G. 24
+346.5,454.6,464.6: H. 52
+76.5,466.7,476.7: What value of n makes the equation
+76.5,484.7,494.7: above true?
+76.5,522.7,532.7: E. 1
+102.1,555.9,567.0: _1
+76.5,560.7,570.7: F. 1
+103.1,569.4,579.4: 9
+76.5,598.7,608.7: G. 5
+108.5,631.9,643.0: _1
+76.5,636.7,646.7: H. 10
+109.5,645.4,655.4: 9
+48.0,731.2,743.3: FORM A 44 CONTINUE TO THE NEXT PAGE
+=== PAGE 46 ===
+48.0,86.1,96.1: 71. If n is an odd integer that is less than
+318.0,90.1,100.1: 73. Between which two consecutive integers is
+78.0,104.1,116.1: −3.25 , what is the greatest possible
+409.4,109.2,120.4: _29
+348.0,114.1,124.1: the fraction ?
+413.5,122.7,132.7: 7
+78.0,126.1,136.1: value of n?
+348.0,139.1,149.1: A. 2 and 3
+78.0,155.1,168.1: A. −1 B. 3 and 4
+348.0,171.1,181.1: C. 4 and 5
+78.0,182.1,197.1: B. −2 D. 5 and 6
+78.0,208.1,220.1: C. −3
+78.0,234.1,246.1: D. −5
+318.0,291.1,301.1: 74. A customer wants to buy a pair of
+348.0,309.1,319.1: hiking boots.
+348.0,339.1,349.1: • The original price of the boots
+48.0,346.1,356.1: 72. A swim instructor used the box plot below
+360.0,357.1,367.1: is $85.75.
+78.0,364.1,374.1: to display the distribution of the ages of
+78.0,381.1,392.1: students who signed up for swim lessons. • The store is offering a 15% discount on
+360.0,399.1,409.1: all boot purchases.
+128.4,410.4,420.4: STUDENTS’ AGES
+348.0,423.1,433.1: • The customer has a coupon for an
+360.0,441.1,451.1: additional 25% off the sale price.
+86.6,461.2,471.2: 5 6 7 8 9 10 11 12 13
+348.0,465.1,475.1: • The tax rate is 8.5%.
+348.0,495.1,505.1: What is the final cost of the boots,
+78.0,498.2,508.2: Which statement about the distribution of
+348.0,513.1,523.1: including the tax, to the nearest cent?
+78.0,516.2,526.2: ages is true?
+348.0,538.1,548.1: E. $55.82
+78.0,541.2,551.2: E. The data contain an outlier.
+348.0,554.1,564.1: F. $59.08
+78.0,557.2,567.2: F. Approximately half the students are
+96.0,570.1,580.2: exactly 9 years old. G. $59.32
+78.0,586.1,596.2: G. Approximately one- fourth of the H. $63.17
+96.0,599.2,609.2: students are at least 10 years old.
+78.0,615.2,625.2: H. The interquartile range is 3 greater
+96.0,628.2,638.2: than the range of the data.
+48.0,731.2,743.3: FORM A 45 CONTINUE TO THE NEXT PAGE
+=== PAGE 47 ===
+46.5,83.6,93.6: 75. Sheila is saving money for her summer 77.
+402.4,72.7,89.4: _ 3_ 2 _+_ _ ( _ − _8_ ) 2 _ _+_ _ 2 _ 2
+503.8,85.0,95.0: =
+481.4,91.7,99.2: 2
+413.6,94.8,108.0: (3 − 8 + 2)
+76.5,101.6,111.6: vacation. She starts the summer with a
+76.5,119.6,129.6: balance of $90.00 and plans to save 15%
+346.5,128.6,140.6: A. −60
+76.5,137.6,147.6: of her earnings each week. She earns the
+76.5,155.6,165.6: same amount each week. After 12 weeks,
+346.5,163.8,178.6: B. − _17
+76.5,173.6,183.6: Sheila has saved a total of $472.59. How
+378.1,177.3,187.3: 3
+76.5,191.6,201.6: much money does Sheila earn each week?
+364.5,201.8,212.9: _77
+346.5,206.6,216.6: C.
+76.5,215.3,226.6: A. $212.55 9
+76.5,232.6,242.6: B. $262.55
+346.5,244.6,254.6: D. 68
+76.5,248.6,258.6: C. $302.55
+76.5,264.6,274.6: D. $312.55
+316.5,360.6,370.6: 78. A soccer coach purchased 15 pairs of
+46.5,368.6,380.1: 76. x:35 = 20:28
+346.5,378.6,388.6: cleats for team members and spent a total
+346.5,396.6,406.6: of $805.95, including tax. If the tax rate is
+76.5,407.6,417.6: For what value of x is the proportion
+346.5,414.6,424.6: 8%, what is the the price of each pair of
+76.5,425.6,435.6: shown above true?
+346.5,432.6,442.6: cleats before tax?
+76.5,450.6,460.6: E. 27
+346.5,457.6,467.6: E. $49.43
+76.5,466.6,476.6: F. 25
+346.5,473.6,483.6: F. $49.75
+76.5,482.6,492.6: G. 16
+346.5,489.6,499.6: G. $53.73
+76.5,498.6,508.6: H. 13
+346.5,505.6,515.6: H. $58.03
+48.0,731.2,743.3: FORM A 46 CONTINUE TO THE NEXT PAGE
+=== PAGE 48 ===
+318.0,84.1,94.1: 81. A student uses Spinner R and Spinner T to
+48.0,90.1,100.1: 79. The numbers m, n, p, and q are different,
+348.0,102.1,112.1: generate a list of two- digit numbers.
+78.0,114.1,124.1: and each is equal to one of the numbers
+244.9,130.4,144.4: _1 SPINNER R SPINNER T
+78.0,138.1,149.5: 1, 2, 3, 6, or 12. If 2m = 6q = n = p ,
+245.9,146.8,156.8: 2
+78.0,162.1,172.1: what is the value of p?
+481.9,168.0,178.1: 1 1
+363.3,172.5,182.5: 1 2
+78.0,187.1,197.1: A. 2
+468.7,192.8,203.5: 4 2
+78.0,203.1,213.1: B. 3
+78.0,215.0,229.1: C. 6 3 4 4 3
+78.0,235.1,245.1: D. 12
+348.0,271.1,281.1: Spinner R determines the digit in the tens
+348.0,289.1,299.1: place, and Spinner T determines the digit
+348.0,307.1,317.1: in the ones place. What is the probability
+348.0,325.1,335.1: that the two- digit number determined by
+48.0,338.9,349.6: 80. {0.1, 0.01, 0.001, 0.0001, 0.00001}
+348.0,343.1,353.1: spinning each spinner one time is a
+348.0,361.1,371.1: prime number?
+78.0,378.1,388.1: If a person chooses a number at random
+78.0,396.1,410.2: from the set above, what is the probability _3
+348.0,403.9,413.9: A.
+78.0,412.6,424.1: that the number is less than 0.005? 8
+366.0,436.9,448.2: _5
+348.0,441.9,451.9: B.
+96.0,450.6,462.9: _1 12
+78.0,456.6,466.6: E.
+97.0,465.1,475.2: 5
+366.0,474.9,486.2: _3
+348.0,479.9,489.9: C.
+96.0,488.4,500.9: _2 5
+78.0,494.6,504.6: F.
+97.0,503.1,513.2: 5
+366.0,512.9,524.2: _5
+348.0,517.9,527.9: D.
+96.0,526.6,538.9: _3 8
+78.0,532.6,542.6: G.
+97.0,541.1,551.2: 5
+96.0,565.8,576.9: _2
+78.0,570.6,580.6: H.
+97.0,579.3,589.3: 3
+48.0,731.2,743.3: FORM A 47 CONTINUE TO THE NEXT PAGE
+=== PAGE 49 ===
+46.5,83.6,93.6: 82. 84. A basket contains red balls, green balls,
+346.5,101.6,111.6: and white balls. There are 12 red balls in
+201.0,116.8,129.6: x° the basket. The probability of randomly
+346.5,137.6,147.6: choosing a red ball is 1 in 3. If the
+198.6,141.4,150.4: Q
+346.5,155.6,165.6: probability of randomly choosing a green
+138.5,166.5,176.7: 135°
+79.8,173.6,186.2: h ball is 1 in 4, how many green balls are in
+194.2,189.4,201.6: 100° the basket?
+119.3,213.0,223.0: j
+346.5,216.6,226.6: E. 3
+182.0,222.5,232.5: k
+346.5,232.6,242.6: F. 8
+346.5,248.6,258.6: G. 9
+76.5,259.6,269.6: Lines j and k intersect at point Q, and h is
+346.5,264.6,274.6: H. 16
+76.5,277.6,287.6: a straight line. What is the value of x?
+76.5,302.6,312.6: E. 55
+76.5,318.6,328.6: F. 45
+76.5,334.6,344.6: G. 35
+76.5,350.6,360.6: H. 30
+316.5,368.6,378.6: 85. It took Lars 2 hours to ride his bicycle
+346.5,386.6,396.6: 48 kilometers. What was his average
+346.5,404.6,414.6: speed in miles per hour? (Use the
+346.5,422.6,432.6: approximation 1 mile = 1.6 kilometers.)
+346.5,447.6,457.6: A. 1.5
+46.5,454.6,464.6: 83. Which statement must be true if x is a
+346.5,463.6,473.6: B. 15.0
+76.5,472.6,482.6: whole number greater than or equal to 1?
+346.5,479.6,489.6: C. 30.0
+346.5,495.6,505.6: D. 38.4
+94.5,510.2,521.3: _1 _1
+76.5,515.0,526.4: A. >
+95.5,523.6,535.1: x + 1 x + 2
+94.5,548.2,559.3: _1 _1
+76.5,553.0,564.4: B. <
+95.5,561.6,573.1: x + 1 x + 2
+94.5,586.2,597.3: _1 _1
+76.5,591.0,602.4: C. − > 1
+95.5,599.6,611.1: x + 1 x + 2
+94.5,624.2,635.3: _1 _1 _1
+76.5,629.0,640.4: D. − >
+95.5,635.7,649.1: x + 1 x + 2 x
+48.0,731.2,743.3: FORM A 48 CONTINUE TO THE NEXT PAGE
+=== PAGE 50 ===
+48.0,84.1,94.1: 86. Integer x is evenly divisible by 3. Which 88.
+78.0,102.1,112.1: expression below is also evenly
+78.0,117.3,130.1: divisible by 3? U P
+406.4,145.7,157.1: T • Q
+78.0,152.1,163.5: E. 2x + 1
+421.4,174.0,183.5: S R
+78.0,178.1,189.5: F. 3x − 5
+78.0,204.1,215.5: G. 4x − 1
+348.0,216.8,226.8: The arrow starts on Space P and moves
+78.0,230.1,241.5: H. 4x + 6
+348.0,234.8,244.8: clockwise around the circle. It moves
+348.0,252.8,262.8: through one space each minute. What
+348.0,270.8,280.8: space will the arrow point to in
+348.0,288.8,298.8: 100 minutes?
+348.0,313.8,323.8: E. R
+348.0,329.8,339.8: F. S
+48.0,340.1,350.1: 87. Lamel has a jar containing 6 red chips, 10
+348.0,345.8,355.8: G. T
+78.0,358.1,368.1: blue chips, and 4 yellow chips. If he
+348.0,361.8,371.8: H. U
+78.0,376.1,386.1: removes one chip at random, what is the
+78.0,394.1,404.1: probability that it will not be red?
+96.0,431.8,442.9: _4
+78.0,436.6,446.6: A.
+97.0,445.1,455.1: 5
+318.0,465.8,475.8: 89. Mei- Ling is one of 6 members of a
+96.0,469.8,480.9: _7
+78.0,474.6,484.6: B.
+97.0,483.3,493.8: 10 committee. If 2 members of that
+348.0,501.8,511.8: committee are selected to go to a
+96.0,507.6,518.9: _3
+78.0,512.6,522.6: C.
+97.0,519.8,531.3: 10 conference, how many of the possible
+348.0,537.8,547.8: pairs of members would include Mei- Ling?
+96.0,545.8,556.9: _1
+78.0,550.6,560.6: D.
+97.0,559.1,569.1: 5
+348.0,562.8,572.8: A. 5
+348.0,578.8,588.8: B. 6
+348.0,594.8,604.8: C. 10
+348.0,610.8,620.8: D. 12
+48.0,731.2,743.3: FORM A 49 CONTINUE TO THE NEXT PAGE
+=== PAGE 51 ===
+316.5,83.6,93.6: 92.
+46.5,87.6,101.0: 90. If m = 5 and t = −1 , what is the value
+76.5,106.4,123.6: of _ _6_ −_ _8_ ( _ 2_ −_ _t_ ) _ ? J K
+90.6,122.5,135.7: 2m + 4( 3 − m)
+366.1,131.4,142.4: –6 –4 –2 0 2 4 6
+76.5,143.6,155.6: E. −9
+76.5,169.6,181.6: F. −1
+346.5,177.8,187.8: On the number line above, point L (not
+76.5,197.6,207.6: G. 1
+346.5,201.8,211.8: shown) is located on line segment JK so
+76.5,220.9,237.2: H. 9 that JL = _ 2 LK . What is the position
+400.9,234.5,244.5: 3
+346.5,249.8,259.8: of point L ?
+346.5,279.8,291.8: E. −2
+346.5,307.8,317.8: F. 0
+46.5,333.6,343.8: 91. G. 2
+107.0,359.8,371.4: QQ R H. 4
+128.3,373.4,382.4: x°
+201.0,417.3,426.3: y°
+105.1,420.5,429.7: 56°
+83.2,428.9,439.4: P S
+76.5,468.4,479.8: In the parallelogram above, what is the 93. Josef and Mai divided some stamps
+76.5,487.8,499.8: value of x + y ? between themselves. Josef got 60% of the
+346.5,505.8,515.8: stamps. If Josef received 500 more
+76.5,513.4,523.4: A. 112
+346.5,523.8,533.8: stamps than Mai, how many stamps did
+76.5,529.4,539.4: B. 124
+346.5,541.8,551.8: Josef receive?
+76.5,545.4,555.4: C. 148
+76.5,561.4,571.4: D. 248
+346.5,566.8,576.8: A. 300
+346.5,582.8,592.8: B. 800
+346.5,598.8,608.8: C. 1,500
+346.5,614.8,624.8: D. 2,500
+48.0,731.2,743.3: FORM A 50 CONTINUE TO THE NEXT PAGE
+=== PAGE 52 ===
+48.0,84.1,94.1: 94.
+318.0,90.1,100.1: 96. A scientist mixed three chemicals, R, S,
+348.0,114.1,124.1: and T, in a glass container. The amount of
+348.0,138.1,148.1: R is 3 times the amount of S, and the
+172.2,143.7,152.7: 45°
+424.2,157.3,168.4: _1
+348.0,162.1,172.1: amount of T is the amount of S. What is
+425.2,170.8,180.8: 6
+348.0,186.1,196.1: the ratio of the amount of R to the
+348.0,210.1,220.1: amount of T?
+348.0,235.1,245.1: E. 1:18
+78.0,246.9,256.9: The shaded sector of the circle shown
+348.0,251.1,261.1: F. 2:1
+78.0,266.9,278.3: above has an area of 18π square feet. G. 3:1
+348.0,283.1,293.1: H. 18:1
+78.0,286.9,296.9: What is the circumference of the circle?
+78.0,318.9,330.3: E. 144π ft
+78.0,344.9,356.3: F. 24π ft
+78.0,370.9,382.3: G. 18π ft
+318.0,387.1,397.1: 97. Ken has k video games, and Jeff has j
+78.0,396.9,408.3: H. 9π ft
+348.0,405.1,415.1: video games. If Ken gives 6 video games
+348.0,423.1,433.1: to Jeff, Ken will have twice as many video
+348.0,441.1,451.1: games as Jeff. Which equation shows the
+348.0,459.1,469.1: relationship between k and j?
+348.0,491.3,504.3: A. k − 6 = 2( j + 6)
+48.0,508.9,518.9: 95. Which graph represents the solution to
+348.0,518.9,530.3: B. k − 6 = 2j + 6
+78.0,526.9,540.3: −3x − 7 > −4 ?
+348.0,543.0,556.3: C. 2 (k − 6) = j
+78.0,550.6,560.6: A.
+116.5,562.0,572.9: –4 –3 –2 –1 0 1 2 3 4
+348.0,569.0,582.3: D. 2 (k − 6) = j + 6
+78.0,591.6,601.6: B.
+116.5,603.0,613.9: –4 –3 –2 –1 0 1 2 3 4
+78.0,632.6,642.6: C.
+116.5,644.0,655.0: –4 –3 –2 –1 0 1 2 3 4
+78.0,673.6,683.6: D.
+116.5,685.0,696.0: –4 –3 –2 –1 0 1 2 3 4
+48.0,731.2,743.3: FORM A 51 CONTINUE TO THE NEXT PAGE
+=== PAGE 53 ===
+46.5,83.6,93.6: 98. Yesterday Sarah read 15% of her entire 100. Kim jogs 8 kilometers in 1 hour
+76.5,101.6,111.6: book. Today she read another 17% of the 40 minutes. At that rate, how many
+76.5,119.6,129.6: entire book. In lowest terms, what fraction meters does she jog per minute?
+76.5,137.6,147.6: of the book is left for her to read?
+346.5,144.6,154.6: E. 0.08
+346.5,160.6,170.6: F. 80
+94.5,175.3,186.6: _7 G. 800
+76.5,180.1,190.1: E.
+95.5,188.8,198.8: 25
+346.5,192.6,202.6: H. 8,000
+94.5,213.1,224.4: _3
+76.5,218.1,228.1: F.
+95.5,226.8,236.8: 10
+94.5,251.3,262.4: _17
+76.5,256.1,266.1: G.
+95.5,264.8,274.8: 25
+94.5,289.3,300.4: _7
+76.5,294.1,304.1: H.
+95.5,302.6,312.8: 10 101. For what value of x is the equation
+346.5,321.8,332.9: _x
+361.2,324.9,338.1: − 4 = 3 (4 − 2x) − 1 true?
+347.5,335.2,345.2: 5
+364.5,364.3,375.5: _75
+346.5,369.2,379.2: A.
+365.5,377.8,387.8: 11
+364.5,402.3,413.5: _75
+346.5,407.2,417.2: B.
+46.5,415.9,427.4: 99. {1,2,3,4,5,...,198,199,200} 31
+364.5,440.3,451.5: _15
+346.5,445.2,455.2: C.
+76.5,453.8,465.9: How many members of the set shown 7
+76.5,473.9,483.9: above are multiples of 6 but not
+364.5,478.3,489.5: _65
+346.5,483.2,493.2: D.
+76.5,491.9,501.9: multiples of 9? 31
+76.5,516.9,526.9: A. 11
+76.5,532.9,542.9: B. 13
+76.5,548.9,558.9: C. 20
+76.5,564.9,574.9: D. 22
+48.0,731.2,743.3: FORM A 52 CONTINUE TO THE NEXT PAGE
+=== PAGE 54 ===
+48.0,84.1,94.1: 102. 103.
+398.5,108.7,119.7: ESSAY LENGTH
+201.0,112.0,121.0: R
+174.2,132.3,144.3: 130° Number of Words Number of Essays
+237.3,144.0,154.0: y
+384.1,155.9,165.9: <100 6
+375.5,177.6,187.6: 100– 250 4
+252.7,180.8,189.8: S
+375.5,199.2,209.2: 251– 500 11
+78.0,219.2,230.9: The diagram above shows line >500 9
+78.0,237.2,247.2: segment RS intersecting a rectangle. What
+78.0,254.1,265.2: is the measure of angle y? All 150 students in Grade 8 at a school are
+348.0,272.1,282.1: assigned to write an essay on the same
+78.0,280.2,290.2: E. 140°
+348.0,290.1,300.1: topic. A teacher records the number of
+78.0,296.2,306.2: F. 130°
+348.0,308.1,318.1: words in a random sample of the essays,
+78.0,312.2,322.2: G. 50°
+78.0,326.1,338.2: H. 40° as shown in the table above. Based on this
+348.0,344.1,354.1: sample, how many students in the entire
+348.0,362.1,372.1: grade would be expected to write essays
+348.0,380.1,390.1: with at least 100 words?
+348.0,405.1,415.1: A. 20
+348.0,421.1,431.1: B. 30
+348.0,437.1,447.1: C. 100
+348.0,453.1,463.1: D. 120
+318.0,557.1,567.1: 104. Which percentage is closest in value
+348.0,575.1,585.1: to 0.0099?
+348.0,600.1,610.1: E. 0%
+348.0,616.1,626.1: F. 0.1%
+348.0,632.1,642.1: G. 1%
+348.0,648.1,658.1: H. 100%
+48.0,731.2,743.3: FORM A 53 CONTINUE TO THE NEXT PAGE
+=== PAGE 55 ===
+46.5,83.6,93.6: 105. The manager of a shipping company 106.
+76.5,101.6,111.6: recorded the weights, in pounds, of the
+76.5,119.6,129.6: last 9 packages the company shipped. The
+76.5,137.6,147.6: manager displayed the distribution of the
+76.5,155.6,165.6: weights in a box plot with the five- number
+76.5,173.6,183.6: summary shown below:
+357.5,181.8,190.8: 2 ft
+76.5,203.6,213.6: • minimum: 29
+76.5,227.6,237.6: • first quartile: 31
+76.5,251.6,261.6: • median: 42
+432.7,258.9,267.9: 4 ft
+76.5,275.6,285.6: • third quartile: 73
+346.5,295.1,305.1: In the figure above, the shaded rectangle
+76.5,299.6,309.6: • maximum: 98
+346.5,313.1,323.1: is similar to the outer rectangle. The
+76.5,329.6,341.1: Which statement about the distribution of length of the outer rectangle is 4 feet, and
+76.5,347.6,359.1: weights is supported by the box plot the the perimeter of the outer rectangle is
+76.5,365.6,377.1: manager created? 14 feet. If the width of the shaded
+346.5,385.1,395.1: rectangle is 2 feet, what is the area of the
+76.5,390.6,400.6: A. The minimum, 29, is an outlier.
+346.5,403.1,413.1: shaded rectangle?
+76.5,406.6,416.6: B. The maximum, 98, is an outlier.
+76.5,422.6,432.6: C. The interquartile range of the
+94.5,435.6,447.4: data is 11. _1
+346.5,441.1,451.1: E. 5 sq ft
+76.5,449.8,461.6: D. The interquartile range and the median 3
+94.5,464.6,474.6: are equal.
+346.5,473.1,483.1: F. 6 sq ft
+372.1,500.3,511.4: _1
+346.5,505.1,515.1: G. 9 sq ft
+373.1,513.8,523.8: 3
+346.5,537.1,547.1: H. 12 sq ft
+48.0,731.2,743.3: FORM A 54 CONTINUE TO THE NEXT PAGE
+=== PAGE 56 ===
+48.0,84.1,94.1: 107. A rectangular concrete driveway is 30 feet 109. Vicente and Carla each ran 8 laps around
+78.0,102.1,112.1: long, 8 feet wide, and 6 inches thick. What a track. They started at the same time
+78.0,120.1,130.1: is the volume of the concrete? and place. If Vicente ran 1.5 times as fast
+348.0,138.1,148.1: as Carla, how many laps did Carla have
+78.0,145.1,155.1: A. 44 cu ft
+348.0,156.1,166.1: left to finish when Vicente finished
+78.0,161.1,171.1: B. 48 cu ft
+78.0,174.1,187.1: C. 120 cu ft his 8th lap?
+78.0,193.1,203.1: D. 240 cu ft
+373.6,211.8,222.9: _1
+348.0,216.6,226.6: A. 2
+374.6,225.3,235.3: 2
+373.6,249.8,260.9: _2
+348.0,254.6,264.6: B. 2
+374.6,263.3,273.3: 3
+373.6,287.8,298.9: _1
+348.0,292.6,302.6: C. 3
+48.0,297.1,307.1: 108. At a carnival, visitors can win a prize if an
+374.6,301.3,311.3: 3
+78.0,315.1,325.1: employee cannot correctly guess their
+373.6,325.8,336.9: _1
+78.0,330.6,343.1: age. The employee records the first 15 D. 5
+374.6,339.3,349.3: 3
+78.0,351.1,361.1: ages that he guesses one Saturday. The
+78.0,369.1,379.1: box plot shown below displays data about
+78.0,387.1,397.1: the ages he recorded.
+99.5,434.7,444.7: 7 8 9 101112131415161718
+78.0,471.8,481.8: What is the interquartile range of
+78.0,489.8,499.8: the box plot?
+78.0,514.8,524.8: E. 7
+78.0,530.8,540.8: F. 9
+78.0,546.8,556.8: G. 10
+78.0,562.8,572.8: H. 11
+48.0,731.2,743.3: FORM A 55 CONTINUE TO THE NEXT PAGE
+=== PAGE 57 ===
+46.5,83.6,93.6: 110. At West College, students are randomly 111. A train travels 2,200 miles from Phoenix
+76.5,101.6,111.6: assigned to one of 20 dormitories and one to New York City. The train covers the first
+76.5,119.6,129.6: of 6 dining rooms. Kharleen likes 6 of the 240 miles in 5 hours. If the train continues
+76.5,137.6,147.6: dormitories and 2 of the dining rooms. to travel at this rate, how many more
+76.5,155.6,165.6: What is the probability that she is hours will it take to reach New York City?
+76.5,173.6,183.6: assigned to both a dormitory and a dining Round your answer to the nearest
+76.5,191.6,201.6: room that she likes? whole hour.
+76.5,216.6,226.6: E. 10% A. 46
+76.5,232.6,242.6: F. 12% B. 45
+76.5,248.6,258.6: G. 19% C. 43
+76.5,264.6,274.6: H. 38% D. 41
+316.5,368.6,378.6: 112. What is the least of four consecutive
+346.5,386.6,396.6: integers whose sum is 58?
+346.5,411.6,421.6: E. 1
+346.5,427.6,437.6: F. 2
+346.5,443.6,453.6: G. 12
+346.5,459.6,469.6: H. 13
+48.0,731.2,743.3: FORM A 56 CONTINUE TO THE NEXT PAGE
+=== PAGE 58 ===
+48.0,84.1,94.1: 113.
+318.0,90.1,100.1: 114. Chanelle selects a marble from a container
+348.0,114.1,124.1: and then returns it to the container. When
+95.5,123.2,132.5: 0 1 2 3
+348.0,138.1,148.1: she does this 3 times, the probability of
+531.2,157.3,168.4: _1
+348.0,162.1,172.1: choosing a red marble all 3 times is .
+78.0,167.8,177.8: If all possible values of x are indicated by
+532.2,170.8,180.8: 216
+348.0,186.1,196.1: Based on this information, what is the
+78.0,191.8,201.8: the shaded part of the number line above,
+348.0,210.1,220.1: probability of Chanelle choosing a red
+78.0,215.8,225.8: which number line best shows all possible
+126.8,234.1,246.1: _1 marble the first time she
+78.0,239.8,249.8: values of ?
+128.1,246.5,256.5: x
+348.0,258.1,268.1: selects a marble?
+78.0,261.5,271.5: A.
+120.2,274.6,283.9: 0 1 2 3
+366.0,295.8,306.9: _1
+348.0,300.6,310.6: E.
+78.0,304.9,314.9: B.
+367.0,309.3,319.3: 72
+119.8,317.8,327.1: 0 1 2 3
+366.0,333.8,344.9: _1
+348.0,338.6,348.6: F.
+78.0,347.3,358.1: C. 36
+119.8,360.8,370.4: 0 1 2 3
+366.0,371.8,382.9: _1
+348.0,376.6,386.6: G.
+367.0,385.3,395.3: 8
+78.0,391.4,401.4: D.
+120.0,404.3,413.7: 0 1 2 3
+366.1,409.8,420.9: _1
+348.0,414.6,424.6: H.
+367.1,423.3,433.3: 6
+348.0,657.5,667.5: THIS IS THE END OF THE TEST.
+348.0,670.0,680.0: IF TIME REMAINS, YOU SHOULD CHECK
+348.0,682.5,692.5: YOUR ANSWERS. BE SURE THAT THERE
+348.0,695.0,705.0: ARE NO STRAY MARKS, PARTIALLY
+348.0,707.5,717.5: FILLED ANSWER CIRCLES, OR
+348.0,720.0,730.0: INCOMPLETE ERASURES ON YOUR
+348.0,730.9,742.5: ANSWER SHEET. ■

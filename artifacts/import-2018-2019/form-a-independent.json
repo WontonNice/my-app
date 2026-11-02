@@ -1,0 +1,293 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "id": "pdf-shsat-2018-2019-a-q001",
+      "type": "multiple_choice",
+      "topic": "Word Choice & Precision",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Read this sentence.\n\nDuring a nightly news segment about a cooking contest, a reporter talked to some people who did the best in the contest.\n\nWhich revision uses the most precise language for the words talked to some people who did the best in the contest?",
+      "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\"><p>During a nightly news segment about a cooking contest, a reporter talked to some people who did the best in the contest.</p></blockquote><p>Which revision uses the most precise language for the words talked to some people who did the best in the contest?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "conversed with some of the people who won the contest",
+          "html": "<p>conversed with some of the people who won the contest</p>"
+        },
+        {
+          "id": "B",
+          "text": "spoke to the three contestants who did well",
+          "html": "<p>spoke to the three contestants who did well</p>"
+        },
+        {
+          "id": "C",
+          "text": "discussed the contest with some of the winners",
+          "html": "<p>discussed the contest with some of the winners</p>"
+        },
+        {
+          "id": "D",
+          "text": "interviewed the top three contestants",
+          "html": "<p>interviewed the top three contestants</p>"
+        }
+      ],
+      "explanation": "1. (D) The question asks for the most precise revision for the words “talked to some people who did the best in the contest.” Option D is the correct response because the revision precisely states both the reporter’s action (“interviewed”) and whom the reporter interviewed (“the top three contestants”). Option A is an incorrect response because the revision does not provide precise information about the number of people interviewed. Option B is an incorrect response because the revision uses the imprecise phrase “who did well.” Option C is an incorrect response because the revision does not provide precise information about the number of people interviewed.",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20182019_form_a.pdf",
+        "sourcePages": [
+          1
+        ],
+        "sourceQuestion": "1",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20182019_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20182019_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "topicConfidence": 0.75
+      },
+      "correctChoiceId": "D",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2018-2019-a-answers-q001-explanation-1.png\" width=\"351\" alt=\"Supplied Form A explanation for question 1\"></p>",
+      "sourceQuestion": "1",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2018-2019 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "year": "2018-2019",
+        "form": "A",
+        "label": "2018-2019 Form A",
+        "sourceFile": "20182019_form_a.pdf",
+        "sourceSha256": "0e23f499110c437bda23af8779ea9e7b59804a3381345c286aa10914d4b1dddb",
+        "sourceQuestion": "1",
+        "pages": [
+          1
+        ]
+      },
+      "notes": [
+        "Supplied 20182019_form_a.pdf; PDF page 1; original question 1."
+      ]
+    },
+    {
+      "id": "pdf-shsat-2018-2019-a-q002",
+      "type": "multiple_choice",
+      "topic": "Punctuation",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Read this paragraph.\n\n(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.\n\nWhich pair of revisions need to be made in the paragraph?",
+      "promptHtml": "<p>Read this paragraph.</p><blockquote data-boxed=\"true\"><p>(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.</p></blockquote><p>Which pair of revisions need to be made in the paragraph?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Sentence 1: Delete the comma after homes. Sentence 3: Change becomes to became.",
+          "html": "<p>Sentence 1: Delete the comma after homes. Sentence 3: Change becomes to became.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Sentence 1: Delete the comma after homes. Sentence 4: Change remarketed to had remarketed.",
+          "html": "<p>Sentence 1: Delete the comma after homes. Sentence 4: Change remarketed to had remarketed.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Sentence 2: Insert a comma after company. Sentence 3: Change becomes to became.",
+          "html": "<p>Sentence 2: Insert a comma after company. Sentence 3: Change becomes to became.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Sentence 2: Insert a comma after company. Sentence 4: Change remarketed to had remarketed.",
+          "html": "<p>Sentence 2: Insert a comma after company. Sentence 4: Change remarketed to had remarketed.</p>"
+        }
+      ],
+      "explanation": "2. (G) The question asks for the pair of revisions needed to correct the errors in the paragraph, which appear in sentence 2 and sentence 3. Option G is correct because it is the only choice that revises the errors in both sentence 2 and sentence 3. In sentence 2 (Option G and Option H), a comma needs to follow the word “company” to set off the phrase “who owned a cleaning product company.” A comma is necessary because the phrase is a nonrestrictive clause: the phrase provides extra information about Cleo and Noah McVicker’s line of work, but the phrase is not necessary in order to understand the meaning of the sentence. The second error is in sentence 3 (Option E and Option G), which incorrectly shifts the verb into the present tense. The clause “as natural gas becomes more common” should be “as natural gas became more common.” The comma after the word “homes” in sentence 1 (Option E and Option F) is necessary for separating the subordinate clause “When coal was used to heat homes” from the main clause. In sentence 4 (Option F and Option H), the word “remarketed” is in the past tense established in the rest of the paragraph and should not change to the past perfect tense “had remarketed.”",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20182019_form_a.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "2",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20182019_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20182019_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "topicConfidence": 0.75
+      },
+      "correctChoiceId": "C",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2018-2019-a-answers-q002-explanation-1.png\" width=\"351\" alt=\"Supplied Form A explanation for question 2\"></p>",
+      "sourceQuestion": "2",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2018-2019 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "year": "2018-2019",
+        "form": "A",
+        "label": "2018-2019 Form A",
+        "sourceFile": "20182019_form_a.pdf",
+        "sourceSha256": "0e23f499110c437bda23af8779ea9e7b59804a3381345c286aa10914d4b1dddb",
+        "sourceQuestion": "2",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20182019_form_a.pdf; PDF page 2; original question 2."
+      ]
+    },
+    {
+      "id": "pdf-shsat-2018-2019-a-q003",
+      "type": "multiple_choice",
+      "topic": "Modifiers",
+      "subtopic": "",
+      "points": 1,
+      "prompt": "Read this paragraph.\n\n(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.\n\nWhich sentence contains an error in its construction and should be revised?",
+      "promptHtml": "<p>Read this paragraph.</p><blockquote data-boxed=\"true\"><p>(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.</p></blockquote><p>Which sentence contains an error in its construction and should be revised?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "sentence 1",
+          "html": "<p>sentence 1</p>"
+        },
+        {
+          "id": "B",
+          "text": "sentence 2",
+          "html": "<p>sentence 2</p>"
+        },
+        {
+          "id": "C",
+          "text": "sentence 3",
+          "html": "<p>sentence 3</p>"
+        },
+        {
+          "id": "D",
+          "text": "sentence 4",
+          "html": "<p>sentence 4</p>"
+        }
+      ],
+      "explanation": "3. (A) The question asks for the identification of the sentence in the paragraph that has an error in its construction and should be revised. Option A (sentence 1) is the correct response because sentence 1 contains a structural error. The sentence begins with a list of modifying phrases: “Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process.” As written, this list modifies the closest noun phrase, “the animal shelter,” which is illogical because the list describes tasks at the animal shelter, not the shelter itself. The list should follow the word “tasks” at the end of the sentence, so that it is closer to the word that it modifies. Option B, Option C,\n\nand Option D are incorrect responses because sentence 2, sentence 3, and sentence 4 do not contain structural errors. For Option B, the phrase “especially those who aspire to care for and protect animals” in sentence 2 correctly modifies “young people.” For Option C, the structure of sentence 3 allows the words “In addition to hands-on training with animal care” to correctly modify “volunteers will learn.” For Option D, the phrase “which is the awareness and understanding of the feelings of others” in sentence 4 correctly modifies the word “empathy.”\n\nREVISING/EDITING PART B\n\nMoving through Mountains",
+      "visuals": [],
+      "review": {
+        "sourceFile": "20182019_form_a.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "3",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20182019_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20182019_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        },
+        "topicConfidence": 0.75
+      },
+      "correctChoiceId": "A",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2018-2019-a-answers-q003-explanation-1.png\" width=\"351\" alt=\"Supplied Form A explanation for question 3\"></p><p><img src=\"/exam-images/pdf-2018-2019-a-answers-q003-explanation-2.png\" width=\"348\" alt=\"Supplied Form A explanation for question 3\"></p>",
+      "sourceQuestion": "3",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2018-2019 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "year": "2018-2019",
+        "form": "A",
+        "label": "2018-2019 Form A",
+        "sourceFile": "20182019_form_a.pdf",
+        "sourceSha256": "0e23f499110c437bda23af8779ea9e7b59804a3381345c286aa10914d4b1dddb",
+        "sourceQuestion": "3",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20182019_form_a.pdf; PDF page 2; original question 3."
+      ]
+    }
+  ]
+}

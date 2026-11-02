@@ -1,5 +1,6 @@
 import { ExamGeneralDirections } from "../components/ExamGeneralDirections";
 import { InlineTextSelection } from "../components/InlineTextSelection";
+import { placeCategoryItem } from '../lib/categoryPlacement';
 import { EXAM_PLAYER_PROFILE } from "../content/exams/playerPresentation";
 import { testnavPartADirections, testnavPartBDirections, testnavMathDirections } from "../content/exams/testnavDirections";
 import { hasFullyAnsweredExam } from "../../../server/src/shared/examCorrectionAccess";
@@ -1107,7 +1108,7 @@ export type ExamGameSession = {
   lockedQuestionIds?: string[];
   onCurrentQuestionChange?: (questionId: string | null) => void;
   teamNavigation?: { step: number; onNext: () => void; onReview: (step: number) => void };
-  practice?: { stats: ReactNode; feedback: ReactNode; onExit: () => void; exitLabel?: string; result?: 'correct' | 'incorrect' };
+  practice?: { stats: ReactNode; feedback: ReactNode; controls?: ReactNode; onExit: () => void; exitLabel?: string; result?: 'correct' | 'incorrect' };
 };
 
 export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession } = {}) {
@@ -1557,7 +1558,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     activePassageSet?.section ?? (activePassageSet ? examContent.passageSections?.[activePassageSet.id] : undefined) ?? "reading";
   const passageSetDisplayLabel =
     activePassageSection === "reading"
-      ? "ELA Rdg Comp"
+      ? getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length)
       : activePassageSection === "revising_editing_a"
         ? "ELA Rev/Edit A"
         : activePassageSet?.label ?? getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length);
@@ -2010,7 +2011,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
     setSelectedAnswers((currentAnswers) => ({
       ...currentAnswers,
-      [question.id]: [...currentChoiceIds, choiceId],
+      [question.id]: question.type === 'graph_point_select' && maxChoices === 1 ? [choiceId] : [...currentChoiceIds, choiceId],
     }));
     setEliminatedChoices((currentChoices) => ({
       ...currentChoices,
@@ -2345,24 +2346,14 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   function handlePlaceCategoryItem(question: ExamQuestion, itemId: string, categoryId: string) {
+    const current = getCategoryPlacements(selectedAnswers[question.id]);
+    if (placeCategoryItem(question, current, itemId, categoryId) === current) {
+      if (question.requiredPlacements) showChoiceLimitWarning(question.requiredPlacements);
+      return;
+    }
     setSelectedAnswers((currentAnswers) => {
       const currentPlacements = getCategoryPlacements(currentAnswers[question.id]);
-      const nextPlacements =
-        question.requiredPlacements === 1
-          ? {}
-          : {
-              ...currentPlacements,
-            };
-
-      if (question.categoryCapacity === 1) {
-        Object.entries(nextPlacements).forEach(([placedItemId, placedCategoryId]) => {
-          if (placedItemId !== itemId && placedCategoryId === categoryId) {
-            delete nextPlacements[placedItemId];
-          }
-        });
-      }
-
-      nextPlacements[itemId] = categoryId;
+      const nextPlacements = placeCategoryItem(question, currentPlacements, itemId, categoryId);
       return {
         ...currentAnswers,
         [question.id]: nextPlacements,
@@ -2827,6 +2818,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         ><QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeMathQuestion.id} /></ExamMathQuestion>
 
         {gameSession?.practice?.feedback}
+        {gameSession?.practice?.controls}
 
         {highlightToolbar ? (
           <div
@@ -3560,11 +3552,11 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         />
 
         <section
-          className={`exam-question-document ${isExpandedQuestionLayout ? "is-expanded-layout" : ""}`}
+          className={`exam-question-document ${activeQuestion.selectionHtml ? "is-passage-selection-layout" : isExpandedQuestionLayout ? "is-expanded-layout" : ""}`}
           aria-labelledby={activeQuestionTitleId}
           onMouseUp={handleExamTextSelection}
         >
-          <div className="exam-question-passage">
+          {!activeQuestion.selectionHtml && <div className="exam-question-passage">
             <div
               className={`exam-question-passage-scroll ${
                 isSentenceProsePassage ? "is-sentence-prose" : isProsePassage ? "is-prose" : "is-poem"
@@ -3680,7 +3672,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 .map((line, index) =>
                   line.image ? (
                     <figure className="exam-passage-image" key={`${line.image.src}-footer-${index}`}>
-                      <img alt={line.image.alt} src={line.image.src} />
+                      <img alt={line.image.alt} src={line.image.src} width={line.image.width} />
                       {line.image.caption ? <figcaption>{line.image.caption}</figcaption> : null}
                     </figure>
                   ) : null,
@@ -3688,8 +3680,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
               </PassageGlossary>
               </div>
             </div>
-          </div>
-
+          </div>}
           <form key={activeQuestion.id} className="exam-question-panel" onSubmit={event => event.preventDefault()}>
             <PassageGlossary contextKey={activeQuestion.id}>
             <AnswerLock {...(gameSession ? { className: "game-answer-lock", disabled: gameSession.lockedQuestionIds?.includes(activeQuestion.id) } : {})}>
@@ -3917,7 +3908,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 </div>
               </div>
             ) : activeQuestion.selectionHtml ? (
-              <InlineTextSelection question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({...current,[activeQuestion.id]:answer}))} />
+              <InlineTextSelection scrollable question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({...current,[activeQuestion.id]:answer}))} />
             ) : activeQuestion.type === "transition_drop" && activeQuestionChoices.length > 0 ? (
               <SentenceDragDrop key={activeQuestion.id} question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({ ...current, [activeQuestion.id]: answer }))} />
             ) : (

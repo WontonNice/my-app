@@ -6,7 +6,7 @@ export function generatorCodingBrief(source: MathQuestionDetail, destination: {
   parent?: ManagedPracticeModule; notes: string;
 }, related: PracticeGeneratorDefinition[]) {
   const skilled=destination.module?.skilled??(destination.category===source.row.category&&destination.topic===source.row.subcategory?source.record.question.skilled??'TBD':'TBD');
-  return `Use the infinite-question-generator skill to implement a custom TypeScript math generator in this Nathan Tutors repository, test it, and register it in the shared practice catalog as a disabled draft for my review.
+  return `Use the infinite-question-generator skill to implement a custom TypeScript math generator in this Nathan Tutors repository, test it, and automatically enable it for practice modules in the shared practice catalog after validation.
 
 SOURCE QUESTION ID: ${source.record.id}
 DESTINATION: ${JSON.stringify({category:destination.category,subcategory:destination.topic,moduleTitle:destination.title,moduleId:destination.module?.id??null,parentId:destination.module?.parentId??destination.parent?.id??null,groupType:destination.module?.defaultType??destination.parent?.defaultType??null,skilled})}
@@ -21,7 +21,7 @@ IMPLEMENTATION AND VERIFICATION:
 - Choose a mathematically justified parameter domain and report its distinct-stem count and repeat cycle honestly. The JSON engine's 5,000-combination limit does not apply to custom code. Preserve the source example when valid.
 - Independently derive answers from displayed inputs in tests. Check constraints, boundary/sign/zero cases, units, distractor collisions, grading, explanations, determinism, cycle uniqueness, and saved-session compatibility. Exhaustively check feasible domains; justify coverage of larger domains. Inspect actual rendered examples.
 - Review related generators below to avoid duplicating an existing family. Reuse the selected module; retain source IDs as provenance. Preserve unrelated catalog content and student sessions.
-- Use the shared registration helpers, extending destination support if necessary for the exact existing module ID. Dry-run and inspect the changes first, then apply one revision-checked registration. A new generator must be disabled and unreviewed; existing resources keep their current state. Confirm a second dry-run is unchanged.
+- After validation passes, use the shared registration helpers with --enable, extending destination support if necessary for the exact existing module ID. Dry-run and inspect the changes first, then apply one revision-checked registration. Enable the requested generator for practice modules and verify its destination includes it. Keep new generators unreviewed; preserve existing review statuses, unrelated resources, and existing module publication settings. Confirm a second dry-run is unchanged.
 - Run the focused tests, relevant typechecks, and practice-studio regression suite. Report any unrelated failures accurately. Explain how to find and preview the generator in the studio. Report code changes, catalog registration, and deployment separately; deployment requires separate authorization.
 
 RELATED GENERATORS:

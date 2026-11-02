@@ -796,7 +796,7 @@ export function AdvancedPassagePage() {
               .map((line, index) =>
                 line.image ? (
                   <figure className="exam-passage-image" key={`${line.image.src}-footer-${index}`}>
-                    <img alt={line.image.alt} src={line.image.src} />
+                    <img alt={line.image.alt} src={line.image.src} width={line.image.width} />
                     {line.image.caption ? <figcaption>{line.image.caption}</figcaption> : null}
                   </figure>
                 ) : null,

@@ -122,7 +122,7 @@ export function ExamReviewPassage({ passage }: { passage: ExamPassage }) {
       })}
       {passage.sourceNote ? <p className="exam-passage-source-note"><ExamText html={passage.sourceNoteHtml} text={passage.sourceNote} /></p> : null}
       {passage.lines.filter(line => line.kind === "image" && line.image).map((line, index) => line.image ? <figure className="exam-passage-image" key={`${line.image.src}-${index}`}>
-        <img src={line.image.src} alt={line.image.alt} />
+        <img src={line.image.src} alt={line.image.alt} width={line.image.width} />
         {line.image.caption ? <figcaption>{line.image.caption}</figcaption> : null}
       </figure> : null)}
     </div>
@@ -139,7 +139,7 @@ export function ReviewQuestionBody({ answerPresentation, item, showAnswers, view
     : {};
 
   return <>
-    {!viewer && passage && <details className="exam-review-passage"><summary>Read passage: {passage.title}</summary>{passage.lines.map((line, index) => <p key={index}>{line.lineNumber && <small>{line.lineNumber} </small>}<ExamText html={line.html} text={line.text} />{line.image && <img src={line.image.src} alt={line.image.alt} />}</p>)}{passage.sourceNote && <small><ExamText html={passage.sourceNoteHtml} text={passage.sourceNote} /></small>}</details>}
+    {!viewer && passage && <details className="exam-review-passage"><summary>Read passage: {passage.title}</summary>{passage.lines.map((line, index) => <p key={index}>{line.lineNumber && <small>{line.lineNumber} </small>}<ExamText html={line.html} text={line.text} />{line.image && <img src={line.image.src} alt={line.image.alt} width={line.image.width} />}</p>)}{passage.sourceNote && <small><ExamText html={passage.sourceNoteHtml} text={passage.sourceNote} /></small>}</details>}
     {(question.instructions || question.instructionsHtml) && <p className={viewer ? "exam-question-instructions" : undefined}><ExamText html={question.instructionsHtml} text={question.instructions} /></p>}
     {(question.stimulus || question.stimulusHtml) && <p className={viewer ? "exam-question-instructions" : undefined}><ExamText html={question.stimulusHtml} text={question.stimulus} /></p>}
     {viewer ? <h1>{prompt}</h1> : <h2>{prompt}</h2>}

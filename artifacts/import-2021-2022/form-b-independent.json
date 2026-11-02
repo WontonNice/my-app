@@ -1,0 +1,467 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "points": 1,
+      "prompt": "Read these sentences.\n(1) Flyby missions near Jupiter have been happening since 1973.\n(2) Flyby missions allow scientists to collect data about Jupiter and its moons.\n\nWhat is the best way to combine the sentences to clarify the relationship between the ideas?",
+      "promptHtml": "<p><span><span>Read</span> these <span>sentences</span>.</span></p> <blockquote data-boxed=\"true\"> <p><span>(1) Flyby missions near Jupiter have been happening since </span><span>1973.</span></p> <p><span>(2) Flyby missions allow scientists to collect data about Jupiter and its moons.</span></p> </blockquote> <p> <span><br><span>What</span> is the <span>best</span> way to combine the sentences to clarify the relationship between the ideas?</span></p>",
+      "topic": "",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p><span>While flyby missions near Jupiter have been happening since </span><span>1973,</span><span> scientists collect data about the planet and its moons.</span></p>",
+          "text": "While flyby missions near Jupiter have been happening since 1973, scientists collect data about the planet and its moons."
+        },
+        {
+          "id": "B",
+          "html": "<p><span>Although there have been flyby missions near Jupiter since </span><span>1973,</span><span> they have allowed scientists to collect data about the planet and its moons.</span></p>",
+          "text": "Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons."
+        },
+        {
+          "id": "C",
+          "html": "<p><span>Flyby missions near Jupiter, <span>which</span> allow scientists to collect data about the planet and its moons, have been happening since </span><span>1973.</span></p>",
+          "text": "Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973."
+        },
+        {
+          "id": "D",
+          "html": "<p><span>Flyby missions have been happening near Jupiter, but scientists have been collecting data about the planet and its moons since </span><span>1973.</span></p>",
+          "text": "Flyby missions have been happening near Jupiter, but scientists have been collecting data about the planet and its moons since 1973."
+        }
+      ],
+      "type": "multiple_choice",
+      "id": "pdf-shsat-2021-2022-b-q001",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          1
+        ],
+        "sourceQuestion": "1",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "expectedChoiceCount": 4,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "topicConfidence": null,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                86,
+                291,
+                1163,
+                896
+              ]
+            }
+          ]
+        }
+      },
+      "instructions": "Read these sentences.",
+      "instructionsHtml": "<p>Read these sentences.</p>",
+      "explanation": "The question asks for the best way to combine the sentences to clarify the relationship between\nthe ideas.\nA. Incorrect. Even though the two ideas from the original sentences are incorporated into the\ncombined sentence, the use of the conjunction “while” in the first part of the sentence\nsuggests that there is a simultaneous but unrelated relationship between the two ideas,\nwhich is incorrect.\nB. Incorrect. The combined sentence incorporates the ideas from both sentences, but the\nconjunction “although” suggests that scientists were allowed to collect data even though\nthere were flyby missions, which is an inaccurate way to express the relationship between\nthe ideas.\nC. CORRECT. This sentence is the best way to combine the sentences because it accurately\nreflects the relationship between the ideas by using the nonrestrictive clause “which allow\nscientists to collect data about the planet and its moons” to describe the purpose of the flyby\nmissions. (Nonrestrictive clauses are adjective clauses that give additional information about\na word or phrase. They sometimes begin with the relative pronoun “which” and are set off by\ncommas.) The idea that the missions “have been happening since 1973” follows the\nnonrestrictive clause.\nD. Incorrect. The combined sentence uses the conjunction “but” to connect the ideas in the two\noriginal sentences. This suggests an adverse relationship between ideas, which is an\ninaccurate way to connect the ideas expressed in the original sentences.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q001-explanation-1.png\" width=\"689\" alt=\"Official explanation for source question 1; original printed answer labels retained.\"></p>",
+      "sourceQuestion": "1",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2021-2022 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2021-2022-form-b",
+        "label": "2021-2022 Form B",
+        "year": "2021-2022",
+        "form": "B",
+        "sourceFile": "20212022_form_b.pdf",
+        "sha256": "3dc9c1cff8d43116dfa9f23404cde100eb742841b61759a9291d38ff1f7882f4",
+        "sourceQuestion": "1",
+        "pages": [
+          1
+        ]
+      },
+      "notes": [
+        "Supplied 20212022_form_b.pdf; PDF page 1; original question 1."
+      ]
+    },
+    {
+      "points": 1,
+      "prompt": "Which sentence contains an error in its construction and should be revised?",
+      "promptHtml": "Which sentence contains an error in its construction and should be revised?",
+      "stimulus": "(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) In 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.",
+      "stimulusHtml": "<p>(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) In 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.</p>",
+      "topic": "Modifiers",
+      "choices": [
+        {
+          "id": "A",
+          "html": "sentence 1",
+          "text": "sentence 1"
+        },
+        {
+          "id": "B",
+          "html": "sentence 2",
+          "text": "sentence 2"
+        },
+        {
+          "id": "C",
+          "html": "sentence 3",
+          "text": "sentence 3"
+        },
+        {
+          "id": "D",
+          "html": "sentence 4",
+          "text": "sentence 4"
+        }
+      ],
+      "type": "multiple_choice",
+      "id": "pdf-shsat-2021-2022-b-q002",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "2",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "expectedChoiceCount": 4,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            2
+          ],
+          "regions": [
+            {
+              "page": 2,
+              "box": [
+                75,
+                156,
+                1154,
+                760
+              ]
+            }
+          ]
+        }
+      },
+      "instructions": "Read this paragraph.",
+      "instructionsHtml": "<p>Read this paragraph.</p>",
+      "explanation": "The question asks for the identification of the sentence that has an error in its construction and\nshould be revised.\n—. Incorrect. There are no errors in the structure of sentence 1. The clause “who played in the\nLong Island area at the time” correctly modifies the noun “New York Nets.” “Who” is the\ncorrect relative pronoun to serve as the subject of the modifying clause because it refers to\npeople rather than objects or things.\nF. CORRECT. Sentence 2 contains a structural error. The current placement of the clause\n“where the Nets played for thirty-five seasons” suggests the clause is modifying the term\n“financial troubles,” which is illogical. The clause “where the Nets played for thirty-five\nseasons” should immediately follow the location, “New Jersey.” A revised version of the\nsentence might read, “After the team had financial troubles, the owner of the Nets decided to\ntake the team to New Jersey, where the Nets played for thirty-five seasons.”\nG. Incorrect. There are no errors in the structure of sentence 3. The phrase “including two\nappearances in the NBA finals” is a nonrestrictive phrase that provides further detail about\nthe team’s “sixteen playoff appearances.” The phrase is set off by a comma because it is not\nessential to understanding the meaning of the sentence.\nH. Incorrect. There are no errors in the structure of sentence 4. The clause “where the team\nnow plays under the name the Brooklyn Nets” is a nonrestrictive clause that provides further\ndetail about the team after its move back to New York in 2012. The phrase is set off by a\ncomma because it is not essential to understanding the meaning of the sentence.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q002-explanation-1.png\" width=\"691\" alt=\"Official explanation for source question 2; original printed answer labels retained.\"></p>",
+      "sourceQuestion": "2",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2021-2022 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2021-2022-form-b",
+        "label": "2021-2022 Form B",
+        "year": "2021-2022",
+        "form": "B",
+        "sourceFile": "20212022_form_b.pdf",
+        "sha256": "3dc9c1cff8d43116dfa9f23404cde100eb742841b61759a9291d38ff1f7882f4",
+        "sourceQuestion": "2",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20212022_form_b.pdf; PDF page 2; original question 2."
+      ]
+    },
+    {
+      "points": 1,
+      "prompt": "How should the paragraph be revised?",
+      "promptHtml": "How should the paragraph be revised?",
+      "stimulus": "(1) Danielle spent several hours preparing for an upcoming audition for a play at the community theater. (2) First she did vocal exercises to practice her diction and projection so that her words would carry clearly throughout the large auditorium. (3) Then she studies the text of the monologue to better understand the emotions, and motivations of the character she plans to portray. (4) Finally she recited her monologue in front of a mirror many times, making slight adjustments and improvements to her performance each time.",
+      "stimulusHtml": "(1) Danielle <u>spent</u> several hours preparing for an upcoming audition for a <u>play</u> at the community theater. (2) First she <u>did</u> vocal exercises to practice her diction and <u>projection</u> so that her words would carry clearly throughout the large auditorium. (3) Then she <u>studies</u> the text of the monologue to better understand the <u>emotions,</u> and motivations of the character she plans to portray. (4) Finally she <u>recited</u> her monologue in front of a mirror many <u>times,</u> making slight adjustments and improvements to her performance each time.",
+      "topic": "Verbs",
+      "choices": [
+        {
+          "id": "A",
+          "html": "Sentence 1: Change <em><strong>spent</strong></em> to <strong>had spent</strong>, AND insert a comma after <em><strong>play</strong></em>.",
+          "text": "Sentence 1: Change spent to had spent, AND insert a comma after play."
+        },
+        {
+          "id": "B",
+          "html": "Sentence 2: Change <em><strong>did</strong></em> to <strong>does</strong>, AND insert a comma after <em><strong>projection</strong></em>.",
+          "text": "Sentence 2: Change did to does, AND insert a comma after projection."
+        },
+        {
+          "id": "C",
+          "html": "Sentence 3: Change <em><strong>studies</strong></em> to <strong>studied</strong>, AND delete the comma after <em><strong>emotions</strong></em>.",
+          "text": "Sentence 3: Change studies to studied, AND delete the comma after emotions."
+        },
+        {
+          "id": "D",
+          "html": "Sentence 4: Change <em><strong>recited</strong></em> to <strong>recites</strong>, AND delete the comma after <em><strong>times</strong></em>.",
+          "text": "Sentence 4: Change recited to recites, AND delete the comma after times."
+        }
+      ],
+      "type": "multiple_choice",
+      "id": "pdf-shsat-2021-2022-b-q003",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "3",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "expectedChoiceCount": 4,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            2
+          ],
+          "regions": [
+            {
+              "page": 2,
+              "box": [
+                75,
+                809,
+                1157,
+                1413
+              ]
+            }
+          ]
+        }
+      },
+      "instructions": "Read this paragraph.",
+      "instructionsHtml": "<p>Read this paragraph.</p>",
+      "explanation": "The question asks how the paragraph should be revised.\nA. Incorrect. The revisions in this option introduce new errors. The word “spent” is correct in the\npast tense because that is the tense used throughout the rest of the paragraph. Additionally,\nadding a comma after the word “play” would be incorrect because it would separate the\nprepositional phrase “at the community theater” from the rest of the sentence.\nB. Incorrect. The revisions in this option introduce new errors. The word “did” is correct as\nwritten in the past tense because the past tense is used throughout the paragraph. There\nis no comma needed after the word “projection” because “so” is not functioning as a\nconjunction but rather as part of the conjunction phrase “so that,” which does not take\na comma.\nC. CORRECT. Changing the word “studies” from the present tense to the past tense “studied” is\nnecessary to match the past tense established in the paragraph (“spent,” “recited”).\nAdditionally, the comma after the word “emotions” needs to be removed because the words\n“emotions and motivations” are part of a group (series) of two elements, and when there are\nonly two elements in a series, a comma is not used.\nD. Incorrect. The revisions in this option introduce new errors. The word “recited” is correct as\nwritten in the past tense because the past tense is used throughout the paragraph. Also,\nremoving the comma after “times” is incorrect because the comma is needed in order to\nseparate the modifying phrase “making slight adjustments and improvements to her\nperformance each time” from the main clause.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q003-explanation-1.png\" width=\"692\" alt=\"Official explanation for source question 3; original printed answer labels retained.\"></p>",
+      "sourceQuestion": "3",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2021-2022 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2021-2022-form-b",
+        "label": "2021-2022 Form B",
+        "year": "2021-2022",
+        "form": "B",
+        "sourceFile": "20212022_form_b.pdf",
+        "sha256": "3dc9c1cff8d43116dfa9f23404cde100eb742841b61759a9291d38ff1f7882f4",
+        "sourceQuestion": "3",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20212022_form_b.pdf; PDF page 2; original question 3."
+      ]
+    },
+    {
+      "points": 1,
+      "prompt": "Which pair of revisions needs to be made in this paragraph?",
+      "promptHtml": "Which pair of revisions needs to be made in this paragraph?",
+      "stimulus": "(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.",
+      "stimulusHtml": "<p>(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people <u>wonder:</u> what <u>is</u> the difference between the two? (2) To start <u>with,</u> the butterfat content is much higher in ice cream than <u>it is</u> in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing <u>process,</u> which adds less air to the frozen treat, <u>makes</u> gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the <u>gelato,</u> and <u>allow</u> it to melt more quickly.</p>",
+      "topic": "Pronouns",
+      "choices": [
+        {
+          "id": "A",
+          "html": "Sentence 1: Delete the colon after <strong><em>wonder</em></strong> AND change <strong><em>is</em></strong> to <strong>are</strong>.",
+          "text": "Sentence 1: Delete the colon after wonder AND change is to are."
+        },
+        {
+          "id": "B",
+          "html": "Sentence 2: Delete the comma after <strong><em>with</em></strong> AND change <strong><em>it is</em></strong> to <strong>they are</strong>.",
+          "text": "Sentence 2: Delete the comma after with AND change it is to they are."
+        },
+        {
+          "id": "C",
+          "html": "Sentence 3: Delete the comma after <strong><em>process</em></strong> AND change <strong><em>makes</em></strong> to <strong>make</strong>.",
+          "text": "Sentence 3: Delete the comma after process AND change makes to make."
+        },
+        {
+          "id": "D",
+          "html": "Sentence 4: Delete the comma after <strong><em>gelato</em></strong> AND change <strong><em>allow</em></strong> to <strong>allows</strong>.",
+          "text": "Sentence 4: Delete the comma after gelato AND change allow to allows."
+        }
+      ],
+      "type": "multiple_choice",
+      "id": "pdf-shsat-2021-2022-b-q004",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          3
+        ],
+        "sourceQuestion": "4",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "expectedChoiceCount": 4,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            3
+          ],
+          "regions": [
+            {
+              "page": 3,
+              "box": [
+                74,
+                156,
+                1158,
+                949
+              ]
+            }
+          ]
+        }
+      },
+      "instructions": "Read this paragraph.",
+      "instructionsHtml": "<p>Read this paragraph.</p>",
+      "explanation": "The question asks for the revisions that are needed to correct errors in the paragraph.\nE. Incorrect. The revisions introduce new errors. The colon after “wonder” is needed to set off\nthe question “what is the difference between the two?” from the rest of the sentence. In\naddition, changing the verb “is” to “are” would be incorrect with the use of the singular noun\n“difference,” which is the subject in the question.\nF. Incorrect. The revisions introduce new errors. The comma following the introductory phrase\n“To start with” helps with clarity and is needed to separate the phrase from the rest of the\nsentence. Changing “it is” to “they are” would be incorrect with the use of the singular noun\n“butterfat content,” which is what the words “it is” refer to in the sentence.\nG. Incorrect. The revisions introduce new errors. The comma following “process” is necessary to\nset off the nonrestrictive clause “which adds less air to the frozen treat” from the rest of the\nsentence. This clause is considered a nonrestrictive clause because it provides additional, but\nnot essential, information about the mixing process. Changing the verb “makes” to “make”\nwould be incorrect with the use of the singular noun “mixing process,” which is the subject of\nthe sentence.\nH. CORRECT. Deleting the comma after “gelato” would include the clause “and allow it to melt\nmore quickly” with the first part of the clause “which enhances the texture and flavor of the\ngelato.” The word “and” between the two verb phrases (“enhances the texture and flavor of\nthe gelato” and “allow it to melt more quickly”) indicates that the two verb phrases share a\nsubject, “which” (referring to the act of serving gelato 10 to 15 degrees warmer than ice\ncream). The two ideas should not be separated by a comma within the clause. The entire\nclause “which enhances the texture and flavor of the gelato and allow it to melt more quickly”\nshould be separated from the main clause only by the comma after “cream” because the\nentire clause is a nonrestrictive clause. This clause provides additional, but not essential,\ninformation about the purpose of serving gelato at a warmer temperature than when serving\nice cream. Changing the verb “allow” to “allows” is also necessary to match the use of the\nsingular noun “gelato,” which is the subject of the sentence.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q004-explanation-1.png\" width=\"694\" alt=\"Official explanation for source question 4; original printed answer labels retained.\"></p>",
+      "sourceQuestion": "4",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2021-2022 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2021-2022-form-b",
+        "label": "2021-2022 Form B",
+        "year": "2021-2022",
+        "form": "B",
+        "sourceFile": "20212022_form_b.pdf",
+        "sha256": "3dc9c1cff8d43116dfa9f23404cde100eb742841b61759a9291d38ff1f7882f4",
+        "sourceQuestion": "4",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Supplied 20212022_form_b.pdf; PDF page 3; original question 4."
+      ]
+    }
+  ]
+}

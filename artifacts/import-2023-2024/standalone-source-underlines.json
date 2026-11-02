@@ -1,0 +1,91 @@
+[
+  {
+    "form": "a",
+    "sourceQuestion": "1",
+    "sourcePage": 3,
+    "stimulus": "On May 8, 2018, Boston University student Zach Prescott ran a mile in 4 minutes 43.2 seconds while juggling three lacrosse balls, breaking the 32-year-old world record in joggling a sport that combines jogging and juggling.",
+    "stimulusHtml": "<p>On May 8, <u>2018,</u> Boston University <u>student</u> Zach Prescott ran a mile in 4 minutes 43.2 seconds while juggling three <u>lacrosse balls,</u> breaking the 32-year-old world record in <u>joggling</u> a sport that combines jogging and juggling.</p>",
+    "underlines": [
+      "2018,",
+      "student",
+      "lacrosse balls,",
+      "joggling"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "2",
+    "sourcePage": 3,
+    "stimulus": "(1) Danielle spent several hours preparing for an upcoming audition for a play at the community theater. (2) First she did vocal exercises to practice her diction and projection so that her words would carry clearly throughout the large auditorium. (3) Then she studies the text of the monologue to better understand the emotions, and motivations of the character she plans to portray. (4) Finally she recited her monologue in front of a mirror many times, making slight adjustments and improvements to her performance each time.",
+    "stimulusHtml": "<p>(1) Danielle <u>spent</u> several hours preparing for an upcoming audition for a <u>play</u> at the community theater. (2) First she <u>did</u> vocal exercises to practice her diction and <u>projection</u> so that her words would carry clearly throughout the large auditorium. (3) Then she <u>studies</u> the text of the monologue to better understand the <u>emotions,</u> and motivations of the character she plans to portray. (4) Finally she <u>recited</u> her monologue in front of a mirror many <u>times,</u> making slight adjustments and improvements to her performance each time.</p>",
+    "underlines": [
+      "spent",
+      "play",
+      "did",
+      "projection",
+      "studies",
+      "emotions,",
+      "recited",
+      "times,"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "3",
+    "sourcePage": 4,
+    "stimulus": "To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.",
+    "stimulusHtml": "<p>To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</p>",
+    "underlines": []
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "4",
+    "sourcePage": 4,
+    "stimulus": "In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation Proclamation, written in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.",
+    "stimulusHtml": "<p>In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian <u>Institution, the</u> museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a <u>year. The</u> museum features more than 30,000 <u>objects, including</u> Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation <u>Proclamation, written</u> in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.</p>",
+    "underlines": [
+      "Institution, the",
+      "year. The",
+      "objects, including",
+      "Proclamation, written"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "1",
+    "sourcePage": 2,
+    "stimulus": "To surprise her dad for his birthday on Friday, Yolanda ordered tempting savory sandwiches from a deli in her neighborhood, prepared his favorite chocolate cake, and invited his best friends over for the evening.",
+    "stimulusHtml": "<p>To surprise her dad for his birthday on <u>Friday,</u> Yolanda ordered <u>tempting</u> savory sandwiches from a <u>deli</u> in her <u>neighborhood,</u> prepared his favorite chocolate cake, and invited his best friends over for the evening.</p>",
+    "underlines": [
+      "Friday,",
+      "tempting",
+      "deli",
+      "neighborhood,"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "2",
+    "sourcePage": 3,
+    "stimulus": "(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City. (2) Leaving approximately 73,000 residents without electricity for three long hours, lights did not function, refrigerators did not stay cold, and air conditioners did not work. (3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier—on the exact same day! (4) The famous New York City Blackout of 1977, which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.",
+    "stimulusHtml": "<p>(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City. (2) Leaving approximately 73,000 residents without electricity for three long hours, lights did not function, refrigerators did not stay cold, and air conditioners did not work. (3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier—on the exact same day! (4) The famous New York City Blackout of 1977, which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.</p>",
+    "underlines": []
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "3",
+    "sourcePage": 3,
+    "stimulus": "(1) Yalina, Michael, and Malcolm love making pancakes with their granddad on Saturday mornings. (2) Yalina’s job is to open the box and pour the pancake mix into a bowl, slowly adding water, eggs, melted butter, and blueberries. (3) Michael uses a wooden spoon to vigorously stir the mixture until it is smooth, and Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time. (4) Granddad turns each pancake when they start to bubble, while all three siblings get the table ready for a sweet delicious breakfast.",
+    "stimulusHtml": "<p>(1) <u>Yalina,</u> Michael, and Malcolm love making pancakes with <u>their</u> granddad on Saturday mornings. (2) Yalina’s job <u>is</u> to open the box and pour the pancake mix into a <u>bowl,</u> slowly adding water, eggs, melted butter, and blueberries. (3) Michael uses a wooden spoon to vigorously stir the mixture until <u>it is</u> <u>smooth,</u> and Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time. (4) Granddad turns each pancake when <u>they start</u> to bubble, while all three siblings get the table ready for a <u>sweet</u> delicious breakfast.</p>",
+    "underlines": [
+      "Yalina,",
+      "their",
+      "is",
+      "bowl,",
+      "it is",
+      "smooth,",
+      "they start",
+      "sweet"
+    ]
+  }
+]

@@ -68,3 +68,15 @@
 .lp-student-plan .lp-summary-strip { grid-template-columns: repeat(4,minmax(0,1fr)); }
 @media(max-width:1000px) { .lp-week-grid { grid-template-columns: repeat(4,minmax(0,1fr)); } }
 @media(max-width:650px) { .lp-summary-strip { grid-template-columns: repeat(2,minmax(0,1fr)); } .lp-upcoming { grid-template-columns: 1fr; } .lp-week-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .lp-toolbar label { flex: 1 1 130px; } .lp-toolbar input, .lp-toolbar select { width: 100%; max-width: none; } .lp-student-task { grid-template-columns: 1fr; } .lp-student-task > div:last-child { flex-direction: row; flex-wrap: wrap; align-items: center; } .lp-student-plan .lp-summary-strip { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+.lp-infinite-preview { margin: 14px 0; line-height: 1.6; }
+.lp-infinite-preview ul { list-style: none; padding: 0; }
+.lp-infinite-preview li { display: flex; justify-content: space-between; align-items: start; gap: 18px; padding: 14px 0; border-bottom: 1px solid #d4ded8; }
+.lp-infinite-preview li p { margin: 4px 0; max-width: 65ch; }
+.lp-infinite-preview button { flex-shrink: 0; }
+.lp-infinite-sample { margin-top: 20px; padding: 16px; background: #f8faf8; }
+.lp-infinite-sample img, .lp-evidence-context img, .mc-worked-explanation img { max-width: 100%; height: auto; }
+.lp-evidence-context { margin: 16px 11px; padding: 12px; background: #f3f7f4; }
+.lp-evidence-context summary { cursor: pointer; font-weight: 600; }
+.lp-evidence-context li { margin: 12px 0; max-width: 70ch; }
+.lp-evidence-context .exam-review-answer-value { display: inline; }
+@media (max-width: 620px) { .lp-infinite-preview li { flex-direction: column; gap: 8px; } }

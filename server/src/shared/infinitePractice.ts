@@ -4,8 +4,11 @@ import { generateWritingInequality, writingInequalitiesTemplate } from './writin
 import { generateOverlappingGroups, overlappingGroupsTemplate } from './overlappingGroups';
 import { wordProblemPractice, surveyTotalsTemplate } from './practiceWordProblems';
 import { probabilityPractice, probabilityModule } from './probabilityPractice';
+import { generateSymbolicFractionDivision, symbolicFractionDivisionTemplate } from './symbolicFractionDivision';
+import { generateRepeatingDecimalDigit, repeatingDecimalDigitsTemplate } from './repeatingDecimalDigits';
+import { generateRectangleAreaPercent, rectangleAreaPercentTemplate } from './rectangleAreaPercent';
 
-type Generator = { id: string; title: string; description?: string; category?: string; topic?: string; foundation: boolean; generate: (index: number, seed: string) => ExamQuestion };
+type Generator = { id: string; title: string; description?: string; category?: string; topic?: string; enabled?: boolean; foundation: boolean; generate: (index: number, seed: string) => ExamQuestion };
 export type PracticeModule = { id: string; title: string; description: string; category?: string; topic?: string; placement?:'foundation'|'general'; selection: 'foundation' | 'all' | string[] };
 const foundationIndices = Array.from({ length: 1056 }, (_, index) => index).filter(index => {
   const item = generateInequality(index, 'foundation');
@@ -26,6 +29,9 @@ export const practiceGenerators: Generator[] = [
   { id: overlappingGroupsTemplate.id, title: overlappingGroupsTemplate.title, description: overlappingGroupsTemplate.description, category: overlappingGroupsTemplate.category, topic: overlappingGroupsTemplate.topic, foundation: false, generate: (index, seed) => generateOverlappingGroups(index, seed).question },
   ...wordProblemPractice.map(template=>({id:template.id,title:template.title,description:template.description,category:template.category,topic:template.topic,foundation:false,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
   ...probabilityPractice.map(template=>({id:template.id,title:template.title,description:template.description,category:template.category,topic:template.topic,foundation:true,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
+  { ...symbolicFractionDivisionTemplate, foundation: false, generate: (index, seed) => generateSymbolicFractionDivision(index, seed).question },
+  { ...repeatingDecimalDigitsTemplate, foundation: true, generate: (index, seed) => generateRepeatingDecimalDigit(index, seed, 1).question },
+  { ...rectangleAreaPercentTemplate, foundation: false, generate: (index, seed) => generateRectangleAreaPercent(index, seed).question },
 ];
 
 // Targeted modules can combine any number of registered generators. Stable IDs
@@ -42,7 +48,7 @@ export const practiceModules: PracticeModule[] = [
 ];
 
 export function moduleGeneratorIds(module: PracticeModule): string[] {
-  return practiceGenerators.filter(generator => module.selection === 'all' || (module.selection === 'foundation' ? generator.foundation&&(generator.category??'Algebra')===(module.category??'Algebra')&&(generator.topic??'Inequalities')===(module.topic??'Inequalities') : module.selection.includes(generator.id))).map(generator => generator.id);
+  return practiceGenerators.filter(generator => generator.enabled !== false && (module.selection === 'all' || (module.selection === 'foundation' ? generator.foundation&&(generator.category??'Algebra')===(module.category??'Algebra')&&(generator.topic??'Inequalities')===(module.topic??'Inequalities') : module.selection.includes(generator.id)))).map(generator => generator.id);
 }
 
 export function generatePracticeQuestion(generatorIds: string[], index: number, seed: string): ExamQuestion {

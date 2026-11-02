@@ -377,7 +377,7 @@ const excerptFromInSearchOfTheUnknown20262027FormBQuestions: ExamQuestion[] = [
 
 export const excerptFromInSearchOfTheUnknown20262027FormBPassageSet: ExamPassageSet = {
   id: "ela-excerpt-from-in-search-of-the-unknown-2026-2027-form-b",
-  versionLabels: ["2026-2027 Form B"],
+  versionLabels: ["2026-2027 Form B","2021-2022 Form A"],
   section: "reading",
   questionCount: excerptFromInSearchOfTheUnknown20262027FormBQuestions.length,
   directions: {

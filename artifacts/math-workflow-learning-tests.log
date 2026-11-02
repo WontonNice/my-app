@@ -1,0 +1,48 @@
+
+> nathantutors@0.0.0 test:learning-plan
+> node --test server/tests/learning-plan.test.cjs
+
+✔ calendar, workload and supply calculations do not invent dates or durations (7.2785ms)
+✔ permissions, empty student, archived student, and malformed identity (57.6512ms)
+✔ external/offline lifecycle is persistent, teacher verified, and student isolated (48.7621ms)
+✔ planned passages stay private; publishing, duplicate warnings, intentional repeats and idempotency (53.4781ms)
+✔ practice completion uses new questions after publishing, not earlier progress (5.8722ms)
+✔ exam access opens for only the assigned student without modifying global gates (8.3035ms)
+✔ assigned passage access and saved native attempts complete only that student’s homework (75.5601ms)
+✔ notes, URL validation, missing content and optimistic concurrency (35.9806ms)
+✔ years of completed history paginates; week query filters before pagination (164.8723ms)
+✔ real earlier results inform passage inventory without invented assigned dates (133.2088ms)
+✖ a completed combined book records prior work for every original version alias (1.6346ms)
+✔ unfinished/Math-only exams do not mark passages done; undated completed passage records retain No Data dates (414.9774ms)
+✔ inventory has exclusive student-specific statuses for mixed, cancelled, repeated and exhausted content (1.7632ms)
+✔ SHSAT Lab sets are practice, complete from exact attempts, and remain student isolated (28.6864ms)
+✔ missing migration is an explicit error and cannot break existing access (6.4858ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2072.6917
+
+✖ failing tests:
+
+test at server\tests\learning-plan.test.cjs:207:1
+✖ a completed combined book records prior work for every original version alias (1.6346ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  5 !== 2
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\learning-plan.test.cjs:210:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 5,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

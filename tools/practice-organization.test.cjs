@@ -9,7 +9,7 @@ const {practiceChildIsHidden,changePracticeChild}=require('../client/src/feature
 const {generationSetEntries}=require('../client/src/features/math-command/generationSet.ts');
 const {modulePreviewCatalog}=require('../client/src/features/math-command/generatorPreview.ts');
 // This suite exercises the earlier Probability collection migration.
-const taxonomy={categories:[{label:'Algebra',topics:['Inequalities']},{label:'Statistics and Probability',topics:['Probability','Overlapping Groups']},{label:'Ratios and Proportional Relationships',topics:['Rates & Unit Rates','Ratios & Proportions']}]};
+const taxonomy={categories:[{label:'Algebra',topics:['Inequalities','Algebraic Expressions','Patterns & Sequences']},{label:'Statistics and Probability',topics:['Probability','Overlapping Groups']},{label:'Ratios and Proportional Relationships',topics:['Rates & Unit Rates','Ratios & Proportions','Percentages']}]};
 const filters={status:'',difficulty:'',program:'',subject:''};
 function legacy(){
   const catalog=defaultPracticeCatalog(taxonomy),ids=probabilityPractice.map(item=>item.id);

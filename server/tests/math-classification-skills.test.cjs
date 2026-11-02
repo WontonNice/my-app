@@ -8,7 +8,7 @@ function fixture(t){
   const root=fs.mkdtempSync(path.join(os.tmpdir(),'skilled-classification-'));
   t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
   fs.mkdirSync(path.join(root,'server/data'),{recursive:true});fs.mkdirSync(path.join(root,'tools'),{recursive:true});
-  const taxonomy={categories:[{label:'Algebra',topics:['Inequalities','Equations']},{label:'Statistics and Probability',topics:['Probability','Overlapping Groups']},{label:'Ratios and Proportional Relationships',topics:['Rates & Unit Rates','Ratios & Proportions']}]};
+  const taxonomy={categories:[{label:'Algebra',topics:['Inequalities','Equations','Algebraic Expressions','Patterns & Sequences']},{label:'Statistics and Probability',topics:['Probability','Overlapping Groups']},{label:'Ratios and Proportional Relationships',topics:['Rates & Unit Rates','Ratios & Proportions','Percentages']}]};
   fs.writeFileSync(path.join(root,'tools/math-topics.json'),JSON.stringify(taxonomy));
   const question={id:'q-1',type:'short_response',topic:'Algebra',subtopic:'Inequalities',prompt:'Solve x + 1 = 3.',correctTextAnswers:['2'],explanation:'Subtract 1.'};
   const content={exam:{assessmentId:'exam',title:'Fixture',passageSets:[],mathSection:{questions:[question,{...question,id:'q-2',skilled:'manual-skill'}]}}};

@@ -32,7 +32,7 @@
         "preview": "npm run preview --workspace client",
         "content-editor": "node tools/content-studio.mjs",
         "content-editor:validate": "node tools/content-studio.mjs --validate",
-        "content-editor:test": "node --test tools/content-studio-workspace.test.mjs tools/content-studio-math.test.mjs tools/content-studio-exams.test.mjs tools/exam-duplicates.test.mjs tools/part-b-bank.test.cjs tools/passage-category-editor.test.mjs tools/math-topic-editor.test.mjs tools/sentence-blanks.test.cjs",
+        "content-editor:test": "node --test tools/content-studio-workspace.test.mjs tools/content-studio-math.test.mjs tools/content-studio-exams.test.mjs tools/exam-duplicates.test.mjs tools/part-b-bank.test.cjs tools/passage-category-editor.test.mjs tools/passage-image-size.test.mjs tools/math-topic-editor.test.mjs tools/sentence-blanks.test.cjs",
         "test:passage-organization": "node --test server/tests/passage-organization.test.cjs",
         "test:answer-sheets": "node --test server/tests/answer-sheets.test.cjs server/tests/answer-sheet-sync.test.cjs",
         "preview:answer-sheets": "node tools/preview-answer-sheets.cjs",
@@ -50,7 +50,7 @@
         "test:boards": "node --test server/tests/boards.test.cjs",
         "preview:boards": "node tools/preview-boards.cjs",
         "test:learning-plan": "node --test server/tests/learning-plan.test.cjs",
-        "test:math-command": "node --test server/tests/math-classification-skills.test.cjs server/tests/math-command-catalog.test.cjs server/tests/math-command-management.test.cjs server/tests/math-command-persistence.test.cjs server/tests/math-command.test.cjs tools/export-exam-content.test.cjs",
+        "test:math-command": "node --test server/tests/math-workflow.test.cjs server/tests/math-classification-skills.test.cjs server/tests/math-command-catalog.test.cjs server/tests/math-command-management.test.cjs server/tests/math-command-persistence.test.cjs server/tests/math-command.test.cjs tools/export-exam-content.test.cjs",
         "preview:math-command": "node tools/preview-math-command.cjs --port=4328",
         "seed:math-command": "node tools/seed-math-command.cjs",
         "test:question-bank": "node --test tools/question-bank.test.mjs tools/content-studio-bank.test.cjs extensions/shsatlab-ela-reader/reader.test.cjs extensions/shsatlab-ela-reader/automation.test.cjs extensions/shsatlab-ela-reader/popup.test.cjs extensions/shsatlab-ela-reader/bulk.test.cjs extensions/shsatlab-ela-reader/editor-sync.test.cjs server/tests/question-bank-routes.test.cjs",
@@ -61,10 +61,11 @@
         "exam-editor:validate": "npm run content-editor:validate",
         "question-editor": "npm run content-editor",
         "question-editor:validate": "npm run content-editor:validate",
-        "test:document-import": "node tools/generate-document-prompt.mjs --check && node --test tools/document-import.test.mjs tools/document-render.test.cjs tools/math-import-batch.test.mjs",
+        "test:document-import": "node tools/generate-document-prompt.mjs --check && node --test tools/document-import.test.mjs tools/document-render.test.cjs tools/math-import-batch.test.mjs tools/math-choice-import.test.mjs tools/math-expression-import.test.mjs",
         "content-editor:prompt": "node tools/generate-document-prompt.mjs",
         "test:passage-progress": "node --test server/tests/passage-organization.test.cjs server/tests/learning-plan.test.cjs tools/passage-progress-view.test.cjs",
-        "test:practice-studio": "node --test tools/math-subcategory-migration.test.cjs server/tests/generator-template.test.cjs server/tests/math-classification-skills.test.cjs tools/practice-organization.test.cjs server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/probability-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs"
+        "test:generator-planner": "node --test server/tests/generator-planner.test.cjs",
+        "test:practice-studio": "node --test tools/today-generator-batch.test.cjs server/tests/generator-planner.test.cjs tools/math-subcategory-migration.test.cjs server/tests/generator-template.test.cjs server/tests/math-classification-skills.test.cjs tools/practice-organization.test.cjs server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/symbolic-fraction-division.test.cjs tools/student-practice-updates.test.cjs tools/probability-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs"
     },
     "devDependencies": {
         "@tesseract.js-data/eng": "^1.0.0",

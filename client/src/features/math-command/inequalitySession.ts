@@ -3,11 +3,13 @@ import type { SelectedAnswer } from '../../../../server/src/shared/examGrading';
 import { managedGeneratorIds, validateGenerator, type PracticeCatalog, type PracticeGeneratorDefinition, type PracticeSelection } from '../../../../server/src/shared/practiceCatalog';
 
 export type PracticeState = {
+  generationVersion?:1|2;
   version: 2; moduleId: string; generatorIds: string[]; seed: string; index: number;
   checked: number; correct: number; streak: number; longestStreak: number;
   answer: SelectedAnswer; submitted: boolean; finished: boolean;
   totalMs: number; questionMs: number; answeredMs: number;
   moduleTitle?:string; generatorDefinitions?:PracticeGeneratorDefinition[]; moduleSelection?:PracticeSelection;
+  sequenceIndex?:number; generatorStreaks?:Record<string,number>; unlockedGeneratorIds?:string[]; hiddenGeneratorIds?:string[];
 };
 export function createPracticeState(moduleId: string, seed: string, catalog?:PracticeCatalog,selection:PracticeSelection={}): PracticeState {
   const managed=catalog?.modules.find(item=>item.id===moduleId&&item.published);
@@ -16,11 +18,12 @@ export function createPracticeState(moduleId: string, seed: string, catalog?:Pra
   if (!module) throw new Error('Unknown practice module.');
   const generatorIds=managed&&catalog?managedGeneratorIds(managed,catalog,selection):moduleGeneratorIds(module as typeof practiceModules[number]);
   if(!generatorIds.length)throw new Error('This module needs an enabled question generator.');
-  return { version: 2, moduleId, generatorIds, ...(managed&&catalog?{moduleTitle:managed.title,moduleSelection:structuredClone(selection),generatorDefinitions:catalog.generators.filter(generator=>generatorIds.includes(generator.id)).map(generator=>structuredClone(generator))}:{}),seed, index: 0, checked: 0, correct: 0, streak: 0, longestStreak: 0, answer: '', submitted: false, finished: false, totalMs: 0, questionMs: 0, answeredMs: 0 };
+  return { version: 2, generationVersion:2, moduleId, generatorIds, ...(managed&&catalog?{moduleTitle:managed.title,moduleSelection:structuredClone(selection),generatorDefinitions:catalog.generators.filter(generator=>generatorIds.includes(generator.id)).map(generator=>structuredClone(generator))}:{}),seed, index: 0, checked: 0, correct: 0, streak: 0, longestStreak: 0, answer: '', submitted: false, finished: false, totalMs: 0, questionMs: 0, answeredMs: 0 };
 }
 export function parsePracticeState(raw: string | null): PracticeState | null {
   try {
     const state = JSON.parse(raw || 'null');
+    if(state?.generationVersion!==undefined&&state.generationVersion!==1&&state.generationVersion!==2)return null;
     if(state?.moduleSelection!==undefined&&(!state.moduleSelection||typeof state.moduleSelection!=='object'||Array.isArray(state.moduleSelection)||['childModuleIds','topics'].some(key=>state.moduleSelection[key]!==undefined&&(!Array.isArray(state.moduleSelection[key])||state.moduleSelection[key].length>1000||!state.moduleSelection[key].every((value:unknown)=>typeof value==='string'&&value.length<250)))))return null;
     const definitions=state?.generatorDefinitions===undefined?undefined:Array.isArray(state.generatorDefinitions)&&state.generatorDefinitions.length<=1000?state.generatorDefinitions.map(validateGenerator):null;
     if (state?.version !== 2 || typeof state.seed !== 'string' || state.seed.length > 100 || (definitions?typeof state.moduleId!=='string'||typeof state.moduleTitle!=='string'||state.moduleTitle.length>120:!practiceModules.some(item => item.id === state.moduleId)) || definitions===null ||
@@ -28,6 +31,11 @@ export function parsePracticeState(raw: string | null): PracticeState | null {
       !['index','checked','correct','streak','longestStreak','totalMs','questionMs','answeredMs'].every(key => Number.isSafeInteger(state[key]) && state[key] >= 0) ||
       state.correct > state.checked || state.streak > state.longestStreak || state.longestStreak > state.correct || state.answeredMs > state.totalMs || state.questionMs > state.totalMs ||
       !validAnswer(state.answer) || typeof state.submitted !== 'boolean' || typeof state.finished !== 'boolean' || (state.submitted && !state.answer) || state.checked !== state.index + Number(state.submitted)) return null;
+    if(state.sequenceIndex!==undefined&&(!Number.isSafeInteger(state.sequenceIndex)||state.sequenceIndex<state.index))return null;
+    if(state.generatorStreaks!==undefined&&(!state.generatorStreaks||typeof state.generatorStreaks!=='object'||Array.isArray(state.generatorStreaks)||Object.entries(state.generatorStreaks).some(([id,value])=>!state.generatorIds.includes(id)||!Number.isSafeInteger(value)||(value as number)<0||(value as number)>state.correct)))return null;
+    for(const key of ['unlockedGeneratorIds','hiddenGeneratorIds'])if(state[key]!==undefined&&(!Array.isArray(state[key])||new Set(state[key]).size!==state[key].length||state[key].some((id:unknown)=>!state.generatorIds.includes(id))))return null;
+    if(state.hiddenGeneratorIds?.some((id:string)=>!state.unlockedGeneratorIds?.includes(id)))return null;
+    if(!state.finished&&state.hiddenGeneratorIds?.length===state.generatorIds.length)return null;
     return state;
   } catch { return null; }
 }
@@ -42,10 +50,25 @@ export function addPracticeTime(state: PracticeState, elapsedMs: number): Practi
 export function checkPracticeAnswer(state: PracticeState, correctChoice: string | boolean): PracticeState {
   if (state.finished || state.submitted || !state.answer) return state;
   const correct = typeof correctChoice === 'boolean' ? correctChoice : state.answer === correctChoice, streak = correct ? state.streak + 1 : 0;
-  return { ...state, submitted: true, checked: state.checked + 1, correct: state.correct + Number(correct), streak, longestStreak: Math.max(state.longestStreak, streak), answeredMs: state.answeredMs + state.questionMs };
+  const id=currentPracticeGeneratorId(state),typeStreak=correct?(state.generatorStreaks?.[id]??0)+1:0;
+  const unlocked=new Set(state.unlockedGeneratorIds??[]);if(typeStreak>=10)unlocked.add(id);
+  return { ...state, generatorStreaks:{...state.generatorStreaks,[id]:typeStreak},unlockedGeneratorIds:[...unlocked], submitted: true, checked: state.checked + 1, correct: state.correct + Number(correct), streak, longestStreak: Math.max(state.longestStreak, streak), answeredMs: state.answeredMs + state.questionMs };
+}
+export function currentPracticeGeneratorId(state:PracticeState) {
+  let hash=0;if(!state.generatorDefinitions)for(const char of state.seed)hash=(Math.imul(hash,31)+char.charCodeAt(0))>>>0;
+  return state.generatorIds[((state.sequenceIndex??state.index)%state.generatorIds.length+hash%state.generatorIds.length)%state.generatorIds.length];
+}
+export function hidePracticeGenerator(state:PracticeState,id:string):PracticeState {
+  if(state.finished||!state.unlockedGeneratorIds?.includes(id)||state.hiddenGeneratorIds?.includes(id))return state;
+  if(id===currentPracticeGeneratorId(state)&&!state.submitted)return state;
+  const hiddenGeneratorIds=[...(state.hiddenGeneratorIds??[]),id];
+  return {...state,hiddenGeneratorIds,finished:hiddenGeneratorIds.length===state.generatorIds.length};
 }
 export function nextPracticeQuestion(state: PracticeState): PracticeState {
-  return state.submitted && !state.finished ? { ...state, index: state.index + 1, answer: '', submitted: false, questionMs: 0 } : state;
+  if(!state.submitted||state.finished)return state;
+  let sequenceIndex=(state.sequenceIndex??state.index)+1;
+  while(state.hiddenGeneratorIds?.includes(currentPracticeGeneratorId({...state,sequenceIndex})))sequenceIndex++;
+  return { ...state, generationVersion:2, sequenceIndex, index: state.index + 1, answer: '', submitted: false, questionMs: 0 };
 }
 export function practiceAccuracy(state: PracticeState): string { return state.checked ? `${Math.round(100 * state.correct / state.checked)}%` : '—'; }
 export function practiceSummary(state: PracticeState) {

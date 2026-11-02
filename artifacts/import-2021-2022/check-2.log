@@ -1,0 +1,23 @@
+
+> nathantutors@0.0.0 test:exam-review
+> node --test server/tests/exam-review.test.cjs
+
+✔ imported questions with missing answer keys never score an empty response as correct (1.6635ms)
+✔ math results retain separate main and specific topic totals without merging identically named skills (2.0471ms)
+✔ English requires both explanations, Math requires only correct reasoning, all require integer ratings (1.7465ms)
+✔ corrections include only completed sections; unanswered questions count as incorrect (0.7164ms)
+✔ Math corrections retain bounded vector drawings and accept handwritten reasoning without dummy text (1.293ms)
+✔ digital results retain valid per-question timing for teacher analytics (0.689ms)
+✔ grading supports every automatically scored interaction and rejects an empty number-line boundary (0.7744ms)
+✔ single-category sort accepts several correct cards and rejects distractors (0.264ms)
+✔ API enforces access and lets students submit or update one completed correction at a time (161.5894ms)
+✔ student-view results and corrections use the selected student, stay read only, and retain locks (20.953ms)
+✔ paper-answer API grades on the server, validates dates, and replaces existing results (16.1243ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 951.7236

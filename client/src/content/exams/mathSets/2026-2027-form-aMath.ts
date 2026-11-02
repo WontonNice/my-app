@@ -94,7 +94,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true:\n\n• 20 students have cats.\n• 23 students have dogs.\n• 3 students have both dogs and cats.\n• 5 students have no dogs or cats.\n\nHow many students were surveyed?",
     "topic": "Statistics and Probability",
-    "subtopic": "Set Relationships",
+    "subtopic": "Counting & Sets",
     "correctTextAnswers": [
       "45"
     ],
@@ -195,7 +195,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives 8 of his stamps to Kevin. Liam now has 12 more stamps than Kevin.\n\nHow many stamps did Liam start with?",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "dropdownContent": [
       "An equation that relates the number of stamps originally in Liam’s and Kevin’s collections is \\(L={{answer-1}}K\\).",
       "After Liam gives 8 stamps to Kevin, the equation becomes \\(L-8={{answer-2}}\\).",
@@ -429,7 +429,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "The sum of two consecutive integers is −15. If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?",
     "promptHtml": "The sum of two consecutive integers is −15. If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the <strong>product</strong> of the two resulting integers?",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "correctTextAnswers": [
       "63"
     ],
@@ -442,7 +442,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
     "promptHtml": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are <strong>not</strong> red?",
     "topic": "Statistics and Probability",
-    "subtopic": "Basic Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -575,7 +575,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
     "promptHtml": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are <strong>not</strong> blue?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -664,7 +664,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "How many more people in Center City walk to work than ride their bicycle to work?",
     "promptHtml": "<img src=\"/exam-images/2026-2027-form-a-2026-2027-form-a-math-item-22-fab7825b028596d3.png\" alt=\"Math diagram\" width=\"220\">How many more people in Center City walk to work than ride their bicycle to work?",
     "topic": "Statistics and Probability",
-    "subtopic": "Data Displays",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -767,7 +767,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -861,7 +861,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\]\n\nWhat is the value of the expression shown above?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -893,7 +893,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
     "topic": "Statistics and Probability",
-    "subtopic": "Counting & Combinations",
+    "subtopic": "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -950,7 +950,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, \\(\\overline{LN}=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
     "promptHtml": "<img src=\"/exam-images/2026-2027-form-a-2026-2027-form-a-math-item-31-5e9a1d8781b336b6.png\" alt=\"Math diagram\" width=\"200\">On the number line above, \\(\\overline{LN}=\\frac{1}{8}\\). Point M (<strong>not</strong> shown) is located between point L and point N. Which value below is a possible value for M?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1123,7 +1123,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "When a student buys 4 notebooks, the total cost is $12. Each notebook costs the same amount. Select each point on the graph that best represents \\(y\\), the total cost of \\(x\\) notebooks.",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "correctPointIds": [
       "point-2",
       "point-5",
@@ -1186,7 +1186,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[\\frac{w}{x}=\\frac{y}{z}\\]\n\nIn the equation above, \\(w\\), \\(x\\), \\(y\\), and \\(z\\) are positive numbers. Which of these is equal to \\(z\\)?",
     "topic": "Algebra",
-    "subtopic": "Formulas & Rearranging Equations",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -1277,7 +1277,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "The graph above shows the number of schools per city for five small cities. Cities M and N each have 500 students per school. City P has 400 students per school. Cities Q and R each have 700 students per school. Which of the five cities has the greatest number of students?",
     "promptHtml": "<img src=\"/exam-images/2026-2027-form-a-2026-2027-form-a-math-item-41-2ffa21801560cd99.png\" alt=\"Math diagram\" width=\"300\">The graph above shows the number of schools per city for five small cities. Cities M and N each have 500 students per school. City P has 400 students per school. Cities Q and R each have 700 students per school. Which of the five cities has the <strong>greatest</strong> number of students?",
     "topic": "Statistics and Probability",
-    "subtopic": "Data Displays",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1352,7 +1352,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A sports store has a container of handballs: 4 blue, 5 red, 8 yellow, 9 white, and 11 green. If one ball is picked from the container at random, what is the probability that it will be yellow?",
     "topic": "Statistics and Probability",
-    "subtopic": "Basic Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1472,7 +1472,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(4x-3y=12\\), what is \\(x\\) in terms of \\(y\\)?",
     "topic": "Algebra",
-    "subtopic": "Formulas & Rearranging Equations",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",

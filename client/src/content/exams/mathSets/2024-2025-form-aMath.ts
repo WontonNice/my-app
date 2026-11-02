@@ -89,7 +89,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Mr. Jones has 550 goats, which is 10% more than Mr. King has. How many more goats does Mr. Jones have than Mr. King?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -247,7 +247,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Jar 1 and Jar 2 each contain \\(\\frac12\\) cup of water. If \\(\\frac14\\) of the water in Jar 1 is poured into Jar 2, how much water is now in Jar 2?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -280,7 +280,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(n\\) is a whole number, and 0.01 is between \\(\\frac1n\\) and \\(\\frac1{n+2}\\), what is the value of \\(n\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -370,7 +370,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A program on a computer randomly generates a sequence of whole numbers from 1 to 9, inclusive. If the computer generates a sequence of 300 numbers, what is the best prediction of the number of odd numbers in the sequence?",
     "topic": "Statistics and Probability",
-    "subtopic": "Sampling & Predictions",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -399,7 +399,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A truck rental company charges a one-time fee of $40 plus $1 per mile driven. Dalia rented a truck and used a coupon for 20% off the total rental cost. After the coupon was applied, she spent a total of $60. How many miles did she drive?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -428,7 +428,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The probability of drawing a red candy at random from a bag of 25 candies is \\(\\frac25\\). After 5 red candies are removed from the bag, what is the probability of randomly drawing a red candy from the bag?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -736,7 +736,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On Wednesday, a baker produced 100 more loaves of bread than were produced on Tuesday. On Thursday, the baker produced 50 fewer loaves than were produced on Tuesday. If the total number of loaves produced on all three days was 230, how many loaves were produced on Wednesday?",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -868,7 +868,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The reciprocal of \\(\\frac14\\) is added to the reciprocal of 3. What is the reciprocal of this sum?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -997,7 +997,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a certain state, the sales tax rate increased from 7.0% to 7.5%. What was the increase in the sales tax on a $200 item?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1117,7 +1117,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "By what percent did the price of a cup of coffee increase if its price was increased from $1.25 to $1.35?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1176,7 +1176,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The price of a sandwich was raised from $6.25 to $6.75. What was the percent increase in the price?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1263,7 +1263,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[3.6\\div0.018=\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Decimals",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1350,7 +1350,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A graph shows the proportional relationship between the number of test questions a student gets correct, \\(x\\), and the student’s test score, \\(y\\). The ordered pair \\(\\left(1,1\\frac14\\right)\\) is on the graph. What does the y-coordinate of the ordered pair represent in this relationship?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1382,7 +1382,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "In a survey of 200 adults in the town of Waskegon, 45 reported reading the online version of the Waskegon Bulletin the previous day. If 25,000 adults live in Waskegon, which number is the best estimate of the number of adults who read the online version of the Waskegon Bulletin the previous day?",
     "promptHtml": "In a survey of 200 adults in the town of Waskegon, 45 reported reading the online version of the <em>Waskegon Bulletin</em> the previous day. If 25,000 adults live in Waskegon, which number is the best estimate of the number of adults who read the online version of the <em>Waskegon Bulletin</em> the previous day?",
     "topic": "Statistics and Probability",
-    "subtopic": "Sampling & Predictions",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1411,7 +1411,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A hiker plans on hiking 17 miles in 3 days. Which equation describes the relationship between the number of days hiked, \\(x\\), and the number of miles traveled, \\(y\\)?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1444,7 +1444,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Carolyn walked 3 miles from her house to the library and then \\(2\\frac12\\) miles farther to the grocery store. Returning home by the same route, she walked \\(1\\frac23\\) miles before stopping at a friend’s house. How many miles did Carolyn have left to walk home?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1510,7 +1510,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[3(0.01)-3(0.1)=\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Decimals",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1539,7 +1539,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of \\(10\\frac12+\\left(-5\\frac13\\right)-\\left(-2\\frac34\\right)\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1572,7 +1572,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Carlos has $350 in a savings account that earns 5% simple interest each year. How much will he have in the account after 1 year, if there is no money withdrawn?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1601,7 +1601,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The probability of an event occurring is 0.05. What is the chance that the event will occur?",
     "topic": "Statistics and Probability",
-    "subtopic": "Basic Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1631,7 +1631,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "The table below shows the number of cups of red paint and blue paint used to make a purple paint mixture.\nBased on the relationship between the number of cups of red paint and the number of cups of blue paint, what is the value of \\(y\\)?",
     "promptHtml": "The table below shows the number of cups of red paint and blue paint used to make a purple paint mixture.<br><img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q112-04437b696fff44c8.png\" alt=\"Math diagram\" width=\"250\">Based on the relationship between the number of cups of red paint and the number of cups of blue paint, what is the value of \\(y\\)?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1690,7 +1690,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "An ice cream shop sells 16 cups of ice cream for $48 and 4 cups for $12. There is a proportional relationship between the number of cups of ice cream and the cost. What is the constant of proportionality for this relationship?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",

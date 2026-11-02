@@ -122,6 +122,42 @@ import { excerptFromStoppingByWoodsOnASnowyEveningDigitalShsatPracticeTest4Passa
 import { excerptFromTheGripThatShouldnTWorkDigitalShsatPracticeTest4PassageSet } from "./passageSets/excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4";
 import { excerptFromFormationDigitalShsatPracticeTest4PassageSet } from "./passageSets/excerpt-from-formation-digital-shsat-practice-test-4";
 import { excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4PassageSet } from "./passageSets/excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4";
+import { aMemoryRevolution20232024FormAPassageSet } from "./passageSets/a-memory-revolution-2023-2024-form-a";
+import { letterFromBrooklyn20232024FormAPassageSet } from "./passageSets/letter-from-brooklyn-2023-2024-form-a";
+import { excerptFromDoThemNoHarm20232024FormAPassageSet } from "./passageSets/excerpt-from-do-them-no-harm-2023-2024-form-a";
+import { usingFireToKeepAPrairieHealthy20232024FormAPassageSet } from "./passageSets/using-fire-to-keep-a-prairie-healthy-2023-2024-form-a";
+import { excerptFromWinterWheat20232024FormAPassageSet } from "./passageSets/excerpt-from-winter-wheat-2023-2024-form-a";
+import { wolvesOfTheSea20232024FormAPassageSet } from "./passageSets/wolves-of-the-sea-2023-2024-form-a";
+import { theEndOfAnEra20232024FormBPassageSet } from "./passageSets/the-end-of-an-era-2023-2024-form-b";
+import { excerptFromTheFoodBusinessIncubator20232024FormBPassageSet } from "./passageSets/excerpt-from-the-food-business-incubator-2023-2024-form-b";
+import { excerptFromInSearchOfTheUnknown20232024FormBPassageSet } from "./passageSets/excerpt-from-in-search-of-the-unknown-2023-2024-form-b";
+import { excerptFromHowWeMadeTheFirstFlight20232024FormBPassageSet } from "./passageSets/excerpt-from-how-we-made-the-first-flight-2023-2024-form-b";
+import { crossPurposes20232024FormBPassageSet } from "./passageSets/cross-purposes-2023-2024-form-b";
+import { excerptFromScribeLikeAnEgyptian20232024FormBPassageSet } from "./passageSets/excerpt-from-scribe-like-an-egyptian-2023-2024-form-b";
+import { excerptFromNiagaraFalls20232024FormBPassageSet } from "./passageSets/excerpt-from-niagara-falls-2023-2024-form-b";
+import { theBestLaidPlansOfRavens20212022FormAPassageSet } from "./passageSets/the-best-laid-plans-of-ravens-2021-2022-form-a";
+import { excerptFromWinterWheat20212022FormAPassageSet } from "./passageSets/excerpt-from-winter-wheat-2021-2022-form-a";
+import { odeToFireworks20212022FormAPassageSet } from "./passageSets/ode-to-fireworks-2021-2022-form-a";
+import { excerptFromResearchRiddleResolved20212022FormAPassageSet } from "./passageSets/excerpt-from-research-riddle-resolved-2021-2022-form-a";
+import { martialArtsForTheMindAndBody20212022FormBPassageSet } from "./passageSets/martial-arts-for-the-mind-and-body-2021-2022-form-b";
+import { excerptFromHowWeMadeTheFirstFlight20212022FormBPassageSet } from "./passageSets/excerpt-from-how-we-made-the-first-flight-2021-2022-form-b";
+import { aMiracleMile20212022FormBPassageSet } from "./passageSets/a-miracle-mile-2021-2022-form-b";
+import { passageserpentMound20212022FormBVersion2Set } from "./passageSets/serpent-mound-2021-2022-form-b-version-2";
+import { aMemoryRevolution20212022FormBPassageSet } from "./passageSets/a-memory-revolution-2021-2022-form-b";
+import { movingThroughMountains20182019FormAPassageSet } from "./passageSets/moving-through-mountains-2018-2019-form-a";
+import { anEarlyWarning20182019FormAPassageSet } from "./passageSets/an-early-warning-2018-2019-form-a";
+import { championOfTheChannel20182019FormAPassageSet } from "./passageSets/champion-of-the-channel-2018-2019-form-a";
+import { excerptFromATrampAbroad20182019FormAPassageSet } from "./passageSets/excerpt-from-a-tramp-abroad-2018-2019-form-a";
+import { ruinsOfAFabledCity20182019FormAPassageSet } from "./passageSets/ruins-of-a-fabled-city-2018-2019-form-a";
+import { crossPurposes20182019FormAPassageSet } from "./passageSets/cross-purposes-2018-2019-form-a";
+import { theYearWithoutASummer20182019FormAPassageSet } from "./passageSets/the-year-without-a-summer-2018-2019-form-a";
+import { theLocalLibrary20182019FormBPassageSet } from "./passageSets/the-local-library-2018-2019-form-b";
+import { theTunguskaFireball20182019FormBPassageSet } from "./passageSets/the-tunguska-fireball-2018-2019-form-b";
+import { excerptFromAVoiceInTheWilderness20182019FormBPassageSet } from "./passageSets/excerpt-from-a-voice-in-the-wilderness-2018-2019-form-b";
+import { excerptFromNiagaraFalls20182019FormBPassageSet } from "./passageSets/excerpt-from-niagara-falls-2018-2019-form-b";
+import { uncoveringThePast20182019FormBPassageSet } from "./passageSets/uncovering-the-past-2018-2019-form-b";
+import { snowyMountains20182019FormBPassageSet } from "./passageSets/snowy-mountains-2018-2019-form-b";
+import { inventionOfTheTelegraph20182019FormBPassageSet } from "./passageSets/invention-of-the-telegraph-2018-2019-form-b";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -245,6 +281,42 @@ export const examPassageLibrary: ExamPassageSet[] = [
   excerptFromTheGripThatShouldnTWorkDigitalShsatPracticeTest4PassageSet,
   excerptFromFormationDigitalShsatPracticeTest4PassageSet,
   excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4PassageSet,
+  aMemoryRevolution20232024FormAPassageSet,
+  letterFromBrooklyn20232024FormAPassageSet,
+  excerptFromDoThemNoHarm20232024FormAPassageSet,
+  usingFireToKeepAPrairieHealthy20232024FormAPassageSet,
+  excerptFromWinterWheat20232024FormAPassageSet,
+  wolvesOfTheSea20232024FormAPassageSet,
+  theEndOfAnEra20232024FormBPassageSet,
+  excerptFromTheFoodBusinessIncubator20232024FormBPassageSet,
+  excerptFromInSearchOfTheUnknown20232024FormBPassageSet,
+  excerptFromHowWeMadeTheFirstFlight20232024FormBPassageSet,
+  crossPurposes20232024FormBPassageSet,
+  excerptFromScribeLikeAnEgyptian20232024FormBPassageSet,
+  excerptFromNiagaraFalls20232024FormBPassageSet,
+  theBestLaidPlansOfRavens20212022FormAPassageSet,
+  excerptFromWinterWheat20212022FormAPassageSet,
+  odeToFireworks20212022FormAPassageSet,
+  excerptFromResearchRiddleResolved20212022FormAPassageSet,
+  martialArtsForTheMindAndBody20212022FormBPassageSet,
+  excerptFromHowWeMadeTheFirstFlight20212022FormBPassageSet,
+  aMiracleMile20212022FormBPassageSet,
+  passageserpentMound20212022FormBVersion2Set,
+  aMemoryRevolution20212022FormBPassageSet,
+  movingThroughMountains20182019FormAPassageSet,
+  anEarlyWarning20182019FormAPassageSet,
+  championOfTheChannel20182019FormAPassageSet,
+  excerptFromATrampAbroad20182019FormAPassageSet,
+  ruinsOfAFabledCity20182019FormAPassageSet,
+  crossPurposes20182019FormAPassageSet,
+  theYearWithoutASummer20182019FormAPassageSet,
+  theLocalLibrary20182019FormBPassageSet,
+  theTunguskaFireball20182019FormBPassageSet,
+  excerptFromAVoiceInTheWilderness20182019FormBPassageSet,
+  excerptFromNiagaraFalls20182019FormBPassageSet,
+  uncoveringThePast20182019FormBPassageSet,
+  snowyMountains20182019FormBPassageSet,
+  inventionOfTheTelegraph20182019FormBPassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);

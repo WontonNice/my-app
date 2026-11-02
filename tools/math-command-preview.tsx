@@ -6,6 +6,12 @@ import { MathPracticeWorkspace } from "../client/src/features/math-command/MathP
 import { mathCommandRequest } from "../client/src/features/math-command/client";
 import "../client/src/styles/global.css";
 
+import { TeacherLearningPlan, type PlanView } from '../client/src/components/TeacherLearningPlan';
+function NativePlanFixture(){
+  const [view,setView]=useState<PlanView>('content');
+  const [skill,setSkill]=useState(new URLSearchParams(location.search).get('topic') || '');
+  return <div style={{maxWidth:1400,margin:'0 auto',padding:24}}><a href="/teacher/math-command?tab=students&studentId=11111111-1111-4111-8111-111111111111">Back to synthetic Math Command Center</a><TeacherLearningPlan accessToken="teacher" studentId="11111111-1111-4111-8111-111111111111" studentName="Andrew · synthetic QA" view={view} onView={setView} skillFilter={skill} onSkillFilter={setSkill}/></div>;
+}
 const assignmentId = location.pathname.match(/^\/math-practice\/([^/]+)/)?.[1];
 function FixtureLinks(){
   const [tasks,setTasks]=useState<{id:string;title:string}[]>([]);
@@ -20,5 +26,5 @@ createRoot(document.getElementById("root")!).render(<>
   </div>
   {assignmentId
     ? <MathPracticeWorkspace assignmentId={assignmentId} request={mathCommandRequest("student")} />
-    : <div style={{maxWidth:1560,margin:"0 auto",padding:24}}><MathCommandWorkspace mode="teacher" accessToken="teacher" /></div>}
+    : location.pathname === "/teacher/students" ? <NativePlanFixture/> : <div style={{maxWidth:1560,margin:"0 auto",padding:24}}><MathCommandWorkspace mode="teacher" accessToken="teacher" /></div>}
 </>);

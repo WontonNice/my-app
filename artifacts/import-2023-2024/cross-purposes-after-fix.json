@@ -1,0 +1,414 @@
+{
+  "author": "",
+  "byline": "",
+  "subtitle": "",
+  "blurb": "",
+  "directions": {
+    "body": "Read each text and answer the related questions. Base your answers only on the content within the text.",
+    "breadcrumbLabel": "ELA RDG COMP DIRECTIONS",
+    "subject": "English Language Arts",
+    "title": "READING COMPREHENSION"
+  },
+  "exportName": "crossPurposes20232024FormBPassageSet",
+  "fileName": "cross-purposes-2023-2024-form-b.ts",
+  "format": "poem",
+  "id": "cross-purposes-2023-2024-form-b",
+  "label": "2023-2024 Form B",
+  "passageSetId": "ela-cross-purposes-2023-2024-form-b",
+  "passageType": "poem",
+  "passageCategory": "official_handbook",
+  "questions": [
+    {
+      "id": "cross-purposes-2023-2024-form-b-pdf-shsat-2023-2024-b-q036",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "36",
+        "pages": [
+          27
+        ]
+      },
+      "explanation": "The question asks how the similarity in the construction of lines 1 and 8 contributes to the\n\nmeaning of the poem.\n\nE. CORRECT. In line 1, the first speaker asserts, “What I am is built: concrete and steel,” and in line 8 the second speaker states, “What I am is motion. I am water, and I am older.” The similarity in the construction of these lines contributes to the meaning of the poem by establishing each speaker’s defining feature. F. Incorrect. The focus of the lines is defining the speakers’ individuality, not how one speaker resolves a problem created by the other. G. Incorrect. The structure is not stating in line 1 that it is limited because it was built to stand in place; on the contrary, the structure is stating that this sense of purpose and permanence is its strength. H. Incorrect. Although in these lines the first speaker asserts “I am . . . built: concrete and steel” (line 1) and the second speaker asserts “I am . . . motion” (line 8), the construction of these lines does not contrast the stability and instability of the speakers. Rather, each speaker highlights its own features.",
+      "explanationHtml": "<p>The question asks how the similarity in the construction of lines 1 and 8 contributes to the</p><p>meaning of the poem.</p><p><strong>E. CORRECT. </strong>In line 1, the first speaker asserts, “What I am is <em>built</em>: concrete and steel,” and in line 8 the second speaker states, “<em>What I am is </em>motion. <em>I am water, and I am older</em>.” The similarity in the construction of these lines contributes to the meaning of the poem by establishing each speaker’s defining feature. <strong>F. </strong>Incorrect. The focus of the lines is defining the speakers’ individuality, not how one speaker resolves a problem created by the other. <strong>G. </strong>Incorrect. The structure is not stating in line 1 that it is limited because it was built to stand in place; on the contrary, the structure is stating that this sense of purpose and permanence is its strength. <strong>H. </strong>Incorrect. Although in these lines the first speaker asserts “I am . . . <em>built</em>: concrete and steel” (line 1) and the second speaker asserts “<em>I am </em>. . . motion” (line 8), the construction of these lines does not contrast the stability and instability of the speakers. Rather, each speaker highlights its own features.</p>",
+      "points": 1,
+      "prompt": "How does the similar construction of line 1 and line 8 contribute to the meaning of the poem?",
+      "promptHtml": "<p>How does the similar construction of line 1 and line 8 contribute to the meaning of the poem?</p>",
+      "topic": "Text Structure & Purpose",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>It introduces the intended permanence of the structure and the ever-changing fluidity of the water.</p>",
+          "text": "It introduces the intended permanence of the structure and the ever-changing fluidity of the water."
+        },
+        {
+          "id": "B",
+          "html": "<p>It shows that the structure can bridge the gap caused by the water.</p>",
+          "text": "It shows that the structure can bridge the gap caused by the water."
+        },
+        {
+          "id": "C",
+          "html": "<p>It suggests that the inflexible structure has more limitations than the adaptable water does.</p>",
+          "text": "It suggests that the inflexible structure has more limitations than the adaptable water does."
+        },
+        {
+          "id": "D",
+          "html": "<p>It contrasts the stability of the structure with the instability of the water.</p>",
+          "text": "It contrasts the stability of the structure with the instability of the water."
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice"
+    },
+    {
+      "id": "cross-purposes-2023-2024-form-b-pdf-shsat-2023-2024-b-q037",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "37",
+        "pages": [
+          27
+        ]
+      },
+      "explanation": "The question asks how lines 2–4 and 12–14 contribute to the development of a central idea\n\nin the poem.\n\nA. Incorrect. Although the phrases “remain[ing] at the apex of the leap” in line 3 and “I catch everything” in line 13 suggest the idea of endurance and control, the lines do not establish that both the structure and the water have endurance and control, because the water also states, “I pool / and flow wherever gravity takes me” (lines 10–11). B. CORRECT. The lines “I am what every athlete / wants” (lines 2–3) and “I am the blood flowing in the runner’s chest” (line 12) communicate that each speaker is an object of admiration and a powerful force. C. Incorrect. The lines describe opposing characteristics: the structure’s description conveys stillness—remaining “up in the air” (line 4)—while the water’s description conveys movement—“flowing in the runner’s chest” (line 12). D. Incorrect. The first speaker states, “I am what every athlete / wants” in lines 2–3, and the second speaker states, “I am the blood flowing in the runner’s chest” in line 12. The similarity of these metaphors may seem to suggest interrelationship, but the structures do not reveal surprise that they are interrelated.",
+      "explanationHtml": "<p>The question asks how lines 2–4 and 12–14 contribute to the development of a central idea</p><p>in the poem.</p><p><strong>A. </strong>Incorrect. Although the phrases “remain[ing] at the apex of the leap” in line 3 and “<em>I catch</em> <em>everything</em>” in line 13 suggest the idea of endurance and control, the lines do not establish that both the structure and the water have endurance and control, because the water also states, “<em>I pool </em>/ <em>and flow wherever gravity takes me</em>” (lines 10–11). <strong>B. CORRECT. </strong>The lines “I am what every athlete / wants” (lines 2–3) and “<em>I am the blood</em> <em>flowing in the runner’s chest</em>” (line 12) communicate that each speaker is an object of admiration and a powerful force. <strong>C. </strong>Incorrect. The lines describe opposing characteristics: the structure’s description conveys stillness—remaining “up in the air” (line 4)—while the water’s description conveys movement—“<em>flowing in the runner’s chest</em>” (line 12). <strong>D. </strong>Incorrect. The first speaker states, “I am what every athlete / wants” in lines 2–3, and the second speaker states, “<em>I am the blood flowing in the runner’s chest</em>” in line 12. The similarity of these metaphors may seem to suggest interrelationship, but the structures do not reveal surprise that they are interrelated.</p>",
+      "points": 1,
+      "prompt": "Read lines 2–4 and lines 12–14 from the poem.\n\nI am what every athlete\nwants: to remain at the apex of the leap,\nup in the air.\n\nI am the blood flowing in the runner’s chest,\nand I catch everything: from the hills,\nthe mountains.\n\nHow do the lines contribute to the development of a central idea of the poem?",
+      "promptHtml": "<p>Read lines 2–4 and lines 12–14 from the poem.</p><blockquote><strong>I am what every athlete</strong><br><strong>wants: to remain at the apex of the leap,</strong><br><strong>up in the air.</strong><br><br><em><strong>I am the blood flowing in the runner’s chest,</strong></em><br><em><strong>and I catch everything: from the hills,</strong></em><br><em><strong>the mountains.</strong></em></blockquote><p>How do the lines contribute to the development of a central idea of the poem?</p>",
+      "topic": "Central Idea & Theme",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>They establish that both the structure and the water have endurance and control.</p>",
+          "text": "They establish that both the structure and the water have endurance and control."
+        },
+        {
+          "id": "B",
+          "html": "<p>They highlight that both the structure and the water are powerful and impressive.</p>",
+          "text": "They highlight that both the structure and the water are powerful and impressive."
+        },
+        {
+          "id": "C",
+          "html": "<p>They suggest that the structure and the water are unaware of how similar they are.</p>",
+          "text": "They suggest that the structure and the water are unaware of how similar they are."
+        },
+        {
+          "id": "D",
+          "html": "<p>They reveal that the structure and the water are surprised that they are interrelated.</p>",
+          "text": "They reveal that the structure and the water are surprised that they are interrelated."
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice"
+    },
+    {
+      "id": "cross-purposes-2023-2024-form-b-pdf-shsat-2023-2024-b-q038",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "38",
+        "pages": [
+          28
+        ]
+      },
+      "explanation": "The question asks which idea the use of the words “siblings” and “my sisters and brothers” in\n\nlines 31–32 conveys in the poem.\n\nE. Incorrect. Although in line 29 the structure refers to itself as “being rebuilt” or taking on new forms, this idea is expressed to reinforce the idea that the structure’s presence is eternal (“a friend of time,” line 30). The use of the words “siblings” and “my sisters and brothers” in lines 31–32 does suggest that a variety of structures exist, but no comparison is drawn to suggest that the varieties of structures are more diverse than the forms of water. F. Incorrect. While the use of the words “siblings” and “my sisters and brothers” in lines 31–32 conveys the idea that structures can be replicated by being built, it does not convey the idea that the number of human-made structures is rapidly increasing. G. Incorrect. Although in line 33 the structure states, “We stitch across the rip you make,” suggesting that water passes under structures, the use of the words “siblings” and “my sisters and brothers” in lines 31–32 does not convey the idea that the structures that the water passes under are similar-looking. H. CORRECT. The use of the words “siblings” and “my sisters and brothers” in lines 31–32 conveys the idea that the structure is powerful because it is one of many and because these structures “stitch across the rip” (line 33) that water makes.",
+      "explanationHtml": "<p>The question asks which idea the use of the words “siblings” and “my sisters and brothers” in</p><p>lines 31–32 conveys in the poem.</p><p><strong>E. </strong>Incorrect. Although in line 29 the structure refers to itself as “being rebuilt” or taking on new forms, this idea is expressed to reinforce the idea that the structure’s presence is eternal (“a friend of time,” line 30). The use of the words “siblings” and “my sisters and brothers” in lines 31–32 does suggest that a variety of structures exist, but no comparison is drawn to suggest that the varieties of structures are more diverse than the forms of water. <strong>F. </strong>Incorrect. While the use of the words “siblings” and “my sisters and brothers” in lines 31–32 conveys the idea that structures can be replicated by being built, it does not convey the idea that the number of human-made structures is rapidly increasing. <strong>G. </strong>Incorrect. Although in line 33 the structure states, “We stitch across the rip you make,” suggesting that water passes under structures, the use of the words “siblings” and “my sisters and brothers” in lines 31–32 does not convey the idea that the structures that the water passes under are similar-looking. <strong>H. CORRECT. </strong>The use of the words “siblings” and “my sisters and brothers” in lines 31–32 conveys the idea that the structure is powerful because it is one of many and because these structures “stitch across the rip” (line 33) that water makes.</p>",
+      "points": 1,
+      "prompt": "The use of the words “siblings” and “my sisters and brothers” in lines 31–32 conveys the idea that the",
+      "promptHtml": "<p>The use of the words “siblings” and “my sisters and brothers” in lines 31–32 conveys the idea that the</p>",
+      "topic": "Word & Phrase Meaning",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>forms water can take are less diverse than the types of structures that exist.</p>",
+          "text": "forms water can take are less diverse than the types of structures that exist."
+        },
+        {
+          "id": "B",
+          "html": "<p>number of human-made structures is rapidly increasing.</p>",
+          "text": "number of human-made structures is rapidly increasing."
+        },
+        {
+          "id": "C",
+          "html": "<p>water passes under many similar-looking structures as it flows.</p>",
+          "text": "water passes under many similar-looking structures as it flows."
+        },
+        {
+          "id": "D",
+          "html": "<p>structure is powerful because it is one of many.</p>",
+          "text": "structure is powerful because it is one of many."
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice"
+    },
+    {
+      "id": "cross-purposes-2023-2024-form-b-pdf-shsat-2023-2024-b-q039",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "39",
+        "pages": [
+          28
+        ]
+      },
+      "explanation": "The question asks what the comparison in lines 33–35 shows about the structure.\n\nA. Incorrect. Although the structure states in line 33 that structures like itself “stitch across the rip” water makes, which may seem to suggest that the structures restore beauty to a ruined landscape, the language in the lines is used only to suggest that the structure is a tool used to unify the physical landscapes that humans inhabit. B. Incorrect. While the water states that it enables “empires to rise” (line 25), implying that it is needed for society to thrive, the structure never expresses the idea that it serves the purpose of bringing people together through its existence. C. Incorrect. Although the phrases “We stitch across” (line 33) and “We bind you up” (line 35) suggest the existence of boundaries, the comparisons made in lines 33–35 do not help show that the structure provides clear boundaries for natural environments. D. CORRECT. The speaker states, “We are steel thread to the human needle” (line 34), which illustrates that the structure and others like it are tools used by humans to “bind . . . up” (line 35) or overcome “the rip” (line 33) that the water creates in the earth.",
+      "explanationHtml": "<p>The question asks what the comparison in lines 33–35 shows about the structure.</p><p><strong>A. </strong>Incorrect. Although the structure states in line 33 that structures like itself “stitch across the rip” water makes, which may seem to suggest that the structures restore beauty to a ruined landscape, the language in the lines is used only to suggest that the structure is a tool used to unify the physical landscapes that humans inhabit. <strong>B. </strong>Incorrect. While the water states that it enables “<em>empires to rise</em>” (line 25), implying that it is needed for society to thrive, the structure never expresses the idea that it serves the purpose of bringing people together through its existence. <strong>C. </strong>Incorrect. Although the phrases “We stitch across” (line 33) and “We bind you up” (line 35) suggest the existence of boundaries, the comparisons made in lines 33–35 do not help show that the structure provides clear boundaries for natural environments. <strong>D. CORRECT. </strong>The speaker states, “We are steel thread to the human needle” (line 34), which illustrates that the structure and others like it are tools used by humans to “bind . . . up” (line 35) or overcome “the rip” (line 33) that the water creates in the earth.</p>",
+      "points": 1,
+      "prompt": "The comparison to sewing in lines 33–35 helps show that the structure",
+      "promptHtml": "<p>The comparison to sewing in lines 33–35 helps show that the structure</p>",
+      "topic": "Figurative Language & Imagery",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>enhances the beauty of the natural landscape.</p>",
+          "text": "enhances the beauty of the natural landscape."
+        },
+        {
+          "id": "B",
+          "html": "<p>brings people together more effectively than nature does.</p>",
+          "text": "brings people together more effectively than nature does."
+        },
+        {
+          "id": "C",
+          "html": "<p>provides clear boundaries for natural environments.</p>",
+          "text": "provides clear boundaries for natural environments."
+        },
+        {
+          "id": "D",
+          "html": "<p>serves as a means for people to overcome an obstacle created by nature.</p>",
+          "text": "serves as a means for people to overcome an obstacle created by nature."
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice"
+    },
+    {
+      "id": "cross-purposes-2023-2024-form-b-pdf-shsat-2023-2024-b-q040",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "40",
+        "pages": [
+          28
+        ]
+      },
+      "explanation": "The question asks how the last stanza conveys a central idea in the poem.\n\nE. Incorrect. Although in the last stanza the water states, “my vapors cling. / They bring out your softness, your rust,” the water does not depend on the structure; instead, the water destroys it over time. The structure depends on the power of water for its ability to fulfill its function. F. Incorrect. The last stanza refers to the opposing speaker (the structure) and not to any other structure. G. Incorrect. While in the last two lines of the poem the water states, “Because I am, / above all else, patient. I will wait for you,” implying that the water can withstand the ravages of time, the phrase “your softness, your rust” (line 38) indicates that the structure cannot. Therefore, the last stanza does not reveal that the passage of time will render both the structure and the water obsolete. H. CORRECT. In lines 36–38, the water describes how its “vapors cling” to the structure, bringing out the structure’s “softness” and “rust,” destroying the structure over time. Also, in line 42, the water says it is “patient” and “will wait for” the structure, suggesting that the speaker will be around long after the structure is gone.",
+      "explanationHtml": "<p>The question asks how the last stanza conveys a central idea in the poem.</p><p><strong>E. </strong>Incorrect. Although in the last stanza the water states, “<em>my vapors cling. </em>/ <em>They bring out</em> <em>your softness, your rust</em>,” the water does not depend on the structure; instead, the water destroys it over time. The structure depends on the power of water for its ability to fulfill its function. <strong>F. </strong>Incorrect. The last stanza refers to the opposing speaker (the structure) and not to any other structure. <strong>G. </strong>Incorrect. While in the last two lines of the poem the water states, “<em>Because I am, </em>/ <em>above</em> <em>all else, patient. I will wait for you</em>,” implying that the water can withstand the ravages of time, the phrase “<em>your softness, your rust</em>” (line 38) indicates that the structure cannot. Therefore, the last stanza does not reveal that the passage of time will render both the structure and the water obsolete. <strong>H. CORRECT. </strong>In lines 36–38, the water describes how its “<em>vapors cling</em>” to the structure, bringing out the structure’s “<em>softness</em>” and “<em>rust</em>,” destroying the structure over time. Also, in line 42, the water says it is “<em>patient</em>” and “<em>will wait for</em>” the structure, suggesting that the speaker will be around long after the structure is gone.</p>",
+      "points": 1,
+      "prompt": "The last stanza (lines 36–42) conveys a central idea of the poem by",
+      "promptHtml": "<p>The last stanza (lines 36–42) conveys a central idea of the poem by</p>",
+      "topic": "Central Idea & Theme",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>demonstrating that both the structure and the water depend on each other to fulfill their functions.</p>",
+          "text": "demonstrating that both the structure and the water depend on each other to fulfill their functions."
+        },
+        {
+          "id": "B",
+          "html": "<p>implying that a stronger structure would be able to resist the degradation caused by the water.</p>",
+          "text": "implying that a stronger structure would be able to resist the degradation caused by the water."
+        },
+        {
+          "id": "C",
+          "html": "<p>revealing that the passage of time will render both the structure and the water obsolete.</p>",
+          "text": "revealing that the passage of time will render both the structure and the water obsolete."
+        },
+        {
+          "id": "D",
+          "html": "<p>suggesting that the water will eventually weaken the structure and will continue to exist after the structure is gone.</p>",
+          "text": "suggesting that the water will eventually weaken the structure and will continue to exist after the structure is gone."
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice"
+    },
+    {
+      "id": "cross-purposes-2023-2024-form-b-pdf-shsat-2023-2024-b-q041",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "41",
+        "pages": [
+          28
+        ]
+      },
+      "explanation": "The question asks how the implication in lines 41–42 is supported by other lines in the poem.\n\nA. CORRECT. The words “patient” and “wait” in line 42 suggest that the water has the ability to outlast the structure, because the water doesn’t weaken as it ages. B. Incorrect. Although the statement “No human / built me” in lines 9–10 suggests that the speaker existed prior to humans, which may seem to support the idea of endurance in line 42, this answer is incorrect because in lines 41–42 the speaker is referring to outlasting the structure, not humans. C. Incorrect. While the statement “It all washes down through me” in line 14 suggests that everything in the natural world is interrelated, the water sets itself apart from the human-made structure because it asserts that it will outlast the other structure and is “above all else, patient” (line 42). D. Incorrect. In line 26, the water’s knowledge does not make its ability to wait any stronger— rather, its seemingly unending lifespan does.",
+      "explanationHtml": "<p>The question asks how the implication in lines 41–42 is supported by other lines in the poem.</p><p><strong>A. CORRECT. </strong>The words “<em>patient</em>” and “<em>wait</em>” in line 42 suggest that the water has the ability to outlast the structure, because the water doesn’t weaken as it ages. <strong>B. </strong>Incorrect. Although the statement “<em>No human </em>/ <em>built me</em>” in lines 9–10 suggests that the speaker existed prior to humans, which may seem to support the idea of endurance in line 42, this answer is incorrect because in lines 41–42 the speaker is referring to outlasting the structure, not humans. <strong>C. </strong>Incorrect. While the statement “<em>It all washes down through me</em>” in line 14 suggests that everything in the natural world is interrelated, the water sets itself apart from the human-made structure because it asserts that it will outlast the other structure and is “<em>above all</em> <em>else, patient</em>” (line 42). <strong>D. </strong>Incorrect. In line 26, the water’s knowledge does not make its ability to wait any stronger— rather, its seemingly unending lifespan does.</p>",
+      "points": 1,
+      "prompt": "Read lines 41–42 from the poem.\n\nBecause I am,\nabove all else, patient. I will wait for you.\n\nWhich of the following supports what is implied in these lines?",
+      "promptHtml": "<p>Read lines 41–42 from the poem.</p><blockquote><em><strong>Because I am,</strong></em><br><em><strong>above all else, patient. I will wait for you.</strong></em></blockquote><p>Which of the following supports what is implied in these lines?</p>",
+      "topic": "Inference",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>“<em>I am older </em>/ <em>than anything else you know.</em>” (lines 8–9)</p>",
+          "text": "“I am older / than anything else you know.” (lines 8–9)"
+        },
+        {
+          "id": "B",
+          "html": "<p>“<em>No human </em>/ <em>built me.</em>” (lines 9–10)</p>",
+          "text": "“No human / built me.” (lines 9–10)"
+        },
+        {
+          "id": "C",
+          "html": "<p>“<em>It all washes down through me.</em>” (line 14)</p>",
+          "text": "“It all washes down through me.” (line 14)"
+        },
+        {
+          "id": "D",
+          "html": "<p>“<em>Those who made you will break you,</em>” (line 26)</p>",
+          "text": "“Those who made you will break you,” (line 26)"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice"
+    },
+    {
+      "id": "cross-purposes-2023-2024-form-b-pdf-shsat-2023-2024-b-q042",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "42",
+        "pages": [
+          29
+        ]
+      },
+      "explanation": "The question asks how the poet develops the two points of view.\n\nE. Incorrect. While the poem relates how the water views the structure as “an artifact / slowly decaying” (lines 23–24) and the structure refers to itself as “a friend of time” (line 30), the poet does not give an account of a discussion about the future of human civilization. F. Incorrect. While the speakers do discuss their impact on the environment, there is no narrator speaking for them. G. Incorrect. Although the structure states it is made of “concrete and steel” (line 1) and is a “steel thread to the human needle” (line 34), only the water claims to possess power over nature, stating that “all washes down through me” (line 14) and “what I am is power\" (line 22). H. CORRECT. The poet develops the speakers’ points of view by personifying (giving human characteristics to something nonhuman such as an object or animal) the structure and the water, allowing them to debate by criticizing each other and declaring their own importance.",
+      "explanationHtml": "<p>The question asks how the poet develops the two points of view.</p><p><strong>E. </strong>Incorrect. While the poem relates how the water views the structure as “<em>an artifact </em>/ <em>slowly</em> <em>decaying</em>” (lines 23–24) and the structure refers to itself as “a friend of time” (line 30), the poet does not give an account of a discussion about the future of human civilization. <strong>F. </strong>Incorrect. While the speakers do discuss their impact on the environment, there is no narrator speaking for them. <strong>G. </strong>Incorrect. Although the structure states it is made of “concrete and steel” (line 1) and is a “steel thread to the human needle” (line 34), only the water claims to possess power over nature, stating that “<em>all washes down through me</em>” (line 14) and “<em>what I am is </em>power&quot; (line 22). <strong>H. CORRECT. </strong>The poet develops the speakers’ points of view by personifying (giving human characteristics to something nonhuman such as an object or animal) the structure and the water, allowing them to debate by criticizing each other and declaring their own importance.</p>",
+      "points": 1,
+      "prompt": "How does the poet develop the points of view of the structure and the water?",
+      "promptHtml": "<p>How does the poet develop the points of view of the structure and the water?</p>",
+      "topic": "Text Structure & Purpose",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>by giving an account of a discussion between them about the future of human civilization</p>",
+          "text": "by giving an account of a discussion between them about the future of human civilization"
+        },
+        {
+          "id": "B",
+          "html": "<p>by narrating a debate they have over their impact on the environment</p>",
+          "text": "by narrating a debate they have over their impact on the environment"
+        },
+        {
+          "id": "C",
+          "html": "<p>by illustrating the unique power they each possess over nature</p>",
+          "text": "by illustrating the unique power they each possess over nature"
+        },
+        {
+          "id": "D",
+          "html": "<p>by using personification to allow them to debate who is more important</p>",
+          "text": "by using personification to allow them to debate who is more important"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice"
+    },
+    {
+      "id": "cross-purposes-2023-2024-form-b-pdf-shsat-2023-2024-b-q043",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "43",
+        "pages": [
+          29
+        ]
+      },
+      "explanation": "The question asks how the form of the poem contributes to its meaning.\n\nA. Incorrect. The equal number of lines in each stanza may give the two speakers an equal voice, but that balance does not contribute to the meaning of the poem: the debate over their importance. The poem does not suggest that they are equals, just that they are opposing forces. B. Incorrect. Italics are used mainly to designate the voice of the second speaker (the water). Although the structure and the water portray themselves as rivals in the poem, the use of italics does not indicate an increase in tension between the two but rather shows which is speaking. C. CORRECT. The alternating positions of the stanzas create the appearance of a conversation in which the speakers share their opposing points of view. D. Incorrect. The lack of rhyme scheme or meter is intended to create a conversational tone rather than reflect the changes the water causes or experiences.",
+      "explanationHtml": "<p>The question asks how the form of the poem contributes to its meaning.</p><p><strong>A. </strong>Incorrect. The equal number of lines in each stanza may give the two speakers an equal voice, but that balance does not contribute to the meaning of the poem: the debate over their importance. The poem does not suggest that they are equals, just that they are opposing forces. <strong>B. </strong>Incorrect. Italics are used mainly to designate the voice of the second speaker (the water). Although the structure and the water portray themselves as rivals in the poem, the use of italics does not indicate an increase in tension between the two but rather shows which is speaking. <strong>C. CORRECT. </strong>The alternating positions of the stanzas create the appearance of a conversation in which the speakers share their opposing points of view. <strong>D. </strong>Incorrect. The lack of rhyme scheme or meter is intended to create a conversational tone rather than reflect the changes the water causes or experiences.</p>",
+      "points": 1,
+      "prompt": "How does the form of the poem contribute to its meaning?",
+      "promptHtml": "<p>How does the form of the poem contribute to its meaning?</p>",
+      "topic": "Text Structure & Purpose",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>The use of an equal number of lines in each stanza emphasizes that both speakers are equally important.</p>",
+          "text": "The use of an equal number of lines in each stanza emphasizes that both speakers are equally important."
+        },
+        {
+          "id": "B",
+          "html": "<p>The use of italics in some of the stanzas indicates the increasing tension between the structure and the water.</p>",
+          "text": "The use of italics in some of the stanzas indicates the increasing tension between the structure and the water."
+        },
+        {
+          "id": "C",
+          "html": "<p>The alternating positions of the stanzas highlights the opposing points of view of the speakers.</p>",
+          "text": "The alternating positions of the stanzas highlights the opposing points of view of the speakers."
+        },
+        {
+          "id": "D",
+          "html": "<p>The lack of a regular rhyme scheme or meter reflects the way the water changes the structure and the way the water itself changes.</p>",
+          "text": "The lack of a regular rhyme scheme or meter reflects the way the water changes the structure and the way the water itself changes."
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice"
+    }
+  ],
+  "richText": "<div data-poetry-line=\"true\">What I am is <em>built</em>: concrete and steel.</div><div data-poetry-line=\"true\">I defy gravity. I am what every athlete</div><div data-poetry-line=\"true\">wants: to remain at the apex of the leap,</div><div data-poetry-line=\"true\">up in the air. And yet I am useful, too:</div><div data-poetry-line=\"true\">cars, trucks, people, even trains</div><div data-poetry-line=\"true\">make their way across my broad back.</div><div data-poetry-line=\"true\">Swallows and <span data-glossary-definition=\"large birds\" role=\"link\" tabindex=\"0\">ospreys</span> nest in my trusses.</div><div></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>What I am is </em>motion<em>. I am water, and I am older</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>than anything else you know. No human</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>built me. I am gravity’s best friend; I pool</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>and flow wherever gravity takes me.</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>I am the blood flowing in the runner’s chest,</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>and I catch everything: from the hills,</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>the mountains. It all washes down through me.</em></div><div></div><div data-poetry-line=\"true\">What you are is an <em>accident</em>,</div><div data-poetry-line=\"true\">what happens to rain when rain gives in</div><div data-poetry-line=\"true\">to Earth’s gravitational pull.</div><div data-poetry-line=\"true\">You are some tears dribbling from a mountain’s</div><div data-poetry-line=\"true\">eye, running down the pavements</div><div data-poetry-line=\"true\">of small towns, into the cities, to the sea.</div><div data-poetry-line=\"true\">You are the path of least resistance.</div><div></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>What I am is </em>power<em>. You, of course,</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>have none: you are a static lump, an artifact</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>slowly decaying. But my regal flow</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>nourishes grasses, permits empires to rise.</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Those who made you will break you,</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>in time, replacing you with yet another</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>clumsy structure. I have seen. I know.</em></div><div></div><div data-poetry-line=\"true\">“Clumsy”? Being rebuilt makes me</div><div data-poetry-line=\"true\">a friend of time, does it not? And it means</div><div data-poetry-line=\"true\">that I have siblings—those “clumsy” structures,</div><div data-poetry-line=\"true\">my sisters and brothers.</div><div data-poetry-line=\"true\">We stitch across the rip you make.</div><div data-poetry-line=\"true\">We are steel thread to the human needle.</div><div data-poetry-line=\"true\">We bind you up. We sew you.</div><div></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>And I sow into </em>you<em>; in every cranny</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>of your superstructure my vapors cling.</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>They bring out your softness, your rust.</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Boast your best, and boast better yet.</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>I am listening to the bright hum</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>of the wind in your wires. Because I am,</em></div><div data-poetry-line=\"true\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>above all else, patient. I will wait for you.</em></div>",
+  "source": {
+    "sourceFamily": "official_shsat",
+    "sourceFormat": "pdf",
+    "playerProfile": "testnav",
+    "sourceId": "official-shsat-2023-2024-form-b",
+    "label": "2023-2024 Form B",
+    "year": "2023-2024",
+    "form": "B",
+    "packageId": "99cf8d7dae0050ba0dfbeca7ab7aa1503ec479b8058672391d419347a4594ac2"
+  },
+  "titleHtml": "Cross-Purposes",
+  "sourceHash": "2d8b51eb64a0bdb3922a4260098c37faafca4693b8e159bb2abc8195e74dacf7",
+  "sourceNote": "",
+  "section": "reading",
+  "teacherSource": "",
+  "preserveSourceLayout": true,
+  "images": [],
+  "text": "What I am is built: concrete and steel.\nI defy gravity. I am what every athlete\nwants: to remain at the apex of the leap,\nup in the air. And yet I am useful, too:\ncars, trucks, people, even trains\nmake their way across my broad back.\nSwallows and ospreys nest in my trusses.\n\n                  What I am is motion. I am water, and I am older\n                  than anything else you know. No human\n                  built me. I am gravity’s best friend; I pool\n                  and flow wherever gravity takes me.\n                  I am the blood flowing in the runner’s chest,\n                  and I catch everything: from the hills,\n                  the mountains. It all washes down through me.\n\nWhat you are is an accident,\nwhat happens to rain when rain gives in\nto Earth’s gravitational pull.\nYou are some tears dribbling from a mountain’s\neye, running down the pavements\nof small towns, into the cities, to the sea.\nYou are the path of least resistance.\n\n                  What I am is power. You, of course,\n                  have none: you are a static lump, an artifact\n                  slowly decaying. But my regal flow\n                  nourishes grasses, permits empires to rise.\n                  Those who made you will break you,\n                  in time, replacing you with yet another\n                  clumsy structure. I have seen. I know.\n\n“Clumsy”? Being rebuilt makes me\na friend of time, does it not? And it means\nthat I have siblings—those “clumsy” structures,\nmy sisters and brothers.\nWe stitch across the rip you make.\nWe are steel thread to the human needle.\nWe bind you up. We sew you.\n\n                  And I sow into you; in every cranny\n                  of your superstructure my vapors cling.\n                  They bring out your softness, your rust.\n                  Boast your best, and boast better yet.\n                  I am listening to the bright hum\n                  of the wind in your wires. Because I am,\n                  above all else, patient. I will wait for you.",
+  "title": "Cross-Purposes",
+  "versionLabel": "2023-2024 Form B",
+  "versionLabels": [
+    "2023-2024 Form B"
+  ]
+}

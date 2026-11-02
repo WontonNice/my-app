@@ -1,0 +1,84 @@
+ANDREW M — TARGETED INFINITE PRACTICE WORKFLOW REVIEW
+November 2, 2026 · Status: HELD FOR NATHAN'S REVIEW
+
+Method and scope
+Live desktop UI walkthrough using the signed-in teacher account, not a code review or automated accessibility audit. Followed Math Command Center > student evidence > source questions > personal generator planner > existing-generator preview > Practice Studio > Study Hall > Andrew's Available content > infinite-module assignment form. No application code was changed. No new generator, module, homework assignment, or planned student reservation was created. Submission and student-side completion were deliberately not tested. A personal, review-only planner batch was saved. A teacher preview was opened without answering questions and exited.
+
+Overall assessment
+The necessary pieces exist, including native infinite-module assignments with a consecutive-correct target. Completing the teacher workflow requires knowing where several disconnected tools live. The main problem is handoff and context, rather than lack of capability.
+
+Observed evidence
+Andrew's Math Command Center shows 97/164 correct (59.1%), across three math assessments. Candidate priorities, not definitive diagnoses:
+- Counting & Sets: 1/5 correct (20%), five distinct questions across two assessments.
+- Algebraic Expressions: 2/7 (28.6%), seven distinct questions across two assessments.
+- Inequalities: 2/5 (40%), five distinct questions across two assessments.
+- Surface Area & Volume: 2/5 (40%), five distinct questions across two assessments.
+- Ratios & Proportions: 5/10 (50%), two assessments, labeled Declining.
+The latest 50 math responses are unclassified (29/50 on Digital SHSAT Practice Test 3, October 27). They represent about 30% of the recorded math responses, so the topic-level picture excludes a substantial and recent part of his evidence. Legacy manual responses are explicitly labeled as evaluated against the current key where a snapshot is unavailable.
+
+HIGH PRIORITY FINDINGS
+
+1. The apparent assignment shortcut opens the wrong practice workflow for this task.
+Reproduce: Math Command Center > Student insights > Andrew > Inequalities > Assign practice.
+Observed: a fixed-question assignment builder opens. Requesting ten questions produced zero selected and a ten-question shortfall. No question was assigned. The confirmation button was disabled.
+Why it matters: the teacher trying to assign infinite practice arrives at a dead end, even though usable inequality generators exist.
+Proposed improvement, held: offer separate fixed-question and infinite-practice actions, carry Andrew and the selected skill forward, and explain readiness exclusions with a recovery link. The inventory showed zero ready questions overall; the preview itself did not explain the exclusion reasons.
+Evidence: assignment-shortfall.jpg.
+
+2. Native infinite assignments exist, but the handoff is buried.
+Working route: Student progress > Andrew > Available content > Content: Skill practice > Subject: Math > Content source: Infinite modules > Skill: Inequalities > Assign on the desired row.
+Observed: the final form supports a due date, expected minutes, student instructions, and required consecutive correct answers. It states that a wrong answer resets the streak and completion occurs automatically when the target is reached. The target initially appears blank. I stopped before submitting.
+Missing at this decision point: a sample question, included generators, Andrew's weakness evidence, and an explanation of the selected module's difficulty. Clicking the module title opens assignment history, not a content preview.
+Proposed improvement, held: link directly to this form from evidence, planner generator previews, and the studio, with an expandable content/evidence preview.
+Evidence: infinite-assignment-form.jpg.
+
+3. Weakness ranking and classification make prioritization unreliable without manual interpretation.
+Observed: the default Lowest accuracy order puts Circles, Coordinates & Segment Relationships, and Triangles & Polygons first at 0/1 each. Changing Order to Needs attention produces a more useful list. Diagnostic skills displays: No saved evidence at this level. Diagnostic skills appear after you classify questions manually.
+Why it matters: a single miss can look more urgent than repeated errors, and the entire latest math assessment contributes no specific topic information.
+Proposed improvement, held: default to evidence-supported priorities, distinguish insufficient evidence from demonstrated weaknesses, and expose a targeted classification queue for the recent unclassified responses.
+
+4. The planner loses the teaching reason for selecting a question.
+Observed: the current source, answer key, explanation, category, and destination are available. The saved student answer, response date, weakness rate, and teacher's reason for choosing it are not carried into the request. The per-question instructions start empty. The generated prompt also lacks this response context.
+Why it matters: I must remember why I chose the question and manually reconstruct the intended misconception later. This is especially costly for a batch collected across topics.
+Proposed improvement, held: preserve an optional teacher-only rationale linked to the original evidence. Keep this a personal generator-building planner; do not turn it into a student lesson planner or export identifiable student information by default.
+
+5. Existing-generator reuse is easier to miss than it should be.
+Observed: source q96 correctly shows Dividing Symbolic Fractions as Enabled / approved, with a working preview. Source q61 says no generators reference this source. However, the studio contains Overlapping Groups: Survey Totals, based on another source, whose stated reasoning matches q61's inclusion-exclusion survey-total task.
+Why it matters: exact-source matching can encourage unnecessary new generator work when a related family already covers the reasoning. The q96 preview has no assignment handoff.
+Proposed improvement, held: distinguish exact-source matches from related families, and show Preview / Use existing / Extend options before starting a new build. A related family still requires review for response format, difficulty, and coverage.
+
+6. Assignment listings obscure what a student will receive.
+Observed: every infinite module in the available-content table is labeled 0 in Questions / skills. Algebraic Expressions exposes only Foundation Building and General Practice, rather than the recognizable Dividing Symbolic Fractions title. English passage inventory counts and controls remain around the Math / Infinite modules results.
+Why it matters: an available generator looks empty, generic group names force recall, and unrelated content distracts from the choice.
+Proposed improvement, held: use Unlimited variants plus the generator count, show included skill names and a preview, distinguish groups from focused modules, and limit surrounding controls to the selected content type.
+Evidence: infinite-module-discovery.jpg.
+
+SECONDARY FINDINGS
+
+7. Batch setup errors appear late. View prompt initially rejected the batch because q61 had no new module name. The error named a question ID while another request remained selected, and offered Download unsaved draft even though the save state said Saved to your account. Choosing valid destinations resolved the preview. Prefer per-row readiness indicators and a jump to the incomplete field.
+Evidence: planner-validation.jpg.
+
+8. Important question details require extra detours. The Math Command evidence list displays raw LaTeX in question prompts and only answer letters for graph choices. The recorded-response dialog has full question/answer rendering, but no worked explanation or response-time summary alongside the student's error. The planner does provide an expandable source/answer/explanation. The exported text explanations for q64 and q96 contain OCR corruption, while official explanation image paths are also present. Prefer rendered math and a reliable explanation preview at the point of diagnosis.
+
+9. Full Student Insights does not open Andrew's record directly. Its link to /teacher/students/6d2d0dc4-5914-41e6-90e5-12702b205880 landed on the roster; I had to choose Andrew again. Math Command Center itself did remember Andrew on return.
+
+10. Topic names are broader than the actual error. Andrew's three incorrect inequality items concern a compound-inequality number line (2021-2022-form-a-q71), variables on both sides (2020-2021-form-b-q101), and an absolute-value inequality graph (2020-2021-form-b-q110). A broad group or one-step module should not be assumed to cover all three. The studio has a variables-on-both-sides family; I did not verify matching compound/absolute-value graph families. The standard Study Hall inequality page exposes Foundation Building and General Practice, each showing three generators; Start/resume launches the group directly.
+
+What worked
+- Student selection, topic counts, dates, exact recorded answers, snapshot/current-key labels, and source IDs are accessible.
+- Add to planner from a recorded error worked and remembered the review batch for subsequent questions.
+- The personal batch autosaved and remained available after navigation.
+- Existing source-linked generator detection and preview worked for q96.
+- Native infinite-module assignment supports a meaningful consecutive-correct completion target.
+- The fixed-question builder did not silently substitute questions and prevented an empty assignment.
+
+Held review batch
+Name: Review only · Andrew M · Nov 2
+Batch ID: b7061794-98a5-4f3d-b254-bc8fa0f22515
+All three requests remain Draft. Shared instructions explicitly say not to implement or assign before Nathan reviews the findings.
+- 2021-2022-form-a-q61: overlapping survey groups. Recorded answer 42; correct answer 45. Candidate destination: existing Overlapping Groups module. Review the existing Survey Totals family before commissioning a new one.
+- 2021-2022-form-a-q96: dividing symbolic fractions. Recorded D; correct C. Existing approved generator found. Candidate destination: Algebraic Expressions / General Practice.
+- 2021-2022-form-a-q64: simplifying expressions with subtraction. Recorded 21-n; correct 5-n. Proposed module name only: Simplifying expressions with subtraction. No module has been created.
+
+Review order suggested
+First connect weakness evidence to the existing infinite-module assignment form. Next improve evidence classification and module transparency. Then preserve teacher rationale and related-generator reuse in the planner. All proposals are held; none have been implemented.

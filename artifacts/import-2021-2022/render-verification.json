@@ -1,0 +1,2088 @@
+{
+  "math": [
+    {
+      "form": "a",
+      "n": 58,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 59,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 60,
+      "errors": 0,
+      "formulas": 3,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 61,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 62,
+      "errors": 0,
+      "formulas": 3,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 63,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 64,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 65,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 66,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 67,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 68,
+      "errors": 0,
+      "formulas": 17,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 69,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 70,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 71,
+      "errors": 0,
+      "formulas": 1,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 72,
+      "errors": 0,
+      "formulas": 15,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 73,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 74,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 75,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 76,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 77,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 78,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 79,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 80,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 81,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 82,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 83,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 84,
+      "errors": 0,
+      "formulas": 11,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 85,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 86,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 87,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 88,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 89,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 90,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 91,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 92,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 93,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 94,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 95,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 96,
+      "errors": 0,
+      "formulas": 16,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 97,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 98,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 99,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 100,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 101,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 102,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 103,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 104,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 105,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 106,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 107,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 108,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 109,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 110,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 111,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 112,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 113,
+      "errors": 0,
+      "formulas": 23,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 114,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 58,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 59,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 60,
+      "errors": 0,
+      "formulas": 1,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 61,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 62,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 63,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 64,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 65,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 66,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 67,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 68,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 69,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 70,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 71,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 72,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 73,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 74,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 75,
+      "errors": 0,
+      "formulas": 12,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 76,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 77,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 78,
+      "errors": 0,
+      "formulas": 12,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 79,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 80,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 81,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 82,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 83,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 84,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 85,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 86,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 87,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 88,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 89,
+      "errors": 0,
+      "formulas": 13,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 90,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 91,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 92,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 93,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 94,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 95,
+      "errors": 0,
+      "formulas": 15,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 96,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 97,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 98,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 99,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 100,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 101,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 102,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 103,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 104,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 105,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 106,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 107,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 108,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 109,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 110,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 111,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 112,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 113,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 114,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    }
+  ],
+  "passages": [
+    {
+      "form": "a",
+      "title": "Cracking the Code",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Cracking the Code\n\n(1) Computer code is part of every electronic interaction, from video games to home thermostats to vehicle GPS systems. (2) Code is a language that computers can interpret, and programmers use it to instruct computers to perform different tasks, such as finding, sorting, or calculating data. (3) People who code have to learn this language. (4) They can construct programs that will perform detailed tasks. (5) The programs can also perform complex tasks.\n\n(6) A coding language uses letters, numbers, and symbols that are arranged in a way that makes sense to a computer. (7) The code that makes up a program tells a computer how to process information. (8) Studying a coding language involves learning the rules for combining phrases and instructions so that they are recognizable to the computer. (9) Once a person understands coding rules, the possibilities for applying them are infinite.\n\n(10) Coding skills are becoming important in many occupational fields. (11) For example, code can be used to create programs to track, analyze, and predict changes in the stock market. (12) Code can also be designed to help doctors track and monitor a patient’s health. (13) Jobs that require coding skills are typically higher paying, offering salaries that are up to as much as $22,000 a year more than jobs that do not require coding knowledge.\n\n(14) People have a variety of opportunities to learn how to code. (15) In some schools, young people can study computer science and coding just as they study foreign languages. (16) Computer science teachers can use websites and apps that employ games designed to help everyone understand how code works. (17) Even high school students who do not take computer science can learn coding by attending coding workshops and online classes or by watching tutorials online. (18) After studying the basics of coding, some students may become interested in learning how to create programs, such as games and apps.\n\n(19) The late Steve Jobs, a pioneer in computer technology, once said, “Everybody in this country should learn how to program a computer . . . because it teaches you how to think.” (20) Learning to code can seem challenging, but one does not need to become an expert programmer to reap the benefits of understanding this language."
+    },
+    {
+      "form": "a",
+      "title": "The Best Laid Plans of Ravens",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "The Best Laid Plans of Ravens\n\n1\nIn Edgar Allan Poe’s poem “The Raven,” a raven visits a lonely man’s home and responds to the man’s pleading questions with only the word “nevermore.” The poem’s narrator interprets the word as a prediction of doom for his future. A talking, prophetic raven may seem to be the wild imaginings of the poet, but a new study published in the journal Science hints that one particular idea behind the poem might not be as far-fetched as it seems. For most of human history, people assumed that animals do not understand the passage of time in the same way people do. Some people believed that animals might remember events from the past and that instinct might drive them to make preparations in order to guarantee survival, but most people did not think that animals had the ability to plan. At Lund University in Sweden, researchers argue that ravens may be able to think ahead and even plan for the future.\n\n2\nIt can be difficult to test an animal’s ability to plan because human observers must be certain they are not mistaking instinctual behavior for intentional planning. For example, many animals hoard food so that they will not run out later, but scientists who study animals would not call hoarding a decision to plan for the future. This action is merely instinctual. Cognitive scientists argue that in order for an animal’s behavior to qualify as preparing for the future, the animal must use specific decision-making skills to solve a problem.\n\n3\nTo avoid mistaking instinctual behavior for evidence of decision-making, the Lund University researchers designed two experiments to test ravens’ ability to plan. Ravens belong to the corvid family, a group of birds known for their intelligence. A study in 2007 showed that corvids have the tendency to save only certain types of food, which suggests that they are planning for the future rather than acting on instinct. In order to investigate that theory, the researchers had to design experiments that would achieve results that could not be explained by an instinctual behavior of food hoarding. Therefore, the ravens were taught two behaviors that they do not normally perform in the wild.\n\n4\nFor the first experiment, the researchers showed the birds how to use a small stone to open a box and get treats. Once the ravens learned the behavior, the researchers presented the birds with four stones. Only one stone was the right size to open the box. The birds learned to select that stone and set it aside until the researchers presented the box. The second experiment involved bartering. A researcher would trade the ravens a large treat for a bottle cap. Later, the researchers presented the ravens with a group of items, including small treats and the bottle cap. The ravens chose the bottle cap over the treats and waited for the original researcher to trade with them again so that they could get more treats. In both experiments, the ravens waited patiently for up to seventeen hours for the researcher to return.\n\n5\nThe results of these experiments are exciting, but more evidence needs to be gathered before scientists can fully conclude that ravens can plan for the future. Some scientists argue that the ravens might be choosing the stone and bottle cap because the ravens have been trained to do so, not necessarily because the ravens are thinking ahead. Regardless, like other recent advances in animal science, these experiments show that ravens could be much smarter than first believed, and scientists now believe that ravens do actually think about their own future."
+    },
+    {
+      "form": "a",
+      "title": "Excerpt from Winter Wheat",
+      "poemLines": 0,
+      "glossary": 2,
+      "overflow": false,
+      "text": "Ellen, the narrator, is preparing to leave her parents and the family farm for college the next day.\n\nExcerpt from Winter Wheat\n\nby Mildred Walker\n\n1\nI love Dad’s way of talking that makes him seem different from other ranchers. He’s lived here twenty-three years, but he still says “back East where I come from.” He’s the one who gets excited when I do about spring coming or a serial running in the magazine we’re both reading, but it’s what Mom says that I depend on. When Mom used to say “Don’t worry” about my pet chicken or dog or new calf, it always got well. Dad is always talking of going some place, not now, but next year, maybe. Mom seems to think of nothing farther away than today or perhaps yesterday or tomorrow morning.\n\n2\nMom folded the ironing board and put it inside their bedroom that was just off the kitchen. She carried in the freshly ironed clothes. Dad went back to his paper. When Mom came back she took beans from the cupboard to soak for tomorrow. Dad always said Mom could make all the dishes he’d had back in Vermont as well as though she were a New Englander herself, instead of a Russian. All of a sudden, I realized that tomorrow when those beans would be ready to eat I’d be going away. It gave me a funny feeling.\n\n3\n“I’ll be taking the train tomorrow night,” I said aloud, more to hear it myself.\n\n4\n“We can drive you into town in the afternoon,” Dad said, dropping his paper on the floor.\n\n5\n“There’s no need to go to town; she can catch the train at Gotham just as well. We haven’t nothing to take us into town for,” Mom said.\n\n6\n“Well, we don’t have to decide tonight,” Dad said, but I knew he wanted to go into Clark City. It wouldn’t be so flat as just seeing me go off on the train from Gotham. My going away was hard on both of them; they were so different—and I was part of them both. It made me uncomfortable to think of leaving them.\n\n7\nWhile I was getting ready for bed in my room that’s off the front room, I saw how it would be if I left from town. We’d go in right after dinner and go around to the stores, Dad going one way and Mom and I another. Dad would probably have his hair cut at the barbershop and stop in the bank and meet someone he knew to talk to. Then we’d meet at the big store on the corner and go to the cafeteria for supper. The train stops ten minutes or so at the station in town and there are other people and excitement and you have time to wave from the platform and then again from your window by your seat. We went to the station in Clark City to see the Goodals off when they went back to Iowa.\n\n8\nIf I left from Gotham, we’d just drive down in the truck and wait till the train came. It only stops long enough for you to get on and you hardly have time to taste the flavor of going away.\n\n9\nI sat on the bed in my pyjamas with my arms around my knees. I couldn’t keep from thinking of that time Dad went back East. I tried to, and then I just sat still and looked straight at it. Sometimes that’s better than working so hard to keep from looking at what’s in your mind.\n\n10\nDad went all the way back to Vermont. . . . It was in November and it was already dark when the train came through Gotham. Even now, I could feel how cold and dark it was. I held Mom’s hand. Dad was so dressed-up he seemed strange. . . . We stood there without saying anything until Dad told Mom to remember to call Mr. Bardich, our neighbor, if the cow didn’t calve tomorrow.\n\n11\n“I’ll manage,” Mom snapped back.\n\n12\n“I wish you could go, Anna,” Dad said to Mom, “and we could take Ellen.” . . .\n\n13\n“Good-by, Anna Petrovna,” he said, looking at Mom. I had never heard him call her by two names before.\n\n14\n“Good-by,” Mom said, standing still, without smiling.\n\n15\nThen he was gone and the crossroads were darker than ever. The train light shone on the high window in the top of the grain elevator for a moment and then that too was dark. We got into our old Ford and Mom drove back to the house. My throat ached all the way. The name Dad had called Mom kept saying itself in my ears: “Anna Petrovna, Anna Petrovna.” . . .\n\n16\nOur house seemed lonely when we came back to it. It seemed to be hiding under the coulee. I went with Mom to put the truck in the barn that was bigger than the house. I think Mom was prouder of our barn than the house, anyway. We walked back to look at the cow that was going to calve. She was just a big light blob in the dark, waiting. I had thought she was exciting this morning, but now she seemed sad, too.\n\n17\nThe wind blew when we walked across the open space to the house and I couldn’t help shivering with the cold. Inside the house it was warm, but empty.\n\n18\n“Bring your nightgown in here and I heat you some milk,” Mom said.\n\n19\nI drank the milk sitting on a stool in front of the stove. It tasted good, but the lonely ache in my throat was still there. I picked up my clothes and hung them neatly behind the stove and put my cup on the sink board. Mom was fixing oatmeal for tomorrow morning.\n\n20\n“Good night, Mom,” I said almost timidly, standing beside her. She seemed wrapped around in a kind of strangeness. Then she turned around and drew me to her. The front of her dress was warm from the stove. I felt the comfortable heat through my gown. She laid her hand against my face and it felt rough and hard but firm. I dared ask her something I wanted to know.\n\n21\n“Mom, was that really your name—what Dad called you?”\n\n22\nHer voice sounded surprised. “Why, Yeléna, you know that; Anna Petrovna. You know I am born in Russia, in Seletskoe.”\n\n23\n“Yes, but I didn’t know your other name,” I said.\n\n24\n“Anna Petrovna Webb.” She pronounced it slowly. “Once I think what a funny name Ben Webb is!” She laughed. Her laugh was warm and low like our kitchen, and comfortable. The house seemed natural and right again. . . .\n\n25\nBut now that I am grown, I feel the wall of strangeness between them, more than when I was a child. I wondered how they would get along without me.\n\nFrom WINTER WHEAT by Mildred Walker, published by University of Nebraska Press. Copyright © 1944 by Harcourt, Brace and Company, Inc. Copyright renewed 1971 by Mildred Walker. All rights reserved."
+    },
+    {
+      "form": "a",
+      "title": "Massachusetts: Lowell National Historical Park",
+      "poemLines": 0,
+      "glossary": 3,
+      "overflow": false,
+      "text": "Massachusetts: Lowell National Historical Park\n\n1\nDuring the first half of the 19th century, Lowell, Massachusetts, quickly transformed itself from a farm town to a bustling industrial city. In time, Lowell became a model of industry, gaining global recognition for its state-of-the-art technology, innovative canal and dam system, mill architecture, boardinghouses, churches, and ethnic neighborhoods. Young Yankee women, immigrant families, and European tourists all flocked to Lowell to find work at one of the many textile mills, or visit the industrious city that was becoming a popular tourist destination. As one Scottish traveler observed during his visit to America, “Niagara and Lowell are the two objects I will longest remember in my American journey, the one the glory of American scenery, the other of American industry.” Today, Lowell National Historical Park welcomes visitors to enjoy the sights of Lowell and learn about the history of one of America’s most significant industrial cities.\n\n2\nThe Boston merchants who founded Lowell in 1821 and named it after Francis Cabot Lowell chose to locate the town along Massachusetts’s Merrimack River to take advantage of the kinetic energy offered by the Pawtucket waterfalls. Over six miles of canals powered the waterwheels of Lowell’s mills, whose massive five- and six-story brick buildings dominated the city’s landscape. . . . The most recognized of these buildings are the Lowell Manufacturing Company chartered in 1821, the Suffolk or Wannalancit Mill completed around the 1880s, the Boott Mill Company established in 1835, and the Boott Mill Boardinghouse that opened in 1838. By the 1850s, 40 textile mills employing over 10,000 workers stretched for about a mile along the river. . . .\n\n3\nThe city’s female workforce was significant in the history of Lowell. From the early to mid-1800s, women left the constricted lifestyle of small rural towns and rural areas for independent industrial city life. Most were young single Yankee girls, who were tired of the limited opportunities offered by their domestic work. Women found that Lowell’s mills offered monthly wages for their services and provided them room and board. Although these women gained economic independence in Lowell, the mill boardinghouse keepers constantly supervised their social activities, for which they hardly had any time, considering their daily 12- to 14-hour work schedules. At the end of the day, the factory bell signaled the “mill girls” to return to their boardinghouses. They were expected to adhere to the strict code of conduct respecting curfew and attending church.\n\n4\nYankee “mill girls” continued to dominate the Lowell workforce until the 1840s, when the city began to find it difficult to compete with the growing industrial development in other New England communities. As profits fell, the mill industry cut wages. These wage cuts, deteriorating working conditions, and long workdays led the “mill girls” to protest and organize strikes. When their demands went unheard, the women left Lowell, and immigrant groups replaced them in the workforce. Despite the low wages and unhealthy work conditions, immigrants were eager to\nfind work.\n\n5\nThe immigrants replacing the Yankee “mill girls” during the 1840s were predominantly Irish Catholics, who traveled to America during the Great Potato Famine. Although Lowell received an influx of Irish families during this time, the Irish were a part of the city’s history from its birth, and before the “mill girls” arrived, they built Lowell’s historic canals, mills, and boardinghouses. Initially, Lowell’s Protestant community was slow to welcome Irish immigrants, but the hostility between Yankee Protestants and Irish Catholics eventually disappeared. Irish immigrants dominated the industrial scene until the Civil War, when other immigrant groups began to work in the city mills.\n\n6\nLike the Irish, the French-Canadians, Greeks, Poles, Portuguese, Russian Jews, and Armenians who came to work in Lowell’s mills faced long work hours, low wages, and poor living conditions in the city’s crowded tenements. By the time Lowell’s industry declined, the city had become an ethnic melting pot, where each group claimed its own distinct neighborhood, like the Irish immigrants’ “New Dublin” or “Acre,” and the French-Canadians’ “Little Canada.” The city officially began to close down its mills in the 1920s and ’30s after Lowell’s outdated mills could no longer compete against the state-of-the-art cotton mills in other communities and working conditions continued to decline as Lowell’s companies stopped reinvesting in their mills. . . . Despite a brief resurgence during World War II, the city shut down its last surviving mill by the mid-1950s.\n\nFrom “Massachusetts: Lowell National Historical Park”—Public Domain/National Park Service"
+    },
+    {
+      "form": "a",
+      "title": "Ode to Fireworks",
+      "poemLines": 46,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Ode to Fireworks\n\nIn autumn my mother drove us to the edge of the field\n\nwhere the fair was set up year after year:\n\nthe carousel, the bumper cars, the long, low sheds\n\nfilled with prizewinning animals.\n\n5\nWe—my sister, my cousin, and I—were ready for bed,\n\nalready in our pajamas. This was a treat we waited\n\nall year for. We waited in the darkness\n\nfor the first low, dull thwumps, like someone\n\nbeating an old, filthy rug hung on a wash line.\n\n10\nThen we counted the seconds between the lightning\n\nand thunder, as we also used to do, until the sky\n\nlit up: red, blue, green, gold. In my mind’s eye\n\nI can still see the straggly, ancient oak whose branches\n\nreached up past the exhibition halls, silhouetted\n\n15\nagainst the spectrum of stars that cascaded behind it.\n\nIt was one thing to look up into the sky\n\nand imagine yourself in it or to make out pictures\n\namong the clouds, which my sister liked to do.\n\nNo, I would tell her, that cloud\n\n20\ndoes not look like an elephant, a hat, an umbrella.\n\nBut it was another thing to see\n\nthe sky at night written upon\n\nwith those jewels. (We lived in the country:\n\nnight was night.) All around us, crickets\n\n25\nstridulated in the stubble of what had been\n\nsomebody’s cornfield, their song rising and falling.\n\nYou could smell winter on the air’s edge.\n\nNow, in the city, when the sky dips into shadow\n\nat New Year’s or on the Fourth of July, I find myself\n\n30\ncraning my neck upward at odd moments.\n\nThe city sky is always lit up. This is where we live now,\n\nand it is how we live now, awash in light\n\nof every hue. Everything is a constant celebration:\n\npicking up washing at the cleaner’s or stopping by\n\n35\nthe corner market for a loaf of heavy bread.\n\nAnd the music around me is the music of people,\n\ntheir voices rising and falling in a hundred languages.\n\nBut beneath the yellowish glow deep in the sky\n\nof all our city lights pelting out into the universe,\n\n40\nI remember the feel of the pickup truck bumping\n\nacross the ridged field, as I kept waiting for those\n\nchildhood bursts, watching as they escorted us home."
+    },
+    {
+      "form": "a",
+      "title": "Excerpt from In Search of the Unknown",
+      "poemLines": 0,
+      "glossary": 2,
+      "overflow": false,
+      "text": "Excerpt from In Search of the Unknown\n\nby Robert W. Chambers\n\n1\nIt was at that time the policy of the trustees and officers of the Zoological Gardens neither to employ collectors nor to send out expeditions in search of specimens. The society decided to depend upon voluntary contributions, and I was always busy, part of the day, in dictating answers to correspondents who wrote offering their services as hunters of big game, collectors of all sorts of fauna, trappers, snarers, and also to those who offered specimens for sale, usually at exorbitant rates.\n\n2\nTo the proprietors of . . . mangy lynxes, moth-eaten coyotes, and dancing bears I returned courteous but uncompromising refusals—of course, first submitting all such letters, together with my replies, to Professor Farrago.\n\n3\nOne day towards the end of May, however, just as I was leaving Bronx Park to return to town, Professor Lesard, of the reptilian department, called out to me that Professor Farrago wanted to see me a moment; so I . . . retraced my steps to the temporary, wooden building occupied by Professor Farrago, general superintendent of the Zoological Gardens. The professor, who was sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his glasses down and looked over them at me with a whimsical smile that suggested amusement, impatience, annoyance, and perhaps a faint trace of apology.\n\n4\n“Now, here’s a letter,” he said, with a deliberate gesture towards a sheet of paper impaled on a file—“a letter that I suppose you remember.” He disengaged the sheet of paper and handed it to me.\n\n5\n“Oh yes,” I replied, with a shrug; “of course the man is mistaken—or—”\n\n6\n“Or what?” demanded Professor Farrago, tranquilly, wiping his glasses.\n\n7\n“—Or a liar,” I replied.\n\n8\nAfter a silence he leaned back in his chair and bade me read the letter to him again, and I did so with a contemptuous tolerance for the writer, who must have been either a very innocent victim or a very stupid swindler. I said as much to Professor Farrago, but, to my surprise, he appeared to waver.\n\n9\n“I suppose,” he said, with his near-sighted, embarrassed smile, “that nine hundred and ninety-nine men in a thousand would throw that letter aside and condemn the writer as a liar or a fool?”\n\n10\n“In my opinion,” said I, “he’s one or the other.”\n\n11\n“He isn’t—in mine,” said the professor, placidly.\n\n12\n“What!” I exclaimed. “Here is a man living all alone on a strip of rock and sand between the wilderness and the sea, who wants you to send somebody to take charge of a bird that doesn’t exist!”\n\n13\n“How do you know,” asked Professor Farrago, “that the bird in question does not exist?”\n\n14\n“It is generally accepted,” I replied, sarcastically, “that the great auk has been extinct for years. Therefore I may be pardoned for doubting that our correspondent possesses a pair of them alive.”\n\n15\n“Oh, you young fellows,” said the professor, smiling wearily, “you embark on a theory for destinations that don’t exist.”\n\n16\nHe leaned back in his chair, his amused eyes searching space for the imagery that made him smile.\n\n17\n“Like swimming squirrels, you navigate with the help of Heaven and a stiff breeze, but you never land where you hope to—do you?”\n\n18\nRather red in the face, I said: “Don’t you believe the great auk to be extinct?”\n\n19\n“Audubon saw the great auk.”\n\n20\n“Who has seen a single specimen since?”\n\n21\n“Nobody—except our correspondent here,” he replied, laughing.\n\n22\nI laughed, too, considering the interview at an end, but the professor went on, coolly:\n\n23\n“Whatever it is that our correspondent has—and I am daring to believe that it is the great auk itself—I want you to secure it for the society.”\n\n24\nWhen my astonishment subsided my first conscious sentiment was one of pity. Clearly, Professor Farrago was on the verge of dotage—ah, what a loss to the world!\n\n25\nI believe now that Professor Farrago perfectly interpreted my thoughts, but he betrayed neither resentment nor impatience. I drew a chair up beside his desk—there was nothing to do but to obey, and this fool’s errand was none of my conceiving.\n\n26\nTogether we made out a list of articles necessary for me and itemized the expenses I might incur, and I set a date for my return, allowing no margin for a successful termination to the expedition.\n\n27\n“Never mind that,” said the professor. “What I want you to do is to get those birds here safely. Now, how many men will you take?”\n\n28\n“None,” I replied, bluntly; “it’s a useless expense, unless there is something to bring back. If there is I’ll wire you, you may be sure.”\n\n29\n“Very well,” said Professor Farrago, good-humoredly, “you shall have all the assistance you may require. Can you leave to-night?”\n\n30\nThe old gentleman was certainly prompt. I nodded, half-sulkily, aware of his amusement.\n\n31\n“So,” I said, picking up my hat, “I am to start north to find a place called Black Harbor, where there is a man named Halyard who possesses, among other household utensils, two extinct great auks—”\n\n32\nWe were both laughing by this time. I asked him why on earth he credited the assertion of a man he had never before heard of.\n\n33\n“I suppose,” he replied, with the same half-apologetic, half-humorous smile, “it is instinct. I feel, somehow, that this man Halyard has got an auk—perhaps two. I can’t get away from the idea that we are on the eve of acquiring the rarest of living creatures. It’s odd for a scientist to talk as I do; doubtless you’re shocked—admit it, now!”\n\n34\nBut I was not shocked; on the contrary, I was conscious that the same strange hope that Professor Farrago cherished was beginning, in spite of me, to stir my pulses, too.\n\n35\n“If he has—” I began, then stopped.\n\n36\nThe professor and I looked hard at each other in silence.\n\n37\n“Go on,” he said, encouragingly.\n\n38\nBut I had nothing more to say, for the prospect of beholding with my own eyes a living specimen of the great auk produced a series of conflicting emotions within me which rendered speech profanely superfluous.\n\nFrom IN SEARCH OF THE UNKNOWN by Robert W. Chambers—Public Domain"
+    },
+    {
+      "form": "a",
+      "title": "Excerpt from “Research Riddle Resolved”",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "For centuries, scientists were confounded by an animal that seemed to look and act like a combination of a bird, a reptile, and a mammal. It has a bill like a duck and lays eggs but produces milk for its young. It lives in a burrow, has fur, and can make venom. We now know that this animal is called a duck-billed platypus. A platypus is a monotreme, a type of egg-laying mammal.\n\nExcerpt from “Research Riddle Resolved”\n\n1\nHundreds of years after the first sightings of the platypus, the animal still captures our imagination anew and irresistibly attracts the attention of science writers everywhere. The May 2008 Nature report detailing the DNA insides of the duck-billed platypus invited colorful tales from just about every mainstream media outlet.\n\n2\nBut cuteness and weirdness aside, the platypus research results are a gold mine for medical researchers. The findings cement what may have seemed totally obvious but turned out to be a bit of a scientific surprise: platypus DNA is a patchwork of genes from reptiles, birds, and mammals.\n\nEvolution Fusion\n\n3\nIn other words, the platypus heritage is laid out in an evolutionary DNA tapestry that marks the time, hundreds of millions of years ago, when reptiles and mammals branched off the evolutionary tree.\n\n4\nSo what? The platypus is nothing like a human, so what can its DNA tell us about people and the diseases we get?\n\n5\nPlenty, says an international team of scientists who did this work.\n\n6\nThe platypus genome results are far more than confirmation of a scientific oddity. They provide researchers a window into a time in history when mammals became unique—gaining the ability to bear live young, produce milk for them, and grow a warm, furry coat.\n\n7\nThat’s important because our own, modern-day genomes are still a big mystery and researchers need much more information to be able to translate our genetic language into useful health knowledge.\n\n8\nOne of the ways scientists can decipher meaning from within our 3 billion DNA “letters,” or nucleotides, is to compare human genes with those from animals, to see what has been kept the same and what has evolved to be different. . . .\n\nSame and Different\n\n9\nIn an approach called comparative genomics, scientists compare the genome sequences of several species: human, mouse, and a wide variety of other organisms from single-celled fungi to elephants and, now, the platypus.\n\n10\nThe goal of this research is to find regions of similarity and difference in order to better understand the structure and function of human genes.\n\n11\nComparative genomics is directly related to evolution because all living things share a common ancestor. By using computer tools to examine genes that have been kept the same in many organisms over millions of years, researchers can locate signals that control how genes work. This information may translate into ways to understand, treat, and prevent human diseases. . . .\n\nChicken or Egg?\n\n12\nWhen researchers analyzed platypus DNA and compared it to that of chickens, snakes, and lizards, the findings traced the evolutionary path from birds and reptiles to mammals. They learned that the platypus lost most of its genetic ability to produce egg yolk—as compared to chicken genes. This suggests its departure from “chicken-ness.”\n\n13\nBut, through evolutionary change, the platypus gained the ability to make milk that is rich in nutrients. Platypuses have genes that make the milk protein casein: just like we do.\n\n14\nA male platypus can, like its ancestral snake and lizard cousins, produce venom. The platypus ejects this venom through special glands in its back legs. The evolutionary reason for maintaining such molecular weaponry isn’t yet clear, but what is fascinating is that it appears nature mixed and matched together DNA pieces separately to create the venom genes in reptiles and monotremes like the platypus.\n\n15\nThe scientific value of pinning genetics to physiological function—like milk production—is high. Such investigations may help medical researchers understand health issues related to reproduction and lactation. Although lactation is an ancient reproductive trait, mammals—including the platypus—are unique in their ability to produce milk that is extraordinarily nutritious, containing a rich blend of sugars, fats, and proteins.\n\n16\nMore generally, though, studying how nature cuts and pastes gene modules gives scientists an inside scoop on how genetic changes relate to health and disease risk.\n\n17\nOne thing is clear—the stunning blend of reptile, bird, and mammal puts the platypus in a class of its own, and it gives researchers much more: information about how mammals like us came about.\n\n18\n[Scientists’] genetic sleuthing of platypuses, chimps, fish, sunflowers—you name it—continues to teach scientists how millions of years of evolution progressed. This provides vital information to understanding the role of genes in the health and disease of mammals like us and our pets, and can also help preserve our rich and diverse planet.\n\nFrom “Research Riddle Resolved”—Public Domain/National Institutes of Health"
+    },
+    {
+      "form": "b",
+      "title": "Martial Arts for the Mind and Body",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Martial Arts for the Mind and Body\n\n(1) The martial arts blend a series of physical movements with strategic mental discipline so that practitioners can defend themselves, physically defeat an opponent, or both. (2) Historians are unsure of exactly when and where martial arts were first used. (3) Martial arts have been practiced by several different societies for many centuries. (4) Martial arts such as karate, kung fu, tae kwon do, and judo are still taught and practiced as methods of self-defense, but they offer students more than that. (5) The study of martial arts can provide students with a way to enhance their mental discipline as well as their physical fitness.\n\n(6) Discipline, focus, and respect are important qualities for everyone to have. (7) However, for most people these qualities are not innate; they must be learned and practiced. (8) The study of martial arts can provide an opportunity to develop these skills. (9) Students are rewarded for their dedication by passing tests and advancing to higher levels. (10) For example, in a typical tae kwon do class, students learn discipline by diligently practicing moves, improve focus by listening carefully, and demonstrate respect by bowing to the instructor and following directions.\n\n(11) For teenagers, martial arts classes provide a safe and structured environment for gaining physical skills, building confidence, and enjoying a sense of community. (12) A lot of teens go through hard situations as they try to do well in school and in life. (13) A karate class can provide teens with a physical outlet for stress while also challenging them mentally. (14) Participating in a martial arts program also helps children and teens focus on self-improvement rather than on competition. (15) Progressing through levels of achievement involves mastering more physically demanding techniques. (16) It requires students to take responsibility and be accountable for achieving set goals. (17) Students gain confidence and experience companionship with other students who are progressing through the ranks.\n\n(18) Adults who practice martial arts can experience many of the same benefits that younger people do, but perhaps the greatest of these is health and fitness. (19) Adult martial arts students often see changes in their body within weeks of beginning a program.\n\n(20) For people interested in studying a martial art, there are many ways to learn and practice. (21) In addition to private studios, community recreation centers often offer low-cost or free martial arts classes. (22) There are even online videos that introduce students to the basic concepts. (23) People should study martial arts."
+    },
+    {
+      "form": "b",
+      "title": "Wolves of the Sea",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Wolves of the Sea\n\n1\nThe cool and misty landscape of the Great Bear Rainforest can be found along the coast of British Columbia, Canada, and its nearby islands, from Vancouver Island to the Alaskan border. Within this protected area, wolves roam the forests, islands, and beaches. When biologist Chris Darimont began to study these wolves, he wanted to confer with local First Nations groups, as aboriginal Canadians are known, in order to learn what they knew about these wolves. He spoke with Chester Starr, an elder of the Heiltsuk Nation that has occupied the Great Bear Rainforest for thousands of years. What Starr had to say about the wolves changed Darimont’s perception of the animals.\n\n2\nStarr asked Darimont which wolves he and his team were going to study—the timber wolves (mainland wolves) or the coastal wolves on the islands. The question took Darimont by surprise. Biologists had always believed that the wolves that are sometimes spotted swimming between islands and eating salmon are the same wolves that live on the mainland. Darimont was intrigued by Starr’s classification of the wolves as two different groups. At first, he was hesitant to accept the idea. The distances between the mainland and the islands are small, less than a mile. Why would the wolves on the islands be any different from the wolves on the mainland? To find out, Darimont and his research team studied the wolves on the islands and in the densely forested territory of the Great Bear Rainforest for ten years.\n\n3\nThroughout the study, Darimont recorded several significant, observable differences between the “sea wolves,” as they are nicknamed, and the mainland wolves. Compared with the mainland wolves, the sea wolves are smaller in size and are strong swimmers. In 1996 sea wolves were spotted on an island nearly eight miles from any other land formation. While mainland wolves almost exclusively eat meat, such as deer and elk, and teach their young to hunt for land animals, sea wolves get as much as 90 percent of their nutrition from the sea and teach their young to dig for clams and to catch fish. Sea wolves regularly swim between islands and have been known to sneak up on a seal sunning itself on a rock and make a leaping attack from the water. Some salmon-eating mainland wolves come and go from the islands with the fish-spawning season, but the sea wolves are full-time island residents. Darimont suspects that some sea wolves live their entire life on the islands.\n\n4\nThe sea wolves displayed not only physical and behavioral differences but also genetic variations from the mainland wolves. After collecting and analyzing the DNA in 800 samples of gray fur and wolf waste, researchers could produce hard biological evidence that sea wolves had genetic markers that made them distinct from the mainland wolves. A genetic marker is a variation in a DNA sequence that can be used to identify individuals or a species because it is passed down to offspring. Darimont hypothesizes that a change in habitat led to the eventual genetic differences between sea wolves and mainland wolves. Many years ago, loss of habitat and food sources forced some mainland wolves out to the islands. They learned to eat everything from kelp and fish eggs to the remains of sea creatures that washed up on the beach. Wolves living on the islands and mainland wolves became more isolated and rarely mated with each other. Over time the two types of wolves became more distinct.\n\n5\nIt turned out that Chester Starr was right all along. “It sounded totally bizarre at first,” admits Darimont, “that there could be two versions of the species.” But he now realizes that this skepticism “definitely reflected my ignorance of indigenous knowledge at the time.” Learning to trust the wisdom of the Heiltsuk people opened Darimont up to knowledge accumulated over millennia and positioned him so that he could gather new scientific evidence about one of British Columbia’s most elusive species, the sea wolf."
+    },
+    {
+      "form": "b",
+      "title": "Excerpt from “How We Made the First Flight”",
+      "poemLines": 0,
+      "glossary": 4,
+      "overflow": false,
+      "text": "In 1903 brothers Wilbur and Orville Wright conducted various experiments related to flying machines. These experiments would eventually lead to air travel becoming a reliable form of transportation.\n\nExcerpt from “How We Made the First Flight”\n\nby Orville Wright\n\n1\nDuring the night of December 16, 1903, a strong cold wind blew from the north. When we arose on the morning of the 17th, the puddles of water, which had been standing about camp since the recent rains, were covered with ice. The wind had a velocity of 10 to 12 meters per second (22 to 27 miles an hour). We thought it would die down before long, and so remained indoors the early part of the morning. But when ten o’clock arrived, and the wind was as brisk as ever, we decided that we had better get the machine out and attempt a flight. We hung out the signal for the men of the Life Saving Station. We thought that by facing the flyer into a strong wind, there ought to be no trouble in launching it from the level ground about camp. We realized the difficulties of flying in so high a wind, but estimated that the added dangers in flight would be partly compensated for by the slower speed in landing.\n\nFinal Preparations\n\n2\nWe laid the track on a smooth stretch of ground about one hundred feet north of the new building. The biting cold wind made work difficult, and we had to warm up frequently in our living room, where we had a good fire in an improvised stove made of a large carbide can. By the time all was ready, J. T. Daniels, W. S. Dough and A. D. Etheridge, members of the Kill Devil Life Saving Station; W. C. Brinkley of Manteo, and Johnny Moore, a boy from Nags Head, had arrived.\n\n3\nWe had a “Richard” hand anemometer with which we measured the velocity of the wind. Measurements made just before starting the first flight showed velocities of 11 to 12 meters per second, or 24 to 27 miles per hour. . . .\n\nAudacity—and Calculation\n\n4\nWilbur having used his turn in the unsuccessful attempt on the 14th, the right to the first trial now belonged to me. After running the motor a few minutes to heat it up, I released the wire that held the machine to the track, and the machine started forward in the wind. Wilbur ran at the side of the machine, holding the wing to balance it on the track. Unlike the start on the 14th, made in a calm, the machine, facing a 27-mile wind, started very slowly. Wilbur was able to stay with it till it lifted from the track after a forty-foot run. One of the Life Saving men snapped the camera for us, taking a picture just as the machine had reached the end of the track and had risen to a height of about two feet. The slow forward speed of the machine over the ground is clearly shown in the picture by Wilbur’s attitude. He stayed along beside the machine without any effort.\n\nFlight\n\n5\nThe course of the flight up and down was exceedingly erratic, partly due to the irregularity of the air, and partly to lack of experience in handling this machine. The control of the front rudder was difficult on account of its being balanced too near the center. This gave it a tendency to turn itself when started; so that it turned too far on one side and then too far on the other. As a result the machine would rise suddenly to about ten feet, and then as suddenly dart for the ground. A sudden dart when a little over a hundred feet from the end of the track, or a little over 120 feet from the point at which it rose into the air, ended the flight. As the velocity of the wind was over 35 feet per second and the speed of the machine over the ground against this wind ten feet per second, the speed of the machine relative to the air was over 45 feet per second, and the length of the flight was equivalent to a flight of 540 feet made in calm air. This flight lasted only 12 seconds, but it was nevertheless the first in the history of the world in which a machine carrying a man had raised itself by its own power into the air in full flight, had sailed forward without reduction of speed and had finally landed at a point as high as that from which it started.\n\nFrom “How We Made the First Flight” by Orville Wright—Public Domain/Federal Aviation Administration"
+    },
+    {
+      "form": "b",
+      "title": "Excerpt from “The Spirit of the Herd”",
+      "poemLines": 0,
+      "glossary": 2,
+      "overflow": false,
+      "text": "In this excerpt, published in 1914, author and professor Dallas Lore Sharp describes a summer cattle roundup in Oregon. The heat and dust had been relentless for three days. The cowboys were exhausted, and the cattle were restless. The ranch boss, Wade, had led the drive to a watering place, only to find it empty.\n\nExcerpt from “The Spirit of the Herd”\n\nby Dallas Lore Sharp\n\n1\nAlong with the wagon had come the fresh horses—one of them being Peroxide Jim, a supple, powerful, clean-limbed buckskin, a horse, I think, that had as fine and intelligent an animal-face as any creature I ever saw. Wade had been saving this horse for emergency work. And why should he not have been saved fresh for just such a need as this? Are there not superior horses as well as superior men—a Peroxide Jim to complement a Wade?\n\n2\nThe horse knew the cattle business and knew his rider perfectly; and though there was nothing like sentiment about the boss of the P Ranch riders, his faith in Peroxide Jim was complete. . . .\n\n3\nThe desert, where the herd was camped, was one of the highest of a series of tablelands, or benches; it lay as level as a floor, rimmed by sheer rock, from which there was a drop to the bench of sage below. The herd when overtaken by the dusk had been headed for a pass descending to the next lower bench, but was now halted within a mile of the rim rock on the east, where there was a perpendicular fall of about three hundred feet. . . .\n\n4\nIn the taut silence of the stirless desert night, with the tension of the herd at the snapping-point, any quick, unwonted sight or sound would stampede them. The sneezing of a horse, the flare of a match, would be enough to send the whole four thousand headlong—blind, frenzied, trampling—till spent and scattered over the plain.\n\n5\nAnd so, as he rode, Wade began to sing. The rider ahead of him took up the air and passed it on until, above the stepping stir of the hoofs rose the faint voices of the men, and all the herd was bound about by the slow plaintive measures of some old song. It was not to soothe their savage breasts that the riders sang to the cattle, but rather to preempt the dreaded silence, to relieve the tension, and so to prevent the shock of any sudden startling noise.\n\n6\nSo they sang and rode and the night wore on to one o’clock, when Wade, coming up on the rim-rock side, felt a cool breeze fan his face, and caught a breath of fresh, moist wind with the taste of water in it.\n\n7\nHe checked his horse instantly, listening as the wind swept past him over the cattle. But they must already have smelled it, for they had ceased their milling, the whole herd standing motionless, the indistinct forms close to him in the dark showing their bald faces lifted to drink the sweet wet breath that came over the rim. Then they started on again, but faster, and with a rumbling now from their hoarse throats that tightened Wade’s grip on the reins.\n\n8\nThe sound seemed to come out of the earth, a low, rumbling mumble, as dark as the night and as wide as the plain, a thick, inarticulate bellow that stood every rider stiff in his stirrups. . . .\n\n9\nThen the breeze caught the dust and carried it back from the gray-coated, ghostly shapes, and Wade saw that the animals were still moving in a circle. He must keep them going. He touched his horse to ride on with them, when across the black sky flashed a vivid streak of lightning.\n\n10\nThere was a snort from the steers, a quick clap of horns and hoofs from far within the herd, a tremor of the plain, a roar, a surging mass—and Wade was riding the flank of a wild stampede. Before him, behind him, beside him, pressing hard upon his horse, galloped the frenzied steers, and beyond them a multitude borne on, and bearing him on, by the heave of the galloping herd.\n\n11\nWade was riding for his life. He knew it. His horse knew it. He was riding to turn the herd, too, back from the rim, as the horse also knew. The cattle were after water—water-mad—ready to go over the precipice to get it, carrying horse and rider with them. Wade was the only rider between the herd and the rim. It was black as death. He could see nothing in the sage, could scarcely discern the pounding, panting shadows at his side. He knew that he was being borne toward the rim, how fast he could not tell, but he knew by the swish of the brush against his tapaderos and the plunging of the horse that the ground was growing stonier, that they were nearing the rocks.\n\n12\nTo outrun the herd was his only chance for life. If he could come up with the leaders he might not only escape, but even stand a chance of heading them off upon the plain and saving the herd. There were cattle still ahead of him; how many, what part of them all, he could not make out in the dark. But the horse knew. The reins hung on his straight neck, where his rider had dropped them, as, yelling and firing over the wild herd, he had given this horse the race to win, to lose.\n\n13\nThey were riding the rim. Close on their left bore down the flank of the herd, and on their right, under their very feet, was a precipice, so close that they felt its blackness—its three hundred feet of fall! . . .\n\n14\n. . . Then Wade found himself racing neck and neck with a big white steer, which the horse, with marvelous instinct, seemed to pick out from a bunch, and to cling to, forcing him gradually ahead, till, cutting him free from the bunch entirely, he bore him off into the swishing sage.\n\n15\nThe steers coming on close behind followed their leader, and in, after them, swung others. The tide was turning from the rim. More and more were veering, and within a short time the whole herd, bearing off from the cliffs, was pounding over the open plains.\n\n16\nWhose race was it? It was Peroxide Jim’s, according to Wade, for not by word or by touch of hand or knee had the horse been directed in the run. From the flash of the lightning the horse had taken the bit, had covered an indescribably perilous path at top speed, had outrun the herd and turned it from the edge of the rim rock, without a false step or a tremor of fear.\n\nFrom “The Spirit of the Herd” by Dallas Lore Sharp—Public Domain"
+    },
+    {
+      "form": "b",
+      "title": "A Miracle Mile",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "A Miracle Mile\n\n1\nIn the 1950s people compared running one mile in four minutes to scaling Mount Everest and nicknamed the feat a “dream mile.” Although such an accomplishment was considered humanly impossible, several elite runners aimed to break that supposedly impenetrable barrier. One of them was a twenty-five-year-old medical student named Roger Bannister.\n\n2\nRoger Bannister had tasted failure during the 1952 Olympics. There, he was favored to win the 1,500-meter competition, a distance slightly shorter than a mile, but he finished in a dismal fourth place instead. Bannister’s performance was a disappointment for him and his country, Great Britain. Determined to redeem himself, Bannister postponed his plans to retire from racing and focused on the ultimate prize—breaking the four-minute-mile barrier.\n\n3\nBannister attacked the elusive milestone with a positive attitude and logical planning. The amateur athlete decided to use intensive interval training to develop endurance and speed. For these workouts, Bannister ran an interval of ten consecutive laps on a quarter-mile track, aiming for sixty seconds each lap. In between intervals, he let his body recover for two minutes.\n\n4\nBy early 1954, Bannister had succeeded in lowering his quarter-mile pace to sixty-one seconds, but he had to shave off at least one more second in order to reach his target. Frustrated by the plateau he had reached, Bannister took a break from training and went mountain climbing for three days. The rest from running permitted his muscles to recuperate and left him feeling refreshed. When Bannister returned to the track, he completed ten quarter-mile-long intervals at fifty-nine seconds each. He finally felt prepared to attempt to break the world record.\n\n5\nAs a member of the Amateur Athletic Association (AAA), Bannister joined the AAA team for a track meet against Oxford University. The event took place on a cinder track in Oxford on May 6, 1954. Bannister and his two AAA teammates, Chris Chataway and Chris Brasher, were close friends and frequent running partners. Chataway and Brasher agreed to help Bannister accomplish his goal by being his “rabbits.”\n\n6\nIn track and field, rabbits are runners who enter the race solely to pace a teammate for a segment of the course. Typically, a runner settles in behind the rabbit and allows the rabbit to set an appropriate tempo. Additionally, by running behind the rabbit, the runner conserves about 15 percent of his or her effort. When the starting pistol fired, Brasher pounced into the lead, and Bannister followed behind his first rabbit.\n\n7\nPropelled by the excitement, Bannister lost his instinctive feel for his pace and shouted “Faster!” at Brasher. Brasher, however, remained composed and maintained his current steady but grueling pace, completing the first two laps in a desirable one minute and fifty-eight seconds. Then Chataway surged forward, leading Bannister at this same punishing rate for another lap and a half. At the beginning of the back straightaway of the track, Bannister bolted past Chataway. Bannister said, “I felt that the moment of a lifetime had come. There was no pain, only a great unity of movement and aim.” Bannister crossed the finish line in 3 minutes 59.4 seconds. The ecstatic crowd erupted the moment the timekeeper announced the word “three.”\n\n8\nSoon after Bannister’s achievement, four other athletes matched his performance. A new mindset had taken root among runners. Over the years, the record continued to fall. However, the current record, 3 minutes 43.13 seconds, has stood unbroken since 1999. Some question whether this record represents the limits of human ability. But perhaps there is another Bannister, an athlete who, with willpower and dedication, will accomplish the miraculous."
+    },
+    {
+      "form": "b",
+      "title": "Serpent Mound",
+      "poemLines": 45,
+      "glossary": 0,
+      "overflow": false,
+      "text": "The Great Serpent Mound, located in Adams County, Ohio, is a human-made mound of earth that researchers believe was created between 300 B.C. and A.D. 1100 by an indigenous culture.\n\nSerpent Mound\n\nOhio, 1846\n\nBrush Creek stood low when the museum men came\n\nwith their measuring tapes and sketchbooks.\n\n   It was winter. Fringed with ice,\n\n   the creek doubled back on itself\n\n5\n   as if it had forgotten something.\n\n   Pa was in Cincinnati, or else on his way home,\n\n      so Ma told me to lead the men\n\n      into the marshy low grounds. It being winter,\n\n         there was little underbrush to speak of—\n\n10\n         in the summer there would have been\n\n      briars, poison ivy, biting flies. I listened\n\n      for the swish of a beaver’s heavy tail,\n\n   the chitter of a chickadee, or the cry of a hawk,\n\n   but the winter silence of the creek pressed\n\n15\n   down on all of us like a weight.\n\nThe humps in the ground were all but\n\ninvisible until you were right up on them. The figure\n\n   was even less obvious: the sinuous body,\n\n   the tail coiled three times around,\n\n20\n   and at the other end, the mouth wide open.\n\n      In the summer the creek bottom was crowded\n\n      with so much life that you could trip over\n\n         the ridges of earth before you saw\n\n         anything at all. In winter you could climb\n\n25\n         a tree and get some idea of the whole thing:\n\n      the serpent’s body undulating, slithering\n\n      silently across the ancient\n\n   earth. At the mouth end, there was an oval mound\n\n   as if the snake were about to swallow an egg—\n\n30\nas snakes sometimes did in our rickety\n\nhenhouse—my Pa always said, or\n\nas if swallowing the sun, one of the museum\n\n   men suggested, taking notes with his quill pen,\n\n   an old-style inkhorn slung at his side.\n\n35\n   I liked that: swallowing the sun,\n\n      just the sort of thing a snake might do,\n\n      might want to do. When, later, I told my sister Ruth,\n\n         she disagreed. It is singing to the sun,\n\n         she insisted. That is why its mouth\n\n40\n      is wide open. She said, “Sometimes I think\n\n   I hear it on summer nights. Not swallowing, singing.”"
+    },
+    {
+      "form": "b",
+      "title": "A Memory Revolution",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "A Memory Revolution\n\n1\nA high school senior logs on to a computer at the library to double-check the application due date listed on a college admissions website. Nearby, a librarian helps a group of biology students use a database to search for recent studies about mammals. In the past few decades, the Internet has become an integral component of daily life for many people. The seemingly limitless power of search engines made the Internet search extremely common, and today people increasingly rely on the Internet’s vast accumulation of sources to access all types of information. Scientists are beginning to examine how this reliance is modifying the strategies people use to store and prioritize information in their mind.\n\nA Dependable and Valuable Asset\n\n2\nPsychologist Benjamin Storm from the University of California, Santa Cruz, and researchers Sean Stone and Aaron Benjamin devised an experiment to study students’ tendency to depend on the Internet for facts. To begin, the scientists divided sixty participants into multiple groups, including an “Internet” group and a “memory” group, and placed them in front of computers. The Internet group was required to use the search engine Google to answer eight challenging trivia questions. In contrast, participants in the memory group were permitted to use only their personal knowledge to answer the questions. In the second round, the researchers administered notably easier questions. This time, they allowed each group the option of using Google as they answered. Their results showed that 83 percent of the Internet group continued to consult Google in the second round, while only 63 percent of the memory group chose to do so.\n\n3\nPeople’s growing inclination to rely on the Internet in order to retrieve information, particularly facts and figures, is called cognitive offloading. Canadian researcher Evan F. Risko and British researcher Sam Gilbert, who have written extensively about the topic, say a similar process has been taking place for centuries. In the past, people used resources like encyclopedias to assist their memories; however, today the Internet, serving as a vast extended memory, allows people to digitally access and retrieve much larger volumes of information. Consequently, people’s minds are free for other cognitive feats, such as connecting data, learning new information, or solving problems.\n\nFiling Information Away\n\n4\nThe use of the Internet also appears to be modifying the strategies people use to store information in their mind. Researchers Betsy Sparrow from Columbia University, Jenny Liu from the University of Wisconsin-Madison, and Daniel Wegner from Harvard University conducted several studies to discover how people efficiently manage their information intake.\n\n5\nTo begin, the researchers examined how people evaluate which information deserves their effort to remember. For this experiment, participants read forty trivia facts, such as “An ostrich’s eye is bigger than its brain,” and typed the statements into a computer file. Half the participants had been previously told the file would be saved, while half believed it would be erased. Next, the participants wrote down every fact they could recall. Those who believed the information would be erased and no longer available could recall 40 percent more facts than those who thought the information would be saved.\n\n6\nIn another experiment, the same researchers tested the ability of study participants to remember where to access information. For this trial, participants read and typed trivia statements, which they saved in folders with generic names such as “Facts” and “Items.” After spending ten minutes writing down all the facts they could recall from memory, participants were asked which folder contained a particular fact based on a keyword. For example, “Which folder has the fact about ostriches?” Overall, participants recalled the information’s location more often than the content itself, correctly identifying 49 percent of the folders for specific facts while remembering only 23 percent of the actual trivia. The researchers concluded that our memory is adapting to the Internet age by prioritizing where to locate information even when the specific details are forgotten. According to Sparrow, the Internet has become an important form of transactive memory, an external source of the recollections and associative networks that constitute memory.\n\n7\nAs the Internet’s resources continue to expand our “external” memory, some question whether the process may cause people to depend too heavily on technology. However, Steven Pinker, a professor of psychology at Harvard University, says, “Knowledge is increasing exponentially; human brainpower and waking hours are not. Fortunately, the Internet and information technologies are helping us manage, search and retrieve our collective intellectual output at different scales, from Twitter and previews to e-books and online encyclopedias. Far from making us stupid, these technologies are the only things that will keep us smart.”"
+    }
+  ],
+  "english": [
+    {
+      "form": "a",
+      "n": "5",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "6",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "7",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "8",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "9",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "10",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "11",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "12",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "13",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "14",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "15",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "16",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "17",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "18",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "19",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "20",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "21",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "22",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "23",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "24",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "25",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "26",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "27",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "28",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "29",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "30",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "31",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "32",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "33",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "34",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "35",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "36",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "37",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "38",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "39",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "40",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "41",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "42",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "43",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "44",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "45",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "46",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "47",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "48",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "49",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "50",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "51",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "52",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "53",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "54",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "55",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "56",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "57",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "1",
+      "underlines": [
+        "agile",
+        "first",
+        "only",
+        "States"
+      ],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "2",
+      "underlines": [
+        "The engineers tried some other things"
+      ],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "3",
+      "underlines": [
+        "name, at",
+        "race, they",
+        "hours, paving",
+        "261, the"
+      ],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "4",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "5",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "6",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "7",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "8",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "9",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "10",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "11",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "12",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "13",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "14",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "15",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "16",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "17",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "18",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "19",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "20",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "21",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "22",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "23",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "24",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "25",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "26",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "27",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "28",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "29",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "30",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "31",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "32",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "33",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "34",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "35",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "36",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "37",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "38",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "39",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "40",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "41",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "42",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "43",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "44",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "45",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "46",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "47",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "48",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "49",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "50",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "51",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "52",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "53",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "54",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "55",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "56",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "57",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "1",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "2",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "3",
+      "underlines": [
+        "spent",
+        "play",
+        "did",
+        "projection",
+        "studies",
+        "emotions,",
+        "recited",
+        "times,"
+      ],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "4",
+      "underlines": [
+        "wonder:",
+        "is",
+        "with,",
+        "it is",
+        "process,",
+        "makes",
+        "gelato,",
+        "allow"
+      ],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    }
+  ]
+}

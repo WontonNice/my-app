@@ -1,0 +1,98 @@
+[
+  {
+    "question": 11,
+    "width": 1200,
+    "errors": 0,
+    "captionCentered": true,
+    "scrollbars": [],
+    "formula": "1"
+  },
+  {
+    "question": 27,
+    "width": 1200,
+    "errors": 0,
+    "captionCentered": true,
+    "scrollbars": [],
+    "formula": "85"
+  },
+  {
+    "question": 43,
+    "width": 1200,
+    "errors": 0,
+    "captionCentered": null,
+    "scrollbars": [],
+    "formula": "\\displaystyle \\frac{w}{x}=\\frac{y}{z}"
+  },
+  {
+    "question": 46,
+    "width": 1200,
+    "errors": 0,
+    "captionCentered": true,
+    "scrollbars": [],
+    "formula": "65"
+  },
+  {
+    "question": 48,
+    "width": 1200,
+    "errors": 0,
+    "captionCentered": null,
+    "scrollbars": [],
+    "formula": "\\displaystyle \\frac{10}{13}=0.\\overline{769230}"
+  },
+  {
+    "question": 56,
+    "width": 1200,
+    "errors": 0,
+    "captionCentered": true,
+    "scrollbars": [],
+    "formula": "0"
+  },
+  {
+    "question": 11,
+    "width": 700,
+    "errors": 0,
+    "captionCentered": true,
+    "scrollbars": [],
+    "formula": "1"
+  },
+  {
+    "question": 27,
+    "width": 700,
+    "errors": 0,
+    "captionCentered": true,
+    "scrollbars": [],
+    "formula": "85"
+  },
+  {
+    "question": 43,
+    "width": 700,
+    "errors": 0,
+    "captionCentered": null,
+    "scrollbars": [],
+    "formula": "\\displaystyle \\frac{w}{x}=\\frac{y}{z}"
+  },
+  {
+    "question": 46,
+    "width": 700,
+    "errors": 0,
+    "captionCentered": true,
+    "scrollbars": [],
+    "formula": "65"
+  },
+  {
+    "question": 48,
+    "width": 700,
+    "errors": 0,
+    "captionCentered": null,
+    "scrollbars": [],
+    "formula": "\\displaystyle \\frac{10}{13}=0.\\overline{769230}"
+  },
+  {
+    "question": 56,
+    "width": 700,
+    "errors": 0,
+    "captionCentered": true,
+    "scrollbars": [],
+    "formula": "0"
+  }
+]

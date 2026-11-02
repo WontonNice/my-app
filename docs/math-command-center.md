@@ -22,6 +22,18 @@ npm run dev
 
 Sign in with the existing teacher account, then open **Math Command Center** from the teacher dashboard, or visit `/teacher/math-command`. The link from an individual student's **Student Insights** opens the workspace with that student selected. The ordinary application still uses its existing authentication and saved student data; zero AI dependency does not mean that student records are stored in the local editor.
 
+## Workspace layout
+
+The teacher workspace puts generator building first: **Question bank → My generator planner → Practice studio**. The overview links directly to these tools, with library coverage and review issues below. **Student insights**, **Curriculum coverage**, and **Review queue** retain their existing evidence and drill-downs. On small screens, **Workspace section** replaces the desktop navigation.
+
+- **Workspace tools** contains Settings, Manage Skilled, and the creation studio. **Practice preview** remains beside it.
+- **Question bank** keeps category, subcategory, difficulty, readiness, and sorting visible. **More filters** contains personal tags, favorites, Skilled, and the remaining source and evidence filters. Each row keeps **Add to planner** visible; **Question tools** expands tagging, the exam player, and generator creation.
+- **My generator planner** keeps the saved batch and export controls above the question queue and request editor. Expand **Batch details & shared instructions** to rename a batch or edit its shared brief. These edits use the existing autosave.
+- **Practice studio** groups the resource list and editor in one workspace. Existing resource editing, module naming, generator controls, previews, and save actions are preserved.
+- The student selector appears in the question bank and student insights. Selected students, question selections, filters, and existing navigation safeguards retain their previous behavior.
+
+This layout changes presentation only; it does not migrate question content, planner batches, practice resources, or student records.
+
 ## Organize questions efficiently
 
 The local editor's **Open teacher Math Command Center** button resolves a running Nathan Tutors Vite app (including fallback ports) and opens it in the same tab. If none is running, it starts the existing `npm run dev` command and waits for the app. Startup errors remain visible; logs are in `tools/.content-drafts/teacher-workspace.log`. To use a hosted teacher app instead, set `CONTENT_STUDIO_TEACHER_URL=https://your-existing-app.example` in the root `.env`. Teacher sign-in retains the Math Center destination. This does not bypass authentication or install the hosted metadata migration.
@@ -149,3 +161,19 @@ The helper inserts only when the remote record is absent. It never updates or ov
 Local Content Studio continues to edit local files. By default, `npm run dev` shares those local files. Set `MATH_COMMAND_STORAGE=supabase` on the development server only when you intentionally want that server to use the configured remote metadata. Content Studio remains local even then. There is no automatic local-to-hosted or hosted-to-local metadata synchronization after initial publication; subsequent hosted classification changes should be made through the hosted teacher workspace. Publishing native question changes still follows the existing content export and deployment process.
 
 Deploy the full repository/build layout, including `tools/math-topics.json`, `server/data/exam-content.json`, `server/data/question-bank.json`, the exported `server/data/math-import-review.json`, and the compiled client/server output. The configured Render build already retains this layout. Copying only `server/dist` omits required canonical content and taxonomy. No additional question database or student assignment table is required by this migration.
+# Targeted infinite practice workflow
+
+Student insights defaults to Needs attention. Topics with enough scored responses, distinct questions, assessments, and recent evidence rank before limited samples. The classification notice opens a question-bank collection containing that student's unclassified sources. Classification remains a teacher-reviewed edit; historical answers and grades are preserved.
+
+Use **Assign infinite practice** beside a topic to open the student's native Available content view with Math, Infinite modules, and the topic selected. **Build fixed-question set** remains a separate action; a shortfall now explains source-readiness exclusions and links to the review bank. Full Student Insights opens the selected record directly.
+
+Infinite listings show unlimited variants, the effective generator count, and focused-module versus practice-group labels. Open a module title to preview its families and sample questions, then Assign or Plan it. The native form defaults to 10 consecutive correct answers, retains its existing 1–100 validation, and exposes both source evidence and included content before saving. Assignment, permissions, repeat checks, streak completion, and student visibility still use the existing learning-plan and infinite-homework systems. Navigation never submits homework.
+
+Practice studio and the personal generator planner can hand off a module or generator to this same flow. Generator handoffs filter the available modules by included family. A group still assigns its full listed mix; use a focused module for a narrower skill. Study Hall now discloses included families and offers published focused modules beneath their groups.
+
+The personal planner stores optional private teaching context (rationale, original student/evidence reference, response date and answers). This context is excluded from the standard JSON build plan and prompt. Shared and individual build instructions remain exportable; a recovery backup intentionally retains the full private batch. Existing entries without context continue to work. Re-adding an existing source fills missing context without overwriting an existing rationale.
+
+Reuse suggestions distinguish exact-source matches from related-topic candidates whose coverage still needs review. Queue rows show destination readiness; export selects and focuses the first incomplete field. Saved-batch backups and unsaved-draft recovery use distinct labels. Evidence prompts render math, recorded question dialogs include saved timing when available, and explanations prefer authored HTML and its official images over OCR text.
+
+Workflow regressions: `node --test server/tests/math-workflow.test.cjs server/tests/generator-planner.test.cjs server/tests/classroom-updates.test.cjs`. The isolated `tools/preview-math-command.cjs` also mounts the native learning-plan form against synthetic students and in-memory assignments for browser verification.
+

@@ -1,0 +1,211 @@
+{
+  "a": {
+    "assessmentId": "2021-2022-form-a",
+    "passages": [
+      {
+        "draftId": "import-56fc502c8701a48740e2-bb2bf7de",
+        "id": "cracking-the-code-2022-2023-form-a",
+        "fileName": "cracking-the-code-2022-2023-form-a.ts",
+        "questions": 5
+      },
+      {
+        "draftId": "import-dc1ad285adb8c16459f7-58bae079",
+        "id": "the-best-laid-plans-of-ravens-2021-2022-form-a",
+        "fileName": "the-best-laid-plans-of-ravens-2021-2022-form-a.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-624b69868e8bad09ddba-2b95effe",
+        "id": "excerpt-from-winter-wheat-2021-2022-form-a",
+        "fileName": "excerpt-from-winter-wheat-2021-2022-form-a.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-95434e6cd3d4e0bcb952-4362d458",
+        "id": "massachusetts",
+        "fileName": "massachusetts.ts",
+        "questions": 7
+      },
+      {
+        "draftId": "import-97b30ef4c120ab546344-6baf9774",
+        "id": "ode-to-fireworks-2021-2022-form-a",
+        "fileName": "ode-to-fireworks-2021-2022-form-a.ts",
+        "questions": 7
+      },
+      {
+        "draftId": "import-5a9f3c5dd4aef58488f3-5283b7d8",
+        "id": "excerpt-from-in-search-of-the-unknown-2026-2027-form-b",
+        "fileName": "excerpt-from-in-search-of-the-unknown-2026-2027-form-b.ts",
+        "questions": 9
+      },
+      {
+        "draftId": "import-3fa028830f3669bd3a6b-39061749",
+        "id": "excerpt-from-research-riddle-resolved-2021-2022-form-a",
+        "fileName": "excerpt-from-research-riddle-resolved-2021-2022-form-a.ts",
+        "questions": 9
+      }
+    ],
+    "independent": [
+      {
+        "draftId": "part-b-import-6821270b0d81-84bcb37c",
+        "id": "part-b-import-6821270b0d81-84bcb37c",
+        "sourceQuestion": "1"
+      },
+      {
+        "draftId": "part-b-import-685e4caef796-3cbc3b40",
+        "id": "part-b-import-685e4caef796-3cbc3b40",
+        "sourceQuestion": "2"
+      },
+      {
+        "draftId": "part-b-import-e9507c2137e0-26757058",
+        "id": "part-b-import-e9507c2137e0-26757058",
+        "sourceQuestion": "3"
+      },
+      {
+        "draftId": "part-b-import-e09cf6171e3b-9c9ff219",
+        "id": "part-b-import-e09cf6171e3b-9c9ff219",
+        "sourceQuestion": "4"
+      }
+    ],
+    "math": {
+      "math": {
+        "assessmentId": "2021-2022-form-a",
+        "questionCount": 57,
+        "target": "client/src/content/exams/mathSets/2021-2022-form-aMath.ts"
+      }
+    }
+  },
+  "b": {
+    "assessmentId": "2021-2022-form-b",
+    "passages": [
+      {
+        "draftId": "import-9f7b0db3fd80cde9e2db-dd3fa43a",
+        "id": "martial-arts-for-the-mind-and-body-2021-2022-form-b",
+        "fileName": "martial-arts-for-the-mind-and-body-2021-2022-form-b.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-e460cd107eef9b295c50-4d436874",
+        "id": "wolves-of-the-sea-2026-2027-form-d",
+        "fileName": "wolves-of-the-sea-2026-2027-form-d.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-e425dc71425ca9d76d57-46e59ca5",
+        "id": "excerpt-from-how-we-made-the-first-flight-2021-2022-form-b",
+        "fileName": "excerpt-from-how-we-made-the-first-flight-2021-2022-form-b.ts",
+        "questions": 9
+      },
+      {
+        "draftId": "import-f1c00e1dd14bbcc058b4-99652c7c",
+        "id": "spirit-of-the-herd",
+        "fileName": "spiritOfTheHerd.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-5542385a8bffc4034b32-3c99f4ba",
+        "id": "a-miracle-mile-2021-2022-form-b",
+        "fileName": "a-miracle-mile-2021-2022-form-b.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-7237bd971ad54d8b2761-c92609f0",
+        "id": "serpent-mound-2021-2022-form-b-version-2",
+        "fileName": "serpent-mound-2021-2022-form-b-version-2.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-ccc995e24c2379e87f9b-e1b7a798",
+        "id": "a-memory-revolution-2021-2022-form-b",
+        "fileName": "a-memory-revolution-2021-2022-form-b.ts",
+        "questions": 8
+      }
+    ],
+    "independent": [
+      {
+        "draftId": "part-b-import-7226c5623b47-9e4b96da",
+        "id": "part-b-import-7226c5623b47-9e4b96da",
+        "sourceQuestion": "1"
+      },
+      {
+        "draftId": "part-b-import-25cc3a4331f5-4a886a73",
+        "id": "part-b-import-25cc3a4331f5-4a886a73",
+        "sourceQuestion": "2"
+      },
+      {
+        "draftId": "part-b-import-cc5a1f42770d-2c348204",
+        "id": "part-b-import-cc5a1f42770d-2c348204",
+        "sourceQuestion": "3"
+      },
+      {
+        "draftId": "part-b-import-fe5c3b88f8ad-7aa424b9",
+        "id": "part-b-import-fe5c3b88f8ad-7aa424b9",
+        "sourceQuestion": "4"
+      }
+    ],
+    "math": {
+      "assessmentId": "2021-2022-form-b",
+      "added": [
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q058",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q059",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q060",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q061",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q062",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q063",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q064",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q065",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q066",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q067",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q068",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q069",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q070",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q071",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q072",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q073",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q074",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q075",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q076",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q077",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q078",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q079",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q080",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q081",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q082",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q083",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q084",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q085",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q086",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q087",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q088",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q089",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q090",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q091",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q092",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q093",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q094",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q095",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q096",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q097",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q098",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q099",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q100",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q101",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q102",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q103",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q104",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q105",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q106",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q107",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q108",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q109",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q110",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q111",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q112",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q113",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q114"
+      ],
+      "existing": [],
+      "errors": []
+    }
+  }
+}

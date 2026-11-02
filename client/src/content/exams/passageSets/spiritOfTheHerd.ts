@@ -1,11 +1,11 @@
-import { createProsePassage } from "../formatters";
+import { createSourcePassage } from "../formatters";
 import type { ExamPassageSet, ExamQuestion } from "../types";
 
 const spiritOfTheHerdPassageText = "Along with the wagon had come the fresh horses—one of them being Peroxide Jim, a supple, powerful, clean-limbed buckskin, a horse, I think, that had as fine and intelligent an animal-face as any creature I ever saw. Wade had been saving this horse for emergency work. And why should he not have been saved fresh for just such a need as this? Are there not superior horses as well as superior men—a Peroxide Jim to complement a Wade?\n\nThe horse knew the cattle business and knew his rider perfectly; and though there was nothing like sentiment about the boss of the P Ranch riders, his faith in Peroxide Jim was complete. . . .\n\nThe desert, where the herd was camped, was one of the highest of a series of tablelands, or benches; it lay as level as a floor, rimmed by sheer rock, from which there was a drop to the bench of sage below. The herd when overtaken by the dusk had been headed for a pass descending to the next lower bench, but was now halted within a mile of the rim rock on the east, where there was a perpendicular fall of about three hundred feet. . . .\n\nIn the taut silence of the stirless desert night, with the tension of the herd at the snapping-point, any quick, unwonted sight or sound would stampede them. The sneezing of a horse, the flare of a match, would be enough to send the whole four thousand headlong—blind, frenzied, trampling—till spent and scattered over the plain.\n\nAnd so, as he rode, Wade began to sing. The rider ahead of him took up the air and passed it on until, above the stepping stir of the hoofs rose the faint voices of the men, and all the herd was bound about by the slow plaintive measures of some old song. It was not to soothe their savage breasts that the riders sang to the cattle, but rather to preempt the dreaded silence, to relieve the tension, and so to prevent the shock of any sudden startling noise.\n\nSo they sang and rode and the night wore on to one o’clock, when Wade, coming up on the rim-rock side, felt a cool breeze fan his face, and caught a breath of fresh, moist wind with the taste of water in it.\n\nHe checked his horse instantly, listening as the wind swept past him over the cattle. But they must already have smelled it, for they had ceased their milling, the whole herd standing motionless, the indistinct forms close to him in the dark showing their bald faces lifted to drink the sweet wet breath that came over the rim. Then they started on again, but faster, and with a rumbling now from their hoarse throats that tightened Wade’s grip on the reins.\n\nThe sound seemed to come out of the earth, a low, rumbling mumble, as dark as the night and as wide as the plain, a thick, inarticulate bellow that stood every rider stiff in his stirrups. . . .\n\nThen the breeze caught the dust and carried it back from the gray-coated, ghostly shapes, and Wade saw that the animals were still moving in a circle. He must keep them going. He touched his horse to ride on with them, when across the black sky flashed a vivid streak of lightning.\n\nThere was a snort from the steers, a quick clap of horns and hoofs from far within the herd, a tremor of the plain, a roar, a surging mass—and Wade was riding the flank of a wild stampede. Before him, behind him, beside him, pressing hard upon his horse, galloped the frenzied steers, and beyond them a multitude borne on, and bearing him on, by the heave of the galloping herd.\n\nWade was riding for his life. He knew it. His horse knew it. He was riding to turn the herd, too, back from the rim, as the horse also knew. The cattle were after water—water-mad—ready to go over the precipice to get it, carrying horse and rider with them. Wade was the only rider between the herd and the rim. It was black as death. He could see nothing in the sage, could scarcely discern the pounding, panting shadows at his side. He knew that he was being borne toward the rim, how fast he could not tell, but he knew by the swish of the brush against his tapaderos and the plunging of the horse that the ground was growing stonier, that they were nearing the rocks.\n\nTo outrun the herd was his only chance for life. If he could come up with the leaders he might not only escape, but even stand a chance of heading them off upon the plain and saving the herd. There were cattle still ahead of him; how many, what part of them all, he could not make out in the dark. But the horse knew. The reins hung on his straight neck, where his rider had dropped them, as, yelling and firing over the wild herd, he had given this horse the race to win, to lose.\n\nThey were riding the rim. Close on their left bore down the flank of the herd, and on their right, under their very feet, was a precipice, so close that they felt its blackness—its three hundred feet of fall! . . .\n\n. . . Then Wade found himself racing neck and neck with a big white steer, which the horse, with marvelous instinct, seemed to pick out from a bunch, and to cling to, forcing him gradually ahead, till, cutting him free from the bunch entirely, he bore him off into the swishing sage.\n\nThe steers coming on close behind followed their leader, and in, after them, swung others. The tide was turning from the rim. More and more were veering, and within a short time the whole herd, bearing off from the cliffs, was pounding over the open plains.\n\nWhose race was it? It was Peroxide Jim’s, according to Wade, for not by word or by touch of hand or knee had the horse been directed in the run. From the flash of the lightning the horse had taken the bit, had covered an indescribably perilous path at top speed, had outrun the herd and turned it from the edge of the rim rock, without a false step or a tremor of fear.";
 
 const spiritOfTheHerdQuestions: ExamQuestion[] = [
   {
-    "id": "spirit-herd-1",
+    "id": "spirit-of-the-herd-spirit-herd-1",
     "points": 1,
     "prompt": "Which sentence from the excerpt best explains why Wade reserved Peroxide Jim for “emergency work” (paragraph 1)?",
     "promptHtml": "Which sentence from the excerpt <strong>best</strong> explains why Wade reserved Peroxide Jim for “emergency work” (paragraph 1)?",
@@ -36,7 +36,7 @@ const spiritOfTheHerdQuestions: ExamQuestion[] = [
     "type": "multiple_choice"
   },
   {
-    "id": "spirit-herd-2",
+    "id": "spirit-of-the-herd-spirit-herd-2",
     "points": 1,
     "prompt": "Paragraphs 1–2 contribute to the development of the central idea of the excerpt by",
     "promptHtml": "Paragraphs 1–2 contribute to the development of the central idea of the excerpt by",
@@ -67,7 +67,7 @@ const spiritOfTheHerdQuestions: ExamQuestion[] = [
     "type": "multiple_choice"
   },
   {
-    "id": "spirit-herd-3",
+    "id": "spirit-of-the-herd-spirit-herd-3",
     "points": 1,
     "prompt": "How does paragraph 3 convey the effect of the setting on the cattle drive?",
     "promptHtml": "How does paragraph 3 convey the effect of the setting on the cattle drive?",
@@ -98,7 +98,7 @@ const spiritOfTheHerdQuestions: ExamQuestion[] = [
     "type": "multiple_choice"
   },
   {
-    "id": "spirit-herd-4",
+    "id": "spirit-of-the-herd-spirit-herd-4",
     "points": 1,
     "prompt": "How does paragraph 9 fit into the overall structure of the excerpt?",
     "promptHtml": "How does paragraph 9 fit into the overall structure of the excerpt?",
@@ -256,7 +256,7 @@ const spiritOfTheHerdQuestions: ExamQuestion[] = [
 
 export const spiritOfTheHerdPassageSet: ExamPassageSet = {
   id: "spirit-of-the-herd",
-  versionLabels: ["2025-2026 Form A"],
+  versionLabels: ["2025-2026 Form A","2021-2022 Form B"],
   section: "reading",
   questionCount: spiritOfTheHerdQuestions.length,
   directions: {
@@ -265,8 +265,13 @@ export const spiritOfTheHerdPassageSet: ExamPassageSet = {
   "breadcrumbLabel": "ELA RDG COMP DIRECTIONS",
   "body": "Read each text and answer the related questions. As needed, you may use the online notepad tool or write on scrap paper to take notes. You should reread relevant parts of each text, while being mindful of time, before selecting the best answer for each question. Base your answers only on the content within the text."
 },
-  passage: createProsePassage({
+  passage: createSourcePassage({
     id: "spirit-of-the-herd",
+    preserveSourceLayout: true,
+    format: "prose",
+    images: [],
+    titleHtml: "Excerpt from “The Spirit of the Herd”",
+    blurbHtml: "<em>In this excerpt, published in 1914, author and professor Dallas Lore Sharp describes a summer cattle roundup in Oregon. The heat and dust had been relentless for three days. The cowboys were exhausted, and the cattle were restless. The ranch boss, Wade, had led the drive to a watering place, only to find <span>it empty.</span></em>",
     title: "Excerpt from \"The Spirit of the Herd\"",
     author: "Dallas Lore Sharp",
     blurb: "In this excerpt, published in 1914, author and professor Dallas Lore Sharp describes a summer cattle roundup in Oregon. The heat and dust had been relentless for three days. The cowboys were exhausted, and the cattle were restless. The ranch boss, Wade, had led the drive to a watering place, only to find it empty.",

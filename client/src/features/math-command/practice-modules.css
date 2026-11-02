@@ -13,3 +13,9 @@
 .student-practice-shelf h2 { margin:0 0 7px; font:500 1.35rem/1.2 Georgia,serif; }
 .student-practice-shelf .math-study-modules { max-height:360px; }
 .practice-module-warning { color:#8a4938; }
+.practice-module-contents { margin-top: 12px; padding-top: 12px; border-top: 1px solid #d4ded8; font-size: .82rem; }
+.practice-module-contents summary { cursor: pointer; color: #286452; }
+.practice-module-contents li { margin: 12px 0; }
+.practice-module-contents p { margin: 4px 0; }
+.practice-focused-module { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; }
+@media (max-width: 620px) { .practice-focused-module { align-items: start; flex-direction: column; } }

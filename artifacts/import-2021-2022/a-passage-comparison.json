@@ -1,0 +1,65 @@
+[
+  {
+    "title": "Cracking the Code",
+    "ratio": 1.0,
+    "differences": []
+  },
+  {
+    "title": "The Best Laid Plans of Ravens",
+    "ratio": 1.0,
+    "differences": []
+  },
+  {
+    "title": "Excerpt from Winter Wheat",
+    "ratio": 0.9982486865148862,
+    "differences": [
+      {
+        "source": "",
+        "working": "if",
+        "context": "they went back to iowa i left from gotham we"
+      },
+      {
+        "source": "isat",
+        "working": "i sat",
+        "context": "the flavor of going away isat on the bed in my"
+      }
+    ]
+  },
+  {
+    "title": "Massachusetts: Lowell National Historical Park",
+    "ratio": 1.0,
+    "differences": []
+  },
+  {
+    "title": "Excerpt from In Search of the Unknown",
+    "ratio": 0.9961501443695862,
+    "differences": [
+      {
+        "source": "sol",
+        "working": "so i",
+        "context": "to see me a moment sol retraced my steps to the"
+      },
+      {
+        "source": "dotage2",
+        "working": "dotage",
+        "context": "was on the verge of dotage2 ah what a loss to"
+      },
+      {
+        "source": "ill",
+        "working": "i ll",
+        "context": "bring back if there is ill wire you you may be"
+      }
+    ]
+  },
+  {
+    "title": "Excerpt from “Research Riddle Resolved”",
+    "ratio": 0.9944827586206897,
+    "differences": [
+      {
+        "source": "",
+        "working": "understand the structure and function of human genes",
+        "context": "difference in order to better comparative genomics is directly related"
+      }
+    ]
+  }
+]

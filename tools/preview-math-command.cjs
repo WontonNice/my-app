@@ -8,7 +8,13 @@ const fixture=require('./math-command-fixture.cjs').install(root,{reuse:Boolean(
 if(!reuse)fs.copyFileSync(path.join(__dirname,'math-topics.json'),path.join(root,'tools/math-topics.json'));
 const {mathCommandRouter}=require('../server/src/routes/mathCommand.ts');
 const {infinitePracticeRouter}=require('../server/src/routes/infinitePractice.ts');
-const app=express();app.use(express.json({limit:'1mb'}));app.use('/api/math-command',mathCommandRouter);app.use('/api/infinite-practice',infinitePracticeRouter);
+// Exercise the native learning-plan form with isolated storage as well.
+const progressPath=require.resolve('../server/src/routes/progress.ts');
+require.cache[progressPath]={id:progressPath,filename:progressPath,loaded:true,exports:{getDatabaseProgress:async()=>({examResults:[],practice:{}})}};
+const planStorePath=require.resolve('../server/src/lib/learningPlanStore.ts');
+const planStore=require(planStorePath);require.cache[planStorePath]={id:planStorePath,filename:planStorePath,loaded:true,exports:{...planStore,learningCatalog:()=>[]}};
+const {learningPlanRouter}=require('../server/src/routes/learningPlan.ts');
+const app=express();app.use(express.json({limit:'1mb'}));app.use('/api/math-command',mathCommandRouter);app.use('/api/infinite-practice',infinitePracticeRouter);app.use('/api/learning-plan',learningPlanRouter);
 // Explicit fixture-only help makes assignment selection verifiable without private data.
 app.get('/__qa/state',(_request,response)=>response.json({fixture:true,studentId:fixture.studentId,assignments:fixture.db.tables.student_assignments,results:fixture.db.tables.student_exam_results.map(row=>({studentId:row.user_id,assessmentId:row.assessment_id,correct:row.result.correct,total:row.result.total}))}));
 app.get('/__qa/export',(_request,response)=>response.json({fixture:true,tables:fixture.db.tables}));

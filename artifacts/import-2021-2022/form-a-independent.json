@@ -1,0 +1,468 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "points": 1,
+      "prompt": "Which edit should be made to correct this sentence?",
+      "promptHtml": "Which edit should be made to correct this sentence?",
+      "stimulus": "In 1962 the agile athletic Wilt Chamberlain became the first and only professional basketball player in the United States to score 100 points in a single game.",
+      "stimulusHtml": "In 1962 the <u>agile</u> athletic Wilt Chamberlain became the <u>first</u> and <u>only</u> professional basketball player in the United <u>States</u> to score 100 points in a single game.",
+      "topic": "Sentence Structure",
+      "choices": [
+        {
+          "id": "A",
+          "html": "Insert a comma after <strong><em>agile</em></strong>.",
+          "text": "Insert a comma after agile."
+        },
+        {
+          "id": "B",
+          "html": "Insert a comma after <strong><em>first</em></strong>.",
+          "text": "Insert a comma after first."
+        },
+        {
+          "id": "C",
+          "html": "Insert a comma after <strong><em>only</em></strong>.",
+          "text": "Insert a comma after only."
+        },
+        {
+          "id": "D",
+          "html": "Insert a comma after <strong><em>States</em></strong>.",
+          "text": "Insert a comma after States."
+        }
+      ],
+      "type": "multiple_choice",
+      "id": "pdf-shsat-2021-2022-a-q001",
+      "correctChoiceId": "A",
+      "review": {
+        "sourceFile": "20212022_form_a.pdf",
+        "sourcePages": [
+          1
+        ],
+        "sourceQuestion": "1",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_a_-_answers.pdf",
+          "sourcePages": [
+            46
+          ]
+        },
+        "expectedChoiceCount": 4,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20212022_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                81,
+                301,
+                1158,
+                688
+              ]
+            }
+          ]
+        }
+      },
+      "instructions": "Read this sentence.",
+      "instructionsHtml": "<p>Read this sentence.</p>",
+      "explanation": "The question asks which edit should be made to correct the sentence.\nA. CORRECT. The sentence in the box needs a comma to separate the coordinate adjectives.\nCoordinate adjectives describe characteristics of the same noun or subject and are connected\nwith a comma or “and.” This option is the only one that places a comma where it is needed,\nbetween the coordinate adjectives “agile” and “athletic.”\nB. Incorrect. The option incorrectly adds a comma in the middle of the phrase “first and only,”\nwhich modifies, or gives additional information about, “professional basketball player.”\nC. Incorrect. The option incorrectly adds a comma between two adjectives that are not\ncoordinate adjectives. “Only” is part of the phrase “first and only” and is modifying\n“professional basketball player.”\nD. Incorrect. The option is incorrect because a comma is not needed to set off the phrase “to\nscore 100 points in a single game.”",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q001-explanation-1.png\" width=\"689\" alt=\"Official explanation for source question 1; original printed answer labels retained.\"></p>",
+      "sourceQuestion": "1",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2021-2022 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2021-2022-form-a",
+        "label": "2021-2022 Form A",
+        "year": "2021-2022",
+        "form": "A",
+        "sourceFile": "20212022_form_a.pdf",
+        "sha256": "4c5de9ea8136846b98c66c7995ae8a0ec52adeaf67698f1aa2f9075948eadb17",
+        "sourceQuestion": "1",
+        "pages": [
+          1
+        ]
+      },
+      "notes": [
+        "Supplied 20212022_form_a.pdf; PDF page 1; original question 1."
+      ]
+    },
+    {
+      "prompt": "What is the most precise revision for the words The engineers tried some other things?",
+      "promptHtml": "<p>What is the most precise revision for the words <strong><em>The engineers tried some other things</em></strong>?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The engineers did experiments with several new materials",
+          "html": "The engineers did experiments with several new materials"
+        },
+        {
+          "id": "B",
+          "text": "The engineers tested foam and fiberglass",
+          "html": "The engineers tested foam and fiberglass"
+        },
+        {
+          "id": "C",
+          "text": "The engineers examined two new materials",
+          "html": "The engineers examined two new materials"
+        },
+        {
+          "id": "D",
+          "text": "The engineers worked with foam and fiberglass",
+          "html": "The engineers worked with foam and fiberglass"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-a-q002",
+      "type": "multiple_choice",
+      "points": 1,
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_a.pdf",
+        "sourcePages": [
+          1
+        ],
+        "sourceQuestion": "2",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_a_-_answers.pdf",
+          "sourcePages": [
+            46
+          ]
+        },
+        "expectedChoiceCount": 4,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "topicConfidence": null,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20212022_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                80,
+                736,
+                1149,
+                1097
+              ]
+            }
+          ]
+        }
+      },
+      "instructions": "Read this sentence.",
+      "stimulus": "The engineers tried some other things in the hope of finding a more effective insulation for the compartment.",
+      "stimulusHtml": "<p><u>The engineers tried some other things</u> in the hope of finding a more effective insulation for the compartment.</p>",
+      "instructionsHtml": "<p>Read this sentence.</p>",
+      "explanation": "The question asks for the most precise revision for the words “The engineers tried some\nother things.”\nE. Incorrect. This revision uses the word “materials” rather than precisely identifying what the\nengineers used.\nF. CORRECT. This option revises the words to be more precise by using the specific words\n“tested” for the verb and “foam and fiberglass” for the materials.\nG. Incorrect. This revision uses the word “examined” rather than a word indicating a process of\nexperimental trial and error. The sentence also uses the word “materials” rather than\nprecisely identifying what the engineers used.\nH. Incorrect. This revision identifies the materials, but the imprecise verb “worked with” does\nnot specify what the engineers were doing.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q002-explanation-1.png\" width=\"684\" alt=\"Official explanation for source question 2; original printed answer labels retained.\"></p>",
+      "sourceQuestion": "2",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2021-2022 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2021-2022-form-a",
+        "label": "2021-2022 Form A",
+        "year": "2021-2022",
+        "form": "A",
+        "sourceFile": "20212022_form_a.pdf",
+        "sha256": "4c5de9ea8136846b98c66c7995ae8a0ec52adeaf67698f1aa2f9075948eadb17",
+        "sourceQuestion": "2",
+        "pages": [
+          1
+        ]
+      },
+      "notes": [
+        "Supplied 20212022_form_a.pdf; PDF page 1; original question 2."
+      ]
+    },
+    {
+      "points": 1,
+      "prompt": "Which revision corrects the error in sentence structure in the paragraph?",
+      "promptHtml": "Which revision corrects the error in sentence structure in the paragraph?",
+      "stimulus": "In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name, at that time, only men were permitted to officially register and receive a number for the legendary race. Once officials realized a woman was attempting to run in the race, they made efforts to remove her from the competition. Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women. In 2017, to mark the fiftieth anniversary of this pioneering event, a seventy-year-old Switzer repeated her run, wearing the number 261, the same number she had worn in that first run in 1967.",
+      "stimulusHtml": "<p>In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full <u>name, at</u> that time, only men were permitted to officially register and receive a number for the legendary race. Once officials realized a woman was attempting to run in the <u>race, they</u> made efforts to remove her from the competition. Switzer prevailed and finished in just over four <u>hours, paving</u> the way for the official rule change that allowed for the inclusion of women. In 2017, to mark the fiftieth anniversary of this pioneering event, a seventy-year-old Switzer repeated her run, wearing the number <u>261, the</u> same number she had worn in that first run in 1967.</p>",
+      "topic": "Sentence Structure",
+      "choices": [
+        {
+          "id": "A",
+          "html": "name. At",
+          "text": "name. At"
+        },
+        {
+          "id": "B",
+          "html": "race. They",
+          "text": "race. They"
+        },
+        {
+          "id": "C",
+          "html": "hours. Paving",
+          "text": "hours. Paving"
+        },
+        {
+          "id": "D",
+          "html": "261. The",
+          "text": "261. The"
+        }
+      ],
+      "type": "multiple_choice",
+      "id": "pdf-shsat-2021-2022-a-q003",
+      "correctChoiceId": "A",
+      "review": {
+        "sourceFile": "20212022_form_a.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "3",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_a_-_answers.pdf",
+          "sourcePages": [
+            46
+          ]
+        },
+        "expectedChoiceCount": 4,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20212022_form_a_-_answers.pdf",
+          "sourcePages": [
+            2
+          ],
+          "regions": [
+            {
+              "page": 2,
+              "box": [
+                75,
+                156,
+                1156,
+                977
+              ]
+            }
+          ]
+        }
+      },
+      "instructions": "Read this paragraph.",
+      "instructionsHtml": "<p>Read this paragraph.</p>",
+      "explanation": "The question asks for the revision that corrects the error in sentence structure in the paragraph.\nA. CORRECT. As written, the first sentence (“In 1967 Katherine Switzer . . . legendary race.”) is\na run-on sentence because a comma is used to combine two independent clauses.\nIndependent clauses are complete sentences with a subject and a verb. The clauses—“In\n1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials\ninstead of her full name” and “at that time, only men were permitted to officially register and\nreceive a number for the legendary race”—should be separated with a period instead. This\nrevision correctly places a period after the word “name” and capitalizes the word “At” to\nseparate the two independent clauses into two sentences.\nB. Incorrect. The revision introduces an error into the paragraph and does not revise the run-on\nin the first sentence. The clause “Once officials realized a woman was attempting to run in\nthe race” is a dependent clause functioning as an adverb of the independent clause that\nfollows it. Changing the comma after the word “race” to a period would incorrectly separate\nthe adverbial dependent clause from the independent clause.\nC. Incorrect. The revision introduces an error into the paragraph and does not revise the run-on\nin the first sentence. The sentence “Switzer prevailed and finished in just over four hours,\npaving the way for the official rule change that allowed for the inclusion of women” is a\ncomplex sentence, which combines an independent clause (“Switzer prevailed and finished in\njust over four hours”) and a dependent clause (“paving the way for the official rule change\nthat allowed for the inclusion of women”). The clause “paving the way for the official rule\nchange that allowed for the inclusion of women” is not a complete sentence and must stay\nconnected to the first part of the sentence. Changing the comma after “hours” to a period\nwould incorrectly separate the dependent clause from the independent clause.\nD. Incorrect. The revision introduces an error into the paragraph and does not revise the run-on\nin the first sentence. Changing the comma after “261” to a period would incorrectly separate\nthe modifying clause “the same number she had worn in that first run in 1967” from the\nwords it describes (“number 261”). Additionally, the clause “the same number she had worn\nin that first run in 1967” is not a complete sentence.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q003-explanation-1.png\" width=\"692\" alt=\"Official explanation for source question 3; original printed answer labels retained.\"></p>",
+      "sourceQuestion": "3",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2021-2022 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2021-2022-form-a",
+        "label": "2021-2022 Form A",
+        "year": "2021-2022",
+        "form": "A",
+        "sourceFile": "20212022_form_a.pdf",
+        "sha256": "4c5de9ea8136846b98c66c7995ae8a0ec52adeaf67698f1aa2f9075948eadb17",
+        "sourceQuestion": "3",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20212022_form_a.pdf; PDF page 2; original question 3."
+      ]
+    },
+    {
+      "points": 1,
+      "prompt": "Which sentence contains an error in its construction and should be revised?",
+      "promptHtml": "Which sentence contains an error in its construction and should be revised?",
+      "stimulus": "(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink, gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.",
+      "stimulusHtml": "<p>(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink, gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.</p>",
+      "topic": "Pronouns",
+      "choices": [
+        {
+          "id": "A",
+          "html": "sentence 1",
+          "text": "sentence 1"
+        },
+        {
+          "id": "B",
+          "html": "sentence 2",
+          "text": "sentence 2"
+        },
+        {
+          "id": "C",
+          "html": "sentence 3",
+          "text": "sentence 3"
+        },
+        {
+          "id": "D",
+          "html": "sentence 4",
+          "text": "sentence 4"
+        }
+      ],
+      "type": "multiple_choice",
+      "id": "pdf-shsat-2021-2022-a-q004",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_a.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "4",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_a_-_answers.pdf",
+          "sourcePages": [
+            46
+          ]
+        },
+        "expectedChoiceCount": 4,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20212022_form_a_-_answers.pdf",
+          "sourcePages": [
+            3
+          ],
+          "regions": [
+            {
+              "page": 3,
+              "box": [
+                74,
+                156,
+                1156,
+                704
+              ]
+            }
+          ]
+        }
+      },
+      "instructions": "Read this paragraph.",
+      "instructionsHtml": "<p>Read this paragraph.</p>",
+      "explanation": "The question asks for the identification of the sentence that contains an error in its construction\nand should be revised.\nE. Incorrect. There are no errors in sentence 1. The singular pronoun “its” matches the number\nof the word it refers to, the singular noun “blobfish.” Additionally, the clause “a creature that\ncertainly resembles its name” is correctly set off by commas to provide an additional, but not\nessential, detail about the blobfish. The comma separating “pink” and “gelatinous” is correct\nbecause these are coordinate adjectives.\nF. Incorrect. There are no errors in sentence 2. The singular pronouns “it” and “its” match the\nnumber of the word they refer to, the singular noun “blobfish.” Additionally, the structure of\nthe sentence correctly shows that the clause “Because it has very few muscles and its density\nis close to that of water” modifies the words “the blobfish.”\nG. Incorrect. There are no errors in sentence 3. The “it” and “its” in the sentence refer to “the\nblobfish” mentioned in the previous sentence. The use of singular pronouns in sentence 3 is\nconsistent with the rest of the paragraph.\nH. CORRECT. Sentence 4 contains an error because the sentence uses the plural pronoun\n“them” to refer to “The blobfish’s,” which is singular in number. The word “them” should be\nchanged to “it.” The paragraph refers to the blobfish as a singular species in each of the four\nsentences, and sentence 4 should be revised to match.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q004-explanation-1.png\" width=\"692\" alt=\"Official explanation for source question 4; original printed answer labels retained.\"></p>",
+      "sourceQuestion": "4",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2021-2022 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2021-2022-form-a",
+        "label": "2021-2022 Form A",
+        "year": "2021-2022",
+        "form": "A",
+        "sourceFile": "20212022_form_a.pdf",
+        "sha256": "4c5de9ea8136846b98c66c7995ae8a0ec52adeaf67698f1aa2f9075948eadb17",
+        "sourceQuestion": "4",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20212022_form_a.pdf; PDF page 2; original question 4."
+      ]
+    }
+  ]
+}

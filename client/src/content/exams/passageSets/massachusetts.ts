@@ -224,7 +224,7 @@ const massachusettsQuestions: ExamQuestion[] = [
 ];
 
 export const massachusettsPassageSet: ExamPassageSet = {
-  versionLabels: ["2025-2026 Form A","2026-2027 Form A"],
+  versionLabels: ["2025-2026 Form A","2026-2027 Form A","2021-2022 Form A"],
   id: "ela-massachusetts",
   section: "reading",
   questionCount: massachusettsQuestions.length,

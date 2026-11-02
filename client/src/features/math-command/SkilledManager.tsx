@@ -21,7 +21,7 @@ export function SkilledManager({request,onClose,onSaved,initialCategory='',initi
   return createPortal(<dialog ref={dialog} className="skilled-manager" aria-labelledby="skilled-manager-title" onCancel={event=>{event.preventDefault();close();}}>
     <header><div><h2 id="skilled-manager-title">Manage Skilled</h2><p>One shared list of skills, organized within each subcategory.</p></div><button type="button" disabled={busy} aria-label="Close Skilled manager" onClick={close}><X size={18}/></button></header>
     <div className="skilled-manager-body">
-      <p>Questions start as <strong>TBD</strong> until you assign a skill. Linked infinite-practice modules use the same skill name. Renames apply everywhere; deleting a skill returns its linked classifications to TBD.</p>
+      <p>Questions start as <strong>TBD</strong> until you assign a skill. Skill renames update shared classifications. Module display names can be edited separately in Practice modules. Deleting a skill returns its linked classifications to TBD.</p>
       {error&&<div className="skilled-error" role="alert">{error}<button type="button" disabled={busy} onClick={()=>void reload()}>Reload definitions</button></div>}
       {notice&&<p role="status">{notice}</p>}
       {!data?<p role="status">{error?'Definitions could not be loaded.':'Loading Skilled definitions…'}</p>:<fieldset disabled={busy}>

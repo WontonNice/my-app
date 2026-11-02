@@ -220,7 +220,7 @@
         "correctDirection": "left or right"
       }
     },
-    "richText": "promptHtml, stimulusHtml, instructionsHtml are optional faithful rich HTML with LaTeX delimiters. Uploaded images may appear between paragraphs as img with src=/exam-images/existing-file, alt, and optional width. Never invent asset references.",
+    "richText": "promptHtml, stimulusHtml, instructionsHtml are optional faithful rich HTML with LaTeX delimiters. Use the existing MathLive/KaTeX notation: \\(\\overline{AB}\\) for a line segment and \\(\\overrightarrow{AB}\\) for a ray. Keep the mark over the complete source label; do not imitate it with a detached Unicode bar or custom HTML/CSS. Uploaded images may appear between paragraphs as img with src=/exam-images/existing-file, alt, and optional width. Never invent asset references.",
     "choiceFormatting": "Format mathematics in every answer choice as faithfully as the prompt. Keep text as the readable source wording. For a formula-only choice use math with bare LaTeX; for prose containing mathematics use html with inline LaTeX delimiters. Preserve fractions, mixed numbers, exponents, roots, variables, units, emphasis and visuals. Do not put a whole sentence in math or leave printed stacked fractions as plain slash text."
   },
   "review": {
@@ -336,8 +336,6 @@
       "Algebra": [
         "Algebraic Expressions",
         "Equations & Systems",
-        "Formulas & Rearranging Equations",
-        "Algebraic Word Problems",
         "Inequalities",
         "Functions & Graphs",
         "Patterns & Sequences"
@@ -352,26 +350,20 @@
         "Similarity & Scale Drawings"
       ],
       "Statistics and Probability": [
-        "Data Displays",
+        "Data Displays & Sampling",
         "Averages & Spread",
-        "Sampling & Predictions",
-        "Counting & Combinations",
-        "Basic Probability",
-        "Compound Probability",
-        "Set Relationships"
+        "Counting & Sets",
+        "Probability"
       ],
       "Ratios and Proportional Relationships": [
         "Ratios & Proportions",
         "Rates & Unit Rates",
-        "Proportional Relationships",
-        "Percentages",
-        "Percent Change & Applications"
+        "Percentages"
       ],
       "Arithmetic & Number Sense": [
         "Number Types & Properties",
         "Integers & Absolute Value",
-        "Fractions",
-        "Decimals",
+        "Fractions & Decimals",
         "Order of Operations",
         "Exponents, Roots & Scientific Notation",
         "Units & Conversions"

@@ -34,8 +34,8 @@ test('subcategory migration retains practice IDs, content, selections and Founda
     }
   }
   assert.equal(next.videos[0].id,'kept-video');assert.equal(next.videos[0].published,false);assert.equal(next.videos[0].topic,'Lines & Angles');
-  assert.equal(next.modules.find(m=>m.title==='Listing Outcomes').topic,'Counting & Combinations');
-  assert.equal(next.modules.find(m=>m.title==='Draws Without Replacement').topic,'Compound Probability');
+  assert.equal(next.modules.find(m=>m.title==='Listing Outcomes').topic,'Counting & Sets');
+  assert.equal(next.modules.find(m=>m.title==='Draws Without Replacement').topic,'Probability');
   for(const category of taxonomy.categories)for(const topic of category.topics)for(const kind of ['foundation','general'])assert.equal(next.modules.filter(m=>m.category===category.label&&m.topic===topic&&practiceModuleKind(m)===kind).length,1);
   assert.deepEqual(validatePracticeCatalog(reconcilePracticeTaxonomy(next,taxonomy),taxonomy),next);
   assert.doesNotThrow(()=>validatePracticeCatalog(defaultPracticeCatalog(taxonomy),taxonomy));
@@ -45,7 +45,27 @@ test('existing skills are only rehomed, retaining IDs, labels, prerequisites and
   const original={metadata:{q:{skilled:'angles'}},skills:[{id:'decimal-operations',label:'Decimal Operations',category:'Arithmetic & Number Sense',subcategory:'Fractions & Decimals',prerequisiteIds:[]}],classificationSkills:[{id:'angles',label:'Angles',category:'Geometry',subcategory:'Shapes & Angles'}]};
   const next=migrateState(original,taxonomy);
   assert.deepEqual(next.metadata,original.metadata);
-  assert.deepEqual(next.skills,[{...original.skills[0],subcategory:'Decimals'}]);
+  assert.deepEqual(next.skills,[{...original.skills[0],subcategory:'Fractions & Decimals'}]);
   assert.deepEqual(next.classificationSkills,[{...original.classificationSkills[0],subcategory:'Lines & Angles'}]);
   assert.deepEqual(migrateState(next,taxonomy),next);
+});
+
+
+test('consolidation merges default parents and preserves focused practice and skill assignments',()=>{
+  const category='Statistics and Probability';
+  const generators=['Basic Probability','Compound Probability'].map((topic,index)=>({id:'custom-'+index,title:'Existing '+index,description:'',enabled:true,kind:'one-step',settings:require('../server/src/shared/practiceCatalog.ts').defaultGeneratorSettings,category,topic}));
+  const previous=require('../server/src/shared/practiceCatalog.ts').ensureTopicPracticeModules({generators,modules:[],videos:[]});
+  for(const generator of generators){
+    const parent=previous.modules.find(m=>m.topic===generator.topic&&practiceModuleKind(m)==='foundation');
+    previous.modules.push({id:'child-'+generator.id,title:generator.title,description:'',category,topic:generator.topic,published:true,includeAll:false,generatorIds:[generator.id],parentId:parent.id});
+  }
+  const next=validatePracticeCatalog(reconcilePracticeTaxonomy(previous,taxonomy),taxonomy);
+  for(const kind of ['foundation','general'])assert.equal(next.modules.filter(m=>m.topic==='Probability'&&practiceModuleKind(m)===kind).length,1);
+  for(const child of previous.modules.filter(m=>!practiceModuleKind(m))){
+    const current=next.modules.find(m=>m.id===child.id);
+    assert.deepEqual(current.generatorIds,child.generatorIds);
+    assert.equal(practiceModuleKind(next.modules.find(m=>m.id===current.parentId)),'foundation');
+  }
+  for(const parent of previous.modules.filter(practiceModuleKind))assert.ok(next.modules.some(m=>m.id===parent.id||m.selectionAliases?.includes(parent.id)));
+  assert.deepEqual(validatePracticeCatalog(reconcilePracticeTaxonomy(next,taxonomy),taxonomy),next);
 });

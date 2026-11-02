@@ -21,7 +21,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Ms. Li opened a retirement account with a deposit of $2,500. This account earns 4% simple interest annually. How many years will it take her to earn $500 on her $2,500 deposit?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "correctTextAnswers": [
       "5"
     ],
@@ -110,7 +110,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In one week, \\(1\\frac{3}{4}\\) inches of rain fell on Monday, \\(2\\frac{2}{3}\\) inches fell on Tuesday, and \\(\\frac{7}{8}\\) inch fell on Wednesday. How many inches of rain fell during those three days?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -373,7 +373,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Between which two consecutive integers is the fraction \\(\\frac{29}{7}\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -402,7 +402,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "One number in the percentage column is incorrect. Which change needs to be made?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q74-41c806dfcdfaab7a.png\" alt=\"Math diagram\" width=\"320\">One number in the percentage column is incorrect. Which change needs to be made?",
     "topic": "Statistics and Probability",
-    "subtopic": "Data Displays",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -572,7 +572,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[\\{0.1,0.01,0.001,0.0001,0.00001\\}\\]\nIf a person chooses a number at random from the set above, what is the probability that the number is less than 0.005?",
     "topic": "Statistics and Probability",
-    "subtopic": "Basic Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -661,7 +661,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which statement must be true if \\(x\\) is a whole number greater than or equal to 1?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -693,7 +693,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A basket contains red balls, green balls, and white balls. There are 12 red balls in the basket. The probability of randomly choosing a red ball is 1 in 3. If the probability of randomly choosing a green ball is 1 in 4, how many green balls are in the basket?",
     "topic": "Statistics and Probability",
-    "subtopic": "Basic Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -783,7 +783,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "Lamel has a jar containing 6 red chips, 10 blue chips, and 4 yellow chips. If he removes one chip at random, what is the probability that it will not be red?",
     "promptHtml": "Lamel has a jar containing 6 red chips, 10 blue chips, and 4 yellow chips. If he removes one chip at random, what is the probability that it will <strong>not</strong> be red?",
     "topic": "Statistics and Probability",
-    "subtopic": "Basic Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -844,7 +844,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Mei-Ling is one of 6 members of a committee. If 2 members of that committee are selected to go to a conference, how many of the possible pairs of members would include Mei-Ling?",
     "topic": "Statistics and Probability",
-    "subtopic": "Counting & Combinations",
+    "subtopic": "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -1119,7 +1119,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Ken has \\(k\\) video games, and Jeff has \\(j\\) video games. If Ken gives 6 video games to Jeff, Ken will have twice as many video games as Jeff. Which equation shows the relationship between \\(k\\) and \\(j\\)?",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -1302,7 +1302,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "All 150 students in Grade 8 at a school are assigned to write an essay on the same topic. A teacher records the number of words in a random sample of the essays, as shown in the table above. Based on this sample, how many students in the entire grade would be expected to write essays with at least 100 words?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q103-8812fdf097e9dc49.png\" alt=\"Math diagram\" width=\"250\">All 150 students in Grade 8 at a school are assigned to write an essay on the same topic. A teacher records the number of words in a random sample of the essays, as shown in the table above. Based on this sample, how many students in the entire grade would be expected to write essays with <strong>at least</strong> 100 words?",
     "topic": "Statistics and Probability",
-    "subtopic": "Sampling & Predictions",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1507,7 +1507,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At West College, students are randomly assigned to one of 20 dormitories and one of 6 dining rooms. Kharleen likes 6 of the dormitories and 2 of the dining rooms. What is the probability that she is assigned to both a dormitory and a dining room that she likes?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1565,7 +1565,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "What is the least of four consecutive integers whose sum is 58?",
     "promptHtml": "What is the <strong>least</strong> of four consecutive integers whose sum is 58?",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -1594,7 +1594,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "If all possible values of \\(x\\) are indicated by the shaded part of the number line above, which number line best shows all possible values of \\(\\frac1x\\)?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q113-419b1c27c30f5f44.png\" alt=\"Math diagram\" width=\"300\">If all possible values of \\(x\\) are indicated by the shaded part of the number line above, which number line best shows all possible values of \\(\\frac1x\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1663,7 +1663,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "Chanelle selects a marble from a container and then returns it to the container. When she does this 3 times, the probability of choosing a red marble all 3 times is \\(\\frac1{216}\\). Based on this information, what is the probability of Chanelle choosing a red marble the first time she selects a marble?",
     "promptHtml": "Chanelle selects a marble from a container and then returns it to the container. When she does this 3 times, the probability of choosing a red marble all 3 times is \\(\\frac1{216}\\). Based on this information, what is the probability of Chanelle choosing a red marble the <strong>first</strong> time she selects a marble?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",

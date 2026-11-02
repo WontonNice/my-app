@@ -30,6 +30,7 @@ function database(seedData) {
       select(value='*'){projection=value;return this;},
       eq(key,value){filters.push(row=>String(field(row,key))===String(value));return this;},
       neq(key,value){filters.push(row=>field(row,key)!==value);return this;},
+      like(key,value){if(!value.endsWith('%'))throw new Error('Fixture supports prefix matches only');filters.push(row=>String(field(row,key)??'').startsWith(value.slice(0,-1)));return this;},
       in(key,values){filters.push(row=>values.includes(field(row,key)));return this;},
       or(expression){const keys=[...expression.matchAll(/and\(user_id\.eq\.([^,]+),assessment_id\.eq\.("(?:\\.|[^"])*")\)/g)].map(match=>[match[1],JSON.parse(match[2])]);filters.push(row=>keys.some(([user,id])=>row.user_id===user&&row.assessment_id===id));return this;},
       not(key,op,value){filters.push(row=>op==='is'?field(row,key)!==value:true);return this;},

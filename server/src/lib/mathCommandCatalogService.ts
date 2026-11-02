@@ -1,4 +1,5 @@
 import { readTeacherLabels, saveTeacherLabels, teacherCatalog } from "./teacherLabels";
+import { readGeneratorPlanner, saveGeneratorPlanner } from './generatorPlanner';
 import { saveMathTaxonomy } from "./mathTaxonomyManagement";
 import { readClassificationSkills, saveClassificationSkills } from './mathClassificationSkillsManagement';
 import fs from "node:fs";
@@ -22,6 +23,10 @@ function parseFilters(value:unknown):MathCatalogFilters {
 /** Shared handler for the authenticated teacher app and same-origin local editor. */
 export function handleMathCatalogRequest(input:{method:string;pathname:string;body?:unknown;query?:Record<string,unknown>;root?:string;actor:string;performance?:Record<string,MathQuestionPerformance>}) {
   const {method,pathname,actor,performance}=input,root=input.root??mathCommandRoot,query=input.query??{},body=(input.body??{}) as Record<string,unknown>;
+  if (pathname === '/generator-planner') {
+    if (method === 'GET') return readGeneratorPlanner(root, actor);
+    if (method === 'POST') return saveGeneratorPlanner(root, actor, body);
+  }
   if(pathname === "/teacher-labels") {
     if(method === "GET") return readTeacherLabels(root, actor);
     if(method === "POST") return saveTeacherLabels(root, actor, body);

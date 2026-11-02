@@ -1226,6 +1226,23 @@ const studioUI = {
     return filter;
   },
 
+  async saveExamVerification(id, checkbox, status) {
+    const previous = app.state.examVerification?.[id]?.verified === true;
+    checkbox.disabled = true;
+    status.textContent = 'Saving…';
+    try {
+      const result = await api(`/api/exams/${encodeURIComponent(id)}/verification`, { method: 'PUT', body: JSON.stringify({ verified: checkbox.checked }) });
+      app.state.examVerification ??= {};
+      app.state.examVerification[id] = result.verification;
+      checkbox.checked = result.verification.verified;
+      status.textContent = 'Saved';
+      renderAssessmentList();
+    } catch (error) {
+      checkbox.checked = previous;
+      status.textContent = `Not saved: ${error.message}`;
+    } finally { checkbox.disabled = false; }
+  },
+
   mountTestBuilder() {
     this.remember('builder-exam', app.selectedAssessmentId);
     const root = document.getElementById("test-builder");
@@ -1240,6 +1257,11 @@ const studioUI = {
       } catch (error) { setStatus(error.message, "error"); } finally { button.disabled = false; }
     };
     root.querySelector(".panel-head").after(label);
+    const verification = this.element('div', 'studio-exam-verification', '<label><input type="checkbox"> Verified</label><span class="field-note">I manually checked this exam.</span><span role="status" aria-live="polite"></span>');
+    const checkbox = verification.querySelector('input');
+    checkbox.checked = app.state.examVerification?.[assessment.id]?.verified === true;
+    checkbox.onchange = () => this.saveExamVerification(assessment.id, checkbox, verification.querySelector('[role="status"]'));
+    label.after(verification);
 
     this.moveSaveBar(root, "Save English test");
     const sections = root.querySelector(".english-section-stack");

@@ -3,7 +3,8 @@ import type { ExamQuestion } from './examTypes';
 import { organizePracticeCatalog, practiceDifficulties, practicePrograms, practiceReviewStatuses, type GeneratorOrganization } from './practiceOrganization';
 import { resolveSkilled, skilledTbd, validateSkilled, type MathClassificationSkill } from './mathClassificationSkills';
 import { generateTemplateQuestion, validateGeneratorTemplate, type GeneratorTemplate } from './generatorTemplate';
-import { migratedMathLocation, probabilityPracticeTopics } from './mathSubcategoryMigration';
+import { migratedMathLocation, consolidatedMathLocation, probabilityPracticeTopics } from './mathSubcategoryMigration';
+import { generateRepeatingDecimalDigit, repeatingDecimalDigitsTemplate } from './repeatingDecimalDigits';
 
 export type GeneratorSettings = { minCoefficient:number; maxCoefficient:number; minBoundary:number; maxBoundary:number; minOffset:number; maxOffset:number; negativeCoefficients:boolean; inclusive:boolean };
 export type PracticeGeneratorDefinition = GeneratorOrganization & { skilled?:string; id:string; title:string; description:string; enabled:boolean; kind:'builtin'|'one-step'|'two-step'|'template'; builtinId?:string; settings?:GeneratorSettings; template?:GeneratorTemplate; category?:string; topic?:string };
@@ -14,7 +15,7 @@ export type PracticeCatalogResponse = { revision:number; catalog:PracticeCatalog
 export const defaultGeneratorSettings:GeneratorSettings = {minCoefficient:2,maxCoefficient:9,minBoundary:-10,maxBoundary:10,minOffset:1,maxOffset:12,negativeCoefficients:true,inclusive:false};
 export function defaultPracticeCatalog(topics?:PracticeTaxonomy):PracticeCatalog {
   let catalog=ensureTopicPracticeModules({
-    generators:practiceGenerators.map(generator=>({id:generator.id,title:generator.title,description:generator.description??(generator.foundation?'Small positive coefficients and exact division.':'Positive and negative coefficients, including sign flips.'),enabled:true,kind:'builtin',builtinId:generator.id,category:generator.category??'Algebra',topic:generator.topic??'Inequalities'})),
+    generators:practiceGenerators.map(generator=>({id:generator.id,title:generator.title,description:generator.description??(generator.foundation?'Small positive coefficients and exact division.':'Positive and negative coefficients, including sign flips.'),enabled:generator.enabled??true,kind:'builtin',builtinId:generator.id,category:generator.category??'Algebra',topic:generator.topic??'Inequalities'})),
     modules:practiceModules.map(module=>({id:module.id,title:module.title,description:module.id==='foundation'?'Build confidence with one-step inequalities, including positive division and sign flips.':module.description,category:module.category??'Algebra',topic:module.topic??'Inequalities',published:true,includeAll:module.selection==='all',generatorIds:module.id==='foundation'?practiceGenerators.filter(generator=>(generator.category??'Algebra')==='Algebra'&&(generator.topic??'Inequalities')==='Inequalities').map(generator=>generator.id):Array.isArray(module.selection)?module.selection:[]})),
     videos:[],
   });
@@ -45,12 +46,13 @@ export function reconcilePracticeTaxonomy(catalog:PracticeCatalog,taxonomy:Pract
     return {...resource,...(destination.category!==category||destination.topic!==topic?destination:{})};
   };
   const generators=catalog.generators.map(generator=>{
-    const next=location(generator),topic=probabilityPracticeTopics[generator.builtinId??generator.id];
-    return generator.category==='Statistics and Probability'&&generator.topic==='Probability'&&!valid(generator.category,generator.topic)&&topic&&valid(generator.category,topic)?{...next,topic}:next;
+    const next=location(generator),oldTopic=probabilityPracticeTopics[generator.builtinId??generator.id];
+    const topic=oldTopic&&consolidatedMathLocation('Statistics and Probability',oldTopic).topic;
+    return generator.category==='Statistics and Probability'&&generator.topic==='Probability'&&topic&&valid(generator.category,topic)?{...next,topic}:next;
   });
   const modules=catalog.modules.map(module=>{
     const next=location(module);
-    if(practiceModuleKind(module)||valid(module.category,module.topic)||!module.generatorIds.length)return next;
+    if(practiceModuleKind(module)||!module.generatorIds.length)return next;
     const destinations=generators.filter(generator=>module.generatorIds.includes(generator.id));
     const first=destinations[0];
     return first&&destinations.length===module.generatorIds.length&&destinations.every(generator=>sameTopic(generator,first))?{...next,category:first.category??'Algebra',topic:first.topic??'Inequalities'}:next;
@@ -67,7 +69,21 @@ export function reconcilePracticeTaxonomy(catalog:PracticeCatalog,taxonomy:Pract
     const kind=parent&&practiceModuleKind(parent);
     if(kind)module.parentId=ensured.modules.find(item=>practiceModuleKind(item)===kind&&sameTopic(item,module))!.id;
   }
-  return ensured;
+  // Consolidated topics share one default parent of each kind. Keep former IDs
+  // as selection aliases, and carry every child and curated generator forward.
+  const parents=new Map<string,ManagedPracticeModule>();
+  const replacements=new Map<string,string>();
+  for(const module of ensured.modules){
+    const kind=practiceModuleKind(module);if(!kind)continue;
+    const key=JSON.stringify([module.category,module.topic,kind]),keep=parents.get(key);
+    if(!keep){parents.set(key,module);continue;}
+    keep.generatorIds=[...new Set([...keep.generatorIds,...module.generatorIds])];
+    keep.includeAll ||= module.includeAll;
+    keep.published ||= module.published;
+    keep.selectionAliases=[...new Set([...(keep.selectionAliases??[]),module.id,...(module.selectionAliases??[])])];
+    replacements.set(module.id,keep.id);
+  }
+  return {...ensured,modules:ensured.modules.filter(module=>!replacements.has(module.id)).map(module=>({...module,...(module.parentId&&replacements.has(module.parentId)?{parentId:replacements.get(module.parentId)}:{})}))};
 }
 export function practiceModuleKind(module:ManagedPracticeModule) {
   return module.defaultType ?? (module.id==='foundation'?'foundation':module.id==='all'?'general':undefined);
@@ -90,7 +106,7 @@ export function assignPracticeModuleSkill(catalog:PracticeCatalog,moduleId:strin
   const currentParent=next.modules.find(item=>item.id===module.parentId);
   const kind=currentParent?practiceModuleKind(currentParent)??'general':'general';
   const parent=next.modules.find(item=>practiceModuleKind(item)===kind&&item.category===skill.category&&item.topic===skill.subcategory)!;
-  return {...next,modules:next.modules.map(item=>item.id===moduleId?{...item,title:skill.label,titleMode:'skill',skilled:skill.id,category:skill.category,topic:skill.subcategory,parentId:parent.id}:item)};
+  return {...next,modules:next.modules.map(item=>item.id===moduleId?{...item,...(item.titleMode==='custom'?{}:{title:skill.label,titleMode:'skill' as const}),skilled:skill.id,category:skill.category,topic:skill.subcategory,parentId:parent.id}:item)};
 }
 const sameTopic=(first:{category?:string;topic?:string},second:{category?:string;topic?:string})=>(first.category??'Algebra')===(second.category??'Algebra')&&(first.topic??'Inequalities')===(second.topic??'Inequalities');
 export function topicPracticeModuleId(category:string,topic:string,kind:'foundation'|'general') {
@@ -258,10 +274,10 @@ export function validatePracticeCatalog(value:unknown,topics?:PracticeTaxonomy):
 export function studentPracticeCatalog(catalog:PracticeCatalog):PracticeCatalog {
   return {...catalog,modules:catalog.modules.filter(module=>module.published),generators:catalog.generators.filter(generator=>generator.enabled),videos:catalog.videos.filter(video=>video.published)};
 }
-export function generateCatalogQuestion(generator:PracticeGeneratorDefinition,index:number,seed:string):ExamQuestion {
+export function generateCatalogQuestion(generator:PracticeGeneratorDefinition,index:number,seed:string,generationVersion:1|2=1):ExamQuestion {
   if(generator.kind==='template')return {...generateTemplateQuestion(generator.template!,index,seed,generator.id,generator.category??'Algebra',generator.topic??'Inequalities'),skilled:generator.skilled??skilledTbd};
   if(generator.kind==='builtin'){
-    const question=generatePracticeQuestion([generator.builtinId!],index,seed);
+    const question=generationVersion===2&&generator.builtinId===repeatingDecimalDigitsTemplate.id?generateRepeatingDecimalDigit(index,seed,2).question:generatePracticeQuestion([generator.builtinId!],index,seed);
     return {...question,topic:generator.category??question.topic,subtopic:generator.topic??question.subtopic,skilled:generator.skilled??skilledTbd};
   }
   if(!Number.isSafeInteger(index)||index<0)throw new Error('Invalid practice sequence.');

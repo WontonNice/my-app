@@ -1,0 +1,46 @@
+{
+  "id": "letter-from-brooklyn-2023-2024-form-a-pdf-shsat-2023-2024-a-q024",
+  "source": {
+    "sourceFamily": "official_shsat",
+    "sourceFormat": "pdf",
+    "playerProfile": "testnav",
+    "sourceId": "official-shsat-2023-2024-form-a",
+    "label": "2023-2024 Form A",
+    "year": "2023-2024",
+    "form": "A",
+    "sourceQuestion": "24",
+    "pages": [
+      18
+    ]
+  },
+  "explanation": "The question asks how line 1 and lines 21–22 develop a central idea of the poem.\n\nE. Incorrect. Although these lines suggest that life is governed by repetitive patterns, such as the change of seasons, they do not suggest that the speaker wishes to break free from these natural cycles of change, and a desire for freedom is not a central idea of the poem. F. Incorrect. Although the speaker acknowledges that colder weather will inevitably bring disappointment, the speaker does not suggest in these lines that the predictability of changing weather is itself disappointing. Rather, the speaker recognizes the value of enjoying the present moment. G. CORRECT. These lines connect the present warmer weather with the future colder weather and develop the central idea that the present “moment I am walking inside of” must be embraced because the speaker will be “nostalgic” for it in the future. H. Incorrect. In these lines, the speaker is aware that specific emotions will occur in the future, during cold weather, but this awareness is only part of the more complex central idea of the poem, which is that current emotions and feelings must be recognized, experienced, and appreciated.",
+  "explanationHtml": "<p>The question asks how line 1 and lines 21–22 develop a central idea of the poem.</p><p><strong>E. </strong>Incorrect. Although these lines suggest that life is governed by repetitive patterns, such as the change of seasons, they do not suggest that the speaker wishes to break free from these natural cycles of change, and a desire for freedom is not a central idea of the poem. <strong>F. </strong>Incorrect. Although the speaker acknowledges that colder weather will inevitably bring disappointment, the speaker does not suggest in these lines that the predictability of changing weather is itself disappointing. Rather, the speaker recognizes the value of enjoying the present moment. <strong>G. CORRECT. </strong>These lines connect the present warmer weather with the future colder weather and develop the central idea that the present “moment I am walking inside of” must be embraced because the speaker will be “nostalgic” for it in the future. <strong>H. </strong>Incorrect. In these lines, the speaker is aware that specific emotions will occur in the future, during cold weather, but this awareness is only part of the more complex central idea of the poem, which is that current emotions and feelings must be recognized, experienced, and appreciated.</p>",
+  "points": 1,
+  "prompt": "Read these lines from the poem.\n\nI can already see how this will end. (line 1)\n\nHow Brooklyn makes me nostalgic\nfor the moment I am walking inside of. (lines 21–22)\n\nThe lines develop a central idea of the poem by",
+  "promptHtml": "<p>Read these lines from the poem.</p><blockquote><strong>I can already see how this will end.</strong> (line 1)<br><br><strong>How Brooklyn makes me nostalgic<br>for the moment I am walking inside of.</strong> (lines 21–22)</blockquote><p>The lines develop a central idea of the poem by</p>",
+  "topic": "Central Idea & Theme",
+  "choices": [
+    {
+      "id": "A",
+      "html": "<p>suggesting the speaker’s desire to find a way to break free from the repetitive pattern of daily life.</p>",
+      "text": "suggesting the speaker’s desire to find a way to break free from the repetitive pattern of daily life."
+    },
+    {
+      "id": "B",
+      "html": "<p>revealing the speaker’s feelings of disappointment over the predictable change in season.</p>",
+      "text": "revealing the speaker’s feelings of disappointment over the predictable change in season."
+    },
+    {
+      "id": "C",
+      "html": "<p>emphasizing the speaker’s awareness of the future significance of the present moment in the setting.</p>",
+      "text": "emphasizing the speaker’s awareness of the future significance of the present moment in the setting."
+    },
+    {
+      "id": "D",
+      "html": "<p>showing the speaker’s anticipation of specific emotions caused by an intimate knowledge of the setting.</p>",
+      "text": "showing the speaker’s anticipation of specific emotions caused by an intimate knowledge of the setting."
+    }
+  ],
+  "correctChoiceId": "C",
+  "type": "multiple_choice"
+}

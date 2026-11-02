@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { addPracticeTime, createPracticeState, parsePracticeState, type PracticeState } from './inequalitySession';
+import { addPracticeTime, createPracticeState, type PracticeState } from './inequalitySession';
 import type { PracticeCatalog, PracticeSelection } from '../../../../server/src/shared/practiceCatalog';
+import {readSavedPractice,savePractice} from './practiceSessionStorage';
 
-const storageKey = 'infinite-practice:session:v2';
-function restore() { try { return parsePracticeState(sessionStorage.getItem(storageKey)); } catch { return null; } }
-function persist(state: PracticeState | null) { try { if (state) sessionStorage.setItem(storageKey, JSON.stringify(state)); } catch { /* Storage is optional. */ } }
+function restore(owner:string,moduleId?:string) { try { return readSavedPractice(localStorage,owner,moduleId); } catch { return null; } }
 
-export function useInfinitePracticeSession(initialModuleId?: string,catalog?:PracticeCatalog,selection:PracticeSelection={},persistSession=true) {
-  const [session, setSession] = useState(() => initialModuleId ? createPracticeState(initialModuleId, crypto.randomUUID().slice(0, 8),catalog,selection) : persistSession ? restore() : null);
+export function useInfinitePracticeSession(initialModuleId?: string,catalog?:PracticeCatalog,selection:PracticeSelection={},persistSession=true,owner='preview') {
+  const [session, setSession] = useState(() => (persistSession?restore(owner,initialModuleId):null) ?? (initialModuleId ? createPracticeState(initialModuleId, crypto.randomUUID().slice(0, 8),catalog,selection) : null));
+  const [saveError,setSaveError]=useState('');
+  const persist=useCallback((state:PracticeState|null)=>{try{if(state&&persistSession)savePractice(localStorage,owner,state);setSaveError('');return true;}catch{setSaveError('This browser could not save your session. Keep this page open and try Save and exit again.');return false;}},[owner,persistSession]);
   const current = useRef(session);
   const lastTick = useRef<number | null>(null);
   const update = useCallback((change: (state: PracticeState | null) => PracticeState | null) => {
@@ -19,7 +20,7 @@ export function useInfinitePracticeSession(initialModuleId?: string,catalog?:Pra
     lastTick.current = next && !next.finished && document.visibilityState === 'visible' ? now : null;
     if (persistSession) persist(next);
     setSession(next);
-  }, [persistSession]);
+  }, [persistSession,persist]);
   useEffect(() => {
     lastTick.current = current.current && !current.current.finished && document.visibilityState === 'visible' ? Date.now() : null;
     const tick = () => update(state => state);
@@ -32,6 +33,8 @@ export function useInfinitePracticeSession(initialModuleId?: string,catalog?:Pra
       if (persistSession && current.current && lastTick.current !== null) persist(addPracticeTime(current.current, Math.max(0, Date.now() - lastTick.current)));
       lastTick.current = null;
     };
-  }, [update, persistSession]);
-  return { session, update };
+  }, [update, persistSession,persist]);
+  const save=()=>{const now=Date.now();const timed=current.current&&lastTick.current!==null?addPracticeTime(current.current,Math.max(0,now-lastTick.current)):current.current;current.current=timed;lastTick.current=now;return persist(timed);};
+  const resume=(moduleId:string)=>restore(owner,moduleId);
+  return { session, update, save, saveError, resume };
 }

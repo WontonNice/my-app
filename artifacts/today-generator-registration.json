@@ -1,0 +1,103 @@
+{
+  "mode": "apply",
+  "changed": true,
+  "saved": true,
+  "revision": 26,
+  "resources": [
+    {
+      "generator": "repeating-decimal-digit-position-v1",
+      "module": "foundation-algebra-patterns-sequences-1f8v94i",
+      "category": "Algebra",
+      "topic": "Patterns & Sequences",
+      "enabled": false,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "foundation-algebra-patterns-sequences-1f8v94i",
+        "title": "Foundation Building",
+        "description": "Build confidence with a focused selection of question types.",
+        "category": "Algebra",
+        "topic": "Patterns & Sequences",
+        "published": true,
+        "includeAll": true,
+        "generatorIds": [],
+        "parentId": null,
+        "defaultType": "foundation",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Repeating Decimals: Digit Positions"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2021-2022-form-a-q105"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "unassigned",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "repeating-decimal-digit-position-v1",
+        "title": "Repeating Decimals: Digit Positions",
+        "description": "Find a distant digit in a repeating decimal using its 3-, 4-, or 6-digit cycle. 136,800 distinct fraction-and-position stems per seeded cycle; includes exact cycle endings and leading zeros.",
+        "enabled": false,
+        "category": "Algebra",
+        "topic": "Patterns & Sequences",
+        "kind": "builtin",
+        "builtinId": "repeating-decimal-digit-position-v1"
+      },
+      "existingResourcesUnchanged": true
+    },
+    {
+      "generator": "rectangle-area-percent-increase-v1",
+      "module": "general-ratios-and-proportional-relationships-percentages-4bd37f",
+      "category": "Ratios and Proportional Relationships",
+      "topic": "Percentages",
+      "enabled": false,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "general-ratios-and-proportional-relationships-percentages-4bd37f",
+        "title": "General Practice",
+        "description": "Practice every available question type in this topic.",
+        "category": "Ratios and Proportional Relationships",
+        "topic": "Percentages",
+        "published": true,
+        "includeAll": true,
+        "generatorIds": [],
+        "parentId": null,
+        "defaultType": "general",
+        "selectionAliases": [
+          "general-ratios-and-proportional-relationships-percent-change-applications-vtd6xe"
+        ],
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Rectangular Area: Percent Increase"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2020-2021-form-b-q113"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "unassigned",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "rectangle-area-percent-increase-v1",
+        "title": "Rectangular Area: Percent Increase",
+        "description": "Find the area increase when a field’s length grows by a percentage and its width grows by a number of meters. 2,064 distinct numerical stems per seeded cycle, with worked area calculations and misconception distractors.",
+        "enabled": false,
+        "category": "Ratios and Proportional Relationships",
+        "topic": "Percentages",
+        "kind": "builtin",
+        "builtinId": "rectangle-area-percent-increase-v1"
+      },
+      "existingResourcesUnchanged": true
+    }
+  ]
+}

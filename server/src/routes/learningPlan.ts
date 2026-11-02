@@ -105,7 +105,7 @@ async function getOverview(student: User, isTeacher: boolean) {
   const schedule = visible.filter(item => days.includes(item.status === "planned" ? item.plannedDate ?? "" : item.dueDate ?? ""));
   if (!isTeacher) return { summary, schedule, catalog: catalog.filter(item => visible.some(task => task.kind === item.kind && task.contentId === item.id)) };
   const settingsQuery = await supabase.from("student_learning_plans").select("*").eq("student_id", student.id).maybeSingle(); checkStorage(settingsQuery.error);
-  const content = inventory(catalog, assignments, prior).map(row => ({ content: row.content, status: row.status, hasBeenAssigned: row.hasBeenAssigned, hasCompleted: row.hasCompleted, lastActivity: row.lastActivity, lastCompletedAt: row.lastCompletedAt, dueDate: row.active?.dueDate ?? null, plannedDate: row.planned?.plannedDate ?? null, assignmentCount: row.history.length, priorCount: row.evidence.length }));
+  const content = inventory(catalog, assignments, prior).map(row => ({ content: row.content, status: row.status, hasBeenAssigned: row.hasBeenAssigned, hasCompleted: row.hasCompleted, lastActivity: row.lastActivity, lastCompletedAt: row.lastCompletedAt, latestScore: row.latestScore, dueDate: row.active?.dueDate ?? null, plannedDate: row.planned?.plannedDate ?? null, assignmentCount: row.history.length, priorCount: row.evidence.length }));
   return { summary, schedule, catalog, inventory: content, settings: settingsFromRow(student.id, settingsQuery.data) };
 }
 learningPlanRouter.get("/teacher/:studentId", async (_request, response) => { response.json(await getOverview(response.locals.student, true)); });

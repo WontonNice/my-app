@@ -103,3 +103,23 @@ test('Smallest Spark editor and preview place the complete blurb before the titl
   assert.equal($.root().text().split('Located underground near Geneva').length-1,1,'No duplicate blurb in verse body');
  }
 });
+
+test('Letter from Brooklyn keeps its first verse aligned and counts all 26 source lines', () => {
+  const source=fs.readFileSync(path.join(__dirname,'../client/src/content/exams/passageSets/letter-from-brooklyn-2023-2024-form-a.ts'),'utf8');
+  const richText=JSON.parse(source.match(/richText: ("(?:[^"\\]|\\.)*")/)[1]);
+  const text=JSON.parse(source.match(/PassageText = ("(?:[^"\\]|\\.)*")/)[1]);
+  for(const authoring of [false,true]) {
+    const result=rows({title:'Letter from Brooklyn',format:'poem',text,richText},authoring).filter(row=>row.text.trim());
+    assert.deepEqual(result.map(row=>row.text),text.split('\n'));
+    assert.equal(result.length,26);
+    assert.equal(result.every(row=>!row.context),true,'Every source line, including the first, must be verse');
+    assert.equal(result.every(row=>!/<(?:div|p)\b/i.test(row.contentHtml)),true,'Verse spans must not contain nested block wrappers');
+    assert.deepEqual(result.filter(row=>row.number).map(({number,text})=>[number,text]),[
+      ['5','The weather will turn cold.'],
+      ['10','the hair of my arm like a passing stranger,'],
+      ['15','like someone drawing your attention'],
+      ['20','like a pop-up picture book I could have had as a child,'],
+      ['25','distinctly myself, and an awareness'],
+    ]);
+  }
+});

@@ -1,0 +1,76 @@
+[
+  {
+    "title": "Martial Arts for the Mind and Body",
+    "ratio": 0.9940405244338498,
+    "differences": [
+      {
+        "source": "",
+        "working": "ranks or",
+        "context": "tests and advancing to higher levels 10 for example in"
+      },
+      {
+        "source": "karate",
+        "working": "martial arts",
+        "context": "and in life 13 a karate class can provide teens with"
+      }
+    ]
+  },
+  {
+    "title": "Wolves of the Sea",
+    "ratio": 0.9977460555972952,
+    "differences": [
+      {
+        "source": "",
+        "working": "millennia",
+        "context": "up to knowledge accumulated over and positioned him so that"
+      },
+      {
+        "source": "",
+        "working": "columbia s",
+        "context": "evidence about one of british most elusive species the sea"
+      }
+    ]
+  },
+  {
+    "title": "Excerpt from “How We Made the First Flight”",
+    "ratio": 1.0,
+    "differences": []
+  },
+  {
+    "title": "Excerpt from “The Spirit of the Herd”",
+    "ratio": 0.9995355318160706,
+    "differences": [
+      {
+        "source": "1",
+        "working": "",
+        "context": "of a series of tablelands 1 or benches it lay as"
+      }
+    ]
+  },
+  {
+    "title": "A Miracle Mile",
+    "ratio": 0.9959049959049959,
+    "differences": [
+      {
+        "source": "amember",
+        "working": "a member",
+        "context": "break the world record as amember of the amateur athletic association"
+      },
+      {
+        "source": "",
+        "working": "record",
+        "context": "1999 some question whether this represents the limits of human"
+      },
+      {
+        "source": "",
+        "working": "who",
+        "context": "is another bannister an athlete with willpower and dedication will"
+      }
+    ]
+  },
+  {
+    "title": "A Memory Revolution",
+    "ratio": 1.0,
+    "differences": []
+  }
+]

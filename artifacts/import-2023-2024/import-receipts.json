@@ -1,0 +1,263 @@
+{
+  "a": {
+    "assessmentId": "2023-2024-form-a",
+    "passages": [
+      {
+        "draftId": "import-072486b495d4e8e683ba-fe1ad852",
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a",
+        "fileName": "the-benefits-of-indoor-plants-2020-2021-form-a.ts",
+        "questions": 5
+      },
+      {
+        "draftId": "import-721d92a4e1b1e771f3d8-06d66b60",
+        "id": "a-memory-revolution-2023-2024-form-a",
+        "fileName": "a-memory-revolution-2023-2024-form-a.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-7beea717acde88255b6c-55dbeba5",
+        "id": "letter-from-brooklyn-2023-2024-form-a",
+        "fileName": "letter-from-brooklyn-2023-2024-form-a.ts",
+        "questions": 9
+      },
+      {
+        "draftId": "import-559ee674a378699b0b4c-3aa751de",
+        "id": "excerpt-from-do-them-no-harm-2023-2024-form-a",
+        "fileName": "excerpt-from-do-them-no-harm-2023-2024-form-a.ts",
+        "questions": 9
+      },
+      {
+        "draftId": "import-f76ce7cfc2a39b9f9a3c-cf552a64",
+        "id": "using-fire-to-keep-a-prairie-healthy-2023-2024-form-a",
+        "fileName": "using-fire-to-keep-a-prairie-healthy-2023-2024-form-a.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-963797975c098cb78526-6acfcb87",
+        "id": "excerpt-from-winter-wheat-2023-2024-form-a",
+        "fileName": "excerpt-from-winter-wheat-2023-2024-form-a.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-c35543149282667c4c13-4ee2ae90",
+        "id": "wolves-of-the-sea-2023-2024-form-a",
+        "fileName": "wolves-of-the-sea-2023-2024-form-a.ts",
+        "questions": 6
+      }
+    ],
+    "independent": [
+      {
+        "draftId": "part-b-import-82a8231a8843-a770392e",
+        "id": "part-b-import-82a8231a8843-a770392e",
+        "sourceQuestion": "1"
+      },
+      {
+        "draftId": "part-b-import-103e98885c3f-1ea2b49a",
+        "id": "part-b-import-103e98885c3f-1ea2b49a",
+        "sourceQuestion": "2"
+      },
+      {
+        "draftId": "part-b-import-89aa1af30631-fdac2918",
+        "id": "part-b-import-89aa1af30631-fdac2918",
+        "sourceQuestion": "3"
+      },
+      {
+        "draftId": "part-b-import-63ff15016dc9-8d09d754",
+        "id": "part-b-import-63ff15016dc9-8d09d754",
+        "sourceQuestion": "4"
+      }
+    ],
+    "math": {
+      "assessmentId": "2023-2024-form-a",
+      "added": [
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q058",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q059",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q060",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q061",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q062",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q063",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q064",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q065",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q066",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q067",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q068",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q069",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q070",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q071",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q072",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q073",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q074",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q075",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q076",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q077",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q078",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q079",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q080",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q081",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q082",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q083",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q084",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q085",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q086",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q087",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q088",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q089",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q090",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q091",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q092",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q093",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q094",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q095",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q096",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q097",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q098",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q099",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q100",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q101",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q102",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q103",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q104",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q105",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q106",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q107",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q108",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q109",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q110",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q111",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q112",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q113",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q114"
+      ],
+      "existing": [],
+      "errors": []
+    }
+  },
+  "b": {
+    "assessmentId": "2023-2024-form-b",
+    "passages": [
+      {
+        "draftId": "import-8ddef0d6f20d08ce407e-019cdda5",
+        "id": "the-end-of-an-era-2023-2024-form-b",
+        "fileName": "the-end-of-an-era-2023-2024-form-b.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-789fea63d83bb6ce7c48-d0c524f6",
+        "id": "excerpt-from-the-food-business-incubator-2023-2024-form-b",
+        "fileName": "excerpt-from-the-food-business-incubator-2023-2024-form-b.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-31bbe51eb1ed99bbf425-92b87a0b",
+        "id": "excerpt-from-in-search-of-the-unknown-2023-2024-form-b",
+        "fileName": "excerpt-from-in-search-of-the-unknown-2023-2024-form-b.ts",
+        "questions": 9
+      },
+      {
+        "draftId": "import-8417e80913e6a1fc2de4-a1572905",
+        "id": "excerpt-from-how-we-made-the-first-flight-2023-2024-form-b",
+        "fileName": "excerpt-from-how-we-made-the-first-flight-2023-2024-form-b.ts",
+        "questions": 9
+      },
+      {
+        "draftId": "import-79c303b983cf55d4d575-cefd7d34",
+        "id": "cross-purposes-2023-2024-form-b",
+        "fileName": "cross-purposes-2023-2024-form-b.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-c84a49df19dcfe189bfa-6e16e734",
+        "id": "excerpt-from-scribe-like-an-egyptian-2023-2024-form-b",
+        "fileName": "excerpt-from-scribe-like-an-egyptian-2023-2024-form-b.ts",
+        "questions": 7
+      },
+      {
+        "draftId": "import-ebf56c21ba5804b154c4-957a366c",
+        "id": "excerpt-from-niagara-falls-2023-2024-form-b",
+        "fileName": "excerpt-from-niagara-falls-2023-2024-form-b.ts",
+        "questions": 7
+      }
+    ],
+    "independent": [
+      {
+        "draftId": "part-b-import-dad09a690e8f-b7c76e75",
+        "id": "part-b-import-dad09a690e8f-b7c76e75",
+        "sourceQuestion": "1"
+      },
+      {
+        "draftId": "part-b-import-5e1ca048df26-de426469",
+        "id": "part-b-import-5e1ca048df26-de426469",
+        "sourceQuestion": "2"
+      },
+      {
+        "draftId": "part-b-import-53426367cca3-283c4ade",
+        "id": "part-b-import-53426367cca3-283c4ade",
+        "sourceQuestion": "3"
+      }
+    ],
+    "math": {
+      "assessmentId": "2023-2024-form-b",
+      "added": [
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q058",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q059",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q060",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q061",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q062",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q063",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q064",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q065",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q066",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q067",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q068",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q069",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q070",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q071",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q072",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q073",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q074",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q075",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q076",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q077",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q078",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q079",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q080",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q081",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q082",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q083",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q084",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q085",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q086",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q087",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q088",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q089",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q090",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q091",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q092",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q093",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q094",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q095",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q096",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q097",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q098",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q099",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q100",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q101",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q102",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q103",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q104",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q105",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q106",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q107",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q108",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q109",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q110",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q111",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q112",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q113",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q114"
+      ],
+      "existing": [],
+      "errors": []
+    }
+  }
+}

@@ -116,6 +116,7 @@ export type ExamPointGraph = {
 export type ExamMathDragSlot = {
   correctItemId: string;
   id: string;
+  width?: number;
 };
 
 export type ExamChoice = {
@@ -159,6 +160,8 @@ export type ExamQuestionImage = {
   alt: string;
   caption?: string;
   src: string;
+  /** Optional display width in CSS pixels; the image keeps its aspect ratio. */
+  width?: number;
 };
 
 export type ExamQuestion = {
@@ -189,6 +192,7 @@ export type ExamQuestion = {
   entryControl?: "numeric" | "expression" | "text";
   /** Letter displayed before = in the calculator input; defaults to x. */
   entryVariable?: string;
+  entryPrefixVariable?: string;
   explanation?: string;
   explanationHtml?: string;
   graph?: ExamPointGraph;
@@ -205,6 +209,7 @@ export type ExamQuestion = {
   promptHtml?: string;
   /** Selectable source phrases stay inside their original paragraph. */
   selectionHtml?: string;
+  choiceColumns?: 1 | 2;
   requiredPlacements?: number;
   requiredSelections?: number;
   stimulus?: string;

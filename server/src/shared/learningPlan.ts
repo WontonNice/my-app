@@ -13,7 +13,7 @@ export type PlanAssignment = {
   completion: CompletionEvidence | null; events?: PlanEvent[];
 };
 export type PlanSettings = { studentId: string; passagePace: number | null; targetDate: string | null; teacherNotes: string; updatedAt: string | null; revision: number };
-export type PlanContent = { id: string; kind: "passage" | "practice" | "exam"; title: string; href: string; subject: string; category: string; contentSource?: string; practiceMode?: "bank_set" | "infinite"; passageCategory?: import("./passageCategories").PassageCategory; skills: string[]; questionCount: number; aliases: string[]; classId?: string; versionLabel?: string };
+export type PlanContent = { id: string; kind: "passage" | "practice" | "exam"; title: string; href: string; subject: string; category: string; contentSource?: string; practiceMode?: "bank_set" | "infinite"; description?: string; moduleKind?: "focused" | "foundation" | "general"; generators?: import("./practiceCatalog").PracticeGeneratorDefinition[]; passageCategory?: import("./passageCategories").PassageCategory; skills: string[]; questionCount: number; aliases: string[]; classId?: string; versionLabel?: string };
 export type PriorContentActivity = { contentId: string; at: string | null; correct?: number; total?: number; source: string; reference?: string };
 export type InventoryStatus = "Never assigned" | "Planned" | "Assigned" | "In progress" | "Awaiting review" | "Completed" | "Previously assigned";
 export const assignmentKinds: AssignmentKind[] = ["passage", "practice", "exam", "external", "offline"];
@@ -50,7 +50,11 @@ export function inventory(catalog: PlanContent[], assignments: PlanAssignment[],
     const completionDates = [...history.filter(item => item.status === "completed").map(item => item.completedAt ?? item.completion?.at), ...evidence.map(item => item.at)]
       .filter((date): date is string => typeof date === "string" && (/^\d{4}-\d{2}-\d{2}$/.test(date) ? validDate(date) : Number.isFinite(Date.parse(date))));
     const lastCompletedAt = completionDates.sort((a, b) => Date.parse(a) - Date.parse(b)).at(-1) ?? null;
-    return { content, status, history, evidence, active, planned, hasBeenAssigned: Boolean(issued || completed || evidence.length), hasCompleted: Boolean(completed || evidence.length), lastActivity: dates.sort().at(-1) ?? null, lastCompletedAt };
+    const scored = [...evidence, ...history.filter(item=>item.status==='completed'&&item.completion).map(item=>({...item.completion!,at:item.completedAt??item.completion!.at}))]
+      .filter((item):item is typeof item & {correct:number;total:number}=>typeof item.correct==='number'&&Number.isFinite(item.correct)&&typeof item.total==='number'&&Number.isFinite(item.total)&&item.total>0&&item.correct>=0&&item.correct<=item.total)
+      .sort((a,b)=>(Date.parse(b.at??'')||0)-(Date.parse(a.at??'')||0));
+    const latestScore=scored[0]?{correct:scored[0].correct,total:scored[0].total,at:scored[0].at}:null;
+    return { latestScore, content, status, history, evidence, active, planned, hasBeenAssigned: Boolean(issued || completed || evidence.length), hasCompleted: Boolean(completed || evidence.length), lastActivity: dates.sort().at(-1) ?? null, lastCompletedAt };
   });
 }
 export function forecast(remaining: number, pace: number | null, targetDate: string | null, today = todayInNewYork()) {

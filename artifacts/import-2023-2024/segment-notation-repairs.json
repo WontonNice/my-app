@@ -1,0 +1,228 @@
+[
+  {
+    "form": "a",
+    "sourceQuestion": "67",
+    "questionId": "2023-2024-form-a-pdf-shsat-2023-2024-a-q067",
+    "before": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q067",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "67",
+        "pages": [
+          45
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q067-explanation-1.png\" alt=\"Official Form A explanation for question 67; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(D) First, find where Y is located on the\n\nnumber line. Point X is the midpoint of\n\n‾WY. Since there are 2 units between W\n\nand X, there must also be 2 units between\n\nX and Y. Thus, Y is located at 4 on the\n\nnumber line.\n\nPoint Y is the midpoint of ‾WZ. Use the\n\nsame reasoning as above. Since there are\n\n4 units between W and Y, there must be\n\n4 units between Y and Z. So, Z is located\n\nat 8 on the number line.",
+      "points": 1,
+      "prompt": "Points Y and Z are not shown on the number line above. If X is the midpoint of ‾WY, and Y is the midpoint of ‾WZ, where on the number line would point Z be located?",
+      "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q067-figure-1.png\" alt=\"Original source figure for Form A, question 67\" width=\"276\"></p><p>Points Y and Z are not shown on the number line above. If X is the midpoint of ‾WY, and Y is the midpoint of ‾WZ, where on the number line would point Z be located?</p>",
+      "topic": "Geometry",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>2</p>",
+          "text": "2"
+        },
+        {
+          "id": "B",
+          "html": "<p>4</p>",
+          "text": "4"
+        },
+        {
+          "id": "C",
+          "html": "<p>6</p>",
+          "text": "6"
+        },
+        {
+          "id": "D",
+          "html": "<p>8</p>",
+          "text": "8"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 67 · PDF pages 45",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    },
+    "after": {
+      "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q067",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "67",
+        "pages": [
+          45
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q067-explanation-1.png\" alt=\"Official Form A explanation for question 67; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(D) First, find where Y is located on the\n\nnumber line. Point X is the midpoint of\n\n\\(\\overline{WY}\\). Since there are 2 units between W\n\nand X, there must also be 2 units between\n\nX and Y. Thus, Y is located at 4 on the\n\nnumber line.\n\nPoint Y is the midpoint of \\(\\overline{WZ}\\). Use the\n\nsame reasoning as above. Since there are\n\n4 units between W and Y, there must be\n\n4 units between Y and Z. So, Z is located\n\nat 8 on the number line.",
+      "points": 1,
+      "prompt": "Points Y and Z are not shown on the number line above. If X is the midpoint of \\(\\overline{WY}\\), and Y is the midpoint of \\(\\overline{WZ}\\), where on the number line would point Z be located?",
+      "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q067-figure-1.png\" alt=\"Original source figure for Form A, question 67\" width=\"276\"></p><p>Points Y and Z are not shown on the number line above. If X is the midpoint of \\(\\overline{WY}\\), and Y is the midpoint of \\(\\overline{WZ}\\), where on the number line would point Z be located?</p>",
+      "topic": "Geometry",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>2</p>",
+          "text": "2"
+        },
+        {
+          "id": "B",
+          "html": "<p>4</p>",
+          "text": "4"
+        },
+        {
+          "id": "C",
+          "html": "<p>6</p>",
+          "text": "6"
+        },
+        {
+          "id": "D",
+          "html": "<p>8</p>",
+          "text": "8"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form A · Question 67 · PDF pages 45",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "89",
+    "questionId": "2023-2024-form-b-pdf-shsat-2023-2024-b-q089",
+    "before": {
+      "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q089",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "89",
+        "pages": [
+          50
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-b-q089-explanation-1.png\" alt=\"Official Form B explanation for question 89; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(B) First, find the lengths of the\n\ngiven segments:\n\nQR = 5 \\(\\frac{1}{6}\\) − 3 = 2 \\(\\frac{1}{6}\\)\n\nPQ = 3 − 1 \\(\\frac{1}{3}\\) = 1 \\(\\frac{2}{3}\\)\n\nThen, find the difference:\n\n2 \\(\\frac{1}{6}\\) − 1 \\(\\frac{2}{3}\\) =\n\n\\(\\frac{13}{6}\\) − \\(\\frac{5}{3}\\) =\n\n\\(\\frac{13}{6}\\) − \\(\\frac{10}{6}\\) =\n\n\\(\\frac{3}{6}\\) = \\(\\frac{1}{2}\\)",
+      "points": 1,
+      "prompt": "On the number line above, how many units longer is ‾QR than ‾PQ?",
+      "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q089-figure-1.png\" alt=\"Original source figure for Form B, question 89\" width=\"276\"></p><p>On the number line above, how many units longer is ‾QR than ‾PQ?</p>",
+      "topic": "Geometry",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>\\(\\frac{1}{6}\\)</p>",
+          "text": "\\(\\frac{1}{6}\\)"
+        },
+        {
+          "id": "B",
+          "html": "<p>\\(\\frac{1}{2}\\)</p>",
+          "text": "\\(\\frac{1}{2}\\)"
+        },
+        {
+          "id": "C",
+          "html": "<p>\\(\\frac{2}{3}\\)</p>",
+          "text": "\\(\\frac{2}{3}\\)"
+        },
+        {
+          "id": "D",
+          "html": "<p>3</p>",
+          "text": "3"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form B · Question 89 · PDF pages 50",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    },
+    "after": {
+      "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q089",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "89",
+        "pages": [
+          50
+        ]
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-b-q089-explanation-1.png\" alt=\"Official Form B explanation for question 89; original answer labels retained.\" width=\"328\"></p>",
+      "skilled": "TBD",
+      "explanation": "(B) First, find the lengths of the\n\ngiven segments:\n\nQR = 5 \\(\\frac{1}{6}\\) − 3 = 2 \\(\\frac{1}{6}\\)\n\nPQ = 3 − 1 \\(\\frac{1}{3}\\) = 1 \\(\\frac{2}{3}\\)\n\nThen, find the difference:\n\n2 \\(\\frac{1}{6}\\) − 1 \\(\\frac{2}{3}\\) =\n\n\\(\\frac{13}{6}\\) − \\(\\frac{5}{3}\\) =\n\n\\(\\frac{13}{6}\\) − \\(\\frac{10}{6}\\) =\n\n\\(\\frac{3}{6}\\) = \\(\\frac{1}{2}\\)",
+      "points": 1,
+      "prompt": "On the number line above, how many units longer is \\(\\overline{QR}\\) than \\(\\overline{PQ}\\)?",
+      "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q089-figure-1.png\" alt=\"Original source figure for Form B, question 89\" width=\"276\"></p><p>On the number line above, how many units longer is \\(\\overline{QR}\\) than \\(\\overline{PQ}\\)?</p>",
+      "topic": "Geometry",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>\\(\\frac{1}{6}\\)</p>",
+          "text": "\\(\\frac{1}{6}\\)"
+        },
+        {
+          "id": "B",
+          "html": "<p>\\(\\frac{1}{2}\\)</p>",
+          "text": "\\(\\frac{1}{2}\\)"
+        },
+        {
+          "id": "C",
+          "html": "<p>\\(\\frac{2}{3}\\)</p>",
+          "text": "\\(\\frac{2}{3}\\)"
+        },
+        {
+          "id": "D",
+          "html": "<p>3</p>",
+          "text": "3"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "importNeedsEditing": true,
+      "importSource": "2023-2024 Form B · Question 89 · PDF pages 50",
+      "importNotes": [
+        "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+        "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+      ]
+    }
+  }
+]

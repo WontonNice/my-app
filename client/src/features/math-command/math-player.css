@@ -40,3 +40,18 @@
 .mc-exam-mini .mc-practice-stats small { display:none; }
 .mc-exam-mini .exam-pencil-controls { top:110px; right:8px; }
 @media(max-width:600px) { .mc-exam-mini { right:12px; bottom:12px; width:calc(100vw - 24px); height:min(540px,calc(100dvh - 108px)); } .mc-exam-mini .exam-session-toolbar-inner { gap:4px; } .mc-exam-mini .mc-practice-stats { gap:7px; font-size:11px; } }
+
+.mc-session-options { display:flex; align-items:center; flex-wrap:wrap; gap:4px 20px; box-sizing:border-box; max-width:1174px; margin:8px auto 0; padding:0 20px 8px; color:#526267; font:13px/1.5 Arial,sans-serif; }
+.mc-session-options > p { margin:0; }
+.mc-session-options > details, .mc-session-options > [role=alert] { flex-basis:100%; }
+.mc-session-options > [role=alert] { color:#a22d39; }
+.mc-session-options details > div { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-block:12px; }
+.mc-session-options button, .mc-session-options summary { min-height:44px; cursor:pointer; }
+.mc-session-options small { display:block; }
+
+.mc-session-options button, .mc-practice-save { border:1px solid #b8c6b9; border-radius:6px; padding:8px 12px; background:#f7faf8; color:#24382f; font:inherit; cursor:pointer; }
+.mc-session-options button:hover, .mc-practice-save:hover { background:#e9eee5; }
+.mc-session-options button:disabled { opacity:.6; cursor:default; }
+.mc-session-options button:focus-visible, .mc-session-options summary:focus-visible, .mc-practice-save:focus-visible { outline:3px solid #6c9774; outline-offset:2px; }
+.mc-session-options .mc-session-finish { min-height:32px; padding:4px 0; border:0; border-radius:0; background:transparent; color:inherit; text-decoration:underline; text-underline-offset:3px; }
+.mc-session-options .mc-session-finish:hover { background:transparent; color:#24382f; }

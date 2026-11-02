@@ -3,6 +3,7 @@ import { RichResponseTemplate } from "./RichResponseTemplate";
 // One math question renderer for the student player and Content Studio preview.
 /* eslint react-refresh/only-export-components: ["error", { "allowExportNames": ["renderKatexExpression", "renderInlineMathText", "getBoldFormattedText", "renderMathAuthoredText", "renderMathRichText"] }] */
 import { parseInlineDropdownTemplate } from '../lib/inlineDropdownTemplate';
+import { mathTextRuns, type MathTextPart } from '../lib/mathTextRuns';
 import { useRef, useState, type MouseEvent, type PointerEvent, type ReactNode } from 'react';
 import katex from 'katex';
 import { MathEntryResponse } from './MathEntryResponse';
@@ -297,12 +298,14 @@ function MathDragDropResponse({
 
   function renderSlot(slotId: string, key: string) {
     const placedItem = items.find((item) => item.id === answer[slotId]);
+    const width = slots.find(slot => slot.id === slotId)?.width;
     return (
       <button
         aria-label={placedItem ? `Answer box ${slots.findIndex(slot => slot.id === slotId) + 1}: ${placedItem.text}. Select, then click the bank to return or an empty box to move. Delete also returns to bank.` : `Empty answer box ${slots.findIndex(slot => slot.id === slotId) + 1}`}
         aria-pressed={placedItem ? selected?.slotId === slotId : undefined}
         className={`exam-math-drag-slot ${placedItem ? "is-filled" : ""} ${selected?.slotId === slotId ? "is-selected" : ""} ${selected && !placedItem ? "is-drop-target" : ""}`}
         data-answer-slot={slotId}
+        style={width ? { width, maxWidth: 'calc(100% - 2px)', boxSizing: 'content-box', minHeight: 26 } : undefined}
         draggable={false}
         key={key}
         onClick={() => {
@@ -731,30 +734,11 @@ function renderMathPlainText(text: string, key: string) {
 }
 
 export function renderMathAuthoredText(text: string, highlightKey: string, renderPlain: (text: string, key: string) => ReactNode = renderMathPlainText) {
-    return text
-      .split(/(\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\))/g)
-      .filter(Boolean)
-      .map((part, index) => {
-        if (part.startsWith("\\[") && part.endsWith("\\]")) {
-          return (
-            <span key={`${highlightKey}-display-math-${index}`}>
-              {renderKatexExpression(part.slice(2, -2), true)}
-            </span>
-          );
-        }
-        if (part.startsWith("\\(") && part.endsWith("\\)")) {
-          return (
-            <span key={`${highlightKey}-inline-math-${index}`}>
-              {renderKatexExpression(part.slice(2, -2))}
-            </span>
-          );
-        }
-        return (
-          <span key={`${highlightKey}-text-${index}`}>
-            {renderPlain(part, `${highlightKey}:text:${index}`)}
-          </span>
-        );
-      });
+    const renderPart = (part: MathTextPart, key: string) => <span key={key}>{part.kind === 'text'
+      ? renderPlain(part.value, key) : renderKatexExpression(part.value, part.kind === 'display')}</span>;
+    return mathTextRuns(text).map((run, index) => run.kind === 'word'
+      ? <span className="exam-math-word" key={`${highlightKey}-${index}`}>{run.parts.map((part, j) => renderPart(part, `${highlightKey}:${index}:${j}`))}</span>
+      : renderPart(run, `${highlightKey}:${index}`));
   }
 
 export function renderMathRichText(html: string | undefined, text: string, highlightKey: string, renderPlain?: (text: string, key: string) => ReactNode) {
@@ -770,33 +754,31 @@ export function renderMathRichText(html: string | undefined, text: string, highl
       textNodes.push(walker.currentNode as Text);
     }
     textNodes.forEach((textNode) => {
-      const parts = (textNode.nodeValue ?? "")
-        .split(/(\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\))/g)
-        .filter(Boolean);
-      const hasMath = parts.some(
-        (part) =>
-          (part.startsWith("\\[") && part.endsWith("\\]")) ||
-          (part.startsWith("\\(") && part.endsWith("\\)")),
-      );
+      const parts = mathTextRuns(textNode.nodeValue ?? "");
+      const hasMath = parts.some(part => part.kind !== 'text');
       if (!hasMath) return;
       const fragment = document.createDocumentFragment();
-      parts.forEach((part) => {
-        const isDisplayMath = part.startsWith("\\[") && part.endsWith("\\]");
-        const isInlineMath = part.startsWith("\\(") && part.endsWith("\\)");
-        if (!isDisplayMath && !isInlineMath) {
-          fragment.appendChild(document.createTextNode(part));
-          return;
-        }
+      const renderPart = (part: MathTextPart) => {
+        if (part.kind === 'text') return document.createTextNode(part.value);
+        const isDisplayMath = part.kind === 'display';
         const span = document.createElement("span");
         span.className = isDisplayMath ? "exam-katex-display" : "exam-katex-inline";
-        span.innerHTML = katex.renderToString(part.slice(2, -2), {
+        span.innerHTML = katex.renderToString(part.value, {
           displayMode: isDisplayMath,
           output: "htmlAndMathml",
           strict: false,
           throwOnError: false,
           trust: false,
         });
-        fragment.appendChild(span);
+        return span;
+      };
+      parts.forEach((part) => {
+        if (part.kind === 'word') {
+          const span = document.createElement('span');
+          span.className = 'exam-math-word';
+          part.parts.forEach(piece => span.appendChild(renderPart(piece)));
+          fragment.appendChild(span);
+        } else fragment.appendChild(renderPart(part));
       });
       textNode.replaceWith(fragment);
     });
@@ -876,6 +858,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
     if (!allowExtraSelections && question.type === 'multi_select' && !selectedIds.includes(id) && selectedIds.length >= maxChoices) { setSelectionWarning(true); return; }
     setSelectionWarning(false);
     if (callback) callback(id);
+    else if (question.type === 'graph_point_select' && maxChoices === 1) onChange(selectedIds.includes(id) ? [] : [id]);
     else if (['multi_select', 'graph_point_select'].includes(question.type)) toggle(id);
     else onChange(id);
   };
@@ -959,6 +942,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
                 advanced={textEntryControl(question) === "expression"}
                 layout={question.entryLayout ?? "plain"}
                 variable={question.entryVariable}
+                prefixVariable={question.entryPrefixVariable}
                 onChange={(value) => onChange(value)}
                 value={textAnswer}
               />
@@ -996,7 +980,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
             ) : question.type === 'matrix_choice' && question.items && question.categories ? (
               <div className="exam-matrix-choice-wrap"><table className="exam-matrix-choice-table"><thead><tr><th>{question.tableHeaders?.row || ''}</th>{question.categories.map(category=><th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(item=><tr key={item.id}><th scope="row">{renderInteractionMath(item.text,item.id)}</th>{question.categories!.map(category=><td key={category.id}><label><input type="radio" name={question.id+'-'+item.id} aria-label={item.text+': '+category.title} checked={placements(answer)[item.id]===category.id} onChange={()=>onChange({...placements(answer),[item.id]:category.id})}/></label></td>)}</tr>)}</tbody></table></div>
             ) : choices.length > 0 ? (
-              <div className="exam-choice-list exam-standalone-choice-list">
+              <div className={`exam-choice-list exam-standalone-choice-list${question.choiceColumns === 2 ? ' is-two-column' : ''}`}>
                 {choices.map((choice) => (
                   <label
                     className={`exam-choice ${

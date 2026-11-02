@@ -1,0 +1,56 @@
+{
+  "destination": [
+    "2021-2022-form-a",
+    "2021-2022-form-b"
+  ],
+  "questions": 228,
+  "passages": 14,
+  "standaloneEnglish": 8,
+  "math": 114,
+  "sourceFiles": [
+    {
+      "file": "C:\\Users\\Nathan Im\\Downloads\\20212022_form_a.pdf",
+      "sha256": "4c5de9ea8136846b98c66c7995ae8a0ec52adeaf67698f1aa2f9075948eadb17",
+      "pages": 53,
+      "role": "student exam",
+      "sourceQuestions": "1–114"
+    },
+    {
+      "file": "C:\\Users\\Nathan Im\\Downloads\\20212022_form_a_-_answers.pdf",
+      "sha256": "e3e7d627208928609bd80e167cdd5a2a28db00bfba2c7de355b8951daa6cc226",
+      "pages": 46,
+      "role": "answer key and explanation guide",
+      "sourceQuestions": "1–114"
+    },
+    {
+      "file": "C:\\Users\\Nathan Im\\Downloads\\20212022_form_b.pdf",
+      "sha256": "3dc9c1cff8d43116dfa9f23404cde100eb742841b61759a9291d38ff1f7882f4",
+      "pages": 54,
+      "role": "student exam",
+      "sourceQuestions": "1–114"
+    },
+    {
+      "file": "C:\\Users\\Nathan Im\\Downloads\\20212022_form_b_-_answers.pdf",
+      "sha256": "d57a379dab168f5667875c66bcb85ebae560b8b8f626024ba89db82d8d92643a",
+      "pages": 50,
+      "role": "answer key and explanation guide",
+      "sourceQuestions": "1–114"
+    }
+  ],
+  "checks": {
+    "sourceKeysAndSavedExports": "passed: 228 keys and explanations; exact native passage layouts; all source assets exist",
+    "browser": "passed: 228 questions; no Math KaTeX errors, exposed delimiters, missing images, or horizontal overflow",
+    "typecheck": "passed: client and server",
+    "examReview": "passed: 11/11",
+    "documentImportSuite": "34/36 passed; two renderer bundling checks failed due access/module-resolution errors",
+    "contentEditorSuite": "87/92 passed; five failures in legacy fixtures/workspace checks and standalone bank assumptions",
+    "contentEditorValidate": "failed: existing feature fixture expects div-to-br conversion, while current shared sanitizer preserves div"
+  },
+  "notes": [
+    "English order: reading passages, revising/editing A, standalone items, then Math.",
+    "Existing Form A Math IDs and teacher classifications/review states retained.",
+    "New Form B Math items remain Needs editing; inferred classifications were not invented.",
+    "Official explanation images preserve the supplied guide and original printed answer labels; editable OCR explanation text remains marked for review.",
+    "Reused passage IDs retain per-exam source formatting through the existing exam presentation mechanism."
+  ]
+}

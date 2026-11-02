@@ -37,7 +37,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "prompt": "Two number cubes have sides labeled 1\nthrough 6. Both number cubes are rolled.\nHow many different outcomes will have a\nsum of 6?",
     "promptHtml": "Two number cubes have sides labeled 1\nthrough 6. Both number cubes are rolled.\nHow many different outcomes will have a\nsum of 6?&nbsp;&nbsp;",
     "topic": "Statistics and Probability",
-    "subtopic": "Counting & Combinations",
+    "subtopic": "Counting & Sets",
     "correctTextAnswers": [
       "5"
     ],
@@ -176,7 +176,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A car dealership is having a sale where all cars have a 12% discount. What is the discounted price of a car that originally cost $15,600?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -203,7 +203,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[4\\frac{2}{3}\\div 2\\frac{1}{2}=\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Lena is building a fence. She will need to dig holes to help support the posts that hold up the fence. The holes need to have a depth of \\(3\\frac{1}{3}\\) feet below the ground. Each post is 10 feet long. What is the height of the part of the post that is above the ground?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -376,7 +376,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A company with 200 employees grew in size by 25% between 2005 and 2010. The company grew again by 10% between 2010 and 2015. What was the total number of employees in 2015?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -403,7 +403,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A bowl contains 12 green candies, 4 yellow candies, and some red candies. The probability of choosing a green candy at random is twice as great as the probability of choosing a red candy at random. What is the probability of choosing a yellow candy at random?",
     "topic": "Statistics and Probability",
-    "subtopic": "Basic Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -467,7 +467,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "prompt": "Serena was studying the number of water stations for different lengths of races. The table below shows the data she collected.\nWhich equation represents the relationship between the length of the race, \\(x\\) miles, and the number of water stations, \\(y\\)?",
     "promptHtml": "Serena was studying the number of water stations for different lengths of races. The table below shows the data she collected.<br><img src=\"/exam-images/2020-2021-form-b-2020-2021-form-b-q76-21c62671f1edcded.png\" alt=\"Math diagram\" width=\"300\">Which equation represents the relationship between the length of the race, \\(x\\) miles, and the number of water stations, \\(y\\)?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -500,7 +500,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "prompt": "Centerville will hold a vote on whether to build a new park. The town council surveyed a random sample of 200 residents to determine whether they would be in favor of building this park. The table shows the results of the survey.\nThe mayor estimates that half the undecided voters will vote in favor of building the park. Based on the survey results, if the mayor is correct, how many of the 24,100 voters will be in favor of building the park?",
     "promptHtml": "Centerville will hold a vote on whether to build a new park. The town council surveyed a random sample of 200 residents to determine whether they would be in favor of building this park. The table shows the results of the survey.<img src=\"/exam-images/2020-2021-form-b-2020-2021-form-b-q77-a42fc9cf659862d2.png\" alt=\"Math diagram\" width=\"300\"><br>The mayor estimates that half the undecided voters will vote in favor of building the park. Based on the survey results, if the mayor is correct, how many of the 24,100 voters will be in favor of building the park?",
     "topic": "Statistics and Probability",
-    "subtopic": "Sampling & Predictions",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -561,7 +561,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What decimal is equivalent to \\(\\frac{13}{-11}\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -593,7 +593,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Each loaf of bread a baker makes requires \\(\\frac{1}{5}\\) ounce of salt. How many loaves can be made if 40 ounces of salt are used?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -622,7 +622,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "prompt": "What is the value of \\[\\frac{\\left(1\\frac{5}{7}-1\\frac{6}{7}\\right)}{\\left(3\\frac{4}{7}-3\\frac{6}{7}\\right)}\\]",
     "promptHtml": "What is the value of \\[\\frac{\\left(1\\frac{5}{7}-1\\frac{6}{7}\\right)}{\\left(3\\frac{4}{7}-3\\frac{6}{7}\\right)}\\]<br>",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -774,7 +774,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Jar Q contains 12 balls, and Jar R contains 8 balls. The probability of drawing a yellow ball at random from Jar Q is \\(\\frac{1}{3}\\). The probability of drawing a yellow ball at random from Jar R is \\(\\frac{3}{4}\\). All the balls are poured into an empty jar, Jar S. What is the probability of drawing a yellow ball at random from Jar S?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -807,7 +807,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "prompt": "Gia and her friends counted the numbers of pretzels and raisins in their bags of snack mix. The table above shows the numbers in Gia’s bag. Which other snack mix bag has a ratio of pretzels to raisins in the same proportional relationship as Gia’s bag?",
     "promptHtml": "<img src=\"/exam-images/2020-2021-form-b-2020-2021-form-b-q87-32abc37cd5d2ba51.png\" alt=\"Math diagram\" width=\"250\">Gia and her friends counted the numbers of pretzels and raisins in their bags of snack mix. The table above shows the numbers in Gia’s bag. Which other snack mix bag has a ratio of pretzels to raisins in the same proportional relationship as Gia’s bag?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -975,7 +975,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The high temperature on Monday was \\(x^\\circ\\text{ F}\\). On Tuesday, the high temperature was \\(84^\\circ\\text{ F}\\), which was a 5% increase from Monday’s high temperature. On Wednesday, the high temperature was 10% lower than it was on Monday. How much lower was the high temperature on Wednesday than the high temperature on Monday?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1149,7 +1149,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A bag contains 2 green, 4 blue, and 3 yellow disks. Alana selects 4 disks from the bag at random, one at a time, without replacing them. What is the probability that she selects all 4 blue disks?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1214,7 +1214,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A community garden had 50 members in 2001. In each of the next three years, the number of members increased by 40% over the number of members from the previous year. How many members were there in 2004? (Round to the nearest whole number.)",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1274,7 +1274,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A box contains a total of 30 paper clips with colors in the ratio red:white:blue = 2:5:3. Suppose that one paper clip of each color is removed from the box and not replaced. What is the probability that the next paper clip chosen will be blue?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1334,7 +1334,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Three different colors of paint are available to paint the window frame, the door, and the wall of a house. If no two parts of the house may be painted the same color, how many different ways are there to paint the three parts of the house?",
     "topic": "Statistics and Probability",
-    "subtopic": "Counting & Combinations",
+    "subtopic": "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -1420,7 +1420,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Chris has 1 red shirt, 2 white shirts, and 3 black shirts. Chris picks a shirt at random. Without putting the first shirt back, he picks a second shirt at random. What is the probability that the first shirt is black and the second shirt is red?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1481,7 +1481,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "prompt": "Five numbered balls are placed in two boxes as shown in the figure above. Davina picks one ball at random from Box B and places it in Box A. Then Yusuf picks one ball from Box A without looking. What is the probability that Yusuf will pick a ball with an odd number?",
     "promptHtml": "<img src=\"/exam-images/2020-2021-form-b-2020-2021-form-b-q109-027d4ccfbb6a8c47.png\" alt=\"Math diagram\" width=\"360\">Five numbered balls are placed in two boxes as shown in the figure above. Davina picks one ball at random from Box B and places it in Box A. Then Yusuf picks one ball from Box A without looking. What is the probability that Yusuf will pick a ball with an odd number?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1601,7 +1601,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A rectangular field had a length of 80 meters and a width of 50 meters. The field was recently enlarged, with the length increased by 15% and the width increased by 10 meters. By what percentage was the area of the field increased?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",

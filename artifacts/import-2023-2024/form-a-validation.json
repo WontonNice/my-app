@@ -1,0 +1,2199 @@
+{
+  "entries": [
+    {
+      "kind": "passage",
+      "title": "The Benefits of Indoor Plants",
+      "questions": 5
+    },
+    {
+      "kind": "passage",
+      "title": "A Memory Revolution",
+      "questions": 8
+    },
+    {
+      "kind": "passage",
+      "title": "Letter from Brooklyn",
+      "questions": 9
+    },
+    {
+      "kind": "passage",
+      "title": "Excerpt from Do Them No Harm!",
+      "questions": 9
+    },
+    {
+      "kind": "passage",
+      "title": "Using Fire to Keep a Prairie Healthy",
+      "questions": 8
+    },
+    {
+      "kind": "passage",
+      "title": "Excerpt from Winter Wheat",
+      "questions": 8
+    },
+    {
+      "kind": "passage",
+      "title": "Wolves of the Sea",
+      "questions": 6
+    },
+    {
+      "kind": "standalone",
+      "title": "Imported independent English questions",
+      "questions": 4
+    },
+    {
+      "kind": "math",
+      "title": "Imported Math questions",
+      "questions": 57
+    }
+  ],
+  "issues": [
+    {
+      "code": "UNCERTAIN_TEXT_EXTRACTION",
+      "scope": "Document",
+      "message": "Verify the complete source transcription, supplied key, and source explanations.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_MISSING_QUESTION",
+      "scope": "Document",
+      "message": "Confirm all requested pages, questions and choices are included.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 5",
+      "message": "Review Topic & Transitions (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 6",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 6",
+      "message": "Review Topic & Transitions (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 7",
+      "message": "Review Topic & Transitions (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 8",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 8",
+      "message": "Review Relevance & Conclusion (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 9",
+      "message": "Review Relevance & Conclusion (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "UNCERTAIN_TEXT_EXTRACTION",
+      "scope": "Document",
+      "message": "Verify the complete source transcription, supplied key, and source explanations.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_MISSING_QUESTION",
+      "scope": "Document",
+      "message": "Confirm all requested pages, questions and choices are included.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 10",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 10",
+      "message": "Review Central Idea & Theme (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 11",
+      "message": "Review Central Idea & Theme (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 12",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 12",
+      "message": "Review Text Structure & Purpose (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 13",
+      "message": "Review Inference (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 14",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 14",
+      "message": "Review Evidence & Support (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 15",
+      "message": "Review Inference (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 16",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 16",
+      "message": "Review Inference (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 17",
+      "message": "Review Text Structure & Purpose (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "UNCERTAIN_TEXT_EXTRACTION",
+      "scope": "Document",
+      "message": "Verify the complete source transcription, supplied key, and source explanations.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_MISSING_QUESTION",
+      "scope": "Document",
+      "message": "Confirm all requested pages, questions and choices are included.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 18",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 18",
+      "message": "Review Text Structure & Purpose (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 19",
+      "message": "Review Evidence & Support (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 20",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 20",
+      "message": "Review Central Idea & Theme (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 21",
+      "message": "Review Word & Phrase Meaning (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 22",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 22",
+      "message": "Review Central Idea & Theme (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 23",
+      "message": "Review Tone & Mood (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 24",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 24",
+      "message": "Review Central Idea & Theme (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 25",
+      "message": "Review Text Structure & Purpose (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 26",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 26",
+      "message": "Review Author's Point of View (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "UNCERTAIN_TEXT_EXTRACTION",
+      "scope": "Document",
+      "message": "Verify the complete source transcription, supplied key, and source explanations.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_MISSING_QUESTION",
+      "scope": "Document",
+      "message": "Confirm all requested pages, questions and choices are included.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 27",
+      "message": "Review Text Structure & Purpose (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 28",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 28",
+      "message": "Review Inference (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 29",
+      "message": "Review Central Idea & Theme (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 30",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 30",
+      "message": "Review Word & Phrase Meaning (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 31",
+      "message": "Review Text Structure & Purpose (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 32",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 32",
+      "message": "Review Word & Phrase Meaning (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 33",
+      "message": "Review Evidence & Support (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 34",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 34",
+      "message": "Review Inference (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 35",
+      "message": "Review Central Idea & Theme (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "UNCERTAIN_TEXT_EXTRACTION",
+      "scope": "Document",
+      "message": "Verify the complete source transcription, supplied key, and source explanations.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_MISSING_QUESTION",
+      "scope": "Document",
+      "message": "Confirm all requested pages, questions and choices are included.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 36",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 36",
+      "message": "Review Inference (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 37",
+      "message": "Review Inference (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 38",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 38",
+      "message": "Review Text Structure & Purpose (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 39",
+      "message": "Review Central Idea & Theme (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 40",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 40",
+      "message": "Review Inference (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 41",
+      "message": "Review Word & Phrase Meaning (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 42",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 42",
+      "message": "Review Author's Point of View (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 43",
+      "message": "Review Text Structure & Purpose (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "UNCERTAIN_TEXT_EXTRACTION",
+      "scope": "Document",
+      "message": "Verify the complete source transcription, supplied key, and source explanations.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_MISSING_QUESTION",
+      "scope": "Document",
+      "message": "Confirm all requested pages, questions and choices are included.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 44",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 44",
+      "message": "Review Central Idea & Theme (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 45",
+      "message": "Review Text Structure & Purpose (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 46",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 46",
+      "message": "Review Word & Phrase Meaning (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 47",
+      "message": "Review Tone & Mood (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 48",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 48",
+      "message": "Review Evidence & Support (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 49",
+      "message": "Review Central Idea & Theme (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 50",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 50",
+      "message": "Review Inference (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 51",
+      "message": "Review Evidence & Support (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "UNCERTAIN_TEXT_EXTRACTION",
+      "scope": "Document",
+      "message": "Verify the complete source transcription, supplied key, and source explanations.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_MISSING_QUESTION",
+      "scope": "Document",
+      "message": "Confirm all requested pages, questions and choices are included.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 52",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 52",
+      "message": "Review Central Idea & Theme (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 53",
+      "message": "Review Text Structure & Purpose (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 54",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 54",
+      "message": "Review Word & Phrase Meaning (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 55",
+      "message": "Review Word & Phrase Meaning (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 56",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 56",
+      "message": "Review Evidence & Support (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 57",
+      "message": "Review Inference (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "UNCERTAIN_TEXT_EXTRACTION",
+      "scope": "Document",
+      "message": "Verify the complete source transcription, supplied key, and source explanations.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_MISSING_QUESTION",
+      "scope": "Document",
+      "message": "Confirm all requested pages, questions and choices are included.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 1",
+      "message": "Review Punctuation (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 2",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 2",
+      "message": "Review Verbs (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 3",
+      "message": "Review Modifiers (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 4",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 4",
+      "message": "Review Sentence Structure (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "UNCERTAIN_TEXT_EXTRACTION",
+      "scope": "Document",
+      "message": "Verify the complete source transcription, supplied key, and source explanations.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_MISSING_QUESTION",
+      "scope": "Document",
+      "message": "Confirm all requested pages, questions and choices are included.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 58",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 58",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 58",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 58",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 59",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 59",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 59",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 59",
+      "message": "Review Arithmetic & Number Sense (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 60",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 60",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 60",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 60",
+      "message": "Review Algebra (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 61",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 61",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 61",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 61",
+      "message": "Review Geometry (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 62",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 62",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 62",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 62",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 63",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 63",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 63",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 63",
+      "message": "Review Arithmetic & Number Sense (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 64",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 64",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 64",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 64",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 64",
+      "message": "Review Arithmetic & Number Sense (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 65",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 65",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 65",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 65",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 66",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 66",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 66",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 66",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 66",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 67",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 67",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 67",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 67",
+      "message": "Review Geometry (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 68",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 68",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 68",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 68",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 68",
+      "message": "Review Algebra (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 69",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 69",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 69",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 69",
+      "message": "Review Algebra (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 70",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 70",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 70",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 70",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 70",
+      "message": "Review Arithmetic & Number Sense (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 71",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 71",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 71",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 71",
+      "message": "Review Arithmetic & Number Sense (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 72",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 72",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 72",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 72",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 72",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 73",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 73",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 73",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 73",
+      "message": "Review Arithmetic & Number Sense (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 74",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 74",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 74",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 74",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 74",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 75",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 75",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 75",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 75",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 76",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 76",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 76",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 76",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 76",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 77",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 77",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 77",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 77",
+      "message": "Review Arithmetic & Number Sense (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 78",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 78",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 78",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 78",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 78",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 79",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 79",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 79",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 79",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 80",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 80",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 80",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 80",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 80",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 81",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 81",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 81",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 81",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 82",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 82",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 82",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 82",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 82",
+      "message": "Review Geometry (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 83",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 83",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 83",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 83",
+      "message": "Review Arithmetic & Number Sense (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 84",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 84",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 84",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 84",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 84",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 85",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 85",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 85",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 85",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 86",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 86",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 86",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 86",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 86",
+      "message": "Review Algebra (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 87",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 87",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 87",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 87",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 88",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 88",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 88",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 88",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 88",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 89",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 89",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 89",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 89",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 90",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 90",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 90",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 90",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 90",
+      "message": "Review Algebra (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 91",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 91",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 91",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 91",
+      "message": "Review Geometry (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 92",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 92",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 92",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 92",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 92",
+      "message": "Review Geometry (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 93",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 93",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 93",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 93",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 94",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 94",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 94",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 94",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 94",
+      "message": "Review Geometry (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 95",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 95",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 95",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 95",
+      "message": "Review Algebra (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 96",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 96",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 96",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 96",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 96",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 97",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 97",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 97",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 97",
+      "message": "Review Algebra (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 98",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 98",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 98",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 98",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 98",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 99",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 99",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 99",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 99",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 100",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 100",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 100",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 100",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 100",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 101",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 101",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 101",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 101",
+      "message": "Review Algebra (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 102",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 102",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 102",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 102",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 102",
+      "message": "Review Geometry (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 103",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "TABLE_REVIEW_REQUIRED",
+      "scope": "Question 103",
+      "message": "Source table transcribed into an editable table; verify source values and row order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 103",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 103",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 103",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 104",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 104",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 104",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 104",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 104",
+      "message": "Review Arithmetic & Number Sense (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 105",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 105",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 105",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 105",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 106",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 106",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 106",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 106",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 106",
+      "message": "Review Geometry (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 107",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 107",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 107",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 107",
+      "message": "Review Geometry (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 108",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 108",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 108",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 108",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 108",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 109",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 109",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 109",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 109",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 110",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 110",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 110",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 110",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 110",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 111",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 111",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 111",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 111",
+      "message": "Review Ratios and Proportional Relationships (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 112",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 112",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 112",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 112",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 112",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 113",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 113",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 113",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 113",
+      "message": "Review Arithmetic & Number Sense (inferred, confidence 0.8).",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 114",
+      "message": "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+      "blocking": true
+    },
+    {
+      "code": "POSSIBLE_FORMATTING_LOSS",
+      "scope": "Question 114",
+      "message": "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 114",
+      "message": "Main category is inferred. Specific Math subtopic is unassigned for teacher classification.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 114",
+      "message": "Choose a specific math topic under its main category.",
+      "blocking": true
+    },
+    {
+      "code": "LOW_CONFIDENCE_QUESTION_TYPE",
+      "scope": "Question 114",
+      "message": "Review Statistics and Probability (inferred, confidence 0.8).",
+      "blocking": true
+    }
+  ]
+}

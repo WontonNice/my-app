@@ -70,10 +70,11 @@ export async function readMathTopicConfiguration(root) {
 }
 
 export function validateMathClassification(question, configuration, previous) {
-  const topic = text(question.topic, 'Main category');
+  const legacyBlank = previous && typeof previous.topic === 'string' && !previous.topic.trim() && typeof question.topic === 'string' && !question.topic.trim();
+  const topic = legacyBlank ? 'Uncategorized' : text(question.topic, `Main category for ${question.id || 'this question'}`);
   const category = configuration.categories.find(category => category.label === topic);
   if (!category) throw fail(`Choose a configured main category for ${question.id || 'this question'}.`);
-  const legacy = previous && previous.topic === topic && (!previous.subtopic || previous.subtopic === 'Unclassified');
+  const legacy = previous && (previous.topic === topic || legacyBlank) && (!previous.subtopic || previous.subtopic === 'Unclassified');
   if (question.subtopic != null && typeof question.subtopic !== 'string') throw fail('Specific topic must be text.');
   const subtopic = question.subtopic?.trim() || (legacy ? 'Unclassified' : '');
   if (legacy && subtopic === 'Unclassified') return { topic, subtopic, skilled:mathCommand.validateSkilled(question.skilled,topic,subtopic,configuration.classificationSkills??[]) };

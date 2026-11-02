@@ -35,7 +35,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "prompt": "The table shows the proportional relationship between x cups of oatmeal and y ounces of raisins in a bread recipe.\nWhat is the constant of proportionality of the number of ounces of raisins to the number of cups of oatmeal?",
     "promptHtml": "The table shows the proportional relationship between x cups of oatmeal and y ounces of raisins in a bread recipe.<br><img src=\"/exam-images/2022-2023-form-b-2022-2023-form-b-q59-a75e66c3d45fd4c0.png\" alt=\"Math diagram\" width=\"230\">What is the constant of proportionality of the number of ounces of raisins to the number of cups of oatmeal?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "correctTextAnswers": [
       "0.5",
       "1/2"
@@ -48,7 +48,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Kelly had 7.3 grams of sugar. She used 2.7 grams in her coffee. How many grams of sugar does she have left?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Decimals",
+    "subtopic": "Fractions & Decimals",
     "correctTextAnswers": [
       "4.6"
     ],
@@ -60,7 +60,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The total cost of a book is given by the expression \\(1.08x\\), where \\(x\\) is the price of the book before tax. The tax rate is \\(m\\)%. What is the value of \\(m\\)?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "correctTextAnswers": [
       "8"
     ],
@@ -72,7 +72,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A row of seats in a theater contains 20 seats numbered from 101 to 120. The probability that a randomly chosen seat in this row will be numbered 104 is \\(x\\)%. What is the value of \\(x\\)?",
     "topic": "Statistics and Probability",
-    "subtopic": "Basic Probability",
+    "subtopic": "Probability",
     "correctTextAnswers": [
       "5"
     ],
@@ -116,7 +116,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(\\frac{x+2y}{5}=3y\\), what is the value of \\(x\\) in terms of \\(y\\)?",
     "topic": "Algebra",
-    "subtopic": "Formulas & Rearranging Equations",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -147,7 +147,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of \\(z\\) in \\(\\frac{x}{10}+\\frac{y-x}{5}=\\frac{z}{10}\\)?",
     "topic": "Algebra",
-    "subtopic": "Formulas & Rearranging Equations",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -420,7 +420,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "prompt": "James must read 84 pages of a book for a class assignment. If he reads \\(\\frac{1}{4}\\) of the pages in the morning and \\(\\frac{1}{3}\\) of the remaining pages in the afternoon, how many pages will he still need to read?",
     "promptHtml": "James must read 84 pages of a book for a class assignment. If he reads \\(\\frac{1}{4}\\) of the pages in the morning and \\(\\frac{1}{3}\\) of the<strong> remaining</strong> pages in the afternoon, how many pages will he still need to read?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -448,7 +448,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[\\frac{1}{11}+\\frac{1}{22}+\\frac{1}{33}\\]\n\nWhat is the value of the expression shown above?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -481,7 +481,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "prompt": "At Midville High School, 64 students are members of either the orchestra or the choir, or both. Of these students, 38 are members of the orchestra, and 46 are members of the choir. What fraction of the total is the number of students who are members of both the orchestra and the choir?",
     "promptHtml": "At Midville High School, 64 students are members of either the orchestra or the choir, or both. Of these students, 38 are members of the orchestra, and 46 are members of the choir. What fraction of the total is the number of students who are members of <strong>both</strong> the orchestra and the choir?",
     "topic": "Statistics and Probability",
-    "subtopic": "Set Relationships",
+    "subtopic": "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -513,7 +513,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which of the following decimals is equivalent to \\(1\\frac{2}{3}+2\\frac{4}{9}\\)?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -629,7 +629,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Seth grows strawberries in his garden.\n\n• He picked \\(2\\frac{1}{2}\\) cups of strawberries on Monday.\n• He picked 4 cups of strawberries on Tuesday.\n• He ate \\(\\frac{3}{4}\\) cup of strawberries for breakfast each day on Wednesday, Thursday, and Friday.\n\nHow many cups of strawberries did Seth have left?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -687,7 +687,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\[\\frac{\\left(\\frac{2}{3}-\\frac{4}{5}\\times\\frac{1}{3}\\right)}{\\left(\\frac{5}{3}+\\frac{1}{4}\\div\\frac{3}{4}\\right)}=\\]",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -986,7 +986,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A box contains an unknown number of green marbles. An experimenter adds 100 red marbles to the box, mixes the marbles thoroughly, and then draws out 10 marbles at random. Assume that this sample is representative of the proportion in the box. If there are 2 red marbles and 8 green marbles in this sample, approximately how many green marbles are in the box?",
     "topic": "Statistics and Probability",
-    "subtopic": "Sampling & Predictions",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1014,7 +1014,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A car costing $24,000 is subject to a sales tax of 8%. If Bindu made a $10,000 down payment on this car, what is the total amount she has left to pay?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1072,7 +1072,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "prompt": "A total of 26 job applicants took a computer-competency test, and the number of errors (\\(x\\)) was recorded for each applicant. The graph above shows how many applicants made \\(x\\) errors, for each value of \\(x\\). How many applicants made fewer than 3 errors?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-b-2022-2023-form-b-q96-0f6f23ac3472170d.png\" alt=\"Math diagram\" width=\"250\">A total of 26 job applicants took a computer-competency test, and the number of errors (\\(x\\)) was recorded for each applicant. The graph above shows how many applicants made \\(x\\) errors, for each value of \\(x\\). How many applicants made fewer than 3 errors?",
     "topic": "Statistics and Probability",
-    "subtopic": "Data Displays",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1100,7 +1100,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Last week, Emily rode the bus to school on 3 of the 5 mornings and rode the bus home on 4 of the 5 afternoons. Based on last week’s events, what is the probability that Emily will ride the bus in the morning and the afternoon next Monday?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1133,7 +1133,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "prompt": "XYZ Corporation hired 6 people as summer workers. Of these 6 people, 3 will be hired as permanent employees in the fall. If 2 of the 6 people are male, how many of the possible groups of 3 people hired in the fall will include only 1 male?",
     "promptHtml": "XYZ Corporation hired 6 people as summer workers. Of these 6 people, 3 will be hired as permanent employees in the fall. If 2 of the 6 people are male, how many of the possible groups of 3 people hired in the fall will include <strong>only</strong> 1 male?",
     "topic": "Statistics and Probability",
-    "subtopic": "Counting & Combinations",
+    "subtopic": "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -1161,7 +1161,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At any given time, one person out of every 20 people has the common cold. Assume that the common cold can be caused by any one of 200 different viruses, each of which is equally likely to cause the cold. One of these 200 viruses is cold virus V144. What is the probability that a randomly selected person is suffering from a cold caused by virus V144?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1193,7 +1193,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Karl has one red spinner and one blue spinner. Each spinner is divided into 4 equal sections, numbered 1 through 4. He spins each spinner once and writes down the number that each lands on. What is the probability that the two numbers, when multiplied together, will have 4 as a product?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1225,7 +1225,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Melissa has a bag of marbles that are all the same size. The bag contains three red (R) marbles, three green (G) marbles, and two white (W) marbles. For an experiment, she will take two marbles out of the bag without looking. Which list shows the sample space for Melissa’s experiment?",
     "topic": "Statistics and Probability",
-    "subtopic": "Counting & Combinations",
+    "subtopic": "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -1253,7 +1253,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A graph shows the relationship between the number of gallons of water, \\(y\\), that has been added to a tank and the number of hours, \\(x\\), that water has been added to the tank at a constant rate. What does the ordered pair \\((3,24)\\) represent?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1282,7 +1282,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "prompt": "The table shows the probabilities of a hockey team scoring different numbers of goals in a game.What is the probability that the team will score three or more goals in the next game?",
     "promptHtml": "The table shows the probabilities of a hockey team scoring different numbers of goals in a game.<div><img src=\"/exam-images/2022-2023-form-b-2022-2023-form-b-q103-97fa1c5201504ee9.png\" alt=\"Math diagram\" width=\"250\">What is the probability that the team will score three or more goals in the next game?</div>",
     "topic": "Statistics and Probability",
-    "subtopic": "Basic Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1311,7 +1311,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "prompt": "This graph shows points that represent a proportional relationship between \\(x\\) and \\(y\\).What is the constant of proportionality for this relationship?",
     "promptHtml": "This graph shows points that represent a proportional relationship between \\(x\\) and \\(y\\).<div><img src=\"/exam-images/2022-2023-form-b-2022-2023-form-b-q104-1917fd36c0cb6a25.png\" alt=\"Math diagram\" width=\"280\">What is the constant of proportionality for this relationship?</div>",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1339,7 +1339,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The distance an eagle flies is proportional to the time the eagle spends flying. An eagle flies 90 miles in 3 hours. What is the constant of proportionality for this relationship?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1367,7 +1367,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A machine part is supposed to be 0.38 millimeters thick. The manufacturer allows a variation of −2.5% to +2.5%. Which interval shows the range of acceptable thicknesses, in millimeters, for the part?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1395,7 +1395,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A bakery charges $1.25 for each cupcake and $2.50 for a serving tray. The equation describes \\(p\\), the price of \\(c\\) cupcakes and a serving tray, not including tax.\n\n\\[p=2.50+1.25c\\]\n\nIf Samantha bought some cupcakes and a serving tray for a total of $22.50, not including tax, how many cupcakes did she buy?",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -1423,7 +1423,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A clothing store buys shirts for a cost of \\(m\\) dollars each. To determine the selling price of the shirts, the manager increases the purchase cost by 55%. Which expression represents the selling price of each shirt?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1455,7 +1455,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A farmer has 100 apples and will eat 2 apples per day. Is there a proportional relationship between the number of apples remaining and the number of days that have passed?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1542,7 +1542,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "prompt": "This table shows the number of birds that came to a bird feeder on Monday and Tuesday.\nWhat was the percent decrease in the number of birds from Monday to Tuesday?",
     "promptHtml": "This table shows the number of birds that came to a bird feeder on Monday and Tuesday.<br><img src=\"/exam-images/2022-2023-form-b-2022-2023-form-b-q112-d35d077fd5c34319.png\" alt=\"Math diagram\" width=\"200\">What was the percent decrease in the number of birds from Monday to Tuesday?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1602,7 +1602,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A store manager purchases a piece of furniture for $456.00. To determine the selling price, the manager increases the purchase cost by 125%. A customer buys the furniture and pays an additional 8% sales tax. How much does the customer pay for the furniture?",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Percent Change & Applications",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",

@@ -1,0 +1,367 @@
+[
+  {
+    "width": 360,
+    "id": "2021-2022-form-a-q105",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      }
+    ]
+  },
+  {
+    "width": 360,
+    "id": "wrapping-rich",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      },
+      {
+        "text": "5-digit",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      },
+      {
+        "text": "(x)?",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24.21875
+      }
+    ]
+  },
+  {
+    "width": 360,
+    "id": "wrapping-plain",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 22
+      },
+      {
+        "text": "5-digit",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 22
+      },
+      {
+        "text": "(x)?",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 19
+      }
+    ]
+  },
+  {
+    "width": 500,
+    "id": "2021-2022-form-a-q105",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      }
+    ]
+  },
+  {
+    "width": 500,
+    "id": "wrapping-rich",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      },
+      {
+        "text": "5-digit",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      },
+      {
+        "text": "(x)?",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24.21875
+      }
+    ]
+  },
+  {
+    "width": 500,
+    "id": "wrapping-plain",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 22
+      },
+      {
+        "text": "5-digit",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 22
+      },
+      {
+        "text": "(x)?",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 19
+      }
+    ]
+  },
+  {
+    "width": 700,
+    "id": "2021-2022-form-a-q105",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      }
+    ]
+  },
+  {
+    "width": 700,
+    "id": "wrapping-rich",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      },
+      {
+        "text": "5-digit",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      },
+      {
+        "text": "(x)?",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24.21875
+      }
+    ]
+  },
+  {
+    "width": 700,
+    "id": "wrapping-plain",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 22
+      },
+      {
+        "text": "5-digit",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 22
+      },
+      {
+        "text": "(x)?",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 19
+      }
+    ]
+  },
+  {
+    "width": 828,
+    "id": "2021-2022-form-a-q105",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      }
+    ]
+  },
+  {
+    "width": 828,
+    "id": "wrapping-rich",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      },
+      {
+        "text": "5-digit",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      },
+      {
+        "text": "(x)?",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24.21875
+      }
+    ]
+  },
+  {
+    "width": 828,
+    "id": "wrapping-plain",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 22
+      },
+      {
+        "text": "5-digit",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 22
+      },
+      {
+        "text": "(x)?",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 19
+      }
+    ]
+  },
+  {
+    "width": 1200,
+    "id": "2021-2022-form-a-q105",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      }
+    ]
+  },
+  {
+    "width": 1200,
+    "id": "wrapping-rich",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      },
+      {
+        "text": "5-digit",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24
+      },
+      {
+        "text": "(x)?",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 24.21875
+      }
+    ]
+  },
+  {
+    "width": 1200,
+    "id": "wrapping-plain",
+    "errors": 0,
+    "overflow": false,
+    "words": [
+      {
+        "text": "391st",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 22
+      },
+      {
+        "text": "5-digit",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 22
+      },
+      {
+        "text": "(x)?",
+        "nowrap": true,
+        "height": 17,
+        "mathHeight": 22,
+        "spread": 19
+      }
+    ]
+  }
+]

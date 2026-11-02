@@ -33,6 +33,7 @@ import { mathCommandAsset } from './math-command-bundle.mjs';
 import { openTeacherWorkspace } from './teacher-workspace.mjs';
 import { projectExamPresentation } from './exam-presentation-projection.mjs';
 import { reconcileExamQuestionOrder, selectionOrderChanged } from './exam-order-reconcile.mjs';
+import { examVerificationStore } from './exam-verification.mjs';
 
 const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const passageSetsRoot = join(workspaceRoot, "client", "src", "content", "exams", "passageSets");
@@ -72,6 +73,7 @@ const katexDistRoot = join(workspaceRoot, "node_modules", "katex", "dist");
 const mathliveRoot = join(workspaceRoot, "node_modules", "mathlive");
 const assessmentsPath = join(workspaceRoot, "server", "data", "assessments.json");
 const examLabelsPath = join(workspaceRoot, "tools", "exam-labels.json");
+const examVerification = examVerificationStore(join(workspaceRoot, "tools", ".content-drafts", "exam-verification.json"));
 const editorHtmlPath = join(workspaceRoot, "tools", "content-studio.html");
 const appStylesPath = join(workspaceRoot, "client", "src", "styles", "global.css");
 const isCodespaces = process.env.CODESPACES === "true";
@@ -800,6 +802,7 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
     ...(question.image ? { image: normalizePassageImage(question.image, `Question ${index + 1}`) } : {}),
     ...(promptHtml ? { promptHtml } : {}),
     ...(question.selectionHtml ? {selectionHtml:sanitizeRichText(question.selectionHtml)} : {}),
+    ...(question.choiceColumns === 2 ? { choiceColumns: 2 } : {}),
     ...Object.fromEntries(["dragDropContentHtml","dropdownContentHtml"].filter(key=>question[key]).map(key=>[key,sanitizeRichText(question[key])])),
     topic: allowIncomplete ? String(question.topic || "") : requiredText(question.topic, `Question ${index + 1} topic`),
   };
@@ -1035,8 +1038,13 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
 
 function normalizePassageImage(image, label) {
   if (!image || typeof image !== "object" || Array.isArray(image)) return undefined;
+  const width = image.width === undefined || image.width === '' ? undefined : Number(image.width);
+  if (width !== undefined && (!Number.isInteger(width) || width < 40 || width > 1200)) {
+    throw new EditorError(400, `${label} width must be a whole number from 40 to 1200 pixels.`);
+  }
   return {
     alt: requiredText(image.alt, `${label} alt text`),
+    ...(width !== undefined ? { width } : {}),
     ...(typeof image.caption === "string" && image.caption.trim()
       ? { caption: image.caption.trim() }
       : {}),
@@ -1943,9 +1951,11 @@ function normalizeCalculatorDisplay(question) {
   const entryLayout = ["plain", "x_equals", "fraction"].includes(question.entryLayout) ? question.entryLayout : "plain";
   const entryVariable = typeof question.entryVariable === "string" ? question.entryVariable.trim().normalize("NFKC") : "";
   if (question.entryVariable != null && typeof question.entryVariable !== "string" || entryVariable && !/^\p{L}$/u.test(entryVariable)) {
-    throw new EditorError(400, "Calculator input answer variable must be one letter, such as w, y, or r.");
+    throw new EditorError(400, "Calculator variable must be one letter, such as b, w, or n.");
   }
-  return { entryLayout, ...(entryVariable ? { entryVariable } : {}) };
+  const entryPrefixVariable = typeof question.entryPrefixVariable === 'string' ? question.entryPrefixVariable.trim().normalize('NFKC') : '';
+  if (question.entryPrefixVariable != null && (typeof question.entryPrefixVariable !== 'string' || !/^\p{L}$/u.test(entryPrefixVariable))) throw new EditorError(400, 'Calculator equation label must be one letter.');
+  return { entryLayout, ...(entryVariable ? { entryVariable } : {}), ...(entryPrefixVariable ? { entryPrefixVariable } : {}) };
 }
 
 function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete = false } = {}) {
@@ -1976,9 +1986,12 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
       : {}),
     ...(instructionsHtml ? { instructionsHtml } : {}),
     points: Number.isFinite(Number(question.points)) ? Math.max(1, Number(question.points)) : 1,
-    prompt: allowIncomplete ? String(question.prompt || "") : requiredText(question.prompt, `Math question ${questionNumber}`, { preserve: true }),
+    // Inline dropdowns can contain the entire stem in dropdownContent; that
+    // content and its answer menus are validated below without duplicating it.
+    prompt: allowIncomplete || type === "inline_dropdown" ? String(question.prompt || "") : requiredText(question.prompt, `Math question ${questionNumber}`, { preserve: true }),
     ...(promptHtml ? { promptHtml } : {}),
     ...(question.selectionHtml ? {selectionHtml:sanitizeRichText(question.selectionHtml)} : {}),
+    ...(question.choiceColumns === 2 ? { choiceColumns: 2 } : {}),
     ...Object.fromEntries(["dragDropContentHtml","dropdownContentHtml"].filter(key=>question[key]).map(key=>[key,sanitizeRichText(question[key])])),
     ...(typeof question.stimulus === "string" && question.stimulus.trim()
       ? { stimulus: question.stimulus.trim() }
@@ -2070,7 +2083,9 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
           if (correctItemId && !itemIds.has(correctItemId) || !allowIncomplete && !correctItemId) {
             throw new EditorError(400, `Math question ${questionNumber} box ${slotIndex + 1} needs a valid answer.`);
           }
-          return { correctItemId, id: slotId };
+          const width = slot?.width == null ? undefined : Number(slot.width);
+          if (width != null && (!Number.isFinite(width) || width < 28 || width > 1000)) throw new EditorError(400, `Math question ${questionNumber} box ${slotIndex + 1} width must be between 28 and 1000 pixels.`);
+          return { correctItemId, id: slotId, ...(width != null ? { width } : {}) };
         })
       : [];
     if (!dragDropSlots.length || new Set(dragDropSlots.map((slot) => slot.id)).size !== dragDropSlots.length) {
@@ -3185,6 +3200,7 @@ async function getState() {
     advancedTones,
     assessments: await readAssessments(),
     examLabels: await readExamLabels(),
+    examVerification: await examVerification.read(),
     editToken,
     mathErrors,
     mathSections,
@@ -3611,6 +3627,9 @@ async function handleRequest(request, response) {
     }
     if (url.pathname.startsWith('/api/math-command/')) {
       if (request.method !== 'GET') verifyEditRequest(request);
+      if (url.pathname === '/api/math-command/generator-planner') {
+        throw new EditorError(409, 'Personal batches now use your signed-in teacher account. Refresh Content Studio and open My generator planner to see the same batches as Student Progress.');
+      }
       if (request.method === 'POST' && url.pathname === '/api/math-command/teacher-workspace') {
         const body = await readJson(request);
         sendJson(response, 200, await openTeacherWorkspace(typeof body.query === 'string' ? body.query.slice(0, 20000) : ''));
@@ -3660,7 +3679,7 @@ async function handleRequest(request, response) {
       response.end(html);
       return;
     }
-    if (request.method === "GET" && ["/content-studio-command.js", "/content-studio-command.css", "/content-studio-compare.js", "/content-studio-compare.css", "/math-import-batch.cjs", "/content-studio-batches.js", "/content-studio-batches.css", "/document-import.cjs", "/content-studio-documents.js", "/content-studio-bank.css", "/content-studio-bank.js", "/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-images.js", "/content-studio-glossary.js", "/poem-layout.js", "/passage-exam-assignment.cjs"].includes(url.pathname)) {
+    if (request.method === "GET" && ["/content-studio-question-link.js", "/content-studio-command.js", "/content-studio-command.css", "/content-studio-compare.js", "/content-studio-compare.css", "/math-import-batch.cjs", "/content-studio-batches.js", "/content-studio-batches.css", "/document-import.cjs", "/content-studio-documents.js", "/content-studio-bank.css", "/content-studio-bank.js", "/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-images.js", "/content-studio-glossary.js", "/poem-layout.js", "/passage-exam-assignment.cjs"].includes(url.pathname)) {
       const asset = await readFile(join(workspaceRoot, "tools", url.pathname.slice(1)), "utf8");
       response.writeHead(200, {
         "Cache-Control": "no-store",
@@ -3987,6 +4006,16 @@ async function handleRequest(request, response) {
     if (request.method === "POST" && url.pathname === "/api/exam-labels") {
       verifyEditRequest(request);
       sendJson(response, 201, { examLabels: await createExamLabel(await readJson(request)) });
+      return;
+    }
+    const examVerificationRoute = /^\/api\/exams\/([^/]+)\/verification$/.exec(url.pathname);
+    if (request.method === "PUT" && examVerificationRoute) {
+      verifyEditRequest(request);
+      const id = decodeURIComponent(examVerificationRoute[1]);
+      if (!(await readAssessments()).some(assessment => assessment.id === id)) throw new EditorError(404, "Exam not found.");
+      const input = await readJson(request);
+      if (typeof input?.verified !== "boolean") throw new EditorError(400, "Verified must be true or false.");
+      sendJson(response, 200, { verification: await examVerification.set(id, input.verified) });
       return;
     }
     const examLabelRoute = /^\/api\/exams\/([^/]+)\/label$/.exec(url.pathname);

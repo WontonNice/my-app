@@ -1,0 +1,394 @@
+[
+  {
+    "form": "a",
+    "sourceQuestion": "1",
+    "item": {
+      "id": "part-b-import-82a8231a8843-a770392e",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "1",
+        "pages": [
+          3
+        ]
+      },
+      "explanation": "The question asks which edit should be made to correct the sentence.\n\nA. Incorrect. This edit incorrectly deletes the comma that is necessary to set off the year in a date from the remainder of the sentence. B. Incorrect. This edit introduces an unnecessary comma into the sentence by needlessly separating the adjective phrase “Boston University student” from the noun it modifies, “Zach Prescott.” C. Incorrect. This edit would delete the comma needed to separate the participle phrase “breaking the 32-year-old world record in joggling” and its companion appositive “a sport that combines jogging and juggling” from the rest of the sentence. This complete element is nonessential, which means it requires separation from the rest of the sentence with a comma because its removal would not fundamentally change the meaning of the sentence. D. CORRECT. The appositive “a sport that combines jogging and juggling” further describes the word “joggling.” An appositive requires separation with a comma because it is nonessential, meaning that its removal would not change the overall meaning of the sentence.",
+      "explanationHtml": "<p>The question asks which edit should be made to correct the sentence.</p><p><strong>A. </strong>Incorrect. This edit incorrectly deletes the comma that is necessary to set off the year in a date from the remainder of the sentence. <strong>B. </strong>Incorrect. This edit introduces an unnecessary comma into the sentence by needlessly separating the adjective phrase “Boston University student” from the noun it modifies, “Zach Prescott.” <strong>C. </strong>Incorrect. This edit would delete the comma needed to separate the participle phrase “breaking the 32-year-old world record in joggling” and its companion appositive “a sport that combines jogging and juggling” from the rest of the sentence. This complete element is nonessential, which means it requires separation from the rest of the sentence with a comma because its removal would not fundamentally change the meaning of the sentence. <strong>D. CORRECT. </strong>The appositive “a sport that combines jogging and juggling” further describes the word “joggling.” An appositive requires separation with a comma because it is nonessential, meaning that its removal would not change the overall meaning of the sentence.</p>",
+      "points": 1,
+      "prompt": "Which edit should be made in the sentence?",
+      "stimulus": "On May 8, 2018, Boston University student Zach Prescott ran a mile in 4 minutes 43.2 seconds while juggling three lacrosse balls, breaking the 32-year-old world record in joggling a sport that combines jogging and juggling.",
+      "stimulusHtml": "<p>On May 8, 2018, Boston University student Zach Prescott ran a mile in 4 minutes 43.2 seconds while juggling three lacrosse balls, breaking the 32-year-old world record in joggling a sport that combines jogging and juggling.</p>",
+      "promptHtml": "<p>Which edit should be made in the sentence?</p>",
+      "topic": "Punctuation",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>Delete the comma after <em><strong>2018</strong></em>.</p>",
+          "text": "Delete the comma after 2018."
+        },
+        {
+          "id": "B",
+          "html": "<p>Insert a comma after <em><strong>student</strong></em>.</p>",
+          "text": "Insert a comma after student."
+        },
+        {
+          "id": "C",
+          "html": "<p>Delete the comma after <em><strong>lacrosse balls</strong></em>.</p>",
+          "text": "Delete the comma after lacrosse balls."
+        },
+        {
+          "id": "D",
+          "html": "<p>Insert a comma after <em><strong>joggling</strong></em>.</p>",
+          "text": "Insert a comma after joggling."
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "versionLabels": [
+        "2023-2024 Form A"
+      ],
+      "versionLabel": "2023-2024 Form A"
+    }
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "2",
+    "item": {
+      "id": "part-b-import-103e98885c3f-1ea2b49a",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "2",
+        "pages": [
+          3
+        ]
+      },
+      "explanation": "The question asks how the paragraph should be revised.\n\nE. Incorrect. The revisions in this option introduce new errors. The word “spent” is correct in the simple past tense because it encompasses the actions described throughout the rest of the paragraph, all of which happened during those “several hours.” Additionally, adding a comma after the word “play” would be incorrect because it would unnecessarily separate the prepositional phrase “at the community theater” from the rest of the sentence. F. Incorrect. The revisions in this option introduce new errors. The word “did” is correct as written in the past tense because the past tense is used throughout the paragraph. There is no comma needed after the word “projection” because “so” is functioning not as a conjunction but rather as part of the conjunction phrase “so that,” which does not take a comma. G. CORRECT. Changing the word “studies” from the present tense to the past tense “studied” is necessary to match the past tense established in the paragraph (“spent,” “recited”). Additionally, the comma after the word “emotions” needs to be removed because the words “emotions and motivations” are part of a group (series) of two elements, and when there are only two elements in a series, a comma is not used. H. Incorrect. The revisions in this option introduce new errors. The word “recited” is correct as written in the past tense because the past tense is used throughout the paragraph. Also, removing the comma after “times” is incorrect because the comma is needed in order to separate the modifying phrase “making slight adjustments and improvements to her performance each time” from the main clause.",
+      "explanationHtml": "<p>The question asks how the paragraph should be revised.</p><p><strong>E. </strong>Incorrect. The revisions in this option introduce new errors. The word “spent” is correct in the simple past tense because it encompasses the actions described throughout the rest of the paragraph, all of which happened during those “several hours.” Additionally, adding a comma after the word “play” would be incorrect because it would unnecessarily separate the prepositional phrase “at the community theater” from the rest of the sentence. <strong>F. </strong>Incorrect. The revisions in this option introduce new errors. The word “did” is correct as written in the past tense because the past tense is used throughout the paragraph. There is no comma needed after the word “projection” because “so” is functioning not as a conjunction but rather as part of the conjunction phrase “so that,” which does not take a comma. <strong>G. CORRECT. </strong>Changing the word “studies” from the present tense to the past tense “studied” is necessary to match the past tense established in the paragraph (“spent,” “recited”). Additionally, the comma after the word “emotions” needs to be removed because the words “emotions and motivations” are part of a group (series) of two elements, and when there are only two elements in a series, a comma is not used. <strong>H. </strong>Incorrect. The revisions in this option introduce new errors. The word “recited” is correct as written in the past tense because the past tense is used throughout the paragraph. Also, removing the comma after “times” is incorrect because the comma is needed in order to separate the modifying phrase “making slight adjustments and improvements to her performance each time” from the main clause.</p>",
+      "points": 1,
+      "prompt": "How should the paragraph be revised?",
+      "stimulus": "(1) Danielle spent several hours preparing for an upcoming audition for a play at the community theater. (2) First she did vocal exercises to practice her diction and projection so that her words would carry clearly throughout the large auditorium. (3) Then she studies the text of the monologue to better understand the emotions, and motivations of the character she plans to portray. (4) Finally she recited her monologue in front of a mirror many times, making slight adjustments and improvements to her performance each time.",
+      "stimulusHtml": "<p>(1) Danielle spent several hours preparing for an upcoming audition for a play at the community theater. (2) First she did vocal exercises to practice her diction and projection so that her words would carry clearly throughout the large auditorium. (3) Then she studies the text of the monologue to better understand the emotions, and motivations of the character she plans to portray. (4) Finally she recited her monologue in front of a mirror many times, making slight adjustments and improvements to her performance each time.</p>",
+      "promptHtml": "<p>How should the paragraph be revised?</p>",
+      "topic": "Verbs",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>Sentence 1: Change <em><strong>spent </strong></em>to <strong>had spent</strong>, AND insert a comma after <em><strong>play</strong></em>.</p>",
+          "text": "Sentence 1: Change spent to had spent, AND insert a comma after play."
+        },
+        {
+          "id": "B",
+          "html": "<p>Sentence 2: Change <em><strong>did </strong></em>to <strong>does</strong>, AND insert a comma after <em><strong>projection</strong></em>.</p>",
+          "text": "Sentence 2: Change did to does, AND insert a comma after projection."
+        },
+        {
+          "id": "C",
+          "html": "<p>Sentence 3: Change <em><strong>studies </strong></em>to <strong>studied</strong>, AND delete the comma after <em><strong>emotions</strong></em>.</p>",
+          "text": "Sentence 3: Change studies to studied, AND delete the comma after emotions."
+        },
+        {
+          "id": "D",
+          "html": "<p>Sentence 4: Change <em><strong>recited </strong></em>to <strong>recites</strong>, AND delete the comma after <em><strong>times</strong></em>.</p>",
+          "text": "Sentence 4: Change recited to recites, AND delete the comma after times."
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "versionLabels": [
+        "2023-2024 Form A"
+      ],
+      "versionLabel": "2023-2024 Form A"
+    }
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "3",
+    "item": {
+      "id": "part-b-import-89aa1af30631-fdac2918",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "3",
+        "pages": [
+          4
+        ]
+      },
+      "explanation": "The question asks for the correct revision of the sentence in the box.\n\nA. Incorrect. The revisions do not fix the error that “to promote their club” modifies “a bake sale.” B. Incorrect. The revisions do not fix the error that “to promote their club” modifies “a bake sale.” C. CORRECT. The revision is correct because it includes the phrase “to promote their club” clearly modifying “members of the debate team.” D. Incorrect. While the revision clarifies that “to promote their club” relates to the “members of the debate team,” the rest of the sentence is poorly written because the insertion of “on Wednesday to promote their club” in the middle of the sentence interrupts the main clause, “Members of the debate team will sponsor a bake sale.”",
+      "explanationHtml": "<p>The question asks for the correct revision of the sentence in the box.</p><p><strong>A. </strong>Incorrect. The revisions do not fix the error that “to promote their club” modifies “a bake sale.” <strong>B. </strong>Incorrect. The revisions do not fix the error that “to promote their club” modifies “a bake sale.” <strong>C. CORRECT. </strong>The revision is correct because it includes the phrase “to promote their club” clearly modifying “members of the debate team.” <strong>D. </strong>Incorrect. While the revision clarifies that “to promote their club” relates to the “members of the debate team,” the rest of the sentence is poorly written because the insertion of “on Wednesday to promote their club” in the middle of the sentence interrupts the main clause, “Members of the debate team will sponsor a bake sale.”</p>",
+      "points": 1,
+      "prompt": "How should this sentence be revised?",
+      "stimulus": "To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.",
+      "stimulusHtml": "<p>To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</p>",
+      "promptHtml": "<p>How should this sentence be revised?</p>",
+      "topic": "Modifiers",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.</p>",
+          "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team."
+        },
+        {
+          "id": "B",
+          "html": "<p>On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.</p>",
+          "text": "On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team."
+        },
+        {
+          "id": "C",
+          "html": "<p>To promote their club, members of the debate team will sponsor a bake sale on Wednesday.</p>",
+          "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday."
+        },
+        {
+          "id": "D",
+          "html": "<p>Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.</p>",
+          "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale."
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "versionLabels": [
+        "2023-2024 Form A"
+      ],
+      "versionLabel": "2023-2024 Form A"
+    }
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "4",
+    "item": {
+      "id": "part-b-import-63ff15016dc9-8d09d754",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-a",
+        "label": "2023-2024 Form A",
+        "year": "2023-2024",
+        "form": "A",
+        "sourceQuestion": "4",
+        "pages": [
+          4
+        ]
+      },
+      "explanation": "The question asks for the correction of an error in sentence structure in the paragraph.\n\nE. CORRECT. The first sentence is a run-on sentence because both clauses—“In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution” and “the museum is already the Smithsonian’s third most popular site”—are independent clauses, and independent clauses should not be combined without the use of a conjunction and a comma. The revision in this option adds the word “and” before the comma, which corrects the run-on. F. Incorrect. The revision does not correct an error in sentence structure, since there are independent clauses on both sides of the period. G. Incorrect. Adding the words “which include” rather than the word “including” after the comma does not correct an error in sentence structure. The sentence is correct as written. H. Incorrect. Revising the wording in the underlined portion of the sentence to “which was written” from “written” does not correct a structural error. No edits are needed to correct the wording in the sentence.",
+      "explanationHtml": "<p>The question asks for the correction of an error in sentence structure in the paragraph.</p><p><strong>E. CORRECT. </strong>The first sentence is a run-on sentence because both clauses—“In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution” and “the museum is already the Smithsonian’s third most popular site”—are independent clauses, and independent clauses should not be combined without the use of a conjunction and a comma. The revision in this option adds the word “and” before the comma, which corrects the run-on. <strong>F. </strong>Incorrect. The revision does not correct an error in sentence structure, since there are independent clauses on both sides of the period. <strong>G. </strong>Incorrect. Adding the words “which include” rather than the word “including” after the comma does not correct an error in sentence structure. The sentence is correct as written. <strong>H. </strong>Incorrect. Revising the wording in the underlined portion of the sentence to “which was written” from “written” does not correct a structural error. No edits are needed to correct the wording in the sentence.</p>",
+      "points": 1,
+      "prompt": "Which revision corrects the error in sentence structure in the paragraph?",
+      "stimulus": "In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation Proclamation, written in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.",
+      "stimulusHtml": "<p>In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation Proclamation, written in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.</p>",
+      "promptHtml": "<p>Which revision corrects the error in sentence structure in the paragraph?</p>",
+      "topic": "Sentence Structure",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>Institution, and the</p>",
+          "text": "Institution, and the"
+        },
+        {
+          "id": "B",
+          "html": "<p>year, and the</p>",
+          "text": "year, and the"
+        },
+        {
+          "id": "C",
+          "html": "<p>objects, which include</p>",
+          "text": "objects, which include"
+        },
+        {
+          "id": "D",
+          "html": "<p>Proclamation, which was written</p>",
+          "text": "Proclamation, which was written"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "versionLabels": [
+        "2023-2024 Form A"
+      ],
+      "versionLabel": "2023-2024 Form A"
+    }
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "1",
+    "item": {
+      "id": "part-b-import-dad09a690e8f-b7c76e75",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "1",
+        "pages": [
+          2
+        ]
+      },
+      "explanation": "The question asks which edit should be made to correct the sentence.\n\nA. Incorrect. A comma is needed to separate the introductory infinitive phrase “to surprise her dad for his birthday on Friday,” which modifies Yolanda’s action, from the remainder of the sentence. B. CORRECT. A comma is needed between two adjectives of equal importance preceding a noun. In this case, the adjectives “tempting” and “savory” are of equal importance, modifying the noun “sandwiches.” Their equal importance can be determined by inserting the word “and” between them (“tempting and savory sandwiches”). C. Incorrect. This edit would introduce an error into the sentence by needlessly breaking up the two prepositional phrases “from a deli” and “in her neighborhood” with a comma. No comma is needed when prepositional phrases are joined together in this way to indicate a singular idea. In this sentence, these two phrases work together to show where the sandwiches are from. D. Incorrect. Deleting this comma would introduce an error into the sentence. A comma is needed to separate the first and second items in the series of three actions Yolanda undertook: “ordered tempting savory sandwiches from a deli in her neighborhood,” “prepared his favorite chocolate cake,” and “invited his best friends over for the evening.”",
+      "explanationHtml": "<p>The question asks which edit should be made to correct the sentence.</p><p><strong>A. </strong>Incorrect. A comma is needed to separate the introductory infinitive phrase “to surprise her dad for his birthday on Friday,” which modifies Yolanda’s action, from the remainder of the sentence. <strong>B. CORRECT. </strong>A comma is needed between two adjectives of equal importance preceding a noun. In this case, the adjectives “tempting” and “savory” are of equal importance, modifying the noun “sandwiches.” Their equal importance can be determined by inserting the word “and” between them (“tempting and savory sandwiches”). <strong>C. </strong>Incorrect. This edit would introduce an error into the sentence by needlessly breaking up the two prepositional phrases “from a deli” and “in her neighborhood” with a comma. No comma is needed when prepositional phrases are joined together in this way to indicate a singular idea. In this sentence, these two phrases work together to show where the sandwiches are from. <strong>D. </strong>Incorrect. Deleting this comma would introduce an error into the sentence. A comma is needed to separate the first and second items in the series of three actions Yolanda undertook: “ordered tempting savory sandwiches from a deli in her neighborhood,” “prepared his favorite chocolate cake,” and “invited his best friends over for the evening.”</p>",
+      "points": 1,
+      "prompt": "Which revision should be made to correct the sentence?",
+      "stimulus": "To surprise her dad for his birthday on Friday, Yolanda ordered tempting savory sandwiches from a deli in her neighborhood, prepared his favorite chocolate cake, and invited his best friends over for the evening.",
+      "stimulusHtml": "<p>To surprise her dad for his birthday on Friday, Yolanda ordered tempting savory sandwiches from a deli in her neighborhood, prepared his favorite chocolate cake, and invited his best friends over for the evening.</p>",
+      "promptHtml": "<p>Which revision should be made to correct the sentence?</p>",
+      "topic": "Punctuation",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>Delete the comma after <em><strong>Friday</strong></em>.</p>",
+          "text": "Delete the comma after Friday."
+        },
+        {
+          "id": "B",
+          "html": "<p>Insert a comma after <em><strong>tempting</strong></em>.</p>",
+          "text": "Insert a comma after tempting."
+        },
+        {
+          "id": "C",
+          "html": "<p>Insert a comma after <em><strong>deli</strong></em>.</p>",
+          "text": "Insert a comma after deli."
+        },
+        {
+          "id": "D",
+          "html": "<p>Delete the comma after <em><strong>neighborhood</strong>.</em></p>",
+          "text": "Delete the comma after neighborhood."
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "versionLabels": [
+        "2023-2024 Form B"
+      ],
+      "versionLabel": "2023-2024 Form B"
+    }
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "2",
+    "item": {
+      "id": "part-b-import-5e1ca048df26-de426469",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "2",
+        "pages": [
+          3
+        ]
+      },
+      "explanation": "The question asks for the identification of the sentence in the paragraph that contains an error.\n\nE. Incorrect. This sentence has an appropriate construction. An introductory prepositional phrase is correctly punctuated and describes when the power outage occurred. Similarly, the direct object, “the Upper West Side of Manhattan in New York City,” is presented clearly in terms of what area was “affected” by the power outage. F. CORRECT. “Leaving approximately 73,000 residents without electricity for three long hours” is a dangling modifier because it is not clearly modifying any word or words in this sentence. It actually further describes the “power outage” in sentence 1. In clear and correct construction, all modifiers should be near the words they describe in order to avoid confusion. G. Incorrect. Sentence 3 has a correct construction. A dash is used appropriately to show a break in thought and to introduce the phrase “on the exact same day.” H. Incorrect. Correct construction is used in this sentence. Two commas are used correctly to set off the nonessential clause “which lasted for 25 hours” from the rest of the sentence. Similarly, one comma is used to set off the nonessential appositive “an odd coincidence to say the least.” Both of these elements are nonessential to the sentence’s overall meaning and are thus correctly separated from the sentence by the use of commas.",
+      "explanationHtml": "<p>The question asks for the identification of the sentence in the paragraph that contains an error.</p><p><strong>E. </strong>Incorrect. This sentence has an appropriate construction. An introductory prepositional phrase is correctly punctuated and describes when the power outage occurred. Similarly, the direct object, “the Upper West Side of Manhattan in New York City,” is presented clearly in terms of what area was “affected” by the power outage. <strong>F. CORRECT. </strong>“Leaving approximately 73,000 residents without electricity for three long hours” is a dangling modifier because it is not clearly modifying any word or words in this sentence. It actually further describes the “power outage” in sentence 1. In clear and correct construction, all modifiers should be near the words they describe in order to avoid confusion. <strong>G. </strong>Incorrect. Sentence 3 has a correct construction. A dash is used appropriately to show a break in thought and to introduce the phrase “on the exact same day.” <strong>H. </strong>Incorrect. Correct construction is used in this sentence. Two commas are used correctly to set off the nonessential clause “which lasted for 25 hours” from the rest of the sentence. Similarly, one comma is used to set off the nonessential appositive “an odd coincidence to say the least.” Both of these elements are nonessential to the sentence’s overall meaning and are thus correctly separated from the sentence by the use of commas.</p>",
+      "points": 1,
+      "prompt": "Which sentence in the paragraph contains an error in its construction and should be revised?",
+      "stimulus": "(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City. (2) Leaving approximately 73,000 residents without electricity for three long hours, lights did not function, refrigerators did not stay cold, and air conditioners did not work. (3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier—on the exact same day! (4) The famous New York City Blackout of 1977, which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.",
+      "stimulusHtml": "<p>(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City. (2) Leaving approximately 73,000 residents without electricity for three long hours, lights did not function, refrigerators did not stay cold, and air conditioners did not work. (3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier—on the exact same day! (4) The famous New York City Blackout of 1977, which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.</p>",
+      "promptHtml": "<p>Which sentence in the paragraph contains an error in its construction and should be revised?</p>",
+      "topic": "Modifiers",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>sentence 1</p>",
+          "text": "sentence 1"
+        },
+        {
+          "id": "B",
+          "html": "<p>sentence 2</p>",
+          "text": "sentence 2"
+        },
+        {
+          "id": "C",
+          "html": "<p>sentence 3</p>",
+          "text": "sentence 3"
+        },
+        {
+          "id": "D",
+          "html": "<p>sentence 4</p>",
+          "text": "sentence 4"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "versionLabels": [
+        "2023-2024 Form B"
+      ],
+      "versionLabel": "2023-2024 Form B"
+    }
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "3",
+    "item": {
+      "id": "part-b-import-53426367cca3-283c4ade",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2023-2024-form-b",
+        "label": "2023-2024 Form B",
+        "year": "2023-2024",
+        "form": "B",
+        "sourceQuestion": "3",
+        "pages": [
+          3
+        ]
+      },
+      "explanation": "The question asks which two revisions are needed to correct the paragraph.\n\nA. Incorrect. The comma is needed after “Yalina” to separate the first and second names in the series of three names (Yalina, Michael, and Malcolm). The possessive determiner “their” is also correct as written because it refers back to “Yalina, Michael, and Malcolm,” a plural group of people. B. Incorrect. Changing “is” to “are” would introduce an error in subject-verb agreement into the sentence; the singular subject “Yalina’s job” requires the singular verb “is.” The comma after “bowl” is required because it separates the phrase “slowly adding water, eggs, melted butter, and blueberries,” which modifies how Yalina prepares the batter, from the remainder of the sentence. C. Incorrect. “It is” refers to the singular noun “mixture,” so this singular pronoun and verb form is correct. The comma after “smooth” is necessary because this is a compound sentence where two independent clauses (“Michael uses a wooden spoon to vigorously stir the mixture until it is smooth” and “Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time”) are joined using a coordinating conjunction, which requires a comma. D. CORRECT. The plural pronoun “they” refers incorrectly to a singular antecedent, “each pancake.” The pronoun should be changed to a singular one to match its antecedent. A comma is needed between two adjectives of equal importance that modify the noun “breakfast.” Because “sweet” and “delicious” could be written as “sweet and delicious,” they are of equal importance, and a comma is needed.",
+      "explanationHtml": "<p>The question asks which two revisions are needed to correct the paragraph.</p><p><strong>A. </strong>Incorrect. The comma is needed after “Yalina” to separate the first and second names in the series of three names (Yalina, Michael, and Malcolm). The possessive determiner “their” is also correct as written because it refers back to “Yalina, Michael, and Malcolm,” a plural group of people. <strong>B. </strong>Incorrect. Changing “is” to “are” would introduce an error in subject-verb agreement into the sentence; the singular subject “Yalina’s job” requires the singular verb “is.” The comma after “bowl” is required because it separates the phrase “slowly adding water, eggs, melted butter, and blueberries,” which modifies how Yalina prepares the batter, from the remainder of the sentence. <strong>C. </strong>Incorrect. “It is” refers to the singular noun “mixture,” so this singular pronoun and verb form is correct. The comma after “smooth” is necessary because this is a compound sentence where two independent clauses (“Michael uses a wooden spoon to vigorously stir the mixture until it is smooth” and “Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time”) are joined using a coordinating conjunction, which requires a comma. <strong>D. CORRECT. </strong>The plural pronoun “they” refers incorrectly to a singular antecedent, “each pancake.” The pronoun should be changed to a singular one to match its antecedent. A comma is needed between two adjectives of equal importance that modify the noun “breakfast.” Because “sweet” and “delicious” could be written as “sweet and delicious,” they are of equal importance, and a comma is needed.</p>",
+      "points": 1,
+      "prompt": "Which pair of revisions is needed to correct the errors in the paragraph?",
+      "stimulus": "(1) Yalina, Michael, and Malcolm love making pancakes with their granddad on Saturday mornings. (2) Yalina’s job is to open the box and pour the pancake mix into a bowl, slowly adding water, eggs, melted butter, and blueberries. (3) Michael uses a wooden spoon to vigorously stir the mixture until it is smooth, and Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time. (4) Granddad turns each pancake when they start to bubble, while all three siblings get the table ready for a sweet delicious breakfast.",
+      "stimulusHtml": "<p>(1) Yalina, Michael, and Malcolm love making pancakes with their granddad on Saturday mornings. (2) Yalina’s job is to open the box and pour the pancake mix into a bowl, slowly adding water, eggs, melted butter, and blueberries. (3) Michael uses a wooden spoon to vigorously stir the mixture until it is smooth, and Malcolm helps Granddad carefully pour the batter onto a griddle one-fourth cup at a time. (4) Granddad turns each pancake when they start to bubble, while all three siblings get the table ready for a sweet delicious breakfast.</p>",
+      "promptHtml": "<p>Which pair of revisions is needed to correct the errors in the paragraph?</p>",
+      "topic": "Pronouns",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>Sentence 1: Delete the comma after <em><strong>Yalina</strong></em>, AND change <em><strong>their </strong></em>to <strong>her</strong>.</p>",
+          "text": "Sentence 1: Delete the comma after Yalina, AND change their to her."
+        },
+        {
+          "id": "B",
+          "html": "<p>Sentence 2: Change <em><strong>is </strong></em>to <strong>are</strong>, AND delete the comma after <em><strong>bowl</strong></em>.</p>",
+          "text": "Sentence 2: Change is to are, AND delete the comma after bowl."
+        },
+        {
+          "id": "C",
+          "html": "<p>Sentence 3: Change <em><strong>it is </strong></em>to <strong>they are</strong>, AND delete the comma after <em><strong>smooth</strong></em>.</p>",
+          "text": "Sentence 3: Change it is to they are, AND delete the comma after smooth."
+        },
+        {
+          "id": "D",
+          "html": "<p>Sentence 4: Change <em><strong>they start </strong></em>to <strong>it starts</strong>, AND insert a comma after <em><strong>sweet</strong></em>.</p>",
+          "text": "Sentence 4: Change they start to it starts, AND insert a comma after sweet."
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "versionLabels": [
+        "2023-2024 Form B"
+      ],
+      "versionLabel": "2023-2024 Form B"
+    }
+  }
+]

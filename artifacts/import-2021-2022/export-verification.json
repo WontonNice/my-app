@@ -1,0 +1,106 @@
+[
+  {
+    "form": "a",
+    "questions": 114,
+    "keys": 114,
+    "explanations": 114,
+    "formattingMatches": true,
+    "assets": 136,
+    "passages": [
+      {
+        "title": "The Best Laid Plans of Ravens",
+        "numbered": 5,
+        "verseLines": 0,
+        "glossary": 0
+      },
+      {
+        "title": "Excerpt from Winter Wheat",
+        "numbered": 25,
+        "verseLines": 0,
+        "glossary": 2
+      },
+      {
+        "title": "Massachusetts: Lowell National Historical Park",
+        "numbered": 6,
+        "verseLines": 0,
+        "glossary": 3
+      },
+      {
+        "title": "Ode to Fireworks",
+        "numbered": 8,
+        "verseLines": 42,
+        "glossary": 0
+      },
+      {
+        "title": "Excerpt from In Search of the Unknown",
+        "numbered": 38,
+        "verseLines": 0,
+        "glossary": 2
+      },
+      {
+        "title": "Excerpt from “Research Riddle Resolved”",
+        "numbered": 18,
+        "verseLines": 0,
+        "glossary": 0
+      },
+      {
+        "title": "Cracking the Code",
+        "numbered": 0,
+        "verseLines": 0,
+        "glossary": 0
+      }
+    ]
+  },
+  {
+    "form": "b",
+    "questions": 114,
+    "keys": 114,
+    "explanations": 114,
+    "formattingMatches": true,
+    "assets": 132,
+    "passages": [
+      {
+        "title": "Wolves of the Sea",
+        "numbered": 5,
+        "verseLines": 0,
+        "glossary": 0
+      },
+      {
+        "title": "Excerpt from “How We Made the First Flight”",
+        "numbered": 5,
+        "verseLines": 0,
+        "glossary": 4
+      },
+      {
+        "title": "Excerpt from “The Spirit of the Herd”",
+        "numbered": 16,
+        "verseLines": 0,
+        "glossary": 2
+      },
+      {
+        "title": "A Miracle Mile",
+        "numbered": 8,
+        "verseLines": 0,
+        "glossary": 0
+      },
+      {
+        "title": "Serpent Mound",
+        "numbered": 8,
+        "verseLines": 41,
+        "glossary": 0
+      },
+      {
+        "title": "A Memory Revolution",
+        "numbered": 7,
+        "verseLines": 0,
+        "glossary": 0
+      },
+      {
+        "title": "Martial Arts for the Mind and Body",
+        "numbered": 0,
+        "verseLines": 0,
+        "glossary": 0
+      }
+    ]
+  }
+]

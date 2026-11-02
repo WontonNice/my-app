@@ -1,0 +1,180 @@
+
+> nathantutors@0.0.0 test:document-import
+> node tools/generate-document-prompt.mjs --check && node --test tools/document-import.test.mjs tools/document-render.test.cjs tools/math-import-batch.test.mjs tools/math-choice-import.test.mjs tools/math-expression-import.test.mjs
+
+✔ Exam Builder passage shortcuts retain the exam draft and honor passage-edit cancellation (7.299ms)
+✔ section directions are removed on import and reload while local instructions, prompts and answers stay intact (6.567ms)
+✔ all math response types retain their interactions and verified keys through prompt import, including short-answer aliases (5.4541ms)
+✔ E-H labels become A-D with matching single/multi-select keys and visual references, without changing choice order or wording (0.7442ms)
+✔ authorized PDF package: full prose, poem, informational/multipage text, 7 questions and 28 choices match source characters (1.2849ms)
+✔ missing data, count mismatches, unresolved visuals, classifications, and forged review flags cannot appear ready (2.1244ms)
+✔ visual-only choices become publishable after their source images are attached, while source selection counts remain enforced (0.9281ms)
+✔ draft persistence, stale-write protection and fingerprint duplicates survive restarts without entering published sources (28.6727ms)
+✔ draft deletion is versioned, survives reload, allows reimport and protects published passages (33.3027ms)
+(node:3348) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Nathan%20Im/Desktop/my-app-main/tools/content-studio-glossary.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\Nathan Im\Desktop\my-app-main\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ real Content Studio endpoints: import/edit/save/reload/publish/student formatter, metadata privacy, visual gate and Math reuse (126075.1148ms)
+✔ Content Studio inline scripts and review UI parse; the reusable prompt comes from the same contract (8.668ms)
+✔ imported Student view uses native passage title/paragraph classes and renders each image URL once (3.3871ms)
+✔ live passage preview reuses the full Student view passage markup and student stylesheet (2.3044ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\node_modules\\react-dom/server" (originally "react-dom/server")
+
+    <stdin>:2:66:
+      2 │ ...rom 'react'; import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  The path "react-dom/server" was remapped to "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\node_modules\\react-dom/server" using the alias feature, which then couldn't be resolved. Keep in mind that import path aliases are resolved in the current working directory.
+
+X [ERROR] Could not resolve "./client/src/components/ExamMathQuestion"
+
+    <stdin>:3:35:
+      3 │ ...{ExamMathQuestion} from './client/src/components/ExamMathQuestion';
+        ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\node_modules\\react/jsx-runtime" (originally "react/jsx-runtime")
+
+    <stdin>:5:37:
+      5 │ ...onsole.log(renderToStaticMarkup(<ExamMathQuestion question={{......
+        ╵                                    ^
+
+  The path "react/jsx-runtime" was remapped to "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\node_modules\\react/jsx-runtime" using the alias feature, which then couldn't be resolved. Keep in mind that import path aliases are resolved in the current working directory.
+
+✖ shared math renderer preserves emphasis, formulas, short answers and interaction state (24.8895ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\node_modules\\react-dom/server" (originally "react-dom/server")
+
+    <stdin>:2:66:
+      2 │ ...rom 'react'; import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  The path "react-dom/server" was remapped to "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\node_modules\\react-dom/server" using the alias feature, which then couldn't be resolved. Keep in mind that import path aliases are resolved in the current working directory.
+
+X [ERROR] Could not resolve "./client/src/content/exams/formatters"
+
+    <stdin>:3:38:
+      3 │ ...{createSourcePassage} from './client/src/content/exams/formatters';
+        ╵                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/components/ExamReviewQuestion"
+
+    <stdin>:4:36:
+      4 │ ...amReviewPassage} from './client/src/components/ExamReviewQuestion';
+        ╵                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/components/LibraryQuestionResponse"
+
+    <stdin>:5:42:
+      5 │ ...onResponse} from './client/src/components/LibraryQuestionResponse';
+        ╵                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/components/SentenceDragDrop"
+
+    <stdin>:6:35:
+      6 │ ...{SentenceDragDrop} from './client/src/components/SentenceDragDrop';
+        ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/content/exams/passageSets/excerpt-from-little-women-digital-shsat-practice-test-2"
+
+    <stdin>:7:76:
+      7 │ ...eSet} from './client/src/content/exams/passageSets/excerpt-from-...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./tools/document-import.cjs"
+
+    <stdin>:8:25:
+      8 │     import contract from './tools/document-import.cjs';
+        ╵                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\node_modules\\react/jsx-runtime" (originally "react/jsx-runtime")
+
+    <stdin>:10:63:
+      10 │ ...onsole.log(renderToStaticMarkup(<ExamReviewPassage passage={cre...
+         ╵                                    ^
+
+  The path "react/jsx-runtime" was remapped to "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\node_modules\\react/jsx-runtime" using the alias feature, which then couldn't be resolved. Keep in mind that import path aliases are resolved in the current working directory.
+
+✖ actual student passage/answer components render source structure, every choice and visual without teacher metadata (3.9003ms)
+✔ single and batch Math imports format prose fractions and preserve source wording and answer mapping (10.2488ms)
+✔ negative, unicode, and spaced fractions produce valid inline KaTeX while escaping prose (11.5498ms)
+✔ authored formulas, visuals, markup attributes, dates, URLs and non-fractions survive import (0.3064ms)
+✔ legacy Import Math JSON preview uses the same formatting before normalization (6.8084ms)
+✔ the standard single and batch prompt import preserves complete source expressions (15.1345ms)
+✔ formula-only choices use the existing bare LaTeX math field with unchanged source text and key (2.8336ms)
+✔ native saves retain the same authored expression without reconstructing variables or numbers (10.9128ms)
+✔ a complete Math chunk isolates malformed neighbors and never grants imported approvals (38.6217ms)
+✔ ambiguous repeated source/record identities quarantine every affected item (0.4818ms)
+✔ single Math questions accept bare objects and optional-format envelopes without changing their content (2.911ms)
+✔ single-question imports assign stable missing IDs and exact retries preserve teacher edits (39.4111ms)
+✔ overlap and different chunk boundaries preserve edited work and record changed keys as conflicts (39.811ms)
+✔ missing keys/visuals and invalid math remain drafts; review confirmation cannot resolve them (13.6037ms)
+✔ invalid raw input survives capture; item correction, stale-write protection and source isolation survive restart (24.0558ms)
+✔ structured interaction/key/explanation/HTML differences participate in content comparison (0.5461ms)
+✔ source/job labels containing separators remain independent identities (19.5351ms)
+✔ batch UI scripts parse and the shared contract documents actual metadata (1.7274ms)
+✔ resolved source assets appear in the actual question model, remain inline once, and become unresolved after removal (19.9844ms)
+✔ the reusable example is accepted with blank explanations and an unresolved original figure (1.3663ms)
+(node:27384) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Nathan%20Im/Desktop/my-app-main/tools/content-studio-glossary.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\Nathan Im\Desktop\my-app-main\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ HTTP selected publication preserves good neighbors, recovers a missing ledger, and rejects changed published content (32595.6565ms)
+✔ direct Math import inserts incomplete red questions into the chosen test, preserves edits on retries and clears labels on finish (127564.2723ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 34
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 160689.8289
+
+✖ failing tests:
+
+test at tools\document-render.test.cjs:8:1
+✖ shared math renderer preserves emphasis, formulas, short answers and interaction state (24.8895ms)
+  Error: Build failed with 4 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:66: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\node_modules\\react-dom/server" (originally "react-dom/server")
+  <stdin>:3:35: ERROR: Could not resolve "./client/src/components/ExamMathQuestion"
+  <stdin>:5:37: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\node_modules\\react/jsx-runtime" (originally "react/jsx-runtime")
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1748:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1207:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1588:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1205:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1232:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:884:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:939:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:862:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\node_modules\\\\react-dom/server" (originally "react-dom/server")' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\node_modules\\\\react/jsx-runtime" (originally "react/jsx-runtime")' } ],
+    warnings: []
+  }
+
+test at tools\document-render.test.cjs:47:1
+✖ actual student passage/answer components render source structure, every choice and visual without teacher metadata (3.9003ms)
+  Error: Build failed with 9 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:66: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\node_modules\\react-dom/server" (originally "react-dom/server")
+  <stdin>:3:38: ERROR: Could not resolve "./client/src/content/exams/formatters"
+  <stdin>:4:36: ERROR: Could not resolve "./client/src/components/ExamReviewQuestion"
+  <stdin>:5:42: ERROR: Could not resolve "./client/src/components/LibraryQuestionResponse"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1748:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1207:25
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1159:52
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1205:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1232:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:884:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:939:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:862:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\node_modules\\\\react-dom/server" (originally "react-dom/server")' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/content/exams/formatters"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamReviewQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/LibraryQuestionResponse"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/SentenceDragDrop"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/content/exams/passageSets/excerpt-from-little-women-digital-shsat-practice-test-2"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./tools/document-import.cjs"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\node_modules\\\\react/jsx-runtime" (originally "react/jsx-runtime")' } ],
+    warnings: []
+  }

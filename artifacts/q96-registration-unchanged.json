@@ -1,0 +1,49 @@
+{
+  "mode": "read-only-preview",
+  "changed": false,
+  "saved": false,
+  "revision": 23,
+  "generator": "symbolic-fraction-division-v1",
+  "module": "general-algebra-algebraic-expressions-rj42ee",
+  "category": "Algebra",
+  "topic": "Algebraic Expressions",
+  "enabled": false,
+  "reviewStatus": "unreviewed",
+  "destination": {
+    "id": "general-algebra-algebraic-expressions-rj42ee",
+    "title": "General Practice",
+    "description": "Practice every available question type in this topic.",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "published": true,
+    "includeAll": true,
+    "generatorIds": [],
+    "parentId": null,
+    "defaultType": "general"
+  },
+  "definition": {
+    "skills": [
+      "Dividing Symbolic Fractions"
+    ],
+    "prerequisites": [],
+    "sourceQuestionIds": [
+      "2021-2022-form-a-q96"
+    ],
+    "programs": [
+      "SHSAT"
+    ],
+    "subject": "Math",
+    "difficulty": "unassigned",
+    "reviewStatus": "unreviewed",
+    "skilled": "TBD",
+    "id": "symbolic-fraction-division-v1",
+    "title": "Dividing Symbolic Fractions",
+    "description": "Divide two fractions expressed in four nonzero variables by multiplying by the reciprocal. 48 symbolic stems per seeded cycle; variable placements and quotient direction vary.",
+    "enabled": false,
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "kind": "builtin",
+    "builtinId": "symbolic-fraction-division-v1"
+  },
+  "existingResourcesUnchanged": true
+}

@@ -1,0 +1,38 @@
+
+> nathantutors@0.0.0 test:student-analytics
+> node --test server/tests/student-analytics.test.cjs server/tests/analytics-workspace.test.cjs server/tests/exam-section-progress.test.cjs tools/student-evidence-matrix.test.cjs tools/passage-progress-view.test.cjs
+
+✔ Math can be submitted with verified blanks while English drafts remain pending, then English completes the same exam (16.4931ms)
+✔ a class break consumes none of the shared three-hour budget (0.2443ms)
+✔ frozen result content prevents later edits from reinterpreting earlier answers (0.4828ms)
+✔ roster and detail use the same completeness rule and retain independent Math results (0.8939ms)
+✔ date and section filters reconcile numerators; missing dates are not assigned to a window (8.9934ms)
+✔ stable attempt IDs remove mirrors, prefer granular evidence and preserve genuine repeated attempts (0.8289ms)
+✔ activity types, recorded grades, small samples and timing coverage remain distinguishable (0.6596ms)
+✔ CSV export quotes raw structured responses and prevents spreadsheet formula execution (0.3174ms)
+✔ teacher sees submitted Math immediately; pending English is not scored, stale writes preserve Math, and retakes retain history (180.3477ms)
+✔ exact responses, missing answers, numeric grading, and section-only submissions stay distinct (15.857ms)
+✔ summary-only paper results never become invented incorrect or unanswered responses (0.6898ms)
+✔ zero, one, two, many, and incompatible assessments produce honest progression (1.6541ms)
+✔ missing dates and section values do not become zero scores or fictional trends (0.2557ms)
+✔ question numbering follows saved passage order and excludes pending sections (0.3143ms)
+✔ passage and question-type patterns drill down to response evidence only (0.5832ms)
+✔ identical passages in different exams retain independent scores, dates and repeat evidence (1.0123ms)
+✔ changed exam membership cannot invent historical unanswered questions (0.2931ms)
+✔ TEI maps and multi-select arrays retain exact saved responses without normalization (0.4107ms)
+✔ missing granular metadata stays empty and repeated timestamps retain distinct evidence (7.5095ms)
+✔ student progress renders distinct source versions, completed dates, No Data and both completion filter choices (109.8505ms)
+✔ unavailable inventory does not claim that all passages are not completed (63.7692ms)
+✔ unfinished checklist includes never assigned and in-progress passages but excludes completed reassignments (65.2796ms)
+✔ empty library and fully completed library have distinct messages (137.5878ms)
+✔ subject matrices isolate shared skills and full-exam responses and omit unrelated assessments (155.4789ms)
+✔ each subject gets its own first group page and only its matching assessment pages (139.9185ms)
+✔ missing subject evidence renders an honest empty state without a blank matrix (67.9329ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 840.3515

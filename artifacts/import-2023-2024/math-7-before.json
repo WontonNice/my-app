@@ -1,0 +1,55 @@
+{
+  "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q064",
+  "source": {
+    "sourceFamily": "official_shsat",
+    "sourceFormat": "pdf",
+    "playerProfile": "testnav",
+    "sourceId": "official-shsat-2023-2024-form-a",
+    "label": "2023-2024 Form A",
+    "year": "2023-2024",
+    "form": "A",
+    "sourceQuestion": "64",
+    "pages": [
+      44
+    ]
+  },
+  "explanationHtml": "<p><img src=\"/exam-images/pdf-2023-2024-a-q064-explanation-1.png\" alt=\"Official Form A explanation for question 64; original answer labels retained.\" width=\"328\"></p>",
+  "skilled": "TBD",
+  "explanation": "(E) To solve, add the three given\n\nfractions:\n\n1 \\(\\frac{3}{4}\\) + 2 \\(\\frac{2}{3}\\) + \\(\\frac{7}{8}\\)\n\nThe common denominator is 24:\n\n= 1 \\(\\frac{18}{24}\\) + 2 \\(\\frac{16}{24}\\) + \\(\\frac{21}{24}\\)\n\n= 4 \\(\\frac{10}{24}\\) + \\(\\frac{21}{24}\\)\n\n= 5 \\(\\frac{7}{24}\\)",
+  "points": 1,
+  "prompt": "In one week, 1 \\(\\frac{3}{4}\\) inches of rain fell on\n\nMonday, 2 \\(\\frac{2}{3}\\) inches fell on Tuesday, and\n\n\\(\\frac{7}{8}\\) inch fell on Wednesday. How many\n\ninches of rain fell during those three days?",
+  "promptHtml": "<p>In one week, 1 \\(\\frac{3}{4}\\) inches of rain fell on</p><p>Monday, 2 \\(\\frac{2}{3}\\) inches fell on Tuesday, and</p><p>\\(\\frac{7}{8}\\) inch fell on Wednesday. How many</p><p>inches of rain fell during those three days?</p>",
+  "topic": "Arithmetic & Number Sense",
+  "choices": [
+    {
+      "id": "A",
+      "html": "<p>5 \\(\\frac{7}{24}\\)</p>",
+      "text": "5 \\(\\frac{7}{24}\\)"
+    },
+    {
+      "id": "B",
+      "html": "<p>5 \\(\\frac{1}{24}\\)</p>",
+      "text": "5 \\(\\frac{1}{24}\\)"
+    },
+    {
+      "id": "C",
+      "html": "<p>3 \\(\\frac{4}{5}\\)</p>",
+      "text": "3 \\(\\frac{4}{5}\\)"
+    },
+    {
+      "id": "D",
+      "html": "<p>3 \\(\\frac{1}{2}\\)</p>",
+      "text": "3 \\(\\frac{1}{2}\\)"
+    }
+  ],
+  "correctChoiceId": "A",
+  "type": "multiple_choice",
+  "commandMetadata": {},
+  "importNeedsEditing": true,
+  "importSource": "2023-2024 Form A · Question 64 · PDF pages 44",
+  "importNotes": [
+    "The official mathematical explanation is preserved as source crops; verify the editable text against those crops.",
+    "Official explanation retains paper E–H option references; editor choices A–D correspond in the same order.",
+    "Main category is inferred. Specific Math subtopic is unassigned for teacher classification."
+  ]
+}

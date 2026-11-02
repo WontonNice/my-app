@@ -1,0 +1,1693 @@
+=== PAGE 1 ===
+81.4,-25.7,-13.7: Sample Test
+59.6,62.4,94.4: GRADE 8 B
+173.2,114.3,126.3: The New York City Department of Education
+96.3,138.6,154.6: 2023 Specialized High Schools Admissions Test
+192.6,167.9,187.9: GENERAL DIRECTIONS
+143.4,220.2,229.2: Student Name: ______________________________________
+48.0,247.3,258.3: Identifying Information
+48.0,265.7,274.7: Turn to Side 1 of the answer sheet.
+48.0,282.7,291.7: Notify the proctor immediately if you are ill or should not be taking this test. Do not sign the
+48.0,293.7,302.7: statement or begin the test. Return your answer sheet to the proctor.
+48.0,310.7,319.7: Line 1: Read the statement and sign your name in the space following the word “signature.” Do not print your
+48.0,321.7,330.7: name.
+48.0,338.7,347.7: Line 2: Print today’s date, using the numbers of the month, the day, and the year. For example, the date
+48.0,349.7,358.7: September 21, 2023, would be 9-21-23.
+48.0,366.7,375.7: Line 3: Print your birth date, using the numbers of the month, the day, and the year. For example, a birth date
+48.0,377.7,386.7: of March 1, 2006, would be 3-1-06.
+48.0,394.7,403.7: Grid 4: Print the letters of your fi rst name, or as many as will fi t, in the boxes. If you have a middle initial, print
+48.0,405.7,414.7: it in the box labeled “MI.” Then print the letters of your last name, or as much as will fi t, in the boxes provided.
+48.0,416.7,425.7: Below each box, fi ll in the circle that contains the same letter as the box. If there is a space or a hyphen in your
+48.0,427.7,436.7: name, fi ll in the circle under the appropriate blank or hyphen.
+48.0,444.7,453.7: Make dark marks that completely fi ll the circles. If you change a mark, be sure to erase the fi rst mark
+48.0,455.7,464.7: completely.
+48.0,472.7,481.7: Grid 5:
+48.0,489.7,498.7: 1. Print the name of the school where you are now enrolled in the space at the top of the grid.
+48.0,506.7,515.7: 2. In the boxes marked “SCHOOL CODE,” print the six-digit code that identifi es your school. Below each box, fi ll
+60.0,517.7,526.7: in the circle that contains the same letter or number as the box. (You can fi nd your school code on your Test
+60.0,528.7,537.7: Ticket. If it is not there, tell the proctor, and the proctor will get the school code for you.)
+48.0,545.7,554.7: 3. If you attend a private or parochial school, fi ll in the circle marked “P.”
+48.0,562.7,571.7: Grid 6: Complete the grid with your date of birth. Print the fi rst three letters of the month in the fi rst box, the
+48.0,573.7,582.7: number of the day in the next box, and the year in the last box. Then fi ll in the corresponding circles.
+48.0,590.7,599.7: Grid 7: Print your student ID number in Grid 7. You can fi nd your student ID number on your Test Ticket. In the
+48.0,601.7,610.7: boxes, print your nine-digit student ID number. Below each box, fi ll in the circle containing the same number as
+48.0,612.7,621.7: in the box.
+48.0,629.7,638.7: Grid 8: In most cases, Grid 8 is already fi lled in for you. If it is not, copy the letter and numbers shown in the
+48.0,640.7,649.7: upper-right corner of your test booklet into the boxes. Below each box, fi ll in the circle containing the same letter
+48.0,651.7,660.7: or number as the box.
+48.0,668.7,677.7: Now review Side 1 to make sure you have completed all lines and grids correctly. Review each column to see
+48.0,679.7,688.7: that the fi lled-in circles correspond to the letters or numbers in the boxes above them.
+48.0,696.7,705.7: Turn your answer sheet to Side 2 and fl ip this booklet over to continue with General Directions.
+=== PAGE 2 ===
+102.8,56.1,80.1: PART 1 — ENGLISH LANGUAGE ARTS
+256.9,86.5,100.5: 57 QUESTIONS
+205.0,121.9,141.9: REVISING/EDITING
+170.0,147.5,161.5: QUESTIONS 1-9 (PART A AND PART B)
+227.6,175.2,185.2: REVISING/EDITING PART A
+48.0,193.2,203.2: DIRECTIONS: Read and answer the following questions. You will be asked to recognize and correct
+48.0,205.2,215.2: errors so that the sentences or short paragraphs follow the conventions of standard written English.
+48.0,217.2,227.2: You may write in your test booklet as needed to take notes. You should reread relevant parts of the
+48.0,229.2,239.2: sentences or paragraphs, while being mindful of time, before marking the best answer for each
+48.0,241.2,251.2: question.
+48.0,282.1,292.1: 1. Which revision should be made to correct the sentence?
+83.5,312.7,322.7: To surprise her dad for his birthday on Friday, Yolanda ordered tempting savory sandwiches
+83.5,325.7,335.7: from a deli in her neighborhood, prepared his favorite chocolate cake, and invited his best
+83.5,338.7,348.7: friends over for the evening.
+78.0,374.2,384.2: A. Delete the comma after Friday.
+78.0,390.2,400.2: B. Insert a comma after tempting.
+78.0,406.2,416.2: C. Insert a comma after deli.
+78.0,422.2,432.2: D. Delete the comma after neighborhood.
+48.0,734.2,746.3: FORM B 2 CONTINUE TO THE NEXT PAGE
+=== PAGE 3 ===
+48.0,84.1,94.1: 2. Which sentence in the paragraph contains an error in its construction and should be revised?
+83.5,114.7,124.7: (1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of
+83.5,127.7,137.7: Manhattan in New York City. (2) Leaving approximately 73,000 residents without electricity
+83.5,140.7,150.7: for three long hours, lights did not function, refrigerators did not stay cold, and air
+83.5,153.7,163.7: conditioners did not work. (3) Longtime city residents were particularly confused because
+83.5,166.7,176.7: an eerily similar event had occurred years earlier— on the exact same day! (4) The famous
+83.5,179.7,189.7: New York City Blackout of 1977, which lasted for 25 hours, also happened on July 13, an
+83.5,192.7,202.7: odd coincidence to say the least.
+78.0,228.2,238.2: E. sentence 1
+78.0,244.2,254.2: F. sentence 2
+78.0,260.2,270.2: G. sentence 3
+78.0,276.2,286.2: H. sentence 4
+48.0,327.2,337.2: 3. Which pair of revisions is needed to correct the errors in the paragraph?
+83.5,357.8,367.8: (1) Yalina, Michael, and Malcolm love making pancakes with their granddad on Saturday
+83.5,370.8,380.8: mornings. (2) Yalina’s job is to open the box and pour the pancake mix into a bowl, slowly
+83.5,383.8,393.8: adding water, eggs, melted butter, and blueberries. (3) Michael uses a wooden spoon to
+83.5,396.8,406.8: vigorously stir the mixture until it is smooth, and Malcolm helps Granddad carefully pour the
+83.5,409.8,419.8: batter onto a griddle one-f ourth cup at a time. (4) Granddad turns each pancake when
+83.5,422.8,432.8: they start to bubble, while all three siblings get the table ready for a sweet delicious
+83.5,435.8,445.8: breakfast.
+78.0,471.2,481.2: A. Sentence 1: Delete the comma after Yalina, AND change their to her.
+78.0,487.2,497.2: B. Sentence 2: Change is to are, AND delete the comma after bowl.
+78.0,503.2,513.2: C. Sentence 3: Change it is to they are, AND delete the comma after smooth.
+78.0,519.2,529.2: D. Sentence 4: Change they start to it starts, AND insert a comma after sweet.
+48.0,731.2,743.3: FORM B 3 CONTINUE TO THE NEXT PAGE
+=== PAGE 4 ===
+227.7,77.2,87.2: REVISING/EDITING PART B
+48.0,95.2,105.2: DIRECTIONS: Read the text below and answer the questions following it. You will be asked to
+48.0,107.2,117.2: improve the writing quality of the text and to correct errors so that the text follows the conventions
+48.0,119.2,129.2: of standard written English. You should reread relevant parts of the text, while being mindful of time,
+48.0,131.2,141.2: before marking the best answer for each question.
+235.5,162.5,177.5: The End of an Era
+48.0,191.0,201.0: (1) In 2004, the National Aeronautics and Space Administration (NASA) landed a rover, or robotic
+48.0,204.0,214.0: vehicle, named Opportunity on the surface of Mars. (2) The rover’s mission was to search for
+48.0,217.0,227.0: evidence of water and life on the planet. (3) The rover was designed to gather data on Mars for
+48.0,230.0,240.0: about 90 days, but Opportunity’s assignment did not come to an end until nearly 15 years
+48.0,243.0,253.0: later in 2019.
+48.0,262.0,272.0: (4) During the rover’s mission, a high- resolution camera on the rover’s robotic arm took magnified
+48.0,275.0,285.0: photographs of the surface of Mars. (5) The photographs revealed small round rocks scattered
+48.0,288.0,298.0: across the surface of the planet. (6) The scientists nicknamed these rocks “blueberries” based on
+48.0,301.0,311.0: the rocks’ resemblance to the fruit. (7) These rocks were important because their spherical shape
+48.0,314.0,324.0: suggested that liquid water may have flowed over them for a substantial amount of time.
+48.0,333.0,343.0: (8) Opportunity continued to provide valuable data about craters and other surface features.
+48.0,346.0,356.0: (9) Throughout the mission, the rover traveled a total of 28.06 miles across Mars’ surface.
+48.0,359.0,369.0: (10) When Opportunity had traveled nearly the length of a marathon, scientists celebrated the
+48.0,372.0,382.0: accomplishment by naming the valley that the rover was in Marathon Valley. (11) However, in
+48.0,385.0,395.0: 2018, a dust storm spread all over the planet, putting the rover’s progress on hold.
+48.0,404.0,414.0: (12) Prior to this planet- wide dust storm, minor dust storms had periodically deposited a layer of
+48.0,417.0,427.0: dust onto the solar panels of the rover. (13) These prevented it from charging its batteries.
+48.0,430.0,440.0: (14) Scientists then had to rely on the passing winds and dust devils to clean off the solar panels.
+48.0,443.0,453.0: (15) After the massive 2018 dust storm subsided, scientists expected to be able to reestablish
+48.0,456.0,466.0: communication with Opportunity. (16) They made repeated attempts but to no avail. (17) In 2019,
+48.0,469.0,479.0: NASA finally declared Opportunity’s mission complete.
+48.0,488.0,498.0: (18) Opportunity was an important asset in scientists’ study of Mars; it returned valuable data about
+48.0,501.0,511.0: our neighbor planet and survived powerful dust storms. (19) NASA described the mission of
+48.0,514.0,524.0: Opportunity as “one of the most successful and enduring feats of interplanetary exploration.”
+48.0,527.0,537.0: (20) Even though this rover’s journey ended, other rovers still roam the surface of Mars.
+48.0,731.2,743.3: FORM B 4 CONTINUE TO THE NEXT PAGE
+=== PAGE 5 ===
+48.0,84.1,94.1: 4. Which sentence should follow sentence 3 to best introduce the topic of the passage?
+78.0,109.1,119.1: E. Despite the challenges of operating on the surface of another planet, the Opportunity rover
+96.0,122.1,132.1: made many valuable contributions to the field of space research.
+78.0,138.1,148.1: F. The Opportunity rover mission was a success because it informed NASA scientists about
+96.0,151.1,161.1: how water might have existed on Mars.
+78.0,167.1,177.1: G. Throughout the historic mission of the Opportunity rover, NASA scientists had to overcome
+96.0,180.1,190.1: challenges created by the flaws in the rover’s design.
+78.0,196.1,206.1: H. The Opportunity rover mission surpassed the original timeline of the assignment and
+96.0,209.1,219.1: allowed scientists to collect additional data about the planet Mars.
+48.0,260.1,270.1: 5. Which word should be added to the beginning of sentence 8 to provide a better transition to the
+78.0,278.1,288.1: third paragraph (sentences 8– 11)?
+78.0,303.1,313.1: A. Overall,
+78.0,319.1,329.1: B. Furthermore,
+78.0,335.1,345.1: C. Meanwhile,
+78.0,351.1,361.1: D. Consequently,
+48.0,402.1,412.1: 6. Which revision of sentence 11 best maintains the formal style established in the passage?
+78.0,427.1,437.1: E. However, in 2018, a dust storm covered the planet, bringing the rover’s progress to a
+96.0,440.1,450.1: standstill.
+78.0,456.1,466.1: F. However, in 2018, a dust storm shrouded the planet, impermanently halting the
+96.0,469.1,479.1: rover’s progress.
+78.0,485.1,495.1: G. However, in 2018, a dust storm enveloped the whole of the planet, arresting the rover’s
+96.0,498.1,508.1: progress for a time.
+78.0,514.1,524.1: H. However, in 2018, a dust storm covered up the whole planet, which quickly brought a stop
+96.0,527.1,537.1: to the progress of the rover.
+48.0,731.2,743.3: FORM B 5 CONTINUE TO THE NEXT PAGE
+=== PAGE 6 ===
+48.0,84.1,94.1: 7. What is the best way to combine sentences 12 and 13?
+78.0,109.1,119.1: A. Preventing the rover from charging its batteries, minor dust storms had periodically
+96.0,122.1,132.1: deposited a layer of dust onto the solar panels of the rover prior to this planet-w ide
+96.0,135.1,145.1: dust storm.
+78.0,151.1,161.1: B. Periodically depositing a layer of dust onto the solar panels of the rover prior to this planet-
+96.0,164.1,174.1: wide dust storm, minor dust storms had prevented it from charging its batteries.
+78.0,180.1,190.1: C. Minor dust storms, prior to this planet- wide dust storm, prevented the rover from charging
+96.0,193.1,203.1: its batteries because they had periodically deposited a layer of dust onto the solar panels of
+96.0,206.1,216.1: the rover.
+78.0,222.1,232.1: D. Prior to this planet- wide dust storm, minor dust storms had periodically deposited a layer of
+96.0,235.1,245.1: dust onto the solar panels of the rover, preventing it from charging its batteries.
+48.0,286.1,296.1: 8. Read this sentence.
+83.5,316.7,326.7: One of Opportunity’s major contributions was finding possible evidence of the presence of
+83.5,329.7,339.7: water on Mars.
+78.0,370.2,380.2: Where should the sentence be added to the passage?
+78.0,395.2,405.2: E. between sentences 2 and 3
+78.0,411.2,421.2: F. at the beginning of the second paragraph (before sentence 4)
+78.0,427.2,437.2: G. at the end of the second paragraph (after sentence 7)
+78.0,443.2,453.2: H. between sentences 8 and 9
+48.0,494.2,504.2: 9. Which concluding sentence should be added after sentence 20 to best support the information
+78.0,512.2,522.2: presented in the passage?
+78.0,537.2,547.2: A. These rovers, including one named Curiosity, will help scientists answer their lingering
+96.0,550.2,560.2: questions about the planet.
+78.0,566.2,576.2: B. Today’s rovers continue to add to Opportunity’s discoveries and will help us learn even more
+96.0,579.2,589.2: about the planet.
+78.0,595.2,605.2: C. And in conjunction with these rovers, NASA is using other resources, including an orbiting
+96.0,608.2,618.2: spacecraft known as Mars Odyssey, for the exploration of the planet.
+78.0,624.2,634.2: D. With its red dust, rocky surface, and freezing temperatures, Mars will continue to be a
+96.0,637.2,647.2: challenging environment for today’s rovers.
+48.0,731.2,743.3: FORM B 6 CONTINUE TO THE NEXT PAGE
+=== PAGE 7 ===
+170.0,77.9,97.9: READING COMPREHENSION
+243.5,102.9,116.9: QUESTIONS 10–57
+49.3,126.2,136.2: DIRECTIONS: Read each of the following six texts and answer the related questions. You may write
+49.3,137.2,147.2: in your test booklet as needed to take notes. You should reread relevant parts of each text, while
+49.3,148.2,158.2: being mindful of time, before marking the best answer for each question. Base your answers only on
+49.3,159.2,169.2: the content within the text.
+213.2,386.2,397.2: CONTINUE TO THE NEXT PAGE
+48.0,731.2,743.3: FORM B 7 CONTINUE TO THE NEXT PAGE
+=== PAGE 8 ===
+138.9,78.5,93.5: Excerpt from “The Food Business Incubator”
+252.6,110.0,120.0: by Mandalit Del Barco
+57.6,132.4,145.0: 1 “La Cocina” means “the kitchen” in Spanish. It’s also the name of a business incubator1 based in
+69.0,148.0,158.0: San Francisco’s Mission District. Since it began in 2005, it’s been helping local food
+69.0,161.0,171.0: entrepreneurs, many of whom are low- income immigrant women, develop their small businesses.
+57.6,186.0,196.0: 2 Over the years, many of its alumni have found success: more than 50 chefs in its program have
+69.0,199.0,209.0: become self- sufficient business owners, and many of them have opened their own brick- and-
+69.0,212.0,222.0: mortar restaurants. Two alumnae of its culinary program . . . were even recognized as semi-
+69.0,222.4,235.0: finalists for prestigious James Beard awards.2
+57.6,250.0,260.0: 3 A new cookbook, We Are La Cocina: Recipes in Pursuit of the American Dream, tells some of
+69.0,263.0,273.0: their stories.
+57.6,288.0,298.0: 4 Executive director Caleb Zigas says the nonprofit La Cocina grew out of two grassroots economic
+69.0,298.4,311.0: development organizations3 who found many people cooking at their homes and selling food on
+69.0,314.0,324.0: the streets. The vendors needed an affordable commercial kitchen space and technical assistance
+69.0,327.0,337.0: in order for their businesses to be legally viable. La Cocina provided just such a space, in addition
+69.0,340.0,350.0: to helping them develop business plans, pull city permits and more.
+57.6,365.0,375.0: 5 Zigas says as many as eight businesses can work in the kitchen space at La Cocina at any one
+69.0,378.0,388.0: time. Some can prep for a farmers’ market sale, corporate catering gigs or weddings, while
+69.0,391.0,401.0: others might be making and packaging their food products.
+57.6,416.0,426.0: 6 “It’s just an incredible and exciting range of techniques, flavors, perspectives, age, language. And
+69.0,429.0,439.0: that’s a really beautiful thing,” he says. . . .
+57.6,454.0,464.0: 7 Twice a year, La Cocina hosts “F&B: Voices from the Kitchen,” a storytelling project where their
+69.0,467.0,477.0: chefs can tell their own stories, as they do in the new cookbook. Some of the chefs will be on tour
+69.0,480.0,490.0: to promote the book, whose proceeds will go to support La Cocina entrepreneurs.
+57.6,502.4,515.0: 8 NPR4 caught up with . . . La Cocina chefs, who shared their stories:
+69.0,524.0,534.0: Mariko Grady, Aedan Fermented Foods
+57.6,543.0,553.0: 9 At La Cocina, you can often hear Mariko Grady singing or humming as she prepares miso, koji,
+69.0,556.0,566.0: and amasake. Her fermented products come in four different flavors, including mushroom and
+69.0,569.0,579.0: chicken, to be used in soups and sauces. She originally brought the fermenting rice and barley
+69.0,594.9,607.5: 1 business incubator: company that helps new and startup companies develop by providing
+69.0,610.5,620.5: services such as management training and office space
+69.0,626.9,639.5: 2 James Beard awards: an award named after American cook and author James Beard,
+69.0,642.5,652.5: considered one of the highest honors in the culinary industry
+69.0,658.9,671.5: 3 economic development organizations: organizations whose mission is to promote economic
+69.0,674.5,684.5: improvement within a specific geographical area
+69.0,690.9,703.5: 4 NPR: National Public Radio, a nonprofit media organization that produces and distributes news
+69.0,706.5,716.5: and cultural programming
+48.0,731.2,743.3: FORM B 8 CONTINUE TO THE NEXT PAGE
+=== PAGE 9 ===
+69.0,78.2,88.2: koji seeds from Japan, where she had a 30- year career as a singer and dancer with the
+69.0,91.2,101.2: prestigious modern theatrical dance group she founded, Pappa Tarahumara. They performed
+69.0,104.2,114.2: around the world, and 16 years ago, had a one- night show in San Francisco. The man who would
+69.0,117.2,127.2: become her husband was in the audience. She soon joined him in San Francisco, often returning
+69.0,130.2,140.2: to Tokyo to rehearse. But after the earthquake and tsunami hit Japan in 2011, her company
+69.0,143.2,153.2: disbanded. . . . Grady focused on nourishing her family and creating a line of fermented products
+69.0,156.2,166.2: that she sells online, at local Bay Area stores and at the Ferry Plaza Farmers Market. She began
+69.0,169.2,179.2: at La Cocina in 2012 and named her business after her son, Aedan. (Written in Kanji characters,
+69.0,182.2,192.2: the name means “wisdom” and “handed down from generation to generation.”) . . . Her
+69.0,195.2,205.2: fermented products are “also full of wisdom about how to relate to nature and how to create a
+69.0,208.2,218.2: healthy life,” she says. . . .
+69.0,227.2,237.2: Shani Jones, Peaches Patties
+51.3,246.2,256.2: 10 Shani Jones is a native San Franciscan. Her father was born in New Orleans, her mother, in
+69.0,259.2,269.2: Jamaica. She says their home was always filled with a variety of spices and dishes like jerk
+69.0,272.2,282.2: chicken and Jamaican patties— savory pastries filled with beef or chicken. Jones says she learned
+69.0,285.2,295.2: to cook from her mother, whose nickname was Peaches. After returning from college in Atlanta,
+69.0,295.6,308.2: Jones worked on her doctorate in organizational leadership and management while driving a Lyft5
+69.0,311.2,321.2: car. She often told passengers about her idea of opening a catering company with her mom’s
+69.0,324.2,334.2: recipes. They steered her to La Cocina, where she developed her own business, named after her
+69.0,334.6,347.2: mother. Five years later, she caters and runs a kiosk6 at a small food cooperative in Bernal
+69.0,350.2,360.2: Heights, where some of her handmade patties have an Ethiopian twist, “because my husband is
+69.0,363.2,373.2: Ethiopian.” Jones has big aspirations for Peaches Patties: “The ultimate goal,” she says, “is to be
+69.0,373.6,386.2: the patty kingpin7 of the West Coast.”
+69.0,411.7,420.7: From “The Food Business Incubator That Helps Immigrant Women Pursue The American Dream” by Mandalit
+69.0,422.5,431.5: Del Barco from WEEKEND EDITION SUNDAY, June 19, 2019. Copyright © 2019 NPR.
+69.0,652.9,665.5: 5 Lyft: ride- sharing company where people use their own cars to provide rides to customers
+69.0,671.9,684.5: 6 kiosk: cart or small structure with one or more open sides that is used to vend merchandise
+69.0,687.5,697.5: or services
+69.0,703.9,716.5: 7 kingpin: the leader in a group or undertaking
+48.0,731.2,743.3: FORM B 9 CONTINUE TO THE NEXT PAGE
+=== PAGE 10 ===
+174.8,78.2,89.2: QUALIFICATIONS FOR LA COCINA APPLICANTS
+207.5,103.8,113.8: La Cocina considers assets and access to opportunity when
+207.5,116.8,126.8: screening applicants. La Cocina’s mission is to support
+207.5,129.8,139.8: entrepreneurs who face barriers to becoming successful in the food
+56.2,136.3,146.3: Level of Income
+207.5,142.8,152.8: industry. Applicants must be classified as low- or very- low- income
+207.5,155.8,165.8: earners according to the Housing and Urban Development (HUD)
+207.5,168.8,178.8: Guidelines for San Francisco.
+207.5,190.5,200.5: Applicants must have a business plan that is ready to be put into
+207.5,203.5,213.5: action. La Cocina will help applicants refine an existing business
+56.2,210.0,220.0: Business Plan
+207.5,216.5,226.5: plan. Applicants without a business plan should contact one of
+207.5,229.5,239.5: La Cocina’s partner organizations for guidance in developing one.
+207.5,251.1,261.1: The applicant’s food must not only be delicious but also stand out.
+56.2,264.1,274.1: Viable Product For a business to make a profit, there also has to be a market
+207.5,277.1,287.1: for the food.
+207.5,298.8,308.8: La Cocina is excited to work with entrepreneurs who are motivated
+56.2,311.8,321.8: Entrepreneurial Work Ethic and passionate about growing their business. Succeeding in the food
+207.5,324.8,334.8: industry requires a lot of heart and hard work.
+207.5,346.4,356.4: The 30+ entrepreneurs who share La Cocina’s kitchen are from
+207.5,359.4,369.4: many different backgrounds. La Cocina values the community it has
+207.5,372.4,382.4: created and expects each entrepreneur to be active in bringing the
+56.2,378.9,388.9: Community Spirit
+207.5,385.4,395.4: spirit of La Cocina to the wider world.
+207.5,398.4,408.4: In order to succeed in the La Cocina kitchen, accepted applicants
+207.5,411.4,421.4: must be flexible and willing to work closely with others.
+490.9,432.1,440.1: Source: La Cocina
+48.0,510.8,520.8: 10. Read this sentence from paragraph 2.
+99.0,535.8,545.8: Two alumnae of its culinary program . . . were even recognized as semi-f inalists
+99.0,548.8,558.8: for prestigious James Beard awards.
+78.0,573.8,583.8: The words “recognized” and “prestigious” in the sentence convey that La Cocina
+78.0,598.8,608.8: E. makes an effort to identify chefs who have a strong entrepreneurial work ethic.
+78.0,614.8,624.8: F. has the ability to mentor chefs to reach the highest levels of achievement in their craft.
+78.0,630.8,640.8: G. is focused on establishing local food entrepreneurs as celebrated professionals in
+96.0,643.8,653.8: their industry.
+78.0,659.8,669.8: H. is dedicated to assisting chefs in developing new and innovative products.
+48.0,731.2,743.3: FORM B 10 CONTINUE TO THE NEXT PAGE
+=== PAGE 11 ===
+48.0,84.1,94.1: 11. Paragraph 4 contributes to the development of ideas about La Cocina in paragraph 1 by
+78.0,109.1,119.1: A. specifying how La Cocina helps local food entrepreneurs become successful.
+78.0,125.1,135.1: B. explaining what kind of goals La Cocina tries to set for local food entrepreneurs.
+78.0,141.1,151.1: C. providing background information about local food entrepreneurs in San Francisco.
+78.0,157.1,167.1: D. describing how Caleb Zigas discovered the need to provide assistance to local food
+96.0,170.1,180.1: entrepreneurs.
+48.0,221.1,231.1: 12. The quotation from Caleb Zigas in paragraph 6 conveys a central idea of the excerpt by
+78.0,246.1,256.1: E. showing appreciation for the vibrant diversity of La Cocina.
+78.0,262.1,272.1: F. communicating La Cocina’s goal of helping people of varying abilities.
+78.0,278.1,288.1: G. describing a typical scenario at La Cocina.
+78.0,294.1,304.1: H. emphasizing La Cocina’s focus on creating products.
+48.0,345.1,355.1: 13. The description of Mariko Grady’s background in paragraph 9 contributes to a central idea in the
+78.0,363.1,373.1: excerpt by
+78.0,388.1,398.1: A. demonstrating what people are looking for when they come to La Cocina.
+78.0,404.1,414.1: B. explaining why La Cocina is the best option for people starting out in the food business.
+78.0,420.1,430.1: C. showing how La Cocina can help people find success in the food business even though they
+96.0,433.1,443.1: have a background in something different.
+78.0,449.1,459.1: D. confirming that La Cocina was originally established for small business owners who are
+96.0,462.1,472.1: looking to expand their services.
+48.0,513.1,523.1: 14. Which statement would the author most likely agree with?
+78.0,538.1,548.1: E. The publicity efforts La Cocina engages in will help its business design spread to other cities.
+78.0,554.1,564.1: F. The variety of exciting food available in San Francisco is due to the work of La Cocina.
+78.0,570.1,580.1: G. La Cocina offers a method that will guarantee business ownership for qualified
+96.0,583.1,593.1: entrepreneurs.
+78.0,599.1,609.1: H. La Cocina does admirable work in supporting the efforts of ambitious cooks who may have
+96.0,612.1,622.1: few resources.
+48.0,731.2,743.3: FORM B 11 CONTINUE TO THE NEXT PAGE
+=== PAGE 12 ===
+48.0,84.1,94.1: 15. Which piece of evidence from the excerpt is most relevant to the author’s claim that La Cocina
+78.0,102.1,112.1: provides an opportunity to become more established as a business owner?
+78.0,127.1,137.1: A. the description of how two alumni of the business incubator have won food awards
+78.0,143.1,153.1: B. the reference to a storytelling project where chefs relate their own backgrounds and
+96.0,156.1,166.1: business experiences
+78.0,172.1,182.1: C. the lists of necessities such as business plans and city permits that La Cocina assists with
+78.0,188.1,198.1: D. the notations of the criteria that applicants must meet to be endorsed by La Cocina in order
+96.0,201.1,211.1: to develop a small business
+48.0,252.1,262.1: 16. Which detail would be most important to include in a summary of the excerpt?
+78.0,277.1,287.1: E. La Cocina produced a cookbook that includes some members’ stories.
+78.0,293.1,303.1: F. La Cocina provides legal and technical assistance to its members.
+78.0,309.1,319.1: G. Potential vendors need a market for their food before considering La Cocina.
+78.0,325.1,335.1: H. There are different types of venues that food vendors from La Cocina use.
+48.0,376.1,386.1: 17. The table provides additional support for a central idea of the excerpt by
+78.0,401.1,411.1: A. showing how La Cocina works with partner organizations to further educate and advance
+96.0,414.1,424.1: successful applicants within the food industry.
+78.0,430.1,440.1: B. explaining how applicants are prepared to develop their own businesses once they leave
+96.0,443.1,453.1: La Cocina.
+78.0,459.1,469.1: C. establishing that La Cocina is dedicated to its mission to provide delicious food to different
+96.0,472.1,482.1: communities.
+78.0,488.1,498.1: D. emphasizing that applicants must be willing to dedicate time to promoting and developing
+96.0,501.1,511.1: their business with La Cocina.
+48.0,731.2,743.3: FORM B 12 CONTINUE TO THE NEXT PAGE
+=== PAGE 13 ===
+213.2,391.8,402.8: CONTINUE TO THE NEXT PAGE
+48.0,731.2,743.3: FORM B 13 CONTINUE TO THE NEXT PAGE
+=== PAGE 14 ===
+157.6,78.5,93.5: Excerpt from In Search of the Unknown
+247.7,110.0,120.0: by Robert W. Chambers
+57.6,135.0,145.0: 1 It was at that time the policy of the trustees and officers of the Zoological Gardens neither to
+69.0,148.0,158.0: employ collectors nor to send out expeditions in search of specimens. The society decided to
+69.0,161.0,171.0: depend upon voluntary contributions, and I was always busy, part of the day, in dictating answers
+69.0,174.0,184.0: to correspondents who wrote offering their services as hunters of big game, collectors of all sorts
+69.0,187.0,197.0: of fauna, trappers, snarers, and also to those who offered specimens for sale, usually at
+69.0,200.0,210.0: exorbitant rates.
+57.6,225.0,235.0: 2 To the proprietors of . . . mangy lynxes, moth- eaten coyotes, and dancing bears I returned
+69.0,238.0,248.0: courteous but uncompromising refusals— of course, first submitting all such letters, together with
+69.0,251.0,261.0: my replies, to Professor Farrago.
+57.6,276.0,286.0: 3 One day towards the end of May, however, just as I was leaving Bronx Park to return to town,
+69.0,289.0,299.0: Professor Lesard, of the reptilian department, called out to me that Professor Farrago wanted to
+69.0,302.0,312.0: see me a moment; so I . . . retraced my steps to the temporary, wooden building occupied by
+69.0,315.0,325.0: Professor Farrago, general superintendent of the Zoological Gardens. The professor, who was
+69.0,328.0,338.0: sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his
+69.0,341.0,351.0: glasses down and looked over them at me with a whimsical smile that suggested amusement,
+69.0,354.0,364.0: impatience, annoyance, and perhaps a faint trace of apology.
+57.6,379.0,389.0: 4 “Now, here’s a letter,” he said, with a deliberate gesture towards a sheet of paper impaled on a
+69.0,392.0,402.0: file—“a letter that I suppose you remember.” He disengaged the sheet of paper and
+69.0,405.0,415.0: handed it to me.
+57.6,430.0,440.0: 5 “Oh yes,” I replied, with a shrug; “of course the man is mistaken— or—”
+57.6,455.0,465.0: 6 “Or what?” demanded Professor Farrago, tranquilly, wiping his glasses.
+57.6,480.0,490.0: 7 “— Or a liar,” I replied.
+57.6,505.0,515.0: 8 After a silence he leaned back in his chair and bade me read the letter to him again, and I did so
+69.0,518.0,528.0: with a contemptuous tolerance for the writer, who must have been either a very innocent victim
+69.0,531.0,541.0: or a very stupid swindler. I said as much to Professor Farrago, but, to my surprise, he
+69.0,544.0,554.0: appeared to waver.
+57.6,569.0,579.0: 9 “I suppose,” he said, with his near- sighted, embarrassed smile, “that nine hundred and
+69.0,582.0,592.0: ninety-n ine men in a thousand would throw that letter aside and condemn the writer as a liar
+69.0,595.0,605.0: or a fool?”
+51.3,620.0,630.0: 10 “In my opinion,” said I, “he’s one or the other.”
+51.3,645.0,655.0: 11 “He isn’t— in mine,” said the professor, placidly.
+51.3,670.0,680.0: 12 “What!” I exclaimed. “Here is a man living all alone on a strip of rock and sand between the
+69.0,683.0,693.0: wilderness and the sea, who wants you to send somebody to take charge of a bird that
+69.0,696.0,706.0: doesn’t exist!”
+48.0,731.2,743.3: FORM B 14 CONTINUE TO THE NEXT PAGE
+=== PAGE 15 ===
+51.3,78.2,88.2: 13 “How do you know,” asked Professor Farrago, “that the bird in question does not exist?”
+51.3,103.2,113.2: 14 “It is generally accepted,” I replied, sarcastically, “that the great auk has been extinct for years.
+69.0,116.2,126.2: Therefore I may be pardoned for doubting that our correspondent possesses a pair of them alive.”
+51.3,141.2,151.2: 15 “Oh, you young fellows,” said the professor, smiling wearily, “you embark on a theory for
+69.0,154.2,164.2: destinations that don’t exist.”
+51.3,179.2,189.2: 16 He leaned back in his chair, his amused eyes searching space for the imagery that made
+69.0,192.2,202.2: him smile.
+51.3,217.2,227.2: 17 “Like swimming squirrels, you navigate with the help of Heaven and a stiff breeze, but you never
+69.0,230.2,240.2: land where you hope to— do you?”
+51.3,255.2,265.2: 18 Rather red in the face, I said: “Don’t you believe the great auk to be extinct?”
+51.3,277.6,290.2: 19 “Audubon1 saw the great auk.”
+51.3,305.2,315.2: 20 “Who has seen a single specimen since?”
+51.3,330.2,340.2: 21 “Nobody— except our correspondent here,” he replied, laughing.
+51.3,355.2,365.2: 22 I laughed, too, considering the interview at an end, but the professor went on, coolly:
+51.3,380.2,390.2: 23 “Whatever it is that our correspondent has— and I am daring to believe that it is the great auk
+69.0,393.2,403.2: itself—I want you to secure it for the society.”
+51.3,418.2,428.2: 24 When my astonishment subsided my first conscious sentiment was one of pity. Clearly, Professor
+69.0,428.6,441.2: Farrago was on the verge of dotage2— ah, what a loss to the world!
+51.3,456.2,466.2: 25 I believe now that Professor Farrago perfectly interpreted my thoughts, but he betrayed neither
+69.0,469.2,479.2: resentment nor impatience. I drew a chair up beside his desk— there was nothing to do but to
+69.0,482.2,492.2: obey, and this fool’s errand was none of my conceiving.
+51.3,507.2,517.2: 26 Together we made out a list of articles necessary for me and itemized the expenses I might incur,
+69.0,520.2,530.2: and I set a date for my return, allowing no margin for a successful termination to the expedition.
+51.3,545.2,555.2: 27 “Never mind that,” said the professor. “What I want you to do is to get those birds here safely.
+69.0,558.2,568.2: Now, how many men will you take?”
+51.3,583.2,593.2: 28 “None,” I replied, bluntly; “it’s a useless expense, unless there is something to bring back. If
+69.0,596.2,606.2: there is I’ll wire you, you may be sure.”
+51.3,621.2,631.2: 29 “Very well,” said Professor Farrago, good- humoredly, “you shall have all the assistance you may
+69.0,634.2,644.2: require. Can you leave to- night?”
+69.0,671.9,684.5: 1 Audubon: John James Audubon, an ornithologist and artist who created scientific
+69.0,687.5,697.5: illustrations of birds
+69.0,703.9,716.5: 2 dotage: a loss of reasoning brought about by old age
+48.0,731.2,743.3: FORM B 15 CONTINUE TO THE NEXT PAGE
+=== PAGE 16 ===
+51.3,78.2,88.2: 30 The old gentleman was certainly prompt. I nodded, half- sulkily, aware of his amusement.
+51.3,103.2,113.2: 31 “So,” I said, picking up my hat, “I am to start north to find a place called Black Harbor, where
+69.0,116.2,126.2: there is a man named Halyard who possesses, among other household utensils, two extinct
+69.0,129.2,139.2: great auks—”
+51.3,154.2,164.2: 32 We were both laughing by this time. I asked him why on earth he credited the assertion of a man
+69.0,167.2,177.2: he had never before heard of.
+51.3,192.2,202.2: 33 “I suppose,” he replied, with the same half- apologetic, half- humorous smile, “it is instinct. I feel,
+69.0,205.2,215.2: somehow, that this man Halyard has got an auk— perhaps two. I can’t get away from the idea
+69.0,218.2,228.2: that we are on the eve of acquiring the rarest of living creatures. It’s odd for a scientist to talk as
+69.0,231.2,241.2: I do; doubtless you’re shocked— admit it, now!”
+51.3,256.2,266.2: 34 But I was not shocked; on the contrary, I was conscious that the same strange hope that
+69.0,269.2,279.2: Professor Farrago cherished was beginning, in spite of me, to stir my pulses, too.
+51.3,294.2,304.2: 35 “If he has—” I began, then stopped.
+51.3,319.2,329.2: 36 The professor and I looked hard at each other in silence.
+51.3,344.2,354.2: 37 “Go on,” he said, encouragingly.
+51.3,369.2,379.2: 38 But I had nothing more to say, for the prospect of beholding with my own eyes a living specimen
+69.0,382.2,392.2: of the great auk produced a series of conflicting emotions within me which rendered speech
+69.0,395.2,405.2: profanely superfluous.
+69.0,430.7,439.7: From IN SEARCH OF THE UNKNOWN by Robert W. Chambers— Public Domain
+48.0,504.1,514.1: 18. Read paragraph 2 from the excerpt.
+99.0,529.1,539.1: To the proprietors of . . . mangy lynxes, moth- eaten coyotes, and dancing bears I
+99.0,542.1,552.1: returned courteous but uncompromising refusals—o f course, first submitting all
+99.0,555.1,565.1: such letters, together with my replies, to Professor Farrago.
+78.0,580.1,590.1: This paragraph helps develop the plot by establishing that the narrator
+78.0,605.1,615.1: E. dislikes writing refusal letters for the animals offered to the zoological society.
+78.0,621.1,631.1: F. attempts to predict what the professor would say in the refusal letters.
+78.0,637.1,647.1: G. believes that many of the animals offered are not acceptable for the zoological society.
+78.0,653.1,663.1: H. resents the professor’s insistence on reviewing the refusal letters.
+48.0,731.2,743.3: FORM B 16 CONTINUE TO THE NEXT PAGE
+=== PAGE 17 ===
+48.0,84.1,94.1: 19. Read this sentence from paragraph 3.
+99.0,109.1,119.1: The professor, who was sitting at his desk before a pile of letters and replies
+99.0,122.1,132.1: submitted for approval by me, pushed his glasses down and looked over them at
+99.0,135.1,145.1: me with a whimsical smile that suggested amusement, impatience, annoyance,
+99.0,148.1,158.1: and perhaps a faint trace of apology.
+78.0,173.1,183.1: What does the phrase “a faint trace of apology” convey about the professor?
+78.0,198.1,208.1: A. It indicates that the professor feels bad that he has to call the narrator to his office
+96.0,211.1,221.1: after work.
+78.0,227.1,237.1: B. It shows that the professor is hesitant to share his opinions with the narrator.
+78.0,243.1,253.1: C. It implies that the professor is uncomfortable criticizing the narrator’s work.
+78.0,259.1,269.1: D. It suggests that the professor knows that the conversation will be frustrating for
+96.0,272.1,282.1: the narrator.
+48.0,323.1,333.1: 20. How does the exchange between the professor and the narrator in paragraphs 8– 11 contribute
+78.0,341.1,351.1: to the development of the characters?
+78.0,366.1,376.1: E. It establishes the conflict between the professor and the narrator concerning the validity of
+96.0,379.1,389.1: the letter.
+78.0,395.1,405.1: F. It suggests a theme of collaboration because the narrator and the professor regularly
+96.0,408.1,418.1: work together.
+78.0,424.1,434.1: G. It reveals the characters’ traits by contrasting the narrator’s distrust with how easily the
+96.0,437.1,447.1: professor is deceived by what he reads.
+78.0,453.1,463.1: H. It hints that the resolution will involve the narrator accepting the professor’s opinion about
+96.0,466.1,476.1: the content of the letter.
+48.0,517.1,527.1: 21. The professor’s observations in paragraphs 15– 17 create tension in the excerpt by causing the
+78.0,535.1,545.1: narrator to feel
+78.0,560.1,570.1: A. flustered by the professor’s criticism of his logic.
+78.0,576.1,586.1: B. annoyed by the professor’s sarcasm about his inexperience.
+78.0,592.1,602.1: C. confused by the professor’s lack of respect for his opinion.
+78.0,608.1,618.1: D. frustrated by the professor’s lack of interest in his theory.
+48.0,731.2,743.3: FORM B 17 CONTINUE TO THE NEXT PAGE
+=== PAGE 18 ===
+48.0,84.1,94.1: 22. How does the interaction between the narrator and the professor in paragraphs 26– 28
+78.0,102.1,112.1: contribute to the development of the theme?
+78.0,127.1,137.1: E. It illustrates the professor’s patience as the narrator argues against making the expedition.
+78.0,143.1,153.1: F. It reveals the narrator’s frustration with his limited role in making decisions for the
+96.0,156.1,166.1: zoological society.
+78.0,172.1,182.1: G. It emphasizes the professor’s desire to acquire new specimens for the zoological society
+96.0,185.1,195.1: at any cost.
+78.0,201.1,211.1: H. It shows the narrator’s acceptance of his assignment despite his personal objections.
+48.0,252.1,262.1: 23. Which sentence from the excerpt best explains why the professor is eager to send the narrator
+78.0,270.1,280.1: on an expedition?
+78.0,295.1,305.1: A. “I believe now that Professor Farrago perfectly interpreted my thoughts, but he betrayed
+96.0,308.1,318.1: neither resentment nor impatience.” (paragraph 25)
+78.0,324.1,334.1: B. “Together we made out a list of articles necessary for me and itemized the expenses I might
+96.0,337.1,347.1: incur, and I set a date for my return, allowing no margin for a successful termination to the
+96.0,350.1,360.1: expedition.” (paragraph 26)
+78.0,366.1,376.1: C. “ ‘What I want you to do is to get those birds here safely.’ ” (paragraph 27)
+78.0,382.1,392.1: D. “ ‘I can’t get away from the idea that we are on the eve of acquiring the rarest of living
+96.0,395.1,405.1: creatures.’ ” (paragraph 33)
+48.0,446.1,456.1: 24. How does paragraph 34 help develop the plot of the excerpt?
+78.0,471.1,481.1: E. It shows that the narrator is beginning to consider the possibility of finding the great auks.
+78.0,487.1,497.1: F. It demonstrates that the narrator is struggling to understand why the professor thinks the
+96.0,500.1,510.1: great auks exist.
+78.0,516.1,526.1: G. It establishes that the narrator is willing to let the professor overrule him about the
+96.0,529.1,539.1: great auks.
+78.0,545.1,555.1: H. It emphasizes that the narrator feels a sense of urgency to complete the expedition to
+96.0,558.1,568.1: locate the great auks.
+48.0,731.2,743.3: FORM B 18 CONTINUE TO THE NEXT PAGE
+=== PAGE 19 ===
+48.0,84.1,94.1: 25. Which sentence best demonstrates the professional relationship between the narrator and the
+78.0,102.1,112.1: professor?
+78.0,127.1,137.1: A. “He disengaged the sheet of paper and handed it to me.” (paragraph 4)
+78.0,143.1,153.1: B. “Clearly, Professor Farrago was on the verge of dotage— ah, what a loss to the world!”
+96.0,156.1,166.1: (paragraph 24)
+78.0,172.1,182.1: C. “I drew a chair up beside his desk— there was nothing to do but to obey, and this fool’s
+96.0,185.1,195.1: errand was none of my conceiving.” (paragraph 25)
+78.0,201.1,211.1: D. “ ‘Very well,’ said Professor Farrago, good- humoredly, ‘you shall have all the assistance you
+96.0,214.1,224.1: may require.’ ” (paragraph 29)
+48.0,265.1,275.1: 26. How does the author develop the contrast between the narrator’s point of view and the
+78.0,283.1,293.1: professor’s point of view?
+78.0,308.1,318.1: E. by providing both the narrator’s and professor’s thoughts on how age and experience
+96.0,321.1,331.1: influence each other’s reasoning
+78.0,337.1,347.1: F. by using the conversation between the narrator and the professor to emphasize their
+96.0,350.1,360.1: reactions to the letter
+78.0,366.1,376.1: G. by describing the professor’s persistent efforts to change the narrator’s mind about
+96.0,379.1,389.1: the letter
+78.0,395.1,405.1: H. by including dialogue that explains why the professor is the supervisor and the narrator is
+96.0,408.1,418.1: his subordinate
+48.0,731.2,743.3: FORM B 19 CONTINUE TO THE NEXT PAGE
+=== PAGE 20 ===
+69.0,66.7,76.7: In 1903 brothers Wilbur and Orville Wright conducted experiments related to flying machines.
+69.0,79.7,89.7: These experiments would eventually lead to air travel becoming a reliable form of transportation.
+137.7,113.7,128.7: Excerpt from “How We Made the First Flight”
+265.2,145.2,155.2: by Orville Wright
+57.6,170.2,180.2: 1 During the night of December 16, 1903, a strong cold wind blew from the north. When we arose
+69.0,183.2,193.2: on the morning of the 17th, the puddles of water, which had been standing about camp since the
+69.0,196.2,206.2: recent rains, were covered with ice. The wind had a velocity of 10 to 12 meters per second (22 to
+69.0,209.2,219.2: 27 miles an hour). We thought it would die down before long, and so remained indoors the early
+69.0,222.2,232.2: part of the morning. But when ten o’clock arrived, and the wind was as brisk as ever, we decided
+69.0,235.2,245.2: that we had better get the machine out and attempt a flight. We hung out the signal for the men
+69.0,245.6,258.2: of the Life Saving Station.1 We thought that by facing the flyer into a strong wind, there ought to
+69.0,261.2,271.2: be no trouble in launching it from the level ground about camp. We realized the difficulties of
+69.0,274.2,284.2: flying in so high a wind, but estimated that the added dangers in flight would be partly
+69.0,287.2,297.2: compensated for by the slower speed in landing.
+69.0,306.2,316.2: Final Preparations
+57.6,325.2,335.2: 2 We laid the track on a smooth stretch of ground about one hundred feet north of the new
+69.0,338.2,348.2: building. The biting cold wind made work difficult, and we had to warm up frequently in our living
+69.0,348.6,361.2: room, where we had a good fire in an improvised stove made of a large carbide2 can. By the time
+69.0,361.6,374.2: all was ready, J. T. Daniels, W. S. Dough and A. D. Etheridge, members of the Kill Devil3 Life
+69.0,374.6,387.2: Saving Station; W. C. Brinkley of Manteo, and Johnny Moore, a boy from Nags Head,4
+69.0,390.2,400.2: had arrived.
+57.6,412.6,425.2: 3 We had a “Richard” hand anemometer5 with which we measured the velocity of the wind.
+69.0,428.2,438.2: Measurements made just before starting the first flight showed velocities of 11 to 12 meters per
+69.0,441.2,451.2: second, or 24 to 27 miles per hour. . . .
+69.0,460.2,470.2: Audacity— and Calculation
+57.6,479.2,489.2: 4 Wilbur having used his turn in the unsuccessful attempt on the 14th, the right to the first trial
+69.0,492.2,502.2: now belonged to me. After running the motor a few minutes to heat it up, I released the wire that
+69.0,505.2,515.2: held the machine to the track, and the machine started forward in the wind. Wilbur ran at the
+69.0,518.2,528.2: side of the machine, holding the wing to balance it on the track. Unlike the start on the 14th,
+69.0,531.2,541.2: made in a calm, the machine, facing a 27- mile wind, started very slowly. Wilbur was able to stay
+69.0,544.2,554.2: with it till it lifted from the track after a forty- foot run. One of the Life Saving men snapped the
+69.0,557.2,567.2: camera for us, taking a picture just as the machine had reached the end of the track and had
+69.0,601.9,614.5: 1 Life Saving Station: one of the rescue stations along the Atlantic coastline that provided
+69.0,617.5,627.5: assistance to mariners in distress
+69.0,633.9,646.5: 2 carbide: a very hard material composed of carbon and other heavy metals
+69.0,652.9,665.5: 3 Kill Devil: the town of Kill Devil Hills in eastern North Carolina
+69.0,671.9,684.5: 4 Nags Head: a town in eastern North Carolina
+69.0,690.9,703.5: 5 “Richard” hand anemometer: the type of anemometer produced by Jules Richard, a French
+69.0,706.5,716.5: manufacturer of scientific instruments
+48.0,731.2,743.3: FORM B 20 CONTINUE TO THE NEXT PAGE
+=== PAGE 21 ===
+69.0,78.2,88.2: risen to a height of about two feet. The slow forward speed of the machine over the ground is
+69.0,91.2,101.2: clearly shown in the picture by Wilbur’s attitude. He stayed along beside the machine without
+69.0,104.2,114.2: any effort.
+69.0,123.2,133.2: Flight
+57.6,142.2,152.2: 5 The course of the flight up and down was exceedingly erratic, partly due to the irregularity of the
+69.0,155.2,165.2: air, and partly to lack of experience in handling this machine. The control of the front rudder was
+69.0,168.2,178.2: difficult on account of its being balanced too near the center. This gave it a tendency to turn itself
+69.0,181.2,191.2: when started; so that it turned too far on one side and then too far on the other. As a result the
+69.0,194.2,204.2: machine would rise suddenly to about ten feet, and then as suddenly dart for the ground. A
+69.0,207.2,217.2: sudden dart when a little over a hundred feet from the end of the track, or a little over 120 feet
+69.0,220.2,230.2: from the point at which it rose into the air, ended the flight. As the velocity of the wind was over
+69.0,233.2,243.2: 35 feet per second and the speed of the machine over the ground against this wind ten feet per
+69.0,246.2,256.2: second, the speed of the machine relative to the air was over 45 feet per second, and the length
+69.0,259.2,269.2: of the flight was equivalent to a flight of 540 feet made in calm air. This flight lasted only
+69.0,272.2,282.2: 12 seconds, but it was nevertheless the first in the history of the world in which a machine
+69.0,285.2,295.2: carrying a man had raised itself by its own power into the air in full flight, had sailed forward
+69.0,298.2,308.2: without reduction of speed and had finally landed at a point as high as that from which it started.
+69.0,333.7,342.7: From “How We Made the First Flight” by Orville Wright— Public Domain/Federal Aviation Administration
+48.0,407.1,417.1: 27. How does paragraph 1 introduce the idea that the Wright brothers knew that their flight
+78.0,425.1,435.1: attempt was risky?
+78.0,450.1,460.1: A. through the mention of a signal to notify lifesaving experts that the flight attempt was
+96.0,463.1,473.1: about to begin
+78.0,479.1,489.1: B. by providing specific details about the speed of the wind and the Wright brothers’ response
+96.0,492.1,502.1: to the windy conditions
+78.0,508.1,518.1: C. by suggesting that a slower landing would be necessary at the end of the flight in order to
+96.0,521.1,531.1: maintain safety
+78.0,537.1,547.1: D. through the indication that the Wright brothers waited indoors for most of the morning
+96.0,550.1,560.1: because of the poor weather
+48.0,731.2,743.3: FORM B 21 CONTINUE TO THE NEXT PAGE
+=== PAGE 22 ===
+48.0,84.1,94.1: 28. Read this sentence from paragraph 4.
+99.0,109.1,119.1: Wilbur having used his turn in the unsuccessful attempt on the 14th, the right to
+99.0,122.1,132.1: the first trial now belonged to me.
+78.0,147.1,157.1: The sentence contributes to the development of ideas in the excerpt by
+78.0,172.1,182.1: E. demonstrating the challenge of the extreme winter conditions during the flight.
+78.0,188.1,198.1: F. revealing how many tries it took for Wilbur Wright to finally get the machine to take flight.
+78.0,204.1,214.1: G. demonstrating that both Orville and Wilbur Wright were eager to pilot what could potentially
+96.0,217.1,227.1: be the first flight.
+78.0,233.1,243.1: H. suggesting a sense that both brothers felt confident they would soon succeed in completing
+96.0,246.1,256.1: the first flight.
+48.0,297.1,307.1: 29. The photograph mentioned in paragraph 4 is significant because it
+78.0,322.1,332.1: A. documents that the machine rose into the air as soon as the tethering wire was released.
+78.0,338.1,348.1: B. provides proof of the critical moment the machine took flight.
+78.0,354.1,364.1: C. documents that the wind reduced the speed of the plane at the start of the flight.
+78.0,370.1,380.1: D. provides proof that the pilot had to gradually increase the height of the plane in the air.
+48.0,421.1,431.1: 30. How do the details in paragraph 5 about the uneven nature of the flight convey a central idea of
+78.0,439.1,449.1: the excerpt?
+78.0,464.1,474.1: E. by explaining how the flawed design of the machine caused it to turn unpredictably in the
+96.0,477.1,487.1: air and brought the first flight by a person to an abrupt end
+78.0,493.1,503.1: F. by indicating that the difficulty in controlling the flight was caused by the rudimentary
+96.0,506.1,516.1: instruments of the machine and the inexperience of the pilot
+78.0,522.1,532.1: G. by explaining how the pilot and the plane overcame adverse conditions in order to complete
+96.0,535.1,545.1: the first piloted flight
+78.0,551.1,561.1: H. by indicating that the gradual change in wind velocity created an extreme environment in
+96.0,564.1,574.1: which to maneuver the plane and maintain its flight
+48.0,731.2,743.3: FORM B 22 CONTINUE TO THE NEXT PAGE
+=== PAGE 23 ===
+48.0,84.1,94.1: 31. Read this sentence from paragraph 5.
+99.0,109.1,119.1: As the velocity of the wind was over 35 feet per second and the speed of the
+99.0,122.1,132.1: machine over the ground against this wind ten feet per second, the speed of the
+99.0,135.1,145.1: machine relative to the air was over 45 feet per second, and the length of the
+99.0,148.1,158.1: flight was equivalent to a flight of 540 feet made in calm air.
+78.0,173.1,183.1: How does the sentence help convey Orville Wright’s perspective about this first flight?
+78.0,198.1,208.1: A. It suggests that he was frustrated by the poor flying conditions on the day of the flight.
+78.0,214.1,224.1: B. It emphasizes that he believed the flight was successful despite its short distance.
+78.0,230.1,240.1: C. It provides a comparison between flight distances under calm and high wind conditions.
+78.0,246.1,256.1: D. It highlights the importance of such calculations in the success of future flights.
+48.0,297.1,307.1: 32. Read this sentence from paragraph 5.
+99.0,322.1,332.1: A sudden dart when a little over a hundred feet from the end of the track, or a
+99.0,335.1,345.1: little over 120 feet from the point at which it rose into the air, ended the flight.
+78.0,360.1,370.1: How does the sentence contribute to the paragraph?
+78.0,385.1,395.1: E. It details the need for the pilot to have quick reflexes while flying the machine.
+78.0,401.1,411.1: F. It presents the idea that the difficulty of operating the machine shortened the flight.
+78.0,417.1,427.1: G. It describes the shift in wind speed that made flying nearly impossible.
+78.0,433.1,443.1: H. It provides an overview of the flight’s progression from takeoff to landing.
+48.0,731.2,743.3: FORM B 23 CONTINUE TO THE NEXT PAGE
+=== PAGE 24 ===
+48.0,84.1,94.1: 33. Read this sentence from paragraph 5.
+99.0,109.1,119.1: This flight lasted only 12 seconds, but it was nevertheless the first in the history
+99.0,122.1,132.1: of the world in which a machine carrying a man had raised itself by its own power
+99.0,135.1,145.1: into the air in full flight, had sailed forward without reduction of speed and had
+99.0,148.1,158.1: finally landed at a point as high as that from which it started.
+78.0,173.1,183.1: The words “only,” “nevertheless,” and “finally” most clearly convey the idea that
+78.0,198.1,208.1: A. even a flight of such minor duration had taken a long time to achieve.
+78.0,214.1,224.1: B. the short flight gave the Wright brothers hope for longer ones in the future.
+78.0,230.1,240.1: C. the flight proved that the machine was, at last, capable of becoming airborne.
+78.0,246.1,256.1: D. although it was brief, the flight was a remarkable accomplishment.
+48.0,297.1,307.1: 34. Which sentence from the excerpt best supports the idea that the Wright brothers had to adapt
+78.0,315.1,325.1: their plans for the flight in order to accommodate the weather conditions?
+78.0,340.1,350.1: E. “When we arose on the morning of the 17th, the puddles of water, which had been standing
+96.0,353.1,363.1: about camp since the recent rains, were covered with ice.” (paragraph 1)
+78.0,369.1,379.1: F. “We realized the difficulties of flying in so high a wind, but estimated that the added
+96.0,382.1,392.1: dangers in flight would be partly compensated for by the slower speed in landing.”
+96.0,395.1,405.1: (paragraph 1)
+78.0,411.1,421.1: G. “After running the motor a few minutes to heat it up, I released the wire that held the
+96.0,424.1,434.1: machine to the track, and the machine started forward in the wind.” (paragraph 4)
+78.0,440.1,450.1: H. “The course of the flight up and down was exceedingly erratic, partly due to the irregularity
+96.0,453.1,463.1: of the air, and partly to lack of experience in handling this machine.” (paragraph 5)
+48.0,504.1,514.1: 35. The use of chronological structure contributes to the development of ideas in the excerpt by
+78.0,529.1,539.1: A. outlining the actions that the Wright brothers took to prepare for and successfully complete
+96.0,542.1,552.1: the first flight.
+78.0,558.1,568.1: B. identifying the primary factors that allowed the Wright brothers to overcome obstacles and
+96.0,571.1,581.1: achieve the first flight.
+78.0,587.1,597.1: C. showing how the Wright brothers applied lessons learned from their previous flight attempts
+96.0,600.1,610.1: to accomplish the first flight.
+78.0,616.1,626.1: D. demonstrating how the Wright brothers analyzed the impact of wind velocity to identify the
+96.0,629.1,639.1: ideal conditions for the first flight.
+48.0,731.2,743.3: FORM B 24 CONTINUE TO THE NEXT PAGE
+=== PAGE 25 ===
+213.2,391.8,402.8: CONTINUE TO THE NEXT PAGE
+48.0,731.2,743.3: FORM B 25 CONTINUE TO THE NEXT PAGE
+=== PAGE 26 ===
+249.4,78.5,93.5: Cross- Purposes
+69.0,107.0,117.0: What I am is built: concrete and steel.
+69.0,120.0,130.0: I defy gravity. I am what every athlete
+69.0,133.0,143.0: wants: to remain at the apex of the leap,
+69.0,146.0,156.0: up in the air. And yet I am useful, too:
+57.6,159.0,169.0: 5 cars, trucks, people, even trains
+69.0,172.0,182.0: make their way across my broad back.
+69.0,182.4,195.0: Swallows and ospreys1 nest in my trusses.
+141.0,211.0,221.0: What I am is motion. I am water, and I am older
+141.0,224.0,234.0: than anything else you know. No human
+51.3,237.0,247.0: 10 built me. I am gravity’s best friend; I pool
+141.0,250.0,260.0: and flow wherever gravity takes me.
+141.0,263.0,273.0: I am the blood flowing in the runner’s chest,
+141.0,276.0,286.0: and I catch everything: from the hills,
+141.0,289.0,299.0: the mountains. It all washes down through me.
+51.3,315.0,325.0: 15 What you are is an accident,
+69.0,328.0,338.0: what happens to rain when rain gives in
+69.0,341.0,351.0: to Earth’s gravitational pull.
+69.0,354.0,364.0: You are some tears dribbling from a mountain’s
+69.0,367.0,377.0: eye, running down the pavements
+51.3,380.0,390.0: 20 of small towns, into the cities, to the sea.
+69.0,393.0,403.0: You are the path of least resistance.
+141.0,419.0,429.0: What I am is power. You, of course,
+141.0,432.0,442.0: have none: you are a static lump, an artifact
+141.0,445.0,455.0: slowly decaying. But my regal flow
+51.3,458.0,468.0: 25 nourishes grasses, permits empires to rise.
+141.0,471.0,481.0: Those who made you will break you,
+141.0,484.0,494.0: in time, replacing you with yet another
+141.0,497.0,507.0: clumsy structure. I have seen. I know.
+69.0,523.0,533.0: “Clumsy”? Being rebuilt makes me
+51.3,536.0,546.0: 30 a friend of time, does it not? And it means
+69.0,549.0,559.0: that I have siblings— those “clumsy” structures,
+69.0,562.0,572.0: my sisters and brothers.
+69.0,575.0,585.0: We stitch across the rip you make.
+69.0,588.0,598.0: We are steel thread to the human needle.
+51.3,601.0,611.0: 35 We bind you up. We sew you.
+69.0,703.9,716.5: 1 ospreys: large birds
+48.0,731.2,743.3: FORM B 26 CONTINUE TO THE NEXT PAGE
+=== PAGE 27 ===
+141.0,78.2,88.2: And I sow into you; in every cranny
+141.0,91.2,101.2: of your superstructure my vapors cling.
+141.0,104.2,114.2: They bring out your softness, your rust.
+141.0,117.2,127.2: Boast your best, and boast better yet.
+51.3,130.2,140.2: 40 I am listening to the bright hum
+141.0,143.2,153.2: of the wind in your wires. Because I am,
+141.0,156.2,166.2: above all else, patient. I will wait for you.
+48.0,230.3,240.3: 36. How does the similar construction of line 1 and line 8 contribute to the meaning of the poem?
+78.0,255.3,265.3: E. It introduces the intended permanence of the structure and the ever- changing fluidity of
+96.0,268.3,278.3: the water.
+78.0,284.3,294.3: F. It shows that the structure can bridge the gap caused by the water.
+78.0,300.3,310.3: G. It suggests that the inflexible structure has more limitations than the adaptable water does.
+78.0,316.3,326.3: H. It contrasts the stability of the structure with the instability of the water.
+48.0,367.3,377.3: 37. Read lines 2– 4 and lines 12– 14 from the poem.
+99.0,392.3,402.3: I am what every athlete
+99.0,405.3,415.3: wants: to remain at the apex of the leap,
+99.0,418.3,428.3: up in the air.
+78.0,443.3,453.3: I am the blood flowing in the runner’s chest,
+78.0,461.3,471.3: and I catch everything: from the hills,
+78.0,479.3,489.3: the mountains.
+78.0,509.3,519.3: How do the lines contribute to the development of a central idea of the poem?
+78.0,534.3,544.3: A. They establish that both the structure and the water have endurance and control.
+78.0,550.3,560.3: B. They highlight that both the structure and the water are powerful and impressive.
+78.0,566.3,576.3: C. They suggest that the structure and the water are unaware of how similar they are.
+78.0,582.3,592.3: D. They reveal that the structure and the water are surprised that they are interrelated.
+48.0,731.2,743.3: FORM B 27 CONTINUE TO THE NEXT PAGE
+=== PAGE 28 ===
+48.0,84.1,94.1: 38. The use of the words “siblings” and “my sisters and brothers” in lines 31– 32 conveys the
+78.0,102.1,112.1: idea that the
+78.0,127.1,137.1: E. forms water can take are less diverse than the types of structures that exist.
+78.0,143.1,153.1: F. number of human- made structures is rapidly increasing.
+78.0,159.1,169.1: G. water passes under many similar- looking structures as it flows.
+78.0,175.1,185.1: H. structure is powerful because it is one of many.
+48.0,226.1,236.1: 39. The comparison to sewing in lines 33– 35 helps show that the structure
+78.0,251.1,261.1: A. enhances the beauty of the natural landscape.
+78.0,267.1,277.1: B. brings people together more effectively than nature does.
+78.0,283.1,293.1: C. provides clear boundaries for natural environments.
+78.0,299.1,309.1: D. serves as a means for people to overcome an obstacle created by nature.
+48.0,350.1,360.1: 40. The last stanza (lines 36– 42) conveys a central idea of the poem by
+78.0,375.1,385.1: E. demonstrating that both the structure and the water depend on each other to fulfill their
+96.0,388.1,398.1: functions.
+78.0,404.1,414.1: F. implying that a stronger structure would be able to resist the degradation caused by
+96.0,417.1,427.1: the water.
+78.0,433.1,443.1: G. revealing that the passage of time will render both the structure and the water obsolete.
+78.0,449.1,459.1: H. suggesting that the water will eventually weaken the structure and will continue to exist
+96.0,462.1,472.1: after the structure is gone.
+48.0,513.1,523.1: 41. Read lines 41– 42 from the poem.
+99.0,538.1,548.1: Because I am,
+99.0,551.1,561.1: above all else, patient. I will wait for you.
+78.0,576.1,586.1: Which of the following supports what is implied in these lines?
+78.0,601.1,611.1: A. “I am older / than anything else you know.” (lines 8– 9)
+78.0,617.1,627.1: B. “No human / built me.” (lines 9– 10)
+78.0,633.1,643.1: C. “It all washes down through me.” (line 14)
+78.0,649.1,659.1: D. “Those who made you will break you,” (line 26)
+48.0,731.2,743.3: FORM B 28 CONTINUE TO THE NEXT PAGE
+=== PAGE 29 ===
+48.0,84.1,94.1: 42. How does the poet develop the points of view of the structure and the water?
+78.0,109.1,119.1: E. by giving an account of a discussion between them about the future of human civilization
+78.0,125.1,135.1: F. by narrating a debate they have over their impact on the environment
+78.0,141.1,151.1: G. by illustrating the unique power they each possess over nature
+78.0,157.1,167.1: H. by using personification to allow them to debate who is more important
+48.0,208.1,218.1: 43. How does the form of the poem contribute to its meaning?
+78.0,233.1,243.1: A. The use of an equal number of lines in each stanza emphasizes that both speakers are
+96.0,246.1,256.1: equally important.
+78.0,262.1,272.1: B. The use of italics in some of the stanzas indicates the increasing tension between the
+96.0,275.1,285.1: structure and the water.
+78.0,291.1,301.1: C. The alternating positions of the stanzas highlights the opposing points of view of
+96.0,304.1,314.1: the speakers.
+78.0,320.1,330.1: D. The lack of a regular rhyme scheme or meter reflects the way the water changes the
+96.0,333.1,343.1: structure and the way the water itself changes.
+48.0,731.2,743.3: FORM B 29 CONTINUE TO THE NEXT PAGE
+=== PAGE 30 ===
+159.9,78.5,93.5: Excerpt from “Scribe Like an Egyptian”
+266.8,110.0,120.0: by Hilary Wilson
+57.6,135.0,145.0: 1 In ancient Egypt, literacy was the key to success. However, contrary to popular belief, not all
+69.0,148.0,158.0: Egyptian scribes understood hieroglyphs. Many relied instead on the simpler hieratic script for the
+69.0,158.4,171.0: multitude of everyday documents generated by the Egyptian bureaucracy.1
+57.6,186.0,196.0: 2 Hieroglyphs—“the Words of God”— compose a writing system with more than 1,000 distinct
+69.0,199.0,209.0: characters, the meanings of which were lost for 1,500 years before they were deciphered by
+69.0,212.0,222.0: Jean- François Champollion in 1822. Including both ideograms (which convey a whole word or
+69.0,225.0,235.0: idea, either concrete or abstract, in a single sign) and phonograms (representing either an
+69.0,238.0,248.0: alphabetic sound or a group of consonants), [the writing system] was used in formal inscriptions
+69.0,248.4,261.0: on tomb and temple walls as well as on elaborate funerary papyri.2 For everyday purposes,
+69.0,264.0,274.0: however, scribes used a shorthand version of the hieroglyphic script known as hieratic, which was
+69.0,277.0,287.0: quicker to write and more economical of space. The two writings existed side by side for at least
+69.0,290.0,300.0: 2,500 years.
+57.6,315.0,325.0: 3 Scraps of ancient hieratic writing, mostly penned by student scribes on limestone flakes called
+69.0,328.0,338.0: ostraca, suggest that no matter how humble his origins, an educated Egyptian could achieve
+69.0,341.0,351.0: almost anything. Horemheb (d.1292 B.C.) is a good example. Born of middle-r anking parents, his
+69.0,354.0,364.0: scribal training led to an army career. From Scribe of Recruits, during the reign of Akhenaten
+69.0,367.0,377.0: (1353– 1336 B.C.), Horemheb rose through the military ranks and, by the rule of Tutankhamun
+69.0,380.0,390.0: (1332– 1323 B.C.), he was commander in chief of the Egyptian forces. As a close adviser of the
+69.0,393.0,403.0: young Pharaoh, Horemheb was appointed “Deputy of the King throughout the Two Lands,” and
+69.0,406.0,416.0: might have expected to succeed to the throne should the king die childless. He had to wait a few
+69.0,419.0,429.0: years, but eventually Horemheb achieved the pinnacle of his career by becoming the last king of
+69.0,432.0,442.0: the 18th Dynasty, making his mark by instituting dramatic reforms to the organisation of the
+69.0,445.0,455.0: army, the judiciary and administration in general. The lasting success of these changes owed
+69.0,458.0,468.0: much to his scribal background. . . .
+57.6,483.0,493.0: 4 But education was not available to all. Government departments and major temples supported
+69.0,496.0,506.0: schools, where boys commenced their training at six or seven, sometimes earlier. To these
+69.0,509.0,519.0: boarding establishments . . . family or household servants delivered the students’ food and drink
+69.0,522.0,532.0: rations daily for several years, during which time the student was not contributing to the family’s
+69.0,535.0,545.0: income. Boys from poorer families could only hope to be educated with support from a wealthier
+69.0,548.0,558.0: relative or patron, or through apprenticeship to an older scribe, perhaps the local clerk or land
+69.0,561.0,571.0: agent, who would teach them the basics of the scribe’s craft. This limited the scope for
+69.0,574.0,584.0: employment but such “on the job” training allowed apprentices to help out at home while
+69.0,587.0,597.0: learning. . . .
+57.6,612.0,622.0: 5 Scribal education began with the elementary principles of the hieratic script. The lowliest scribes,
+69.0,622.4,635.0: who trained for just five or six years, probably learned only the rudiments3 of the hieroglyphic
+69.0,652.9,665.5: 1 bureaucracy: an administrative staff of government officials
+69.0,671.9,684.5: 2 funerary papyri: a sheet or scroll of papyrus containing religious images and hieroglyphs
+69.0,687.5,697.5: meant to help the deceased be reborn in the afterlife
+69.0,703.9,716.5: 3 rudiments: basics
+48.0,731.2,743.3: FORM B 30 CONTINUE TO THE NEXT PAGE
+=== PAGE 31 ===
+69.0,78.2,88.2: script. Students were set exemplar documents and extracts from popular texts to copy, to
+69.0,91.2,101.2: practice their hieratic handwriting on basic- format letters, reports and contracts, while absorbing
+69.0,104.2,114.2: the good advice contained in the texts. Surviving examples of copy- work sometimes include
+69.0,117.2,127.2: tutors’ corrections added in red. Some significant Egyptian literary works survive almost
+69.0,130.2,140.2: exclusively from student copies.
+57.6,152.6,165.2: 6 A schoolboy4 “dictionary” of hieroglyphs with their hieratic equivalents shows that a knowledge of
+69.0,168.2,178.2: more than 450 signs was required for everyday writing purposes. Lessons in record- keeping and
+69.0,181.2,191.2: filing and labelling enabled any half- competent scribe to perform that most essential of all scribal
+69.0,194.2,204.2: functions: the making and updating of lists. For professions such as those of government official,
+69.0,207.2,217.2: priest or lawyer, a scribe would train for several more years, increasing his vocabulary to perhaps
+69.0,220.2,230.2: a thousand or more signs. Those with the best handwriting or drawing skills might follow the craft
+69.0,233.2,243.2: of creating beautifully illustrated copies of funerary texts, commonly called Books of the Dead.
+69.0,243.6,256.2: Others could become draughtsmen,5 artists or architects. Doctors compiled their own collections
+69.0,259.2,269.2: of medication recipes, treatments and associated incantations, many copied from texts found in
+69.0,269.6,282.2: the House of Life, the temple library. Lawyers had to be familiar with the corpus6 of civil and
+69.0,285.2,295.2: religious laws and precedents found in the official records, which were administered by archivists.
+69.0,298.2,308.2: Egypt’s bureaucratic society depended on the skills of an army of scribes of all ranks from filing
+69.0,311.2,321.2: clerk to tax assessor. For young Egyptians, “be a scribe” was the best of career advice.
+69.0,346.7,355.7: From “Scribe Like an Egyptian” by Hilary Wilson from HISTORY TODAY, August 8, 2019. Copyright © 2019
+69.0,357.5,366.5: by History Today Ltd. Company.
+69.0,665.9,678.5: 4 schoolboy: slang that refers to materials used during the course of receiving an education
+69.0,684.9,697.5: 5 draughtsmen: people who draw plans of machinery or structures
+69.0,703.9,716.5: 6 corpus: a collection of writings
+48.0,731.2,743.3: FORM B 31 CONTINUE TO THE NEXT PAGE
+=== PAGE 32 ===
+265.0,82.0,92.0: ANCIENT EGYPTIAN
+245.5,94.0,104.0: SOCIAL CLASS STRUCTURE
+339.4,151.1,161.1: Pharaoh
+348.4,192.4,202.4: Nobility
+340.4,204.4,214.4: and priests
+318.3,237.9,247.9: Traders, shopkeepers,
+321.1,249.9,259.9: scribes, and artisans
+348.9,283.9,293.9: Animal herders
+355.8,295.9,305.9: and farmers
+364.9,330.2,340.2: Unskilled
+367.9,342.2,352.2: workers
+48.0,434.2,444.2: 44. Which sentence from the excerpt best supports the idea that there were different levels of
+78.0,452.2,462.2: education for a scribe?
+78.0,477.2,487.2: E. “However, contrary to popular belief, not all Egyptian scribes understood hieroglyphs.”
+96.0,490.2,500.2: (paragraph 1)
+78.0,506.2,516.2: F. “For everyday purposes, however, scribes used a shorthand version of the hieroglyphic
+96.0,519.2,529.2: script known as hieratic, which was quicker to write and more economical of space.”
+96.0,532.2,542.2: (paragraph 2)
+78.0,548.2,558.2: G. “This limited the scope for employment but such ‘on the job’ training allowed apprentices to
+96.0,561.2,571.2: help out at home while learning.” (paragraph 4)
+78.0,577.2,587.2: H. “For professions such as those of government official, priest or lawyer, a scribe would train
+96.0,590.2,600.2: for several more years, increasing his vocabulary to perhaps a thousand or more signs.”
+96.0,603.2,613.2: (paragraph 6)
+48.0,731.2,743.3: FORM B 32 CONTINUE TO THE NEXT PAGE
+=== PAGE 33 ===
+48.0,84.1,94.1: 45. Read this sentence from paragraph 2.
+99.0,109.1,119.1: Including both ideograms (which convey a whole word or idea, either concrete or
+99.0,122.1,132.1: abstract, in a single sign) and phonograms (representing either an alphabetic
+99.0,135.1,145.1: sound or a group of consonants), [the writing system] was used in formal
+99.0,148.1,158.1: inscriptions on tomb and temple walls as well as on elaborate funerary papyri.
+78.0,173.1,183.1: The author’s purpose for including the sentence is to
+78.0,198.1,208.1: A. explain that hieroglyphs were reserved for royal and religious purposes.
+78.0,214.1,224.1: B. demonstrate the methods experts use to interpret hieroglyphs.
+78.0,230.1,240.1: C. clarify the significance of hieroglyphs in language and literature.
+78.0,246.1,256.1: D. describe the basic features of hieroglyphs and how they were typically used.
+48.0,297.1,307.1: 46. Which statement summarizes the process that schools used to train scribes?
+78.0,322.1,332.1: E. Boys had to memorize around 450 hieratic signs. Once they had learned these, they were
+96.0,335.1,345.1: expected to copy literary texts that contained valuable lessons.
+78.0,351.1,361.1: F. Boys spent at least five years learning hieratic signs, which they practiced by copying texts.
+96.0,364.1,374.1: During this period, they were also introduced to basic hieroglyphs.
+78.0,380.1,390.1: G. Boys spent five or six years learning the basics of hieratic script. After this period, they
+96.0,393.1,403.1: could become apprentices and begin learning hieroglyphics.
+78.0,409.1,419.1: H. Boys were taught two different scripts. They practiced both types by copying lists and
+96.0,422.1,432.1: eventually progressed to writing letters, reports, and contracts.
+48.0,473.1,483.1: 47. Which claim is best supported by the information presented in paragraphs 3 and 4?
+78.0,498.1,508.1: A. Education was difficult for the common citizens of Egypt to obtain.
+78.0,514.1,524.1: B. Once students began studying to become scribes, their future held more possibilities.
+78.0,530.1,540.1: C. If someone wanted to become a scribe, support from outside sources such as the
+96.0,543.1,553.1: government or a temple was necessary.
+78.0,559.1,569.1: D. Becoming a successful scribe required a student’s family to sacrifice time and money in
+96.0,572.1,582.1: order to ensure the best education.
+48.0,731.2,743.3: FORM B 33 CONTINUE TO THE NEXT PAGE
+=== PAGE 34 ===
+48.0,84.1,94.1: 48. Hieratic script was particularly valuable in a bureaucratic government because
+78.0,109.1,119.1: E. using hieratic script was an efficient way for scribes to produce large amounts of
+96.0,122.1,132.1: documentation.
+78.0,138.1,148.1: F. many members of the general public could comprehend information that was written in
+96.0,151.1,161.1: hieratic script.
+78.0,167.1,177.1: G. knowledge of hieratic script prepared scribes to serve their society in increasingly
+96.0,180.1,190.1: challenging roles.
+78.0,196.1,206.1: H. people from different professional backgrounds could easily communicate with one another
+96.0,209.1,219.1: in hieratic script.
+48.0,260.1,270.1: 49. The diagram after paragraph 6 best provides additional support for the topic of the excerpt by
+78.0,285.1,295.1: A. demonstrating the place of scribes in ancient Egyptian social structure.
+78.0,301.1,311.1: B. depicting the types of tasks performed by each social class.
+78.0,317.1,327.1: C. indicating that scribes were able to easily improve their social ranking.
+78.0,333.1,343.1: D. comparing the social positions of each social class in ancient Egypt.
+48.0,384.1,394.1: 50. Based on the excerpt, which statement would the author most strongly agree with?
+78.0,409.1,419.1: E. Boys in Egypt were encouraged to enter the same profession as older male relatives.
+78.0,425.1,435.1: F. Knowledge of hieroglyphs was helpful to Egyptians who were interested in becoming scribes.
+78.0,441.1,451.1: G. Hieratic script was more practical to ancient Egyptians than hieroglyphs were.
+78.0,457.1,467.1: H. Boys in Egypt who studied for only a few years were unlikely to find employment as scribes.
+48.0,731.2,743.3: FORM B 34 CONTINUE TO THE NEXT PAGE
+=== PAGE 35 ===
+213.2,391.8,402.8: CONTINUE TO THE NEXT PAGE
+48.0,731.2,743.3: FORM B 35 CONTINUE TO THE NEXT PAGE
+=== PAGE 36 ===
+199.9,78.5,93.5: Excerpt from “Niagara Falls”
+263.7,110.0,120.0: by Rupert Brooke
+57.6,135.0,145.0: 1 The real secret of the beauty and terror of the Falls is not their height or width, but the feeling of
+69.0,148.0,158.0: colossal power and of unintelligible disaster caused by the plunge of that vast body of water. If
+69.0,161.0,171.0: that were taken away, there would be little visible change, but the heart would be gone.
+57.6,186.0,196.0: 2 The American Falls do not inspire this feeling in the same way as the Canadian. It is because they
+69.0,199.0,209.0: are less in volume, and because the water does not fall so much into one place. By comparison
+69.0,212.0,222.0: their beauty is almost delicate and fragile. They are extraordinarily level, one long curtain of
+69.0,225.0,235.0: lacework and woven foam. Seen from opposite, when the sun is on them, they are blindingly
+69.0,238.0,248.0: white, and the clouds of spray show dark against them. With both Falls the colour of the water is
+69.0,251.0,261.0: the ever- altering wonder. Greens and blues, purples and whites, melt into one another, fade, and
+69.0,261.4,274.0: come again, and change with the changing sun. Sometimes they are as richly diaphanous1 as a
+69.0,277.0,287.0: precious stone, and glow from within with a deep, inexplicable light. Sometimes the white
+69.0,290.0,300.0: intricacies of dropping foam become opaque and creamy. And always there are the rainbows. If
+69.0,303.0,313.0: you come suddenly upon the Falls from above, a great double rainbow, very vivid, spanning the
+69.0,316.0,326.0: extent of spray from top to bottom, is the first thing you see. If you wander along the cliff
+69.0,329.0,339.0: opposite, a bow springs into being in the American Falls, accompanies you courteously on your
+69.0,342.0,352.0: walk, dwindles and dies as the mist ends, and awakens again as you reach the Canadian tumult.
+69.0,355.0,365.0: And the bold traveller who attempts the trip under the American Falls sees, when he dare open
+69.0,368.0,378.0: his eyes to anything, tiny baby rainbows, some four or five yards in span, leaping from rock to
+69.0,381.0,391.0: rock among the foam, and gambolling beside him, barely out of hand’s reach, as he goes. One I
+69.0,394.0,404.0: saw in that place was a complete circle, such as I have never seen before, and so near that I
+69.0,407.0,417.0: could put my foot on it. It is a terrifying journey, beneath and behind the Falls. The senses are
+69.0,420.0,430.0: battered and bewildered by the thunder of the water and the assault of wind and spray; or rather,
+69.0,433.0,443.0: the sound is not of falling water, but merely of falling; a noise of unspecified ruin. So, if you are
+69.0,446.0,456.0: close behind the endless clamour, the sight cannot recognise liquid in the masses that hurl past.
+69.0,459.0,469.0: You are dimly and pitifully aware that sheets of light and darkness are falling in great curves in
+69.0,472.0,482.0: front of you. Dull omnipresent foam washes the face. Farther away, in the roar and hissing,
+69.0,485.0,495.0: clouds of spray seem literally to slide down some invisible plane of air.
+57.6,510.0,520.0: 3 Beyond the foot of the Falls the river is like a slipping floor of marble, green with veins of dirty
+69.0,523.0,533.0: white, made by the scum that was foam. It slides very quietly and slowly down for a mile or two,
+69.0,536.0,546.0: sullenly exhausted. Then it turns to a dull sage green, and hurries more swiftly, smooth and
+69.0,549.0,559.0: ominous. As the walls of the ravine close in, trouble stirs, and the waters boil and eddy. These
+69.0,562.0,572.0: are the lower rapids, a sight more terrifying than the Falls, because less intelligible. Close in its
+69.0,575.0,585.0: bands of rock the river surges tumultuously forward, writhing and leaping as if inspired by a
+69.0,588.0,598.0: demon. It is pressed by the straits into a visibly convex form. Great planes of water slide past.
+69.0,601.0,611.0: Sometimes it is thrown up into a pinnacle of foam higher than a house, or leaps with incredible
+69.0,614.0,624.0: speed from the crest of one vast wave to another, along the shining curve between, like the
+69.0,627.0,637.0: spring of a wild beast. Its motion continually suggests muscular action. The power manifest in
+69.0,640.0,650.0: these rapids moves one with a different sense of awe and terror from that of the Falls. Here the
+69.0,653.0,663.0: inhuman life and strength are spontaneous, active, almost resolute. . . . A place of fear.
+69.0,703.9,716.5: 1 diaphanous: sheer, translucent
+48.0,731.2,743.3: FORM B 36 CONTINUE TO THE NEXT PAGE
+=== PAGE 37 ===
+57.6,78.2,88.2: 4 One is drawn back, strangely, to a contemplation of the Falls, at every hour, and especially by
+69.0,91.2,101.2: night, when the cloud of spray becomes an immense visible ghost, straining and wavering high
+69.0,104.2,114.2: above the river, white and pathetic and translucent. The Victorian lies very close below the
+69.0,117.2,127.2: surface in every man. There one can sit and let great cloudy thoughts of destiny and the passage
+69.0,130.2,140.2: of empires drift through the mind; for such dreams are at home by Niagara. I could not get out of
+69.0,143.2,153.2: my mind the thought of a friend, who said that the rainbows over the Falls were like the arts and
+69.0,156.2,166.2: beauty and goodness, with regard to the stream of life— caused by it, thrown upon its spray, but
+69.0,169.2,179.2: unable to stay or direct or affect it, and ceasing when it ceased. In all comparisons that rise in
+69.0,182.2,192.2: the heart, the river, with its multitudinous waves and its single current, likens itself to a life,
+69.0,195.2,205.2: whether of an individual or of a community. A man’s life is of many flashing moments, and yet
+69.0,208.2,218.2: one stream; a nation’s flows through all its citizens, and yet is more than they. In such places,
+69.0,221.2,231.2: one is aware, with an almost insupportable and yet comforting certitude, that both men and
+69.0,234.2,244.2: nations are hurried onwards to their ruin or ending as inevitably as this dark flood. Some go
+69.0,247.2,257.2: down to it unreluctant, and meet it, like the river, not without nobility. And as incessant, as
+69.0,260.2,270.2: inevitable, and as unavailing as the spray that hangs over the Falls, is the white cloud of human
+69.0,270.6,283.2: crying. . . . With some such thoughts does the platitudinous2 heart win from the confusion and
+69.0,286.2,296.2: thunder of a Niagara peace that the quietest plains or most stable hills can never give.
+69.0,321.7,330.7: From LETTERS FROM AMERICA by Rupert Brooke— Public Domain
+69.0,343.4,356.0: 2 platitudinous: clichéd, common
+48.0,420.1,430.1: 51. The central idea that the Falls communicate a feeling of “unintelligible disaster” (paragraph 1)
+78.0,438.1,448.1: is conveyed in paragraph 2 through a description of
+78.0,463.1,473.1: A. the glow of the precious stones visible within the water.
+78.0,479.1,489.1: B. the dynamic flow of the colors that are visible in the water.
+78.0,495.1,505.1: C. the sudden appearance and disappearance of rainbows.
+78.0,511.1,521.1: D. the sounds associated with a sense of falling.
+48.0,562.1,572.1: 52. Read this sentence from paragraph 2.
+99.0,587.1,597.1: They are extraordinarily level, one long curtain of lacework and woven foam.
+78.0,612.1,622.1: What is the effect of comparing the American Falls to a “long curtain of lacework and
+78.0,630.1,640.1: woven foam”?
+78.0,655.1,665.1: E. It demonstrates the timelessness of the American Falls.
+78.0,671.1,681.1: F. It conveys the secretive nature of the American Falls.
+78.0,687.1,697.1: G. It illustrates the elegant uniformity of the American Falls.
+78.0,703.1,713.1: H. It communicates the intense strength of the American Falls.
+48.0,731.2,743.3: FORM B 37 CONTINUE TO THE NEXT PAGE
+=== PAGE 38 ===
+48.0,84.1,94.1: 53. Read this sentence from paragraph 3.
+99.0,109.1,119.1: These are the lower rapids, a sight more terrifying than the Falls, because less
+99.0,122.1,132.1: intelligible.
+78.0,147.1,157.1: Which statement best describes how the sentence fits into the overall structure of the excerpt?
+78.0,172.1,182.1: A. It signals a change from the positive aspects of the Falls to the negative aspects.
+78.0,188.1,198.1: B. It indicates a progression from the literal description of the water to a discussion of
+96.0,201.1,211.1: timeless truths.
+78.0,217.1,227.1: C. It reinforces a shift from the qualities of the Falls to the qualities of the river.
+78.0,233.1,243.1: D. It introduces a contrast between the obvious and the hidden features of the rapids.
+48.0,284.1,294.1: 54. Which sentence from the excerpt best supports the idea that the essence of the Falls lies in
+78.0,302.1,312.1: their emotional impact?
+78.0,327.1,337.1: E. “If that were taken away, there would be little visible change, but the heart would be gone.”
+96.0,340.1,350.1: (paragraph 1)
+78.0,356.1,366.1: F. “By comparison their beauty is almost delicate and fragile.” (paragraph 2)
+78.0,372.1,382.1: G. “One is drawn back, strangely, to a contemplation of the Falls, at every hour, and especially
+96.0,385.1,395.1: by night, when the cloud of spray becomes an immense visible ghost, straining and
+96.0,398.1,408.1: wavering high above the river, white and pathetic and translucent.” (paragraph 4)
+78.0,414.1,424.1: H. “A man’s life is of many flashing moments, and yet one stream; a nation’s flows through all
+96.0,427.1,437.1: its citizens, and yet is more than they.” (paragraph 4)
+48.0,478.1,488.1: 55. Read this sentence from paragraph 4.
+99.0,503.1,513.1: There one can sit and let great cloudy thoughts of destiny and the passage of
+99.0,516.1,526.1: empires drift through the mind; for such dreams are at home by Niagara.
+78.0,541.1,551.1: The sentence most contributes to the development of ideas in the excerpt by
+78.0,566.1,576.1: A. suggesting that viewing the Falls can be a life- changing experience.
+78.0,582.1,592.1: B. showing that the cliffs of the Falls are a good place for self- examination.
+78.0,598.1,608.1: C. emphasizing that the grandeur of the Falls seems impossible to grasp.
+78.0,614.1,624.1: D. highlighting the type of reflection that is inspired by a visit to the Falls.
+48.0,731.2,743.3: FORM B 38 CONTINUE TO THE NEXT PAGE
+=== PAGE 39 ===
+48.0,84.1,94.1: 56. In paragraph 4, the idea that human life and history ultimately end in the same way is
+78.0,102.1,112.1: illustrated mainly through
+78.0,127.1,137.1: E. the discussion of how the rainbows visible in the Falls are like the art and beauty created by
+96.0,140.1,150.1: humankind.
+78.0,156.1,166.1: F. the comparison between the movement of water in the Falls and the human experience.
+78.0,172.1,182.1: G. the inclusion of details that show that every observer’s experience with the Falls is different.
+78.0,188.1,198.1: H. the acknowledgment that contemplating the Falls at night sparks an awareness of
+96.0,201.1,211.1: humankind’s destiny.
+48.0,252.1,262.1: 57. With which statement would the author of this excerpt most likely agree?
+78.0,277.1,287.1: A. A sense of ease and assurance comes with accepting one’s fate.
+78.0,293.1,303.1: B. No matter where one’s path goes in life, one will always have regrets.
+78.0,309.1,319.1: C. The best way to overcome fear is to recognize it and then defy it.
+78.0,325.1,335.1: D. Reason will die out with humanity, but art will remain immortal.
+48.0,731.2,743.3: FORM B 39 CONTINUE TO THE NEXT PAGE
+=== PAGE 40 ===
+167.6,57.1,81.1: PART 2 — MATHEMATICS
+256.9,87.5,101.5: 57 QUESTIONS
+251.8,122.0,132.0: IMPORTANT NOTES
+48.0,140.0,150.0: (1)Formulas and defi nitions of mathematical terms and symbols are not provided.
+48.0,158.0,168.0: (2)Diagrams other than graphs are not necessarily drawn to scale. Do not assume any relationship
+66.0,170.0,180.0: in a diagram unless it is specifi cally stated or can be determined from the information given.
+48.0,188.0,198.0: (3)Assume that a diagram is in one plane unless the question specifi cally states that it is not.
+48.0,206.0,216.0: (4)Graphs are drawn to scale. Unless stated otherwise, you can assume relationships according
+66.0,218.0,228.0: to appearance. For example, lines on a graph that appear to be parallel can be assumed to be
+66.0,230.0,240.0: parallel. This is also true for concurrent lines, straight lines, collinear points, right angles, etc.
+48.0,248.0,258.0: (5)Reduce (simplify) all fractions to lowest terms.
+229.9,282.0,292.0: GRID-IN QUESTION NOTES
+48.0,300.0,310.0: (1)For each grid-in question, write your answer at the top of the grid.
+48.0,318.0,328.0: (2)Begin recording your answer in the columns on the far left.
+48.0,336.0,346.0: (3)Fill in the circle under the box that matches the number or symbol you wrote. Leave the negative
+66.0,348.0,358.0: sign bubble blank if your answer is positive.
+171.7,375.7,386.6: (Answer: –1.5) (Answer: 3.2)
+123.1,411.5,419.5: Negative Decimal Negative Decimal
+123.1,421.1,429.1: sign point sign point
+213.2,646.1,657.1: CONTINUE TO THE NEXT PAGE
+48.0,735.2,747.3: FORM B 40 CONTINUE TO THE NEXT PAGE
+=== PAGE 41 ===
+199.7,76.4,96.4: GRID-IN QUESTIONS
+243.5,102.4,116.4: QUESTIONS 58–62
+48.0,123.7,133.7: DIRECTIONS: Solve each problem. On the answer sheet, write your answer in the boxes at the top
+48.0,135.7,145.7: of the grid. Start on the left side of each grid. Print only one number or symbol in each box. Under
+48.0,147.7,157.7: each box, fi ll in the circle that matches the number or symbol you wrote above.
+48.0,165.7,175.7: • Do not fi ll in a circle under an unused box.
+48.0,183.7,193.7: • Do not leave a box blank in the middle of an answer.
+48.0,222.1,232.1: 58. 59. In a scale drawing of a rectangular
+348.0,240.1,250.1: garden, the length is 15 inches and the
+110.7,246.7,257.7: LAST YEAR’S TOTAL SALES
+348.0,258.1,268.1: width is 9 inches. In the drawing, 2 inches
+132.3,272.2,282.2: Vehicles Number
+348.0,276.1,286.1: represents 3 yards. What is the width of
+118.7,293.9,304.1: Four- door cars 5,850 the actual garden, in yards?
+118.7,315.5,325.5: Two- door cars 2,250
+118.7,337.2,347.2: Trucks 900
+118.7,358.8,368.8: Total 9,000
+78.0,392.1,402.1: The table above shows the number of
+78.0,410.1,420.1: each type of vehicle sold at a dealership 60. A kindergarten teacher has 72 crayons,
+78.0,428.1,438.1: last year. If 1,000 vehicles will be sold 60 pencils, and 84 sheets of paper to
+78.0,446.1,456.1: next month, what is the best estimate distribute to the children in her class. If
+78.0,464.1,474.1: (based on last year’s sales) of the number each child receives an equal number of
+78.0,482.1,492.1: of two- door cars that will be sold? each item and there are no items
+348.0,500.1,510.1: remaining, what is the greatest possible
+348.0,518.1,528.1: number of children in the class?
+48.0,731.2,743.3: FORM B 41 CONTINUE TO THE NEXT PAGE
+=== PAGE 42 ===
+48.0,84.1,94.1: 61. Mr. Smith opened a retirement account 62. Solve the equation for x:
+78.0,102.1,112.1: with a deposit of $900. This account earns
+78.0,120.1,130.1: 5% simple interest annually. How many
+405.9,112.6,126.0: _ (21) ( 1 4) x
+463.8,120.2,131.6: = 0.875
+409.9,128.6,140.4: (49) (48)
+78.0,138.1,148.1: years will it take for his $900 deposit to
+78.0,156.1,166.1: earn $360 interest?
+48.0,731.2,743.3: FORM B 42 CONTINUE TO THE NEXT PAGE
+=== PAGE 43 ===
+151.6,77.9,97.9: MULTIPLE CHOICE QUESTIONS
+239.1,102.9,116.9: QUESTIONS 63–114
+48.0,125.2,135.2: DIRECTIONS: Solve each problem. Select the answer from the choices given. Mark the letter of
+48.0,137.2,147.2: your answer on the answer sheet. When you are solving problems, you can write in the test booklet
+48.0,149.2,159.2: or on the scrap paper given to you.
+48.0,189.6,203.6: 63. What is the value of 65. Solve for x in terms of y if 2x + 4 = y .
+78.0,212.8,229.0: 3 _ 1 − 1 _2 − −4 _ 1 ?
+86.6,225.4,240.4: 4 3 ( 2) _ y − 4
+348.0,234.1,245.5: A. x =
+405.2,242.8,252.8: 2
+78.0,255.3,270.1: A. −3 _1
+112.8,268.8,283.5: 12 B. x = 2 (y + 4)
+78.0,293.3,308.1: B. −2 _ 11
+112.8,303.3,316.8: 12 _ y + 4
+348.0,310.1,321.5: C. x =
+405.2,318.8,328.8: 2
+103.6,331.3,342.4: _1
+78.0,336.1,346.1: C. 6
+104.6,344.8,359.5: 12 D. x = 2 (4 − y)
+103.6,369.1,380.4: _5
+78.0,374.1,384.1: D. 9
+104.6,382.8,392.8: 12
+318.0,464.5,474.5: 66. Bryan completed a 100- meter race
+348.0,482.5,492.5: in 11.74 seconds. Luis completed the
+48.0,496.7,506.7: 64. On Fran’s map, 2 centimeters represents
+348.0,500.5,510.5: same race in 11.69 seconds. What was
+78.0,514.7,524.7: 3 kilometers. The points on this map that
+348.0,518.5,528.5: the difference between their times,
+78.0,532.7,542.7: represent Fran’s home and Bryant State
+348.0,536.5,546.5: expressed as a fraction of a second?
+78.0,550.7,560.7: Park are 4.5 centimeters apart. How many
+78.0,568.7,578.7: kilometers apart are Fran’s home and
+366.0,574.2,585.3: _1
+348.0,579.0,589.0: E.
+78.0,586.7,597.7: Bryant State Park, to the nearest 20
+78.0,604.7,614.7: kilometer?
+366.0,612.2,623.3: _1
+348.0,617.0,627.0: F.
+367.0,625.7,635.7: 10
+78.0,629.7,639.7: E. 3
+78.0,645.7,655.7: F. 5
+366.0,650.0,661.3: _3
+348.0,655.0,665.0: G.
+78.0,661.7,673.7: G. 7 20
+78.0,677.7,687.7: H. 9
+366.0,688.2,699.3: _1
+348.0,693.0,703.0: H.
+367.0,701.5,711.6: 5
+48.0,731.2,743.3: FORM B 43 CONTINUE TO THE NEXT PAGE
+=== PAGE 44 ===
+46.5,83.6,95.0: 67. A total of 24 students in a math class took 68. n = 0.13 +
+480.0,78.7,89.9: _ 207
+481.0,92.3,102.3: 100
+76.5,101.6,111.6: a 100- point test:
+346.5,122.6,132.6: What is the value of n expressed as
+76.5,131.6,141.6: • None of the students scored 100 points.
+346.5,140.6,150.6: a fraction?
+76.5,155.6,165.6: • 75% of the students scored less than
+88.5,173.6,183.6: 82 points.
+364.5,178.3,189.4: _1
+346.5,183.1,193.1: E.
+365.5,191.8,201.8: 3
+76.5,197.6,207.6: • The lowest score in the class was
+88.5,215.6,227.4: 54 points. _11
+346.5,221.1,231.1: F.
+368.7,229.6,239.7: 5
+76.5,245.6,255.6: Which box plot best represents the test
+364.5,254.2,265.4: _9
+346.5,259.1,269.1: G.
+76.5,263.6,273.6: scores from this math class?
+365.5,267.6,277.7: 4
+76.5,285.3,295.3: A.
+155.4,289.5,303.4: TEST SCORES _23
+346.5,297.1,307.1: H.
+365.5,305.8,315.8: 10
+117.6,345.1,355.7: 50556065707580859095100
+76.5,374.3,384.3: B.
+155.4,378.5,388.5: TEST SCORES
+316.5,419.9,429.9: 69. The perimeter of a 12- sided polygon is
+117.6,434.1,444.7: 50556065707580859095100
+346.5,437.9,447.9: 100 centimeters. The length of one side is
+346.5,455.9,465.9: 25 centimeters. The length of another side
+76.5,463.4,473.4: C.
+155.4,467.5,477.5: TEST SCORES
+346.5,473.9,483.9: is 35 centimeters. The remaining sides are
+346.5,491.9,501.9: equal in length to one another. What is
+346.5,509.9,519.9: the length of each of the remaining sides,
+117.6,523.2,533.7: 50556065707580859095100
+346.5,527.9,537.9: in centimeters?
+76.5,552.4,562.9: D. A. 4
+155.4,556.6,566.6: TEST SCORES
+346.5,568.9,578.9: B. 5
+346.5,584.9,594.9: C. 20
+346.5,600.9,610.9: D. 40
+117.6,612.2,622.8: 50556065707580859095100
+48.0,731.2,743.3: FORM B 44 CONTINUE TO THE NEXT PAGE
+=== PAGE 45 ===
+48.0,84.1,94.1: 70. Shiow- Chen has a box that contains 4 72. On a map, the distance between
+78.0,102.1,112.1: green cards, 7 yellow cards, and 6 red Deshawn’s house and Xin’s house
+78.0,120.1,130.1: cards. She randomly draws one card at a is 5.4 inches. If 2 inches on the map
+78.0,138.1,148.1: time from the box and does not return the represents 3 miles, what is the distance
+78.0,156.1,166.1: cards to the box after they have been between these two houses, in miles?
+78.0,174.1,184.1: drawn. The first card she draws is yellow.
+348.0,181.1,191.1: E. 2.6
+78.0,192.1,202.1: The second card she draws is green. What
+348.0,197.1,207.1: F. 3.6
+78.0,210.1,223.1: is the probability that the third card she G. 7.5
+78.0,228.1,239.1: draws will also be green? H. 8.1
+96.0,265.8,276.9: _1
+78.0,270.6,280.6: E.
+97.0,279.1,289.2: 5
+96.0,303.8,314.9: _4
+78.0,308.6,318.6: F.
+97.0,317.2,327.2: 17
+318.0,333.1,343.1: 73.
+96.0,341.8,352.9: _1
+78.0,346.6,356.6: G.
+97.0,355.1,365.2: 4
+96.0,379.8,390.9: _1
+78.0,384.6,394.6: H.
+97.0,393.3,403.3: 3
+348.0,471.6,481.6: This wheel has 15 spokes, equally spaced.
+348.0,489.6,499.6: What is the measure of the angle between
+48.0,507.4,517.6: 71. Each number in a sequence is 3 more than adjacent spokes?
+78.0,525.4,535.4: twice the number that comes just before
+348.0,532.6,542.6: A. 30°
+78.0,543.4,553.4: it. If 93 is a number in the sequence, what
+348.0,548.6,558.6: B. 24°
+78.0,561.4,571.4: number comes just before it?
+348.0,564.6,574.6: C. 15°
+348.0,580.6,590.6: D. 12°
+78.0,586.4,596.4: A. 92
+78.0,602.4,612.4: B. 90
+78.0,618.4,628.4: C. 48
+78.0,634.4,644.4: D. 45
+48.0,731.2,743.3: FORM B 45 CONTINUE TO THE NEXT PAGE
+=== PAGE 46 ===
+46.5,83.6,95.0: 74. m • t = 72 76. Orange juice costs $2 per gallon, and
+346.5,101.6,111.6: grapefruit juice costs $3 per gallon. A
+346.5,119.6,129.6: recent shipment of equal amounts of the
+76.5,124.6,134.6: For the equation above, what is the sum
+346.5,137.6,147.6: two types of juice costs a total of $250.
+76.5,144.6,156.0: of the values of m when t = 1 , when
+346.5,155.6,165.6: How many gallons of orange juice are in
+76.5,164.6,176.0: t = 2 , and when t = 3 ?
+346.5,173.6,183.6: the shipment?
+76.5,189.6,199.6: E. 12
+346.5,198.6,208.6: E. 50
+76.5,205.6,215.6: F. 72
+346.5,214.6,224.6: F. 62.5
+76.5,221.6,231.6: G. 132
+346.5,230.6,240.6: G. 100
+76.5,237.6,247.6: H. 135
+346.5,246.6,256.6: H. 125
+46.5,341.6,351.6: 75.
+81.7,399.9,409.6: 8 ft 4 ft
+158.7,442.1,451.1: 16 ft
+76.5,481.3,491.3: The diagram above shows a rectangle with
+76.5,499.3,509.3: an inscribed triangle. The triangle’s vertex
+76.5,517.3,527.3: and base touch the sides of the rectangle
+76.5,535.3,545.3: as shown. What is the total area of the
+76.5,553.3,563.3: shaded portion?
+76.5,578.3,588.3: A. 32 sq ft
+76.5,594.3,604.3: B. 64 sq ft
+76.5,610.3,620.3: C. 96 sq ft
+76.5,626.3,636.3: D. 128 sq ft
+48.0,731.2,743.3: FORM B 46 CONTINUE TO THE NEXT PAGE
+=== PAGE 47 ===
+48.0,84.1,94.1: 77. Five consecutive numbers have a sum of 78.
+78.0,102.1,112.1: 110. What is the least of these
+443.1,110.8,122.8: −
+452.9,114.1,124.1: mn
+78.0,120.1,130.1: consecutive numbers?
+429.1,124.8,138.1: (− m) (− n)
+78.0,142.1,155.1: A. 11 | mn|
+438.5,156.8,164.5: |
+443.1,152.8,164.8: −
+452.9,156.1,166.1: mn|
+78.0,161.1,171.1: B. 18
+424.6,167.2,180.5: | (− m) (− n) |
+78.0,177.1,187.1: C. 20
+78.0,193.1,203.1: D. 22
+348.0,209.5,219.5: If m and n are positive integers, how
+348.0,227.5,237.5: many of the five expressions above are
+348.0,245.5,255.5: equivalent to mn?
+348.0,270.5,280.5: E. 1
+348.0,286.5,296.5: F. 2
+348.0,302.5,312.5: G. 3
+348.0,318.5,328.5: H. 4
+48.0,731.2,743.3: FORM B 47 CONTINUE TO THE NEXT PAGE
+=== PAGE 48 ===
+46.5,83.6,93.6: 79. A vendor is selling 10 packages of 80.
+76.5,101.6,111.6: homemade fudge at a bake sale. The
+420.5,108.2,119.2: FRUIT SOLD
+76.5,119.6,132.4: vendor weighed and labeled each AT STORE XYZ
+76.5,137.6,147.6: package. The package weights are given
+396.9,146.9,156.9: Fruit Number Sold
+76.5,155.6,165.6: in ounces:
+388.8,168.6,178.6: Apples 8
+122.5,185.6,195.6: 4.6 6.0 3.8 3.5 4.5
+388.8,190.2,200.2: Bananas 6
+122.5,203.6,213.6: 5.4 3.9 6.5 4.8 6.2
+388.8,211.9,221.9: Cherries 12
+76.5,233.5,243.6: The vendor created a box plot of the Oranges 6
+76.5,251.6,261.6: package weights. Which box plot best
+388.8,255.2,265.2: Peaches ?
+76.5,269.6,279.6: represents the data?
+388.8,276.8,286.8: Total 50
+76.5,291.3,301.3: A.
+133.6,295.5,305.5: PACKAGE WEIGHTS
+346.5,310.1,320.1: Peaches made up what percentage of the
+346.5,328.1,338.1: total number of pieces of fruit sold at
+118.8,343.8,356.1: 3 3.5 4 4.5 5 5.5 6 6.5 7 Store XYZ, according to the table above?
+167.9,357.3,367.3: Ounces
+346.5,371.1,381.1: E. 18%
+76.5,386.0,397.1: B. F. 28%
+133.6,390.2,400.2: PACKAGE WEIGHTS
+346.5,403.1,413.1: G. 36%
+346.5,419.1,429.1: H. 64%
+118.8,438.5,448.9: 3 3.5 4 4.5 5 5.5 6 6.5 7
+167.9,452.0,462.0: Ounces
+76.5,480.7,490.7: C.
+133.6,484.9,494.9: PACKAGE WEIGHTS
+316.5,523.1,533.1: 81. A prism is made up of 9 congruent cubes.
+118.8,533.2,543.6: 3 3.5 4 4.5 5 5.5 6 6.5 7
+346.5,541.1,551.1: Each of the cubes has side lengths
+167.9,546.7,556.7: Ounces
+346.5,559.1,569.1: measuring 4 units. What is the volume, in
+76.5,575.4,589.6: D. PACKAGE WEIGHTS cubic units, of the prism?
+346.5,602.1,612.1: A. 108
+346.5,618.1,628.1: B. 144
+118.8,627.9,638.3: 3 3.5 4 4.5 5 5.5 6 6.5 7
+346.5,634.1,644.1: C. 480
+167.9,641.4,651.4: Ounces
+346.5,650.1,660.1: D. 576
+48.0,731.2,743.3: FORM B 48 CONTINUE TO THE NEXT PAGE
+=== PAGE 49 ===
+48.0,83.9,95.5: 82. The town of Waterville covers an area of 84. N = { 6, 7, . . . , 21, 22}
+78.0,102.1,112.1: 50 square miles. In 2005, its population
+78.0,120.1,133.1: was 84,000. In 2006, its population had Set L (not shown) is a list of 25
+78.0,138.1,151.1: decreased so that the average population consecutive integers. The median of the
+78.0,156.1,169.1: per square mile was equal to 1,500. What integers in set N above is equal to the
+78.0,174.1,187.1: was the total decrease in population from least integer in set L. What is the median
+78.0,192.1,205.1: 2005 to 2006? of the integers in set L?
+78.0,217.1,230.1: E. 7,500 E. 25
+78.0,233.1,246.1: F. 8,400 F. 26
+78.0,249.1,262.1: G. 9,000 G. 27
+78.0,265.1,278.1: H. 9,200 H. 28
+48.0,369.1,382.1: 83. The box plot below represents a 85. The sum of the numbers x, y, and z is 40.
+78.0,387.1,400.1: set of data. The ratio of x to y is 1:2, and the ratio of
+348.0,408.1,418.1: y to z is 2:5. What is the value of y?
+348.0,433.1,443.1: A. 2
+87.9,440.0,450.2: 0 6 12 18 24 30
+348.0,449.1,459.1: B. 4
+348.0,465.1,475.1: C. 8
+78.0,477.3,487.3: What is the interquartile range of the
+348.0,481.1,491.1: D. 10
+78.0,495.3,505.3: set of data?
+78.0,520.3,530.3: A. 9
+78.0,536.3,546.3: B. 12
+78.0,552.3,562.3: C. 21
+78.0,568.3,578.3: D. 27
+48.0,731.2,743.3: FORM B 49 CONTINUE TO THE NEXT PAGE
+=== PAGE 50 ===
+46.5,83.6,97.0: 86. Which number could be the sum of 88. If xy = 30 , what is the value of 10 ÷ x in
+76.5,101.6,111.6: 4 consecutive integers?
+346.5,105.6,115.6: terms of y?
+76.5,131.6,143.6: E. −12
+364.5,143.3,154.4: _1
+346.5,148.1,158.1: E. y
+76.5,156.8,169.6: F. −10 10
+76.5,181.3,196.1: G. −8 F. _ 1 y
+365.5,194.8,204.8: 3
+76.5,209.6,221.6: H. −4
+346.5,224.1,234.1: G. 3y
+346.5,262.1,272.1: H. 10y
+46.5,321.6,331.6: 87.
+87.9,346.2,357.2: PRICE OF A USED VIDEO GAME AT
+134.2,359.4,370.4: VARIOUS STORES
+316.5,378.1,388.1: 89.
+90.2,384.9,394.9: Price of Used
+185.7,391.4,401.4: Number of Stores
+93.6,397.9,407.9: Video Game
+381.1,406.9,415.9: P Q R
+109.4,419.6,429.6: $10.99 5
+379.1,423.9,434.6: 1—1 3 5 —1
+384.2,430.9,436.9: 3 6
+109.4,441.2,451.2: $11.99 2
+109.4,462.9,472.9: $12.99 1
+346.5,467.9,477.9: On the number line above, how many
+109.4,484.5,498.0: $13.99 4 units longer is ‾Q R than ‾P Q ?
+76.5,517.8,527.8: The table above shows the price of a
+364.5,525.5,536.7: _1
+346.5,530.4,540.4: A.
+76.5,535.8,545.8: certain used video game at 12 different
+365.5,539.0,549.1: 6
+76.5,553.8,563.8: stores. What is the median price of this
+364.5,563.5,574.7: _1
+346.5,568.4,578.4: B.
+76.5,571.8,581.8: video game?
+365.5,577.1,587.1: 2
+76.5,596.8,606.8: A. $10.99
+364.5,601.5,612.7: _2
+346.5,606.4,616.4: C.
+76.5,612.8,625.1: B. $11.49 3
+76.5,628.8,638.8: C. $11.99
+76.5,644.4,654.8: D. $12.32 D. 3
+48.0,731.2,743.3: FORM B 50 CONTINUE TO THE NEXT PAGE
+=== PAGE 51 ===
+48.0,84.1,94.1: 90. 92. In Center City, the ratio of people to dogs
+348.0,102.1,112.1: is 4:1, and the ratio of dogs to cats is 3:2.
+109.9,116.7,126.7: W X Y
+348.0,120.1,130.1: What is the ratio of people to cats?
+348.0,145.1,155.1: E. 2:1
+78.0,156.3,166.3: The distance from W to X is 70% of the
+348.0,161.1,171.1: F. 7:3
+78.0,174.3,187.1: distance from W to Y. If the distance from G. 6:1
+78.0,192.3,203.1: X to Y is 15 miles, what is the distance, in H. 12:1
+78.0,210.3,220.3: miles, from W to X?
+78.0,235.3,245.3: E. 10.5
+78.0,251.3,261.3: F. 35
+78.0,267.3,277.3: G. 45
+78.0,283.3,293.3: H. 50
+318.0,297.1,307.1: 93. The side length of square S is shorter than
+348.0,315.1,325.1: the side length of square T by
+348.0,333.1,343.1: 1 centimeter. The area of square S is
+348.0,351.1,361.1: 9 square centimeters. What is the
+348.0,369.1,379.1: difference, in square centimeters, between
+48.0,387.1,397.3: 91. There are 3 different highways from the area of square T and the area
+78.0,405.1,415.3: City W to City X, 4 different highways of square S?
+78.0,423.3,433.3: from City X to City Y, and 3 different
+348.0,430.1,440.1: A. 3
+78.0,441.3,451.3: highways from City Y to City Z. How many
+348.0,446.1,456.1: B. 7
+78.0,459.3,472.1: different routes are there for a trip from C. 8
+78.0,477.3,488.1: City W to City X to City Y to City Z? D. 10
+78.0,502.3,512.3: A. 10
+78.0,518.3,528.3: B. 12
+78.0,534.3,544.3: C. 24
+78.0,550.3,560.3: D. 36
+48.0,731.2,743.3: FORM B 51 CONTINUE TO THE NEXT PAGE
+=== PAGE 52 ===
+316.5,83.6,93.6: 96. In a certain competition, 1 person finished
+46.5,89.6,99.6: 94. Which expression is equivalent
+346.5,101.6,111.6: in first place, 5 people tied for second
+90.0,108.7,119.9: _1 _9
+76.5,113.6,125.0: to x + 7 − x − ?
+91.0,119.6,132.3: 2 ( 2) place, 10 people tied for third place, and
+346.5,137.6,147.6: the other 4,984 people did not place.
+76.5,151.3,167.5: E. _ 1 (x − 5) What percentage of the people in the
+95.5,164.8,174.8: 2
+346.5,173.6,183.6: competition placed first, second, or third
+76.5,189.3,205.5: F. _1 (x + 5) altogether?
+95.5,202.8,212.8: 2
+346.5,216.6,226.6: E. 0.0032%
+76.5,227.3,243.5: G. − _1 (x + 23) F. 0.032%
+104.9,240.8,250.8: 2
+346.5,248.6,258.6: G. 0.32%
+76.5,264.6,281.5: H. − _1 (x − 23) H. 3.2%
+104.9,278.8,288.8: 2
+316.5,368.6,378.6: 97. Angle A and angle B are complementary.
+346.5,386.6,396.6: If the measure of angle B is three times as
+113.2,393.9,405.0: _1 _1
+46.5,398.7,410.1: 95. How is − written as a single
+114.5,404.6,417.4: x 2x great as the measure of angle A, what is
+76.5,422.6,434.1: fraction? (Assume x ≠ 0 .) the measure of angle B?
+346.5,447.6,457.6: A. 45°
+76.5,465.2,475.2: A.
+94.5,460.4,471.5: _1
+346.5,463.6,473.6: B. 67.5°
+95.5,473.9,483.9: 2x
+346.5,479.6,489.6: C. 75°
+94.5,495.6,509.5: _1 D. 135°
+76.5,503.2,513.2: B.
+95.5,511.9,521.9: 3x
+76.5,536.4,551.2: C. − _ 1
+105.2,547.9,557.9: x
+76.5,574.4,589.2: D. − _1
+104.9,587.9,597.9: 2x
+48.0,731.2,743.3: FORM B 52 CONTINUE TO THE NEXT PAGE
+=== PAGE 53 ===
+48.0,84.1,94.1: 98. The height of a tree in 2013 is 300% of 100. A certain square puzzle has an area of
+78.0,102.1,112.1: the height it was in 2003. By what 64 square inches, and a cubic block has a
+78.0,120.1,130.1: percentage did its height increase over volume of 64 cubic inches. What is the
+78.0,138.1,148.1: this ten- year period? ratio of the length of a side of the puzzle
+348.0,156.1,166.1: to the length of a side of the block?
+110.0,171.3,182.4: _1
+78.0,176.1,186.1: E. 33 %
+348.0,181.1,191.1: E. 1:3
+111.0,184.8,194.8: 3
+348.0,197.1,207.1: F. 1:2
+78.0,208.1,218.1: F. 100 %
+348.0,213.1,223.1: G. 2:3
+348.0,229.1,239.1: H. 2:1
+78.0,234.1,244.1: G. 200 %
+78.0,260.1,270.1: H. 300 %
+318.0,333.1,343.1: 101. In a certain class, Rosa will take a total of
+348.0,351.1,361.1: 4 tests. She has already taken 2 of the
+141.4,362.3,373.7: 1 gallon = 16 cups
+48.0,369.1,380.1: 99. tests and earned scores of 81 and 83.
+132.2,377.5,388.9: 1 cup = 8 fluid ounces
+348.0,387.1,397.1: What is the least possible score Rosa can
+151.3,405.1,415.4: x earn on the third test and still be able to
+78.0,411.1,421.1: If 1 gallon = 2 fluid ounces, what is the
+348.0,423.1,433.1: finish the class with an average score of
+78.0,431.1,441.1: value of x?
+348.0,441.1,451.1: 85 on all 4 tests? (Assume that test scores
+78.0,456.1,469.1: A. 4 can range from 0 to 100.)
+78.0,472.1,482.1: B. 7
+348.0,484.1,494.1: A. 76
+78.0,488.1,498.1: C. 8
+348.0,500.1,510.1: B. 82
+78.0,504.1,514.1: D. 64
+348.0,516.1,526.1: C. 88
+348.0,532.1,542.1: D. 90
+48.0,731.2,743.3: FORM B 53 CONTINUE TO THE NEXT PAGE
+=== PAGE 54 ===
+46.5,83.6,93.6: 102. The Barnes family and the Ramirez family 104. Four slips of paper numbered 1, 2, 3, and
+76.5,101.6,111.6: each have a pizza of equal size. The first 4 were placed in a bag:
+76.5,119.6,129.6: pizza is cut into 18 equal slices, and the
+346.5,131.6,141.6: • One slip was selected from the bag, and
+76.5,137.6,147.6: second pizza is cut into 15 equal slices. If
+358.5,149.6,159.6: the number recorded.
+76.5,155.6,165.6: the Barnes family eats 11 slices from the
+76.5,173.6,183.6: first pizza, what is the greatest number of • Without replacement, a second slip
+76.5,191.6,201.6: whole slices from the second pizza that was chosen.
+76.5,209.6,219.6: the Ramirez family can eat without eating
+346.5,215.6,225.6: • This process continued until no more
+76.5,227.6,237.6: a greater percentage of a pizza than the
+358.5,233.6,243.6: slips remained in the bag.
+76.5,245.6,255.6: Barnes family ate?
+346.5,257.6,267.6: • One part of a tree diagram representing
+76.5,270.6,280.6: E. 6
+358.5,275.6,285.6: the sample space is shown.
+76.5,286.6,296.6: F. 7
+76.5,302.6,313.9: G. 8 1
+76.5,318.6,328.6: H. 9
+409.7,337.0,347.7: 2 3 4
+398.6,374.1,384.1: 3 4 2 4 2 3
+46.5,416.8,434.1: 103. 0 3 + 4 0 + 2 −1 + (− 1) 2
+346.5,447.7,457.7: Which number should be placed in the box
+76.5,461.6,471.6: What is the value of the expression above,
+346.5,465.7,475.7: to complete this part of the tree diagram?
+76.5,479.6,489.6: in decimal form?
+346.5,490.7,500.7: E. 1
+76.5,504.6,516.7: A. 0 F. 2
+76.5,520.6,532.7: B. 0.5 G. 3
+76.5,536.6,548.7: C. 1.5 H. 4
+76.5,552.6,562.6: D. 2.5
+48.0,731.2,743.3: FORM B 54 CONTINUE TO THE NEXT PAGE
+=== PAGE 55 ===
+318.0,83.9,94.6: 107. {3, 4, 5, 6, 7}
+48.0,90.1,100.1: 105. The outdoor temperature was 4.2° F at
+156.5,109.3,120.4: _1
+78.0,114.1,124.1: 10 p.m. After 3 hours, the outdoor
+157.5,122.8,133.1: 2 A student made a list of all possible
+78.0,136.1,151.1: temperature was −0.7° F. Which value products of 2 different numbers in the
+78.0,159.1,172.1: best represents the average change in set above. What fraction of the
+348.0,177.1,187.1: products are odd?
+78.0,186.1,196.1: temperature per hour?
+78.0,214.9,229.9: A. −1.4° F A. _3
+367.0,228.6,238.6: 20
+78.0,242.1,254.1: B. −1.0° F
+366.0,252.9,264.2: _3
+348.0,257.9,267.9: B.
+367.0,266.6,276.6: 10
+78.0,270.1,280.1: C. 1.0° F
+366.0,291.1,302.2: _1
+78.0,295.9,306.1: D. 1.4° F C.
+367.0,304.6,314.6: 2
+366.0,328.9,340.2: _3
+348.0,333.9,343.9: D.
+367.0,342.4,352.4: 5
+48.0,406.1,416.1: 106. A rectangular swimming pool of uniform
+78.0,424.1,434.1: depth is 20 yards long and 14 yards wide.
+78.0,442.1,452.1: If the water is 6 feet deep, what is the
+318.0,456.5,466.5: 108. A number, n, is divided by 25. If the
+78.0,460.1,470.1: volume of water in the pool, in
+348.0,474.5,484.5: quotient is 10 with a remainder of 5, what
+78.0,478.1,488.1: cubic yards?
+348.0,492.5,502.5: is the quotient expressed as a decimal?
+78.0,503.1,513.1: E. 40
+78.0,517.5,529.1: F. 286 E. 10.20
+78.0,533.5,545.1: G. 560 F. 10.25
+78.0,549.5,561.1: H. 1,680 G. 10.50
+348.0,565.5,575.5: H. 10.75
+48.0,731.2,743.3: FORM B 55 CONTINUE TO THE NEXT PAGE
+=== PAGE 56 ===
+46.5,83.6,93.6: 109. 110. Micha is playing a game with five cards
+346.5,101.6,111.6: numbered 1 through 5. He will place the
+346.5,119.6,129.6: cards in a bag and draw one card at
+346.5,137.6,147.6: random three times, replacing the card
+346.5,155.6,165.6: each time. To win a prize, he must draw
+346.5,173.6,183.6: the number 5 all three times. What is the
+346.5,191.6,201.6: probability he will draw the number 5 all
+346.5,209.6,219.6: three times?
+76.5,219.3,229.3: The garden design shown above is created
+76.5,237.3,247.3: in the shape of three semicircles whose
+364.5,247.3,258.4: _1
+346.5,252.1,262.1: E.
+76.5,255.3,265.3: diameters lie on the sides of an equilateral
+365.5,260.8,270.8: 125
+76.5,273.3,283.3: triangle. If each diameter is 2 meters
+364.5,285.1,296.4: _3
+76.5,290.1,301.3: long, what is the perimeter of the garden, F.
+365.5,298.8,308.8: 125
+76.5,309.3,319.3: in meters?
+364.5,323.3,334.4: _1
+346.5,328.1,338.1: G.
+365.5,336.7,346.7: 15
+76.5,341.3,351.3: A. 6
+364.5,361.1,372.4: _3
+76.5,366.1,377.3: B. 12 H.
+365.5,374.6,384.7: 5
+76.5,393.3,404.7: C. 3π
+76.5,419.3,430.7: D. 6π
+48.0,731.2,743.3: FORM B 56 CONTINUE TO THE NEXT PAGE
+=== PAGE 57 ===
+48.0,83.5,95.9: 111. The speed 10 meters per second is 112. 6. ‾34 − 4. ‾12
+78.0,102.1,112.1: equivalent to how many feet per hour?
+78.0,120.1,130.1: (Use the approximation
+348.0,123.5,133.5: What is the value of the expression above,
+78.0,138.1,148.1: 1 foot = 0.3 meter.)
+348.0,141.5,151.5: written as an improper fraction?
+78.0,163.1,173.1: A. 10,800
+78.0,179.1,190.4: B. 12,000 _24
+348.0,184.1,194.1: E.
+78.0,192.7,205.1: C. 36,000 11
+78.0,211.1,221.1: D. 120,000
+366.0,217.3,228.4: _224
+348.0,222.1,232.1: F.
+367.0,230.8,240.8: 101
+366.0,255.3,266.4: _111
+348.0,260.1,270.1: G.
+370.2,268.8,278.8: 50
+366.0,293.2,304.4: _20
+348.0,298.1,308.1: H.
+370.2,306.8,316.8: 9
+48.0,731.2,743.3: FORM B 57 CONTINUE TO THE NEXT PAGE
+=== PAGE 58 ===
+46.5,83.6,93.6: 113.
+316.5,89.6,99.6: 114. A box contains 14 red marbles, 10 black
+346.5,113.6,123.6: marbles, and 16 white marbles. How
+122.3,117.0,132.7: y s t
+346.5,137.6,147.6: many more white marbles need to be
+115.0,149.1,160.9: 5 P (3, 5)
+346.5,161.6,171.6: added to the box so that the probability of
+115.0,167.1,176.1: 4
+531.1,180.7,191.9: _3
+115.0,185.1,195.6: 3 randomly drawing a white marble is ?
+532.1,194.2,204.2: 5
+115.0,203.1,212.1: 2
+346.5,210.6,220.6: E. 8
+115.0,221.1,230.1: 1
+346.5,226.6,236.6: F. 10
+238.8,238.0,248.0: x
+112.7,242.6,257.0: O 1 2 3 G. 14
+346.5,258.6,268.6: H. 20
+76.5,309.0,319.0: Lines s and t intersect at point P (3, 5).
+76.5,327.0,337.0: What is the area, in square units, of the
+76.5,345.0,355.0: shaded region in the graph above?
+76.5,370.0,380.0: A. 2
+76.5,386.0,396.0: B. 3
+76.5,402.0,412.0: C. 4
+76.5,418.0,428.0: D. 7
+348.0,657.5,667.5: THIS IS THE END OF THE TEST.
+348.0,670.0,680.0: IF TIME REMAINS, YOU SHOULD CHECK
+348.0,682.5,692.5: YOUR ANSWERS. BE SURE THAT THERE
+348.0,695.0,705.0: ARE NO STRAY MARKS, PARTIALLY
+348.0,707.5,717.5: FILLED ANSWER CIRCLES, OR
+348.0,720.0,730.0: INCOMPLETE ERASURES ON YOUR
+348.0,730.9,742.5: ANSWER SHEET. ■

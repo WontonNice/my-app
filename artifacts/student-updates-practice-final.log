@@ -1,0 +1,251 @@
+
+> nathantutors@0.0.0 test:practice-studio
+> node --test tools/math-subcategory-migration.test.cjs server/tests/generator-template.test.cjs server/tests/math-classification-skills.test.cjs tools/practice-organization.test.cjs server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/symbolic-fraction-division.test.cjs tools/student-practice-updates.test.cjs tools/probability-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs
+
+✔ every variant has the independently computed answer and explanation, with a complete deterministic cycle (13.9204ms)
+✔ constraints guard division before derived values and exact fractions work for short response (1.7884ms)
+✔ invalid domains, code, unknown fields, placeholders, and inconsistent stems are rejected (2.1456ms)
+✔ numeric-equivalent choices and undefined fractions cannot pass validation (0.6365ms)
+✖ import adds source-linked drafts without changing existing resources; sessions retain their version (4.1622ms)
+✖ custom names survive classification reconciliation and topic group normalization (1.3906ms)
+✖ adding a Foundation child preserves the group’s existing practice selection (1.0173ms)
+✔ creation prompt retains the full source and destination without asking for executable code (0.4331ms)
+✔ local Content Studio shares durable saves, rejects stale revisions and validates before writes (15.6938ms)
+✔ the shared Skilled registry starts empty and existing questions are TBD without inferred assignments (34.4398ms)
+✔ question classifications can change without renaming teacher-assigned module skills (70.3717ms)
+✔ delete resets native and metadata assignments to TBD and cannot silently reattach a reused ID (56.7319ms)
+✔ scopes, reserved names, duplicates, malformed definitions, and stale saves are rejected (29.1325ms)
+✔ subcategory renames move Skilled definitions while preserving their IDs and question assignments (35.2741ms)
+✔ Q70 is published under Inequalities, snapshots its generator, and registers safely in saved catalogs (25.0996ms)
+✔ moving a module makes it a Foundation child and settings exclude its generators from a session (1.9311ms)
+✔ deleting either built-in generator cleans references and preserves sessions already running (2.4918ms)
+✔ General Practice includes all enabled generators in its own topic and snapshots student choices (2.1682ms)
+✔ teachers can add a two-step generator, mix it into Foundation Building, and preserve order and placement (1.9185ms)
+✔ generated one-step and two-step keys solve the displayed inequality, including negative coefficients and inclusive endpoints (45.643ms)
+✔ invalid generators and empty published modules cannot be saved (3.7968ms)
+✔ YouTube references accept video links only and normalize safe hosts (1.4779ms)
+✔ optional video details persist and reject invalid durations, counts and dates (7.4258ms)
+✔ catalog permissions, durable saves, conflicts and student publication filtering (109.3546ms)
+✔ renaming a subcategory keeps studio GET, saves, student reads and generated tags consistent (12.147ms)
+✔ unmapped stale taxonomy returns a repairable conflict instead of an unexpected server error (2.6372ms)
+✔ deleting individual modules keeps generators, other resources and running snapshots (3.9016ms)
+✔ Overlapping Groups is one module using both generators and legacy split modules merge without losing settings (1.574ms)
+✔ all 1,056 stems are distinct, calculator-free, and have exactly one equivalent answer (22.668ms)
+✔ a seed reproduces a question, cycles are explicit, and invalid indices fail (1.3934ms)
+✔ Q70 generates distinct variables-on-both-sides stems with exactly one correct answer throughout its cycle (1002.2039ms)
+✔ Q70 seeds reproduce questions, repeat only after a complete cycle, and reject invalid indices (0.3875ms)
+✔ teacher login returns to its same-origin destination and rejects external redirects (0.6617ms)
+✔ teacher launcher preserves a local or configured origin and fixes the destination path (3.2299ms)
+✔ teacher previews snapshot unsaved and disabled generators without changing their catalog (5.7962ms)
+✔ modules expose enabled registered types, foundation stays easy, and targeted practice stays focused (9.2886ms)
+✔ session metrics distinguish answering, feedback, unfinished questions and longest streak (0.8589ms)
+✔ module generator selection is snapshotted for a running session (0.2675ms)
+✔ session storage preserves typed and structured responses for future generators (0.3432ms)
+✖ Math Study Hall follows the managed hierarchy and reserves topic resource sections (577.6578ms)
+✔ student practice lists show parent modules while nested modules remain part of their generation set (534.0646ms)
+✔ YouTube references render in-site play buttons with thumbnails and optional metadata (313.2952ms)
+✔ subcategory migration retains practice IDs, content, selections and Foundation placement (28.3775ms)
+✔ existing skills are only rehomed, retaining IDs, labels, prerequisites and question assignments (1.5862ms)
+✔ consolidation merges default parents and preserves focused practice and skill assignments (4.4837ms)
+✔ every overlapping-groups variant has a valid population, distinct stem and exactly one correct choice (1718.2446ms)
+✔ overlapping-group sequences are deterministic, cycle explicitly and validate indices (0.5636ms)
+✖ Overlapping Groups is a statistics topic and catalog registration preserves existing resources (260.9108ms)
+✔ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (11.9794ms)
+✔ customized broad modules, hidden state, disabled generators, and reviewed metadata survive migration (1.6021ms)
+✔ registration restores a generator to its skill even when migration reused legacy module IDs (18.9397ms)
+✔ metadata is validated and survives saves and session snapshots without changing the generated questions (2.3788ms)
+✔ search, facets, focused usage, and bulk changes work across a 1000-generator library (15.3696ms)
+✔ bulk disabling the last generators hides empty focused modules and remains saveable (1.4708ms)
+✔ generation set filters combine inclusion, category, subcategory, and search without changing selections (1.6685ms)
+✔ included-only respects automatic groups, inherited selections, hidden children, and disabled generators (1.2868ms)
+✔ module preview snapshots the complete effective draft mix and allows unpublished modules without publishing edits (2.7982ms)
+✔ Skill is the module name; legacy classifications never replace it on reads or saves (3.4138ms)
+✔ library Skill filtering uses module membership, including hidden modules and disabled generators (1.2753ms)
+✔ choosing a shared skill binds its name while keeping module IDs, generators, placement and running sessions (2.2235ms)
+✔ answer feedback distinguishes correct/incorrect results and retains best streak after a miss (1193.1425ms)
+✔ checked choices identify the correct answer and a wrong selection without coloring an unanswered question (28.8816ms)
+✔ generator preview renders the existing exam toolbar, question, drawing tool and streak statistics (25.828ms)
+✔ mini preview retains the exam controls in a bounded nonmodal region (13.8125ms)
+✔ Probability: Number-cube Sum Counts: every stem is valid, unique, and includes its source example (15.8708ms)
+✔ Probability: Ratio Counts After Removal: every stem is valid, unique, and includes its source example (42.5846ms)
+✔ Probability: Ordered Draws Without Replacement: every stem is valid, unique, and includes its source example (31.1556ms)
+✔ Probability: Both Not Blue: every stem is valid, unique, and includes its source example (6.4932ms)
+✔ Probability: Repeated Draws With Replacement: every stem is valid, unique, and includes its source example (18.7578ms)
+✔ Probability: Spinner Products: every stem is valid, unique, and includes its source example (6.4637ms)
+✔ Probability: Unordered Sample Spaces: every stem is valid, unique, and includes its source example (54.0072ms)
+✔ Probability: One Specific Conditional Outcome: every stem is valid, unique, and includes its source example (112.6ms)
+✔ all eight probability sequences reproduce, complete explicit cycles and validate safe indices (3.8782ms)
+✖ Probability uses five focused Foundation Building children with eight generators, preserving other topics and snapshots (31.2805ms)
+✔ ten correct per generator unlocks independently, wrong answers reset only that type, checking twice is inert (8.285ms)
+✔ unlock persists after a later miss; unfinished current questions cannot be hidden (0.527ms)
+✔ saved sessions survive reopening with answers, streaks and snapshots; accounts and modules are isolated (1.9043ms)
+✔ passage scores retain zero, ignore invalid/missing scores, and choose latest scored evidence (2.5447ms)
+✔ editor links resolve exact stable question IDs, prefer assessment context, and do not guess missing questions (0.3476ms)
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (1815.4498ms)
+✔ all 48 stems: independent symbolic key, four distinct traps, explanations, and grading (70.3378ms)
+✔ source example, all seed offsets, repeat cycle, determinism, and safe indices (170.8182ms)
+✔ exact existing module registration preserves all resources and stays disabled and unreviewed (18.6549ms)
+✔ draft previews and saved sessions retain definitions and the existing grading contract (4.4801ms)
+✔ every topic receives exactly one Foundation Building and General Practice, including empty topics (10.8155ms)
+✔ migration retains legacy IDs, nested modules, curated selections, hidden state and resources (2.672ms)
+✔ General Practice automatically follows enabled generators only in its own topic (2.4621ms)
+✔ each foundation accepts only its own topic modules and empty defaults remain available (4.1688ms)
+✔ studio grouping and filters remain usable with hundreds of resources (8.2463ms)
+✔ individual modules default to their own General Practice and keep explicit Foundation placement (7.154ms)
+✔ General Practice settings honor selected and unpublished nested modules (5.8889ms)
+✔ all survey total stems subtract overlap once and include neither, including zero-size cells (2629.1102ms)
+✔ every remaining-reading stem asks for additional time and has one exact hours answer (244.5453ms)
+✔ every mixture stem uses all ratio parts and all projects with one correct choice (1387.7862ms)
+✔ new word-problem sequences reproduce, cycle explicitly, and reject invalid indices (0.8677ms)
+✖ batch registration preserves teacher resources and snapshots all three generators in their own topics (20.4631ms)
+✔ Writing Inequalities visits every stem and includes the original Form D item 26 (1252.5678ms)
+✔ typed budgets accept both orientations, term orders and notation, and reject modelling errors (432.1351ms)
+✔ Writing Inequalities sequences are reproducible, cycle explicitly, and validate indices (1.2507ms)
+✔ Writing Inequalities registers in saved catalogs without changing nesting or existing resources (224.6683ms)
+ℹ tests 100
+ℹ suites 0
+ℹ pass 92
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5510.8255
+
+✖ failing tests:
+
+test at server\tests\generator-template.test.cjs:55:1
+✖ import adds source-linked drafts without changing existing resources; sessions retain their version (4.1622ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:173:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:239:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:56:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\generator-template.test.cjs:66:1
+✖ custom names survive classification reconciliation and topic group normalization (1.3906ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:173:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:239:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:67:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\generator-template.test.cjs:73:1
+✖ adding a Foundation child preserves the group’s existing practice selection (1.0173ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:173:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:239:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:74:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\math-study-hall.test.cjs:8:1
+✖ Math Study Hall follows the managed hierarchy and reserves topic resource sections (577.6578ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /No practice modules yet/. Input:
+  
+  '<section class="math-study-hall" aria-labelledby="math-study-title"><nav class="math-study-breadcrumbs" aria-label="Math topic navigation"><a href="/study-hall/shsat/materials?subject=math&amp;preview=student&amp;teacherTools=1">Math categories</a><span aria-hidden="true">/</span><a href="/study-hall/shsat/materials?subject=math&amp;category=Algebra&amp;preview=student&amp;teacherTools=1">Algebra</a><span aria-hidden="true">/</span><span aria-current="page">Algebraic Expressions</span></nav><header class="study-hall-section-heading"><div><p>Algebra</p><h2 id="math-study-title">Algebraic Expressions</h2><span>Worksheets and practice for this topic, together in one place.</span></div></header><div class="math-study-resources"><section aria-labelledby="math-worksheets-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg><div><h3 id="math-worksheets-title">Worksheets</h3><p>Work through a focused set at your own pace.</p></div></header><div class="math-study-resource-empty"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg><strong>No worksheets yet</strong><p>Worksheets from your teacher will appear here.</p></div></section><section aria-labelledby="math-infinite-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-infinity" aria-hidden="true"><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8"></path></svg><div><h3 id="math-infinite-title">Infinite practice</h3><p>Keep practicing with fresh questions.</p></div></header><div class="math-study-modules practice-module-list" role="region" aria-label="Infinite practice modules" tabindex="0"><article class="practice-module-group"><div class="practice-module-heading"><div><h4>Foundation Building</h4><p>Build confidence with a focused selection of question types.</p><small>0 generators · No calculator</small></div><button disabled="" type="button" aria-label="Start or resume Foundation Building">Start / resume <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button></div></article><article class="practice-module-group"><div class="practice-module-heading"><div><h4>General Practice</h4><p>Practice every available question type in this topic.</p><small>0 generators · No calculator</small></div><button disabled="" type="button" aria-label="Start or resume General Practice">Start / resume <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button></div></article></div></section><section aria-labelledby="math-videos-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg><div><h3 id="math-videos-title">YouTube videos</h3><p>Educational references for this topic.</p></div></header><div class="math-study-resource-empty"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg><strong>No videos yet</strong><p>Video references selected by your teacher will appear here.</p></div></section></div></section>'
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\math-study-hall.test.cjs:41:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<section class="math-study-hall" aria-labelledby="math-study-title"><nav class="math-study-breadcrumbs" aria-label="Math topic navigation"><a href="/study-hall/shsat/materials?subject=math&amp;preview=student&amp;teacherTools=1">Math categories</a><span aria-hidden="true">/</span><a href="/study-hall/shsat/materials?subject=math&amp;category=Algebra&amp;preview=student&amp;teacherTools=1">Algebra</a><span aria-hidden="true">/</span><span aria-current="page">Algebraic Expressions</span></nav><header class="study-hall-section-heading"><div><p>Algebra</p><h2 id="math-study-title">Algebraic Expressions</h2><span>Worksheets and practice for this topic, together in one place.</span></div></header><div class="math-study-resources"><section aria-labelledby="math-worksheets-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg><div><h3 id="math-worksheets-title">Worksheets</h3><p>Work through a focused set at your own pace.</p></div></header><div class="math-study-resource-empty"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg><strong>No worksheets yet</strong><p>Worksheets from your teacher will appear here.</p></div></section><section aria-labelledby="math-infinite-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-infinity" aria-hidden="true"><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8"></path></svg><div><h3 id="math-infinite-title">Infinite practice</h3><p>Keep practicing with fresh questions.</p></div></header><div class="math-study-modules practice-module-list" role="region" aria-label="Infinite practice modules" tabindex="0"><article class="practice-module-group"><div class="practice-module-heading"><div><h4>Foundation Building</h4><p>Build confidence with a focused selection of question types.</p><small>0 generators · No calculator</small></div><button disabled="" type="button" aria-label="Start or resume Foundation Building">Start / resume <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button></div></article><article class="practice-module-group"><div class="practice-module-heading"><div><h4>General Practice</h4><p>Practice every available question type in this topic.</p><small>0 generators · No calculator</small></div><button disabled="" type="button" aria-label="Start or resume General Practice">Start / resume <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button></div></article></div></section><section aria-labelledby="math-videos-title" class="math-study-resource-section"><header><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg><div><h3 id="math-videos-title">YouTube videos</h3><p>Educational references for this topic.</p></div></header><div class="math-study-resource-empty"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg><strong>No videos yet</strong><p>Video references selected by your teacher will appear here.</p></div></section></div></section>',
+    expected: /No practice modules yet/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tools\overlapping-groups.test.cjs:40:1
+✖ Overlapping Groups is a statistics topic and catalog registration preserves existing resources (260.9108ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(taxonomy.categories.find(c=>c.label==='Statistics and Probability').topics.includes('Overlapping Groups'))
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\overlapping-groups.test.cjs:45:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\probability-practice.test.cjs:88:1
+✖ Probability uses five focused Foundation Building children with eight generators, preserving other topics and snapshots (31.2805ms)
+  Error: A module contains duplicate or unavailable generators.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:173:57)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:222
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:43)
+      at addBuiltinPractice (C:\Users\Nathan Im\Desktop\my-app-main\tools\register-practice-generator.cjs:33:3)
+      at Array.reduce (<anonymous>)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\probability-practice.test.cjs:95:85)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18) {
+    status: 400
+  }
+
+test at tools\study-hall-view.test.cjs:6:1
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (1815.4498ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Start Foundation Building/. Input:
+  
+  '<main class="student-portal-shell "><header class="student-portal-topbar"><button aria-label="Open navigation" class="student-portal-mobile-menu" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button><a href="/study-hall/shsat" class="student-portal-brand"><strong>The Learning Room</strong><small>Student portal</small></a><form class="student-portal-global-search"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><label class="sr-only" for="student-portal-search">Search assignments and Study Hall</label><input id="student-portal-search" placeholder="Search assignments and Study Hall" type="search" value=""/></form><div class="student-portal-profile-menu"><button aria-expanded="false" aria-haspopup="menu" aria-label="Account menu for QA Student" class="student-portal-profile-trigger" type="button"><span>QS</span><strong>QA Student</strong><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div></header><aside class="student-portal-sidebar "><button aria-label="Close navigation" class="student-portal-mobile-close" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button><div class="student-portal-course-context"><small>Current course</small><strong>SHSAT Prep</strong><span>Fall intensive</span></div><nav aria-label="Student portal navigation"><a href="/study-hall/shsat" class="is-active"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span>Home</span></a><a href="/study-hall/shsat/assignments"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span>Assignments</span><em>3</em></a><a href="/study-hall/shsat/boards"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg><span>Boards</span></a><a href="/study-hall/shsat#coming-up"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days" aria-hidden="true"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg><span>Calendar</span></a><button aria-expanded="false" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2"></path><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path></svg><span>Study Hall</span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><a href="/study-hall/shsat/answer-sheets"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span>Answer sheets</span></a><a href="/study-hall/shsat/assessments"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-library" aria-hidden="true"><path d="m16 6 4 14"></path><path d="M12 6v14"></path><path d="M8 8v12"></path><path d="M4 4v16"></path></svg><span>Assessments</span></a><a href="/study-hall/shsat/results"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg><span>Results</span></a><a href="/study-hall/shsat/games"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad2 lucide-gamepad-2" aria-hidden="true"><line x1="6" x2="10" y1="11" y2="11"></line><line x1="8" x2="8" y1="9" y2="13"></line><line x1="15" x2="15.01" y1="12" y2="12"></line><line x1="18" x2="18.01" y1="10" y2="10"></line><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"></path></svg><span>Game rooms</span></a><a href="/study-hall/shsat/achievements"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy" aria-hidden="true"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"></path><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"></path><path d="M18 9h1.5a1 1 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"></path><path d="M6 9H4.5a1 1 0 0 1 0-5H6"></path></svg><span>Achievements</span></a></nav><div class="student-portal-personal-links"><small>Quick access</small><a href="/study-hall/shsat/materials#recent"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock3 lucide-clock-3" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6h4"></path></svg><span>Recently viewed</span></a><a href="/study-hall/shsat/materials#saved"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2"></path><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path></svg><span>Saved items</span></a></div><button class="student-portal-collapse" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left-close" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path><path d="m16 15-3-3 3-3"></path></svg><span>Collapse navigation</span></button></aside><section class="student-portal-main"><div class="student-course-home"><header class="student-course-heading"><div><h1>Make today count.</h1><span>Welcome back, QA. Pick up your assignments, then explore something new.</span></div><a href="/study-hall/shsat/assignments">All assignments <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></header><'... 11678 more characters
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\study-hall-view.test.cjs:14:60)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<main class="student-portal-shell "><header class="student-portal-topbar"><button aria-label="Open navigation" class="student-portal-mobile-menu" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button><a href="/study-hall/shsat" class="student-portal-brand"><strong>The Learning Room</strong><small>Student portal</small></a><form class="student-portal-global-search"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><label class="sr-only" for="student-portal-search">Search assignments and Study Hall</label><input id="student-portal-search" placeholder="Search assignments and Study Hall" type="search" value=""/></form><div class="student-portal-profile-menu"><button aria-expanded="false" aria-haspopup="menu" aria-label="Account menu for QA Student" class="student-portal-profile-trigger" type="button"><span>QS</span><strong>QA Student</strong><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div></header><aside class="student-portal-sidebar "><button aria-label="Close navigation" class="student-portal-mobile-close" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button><div class="student-portal-course-context"><small>Current course</small><strong>SHSAT Prep</strong><span>Fall intensive</span></div><nav aria-label="Student portal navigation"><a href="/study-hall/shsat" class="is-active"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span>Home</span></a><a href="/study-hall/shsat/assignments"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span>Assignments</span><em>3</em></a><a href="/study-hall/shsat/boards"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg><span>Boards</span></a><a href="/study-hall/shsat#coming-up"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days" aria-hidden="true"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg><span>Calendar</span></a><button aria-expanded="false" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2"></path><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path></svg><span>Study Hall</span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><a href="/study-hall/shsat/answer-sheets"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span>Answer sheets</span></a><a href="/study-hall/shsat/assessments"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-library" aria-hidden="true"><path d="m16 6 4 14"></path><path d="M12 6v14"></path><path d="M8 8v12"></path><path d="M4 4v16"></path></svg><span>Assessments</span></a><a href="/study-hall/shsat/results"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg><span>Results</span></a><a href="/study-hall/shsat/games"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad2 lucide-gamepad-2" aria-hidden="true"><line x1="6" x2="10" y1="11" y2="11"></line><line x1="8" x2="8" y1="9" y2="13"></line><line x1="15" x2="15.01" y1="12" y2="12"></line><line x1="18" x2="18.01" y1="10" y2="10"></line><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"></path></svg><span>Game rooms</span></a><a href="/study-hall/shsat/achievements"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy" aria-hidden="true"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"></path><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"></path><path d="M18 9h1.5a1 1 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"></path><path d="M6 9H4.5a1 1 0 0 1 0-5H6"></path></svg><span>Achievements</span></a></nav><div class="student-portal-personal-links"><small>Quick access</small><a href="/study-hall/shsat/materials#recent"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock3 lucide-clock-3" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6h4"></path></svg><span>Recently viewed</span></a><a href="/study-hall/shsat/materials#saved"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked" aria-hidden="true"><path d="M10 2v8l3-3 3 3V2"></path><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path></svg><span>Saved items</span></a></div><button class="student-portal-collapse" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left-close" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path><path d="m16 15-3-3 3-3"></path></svg><span>Collapse navigation</span></button></aside><section class="student-portal-main"><div class="student-course-home"><header class="student-course-heading"><div><h1>Make today count.</h1><span>Welcome back, QA. Pick up your assignments, then explore something new.</span></div><a href="/study-hall/shsat/assignments">All assignments <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></header><'... 11678 more characters,
+    expected: /Start Foundation Building/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tools\word-problem-practice.test.cjs:59:1
+✖ batch registration preserves teacher resources and snapshots all three generators in their own topics (20.4631ms)
+  Error: Individual modules can only be contained in Foundation Building or General Practice in the same topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:173:57)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:255:97)
+      at addBuiltinPractice (C:\Users\Nathan Im\Desktop\my-app-main\tools\register-practice-generator.cjs:33:3)
+      at Array.reduce (<anonymous>)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:65:60)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12) {
+    status: 400
+  }

@@ -82,7 +82,7 @@ export function PracticeSkillPicker({ module, request, onChoose, onSkillsChanged
     <button ref={trigger} className="ps-skill-trigger" type="button" aria-labelledby={`${panelId}-label ${panelId}-value`} aria-expanded={open} aria-controls={panelId} disabled={busy} onClick={() => setOpen(!open)}>
       <span id={`${panelId}-value`}>{selected?.label ?? 'Choose a skill'}<small>{selected ? `${selected.category} / ${selected.subcategory}` : 'Search your shared skills or create one'}</small></span><ChevronDown size={18} aria-hidden="true" />
     </button>
-    {!selected && snapshot && <p className="ps-note">This module keeps its current name, “{module.title}”, until you assign a saved skill.</p>}
+    {!selected && snapshot && <p className="ps-note">Choose a classification for this module. Edit its display name in Module name.</p>}
     {error && <p className="ps-message is-error" role="alert">{error}<button type="button" disabled={busy} onClick={() => void reload()}>Reload skills</button></p>}
     {notice && <p className="ps-note" role="status">{notice}</p>}
     {open && <div className="ps-skill-panel" id={panelId}>
@@ -99,7 +99,7 @@ export function PracticeSkillPicker({ module, request, onChoose, onSkillsChanged
         <p className="ps-note" role="status">{matches.length ? `${matches.length} skill${matches.length === 1 ? '' : 's'} found` : 'No skills match. Clear the filters or create a skill.'}</p>
         {candidate && <p className="ps-note">Selected: {candidate.label} · {candidate.category} / {candidate.subcategory}</p>}
         <div className="ps-skill-actions">
-          <button className="ps-primary" type="button" disabled={!candidate || Boolean(hasGenerators && differentScope)} onClick={() => { if (candidate) { onChoose(candidate); setOpen(false); trigger.current?.focus(); setNotice('Skill selected. Save changes to apply the module name and category.'); } }}>Use selected skill</button>
+          <button className="ps-primary" type="button" disabled={!candidate || Boolean(hasGenerators && differentScope)} onClick={() => { if (candidate) { onChoose(candidate); setOpen(false); trigger.current?.focus(); setNotice('Skill selected. Save changes to apply the classification.'); } }}>Use selected skill</button>
           <button type="button" onClick={() => { setCreating(!creating); setDeleting(null); setNewCategory(hasGenerators ? module.category : category || module.category); setNewTopic(hasGenerators ? module.topic : topic || (category && category !== module.category ? snapshot.categories.find(item => item.label === category)?.topics[0] ?? '' : module.topic)); }}><Plus size={15}/>Create skill</button>
           <button className="ps-delete" type="button" disabled={!candidate} onClick={() => setDeleting(candidate!.id)}><Trash2 size={15}/>Delete selected skill</button>
           {(category || topic || search) && <button type="button" onClick={() => { setCategory(''); setTopic(''); setSearch(''); setDeleting(null); }}>Clear skill filters</button>}

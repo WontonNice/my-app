@@ -53,19 +53,20 @@ async function selectionContext(data:Awaited<ReturnType<typeof loadMathStudent>>
   const snapshot=mathCatalogSnapshot(undefined,needsPerformance?(await mathPerformance()).metrics:undefined),eligible=new Set<string>();
   const personalCatalog=teacherCatalog(snapshot.catalog,mathCommandRoot,actor);
   let page=queryMathCommandCatalog(personalCatalog,{...filters,page:1,pageSize:100});
-  for(;;){page.items.filter(row=>row.ready).forEach(row=>eligible.add(row.id));if(page.page>=page.pages)break;page=queryMathCommandCatalog(personalCatalog,{...filters,page:page.page+1,pageSize:100});}
+  const excluded: Record<string, number> = {};
+  for(;;){for(const row of page.items.filter(row=>!row.ready))for(const issue of row.issues)excluded[issue]=(excluded[issue]||0)+1;page.items.filter(row=>row.ready).forEach(row=>eligible.add(row.id));if(page.page>=page.pages)break;page=queryMathCommandCatalog(personalCatalog,{...filters,page:page.page+1,pageSize:100});}
   const seen=new Set(data.evidence.map(row=>row.questionId)),assigned=new Set(Object.entries(data.questionStates).filter(([,value])=>value.assigned||value.planned||value.completed).map(([id])=>id));
   for(const group of snapshot.catalog.duplicates.filter(group=>group.kind==="exact")){
     if(group.questionIds.some(id=>seen.has(id)))group.questionIds.forEach(id=>seen.add(id));
     if(group.questionIds.some(id=>assigned.has(id)))group.questionIds.forEach(id=>assigned.add(id));
   }
-  return {pool:data.catalog.filter(row=>eligible.has(row.id)),seen,assigned};
+  return {pool:data.catalog.filter(row=>eligible.has(row.id)),seen,assigned,excluded};
 }
 mathCommandRouter.post("/students/:studentId/assignment-preview",async(request,response)=>{
   const student=await mathCommandStudent(request.params.studentId),data=await loadMathStudent(student),rules=request.body as MathAssignmentRules;
-  const {pool,seen,assigned}=await selectionContext(data,rules,response.locals.user.id),selection=selectMathAssignment(pool,seen,assigned,rules);
+  const {pool,seen,assigned,excluded}=await selectionContext(data,rules,response.locals.user.id),selection=selectMathAssignment(pool,seen,assigned,rules);
   const previewToken=randomUUID(),expiresAt=new Date(Date.now()+15*60000).toISOString();
-  const preview:MathAssignmentPreview={previewToken,studentId:student.id,questionIds:selection.selected.map(row=>row.id),questions:selection.selected.map(row=>({id:row.id,prompt:row.question.prompt,category:row.question.topic,subcategory:row.question.subtopic||"",diagnosticSkill:row.metadata?.diagnosticSkill||"",difficulty:row.metadata?.difficulty??null,previouslySeen:seen.has(row.id)||assigned.has(row.id),source:row.sources.map(source=>source.title).join("; ")})),requested:selection.requested,selected:selection.selected.length,shortfall:selection.shortfall,warnings:selection.warnings,rules,expiresAt};
+  const preview:MathAssignmentPreview={previewToken,studentId:student.id,questionIds:selection.selected.map(row=>row.id),questions:selection.selected.map(row=>({id:row.id,prompt:row.question.prompt,category:row.question.topic,subcategory:row.question.subtopic||"",diagnosticSkill:row.metadata?.diagnosticSkill||"",difficulty:row.metadata?.difficulty??null,previouslySeen:seen.has(row.id)||assigned.has(row.id),source:row.sources.map(source=>source.title).join("; ")})),requested:selection.requested,selected:selection.selected.length,shortfall:selection.shortfall,warnings:[...selection.warnings,...(Object.keys(excluded).length ? [`Source readiness exclusions (a question can have several): ${Object.entries(excluded).map(([issue,count])=>`${count} ${issue.replaceAll("_", " ")}`).join("; ")}. Review these questions in the bank, or choose an infinite module.`] : [])],rules,expiresAt};
   for(const [id,record]of previews)if(Date.parse(record.preview.expiresAt)<Date.now())previews.delete(id);
   if(previews.size>=1000)previews.delete(previews.keys().next().value!);
   previews.set(previewToken,{actorId:response.locals.user.id,preview,signature:hash(selection.selected)});response.json(preview);

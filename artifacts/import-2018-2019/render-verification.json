@@ -1,0 +1,2063 @@
+{
+  "math": [
+    {
+      "form": "a",
+      "n": 58,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 59,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 60,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 61,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 62,
+      "errors": 0,
+      "formulas": 3,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 63,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 64,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 65,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 66,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 67,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 68,
+      "errors": 0,
+      "formulas": 17,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 69,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 70,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 71,
+      "errors": 0,
+      "formulas": 1,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 72,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 73,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 74,
+      "errors": 0,
+      "formulas": 15,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 75,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 76,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 77,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 78,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 79,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 80,
+      "errors": 0,
+      "formulas": 11,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 81,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 82,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 83,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 84,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 85,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 86,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 87,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 88,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 89,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 90,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 91,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 92,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 93,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 94,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 95,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 96,
+      "errors": 0,
+      "formulas": 16,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 97,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 98,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 99,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 100,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 101,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 102,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 103,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 104,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 105,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 106,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 107,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 108,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 109,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 110,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 111,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 112,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 113,
+      "errors": 0,
+      "formulas": 23,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "a",
+      "n": 114,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 58,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 59,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 60,
+      "errors": 0,
+      "formulas": 1,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 61,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 62,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 63,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 64,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 65,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 66,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 67,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 68,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 69,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 70,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 71,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 72,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 73,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 74,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 75,
+      "errors": 0,
+      "formulas": 12,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 76,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 77,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 78,
+      "errors": 0,
+      "formulas": 12,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 79,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 80,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 81,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 82,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 83,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 84,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 85,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 86,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 87,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 88,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 89,
+      "errors": 0,
+      "formulas": 13,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 90,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 91,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 92,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 93,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 94,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 95,
+      "errors": 0,
+      "formulas": 15,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 96,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 97,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 98,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 99,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 100,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 101,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 102,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 103,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 104,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 105,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 106,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 107,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 108,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 109,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 110,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 111,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 112,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 113,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "b",
+      "n": 114,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    }
+  ],
+  "passages": [
+    {
+      "form": "a",
+      "title": "Moving through Mountains",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Moving through Mountains\n\n(1) (1) An age-old proverb says that necessity is the mother of invention. (2) (2) Centuries of human ingenuity in the face of obstacles prove this to be true. (3) (3) For many years the Swiss Alps, a mountain range spanning southern Switzerland and northern Italy, were such an obstacle. (4) (4) Roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, making the transportation of people and goods difficult and time consuming. (5) (5) In 2016 these burdens were eased with the completion of the Gotthard Base Tunnel.\n\n(6) (6) Construction of the high-speed railway tunnel began in 1996. (7) (7) The tunnel was created through the use of tunnel-boring machines, which are giant drills with a flat rotating head called a cutter head. (8) (8) Each of the tunnel-boring machines used during the construction of the tunnel was about the length of four football fields arranged end-to-end. (9) (9) During the seventeen-year construction period, 28 million tons of rock were removed, enough to rebuild the Great Pyramid of Giza five times. (10) (10) This massive construction project is reported to have cost $12 billion. (11) (11) After that, 4 million cubic meters of concrete, or enough concrete to build eighty-four Empire State Buildings, were used to construct and support the tunnel.\n\n(12) (12) By 2020 the high-speed railway will carry more than 250 freight trains and 55 passenger trains a day, with most traveling at speeds of around 100 to 125 miles per hour. (13) (13) It will be faster for people to travel between northern and southern Europe. (14) (14) The travel time between the European cities of Zurich, Switzerland, and Milan, Italy, will be reduced by an hour. (15) (15) Many European leaders compare the Gotthard Base Tunnel to the Channel Tunnel, a 33-mile underwater tunnel that connects the United Kingdom and France. (16) (16) While there is no roadway in the Channel Tunnel, people can drive their cars onto special trains that will carry vehicles through to the other side.\n\n(17) (17) Just as traffic congestion in major cities led to the construction of underground local transportation, natural formations, such as mountain ranges, have also sent people underground for faster, easier, and cheaper methods of transportation across larger areas. (18) (18) There is renewed interest in constructing innovative methods of transportation that will help eliminate problems associated with traveling to and from certain areas."
+    },
+    {
+      "form": "a",
+      "title": "An Early Warning",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "An Early Warning\n\n1\nOne of the books that has done the most to alert the world to the dangers of environmental degradation is George Perkins Marsh’s Man and Nature. Its message—that Western society is in the process of causing irreparable harm to the environment—greatly influenced ecologists during the beginning of the modern environmentalist movement in the 1960s. Marsh was not, however, part of this movement. Surprisingly, Man and Nature was first published in 1864.\n\n2\nMarsh first observed the environmentally destructive effects of human activities while growing up in Vermont in the early nineteenth century. The heavy demand for firewood had depleted the forests, and extensive sheep grazing had stripped the land. The result was flooding and soil erosion. Furthermore, streams were fouled by wastes dumped from numerous mills and dye houses.\n\n3\nMuch later in his life, after careers in law, business, farming, and politics, Marsh served as ambassador to Italy. There he noticed land abuse similar to what he had seen in Vermont. Overgrazing and forest mismanagement had rendered areas that had been productive farmland since the days of the Roman Empire desolate. Marsh attributed this to what he called “man’s ignorant disregard for the laws of nature.”\n\n4\nIn Italy, Marsh began to organize his observations and theories. He wrote in a way intended to educate readers about the impact of industrial and agricultural practices on the environment. In Man and Nature, he evaluated the important relationships between animals and plants, discussed forestry practices in great detail, and analyzed the ways natural water supplies are affected by human use.\n\n5\nMan and Nature challenged the popular belief that nature can heal any damage that people inflict upon it. Marsh argued that people may use and enjoy, but not destroy, the riches of the earth.\n\n6\nFurthermore, he asserted that everything in nature is significant and that even the tiniest organism affects the fragile environmental balance. His belief that drastic alteration of this balance would be dangerous is now accepted as a fundamental principle of modern environmental science.\n\n7\nAlthough he pointed out environmental damage caused by irresponsible human activities, Marsh did not oppose every human alteration to the environment. To him, the goal was proper management, not a return to wilderness conditions. People should consider the consequences of their actions, he wrote, and become “co-worker[s] with nature.” Marsh praised the Suez Canal, the human-made waterway between the Mediterranean Sea and the Gulf of Aden, as “the greatest and most truly cosmopolite physical improvement ever undertaken by man.” He believed that the advantages of the canal— improved transportation and commerce—would outweigh any environmental damage. Yet he also warned of possible unintended consequences, such as destructive plants and animals spreading from one body of water to the other.\n\n8\nMarsh was considered a radical thinker during his lifetime. By the late nineteenth century, however, his writings, along with those of John Muir, Henry David Thoreau, and others, had inspired what became known as the conservation movement. The conservationists of that time sought to educate the public that wilderness areas were worth preserving and were responsible for creating the National Park Service and the National Forest Service."
+    },
+    {
+      "form": "a",
+      "title": "Champion of the Channel",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Champion of the Channel\n\n1\nIn 1926 an editor at the London Daily News predicted that Gertrude Ederle, an American swimmer with eighteen world records and three Olympic medals, would fail in her attempt to swim across the English Channel. He claimed that “even the most uncompromising champion of the rights and capacities of women must admit that in contests of physical skill, speed and endurance they must remain forever the weaker sex.” Yet, at only nineteen years old, Ederle not only became the first woman to accomplish this feat, she also broke the men’s record by two hours. Gertrude Ederle’s triumphant swim across the English Channel was a testimony to her determination, innovative spirit, and passion for swimming.\n\n2\nCrossing the English Channel is a daunting task for any swimmer. At its narrowest point, the channel measures twenty-one miles across. Its icy waters hover around sixty degrees Fahrenheit, and its unruly tides and currents toss swimmers about like bobbing corks. Stinging jellyfish, seaweed, and floating debris from shipwrecks and lost cargoes present added hazards.\n\n3\nFor decades the channel’s perils have defeated countless swimmers. Ederle, too, failed in her first attempt to cross the channel in 1925. Just six miles short of finishing, she became ill, and her coach had to haul her out of the water. Undeterred, Ederle decided to try again. Ederle knew that if she did not complete the challenge this time, she might never get the opportunity to set this record, because a rival female swimmer was preparing to make her second attempt at the crossing as well.\n\n4\nTo prepare for the marathon swim, Ederle found ways to improve her equipment. She and her sister Meg discovered that melted candle wax perfectly sealed goggle edges, effectively waterproofing Ederle’s goggles against hammering waves. The sisters also designed a two-piece silk swimsuit for Ederle. During her first channel-crossing attempt she had worn a standard one-piece swimsuit that, after the lengthy hours of swimming across the channel, had stretched out, filling with water and creating drag, making an already challenging task almost insurmountable. Unlike the cumbersome typical bathing suit, this silk invention weighed little and allowed for easy movement.\n\n5\nOn August 6, 1926, Ederle waded into the channel near Cape Gris-Nez, France. At first she shivered in the bone-chilling water even though she had covered her body in eight layers of grease for insulation. Her limbs felt stiff. Her strokes were irregular. Driving forward, she fought to clear her mind and find what she called her “sphere,” a place where the sea became her only companion and the shrieks of gulls and the humming of boat engines faded away. Using a new overhand stroke called the American crawl, Ederle eventually settled into a steady pace, briskly breaking through waves.\n\n6\nThroughout Ederle’s swim, two tugboats accompanied her. One carried newspaper reporters who wired dispatches of her progress to shore. The other, displaying a sign that read “This way, ole kid!” with an arrow pointing forward, transported her coach, family, and friends. Her coach played songs, such as “Yes, We Have No Bananas,” on a phonograph so that Ederle could time her strokes to the rhythm. Using a net, her coach also passed her baby bottles of broth for nourishment.\n\n7\nFor hours Ederle swam, dodging debris with an amused smile. However, as she neared the English shore, a sudden fierce storm erupted. The tides and waves forced Ederle backward, and she fought the stubborn swells for several hours. The salty water caused her tongue to swell and inflamed her ears. Yet Ederle felt indescribably happy as she churned through the sea. Finally, as she neared the English shore, the storm abated, and the tide turned. No longer fighting against her, the sea pushed her toward the shore and victory. After fourteen hours and thirty-one minutes, Ederle, on wobbly legs, stepped onto the English shore. The waiting crowd roared, honked their automobile horns, blasted their tugboat whistles, and set off flares that flashed in the sky. Ederle had swum into history.\n\n8\nWhen Ederle returned to New York, she received a parade, where thousands of people shouted “Trudy!” Not only were everyday American citizens proud of Ederle, but she also inspired them to be more active. Over the next few years, more than 60,000 people credited her with motivating them to earn their American Red Cross swimming certificates. Gertrude Ederle’s accomplishment proved to the world that with determination and passion, it was possible for a person to achieve his or her goals."
+    },
+    {
+      "form": "a",
+      "title": "Excerpt from A Tramp Abroad",
+      "poemLines": 0,
+      "glossary": 1,
+      "overflow": false,
+      "text": "Excerpt from A Tramp Abroad\n\nby Mark Twain\n\n1\nNow and then, while we rested, we watched the laborious ant at his work. I found nothing new in him—certainly nothing to change my opinion of him. It seems to me that in the matter of intellect the ant must be a strangely overrated bird. During many summers now I have watched him, when I ought to have been in better business, and I have not yet come across a living ant that seemed to have any more sense than a dead one. I refer to the ordinary ant, of course; I have had no experience of those wonderful Swiss and African ones which vote, keep drilled armies, . . . and dispute about religion. Those particular ants may be all that the naturalist paints them, but I am persuaded that the average ant is a sham.\n\n2\nI admit his industry, of course; he is the hardest working creature in the world—when anybody is looking—but his leather-headedness is the point I make against him. He goes out foraging, he makes capture, and then what does he do? Go home? No; he goes anywhere but home. He doesn’t know where home is. His home may be only three feet away; no matter, he can’t find it. He makes his capture, as I have said; it is generally something which can be of no sort of use to himself or anybody else; it is usually seven times bigger than it ought to be; he hunts out the awkwardest place to take hold of it; h lifts it bodily up in the air by main force, and starts—not toward home, but in the opposite direction; not calmly and wisely, but with a frantic haste which is wasteful of his strength; he fetches up against a pebble, and, instead of going around it, he climbs over it backwards, dragging his booty after him, tumbles down on the other side, jumps up in a passion, kicks the dust off his clothes, moistens his hands, grabs his property viciously, yanks it this way, then that, shoves it ahead of him a moment, turns tail and lugs it after him another moment, gets madder and madder, then presently hoists it int the air and goes tearing away in an entirely new direction; comes to a weed; it never occurs to him to go around it. No; he must climb it, and he does climb it, dragging his worthless property to the top— which is as bright a thing to do as it would be for me to carry a sack of flour from Heidelberg to Paris by way of Strasburg steeple; when he gets up there he finds that that is not the place; takes a cursory glance at the scenery, and either climbs down again or tumbles down, and starts off once more—as usual, in a new direction. At the end of half an hour he fetches up within six inches of the place he started from, and lays his burden down. Meantime, he has been over all the ground for two yards around, and climbed all the weeds and pebbles he came across. Now he wipes the sweat from his brow, strokes his limbs, and then marches aimlessly off, in as violent a hurry as ever. He traverses a good deal of zig-zag country, and by and by stumbles on his same booty again. He does not remember to have ever seen it before; he looks around to see which is not the way home, grabs his bundle, and starts. He goes through the same adventures he had before; finally stops to rest, and a friend comes along.\n\n3\nEvidently the friend remarks that a last year’s grasshopper leg is a very noble acquisition, and inquires where he got it. Evidently the proprietor does not remember exactly where he did get it, but thinks he got it “around here somewhere.” Evidently the friend contracts to help him freight it home. Then, with a judgment peculiarly antic (pun not intentional), they take hold of opposite ends of that grasshopper leg and begin to tug with all their might in opposite directions. Presently they take a rest and confer together. They decide that something is wrong, they can’t make out what. Then they go at i again, just as before. Same result. Mutual recriminations follow. Evidently each accuses the other of being an obstructionist. They warm up, and the dispute ends in a fight. They lock themselves together and chew each other’s jaws for a while; then they roll and tumble on the ground till one loses a horn or a leg and has to haul off for repairs. They make up and go to work again in the same old insane way, but the crippled ant is at a disadvantage; tug as he may, the other one drags off the booty and him at the end of it. Instead of giving up, he hangs on, and gets his shins bruised against every obstruction that comes in the way. By and by, when that grasshopper leg has been dragged all over the same old ground once more, it is finally dumped at about the spot where it originally lay. The two perspiring ants inspect it thoughtfully and decide that dried grasshopper legs are a poor sort of property after all, and then each starts off in a different direction to see if he can’t find an old nail or something else that is heavy enough to afford entertainment and at the same time valueless enough to make an ant want to own it. . . .\n\n4\nScience has recently discovered that the ant does not lay up anything for winter use. . . . He does not work, except when people are looking, and only then when the observer has a green, naturalistic look, and seems to be taking notes. This amounts to deception, and will injure him for the Sunday schools. He has not judgment enough to know what is good to eat from what isn’t. This amounts to ignorance, and will impair the world’s respect for him. . . . He cannot stroll around a stump and find his way home again. This amounts to idiocy, and once the damaging fact is established, thoughtful people will cease to look up to him. It is strange beyond comprehension that so manifest a humbug as the ant has been able to fool so many nations and keep it up so many ages without being found out.\n\nFrom A TRAMP ABROAD by Mark Twain—Public Domain"
+    },
+    {
+      "form": "a",
+      "title": "Ruins of a Fabled City",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Ruins of a Fabled City\n\n1\nThe African country of Zimbabwe took its name from the Shona word meaning “stone enclosures” or “venerated houses.” In fact, today dozens of stone ruins are scattered throughout Zimbabwe and other areas in southeastern Africa. One of these ruins, known as Great Zimbabwe, was once a fabled city that inspired tales that circulated throughout Europe. Where was this remarkable city, and who had built it? For centuries the mystery occupied the minds of explorers and treasure seekers.\n\n2\nThe first reports to Europeans of Great Zimbabwe were spread a thousand years ago by Arab traders sailing between the Middle East and the east coast of Africa. The traders told of the fabulous wealth of a mysterious stone city in the African interior. In the trader’s tales, that city became associated with the Europeans’ understanding of Middle Eastern history—the Queen of Sheba, King Solomon and his legendary gold mines, long since lost to the world. By the sixteenth century, Portuguese explorers regularly visited East Africa, searching for King Solomon’s gold, but they never found Great Zimbabwe. In 1552, a Portuguese historian, João de Barros, recorded a story told by Arabs about a city with a “square fortress of masonry within and without, built of stones of marvelous size, and there appears to be no mortar joining them.”\n\n3\nIn fact, Great Zimbabwe was a marvel. In one area a massive wall more than thirty feet high and twenty feet thick created a great enclosure. Another area contained a fortress-like series of walls, corridors, and steps built into the bluff that overlooks the ruins. Throughout the city, each stone was precisely fitted to the others without the use of mortar.\n\n4\nIn the 1870s Karl Mauch, a German geologist, was the first European to see Great Zimbabwe, by then in ruins. Mauch realized that he had “rediscovered” the fabled city from de Barros’s story. He jumped to the conclusion that Great Zimbabwe had been built by the Queen of Sheba. British authorities sent a British journalist, Richard Hall, to Great Zimbabwe to investigate Mauch’s report. Archaeology was still in its infancy, and Hall, convinced that the structures had been built by ancient people from the Middle East, dug up and discarded archaeological deposits that would have revealed much about the true history of Great Zimbabwe. Later European excavations destroyed even more valuable evidence.\n\n5\nIn the twentieth century, after excavating areas that had not been disturbed, David Randall-MacIver, a Scottish Egyptologist, and Gertrude Caton-Thompson, an English archaeologist, concluded that the ruins were unmistakably African in origin. Great Zimbabwe was most likely built during the fourteenth or fifteenth century by the ancestors of the present-day Shona people. Recent carbon-14 dating supports their conclusion. Great Zimbabwe was once home to an estimated 20,000 people, the center of a great Shona kingdom. Wealthy Shona kings traded their ivory and gold in coastal towns for other goods, thus accounting for the discovery of beads and other foreign wares in the ruins.\n\n6\nOne mystery of Great Zimbabwe had been solved. Another mystery remains: why was the settlement at Great Zimbabwe abandoned, leaving the magnificent stone architecture to fall into ruins?"
+    },
+    {
+      "form": "a",
+      "title": "Cross-Purposes",
+      "poemLines": 49,
+      "glossary": 1,
+      "overflow": false,
+      "text": "Cross-Purposes\n\nWhat I am is built: concrete and steel.\n\nI defy gravity. I am what every athlete\n\nwants: to remain at the apex of the leap,\n\nup in the air. And yet I am useful, too:\n\n5\ncars, trucks, people, even trains\n\nmake their way across my broad back.\n\nSwallows and ospreys nest in my trusses.\n\n                  What I am is motion. I am water, and I am older\n\n                  than anything else you know. No human\n\n10\n                  built me. I am gravity’s best friend; I pool\n\n                  and flow wherever gravity takes me.\n\n                  I am the blood flowing in the runner’s chest,\n\n                  and I catch everything: from the hills,\n\n                  the mountains. It all washes down through me.\n\n15\nWhat you are is an accident,\n\nwhat happens to rain when rain gives in\n\nto Earth’s gravitational pull.\n\nYou are some tears dribbling from a mountain’s\n\neye, running down the pavements\n\n20\nof small towns, into the cities, to the sea.\n\nYou are the path of least resistance.\n\n                  What I am is power. You, of course,\n\n                  have none: you are a static lump, an artifact\n\n                  slowly decaying. But my regal flow\n\n25\n                  nourishes grasses, permits empires to rise.\n\n                  Those who made you will break you,\n\n                  in time, replacing you with yet another\n\n                  clumsy structure. I have seen. I know.\n\n“Clumsy”? Being rebuilt makes me\n\n30\na friend of time, does it not? And it means\n\nthat I have siblings—those “clumsy” structures,\n\nmy sisters and brothers.\n\nWe stitch across the rip you make.\n\nWe are steel thread to the human needle.\n\n35\nWe bind you up. We sew you.\n\n                  And I sow into you; in every cranny\n\n                  of your superstructure my vapors cling.\n\n                  They bring out your softness, your rust.\n\n                  Boast your best, and boast better yet.\n\n40\n                  I am listening to the bright hum\n\n                  of the wind in your wires. Because I am,\n\n                  above all else, patient. I will wait for you."
+    },
+    {
+      "form": "a",
+      "title": "The Year without a Summer",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "The Year without a Summer\n\n1\nThe eruption of the Philippine volcano Mount Pinatubo in June 1991 sent a huge cloud of gas and du encircling the globe. The dust and ash from Mount Pinatubo was blamed for a two-year decrease in global temperature, changes in weather patterns, and damage to the ozone layer. The situation bring to mind a time now remembered as “The Year without a Summer,” a meteorological event that occurred 175 years earlier. At that time, harsh weather conditions plagued much of eastern North America and, to a lesser extent, northern Europe.\n\n2\nApril 1816 brought typical spring weather to upstate New York and New England; trees budded, and farmers prepared to plow and plant. In May, however, the expected warm temperatures failed to arrive. Most people remained optimistic, waiting for the summer that was “just around the corner.” They waited in vain. During the first week of June, ten inches of snow fell on New England. Throughout the month, temperatures rarely rose above the 30s. Many farmers replanted crops sever times, only to see them stunted or destroyed by sleet, hail, and icy winds. July and August brought little improvement. During most days the temperature stayed in the 40s. Farmers’ diaries document the farmers’ daily struggles with near-freezing temperatures, failing crops, and dying farm animals. The few crops that managed to survive were killed by frost in mid-September. Winter came early in New England and was unusually severe. Even the South was affected; on July 4, the high temperatur for Savannah, Georgia, was only 46 degrees Fahrenheit!\n\n3\nSome religious leaders warned their congregations that the unusual weather meant that the end of the world was drawing near. Other leaders attributed the cool weather to unusual sunspot activity. The proliferation of the newly invented lightning rod was also blamed as some people believed that lightning rods had interrupted the natural temperature balance of Earth, causing the cooler temperatures.\n\n4\nIt was not until October that the first plausible explanation for “The Year without a Summer” was suggested. Friedrich Bessel, a German astronomer, reported seeing thick clouds of dust in the upper atmosphere. He theorized that these dust particles screened portions of Earth from the warming rays of the sun. It was discovered that in April 1815, Mount Tambora, an Indonesian volcano, had erupted with such force that it had sent an estimated 100 cubic miles of fine dust into the atmosphere. Witnesses to the eruption reported that the sky remained dark for two days. The dust then rose high into the stratosphere, where it encircled the world for several years to come.\n\n5\nSkeptics in 1816 doubted that a faraway volcano could steal their summer. However, most present-da researchers believe Bessel’s explanation to be generally correct, demonstrating the global nature of weather. The dust in the atmosphere eventually settled, and the spring of 1817 was back to normal."
+    },
+    {
+      "form": "b",
+      "title": "The Local Library",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "The Local Library\n\n(1) (1) According to a 2015 survey, more than two-thirds of Americans own a smartphone, which means that obtaining information or communicating with people is easier than ever before. (2) (2) With the swipe of a finger, the tap of an icon, or a verbal command, people have instant access to articles, blogs, news, and social networking websites. (3) (3) Even with all these immediately available sources of information, one of the best resources for many members of the community also happens to be one of the oldest. (4) (4) The public library is a great place for people to get information.\n\n(5) (5) The public library serves a truly critical role in promoting community. (6) (6) With the explosion of digital media in recent years, people in different locations can now communicate almost instantaneously. (7) (7) And yet many people complain of feeling more isolated and alone than ever before. (8) (8) The library stands in a rare position to help community members meet this universal need for human connection and companionship.\n\n(9) (9) Furthermore, libraries provide certain amenities, such as access to the Internet, for free to all people. (10) (10) A student who does not have a computer at home can research and type a paper for school. (11) (11) Similarly, an unemployed adult without access to the Internet can make use of library resources to find job opportunities. (12) (12) The free items that are found at the library can help people get a lot done.\n\n(13) (13) Public libraries also offer a variety of resources to community members. (14) (14) One important resource is the local librarian, who does far more than check out books and collect fines. (15) (15) Other library resources include free or low-cost tutoring and training programs. (16) (16) Additionally, lectures, book groups, and town meetings promote critical thinking and community engagement. (17) (17) A typical librarian holds a master’s degree and can help library patrons navigate through the flood of information available in print and on the Internet.\n\n(18) (18) The hallmark of a public library is that its materials and services are accessible to all. (19) (19) The library connects people to a network of information and resources and is an important part of a community."
+    },
+    {
+      "form": "b",
+      "title": "The Tunguska Fireball",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "The Tunguska Fireball\n\n1\nOn June 30, 1908, an enormous fireball shot across the sky and exploded high above the remote Tunguska River Valley in the Siberian region of Russia. Twenty miles away, huts were flattened and people were flung into the air. Villagers 40 miles away felt the heat and heard explosions, and tremors were recorded at a German seismic station more than 3,000 miles away.\n\n2\nWhat caused the intense light and the horrendous destruction of the Tunguska Fireball, as it came to be called? Scientists and laypeople have debated the question for over 100 years. Not until 1927 did a scientific expedition, led by Russian scientist Leonid Kulik, reach the remote site. Kulik discovered a vast region of scorched and downed trees, their trunks pointing away from the center of the blast. Convinced that a meteorite was responsible, Kulik searched for evidence—a crater, a buried meteorite, even fragments of the exploded mass. He never found it.\n\n3\nOther scientists, amateur astronomers, and the public suggested alternative theories of what had happened. Some thought it was an earthquake. Perhaps, others said, a black hole—a theoretical object in space where gravity is so strong that even light cannot get out—had collided with Earth or an alien spaceship carrying nuclear material had crashed.\n\n4\nFor many years Russian scientists believed that the Tunguska Fireball was a comet—a cluster of dust and frozen gases—that had exploded a few hundred feet above the ground. They pointed to the lack of meteoric evidence and the June 30 date, a time of year when Earth was passing through cometary debris. Other scientists disagreed, arguing that a comet would have burned quickly in Earth’s atmosphere and could not have created such a blast.\n\n5\nMany Western scientists believed that a meteorite was responsible, despite the lack of evidence. The pattern of fallen trees suggested that they were knocked down by a blast about 4 miles above the ground with an energy of 15 megatons of TNT, consistent with a meteoric blast. Yet repeated searches of the surrounding forest and wetlands revealed no evidence of a meteorite.\n\n6\nDuring the 1990s an Italian physicist named Menotti Galli became interested. Galli had previously investigated whether particles from outer space can add carbon atoms to the cellulose in trees. Perhaps the trees at the Tunguska site hid evidence of such extraterrestrial material. Galli and his colleagues traveled to the site by helicopter to gather core samples from spruce trees that had lived through the blast. They analyzed the particles trapped in the trees’ resin, and the results were remarkable. Based on studying the trees’ rings during the time period when the Tunguska Fireball occurred, the researchers found that the resin contained high levels of high-proton elements, such as copper, gold, and nickel. In fact, it contained ten times more such particles than resin dating from either before or after that time period. Some previously discovered meteorites had also contained elevated levels of these elements, suggesting that the particles had an extra-earthly origin. But then where is the crater? Is it nearby Lake Cheka, as some claim? Or was the meteorite reduced to dust in the atmosphere? Can scientists rule out a comet carrying those elements? The mystery remains unsolved."
+    },
+    {
+      "form": "b",
+      "title": "Excerpt from A Voice in the Wilderness",
+      "poemLines": 0,
+      "glossary": 1,
+      "overflow": false,
+      "text": "Excerpt from A Voice in the Wilderness\n\nby Grace Livingston Hill\n\n1\nWith a lurch the train came to a dead stop and Margaret Earle, hastily gathering up her belongings, hurried down the aisle and got out into the night.\n\n2\nIt occurred to her, as she swung her heavy suit-case down the rather long step to the ground, and then carefully swung herself after it, that it was strange that neither conductor, brakeman, nor porter had come to help her off the train, when all three had taken the trouble to tell her that hers was the next station; but she could hear voices up ahead. Perhaps something was the matter with the engine that detained them and they had forgotten her for the moment.\n\n3\nThe ground was rough where she stood, and there seemed no sign of a platform. Did they not have platforms in this wild Western land, or was the train so long that her car had stopped before reaching it?\n\n4\nShe strained her eyes into the darkness, and tried to make out things from the two or three specks of light that danced about like fireflies in the distance. She could dimly see moving figures away up near the engine, and each one evidently carried a lantern. The train was tremendously long. A sudden feeling of isolation took possession of her. Perhaps she ought not to have got out until some one came to help her. Perhaps the train had not pulled into the station yet and she ought to get back on it and wait. Yet if the train started before she found the conductor she might be carried on somewhere and he justly blame her for a fool.\n\n5\nThere did not seem to be any building on that side of the track. It was probably on the other, but she was standing too near the cars to see over. She tried to move back to look, but the ground sloped and she slipped and fell in the cinders, bruising her knee and cutting her wrist.\n\n6\nIn sudden panic she arose. She would get back into the train, no matter what the consequences. They had no right to put her out here, away off from the station, at night, in a strange country. If the train started before she could find the conductor she would tell him that he must back it up again and let her off. He certainly could not expect her to get out like this.\n\n7\nShe lifted the heavy suit-case up the high step that was even farther from the ground than it had been when she came down, because her fall had loosened some of the earth and caused it to slide away from the track. Then, reaching to the rail of the step, she tried to pull herself up, but as she did so the engine gave a long snort and the whole train, as if it were in league against her, lurched forward crazily, shaking off her hold. She slipped to her knees again, the suit-case, toppled from the lower step, descending upon her, and together they slid and rolled down the short bank, while the train . . . ran giddily off into the night.\n\n8\nThe horror of being deserted helped the girl to rise in spite of bruises and shock. She lifted imploring hands to the unresponsive cars as they hurried by her—one, two, three, with bright windows, each showing a passenger, comfortable and safe inside, unconscious of her need. A moment of useless screaming, running, trying to attract some one’s attention, a sickening sense of terror and failure, and the last car slatted itself past with a mocking clatter, as if it enjoyed her discomfort.\n\n9\nMargaret stood dazed, reaching out helpless hands, then dropped them at her sides and gazed after the fast-retreating train, the light on its last car swinging tauntingly, blinking now and then with a leer in its eye, rapidly vanishing from her sight into the depth of the night.\n\n10\nShe gasped and looked about her for the station that but a short moment before had been so real to her mind; and, lo! on this side and on that there was none!\n\n11\nThe night was wide like a great floor shut in by a low, vast dome of curving blue set with the largest, most wonderful stars she had ever seen. Heavy shadows of purple-green, smoke-like, hovered over earth darker and more intense than the unfathomable blue of the night sky. It seemed like the secret nesting-place of mysteries wherein no human foot might dare intrude. It was incredible that such could be but common sage-brush, sand, and greasewood wrapped about with the beauty of the lonely night.\n\n12\nNo building broke the inky outlines of the plain, nor friendly light streamed out to cheer her heart. Not even a tree was in sight, except on the far horizon, where a heavy line of deeper darkness might mean a forest. Nothing, absolutely nothing, in the blue, deep, starry dome above and the bluer darkness of the earth below save one sharp shaft ahead like a black mast throwing out a dark arm across the track.\n\n13\nAs soon as she sighted it she picked up her baggage and made her painful way toward it, for her knees and wrist were bruised and her baggage was heavy.\n\n14\nA soft drip, drip greeted her as she drew nearer; something plashing down among the cinders by the track. Then she saw the tall column with its arm outstretched, and looming darker among the sage-brush the outlines of a water-tank. It was so she recognized the engine’s drinking-tank, and knew that she had mistaken a pause to water the engine for a regular stop at a station.\n\nFrom A VOICE IN THE WILDERNESS by Grace Livingston Hill—Public Domain"
+    },
+    {
+      "form": "b",
+      "title": "Excerpt from “Niagara Falls”",
+      "poemLines": 0,
+      "glossary": 2,
+      "overflow": false,
+      "text": "Excerpt from “Niagara Falls”\n\nby Rupert Brooke\n\n1\nThe real secret of the beauty and terror of the Falls is not their height or width, but the feeling of colossal power and of unintelligible disaster caused by the plunge of that vast body of water. If that were taken away, there would be little visible change, but the heart would be gone.\n\n2\nThe American Falls do not inspire this feeling in the same way as the Canadian. It is because they are less in volume, and because the water does not fall so much into one place. By comparison their beauty is almost delicate and fragile. They are extraordinarily level, one long curtain of lacework and woven foam. Seen from opposite, when the sun is on them, they are blindingly white, and the clouds of spray show dark against them. With both Falls the colour of the water is the ever-altering wonder. Greens and blues, purples and whites, melt into one another, fade, and come again, and change with the changing sun. Sometimes they are as richly diaphanous as a precious stone, and glow from within with a deep, inexplicable light. Sometimes the white intricacies of dropping foam become opaque and creamy. And always there are the rainbows. If you come suddenly upon the Falls from above, a great double rainbow, very vivid, spanning the extent of spray from top to bottom, is the first thing you see. If you wander along the cliff opposite, a bow springs into being in the American Falls, accompanies you courteously on your walk, dwindles and dies as the mist ends, and awakens again as you reach the Canadian tumult. And the bold traveller who attempts the trip under the American Falls sees, when he dare open his eyes to anything, tiny baby rainbows, some four or five yards in span, leaping from rock to rock among the foam, and gambolling beside him, barely out of hand’s reach, as he goes. One I saw in that place was a complete circle, such as I have never seen before, and so near that I could put my foot on it. It is a terrifying journey, beneath and behind the Falls. The senses are battered and bewildered by the thunder of the water and the assault of wind and spray; or rather, the sound is not of falling water, but merely of falling; a noise of unspecified ruin. So, if you are close behind the endless clamour, the sight cannot recognise liquid in the masses that hurl past. You are dimly and pitifully aware that sheets of light and darkness are falling in great curves in front of you. Dull omnipresent foam washes the face. Farther away, in the roar and hissing, clouds of spray seem literally to slide down some invisible plane of air.\n\n3\nBeyond the foot of the Falls the river is like a slipping floor of marble, green with veins of dirty white, made by the scum that was foam. It slides very quietly and slowly down for a mile or two, sullenly exhausted. Then it turns to a dull sage green, and hurries more swiftly, smooth and ominous. As the walls of the ravine close in, trouble stirs, and the waters boil and eddy. These are the lower rapids, a sight more terrifying than the Falls, because less intelligible. Close in its bands of rock the river surges tumultuously forward, writhing and leaping as if inspired by a demon. It is pressed by the straits into a visibly convex form. Great planes of water slide past. Sometimes it is thrown up into a pinnacle of foam higher than a house, or leaps with incredible speed from the crest of one vast wave to another, along the shining curve between, like the spring of a wild beast. Its motion continually suggests muscular action. The power manifest in these rapids moves one with a different sense of awe and terror from that of the Falls. Here the inhuman life and strength are spontaneous, active, almost resolute. . . . A place of fear. One is drawn back, strangely, to a contemplation of the Falls, at every hour, and especially by night, when the cloud of spray becomes an immense visible ghost, straining and wavering high above the river, white and pathetic and translucent. The Victorian lies very close below the surface in every man. There one can sit and let great cloudy thoughts of destiny and the passage of empires drift through the mind; for such dreams are at home by Niagara. I could not get out of my mind the thought of a friend, who said that the rainbows over the Falls were like the arts and beauty and goodness, with regard to the stream of life—caused by it, thrown upon its spray, but unable to stay or direct or affect it, and ceasing when it ceased. In all comparisons that rise in the heart, the river, with its multitudinous waves and its single current, likens itself to a life, whether of an individual or of a community. A man’s life is of many flashing moments, and yet one stream; a nation’s flows through all its citizens, and yet is more than they. In such places, one is aware, with an almost insupportable and yet comforting certitude, that both men and nations are hurried onwards to their ruin or ending as inevitably as this dark flood. Some go down to it unreluctant, and meet it, like the river, not without nobility. And as incessant, as inevitable, and as unavailing as the spray that hangs over the Falls, is the white cloud of human crying. . . . With some such thoughts does the platitudinous2 heart win from the confusion and thunder of a Niagara peace that the quietest plains or most stable hills can never give.\n\nFrom LETTERS FROM AMERICA by Rupert Brooke—Public Domain"
+    },
+    {
+      "form": "b",
+      "title": "Uncovering the Past",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Uncovering the Past\n\n1\nArchaeology as a distinct branch of science is only about two centuries old. The first archaeological activities focused largely on the search for clues about earlier human societies. In the nineteenth century, most archaeologists were amateurs trained in ancient languages and history. Many were art historians whose interest lay in the artwork and monuments of ancient civilizations. For the most part, their excavations were aimed at uncovering and removing priceless artwork and other valuable artifacts for museum display. Collectively, these early archaeologists are now considered traditional archaeologists.\n\n2\nToday, however, there is a different approach to archaeology, one that tries to reconstruct the everyday life of people in ancient times by applying the scientific methods of a range of specialized fields. Modern archaeologists take full advantage of available technology. Laptop computers enable digging teams to record their finds at each level of an excavation. With sketchpad computer software, archaeologists can draw their finds in the field. Three-dimensional computer modeling enables researchers to create floor plans and elevations for the structures they uncover. Archaeologists can also use remote sensing technologies such as radar and lidar, which is similar to radar but it uses laser light instead of radio waves. These technologies enable scientists to detect traces of early settlements that are not visible to the human eye.\n\n3\nThe excavations at Kourion, a Roman port city on the island of Cyprus in the Mediterranean Sea, serve as an example of the modern approach. Portions of Kourion had been unexpectedly buried by a massive earthquake in the fourth century A.D. Traditional archaeologists were interested primarily in the remains of Kourion’s theater, temple, and classical monuments. They also collected precious objects, such as jewelry, found in nearby tombs. Modern archaeologists, however, have focused their studies and excavations on the settlement itself. This preserved seaport has proved to be a gold mine of important information about everyday life sixteen centuries ago.\n\n4\nDuring one excavation of a house at Kourion, for example, forensic anthropologists were able to reconstruct the skeleton of a young girl, whom they called Camelia. On the basis of her teeth, they determined her age to be about thirteen, although measurement of her skeleton showed that she was only the size of a modern eleven-year-old. The study of the teeth also confirmed her sex and pointed to her excellent health; Camelia had no cavities. Even after centuries, the forensic scientists could study the physical evidence in ways similar to those used in criminal investigations to determine the circumstances of Camelia’s death.\n\n5\nOther specialists on this excavation included a zooarchaeologist, who identified animal remains, including the skeleton of a mule found near Camelia. Another specialist, a paleobotanist, studied the contents of a bake oven at the site and identified four domesticated grains among the charred crumbs—evidence of a kind of ancient multigrain bread.\n\n6\nAlthough the archaeologists at this site unearthed a few beautiful items, the excavation did not uncover any priceless artwork for museums. Nonetheless, the archaeological processes used in Kourion have given us a valuable insight into everyday life in a Roman city."
+    },
+    {
+      "form": "b",
+      "title": "Snowy Mountains",
+      "poemLines": 31,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Snowy Mountains\n\nby John Gould Fletcher\n\nHigher and still more high,\n\nPalaces made for cloud,\n\nAbove the dingy city-roofs\n\nBlue-white like angels with broad wings,\n\n5\nPillars of the sky at rest\n\nThe mountains from the great plateau\n\nUprise.\n\nBut the world heeds them not;\n\nThey have been here now for too long a time.\n\n10\nThe world makes war on them,\n\nTunnels their granite cliffs,\n\nSplits down their shining sides,\n\nPlasters their cliffs with soap-advertisements,\n\nDestroys the lonely fragments of their peace.\n\n15\nVaster and still more vast,\n\nPeak after peak, pile after pile,\n\nWilderness still untamed,\n\nTo which the future is as was the past,\n\nBarrier spread by Gods,\n\n20\nSunning their shining foreheads,\n\nBarrier broken down by those who do not need\n\nThe joy of time-resisting storm-worn stone,\n\nThe mountains swing along\n\nThe south horizon of the sky;\n\n25\nWelcoming with wide floors of blue-green ice\n\nThe mists that dance and drive before the sun.\n\n“Snowy Mountains” by John Gould Fletcher—Public Domain"
+    },
+    {
+      "form": "b",
+      "title": "Invention of the Telegraph",
+      "poemLines": 0,
+      "glossary": 2,
+      "overflow": false,
+      "text": "Samuel Morse, an American inventor, is credited with creating the electronic telegraph, a communication device that allows users to send messages using a system of short and long pulses that represent letters, numbers, and punctuation. In 1844 the United States Congress passed the Telegraph Bill, which provided Morse with the funds to build an electric telegraph system.\n\nInvention of the Telegraph\n\n1\nEarlier Signal Systems\n\n2\nLong before Samuel F. B. Morse electrically transmitted his famous message “What hath God wrought?” from Washington to Baltimore on May 24, 1844, there were signaling systems that enabled people to communicate over distances. Most were visual or “semaphore” systems using flags or lights. In the eighteenth century, such systems used an observer who would decipher a signal from a high tower on a distant hill and then send it on to the next station. The young American republic wanted just such a system along its entire Atlantic coast and offered a prize of $30,000 for a workable proposal. The framers of this legislation had no way of knowing that when they used the word “telegraph” to refer to this visual semaphore system, they would be offered an entirely new and revolutionary means of communication—electricity.\n\n3\nThe Growth of an Idea\n\n4\nThe idea of using electricity to communicate over distance is said to have occurred to Morse during a conversation aboard ship when he was returning from Europe in 1832. Michael Faraday’s recently invented electromagnet was much discussed by the ship’s passengers, and when Morse came to understand how it worked, he speculated that it might be possible to send a coded message over a wire. While a student at Yale College years before, he had written his parents a letter about how interesting he found the lectures on electricity. Despite what he had learned at Yale, Morse found when he began to develop his idea that he had little real understanding of the nature of electricity, and after sporadic attempts to work with batteries, magnets, and wires, he finally turned for help to a colleague at the University of the City of New York, Leonard D. Gale.\n\n5\nGale was a professor of chemistry and familiar with the electrical work of Princeton’s Joseph Henry, a true pioneer in the new field. Well before Morse had his shipboard idea about a telegraph, Henry rang a bell at a distance by opening and closing an electric circuit. In 1831, he had published an article, of which Morse was unaware, that contained details suggesting the idea of an electric telegraph. Gale’s help and his knowledge of this article proved crucial to Morse’s telegraph system because Gale not only pointed out flaws in the system but showed Morse how he could regularly boost the strength of a signal and overcome the distance problems he had encountered by using a relay system Henry had invented. Henry’s experiments, Gale’s assistance, and, soon after, hiring the young technician Alfred Vail were keys to Morse’s success.\n\n6\nObstacles and Opportunities\n\n7\nBy December 1837, Morse had enough confidence in his new system to apply for the federal government’s appropriation, and during the next year he conducted demonstrations of his telegraph both in New York and Washington. However, when the economic disaster known as the Panic of 1837 took hold of the nation and caused a long depression, Morse was forced to wait for better times. It was during this period that Morse visited Europe again and tried not only to secure patent protection overseas but to examine competing telegraph systems in England. . . .\n\n8\nBy 1843, the country was beginning to recover economically, and Morse again asked Congress for the $30,000 that would allow him to build a telegraph line from Washington to Baltimore, forty miles away. The House of Representatives eventually passed the bill containing the Morse appropriation, and the Senate approved it in the final hours of that Congress’s last session. With President Tyler’s signature, Morse received the cash he needed and began to carry out plans for an underground telegraph line.\n\n9\nRealizing a Great Invention\n\n10\nMorse had hired the ingenious construction engineer Ezra Cornell to lay the pipe carrying the wire, and although Cornell did his job superbly, one of Morse’s partners, Congressman F. O. J. Smith, had purchased wire with defective insulation. Too much time had been wasted laying bad wire, and with the project on a rigid deadline, something had to be done quickly. Cornell suggested that the fastest and cheapest way of connecting Washington and Baltimore was to string wires overhead on trees and poles. The desperate Morse gave the go-ahead, and the line was completed in time for the dramatic and spectacularly successful link between the Supreme Court chamber of the Capitol building and the railroad station in Baltimore.\n\n11\nSoon, as overhead wires connected cities up and down the Atlantic coast, the dots-and-dashes method that recorded messages on a long moving strip of paper was replaced by the operator’s ability to interpret the code in real time. . . . Telegraph lines soon extended westward, and within Morse’s own lifetime they connected the continents of Europe and America.\n\n“Invention of the Telegraph”—Public Domain/Library of Congress"
+    }
+  ],
+  "english": [
+    {
+      "form": "a",
+      "n": "4",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "5",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "6",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "7",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "8",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "9",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "10",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "11",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "12",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "13",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "14",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "15",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "16",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "17",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "18",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "19",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "20",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "21",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "22",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "23",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "24",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "25",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "26",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "27",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "28",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "29",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "30",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "31",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "32",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "33",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "34",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "35",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "36",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "37",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "38",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "39",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "40",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "41",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "42",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "43",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "44",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "45",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "46",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "47",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "48",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "49",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "50",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "51",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "52",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "53",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "54",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "55",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "56",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "57",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "1",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "2",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "a",
+      "n": "3",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "5",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "6",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "7",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "8",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "9",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "10",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "11",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "12",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "13",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "14",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "15",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "16",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "17",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "18",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "19",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "20",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "21",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "22",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "23",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "24",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "25",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "26",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "27",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "28",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "29",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "30",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "31",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "32",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "33",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "34",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "35",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "36",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "37",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "38",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "39",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "40",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "41",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "42",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "43",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "44",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "45",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "46",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "47",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "48",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "49",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "50",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "51",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "52",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "53",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "54",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "55",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "56",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "57",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "1",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "2",
+      "underlines": [
+        "Institution, the",
+        "year. The",
+        "objects, including",
+        "Proclamation, written"
+      ],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "3",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "b",
+      "n": "4",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    }
+  ]
+}

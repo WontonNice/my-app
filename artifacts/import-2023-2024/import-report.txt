@@ -1,0 +1,61 @@
+2023-2024 SHSAT Form A and Form B import
+
+Saved into the existing Content Studio exams:
+  2023-2024-form-a: 57 English + 57 Math = 114 questions
+  2023-2024-form-b: 57 English + 57 Math = 114 questions
+
+Coverage
+  Form A: student content PDF pages 3-58; supplied explanations 59-114;
+          supplied answer key 115. Original questions 1-114 included.
+  Form B: student content PDF pages 2-58; supplied explanations 59-106;
+          supplied answer key 107. Original questions 1-114 included.
+  General test-taking directions, page furniture and blank navigation pages
+  were excluded. Question-specific directions remain with their questions.
+  14 complete passage sets, 7 independent English questions, 114 Math
+  questions, 228 supplied keys, 228 supplied explanations, 30 glossary notes.
+
+Files
+  form-a-import.json / form-b-import.json: complete mixed import envelopes.
+  form-a-english.json / form-b-english.json: English-only envelopes.
+  form-a-math.json / form-b-math.json: complete Math envelopes.
+  form-a-independent.json / form-b-independent.json: actual dedicated
+  independent-question importer inputs, including private source notes.
+  form-a-assets.json / form-b-assets.json: original source crop coordinates,
+  filenames and hashes. 157 actual PDF crops retained; 156 are referenced in
+  saved content and one extra table source-reference crop is retained here.
+  import-receipts.json: writer results and saved content IDs.
+  saved-verification.json: section-order, readback and asset checks.
+
+Verification
+  Current document parser accepted both complete 114-question envelopes.
+  No key, response-type, choice-count or question-count structural errors.
+  Saved question/passage text and keys match the prepared imports after
+  normal whitespace normalization. All referenced image files exist.
+  English display order: reading passages, Revising/Editing A, standalone
+  items. Original booklet numbers remain source references only.
+  The exported student content also contains 114 ordered questions per form.
+  npm run typecheck:client passed.
+  npm run content-editor:validate failed in its built-in feature fixture at
+  tools/content-studio.mjs:4223, before its actual-content validation. The
+  importer implementation was not changed by this task.
+
+Review notes
+  All source/completeness/classification approval flags remain false.
+  All 114 imported Math questions retain the red Needs editing label.
+  Topic categories are inferred; Math subtopics and difficulty remain blank.
+  Mathematical explanations retain original source crops because their
+  positioned equations are more reliable visually than flattened PDF text.
+  Original E-H references in supplied explanations correspond to editor A-D
+  choices by position. Private review notes retain that correspondence.
+  One identical Plants passage was reused through the existing importer.
+  Form A uses the existing per-exam presentation layer for its five supplied
+  explanations and source numbering; shared canonical content is retained.
+  The two supplied sources are identified separately by exam/form metadata.
+  Teacher-selected Math batch sourceId/jobId were not provided and remain
+  blank; identify a common source/job before combining unrelated chunks.
+  Both existing exam records remain locked.
+
+Content Studio: http://127.0.0.1:4319
+Open either 2023-2024 form in the exam editor. Math questions are editable
+in the normal Math editor; use Mark finished after review. Passage source
+metadata and unresolved notes remain available in Saved import drafts.

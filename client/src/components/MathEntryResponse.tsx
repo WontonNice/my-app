@@ -45,14 +45,15 @@ function EditIcon({ action }: { action: Selector | "clear" }) {
   </svg>;
 }
 
-export function MathEntryResponse({ layout, onChange, value, variable, advanced = false }: {
+export function MathEntryResponse({ layout, onChange, value, variable, prefixVariable, advanced = false }: {
   advanced?: boolean;
   layout: "fraction" | "plain" | "x_equals";
   onChange: (value: string) => void;
   value: string;
   variable?: string;
+  prefixVariable?: string;
 }) {
-  const normalizedVariable = (variable ?? 'x').trim().normalize("NFKC");
+  const normalizedVariable = (prefixVariable ?? variable ?? 'x').trim().normalize("NFKC");
   const displayVariable = /^\p{L}$/u.test(normalizedVariable) ? normalizedVariable : "x";
   const hostRef = useRef<HTMLDivElement>(null);
   const fieldRef = useRef<MathfieldElement | null>(null);

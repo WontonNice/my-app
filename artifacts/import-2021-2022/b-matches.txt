@@ -1,0 +1,342 @@
+1 [{'score': 1.0, 'parent': 'standalone', 'id': 'official-shsat-2026-b-48'}]
+Read these sentences. (1) Flyby missions near Jupiter have been happening since 1973. (2) Flyby missions allow scientists to collect data about Jupiter and its moons. What is the best way to combine the sentences to clarify the relationship between the ideas?
+A: While flyby missions near Jupiter have been happening since 1973, scientists collect data about the planet and its moons. | B: Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons. | C: Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973, | D: Flyby missions have been happening near Jupiter, but scientists have been collecting data about the planet and its moons since 1973.
+2 [{'score': 1.0, 'parent': 'standalone', 'id': 'part-b-import-7651e03756f2-ba433486'}]
+Which sentence contains an error in its construction and should be revised? (1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) In 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.
+E: sentence 1 | F: sentence 2 | G: sentence 3 | H: sentence 4
+3 [{'score': 1.0, 'parent': 'standalone', 'id': 'part-b-question-7'}]
+How should the paragraph be revised? (1) Danielle spent several hours preparing for an upcoming audition for a play at the community theater. (2) First she did vocal exercises to practice her diction and projection so that her words would carry clearly throughout the large auditorium. (3) Then she studies the text of the monologue to better understand the emotions, and motivations of the character she plans to portray. (4) Finally she recited her monologue in front of a mirror many times, making slight adjustments and improvements to her performance each time.
+A: Sentence 1: Change spent to had spent, AND insert a comma after play. | B: Sentence 2: Change did to does, AND insert a comma after projection. | C: Sentence 3: Change studies to studied, AND delete the comma after emotions. | D: Sentence 4: Change recited to recites, AND delete the comma after times.
+4 [{'score': 0.998, 'parent': 'standalone', 'id': 'part-b-import-404ef8a6deeb-1222d1bf'}]
+Which pair of revisions needs to be made in this paragraph? (1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.
+E: Sentence 1: Delete the colon after wonder AND change js to are. F., Sentence 2: Delete the comma after with AND change it is to they are. | G: Sentence 3: Delete the comma after process AND change makes to make. | H: Sentence 4: Delete the comma after gelato AND change allow to allows.
+5 [{'score': 1.0, 'parent': 'martial-arts-for-the-mind-and-body-2023-form-a', 'id': 'martial-arts-for-the-mind-and-body-2023-form-a-2023-form-a-q11'}]
+What is the best way to combine sentences 2 and 3?
+A: Historians, who are unsure of exactly when and where martial arts were first used, know that martial arts have been practiced by several different societies for many centuries. | B: While historians are unsure of exactly when and where martial arts were first used, they do know that martial arts have been practiced by several different societies for many centuries. | C: Because historians know that martial arts have been practiced by several different societies for many centuries, they are unsure of exactly when and where martial arts were first used. | D: Martial arts have been practiced by several different societies for many centuries, and historians are unsure of exactly when and where martial arts were first used.
+6 [{'score': 1.0, 'parent': 'martial-arts-for-the-mind-and-body-2023-form-a', 'id': 'martial-arts-for-the-mind-and-body-2023-form-a-2023-form-a-q12'}]
+Where should sentence 10 be moved to improve the organization of the second paragraph (sentences 6-10)?
+E: to the beginning of the paragraph (before sentence 6) | F: between sentences 6 and 7 | G: between sentences 7 and 8 | H: between sentences 8 and 9
+7 [{'score': 1.0, 'parent': 'martial-arts-for-the-mind-and-body-2023-form-a', 'id': 'martial-arts-for-the-mind-and-body-2023-form-a-2023-form-a-q13'}]
+Which revision of sentence 12 best maintains the formal style established in the passage?
+A: A lot of teens have to put up with difficult things while trying to do well in school and in life. | B: Many teenagers deal with tough situations as they try to stay on top of their studies and do well in life. | C: Many teenagers encounter challenges as they work to succeed both academically and personally. | D: A lot of teens face problems as they work to keep up with their schoolwork and find personal success.
+8 [{'score': 1.0, 'parent': 'martial-arts-for-the-mind-and-body-2023-form-a', 'id': 'martial-arts-for-the-mind-and-body-2023-form-a-2023-form-a-q14'}]
+Which transitional phrase should be added to the beginning of sentence 17?
+E: Over time | F: In fact | G: Even so | H: For instance
+9 [{'score': 1.0, 'parent': 'martial-arts-for-the-mind-and-body-2023-form-a', 'id': 'martial-arts-for-the-mind-and-body-2023-form-a-2023-form-a-q15'}]
+Which sentence would best follow and support sentence 18?
+A: Adult students gain discipline, focus, self-control, and respect, which are qualities that help them advance in their careers. | B: Many adults initially train in a martial art simply to get exercise without realizing that the training also helps develop other skills. | C: The exercise involved in training helps people strengthen their heart, boost endurance, improve balance, and develop muscle tone. | D: People who commit to training in the martial arts are usually concerned about improving their overall physical health.
+10 [{'score': 1.0, 'parent': 'martial-arts-for-the-mind-and-body-2023-form-a', 'id': 'martial-arts-for-the-mind-and-body-2023-form-a-2023-form-a-q16'}]
+Which concluding sentence should replace sentence 23 to best support the topic presented in the passage?
+E: With so many ways to begin studying martial arts, people can easily discover how the skills needed to progress in rank may help them in life. | F: By taking advantage of opportunities to practice martial arts, people can experience the satisfaction of achieving goals while also improving themselves. | G: Because people are eager to reap the mental and physical benefits of studying martial arts, enrollment in martial arts courses has increased. | H: While taking martial arts classes can improve health for both young people and adults, the effects are clearly more immediate for adults.
+11 [{'score': 1.0, 'parent': 'wolves-of-the-sea-2023-2024-form-a', 'id': 'wolves-of-the-sea-2023-2024-form-a-pdf-shsat-2023-2024-a-q052'}]
+The details in paragraph 1 contribute to a central idea of the passage by showing that Darimont
+A: believed the Great Bear Rainforest was an ideal location to study wolves in their natural habitat because it is a protected area. | B: values different perspectives, because the information that Starr provided influenced the focus of Darimont’s research. | C: thought the Great Bear Rainforest would provide opportunities to study different groups of wolves because the area includes forests and islands. | D: understands the importance of respecting local community members, because Darimont sought permission from an elder of the Heiltsuk Nation before starting his research.
+12 [{'score': 1.0, 'parent': 'wolves-of-the-sea-2023-2024-form-a', 'id': 'wolves-of-the-sea-2023-2024-form-a-pdf-shsat-2023-2024-a-q053'}]
+Why does the author include details about the conversation between Starr and Darimont in paragraph 2?
+E: to explain why Starr had closely observed the relationship between the two groups of wolves Darimont wanted to study | F: to show that Darimont was hoping to work with Starr and to study both groups of wolves in the area | G: to highlight that Darimont was unfamiliar with the area and expected Starr to help him find wolves to study | H: to emphasize that the question asked by Starr caused Darimont to review his initial assumption about the wolves
+13 [{'score': 1.0, 'parent': 'wolves-of-the-sea-2023-2024-form-a', 'id': 'wolves-of-the-sea-2023-2024-form-a-pdf-shsat-2023-2024-a-q054'}]
+Read this sentence from paragraph 4. After collecting and analyzing the DNA in 800 samples of gray fur and wolf waste, researchers could produce hard biological evidence that sea wolves had genetic markers that made them distinct from the mainland wolves. The phrase “hard biological evidence” conveys that the goal of the research team was to
+A: develop a procedure in order to ensure their study yielded plentiful data about the wolves. | B: seek definitive scientific proof of the number of wolf species present in the area of the study. | C: conduct a study to evaluate multiple theories about the diets of different wolf species. | D: discover if the new data would provide information different from that of previous studies.
+14 [{'score': 1.0, 'parent': 'wolves-of-the-sea-2023-2024-form-a', 'id': 'wolves-of-the-sea-2023-2024-form-a-pdf-shsat-2023-2024-a-q055'}]
+The author uses the word “admits” in paragraph 5 most likely to
+E: note that Darimont’s genetic research verified a theory based solely on field observations. | F: imply that Darimont’s study was disappointing because the conclusion that he reached was not original. | G: emphasize that Darimont’s study ultimately confirmed an idea that he had initially doubted. | H: highlight that Darimont’s results led him to draw a conclusion from his research that his team did not agree with.
+15 [{'score': 1.0, 'parent': 'wolves-of-the-sea-2023-2024-form-a', 'id': 'wolves-of-the-sea-2023-2024-form-a-pdf-shsat-2023-2024-a-q056'}]
+Which sentence from the passage best supports the idea that sea wolves had successfully adapted to living on the islands?
+A: “While mainland wolves almost exclusively eat meat, such as deer and elk, and teach their young to hunt for land animals, sea wolves get as much as 90 percent of their nutrition from the sea and teach their young to dig for clams and to catch fish.” (paragraph 3) | B: “Sea wolves regularly swim between islands and have been known to sneak up on a seal sunning itself on a rock and make a leaping attack from the water.” (paragraph 3) | C: “Darimont suspects that some sea wolves live their entire life on the islands.” (paragraph 3) | D: “Darimont hypothesizes that a change in habitat led to the eventual genetic differences between sea wolves and mainland wolves.” (paragraph 4)
+16 [{'score': 1.0, 'parent': 'wolves-of-the-sea-2023-2024-form-a', 'id': 'wolves-of-the-sea-2023-2024-form-a-pdf-shsat-2023-2024-a-q057'}]
+How did a change in habitat most affect the wolf population of the Great Bear Rainforest over time?
+E: It caused some of the wolves to learn new hunting techniques in order to catch increasingly scarce prey. | F: It caused the wolves to form smaller packs and eventually separate, establishing distinct territories. | G: It caused some of the wolves to gradually become a new, genetically distinct species as they adapted behaviorally. | H: It caused the wolves to adapt their diet as different food sources became available in the area.
+17 [{'score': 1.0, 'parent': 'excerpt-from-how-we-made-the-first-flight-2019-2020-form-a', 'id': 'excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q33'}]
+How does paragraph 1 introduce the idea that the Wright brothers knew that their flight attempt was risky?
+A: through the mention of a signal to notify lifesaving experts that the flight attempt was about to begin | B: by providing specific details about the speed of the wind and the Wright brothers’ response to the windy conditions | C: by suggesting that a slower landing would be necessary at the end of the flight in order to maintain safety | D: through the indication that the Wright brothers waited indoors for most of the morning because of the poor weather
+18 [{'score': 1.0, 'parent': 'excerpt-from-how-we-made-the-first-flight-2019-2020-form-a', 'id': 'excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q34'}]
+Read this sentence from paragraph 4. Wilbur having used his turn in the unsuccessful attempt on the 14th, the right to the first trial now belonged to me. The sentence contributes to the development of ideas in the excerpt by
+E: demonstrating the challenge of the extreme winter conditions during the flight. | F: revealing how many tries it took for Wilbur Wright to finally get the machine to take flight. | G: demonstrating that both Orville and Wilbur Wright were eager to pilot what could potentially be the first flight. | H: suggesting a sense that both brothers felt confident they would soon succeed in completing the first flight.
+19 [{'score': 1.0, 'parent': 'excerpt-from-how-we-made-the-first-flight-2023-2024-form-b', 'id': 'excerpt-from-how-we-made-the-first-flight-2023-2024-form-b-pdf-shsat-2023-2024-b-q029'}]
+The photograph mentioned in paragraph 4 is significant because it
+A: documents that the machine rose into the air as soon as the tethering wire was released. | B: provides proof of the critical moment the machine took flight. | C: documents that the wind reduced the speed of the plane at the start of the flight. | D: provides proof that the pilot had to gradually increase the height of the plane in the air.
+20 [{'score': 1.0, 'parent': 'excerpt-from-how-we-made-the-first-flight-2019-2020-form-a', 'id': 'excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q37'}]
+How do the details in paragraph 5 about the uneven nature of the flight convey a central idea of the excerpt?
+E: by explaining how the flawed design of the machine caused it to turn unpredictably in the air and brought the first flight by a person to an abrupt end | F: by indicating that the difficulty in controlling the flight was caused by the rudimentary instruments of the machine and the inexperience of the pilot | G: by explaining how the pilot and the plane overcame adverse conditions in order to complete the first piloted flight | H: by indicating that the gradual change in wind velocity created an extreme environment in which to maneuver the plane and maintain its flight
+21 [{'score': 1.0, 'parent': 'excerpt-from-how-we-made-the-first-flight-2023-2024-form-b', 'id': 'excerpt-from-how-we-made-the-first-flight-2023-2024-form-b-pdf-shsat-2023-2024-b-q031'}]
+Read this sentence from paragraph 5. As the velocity of the wind was over 35 feet per second and the speed of the machine over the ground against this wind ten feet per second, the speed of the machine relative to the air was over 45 feet per second, and the length of the flight was equivalent to a flight of 540 feet made in calm air. How does the sentence help convey Orville Wright’s perspective about this first flight?
+A: It suggests that he was frustrated by the poor flying conditions on the day of the flight. | B: It emphasizes that he believed the flight was successful despite its short distance. | C: It provides a comparison between flight distances under calm and high wind conditions. | D: It highlights the importance of such calculations in the success of future flights.
+22 [{'score': 1.0, 'parent': 'excerpt-from-how-we-made-the-first-flight-2023-2024-form-b', 'id': 'excerpt-from-how-we-made-the-first-flight-2023-2024-form-b-pdf-shsat-2023-2024-b-q032'}]
+Read this sentence from paragraph 5. A sudden dart when a little over a hundred feet from the end of the track, ora little over 120 feet from the point at which it rose into the air, ended the flight. How does the sentence contribute to the paragraph?
+E: It details the need for the pilot to have quick reflexes while flying the machine. | F: It presents the idea that the difficulty of operating the machine shortened the flight. | G: It describes the shift in wind speed that made flying nearly impossible. | H: It provides an overview of the flight’s progression from takeoff to landing.
+23 [{'score': 1.0, 'parent': 'excerpt-from-how-we-made-the-first-flight-2019-2020-form-a', 'id': 'excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q35'}]
+Read this sentence from paragraph 5. This flight lasted only 12 seconds, but it was nevertheless the first in the history of the world in which a machine carrying a man had raised itself by its own power into the air in full flight, had sailed forward without reduction of speed and had finally landed at a point as high as that from which it started. The words “only,” “nevertheless,” and “finally” most clearly convey the idea that
+A: even a flight of such minor duration had taken a long time to achieve. | B: the short flight gave the Wright brothers hope for longer ones in the future. | C: the flight proved that the machine was, at last, capable of becoming airborne. | D: although it was brief, the flight was a remarkable accomplishment.
+24 [{'score': 1.0, 'parent': 'excerpt-from-how-we-made-the-first-flight-2023-2024-form-b', 'id': 'excerpt-from-how-we-made-the-first-flight-2023-2024-form-b-pdf-shsat-2023-2024-b-q034'}]
+Which sentence from the excerpt best supports the idea that the Wright brothers had to adapt their plans for the flight in order to accommodate the weather conditions?
+E: “When we arose on the morning of the 17th, the puddles of water, which had been standing about camp since the recent rains, were covered with ice.” (paragraph 1) | F: “We realized the difficulties of flying in so high a wind, but estimated that the added dangers in flight would be partly compensated for by the slower speed in landing.” (paragraph 1) | G: “After running the motor a few minutes to heat it up, I released the wire that held the machine to the track, and the machine started forward in the wind.” (paragraph 4) | H: “The course of the flight up and down was exceedingly erratic, partly due to the irregularity of the air, and partly to lack of experience in handling this machine.” (paragraph 5)
+25 [{'score': 1.0, 'parent': 'excerpt-from-how-we-made-the-first-flight-2019-2020-form-a', 'id': 'excerpt-from-how-we-made-the-first-flight-2019-2020-form-a-2019-form-a-ela-q39'}]
+The use of chronological structure contributes to the development of ideas in the excerpt by
+A: outlining the actions that the Wright brothers took to prepare for and successfully complete the first flight. | B: identifying the primary factors that allowed the Wright brothers to overcome obstacles and achieve the first flight. | C: showing how the Wright brothers applied lessons learned from their previous flight attempts to accomplish the first flight. | D: demonstrating how the Wright brothers analyzed the impact of wind velocity to identify the ideal conditions for the first flight.
+26 [{'score': 1.0, 'parent': 'spirit-of-the-herd', 'id': 'spirit-herd-1'}]
+Which sentence from the excerpt best explains why Wade reserved Peroxide Jim for “emergency work” (paragraph 1)?
+E: “Are there not superior horses as well as superior men—a Peroxide Jim to complement a Wade?” (paragraph 1) | F: “Before him, behind him, beside him, pressing hard upon his horse, galloped the frenzied steers, and beyond them a multitude borne on, and bearing him on, by the heave of the galloping herd.” (paragraph 10) | G: “He knew that he was being borne toward the rim, how fast he could not tell, but he knew by the swish of the brush against his tapaderos and the plunging of the horse that the ground was growing stonier, that they were nearing the rocks.” (paragraph 11) | H: “From the flash of the lightning the horse had taken the bit, had covered an indescribably perilous path at top speed, had outrun the herd and turned it from the edge of the rim rock, without a false step or a tremor of fear.” (paragraph 16)
+27 [{'score': 1.0, 'parent': 'spirit-of-the-herd', 'id': 'spirit-herd-2'}]
+Paragraphs 1-2 contribute to the development of the central idea of the excerpt by
+A: revealing the respect Wade had for his horse. | B: emphasizing Wade's high expectations of his horse and himself. | C: indicating that Wade and his horse understood the cattle business. | D: demonstrating Wade's ability to gauge a horse’s competence.
+28 [{'score': 1.0, 'parent': 'spirit-of-the-herd', 'id': 'spirit-herd-3'}]
+How does paragraph 3 convey the effect of the setting on the cattle drive?
+E: It shows how the growing darkness created challenges for the riders in getting the herd to move. | F: It describes how the changing elevation contributed to the dangerousness of the environment. | G: It describes how the desert created an uncomfortable feeling of isolation for the riders and the cattle. | H: It shows how the steep terrain made it difficult for the cattle to keep moving forward.
+29 [{'score': 1.0, 'parent': 'spirit-of-the-herd', 'id': 'spirit-herd-4'}]
+How does paragraph 9 fit into the overall structure of the excerpt?
+A: It hints at the change in the setting that caused Wade to suddenly become alert. | B: It creates a false sense of calm that shows how unprepared the men were for what was about to happen. | C: It introduces the idea that Wade was a skillful leader in unpredictable circumstances. | D: It presents the incident that caused the main conflict Wade and Peroxide Jim addressed.
+30 [{'score': 1.0, 'parent': 'spirit-of-the-herd', 'id': 'spirit-of-the-herd-5'}]
+Read this sentence from paragraph 13. Close on their left bore down the flank of the herd, and on their right, under their very feet, was a precipice, so close that they felt its blackness—its three hundred feet of fall! The phrase “bore down the flank of the herd” conveys that Wade
+E: struggled to see the front of the herd. | F: had to ride quickly to keep up with the herd. | G: was forced to ride between the edge of the cliff and the herd. | H: knew that the drop of the cliff would frighten the herd.
+31 [{'score': 1.0, 'parent': 'spirit-of-the-herd', 'id': 'spirit-of-the-herd-6'}]
+Read these sentences from the excerpt. He was riding to turn the herd, too, back from the rim, as the horse also knew. (paragraph 11) It was Peroxide Jim’s, according to Wade, for not by word or by touch of hand or knee had the horse been directed in the run. (paragraph 16) How do these sentences develop a central idea in the excerpt?
+A: They suggest that Wade would have been unable to save the herd without Peroxide Jim. | B: They imply that Wade spent many hours training Peroxide Jim to herd cattle. | C: They show that Peroxide Jim was able to understand a situation and take action. | D: They indicate that Peroxide Jim was unafraid of the dangers presented by the stampede and the cliff.
+32 [{'score': 0.9985, 'parent': 'spirit-of-the-herd', 'id': 'spirit-of-the-herd-7'}]
+How do the details in paragraphs 14-16 help convey a central idea of the excerpt?
+E: They highlight Peroxide Jim’s natural ability to control the herd. F., They emphasize the danger of the situation from which Peroxide Jim rescued the herd. | G: They show that Peroxide Jim’s physical strength allowed him to force the herd to turn. | H: They indicate that Peroxide Jim anticipated the herd’s stampede before the men did.
+33 [{'score': 1.0, 'parent': 'spirit-of-the-herd', 'id': 'spirit-of-the-herd-8'}]
+Which sentence from the excerpt best reveals the mood on the drive before the lightning struck?
+A: “The herd when overtaken by the dusk had been headed for a pass descending to the next lower bench, but was now halted within a mile of the rim rock on the east, where there was a perpendicular fall of about three hundred feet.” (paragraph 3) | B: “It was not to soothe their savage breasts that the riders sang to the cattle, but rather to preempt the dreaded silence, to relieve the tension, and so to prevent the shock of any sudden startling noise.” (paragraph 5) | C: “He checked his horse instantly, listening as the wind swept past him over the cattle.” (paragraph 7) | D: “Then the breeze caught the dust and carried it back from the gray-coated, ghostly shapes, and Wade saw that the animals were still moving in a circle.” (paragraph 9)
+34 [{'score': 1.0, 'parent': 'a-miracle-mile-2019-2020-form-a', 'id': 'a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q10'}]
+The words “feat,” “humanly impossible,” and “impenetrable barrier” in paragraph 1 affect the tone of the paragraph because they
+E: highlight the idea that only the most skilled runners would be able to run a four-minute mile. | F: emphasize the idea that running a mile in less than four minutes was a seemingly unattainable goal. | G: convey the competitiveness among elite runners to consistently set and break speed records. | H: show the intensity of the training programs athletes endure in order to achieve their goals.
+35 [{'score': 1.0, 'parent': 'a-miracle-mile-2026-2027-form-b', 'id': 'a-miracle-mile-2026-2027-form-b-official-shsat-2026-b-10'}]
+Which sentence best supports the idea that Bannister needed an alternative to “logical planning” (paragraph 3) in order to accomplish his goal?
+A: “Bannister’s performance was a disappointment for him and his country, Great Britain.” (paragraph 2) | B: “The amateur athlete decided to use intensive interval training to develop endurance and speed.” (paragraph 3) | C: “For these workouts, Bannister ran an interval of ten consecutive laps on a quarter-mile track, aiming for sixty seconds each lap.” (paragraph 3) | D: “Frustrated by the plateau he had reached, Bannister took a break from training and went mountain climbing for three days.” (paragraph 4)
+36 [{'score': 1.0, 'parent': 'a-miracle-mile-2019-2020-form-a', 'id': 'a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q17'}]
+Read these sentences from paragraph 7. Bannister said, “I felt that the moment of a lifetime had come. There was no pain, only a great unity of movement and aim.” The sentences contribute to the development of ideas in the passage by showing that Bannister
+E: knew that he was about to achieve the goal he had worked toward. | F: was no longer experiencing personal disappointment from his past failure in the Olympics, | G: felt grateful to his teammates for helping him take the lead. | H: was satisfied that his training had helped him perfect his running technique.
+37 [{'score': 0.9344, 'parent': 'a-miracle-mile-2019-2020-form-a', 'id': 'a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q14'}]
+The phrase “a new mindset had taken root” in paragraph 8 conveys the idea that
+A: runners recognized that running a mile in under four minutes was physically possible. | B: breaking the four-minute-mile barrier was no longer considered an impressive feat for elite runners. | C: runners understood how hard they would have to train in order to run a mile in under four minutes. | D: elite runners entered races in an attempt to break the four-minute-mile barrier.
+38 [{'score': 0.9991, 'parent': 'a-miracle-mile-2019-2020-form-a', 'id': 'a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q13'}]
+Which sentence from the passage indicates that Bannister nearly made a mistake that would have cost him the world record?
+E: “By early 1954, Bannister had succeeded in lowering his quarter-mile pace to sixty-one seconds, but he had to shave off at least one more second in order to reach his target.” (paragraph 4) | F: “When the starting pistol fired, Brasher pounced into the lead, and Bannister followed behind his first rabbit.” (paragraph 6) | G: “Propelled by the excitement, Bannister lost his instinctive feel for his pace and shouted ‘Faster!’ at Brasher.” (paragraph 7) H,. “At the beginning of the back straightaway of the track, Bannister bolted past Chataway.” (paragraph 7)
+39 [{'score': 1.0, 'parent': 'a-miracle-mile-2019-2020-form-a', 'id': 'a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q15'}]
+Bannister’s loss in the 1952 Olympics influenced his decision to pursue breaking the four-minute- mile barrier by
+A: allowing him to recognize his weaknesses and improve his running ability. | B: prompting him to take a different approach to his regular training. | C: motivating him to prove to himself that he could set and achieve a goal. | D: giving him the opportunity to reach a goal no runner had ever accomplished.
+40 [{'score': 0.9328, 'parent': 'a-miracle-mile-2019-2020-form-a', 'id': 'a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q11'}]
+How did interval training affect Bannister’s performance?
+E: It helped him learn how to moderate his pace while running. | F: It helped him conserve effort when running with teammates. | G: It helped him improve his pace and stamina while running. | H: It helped him decrease his recovery time after an intense run.
+41 [{'score': 0.9927, 'parent': 'a-miracle-mile-2019-2020-form-a', 'id': 'a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q16'}]
+How does the author’s use of chronological structure contribute to the development of ideas in the passage?
+A: It presents the increasing physical effects of Bannister’s training methods as he prepared to break the four-minute-mile barrier. | B: It shows the increase in Bannister’s confidence in his ability to break the four-minute- mile barrier. | C: It emphasizes the key events in Bannister’s life that inspired him to break the four-minute- mile barrier. | D: It highlights the progression of Bannister’s training and details about his successful attempt to break the four-minute-mile barrier.
+42 [{'score': 1.0, 'parent': 'serpent-mound-2026-2027-form-c', 'id': 'serpent-mound-2026-2027-form-c-official-shsat-2026-c-26'}]
+How does the poem’s form contribute to the poem’s meaning?
+E: The use of one continuous stanza and the pattern of the lines mimic the long and winding shape of the mound. | F: The uneven line lengths emphasize the variety of ways people interpret the meaning of the mound. | G: The dashes throughout the poem highlight the speaker’s changing thoughts about the significance of the mound. | H: The lack of a regular rhyme scheme and meter convey that the speaker struggles to comprehend the vastness of the mound.
+43 [{'score': 1.0, 'parent': 'serpent-mound-2026-2027-form-c', 'id': 'serpent-mound-2026-2027-form-c-official-shsat-2026-c-27'}]
+Which lines reveal how the setting affects the speaker and the men from the museum?
+A: “It being winter, / there was little underbrush to speak of—” (lines 8-9) | B: “but the winter silence of the creek pressed / down on all of us like a weight.” (lines 14-15) | C: “The humps in the ground were all but / invisible until you were right up on them.” (lines 16-17) | D: “In the summer the creek bottom was crowded / with so much life that you could trip” (lines 21-22)
+44 [{'score': 1.0, 'parent': 'serpent-mound-2026-2027-form-c', 'id': 'serpent-mound-2026-2027-form-c-official-shsat-2026-c-28'}]
+Lines 1-2 contribute to the development of ideas in the poem by
+E: suggesting that the men are too busy with their work to talk to the speaker. | F: helping establish the reason for the men’s visit and purposeful behavior. | G: hinting that the men have hidden motives for studying the mound. | H: indicating why the speaker is fascinated by the men and wants to help them.
+45 [{'score': 1.0, 'parent': 'serpent-mound-2026-2027-form-c', 'id': 'serpent-mound-2026-2027-form-c-official-shsat-2026-c-29'}]
+Read line 28 from the poem. At the mouth end, there was an oval mound How does the line contribute to the development of ideas in the poem?
+A: It describes a feature of the mound that the men from the museum need to document. | B: It introduces a comparison of the body of the mound with the head of the mound. | C: It introduces a feature of the mound that has a different meaning to different people. | D: It describes a part of the mound that is difficult to see from far away.
+46 [{'score': 1.0, 'parent': 'serpent-mound-2026-2027-form-c', 'id': 'serpent-mound-2026-2027-form-c-official-shsat-2026-c-30'}]
+What impact do the phrases “all but / invisible” and “even less obvious” in lines 16-18 have on the meaning of the poem?
+E: They indicate that viewing the full size and shape of the mound is difficult. | F: They suggest that the location of the mound is unknown to most people. | G: They imply that the speaker wants the location of the mound to remain a secret. | H: They reveal that the speaker is unfamiliar with the significance of the mound.
+47 [{'score': 1.0, 'parent': 'serpent-mound-2026-2027-form-c', 'id': 'serpent-mound-2026-2027-form-c-official-shsat-2026-c-31'}]
+What impact do the words “swish,” “chitter,” and “cry” in lines 12-13 have in the poem?
+A: They illustrate how lively the mound’s surroundings are during the summer. | B: They show how the mound disrupts natural life in the marsh. | C: They indicate the variety of wildlife found in the area around the mound. | D: They suggest that the speaker prefers the mound’s appearance in winter.
+48 [{'score': 1.0, 'parent': 'serpent-mound-2026-2027-form-c', 'id': 'serpent-mound-2026-2027-form-c-official-shsat-2026-c-32'}]
+How does the speaker's interaction with Ruth in lines 37-41 convey a central idea of the poem?
+E: It suggests that the most accurate interpretations of the mound come from knowing the purpose of the mound, | F: It emphasizes that there are multiple interpretations of the mound based on feelings and experiences. | G: It reveals the benefit of considering different interpretations of the mound’s significance. | H: It implies that scientific study of the mound’s purpose will affect what the mound symbolizes to people.
+49 [{'score': 1.0, 'parent': 'serpent-mound-2026-2027-form-c', 'id': 'serpent-mound-2026-2027-form-c-official-shsat-2026-c-33'}]
+The poet contrasts the speaker’s and Ruth’s points of view regarding the mound by using dialogue to
+A: imply that Ruth is worried that her interpretation of the mound will be seen as too abstract. | B: indicate that Ruth hopes her interpretation of the mound will be shared by the men from the museum. | C: suggest that Ruth wants the speaker to agree with her interpretation of the mound. | D: show that Ruth has already decided on her interpretation of the mound.
+50 [{'score': 1.0, 'parent': 'a-memory-revolution-2023-2024-form-a', 'id': 'a-memory-revolution-2023-2024-form-a-pdf-shsat-2023-2024-a-q010'}]
+The details in paragraph 3 about cognitive offloading convey a central idea of the passage by
+E: suggesting that reliance on the Internet for information is inevitable. | F: demonstrating how the methods used to store and find information have changed over time. | G: explaining how encyclopedias and the Internet are similar sources of information. | H: implying that more information can be understood now than ever before.
+51 [{'score': 1.0, 'parent': 'a-memory-revolution-2023-2024-form-a', 'id': 'a-memory-revolution-2023-2024-form-a-pdf-shsat-2023-2024-a-q011'}]
+How do the details about the experiment described in paragraph 5 convey a central idea of the passage?
+A: They suggest that the act of repeating information by typing it on a keyboard may improve a person’s memory. | B: They explain that a person will forget information faster if the information is considered unimportant. | C: They indicate that a person may start to forget details when the amount of information becomes overwhelming. | D: They suggest that memory is affected by whether a person expects to have access to the information in the future.
+52 [{'score': 1.0, 'parent': 'a-memory-revolution-2023-2024-form-a', 'id': 'a-memory-revolution-2023-2024-form-a-pdf-shsat-2023-2024-a-q012'}]
+Read this sentence from paragraph 7. As the Internet’s resources continue to expand our “external” memory, some question whether the process may cause people to depend too heavily on technology. How does the sentence contribute to the structure and development of ideas in the passage?
+E: It presents a claim about the risks of relying on the Internet that prompted the research described in paragraphs 2 and 6. | F: It contrasts a disadvantage of relying on the Internet with the benefits of Internet use that are described in paragraphs 2 and 6. | G: It signals a shift from a neutral viewpoint in paragraphs 2 and 6 to a presentation of an argument and a counterargument. | H: It introduces a counterargument and marks a transition from an optimistic tone in paragraphs 2 and 6 to a cautious tone as the counterargument is developed.
+53 [{'score': 1.0, 'parent': 'a-memory-revolution-2023-2024-form-a', 'id': 'a-memory-revolution-2023-2024-form-a-pdf-shsat-2023-2024-a-q013'}]
+The study described in paragraph 6 influenced researchers’ ideas about memory in the digital age by
+A: highlighting instances when organizing detailed information made it easier to remember. | B: confirming that keywords can be remembered more easily than large amounts of information. | C: identifying a shift in focus from remembering specific information to knowing where to find it. | D: emphasizing that remembering a basic idea is more important than storing detailed information.
+54 [{'score': 1.0, 'parent': 'a-memory-revolution-2023-2024-form-a', 'id': 'a-memory-revolution-2023-2024-form-a-pdf-shsat-2023-2024-a-q017'}]
+How does the diagram provide additional support for the topic presented in the passage?
+E: It reveals why human brains must adapt to obtaining information from the Internet as opposed to other sources. | F: It indicates how people can use the Internet to help improve their long-term recollection of information. | G: It shows how study participants’ brains distinguished between important and unimportant details. | H: It depicts the idea that repetition and rehearsal are necessary to recall information when tools such as search engines are unavailable.
+55 [{'score': 1.0, 'parent': 'a-memory-revolution-2023-2024-form-a', 'id': 'a-memory-revolution-2023-2024-form-a-pdf-shsat-2023-2024-a-q014'}]
+Which evidence from the passage is most relevant to the claim in paragraph 7 that “ ‘far from making us stupid, these technologies are the only things that will keep us smart’ ”?
+A: the revelation that most people opted to use the Internet to answer relatively easy trivia questions rather than relying on their own brainpower (paragraph 2) | B: the assertion that the storage of information on the Internet frees people to focus on higher- order tasks such as problem solving (paragraph 3) | C: the connection between how people organize information in their mind and their ability to recall that information (paragraph 5) | D: the description of transactive memory as an expansive external source that people can use to store information (paragraph 6)
+56 [{'score': 1.0, 'parent': 'a-memory-revolution-2023-2024-form-a', 'id': 'a-memory-revolution-2023-2024-form-a-pdf-shsat-2023-2024-a-q015'}]
+Which sentence from the passage suggests that using Internet search engines may lead people to rely less on their own ability to recall information?
+E: “In the past few decades, the Internet has become an integral component of daily life for many people.” (paragraph 1) | F: “The Internet group was required to use the search engine Google to answer eight challenging trivia questions.” (paragraph 2) | G: “Their results showed that 83 percent of the Internet group continued to consult Google in the second round, while only 63 percent of the memory group chose to do so.” (paragraph 2) | H: “For this experiment, participants read forty trivia facts, such as ‘An ostrich’s eye is bigger than its brain,’ and typed the statements into a computer file.” (paragraph 5)
+57 [{'score': 1.0, 'parent': 'a-memory-revolution-2023-2024-form-a', 'id': 'a-memory-revolution-2023-2024-form-a-pdf-shsat-2023-2024-a-q016'}]
+The effect of the Internet on a person’s memory is illustrated in the passage through the presentation of studies that
+A: examine how the use of search engines changes the way people evaluate and store information for future access. | B: highlight the difference between the capacity of the Internet and the ability of the human brain to locate information. | C: compare the type of information that can be obtained from the Internet with the type of information that is stored in the human brain. | D: emphasize the ease of obtaining information through search engines rather than remembering it without assistance.
+58 [{'score': 0.8899, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-55'}]
+How many 5-digit numbers can be created using the digits 2, 3, 5, 7, and 8 without repeating any digits within that 5-digit number?
+
+59 [{'score': 0.7664, 'parent': '2022-2023-form-aMath.ts', 'id': '2022-2023-form-a-q66'}]
+147-x _49 12 What is the value of x in the equation shown above?
+
+60 [{'score': 0.009, 'parent': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a', 'id': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-30'}]
+I 6) _ ( 5) + 4.2| _ 3 _ 9.6| -
+
+61 [{'score': 0.3412, 'parent': '2023-2024-form-bMath.ts', 'id': '2023-2024-form-b-pdf-shsat-2023-2024-b-q089'}]
+Tyler has completed 60 pages in his French workbook, This is 20% of the total number of pages in the workbook. How many pages are in the workbook?
+
+62 [{'score': 0.5915, 'parent': '2019-2020-form-aMath.ts', 'id': '2019-2020-form-a-q82'}]
+30° y? 60° P 25° Four straight lines intersect at point P as shown above. What is the value of y?
+
+63 [{'score': 0.9744, 'parent': '2025-2026-form-bMath.ts', 'id': '2025-2026-form-b-math-1'}]
+If x =9 and y =~7, what is the value of x(x - ay)?
+A: 18 | B: 45 | C: 144 | D: 207
+64 [{'score': 0.8458, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-56'}]
+Q R A Y 50° 70°\ P T Ss In the figure above, PQRS is a parallelogram. The measure of ZPQT is 50°, and the measure of ZPTQ is 70°. What is the measure of ZQRS?
+E: 60° | F: 70° | G: 80° | H: 120°
+65 [{'score': 0.9014, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-57'}]
+m=3n-£-045-850 4 7 Based on the statement above, which variable has the greatest value?
+A: M | B: N | C: P D.R
+66 [{'score': 0.9078, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-62'}]
+DESSERT CHOICES Dessert Cookies Pie The table above shows the number of times that different desserts were ordered at a restaurant. Based on this information, what is the probability of a customer ordering ice cream as a dessert?
+E: 25% | F: 30% | G: 40% | H: 48%
+67 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-59'}]
+To make party invitations, Macie could buy a package of paper for $10.50, or she could buy x individual sheets of the same paper for $0.15 each. What is the largest value of x that would make buying the individual sheets less expensive than buying the package?
+A: 60 | B: 65 | C: 69 | D: 70
+68 [{'score': 0.9396, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-60'}]
+At 1:00 p.m. one day, the temperature was 8 degrees above zero. During the rest of the day, the temperature fell 3 degrees per hour. What was the temperature at 7:00 p.m. that day?
+E: -13° | G: -7° | H: 5°
+69 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-61'}]
+A bag contains 75 marbles that are red, blue, or green. The ratio of red to blue marbles is 15:7, and the ratio of blue to green marbles is 7:3. If 2 blue marbles are removed and replaced with 2 green marbles, what will be the new ratio of red to green marbles?
+A: 3:1 | B: 5:1 | C: 15:3 | D: 45:11
+70 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-58'}]
+A roofing contractor uses shingles at a rate of 3 bundles for every 96 square feet of roof covered. At this rate, how many bundles of shingles will he need in order to cover a roof that is 416 square feet?
+E: 5 | F: 12 | G: 13 | H: 14
+71 [{'score': 0.5122, 'parent': '2020-2021-form-bMath.ts', 'id': '2020-2021-form-b-q90'}]
+What is the least common multiple of 24, 6, and 18?
+A: 36 | B: 48 | C: 72 | D: 144
+72 [{'score': 0.3854, 'parent': '2025-2026-form-bMath.ts', 'id': '2025-2026-form-b-math-2'}]
+One day, the Early Bird Restaurant used 15 dozen eggs for 200 breakfast customers. At this rate, approximately how many dozen eggs are needed for 300 ? breakfast customers?
+E: 20 | F: 23 | G: 25 | H: 30
+73 [{'score': 0.9811, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-64'}]
+Acooler contains three types of beverages: 5 bottles of apple juice, 3 bottles of grape juice, and 6 bottles of orange juice. What is the probability that a bottle chosen at random from this cooler is not apple juice? 1
+A: = 9 | B: = 14 ac 2 14 bp. 2 3
+74 [{'score': 0.9708, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-65'}]
+A large circular dinner plate has a radius of 20 centimeters. A smaller circular plate with a circumference of 20x centimeters is placed in the center of the larger dinner plate. What is the area of the part of the larger dinner plate that is not covered by the smaller plate?
+E: 20n sq cm | F: 100x sq cm | G: 200n sqcm | H: 300x sq cm
+75 [{'score': 0.3538, 'parent': '2022-2023-form-bMath.ts', 'id': '2022-2023-form-b-q95'}]
+PRICES FOR NEWSPAPER ADVERTISING Page Space | Price | 1 > page $200 4 1 2 full page $600 The table above shows prices for newspaper advertising. A store purchased pages, > pages, and full pages of page space in equal numbers for a total of $11,500. What is the total amount of page space the store purchased?
+A: 12 pages 4 | B: 10 pages | C: i6t pages , | D: 75 pages
+76 [{'score': 0.6462, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-67'}]
+How many positive odd numbers satisfy the inequality 3x + 8 < 92?
+E: 13 | F: 14 | G: 17 | H: 28
+77 [{'score': 0.9014, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-68'}]
+if 28 = 4x , what is the value of x when y. y=3?
+A: 3 | B: 4 C9 | D: 12
+78 [{'score': 0.9667, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-69'}]
+Points X, Y, and Z are ona straight line, and Y is between X and Z. Length s_3n YZ = BY rand length XY = 20 centimeters. What is the length of XZ?
+E: 12cm | F: 24cm | G: 30cm | H: 32cm
+79 [{'score': 0.9952, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-70'}]
+Bryana bought 13 yards of cloth at $8.00 per yard. If there was an 8% sales tax, what was the total cost of the cloth?
+A: $12.96 | B: $14.08 | C: $15.12 | D: $16.08
+80 [{'score': 0.855, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-71'}]
+M N 15 . 5 On the number line above, MN = 55 . What is the position of point M?
+E: -74 6 Fr. -4b 2 6. 44 2 | H: 74 6
+81 [{'score': 0.9644, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-72'}]
+A United States presidential coin is made from an alloy of four metals—copper, zinc, manganese, and nickel—with weights in the ratio of 177:12:7:4, respectively. The coin weighs a total of 8 grams. What is the weight of the zinc in this coin?
+A: 0.289 | B: 0.48 g | C: 0.96 g | D: 48g
+82 [{'score': 0.4366, 'parent': '2024-2025-form-aMath.ts', 'id': '2024-2025-form-a-q98'}]
+Jack scored a mean of 15 points per game in his first 3 basketball games. In his 4th game, he scored 27 points, What is his mean score for the first 4 games?
+E: 15 | F: 17 | G: 18 | H: 21
+83 [{'score': 0.3272, 'parent': '2023-2024-form-bMath.ts', 'id': '2023-2024-form-b-pdf-shsat-2023-2024-b-q114'}]
+Accylindrical oil drum can hold 4,320 liters when it is completely full. Currently, the drum is 3 full of oil. How many kiloliters of oil need to be added in order to fill the drum completely?
+A: 1.44 | B: 2.88 | C: 4.32 | D: 14.10
+84 [{'score': 0.98, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-73'}]
+Nicole’s age now is three times Carmen’s age. If Carmen will be 17 in two years, how old was Nicole 5 years ago?
+E: 38 yr | F: 40 yr | G: 45 yr | H: 50 yr
+85 [{'score': 0.991, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-74'}]
+A chemical decays in such a way that the amount left at the end of each week is 20% less than the amount at the beginning of that same week. What percent of the original amount is left after two weeks?
+A: 40% | B: 60% | C: 64% | D: 80%
+86 [{'score': 0.9787, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-75'}]
+If w —1 is an odd integer, which one of the following must be an even integer?
+E: wel | F: 2w-1 | G: 2w-2 | H: 2w+1
+87 [{'score': 0.3408, 'parent': '2019-2020-form-aMath.ts', 'id': '2019-2020-form-a-q109'}]
+Three students stand at the starting line of a running track and begin running laps at the same time. Ann completes 1 lap every 2 minutes, Jack completes 1 lap every 3 minutes, and Lee completes 1 lap every 4 minutes. How many laps does Ann complete before all three runners are once again at the starting line at the same time?
+A: 4 | B: 6 | C: 12 | D: 20
+88 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-76'}]
+Simplify this expression: 4(7 - 3x) - (5 - x)
+E: 23- 4x | F: 23-11x | G: 28 - 4x | H: 28 -12x
+89 [{'score': 0.9077, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-77'}]
+PET SURVEY Number of Number of Pets Students ee Amy surveyed students at her school about the number of pets they have. What is the probability that a student who participated in the survey has at least 2 pets? a. 2 40
+B: 12 ec 2 8 bp. & 10
+90 [{'score': 0.3772, 'parent': 'digital-shsat-practice-test-4Math.ts', 'id': 'digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-19'}]
+A large container is partially filled with n liters of water. Ito adds 10 liters of water to the container, making it 60% full. If : ana i Ignacio adds 6 more liters of water, the container will be 75% full. What is the value of n?
+E: 14 | F: 15 | G: 26 | H: 30 1
+91 [{'score': 0.1127, 'parent': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a', 'id': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-25'}]
+5x343x4+94+4, x? iT ? Sepression atove!
+B: 5,039.01 | C: 5,039.1 | D: 5,139
+92 [{'score': 0.9013, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-79'}]
+N Ss P R 6cm M T Q R, S, and T are midpoints of the sides of square MNPQ, as shown above. What is the sum of the areas of the shaded triangles?
+E: 9sqcm | F: 12sq cm
+93 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-80'}]
+The Chens spend $5 of every $8 they earn on planned expenses. If the family earns $29,600 in one year, how much will they spend on planned expenses that year?
+A: $1,850 | B: $3,700 | C: $5,920 | D: $18,500
+94 [{'score': 0.9957, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-81'}]
+A pizza shop offers a choice of 3 sizes (small, medium, and large) and 7 different toppings. Different pizzas can be created by changing the size and/or the choice of toppings. If Cody wants to order a pizza with exactly 2 different toppings, how many different pizzas can he create?
+E: 6 | F: 21 | G: 63 | H: 126
+95 [{'score': 0.4163, 'parent': '2022-2023-form-bMath.ts', 'id': '2022-2023-form-b-q92'}]
+SURVEY OF CATS PER FAMILY Number of Cats | Number of Families [Sermee 8 The table above shows the number of cats er family in 100 households in the Blaine p " My! 4 ' ; neighborhood, By what percentage is the number of families with 1 cat greater than umber tes WI greater the number of families with 2 cats?
+A: 7% | B: 10% | C: 17% | D: 20%
+96 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-83'}]
+A wooden box has a square base. The height of this box is 3 times the length of one side of the base. If one side of the base is 3 feet long, what is the volume of this box?
+E: 9 cu ft | F: 27 cu ft | G: 36 cu ft | H: 81 cu ft
+97 [{'score': 0.9933, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-84'}]
+Ona bike trip, Rajiv traveled 65 kilometers in 5 hours, while Shaina traveled 72 kilometers in 4 hours. How much less was Rajiv’s mean speed, in kilometers per hour (kph), than Shaina‘s? AJ 1
+B: 5 | C: 7 | D: 9
+98 [{'score': 0.9765, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-85'}]
+Points P, Q, R, and S represent -3, -1, 0, and 2, respectively, on a number line. How many units is the midpoint of PQ from the midpoint of RS? El
+F: 2 | G: 3 s
+99 [{'score': 0.3644, 'parent': '2024-2025-form-aMath.ts', 'id': '2024-2025-form-a-q66'}]
+There are 1,000 cubic centimeters in 1 liter, and 1,000 cubic millimeters in 1 milliliter. How many cubic millimeters are there in 1,000 cubic centimeters?
+A: 1,000 | B: 10,000 | C: 100,000 | D: 1,000,000
+100 [{'score': 0.8276, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-86'}]
+k— y —~kx— 2—>| In the quarter circle above, what is y in terms of x?
+E: x-1 Fe x+1 Gg. Xth 2 a. [oe 2
+101 [{'score': 0.8901, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-87'}]
+M R T <+—+—\_+—_+—_ +—_+—_ +> 1 3 4 8 The hash marks on the number line above are evenly spaced. What is the coordinate of point R?
+A: Z 40 | B: 40 | C: 2 40 p. 24 40
+102 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-88'}]
+Phan chose an Internet service that charges $18.00 per month plus $0.024 per minute. Deion chose an Internet service that charges $30.00 per month for unlimited usage. At the end of the month, Phan’s and Deion’s charges were identical. For how many minutes did Phan use the Internet service that month?
+E: 50 | F: 60 | G: 100 | H: 500
+103 [{'score': 0.9369, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-91'}]
+y 4 -----------,------------ x oO m n What is the area of the shaded triangle shown above?
+A: m+n | B: n-m | C: 2(n-m) | D: 4(n- m)
+104 [{'score': 0.9844, 'parent': '2025-2026-form-bMath.ts', 'id': '2025-2026-form-b-math-3'}]
+The decimal 0.06 can be written as the | x . fraction 50. What is the value of x?
+E: 3 | F: 6 | G: 12 | H: 30
+105 [{'score': 0.9802, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-89'}]
+In a sample of 50 cars at a local dealership, there are 12 red cars and 10 cars with backup cameras. Of the 12 red cars, 4 have backup cameras. If a car is selected at random from the given sample, what is the probability that both of the following are true: the car is not red and does not have a backup camera?
+A: 2 p. 16 "25 | C: ss | D: 4 5
+106 [{'score': 0.9034, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-92'}]
+ANIMAL CARDS Number of Cards C8 ct a es The cards in the table above are mixed in a box. Which animal pictured on a card has exactly a 1 in 4 chance of being picked at random from the box?
+E: cat | F: dog | G: fish | H: horse
+107 [{'score': 0.6914, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-93'}]
+Which number line below shows the solution set for 2x -2<y<4x+10 when y=1? feeR EE} - A -3 -2 -1 0 1 2 3 SH B-3 -2 -1 0 1 2 38 SL & -3 -2 -1 0 1 2 3 ee DP -30-2 -1 0 1 2 3
+
+108 [{'score': 0.9072, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-94'}]
+14 _p 21 7 In the equation above, what is the value of p?
+E: 3 FR 3 | G: 4 | H: 14
+109 [{'score': 0.9655, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-95'}]
+A ball is selected at random from a box that contains 7 black balls, 14 green balls, and 21 red balls. What is the probability that the ball selected is black?
+A: A | B: t | C: 3 | D: =
+110 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-82'}]
+At North High School, a survey asked two questions, Question A and Question B. For each question, students could answer either “yes” or “no.” Of the 800 students who responded to the survey, 720 answered “yes” to Question A, and 640 answered “yes” to Question B. What is the least possible number of these students who could have answered “yes” to both questions?
+E: 80 | F: 160 | G: 560 | H: 640
+111 [{'score': 0.9398, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-97'}]
+Raoul is at least 3 years older than Vahn. Which of the following inequalities gives the relationship between Raoul’s age (r) and Vahn’s age (v )?
+A: r-v23 | B: r-v<3 2 rovs | C: 3-vsr | D: 3-rsv
+112 [{'score': 0.3983, 'parent': '2021-2022-form-aMath.ts', 'id': '2021-2022-form-a-q74'}]
+1 sind = 5.6 ricks 1 sind = 12.88 dalts Using the conversion above, how many dalts are equal to 1 rick?
+E: 0.43 | F: 2.30 | G: 7.28 | H: 18.48
+113 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-98'}]
+There are now x cans stacked on a shelf that holds 36 cans when full. If 4 of these cans were removed, the shelf would be half full. What is the value of x ?
+A: 14 | B: 16 | C: 18 | D: 22
+114 [{'score': 0.7283, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-99'}]
+Carlos tossed a paper cup in the air 50 times and found that the probability of it . a . landing on its side was 72%. If he tosses the cup in the air 150 more times, what is the total number of times he can expect the cup to land on its side?
+E: 72 | F: 108 | G: 144 | H: 158 THIS IS THE END OF THE TEST. IF TIME REMAINS, YOU SHOULD CHECK YOUR ANSWERS. BE SURE THAT THERE ARE NO STRAY MARKS, PARTIALLY FILLED ANSWER CIRCLES, OR INCOMPLETE ERASURES ON YOUR

@@ -1,0 +1,184 @@
+[
+  {
+    "form": "a",
+    "sourceQuestion": "12",
+    "sourcePage": 11,
+    "prompt": "Read this sentence from paragraph 7.\n\nAs the Internet’s resources continue to expand our “external” memory, some question whether the process may cause people to depend too heavily on technology.\n\nHow does the sentence contribute to the structure and development of ideas in the passage?",
+    "promptHtml": "<p>Read this sentence from paragraph 7.</p><blockquote><strong>As the Internet’s resources continue to expand our “external” memory, some</strong> <strong>question whether the process may cause people to depend too heavily on</strong> <strong>technology.</strong></blockquote><p>How does the sentence contribute to the structure and development of ideas in the passage?</p>"
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "20",
+    "sourcePage": 16,
+    "prompt": "Read lines 5–6 from the poem.\n\nThe weather will turn cold.\nBut that all happens later.\n\nHow do the lines develop a central theme of the poem?",
+    "promptHtml": "<p>Read lines 5–6 from the poem.</p><blockquote><strong>The weather will turn cold.</strong><br><strong>But that all happens later.</strong></blockquote><p>How do the lines develop a central theme of the poem?</p>"
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "21",
+    "sourcePage": 17,
+    "prompt": "Read lines 7–9 from the poem.\n\nFor now it is the early edge of fall,\nleaves green still while the air narrows,\nis slightly crisp,\n\nThe word choice in the lines helps convey the speaker’s belief that",
+    "promptHtml": "<p>Read lines 7–9 from the poem.</p><blockquote><strong>For now it is the early edge of fall,</strong><br><strong>leaves green still while the air narrows,</strong><br><strong>is slightly crisp,</strong></blockquote><p>The word choice in the lines helps convey the speaker’s belief that</p>"
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "24",
+    "sourcePage": 18,
+    "prompt": "Read these lines from the poem.\n\nI can already see how this will end. (line 1)\n\nHow Brooklyn makes me nostalgic\nfor the moment I am walking inside of. (lines 21–22)\n\nThe lines develop a central idea of the poem by",
+    "promptHtml": "<p>Read these lines from the poem.</p><blockquote><strong>I can already see how this will end. </strong>(line 1)<br><br><strong>How Brooklyn makes me nostalgic</strong><br><strong>for the moment I am walking inside of. </strong>(lines 21–22)</blockquote><p>The lines develop a central idea of the poem by</p>"
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "34",
+    "sourcePage": 23,
+    "prompt": "Read these sentences from paragraph 22.\n\n“Belongs to Red Bear people. Gone then come back.”\n\nHow does this statement affect the villagers in the excerpt?",
+    "promptHtml": "<p>Read these sentences from paragraph 22.</p><blockquote><strong>“Belongs to Red Bear people. Gone then come back.”</strong></blockquote><p>How does this statement affect the villagers in the excerpt?</p>"
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "38",
+    "sourcePage": 27,
+    "prompt": "Read this sentence from paragraph 6.\n\nThe patch-burn system is so successful that the conservationists at the preserve provide training to prairie farmers about conducting controlled burns on their own land.\n\nThe author includes this sentence to show that",
+    "promptHtml": "<p>Read this sentence from paragraph 6.</p><blockquote><strong>The patch-burn system is so successful that the conservationists at the preserve</strong> <strong>provide training to prairie farmers about conducting controlled burns on</strong> <strong>their own land.</strong></blockquote><p>The author includes this sentence to show that</p>"
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "41",
+    "sourcePage": 28,
+    "prompt": "Read this sentence from paragraph 6.\n\nBurning land to make it healthy may seem counterintuitive, but strategic controlled fires have helped the prairie sustain life for hundreds of years and, with careful management, will continue to do so.\n\nThe words “counterintuitive” and “strategic” in the sentence convey the idea that",
+    "promptHtml": "<p>Read this sentence from paragraph 6.</p><blockquote><strong>Burning land to make it healthy may seem counterintuitive, but strategic</strong> <strong>controlled fires have helped the prairie sustain life for hundreds of years and, with</strong> <strong>careful management, will continue to do so.</strong></blockquote><p>The words “counterintuitive” and “strategic” in the sentence convey the idea that</p>"
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "44",
+    "sourcePage": 33,
+    "prompt": "Read these sentences from paragraph 2.\n\nDad always said Mom could make all the dishes he’d had back in Vermont as well as though she were a New Englander herself, instead of a Russian. All of a sudden, I realized that tomorrow when those beans would be ready to eat I’d be going away. It gave me a funny feeling.\n\nThe sentences help develop a theme of the excerpt by",
+    "promptHtml": "<p>Read these sentences from paragraph 2.</p><blockquote><strong>Dad always said Mom could make all the dishes he’d had back in Vermont as well</strong> <strong>as though she were a New Englander herself, instead of a Russian. All of a</strong> <strong>sudden, I realized that tomorrow when those beans would be ready to eat I’d be</strong> <strong>going away. It gave me a funny feeling.</strong></blockquote><p>The sentences help develop a theme of the excerpt by</p>"
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "45",
+    "sourcePage": 33,
+    "prompt": "Read this sentence from paragraph 3.\n\n“I’ll be taking the train tomorrow night,” I said aloud, more to hear it myself.\n\nThis remark contributes to the conflict in the excerpt by",
+    "promptHtml": "<p>Read this sentence from paragraph 3.</p><blockquote><strong>“I’ll be taking the train tomorrow night,” I said aloud, more to hear it myself.</strong></blockquote><p>This remark contributes to the conflict in the excerpt by</p>"
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "46",
+    "sourcePage": 34,
+    "prompt": "Read this sentence from paragraph 9.\n\nI tried to, and then I just sat still and looked straight at it.\n\nHow does the phrase “looked straight at it” contribute to the meaning of the excerpt?",
+    "promptHtml": "<p>Read this sentence from paragraph 9.</p><blockquote><strong>I tried to, and then I just sat still and looked straight at it.</strong></blockquote><p>How does the phrase “looked straight at it” contribute to the meaning of the excerpt?</p>"
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "49",
+    "sourcePage": 35,
+    "prompt": "Read these sentences from the excerpt.\n\nMom seems to think of nothing farther away than today or perhaps yesterday or tomorrow morning. (paragraph 1)\n\nMom was fixing oatmeal for tomorrow morning. (paragraph 19)\n\nThe sentences help develop a central idea of the excerpt by",
+    "promptHtml": "<p>Read these sentences from the excerpt.</p><blockquote><strong>Mom seems to think of nothing farther away than today or perhaps yesterday or</strong> <strong>tomorrow morning. </strong>(paragraph 1)<br><br><strong>Mom was fixing oatmeal for tomorrow morning. </strong>(paragraph 19)</blockquote><p>The sentences help develop a central idea of the excerpt by</p>"
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "54",
+    "sourcePage": 39,
+    "prompt": "Read this sentence from paragraph 4.\n\nAfter collecting and analyzing the DNA in 800 samples of gray fur and wolf waste, researchers could produce hard biological evidence that sea wolves had genetic markers that made them distinct from the mainland wolves.\n\nThe phrase “hard biological evidence” conveys that the goal of the research team was to",
+    "promptHtml": "<p>Read this sentence from paragraph 4.</p><blockquote><strong>After collecting and analyzing the DNA in 800 samples of gray fur and wolf waste,</strong> <strong>researchers could produce hard biological evidence that sea wolves had genetic</strong> <strong>markers that made them distinct from the mainland wolves.</strong></blockquote><p>The phrase “hard biological evidence” conveys that the goal of the research team was to</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "8",
+    "sourcePage": 6,
+    "prompt": "Read this sentence.\n\nOne of Opportunity’s major contributions was finding possible evidence of the presence of water on Mars.\n\nWhere should the sentence be added to the passage?",
+    "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\">One of <em>Opportunity</em>’s major contributions was finding possible evidence of the presence of water on Mars.</blockquote><p>Where should the sentence be added to the passage?</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "10",
+    "sourcePage": 10,
+    "prompt": "Read this sentence from paragraph 2.\n\nTwo alumnae of its culinary program . . . were even recognized as semi-finalists for prestigious James Beard awards.\n\nThe words “recognized” and “prestigious” in the sentence convey that La Cocina",
+    "promptHtml": "<p>Read this sentence from paragraph 2.</p><blockquote><strong>Two alumnae of its culinary program . . . were even recognized as semi-finalists</strong> <strong>for prestigious James Beard awards.</strong></blockquote><p>The words “recognized” and “prestigious” in the sentence convey that La Cocina</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "18",
+    "sourcePage": 16,
+    "prompt": "Read paragraph 2 from the excerpt.\n\nTo the proprietors of . . . mangy lynxes, moth-eaten coyotes, and dancing bears I returned courteous but uncompromising refusals—of course, first submitting all such letters, together with my replies, to Professor Farrago.\n\nThis paragraph helps develop the plot by establishing that the narrator",
+    "promptHtml": "<p>Read paragraph 2 from the excerpt.</p><blockquote><strong>To the proprietors of . . . mangy lynxes, moth-eaten coyotes, and dancing bears I</strong> <strong>returned courteous but uncompromising refusals—of course, first submitting all</strong> <strong>such letters, together with my replies, to Professor Farrago.</strong></blockquote><p>This paragraph helps develop the plot by establishing that the narrator</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "19",
+    "sourcePage": 17,
+    "prompt": "Read this sentence from paragraph 3.\n\nThe professor, who was sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his glasses down and looked over them at me with a whimsical smile that suggested amusement, impatience, annoyance, and perhaps a faint trace of apology.\n\nWhat does the phrase “a faint trace of apology” convey about the professor?",
+    "promptHtml": "<p>Read this sentence from paragraph 3.</p><blockquote><strong>The professor, who was sitting at his desk before a pile of letters and replies</strong> <strong>submitted for approval by me, pushed his glasses down and looked over them at</strong> <strong>me with a whimsical smile that suggested amusement, impatience, annoyance,</strong> <strong>and perhaps a faint trace of apology.</strong></blockquote><p>What does the phrase “a faint trace of apology” convey about the professor?</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "28",
+    "sourcePage": 22,
+    "prompt": "Read this sentence from paragraph 4.\n\nWilbur having used his turn in the unsuccessful attempt on the 14th, the right to the first trial now belonged to me.\n\nThe sentence contributes to the development of ideas in the excerpt by",
+    "promptHtml": "<p>Read this sentence from paragraph 4.</p><blockquote><strong>Wilbur having used his turn in the unsuccessful attempt on the 14th, the right to</strong> <strong>the first trial now belonged to me.</strong></blockquote><p>The sentence contributes to the development of ideas in the excerpt by</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "31",
+    "sourcePage": 23,
+    "prompt": "Read this sentence from paragraph 5.\n\nAs the velocity of the wind was over 35 feet per second and the speed of the machine over the ground against this wind ten feet per second, the speed of the machine relative to the air was over 45 feet per second, and the length of the flight was equivalent to a flight of 540 feet made in calm air.\n\nHow does the sentence help convey Orville Wright’s perspective about this first flight?",
+    "promptHtml": "<p>Read this sentence from paragraph 5.</p><blockquote><strong>As the velocity of the wind was over 35 feet per second and the speed of the</strong> <strong>machine over the ground against this wind ten feet per second, the speed of the</strong> <strong>machine relative to the air was over 45 feet per second, and the length of the</strong> <strong>flight was equivalent to a flight of 540 feet made in calm air.</strong></blockquote><p>How does the sentence help convey Orville Wright’s perspective about this first flight?</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "32",
+    "sourcePage": 23,
+    "prompt": "Read this sentence from paragraph 5.\n\nA sudden dart when a little over a hundred feet from the end of the track, or a little over 120 feet from the point at which it rose into the air, ended the flight.\n\nHow does the sentence contribute to the paragraph?",
+    "promptHtml": "<p>Read this sentence from paragraph 5.</p><blockquote><strong>A sudden dart when a little over a hundred feet from the end of the track, or a</strong> <strong>little over 120 feet from the point at which it rose into the air, ended the flight.</strong></blockquote><p>How does the sentence contribute to the paragraph?</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "33",
+    "sourcePage": 24,
+    "prompt": "Read this sentence from paragraph 5.\n\nThis flight lasted only 12 seconds, but it was nevertheless the first in the history of the world in which a machine carrying a man had raised itself by its own power into the air in full flight, had sailed forward without reduction of speed and had finally landed at a point as high as that from which it started.\n\nThe words “only,” “nevertheless,” and “finally” most clearly convey the idea that",
+    "promptHtml": "<p>Read this sentence from paragraph 5.</p><blockquote><strong>This flight lasted only 12 seconds, but it was nevertheless the first in the history</strong> <strong>of the world in which a machine carrying a man had raised itself by its own power</strong> <strong>into the air in full flight, had sailed forward without reduction of speed and had</strong> <strong>finally landed at a point as high as that from which it started.</strong></blockquote><p>The words “only,” “nevertheless,” and “finally” <strong>most </strong>clearly convey the idea that</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "37",
+    "sourcePage": 27,
+    "prompt": "Read lines 2–4 and lines 12–14 from the poem.\n\nI am what every athlete\nwants: to remain at the apex of the leap,\nup in the air.\n\nI am the blood flowing in the runner’s chest,\nand I catch everything: from the hills,\nthe mountains.\n\nHow do the lines contribute to the development of a central idea of the poem?",
+    "promptHtml": "<p>Read lines 2–4 and lines 12–14 from the poem.</p><blockquote><strong>I am what every athlete</strong><br><strong>wants: to remain at the apex of the leap,</strong><br><strong>up in the air.</strong><br><br><em><strong>I am the blood flowing in the runner’s chest,</strong></em><br><em><strong>and I catch everything: from the hills,</strong></em><br><em><strong>the mountains.</strong></em></blockquote><p>How do the lines contribute to the development of a central idea of the poem?</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "41",
+    "sourcePage": 28,
+    "prompt": "Read lines 41–42 from the poem.\n\nBecause I am,\nabove all else, patient. I will wait for you.\n\nWhich of the following supports what is implied in these lines?",
+    "promptHtml": "<p>Read lines 41–42 from the poem.</p><blockquote><em><strong>Because I am,</strong></em><br><em><strong>above all else, patient. I will wait for you.</strong></em></blockquote><p>Which of the following supports what is implied in these lines?</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "45",
+    "sourcePage": 33,
+    "prompt": "Read this sentence from paragraph 2.\n\nIncluding both ideograms (which convey a whole word or idea, either concrete or abstract, in a single sign) and phonograms (representing either an alphabetic sound or a group of consonants), [the writing system] was used in formal inscriptions on tomb and temple walls as well as on elaborate funerary papyri.\n\nThe author’s purpose for including the sentence is to",
+    "promptHtml": "<p>Read this sentence from paragraph 2.</p><blockquote><strong>Including both ideograms (which convey a whole word or idea, either concrete or</strong> <strong>abstract, in a single sign) and phonograms (representing either an alphabetic</strong> <strong>sound or a group of consonants), [the writing system] was used in formal</strong> <strong>inscriptions on tomb and temple walls as well as on elaborate funerary papyri.</strong></blockquote><p>The author’s purpose for including the sentence is to</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "52",
+    "sourcePage": 37,
+    "prompt": "Read this sentence from paragraph 2.\n\nThey are extraordinarily level, one long curtain of lacework and woven foam.\n\nWhat is the effect of comparing the American Falls to a “long curtain of lacework and woven foam”?",
+    "promptHtml": "<p>Read this sentence from paragraph 2.</p><blockquote><strong>They are extraordinarily level, one long curtain of lacework and woven foam.</strong></blockquote><p>What is the effect of comparing the American Falls to a “long curtain of lacework and woven foam”?</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "53",
+    "sourcePage": 38,
+    "prompt": "Read this sentence from paragraph 3.\n\nThese are the lower rapids, a sight more terrifying than the Falls, because less intelligible.\n\nWhich statement best describes how the sentence fits into the overall structure of the excerpt?",
+    "promptHtml": "<p>Read this sentence from paragraph 3.</p><blockquote><strong>These are the lower rapids, a sight more terrifying than the Falls, because less</strong> <strong>intelligible.</strong></blockquote><p>Which statement <strong>best </strong>describes how the sentence fits into the overall structure of the excerpt?</p>"
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "55",
+    "sourcePage": 38,
+    "prompt": "Read this sentence from paragraph 4.\n\nThere one can sit and let great cloudy thoughts of destiny and the passage of empires drift through the mind; for such dreams are at home by Niagara.\n\nThe sentence most contributes to the development of ideas in the excerpt by",
+    "promptHtml": "<p>Read this sentence from paragraph 4.</p><blockquote><strong>There one can sit and let great cloudy thoughts of destiny and the passage of</strong> <strong>empires drift through the mind; for such dreams are at home by Niagara.</strong></blockquote><p>The sentence <strong>most </strong>contributes to the development of ideas in the excerpt by</p>"
+  }
+]

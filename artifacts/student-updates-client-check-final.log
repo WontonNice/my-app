@@ -1,0 +1,8 @@
+
+> nathantutors@0.0.0 typecheck:client
+> npm run typecheck --workspace client
+
+
+> nathantutors-client@0.0.0 typecheck
+> tsc -p tsconfig.json --noEmit
+

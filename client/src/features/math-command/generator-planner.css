@@ -1,0 +1,58 @@
+.gp-workspace { color: #24382f; background: #fffdf8; border: 1px solid #d7dcd5; border-radius: 12px; padding: clamp(16px, 3vw, 28px); margin: 16px 0; min-width: 0; }
+.gp-workspace h1 { font: 500 clamp(26px, 3vw, 34px)/1.2 Georgia, serif; margin: 0 0 8px; }
+.gp-workspace h2 { font-size: 21px; margin: 0 0 8px; }
+.gp-workspace h3 { font-size: 16px; margin: 0 0 12px; }
+.gp-workspace .gp-batch-body { border: 0; padding: 0; margin: 0; min-width: 0; }
+.gp-workspace p { line-height: 1.55; max-width: 72ch; }
+.gp-header, .gp-export, .gp-batch-controls, .gp-actions, .gp-selection { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.gp-header { justify-content: space-between; align-items: flex-start; }
+.gp-header p { margin: 0; }
+.gp-workspace button, .gp-add button { font: inherit; color: #244735; background: #fff; border: 1px solid #afbeb2; border-radius: 7px; padding: 9px 12px; min-height: 40px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+.gp-workspace button:hover, .gp-add button:hover { background: #edf2ea; }
+.gp-workspace button:disabled, .gp-add button:disabled { opacity: .55; cursor: default; }
+.gp-workspace :focus-visible, .gp-add :focus-visible { outline: 3px solid #387657; outline-offset: 3px; }
+.gp-workspace ::selection { background: #d1e5d4; color: #193d2a; }
+.gp-workspace label, .gp-add-panel label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; min-width: 0; }
+.gp-workspace input:not([type=checkbox]), .gp-workspace select, .gp-workspace textarea, .gp-add-panel input, .gp-add-panel select { width: 100%; min-width: 0; box-sizing: border-box; font: inherit; font-weight: 400; color: #24382f; border: 1px solid #aebdaf; background: #fff; border-radius: 6px; padding: 10px; caret-color: #245239; }
+.gp-workspace input::placeholder, .gp-workspace textarea::placeholder, .gp-add-panel input::placeholder { color: #667064; opacity: 1; }
+.gp-workspace textarea { resize: vertical; line-height: 1.5; }
+.gp-workspace small, .gp-save-state { color: #566454; line-height: 1.5; overflow-wrap: anywhere; }
+.gp-save-state { font-size: 13px; margin: 16px 0; }
+.gp-new, .gp-brief, .gp-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0; align-items: end; }
+.gp-brief { grid-template-columns: minmax(160px, 1fr) minmax(240px, 2fr); align-items: start; }
+.gp-batch-controls > label { flex: 1; }
+.gp-export { border-block: 1px solid #d7dcd5; padding: 18px 0; margin: 24px 0; }
+.gp-export > small { flex-basis: 100%; }
+.gp-export .gp-actions { margin-left: auto; }
+.gp-export button:first-child, .gp-new > button { background: #245239; color: #fff; }
+.gp-export button:first-child:hover, .gp-new > button:hover { background: #183d29; }
+.gp-columns { display: grid; grid-template-columns: minmax(240px, 1fr) minmax(300px, 1.5fr); gap: 24px; }
+.gp-queue, .gp-detail { min-width: 0; }
+.gp-filters { display: grid; gap: 12px; }
+.gp-selection { justify-content: space-between; margin: 16px 0 8px; font-size: 13px; }
+.gp-workspace .gp-selection label { display: flex; flex-direction: row; align-items: center; gap: 8px; }
+.gp-workspace input[type=checkbox] { width: 17px; height: 17px; flex: 0 0 auto; accent-color: #245239; }
+.gp-entry-list { list-style: none; padding: 0; margin: 0; max-height: 760px; overflow: auto; scrollbar-color: #98ab9c #f4f0e7; }
+.gp-entry-list li { display: flex; align-items: flex-start; gap: 8px; padding: 12px 6px; border-bottom: 1px solid #d7dcd5; }
+.gp-entry-list li.is-current { background: #eaf1e7; }
+.gp-entry-list input { margin-top: 14px; }
+.gp-entry-list .gp-entry-link { display: grid; gap: 6px; text-align: left; border: 0; background: transparent; padding: 6px; justify-content: start; flex: 1; min-width: 0; }
+.gp-entry-link strong { font-size: 14px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.gp-order { display: grid; gap: 6px; }
+.gp-order button { min-height: 34px; padding: 6px; }
+.gp-detail { border-left: 1px solid #d7dcd5; padding-left: 24px; }
+.gp-detail > label { margin: 18px 0 8px; }
+.gp-coverage { margin: 28px 0; padding-top: 20px; border-top: 1px solid #d7dcd5; }
+.gp-coverage > div { display: flex; gap: 12px; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #d7dcd5; }
+.gp-coverage small { display: block; }
+.gp-source { margin: 24px 0; overflow-wrap: anywhere; }
+.gp-source summary, .gp-prompt summary { cursor: pointer; font-weight: 600; padding: 8px 0; }
+.gp-prompt { margin: 20px 0; }
+.gp-prompt textarea { font: 13px/1.6 ui-monospace, monospace; }
+.gp-error { color: #8b2424; background: #fff0ec; padding: 12px; border: 1px solid #d8aaa0; margin: 16px 0; border-radius: 7px; }
+.gp-empty { padding: 20px 0; color: #566454; }
+.gp-add { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; max-width: 100%; vertical-align: middle; }
+.gp-add-panel { flex-basis: 100%; display: grid; gap: 14px; padding: 16px; border: 1px solid #afbeb2; border-radius: 8px; background: #fffdf8; color: #24382f; width: min(360px, 100%); box-sizing: border-box; }
+.gp-add > span { font-size: 13px; }
+.gp-add a { color: #245239; text-underline-offset: 3px; }
+@media (max-width: 760px) { .gp-columns, .gp-brief, .gp-fields, .gp-new { grid-template-columns: 1fr; } .gp-detail { border-left: 0; border-top: 1px solid #d7dcd5; padding: 24px 0 0; } .gp-entry-list { max-height: 380px; } .gp-export .gp-actions { margin-left: 0; } .gp-batch-controls > label { flex-basis: 100%; } .gp-coverage > div { flex-wrap: wrap; } }

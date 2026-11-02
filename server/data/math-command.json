@@ -2,15 +2,12 @@
   "metadata": {
     "2026-2027-form-a-math-item-22": {
       "category": "Statistics and Probability",
-      "subcategory": "Data Displays"
+      "subcategory": "Data Displays & Sampling"
     },
-    "2021-2022-form-a-q76": {
-      "category": "Statistics and Probability",
-      "subcategory": "Set Relationships"
-    },
+    "2021-2022-form-a-q76": {},
     "2025-2026-form-a-math-5": {
       "category": "Statistics and Probability",
-      "subcategory": "Set Relationships"
+      "subcategory": "Counting & Sets"
     },
     "2025-2026-form-a-math-1": {
       "category": "Ratios and Proportional Relationships",
@@ -22,7 +19,7 @@
     },
     "2019-2020-form-a-q58": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2019-2020-form-a-q59": {
       "category": "Arithmetic & Number Sense",
@@ -38,7 +35,7 @@
     },
     "2019-2020-form-a-q64": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2019-2020-form-a-q67": {
       "category": "Geometry",
@@ -58,7 +55,7 @@
     },
     "2019-2020-form-a-q73": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2019-2020-form-a-q75": {
       "category": "Arithmetic & Number Sense",
@@ -70,7 +67,7 @@
     },
     "2019-2020-form-a-q80": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2019-2020-form-a-q82": {
       "category": "Geometry",
@@ -78,11 +75,11 @@
     },
     "2019-2020-form-a-q83": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2019-2020-form-a-q84": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2019-2020-form-a-q86": {
       "category": "Arithmetic & Number Sense",
@@ -90,7 +87,7 @@
     },
     "2019-2020-form-a-q87": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2019-2020-form-a-q88": {
       "category": "Algebra",
@@ -98,7 +95,7 @@
     },
     "2019-2020-form-a-q89": {
       "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations"
+      "subcategory": "Counting & Sets"
     },
     "2019-2020-form-a-q90": {
       "category": "Algebra",
@@ -118,7 +115,7 @@
     },
     "2019-2020-form-a-q97": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2019-2020-form-a-q99": {
       "category": "Arithmetic & Number Sense",
@@ -130,7 +127,7 @@
     },
     "2019-2020-form-a-q103": {
       "category": "Statistics and Probability",
-      "subcategory": "Sampling & Predictions"
+      "subcategory": "Data Displays & Sampling"
     },
     "2019-2020-form-a-q106": {
       "category": "Geometry",
@@ -146,23 +143,23 @@
     },
     "2019-2020-form-a-q110": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2019-2020-form-a-q112": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2019-2020-form-a-q113": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2019-2020-form-a-q114": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2020-2021-form-b-math-2": {
       "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations"
+      "subcategory": "Counting & Sets"
     },
     "2020-2021-form-b-math-3": {
       "category": "Geometry",
@@ -178,11 +175,11 @@
     },
     "2020-2021-form-b-q66": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2020-2021-form-b-q67": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2020-2021-form-b-q68": {
       "category": "Ratios and Proportional Relationships",
@@ -190,7 +187,7 @@
     },
     "2020-2021-form-b-q69": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2020-2021-form-b-q70": {
       "category": "Algebra",
@@ -206,19 +203,19 @@
     },
     "2020-2021-form-b-q73": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2020-2021-form-b-q74": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2020-2021-form-b-q76": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2020-2021-form-b-q77": {
       "category": "Statistics and Probability",
-      "subcategory": "Sampling & Predictions"
+      "subcategory": "Data Displays & Sampling"
     },
     "2020-2021-form-b-q78": {
       "category": "Arithmetic & Number Sense",
@@ -226,23 +223,23 @@
     },
     "2020-2021-form-b-q79": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2020-2021-form-b-q80": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2020-2021-form-b-q81": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2020-2021-form-b-q86": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2020-2021-form-b-q87": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2020-2021-form-b-q89": {
       "category": "Geometry",
@@ -250,7 +247,7 @@
     },
     "2020-2021-form-b-q92": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2020-2021-form-b-q93": {
       "category": "Arithmetic & Number Sense",
@@ -262,15 +259,15 @@
     },
     "2020-2021-form-b-q98": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2020-2021-form-b-q100": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2020-2021-form-b-q102": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2020-2021-form-b-q103": {
       "category": "Arithmetic & Number Sense",
@@ -278,7 +275,7 @@
     },
     "2020-2021-form-b-q104": {
       "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations"
+      "subcategory": "Counting & Sets"
     },
     "2020-2021-form-b-q105": {
       "category": "Geometry",
@@ -290,116 +287,44 @@
     },
     "2020-2021-form-b-q107": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2020-2021-form-b-q109": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2020-2021-form-b-q113": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2020-2021-form-b-q114": {
       "category": "Arithmetic & Number Sense",
       "subcategory": "Number Types & Properties"
     },
-    "2021-2022-form-a-q58": {
-      "category": "Geometry",
-      "subcategory": "Triangles & Polygons"
-    },
-    "2021-2022-form-a-q61": {
-      "category": "Statistics and Probability",
-      "subcategory": "Set Relationships"
-    },
-    "2021-2022-form-a-q62": {
-      "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
-    },
-    "2021-2022-form-a-q66": {
-      "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
-    },
-    "2021-2022-form-a-q73": {
-      "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
-    },
-    "2021-2022-form-a-q78": {
-      "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
-    },
-    "2021-2022-form-a-q82": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Number Types & Properties"
-    },
-    "2021-2022-form-a-q83": {
-      "category": "Geometry",
-      "subcategory": "Similarity & Scale Drawings"
-    },
-    "2021-2022-form-a-q87": {
-      "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
-    },
-    "2021-2022-form-a-q88": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Number Types & Properties"
-    },
-    "2021-2022-form-a-q89": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
-    },
-    "2021-2022-form-a-q90": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Number Types & Properties"
-    },
-    "2021-2022-form-a-q91": {
-      "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations"
-    },
-    "2021-2022-form-a-q93": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
-    },
-    "2021-2022-form-a-q94": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Order of Operations"
-    },
-    "2021-2022-form-a-q97": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Number Types & Properties"
-    },
-    "2021-2022-form-a-q98": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Number Types & Properties"
-    },
-    "2021-2022-form-a-q99": {
-      "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
-    },
-    "2021-2022-form-a-q100": {
-      "category": "Algebra",
-      "subcategory": "Formulas & Rearranging Equations"
-    },
-    "2021-2022-form-a-q102": {
-      "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
-    },
-    "2021-2022-form-a-q108": {
-      "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
-    },
-    "2021-2022-form-a-q109": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Order of Operations"
-    },
-    "2021-2022-form-a-q111": {
-      "category": "Geometry",
-      "subcategory": "Coordinates & Segment Relationships"
-    },
-    "2021-2022-form-a-q112": {
-      "category": "Algebra",
-      "subcategory": "Formulas & Rearranging Equations"
-    },
+    "2021-2022-form-a-q58": {},
+    "2021-2022-form-a-q61": {},
+    "2021-2022-form-a-q62": {},
+    "2021-2022-form-a-q66": {},
+    "2021-2022-form-a-q73": {},
+    "2021-2022-form-a-q78": {},
+    "2021-2022-form-a-q82": {},
+    "2021-2022-form-a-q83": {},
+    "2021-2022-form-a-q87": {},
+    "2021-2022-form-a-q88": {},
+    "2021-2022-form-a-q89": {},
+    "2021-2022-form-a-q90": {},
+    "2021-2022-form-a-q91": {},
+    "2021-2022-form-a-q93": {},
+    "2021-2022-form-a-q94": {},
+    "2021-2022-form-a-q97": {},
+    "2021-2022-form-a-q98": {},
+    "2021-2022-form-a-q99": {},
+    "2021-2022-form-a-q100": {},
+    "2021-2022-form-a-q102": {},
+    "2021-2022-form-a-q108": {},
+    "2021-2022-form-a-q109": {},
+    "2021-2022-form-a-q111": {},
+    "2021-2022-form-a-q112": {},
     "2022-2023-form-a-q58": {
       "category": "Geometry",
       "subcategory": "Circles"
@@ -422,7 +347,7 @@
     },
     "2022-2023-form-a-q72": {
       "category": "Algebra",
-      "subcategory": "Formulas & Rearranging Equations"
+      "subcategory": "Equations & Systems"
     },
     "2022-2023-form-a-q73": {
       "category": "Geometry",
@@ -438,7 +363,7 @@
     },
     "2022-2023-form-a-q78": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Decimals"
+      "subcategory": "Fractions & Decimals"
     },
     "2022-2023-form-a-q79": {
       "category": "Algebra",
@@ -450,7 +375,7 @@
     },
     "2022-2023-form-a-q81": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Decimals"
+      "subcategory": "Fractions & Decimals"
     },
     "2022-2023-form-a-q82": {
       "category": "Geometry",
@@ -458,23 +383,23 @@
     },
     "2022-2023-form-a-q84": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2022-2023-form-a-q85": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2022-2023-form-a-q90": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2022-2023-form-a-q91": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2022-2023-form-a-q92": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2022-2023-form-a-q93": {
       "category": "Arithmetic & Number Sense",
@@ -482,59 +407,59 @@
     },
     "2022-2023-form-a-q97": {
       "category": "Statistics and Probability",
-      "subcategory": "Sampling & Predictions"
+      "subcategory": "Data Displays & Sampling"
     },
     "2022-2023-form-a-q98": {
       "category": "Statistics and Probability",
-      "subcategory": "Sampling & Predictions"
+      "subcategory": "Data Displays & Sampling"
     },
     "2022-2023-form-a-q99": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2022-2023-form-a-q100": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2022-2023-form-a-q101": {
       "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations"
+      "subcategory": "Counting & Sets"
     },
     "2022-2023-form-a-q102": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2022-2023-form-a-q103": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2022-2023-form-a-q104": {
       "category": "Algebra",
-      "subcategory": "Formulas & Rearranging Equations"
+      "subcategory": "Equations & Systems"
     },
     "2022-2023-form-a-q105": {
       "category": "Statistics and Probability",
-      "subcategory": "Sampling & Predictions"
+      "subcategory": "Data Displays & Sampling"
     },
     "2022-2023-form-a-q107": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2022-2023-form-a-q109": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2022-2023-form-a-q110": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2022-2023-form-a-q112": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2022-2023-form-a-q113": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2022-2023-form-a-q114": {
       "category": "Geometry",
@@ -546,19 +471,19 @@
     },
     "2022-2023-form-b-q59": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2022-2023-form-b-q60": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Decimals"
+      "subcategory": "Fractions & Decimals"
     },
     "2022-2023-form-b-q61": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2022-2023-form-b-q62": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2022-2023-form-b-q63": {
       "category": "Arithmetic & Number Sense",
@@ -566,11 +491,11 @@
     },
     "2022-2023-form-b-q64": {
       "category": "Algebra",
-      "subcategory": "Formulas & Rearranging Equations"
+      "subcategory": "Equations & Systems"
     },
     "2022-2023-form-b-q65": {
       "category": "Algebra",
-      "subcategory": "Formulas & Rearranging Equations"
+      "subcategory": "Equations & Systems"
     },
     "2022-2023-form-b-q67": {
       "category": "Algebra",
@@ -590,19 +515,19 @@
     },
     "2022-2023-form-b-q74": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2022-2023-form-b-q75": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2022-2023-form-b-q76": {
       "category": "Statistics and Probability",
-      "subcategory": "Set Relationships"
+      "subcategory": "Counting & Sets"
     },
     "2022-2023-form-b-q77": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2022-2023-form-b-q79": {
       "category": "Arithmetic & Number Sense",
@@ -614,7 +539,7 @@
     },
     "2022-2023-form-b-q81": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2022-2023-form-b-q82": {
       "category": "Arithmetic & Number Sense",
@@ -622,67 +547,67 @@
     },
     "2022-2023-form-b-q83": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2022-2023-form-b-q93": {
       "category": "Statistics and Probability",
-      "subcategory": "Sampling & Predictions"
+      "subcategory": "Data Displays & Sampling"
     },
     "2022-2023-form-b-q94": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2022-2023-form-b-q97": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2022-2023-form-b-q98": {
       "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations"
+      "subcategory": "Counting & Sets"
     },
     "2022-2023-form-b-q99": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2022-2023-form-b-q100": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2022-2023-form-b-q101": {
       "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations"
+      "subcategory": "Counting & Sets"
     },
     "2022-2023-form-b-q102": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2022-2023-form-b-q103": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2022-2023-form-b-q104": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2022-2023-form-b-q105": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2022-2023-form-b-q106": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2022-2023-form-b-q107": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2022-2023-form-b-q108": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2022-2023-form-b-q109": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2022-2023-form-b-q110": {
       "category": "Geometry",
@@ -694,11 +619,11 @@
     },
     "2022-2023-form-b-q112": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2022-2023-form-b-q114": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2024-2025-form-a-q58": {
       "category": "Arithmetic & Number Sense",
@@ -710,7 +635,7 @@
     },
     "2024-2025-form-a-q63": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2024-2025-form-a-q64": {
       "category": "Algebra",
@@ -726,11 +651,11 @@
     },
     "2024-2025-form-a-q68": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2024-2025-form-a-q69": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2024-2025-form-a-q71": {
       "category": "Geometry",
@@ -738,15 +663,15 @@
     },
     "2024-2025-form-a-q72": {
       "category": "Statistics and Probability",
-      "subcategory": "Sampling & Predictions"
+      "subcategory": "Data Displays & Sampling"
     },
     "2024-2025-form-a-q73": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2024-2025-form-a-q74": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2024-2025-form-a-q75": {
       "category": "Algebra",
@@ -766,15 +691,15 @@
     },
     "2024-2025-form-a-q84": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2024-2025-form-a-q87": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2024-2025-form-a-q91": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2024-2025-form-a-q92": {
       "category": "Arithmetic & Number Sense",
@@ -786,7 +711,7 @@
     },
     "2024-2025-form-a-q95": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2024-2025-form-a-q96": {
       "category": "Geometry",
@@ -794,47 +719,47 @@
     },
     "2024-2025-form-a-q97": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2024-2025-form-a-q100": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Decimals"
+      "subcategory": "Fractions & Decimals"
     },
     "2024-2025-form-a-q103": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2024-2025-form-a-q104": {
       "category": "Statistics and Probability",
-      "subcategory": "Sampling & Predictions"
+      "subcategory": "Data Displays & Sampling"
     },
     "2024-2025-form-a-q105": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2024-2025-form-a-q106": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2024-2025-form-a-q108": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Decimals"
+      "subcategory": "Fractions & Decimals"
     },
     "2024-2025-form-a-q109": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2024-2025-form-a-q110": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2024-2025-form-a-q111": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2024-2025-form-a-q112": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2024-2025-form-a-q113": {
       "category": "Geometry",
@@ -842,11 +767,11 @@
     },
     "2024-2025-form-a-q114": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2025-2026-form-a-math-9": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2025-2026-form-a-math-11": {
       "category": "Geometry",
@@ -854,11 +779,11 @@
     },
     "2025-2026-form-a-math-15": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "colored-pencils-not-red": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "absolute-value-equivalent-drag": {
       "category": "Arithmetic & Number Sense",
@@ -866,7 +791,7 @@
     },
     "cards-without-replacement-not-blue": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "smallest-factor-of-91": {
       "category": "Arithmetic & Number Sense",
@@ -878,11 +803,11 @@
     },
     "tien-jordan-age-ratio": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "sum-of-mixed-numbers": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "longest-stick-common-factor": {
       "category": "Arithmetic & Number Sense",
@@ -890,15 +815,15 @@
     },
     "choose-pairs-of-cookies": {
       "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations"
+      "subcategory": "Counting & Sets"
     },
     "point-between-fraction-number-line": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "notebook-cost-graph-points": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "compound-fraction-math-entry": {
       "category": "Algebra",
@@ -906,7 +831,7 @@
     },
     "2026-2027-form-a-math-item-8": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2026-2027-form-a-math-item-9": {
       "category": "Geometry",
@@ -914,11 +839,11 @@
     },
     "2026-2027-form-a-math-item-14": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2026-2027-form-a-math-item-15": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2026-2027-form-a-math-item-17": {
       "category": "Arithmetic & Number Sense",
@@ -926,7 +851,7 @@
     },
     "2026-2027-form-a-math-item-19": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2026-2027-form-a-math-item-23": {
       "category": "Geometry",
@@ -934,19 +859,19 @@
     },
     "2026-2027-form-a-math-item-26": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2026-2027-form-a-math-item-28": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2026-2027-form-a-math-item-29": {
       "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations"
+      "subcategory": "Counting & Sets"
     },
     "2026-2027-form-a-math-item-31": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2026-2027-form-a-math-item-35": {
       "category": "Arithmetic & Number Sense",
@@ -958,15 +883,15 @@
     },
     "2026-2027-form-a-math-item-37": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2026-2027-form-a-math-item-38": {
       "category": "Algebra",
-      "subcategory": "Formulas & Rearranging Equations"
+      "subcategory": "Equations & Systems"
     },
     "2026-2027-form-a-math-item-44": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2026-2027-form-a-math-item-45": {
       "category": "Arithmetic & Number Sense",
@@ -978,7 +903,7 @@
     },
     "2026-2027-form-a-math-item-48": {
       "category": "Algebra",
-      "subcategory": "Formulas & Rearranging Equations"
+      "subcategory": "Equations & Systems"
     },
     "2026-2027-form-a-math-item-50": {
       "category": "Algebra",
@@ -990,7 +915,7 @@
     },
     "2026-2027-form-d-math-item-2": {
       "category": "Algebra",
-      "subcategory": "Formulas & Rearranging Equations"
+      "subcategory": "Equations & Systems"
     },
     "2026-2027-form-d-math-item-4": {
       "category": "Algebra",
@@ -998,11 +923,11 @@
     },
     "2026-2027-form-d-math-item-5": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2026-2027-form-d-math-item-7": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2026-2027-form-d-math-item-9": {
       "category": "Arithmetic & Number Sense",
@@ -1022,27 +947,27 @@
     },
     "2026-2027-form-d-math-item-14": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2026-2027-form-d-math-item-15": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2026-2027-form-d-math-item-16": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2026-2027-form-d-math-item-17": {
       "category": "Statistics and Probability",
-      "subcategory": "Set Relationships"
+      "subcategory": "Counting & Sets"
     },
     "2026-2027-form-d-math-item-18": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2026-2027-form-d-math-item-19": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2026-2027-form-d-math-item-20": {
       "category": "Arithmetic & Number Sense",
@@ -1054,7 +979,7 @@
     },
     "2026-2027-form-d-math-item-22": {
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions"
+      "subcategory": "Fractions & Decimals"
     },
     "2026-2027-form-d-math-item-23": {
       "category": "Arithmetic & Number Sense",
@@ -1062,27 +987,27 @@
     },
     "2026-2027-form-d-math-item-28": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2026-2027-form-d-math-item-29": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2026-2027-form-d-math-item-31": {
       "category": "Statistics and Probability",
-      "subcategory": "Sampling & Predictions"
+      "subcategory": "Data Displays & Sampling"
     },
     "2026-2027-form-d-math-item-33": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "2026-2027-form-d-math-item-34": {
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability"
+      "subcategory": "Probability"
     },
     "2026-2027-form-d-math-item-35": {
       "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations"
+      "subcategory": "Counting & Sets"
     },
     "2026-2027-form-d-math-item-37": {
       "category": "Arithmetic & Number Sense",
@@ -1090,23 +1015,23 @@
     },
     "2026-2027-form-d-math-item-38": {
       "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations"
+      "subcategory": "Counting & Sets"
     },
     "2026-2027-form-d-math-item-39": {
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability"
+      "subcategory": "Probability"
     },
     "2026-2027-form-d-math-item-41": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Proportional Relationships"
+      "subcategory": "Ratios & Proportions"
     },
     "2026-2027-form-d-math-item-44": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2026-2027-form-d-math-item-45": {
       "category": "Algebra",
-      "subcategory": "Algebraic Word Problems"
+      "subcategory": "Equations & Systems"
     },
     "2026-2027-form-d-math-item-47": {
       "category": "Geometry",
@@ -1118,11 +1043,41 @@
     },
     "2026-2027-form-d-math-item-50": {
       "category": "Ratios and Proportional Relationships",
-      "subcategory": "Percent Change & Applications"
+      "subcategory": "Percentages"
     },
     "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-9": {
       "category": "Arithmetic & Number Sense",
       "subcategory": "Order of Operations"
+    },
+    "2019-2020-form-a-q74": {
+      "category": "Statistics and Probability",
+      "subcategory": "Data Displays & Sampling"
+    },
+    "2021-2022-form-a-q81": {},
+    "2021-2022-form-a-q104": {},
+    "2022-2023-form-a-q94": {
+      "category": "Statistics and Probability",
+      "subcategory": "Data Displays & Sampling"
+    },
+    "2022-2023-form-a-q96": {
+      "category": "Statistics and Probability",
+      "subcategory": "Data Displays & Sampling"
+    },
+    "2022-2023-form-b-q96": {
+      "category": "Statistics and Probability",
+      "subcategory": "Data Displays & Sampling"
+    },
+    "center-city-walk-vs-bicycle": {
+      "category": "Statistics and Probability",
+      "subcategory": "Data Displays & Sampling"
+    },
+    "2026-2027-form-a-math-item-4": {
+      "category": "Statistics and Probability",
+      "subcategory": "Counting & Sets"
+    },
+    "2026-2027-form-a-math-item-41": {
+      "category": "Statistics and Probability",
+      "subcategory": "Data Displays & Sampling"
     }
   },
   "savedViews": [],
@@ -1169,7 +1124,7 @@
       "id": "fraction-operations",
       "label": "Fraction Operations",
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions",
+      "subcategory": "Fractions & Decimals",
       "prerequisiteIds": [],
       "standardReferences": []
     },
@@ -1177,7 +1132,7 @@
       "id": "decimal-operations",
       "label": "Decimal Operations",
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Decimals",
+      "subcategory": "Fractions & Decimals",
       "prerequisiteIds": [],
       "standardReferences": []
     },
@@ -1185,7 +1140,7 @@
       "id": "rational-conversions",
       "label": "Fraction and Decimal Conversions",
       "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions",
+      "subcategory": "Fractions & Decimals",
       "prerequisiteIds": [],
       "standardReferences": []
     },
@@ -1219,7 +1174,7 @@
       "id": "counting-sets",
       "label": "Counting and Set Relationships",
       "category": "Statistics and Probability",
-      "subcategory": "Counting & Combinations",
+      "subcategory": "Counting & Sets",
       "prerequisiteIds": [],
       "standardReferences": []
     },
@@ -1429,7 +1384,7 @@
       "id": "read-data-displays",
       "label": "Read Data Displays",
       "category": "Statistics and Probability",
-      "subcategory": "Data Displays",
+      "subcategory": "Data Displays & Sampling",
       "prerequisiteIds": [],
       "standardReferences": []
     },
@@ -1437,7 +1392,7 @@
       "id": "simple-probability",
       "label": "Simple Probability",
       "category": "Statistics and Probability",
-      "subcategory": "Basic Probability",
+      "subcategory": "Probability",
       "prerequisiteIds": [
         "fraction-operations"
       ],
@@ -1447,7 +1402,7 @@
       "id": "compound-probability",
       "label": "Compound Probability",
       "category": "Statistics and Probability",
-      "subcategory": "Compound Probability",
+      "subcategory": "Probability",
       "prerequisiteIds": [
         "simple-probability",
         "counting-sets"
@@ -1597,7 +1552,7 @@
       }
     }
   ],
-  "revision": "7e1956c9-9de2-43ac-8f00-e04eb4b97237",
+  "revision": "3ad18bb8-5525-487f-838f-380eb0eec524",
   "taxonomy": {
     "categories": [
       {
@@ -1605,8 +1560,6 @@
         "topics": [
           "Algebraic Expressions",
           "Equations & Systems",
-          "Formulas & Rearranging Equations",
-          "Algebraic Word Problems",
           "Inequalities",
           "Functions & Graphs",
           "Patterns & Sequences"
@@ -1627,13 +1580,10 @@
       {
         "label": "Statistics and Probability",
         "topics": [
-          "Data Displays",
+          "Data Displays & Sampling",
           "Averages & Spread",
-          "Sampling & Predictions",
-          "Counting & Combinations",
-          "Basic Probability",
-          "Compound Probability",
-          "Set Relationships"
+          "Counting & Sets",
+          "Probability"
         ]
       },
       {
@@ -1641,9 +1591,7 @@
         "topics": [
           "Ratios & Proportions",
           "Rates & Unit Rates",
-          "Proportional Relationships",
-          "Percentages",
-          "Percent Change & Applications"
+          "Percentages"
         ]
       },
       {
@@ -1651,8 +1599,7 @@
         "topics": [
           "Number Types & Properties",
           "Integers & Absolute Value",
-          "Fractions",
-          "Decimals",
+          "Fractions & Decimals",
           "Order of Operations",
           "Exponents, Roots & Scientific Notation",
           "Units & Conversions"
@@ -1722,6 +1669,66 @@
       "from": "Units & Conversions",
       "toCategory": "Arithmetic & Number Sense",
       "to": "Units & Conversions"
+    },
+    {
+      "category": "Algebra",
+      "from": "Formulas & Rearranging Equations",
+      "to": "Equations & Systems"
+    },
+    {
+      "category": "Algebra",
+      "from": "Algebraic Word Problems",
+      "to": "Equations & Systems"
+    },
+    {
+      "category": "Statistics and Probability",
+      "from": "Data Displays",
+      "to": "Data Displays & Sampling"
+    },
+    {
+      "category": "Statistics and Probability",
+      "from": "Sampling & Predictions",
+      "to": "Data Displays & Sampling"
+    },
+    {
+      "category": "Statistics and Probability",
+      "from": "Counting & Combinations",
+      "to": "Counting & Sets"
+    },
+    {
+      "category": "Statistics and Probability",
+      "from": "Set Relationships",
+      "to": "Counting & Sets"
+    },
+    {
+      "category": "Statistics and Probability",
+      "from": "Basic Probability",
+      "to": "Probability"
+    },
+    {
+      "category": "Statistics and Probability",
+      "from": "Compound Probability",
+      "to": "Probability"
+    },
+    {
+      "category": "Ratios and Proportional Relationships",
+      "from": "Proportional Relationships",
+      "to": "Ratios & Proportions"
+    },
+    {
+      "category": "Ratios and Proportional Relationships",
+      "from": "Percent Change & Applications",
+      "to": "Percentages"
+    },
+    {
+      "category": "Arithmetic & Number Sense",
+      "from": "Fractions",
+      "to": "Fractions & Decimals"
+    },
+    {
+      "category": "Arithmetic & Number Sense",
+      "from": "Decimals",
+      "to": "Fractions & Decimals"
     }
   ],
   "classificationSkills": [
@@ -1744,5 +1751,246 @@
       "subcategory": "Algebraic Expressions"
     }
   ],
-  "retiredClassificationSkillIds": []
+  "retiredClassificationSkillIds": [],
+  "generatorPlanners": {
+    "local-teacher:13ef5f1c8c364eb30800ad0b": {
+      "revision": "c8c7e63f-2dcc-4d56-abe4-25bf7d75bc69",
+      "activeBatchId": "7923980f-899b-4279-a333-1eb67d1c41a1",
+      "batches": [
+        {
+          "id": "7923980f-899b-4279-a333-1eb67d1c41a1",
+          "name": "today",
+          "notes": "",
+          "updatedAt": "2026-11-02T14:30:21.771Z",
+          "entries": []
+        }
+      ]
+    },
+    "b76fdb28-cb6c-4573-ba51-1ff3d50c855c": {
+      "revision": "30cea077-de85-46cb-82fc-5efe63b5dca4",
+      "activeBatchId": "b7061794-98a5-4f3d-b254-bc8fa0f22515",
+      "batches": [
+        {
+          "id": "b7061794-98a5-4f3d-b254-bc8fa0f22515",
+          "name": "Review only · Andrew M · Nov 2",
+          "notes": "REVIEW ONLY — candidate questions collected during the November 2 usability walkthrough. Do not implement generators or assign practice until Nathan reviews the findings. Check existing generators before building duplicates.",
+          "updatedAt": "2026-11-02T20:07:57.062Z",
+          "entries": [
+            {
+              "id": "15ed0801-8ba4-495a-a602-fa0697170354",
+              "source": {
+                "id": "2021-2022-form-a-q61",
+                "question": {
+                  "id": "2021-2022-form-a-q61",
+                  "source": {
+                    "sourceFamily": "official_shsat",
+                    "sourceFormat": "pdf",
+                    "playerProfile": "testnav",
+                    "sourceId": "official-shsat-2021-2022-form-a",
+                    "label": "2021-2022 Form A",
+                    "year": "2021-2022",
+                    "form": "A",
+                    "sourceQuestion": "61",
+                    "pages": [
+                      39
+                    ]
+                  },
+                  "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q061-explanation-1.png\" alt=\"Official explanation for source question 61; original printed answer labels retained.\" width=\"333\"></p>",
+                  "skilled": "TBD",
+                  "explanation": "(45) Let x = number of students with\nonly cats as pets. Let y = number of\nstudents with only dogs as pets.\nCalculate x and y using the given\ninformation:\nThere are 20 students who have cats, and\nof those 20 students, 3 have both cats\nand dogs.\nIf 3 out of 20 students also have dogs,\nthen x = 20-3=17\nThere are 23 students who have dogs, and\nof those 23 students, 3 have both cats\nand dogs.\nIf 3 out of 23 students also have cats,\nthen y = 23-3 =20\nTo find the total number of students\nsurveyed, add the number of students\nwho only have cats (x ), the number of\nstudents who only have dogs (y ), the\nnumber of students who have both (3),\nand the number of students who have\nneither (5):\n34+5+x+y=8+17+20=45",
+                  "points": 1,
+                  "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true.\n\n• \\(20\\) students have cats.\n• \\(23\\) students have dogs.\n• \\(3\\) students have both dogs and cats.\n• \\(5\\) students have no dogs or cats.\n\nHow many students were surveyed?",
+                  "promptHtml": "<p>A survey asked students what pets they have. Based on the results, the following statements are all true.</p><ul><li>\\(20\\) students have cats.</li><li>\\(23\\) students have dogs.</li><li>\\(3\\) students have both dogs and cats.</li><li>\\(5\\) students have no dogs or cats.</li></ul><p>How many students were surveyed?</p>",
+                  "topic": "Statistics and Probability",
+                  "subtopic": "Counting & Sets",
+                  "correctTextAnswers": [
+                    "45"
+                  ],
+                  "type": "short_response",
+                  "entryControl": "text"
+                },
+                "sources": [
+                  {
+                    "assessmentId": "2021-2022-form-a",
+                    "title": "2021-2022 Form A",
+                    "number": 4,
+                    "year": "2021-2022",
+                    "form": "A",
+                    "source": "2021-2022 Form A"
+                  }
+                ],
+                "category": "Statistics and Probability",
+                "subcategory": "Counting & Sets",
+                "skilled": "TBD"
+              },
+              "destination": {
+                "category": "Statistics and Probability",
+                "topic": "Counting & Sets",
+                "moduleId": "2021-2022-form-a-q76",
+                "moduleTitle": "Overlapping Groups",
+                "group": "general"
+              },
+              "notes": "",
+              "status": "draft",
+              "addedAt": "2026-11-02T16:49:02.326Z"
+            },
+            {
+              "id": "b7522c31-c437-4602-9ea1-7e303162f55d",
+              "source": {
+                "id": "2021-2022-form-a-q96",
+                "question": {
+                  "id": "2021-2022-form-a-q96",
+                  "source": {
+                    "sourceFamily": "official_shsat",
+                    "sourceFormat": "pdf",
+                    "playerProfile": "testnav",
+                    "sourceId": "official-shsat-2021-2022-form-a",
+                    "label": "2021-2022 Form A",
+                    "year": "2021-2022",
+                    "form": "A",
+                    "sourceQuestion": "96",
+                    "pages": [
+                      48
+                    ]
+                  },
+                  "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q096-explanation-1.png\" alt=\"Official explanation for source question 96; original printed answer labels retained.\" width=\"310\"></p>",
+                  "skilled": "TBD",
+                  "explanation": "(G) It is easier to rewrite N as M+N\nsince they are both fractions.\nM+=N=“.Y¥ Wy Zz _ We\nxX Z XxX YY Ky",
+                  "points": 1,
+                  "prompt": "Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal \\(0\\). What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?",
+                  "promptHtml": "<p>Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal \\(0\\). What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?</p>",
+                  "topic": "Algebra",
+                  "subtopic": "Algebraic Expressions",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "math": "\\frac{wx}{yz}",
+                      "text": "\\frac{wx}{yz}"
+                    },
+                    {
+                      "id": "B",
+                      "math": "\\frac{wy}{xz}",
+                      "text": "\\frac{wy}{xz}"
+                    },
+                    {
+                      "id": "C",
+                      "math": "\\frac{wz}{xy}",
+                      "text": "\\frac{wz}{xy}"
+                    },
+                    {
+                      "id": "D",
+                      "math": "\\frac{xy}{wz}",
+                      "text": "\\frac{xy}{wz}"
+                    }
+                  ],
+                  "correctChoiceId": "C",
+                  "type": "multiple_choice"
+                },
+                "sources": [
+                  {
+                    "assessmentId": "2021-2022-form-a",
+                    "title": "2021-2022 Form A",
+                    "number": 39,
+                    "year": "2021-2022",
+                    "form": "A",
+                    "source": "2021-2022 Form A"
+                  }
+                ],
+                "category": "Algebra",
+                "subcategory": "Algebraic Expressions",
+                "skilled": "TBD"
+              },
+              "destination": {
+                "category": "Algebra",
+                "topic": "Algebraic Expressions",
+                "moduleId": "general-algebra-algebraic-expressions-rj42ee",
+                "moduleTitle": "General Practice",
+                "group": "general"
+              },
+              "notes": "",
+              "status": "draft",
+              "addedAt": "2026-11-02T16:49:38.796Z"
+            },
+            {
+              "id": "180b84e1-6298-4243-b165-0b045d0780f3",
+              "source": {
+                "id": "2021-2022-form-a-q64",
+                "question": {
+                  "id": "2021-2022-form-a-q64",
+                  "source": {
+                    "sourceFamily": "official_shsat",
+                    "sourceFormat": "pdf",
+                    "playerProfile": "testnav",
+                    "sourceId": "official-shsat-2021-2022-form-a",
+                    "label": "2021-2022 Form A",
+                    "year": "2021-2022",
+                    "form": "A",
+                    "sourceQuestion": "64",
+                    "pages": [
+                      40
+                    ]
+                  },
+                  "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q064-explanation-1.png\" alt=\"Official explanation for source question 64; original printed answer labels retained.\" width=\"234\"></p>",
+                  "skilled": "TBD",
+                  "explanation": "(E) 7+3n+6-4n-8=\n(7 #6- 8) + (3n 7 4n) =\nS_n",
+                  "points": 1,
+                  "prompt": "\\(7+(3n+6)-(4n+8)=\\)",
+                  "promptHtml": "<p>\\(7+(3n+6)-(4n+8)=\\)</p>",
+                  "topic": "Algebra",
+                  "subtopic": "Algebraic Expressions",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "math": "5-n",
+                      "text": "5-n"
+                    },
+                    {
+                      "id": "B",
+                      "math": "5+n",
+                      "text": "5+n"
+                    },
+                    {
+                      "id": "C",
+                      "math": "21-n",
+                      "text": "21-n"
+                    },
+                    {
+                      "id": "D",
+                      "math": "21+n",
+                      "text": "21+n"
+                    }
+                  ],
+                  "correctChoiceId": "A",
+                  "type": "multiple_choice"
+                },
+                "sources": [
+                  {
+                    "assessmentId": "2021-2022-form-a",
+                    "title": "2021-2022 Form A",
+                    "number": 7,
+                    "year": "2021-2022",
+                    "form": "A",
+                    "source": "2021-2022 Form A"
+                  }
+                ],
+                "category": "Algebra",
+                "subcategory": "Algebraic Expressions",
+                "skilled": "TBD"
+              },
+              "destination": {
+                "category": "Algebra",
+                "topic": "Algebraic Expressions",
+                "moduleId": "",
+                "moduleTitle": "Simplifying expressions with subtraction",
+                "group": "general"
+              },
+              "notes": "",
+              "status": "draft",
+              "addedAt": "2026-11-02T16:49:55.331Z"
+            }
+          ]
+        }
+      ]
+    }
+  }
 }

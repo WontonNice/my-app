@@ -1,0 +1,1656 @@
+[
+  {
+    "form": "a",
+    "sourceQuestion": "58",
+    "errors": 0,
+    "formulas": 4,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\$2{,}500",
+      "4\\%",
+      "\\$500",
+      "\\$2{,}500"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "59",
+    "errors": 0,
+    "formulas": 1,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "6 - 9 \\div |-3| + (-2)^3 \\times 1\\frac{1}{2}"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "60",
+    "errors": 0,
+    "formulas": 2,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "x",
+      "7x + 3 - 2(2x + 1) = 13"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "61",
+    "errors": 0,
+    "formulas": 3,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "l",
+      "n",
+      "x"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "62",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "8",
+      "17",
+      "9",
+      "11",
+      "20",
+      "5"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "63",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "3^4 + 7^4 ="
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "64",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "1\\frac{3}{4}",
+      "2\\frac{2}{3}",
+      "\\frac{7}{8}"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "65",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "15\\%",
+      "\\$802.50",
+      "30",
+      "\\$1{,}250.00"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "66",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "1",
+      "90",
+      "2:30",
+      "8"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "67",
+    "errors": 0,
+    "formulas": 11,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "Y",
+      "Z",
+      "X",
+      "\\overline{WY}",
+      "Y",
+      "\\overline{WZ}",
+      "Z"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "68",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\frac{81}{10} = \\frac{9}{n}",
+      "n"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "69",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "n",
+      "3n + 3"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "70",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "65"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "71",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "n",
+      "-3.25",
+      "n"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "72",
+    "errors": 0,
+    "formulas": 3,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": []
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "73",
+    "errors": 0,
+    "formulas": 9,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\frac{29}{7}"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "74",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\$85.75",
+      "15\\%",
+      "25\\%",
+      "8.5\\%"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "75",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\$90.00",
+      "15\\%",
+      "12",
+      "\\$472.59"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "76",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "x:35 = 20:28",
+      "x"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "77",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\frac{3^2+(-8)^2+2^2}{(3-8+2)^2}="
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "78",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "15",
+      "\\$805.95",
+      "8\\%"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "79",
+    "errors": 0,
+    "formulas": 15,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "m",
+      "n",
+      "p",
+      "q",
+      "1",
+      "2",
+      "3",
+      "6",
+      "12",
+      "2m = 6q = \\frac{1}{2}n = p",
+      "p"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "80",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\{0.1, 0.01, 0.001, 0.0001, 0.00001\\}",
+      "0.005"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "81",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "R",
+      "T",
+      "R",
+      "T"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "82",
+    "errors": 0,
+    "formulas": 9,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "j",
+      "k",
+      "Q",
+      "h",
+      "x"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "83",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "x",
+      "1"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "84",
+    "errors": 0,
+    "formulas": 9,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "12",
+      "1",
+      "3",
+      "1",
+      "4"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "85",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "2",
+      "48",
+      "1",
+      "1.6"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "86",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "x",
+      "3",
+      "3"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "87",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "6",
+      "10",
+      "4"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "88",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "P",
+      "100"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "89",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "6",
+      "2"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "90",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "m=5",
+      "t=-1",
+      "\\frac{6-8(2-t)}{2m+4(3-m)}"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "91",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "x+y"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "92",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "L",
+      "JK",
+      "JL = \\frac{2}{3}LK",
+      "L"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "93",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "60\\%",
+      "500"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "94",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "18\\pi"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "95",
+    "errors": 0,
+    "formulas": 1,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "-3x - 7 > -4"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "96",
+    "errors": 0,
+    "formulas": 15,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "R",
+      "S",
+      "T",
+      "R",
+      "3",
+      "S",
+      "T",
+      "\\frac{1}{6}",
+      "S",
+      "R",
+      "T"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "97",
+    "errors": 0,
+    "formulas": 9,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "k",
+      "j",
+      "6",
+      "k",
+      "j"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "98",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "15\\%",
+      "17\\%"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "99",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\{1,2,3,4,5,\\ldots,198,199,200\\}",
+      "6",
+      "9"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "100",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "8",
+      "1",
+      "40"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "101",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "x",
+      "\\frac{x}{5} - 4 = 3(4 - 2x) - 1"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "102",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "RS",
+      "y"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "103",
+    "errors": 0,
+    "formulas": 17,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "100",
+      "6",
+      "100",
+      "250",
+      "4",
+      "251",
+      "500",
+      "11",
+      "500",
+      "9",
+      "150",
+      "8",
+      "100"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "104",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "0.0099"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "105",
+    "errors": 0,
+    "formulas": 9,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "9",
+      "29",
+      "31",
+      "42",
+      "73",
+      "98"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "106",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "4",
+      "14",
+      "2"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "107",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "30",
+      "8",
+      "6"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "108",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "15"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "109",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "8",
+      "1.5"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "110",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "20",
+      "6",
+      "6",
+      "2"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "111",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "2{,}200",
+      "240",
+      "5"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "112",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "58"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "113",
+    "errors": 0,
+    "formulas": 2,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "x",
+      "\\frac{1}{x}"
+    ]
+  },
+  {
+    "form": "a",
+    "sourceQuestion": "114",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "3",
+      "3",
+      "\\frac{1}{216}"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "58",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "5{,}850",
+      "2{,}250",
+      "900",
+      "9{,}000",
+      "1{,}000"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "59",
+    "errors": 0,
+    "formulas": 4,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "15",
+      "9",
+      "2",
+      "3"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "60",
+    "errors": 0,
+    "formulas": 3,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "72",
+      "60",
+      "84"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "61",
+    "errors": 0,
+    "formulas": 4,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\$900",
+      "5\\%",
+      "\\$900",
+      "\\$360"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "62",
+    "errors": 0,
+    "formulas": 2,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "x",
+      "\\frac{(21)(14)x}{(49)(48)} = 0.875"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "63",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "3\\frac{1}{4}-1\\frac{2}{3}-\\left(-4\\frac{1}{2}\\right)"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "64",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "2",
+      "3",
+      "4.5"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "65",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "x",
+      "y",
+      "2x + 4 = y"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "66",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "100",
+      "11.74",
+      "11.69"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "67",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "24",
+      "100",
+      "100",
+      "75\\%",
+      "82",
+      "54"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "68",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "n = 0.13 + \\frac{207}{100}",
+      "n"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "69",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "12",
+      "100",
+      "25",
+      "35"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "70",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "4",
+      "7",
+      "6"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "71",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "3",
+      "93"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "72",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "5.4",
+      "2",
+      "3"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "73",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "15"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "74",
+    "errors": 0,
+    "formulas": 9,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "m \\cdot t = 72",
+      "m",
+      "t=1",
+      "t=2",
+      "t=3"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "75",
+    "errors": 0,
+    "formulas": 4,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": []
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "76",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\$2",
+      "\\$3",
+      "\\$250"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "77",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "110"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "78",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\begin{gathered}-mn\\\\(-m)(-n)\\\\|mn|\\\\|-mn|\\\\|(-m)(-n)|\\end{gathered}",
+      "m",
+      "n",
+      "mn"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "79",
+    "errors": 0,
+    "formulas": 11,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "10",
+      "4.6",
+      "6.0",
+      "3.8",
+      "3.5",
+      "4.5",
+      "5.4",
+      "3.9",
+      "6.5",
+      "4.8",
+      "6.2"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "80",
+    "errors": 0,
+    "formulas": 9,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "8",
+      "6",
+      "12",
+      "6",
+      "50"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "81",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "9",
+      "4"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "82",
+    "errors": 0,
+    "formulas": 11,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "50",
+      "2005",
+      "84{,}000",
+      "2006",
+      "1{,}500",
+      "2005",
+      "2006"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "83",
+    "errors": 0,
+    "formulas": 4,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": []
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "84",
+    "errors": 0,
+    "formulas": 10,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "N=\\{6,7,\\ldots,21,22\\}",
+      "L",
+      "25",
+      "N",
+      "L",
+      "L"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "85",
+    "errors": 0,
+    "formulas": 15,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "x",
+      "y",
+      "z",
+      "40",
+      "x",
+      "y",
+      "1:2",
+      "y",
+      "z",
+      "2:5",
+      "y"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "86",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "4"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "87",
+    "errors": 0,
+    "formulas": 13,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\$10.99",
+      "5",
+      "\\$11.99",
+      "2",
+      "\\$12.99",
+      "1",
+      "\\$13.99",
+      "4",
+      "12"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "88",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "xy=30",
+      "10 \\div x",
+      "y"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "89",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\overline{QR}",
+      "\\overline{PQ}"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "90",
+    "errors": 0,
+    "formulas": 14,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "W",
+      "X",
+      "70\\%",
+      "W",
+      "Y",
+      "X",
+      "Y",
+      "15",
+      "W",
+      "X"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "91",
+    "errors": 0,
+    "formulas": 17,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "3",
+      "W",
+      "X",
+      "4",
+      "X",
+      "Y",
+      "3",
+      "Y",
+      "Z",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "92",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "4:1",
+      "3:2"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "93",
+    "errors": 0,
+    "formulas": 11,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "S",
+      "T",
+      "1",
+      "S",
+      "9",
+      "T",
+      "S"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "94",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\frac{1}{2}x+7-\\left(x-\\frac{9}{2}\\right)"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "95",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\frac{1}{x} - \\frac{1}{2x}",
+      "x \\ne 0"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "96",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "1",
+      "5",
+      "10",
+      "4{,}984"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "97",
+    "errors": 0,
+    "formulas": 9,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "A",
+      "B",
+      "B",
+      "A",
+      "B"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "98",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "2013",
+      "300\\%",
+      "2003"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "99",
+    "errors": 0,
+    "formulas": 11,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "1",
+      "16",
+      "1",
+      "8",
+      "1",
+      "2^x",
+      "x"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "100",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "64",
+      "64"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "101",
+    "errors": 0,
+    "formulas": 12,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "4",
+      "2",
+      "81",
+      "83",
+      "85",
+      "4",
+      "0",
+      "100"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "102",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "18",
+      "15",
+      "11"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "103",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "0^3+4^0+2^{-1}+(-1)^2"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "104",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "105",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "4.2^{\\circ}",
+      "10",
+      "3\\frac{1}{2}",
+      "-0.7^{\\circ}"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "106",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "20",
+      "14",
+      "6"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "107",
+    "errors": 0,
+    "formulas": 6,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "\\{3,4,5,6,7\\}",
+      "2"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "108",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "n",
+      "25",
+      "10",
+      "5"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "109",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "2"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "110",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "1",
+      "5",
+      "5",
+      "5"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "111",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "10",
+      "1",
+      "0.3"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "112",
+    "errors": 0,
+    "formulas": 5,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "6.\\overline{34}-4.\\overline{12}"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "113",
+    "errors": 0,
+    "formulas": 7,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "s",
+      "t",
+      "P\\ (3,5)"
+    ]
+  },
+  {
+    "form": "b",
+    "sourceQuestion": "114",
+    "errors": 0,
+    "formulas": 8,
+    "rawDelimiters": false,
+    "unformattedItalics": 0,
+    "overflow": false,
+    "expressions": [
+      "14",
+      "10",
+      "16",
+      "\\frac{3}{5}"
+    ]
+  }
+]

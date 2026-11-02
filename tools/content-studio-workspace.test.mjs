@@ -18,6 +18,17 @@ const editorFunction = name => {
   return editorHtml.slice(start, next < 0 ? undefined : start + 1 + next);
 };
 
+test('Math Center opens its document when the restored frame is still about:blank', () => {
+  const location = { href: 'about:blank', reload() {} };
+  const frame = { get src() { return '/math-command/'; }, set src(value) { location.href = value; }, contentWindow: { location } };
+  const switchTab = vm.runInNewContext(`${editorFunction('switchTab')}\nswitchTab;`, {
+    app: { state: {}, saving: false }, $$: () => [], document: { getElementById: () => frame },
+    studioUI: { activateWorkspace() {} },
+  });
+  switchTab('math-command');
+  assert.equal(location.href, '/math-command/');
+});
+
 test('Part B uses its own student document in authoring and Student view without reading content or keys leaking', () => {
   const nodes = { '#student-preview-modal': { hidden: false }, '#student-preview-subtitle': {}, '#student-preview-question': {}, '#student-preview-frame': {} };
   const app = { previewMode: 'standalone', previewQuestionIndex: 12, studentStyles: '', passageDraft: { title: 'Reading sentinel', text: 'Other unsaved content', questions: [] }, standaloneDraft: { type: 'multiple_choice', prompt: 'Which revision?', promptHtml: 'Which <strong>revision</strong>?', stimulus: 'Paragraph text.', choices: ['A','B','C','D'].map(id => ({ id, text: `Answer ${id}` })), correctChoiceId: 'C' } };

@@ -2,7 +2,7 @@ const {test,before,after}=require('node:test'),assert=require('node:assert/stric
 require('ts-node').register({transpileOnly:true,project:path.resolve(__dirname,'../tsconfig.json'),compilerOptions:{module:'CommonJS',moduleResolution:'Node'},moduleTypes:{'**':'cjs'}});
 const {defaultPracticeCatalog,defaultGeneratorSettings,validatePracticeCatalog,validateGenerator,managedGeneratorIds,movePracticeModule,removePracticeGenerator,removePracticeModule,mergePracticeModules,generatorTopicKey,generateCatalogQuestion,youtubeVideoId}=require('../src/shared/practiceCatalog.ts');
 const {createPracticeState,parsePracticeState}=require('../../client/src/features/math-command/inequalitySession.ts');
-const taxonomy={categories:[{label:'Algebra',topics:['Inequalities','Equations']},{label:'Statistics and Probability',topics:['Overlapping Groups','Probability']},{label:'Ratios and Proportional Relationships',topics:['Rates & Unit Rates','Ratios & Proportions']}]};
+const taxonomy={categories:[{label:'Algebra',topics:['Inequalities','Equations','Algebraic Expressions','Patterns & Sequences']},{label:'Statistics and Probability',topics:['Overlapping Groups','Probability']},{label:'Ratios and Proportional Relationships',topics:['Rates & Unit Rates','Ratios & Proportions','Percentages']}]};
 const fresh=()=>structuredClone(defaultPracticeCatalog());
 const custom=(changes={})=>({id:'custom-two-step',title:'Two-step inequalities',description:'Teacher template',kind:'two-step',enabled:true,settings:{...defaultGeneratorSettings},...changes});
 

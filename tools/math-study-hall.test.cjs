@@ -41,7 +41,7 @@ test('Math Study Hall follows the managed hierarchy and reserves topic resource 
   assert.match(output.topic, /No practice modules yet/);
   assert.match(output.topic,/YouTube videos/);
   assert.match(output.modules,/aria-label="Infinite practice modules"/);
-  assert.match(output.modules,/Start Foundation Building/);assert.match(output.modules,/Start General Practice/);assert.doesNotMatch(output.modules,/Start One-step Inequalities/);
+  assert.match(output.modules,/Start or resume Foundation Building/);assert.match(output.modules,/Start or resume General Practice/);assert.doesNotMatch(output.modules,/Start One-step Inequalities/);
   assert.doesNotMatch(output.modules,/Start Inequalities: Variables on Both Sides|Start Writing Inequalities/);
   assert.equal((output.modules.match(/class="practice-module-group"/g)||[]).length,2);
   assert.doesNotMatch(output.modules,/Start infinite practice|Explore modules/);
@@ -69,8 +69,8 @@ test('student practice lists show parent modules while nested modules remain par
   `,resolveDir:resolve(__dirname,'..'),loader:'tsx'},platform:'node',format:'cjs',bundle:true,write:false,jsx:'automatic',loader:{'.css':'empty'},define:{'import.meta.env':'{}'}});
   let html;
   vm.runInNewContext(result.outputFiles[0].text,{require,console:{log:value=>{html=value;}},process,URL,URLSearchParams,TextEncoder,TextDecoder,Buffer,setTimeout,clearTimeout,setImmediate,clearImmediate,queueMicrotask,AbortController,ReadableStream,WritableStream,TransformStream});
-  assert.match(html,/Start Foundation Building/);assert.match(html,/Foundation Building settings/);
-  assert.doesNotMatch(html,/Start Writing Inequalities/);assert.match(html,/Start General Practice/);
+  assert.match(html,/Start or resume Foundation Building/);assert.doesNotMatch(html,/Foundation Building settings|practice-module-settings-toggle/);
+  assert.doesNotMatch(html,/Start Writing Inequalities/);assert.match(html,/Start or resume General Practice/);
   assert.doesNotMatch(html,/Start One-step Inequalities|Start Inequalities: Variables on Both Sides|INSIDE FOUNDATION BUILDING|practice-contained-module/);
   assert.match(html,/4 generators/,'The parent still includes its own generators and the nested modules');
 });

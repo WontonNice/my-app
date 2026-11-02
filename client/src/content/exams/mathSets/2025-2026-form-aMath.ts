@@ -93,7 +93,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true:\n\n. 20 students have cats.\n. 23 students have dogs.\n. 3 students have both dogs and cats.\n. 5 students have no dogs or cats.\n\nHow many students were surveyed?",
     "promptHtml": "A survey asked students what pets they have. Based on the results, the following statements are all true:<ul><li>20 students have cats.</li><li>23 students have dogs.</li><li>3 students have both dogs and cats.</li><li>5 students have no dogs or cats.</li></ul><div>How many students were surveyed?</div>",
     "topic": "Statistics and Probability",
-    "subtopic": "Set Relationships",
+    "subtopic": "Counting & Sets",
     "correctTextAnswers": [
       "45"
     ],
@@ -226,7 +226,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives \n8\n8\n of his stamps to Kevin. Liam now has \n12\n12\n more stamps than Kevin.\n\n\nHow many stamps did Liam start with?",
     "promptHtml": "Liam and Kevin each collect stamps. Liam has twice as many stamps as Kevin. Liam gives&nbsp;<strong>8</strong>&nbsp;of his stamps to Kevin. Liam now has&nbsp;<strong>12</strong>&nbsp;more stamps than Kevin.<div><br><div>How many stamps did Liam start with?</div></div><div><br></div>",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "dropdownContent": [
       "An equation that relates the number of stamps originally in Liam's and Kevin's collections is L ={{answer-1}}K.",
       "After Liam gives 8 stamps to Kevin, the equation becomes L − 8 ={{answer-2}}.",
@@ -464,7 +464,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "The sum of two consecutive integers is \\(-15\\). If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?\n\nEnter your answer in the space.",
     "promptHtml": "<p>The&nbsp;sum&nbsp;of&nbsp;two&nbsp;consecutive&nbsp;integers&nbsp;is&nbsp;\\(-15\\).&nbsp;If&nbsp;1&nbsp;is&nbsp;added&nbsp;to&nbsp;the&nbsp;smaller&nbsp;integer&nbsp;and&nbsp;2&nbsp;is&nbsp;subtracted&nbsp;from&nbsp;the&nbsp;larger&nbsp;integer,&nbsp;what&nbsp;is&nbsp;the&nbsp;<strong>product</strong>&nbsp;of&nbsp;the&nbsp;two&nbsp;resulting&nbsp;integers?</p><p></p><p></p><p>Enter&nbsp;your&nbsp;answer&nbsp;in&nbsp;the&nbsp;space.<br></p>",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "correctTextAnswers": [
       "63"
     ],
@@ -476,7 +476,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
     "promptHtml": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are <strong>not </strong>red?",
     "topic": "Statistics and Probability",
-    "subtopic": "Basic Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -648,7 +648,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
     "promptHtml": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are <strong>not</strong> blue?",
     "topic": "Statistics and Probability",
-    "subtopic": "Compound Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -741,7 +741,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "How many more people in Center City walk to work than ride their bicycle to work?",
     "topic": "Statistics and Probability",
-    "subtopic": "Data Displays",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -875,7 +875,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
     "topic": "Algebra",
-    "subtopic": "Algebraic Word Problems",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -966,7 +966,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of the expression shown above?\n\n\\(2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\)",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1024,7 +1024,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
     "topic": "Statistics and Probability",
-    "subtopic": "Counting & Combinations",
+    "subtopic": "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -1090,7 +1090,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On the number line above, \\(LN=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
     "topic": "Arithmetic & Number Sense",
-    "subtopic": "Fractions",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1167,7 +1167,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "When a student buys 4 notebooks, the total cost is $12. Each notebook costs the same amount. Select each point on the graph that best represents \\(y\\), the total cost of \\(x\\) notebooks.",
     "topic": "Ratios and Proportional Relationships",
-    "subtopic": "Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "correctPointIds": [
       "point-1-3",
       "point-3-9",

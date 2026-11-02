@@ -1,0 +1,37 @@
+✔ money includes fractional tax rate, rounds once, rejects unavailable or forged selections (2.5654ms)
+✔ infinite assignments require a valid streak, not aggregate practice totals (0.5676ms)
+✔ homework rejects unauthenticated, teachers, unenrolled and other students (44.0208ms)
+✔ homework checks on server, resets mistakes, resumes, deduplicates retries, completes exactly at streak (39.8845ms)
+✔ concurrent homework answers advance once (6.5134ms)
+✔ meal routes isolate identities and recompute prices before the locked database write (8.2114ms)
+✔ students can order repeatedly while every ordered snapshot stays visible to the correct student and teacher (12.8786ms)
+✔ repeat requests respect closure, denial, explicit intent and revisions; duplicate submissions archive only once (9.2989ms)
+✔ replacing a teacher-removed ordered request preserves that earlier meal (2.3693ms)
+✔ teacher can mark and undo ordered while the rest of the menu remains open (4.7564ms)
+✔ denial blocks student resubmission until restored; removal remains recoverable (6.4699ms)
+✔ removed ordered requests restore to ordered; cancelled student requests cannot be restored by these actions (3.9157ms)
+✔ customizations enforce required/max choices, snapshot selections and keep the teacher estimate fixed (1.0113ms)
+✔ manual item totals default to N/A, persist in quotes, and reject invalid money (0.7414ms)
+✔ restaurant galleries preserve ratings and label-only offers without discounting quantities (0.2646ms)
+✔ gallery rejects duplicate IDs, malformed images, forged offers, and invalid ratings (0.5912ms)
+✔ teacher saves gallery with inline raster images, requires revision, and student cannot edit it (5.2851ms)
+✔ personal batches retain source snapshots, deduplicate additions and protect ownership/revisions (47.9789ms)
+✔ batch export carries all sources, exact module IDs, instructions and refuses stale destinations (5.545ms)
+✔ renaming remains independent of skill assignment, reconciliation and validation (4.3671ms)
+✔ authenticated endpoints reject students and save teacher changes durably without assignments (74.71ms)
+✔ remote persistence rejects failed writes and simultaneous stale saves (8.3319ms)
+✔ studio handoff opens the account planner and carries only the source selection (6.6159ms)
+✔ planner notifications refresh visible tabs without sharing data and clean up subscriptions (3.7065ms)
+✔ homework previews describe the published effective mix and exclude hidden or disabled content (5.1274ms)
+✔ private teaching context persists, is owner-scoped, and never enters the build export (21.6607ms)
+✔ planner readiness points to the incomplete field and reuse distinguishes source matches from topic candidates (1.8057ms)
+✔ evidence reports recorded timing only and classification review retains exact source IDs (24.8717ms)
+✔ assignment navigation carries student, source and exact module without creating an assignment (0.4278ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1206.0755

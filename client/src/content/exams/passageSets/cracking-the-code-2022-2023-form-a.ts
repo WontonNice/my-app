@@ -147,6 +147,7 @@ const crackingTheCode20222023FormAQuestions: ExamQuestion[] = [
 ];
 
 export const crackingTheCode20222023FormAPassageSet: ExamPassageSet = {
+  versionLabels: ["2022-2023 Form A","2021-2022 Form A"],
   id: "ela-cracking-the-code-2022-2023-form-a",
   section: "revising_editing_a",
   questionCount: crackingTheCode20222023FormAQuestions.length,

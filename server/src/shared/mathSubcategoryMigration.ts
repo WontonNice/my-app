@@ -16,9 +16,77 @@ export const mathSubcategoryMoves = [
   { category: 'Ratios and Proportional Relationships', from: 'Units & Conversions', toCategory: 'Arithmetic & Number Sense', to: 'Units & Conversions' },
 ];
 
+export const mathSubcategoryConsolidations = [
+  {
+    "category": "Algebra",
+    "from": "Formulas & Rearranging Equations",
+    "to": "Equations & Systems"
+  },
+  {
+    "category": "Algebra",
+    "from": "Algebraic Word Problems",
+    "to": "Equations & Systems"
+  },
+  {
+    "category": "Statistics and Probability",
+    "from": "Data Displays",
+    "to": "Data Displays & Sampling"
+  },
+  {
+    "category": "Statistics and Probability",
+    "from": "Sampling & Predictions",
+    "to": "Data Displays & Sampling"
+  },
+  {
+    "category": "Statistics and Probability",
+    "from": "Counting & Combinations",
+    "to": "Counting & Sets"
+  },
+  {
+    "category": "Statistics and Probability",
+    "from": "Set Relationships",
+    "to": "Counting & Sets"
+  },
+  {
+    "category": "Statistics and Probability",
+    "from": "Basic Probability",
+    "to": "Probability"
+  },
+  {
+    "category": "Statistics and Probability",
+    "from": "Compound Probability",
+    "to": "Probability"
+  },
+  {
+    "category": "Ratios and Proportional Relationships",
+    "from": "Proportional Relationships",
+    "to": "Ratios & Proportions"
+  },
+  {
+    "category": "Ratios and Proportional Relationships",
+    "from": "Percent Change & Applications",
+    "to": "Percentages"
+  },
+  {
+    "category": "Arithmetic & Number Sense",
+    "from": "Fractions",
+    "to": "Fractions & Decimals"
+  },
+  {
+    "category": "Arithmetic & Number Sense",
+    "from": "Decimals",
+    "to": "Fractions & Decimals"
+  }
+];
+
+export function consolidatedMathLocation(category: string, topic: string) {
+ const move = mathSubcategoryConsolidations.find(item => item.category === category && item.from === topic);
+ return {category, topic: move?.to ?? topic};
+}
+
 export function migratedMathLocation(category: string, topic: string) {
   const move = mathSubcategoryMoves.find(item => item.category === category && item.from === topic);
-  return move ? { category: move.toCategory ?? category, topic: move.to } : { category, topic };
+  return move ? consolidatedMathLocation(move.toCategory ?? category, move.to) : consolidatedMathLocation(category, topic);
 }
 
 /** Rehome existing definitions only; do not add, rename, or assign any skills. */
@@ -31,7 +99,8 @@ export function migratedMathSkillLocation(skill: { id: string; category: string;
     'compound-probability': { from: 'Probability', to: 'Compound Probability' },
   };
   const split = splitTopics[skill.id];
-  return { category: destination.category, subcategory: split?.from === skill.subcategory ? split.to : destination.topic };
+  const final = consolidatedMathLocation(destination.category, split?.from === skill.subcategory ? split.to : destination.topic);
+  return { category: final.category, subcategory: final.topic };
 }
 
 // Existing focused practice collections retain their membership and names.

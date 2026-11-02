@@ -1,0 +1,15 @@
+{
+  "paste": true,
+  "numericResize": true,
+  "sliderResize": true,
+  "reset": true,
+  "savedWidth": 240,
+  "reload": true,
+  "preview": {
+    "width": 180,
+    "border": "0px",
+    "previewBorder": "0px"
+  },
+  "invalidWidthRejected": true,
+  "narrowControlsVisible": true
+}

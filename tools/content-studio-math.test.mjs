@@ -5,6 +5,7 @@ import vm from "node:vm";
 import katex from "katex";
 import { convertLatexToMarkup } from "mathlive/ssr";
 import ts from "typescript";
+import documentImport from './document-import.cjs';
 
 const source = await readFile(new URL("./content-studio-math.js", import.meta.url), "utf8");
 const math = vm.runInNewContext(`${source}\nstudioMath;`, { window: { katex } });
@@ -12,7 +13,7 @@ const math = vm.runInNewContext(`${source}\nstudioMath;`, { window: { katex } })
 test('native math saves and assessment registration preserve Skilled IDs and default unassigned math to TBD',async()=>{
   const server=await readFile(new URL('./content-studio.mjs',import.meta.url),'utf8');
   const normalize=vm.runInNewContext(server.slice(server.indexOf('function normalizeMathQuestion('),server.indexOf('function normalizeMathSection('))+'\nnormalizeMathQuestion;',{
-    documentImport:{normalizeChoiceLabels:value=>value},EditorError:class extends Error{},requiredText:value=>value,slugify:value=>value,sanitizeRichText:()=>'',normalizeMathImage:()=>undefined,
+    documentImport,EditorError:class extends Error{},requiredText:value=>value,slugify:value=>value,sanitizeRichText:()=>'',normalizeMathImage:()=>undefined,
   });
   const input={id:'manual-question',type:'short_response',topic:'Algebra',subtopic:'Inequalities',skilled:'teacher-skill-id',prompt:'Find x.',correctTextAnswers:['2']};
   const normalized=normalize(input,'exam',0);assert.equal(normalized.skilled,input.skilled);assert.equal(normalized.prompt,input.prompt);assert.deepEqual(Array.from(normalized.correctTextAnswers),input.correctTextAnswers);
@@ -24,7 +25,7 @@ test('native math saves and assessment registration preserve Skilled IDs and def
 
 test('captioned math images preserve their position and safe metadata when saved', async () => {
   const server = await readFile(new URL('./content-studio.mjs', import.meta.url), 'utf8');
-  const sanitize = vm.runInNewContext(server.slice(server.indexOf('const allowedRichTags ='), server.indexOf('function sanitizeInlineRichText(')) + '\nsanitizeRichText;');
+  const sanitize = vm.runInNewContext(server.slice(server.indexOf('function sanitizeRichText('), server.indexOf('function sanitizeInlineRichText(')) + '\nsanitizeRichText;', {documentImport});
   assert.equal(sanitize('<p>Before the diagram.</p><figure onclick="unsafe()"><img src="/exam-images/diagram.png" alt="Triangle" width="360" onerror="unsafe()"><figcaption>A measured triangle.</figcaption></figure><p>After the diagram.</p>'), '<p>Before the diagram.</p><figure><img src="/exam-images/diagram.png" alt="Triangle" width="360"><figcaption>A measured triangle.</figcaption></figure><p>After the diagram.</p>');
   assert.doesNotMatch(sanitize('<figure><img src="javascript:unsafe()"><figcaption><script>unsafe()</script>Caption</figcaption></figure>'), /javascript|script|unsafe/);
 });
@@ -34,11 +35,11 @@ test('image-only rich math choices satisfy strict validation without adding plac
   const normalize = vm.runInNewContext(`class EditorError extends Error { constructor(status, message) { super(message); this.status = status; } }
     ${server.slice(server.indexOf('function requiredText('), server.indexOf('function propertyName('))}
     ${server.slice(server.indexOf('function normalizeMathChoiceImage('), server.indexOf('function normalizeMathDropdownOption('))}
-    normalizeMathChoice;`);
+    normalizeMathChoice;`, {documentImport});
   const html = '<img src="/exam-images/number-line.png" alt="Number line" width="200">';
   for (const allowIncomplete of [false, true]) {
     const choice = normalize({ id: 'A', text: '', html: `<p>${html}</p>` }, 0, 24, { allowIncomplete });
-    assert.equal(choice.html, html);
+    assert.equal(choice.html, `<p>${html}</p>`, 'the shared rich-text sanitizer preserves the authored paragraph');
     assert.equal(choice.text, '');
     assert.equal(choice.image, undefined, 'inline images stay in their original rich content');
   }

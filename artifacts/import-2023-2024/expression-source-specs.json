@@ -1,0 +1,330 @@
+{
+  "a": {
+    "60": {
+      "html": "<p>Solve for \\(x\\):</p><p>\\(7x + 3 - 2(2x + 1) = 13\\)</p>"
+    },
+    "61": {
+      "variables": [
+        "l",
+        "n",
+        "x"
+      ]
+    },
+    "65": {
+      "choiceHtml": [
+        "<p>\\(\\$20.50\\)/hr</p>",
+        "<p>\\(\\$26.75\\)/hr</p>",
+        "<p>\\(\\$33.00\\)/hr</p>",
+        "<p>\\(\\$37.65\\)/hr</p>"
+      ]
+    },
+    "67": {
+      "labels": [
+        "W",
+        "X",
+        "Y",
+        "Z"
+      ]
+    },
+    "68": {
+      "html": "<p>\\(\\frac{81}{10} = \\frac{9}{n}\\)</p><p>What value of \\(n\\) makes the equation above true?</p>"
+    },
+    "69": {
+      "html": "<p>If \\(n\\) is an integer and \\(3n + 3\\) is an even number, which expression must also represent an even number?</p>",
+      "choices": [
+        "5n + 1",
+        "4n + 5",
+        "2n + 3",
+        "n + 2"
+      ]
+    },
+    "71": {
+      "variables": [
+        "n"
+      ]
+    },
+    "76": {
+      "html": "<p>\\(x:35 = 20:28\\)</p><p>For what value of \\(x\\) is the proportion shown above true?</p>"
+    },
+    "77": {
+      "choices": [
+        "-60",
+        "-\\frac{17}{3}",
+        "\\frac{77}{9}",
+        "68"
+      ]
+    },
+    "79": {
+      "html": "<p>The numbers \\(m\\), \\(n\\), \\(p\\), and \\(q\\) are different, and each is equal to one of the numbers \\(1\\), \\(2\\), \\(3\\), \\(6\\), or \\(12\\). If \\(2m = 6q = \\frac{1}{2}n = p\\), what is the value of \\(p\\)?</p>"
+    },
+    "80": {
+      "replacements": [
+        [
+          "<p>{\\(0.1\\), \\(0.01\\), \\(0.001\\), \\(0.0001\\), \\(0.00001\\)}</p>",
+          "<p>\\(\\{0.1, 0.01, 0.001, 0.0001, 0.00001\\}\\)</p>"
+        ]
+      ]
+    },
+    "81": {
+      "labels": [
+        "R",
+        "T"
+      ]
+    },
+    "82": {
+      "variables": [
+        "j",
+        "k",
+        "h",
+        "x"
+      ],
+      "labels": [
+        "Q"
+      ]
+    },
+    "83": {
+      "variables": [
+        "x"
+      ],
+      "choices": [
+        "\\frac{1}{x+1} > \\frac{1}{x+2}",
+        "\\frac{1}{x+1} < \\frac{1}{x+2}",
+        "\\frac{1}{x+1} - \\frac{1}{x+2} > 1",
+        "\\frac{1}{x+1} - \\frac{1}{x+2} > \\frac{1}{x}"
+      ]
+    },
+    "86": {
+      "variables": [
+        "x"
+      ],
+      "choices": [
+        "2x + 1",
+        "3x - 5",
+        "4x - 1",
+        "4x + 6"
+      ]
+    },
+    "88": {
+      "labels": [
+        "P"
+      ],
+      "choices": [
+        "R",
+        "S",
+        "T",
+        "U"
+      ]
+    },
+    "91": {
+      "replacements": [
+        [
+          "<em>x </em>+ <em>y</em>",
+          "\\(x+y\\)"
+        ]
+      ]
+    },
+    "92": {
+      "labels": [
+        "L",
+        "JK"
+      ],
+      "replacements": [
+        [
+          "JL = \\(\\frac{2}{3}\\) LK",
+          "\\(JL = \\frac{2}{3}LK\\)"
+        ]
+      ]
+    },
+    "94": {
+      "replacements": [
+        [
+          "18π",
+          "\\(18\\pi\\)"
+        ]
+      ],
+      "choiceHtml": [
+        "<p>\\(144\\pi\\) ft</p>",
+        "<p>\\(24\\pi\\) ft</p>",
+        "<p>\\(18\\pi\\) ft</p>",
+        "<p>\\(9\\pi\\) ft</p>"
+      ]
+    },
+    "95": {
+      "html": "<p>Which graph represents the solution to \\(-3x - 7 > -4\\)?</p>"
+    },
+    "96": {
+      "labels": [
+        "R",
+        "S",
+        "T"
+      ]
+    },
+    "97": {
+      "variables": [
+        "k",
+        "j"
+      ],
+      "choices": [
+        "k - 6 = 2(j + 6)",
+        "k - 6 = 2j + 6",
+        "2(k - 6) = j",
+        "2(k - 6) = j + 6"
+      ]
+    },
+    "99": {
+      "html": "<p>\\(\\{1,2,3,4,5,\\ldots,198,199,200\\}\\)</p><p>How many members of the set shown above are multiples of \\(6\\) but <strong>not </strong>multiples of \\(9\\)?</p>"
+    },
+    "101": {
+      "html": "<p>For what value of \\(x\\) is the equation \\(\\frac{x}{5} - 4 = 3(4 - 2x) - 1\\) true?</p>"
+    },
+    "102": {
+      "variables": [
+        "y"
+      ],
+      "labels": [
+        "RS"
+      ]
+    },
+    "113": {
+      "variables": [
+        "x"
+      ]
+    }
+  },
+  "b": {
+    "62": {
+      "html": "<p>Solve the equation for \\(x\\):</p><p>\\(\\frac{(21)(14)x}{(49)(48)} = 0.875\\)</p>"
+    },
+    "65": {
+      "html": "<p>Solve for \\(x\\) in terms of \\(y\\) if \\(2x + 4 = y\\).</p>",
+      "choices": [
+        "x = \\frac{y-4}{2}",
+        "x = 2(y + 4)",
+        "x = \\frac{y+4}{2}",
+        "x = 2(4 - y)"
+      ]
+    },
+    "68": {
+      "html": "<p>\\(n = 0.13 + \\frac{207}{100}\\)</p><p>What is the value of \\(n\\) expressed as a fraction?</p>"
+    },
+    "74": {
+      "html": "<p>\\(m \\cdot t = 72\\)</p><p>For the equation above, what is the sum of the values of \\(m\\) when \\(t=1\\), when \\(t=2\\), and when \\(t=3\\)?</p>"
+    },
+    "78": {
+      "html": "<p>\\[\\begin{gathered}-mn\\\\(-m)(-n)\\\\|mn|\\\\|-mn|\\\\|(-m)(-n)|\\end{gathered}\\]</p><p>If \\(m\\) and \\(n\\) are positive integers, how many of the five expressions above are equivalent to \\(mn\\)?</p>"
+    },
+    "84": {
+      "replacements": [
+        [
+          "<p>N = {\\(6\\), \\(7\\), . . . , \\(21\\), \\(22\\)}</p>",
+          "<p>\\(N=\\{6,7,\\ldots,21,22\\}\\)</p>"
+        ]
+      ],
+      "labels": [
+        "N",
+        "L"
+      ]
+    },
+    "85": {
+      "variables": [
+        "x",
+        "y",
+        "z"
+      ]
+    },
+    "88": {
+      "html": "<p>If \\(xy=30\\), what is the value of \\(10 \\div x\\) in terms of \\(y\\)?</p>",
+      "choices": [
+        "\\frac{1}{10}y",
+        "\\frac{1}{3}y",
+        "3y",
+        "10y"
+      ]
+    },
+    "90": {
+      "labels": [
+        "W",
+        "X",
+        "Y"
+      ]
+    },
+    "91": {
+      "labels": [
+        "W",
+        "X",
+        "Y",
+        "Z"
+      ]
+    },
+    "93": {
+      "labels": [
+        "S",
+        "T"
+      ]
+    },
+    "94": {
+      "choices": [
+        "\\frac{1}{2}(x-5)",
+        "\\frac{1}{2}(x+5)",
+        "-\\frac{1}{2}(x+23)",
+        "-\\frac{1}{2}(x-23)"
+      ]
+    },
+    "95": {
+      "html": "<p>How is \\(\\frac{1}{x} - \\frac{1}{2x}\\) written as a single fraction? (Assume \\(x \\ne 0\\).)</p>",
+      "choices": [
+        "\\frac{1}{2x}",
+        "\\frac{1}{3x}",
+        "-\\frac{1}{x}",
+        "-\\frac{1}{2x}"
+      ]
+    },
+    "97": {
+      "labels": [
+        "A",
+        "B"
+      ]
+    },
+    "98": {
+      "choiceHtml": [
+        "<p>\\(33\\frac{1}{3}\\%\\)</p>",
+        null,
+        null,
+        null
+      ]
+    },
+    "107": {
+      "replacements": [
+        [
+          "<p>{\\(3\\), \\(4\\), \\(5\\), \\(6\\), \\(7\\)}</p>",
+          "<p>\\(\\{3,4,5,6,7\\}\\)</p>"
+        ]
+      ]
+    },
+    "108": {
+      "variables": [
+        "n"
+      ]
+    },
+    "109": {
+      "choiceHtml": [
+        null,
+        null,
+        "<p>\\(3\\pi\\)</p>",
+        "<p>\\(6\\pi\\)</p>"
+      ]
+    },
+    "113": {
+      "variables": [
+        "s",
+        "t"
+      ],
+      "replacements": [
+        [
+          "P (\\(3\\), \\(5\\))",
+          "\\(P\\ (3,5)\\)"
+        ]
+      ]
+    }
+  }
+}

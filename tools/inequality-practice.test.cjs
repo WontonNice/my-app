@@ -113,9 +113,9 @@ test('teacher previews snapshot unsaved and disabled generators without changing
   assert.deepEqual(parsePracticeState(JSON.stringify(state)),state);
   assert.throws(()=>generatorPreviewCatalog({...draft,settings:{...draft.settings,minCoefficient:0}}));
 });
-test('modules expose all registered types, foundation stays easy, and targeted practice stays focused', () => {
+test('modules expose enabled registered types, foundation stays easy, and targeted practice stays focused', () => {
   const all = moduleGeneratorIds(practiceModules.find(m => m.id === 'all'));
-  assert.deepEqual(all, practiceGenerators.map(g => g.id));
+  assert.deepEqual(all, practiceGenerators.filter(g => g.enabled !== false).map(g => g.id));
   const seen = new Set();
   for (let i = 0; i < 128; i++) {
     const q = generatePracticeQuestion(all, i, 'test'); seen.add(q.id.split(':')[0]);

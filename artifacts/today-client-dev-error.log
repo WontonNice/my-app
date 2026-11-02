@@ -1,0 +1,93 @@
+11:23:52 AM [vite] Internal server error: Failed to resolve import "./math-command-remaster.css" from "src/features/math-command/MathCommandWorkspace.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: C:/Users/Nathan Im/Desktop/my-app-main/client/src/features/math-command/MathCommandWorkspace.tsx:23:7
+  20 |  import { MathAssignmentBuilder } from "./MathAssignmentBuilder";
+  21 |  import "./math-command.css";
+  22 |  import "./math-command-remaster.css";
+     |          ^
+  23 |  import { MathBankPlayer } from "./MathBankPlayer";
+  24 |  import { CatalogPracticePlayer } from "./CatalogPracticePlayer";
+      at TransformPluginContext._formatLog (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:29079:43)
+      at TransformPluginContext.error (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:29076:14)
+      at normalizeUrl (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27199:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27257:32
+      at async Promise.all (index 20)
+      at async TransformPluginContext.transform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27225:4)
+      at async EnvironmentPluginContainer.transform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:28877:14)
+      at async loadAndTransform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:22746:26)
+      at async viteTransformMiddleware (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:24622:20)
+11:23:52 AM [vite] Internal server error: Failed to resolve import "./math-command-remaster.css" from "src/features/math-command/MathCommandWorkspace.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: C:/Users/Nathan Im/Desktop/my-app-main/client/src/features/math-command/MathCommandWorkspace.tsx:23:7
+  20 |  import { MathAssignmentBuilder } from "./MathAssignmentBuilder";
+  21 |  import "./math-command.css";
+  22 |  import "./math-command-remaster.css";
+     |          ^
+  23 |  import { MathBankPlayer } from "./MathBankPlayer";
+  24 |  import { CatalogPracticePlayer } from "./CatalogPracticePlayer";
+      at TransformPluginContext._formatLog (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:29079:43)
+      at TransformPluginContext.error (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:29076:14)
+      at normalizeUrl (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27199:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27257:32
+      at async Promise.all (index 20)
+      at async TransformPluginContext.transform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27225:4)
+      at async EnvironmentPluginContainer.transform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:28877:14)
+      at async loadAndTransform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:22746:26)
+      at async viteTransformMiddleware (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:24622:20)
+11:23:52 AM [vite] Internal server error: Failed to resolve import "./math-command-remaster.css" from "src/features/math-command/MathCommandWorkspace.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: C:/Users/Nathan Im/Desktop/my-app-main/client/src/features/math-command/MathCommandWorkspace.tsx:23:7
+  20 |  import { MathAssignmentBuilder } from "./MathAssignmentBuilder";
+  21 |  import "./math-command.css";
+  22 |  import "./math-command-remaster.css";
+     |          ^
+  23 |  import { MathBankPlayer } from "./MathBankPlayer";
+  24 |  import { CatalogPracticePlayer } from "./CatalogPracticePlayer";
+      at TransformPluginContext._formatLog (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:29079:43)
+      at TransformPluginContext.error (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:29076:14)
+      at normalizeUrl (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27199:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27257:32
+      at async Promise.all (index 20)
+      at async TransformPluginContext.transform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27225:4)
+      at async EnvironmentPluginContainer.transform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:28877:14)
+      at async loadAndTransform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:22746:26)
+11:23:52 AM [vite] Internal server error: Failed to resolve import "./math-command-remaster.css" from "src/features/math-command/MathCommandWorkspace.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: C:/Users/Nathan Im/Desktop/my-app-main/client/src/features/math-command/MathCommandWorkspace.tsx:23:7
+  20 |  import { MathAssignmentBuilder } from "./MathAssignmentBuilder";
+  21 |  import "./math-command.css";
+  22 |  import "./math-command-remaster.css";
+     |          ^
+  23 |  import { MathBankPlayer } from "./MathBankPlayer";
+  24 |  import { CatalogPracticePlayer } from "./CatalogPracticePlayer";
+      at TransformPluginContext._formatLog (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:29079:43)
+      at TransformPluginContext.error (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:29076:14)
+      at normalizeUrl (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27199:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27257:32
+      at async Promise.all (index 20)
+      at async TransformPluginContext.transform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27225:4)
+      at async EnvironmentPluginContainer.transform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:28877:14)
+      at async loadAndTransform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:22746:26)
+11:23:52 AM [vite] Internal server error: Failed to resolve import "./math-command-remaster.css" from "src/features/math-command/MathCommandWorkspace.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: C:/Users/Nathan Im/Desktop/my-app-main/client/src/features/math-command/MathCommandWorkspace.tsx:23:7
+  20 |  import { MathAssignmentBuilder } from "./MathAssignmentBuilder";
+  21 |  import "./math-command.css";
+  22 |  import "./math-command-remaster.css";
+     |          ^
+  23 |  import { MathBankPlayer } from "./MathBankPlayer";
+  24 |  import { CatalogPracticePlayer } from "./CatalogPracticePlayer";
+      at TransformPluginContext._formatLog (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:29079:43)
+      at TransformPluginContext.error (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:29076:14)
+      at normalizeUrl (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27199:18)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27257:32
+      at async Promise.all (index 20)
+      at async TransformPluginContext.transform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:27225:4)
+      at async EnvironmentPluginContainer.transform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:28877:14)
+      at async loadAndTransform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:22746:26)
+      at async viteTransformMiddleware (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:24622:20)

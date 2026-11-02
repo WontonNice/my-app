@@ -4,6 +4,9 @@ import { writingInequalitiesTemplate } from './writingInequalities';
 import { overlappingGroupsTemplate } from './overlappingGroups';
 import { wordProblemPractice } from './practiceWordProblems';
 import { probabilityPractice } from './probabilityPractice';
+import { symbolicFractionDivisionTemplate } from './symbolicFractionDivision';
+import { repeatingDecimalDigitsTemplate } from './repeatingDecimalDigits';
+import { rectangleAreaPercentTemplate } from './rectangleAreaPercent';
 
 export const practicePrograms = ['SHSAT', 'SAT', 'PSAT', 'AP'] as const;
 export const practiceDifficulties = ['unassigned', 'foundation', 'standard', 'advanced'] as const;
@@ -18,7 +21,7 @@ export type GeneratorOrganization = {
   reviewStatus?: typeof practiceReviewStatuses[number];
 };
 
-const definitions = [inequalityTemplate, variablesBothSidesTemplate, writingInequalitiesTemplate, overlappingGroupsTemplate, ...wordProblemPractice, ...probabilityPractice];
+const definitions = [inequalityTemplate, variablesBothSidesTemplate, writingInequalitiesTemplate, overlappingGroupsTemplate, ...wordProblemPractice, ...probabilityPractice, symbolicFractionDivisionTemplate, repeatingDecimalDigitsTemplate, rectangleAreaPercentTemplate];
 const titleAliases: Record<string, string[]> = {
   'one-step-inequalities-v1': ['One-step inequalities and sign flips', 'One-step inequalities', 'One-Step Inequalities'],
   'variables-both-sides-inequalities-v1': ['Inequalities: Variables on Both Sides'],

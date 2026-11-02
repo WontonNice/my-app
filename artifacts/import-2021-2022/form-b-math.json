@@ -1,0 +1,4570 @@
+{
+  "format": "nathan-tutors-official-passage-v1",
+  "source": {
+    "sourceFamily": "official_shsat",
+    "sourceFormat": "pdf",
+    "playerProfile": "testnav",
+    "sourceId": "official-shsat-2021-2022-form-b",
+    "label": "2021-2022 Form B",
+    "year": "2021-2022",
+    "form": "B",
+    "sourceFile": "20212022_form_b.pdf",
+    "sha256": "3dc9c1cff8d43116dfa9f23404cde100eb742841b61759a9291d38ff1f7882f4"
+  },
+  "mathQuestions": [
+    {
+      "promptHtml": "<p>How many \\(5\\)-digit numbers can be created using the digits \\(2,3,5,7,\\) and \\(8\\) without repeating any digits within that \\(5\\)-digit number?</p>",
+      "choices": [],
+      "id": "pdf-shsat-2021-2022-b-q058",
+      "type": "short_response",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "How many \\(5\\)-digit numbers can be created using the digits \\(2,3,5,7,\\) and \\(8\\) without repeating any digits within that \\(5\\)-digit number?",
+      "correctTextAnswers": [
+        "120"
+      ],
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          40
+        ],
+        "sourceQuestion": "58",
+        "sourceChoiceIds": [],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            39
+          ],
+          "regions": [
+            {
+              "page": 39,
+              "box": [
+                94,
+                244,
+                597,
+                458
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(120) There are 5 choices for the first\ndigit, 4 choices for the second digit, 3\nchoices for the third digit, 2 choices for\nthe fourth digit, and 1 choice for the final\ndigit. The total number of possibilities is\nia icles\n5x4x3x2x1=120.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q058-explanation-1.png\" width=\"322\" alt=\"Official explanation for source question 58; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>\\(\\frac{147-x}{12}=12\\)</p><p>What is the value of \\(x\\) in the equation shown above?</p>",
+      "choices": [],
+      "id": "pdf-shsat-2021-2022-b-q059",
+      "type": "short_response",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "\\(\\frac{147-x}{12}=12\\)\n\nWhat is the value of \\(x\\) in the equation shown above?",
+      "correctTextAnswers": [
+        "3"
+      ],
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          40
+        ],
+        "sourceQuestion": "59",
+        "sourceChoiceIds": [],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            39
+          ],
+          "regions": [
+            {
+              "page": 39,
+              "box": [
+                94,
+                548,
+                362,
+                679
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(3) wi id\ni\n147 - x =144\nx=3",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q059-explanation-1.png\" width=\"172\" alt=\"Official explanation for source question 59; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>\\(\\left|(-6)-(-5)+4.2\\right|-\\left|3-9.6\\right|=\\)</p>",
+      "choices": [],
+      "id": "pdf-shsat-2021-2022-b-q060",
+      "type": "short_response",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "\\(\\left|(-6)-(-5)+4.2\\right|-\\left|3-9.6\\right|=\\)",
+      "correctTextAnswers": [
+        "-3.4"
+      ],
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          40
+        ],
+        "sourceQuestion": "60",
+        "sourceChoiceIds": [],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            39
+          ],
+          "regions": [
+            {
+              "page": 39,
+              "box": [
+                93,
+                799,
+                559,
+                883
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(-3.4)|(-6) - (-5) + 4.2| -|3 - 9.6| =\n[3.2| -|-6.6| = 3.2-6.6=-3.4",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q060-explanation-1.png\" width=\"298\" alt=\"Official explanation for source question 60; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Tyler has completed \\(60\\) pages in his French workbook. This is \\(20\\%\\) of the total number of pages in the workbook. How many pages are in the workbook?</p>",
+      "choices": [],
+      "id": "pdf-shsat-2021-2022-b-q061",
+      "type": "short_response",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Tyler has completed \\(60\\) pages in his French workbook. This is \\(20\\%\\) of the total number of pages in the workbook. How many pages are in the workbook?",
+      "correctTextAnswers": [
+        "300"
+      ],
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          41
+        ],
+        "sourceQuestion": "61",
+        "sourceChoiceIds": [],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            39
+          ],
+          "regions": [
+            {
+              "page": 39,
+              "box": [
+                93,
+                1015,
+                615,
+                1305
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(300) Let x be the total number of pages\nin the workbook. Then, 20% of x is 60.\nSet up a proportion and solve for x :\n20 60\n100 = x.\n20x = 6,000\n6,000\nX = —= = = 300 pages\n20 ee",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q061-explanation-1.png\" width=\"334\" alt=\"Official explanation for source question 61; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q062-figure.png\" width=\"266\" alt=\"Source diagram for question 62\"></p><p>Four straight lines intersect at point \\(\\mathrm{P}\\) as shown above. What is the value of \\(y\\)?</p>",
+      "choices": [],
+      "id": "pdf-shsat-2021-2022-b-q062",
+      "type": "short_response",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Four straight lines intersect at point \\(\\mathrm{P}\\) as shown above. What is the value of \\(y\\)?",
+      "correctTextAnswers": [
+        "65"
+      ],
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          41
+        ],
+        "sourceQuestion": "62",
+        "sourceChoiceIds": [],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            39
+          ],
+          "regions": [
+            {
+              "page": 39,
+              "box": [
+                681,
+                244,
+                1157,
+                887
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(65) Call the missing angle in the top\nhalf of the figure x . The sum of the\nfour angles on the top of the figure is\nequal to 180°.\nx+y +30 +60 = 180\nSince x is a vertical angle with the 25°\nangle, then x is also 25°. Use that to\nsolve for y.\n25+y +30+60 = 180\ny +115 =180\ny =65\nWy x(x-2y) = 9[9-2(-7)]",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q062-explanation-1.png\" width=\"305\" alt=\"Official explanation for source question 62; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>If \\(x=9\\) and \\(y=-7\\), what is the value of \\(x(x-2y)\\)?</p>",
+      "choices": [
+        {
+          "text": "18",
+          "math": "18",
+          "id": "A"
+        },
+        {
+          "text": "45",
+          "math": "45",
+          "id": "B"
+        },
+        {
+          "text": "144",
+          "math": "144",
+          "id": "C"
+        },
+        {
+          "text": "207",
+          "math": "207",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q063",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "If \\(x=9\\) and \\(y=-7\\), what is the value of \\(x(x-2y)\\)?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          42
+        ],
+        "sourceQuestion": "63",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            39
+          ],
+          "regions": [
+            {
+              "page": 39,
+              "box": [
+                682,
+                832,
+                1080,
+                902
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(D - = —2(-7)|=\n9(9 + 14) = 9(23) = 207",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q063-explanation-1.png\" width=\"255\" alt=\"Official explanation for source question 63; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q064-figure.png\" width=\"267\" alt=\"Source diagram for question 64\"></p><p>In the figure above, \\(\\mathrm{PQRS}\\) is a parallelogram. The measure of \\(\\angle\\mathrm{PQT}\\) is \\(50^\\circ\\), and the measure of \\(\\angle\\mathrm{PTQ}\\) is \\(70^\\circ\\). What is the measure of \\(\\angle\\mathrm{QRS}\\)?</p>",
+      "choices": [
+        {
+          "text": "60^\\circ",
+          "math": "60^\\circ",
+          "id": "A"
+        },
+        {
+          "text": "70^\\circ",
+          "math": "70^\\circ",
+          "id": "B"
+        },
+        {
+          "text": "80^\\circ",
+          "math": "80^\\circ",
+          "id": "C"
+        },
+        {
+          "text": "120^\\circ",
+          "math": "120^\\circ",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q064",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "In the figure above, \\(\\mathrm{PQRS}\\) is a parallelogram. The measure of \\(\\angle\\mathrm{PQT}\\) is \\(50^\\circ\\), and the measure of \\(\\angle\\mathrm{PTQ}\\) is \\(70^\\circ\\). What is the measure of \\(\\angle\\mathrm{QRS}\\)?",
+      "correctChoiceId": "A",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          42
+        ],
+        "sourceQuestion": "64",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            39
+          ],
+          "regions": [
+            {
+              "page": 39,
+              "box": [
+                682,
+                1028,
+                1187,
+                1233
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(E) Find the missing angle, angle QPT, of\ntriangle PQT: 180° — 70° — 50° = 60°\nIn parallelogram PQRS, angle QPT is\ncongruent to angle QRS, so the measure\nof angle QRS is also 60°.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q064-explanation-1.png\" width=\"323\" alt=\"Official explanation for source question 64; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>\\(M=3N=\\frac{P}{4}=Q+5=\\frac{R}{7}>0\\)</p><p>Based on the statement above, which variable has the <strong>greatest</strong> value?</p>",
+      "choices": [
+        {
+          "text": "M",
+          "math": "M",
+          "id": "A"
+        },
+        {
+          "text": "N",
+          "math": "N",
+          "id": "B"
+        },
+        {
+          "text": "P",
+          "math": "P",
+          "id": "C"
+        },
+        {
+          "text": "R",
+          "math": "R",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q065",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "\\(M=3N=\\frac{P}{4}=Q+5=\\frac{R}{7}>0\\)\n\nBased on the statement above, which variable has the greatest value?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          42
+        ],
+        "sourceQuestion": "65",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            40
+          ],
+          "regions": [
+            {
+              "page": 40,
+              "box": [
+                75,
+                156,
+                586,
+                1400
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(D) Break the equations apart to each\nequal M :\nM =3N\nmeh\n4\nM=Q+5\nm=\n7\nPick a number to substitute into the\nequations, and solve the equations to find\nthe values of M, N, P, Q, and R.\nLet M = 2. Since all the equations are\nequal to 2, substitute 2 to find each\n.\n.\nvariable.\nM =3N\n2=3N\n2 oN\n3\nm-2\n:\n2= 4\n8=P\nM=Q+5\n2=Q45\n-3=Q\nmek\n7\n2-8\n7\n14=R\nVariable R has the greatest value.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q065-explanation-1.png\" width=\"327\" alt=\"Official explanation for source question 65; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>DESSERT CHOICES</p><table><thead><tr><th>Dessert</th><th>Number of Times Ordered</th></tr></thead><tbody><tr><td>Cookies</td><td>\\(42\\)</td></tr><tr><td>Pie</td><td>\\(23\\)</td></tr><tr><td>Cake</td><td>\\(47\\)</td></tr><tr><td>Ice Cream</td><td>\\(48\\)</td></tr></tbody></table><p>The table above shows the number of times that different desserts were ordered at a restaurant. Based on this information, what is the probability of a customer ordering ice cream as a dessert?</p>",
+      "choices": [
+        {
+          "text": "25\\%",
+          "math": "25\\%",
+          "id": "A"
+        },
+        {
+          "text": "30\\%",
+          "math": "30\\%",
+          "id": "B"
+        },
+        {
+          "text": "40\\%",
+          "math": "40\\%",
+          "id": "C"
+        },
+        {
+          "text": "48\\%",
+          "math": "48\\%",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q066",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "DESSERT CHOICES\n\nDessertNumber of Times OrderedCookies\\(42\\)Pie\\(23\\)Cake\\(47\\)Ice Cream\\(48\\)The table above shows the number of times that different desserts were ordered at a restaurant. Based on this information, what is the probability of a customer ordering ice cream as a dessert?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          43
+        ],
+        "sourceQuestion": "66",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            40
+          ],
+          "regions": [
+            {
+              "page": 40,
+              "box": [
+                663,
+                156,
+                1176,
+                326
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(F) The total number of desserts ordered\nis 42 +23 + 47+ 48 = 160.\nee that ice cream was chosen\nis —— = — = 30%.\n160 10 °",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q066-explanation-1.png\" width=\"328\" alt=\"Official explanation for source question 66; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>To make party invitations, Macie could buy a package of paper for \\(\\$10.50\\), or she could buy \\(x\\) individual sheets of the same paper for \\(\\$0.15\\) each. What is the largest value of \\(x\\) that would make buying the individual sheets <strong>less</strong> expensive than buying the package?</p>",
+      "choices": [
+        {
+          "text": "60",
+          "math": "60",
+          "id": "A"
+        },
+        {
+          "text": "65",
+          "math": "65",
+          "id": "B"
+        },
+        {
+          "text": "69",
+          "math": "69",
+          "id": "C"
+        },
+        {
+          "text": "70",
+          "math": "70",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q067",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "To make party invitations, Macie could buy a package of paper for \\(\\$10.50\\), or she could buy \\(x\\) individual sheets of the same paper for \\(\\$0.15\\) each. What is the largest value of \\(x\\) that would make buying the individual sheets less expensive than buying the package?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          43
+        ],
+        "sourceQuestion": "67",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            40
+          ],
+          "regions": [
+            {
+              "page": 40,
+              "box": [
+                663,
+                434,
+                1169,
+                822
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(C) Set up an inequality to compare\nthe costs:\noe 10.50\n<\nxs\nTherefore, 70 individual sheets of paper\nwould cost $10.50, so 69 is the greatest\nnumber of individual sheets of paper that\nMacie can buy that would be less\nexpensive than the package.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q067-explanation-1.png\" width=\"324\" alt=\"Official explanation for source question 67; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>At \\(1{:}00\\) p.m. one day, the temperature was \\(8\\) degrees above zero. During the rest of the day, the temperature fell \\(3\\) degrees per hour. What was the temperature at \\(7{:}00\\) p.m. that day?</p>",
+      "choices": [
+        {
+          "text": "-13^\\circ",
+          "math": "-13^\\circ",
+          "id": "A"
+        },
+        {
+          "text": "-10^\\circ",
+          "math": "-10^\\circ",
+          "id": "B"
+        },
+        {
+          "text": "-7^\\circ",
+          "math": "-7^\\circ",
+          "id": "C"
+        },
+        {
+          "text": "5^\\circ",
+          "math": "5^\\circ",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q068",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "At \\(1{:}00\\) p.m. one day, the temperature was \\(8\\) degrees above zero. During the rest of the day, the temperature fell \\(3\\) degrees per hour. What was the temperature at \\(7{:}00\\) p.m. that day?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          43
+        ],
+        "sourceQuestion": "68",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            40
+          ],
+          "regions": [
+            {
+              "page": 40,
+              "box": [
+                663,
+                902,
+                1161,
+                1120
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(F) 7:00 p.m. is 6 hours after 1:00 p.m.\nCalculate the number of degrees the\ntemperature dropped in 6 hours:\n3x6=18 degrees. Subtract that from\nthe starting point (8 degrees) to find the\nsolution: 8-18 =-10 degrees.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q068-explanation-1.png\" width=\"319\" alt=\"Official explanation for source question 68; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>A bag contains \\(75\\) marbles that are red, blue, or green. The ratio of red to blue marbles is \\(15{:}7\\), and the ratio of blue to green marbles is \\(7{:}3\\). If \\(2\\) blue marbles are removed and replaced with \\(2\\) green marbles, what will be the new ratio of red to green marbles?</p>",
+      "choices": [
+        {
+          "text": "3:1",
+          "math": "3:1",
+          "id": "A"
+        },
+        {
+          "text": "5:1",
+          "math": "5:1",
+          "id": "B"
+        },
+        {
+          "text": "15:3",
+          "math": "15:3",
+          "id": "C"
+        },
+        {
+          "text": "45:11",
+          "math": "45:11",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q069",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "A bag contains \\(75\\) marbles that are red, blue, or green. The ratio of red to blue marbles is \\(15{:}7\\), and the ratio of blue to green marbles is \\(7{:}3\\). If \\(2\\) blue marbles are removed and replaced with \\(2\\) green marbles, what will be the new ratio of red to green marbles?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          43
+        ],
+        "sourceQuestion": "69",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            41
+          ],
+          "regions": [
+            {
+              "page": 41,
+              "box": [
+                74,
+                156,
+                592,
+                888
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(D) The ratio of red to blue to green is\n15:7:3. Find the proportion of blue\nmarbles. Add the numbers of the ratio and\nuse the total sum as the denominator:\n7 7 7 .\n——— = — . Find the proportion of\n154+74+3 25\ngreen marbles: 3\n25\nSince there are a total of 75 marbles, the\nnumber of blue marbles is —~ x 75 = 21.\n25—\nme number of green marbles is\n25 * 75 = 9.\nThe number of red marbles is\n75 —-21-9=45. If 2 blue marbles are\nremoved and replaced with 2 green\ndand laced with 2\nmarbles, the number of blue marbles is\nnow 19 and the number of green marbles\ni 11. Th io of les t\n‘Snow € ratio of red marbles to\ngreen marbles is 45:11.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q069-explanation-1.png\" width=\"332\" alt=\"Official explanation for source question 69; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>A roofing contractor uses shingles at a rate of \\(3\\) bundles for every \\(96\\) square feet of roof covered. At this rate, how many bundles of shingles will he need in order to cover a roof that is \\(416\\) square feet?</p>",
+      "choices": [
+        {
+          "text": "5",
+          "math": "5",
+          "id": "A"
+        },
+        {
+          "text": "12",
+          "math": "12",
+          "id": "B"
+        },
+        {
+          "text": "13",
+          "math": "13",
+          "id": "C"
+        },
+        {
+          "text": "14",
+          "math": "14",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q070",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "A roofing contractor uses shingles at a rate of \\(3\\) bundles for every \\(96\\) square feet of roof covered. At this rate, how many bundles of shingles will he need in order to cover a roof that is \\(416\\) square feet?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          44
+        ],
+        "sourceQuestion": "70",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            41
+          ],
+          "regions": [
+            {
+              "page": 41,
+              "box": [
+                75,
+                980,
+                403,
+                1190
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(G) Set up a proportion:\nx 3\n416 96\n96x = 1,248\nX = 13 bundles",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q070-explanation-1.png\" width=\"210\" alt=\"Official explanation for source question 70; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>What is the least common multiple of \\(24,6,\\) and \\(18\\)?</p>",
+      "choices": [
+        {
+          "text": "36",
+          "math": "36",
+          "id": "A"
+        },
+        {
+          "text": "48",
+          "math": "48",
+          "id": "B"
+        },
+        {
+          "text": "72",
+          "math": "72",
+          "id": "C"
+        },
+        {
+          "text": "144",
+          "math": "144",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q071",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "What is the least common multiple of \\(24,6,\\) and \\(18\\)?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          44
+        ],
+        "sourceQuestion": "71",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            41
+          ],
+          "regions": [
+            {
+              "page": 41,
+              "box": [
+                662,
+                156,
+                1174,
+                432
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(C) Since 18 and 24 are both multiples of\n6, find the least common multiple of only\n18 and 24.\nMultiples of 18: 18, 36, 54, 72...\nMultiples of 24: 24, 48, 72...\nThe least common multiple of 6, 18, and\n24 is 72.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q071-explanation-1.png\" width=\"328\" alt=\"Official explanation for source question 71; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>One day, the Early Bird Restaurant used \\(15\\) dozen eggs for \\(200\\) breakfast customers. At this rate, approximately how many dozen eggs are needed for \\(300\\) breakfast customers?</p>",
+      "choices": [
+        {
+          "text": "20",
+          "math": "20",
+          "id": "A"
+        },
+        {
+          "text": "23",
+          "math": "23",
+          "id": "B"
+        },
+        {
+          "text": "25",
+          "math": "25",
+          "id": "C"
+        },
+        {
+          "text": "30",
+          "math": "30",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q072",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "One day, the Early Bird Restaurant used \\(15\\) dozen eggs for \\(200\\) breakfast customers. At this rate, approximately how many dozen eggs are needed for \\(300\\) breakfast customers?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          44
+        ],
+        "sourceQuestion": "72",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            41
+          ],
+          "regions": [
+            {
+              "page": 41,
+              "box": [
+                662,
+                506,
+                1137,
+                908
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(F) Let x be the number of dozens of\neggs for 300 customers. Set up a\nproportion:\nx__ 15\n300 200\n00x = 4500\nX = 22.5 dozen eggs.\nRound up to 23 because you can't\npurchase half an egg.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q072-explanation-1.png\" width=\"304\" alt=\"Official explanation for source question 72; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>A cooler contains three types of beverages: \\(5\\) bottles of apple juice, \\(3\\) bottles of grape juice, and \\(6\\) bottles of orange juice. What is the probability that a bottle chosen at random from this cooler is <strong>not</strong> apple juice?</p>",
+      "choices": [
+        {
+          "text": "\\frac19",
+          "math": "\\frac19",
+          "id": "A"
+        },
+        {
+          "text": "\\frac5{14}",
+          "math": "\\frac5{14}",
+          "id": "B"
+        },
+        {
+          "text": "\\frac9{14}",
+          "math": "\\frac9{14}",
+          "id": "C"
+        },
+        {
+          "text": "\\frac23",
+          "math": "\\frac23",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q073",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "A cooler contains three types of beverages: \\(5\\) bottles of apple juice, \\(3\\) bottles of grape juice, and \\(6\\) bottles of orange juice. What is the probability that a bottle chosen at random from this cooler is not apple juice?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          44
+        ],
+        "sourceQuestion": "73",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            41
+          ],
+          "regions": [
+            {
+              "page": 41,
+              "box": [
+                662,
+                1017,
+                1181,
+                1270
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(C) The total number of bottles of juice in\nthe cooler is 5+3+6=14.\nThe number of bottles of juice that are not\napple juice (grape juice and orange juice)\nis3+6=9.\nrr)\nSo the probability is —.\np Y 14",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q073-explanation-1.png\" width=\"332\" alt=\"Official explanation for source question 73; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>A large circular dinner plate has a radius of \\(20\\) centimeters. A smaller circular plate with a circumference of \\(20\\pi\\) centimeters is placed in the center of the larger dinner plate. What is the area of the part of the larger dinner plate that is <strong>not</strong> covered by the smaller plate?</p>",
+      "choices": [
+        {
+          "text": "20\\pi\\text{ sq cm}",
+          "math": "20\\pi\\text{ sq cm}",
+          "id": "A"
+        },
+        {
+          "text": "100\\pi\\text{ sq cm}",
+          "math": "100\\pi\\text{ sq cm}",
+          "id": "B"
+        },
+        {
+          "text": "200\\pi\\text{ sq cm}",
+          "math": "200\\pi\\text{ sq cm}",
+          "id": "C"
+        },
+        {
+          "text": "300\\pi\\text{ sq cm}",
+          "math": "300\\pi\\text{ sq cm}",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q074",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "A large circular dinner plate has a radius of \\(20\\) centimeters. A smaller circular plate with a circumference of \\(20\\pi\\) centimeters is placed in the center of the larger dinner plate. What is the area of the part of the larger dinner plate that is not covered by the smaller plate?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          44
+        ],
+        "sourceQuestion": "74",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            42
+          ],
+          "regions": [
+            {
+              "page": 42,
+              "box": [
+                75,
+                156,
+                591,
+                845
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(H) The radius of the large plate is 20 cm.\nUse 20 cm to find the area of the large\nplate:\nA= nr? = (20?) = 400% sq.cm\nThe circumference of the smaller plate is\n20x cm. Use that to find the radius, and\nthen the area, of the smaller plate:\nCz=2n\n20n = 2ar\n10\nr=\nA= nr = (102) = 100 sq cm\n2\nSubtract the area of the small plate from\nthe area of the large plate:\n400n - 100x = 300n sq cm",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q074-explanation-1.png\" width=\"330\" alt=\"Official explanation for source question 74; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>PRICES FOR NEWSPAPER ADVERTISING</p><table><thead><tr><th>Page Space</th><th>Price</th></tr></thead><tbody><tr><td>\\(\\frac14\\) page</td><td>\\(\\$200\\)</td></tr><tr><td>\\(\\frac12\\) page</td><td>\\(\\$350\\)</td></tr><tr><td>full page</td><td>\\(\\$600\\)</td></tr></tbody></table><p>The table above shows prices for newspaper advertising. A store purchased \\(\\frac14\\) pages, \\(\\frac12\\) pages, and full pages of page space in equal numbers for a total of \\(\\$11{,}500\\). What is the total amount of page space the store purchased?</p>",
+      "choices": [
+        {
+          "text": "1\\frac34\\text{ pages}",
+          "math": "1\\frac34\\text{ pages}",
+          "id": "A"
+        },
+        {
+          "text": "10\\text{ pages}",
+          "math": "10\\text{ pages}",
+          "id": "B"
+        },
+        {
+          "text": "16\\frac12\\text{ pages}",
+          "math": "16\\frac12\\text{ pages}",
+          "id": "C"
+        },
+        {
+          "text": "17\\frac12\\text{ pages}",
+          "math": "17\\frac12\\text{ pages}",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q075",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "PRICES FOR NEWSPAPER ADVERTISING\n\nPage SpacePrice\\(\\frac14\\) page\\(\\$200\\)\\(\\frac12\\) page\\(\\$350\\)full page\\(\\$600\\)The table above shows prices for newspaper advertising. A store purchased \\(\\frac14\\) pages, \\(\\frac12\\) pages, and full pages of page space in equal numbers for a total of \\(\\$11{,}500\\). What is the total amount of page space the store purchased?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          45
+        ],
+        "sourceQuestion": "75",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            42
+          ],
+          "regions": [
+            {
+              "page": 42,
+              "box": [
+                662,
+                156,
+                1175,
+                873
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(D) The question says that an equal\nnumber (x ) of each type of page space\nwas purchased. To find the number of\neach type of page space that was\nf ;\npurchased, multiply the price per type by\nxX and set it equal to the total amount\nspent, then solve for x:\n200x + 350x + 600x = 11,500\n1,500x = 11,500\nx =10\nThe store purchased 10 units of each type\nof page space. To find the total amount of\npage space purchased, multiply each type\n/\nof page space by 10, and add:\n(10 x ‘ page) + (10 x ; page +\n(10 x 1 page) = vt pages",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q075-explanation-1.png\" width=\"328\" alt=\"Official explanation for source question 75; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>How many positive odd numbers satisfy the inequality \\(3x+8\\le92\\)?</p>",
+      "choices": [
+        {
+          "text": "13",
+          "math": "13",
+          "id": "A"
+        },
+        {
+          "text": "14",
+          "math": "14",
+          "id": "B"
+        },
+        {
+          "text": "17",
+          "math": "17",
+          "id": "C"
+        },
+        {
+          "text": "28",
+          "math": "28",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q076",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "How many positive odd numbers satisfy the inequality \\(3x+8\\le92\\)?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          45
+        ],
+        "sourceQuestion": "76",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            42
+          ],
+          "regions": [
+            {
+              "page": 42,
+              "box": [
+                662,
+                994,
+                1157,
+                1302
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(F) Solve the inequality for x.\n3x+8<92\n3x < 84\nx < 28\nThe positive odd numbers less than 28\nare 1, 3,5, ..., 25, and 27. There are 14\nof them.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q076-explanation-1.png\" width=\"317\" alt=\"Official explanation for source question 76; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>If \\(\\frac{36}{y}=4x\\), what is the value of \\(x\\) when \\(y=3\\)?</p>",
+      "choices": [
+        {
+          "text": "3",
+          "math": "3",
+          "id": "A"
+        },
+        {
+          "text": "4",
+          "math": "4",
+          "id": "B"
+        },
+        {
+          "text": "9",
+          "math": "9",
+          "id": "C"
+        },
+        {
+          "text": "12",
+          "math": "12",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q077",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "If \\(\\frac{36}{y}=4x\\), what is the value of \\(x\\) when \\(y=3\\)?",
+      "correctChoiceId": "A",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          45
+        ],
+        "sourceQuestion": "77",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            43
+          ],
+          "regions": [
+            {
+              "page": 43,
+              "box": [
+                75,
+                156,
+                563,
+                417
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(A) Substitute 3 for y and solve for x:\n36 _ 4x\nY\n36 _4y\n3\n12 = 4x\n=\n3=x",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q077-explanation-1.png\" width=\"312\" alt=\"Official explanation for source question 77; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Points \\(\\mathrm{X},\\mathrm{Y},\\) and \\(\\mathrm{Z}\\) are on a straight line, and \\(\\mathrm{Y}\\) is between \\(\\mathrm{X}\\) and \\(\\mathrm{Z}\\). Length \\(\\overline{\\mathrm{YZ}}=\\frac35\\overline{\\mathrm{XY}}\\), and length \\(\\overline{\\mathrm{XY}}=20\\) centimeters. What is the length of \\(\\overline{\\mathrm{XZ}}\\)?</p>",
+      "choices": [
+        {
+          "text": "12\\text{ cm}",
+          "math": "12\\text{ cm}",
+          "id": "A"
+        },
+        {
+          "text": "24\\text{ cm}",
+          "math": "24\\text{ cm}",
+          "id": "B"
+        },
+        {
+          "text": "30\\text{ cm}",
+          "math": "30\\text{ cm}",
+          "id": "C"
+        },
+        {
+          "text": "32\\text{ cm}",
+          "math": "32\\text{ cm}",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q078",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Points \\(\\mathrm{X},\\mathrm{Y},\\) and \\(\\mathrm{Z}\\) are on a straight line, and \\(\\mathrm{Y}\\) is between \\(\\mathrm{X}\\) and \\(\\mathrm{Z}\\). Length \\(\\overline{\\mathrm{YZ}}=\\frac35\\overline{\\mathrm{XY}}\\), and length \\(\\overline{\\mathrm{XY}}=20\\) centimeters. What is the length of \\(\\overline{\\mathrm{XZ}}\\)?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          45
+        ],
+        "sourceQuestion": "78",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            43
+          ],
+          "regions": [
+            {
+              "page": 43,
+              "box": [
+                75,
+                518,
+                507,
+                729
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(H) Since XY = 20 cm, use that to\nfind YZ :\nYZ = 2x = 3(20) = 12 em\n5 5\nXZ = XY + YZ = 20 +12 = 32 cm",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q078-explanation-1.png\" width=\"276\" alt=\"Official explanation for source question 78; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Bryana bought \\(1\\frac34\\) yards of cloth at \\(\\$8.00\\) per yard. If there was an \\(8\\%\\) sales tax, what was the total cost of the cloth?</p>",
+      "choices": [
+        {
+          "text": "\\$12.96",
+          "math": "\\$12.96",
+          "id": "A"
+        },
+        {
+          "text": "\\$14.08",
+          "math": "\\$14.08",
+          "id": "B"
+        },
+        {
+          "text": "\\$15.12",
+          "math": "\\$15.12",
+          "id": "C"
+        },
+        {
+          "text": "\\$16.08",
+          "math": "\\$16.08",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q079",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Bryana bought \\(1\\frac34\\) yards of cloth at \\(\\$8.00\\) per yard. If there was an \\(8\\%\\) sales tax, what was the total cost of the cloth?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          46
+        ],
+        "sourceQuestion": "79",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            43
+          ],
+          "regions": [
+            {
+              "page": 43,
+              "box": [
+                75,
+                850,
+                577,
+                1278
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(C) Calculate the cost of the cloth before\ntax:\n13x8=2x8=$14\n4 4\nFind the tax for $14 worth of cloth:\n8\n14 x 8% = 14 x —— = $1.12\n1\n90\nAdd the cost of the fabric and the tax:\n$14 + $1.12 = $15.12",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q079-explanation-1.png\" width=\"321\" alt=\"Official explanation for source question 79; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q080-figure.png\" width=\"266\" alt=\"Source diagram for question 80\"></p><p>On the number line above, \\(\\mathrm{MN}=5\\frac56\\). What is the position of point \\(\\mathrm{M}\\)?</p>",
+      "choices": [
+        {
+          "text": "-7\\frac16",
+          "math": "-7\\frac16",
+          "id": "A"
+        },
+        {
+          "text": "-4\\frac12",
+          "math": "-4\\frac12",
+          "id": "B"
+        },
+        {
+          "text": "4\\frac12",
+          "math": "4\\frac12",
+          "id": "C"
+        },
+        {
+          "text": "7\\frac16",
+          "math": "7\\frac16",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q080",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "On the number line above, \\(\\mathrm{MN}=5\\frac56\\). What is the position of point \\(\\mathrm{M}\\)?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          46
+        ],
+        "sourceQuestion": "80",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            43
+          ],
+          "regions": [
+            {
+              "page": 43,
+              "box": [
+                662,
+                156,
+                1154,
+                595
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(F) To find M, subtract N—M and set it\nequal to the length:\n1 5\n12-M=52\n3 6\n5 1\n—M=52-1=\n6 3\nM=52-12\n6 6\n-M = 43\nM= 4\n2",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q080-explanation-1.png\" width=\"315\" alt=\"Official explanation for source question 80; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>A United States presidential coin is made from an alloy of four metals—copper, zinc, manganese, and nickel—with weights in the ratio of \\(177{:}12{:}7{:}4\\), respectively. The coin weighs a total of \\(8\\) grams. What is the weight of the zinc in this coin?</p>",
+      "choices": [
+        {
+          "text": "0.28\\text{ g}",
+          "math": "0.28\\text{ g}",
+          "id": "A"
+        },
+        {
+          "text": "0.48\\text{ g}",
+          "math": "0.48\\text{ g}",
+          "id": "B"
+        },
+        {
+          "text": "0.96\\text{ g}",
+          "math": "0.96\\text{ g}",
+          "id": "C"
+        },
+        {
+          "text": "48\\text{ g}",
+          "math": "48\\text{ g}",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q081",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "A United States presidential coin is made from an alloy of four metals—copper, zinc, manganese, and nickel—with weights in the ratio of \\(177{:}12{:}7{:}4\\), respectively. The coin weighs a total of \\(8\\) grams. What is the weight of the zinc in this coin?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          46
+        ],
+        "sourceQuestion": "81",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            43
+          ],
+          "regions": [
+            {
+              "page": 43,
+              "box": [
+                662,
+                716,
+                1178,
+                1166
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(B) Add the four values in the ratio\n(177+12+7+4= 200) and use the sum\nas the denominator. Use that to find the\nfraction of zinc in one of the coins. Then\n;\nreduce the fraction:\n12 _ 3\n200 50\nMultiply this fraction by 8 to find the\nnumber of grams of zinc in decimal form:\noe .\n3 24\nx8 = =0.48\n50 50 g",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q081-explanation-1.png\" width=\"330\" alt=\"Official explanation for source question 81; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Jack scored a mean of \\(15\\) points per game in his first \\(3\\) basketball games. In his \\(4\\)th game, he scored \\(27\\) points. What is his mean score for the first \\(4\\) games?</p>",
+      "choices": [
+        {
+          "text": "15",
+          "math": "15",
+          "id": "A"
+        },
+        {
+          "text": "17",
+          "math": "17",
+          "id": "B"
+        },
+        {
+          "text": "18",
+          "math": "18",
+          "id": "C"
+        },
+        {
+          "text": "21",
+          "math": "21",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q082",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Jack scored a mean of \\(15\\) points per game in his first \\(3\\) basketball games. In his \\(4\\)th game, he scored \\(27\\) points. What is his mean score for the first \\(4\\) games?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          46
+        ],
+        "sourceQuestion": "82",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            44
+          ],
+          "regions": [
+            {
+              "page": 44,
+              "box": [
+                74,
+                156,
+                573,
+                413
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(G) Jack scored a mean of 15 points per\ngame in each of the first 3 games, so he\nearned a total of 45 points for the first 3\ngames. Use that information to calculate\nthe mean over the four games:\n48-27 = 18\n27 72",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q082-explanation-1.png\" width=\"319\" alt=\"Official explanation for source question 82; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>A cylindrical oil drum can hold \\(4{,}320\\) liters when it is completely full. Currently, the drum is \\(\\frac13\\) full of oil. How many <strong>kiloliters</strong> of oil need to be added in order to fill the drum completely?</p>",
+      "choices": [
+        {
+          "text": "1.44",
+          "math": "1.44",
+          "id": "A"
+        },
+        {
+          "text": "2.88",
+          "math": "2.88",
+          "id": "B"
+        },
+        {
+          "text": "4.32",
+          "math": "4.32",
+          "id": "C"
+        },
+        {
+          "text": "14.10",
+          "math": "14.10",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q083",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "A cylindrical oil drum can hold \\(4{,}320\\) liters when it is completely full. Currently, the drum is \\(\\frac13\\) full of oil. How many kiloliters of oil need to be added in order to fill the drum completely?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          47
+        ],
+        "sourceQuestion": "83",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            44
+          ],
+          "regions": [
+            {
+              "page": 44,
+              "box": [
+                74,
+                513,
+                586,
+                803
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(B) Find the number of liters that need to\nbe added, Since 4 of the oil drum is full,\n2 of the drum remains empty:\n3\n$ x 4,320 = 2,880 liters.\nUse the conversion 1 kL = 1,000 L to find\n2,880\nthe number of kL: i000. = 2.88 kL\n‘",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q083-explanation-1.png\" width=\"328\" alt=\"Official explanation for source question 83; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Nicole’s age now is three times Carmen’s age. If Carmen will be \\(17\\) in two years, how old was Nicole \\(5\\) years ago?</p>",
+      "choices": [
+        {
+          "text": "38\\text{ years old}",
+          "math": "38\\text{ years old}",
+          "id": "A"
+        },
+        {
+          "text": "40\\text{ years old}",
+          "math": "40\\text{ years old}",
+          "id": "B"
+        },
+        {
+          "text": "45\\text{ years old}",
+          "math": "45\\text{ years old}",
+          "id": "C"
+        },
+        {
+          "text": "50\\text{ years old}",
+          "math": "50\\text{ years old}",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q084",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Nicole’s age now is three times Carmen’s age. If Carmen will be \\(17\\) in two years, how old was Nicole \\(5\\) years ago?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          47
+        ],
+        "sourceQuestion": "84",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            44
+          ],
+          "regions": [
+            {
+              "page": 44,
+              "box": [
+                74,
+                934,
+                591,
+                1452
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(F) To find out how old Nicole was 5 years\nago, find out how old Nicole and Carmen\nare now.\nLet N = Nicole’: .\n© ‘cole’s age now\nLet C = Carmen’s age now.\nC+2=17\nN= 3C\nN = 3(15) = 45 (Nicole’s age now)\nN-5 = 45-5 = 40 (Nicole's age 5\nyears ago)",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q084-explanation-1.png\" width=\"331\" alt=\"Official explanation for source question 84; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>A chemical decays in such a way that the amount left at the end of each week is \\(20\\%\\) less than the amount at the beginning of that same week. What <strong>percent</strong> of the original amount is left after two weeks?</p>",
+      "choices": [
+        {
+          "text": "40\\%",
+          "math": "40\\%",
+          "id": "A"
+        },
+        {
+          "text": "60\\%",
+          "math": "60\\%",
+          "id": "B"
+        },
+        {
+          "text": "64\\%",
+          "math": "64\\%",
+          "id": "C"
+        },
+        {
+          "text": "80\\%",
+          "math": "80\\%",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q085",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "A chemical decays in such a way that the amount left at the end of each week is \\(20\\%\\) less than the amount at the beginning of that same week. What percent of the original amount is left after two weeks?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          47
+        ],
+        "sourceQuestion": "85",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            44
+          ],
+          "regions": [
+            {
+              "page": 44,
+              "box": [
+                662,
+                156,
+                1159,
+                577
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(C) Let * be the original amount of the\nchemical. It loses 20% after each week,\nwhich means 80% of the chemical\nremains at the end of each week. End of\nfirst week: 0.80x\nAt the end of the second week, 80% of\nthe amount left at the end of the first\nweek remains.\nEnd of second week:\n0.80(0.80x) = 0.64x or 64%",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q085-explanation-1.png\" width=\"318\" alt=\"Official explanation for source question 85; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>If \\(w-1\\) is an odd integer, which one of the following <strong>must</strong> be an even integer?</p>",
+      "choices": [
+        {
+          "text": "w+1",
+          "math": "w+1",
+          "id": "A"
+        },
+        {
+          "text": "2w-1",
+          "math": "2w-1",
+          "id": "B"
+        },
+        {
+          "text": "2w-2",
+          "math": "2w-2",
+          "id": "C"
+        },
+        {
+          "text": "2w+1",
+          "math": "2w+1",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q086",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "If \\(w-1\\) is an odd integer, which one of the following must be an even integer?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          47
+        ],
+        "sourceQuestion": "86",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            44
+          ],
+          "regions": [
+            {
+              "page": 44,
+              "box": [
+                662,
+                621,
+                1168,
+                964
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(G) One more than an odd integer must\nbe even.\nOne more than w -1 is w, therefore W\nmust be even. Two times an even integer\nmust be even, therefore 2w is even. An\neven integer decreased by 2 must be\neven.\nTherefore, 2w —- 2 must be even.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q086-explanation-1.png\" width=\"324\" alt=\"Official explanation for source question 86; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Three students stand at the starting line of a running track and begin running laps at the same time. Ann completes \\(1\\) lap every \\(2\\) minutes, Jack completes \\(1\\) lap every \\(3\\) minutes, and Lee completes \\(1\\) lap every \\(4\\) minutes. How many laps does Ann complete before all three runners are once again at the starting line at the same time?</p>",
+      "choices": [
+        {
+          "text": "4",
+          "math": "4",
+          "id": "A"
+        },
+        {
+          "text": "6",
+          "math": "6",
+          "id": "B"
+        },
+        {
+          "text": "12",
+          "math": "12",
+          "id": "C"
+        },
+        {
+          "text": "20",
+          "math": "20",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q087",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Three students stand at the starting line of a running track and begin running laps at the same time. Ann completes \\(1\\) lap every \\(2\\) minutes, Jack completes \\(1\\) lap every \\(3\\) minutes, and Lee completes \\(1\\) lap every \\(4\\) minutes. How many laps does Ann complete before all three runners are once again at the starting line at the same time?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          47
+        ],
+        "sourceQuestion": "87",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            44
+          ],
+          "regions": [
+            {
+              "page": 44,
+              "box": [
+                662,
+                1012,
+                1171,
+                1230
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(B) Find the least common multiple of 2,\n3, and 4 — which is 12. So, it takes 12\nminutes before all three are back at the\nstarting line. Ann completes 1 lap every 2\nminutes, so in 12 minutes she has\ncompleted 6 laps.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q087-explanation-1.png\" width=\"326\" alt=\"Official explanation for source question 87; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Simplify this expression:</p><p>\\(4(7-3x)-(5-x)\\)</p>",
+      "choices": [
+        {
+          "text": "23-4x",
+          "math": "23-4x",
+          "id": "A"
+        },
+        {
+          "text": "23-11x",
+          "math": "23-11x",
+          "id": "B"
+        },
+        {
+          "text": "28-4x",
+          "math": "28-4x",
+          "id": "C"
+        },
+        {
+          "text": "28-12x",
+          "math": "28-12x",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q088",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Simplify this expression:\n\n\\(4(7-3x)-(5-x)\\)",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          48
+        ],
+        "sourceQuestion": "88",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            44
+          ],
+          "regions": [
+            {
+              "page": 44,
+              "box": [
+                662,
+                1316,
+                994,
+                1421
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(F) 4(7 -3x)-(S- x)=\n28-12x -5+x=\n23 - 11x",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q088-explanation-1.png\" width=\"212\" alt=\"Official explanation for source question 88; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>PET SURVEY</p><table><thead><tr><th>Number of Pets</th><th>Number of Students</th></tr></thead><tbody><tr><td>\\(0\\)</td><td>\\(12\\)</td></tr><tr><td>\\(1\\)</td><td>\\(16\\)</td></tr><tr><td>\\(2\\)</td><td>\\(7\\)</td></tr><tr><td>\\(3\\) or more</td><td>\\(5\\)</td></tr></tbody></table><p>Amy surveyed students at her school about the number of pets they have. What is the probability that a student who participated in the survey has at least \\(2\\) pets?</p>",
+      "choices": [
+        {
+          "text": "\\frac7{40}",
+          "math": "\\frac7{40}",
+          "id": "A"
+        },
+        {
+          "text": "\\frac1{12}",
+          "math": "\\frac1{12}",
+          "id": "B"
+        },
+        {
+          "text": "\\frac18",
+          "math": "\\frac18",
+          "id": "C"
+        },
+        {
+          "text": "\\frac3{10}",
+          "math": "\\frac3{10}",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q089",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "PET SURVEY\n\nNumber of PetsNumber of Students\\(0\\)\\(12\\)\\(1\\)\\(16\\)\\(2\\)\\(7\\)\\(3\\) or more\\(5\\)Amy surveyed students at her school about the number of pets they have. What is the probability that a student who participated in the survey has at least \\(2\\) pets?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          48
+        ],
+        "sourceQuestion": "89",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            45
+          ],
+          "regions": [
+            {
+              "page": 45,
+              "box": [
+                74,
+                156,
+                587,
+                634
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(D) Add the number of students for each\ncategory to find out how many total\nstudents were in the survey:\n12+16+7+5-=40\nThe number of students who had at least\npets are the ones who have 2 pets (7)\n2 pet: the on ho h 2 pets (7\nplus the ones who have 3 or more (5).\nThe total number of students with at least\n2 pets is: 7+5=12\nThe probability of a student in the survey\nhaving at least two pets is: BRl3\n40 10",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q089-explanation-1.png\" width=\"328\" alt=\"Official explanation for source question 89; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>A large container is partially filled with \\(n\\) liters of water. Ivo adds \\(10\\) liters of water to the container, making it \\(60\\%\\) full. If Ignacio adds \\(6\\) more liters of water, the container will be \\(75\\%\\) full. What is the value of \\(n\\)?</p>",
+      "choices": [
+        {
+          "text": "14",
+          "math": "14",
+          "id": "A"
+        },
+        {
+          "text": "15",
+          "math": "15",
+          "id": "B"
+        },
+        {
+          "text": "26",
+          "math": "26",
+          "id": "C"
+        },
+        {
+          "text": "30",
+          "math": "30",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q090",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "A large container is partially filled with \\(n\\) liters of water. Ivo adds \\(10\\) liters of water to the container, making it \\(60\\%\\) full. If Ignacio adds \\(6\\) more liters of water, the container will be \\(75\\%\\) full. What is the value of \\(n\\)?",
+      "correctChoiceId": "A",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          48
+        ],
+        "sourceQuestion": "90",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            45
+          ],
+          "regions": [
+            {
+              "page": 45,
+              "box": [
+                661,
+                156,
+                1166,
+                1367
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(E) Let x be the total number of liters\nthe container can hold.\n10 16\nn+ n+\nTy = 80% and ST = 75%\nSolve each equation for x :\n.\nEquation 1:\nn+10 60\nx 100\nn+10_3\nx 5\n3x = 5(n + 10)\nx - 5+ 50\n3\nEquation 2:\nn+16_ 75\nx 100\nn+16_3\nx 4\n3x = 4(n + 16)\nx= 4n +64\n3\nNow, set the two equations equal to each\nother and solve for n.\n5n+50 _ 4n+64\n3 3\n5n +50 = 4n+ 64\nn+50 = 64\nn= 14 liters",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q090-explanation-1.png\" width=\"323\" alt=\"Official explanation for source question 90; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>\\(5x^3+3x+9+\\frac1{x^2}\\)</p><p>If \\(x=10\\), what is the value of the expression above?</p>",
+      "choices": [
+        {
+          "text": "2{,}539.01",
+          "math": "2{,}539.01",
+          "id": "A"
+        },
+        {
+          "text": "5{,}039.01",
+          "math": "5{,}039.01",
+          "id": "B"
+        },
+        {
+          "text": "5{,}039.1",
+          "math": "5{,}039.1",
+          "id": "C"
+        },
+        {
+          "text": "5{,}139",
+          "math": "5{,}139",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q091",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "\\(5x^3+3x+9+\\frac1{x^2}\\)\n\nIf \\(x=10\\), what is the value of the expression above?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          48
+        ],
+        "sourceQuestion": "91",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            46
+          ],
+          "regions": [
+            {
+              "page": 46,
+              "box": [
+                74,
+                144,
+                571,
+                333
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(B) 5x?4+3x+9+4 ne\n= 5 (107) +3(10)+9+ xo?\n1\n= 5,000 +30 +9 + —— = 5,039.01\n100",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q091-explanation-1.png\" width=\"318\" alt=\"Official explanation for source question 91; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q092-figure.png\" width=\"262\" alt=\"Source diagram for question 92\"></p><p>\\(\\mathrm{R},\\mathrm{S},\\) and \\(\\mathrm{T}\\) are midpoints of the sides of square \\(\\mathrm{MNPQ}\\), as shown above. What is the sum of the areas of the shaded triangles?</p>",
+      "choices": [
+        {
+          "text": "9\\text{ sq cm}",
+          "math": "9\\text{ sq cm}",
+          "id": "A"
+        },
+        {
+          "text": "12\\text{ sq cm}",
+          "math": "12\\text{ sq cm}",
+          "id": "B"
+        },
+        {
+          "text": "18\\text{ sq cm}",
+          "math": "18\\text{ sq cm}",
+          "id": "C"
+        },
+        {
+          "text": "36\\text{ sq cm}",
+          "math": "36\\text{ sq cm}",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q092",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "\\(\\mathrm{R},\\mathrm{S},\\) and \\(\\mathrm{T}\\) are midpoints of the sides of square \\(\\mathrm{MNPQ}\\), as shown above. What is the sum of the areas of the shaded triangles?",
+      "correctChoiceId": "A",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          49
+        ],
+        "sourceQuestion": "92",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            46
+          ],
+          "regions": [
+            {
+              "page": 46,
+              "box": [
+                74,
+                470,
+                593,
+                806
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(E) The length of one side of the square is\n6 cm. Since R, S, and T are midpoints,\nthen ™, MR, RN, and NS are all equal to\n3 cm. Triangles TMR and RNS are both\nright triangles, so the area of one of the\ntriangles is > x3x3= 3. The triangles\nare congruent, so the sum of the areas is\n242 -9sqem.\n22",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q092-explanation-1.png\" width=\"332\" alt=\"Official explanation for source question 92; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>The Chens spend \\(\\$5\\) of every \\(\\$8\\) they earn on planned expenses. If the family earns \\(\\$29{,}600\\) in one year, how much will they spend on planned expenses that year?</p>",
+      "choices": [
+        {
+          "text": "\\$1{,}850",
+          "math": "\\$1{,}850",
+          "id": "A"
+        },
+        {
+          "text": "\\$3{,}700",
+          "math": "\\$3{,}700",
+          "id": "B"
+        },
+        {
+          "text": "\\$5{,}920",
+          "math": "\\$5{,}920",
+          "id": "C"
+        },
+        {
+          "text": "\\$18{,}500",
+          "math": "\\$18{,}500",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q093",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "The Chens spend \\(\\$5\\) of every \\(\\$8\\) they earn on planned expenses. If the family earns \\(\\$29{,}600\\) in one year, how much will they spend on planned expenses that year?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          49
+        ],
+        "sourceQuestion": "93",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            46
+          ],
+          "regions": [
+            {
+              "page": 46,
+              "box": [
+                74,
+                886,
+                513,
+                1098
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(D) Let x be the amount spent on\nplanned expense in one year:\n59600 = 2\n5\nx= 8 (29,600) = 18,500",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q093-explanation-1.png\" width=\"281\" alt=\"Official explanation for source question 93; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>A pizza shop offers a choice of \\(3\\) sizes (small, medium, and large) and \\(7\\) different toppings. Different pizzas can be created by changing the size and/or the choice of toppings. If Cody wants to order a pizza with exactly \\(2\\) different toppings, how many different pizzas can he create?</p>",
+      "choices": [
+        {
+          "text": "6",
+          "math": "6",
+          "id": "A"
+        },
+        {
+          "text": "21",
+          "math": "21",
+          "id": "B"
+        },
+        {
+          "text": "63",
+          "math": "63",
+          "id": "C"
+        },
+        {
+          "text": "126",
+          "math": "126",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q094",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "A pizza shop offers a choice of \\(3\\) sizes (small, medium, and large) and \\(7\\) different toppings. Different pizzas can be created by changing the size and/or the choice of toppings. If Cody wants to order a pizza with exactly \\(2\\) different toppings, how many different pizzas can he create?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          49
+        ],
+        "sourceQuestion": "94",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            46
+          ],
+          "regions": [
+            {
+              "page": 46,
+              "box": [
+                661,
+                156,
+                1171,
+                820
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(G) Figure out how many different\ntopping pairs are possible. Use 1, 2, 3, 4,\n5, 6, 7 to represent the toppings and\ncreate a list of possible pairs:\n1,2; 1,3; 1,4; 1,5; 1,6; 1,7\n2,3; 2,4; 2,5; 2,6; 2,7\n3,4; 3,5; 3,6; 3,7\n4,5; 4,6; 4,7\n5,6; 5,7\n6,7\nSo there are 21 different topping\ncombinations for one pizza.\nSince there are 3 pizza sizes, multiply the\ntotal number of combinations by 3 to get\nthe total number of different pizzas Cody\ncan create: 3x 21 = 63.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q094-explanation-1.png\" width=\"326\" alt=\"Official explanation for source question 94; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>SURVEY OF CATS PER FAMILY</p><table><thead><tr><th>Number of Cats</th><th>Number of Families</th></tr></thead><tbody><tr><td>\\(0\\)</td><td>\\(15\\)</td></tr><tr><td>\\(1\\)</td><td>\\(42\\)</td></tr><tr><td>\\(2\\)</td><td>\\(35\\)</td></tr><tr><td>\\(3\\) or more</td><td>\\(8\\)</td></tr></tbody></table><p>The table above shows the number of cats per family in \\(100\\) households in the Blaine neighborhood. By what <strong>percentage</strong> is the number of families with \\(1\\) cat greater than the number of families with \\(2\\) cats?</p>",
+      "choices": [
+        {
+          "text": "7\\%",
+          "math": "7\\%",
+          "id": "A"
+        },
+        {
+          "text": "10\\%",
+          "math": "10\\%",
+          "id": "B"
+        },
+        {
+          "text": "17\\%",
+          "math": "17\\%",
+          "id": "C"
+        },
+        {
+          "text": "20\\%",
+          "math": "20\\%",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q095",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "SURVEY OF CATS PER FAMILY\n\nNumber of CatsNumber of Families\\(0\\)\\(15\\)\\(1\\)\\(42\\)\\(2\\)\\(35\\)\\(3\\) or more\\(8\\)The table above shows the number of cats per family in \\(100\\) households in the Blaine neighborhood. By what percentage is the number of families with \\(1\\) cat greater than the number of families with \\(2\\) cats?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          49
+        ],
+        "sourceQuestion": "95",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            46
+          ],
+          "regions": [
+            {
+              "page": 46,
+              "box": [
+                662,
+                917,
+                1168,
+                1216
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(D) To find by what percent the number\nof families with 1 cat is greater than the\nnumber of families with 2 cats, calculate\nthe difference between the two numbers\nand divide by the number of families with\n2 cats:\n42=35 7 _1_ 9.20 or 20%.\n35 355",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q095-explanation-1.png\" width=\"324\" alt=\"Official explanation for source question 95; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>A wooden box has a square base. The height of this box is \\(3\\) times the length of one side of the base. If one side of the base is \\(3\\) feet long, what is the volume of this box?</p>",
+      "choices": [
+        {
+          "text": "9\\text{ cu ft}",
+          "math": "9\\text{ cu ft}",
+          "id": "A"
+        },
+        {
+          "text": "27\\text{ cu ft}",
+          "math": "27\\text{ cu ft}",
+          "id": "B"
+        },
+        {
+          "text": "36\\text{ cu ft}",
+          "math": "36\\text{ cu ft}",
+          "id": "C"
+        },
+        {
+          "text": "81\\text{ cu ft}",
+          "math": "81\\text{ cu ft}",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q096",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "A wooden box has a square base. The height of this box is \\(3\\) times the length of one side of the base. If one side of the base is \\(3\\) feet long, what is the volume of this box?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          50
+        ],
+        "sourceQuestion": "96",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            47
+          ],
+          "regions": [
+            {
+              "page": 47,
+              "box": [
+                74,
+                156,
+                578,
+                407
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(H) One side of the square base is 3 ft\nlong. Since the height of the box is 3\n. . .\ntimes the length, then the height is\n3x3 = 9 ft. The volume of a rectangular\nprism is length x height x width. The\nvolume of the wooden box is:\nV=3x3x9=81cuft.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q096-explanation-1.png\" width=\"323\" alt=\"Official explanation for source question 96; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>On a bike trip, Rajiv traveled \\(65\\) kilometers in \\(5\\) hours, while Shaina traveled \\(72\\) kilometers in \\(4\\) hours. How much <strong>less</strong> was Rajiv’s mean speed, in kilometers per hour (kph), than Shaina’s?</p>",
+      "choices": [
+        {
+          "text": "1",
+          "math": "1",
+          "id": "A"
+        },
+        {
+          "text": "5",
+          "math": "5",
+          "id": "B"
+        },
+        {
+          "text": "7",
+          "math": "7",
+          "id": "C"
+        },
+        {
+          "text": "9",
+          "math": "9",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q097",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "On a bike trip, Rajiv traveled \\(65\\) kilometers in \\(5\\) hours, while Shaina traveled \\(72\\) kilometers in \\(4\\) hours. How much less was Rajiv’s mean speed, in kilometers per hour (kph), than Shaina’s?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          50
+        ],
+        "sourceQuestion": "97",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            47
+          ],
+          "regions": [
+            {
+              "page": 47,
+              "box": [
+                74,
+                493,
+                528,
+                831
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(B) Calculate each mean speed:\nR= 5 13 kph\n5\n72\nS = =18kph\n4\nThen calculate the difference of both\nmean speeds:\nS-R=18-3=5kph",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q097-explanation-1.png\" width=\"291\" alt=\"Official explanation for source question 97; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Points \\(\\mathrm{P},\\mathrm{Q},\\mathrm{R},\\) and \\(\\mathrm{S}\\) represent \\(-3,-1,0,\\) and \\(2\\), respectively, on a number line. How many units is the midpoint of \\(\\overline{\\mathrm{PQ}}\\) from the midpoint of \\(\\overline{\\mathrm{RS}}\\)?</p>",
+      "choices": [
+        {
+          "text": "1",
+          "math": "1",
+          "id": "A"
+        },
+        {
+          "text": "2",
+          "math": "2",
+          "id": "B"
+        },
+        {
+          "text": "3",
+          "math": "3",
+          "id": "C"
+        },
+        {
+          "text": "4",
+          "math": "4",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q098",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Points \\(\\mathrm{P},\\mathrm{Q},\\mathrm{R},\\) and \\(\\mathrm{S}\\) represent \\(-3,-1,0,\\) and \\(2\\), respectively, on a number line. How many units is the midpoint of \\(\\overline{\\mathrm{PQ}}\\) from the midpoint of \\(\\overline{\\mathrm{RS}}\\)?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          50
+        ],
+        "sourceQuestion": "98",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            47
+          ],
+          "regions": [
+            {
+              "page": 47,
+              "box": [
+                661,
+                156,
+                1181,
+                798
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(G)\nP Q _ R Ss\n3-2 4 0 141 2 3\nFind the midpoint of PQ and RS:\nMidpoint of PQ = a6) = = Lunit.\n-1-(-\nThe midpoint of PQ is located 1 unit from\neach endpoint, so the midpoint is at —2.\nMidpoint of RS = 2=9 = 2 ~ 1 unit.\n2 2\nThe midpoint of RS is located 1 unit from\neach endpoint, so the midpoint is at 1.\nThe distance between the two midpoints is\n. . . .\n1- (-2) = 3 units.\n.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q098-explanation-1.png\" width=\"333\" alt=\"Official explanation for source question 98; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>There are \\(1{,}000\\) cubic centimeters in \\(1\\) liter, and \\(1{,}000\\) cubic millimeters in \\(1\\) milliliter. How many cubic millimeters are there in \\(1{,}000\\) cubic centimeters?</p>",
+      "choices": [
+        {
+          "text": "1{,}000",
+          "math": "1{,}000",
+          "id": "A"
+        },
+        {
+          "text": "10{,}000",
+          "math": "10{,}000",
+          "id": "B"
+        },
+        {
+          "text": "100{,}000",
+          "math": "100{,}000",
+          "id": "C"
+        },
+        {
+          "text": "1{,}000{,}000",
+          "math": "1{,}000{,}000",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q099",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "There are \\(1{,}000\\) cubic centimeters in \\(1\\) liter, and \\(1{,}000\\) cubic millimeters in \\(1\\) milliliter. How many cubic millimeters are there in \\(1{,}000\\) cubic centimeters?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          50
+        ],
+        "sourceQuestion": "99",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            47
+          ],
+          "regions": [
+            {
+              "page": 47,
+              "box": [
+                661,
+                906,
+                1165,
+                1245
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(D) If i1L= 1,000 cucm, theniL=\n1,000 mL. Set up a proportion, letting\nxX = the amount of cubic millimeters in\n1,000 cubic centimeters.\n1,000 cumm ___x cumm\n1L 1,000 cumm\nSolve for x : 1,000,000 cubic millimeters\nare in 1,000 cubic centimeters.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q099-explanation-1.png\" width=\"323\" alt=\"Official explanation for source question 99; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q100-figure.png\" width=\"259\" alt=\"Source diagram for question 100\"></p><p>In the quarter circle above, what is \\(y\\) in terms of \\(x\\)?</p>",
+      "choices": [
+        {
+          "text": "x-1",
+          "math": "x-1",
+          "id": "A"
+        },
+        {
+          "text": "x+1",
+          "math": "x+1",
+          "id": "B"
+        },
+        {
+          "text": "\\frac{x+1}{2}",
+          "math": "\\frac{x+1}{2}",
+          "id": "C"
+        },
+        {
+          "text": "\\sqrt{\\frac{(x+1)^2}{2}}",
+          "math": "\\sqrt{\\frac{(x+1)^2}{2}}",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q100",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "In the quarter circle above, what is \\(y\\) in terms of \\(x\\)?",
+      "correctChoiceId": "A",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          50
+        ],
+        "sourceQuestion": "100",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            47
+          ],
+          "regions": [
+            {
+              "page": 47,
+              "box": [
+                663,
+                1324,
+                1167,
+                1525
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(E) Both x +1 and y+2 are radii (each\nis a radius). So, set them equal to each\nother and solve for y.\ny+2=x41\ny=x-1",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q100-explanation-1.png\" width=\"323\" alt=\"Official explanation for source question 100; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q101-figure.png\" width=\"310\" alt=\"Source diagram for question 101\"></p><p>The hash marks on the number line above are evenly spaced. What is the coordinate of point \\(\\mathrm{R}\\)?</p>",
+      "choices": [
+        {
+          "text": "\\frac7{40}",
+          "math": "\\frac7{40}",
+          "id": "A"
+        },
+        {
+          "text": "\\frac9{40}",
+          "math": "\\frac9{40}",
+          "id": "B"
+        },
+        {
+          "text": "\\frac{11}{40}",
+          "math": "\\frac{11}{40}",
+          "id": "C"
+        },
+        {
+          "text": "\\frac{21}{40}",
+          "math": "\\frac{21}{40}",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q101",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "The hash marks on the number line above are evenly spaced. What is the coordinate of point \\(\\mathrm{R}\\)?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          51
+        ],
+        "sourceQuestion": "101",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            48
+          ],
+          "regions": [
+            {
+              "page": 48,
+              "box": [
+                76,
+                156,
+                585,
+                804
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(C) There are 5 sections between M and\nT. To find the length of one of these\nsections, find the distance between M and\nT and divide by 5:\n5 (-1) a\n8 4 1\n5 2 5\n8 + sg) 1.\n7.5 7 1 7\neS s4xte=\n8 1 8 5 40\nR is 3 sections away from M, so add:\n-1,3(7)_-10,21_ 11\n4 40 40. 40. 40\nA 11\nRis located at",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q101-explanation-1.png\" width=\"326\" alt=\"Official explanation for source question 101; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Phan chose an Internet service that charges \\(\\$18.00\\) per month plus \\(\\$0.024\\) per minute. Deion chose an Internet service that charges \\(\\$30.00\\) per month for unlimited usage. At the end of the month, Phan’s and Deion’s charges were identical. For how many minutes did Phan use the Internet service that month?</p>",
+      "choices": [
+        {
+          "text": "50",
+          "math": "50",
+          "id": "A"
+        },
+        {
+          "text": "60",
+          "math": "60",
+          "id": "B"
+        },
+        {
+          "text": "100",
+          "math": "100",
+          "id": "C"
+        },
+        {
+          "text": "500",
+          "math": "500",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q102",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Phan chose an Internet service that charges \\(\\$18.00\\) per month plus \\(\\$0.024\\) per minute. Deion chose an Internet service that charges \\(\\$30.00\\) per month for unlimited usage. At the end of the month, Phan’s and Deion’s charges were identical. For how many minutes did Phan use the Internet service that month?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          51
+        ],
+        "sourceQuestion": "102",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            48
+          ],
+          "regions": [
+            {
+              "page": 48,
+              "box": [
+                76,
+                954,
+                593,
+                1375
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(H) Let x be the number of minutes Phan\nused his internet service in the month.\nPhan’s monthly charges were 18 + 0.024x.\nSince Deion’s charges were the same as\nPhan’s, set the expression equal to 30 and\nsolve for x:\n18 + 0.024x = 30\n0.024x =12\nx = 500\nPhan used his service for 500 minutes.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q102-explanation-1.png\" width=\"331\" alt=\"Official explanation for source question 102; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q103-figure.png\" width=\"272\" alt=\"Source diagram for question 103\"></p><p>What is the area of the shaded triangle shown above?</p>",
+      "choices": [
+        {
+          "text": "m+n",
+          "math": "m+n",
+          "id": "A"
+        },
+        {
+          "text": "n-m",
+          "math": "n-m",
+          "id": "B"
+        },
+        {
+          "text": "2(n-m)",
+          "math": "2(n-m)",
+          "id": "C"
+        },
+        {
+          "text": "4(n-m)",
+          "math": "4(n-m)",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q103",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "What is the area of the shaded triangle shown above?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          51
+        ],
+        "sourceQuestion": "103",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            48
+          ],
+          "regions": [
+            {
+              "page": 48,
+              "box": [
+                663,
+                156,
+                1153,
+                341
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(C) The height of the triangle is 4 units.\nThe length of the base is n- m. So the\narea is\nA= 50 - m)(4) = 2(n- m).",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q103-explanation-1.png\" width=\"314\" alt=\"Official explanation for source question 103; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>The decimal \\(0.06\\) can be written as the fraction \\(\\frac{x}{50}\\). What is the value of \\(x\\)?</p>",
+      "choices": [
+        {
+          "text": "3",
+          "math": "3",
+          "id": "A"
+        },
+        {
+          "text": "6",
+          "math": "6",
+          "id": "B"
+        },
+        {
+          "text": "12",
+          "math": "12",
+          "id": "C"
+        },
+        {
+          "text": "30",
+          "math": "30",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q104",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "The decimal \\(0.06\\) can be written as the fraction \\(\\frac{x}{50}\\). What is the value of \\(x\\)?",
+      "correctChoiceId": "A",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          51
+        ],
+        "sourceQuestion": "104",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            48
+          ],
+          "regions": [
+            {
+              "page": 48,
+              "box": [
+                663,
+                396,
+                1162,
+                562
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(E) 0.06 = —& . simplify the fraction to\n100\nfind the answer\n6 3\n100 50 ~*~ 3.\n2-2 =",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q104-explanation-1.png\" width=\"319\" alt=\"Official explanation for source question 104; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>In a sample of \\(50\\) cars at a local dealership, there are \\(12\\) red cars and \\(10\\) cars with backup cameras. Of the \\(12\\) red cars, \\(4\\) have backup cameras. If a car is selected at random from the given sample, what is the probability that <strong>both</strong> of the following are true: the car is <strong>not</strong> red and does <strong>not</strong> have a backup camera?</p>",
+      "choices": [
+        {
+          "text": "\\frac35",
+          "math": "\\frac35",
+          "id": "A"
+        },
+        {
+          "text": "\\frac{16}{25}",
+          "math": "\\frac{16}{25}",
+          "id": "B"
+        },
+        {
+          "text": "\\frac{19}{25}",
+          "math": "\\frac{19}{25}",
+          "id": "C"
+        },
+        {
+          "text": "\\frac45",
+          "math": "\\frac45",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q105",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "In a sample of \\(50\\) cars at a local dealership, there are \\(12\\) red cars and \\(10\\) cars with backup cameras. Of the \\(12\\) red cars, \\(4\\) have backup cameras. If a car is selected at random from the given sample, what is the probability that both of the following are true: the car is not red and does not have a backup camera?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          52
+        ],
+        "sourceQuestion": "105",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            48
+          ],
+          "regions": [
+            {
+              "page": 48,
+              "box": [
+                663,
+                620,
+                1182,
+                1223
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(B) Create a chart using the given\ninformation and use subtraction to figure\nout how many cars are not red and do not\nhave a back-up camera:\n(Red [ Not Red | TOTAL\nBack-up 6\na\nNo back-up 32\nCamera (38-6)\nTOTAL 12 (50.12) 50\nThe probability of selecting a car that\nmeet both conditions from the total of 50\ncars at the dealership is:\n32 _ 16\n50 25",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q105-explanation-1.png\" width=\"332\" alt=\"Official explanation for source question 105; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>ANIMAL CARDS</p><table><thead><tr><th>Number of Cards</th><th>Picture on Card</th></tr></thead><tbody><tr><td>\\(8\\)</td><td>cat</td></tr><tr><td>\\(6\\)</td><td>dog</td></tr><tr><td>\\(5\\)</td><td>bird</td></tr><tr><td>\\(4\\)</td><td>fish</td></tr><tr><td>\\(1\\)</td><td>horse</td></tr></tbody></table><p>The cards in the table above are mixed in a box. Which animal pictured on a card has exactly a \\(1\\) in \\(4\\) chance of being picked at random from the box?</p>",
+      "choices": [
+        {
+          "text": "cat",
+          "html": "cat",
+          "id": "A"
+        },
+        {
+          "text": "dog",
+          "html": "dog",
+          "id": "B"
+        },
+        {
+          "text": "fish",
+          "html": "fish",
+          "id": "C"
+        },
+        {
+          "text": "horse",
+          "html": "horse",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q106",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "ANIMAL CARDS\n\nNumber of CardsPicture on Card\\(8\\)cat\\(6\\)dog\\(5\\)bird\\(4\\)fish\\(1\\)horseThe cards in the table above are mixed in a box. Which animal pictured on a card has exactly a \\(1\\) in \\(4\\) chance of being picked at random from the box?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          52
+        ],
+        "sourceQuestion": "106",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            49
+          ],
+          "regions": [
+            {
+              "page": 49,
+              "box": [
+                76,
+                156,
+                581,
+                432
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(F) The total number of cards in the box\nis 8+6+5+4+1=24. Setupa\nproportion to figure out which card has\n. 7 .\nexactly a 1 in 4 chance of being picked at\nx 1\nrandom. ~ = = or x = 6. The dog card\n24 «4\nhas a 1 in 4 chance of being randomly\nselected.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q106-explanation-1.png\" width=\"323\" alt=\"Official explanation for source question 106; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Which number line below shows the solution set for \\(2x-2\\le y\\le4x+10\\) when \\(y=1\\)?</p>",
+      "choices": [
+        {
+          "text": "",
+          "html": "<p><img src=\"/exam-images/pdf-2021-2022-b-q107-choice-A.png\" width=\"250\" alt=\"Source diagram for question 107\"></p>",
+          "id": "A"
+        },
+        {
+          "text": "",
+          "html": "<p><img src=\"/exam-images/pdf-2021-2022-b-q107-choice-B.png\" width=\"250\" alt=\"Source diagram for question 107\"></p>",
+          "id": "B"
+        },
+        {
+          "text": "",
+          "html": "<p><img src=\"/exam-images/pdf-2021-2022-b-q107-choice-C.png\" width=\"250\" alt=\"Source diagram for question 107\"></p>",
+          "id": "C"
+        },
+        {
+          "text": "",
+          "html": "<p><img src=\"/exam-images/pdf-2021-2022-b-q107-choice-D.png\" width=\"250\" alt=\"Source diagram for question 107\"></p>",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q107",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Which number line below shows the solution set for \\(2x-2\\le y\\le4x+10\\) when \\(y=1\\)?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          52
+        ],
+        "sourceQuestion": "107",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            49
+          ],
+          "regions": [
+            {
+              "page": 49,
+              "box": [
+                76,
+                497,
+                591,
+                1236
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(C) Separate the compound inequality\ninto two pieces:\n2x -2<yandy < 4x +10\nSubstitute y = 1 into each inequality and\nsolve for x:\nax-2s1\n2x <3\nxs 3\n1s 4x +10\n“9s 4x\n9 x\n4\nThe solution is the number line that shows\ni oi\nthat x is greater than or eave to -2 4\nand less than or equal to a",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q107-explanation-1.png\" width=\"330\" alt=\"Official explanation for source question 107; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>\\(\\frac{14}{21}=\\frac{p}{7}\\)</p><p>In the equation above, what is the value of \\(p\\)?</p>",
+      "choices": [
+        {
+          "text": "\\frac23",
+          "math": "\\frac23",
+          "id": "A"
+        },
+        {
+          "text": "3",
+          "math": "3",
+          "id": "B"
+        },
+        {
+          "text": "\\frac{14}{3}",
+          "math": "\\frac{14}{3}",
+          "id": "C"
+        },
+        {
+          "text": "14",
+          "math": "14",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q108",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "\\(\\frac{14}{21}=\\frac{p}{7}\\)\n\nIn the equation above, what is the value of \\(p\\)?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          53
+        ],
+        "sourceQuestion": "108",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            49
+          ],
+          "regions": [
+            {
+              "page": 49,
+              "box": [
+                663,
+                156,
+                927,
+                345
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(G) 14_p\nal 7\n21p = 7(14)\n21p = 98\n98 (14\nPa 3\n21 3",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q108-explanation-1.png\" width=\"169\" alt=\"Official explanation for source question 108; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>A ball is selected at random from a box that contains \\(7\\) black balls, \\(14\\) green balls, and \\(21\\) red balls. What is the probability that the ball selected is black?</p>",
+      "choices": [
+        {
+          "text": "\\frac16",
+          "math": "\\frac16",
+          "id": "A"
+        },
+        {
+          "text": "\\frac15",
+          "math": "\\frac15",
+          "id": "B"
+        },
+        {
+          "text": "\\frac13",
+          "math": "\\frac13",
+          "id": "C"
+        },
+        {
+          "text": "\\frac56",
+          "math": "\\frac56",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q109",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "A ball is selected at random from a box that contains \\(7\\) black balls, \\(14\\) green balls, and \\(21\\) red balls. What is the probability that the ball selected is black?",
+      "correctChoiceId": "A",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          53
+        ],
+        "sourceQuestion": "109",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            49
+          ],
+          "regions": [
+            {
+              "page": 49,
+              "box": [
+                663,
+                450,
+                1178,
+                641
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(A) The total number of balls in the box is\n7414421 = 42,\nThe probability that the ball is black is\n71\n42 6",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q109-explanation-1.png\" width=\"330\" alt=\"Official explanation for source question 109; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>At North High School, a survey asked two questions, Question A and Question B. For each question, students could answer either “yes” or “no.” Of the \\(800\\) students who responded to the survey, \\(720\\) answered “yes” to Question A, and \\(640\\) answered “yes” to Question B. What is the <strong>least</strong> possible number of these students who could have answered “yes” to <strong>both</strong> questions?</p>",
+      "choices": [
+        {
+          "text": "80",
+          "math": "80",
+          "id": "A"
+        },
+        {
+          "text": "160",
+          "math": "160",
+          "id": "B"
+        },
+        {
+          "text": "560",
+          "math": "560",
+          "id": "C"
+        },
+        {
+          "text": "640",
+          "math": "640",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q110",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "At North High School, a survey asked two questions, Question A and Question B. For each question, students could answer either “yes” or “no.” Of the \\(800\\) students who responded to the survey, \\(720\\) answered “yes” to Question A, and \\(640\\) answered “yes” to Question B. What is the least possible number of these students who could have answered “yes” to both questions?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          53
+        ],
+        "sourceQuestion": "110",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            49
+          ],
+          "regions": [
+            {
+              "page": 49,
+              "box": [
+                663,
+                703,
+                1179,
+                1070
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(G) None of the 80 students (800 - 720)\nwho answered “no” to Question A\n(800 — 720) could have answered “yes” to\nboth questions. Therefore, the least\npossible number of students who could\nhave answered “yes” to both questions,\ncan be found by subtracting the 80 who\nanswered “no” to Question A from the 640\nwho answered “yes” to Question B or\n640 - 80 = 560.",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q110-explanation-1.png\" width=\"330\" alt=\"Official explanation for source question 110; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Raoul is at least \\(3\\) years older than Vahn. Which of the following inequalities gives the relationship between Raoul’s age \\((r)\\) and Vahn’s age \\((v)\\)?</p>",
+      "choices": [
+        {
+          "text": "r-v\\ge3",
+          "math": "r-v\\ge3",
+          "id": "A"
+        },
+        {
+          "text": "r-v\\le3",
+          "math": "r-v\\le3",
+          "id": "B"
+        },
+        {
+          "text": "3-v\\le r",
+          "math": "3-v\\le r",
+          "id": "C"
+        },
+        {
+          "text": "3-r\\le v",
+          "math": "3-r\\le v",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q111",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Raoul is at least \\(3\\) years older than Vahn. Which of the following inequalities gives the relationship between Raoul’s age \\((r)\\) and Vahn’s age \\((v)\\)?",
+      "correctChoiceId": "A",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          54
+        ],
+        "sourceQuestion": "111",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            49
+          ],
+          "regions": [
+            {
+              "page": 49,
+              "box": [
+                663,
+                1164,
+                1144,
+                1442
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(A) Raoul is at least 3 years older than\nVahn, which can be written as:\nr2v+3.\nRewrite this inequality to match the\nanswer options:\nr-v23",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q111-explanation-1.png\" width=\"308\" alt=\"Official explanation for source question 111; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>\\(1\\text{ sind}=5.6\\text{ ricks}\\)</p><p>\\(1\\text{ sind}=12.88\\text{ dalts}\\)</p><p>Using the conversion above, how many dalts are equal to \\(1\\) rick?</p>",
+      "choices": [
+        {
+          "text": "0.43",
+          "math": "0.43",
+          "id": "A"
+        },
+        {
+          "text": "2.30",
+          "math": "2.30",
+          "id": "B"
+        },
+        {
+          "text": "7.28",
+          "math": "7.28",
+          "id": "C"
+        },
+        {
+          "text": "18.48",
+          "math": "18.48",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q112",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "\\(1\\text{ sind}=5.6\\text{ ricks}\\)\n\n\\(1\\text{ sind}=12.88\\text{ dalts}\\)\n\nUsing the conversion above, how many dalts are equal to \\(1\\) rick?",
+      "correctChoiceId": "B",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          54
+        ],
+        "sourceQuestion": "112",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ],
+          "regions": [
+            {
+              "page": 50,
+              "box": [
+                76,
+                156,
+                560,
+                455
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(F) Since 5.6 ricks and 12.88 dalts are\nboth equal to 1 sind, then 5.6 ricks =\n12.88 dalts. To calculate the number of\ndalts (d) in 1 rick, set up a proportion:\n5.6 _1\n12.88 d\n5.6d = 12.88\nd=2.3",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q112-explanation-1.png\" width=\"310\" alt=\"Official explanation for source question 112; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>There are now \\(x\\) cans stacked on a shelf that holds \\(36\\) cans when full. If \\(4\\) of these cans were removed, the shelf would be half full. What is the value of \\(x\\)?</p>",
+      "choices": [
+        {
+          "text": "14",
+          "math": "14",
+          "id": "A"
+        },
+        {
+          "text": "16",
+          "math": "16",
+          "id": "B"
+        },
+        {
+          "text": "18",
+          "math": "18",
+          "id": "C"
+        },
+        {
+          "text": "22",
+          "math": "22",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q113",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "There are now \\(x\\) cans stacked on a shelf that holds \\(36\\) cans when full. If \\(4\\) of these cans were removed, the shelf would be half full. What is the value of \\(x\\)?",
+      "correctChoiceId": "D",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          54
+        ],
+        "sourceQuestion": "113",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ],
+          "regions": [
+            {
+              "page": 50,
+              "box": [
+                76,
+                560,
+                504,
+                759
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(D) The shelf, when full, holds 36\ncans. When the shelf is half full, it\nholds 18 cans.\nx-4=18\nx =22",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q113-explanation-1.png\" width=\"274\" alt=\"Official explanation for source question 113; original printed answer labels retained.\"></p>"
+    },
+    {
+      "promptHtml": "<p>Carlos tossed a paper cup in the air \\(50\\) times and found that the probability of it landing on its side was \\(72\\%\\). If he tosses the cup in the air \\(150\\) <strong>more</strong> times, what is the total number of times he can expect the cup to land on its side?</p>",
+      "choices": [
+        {
+          "text": "72",
+          "math": "72",
+          "id": "A"
+        },
+        {
+          "text": "108",
+          "math": "108",
+          "id": "B"
+        },
+        {
+          "text": "144",
+          "math": "144",
+          "id": "C"
+        },
+        {
+          "text": "158",
+          "math": "158",
+          "id": "D"
+        }
+      ],
+      "id": "pdf-shsat-2021-2022-b-q114",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "",
+      "subtopic": "",
+      "prompt": "Carlos tossed a paper cup in the air \\(50\\) times and found that the probability of it landing on its side was \\(72\\%\\). If he tosses the cup in the air \\(150\\) more times, what is the total number of times he can expect the cup to land on its side?",
+      "correctChoiceId": "C",
+      "review": {
+        "sourceFile": "20212022_form_b.pdf",
+        "sourcePages": [
+          54
+        ],
+        "sourceQuestion": "114",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "topicSource": "unknown",
+        "difficulty": "",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "Official explanation is preserved as a source image with original printed answer labels. Editable OCR text should be checked against that image.",
+            "state": "unresolved"
+          }
+        ],
+        "answerSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20212022_form_b_-_answers.pdf",
+          "sourcePages": [
+            50
+          ],
+          "regions": [
+            {
+              "page": 50,
+              "box": [
+                664,
+                156,
+                1133,
+                388
+              ]
+            }
+          ]
+        }
+      },
+      "explanation": "(G) The probability of the cup landing\non its side is 72%. Carlos tossed the\ncup a total of 200 times (50 + 150).\nThe number of times the cup lands on\nits side is 72% of 200:\n0.72 x 200 = 144",
+      "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-b-q114-explanation-1.png\" width=\"300\" alt=\"Official explanation for source question 114; original printed answer labels retained.\"></p>"
+    }
+  ]
+}

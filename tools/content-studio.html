@@ -145,6 +145,12 @@
     .image-editor { display: grid; grid-template-columns: minmax(180px, .65fr) minmax(240px, 1fr); gap: 12px; align-items: start; border: 1px solid var(--border-soft); border-radius: 8px; background: var(--subtle); padding: 11px; }
     .image-editor-preview { display: grid; min-height: 126px; border: 1px dashed #b8c3cf; border-radius: 7px; background: #fff; color: var(--muted); font-size: .67rem; place-items: center; }
     .image-editor-preview img { display: block; max-width: 100%; max-height: 210px; object-fit: contain; }
+    .image-editor.is-passage-image { border: 0; background: transparent; }
+    .image-editor-preview.is-passage-image { border: 0; border-radius: 0; background: transparent; }
+    .image-editor-preview.is-passage-image img { height: auto; max-height: none; }
+    .passage-image-size { display: flex; align-items: end; flex-wrap: wrap; gap: 10px; }
+    .passage-image-size .field { flex: 0 1 140px; min-width: 0; }
+    .passage-image-size input[type=range] { flex: 1 1 140px; min-width: 0; width: 100%; }
     .image-editor-preview.is-book-cover { justify-self: start; width: 142px; min-height: 0; aspect-ratio: 3 / 4; overflow: hidden; }
     .image-editor-preview.is-book-cover img { width: 100%; height: 100%; max-height: none; object-fit: cover; }
     .image-editor-fields { display: grid; gap: 9px; }
@@ -1125,6 +1131,7 @@ Why D is wrong."></textarea>
   <link rel="stylesheet" href="/math-command/teacher-labels-studio.css">
   <script type="module" src="/math-command/teacher-labels-studio.js"></script>
   <script src="/content-studio-command.js"></script>
+  <script src="/content-studio-question-link.js"></script>
   <script src="/content-studio-part-b.js"></script>
   <script src="/part-b-bank.cjs"></script>
   <script src="/content-studio-part-b-tools.js"></script>
@@ -1769,7 +1776,7 @@ Why D is wrong."></textarea>
       $$(".view").forEach((view) => view.classList.toggle("is-active", view.id === viewId));
       studioUI.activateWorkspace(tab);
       if (tab === "compare") ComparisonStudio.mount();
-      if (tab === "math-command") { const frame = document.getElementById('math-command-frame'); if (!frame.src) frame.src = '/math-command/'; else frame.contentWindow.location.reload(); }
+      if (tab === "math-command") { const frame = document.getElementById('math-command-frame'); frame.src = '/math-command/'; }
     }
 
     function renderErrors(elementId, errors) {
@@ -2321,9 +2328,9 @@ Why D is wrong."></textarea>
                     <label class="field"><span>Cover description for accessibility</span><input data-cover-image-field="alt" ${passage.coverImage ? "" : "disabled"} value="${escapeHtml(passage.coverImage?.alt || "")}" placeholder="Describe the book cover"></label>
                   </div>
                 </div>
-                <div class="image-editor">
-                  <div class="image-editor-preview">
-                    ${passage.image ? `<img alt="${escapeHtml(passage.image.alt)}" src="${escapeHtml(passage.image.src)}">` : "<span>No passage image</span>"}
+                <div class="image-editor is-passage-image">
+                  <div class="image-editor-preview is-passage-image">
+                    ${passage.image ? `<img alt="${escapeHtml(passage.image.alt)}" src="${escapeHtml(passage.image.src)}"${passage.image.width ? ` width="${passage.image.width}"` : ""}>` : "<span>No passage image</span>"}
                   </div>
                   <div class="image-editor-fields">
                     <strong>Passage image <small class="field-note">Shown inside the passage · PNG, JPEG, GIF, WebP, or SVGZ up to 5 MB</small></strong>
@@ -2334,6 +2341,11 @@ Why D is wrong."></textarea>
                     </div>
                     <label class="field"><span>Image description for accessibility</span><input data-image-field="alt" ${passage.image ? "" : "disabled"} value="${escapeHtml(passage.image?.alt || "")}" placeholder="Describe what the image shows"></label>
                     <label class="field"><span>Caption <small>Optional</small></span><input data-image-field="caption" ${passage.image ? "" : "disabled"} value="${escapeHtml(passage.image?.caption || "")}" placeholder="Caption shown below the image"></label>
+                    <div class="passage-image-size">
+                      <label class="field"><span>Image width (px)</span><input data-image-field="width" aria-label="Passage image width" type="number" min="40" max="1200" step="1" ${passage.image ? "" : "disabled"} value="${passage.image?.width || ""}" placeholder="Original size"></label>
+                      <input id="passage-image-size-slider" aria-label="Resize passage image" type="range" min="40" max="1200" step="1" value="${passage.image?.width || 360}" ${passage.image ? "" : "disabled"}>
+                      <button class="secondary" id="reset-passage-image-size" type="button" ${passage.image ? "" : "disabled"}>Original size</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2872,7 +2884,7 @@ Why D is wrong."></textarea>
           if (app.passageDraft !== passage) { setStatus('The image uploaded, but the passage changed. Paste again in the intended passage.'); return; }
           app.passageDraft[draftKey] = {
             alt: app.passageDraft[draftKey]?.alt || `${app.passageDraft.title || "Passage"} ${imageRole === "cover" ? "book cover" : "illustration"}`,
-            ...(imageRole === "passage" ? { caption: app.passageDraft.image?.caption || "" } : {}),
+            ...(imageRole === "passage" ? { caption: app.passageDraft.image?.caption || "", ...(passage.image?.width ? {width:passage.image.width} : {}) } : {}),
             src: result.image.src,
           };
           markDirty();
@@ -2906,10 +2918,26 @@ Why D is wrong."></textarea>
       $$("[data-image-field]", $("#passage-editor")).forEach((element) => {
         element.addEventListener("input", () => {
           if (!app.passageDraft.image) return;
+          if (element.dataset.imageField === 'width') { resizePassageImage(element.value); return; }
           app.passageDraft.image[element.dataset.imageField] = element.value;
           markDirty();
         });
       });
+      function resizePassageImage(value) {
+        const image = app.passageDraft.image;
+        if (!image) return;
+        const width = value === '' ? undefined : Math.round(Math.max(40, Math.min(1200, Number(value))));
+        if (width !== undefined && !Number.isFinite(width)) return;
+        if (width === undefined) delete image.width; else image.width = width;
+        const number = document.querySelector('[data-image-field="width"]'), slider = document.getElementById('passage-image-size-slider');
+        if (number) number.value = width ?? '';
+        if (slider) slider.value = width ?? 360;
+        const preview = document.querySelector('.image-editor-preview.is-passage-image img');
+        if (preview) { if (width === undefined) preview.removeAttribute('width'); else preview.width = width; }
+        markDirty();
+      }
+      document.getElementById('passage-image-size-slider')?.addEventListener('input', event => resizePassageImage(event.target.value));
+      document.getElementById('reset-passage-image-size')?.addEventListener('click', () => resizePassageImage(''));
       $("#remove-passage-cover")?.addEventListener("click", () => {
         app.passageDraft.coverImage = undefined;
         markDirty();
@@ -3046,7 +3074,7 @@ Why D is wrong."></textarea>
         ? `<p class="${passage.format === "poem" ? "exam-poem-line is-centered is-byline" : passage.format === "sentence_prose" ? "exam-sentence-prose-line is-byline" : "exam-prose-line is-byline"}"><span>by ${escapeHtml(passage.author)}</span></p>`
         : "";
       const image = passage.image
-        ? `<figure class="exam-passage-image"><img alt="${escapeHtml(passage.image.alt)}" src="${location.origin}${escapeHtml(passage.image.src)}">${passage.image.caption ? `<figcaption>${escapeHtml(passage.image.caption)}</figcaption>` : ""}</figure>`
+        ? `<figure class="exam-passage-image"><img alt="${escapeHtml(passage.image.alt)}" src="${location.origin}${escapeHtml(passage.image.src)}"${passage.image.width ? ` width="${Number(passage.image.width)}"` : ""}>${passage.image.caption ? `<figcaption>${escapeHtml(passage.image.caption)}</figcaption>` : ""}</figure>`
         : "";
       const text = passage.format === "poem" ? passage.text.replace(/^\s*\n/, "").trimEnd() : passage.text.trim();
       const richBlocks = richBlocksFromPassage(passage);
@@ -4575,6 +4603,7 @@ Why D is wrong."></textarea>
         return `
           <button class="${assessment.id === app.selectedAssessmentId ? "is-active" : ""}" data-assessment-id="${escapeHtml(assessment.id)}" type="button">
             <strong>${escapeHtml(assessment.title)}</strong>
+            ${app.state.examVerification?.[assessment.id]?.verified === true ? '<span class="studio-verified-badge">✓ Verified</span>' : ''}
             <small>${test ? `${test.passageIds.length} passage${test.passageIds.length === 1 ? "" : "s"} in source` : "English source not registered yet"}</small>
           </button>
         `;
@@ -5579,10 +5608,15 @@ Why D is wrong."></textarea>
                   <option ${question.entryLayout === "fraction" ? "selected" : ""} value="fraction">Fraction answer</option>
                 </select>
               </label>
-              <label class="field" id="math-entry-variable-field" ${question.entryLayout === "x_equals" ? "" : "hidden"}>
-                <span>Answer variable</span>
-                <input id="math-entry-variable" value="${escapeHtml(question.entryVariable || "x")}" maxlength="2" placeholder="x" autocomplete="off" spellcheck="false" aria-describedby="math-entry-variable-note">
-                <small id="math-entry-variable-note">Enter one letter, such as w, y, or r. Displays before the equals sign.</small>
+              <label class="field" id="math-entry-variable-field">
+                <span>Calculator variable</span>
+                <input id="math-entry-variable" value="${escapeHtml(question.entryVariable || "")}" maxlength="2" placeholder="e.g. b" autocomplete="off" spellcheck="false" aria-describedby="math-entry-variable-note">
+                <small id="math-entry-variable-note">One letter to add to the expression keypad and allow when typing. Leave blank for no variable key.</small>
+              </label>
+              <label class="field" id="math-entry-prefix-variable-field" ${question.entryLayout === "x_equals" ? "" : "hidden"}>
+                <span>Answer label variable</span>
+                <input id="math-entry-prefix-variable" value="${escapeHtml(question.entryPrefixVariable || question.entryVariable || "x")}" maxlength="2" placeholder="x" autocomplete="off" spellcheck="false" aria-describedby="math-entry-prefix-variable-note">
+                <small id="math-entry-prefix-variable-note">One letter before the equals sign, independent of the calculator variable. Blank uses x.</small>
               </label>` : ""}
               <label class="field"><span>Accepted answers</span>
                 <textarea id="math-accepted-answers" placeholder="Put each accepted answer on its own line.">${escapeHtml((question.correctTextAnswers || []).join("\n"))}</textarea>
@@ -5800,6 +5834,7 @@ Why D is wrong."></textarea>
         if (type === "numeric_entry" || type === "expression_entry") {
           next.entryLayout = current.entryLayout || "plain";
           if (current.entryVariable) next.entryVariable = current.entryVariable;
+          if (current.entryPrefixVariable) next.entryPrefixVariable = current.entryPrefixVariable;
         }
       }
       app.mathDraft.questions[app.selectedMathQuestionIndex] = next;
@@ -6413,13 +6448,22 @@ Why D is wrong."></textarea>
       });
       $("#math-entry-layout")?.addEventListener("change", (event) => {
         question.entryLayout = event.target.value;
-        $("#math-entry-variable-field").hidden = question.entryLayout !== "x_equals";
+        $("#math-entry-prefix-variable-field").hidden = question.entryLayout !== "x_equals";
         markMathDirty();
         renderMathPreview();
       });
       $("#math-entry-variable")?.addEventListener("input", (event) => {
+        // Preserve the existing label when editing legacy questions that used
+        // entryVariable for both the keypad and the equation prefix.
+        if (!question.entryPrefixVariable) question.entryPrefixVariable = question.entryVariable || "x";
         question.entryVariable = event.target.value.trim().normalize("NFKC");
-        event.target.setCustomValidity(question.entryVariable && !/^\p{L}$/u.test(question.entryVariable) ? "Enter one letter for the answer variable." : "");
+        event.target.setCustomValidity(question.entryVariable && !/^\p{L}$/u.test(question.entryVariable) ? "Enter one letter for the calculator variable." : "");
+        markMathDirty();
+        renderMathPreview();
+      });
+      $("#math-entry-prefix-variable")?.addEventListener("input", (event) => {
+        question.entryPrefixVariable = event.target.value.trim().normalize("NFKC") || "x";
+        event.target.setCustomValidity(!/^\p{L}$/u.test(question.entryPrefixVariable) ? "Enter one letter for the answer label." : "");
         markMathDirty();
         renderMathPreview();
       });
@@ -7156,6 +7200,12 @@ WRONG D:`;
         studioUI.initialize();
         if (app.passageDraft && !document.querySelector('#studio-exam-canvas')) renderPassageEditor();
         DocumentStudio.initialize();
+        const questionParams=new URLSearchParams(window.location.search);
+        if(questionParams.get('questionId')){
+          const target=resolveMathQuestionLink(app.state.assessments,linkedMathSection,questionParams.get('questionId'),questionParams.get('assessmentId'));
+          if(target){switchTab('math');selectMathAssessment(target.assessmentId,{selectedQuestionId:target.questionId,revealSelected:true});}
+          else {setStatus('The linked math question is not in this Content Studio workspace. Check the source question ID or open the matching workspace.','error');return;}
+        }
         if (window.location.hash === "#question-bank") switchTab("question-bank");
         try { initializePracticeEditor(); }
         catch (error) { setStatus(`The reading editor is ready. Regular practice could not load: ${error.message}`, "error"); return; }
